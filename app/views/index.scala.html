@@ -1,0 +1,17 @@
+@(isDev: Boolean)<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scalataire</title>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta httpEquiv="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/scalataire.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+  </head>
+  <body>
+    @if(isDev) {
+      <script src="/assets/javascripts/phaser/phaser.min.js"></script>
+    }
+    <script data-main="/assets/javascripts/main" src="/assets/lib/requirejs/require.min.js"></script>
+  </body>
+</html>
