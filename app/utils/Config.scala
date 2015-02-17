@@ -10,9 +10,7 @@ object Config {
   val projectName = "Scalataire"
   val version = "0.1"
 
-  val isDevMode = Play.isDev(Play.current)
-  val isTestMode = Play.isTest(Play.current)
-  val isProdMode = Play.isProd(Play.current)
+  val debug = !Play.isProd(Play.current)
 
   // Metrics
   val jmxEnabled = cnf.getBoolean("metrics.jmx.enabled")

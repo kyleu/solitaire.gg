@@ -5,6 +5,6 @@ requirejs.config({
   }
 });
 
-requirejs(['game/Game'], function(Game) {
-  Game.start();
+requirejs(['game/Scalataire'], function(Scalataire) {
+  new Scalataire().start();
 });

@@ -17,6 +17,11 @@ object MessageFrameFormatter {
   private def responseToJson(r: ResponseMessage): JsValue = Json.toJson(r)
   private def responseFromJson(json: JsValue): ResponseMessage = throw new IllegalArgumentException("Attempted to deserialize ResponseMessage [" + json + "] on server.")
 
-  implicit val requestFormatter = FrameFormatter.jsonFrame.transform(requestToJson, requestFromJson)
-  implicit val responseFormatter = FrameFormatter.jsonFrame.transform(responseToJson, responseFromJson)
+  private val jsValueFrame: FrameFormatter[JsValue] = {
+    val toStr = if(Config.debug) { Json.prettyPrint _ } else { Json.stringify _ }
+    FrameFormatter.stringFrame.transform(toStr, Json.parse)
+  }
+
+  implicit val requestFormatter = jsValueFrame.transform(requestToJson, requestFromJson)
+  implicit val responseFormatter = jsValueFrame.transform(responseToJson, responseFromJson)
 }
