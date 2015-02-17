@@ -8,6 +8,7 @@ object Config {
 
   val projectId = "scalataire"
   val projectName = "Scalataire"
+  val version = "0.1"
 
   val isDevMode = Play.isDev(Play.current)
   val isTestMode = Play.isTest(Play.current)

@@ -6,5 +6,5 @@ requirejs.config({
 });
 
 requirejs(['game/Game'], function(Game) {
-  new Game().start();
+  Game.start();
 });
