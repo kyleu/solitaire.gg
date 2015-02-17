@@ -5,6 +5,6 @@ requirejs.config({
   }
 });
 
-requirejs(['game/Test'], function(Test) {
-  Test.test();
+requirejs(['game/Game'], function(Game) {
+  new Game().start();
 });

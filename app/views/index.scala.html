@@ -9,8 +9,16 @@
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
   </head>
   <body>
+    <div id="game-container">
+      <div id="loading-screen">
+        <span>Loading...</span>
+      </div>
+    </div>
     @if(isDev) {
-      <script src="/assets/javascripts/phaser/phaser.min.js"></script>
+      <script src="/assets/lib/phaser/js/phaser.js"></script>
+      <script src="/assets/lib/phaser/js/phaser-debug.js"></script>
+    } else {
+      <script src="/assets/lib/phaser/js/phaser.min.js"></script>
     }
     <script data-main="/assets/javascripts/main" src="/assets/lib/requirejs/require.min.js"></script>
   </body>
