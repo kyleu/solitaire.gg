@@ -21,6 +21,17 @@ define(["Config"], function (cfg) {
     this.connection = ws;
   }
 
+  Websocket.prototype.connect = function() {
+    var msg = { "c": c, "v": v };
+    var s = null;
+    if(cfg.debug) {
+      s = JSON.stringify(msg, undefined, 2);
+    } else {
+      s = JSON.stringify(msg);
+    }
+    this.connection.send(s);
+  };
+
   Websocket.prototype.send = function(c, v) {
     var msg = { "c": c, "v": v };
     var s = null;
