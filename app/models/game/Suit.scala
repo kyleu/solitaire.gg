@@ -11,6 +11,8 @@ sealed trait Suit {
 }
 
 object Suit {
+  val all = Seq(Hearts, Spades, Diamonds, Clubs)
+
   def fromChar(c: Char) = c match {
     case 'H' => Hearts
     case 'S' => Spades

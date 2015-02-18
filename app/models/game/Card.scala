@@ -1,3 +1,5 @@
 package models.game
 
-case class Card(id: String, s: Suit, r: Rank)
+import java.util.UUID
+
+case class Card(id: String = UUID.randomUUID.toString, r: Rank, s: Suit)

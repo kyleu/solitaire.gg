@@ -6,6 +6,8 @@ sealed trait Rank {
 }
 
 object Rank {
+  val all = Seq(Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace)
+
   def fromChar(c: Char) = c match {
     case '2' => Two
     case '3' => Three

@@ -3,20 +3,25 @@ define(["Config"], function (cfg) {
 
   function Websocket(url, onConnect, onMessage) {
     this.url = url;
+    this.connected = false;
 
+    var me = this;
     var ws = new WebSocket(this.url);
-    ws.onopen = function(event) {
-      onConnect(url);
+    ws.onopen = function() {
+      me.connected = true;
+      onConnect(me.url);
     };
     ws.onmessage = function(event) {
       var json = JSON.parse(event.data);
       onMessage(json.c, json.v);
     };
     ws.onclose = function() {
-      cfg.log.info("Websocket connection to [" + this.url + "] closed.");
+      me.connected = false;
+      cfg.log.info("Websocket connection to [" + me.url + "] closed.");
     };
     ws.onerror = function() {
-      cfg.log.error("Received error from websocket connection to [" + this.url + "].");
+      me.connected = false;
+      cfg.log.error("Received error from websocket connection to [" + me.url + "].");
     };
     this.connection = ws;
   }
@@ -40,6 +45,7 @@ define(["Config"], function (cfg) {
     } else {
       s = JSON.stringify(msg);
     }
+    cfg.log.debug("Sending [" + c + "] message: " + s);
     this.connection.send(s);
   };
 

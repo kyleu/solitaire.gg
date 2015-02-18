@@ -9,7 +9,7 @@ define(function () {
     id: "scalataire",
     name: "Scalataire",
     debug: true,
-    wsUrl: "ws://localhost:9000/websocket",
+    wsUrl: "ws://" + document.location.host + "/websocket",
 
     log: {
       debug: function(msg) {
