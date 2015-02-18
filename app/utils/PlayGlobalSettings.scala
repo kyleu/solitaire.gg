@@ -15,15 +15,15 @@ object PlayGlobalSettings extends GlobalSettings {
     super.onStop(app)
   }
 
-//  override def onError(request: RequestHeader, ex: Throwable) = Future.successful(
-//    Results.InternalServerError(TemplateHelper.tagToHtml(views.error.ServerErrorTemplate(request.path, ex)))
-//  )
-//  override def onHandlerNotFound(request: RequestHeader) = Future.successful(
-//    Results.NotFound(TemplateHelper.tagToHtml(views.error.PageNotFoundTemplate(request.path)))
-//  )
-//  override def onBadRequest(request: RequestHeader, error: String) = Future.successful(
-//    Results.BadRequest(TemplateHelper.tagToHtml(views.error.BadRequestTemplate(request.path, error)))
-//  )
+  override def onError(request: RequestHeader, ex: Throwable) = Future.successful(
+    Results.InternalServerError(views.html.error.serverError(request.path, Some(ex))(request.session, request.flash))
+  )
+  override def onHandlerNotFound(request: RequestHeader) = Future.successful(
+    Results.NotFound(views.html.error.notFound(request.path)(request.session, request.flash))
+  )
+  override def onBadRequest(request: RequestHeader, error: String) = Future.successful(
+    Results.BadRequest(views.html.error.badRequest(request.path, error)(request.session, request.flash))
+  )
 
   override def onRouteRequest(request: RequestHeader) = {
     if(!request.path.startsWith("/assets")) {

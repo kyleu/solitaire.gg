@@ -1,0 +1,20 @@
+@(title: String, scripts: Seq[String] = Nil, stylesheets: Seq[String] = Nil)(content: Html)(implicit session: Session, flash: Flash)
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>@title</title>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta httpEquiv="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")" />
+    @for(script <- scripts) {
+      <script src="@routes.Assets.at(script)"></script>
+    }
+    @for(stylesheet <- stylesheets) {
+      <link rel="stylesheet" media="screen" href="@routes.Assets.at(stylesheet)" />
+    }
+  </head>
+  <body>
+    @content
+  </body>
+</html>

@@ -1,0 +1,7 @@
+@(title: String)(content: Html)(implicit session: Session, flash: Flash)
+
+@defining(if(utils.Config.debug) { Seq("lib/jquery/jquery.min.js", "lib/bootstrap/js/bootstrap.min.js") } else { Seq("lib/jquery/jquery.js", "lib/bootstrap/js/bootstrap.js") }) { scripts =>
+  @layout.basic(title, scripts, Seq("lib/bootstrap/css/bootstrap.css")) {
+    @content
+  }
+}

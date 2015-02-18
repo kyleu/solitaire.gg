@@ -4,7 +4,7 @@ import play.api.mvc._
 import utils.Config
 
 object HomeController extends Controller {
-  def index = Action {
+  def index = Action { implicit request =>
     Ok(views.html.index(Config.debug))
   }
 }
