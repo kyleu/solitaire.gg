@@ -1,17 +1,15 @@
-define(["Config"], function (cfg) {
+define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   "use strict";
 
   function Card(index, id, rank, suit, game, x, y) {
-    Phaser.Sprite.call(this, game, x, y, rank + suit);
-
     this.index = index;
-
     this.id = id;
-    this.rank = rank;
-    this.suit = suit;
+    this.rank = Rank.fromChar(rank);
+    this.suit = Suit.fromChar(suit);
 
-    this.x = x;
-    this.y = y;
+    var spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
+
+    Phaser.Sprite.call(this, game, x, y, 'card-medium', spriteIndex);
 
     this.game.add.existing(this);
     this.anchor.set(0.5);

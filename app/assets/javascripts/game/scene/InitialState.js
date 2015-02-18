@@ -1,4 +1,4 @@
-define(["Config", "Websocket", "game/scene/LoadingScreen"], function (cfg, Websocket, LoadingScreen) {
+define(["Config", "Websocket", "game/component/StatusPanel", "game/scene/LoadingScreen"], function (cfg, Websocket, StatusPanel, LoadingScreen) {
   "use strict";
 
   function InitialState(game) {
@@ -9,26 +9,24 @@ define(["Config", "Websocket", "game/scene/LoadingScreen"], function (cfg, Webso
   InitialState.prototype.constructor = InitialState;
 
   InitialState.prototype.onConnect = function(url) {
-    this.connectionStatus.text = "Connected";
+    this.game.statusPanel.connected();
     this.game.state.start('loading-screen');
   };
 
   InitialState.prototype.create = function() {
     var text = "Connecting...";
 
+    this.game.time.advancedTiming = true;
+
     this.game.add.text(this.game.world.centerX - 60, this.game.world.centerY - 60, text, { font: "18px Helvetica", fill: "#ffffff" });
 
-    this.connectionStatus = new Phaser.Text(this.game, 20, 20, "", { font: "12px Helvetica", fill: "#ffffff" });
-    this.game.stage.addChild(this.connectionStatus);
-
-    var g = this.game;
     this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     if(typeof Phaser.Plugin.Debug == 'function') {
       this.game.add.plugin(Phaser.Plugin.Debug);
     }
 
-    var that = this;
-    this.game.ws = new Websocket(cfg.wsUrl, function(url) { that.onConnect(url); }, function(c, v) { g.onMessage(c, v); });
+    this.game.statusPanel = new StatusPanel(this.game);
+    this.game.ws = new Websocket(cfg.wsUrl, this, this.game);
   };
 
   InitialState.prototype.preload = function() {
@@ -41,6 +39,7 @@ define(["Config", "Websocket", "game/scene/LoadingScreen"], function (cfg, Webso
   };
 
   InitialState.prototype.update = function() {
+    this.game.statusPanel.setFps(this.game.time.fps);
   };
 
   return InitialState;

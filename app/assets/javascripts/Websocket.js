@@ -1,7 +1,7 @@
 define(["Config"], function (cfg) {
   "use strict";
 
-  function Websocket(url, onConnect, onMessage) {
+  function Websocket(url, statusObj, messageObj) {
     this.url = url;
     this.connected = false;
 
@@ -9,11 +9,11 @@ define(["Config"], function (cfg) {
     var ws = new WebSocket(this.url);
     ws.onopen = function() {
       me.connected = true;
-      onConnect(me.url);
+      statusObj.onConnect(me.url);
     };
     ws.onmessage = function(event) {
       var json = JSON.parse(event.data);
-      onMessage(json.c, json.v);
+      messageObj.onMessage(json.c, json.v);
     };
     ws.onclose = function() {
       me.connected = false;

@@ -12,11 +12,18 @@ define(['Config', 'Websocket'], function (cfg, Websocket) {
 
   Game.prototype.onMessage = function(c, v) {
     cfg.log.debug("Message [" + c + "] received with content [" + JSON.stringify(v) + "].");
-    this.state.getCurrentState().onMessage(c, v);
-  };
-
-  Game.prototype.orientationChange = function(scale) {
-
+    // Handle common messages
+    switch(c) {
+      case "Pong":
+        this.statusPanel.setLatency(new Date().getTime() - v.timestamp);
+        break;
+      default:
+    }
+    // Prevent send if desired.
+    switch(c) {
+      default:
+        this.state.getCurrentState().onMessage(c, v);
+    }
   };
 
   return Game;
