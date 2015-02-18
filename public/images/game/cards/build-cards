@@ -1,0 +1,51 @@
+#!/bin/bash
+
+transparent()
+{
+  find . -maxdepth 1 -type f -exec composite -compose copy_opacity +matte transparency.png {} {} \;
+}
+
+shrink()
+{
+  find . -maxdepth 1 -type f -exec convert {} -resize 50% {} \;
+}
+
+stitch()
+{
+  montage H[2-9].png H1[0-4].png S[2-9].png S1[0-4].png D[2-9].png D1[0-4].png C[2-9].png C1[0-4].png -tile 13x4 -geometry +0 -background Transparent  ALL.png;
+}
+
+optimize()
+{
+  optipng *.png;
+}
+
+process()
+{
+  echo "Processing $1...";
+  rm -rf $1;
+  mkdir $1;
+  cd $1;
+  cp ../$2/* .;
+
+  if [ "$2" == "_unprocessed" ]
+  then
+    echo "Applying transparency";
+    transparent;
+  else
+    echo "Resizing";
+    shrink;
+  fi
+
+  echo "Stitching";
+  stitch;
+  echo "Optimizing";
+  optimize;
+  cd ..
+}
+
+process x-large _unprocessed
+process large x-large
+process medium large
+process small medium
+process x-small small
