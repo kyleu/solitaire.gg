@@ -5,10 +5,12 @@ define(function() {
     this.fps = new Phaser.Text(game, 20, 60, "", { font: "16px Helvetica", fill: "#ffffff" });
     this.version = new Phaser.Text(game, 20, 80, "v0.0", { font: "16px Helvetica", fill: "#ffffff" });
 
-    game.stage.addChild(this.connectionStatus);
-    game.stage.addChild(this.latency);
-    game.stage.addChild(this.fps);
-    game.stage.addChild(this.version);
+    this.group = new Phaser.Group(game, null, "status-panel", true);
+
+    this.group.add(this.connectionStatus);
+    this.group.add(this.latency);
+    this.group.add(this.fps);
+    this.group.add(this.version);
   };
 
   StatusPanel.prototype.connected = function() {

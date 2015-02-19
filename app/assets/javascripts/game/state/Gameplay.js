@@ -1,4 +1,4 @@
-define(['Config', 'game/Card'], function (cfg, Card) {
+define(['Config', 'game/Card', 'game/Pile'], function (cfg, Card, Pile) {
   "use strict";
 
   function Gameplay(game) {
@@ -9,6 +9,9 @@ define(['Config', 'game/Card'], function (cfg, Card) {
   Gameplay.prototype.constructor = Gameplay;
 
   Gameplay.prototype.preload = function() {
+    this.game.load.image("bg-texture", "/assets/images/game/bg.jpg");
+    this.game.load.image("card-back-medium", "/assets/images/game/cards/medium/BACK.png");
+    this.game.load.image("empty-pile-medium", "/assets/images/game/cards/medium/EMPTY.png");
     this.game.load.image("bg-texture", "/assets/images/game/bg.jpg");
     this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', 233, 359);
   };
@@ -22,6 +25,8 @@ define(['Config', 'game/Card'], function (cfg, Card) {
     }, this.game);
 
     this.game.ws.send("JoinGame", { "name": "Kyle" });
+
+    var pile = new Pile(this.game, "pile-1", 100, 100);
   };
 
   Gameplay.prototype.update = function() {

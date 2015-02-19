@@ -2,7 +2,7 @@
 
 transparent()
 {
-  find . -maxdepth 1 -type f -exec composite -compose copy_opacity +matte transparency.png {} {} \;
+  find . -maxdepth 1 -type f \( -iname "*.png" ! -iname "EMPTY.png" \) -exec composite -compose copy_opacity +matte transparency.png {} {} \;
 }
 
 shrink()

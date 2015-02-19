@@ -12,7 +12,6 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
 
     this.game.add.existing(this);
     this.anchor.set(0.5);
-    this.game.physics.arcade.enable(this);
   }
 
   Card.prototype = Object.create(Phaser.Sprite.prototype);
