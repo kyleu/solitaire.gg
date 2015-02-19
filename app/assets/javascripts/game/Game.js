@@ -11,7 +11,7 @@ define(['Config', 'Websocket'], function (cfg, Websocket) {
   Game.prototype.constructor = Game;
 
   Game.prototype.onMessage = function(c, v) {
-    cfg.log.debug("Message [" + c + "] received with content [" + JSON.stringify(v) + "].");
+    console.log("Message [" + c + "] received with content [" + JSON.stringify(v) + "].");
     // Handle common messages
     switch(c) {
       case "Pong":

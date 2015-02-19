@@ -19,7 +19,6 @@ define(['Config', 'game/Card'], function (cfg, Card) {
     this.bg.scale = { x: 0.5, y: 0.5 };
 
     this.game.ws.send("JoinGame", { "name": "Kyle" });
-    console.log(this.game.add.spritesheet);
   };
 
   Sandbox.prototype.update = function() {
@@ -36,12 +35,12 @@ define(['Config', 'game/Card'], function (cfg, Card) {
         }
         break;
       default:
-        cfg.log.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));
+        console.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));
     }
   };
 
   Sandbox.prototype.resize = function(w, h) {
-    cfg.log.info("Sandbox resize");
+    console.info("Sandbox resize.");
     this.bg.height = h * 2;
     this.bg.width = w * 2;
   };

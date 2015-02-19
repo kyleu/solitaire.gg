@@ -17,11 +17,11 @@ define(["Config"], function (cfg) {
     };
     ws.onclose = function() {
       me.connected = false;
-      cfg.log.info("Websocket connection to [" + me.url + "] closed.");
+      console.info("Websocket connection to [" + me.url + "] closed.");
     };
     ws.onerror = function() {
       me.connected = false;
-      cfg.log.error("Received error from websocket connection to [" + me.url + "].");
+      console.error("Received error from websocket connection to [" + me.url + "].");
     };
     this.connection = ws;
   }
@@ -45,7 +45,7 @@ define(["Config"], function (cfg) {
     } else {
       s = JSON.stringify(msg);
     }
-    cfg.log.debug("Sending [" + c + "] message: " + s);
+    console.log("Sending [" + c + "] message: " + s);
     this.connection.send(s);
   };
 

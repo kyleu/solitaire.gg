@@ -1,6 +1,6 @@
 @(path: String, ex: Option[Throwable])(implicit session: Session, flash: Flash)
 
-@layout.bootstrap("Server Error") {
+@layout.basic("Server Error") {
   <div style="text-align: center;">
     <h1>@path</h1>
     <div style="font-size: 150%;"><em>Exception Encountered</em></div>

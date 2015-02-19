@@ -17,8 +17,7 @@ object ScalataireBuild extends Build with UniversalKeys {
     "io.dropwizard.metrics" % "metrics-jvm" % "3.1.0",
     "io.dropwizard.metrics" % "metrics-graphite" % "3.1.0",
     "io.dropwizard.metrics" % "metrics-servlets" % "3.1.0",
-    "org.webjars" % "requirejs" % "2.1.11-1",
-    "org.webjars" % "bootstrap" % "3.3.1"
+    "org.webjars" % "requirejs" % "2.1.11-1"
   )
 
   private val compileOptions = Seq("-encoding", "UTF-8", "-feature", "-deprecation", "-unchecked")
@@ -33,8 +32,7 @@ object ScalataireBuild extends Build with UniversalKeys {
     version := Versions.app,
     scalaVersion := Versions.scala,
     libraryDependencies ++= dependencies,
-    pipelineStages := Seq(rjs, gzip),
-    //pipelineStages := Seq(rjs, digest, gzip),
+    pipelineStages := Seq(rjs, digest, gzip),
     includeFilter in (Assets, LessKeys.less) := "*.less",
     excludeFilter in (Assets, LessKeys.less) := "_*.less",
     scalacOptions ++= compileOptions

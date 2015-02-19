@@ -21,11 +21,11 @@ define(['Config', 'game/scene/Sandbox'], function (cfg, Sandbox) {
   LoadingScreen.prototype.onMessage = function(c, v) {
     switch(c) {
       case "Pong":
-        cfg.log.info("Message [Pong] received in [" + (new Date().getTime() - v.timestamp) + "ms].");
+        console.info("Message [Pong] received in [" + (new Date().getTime() - v.timestamp) + "ms].");
         this.game.state.start('sandbox');
         break;
       default:
-        cfg.log.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));
+        console.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));
     }
   };
 

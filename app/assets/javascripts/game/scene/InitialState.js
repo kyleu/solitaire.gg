@@ -35,7 +35,7 @@ define(["Config", "Websocket", "game/component/StatusPanel", "game/scene/Loading
   };
 
   InitialState.prototype.onMessage = function(c) {
-    cfg.log.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));
+    console.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));
   };
 
   InitialState.prototype.update = function() {
