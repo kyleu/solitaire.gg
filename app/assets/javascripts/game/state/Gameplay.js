@@ -13,7 +13,7 @@ define(['Config', 'game/Card', 'game/Pile'], function (cfg, Card, Pile) {
     this.game.load.image("card-back-medium", "/assets/images/game/cards/medium/BACK.png");
     this.game.load.image("empty-pile-medium", "/assets/images/game/cards/medium/EMPTY.png");
     this.game.load.image("bg-texture", "/assets/images/game/bg.jpg");
-    this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', 233, 359);
+    this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', 200, 300);
   };
 
   Gameplay.prototype.create = function() {
@@ -25,8 +25,6 @@ define(['Config', 'game/Card', 'game/Pile'], function (cfg, Card, Pile) {
     }, this.game);
 
     this.game.ws.send("JoinGame", { "name": "Kyle" });
-
-    var pile = new Pile(this.game, "pile-1", 100, 100);
   };
 
   Gameplay.prototype.update = function() {
@@ -37,12 +35,21 @@ define(['Config', 'game/Card', 'game/Pile'], function (cfg, Card, Pile) {
     switch(c) {
       case "GameJoined":
         this.cards = [];
-        for(var cardIndex in v.deck.cards) {
-          var card = v.deck.cards[cardIndex];
-          var cardObj = new Card(this.game, card.id, card.r, card.s, this.game.world.centerX, this.game.world.centerY);
-          cardObj.inputEnabled = true;
-          cardObj.input.enableDrag(false, true);
-          this.cards[cardIndex] = cardObj;
+        for(var pileIndex in v.state.piles) {
+          var pile = v.state.piles[pileIndex];
+          var pileLocation = null;
+          for(var pileLocationIndex in v.state.layout.piles) {
+            var pl = v.state.layout.piles[pileLocationIndex];
+            if(pl.id == pile.id) {
+              pileLocation = pl;
+            }
+          }
+          var pileObj = new Pile(this.game, pile.id, pileLocation.x, pileLocation.y);
+          console.log(pileObj);
+          //var cardObj = new Card(this.game, card.id, card.r, card.s, this.game.world.centerX, this.game.world.centerY);
+          //cardObj.inputEnabled = true;
+          //cardObj.input.enableDrag(false, true);
+          //this.cards[cardIndex] = cardObj;
         }
         break;
       default:

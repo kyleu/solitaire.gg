@@ -1,6 +1,6 @@
 package utils
 
-import models.game.{Deck, Rank, Suit, Card}
+import models.game._
 import play.api.libs.json._
 
 object GameSerializers {
@@ -37,4 +37,16 @@ object GameSerializers {
 
   implicit val deckReads = Json.reads[Deck]
   implicit val deckWrites = Json.writes[Deck]
+
+  implicit val pileReads = Json.reads[Pile]
+  implicit val pileWrites = Json.writes[Pile]
+
+  implicit val pileLocationReads = Json.reads[PileLocation]
+  implicit val pileLocationWrites = Json.writes[PileLocation]
+
+  implicit val layoutReads = Json.reads[Layout]
+  implicit val layoutWrites = Json.writes[Layout]
+
+  implicit val gameStateReads = Json.reads[GameState]
+  implicit val gameStateWrites = Json.writes[GameState]
 }

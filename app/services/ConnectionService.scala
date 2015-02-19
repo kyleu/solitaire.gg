@@ -2,11 +2,9 @@ package services
 
 import akka.actor.{Props, ActorRef}
 import models._
-import models.game.Deck
+import models.game.{Pile, GameState, Deck}
 import utils.Config
 import utils.metrics.InstrumentedActor
-
-import scala.util.Random
 
 object ConnectionService {
   def props(out: ActorRef) = Props(new ConnectionService(out))
@@ -17,7 +15,7 @@ class ConnectionService(out: ActorRef) extends InstrumentedActor {
     case mr: MalformedRequest => out ! ServerError("MalformedRequest", mr.content)
     case p: Ping => out ! Pong(p.timestamp)
     case GetVersion => out ! VersionResponse(Config.version)
-    case jg: JoinGame => out ! GameJoined("test-game", Math.abs(Random.nextInt()), Deck.fresh)
+    case jg: JoinGame => out ! GameJoined(Nil, GameState.default(Deck.fresh, Pile.default))
     case x => throw new IllegalArgumentException("Unhandled message [" + x.getClass.getSimpleName + "].")
   }
 }
