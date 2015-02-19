@@ -1,18 +1,23 @@
 #!/bin/bash
 
+resize()
+{
+  find . -maxdepth 1 -type f -exec convert {} -resize 800x1200\! {} \;
+}
+
 transparent()
 {
-  find . -maxdepth 1 -type f \( -iname "*.png" ! -iname "EMPTY.png" \) -exec composite -compose copy_opacity +matte transparency.png {} {} \;
+  find . -maxdepth 1 -type f \( -iname "*.png" ! -iname "EMPTY.png" ! -iname "ALL.png" \) -exec composite -compose copy_opacity +matte transparency.png {} {} \;
 }
 
 shrink()
 {
-  find . -maxdepth 1 -type f -exec convert {} -resize 50% {} \;
+  find . -maxdepth 1 -type f \( -iname "*.png" ! -iname "ALL.png" \) -exec convert {} -resize 50% {} \;
 }
 
 stitch()
 {
-  montage H[2-9].png H1[0-4].png S[2-9].png S1[0-4].png D[2-9].png D1[0-4].png C[2-9].png C1[0-4].png -tile 13x4 -geometry +0 -background Transparent  ALL.png;
+  montage H[2-9].png H1[0-4].png S[2-9].png S1[0-4].png D[2-9].png D1[0-4].png C[2-9].png C1[0-4].png -tile 13x4 -geometry +0 -background Transparent ALL.png;
 }
 
 optimize()
@@ -30,21 +35,27 @@ process()
 
   if [ "$2" == "_unprocessed" ]
   then
-    echo "Applying transparency";
-    transparent;
+    echo "Resizing to 800x1200...";
+    resize;
   else
-    echo "Resizing";
-    shrink;
+    if [ "$2" == "_resized" ]
+    then
+      echo "Applying transparency...";
+      transparent;
+    else
+      echo "Shrinking...";
+      shrink;
+      echo "Stitching...";
+      stitch;
+      echo "Optimizing...";
+      optimize;
+    fi
   fi
-
-  echo "Stitching";
-  stitch;
-  echo "Optimizing";
-  optimize;
   cd ..
 }
 
-process x-large _unprocessed
+process _resized _unprocessed
+process x-large _resized
 process large x-large
 process medium large
 process small medium
