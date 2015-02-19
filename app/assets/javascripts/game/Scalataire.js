@@ -1,9 +1,9 @@
-define(['Config', 'game/Game', 'game/scene/InitialState'], function (cfg, Game, InitialState) {
+define(['Config', 'game/Game'], function (cfg, Game) {
   "use strict";
 
   function Scalataire() {
     document.getElementById('loading-screen').style.display = 'none';
-    Game.call(this, 'scalataire', new InitialState(this));
+    Game.call(this, 'scalataire');
   }
 
   Scalataire.prototype = Game.prototype;

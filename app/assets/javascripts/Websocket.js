@@ -45,7 +45,9 @@ define(["Config"], function (cfg) {
     } else {
       s = JSON.stringify(msg);
     }
-    console.log("Sending [" + c + "] message: " + s);
+    if(c != "Ping") {
+      //console.log("Sending [" + c + "] message: " + s);
+    }
     this.connection.send(s);
   };
 

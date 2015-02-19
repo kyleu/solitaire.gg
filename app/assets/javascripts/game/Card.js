@@ -1,8 +1,7 @@
 define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   "use strict";
 
-  function Card(index, id, rank, suit, game, x, y) {
-    this.index = index;
+  function Card(game, id, rank, suit, x, y) {
     this.id = id;
     this.rank = Rank.fromChar(rank);
     this.suit = Suit.fromChar(suit);
@@ -18,14 +17,6 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
 
   Card.prototype = Object.create(Phaser.Sprite.prototype);
   Card.prototype.constructor = Card;
-
-  Card.prototype.update = function() {
-    if(this.game.physics.arcade.distanceToPointer(this, this.game.input.activePointer) > 20) {
-      this.game.physics.arcade.moveToPointer(this, 20 + (20 * this.index));
-    } else {
-      this.body.velocity.set(0);
-    }
-  };
 
   return Card;
 });
