@@ -7,16 +7,20 @@ import play.api.Logger
 import utils.metrics.InstrumentedActor
 
 object GameService {
-  private def props(players: List[String], connections: Map[String, ActorRef]) = Props(new GameService(players, connections))
+  private def props(gameType: String, players: List[String], connections: Map[String, ActorRef]) = Props(new GameService(gameType, players, connections))
 
   def joinGame(out: ActorRef, jg: JoinGame) = {
-    props(List(jg.name), Map(jg.name -> out))
+    props(jg.game, List(jg.name), Map(jg.name -> out))
   }
 }
 
-class GameService(players: List[String], connections: Map[String, ActorRef]) extends InstrumentedActor {
+class GameService(gameType: String, players: List[String], connections: Map[String, ActorRef]) extends InstrumentedActor {
   connections.values.foreach { c =>
-    val gameState = GameState.default(Deck.fresh, Pile.default)
+    val gameState = gameType match {
+      case "klondike" => GameState.klondike(Deck.fresh)
+      case "sandbox" => GameState.sandbox(Deck.fresh)
+      case _ => throw new IllegalArgumentException("Unknown game type: [" + gameType + "].")
+    }
     c ! GameJoined(Nil, gameState)
   }
 

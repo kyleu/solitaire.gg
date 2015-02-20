@@ -10,7 +10,7 @@ define(['Config', 'game/Card'], function (cfg, Card) {
 
   Sandbox.prototype.preload = function() {
     this.game.load.image("bg-texture", "/assets/images/game/bg.jpg");
-    this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', 233, 359);
+    this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', 200, 300);
   };
 
   Sandbox.prototype.create = function() {
@@ -23,7 +23,7 @@ define(['Config', 'game/Card'], function (cfg, Card) {
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    this.game.ws.send("JoinGame", { "name": "Kyle" });
+    this.game.ws.send("JoinGame", { "game": "sandbox", "name": "Kyle" });
   };
 
   Sandbox.prototype.update = function() {
@@ -44,14 +44,14 @@ define(['Config', 'game/Card'], function (cfg, Card) {
           }
         };
 
-        for(var cardIndex in v.deck.cards) {
-          var card = v.deck.cards[cardIndex];
+        for(var cardIndex in v.state.piles[0].cards) {
+          var card = v.state.piles[0].cards[cardIndex];
           var cardObj = new Card(this.game, card.id, card.r, card.s, this.game.world.centerX, this.game.world.centerY);
           cardObj.index = cardIndex;
           this.game.physics.arcade.enable(cardObj);
           cardObj.update = cardUpdate;
           cardObj.anchor.set(0.5);
-          //this.game.add.existing(cardObj);
+          this.game.add.existing(cardObj);
           this.cards[cardIndex] = cardObj;
         }
         break;

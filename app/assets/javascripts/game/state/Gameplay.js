@@ -24,7 +24,7 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
       this.ws.send("Ping", { timestamp: new Date().getTime() });
     }, this.game);
 
-    this.game.ws.send("JoinGame", { "name": "Kyle" });
+    this.game.ws.send("JoinGame", { "game": "klondike", name: "Kyle" });
   };
 
   Gameplay.prototype.update = function() {

@@ -1,8 +1,9 @@
 package models.game
 
 object GameState {
-  def default(deck: Deck, piles: List[Pile]) = {
-    val layout = Layout.default
+  def klondike(deck: Deck) = {
+    val piles = Pile.klondike
+    val layout = Layout.klondike
 
     deck.dealCardsTo(piles.find(_.id == "tableau-1").get, 1)
     deck.dealCardsTo(piles.find(_.id == "tableau-2").get, 2)
@@ -12,7 +13,16 @@ object GameState {
     deck.dealCardsTo(piles.find(_.id == "tableau-6").get, 6)
     deck.dealCardsTo(piles.find(_.id == "tableau-7").get, 7)
 
-    GameState("scalataire", 0, piles, layout)
+    GameState("klondike", 0, piles, layout)
+  }
+
+  def sandbox(deck: Deck) = {
+    val piles = Pile.sandbox
+    val layout = Layout.sandbox
+
+    deck.dealCardsTo(piles.find(_.id == "sandbox-1").get)
+
+    GameState("sandbox", 0, piles, layout)
   }
 }
 

@@ -11,7 +11,7 @@ object Deck {
 }
 
 case class Deck(var cards: List[Card]) {
-  def dealCardsTo(pile: Pile, numCards: Int = 1) = {
+  def dealCardsTo(pile: Pile, numCards: Int = this.cards.size) = {
     this.cards.take(numCards).foreach { c =>
       pile.cards = c :: pile.cards
     }

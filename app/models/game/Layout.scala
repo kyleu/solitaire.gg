@@ -3,7 +3,7 @@ package models.game
 case class PileLocation(id: String, x: Int, y: Int)
 
 object Layout {
-  def default = Layout(
+  def klondike = Layout(
     width = 1540,
     height = 800,
     piles = List(
@@ -22,6 +22,14 @@ object Layout {
       PileLocation("tableau-5", 890, 320),
       PileLocation("tableau-6", 1110, 320),
       PileLocation("tableau-7", 1330, 320)
+    )
+  )
+
+  def sandbox = Layout(
+    width = 200,
+    height = 300,
+    piles = List(
+      PileLocation("sandbox-1", 0, 0)
     )
   )
 }

@@ -1,7 +1,7 @@
 package models.game
 
 object Pile {
-  def default = List(
+  def klondike = List(
     Pile("stock"),
     Pile("waste"),
 
@@ -17,6 +17,10 @@ object Pile {
     Pile("tableau-5"),
     Pile("tableau-6"),
     Pile("tableau-7")
+  )
+
+  def sandbox = List(
+    Pile("sandbox-1")
   )
 }
 
