@@ -6,6 +6,9 @@ define(['game/state/InitialState'], function (InitialState) {
     this.ws = null;
     var initialState = new InitialState(this);
     Phaser.Game.call(this, '100%', '100%', Phaser.AUTO, 'game-container', initialState);
+
+    this.piles = {};
+    this.cards = {};
   }
 
   Game.prototype = Phaser.Game.prototype;

@@ -20,11 +20,22 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
     this.bg = this.game.add.tileSprite(0, 0, this.game.width * 2, this.game.height * 2, "bg-texture");
     this.bg.scale = { x: 0.5, y: 0.5 };
 
+    var victoriousCheatKey = this.game.input.keyboard.addKey(Phaser.Keyboard.V);
+    victoriousCheatKey.onDown.add(this.victorious, this);
+
     this.game.time.events.loop(Phaser.Timer.SECOND * 2, function() {
       this.ws.send("Ping", { timestamp: new Date().getTime() });
     }, this.game);
 
     this.game.ws.send("JoinGame", { "game": "klondike", name: "Kyle" });
+  };
+
+  Gameplay.prototype.victorious = function() {
+    console.log("Victorious!");
+    var anim = { id: "mouse", speed: 200};
+    for(var cardIndex in this.game.cards) {
+      this.game.cards[cardIndex].animation = anim;
+    }
   };
 
   Gameplay.prototype.update = function() {
@@ -35,17 +46,18 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
     switch(c) {
       case "GameJoined":
         this.game.playmat = new Playmat(this.game, v.state.layout);
+
         for(var pileIndex in v.state.piles) {
           var pile = v.state.piles[pileIndex];
-          var pileLocation = null;
-          var pileObj = new Pile(this.game, pile.id, 0, 0);
+          var pileObj = new Pile(this.game, pile.id);
+          this.game.playmat.addPile(pileObj);
+
           for(var cardIndex in pile.cards) {
             var card = pile.cards[cardIndex];
-            var cardObj = new Card(this.game, card.id, card.r, card.s, 0, 0);
+            var cardObj = new Card(this.game, card.id, card.r, card.s);
             cardObj.enableDragDrop();
             pileObj.addCard(cardObj);
           }
-          this.game.playmat.addPile(pileObj);
         }
         break;
       default:

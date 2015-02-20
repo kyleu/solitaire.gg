@@ -1,16 +1,13 @@
 define(["game/Card"], function (Card) {
   "use strict";
 
-  function Pile(game, id, x, y) {
+  function Pile(game, id) {
     Phaser.Group.call(this, game, game.playmat, id);
     this.id = id;
-    this.x = x;
-    this.y = y;
+    this.cards = [];
+    this.game.piles[id] = this;
 
     this.empty = new Phaser.Sprite(game, 0, 0, 'empty-pile-medium');
-
-    this.cards = [];
-
     this.add(this.empty);
   }
 
@@ -18,9 +15,10 @@ define(["game/Card"], function (Card) {
   Pile.prototype.constructor = Card;
 
   Pile.prototype.addCard = function(card) {
-    card.y = this.cards.length * 45;
+    card.x = this.x;
+    card.y = this.y + this.cards.length * 45;
     this.cards.push(card);
-    this.add(card);
+    this.game.playmat.add(card);
   };
 
   return Pile;

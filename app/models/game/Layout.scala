@@ -26,10 +26,10 @@ object Layout {
   )
 
   def sandbox = Layout(
-    width = 200,
-    height = 300,
+    width = 1720,
+    height = 800,
     piles = List(
-      PileLocation("sandbox-1", 0, 0)
+      PileLocation("sandbox-1", 860, 400)
     )
   )
 }

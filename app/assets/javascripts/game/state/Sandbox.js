@@ -1,4 +1,4 @@
-define(['Config', 'game/Card'], function (cfg, Card) {
+define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card, Pile, Playmat) {
   "use strict";
 
   function Sandbox(game) {
@@ -9,6 +9,9 @@ define(['Config', 'game/Card'], function (cfg, Card) {
   Sandbox.prototype.constructor = Sandbox;
 
   Sandbox.prototype.preload = function() {
+    this.game.load.image("bg-texture", "/assets/images/game/bg.jpg");
+    this.game.load.image("card-back-medium", "/assets/images/game/cards/medium/BACK.png");
+    this.game.load.image("empty-pile-medium", "/assets/images/game/cards/medium/EMPTY.png");
     this.game.load.image("bg-texture", "/assets/images/game/bg.jpg");
     this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', 200, 300);
   };
@@ -33,27 +36,21 @@ define(['Config', 'game/Card'], function (cfg, Card) {
   Sandbox.prototype.onMessage = function(c, v) {
     switch(c) {
       case "GameJoined":
-        this.cards = [];
+        this.game.playmat = new Playmat(this.game, v.state.layout);
+
+        for(var pileIndex in v.state.piles) {
+          var pile = v.state.piles[pileIndex];
+          var pileObj = new Pile(this.game, pile.id);
+          this.game.playmat.addPile(pileObj);
+
+          for(var cardIndex in pile.cards) {
+            var card = pile.cards[cardIndex];
+            var cardObj = new Card(this.game, card.id, card.r, card.s);
+            pileObj.addCard(cardObj);
+          }
+        }
 
         var g = this.game;
-        var cardUpdate = function() {
-          if(g.physics.arcade.distanceToPointer(this, this.game.input.activePointer) > 20) {
-            g.physics.arcade.moveToPointer(this, 20 + (20 * this.index));
-          } else {
-            this.body.velocity.set(0);
-          }
-        };
-
-        for(var cardIndex in v.state.piles[0].cards) {
-          var card = v.state.piles[0].cards[cardIndex];
-          var cardObj = new Card(this.game, card.id, card.r, card.s, this.game.world.centerX, this.game.world.centerY);
-          cardObj.index = cardIndex;
-          this.game.physics.arcade.enable(cardObj);
-          cardObj.update = cardUpdate;
-          cardObj.anchor.set(0.5);
-          this.game.add.existing(cardObj);
-          this.cards[cardIndex] = cardObj;
-        }
         break;
       default:
         console.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));

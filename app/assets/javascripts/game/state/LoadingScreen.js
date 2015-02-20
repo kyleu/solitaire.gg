@@ -19,8 +19,8 @@ define(['Config', 'game/state/Gameplay', 'game/state/Sandbox'], function (cfg, G
   LoadingScreen.prototype.create = function() {
     this.message = this.game.add.text(this.game.world.centerX - 90, this.game.world.centerY - 60, "Loading Scalataire...", { font: "18px Helvetica", fill: "#ffffff"});
 
-    //this.game.state.start('gameplay');
-    this.game.state.start('sandbox');
+    this.game.state.start('gameplay');
+    //this.game.state.start('sandbox');
   };
 
   LoadingScreen.prototype.onMessage = function(c, v) {
@@ -34,7 +34,7 @@ define(['Config', 'game/state/Gameplay', 'game/state/Sandbox'], function (cfg, G
     this.game.statusPanel.setFps(this.game.time.fps);
   };
 
-  LoadingScreen.prototype.resize = function(h, w) {
+  LoadingScreen.prototype.resize = function() {
     this.message.x = this.game.world.centerX - 90;
     this.message.y = this.game.world.centerY - 60;
   };
