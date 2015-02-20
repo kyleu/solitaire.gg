@@ -1,4 +1,4 @@
-define(['Config', 'game/Card', 'game/Pile'], function (cfg, Card, Pile) {
+define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card, Pile, Playmat) {
   "use strict";
 
   function Gameplay(game) {
@@ -34,24 +34,18 @@ define(['Config', 'game/Card', 'game/Pile'], function (cfg, Card, Pile) {
   Gameplay.prototype.onMessage = function(c, v) {
     switch(c) {
       case "GameJoined":
-        this.cards = [];
+        this.game.playmat = new Playmat(this.game, v.state.layout);
         for(var pileIndex in v.state.piles) {
           var pile = v.state.piles[pileIndex];
           var pileLocation = null;
-          for(var pileLocationIndex in v.state.layout.piles) {
-            var pl = v.state.layout.piles[pileLocationIndex];
-            if(pl.id == pile.id) {
-              pileLocation = pl;
-            }
-          }
-          var pileObj = new Pile(this.game, pile.id, pileLocation.x, pileLocation.y);
+          var pileObj = new Pile(this.game, pile.id, 0, 0);
           for(var cardIndex in pile.cards) {
             var card = pile.cards[cardIndex];
-            var cardObj = new Card(this.game, card.id, card.r, card.s, pileLocation.x, pileLocation.y);
-            cardObj.inputEnabled = true;
-            cardObj.input.enableDrag(false, true);
-            pileObj.cards[cardIndex] = cardObj;
+            var cardObj = new Card(this.game, card.id, card.r, card.s, 0, 0);
+            cardObj.enableDragDrop();
+            pileObj.addCard(cardObj);
           }
+          this.game.playmat.addPile(pileObj);
         }
         break;
       default:
@@ -60,9 +54,12 @@ define(['Config', 'game/Card', 'game/Pile'], function (cfg, Card, Pile) {
   };
 
   Gameplay.prototype.resize = function(w, h) {
-    console.info("Gameplay resize.");
     this.bg.height = h * 2;
     this.bg.width = w * 2;
+
+    if(this.game.playmat !== undefined) {
+      this.game.playmat.resize();
+    }
   };
 
   return Gameplay;

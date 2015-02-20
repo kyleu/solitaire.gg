@@ -16,7 +16,7 @@ object GameService {
 
 class GameService(players: List[String], connections: Map[String, ActorRef]) extends InstrumentedActor {
   connections.values.foreach { c =>
-    val gameState = GameState.default(Deck.fresh.copy(), Pile.default)
+    val gameState = GameState.default(Deck.fresh, Pile.default)
     c ! GameJoined(Nil, gameState)
   }
 

@@ -9,12 +9,26 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     var spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
 
     Phaser.Sprite.call(this, game, x, y, 'card-medium', spriteIndex);
-
-    this.game.add.existing(this);
   }
 
   Card.prototype = Object.create(Phaser.Sprite.prototype);
   Card.prototype.constructor = Card;
+
+  Card.prototype.enableDragDrop = function() {
+    this.inputEnabled = true;
+    this.input.enableDrag(false, true);
+    this.input.useHandCursor = true;
+    this.events.onDragStart.add(this.onDragStart, this);
+    this.events.onDragStop.add(this.onDragStop, this);
+  };
+
+  Card.prototype.onDragStart = function(card, pointer) {
+    console.log("onDragStart", card, pointer);
+  };
+
+  Card.prototype.onDragStop = function(card, pointer) {
+    console.log("onDragStop", card, pointer);
+  };
 
   return Card;
 });

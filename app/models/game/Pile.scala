@@ -1,7 +1,7 @@
 package models.game
 
 object Pile {
-  val default = List(
+  def default = List(
     Pile("stock"),
     Pile("waste"),
 

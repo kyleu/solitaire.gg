@@ -10,4 +10,11 @@ object Deck {
   }
 }
 
-case class Deck(var cards: List[Card])
+case class Deck(var cards: List[Card]) {
+  def dealCardsTo(pile: Pile, numCards: Int = 1) = {
+    this.cards.take(numCards).foreach { c =>
+      pile.cards = c :: pile.cards
+    }
+    this.cards = this.cards.drop(numCards)
+  }
+}
