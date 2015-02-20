@@ -10,4 +10,4 @@ object Deck {
   }
 }
 
-case class Deck(cards: List[Card])
+case class Deck(var cards: List[Card])

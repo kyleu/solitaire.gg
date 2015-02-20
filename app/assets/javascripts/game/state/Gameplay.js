@@ -45,11 +45,13 @@ define(['Config', 'game/Card', 'game/Pile'], function (cfg, Card, Pile) {
             }
           }
           var pileObj = new Pile(this.game, pile.id, pileLocation.x, pileLocation.y);
-          console.log(pileObj);
-          //var cardObj = new Card(this.game, card.id, card.r, card.s, this.game.world.centerX, this.game.world.centerY);
-          //cardObj.inputEnabled = true;
-          //cardObj.input.enableDrag(false, true);
-          //this.cards[cardIndex] = cardObj;
+          for(var cardIndex in pile.cards) {
+            var card = pile.cards[cardIndex];
+            var cardObj = new Card(this.game, card.id, card.r, card.s, pileLocation.x, pileLocation.y);
+            cardObj.inputEnabled = true;
+            cardObj.input.enableDrag(false, true);
+            pileObj.cards[cardIndex] = cardObj;
+          }
         }
         break;
       default:

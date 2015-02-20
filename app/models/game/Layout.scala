@@ -4,8 +4,8 @@ case class PileLocation(id: String, x: Int, y: Int)
 
 object Layout {
   def default = Layout(
-    height = 100,
-    width = 200,
+    width = 1540,
+    height = 800,
     piles = List(
       PileLocation("stock", 10, 10),
       PileLocation("waste", 230, 10),
@@ -27,7 +27,7 @@ object Layout {
 }
 
 case class Layout(
-  height: Int,
   width: Int,
+  height: Int,
   piles: List[PileLocation]
 )

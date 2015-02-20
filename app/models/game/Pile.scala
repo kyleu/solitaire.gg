@@ -22,5 +22,5 @@ object Pile {
 
 case class Pile(
   id: String,
-  cards: List[Card] = Nil
+  var cards: List[Card] = Nil
 )

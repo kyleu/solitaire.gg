@@ -11,7 +11,6 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     Phaser.Sprite.call(this, game, x, y, 'card-medium', spriteIndex);
 
     this.game.add.existing(this);
-    this.anchor.set(0.5);
   }
 
   Card.prototype = Object.create(Phaser.Sprite.prototype);

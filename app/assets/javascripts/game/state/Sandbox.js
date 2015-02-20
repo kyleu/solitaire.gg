@@ -50,7 +50,7 @@ define(['Config', 'game/Card'], function (cfg, Card) {
           cardObj.index = cardIndex;
           this.game.physics.arcade.enable(cardObj);
           cardObj.update = cardUpdate;
-
+          cardObj.anchor.set(0.5);
           this.cards[cardIndex] = cardObj;
         }
         break;

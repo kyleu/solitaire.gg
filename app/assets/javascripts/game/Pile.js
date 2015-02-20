@@ -7,7 +7,11 @@ define(["game/Card"], function (Card) {
     this.x = x;
     this.y = y;
 
-    this.add(new Phaser.Sprite(game, 0, 0, 'empty-pile-medium'));
+    this.empty = new Phaser.Sprite(game, 0, 0, 'empty-pile-medium');
+
+    this.cards = [];
+
+    this.add(this.empty);
   }
 
   Pile.prototype = Object.create(Phaser.Group.prototype);

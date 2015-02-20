@@ -38,7 +38,7 @@ process()
     echo "Resizing to 800x1200...";
     resize;
   else
-    if [ "$2" == "_resized" ]
+    if [ "$2" == "resized" ]
     then
       echo "Applying transparency...";
       transparent;
@@ -54,8 +54,8 @@ process()
   cd ..
 }
 
-process _resized _unprocessed
-process x-large _resized
+process resized _unprocessed
+process x-large resized
 process large x-large
 process medium large
 process small medium
