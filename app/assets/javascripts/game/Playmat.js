@@ -1,4 +1,4 @@
-define([], function () {
+define(['game/component/DragGroup'], function (DragGroup) {
   var Playmat = function(game, layout) {
     Phaser.Group.call(this, game, null, 'playmat');
 
@@ -9,6 +9,8 @@ define([], function () {
     this.resize();
 
     this.game.add.existing(this);
+
+    this.dragGroup = new DragGroup(this.game);
   };
 
   Playmat.prototype = Object.create(Phaser.Group.prototype);
@@ -26,7 +28,7 @@ define([], function () {
     pile.y = pileLocation.y;
   };
 
-  Playmat.prototype.resize = function() {
+  Playmat.prototype.resize = function(h, w) {
     var widthRatio = this.game.world.width / this.w;
     this.scale = new Phaser.Point(widthRatio, widthRatio);
   };

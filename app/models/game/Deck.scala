@@ -1,18 +1,27 @@
 package models.game
 
+import scala.util.Random
+
 object Deck {
   def fresh = {
     val cards = for {
       suit <- Suit.all
       rank <- Rank.all.reverse
-    } yield Card(r = rank, s = suit)
+    } yield Card(r = rank, s = suit, u = false)
     Deck(cards.toList)
+  }
+
+  def shuffled(random: Random) = {
+    Deck(random.shuffle(fresh.cards))
   }
 }
 
 case class Deck(var cards: List[Card]) {
-  def dealCardsTo(pile: Pile, numCards: Int = this.cards.size) = {
+  def dealCardsTo(pile: Pile, turnFaceUp: Boolean, numCards: Int = this.cards.size) = {
     this.cards.take(numCards).foreach { c =>
+      if(turnFaceUp) {
+        c.u = true
+      }
       pile.cards = c :: pile.cards
     }
     this.cards = this.cards.drop(numCards)

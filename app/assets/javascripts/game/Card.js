@@ -1,16 +1,22 @@
 define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   "use strict";
 
-  function Card(game, id, rank, suit) {
+  function Card(game, id, rank, suit, faceUp) {
     this.id = id;
     this.rank = Rank.fromChar(rank);
     this.suit = Suit.fromChar(suit);
+    this.name = rank + suit + ": " + id;
+    this.faceUp = faceUp;
+
     this.animation = null;
 
-    var spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
-    Phaser.Sprite.call(this, game, 0, 0, 'card-medium', spriteIndex);
-
-    this.game.cards[id] = this;
+    this.spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
+    if(this.faceUp) {
+      Phaser.Sprite.call(this, game, 0, 0, 'card-medium', this.spriteIndex);
+    } else {
+      Phaser.Sprite.call(this, game, 0, 0, 'card-back-medium');
+    }
+    this.game.addCard(this);
 
     this.game.physics.arcade.enable(this);
   }

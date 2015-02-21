@@ -2,29 +2,30 @@ package models.game
 
 object Pile {
   def klondike = List(
-    Pile("stock"),
-    Pile("waste"),
+    Pile("stock", "stock"),
+    Pile("waste", "waste"),
 
-    Pile("foundation-1"),
-    Pile("foundation-2"),
-    Pile("foundation-3"),
-    Pile("foundation-4"),
+    Pile("foundation-1", "foundation"),
+    Pile("foundation-2", "foundation"),
+    Pile("foundation-3", "foundation"),
+    Pile("foundation-4", "foundation"),
 
-    Pile("tableau-1"),
-    Pile("tableau-2"),
-    Pile("tableau-3"),
-    Pile("tableau-4"),
-    Pile("tableau-5"),
-    Pile("tableau-6"),
-    Pile("tableau-7")
+    Pile("tableau-1", "tableau"),
+    Pile("tableau-2", "tableau"),
+    Pile("tableau-3", "tableau"),
+    Pile("tableau-4", "tableau"),
+    Pile("tableau-5", "tableau"),
+    Pile("tableau-6", "tableau"),
+    Pile("tableau-7", "tableau")
   )
 
   def sandbox = List(
-    Pile("sandbox-1")
+    Pile("sandbox-1", "tableau")
   )
 }
 
 case class Pile(
   id: String,
+  behavior: String,
   var cards: List[Card] = Nil
 )

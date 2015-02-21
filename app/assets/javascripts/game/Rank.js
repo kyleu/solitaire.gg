@@ -14,6 +14,7 @@ define(function () {
   var queen = { value: 12, char: "Q", name: "Queen" };
   var king = { value: 13, char: "K", name: "King" };
   var ace = { value: 14, char: "A", name: "Ace" };
+  var unknown = { value: 0, char: "?", name: "Unknown" };
 
   var Rank = {
     two: two,
@@ -29,6 +30,7 @@ define(function () {
     queen: queen,
     king: king,
     ace: ace,
+    unknown: unknown,
 
     all: [two, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace],
     fromChar: function(c) {
@@ -46,6 +48,7 @@ define(function () {
         case 'Q': return queen;
         case 'K': return king;
         case 'A': return ace;
+        case '?': return unknown;
         default: throw "Invalid rank [" + c + "].";
       }
     }

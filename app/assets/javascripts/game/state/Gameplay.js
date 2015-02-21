@@ -9,19 +9,21 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
   Gameplay.prototype.constructor = Gameplay;
 
   Gameplay.prototype.preload = function() {
-    this.game.load.image("bg-texture", "/assets/images/game/bg.jpg");
-    this.game.load.image("card-back-medium", "/assets/images/game/cards/medium/BACK.png");
-    this.game.load.image("empty-pile-medium", "/assets/images/game/cards/medium/EMPTY.png");
-    this.game.load.image("bg-texture", "/assets/images/game/bg.jpg");
+    this.game.load.image('bg-texture', '/assets/images/game/bg.jpg');
+    this.game.load.image('card-back-medium', '/assets/images/game/cards/medium/BACK.png');
+    this.game.load.image('empty-pile-medium', '/assets/images/game/cards/medium/EMPTY.png');
     this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', 200, 300);
   };
 
   Gameplay.prototype.create = function() {
-    this.bg = this.game.add.tileSprite(0, 0, this.game.width * 2, this.game.height * 2, "bg-texture");
-    this.bg.scale = { x: 0.5, y: 0.5 };
-
     var victoriousCheatKey = this.game.input.keyboard.addKey(Phaser.Keyboard.V);
     victoriousCheatKey.onDown.add(this.victorious, this);
+
+    this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
+    this.bg.height = this.game.height * 2;
+    this.bg.width = this.game.width * 2;
+    this.bg.scale = { x: 0.5, y: 0.5 };
+    this.add.existing(this.bg);
 
     this.game.time.events.loop(Phaser.Timer.SECOND * 2, function() {
       this.ws.send("Ping", { timestamp: new Date().getTime() });
@@ -32,8 +34,8 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
 
   Gameplay.prototype.victorious = function() {
     console.log("Victorious!");
-    var anim = { id: "mouse", speed: 200};
     for(var cardIndex in this.game.cards) {
+      var anim = { id: "mouse", speed: 200 + Math.floor(Math.random() * 300)};
       this.game.cards[cardIndex].animation = anim;
     }
   };
@@ -47,16 +49,23 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
       case "GameJoined":
         this.game.playmat = new Playmat(this.game, v.state.layout);
 
+        // add piles
+        var pileObjs = [];
         for(var pileIndex in v.state.piles) {
           var pile = v.state.piles[pileIndex];
           var pileObj = new Pile(this.game, pile.id);
+          pileObjs[pile.id] = pileObj;
           this.game.playmat.addPile(pileObj);
+        }
+        // add cards after
+        for(var pileCardsIndex in v.state.piles) {
+          var pileCards = v.state.piles[pileCardsIndex];
 
-          for(var cardIndex in pile.cards) {
-            var card = pile.cards[cardIndex];
-            var cardObj = new Card(this.game, card.id, card.r, card.s);
+          for(var cardIndex in pileCards.cards) {
+            var card = pileCards.cards[cardIndex];
+            var cardObj = new Card(this.game, card.id, card.r, card.s, card.u);
             cardObj.enableDragDrop();
-            pileObj.addCard(cardObj);
+            pileObjs[pileCards.id].addCard(cardObj);
           }
         }
         break;
@@ -66,12 +75,12 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
   };
 
   Gameplay.prototype.resize = function(w, h) {
-    this.bg.height = h * 2;
-    this.bg.width = w * 2;
-
     if(this.game.playmat !== undefined) {
       this.game.playmat.resize();
     }
+
+    this.bg.height = this.game.height * 2;
+    this.bg.width = this.game.width * 2;
   };
 
   return Gameplay;

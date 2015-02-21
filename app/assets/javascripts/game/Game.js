@@ -30,5 +30,13 @@ define(['game/state/InitialState'], function (InitialState) {
     }
   };
 
+  Game.prototype.addPile = function(p) {
+    this.piles[p.id] = p;
+  };
+
+  Game.prototype.addCard = function(c) {
+    this.cards[c.id] = c;
+  };
+
   return Game;
 });
