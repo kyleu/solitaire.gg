@@ -16,6 +16,12 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
   };
 
   Sandbox.prototype.create = function() {
+    this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
+    this.bg.height = this.game.height * 2;
+    this.bg.width = this.game.width * 2;
+    this.bg.scale = { x: 0.5, y: 0.5 };
+    this.add.existing(this.bg);
+
     this.game.time.events.loop(Phaser.Timer.SECOND * 2, function() {
       this.ws.send("Ping", { timestamp: new Date().getTime() });
     }, this.game);

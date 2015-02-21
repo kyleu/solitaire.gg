@@ -1303,73 +1303,79 @@ function typeToString () {
     }
     // return a string for the phaser type
     else {
+      /* Scalataire modifications */
+      if(node.constructor.name === "Card") {
+        return "Card (" + node.toString() + ")";
+      } else {
         switch(node.type) {
-            case Phaser.SPRITE:
-                return 'Sprite';
+          case Phaser.SPRITE:
+            return 'Sprite';
 
-            case Phaser.BUTTON:
-                return 'Button';
+          case Phaser.BUTTON:
+            return 'Button';
 
-            case Phaser.IMAGE:
-                return 'Image';
+          case Phaser.IMAGE:
+            return 'Image';
 
-            case Phaser.GRAPHICS:
-                return 'Graphics';
+          case Phaser.GRAPHICS:
+            return 'Graphics';
 
-            case Phaser.TEXT:
-                return 'Text';
+          case Phaser.TEXT:
+            return 'Text';
 
-            case Phaser.TILESPRITE:
-                return 'Tile Sprite';
+          case Phaser.TILESPRITE:
+            return 'Tile Sprite';
 
-            case Phaser.BITMAPTEXT:
-                return 'Bitmap Text';
+          case Phaser.BITMAPTEXT:
+            return 'Bitmap Text';
 
-            case Phaser.GROUP:
-                return 'Group';
+          case Phaser.GROUP:
+            return 'Group';
 
-            case Phaser.RENDERTEXTURE:
-                return 'Render Texture';
+          case Phaser.RENDERTEXTURE:
+            return 'Render Texture';
 
-            case Phaser.TILEMAP:
-                return 'Tilemap';
+          case Phaser.TILEMAP:
+            return 'Tilemap';
 
-            case Phaser.TILEMAPLAYER:
-                return 'Tilemap Layer';
+          case Phaser.TILEMAPLAYER:
+            return 'Tilemap Layer';
 
-            case Phaser.EMITTER:
-                return 'Emitter';
+          case Phaser.EMITTER:
+            return 'Emitter';
 
-            case Phaser.POLYGON:
-                return 'Polygon';
+          case Phaser.POLYGON:
+            return 'Polygon';
 
-            case Phaser.BITMAPDATA:
-                return 'Bitmap Data';
+          case Phaser.BITMAPDATA:
+            return 'Bitmap Data';
 
-            case Phaser.CANVAS_FILTER:
-                return 'Canvas Filter';
+          case Phaser.CANVAS_FILTER:
+            return 'Canvas Filter';
 
-            case Phaser.WEBGL_FILTER:
-                return 'WebGL Filter';
+          case Phaser.WEBGL_FILTER:
+            return 'WebGL Filter';
 
-            case Phaser.ELLIPSE:
-                return 'Ellipse';
+          case Phaser.ELLIPSE:
+            return 'Ellipse';
 
-            case Phaser.SPRITEBATCH:
-                return 'Sprite Batch';
+          case Phaser.SPRITEBATCH:
+            return 'Sprite Batch';
 
-            case Phaser.RETROFONT:
-                return 'Retro Font';
+          case Phaser.RETROFONT:
+            return 'Retro Font';
 
-            case Phaser.POINTER:
-                return 'Pointer';
+          case Phaser.POINTER:
+            return 'Pointer';
 
-            case Phaser.ROPE:
-                return 'Rope';
+          case Phaser.ROPE:
+            return 'Rope';
 
-            default:
-                return 'Unknown';
+          default:
+            return 'Unknown';
         }
+      }
+      /* End Scalataire modifications */
     }
 }
 

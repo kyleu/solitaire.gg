@@ -53,7 +53,7 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
         var pileObjs = [];
         for(var pileIndex in v.state.piles) {
           var pile = v.state.piles[pileIndex];
-          var pileObj = new Pile(this.game, pile.id);
+          var pileObj = new Pile(this.game, pile.id, pile.behavior);
           pileObjs[pile.id] = pileObj;
           this.game.playmat.addPile(pileObj);
         }
@@ -64,7 +64,6 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
           for(var cardIndex in pileCards.cards) {
             var card = pileCards.cards[cardIndex];
             var cardObj = new Card(this.game, card.id, card.r, card.s, card.u);
-            cardObj.enableDragDrop();
             pileObjs[pileCards.id].addCard(cardObj);
           }
         }

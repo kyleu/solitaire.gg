@@ -10,14 +10,10 @@ define(["game/Card"], function (Card) {
 
     this.empty = new Phaser.Sprite(game, 0, 0, 'empty-pile-medium');
     this.add(this.empty);
-
-    this.back = new Phaser.Sprite(game, 0, 0, 'card-back-medium');
-    this.back.visible = false;
-    this.add(this.back);
   }
 
   Pile.prototype = Object.create(Phaser.Group.prototype);
-  Pile.prototype.constructor = Card;
+  Pile.prototype.constructor = Pile;
 
   Pile.prototype.addCard = function(card) {
     card.x = this.x;
@@ -25,10 +21,10 @@ define(["game/Card"], function (Card) {
     card.pileIndex = this.cards.length;
 
     if(this.behavior == "stock") {
-      card.visible = false;
       card.y = this.y;
     } else {
       card.y = this.y + this.cards.length * 45;
+      card.enableDragDrop();
     }
 
     this.cards.push(card);

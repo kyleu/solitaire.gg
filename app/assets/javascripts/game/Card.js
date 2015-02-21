@@ -17,12 +17,21 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
       Phaser.Sprite.call(this, game, 0, 0, 'card-back-medium');
     }
     this.game.addCard(this);
-
     this.game.physics.arcade.enable(this);
+
+    this.events.onInputDown.add(this.onInputDown);
   }
 
   Card.prototype = Object.create(Phaser.Sprite.prototype);
   Card.prototype.constructor = Card;
+
+  Card.prototype.onInputDown = function(e) {
+    console.log(e);
+  };
+
+  Card.prototype.toString = function() {
+    return this.rank.char + this.suit.char + ": " + this.id.substring(0, 8);
+  };
 
   Card.prototype.update = function() {
     if(this.animation === null) {
@@ -39,17 +48,6 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   Card.prototype.enableDragDrop = function() {
     this.inputEnabled = true;
     this.input.enableDrag(false, true);
-    this.input.useHandCursor = true;
-    this.events.onDragStart.add(this.onDragStart, this);
-    this.events.onDragStop.add(this.onDragStop, this);
-  };
-
-  Card.prototype.onDragStart = function(card, pointer) {
-    console.log("onDragStart", card, pointer);
-  };
-
-  Card.prototype.onDragStop = function(card, pointer) {
-    console.log("onDragStop", card, pointer);
   };
 
   return Card;
