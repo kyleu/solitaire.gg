@@ -1306,6 +1306,8 @@ function typeToString () {
       /* Scalataire modifications */
       if(node.constructor.name === "Card") {
         return "Card (" + node.toString() + ")";
+      } else if(node.constructor.name === "Pile") {
+          return "Pile";
       } else {
         switch(node.type) {
           case Phaser.SPRITE:

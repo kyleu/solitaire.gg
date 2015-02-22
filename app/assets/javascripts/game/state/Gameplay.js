@@ -35,8 +35,7 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
   Gameplay.prototype.victorious = function() {
     console.log("Victorious!");
     for(var cardIndex in this.game.cards) {
-      var anim = { id: "mouse", speed: 200 + Math.floor(Math.random() * 300)};
-      this.game.cards[cardIndex].animation = anim;
+      this.game.cards[cardIndex].animation = {id: "mouse", speed: 200 + Math.floor(Math.random() * 300)};
     }
   };
 

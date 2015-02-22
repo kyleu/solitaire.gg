@@ -16,19 +16,18 @@ define(["game/Card"], function (Card) {
   Pile.prototype.constructor = Pile;
 
   Pile.prototype.addCard = function(card) {
-    card.x = this.x;
+    card.x = 0;
     card.pile = this;
     card.pileIndex = this.cards.length;
 
-    if(this.behavior == "stock") {
-      card.y = this.y;
-    } else {
-      card.y = this.y + this.cards.length * 45;
-      card.enableDragDrop();
-    }
-
     this.cards.push(card);
-    this.game.playmat.add(card);
+    this.add(card);
+
+    if(this.behavior == "stock") {
+      card.y = 0;
+    } else {
+      card.y = this.cards.length * 45;
+    }
 
     this.empty.visible = false;
   };

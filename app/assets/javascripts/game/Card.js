@@ -16,6 +16,9 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     } else {
       Phaser.Sprite.call(this, game, 0, 0, 'card-back-medium');
     }
+
+    this.inputEnabled = true;
+
     this.game.addCard(this);
     this.game.physics.arcade.enable(this);
 
@@ -25,8 +28,8 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   Card.prototype = Object.create(Phaser.Sprite.prototype);
   Card.prototype.constructor = Card;
 
-  Card.prototype.onInputDown = function(e) {
-    console.log(e);
+  Card.prototype.onInputDown = function(e, p) {
+    e.game.cardSelected(e, p);
   };
 
   Card.prototype.toString = function() {
@@ -45,8 +48,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     }
   };
 
-  Card.prototype.enableDragDrop = function() {
-    this.inputEnabled = true;
+  Card.prototype.enableLegacyDragDrop = function() {
     this.input.enableDrag(false, true);
   };
 

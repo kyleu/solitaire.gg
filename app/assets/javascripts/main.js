@@ -6,5 +6,5 @@ requirejs.config({
 });
 
 requirejs(['game/Scalataire'], function(Scalataire) {
-  new Scalataire();
+  window.game = new Scalataire('klondike');
 });

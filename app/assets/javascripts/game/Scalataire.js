@@ -1,9 +1,9 @@
 define(['Config', 'game/Game'], function (cfg, Game) {
   "use strict";
 
-  function Scalataire() {
+  function Scalataire(id) {
     document.getElementById('loading-screen').style.display = 'none';
-    Game.call(this, 'scalataire');
+    Game.call(this, id);
   }
 
   Scalataire.prototype = Game.prototype;

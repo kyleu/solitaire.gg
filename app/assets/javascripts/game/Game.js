@@ -9,6 +9,8 @@ define(['game/state/InitialState'], function (InitialState) {
 
     this.piles = {};
     this.cards = {};
+
+    console.log("Game [" + id + "] started.");
   }
 
   Game.prototype = Phaser.Game.prototype;
@@ -28,6 +30,11 @@ define(['game/state/InitialState'], function (InitialState) {
       default:
         this.state.getCurrentState().onMessage(c, v);
     }
+  };
+
+  Game.prototype.cardSelected = function(card, pointer) {
+    console.log(card, pointer);
+    card.visible = false;
   };
 
   Game.prototype.addPile = function(p) {
