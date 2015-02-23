@@ -18,6 +18,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     }
 
     this.inputEnabled = true;
+    this.inputDown = false;
 
     this.game.addCard(this);
     this.game.physics.arcade.enable(this);
@@ -30,6 +31,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   Card.prototype.constructor = Card;
 
   Card.prototype.onInputDown = function(e, p) {
+    this.inputDown = true;
   };
 
   Card.prototype.onInputUp = function(e, p) {
@@ -49,13 +51,16 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
 
   Card.prototype.update = function() {
     if(this.animation === null) {
-
+      if(this.inputDown) {
+        this.x = this.game.playmat.x + ((this.game.input.x - this.game.playmat.x) / this.game.playmat.scale.x) - ((this.width / 2) * this.game.playmat.scale.x);
+        this.y = this.game.playmat.y + ((this.game.input.y - this.game.playmat.y) / this.game.playmat.scale.y) - ((this.height / 2) * this.game.playmat.scale.y);
+      }
     } else if(this.animation.id === "mouse") {
-      var newX = (this.x * this.game.playmat.scale.x) + this.game.playmat.x;
-      var newY = (this.y * this.game.playmat.scale.y) + this.game.playmat.y;
-      var distance = this.game.math.distance(newX, newY, this.game.input.x, this.game.input.y);
+      var tgtX = this.game.input.x - ((this.width / 2) * this.game.playmat.scale.x);
+      var tgtY = this.game.input.y - ((this.height / 2) * this.game.playmat.scale.y);
+      var distance = this.game.math.distance(this.world.x, this.world.y, tgtX, tgtY);
       if(distance > 5) {
-        var rotation = this.game.math.angleBetween(newX, newY, this.game.input.x, this.game.input.y);
+        var rotation = this.game.math.angleBetween(this.world.x, this.world.y, tgtX, tgtY);
         this.body.velocity.x = Math.cos(rotation) * 500;
         this.body.velocity.y = Math.sin(rotation) * 500;
       } else {

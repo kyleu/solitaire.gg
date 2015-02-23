@@ -17,13 +17,14 @@ object Deck {
 }
 
 case class Deck(var cards: List[Card]) {
-  def dealCardsTo(pile: Pile, turnFaceUp: Boolean, numCards: Int = this.cards.size) = {
-    this.cards.take(numCards).foreach { c =>
-      if(turnFaceUp) {
+  def getCards(numCards: Int = this.cards.size, turnFaceUp: Boolean = false) = {
+    val ret = this.cards.take(numCards)
+    if(turnFaceUp) {
+      ret.foreach { c =>
         c.u = true
       }
-      pile.cards = c :: pile.cards
     }
     this.cards = this.cards.drop(numCards)
+    ret
   }
 }

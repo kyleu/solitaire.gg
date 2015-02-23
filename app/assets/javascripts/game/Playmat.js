@@ -1,4 +1,4 @@
-define(['game/component/DragGroup'], function (DragGroup) {
+define(function () {
   var Playmat = function(game, layout) {
     Phaser.Group.call(this, game, null, 'playmat');
 
@@ -9,8 +9,6 @@ define(['game/component/DragGroup'], function (DragGroup) {
     this.resize();
 
     this.game.add.existing(this);
-
-    this.dragGroup = new DragGroup(this.game);
   };
 
   Playmat.prototype = Object.create(Phaser.Group.prototype);

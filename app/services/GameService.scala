@@ -41,7 +41,7 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
   }
 
   def handleSelectCard(cardId: String) = {
-    val card = gameState
+    //val card = gameState.cards(cardId)
     //sendToAll(RevealCard())
   }
 
