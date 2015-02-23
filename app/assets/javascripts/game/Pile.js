@@ -20,14 +20,16 @@ define(["game/Card"], function (Card) {
     card.pile = this;
     card.pileIndex = this.cards.length;
 
-    this.cards.push(card);
-    this.add(card);
-
     if(this.behavior == "stock") {
-      card.y = 0;
+      card.y = this.y;
+      card.x = this.x;
     } else {
-      card.y = this.cards.length * 45;
+      card.y = this.y + (this.cards.length * 45);
+      card.x = this.x;
     }
+
+    this.cards.push(card);
+    this.game.playmat.add(card);
 
     this.empty.visible = false;
   };

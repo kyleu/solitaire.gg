@@ -9,6 +9,7 @@ object RequestMessageSerializers {
   implicit val pingReads = Json.reads[Ping]
   // case object [GetVersion]
   implicit val joinGameReads = Json.reads[JoinGame]
+  implicit val selectCardReads = Json.reads[SelectCard]
 
   implicit val requestMessageReads: Reads[RequestMessage] = (
     (__ \ 'c).read[String] and
@@ -19,6 +20,8 @@ object RequestMessageSerializers {
       case "Ping" => pingReads.reads(v)
       case "GetVersion" => JsSuccess(GetVersion)
       case "JoinGame" => joinGameReads.reads(v)
+      case "SelectCard" => selectCardReads.reads(v)
+      case _ => JsSuccess(MalformedRequest("UnknownType", "c: " + c + ", v: " + Json.stringify(v)))
     }
     jsResult match {
       case rm: JsSuccess[RequestMessage @unchecked] => rm.get

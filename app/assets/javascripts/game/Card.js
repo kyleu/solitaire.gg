@@ -51,10 +51,15 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     if(this.animation === null) {
 
     } else if(this.animation.id === "mouse") {
-      if(this.game.physics.arcade.distanceToPointer(this, this.game.input.activePointer) > 20) {
-        this.game.physics.arcade.moveToPointer(this, this.animation.speed);
+      var newX = (this.x * this.game.playmat.scale.x) + this.game.playmat.x;
+      var newY = (this.y * this.game.playmat.scale.y) + this.game.playmat.y;
+      var distance = this.game.math.distance(newX, newY, this.game.input.x, this.game.input.y);
+      if(distance > 5) {
+        var rotation = this.game.math.angleBetween(newX, newY, this.game.input.x, this.game.input.y);
+        this.body.velocity.x = Math.cos(rotation) * 500;
+        this.body.velocity.y = Math.sin(rotation) * 500;
       } else {
-        this.body.velocity.set(0);
+        this.body.velocity.setTo(0, 0);
       }
     }
   };

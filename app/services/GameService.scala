@@ -2,7 +2,7 @@ package services
 
 import akka.actor.{Props, ActorRef}
 import models.game.{Pile, Deck, GameState}
-import models.{GameJoined, JoinGame}
+import models._
 import play.api.Logger
 import utils.metrics.InstrumentedActor
 
@@ -12,8 +12,8 @@ object GameService {
   private def props(gameType: String, seed: Int, players: List[String], connections: Map[String, ActorRef]) = Props(new GameService(gameType, seed, players, connections))
   private def masterRng = new Random()
 
-  def joinGame(out: ActorRef, jg: JoinGame, seed: Int = Math.abs(masterRng.nextInt())) = {
-    props(jg.game, seed, List(jg.name), Map(jg.name -> out))
+  def joinGame(out: ActorRef, gameId: String, username: String, seed: Int = Math.abs(masterRng.nextInt())) = {
+    props(gameId, seed, List(username), Map(username -> out))
   }
 }
 
@@ -30,9 +30,22 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
     c ! GameJoined(Nil, gameState)
   }
 
-
-
   override def receiveRequest = {
+    case gr: GameRequest =>
+      Logger.debug("Handling [" + gr.request.getClass.getSimpleName + "] message from user [" + gr.username + "].")
+      gr.request match {
+        case sc: SelectCard => handleSelectCard(sc.card)
+        case r => Logger.warn("GameService received unknown game message [" + r.getClass.getSimpleName + "].")
+      }
     case x => Logger.warn("GameService received unknown message [" + x.getClass.getSimpleName + "].")
+  }
+
+  def handleSelectCard(cardId: String) = {
+    val card = gameState
+    //sendToAll(RevealCard())
+  }
+
+  private def sendToAll(rm: ResponseMessage) = for(conn <- connections) {
+    conn._2 ! rm
   }
 }
