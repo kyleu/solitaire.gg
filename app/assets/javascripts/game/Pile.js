@@ -30,8 +30,6 @@ define(["game/Card"], function (Card) {
 
     this.cards.push(card);
     this.game.playmat.add(card);
-
-    this.empty.visible = false;
   };
 
   Pile.prototype.removeCard = function(c) {

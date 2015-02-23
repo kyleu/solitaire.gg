@@ -32,6 +32,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
 
   Card.prototype.onInputDown = function(e, p) {
     this.inputDown = true;
+    this.inputOriginalPosition = this.position.clone();
   };
 
   Card.prototype.onInputUp = function(e, p) {
@@ -40,6 +41,8 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     var yDelta = Math.abs(p.positionDown.y - p.positionUp.y);
     if(xDelta > 5 || yDelta > 5) {
       // Dragged
+      this.x = this.inputOriginalPosition.x;
+      this.y = this.inputOriginalPosition.y;
     } else {
       this.pile.cardSelected(e, p);
     }
