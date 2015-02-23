@@ -52,8 +52,8 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   Card.prototype.update = function() {
     if(this.animation === null) {
       if(this.inputDown) {
-        this.x = this.game.playmat.x + ((this.game.input.x - this.game.playmat.x) / this.game.playmat.scale.x) - ((this.width / 2) * this.game.playmat.scale.x);
-        this.y = this.game.playmat.y + ((this.game.input.y - this.game.playmat.y) / this.game.playmat.scale.y) - ((this.height / 2) * this.game.playmat.scale.y);
+        this.x = ((this.game.input.x - this.game.playmat.x) / this.game.playmat.scale.x) - ((this.width / 2));
+        this.y = ((this.game.input.y - this.game.playmat.y) / this.game.playmat.scale.y) - ((this.height / 2));
       }
     } else if(this.animation.id === "mouse") {
       var tgtX = this.game.input.x - ((this.width / 2) * this.game.playmat.scale.x);

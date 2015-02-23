@@ -5,7 +5,7 @@ case class PileLocation(id: String, x: Int, y: Int)
 object Layout {
   def klondike = Layout(
     width = 1640,
-    height = 800,
+    height = 1200,
     piles = List(
       PileLocation("stock", 30, 30),
       PileLocation("waste", 260, 30),

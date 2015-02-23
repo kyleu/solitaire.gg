@@ -28,7 +28,20 @@ define(function () {
 
   Playmat.prototype.resize = function(h, w) {
     var widthRatio = this.game.world.width / this.w;
-    this.scale = new Phaser.Point(widthRatio, widthRatio);
+    var heightRatio = this.game.world.height / this.h;
+    if(widthRatio < heightRatio) {
+      this.scale = new Phaser.Point(widthRatio, widthRatio);
+      var yOffset = (this.game.world.height - (this.h * widthRatio)) / 2;
+      if(yOffset > 0) {
+        this.y = yOffset;
+      }
+    } else {
+      this.scale = new Phaser.Point(heightRatio, heightRatio);
+      var xOffset = (this.game.world.width - (this.w * heightRatio)) / 2;
+      if(xOffset > 0) {
+        this.x = xOffset;
+      }
+    }
   };
 
   return Playmat;
