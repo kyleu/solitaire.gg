@@ -34,7 +34,7 @@ define(['game/state/InitialState'], function (InitialState) {
 
   Game.prototype.cardSelected = function(card, pointer) {
     console.log(card, pointer);
-    card.visible = false;
+    card.alpha = 0.75;
   };
 
   Game.prototype.addPile = function(p) {

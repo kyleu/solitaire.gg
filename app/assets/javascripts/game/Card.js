@@ -22,14 +22,25 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     this.game.addCard(this);
     this.game.physics.arcade.enable(this);
 
-    this.events.onInputDown.add(this.onInputDown);
+    this.events.onInputDown.add(this.onInputDown, this);
+    this.events.onInputUp.add(this.onInputUp, this);
   }
 
   Card.prototype = Object.create(Phaser.Sprite.prototype);
   Card.prototype.constructor = Card;
 
   Card.prototype.onInputDown = function(e, p) {
-    e.game.cardSelected(e, p);
+  };
+
+  Card.prototype.onInputUp = function(e, p) {
+    this.inputDown = false;
+    var xDelta = Math.abs(p.positionDown.x - p.positionUp.x);
+    var yDelta = Math.abs(p.positionDown.y - p.positionUp.y);
+    if(xDelta > 5 || yDelta > 5) {
+      // Dragged
+    } else {
+      this.pile.cardSelected(e, p);
+    }
   };
 
   Card.prototype.toString = function() {

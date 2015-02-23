@@ -47,5 +47,9 @@ define(["game/Card"], function (Card) {
     }
   };
 
+  Pile.prototype.cardSelected = function(c, p) {
+    this.game.cardSelected(c, p);
+  };
+
   return Pile;
 });
