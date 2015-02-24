@@ -51,7 +51,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     }
   };
 
-  Card.prototype.endDrag = function(p) {
+  Card.prototype.cancelDrag = function(p) {
     if(this.dragging) {
       this.dragging = false;
       var xDelta = Math.abs(p.positionDown.x - p.positionUp.x);
@@ -94,10 +94,6 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
         this.body.velocity.setTo(0, 0);
       }
     }
-  };
-
-  Card.prototype.enableLegacyDragDrop = function() {
-    this.input.enableDrag(false, true);
   };
 
   return Card;

@@ -20,9 +20,6 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
     var victoriousCheatKey = this.game.input.keyboard.addKey(Phaser.Keyboard.V);
     victoriousCheatKey.onDown.add(this.victorious, this);
 
-    var dragDropCheatKey = this.game.input.keyboard.addKey(Phaser.Keyboard.D);
-    dragDropCheatKey.onDown.add(this.legacyDragDrop, this);
-
     this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
     this.bg.height = this.game.height * 2;
     this.bg.width = this.game.width * 2;
@@ -40,12 +37,6 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
     console.log("Victorious!");
     for(var cardIndex in this.game.cards) {
       this.game.cards[cardIndex].animation = {id: "mouse", speed: 200 + Math.floor(Math.random() * 300)};
-    }
-  };
-
-  Gameplay.prototype.legacyDragDrop = function() {
-    for(var cardIndex in this.game.cards) {
-      this.game.cards[cardIndex].enableLegacyDragDrop();
     }
   };
 

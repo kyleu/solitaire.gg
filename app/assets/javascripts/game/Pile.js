@@ -59,8 +59,21 @@ define(["game/Card"], function (Card) {
   };
 
   Pile.prototype.endDrag = function(p) {
+    var firstCard = this.dragCards[0];
+    var overlaps = [];
+
+    var overlapPileCallback = function() {
+      console.log("Overlap!");
+    };
+
+    for(var pileIndex in this.game.piles) {
+      var overlapped = this.game.physics.arcade.overlap(firstCard.body, this.game.piles[pileIndex].body, overlapPileCallback);
+      console.log("Overlapped: " + overlapped);
+    }
+
+
     for(var c in this.dragCards) {
-      this.dragCards[c].endDrag(p);
+      this.dragCards[c].cancelDrag(p);
     }
     this.dragCards = null;
   };

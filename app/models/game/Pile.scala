@@ -24,14 +24,11 @@ object Pile {
   )
 }
 
-case class Pile(
-  id: String,
-  behavior: String,
-  var cards: List[Card] = Nil
-) {
-
+case class Pile(id: String, behavior: String, var cards: List[Card] = Nil) {
   def addCard(c: Card): Unit = {
     cards = c :: cards
   }
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
+
+  override def toString: String = id + ": " + cards.map(_.toString).mkString(", ")
 }

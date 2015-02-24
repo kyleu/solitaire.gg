@@ -22,7 +22,6 @@ define(function () {
 
   GameState.prototype.resize = function(c, v) {
     if(this.game.statusPanel !== undefined) {
-      console.log(this.game.statusPanel);
       this.game.statusPanel.resize();
     }
   };
