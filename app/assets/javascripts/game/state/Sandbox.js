@@ -28,8 +28,6 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
       this.ws.send("Ping", { timestamp: new Date().getTime() });
     }, this.game);
 
-    this.game.physics.startSystem(Phaser.Physics.ARCADE);
-
     this.game.ws.send("JoinGame", { "game": "sandbox", "name": "Kyle" });
   };
 

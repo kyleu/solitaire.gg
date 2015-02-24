@@ -61,14 +61,12 @@ define(["game/Card"], function (Card) {
   Pile.prototype.endDrag = function(p) {
     var firstCard = this.dragCards[0];
     var overlaps = [];
-
-    var overlapPileCallback = function() {
-      console.log("Overlap!");
-    };
-
     for(var pileIndex in this.game.piles) {
-      var overlapped = this.game.physics.arcade.overlap(firstCard.body, this.game.piles[pileIndex].body, overlapPileCallback);
-      console.log("Overlapped: " + overlapped);
+      var pile = this.game.piles[pileIndex];
+      var overlapX = Math.abs(firstCard.x - pile.x);
+      var overlapY = Math.abs(firstCard.y - pile.y);
+
+      console.log("[" + pile.id + "] overlapped: [" + overlapX + ", " + overlapY + "].");
     }
 
 

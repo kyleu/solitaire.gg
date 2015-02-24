@@ -21,7 +21,6 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     this.dragging = false;
 
     this.game.addCard(this);
-    this.game.physics.arcade.enable(this);
 
     this.events.onInputDown.add(this.onInputDown, this);
     this.events.onInputUp.add(this.onInputUp, this);
@@ -74,13 +73,8 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   Card.prototype.update = function() {
     if(this.animation === null) {
       if(this.dragging) {
-        //Use anchor points.
         this.x = ((this.game.input.x - this.game.playmat.x) / this.game.playmat.scale.x) - (this.anchorPointX);
         this.y = ((this.game.input.y - this.game.playmat.y) / this.game.playmat.scale.y) - (this.anchorPointY);
-
-        // Or, snap to center.
-        //this.x = ((this.game.input.x - this.game.playmat.x) / this.game.playmat.scale.x) - ((this.width / 2));
-        //this.y = ((this.game.input.y - this.game.playmat.y) / this.game.playmat.scale.y) - ((this.height / 2));
       }
     } else if(this.animation.id === "mouse") {
       var tgtX = this.game.input.x - ((this.width / 2) * this.game.playmat.scale.x);
@@ -88,10 +82,8 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
       var distance = this.game.math.distance(this.world.x, this.world.y, tgtX, tgtY);
       if(distance > 20) {
         var rotation = this.game.math.angleBetween(this.world.x, this.world.y, tgtX, tgtY);
-        this.body.velocity.x = Math.cos(rotation) * 500;
-        this.body.velocity.y = Math.sin(rotation) * 500;
-      } else {
-        this.body.velocity.setTo(0, 0);
+        this.x += Math.cos(rotation) * 10;
+        this.y += Math.sin(rotation) * 10;
       }
     }
   };
