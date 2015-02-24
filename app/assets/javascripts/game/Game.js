@@ -10,6 +10,10 @@ define(['game/state/InitialState'], function (InitialState) {
     this.piles = {};
     this.cards = {};
 
+    this.cardWidth = 200;
+    this.cardHeight = 300;
+    this.cardOffset = 45;
+
     console.log("Game [" + id + "] started.");
   }
 

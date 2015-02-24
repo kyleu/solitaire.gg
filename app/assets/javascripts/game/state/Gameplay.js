@@ -12,7 +12,7 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
     this.game.load.image('bg-texture', '/assets/images/game/bg.jpg');
     this.game.load.image('card-back-medium', '/assets/images/game/cards/medium/BACK.png');
     this.game.load.image('empty-pile-medium', '/assets/images/game/cards/medium/EMPTY.png');
-    this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', cfg.cardWidth, cfg.cardHeight);
+    this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', 200, 300);
   };
 
   Gameplay.prototype.create = function() {
@@ -36,7 +36,7 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
   Gameplay.prototype.victorious = function() {
     console.log("Victorious!");
     for(var cardIndex in this.game.cards) {
-      this.game.cards[cardIndex].animation = {id: "mouse", speed: 200 + Math.floor(Math.random() * 300)};
+      this.game.cards[cardIndex].animation = {id: "mouse", speed: 200 + Math.floor(Math.random() * 200)};
     }
   };
 
