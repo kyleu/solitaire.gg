@@ -33,8 +33,8 @@ define(['game/state/InitialState'], function (InitialState) {
   };
 
   Game.prototype.cardSelected = function(card, pointer) {
-    //console.log(card, pointer);
-    this.ws.send("SelectCard", { card: card.id });
+    console.log("Card [" + card + "] selected.");
+    this.ws.send("SelectCard", { pileId: card.pile.id, pileIndex: card.pileIndex, card: card.id });
   };
 
   Game.prototype.addPile = function(p) {

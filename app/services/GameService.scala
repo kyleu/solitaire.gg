@@ -34,15 +34,15 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
     case gr: GameRequest =>
       Logger.debug("Handling [" + gr.request.getClass.getSimpleName + "] message from user [" + gr.username + "].")
       gr.request match {
-        case sc: SelectCard => handleSelectCard(sc.card)
+        case sc: SelectCard => handleSelectCard(sc.pileId, sc.pileIndex, sc.card)
         case r => Logger.warn("GameService received unknown game message [" + r.getClass.getSimpleName + "].")
       }
     case x => Logger.warn("GameService received unknown message [" + x.getClass.getSimpleName + "].")
   }
 
-  def handleSelectCard(cardId: String) = {
-    //val card = gameState.cards(cardId)
-    //sendToAll(RevealCard())
+  def handleSelectCard(pileId: String, pileIndex: Int, cardId: String) = {
+    val card = gameState.cardsById(cardId)
+    Logger.info("Card [" + card + "] selected.")
   }
 
   private def sendToAll(rm: ResponseMessage) = for(conn <- connections) {

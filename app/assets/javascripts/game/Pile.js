@@ -62,6 +62,7 @@ define(["game/Card"], function (Card) {
     for(var c in this.dragCards) {
       this.dragCards[c].endDrag(p);
     }
+    this.dragCards = null;
   };
 
   Pile.prototype.cardSelected = function(c, p) {

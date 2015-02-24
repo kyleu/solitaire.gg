@@ -46,6 +46,8 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   Card.prototype.onInputUp = function(e, p) {
     if(this.dragging) {
       this.pile.endDrag(p);
+    } else {
+      this.pile.cardSelected(this);
     }
   };
 
@@ -58,10 +60,10 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
         // Dragged
         this.game.add.tween(this).to({x: this.inputOriginalPosition.x, y: this.inputOriginalPosition.y}, 500, Phaser.Easing.Quadratic.InOut, true);
       } else {
-        this.pile.cardSelected(e, p);
+        this.pile.cardSelected(this, p);
       }
     } else {
-      this.pile.cardSelected(e, p);
+      this.pile.cardSelected(this, p);
     }
   };
 
