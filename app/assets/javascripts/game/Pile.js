@@ -47,6 +47,14 @@ define(["game/Card"], function (Card) {
     }
   };
 
+  Pile.prototype.canDrag = function(card) {
+    if(this.behavior == "stock") {
+      return false;
+    } else {
+      return card.pileIndex === (this.cards.length - 1);
+    }
+  };
+
   Pile.prototype.cardSelected = function(c, p) {
     this.game.cardSelected(c, p);
   };

@@ -32,13 +32,13 @@ define(function () {
     if(widthRatio < heightRatio) {
       this.scale = new Phaser.Point(widthRatio, widthRatio);
       var yOffset = (this.game.world.height - (this.h * widthRatio)) / 2;
-      if(yOffset > 0) {
+      if(yOffset > 0 || this.y !== 0) {
         this.y = yOffset;
       }
     } else {
       this.scale = new Phaser.Point(heightRatio, heightRatio);
       var xOffset = (this.game.world.width - (this.w * heightRatio)) / 2;
-      if(xOffset > 0) {
+      if(xOffset > 0 || this.x !== 0) {
         this.x = xOffset;
       }
     }

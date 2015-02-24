@@ -33,7 +33,7 @@ define(['game/state/InitialState'], function (InitialState) {
   };
 
   Game.prototype.cardSelected = function(card, pointer) {
-    console.log(card, pointer);
+    //console.log(card, pointer);
     this.ws.send("SelectCard", { card: card.id });
   };
 
