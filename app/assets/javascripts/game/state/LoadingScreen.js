@@ -1,40 +1,28 @@
-define(['Config', 'game/state/Gameplay', 'game/state/Sandbox'], function (cfg, Gameplay, Sandbox) {
+define(['Config', 'game/state/Gameplay', 'game/state/GameState'], function (cfg, Gameplay, GameState) {
   "use strict";
 
   function LoadingScreen(game) {
-    Phaser.State.call(this, game);
+    GameState.call(this, game);
   }
 
-  LoadingScreen.prototype = Object.create(Phaser.State.prototype);
+  LoadingScreen.prototype = Object.create(GameState.prototype);
   LoadingScreen.prototype.constructor = LoadingScreen;
 
   LoadingScreen.prototype.preload = function() {
     var gameplay = new Gameplay(this.game);
     this.game.state.add('gameplay', gameplay);
-
-    var sandbox = new Sandbox(this.game);
-    this.game.state.add('sandbox', sandbox);
   };
 
   LoadingScreen.prototype.create = function() {
+    GameState.prototype.create.apply(this, arguments);
+
     this.message = this.game.add.text(this.game.world.centerX - 90, this.game.world.centerY - 60, "Loading Scalataire...", { font: "18px Helvetica", fill: "#ffffff"});
-
     this.game.state.start('gameplay');
-    //this.game.state.start('sandbox');
-  };
-
-  LoadingScreen.prototype.onMessage = function(c, v) {
-    switch(c) {
-      default:
-        console.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));
-    }
-  };
-
-  LoadingScreen.prototype.update = function () {
-    this.game.statusPanel.setFps(this.game.time.fps);
   };
 
   LoadingScreen.prototype.resize = function() {
+    GameState.prototype.resize.apply(this, arguments);
+
     this.message.x = this.game.world.centerX - 90;
     this.message.y = this.game.world.centerY - 60;
   };

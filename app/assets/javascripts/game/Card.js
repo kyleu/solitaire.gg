@@ -18,7 +18,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     }
 
     this.inputEnabled = true;
-    this.inputDown = false;
+    this.dragging = false;
 
     this.game.addCard(this);
     this.game.physics.arcade.enable(this);
@@ -46,7 +46,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
       this.dragging = false;
       var xDelta = Math.abs(p.positionDown.x - p.positionUp.x);
       var yDelta = Math.abs(p.positionDown.y - p.positionUp.y);
-      if(xDelta > 5 || yDelta > 5) {
+      if(xDelta > 0 || yDelta > 0) {
         // Dragged
         this.game.add.tween(this).to({x: this.inputOriginalPosition.x, y: this.inputOriginalPosition.y}, 500, Phaser.Easing.Quadratic.InOut, true);
       } else {

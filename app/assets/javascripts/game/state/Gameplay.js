@@ -1,21 +1,22 @@
-define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card, Pile, Playmat) {
+define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameState'], function (cfg, Card, Pile, Playmat, GameState) {
   "use strict";
 
   function Gameplay(game) {
-    Phaser.State.call(this, game);
+    GameState.call(this, game);
   }
 
-  Gameplay.prototype = Object.create(Phaser.State.prototype);
+  Gameplay.prototype = Object.create(GameState.prototype);
   Gameplay.prototype.constructor = Gameplay;
 
   Gameplay.prototype.preload = function() {
     this.game.load.image('bg-texture', '/assets/images/game/bg.jpg');
     this.game.load.image('card-back-medium', '/assets/images/game/cards/medium/BACK.png');
     this.game.load.image('empty-pile-medium', '/assets/images/game/cards/medium/EMPTY.png');
-    this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', 200, 300);
+    this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', cfg.cardWidth, cfg.cardHeight);
   };
 
   Gameplay.prototype.create = function() {
+    GameState.prototype.create.apply(this, arguments);
     var victoriousCheatKey = this.game.input.keyboard.addKey(Phaser.Keyboard.V);
     victoriousCheatKey.onDown.add(this.victorious, this);
 
@@ -48,10 +49,6 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
     }
   };
 
-  Gameplay.prototype.update = function() {
-    this.game.statusPanel.setFps(this.game.time.fps);
-  };
-
   Gameplay.prototype.onMessage = function(c, v) {
     switch(c) {
       case "GameJoined":
@@ -77,11 +74,13 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
         }
         break;
       default:
-        console.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));
+        GameState.prototype.onMessage.apply(this, arguments);
     }
   };
 
   Gameplay.prototype.resize = function(w, h) {
+    GameState.prototype.resize.apply(this, arguments);
+
     if(this.game.playmat !== undefined) {
       this.game.playmat.resize();
     }

@@ -12,10 +12,12 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
     this.game.load.image("bg-texture", "/assets/images/game/bg.jpg");
     this.game.load.image("card-back-medium", "/assets/images/game/cards/medium/BACK.png");
     this.game.load.image("empty-pile-medium", "/assets/images/game/cards/medium/EMPTY.png");
-    this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', 200, 300);
+    this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', cfg.cardWidth, cfg.cardHeight);
   };
 
   Sandbox.prototype.create = function() {
+    GameState.prototype.create.apply(this, arguments);
+
     this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
     this.bg.height = this.game.height * 2;
     this.bg.width = this.game.width * 2;
@@ -29,10 +31,6 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     this.game.ws.send("JoinGame", { "game": "sandbox", "name": "Kyle" });
-  };
-
-  Sandbox.prototype.update = function() {
-    this.game.statusPanel.setFps(this.game.time.fps);
   };
 
   Sandbox.prototype.onMessage = function(c, v) {
@@ -53,11 +51,13 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
         }
         break;
       default:
-        console.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));
+        GameState.prototype.onMessage.apply(this, arguments);
     }
   };
 
   Sandbox.prototype.resize = function(w, h) {
+    GameState.prototype.resize.apply(this, arguments);
+
     if(this.game.playmat !== undefined) {
       this.game.playmat.resize();
     }

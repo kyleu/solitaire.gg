@@ -1,11 +1,11 @@
-define(["Config", "Websocket", "game/component/StatusPanel", "game/state/LoadingScreen"], function (cfg, Websocket, StatusPanel, LoadingScreen) {
+define(["Config", "Websocket", "game/component/StatusPanel", "game/state/GameState", "game/state/LoadingScreen"], function (cfg, Websocket, StatusPanel, GameState, LoadingScreen) {
   "use strict";
 
   function InitialState(game) {
-    Phaser.State.call(this, game);
+    GameState.call(this, game);
   }
 
-  InitialState.prototype = Object.create(Phaser.State.prototype);
+  InitialState.prototype = Object.create(GameState.prototype);
   InitialState.prototype.constructor = InitialState;
 
   InitialState.prototype.onConnect = function(url) {
@@ -18,26 +18,20 @@ define(["Config", "Websocket", "game/component/StatusPanel", "game/state/Loading
   };
 
   InitialState.prototype.create = function() {
+    GameState.prototype.create.apply(this, arguments);
+
     var loadingScreen = new LoadingScreen(this.game);
     this.game.state.add('loading', loadingScreen);
 
     this.game.time.advancedTiming = true;
 
     this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-    if(typeof Phaser.Plugin.Debug == 'function') {
+    if(typeof Phaser.Plugin.Debug === 'function') {
       this.game.add.plugin(Phaser.Plugin.Debug);
     }
 
     this.game.statusPanel = new StatusPanel(this.game);
     this.game.ws = new Websocket(cfg.wsUrl, this, this.game);
-  };
-
-  InitialState.prototype.update = function() {
-    this.game.statusPanel.setFps(this.game.time.fps);
-  };
-
-  InitialState.prototype.onMessage = function(c) {
-    console.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));
   };
 
   return InitialState;

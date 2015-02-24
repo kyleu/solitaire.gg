@@ -7,6 +7,8 @@ define(function() {
 
     this.group = new Phaser.Group(game, null, "status-panel", true);
 
+    this.group.y = game.stage.height - 155;
+
     this.group.add(this.connectionStatus);
     this.group.add(this.latency);
     this.group.add(this.fps);
@@ -31,6 +33,10 @@ define(function() {
 
   StatusPanel.prototype.setVersion = function(version) {
     this.version.text = "v" + version;
+  };
+
+  StatusPanel.prototype.resize = function() {
+    this.group.y = game.stage.height - 155;
   };
 
   return StatusPanel;
