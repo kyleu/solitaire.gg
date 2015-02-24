@@ -47,11 +47,20 @@ define(["game/Card"], function (Card) {
     }
   };
 
-  Pile.prototype.canDrag = function(card) {
+  Pile.prototype.startDrag = function(card, p) {
     if(this.behavior == "stock") {
-      return false;
+      // No op
     } else {
-      return card.pileIndex === (this.cards.length - 1);
+      this.dragCards = this.cards.slice(card.pileIndex);
+      for(var c in this.dragCards) {
+        this.dragCards[c].startDrag(p, 0);
+      }
+    }
+  };
+
+  Pile.prototype.endDrag = function(p) {
+    for(var c in this.dragCards) {
+      this.dragCards[c].endDrag(p);
     }
   };
 

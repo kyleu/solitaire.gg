@@ -31,17 +31,25 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   Card.prototype.constructor = Card;
 
   Card.prototype.onInputDown = function(e, p) {
-    if(this.pile.canDrag(this)) {
-      this.dragging = true;
-      this.inputOriginalPosition = this.position.clone();
-      this.anchorPointX = ((p.positionDown.x - this.game.playmat.x) / this.game.playmat.scale.x) - this.x;
-      this.anchorPointY = ((p.positionDown.y - this.game.playmat.y) / this.game.playmat.scale.y) - this.y;
-      console.log("InputDown", p.positionDown.x, " - ", this.game.playmat.x, " - (", this.x, "*", this.game.playmat.scale.x, " = ", (this.x * this.game.playmat.scale.x), ") = ", this.anchorPointX);
-      this.bringToTop();
-    }
+    this.pile.startDrag(this, p);
+  };
+
+  Card.prototype.startDrag = function(p, offset) {
+    this.dragging = true;
+    this.inputOriginalPosition = this.position.clone();
+    this.anchorPointX = ((p.positionDown.x - this.game.playmat.x) / this.game.playmat.scale.x) - this.x;
+    this.anchorPointY = ((p.positionDown.y - this.game.playmat.y) / this.game.playmat.scale.y) - this.y;
+    //console.log("InputDown", p.positionDown.x, " - ", this.game.playmat.x, " - (", this.x, "*", this.game.playmat.scale.x, " = ", (this.x * this.game.playmat.scale.x), ") = ", this.anchorPointX);
+    this.bringToTop();
   };
 
   Card.prototype.onInputUp = function(e, p) {
+    if(this.dragging) {
+      this.pile.endDrag(p);
+    }
+  };
+
+  Card.prototype.endDrag = function(p) {
     if(this.dragging) {
       this.dragging = false;
       var xDelta = Math.abs(p.positionDown.x - p.positionUp.x);
