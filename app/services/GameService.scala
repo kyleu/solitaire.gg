@@ -1,7 +1,7 @@
 package services
 
 import akka.actor.{Props, ActorRef}
-import models.game.{Pile, Deck, GameState}
+import models.game.{Deck, GameState}
 import models._
 import play.api.Logger
 import utils.metrics.InstrumentedActor
@@ -36,12 +36,13 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
       gr.request match {
         case sc: SelectCard => handleSelectCard(sc.card, sc.pile, sc.pileIndex)
         case sp: SelectPile => handleSelectPile(sp.pile)
+        case mc: MoveCards => handleMoveCards(mc.cards, mc.src, mc.tgt)
         case r => Logger.warn("GameService received unknown game message [" + r.getClass.getSimpleName + "].")
       }
     case x => Logger.warn("GameService received unknown message [" + x.getClass.getSimpleName + "].")
   }
 
-  private def handleSelectCard(cardId: String, pileId: String, pileIndex: Int) = {
+  private def handleSelectCard(cardId: String, pileId: String, pileIndex: Int) {
     val card = gameState.cardsById(cardId)
     if(pileId == "stock") {
       val stock = gameState.pilesById(pileId)
@@ -51,39 +52,51 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
 
       val waste = gameState.pilesById("waste")
 
-      if(stock.cards.nonEmpty) {
-        val topCard = stock.cards.last
-        if(topCard != card) {
-          throw new IllegalArgumentException("Selected card [" + card + "] is not stock top card [" + topCard + "].")
-        }
-        stock.cards = stock.cards.dropRight(1)
-        waste.addCard(card)
-        card.u = true
-        Logger.info("Stock card [" + card + "] moved to waste.")
-        sendToAll(CardMoved(card.id, "stock", "waste", turnFaceUp = true))
+      val topCard = stock.cards.last
+      if(topCard != card) {
+        throw new IllegalArgumentException("Selected card [" + card + "] is not stock top card [" + topCard + "].")
       }
+      stock.cards = stock.cards.dropRight(1)
+      waste.addCard(card)
+      card.u = true
+      Logger.info("Stock card [" + card + "] moved to waste.")
+      sendToAll(CardMoved(card.id, "stock", "waste", turnFaceUp = true))
     } else {
       Logger.warn("Card [" + card + "] selected with no action.")
     }
   }
 
-  private def handleSelectPile(pileId: String) = {
+  private def handleSelectPile(pileId: String) {
     if(pileId == "stock") {
       val stock = gameState.pilesById(pileId)
       if(stock.cards.length > 0) {
         throw new IllegalArgumentException("SelectPile called on a non-empty deck.")
       }
 
-      var waste = gameState.pilesById("waste");
+      val waste = gameState.pilesById("waste")
 
-      for(card <- waste.cards.reverse) {
+      val messages = waste.cards.reverse.map { card =>
         waste.removeCard(card)
         stock.addCard(card)
-        sendToAll(CardMoved(card.id, "waste", "stock", turnFaceDown = true))
+        CardMoved(card.id, "waste", "stock", turnFaceDown = true)
       }
+      sendToAll(MessageSet(messages))
     } else {
       Logger.warn("Pile [" + pileId + "] selected with no action.")
     }
+  }
+
+  private def handleMoveCards(cardIds: List[String], sourceId: String, targetId: String) {
+    val cards = cardIds.map(gameState.cardsById)
+    val source = gameState.pilesById(sourceId)
+    val target = gameState.pilesById(targetId)
+
+    val messages = cards.map { card =>
+      source.removeCard(card)
+      target.addCard(card)
+      CardMoved(card.id, sourceId, targetId)
+    }
+    sendToAll(MessageSet(messages))
   }
 
   private def sendToAll(responseMessage: ResponseMessage) = connections.foreach { c =>

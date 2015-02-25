@@ -17,7 +17,16 @@ define(function () {
   };
 
   GameState.prototype.onMessage = function(c, v) {
-    console.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));
+    switch(c) {
+      case "MessageSet":
+        for(var messageIndex in v.messages.reverse()) {
+          var message = v.messages[messageIndex];
+          this.onMessage(message.c, message.v);
+        }
+        break;
+      default:
+        console.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));
+    }
   };
 
   GameState.prototype.resize = function(c, v) {

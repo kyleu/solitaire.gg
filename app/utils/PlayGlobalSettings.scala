@@ -7,11 +7,11 @@ import services.ActorSupervisor
 import scala.concurrent.Future
 
 object PlayGlobalSettings extends GlobalSettings {
-  override def onStart(app: Application) = {
+  override def onStart(app: Application) {
     ActorSupervisor.start()
     super.onStart(app)
   }
-  override def onStop(app: Application) = {
+  override def onStop(app: Application) {
     super.onStop(app)
   }
 
@@ -31,7 +31,7 @@ object PlayGlobalSettings extends GlobalSettings {
     }
     super.onRouteRequest(request)
   }
-  override def onRequestCompletion(request: RequestHeader) = {
+  override def onRequestCompletion(request: RequestHeader) {
     super.onRequestCompletion(request)
   }
 }

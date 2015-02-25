@@ -28,9 +28,10 @@ case class Pile(id: String, behavior: String, var cards: List[Card] = Nil) {
   def addCard(c: Card) {
     cards = c :: cards
   }
+
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
 
-  def removeCard(c: Card) = {
+  def removeCard(c: Card) {
     cards = cards.filter(_ == c)
   }
 

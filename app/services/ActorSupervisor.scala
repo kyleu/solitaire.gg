@@ -7,7 +7,7 @@ import play.api.libs.concurrent.Akka
 import utils.metrics.{InstrumentedActor, MetricsServletActor}
 
 object ActorSupervisor {
-  def start() = {
+  def start() {
     import play.api.Play.current
     val instance = Akka.system.actorOf(Props[ActorSupervisor], "actor-supervisor")
     Logger.info("Actor Supervisor [" + instance.path.toString + "] started for [scalataire].")
@@ -19,7 +19,7 @@ private class ActorSupervisor extends InstrumentedActor  {
     case x => Logger.info("ActorSupervisor encountered unknown message: " + x.toString)
   }
 
-  override def preStart() = {
+  override def preStart() {
     context.actorOf(Props[MetricsServletActor], "metrics-servlet")
   }
 

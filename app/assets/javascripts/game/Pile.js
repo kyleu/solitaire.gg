@@ -20,7 +20,7 @@ define(function () {
   Pile.prototype = Object.create(Phaser.Group.prototype);
   Pile.prototype.constructor = Pile;
 
-  Pile.prototype.addCard = function(card) {
+  Pile.prototype.addCard = function(card, index) {
     card.x = 0;
     card.pile = this;
     card.pileIndex = this.cards.length;
@@ -84,7 +84,7 @@ define(function () {
 
     if(this.behavior == "waste") {
       if(this.cards.length === 1) {
-        this.cards[0] = this.x;
+        this.cards[0].x = this.x;
       } else if(this.cards.length === 2) {
         this.cards[0].x = this.x;
         this.cards[1].x = this.x + this.game.cardSet.cardHorizontalOffset;
@@ -160,13 +160,21 @@ define(function () {
         this.dragCards[cancelIndex].cancelDrag(p);
       }
     } else {
+      console.log("Moving [" + this.dragCards + "] to [" + dropTarget.id + "].");
+
       for(var moveIndex in this.dragCards) {
         var card = this.dragCards[moveIndex];
         card.dragging = false;
-        this.removeCard(card);
-        dropTarget.addCard(card);
-        console.log("Moving [" + card + "] to [" + dropTarget.id + "].");
+        //this.removeCard(card);
+        //dropTarget.addCard(card);
       }
+
+      var cardIds = [];
+      for(var dragCardIndex in this.dragCards) {
+        cardIds.push(this.dragCards[dragCardIndex].id);
+      }
+
+      this.game.ws.send("MoveCards", { cards: cardIds, src: this.id, tgt: dropTarget.id });
     }
     this.dragCards = [];
   };

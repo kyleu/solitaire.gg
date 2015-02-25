@@ -1,12 +1,12 @@
 package utils
 
-import models.{MalformedRequest, RequestMessage, ResponseMessage}
+import models.{MessageSet, MalformedRequest, RequestMessage, ResponseMessage}
 import play.api.Logger
 import play.api.libs.json._
 import play.api.mvc.WebSocket.FrameFormatter
 
-import RequestMessageSerializers._
-import ResponseMessageSerializers._
+import utils.RequestMessageSerializers._
+import utils.ResponseMessageSerializers._
 
 object MessageFrameFormatter {
   private def requestToJson(r: RequestMessage): JsValue = throw new IllegalArgumentException("Attempted to serialize RequestMessage [" + r + "] on server.")
@@ -16,8 +16,14 @@ object MessageFrameFormatter {
   }
 
   private def responseToJson(r: ResponseMessage): JsValue = {
-    Logger.debug("Sending message: " + r)
-    Json.toJson(r)
+    r match {
+      case ms: MessageSet =>
+        Logger.debug("Sending message set containing " + ms.messages.size + " messages [" + ms.messages.map(_.getClass.getSimpleName).mkString(", ") + "].")
+        messageSetWrites.writes(ms)
+      case _ =>
+        Logger.debug("Sending message [" + r + "].")
+        Json.toJson(r)
+    }
   }
   private def responseFromJson(json: JsValue): ResponseMessage = throw new IllegalArgumentException("Attempted to deserialize ResponseMessage [" + json + "] on server.")
 

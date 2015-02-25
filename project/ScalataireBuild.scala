@@ -1,5 +1,5 @@
 import sbt._
-import Keys._
+import sbt.Keys._
 import com.typesafe.sbt.rjs.Import.rjs
 import com.typesafe.sbt.packager.universal.UniversalKeys
 import com.typesafe.sbt.web.SbtWeb

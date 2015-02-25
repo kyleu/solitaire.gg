@@ -17,7 +17,7 @@ class MetricsServletActor extends InstrumentedActor {
   private var graphiteReporter: Option[GraphiteReporter] = None
   private var httpServer: Option[Server] = None
 
-  override def preStart() = {
+  override def preStart() {
     if(Config.jmxEnabled) {
       Logger.info("Reporting metrics over JMX.")
       jmxReporter = Some(JmxReporter.forRegistry(Instrumented.metricRegistry).build())
@@ -35,7 +35,7 @@ class MetricsServletActor extends InstrumentedActor {
         .filter(MetricFilter.ALL)
         .build(graphiteServer)
       )
-      graphiteReporter.get.start(1, TimeUnit.MINUTES);
+      graphiteReporter.get.start(1, TimeUnit.MINUTES)
     }
 
     if(Config.servletEnabled) {
@@ -47,7 +47,7 @@ class MetricsServletActor extends InstrumentedActor {
     super.preStart()
   }
 
-  override def postStop() = {
+  override def postStop() {
     jmxReporter.map { r =>
       r.stop()
       r.close()
