@@ -55,6 +55,8 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
 
         if(v.turnFaceUp) {
           movedCard.turnFaceUp();
+        } else if(v.turnFaceDown) {
+          movedCard.turnFaceDown();
         }
 
         movedCard.bringToTop();

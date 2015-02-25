@@ -8,6 +8,8 @@ case object GetVersion extends RequestMessage
 case class JoinGame(game: String, name: String) extends RequestMessage
 
 case class SelectCard(card: String, pile: String, pileIndex: Int) extends RequestMessage
+case class SelectPile(pile: String) extends RequestMessage
+case class MoveCards(cards: List[String], source: String, target: String) extends RequestMessage
 
 case class GameRequest(username: String, request: RequestMessage)
 

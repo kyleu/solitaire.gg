@@ -25,10 +25,14 @@ object Pile {
 }
 
 case class Pile(id: String, behavior: String, var cards: List[Card] = Nil) {
-  def addCard(c: Card): Unit = {
+  def addCard(c: Card) {
     cards = c :: cards
   }
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
+
+  def removeCard(c: Card) = {
+    cards = cards.filter(_ == c)
+  }
 
   override def toString: String = id + ": " + cards.map(_.toString).mkString(", ")
 }

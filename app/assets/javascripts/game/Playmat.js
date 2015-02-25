@@ -9,6 +9,7 @@ define(function () {
     this.resize();
 
     this.game.add.existing(this);
+    console.log("Playmat created.");
   };
 
   Playmat.prototype = Object.create(Phaser.Group.prototype);
@@ -33,7 +34,7 @@ define(function () {
       this.scale = new Phaser.Point(widthRatio, widthRatio);
       var yOffset = (this.game.world.height - (this.h * widthRatio)) / 2;
       if(yOffset > 0 || this.y !== 0) {
-        this.y = yOffset;
+        this.y = 0;//yOffset;
       }
     } else {
       this.scale = new Phaser.Point(heightRatio, heightRatio);

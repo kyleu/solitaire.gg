@@ -35,6 +35,7 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
       Logger.debug("Handling [" + gr.request.getClass.getSimpleName + "] message from user [" + gr.username + "].")
       gr.request match {
         case sc: SelectCard => handleSelectCard(sc.card, sc.pile, sc.pileIndex)
+        case sp: SelectPile => handleSelectPile(sp.pile)
         case r => Logger.warn("GameService received unknown game message [" + r.getClass.getSimpleName + "].")
       }
     case x => Logger.warn("GameService received unknown message [" + x.getClass.getSimpleName + "].")
@@ -63,6 +64,25 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
       }
     } else {
       Logger.warn("Card [" + card + "] selected with no action.")
+    }
+  }
+
+  private def handleSelectPile(pileId: String) = {
+    if(pileId == "stock") {
+      val stock = gameState.pilesById(pileId)
+      if(stock.cards.length > 0) {
+        throw new IllegalArgumentException("SelectPile called on a non-empty deck.")
+      }
+
+      var waste = gameState.pilesById("waste");
+
+      for(card <- waste.cards.reverse) {
+        waste.removeCard(card)
+        stock.addCard(card)
+        sendToAll(CardMoved(card.id, "waste", "stock", turnFaceDown = true))
+      }
+    } else {
+      Logger.warn("Pile [" + pileId + "] selected with no action.")
     }
   }
 

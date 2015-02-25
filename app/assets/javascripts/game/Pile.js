@@ -9,6 +9,8 @@ define(function () {
     this.game.addPile(this);
 
     this.empty = new Phaser.Sprite(game, 0, 0, 'empty-pile');
+    this.empty.inputEnabled = true;
+    this.empty.events.onInputUp.add(this.pileSelected, this);
     this.add(this.empty);
 
     this.intersectWidth = this.empty.width;
@@ -29,12 +31,36 @@ define(function () {
       card.x = this.x;
     } else if(this.behavior == "waste") {
       card.y = this.y;
-      card.x = this.x + ((this.cards.length - 1) * this.game.cardSet.cardHorizontalOffset);
-      this.intersectWidth = this.game.cardSet.cardWidth + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardHorizontalOffset);
+      if(this.cards.length === 1) {
+        card.x = this.x;
+      } else if(this.cards.length === 2) {
+        this.cards[0].x = this.x;
+        this.cards[1].x = this.x + this.game.cardSet.cardHorizontalOffset;
+      } else {
+        for(var cardIndex in this.cards) {
+          var cardIndexInt = parseInt(cardIndex);
+          if(cardIndexInt === this.cards.length - 1) {
+            this.cards[cardIndex].x = this.x + (this.game.cardSet.cardHorizontalOffset * 2);
+          } else if(cardIndexInt === this.cards.length - 2) {
+            this.cards[cardIndex].x = this.x + this.game.cardSet.cardHorizontalOffset;
+          } else {
+            this.cards[cardIndex].x = this.x;
+          }
+        }
+      }
+
+      var additionalWidth = this.cards.length - 1;
+      if(this.cards.length > 3) {
+        additionalWidth = 2;
+      }
+      this.intersectWidth = this.game.cardSet.cardWidth + (additionalWidth * this.game.cardSet.cardHorizontalOffset);
     } else if(this.behavior == "tableau") {
       card.y = this.y + ((this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
       card.x = this.x;
       this.intersectHeight = this.game.cardSet.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
+    } else if(this.behavior == "foundation") {
+      card.y = this.y;
+      card.x = this.x;
     } else {
       throw "Unknown deck behavior [" + this.behavior + "].";
     }
@@ -57,7 +83,29 @@ define(function () {
     }
 
     if(this.behavior == "waste") {
-      this.intersectWidth = this.game.cardSet.cardWidth + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardHorizontalOffset);
+      if(this.cards.length === 1) {
+        this.cards[0] = this.x;
+      } else if(this.cards.length === 2) {
+        this.cards[0].x = this.x;
+        this.cards[1].x = this.x + this.game.cardSet.cardHorizontalOffset;
+      } else {
+        for(var ci in this.cards) {
+          var cardIndexInt = parseInt(ci);
+          if(cardIndexInt === this.cards.length - 1) {
+            this.cards[ci].x = this.x + (this.game.cardSet.cardHorizontalOffset * 2);
+          } else if(cardIndexInt === this.cards.length - 2) {
+            this.cards[ci].x = this.x + this.game.cardSet.cardHorizontalOffset;
+          } else {
+            this.cards[ci].x = this.x;
+          }
+        }
+      }
+
+      var additionalWidth = this.cards.length - 1;
+      if(this.cards.length > 3) {
+        additionalWidth = 2;
+      }
+      this.intersectWidth = this.game.cardSet.cardWidth + (additionalWidth * this.game.cardSet.cardHorizontalOffset);
     } else if(this.behavior == "tableau") {
       this.intersectHeight = this.game.cardSet.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
     } else {
@@ -125,6 +173,10 @@ define(function () {
 
   Pile.prototype.cardSelected = function(c, p) {
     this.game.cardSelected(c, p);
+  };
+
+  Pile.prototype.pileSelected = function(pile, p) {
+    this.game.pileSelected(this, p);
   };
 
   return Pile;
