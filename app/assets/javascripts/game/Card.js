@@ -7,6 +7,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     this.suit = Suit.fromChar(suit);
     this.name = rank + suit + ": " + id;
     this.faceUp = faceUp;
+    this.inputOriginalPosition = null;
 
     this.animation = null;
 
@@ -44,25 +45,25 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
 
   Card.prototype.onInputUp = function(e, p) {
     if(this.dragging) {
-      this.pile.endDrag(p);
+      this.pile.endDrag();
     } else {
       this.pile.cardSelected(this);
     }
   };
 
-  Card.prototype.cancelDrag = function(p) {
-    if(this.dragging) {
-      this.dragging = false;
-      var xDelta = Math.abs(p.positionDown.x - p.positionUp.x);
-      var yDelta = Math.abs(p.positionDown.y - p.positionUp.y);
+  Card.prototype.cancelDrag = function() {
+    if(this.inputOriginalPosition !== null) {
+      var xDelta = Math.abs(this.x - this.inputOriginalPosition.x);
+      var yDelta = Math.abs(this.y - this.inputOriginalPosition.y);
       if(xDelta > 0 || yDelta > 0) {
         // Dragged
         this.game.add.tween(this).to({x: this.inputOriginalPosition.x, y: this.inputOriginalPosition.y}, 500, Phaser.Easing.Quadratic.InOut, true);
       } else {
-        this.pile.cardSelected(this, p);
+        this.pile.cardSelected(this);
       }
+      this.inputOriginalPosition = null;
     } else {
-      this.pile.cardSelected(this, p);
+      this.pile.cardSelected(this);
     }
   };
 

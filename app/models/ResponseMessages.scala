@@ -10,8 +10,8 @@ case class VersionResponse(version: String) extends ResponseMessage
 
 case class GameJoined(players: List[String], state: GameState) extends ResponseMessage
 
-case class RevealCard(card: Card)
+case class RevealCard(card: Card) extends ResponseMessage
 case class CardMoved(card: String, source: String, target: String, targetIndex: Option[Int] = None, turnFaceUp: Boolean = false, turnFaceDown: Boolean = false) extends ResponseMessage
-case class CancelCardMove(cards: List[String], source: String)
+case class CancelCardMove(cards: List[String], source: String) extends ResponseMessage
 
 case class MessageSet(messages: List[ResponseMessage]) extends ResponseMessage

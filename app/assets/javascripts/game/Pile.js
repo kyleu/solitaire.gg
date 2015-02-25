@@ -124,7 +124,7 @@ define(function () {
     }
   };
 
-  Pile.prototype.endDrag = function(p) {
+  Pile.prototype.endDrag = function() {
     var firstCard = this.dragCards[0];
 
     var minX = firstCard.x;
@@ -157,16 +157,16 @@ define(function () {
 
     if(dropTarget === null) {
       for(var cancelIndex in this.dragCards) {
-        this.dragCards[cancelIndex].cancelDrag(p);
+        var cancelCard = this.dragCards[cancelIndex];
+        cancelCard.dragging = false;
+        cancelCard.cancelDrag();
       }
     } else {
       console.log("Moving [" + this.dragCards + "] to [" + dropTarget.id + "].");
 
       for(var moveIndex in this.dragCards) {
-        var card = this.dragCards[moveIndex];
-        card.dragging = false;
-        //this.removeCard(card);
-        //dropTarget.addCard(card);
+        var moveCard = this.dragCards[moveIndex];
+        moveCard.dragging = false;
       }
 
       var cardIds = [];
@@ -179,8 +179,8 @@ define(function () {
     this.dragCards = [];
   };
 
-  Pile.prototype.cardSelected = function(c, p) {
-    this.game.cardSelected(c, p);
+  Pile.prototype.cardSelected = function(c) {
+    this.game.cardSelected(c);
   };
 
   Pile.prototype.pileSelected = function(pile, p) {

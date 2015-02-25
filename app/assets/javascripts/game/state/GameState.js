@@ -19,7 +19,7 @@ define(function () {
   GameState.prototype.onMessage = function(c, v) {
     switch(c) {
       case "MessageSet":
-        for(var messageIndex in v.messages.reverse()) {
+        for(var messageIndex in v.messages) {
           var message = v.messages[messageIndex];
           this.onMessage(message.c, message.v);
         }

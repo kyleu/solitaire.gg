@@ -33,7 +33,7 @@ define(['game/state/InitialState', 'game/CardSet'], function (InitialState, Card
     }
   };
 
-  Game.prototype.cardSelected = function(card, pointer) {
+  Game.prototype.cardSelected = function(card) {
     this.ws.send("SelectCard", { card: card.id, pile: card.pile.id, pileIndex: card.pileIndex });
   };
 

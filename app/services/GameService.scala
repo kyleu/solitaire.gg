@@ -75,12 +75,12 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
 
       val waste = gameState.pilesById("waste")
 
-      val messages = waste.cards.reverse.map { card =>
+      val messages = waste.cards.map { card =>
         waste.removeCard(card)
         stock.addCard(card)
         CardMoved(card.id, "waste", "stock", turnFaceDown = true)
       }
-      sendToAll(MessageSet(messages))
+      sendToAll(MessageSet(messages.reverse))
     } else {
       Logger.warn("Pile [" + pileId + "] selected with no action.")
     }
@@ -91,12 +91,16 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
     val source = gameState.pilesById(sourceId)
     val target = gameState.pilesById(targetId)
 
-    val messages = cards.map { card =>
-      source.removeCard(card)
-      target.addCard(card)
-      CardMoved(card.id, sourceId, targetId)
+    if(rng.nextBoolean()) {
+      sendToAll(CancelCardMove(cardIds, sourceId))
+    } else {
+      val messages = cards.map { card =>
+        source.removeCard(card)
+        target.addCard(card)
+        CardMoved(card.id, sourceId, targetId)
+      }
+      sendToAll(MessageSet(messages))
     }
-    sendToAll(MessageSet(messages))
   }
 
   private def sendToAll(responseMessage: ResponseMessage) = connections.foreach { c =>
