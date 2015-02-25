@@ -23,20 +23,20 @@ define(function () {
           for(var cardIndex in pile.cards) {
             var cardIndexInt = parseInt(cardIndex);
             if(cardIndexInt === pile.cards.length - 1) {
-              this.cards[cardIndex].x = pile.x + (pile.game.cardSet.cardHorizontalOffset * 2);
+              pile.cards[cardIndex].x = pile.x + (pile.game.cardSet.cardHorizontalOffset * 2);
             } else if(cardIndexInt === pile.cards.length - 2) {
-              this.cards[cardIndex].x = pile.x + pile.game.cardSet.cardHorizontalOffset;
+              pile.cards[cardIndex].x = pile.x + pile.game.cardSet.cardHorizontalOffset;
             } else {
-              this.cards[cardIndex].x = pile.x;
+              pile.cards[cardIndex].x = pile.x;
             }
           }
         }
 
-        var additionalWidth = this.cards.length - 1;
-        if(this.cards.length > 3) {
+        var additionalWidth = pile.cards.length - 1;
+        if(pile.cards.length > 3) {
           additionalWidth = 2;
         }
-        this.intersectWidth = this.game.cardSet.cardWidth + (additionalWidth * this.game.cardSet.cardHorizontalOffset);
+        pile.intersectWidth = pile.game.cardSet.cardWidth + (additionalWidth * pile.game.cardSet.cardHorizontalOffset);
       },
       cardRemoved: function(pile, card) {
         if(pile.cards.length === 1) {
@@ -58,11 +58,10 @@ define(function () {
         }
 
         var additionalWidth = this.cards.length - 1;
-        if(this.cards.length > 3) {
+        if(pile.cards.length > 3) {
           additionalWidth = 2;
         }
-        this.intersectWidth = this.game.cardSet.cardWidth + (additionalWidth * this.game.cardSet.cardHorizontalOffset);
-
+        pile.intersectWidth = pile.game.cardSet.cardWidth + (additionalWidth * pile.game.cardSet.cardHorizontalOffset);
       }
     },
     tableau: {

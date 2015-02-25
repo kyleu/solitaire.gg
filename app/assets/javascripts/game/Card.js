@@ -34,12 +34,11 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     this.pile.startDrag(this, p);
   };
 
-  Card.prototype.startDrag = function(p, offset) {
+  Card.prototype.startDrag = function(p) {
     this.dragging = true;
     this.inputOriginalPosition = this.position.clone();
     this.anchorPointX = ((p.positionDown.x - this.game.playmat.x) / this.game.playmat.scale.x) - this.x;
     this.anchorPointY = ((p.positionDown.y - this.game.playmat.y) / this.game.playmat.scale.y) - this.y;
-    //console.log("InputDown", p.positionDown.x, " - ", this.game.playmat.x, " - (", this.x, "*", this.game.playmat.scale.x, " = ", (this.x * this.game.playmat.scale.x), ") = ", this.anchorPointX);
     this.bringToTop();
   };
 
