@@ -1,18 +1,15 @@
-define(['game/state/InitialState'], function (InitialState) {
+define(['game/state/InitialState', 'game/CardSet'], function (InitialState, CardSet) {
   "use strict";
 
   function Game(id) {
     this.id = id;
     this.ws = null;
+    this.cardSet = CardSet.medium;
     var initialState = new InitialState(this);
     Phaser.Game.call(this, '100%', '100%', Phaser.AUTO, 'game-container', initialState);
 
     this.piles = {};
     this.cards = {};
-
-    this.cardWidth = 200;
-    this.cardHeight = 300;
-    this.cardOffset = 45;
 
     console.log("Game [" + id + "] started.");
   }
@@ -38,7 +35,7 @@ define(['game/state/InitialState'], function (InitialState) {
 
   Game.prototype.cardSelected = function(card, pointer) {
     console.log("Card [" + card + "] selected.");
-    this.ws.send("SelectCard", { pileId: card.pile.id, pileIndex: card.pileIndex, card: card.id });
+    this.ws.send("SelectCard", { card: card.id, pile: card.pile.id, pileIndex: card.pileIndex });
   };
 
   Game.prototype.addPile = function(p) {

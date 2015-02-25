@@ -18,6 +18,8 @@ object GameService {
 }
 
 class GameService(gameType: String, seed: Int, players: List[String], connections: Map[String, ActorRef]) extends InstrumentedActor {
+  Logger.info("Started game [" + gameType + "] with seed [" + seed + "].")
+
   private val rng = new Random(new java.util.Random(seed))
 
   private val gameState = gameType match {
@@ -26,26 +28,46 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
     case _ => throw new IllegalArgumentException("Unknown game type: [" + gameType + "].")
   }
 
-  connections.values.foreach { c =>
-    c ! GameJoined(Nil, gameState)
-  }
+  sendToAll(GameJoined(Nil, gameState))
 
   override def receiveRequest = {
     case gr: GameRequest =>
       Logger.debug("Handling [" + gr.request.getClass.getSimpleName + "] message from user [" + gr.username + "].")
       gr.request match {
-        case sc: SelectCard => handleSelectCard(sc.pileId, sc.pileIndex, sc.card)
+        case sc: SelectCard => handleSelectCard(sc.card, sc.pile, sc.pileIndex)
         case r => Logger.warn("GameService received unknown game message [" + r.getClass.getSimpleName + "].")
       }
     case x => Logger.warn("GameService received unknown message [" + x.getClass.getSimpleName + "].")
   }
 
-  def handleSelectCard(pileId: String, pileIndex: Int, cardId: String) = {
+  private def handleSelectCard(cardId: String, pileId: String, pileIndex: Int) = {
     val card = gameState.cardsById(cardId)
-    Logger.info("Card [" + card + "] selected.")
+    if(pileId == "stock") {
+      val stock = gameState.pilesById(pileId)
+      if(!stock.cards.contains(card)) {
+        throw new IllegalArgumentException("Card [" + card.toString + "] is not part of the [stock] deck.")
+      }
+
+      val waste = gameState.pilesById("waste")
+
+      if(stock.cards.nonEmpty) {
+        val topCard = stock.cards.last
+        if(topCard != card) {
+          throw new IllegalArgumentException("Selected card [" + card + "] is not stock top card [" + topCard + "].")
+        }
+        stock.cards = stock.cards.dropRight(1)
+        waste.addCard(card)
+        card.u = true
+        Logger.info("Stock card [" + card + "] moved to waste.")
+        sendToAll(CardMoved(card.id, "stock", "waste", turnFaceUp = true))
+      }
+    } else {
+      Logger.warn("Card [" + card + "] selected with no action.")
+    }
   }
 
-  private def sendToAll(rm: ResponseMessage) = for(conn <- connections) {
-    conn._2 ! rm
+  private def sendToAll(responseMessage: ResponseMessage) = connections.foreach { c =>
+    Logger.debug("Sending message to [" + c._1 + "]: " + responseMessage + ".")
+    c._2 ! responseMessage
   }
 }

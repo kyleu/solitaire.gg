@@ -9,10 +9,11 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
   Gameplay.prototype.constructor = Gameplay;
 
   Gameplay.prototype.preload = function() {
+    var imageKey = this.game.cardSet.key;
     this.game.load.image('bg-texture', '/assets/images/game/bg.jpg');
-    this.game.load.image('card-back-medium', '/assets/images/game/cards/medium/BACK.png');
-    this.game.load.image('empty-pile-medium', '/assets/images/game/cards/medium/EMPTY.png');
-    this.game.load.spritesheet('card-medium', 'assets/images/game/cards/medium/ALL.png', 200, 300);
+    this.game.load.image('card-back', '/assets/images/game/cards/' + imageKey + '/BACK.png');
+    this.game.load.image('empty-pile', '/assets/images/game/cards/' + imageKey + '/EMPTY.png');
+    this.game.load.spritesheet('card', 'assets/images/game/cards/' + imageKey + '/ALL.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight);
   };
 
   Gameplay.prototype.create = function() {
@@ -44,28 +45,44 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
     switch(c) {
       case "GameJoined":
         this.game.playmat = new Playmat(this.game, v.state.layout);
+        this.loadPiles(v.state.piles);
+        this.loadCards(v.state.piles);
+        break;
+      case "CardMoved":
+        var movedCard = this.game.cards[v.card];
+        var source = this.game.piles[v.source];
+        var target = this.game.piles[v.target];
 
-        // add piles
-        var pileObjs = [];
-        for(var pileIndex in v.state.piles) {
-          var pile = v.state.piles[pileIndex];
-          var pileObj = new Pile(this.game, pile.id, pile.behavior);
-          pileObjs[pile.id] = pileObj;
-          this.game.playmat.addPile(pileObj);
+        if(v.turnFaceUp) {
+          movedCard.turnFaceUp();
         }
-        // add cards after
-        for(var pileCardsIndex in v.state.piles) {
-          var pileCards = v.state.piles[pileCardsIndex];
 
-          for(var cardIndex in pileCards.cards) {
-            var card = pileCards.cards[cardIndex];
-            var cardObj = new Card(this.game, card.id, card.r, card.s, card.u);
-            pileObjs[pileCards.id].addCard(cardObj);
-          }
-        }
+        movedCard.bringToTop();
+        source.removeCard(movedCard);
+        target.addCard(movedCard);
         break;
       default:
         GameState.prototype.onMessage.apply(this, arguments);
+    }
+  };
+
+  Gameplay.prototype.loadPiles = function(piles) {
+    for(var pileIndex in piles) {
+      var pile = piles[pileIndex];
+      var pileObj = new Pile(this.game, pile.id, pile.behavior);
+      this.game.playmat.addPile(pileObj);
+    }
+  };
+
+  Gameplay.prototype.loadCards = function(piles) {
+    for(var pileIndex in piles) {
+      var pile = piles[pileIndex];
+      var pileObj = this.game.piles[pile.id];
+      for(var cardIndex in pile.cards) {
+        var card = pile.cards[cardIndex];
+        var cardObj = new Card(this.game, card.id, card.r, card.s, card.u);
+        pileObj.addCard(cardObj);
+      }
     }
   };
 

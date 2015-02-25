@@ -12,9 +12,9 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
 
     this.spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
     if(this.faceUp) {
-      Phaser.Sprite.call(this, game, 0, 0, 'card-medium', this.spriteIndex);
+      Phaser.Sprite.call(this, game, 0, 0, 'card', this.spriteIndex);
     } else {
-      Phaser.Sprite.call(this, game, 0, 0, 'card-back-medium');
+      Phaser.Sprite.call(this, game, 0, 0, 'card-back');
     }
 
     this.inputEnabled = true;
@@ -66,8 +66,18 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     }
   };
 
+  Card.prototype.turnFaceUp = function() {
+    this.faceUp = true;
+    this.loadTexture('card', this.spriteIndex);
+  };
+
+  Card.prototype.turnFaceDown = function() {
+    this.faceUp = false;
+    this.loadTexture('card-back', 0);
+  };
+
   Card.prototype.toString = function() {
-    return this.rank.char + this.suit.char + ": " + this.id.substring(0, 8);
+    return this.rank.char + this.suit.char + (this.faceUp ? "+" : "-") +": " + this.id.substring(0, 8);
   };
 
   Card.prototype.update = function() {

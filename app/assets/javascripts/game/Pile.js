@@ -8,7 +8,7 @@ define(function () {
     this.cards = [];
     this.game.addPile(this);
 
-    this.empty = new Phaser.Sprite(game, 0, 0, 'empty-pile-medium');
+    this.empty = new Phaser.Sprite(game, 0, 0, 'empty-pile');
     this.add(this.empty);
 
     this.intersectWidth = this.empty.width;
@@ -22,16 +22,21 @@ define(function () {
     card.x = 0;
     card.pile = this;
     card.pileIndex = this.cards.length;
-
     this.cards.push(card);
 
     if(this.behavior == "stock") {
       card.y = this.y;
       card.x = this.x;
-    } else {
-      card.y = this.y + ((this.cards.length - 1) * 45);
+    } else if(this.behavior == "waste") {
+      card.y = this.y;
+      card.x = this.x + ((this.cards.length - 1) * this.game.cardSet.cardHorizontalOffset);
+      this.intersectWidth = this.game.cardSet.cardWidth + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardHorizontalOffset);
+    } else if(this.behavior == "tableau") {
+      card.y = this.y + ((this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
       card.x = this.x;
-      this.intersectHeight = this.game.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardOffset);
+      this.intersectHeight = this.game.cardSet.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
+    } else {
+      throw "Unknown deck behavior [" + this.behavior + "].";
     }
 
     this.game.playmat.add(card);
@@ -48,10 +53,16 @@ define(function () {
     this.cards.splice(index, 1);
 
     for(var cardIndex in this.cards) {
-      this.cards[cardIndex].pileIndex = cardIndex;
+      this.cards[cardIndex].pileIndex = parseInt(cardIndex);
     }
 
-    this.intersectHeight = this.game.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardOffset);
+    if(this.behavior == "waste") {
+      this.intersectWidth = this.game.cardSet.cardWidth + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardHorizontalOffset);
+    } else if(this.behavior == "tableau") {
+      this.intersectHeight = this.game.cardSet.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
+    } else {
+
+    }
   };
 
   Pile.prototype.startDrag = function(card, p) {

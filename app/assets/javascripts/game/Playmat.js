@@ -3,8 +3,8 @@ define(function () {
     Phaser.Group.call(this, game, null, 'playmat');
 
     this.layout = layout;
-    this.w = layout.width;
-    this.h = layout.height;
+    this.w = layout.width * this.game.cardSet.cardWidth;
+    this.h = layout.height * this.game.cardSet.cardHeight;
 
     this.resize();
 
@@ -22,8 +22,8 @@ define(function () {
         pileLocation = pl;
       }
     }
-    pile.x = pileLocation.x;
-    pile.y = pileLocation.y;
+    pile.x = pileLocation.x * this.game.cardSet.cardWidth;
+    pile.y = pileLocation.y * this.game.cardSet.cardHeight;
   };
 
   Playmat.prototype.resize = function(h, w) {

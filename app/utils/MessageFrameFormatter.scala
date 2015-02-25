@@ -1,6 +1,7 @@
 package utils
 
 import models.{MalformedRequest, RequestMessage, ResponseMessage}
+import play.api.Logger
 import play.api.libs.json._
 import play.api.mvc.WebSocket.FrameFormatter
 
@@ -14,7 +15,10 @@ object MessageFrameFormatter {
     case e: JsError => MalformedRequest(e.errors.map(x =>  x._1.toString + ": [" + x._2.mkString(" :: ")).mkString(", "), Json.stringify(json))
   }
 
-  private def responseToJson(r: ResponseMessage): JsValue = Json.toJson(r)
+  private def responseToJson(r: ResponseMessage): JsValue = {
+    Logger.debug("Sending message: " + r)
+    Json.toJson(r)
+  }
   private def responseFromJson(json: JsValue): ResponseMessage = throw new IllegalArgumentException("Attempted to deserialize ResponseMessage [" + json + "] on server.")
 
   private val jsValueFrame: FrameFormatter[JsValue] = {
