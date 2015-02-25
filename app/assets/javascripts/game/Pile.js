@@ -1,10 +1,10 @@
-define(function () {
+define(['game/PileBehavior'], function (PileBehavior) {
   "use strict";
 
   function Pile(game, id, behavior) {
     Phaser.Group.call(this, game, game.playmat, id);
     this.id = id;
-    this.behavior = behavior;
+    this.behavior = PileBehavior[behavior];
     this.cards = [];
     this.game.addPile(this);
 
@@ -26,44 +26,7 @@ define(function () {
     card.pileIndex = this.cards.length;
     this.cards.push(card);
 
-    if(this.behavior == "stock") {
-      card.y = this.y;
-      card.x = this.x;
-    } else if(this.behavior == "waste") {
-      card.y = this.y;
-      if(this.cards.length === 1) {
-        card.x = this.x;
-      } else if(this.cards.length === 2) {
-        this.cards[0].x = this.x;
-        this.cards[1].x = this.x + this.game.cardSet.cardHorizontalOffset;
-      } else {
-        for(var cardIndex in this.cards) {
-          var cardIndexInt = parseInt(cardIndex);
-          if(cardIndexInt === this.cards.length - 1) {
-            this.cards[cardIndex].x = this.x + (this.game.cardSet.cardHorizontalOffset * 2);
-          } else if(cardIndexInt === this.cards.length - 2) {
-            this.cards[cardIndex].x = this.x + this.game.cardSet.cardHorizontalOffset;
-          } else {
-            this.cards[cardIndex].x = this.x;
-          }
-        }
-      }
-
-      var additionalWidth = this.cards.length - 1;
-      if(this.cards.length > 3) {
-        additionalWidth = 2;
-      }
-      this.intersectWidth = this.game.cardSet.cardWidth + (additionalWidth * this.game.cardSet.cardHorizontalOffset);
-    } else if(this.behavior == "tableau") {
-      card.y = this.y + ((this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
-      card.x = this.x;
-      this.intersectHeight = this.game.cardSet.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
-    } else if(this.behavior == "foundation") {
-      card.y = this.y;
-      card.x = this.x;
-    } else {
-      throw "Unknown deck behavior [" + this.behavior + "].";
-    }
+    this.behavior.cardAdded(this, card);
 
     this.game.playmat.add(card);
   };
@@ -82,35 +45,7 @@ define(function () {
       this.cards[cardIndex].pileIndex = parseInt(cardIndex);
     }
 
-    if(this.behavior == "waste") {
-      if(this.cards.length === 1) {
-        this.cards[0].x = this.x;
-      } else if(this.cards.length === 2) {
-        this.cards[0].x = this.x;
-        this.cards[1].x = this.x + this.game.cardSet.cardHorizontalOffset;
-      } else {
-        for(var ci in this.cards) {
-          var cardIndexInt = parseInt(ci);
-          if(cardIndexInt === this.cards.length - 1) {
-            this.cards[ci].x = this.x + (this.game.cardSet.cardHorizontalOffset * 2);
-          } else if(cardIndexInt === this.cards.length - 2) {
-            this.cards[ci].x = this.x + this.game.cardSet.cardHorizontalOffset;
-          } else {
-            this.cards[ci].x = this.x;
-          }
-        }
-      }
-
-      var additionalWidth = this.cards.length - 1;
-      if(this.cards.length > 3) {
-        additionalWidth = 2;
-      }
-      this.intersectWidth = this.game.cardSet.cardWidth + (additionalWidth * this.game.cardSet.cardHorizontalOffset);
-    } else if(this.behavior == "tableau") {
-      this.intersectHeight = this.game.cardSet.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
-    } else {
-
-    }
+    this.behavior.cardRemoved(this, card);
   };
 
   Pile.prototype.startDrag = function(card, p) {
