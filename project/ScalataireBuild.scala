@@ -11,14 +11,21 @@ import com.typesafe.sbt.less.Import.LessKeys
 object ScalataireBuild extends Build with UniversalKeys {
   val id = "scalataire"
 
-  val dependencies = Seq(
-    "nl.grons" %% "metrics-scala" % "3.3.0_a2.3",
-    "org.eclipse.jetty" % "jetty-servlet" % "8.1.9.v20130131",
-    "io.dropwizard.metrics" % "metrics-jvm" % "3.1.0",
-    "io.dropwizard.metrics" % "metrics-graphite" % "3.1.0",
-    "io.dropwizard.metrics" % "metrics-servlets" % "3.1.0",
-    "org.webjars" % "requirejs" % "2.1.11-1"
-  )
+  val dependencies = {
+    import Dependencies._
+    Seq(
+      Database.jdub,
+      Database.postgresJdbc,
+
+      Metrics.jettyServlet,
+      Metrics.metrics,
+      Metrics.metricsJvm,
+      Metrics.metricsGraphite,
+      Metrics.metricsServlets,
+
+      WebJars.requireJs
+    )
+  }
 
   private val compileOptions = Seq("-encoding", "UTF-8", "-feature", "-deprecation", "-unchecked")
 
