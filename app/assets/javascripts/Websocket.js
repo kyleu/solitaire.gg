@@ -13,6 +13,20 @@ define(["Config"], function (cfg) {
     };
     ws.onmessage = function(event) {
       var json = JSON.parse(event.data);
+      if(json.c === "Ping") {
+        //console.log("Received message [Ping].");
+      } else if(json.c === "MessageSet") {
+        var messages = "";
+        for(var messageIndex in json.v.messages) {
+          if(messageIndex > 0) {
+            messages += ", ";
+          }
+          messages += json.v.messages[messageIndex].c;
+        }
+        console.log("Received message [MessageSet] containing [" + messages + "].");
+      } else {
+        console.log("Received message [" + json.c + "].");
+      }
       messageObj.onMessage(json.c, json.v);
     };
     ws.onclose = function() {
@@ -26,27 +40,14 @@ define(["Config"], function (cfg) {
     this.connection = ws;
   }
 
-  Websocket.prototype.connect = function() {
-    var msg = { "c": c, "v": v };
-    var s = null;
-    if(cfg.debug) {
-      s = JSON.stringify(msg, undefined, 2);
-    } else {
-      s = JSON.stringify(msg);
-    }
-    this.connection.send(s);
-  };
-
   Websocket.prototype.send = function(c, v) {
     var msg = { "c": c, "v": v };
     var s = null;
     if(cfg.debug) {
+      console.log("Sending message [" + c + "].");
       s = JSON.stringify(msg, undefined, 2);
     } else {
       s = JSON.stringify(msg);
-    }
-    if(c != "Ping") {
-      //console.log("Sending [" + c + "] message: " + s);
     }
     this.connection.send(s);
   };

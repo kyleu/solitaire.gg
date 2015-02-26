@@ -6,15 +6,15 @@ import play.api.libs.json._
 import play.api.libs.functional.syntax._
 
 object ResponseMessageSerializers {
-  private implicit val serverErrorWrites = Json.writes[ServerError]
-  private implicit val pongWrites = Json.writes[Pong]
-  private implicit val versionResponseWrites = Json.writes[VersionResponse]
+  private val serverErrorWrites = Json.writes[ServerError]
+  private val pongWrites = Json.writes[Pong]
+  private val versionResponseWrites = Json.writes[VersionResponse]
 
-  private implicit val gameJoinedWrites = Json.writes[GameJoined]
+  private val gameJoinedWrites = Json.writes[GameJoined]
 
-  private implicit val revealCardWrites = Json.writes[RevealCard]
-  private implicit val cardMovedWrites = Json.writes[CardMoved]
-  private implicit val cancelCardMoveWrites = Json.writes[CancelCardMove]
+  private val revealCardWrites = Json.writes[RevealCard]
+  private val cardMovedWrites = Json.writes[CardMoved]
+  private val cancelCardMoveWrites = Json.writes[CancelCardMove]
 
   implicit val responseMessageWrites = Writes[ResponseMessage] { r: ResponseMessage =>
     val json = r match {
@@ -31,7 +31,7 @@ object ResponseMessageSerializers {
     JsObject(Seq("c" -> JsString(r.getClass.getSimpleName), "v" -> json))
   }
 
-  implicit val messageSetWrites = Writes[MessageSet] { ms: MessageSet =>
+  val messageSetWrites = Writes[MessageSet] { ms: MessageSet =>
     JsObject(Seq("c" -> JsString("MessageSet"), "v" -> JsObject(Seq("messages" -> JsArray(ms.messages.map(responseMessageWrites.writes))))))
   }
 }

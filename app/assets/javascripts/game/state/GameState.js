@@ -9,7 +9,7 @@ define(function () {
   GameState.prototype.constructor = GameState;
 
   GameState.prototype.create = function() {
-    console.log(this.constructor.name + " created.");
+    //console.log(this.constructor.name + " created.");
   };
 
   GameState.prototype.update = function() {

@@ -9,23 +9,22 @@ import com.codahale.metrics.servlets.AdminServlet
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.server.nio.SelectChannelConnector
 import org.eclipse.jetty.servlet.ServletContextHandler
-import play.api.Logger
-import utils.Config
+import utils.{Logging, Config}
 
-class MetricsServletActor extends InstrumentedActor {
+class MetricsServletActor extends InstrumentedActor with Logging {
   private var jmxReporter: Option[JmxReporter] = None
   private var graphiteReporter: Option[GraphiteReporter] = None
   private var httpServer: Option[Server] = None
 
   override def preStart() {
     if(Config.jmxEnabled) {
-      Logger.info("Reporting metrics over JMX.")
+      log.info("Reporting metrics over JMX.")
       jmxReporter = Some(JmxReporter.forRegistry(Instrumented.metricRegistry).build())
       jmxReporter.get.start()
     }
 
     if(Config.graphiteEnabled) {
-      Logger.info("Starting Graphite reporter for [" + Config.graphiteServer + ":" + Config.graphitePort + "].")
+      log.info("Starting Graphite reporter for [" + Config.graphiteServer + ":" + Config.graphitePort + "].")
       val graphiteServer = new Graphite(new InetSocketAddress(Config.graphiteServer, Config.graphitePort))
       graphiteReporter = Some(
         GraphiteReporter.forRegistry(Instrumented.metricRegistry)
@@ -39,7 +38,7 @@ class MetricsServletActor extends InstrumentedActor {
     }
 
     if(Config.servletEnabled) {
-      Logger.info("Starting metrics servlet at [http://0.0.0.0:" + Config.servletPort + "/].")
+      log.info("Starting metrics servlet at [http://0.0.0.0:" + Config.servletPort + "/].")
       httpServer = Some(createJettyServer())
       httpServer.get.start()
     }

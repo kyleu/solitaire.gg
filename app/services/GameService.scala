@@ -3,7 +3,7 @@ package services
 import akka.actor.{Props, ActorRef}
 import models.game.{Deck, GameState}
 import models._
-import play.api.Logger
+import utils.Logging
 import utils.metrics.InstrumentedActor
 
 import scala.util.Random
@@ -17,8 +17,8 @@ object GameService {
   }
 }
 
-class GameService(gameType: String, seed: Int, players: List[String], connections: Map[String, ActorRef]) extends InstrumentedActor {
-  Logger.info("Started game [" + gameType + "] with seed [" + seed + "].")
+class GameService(gameType: String, seed: Int, players: List[String], connections: Map[String, ActorRef]) extends InstrumentedActor with Logging {
+  log.info("Started game [" + gameType + "] for players [" + players.mkString(", ") + "] with seed [" + seed + "].")
 
   private val rng = new Random(new java.util.Random(seed))
 
@@ -32,14 +32,14 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
 
   override def receiveRequest = {
     case gr: GameRequest =>
-      Logger.debug("Handling [" + gr.request.getClass.getSimpleName + "] message from user [" + gr.username + "].")
+      log.debug("Handling [" + gr.request.getClass.getSimpleName + "] message from user [" + gr.username + "].")
       gr.request match {
         case sc: SelectCard => handleSelectCard(sc.card, sc.pile, sc.pileIndex)
         case sp: SelectPile => handleSelectPile(sp.pile)
         case mc: MoveCards => handleMoveCards(mc.cards, mc.src, mc.tgt)
-        case r => Logger.warn("GameService received unknown game message [" + r.getClass.getSimpleName + "].")
+        case r => log.warn("GameService received unknown game message [" + r.getClass.getSimpleName + "].")
       }
-    case x => Logger.warn("GameService received unknown message [" + x.getClass.getSimpleName + "].")
+    case x => log.warn("GameService received unknown message [" + x.getClass.getSimpleName + "].")
   }
 
   private def handleSelectCard(cardId: String, pileId: String, pileIndex: Int) {
@@ -59,10 +59,10 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
       stock.cards = stock.cards.dropRight(1)
       waste.addCard(card)
       card.u = true
-      Logger.info("Stock card [" + card + "] moved to waste.")
+      log.info("Stock card [" + card + "] moved to waste.")
       sendToAll(CardMoved(card.id, "stock", "waste", turnFaceUp = true))
     } else {
-      Logger.warn("Card [" + card + "] selected with no action.")
+      log.warn("Card [" + card + "] selected with no action.")
     }
   }
 
@@ -82,7 +82,7 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
       }
       sendToAll(MessageSet(messages.reverse))
     } else {
-      Logger.warn("Pile [" + pileId + "] selected with no action.")
+      log.warn("Pile [" + pileId + "] selected with no action.")
     }
   }
 
@@ -104,7 +104,6 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
   }
 
   private def sendToAll(responseMessage: ResponseMessage) = connections.foreach { c =>
-    Logger.debug("Sending message to [" + c._1 + "]: " + responseMessage + ".")
     c._2 ! responseMessage
   }
 }

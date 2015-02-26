@@ -1,7 +1,6 @@
 package utils
 
 import models.{MessageSet, MalformedRequest, RequestMessage, ResponseMessage}
-import play.api.Logger
 import play.api.libs.json._
 import play.api.mvc.WebSocket.FrameFormatter
 
@@ -18,10 +17,8 @@ object MessageFrameFormatter {
   private def responseToJson(r: ResponseMessage): JsValue = {
     r match {
       case ms: MessageSet =>
-        Logger.debug("Sending message set containing " + ms.messages.size + " messages [" + ms.messages.map(_.getClass.getSimpleName).mkString(", ") + "].")
         messageSetWrites.writes(ms)
       case _ =>
-        Logger.debug("Sending message [" + r + "].")
         Json.toJson(r)
     }
   }
@@ -29,7 +26,17 @@ object MessageFrameFormatter {
 
   private val jsValueFrame: FrameFormatter[JsValue] = {
     val toStr = if(Config.debug) { Json.prettyPrint _ } else { Json.stringify _ }
-    FrameFormatter.stringFrame.transform(toStr, Json.parse)
+    FrameFormatter.stringFrame.transform(toStr, { (s: String) =>
+      val ret = try {
+        Json.parse(s)
+      } catch {
+        case x: Exception => JsObject(Seq("c" -> JsString("MalformedRequest"), "v" -> JsObject(Seq(
+          "reason" -> JsString("Invalid JSON"),
+          "content" -> JsString(s)
+        ))))
+      }
+      ret
+    })
   }
 
   implicit val requestFormatter = jsValueFrame.transform(requestToJson, requestFromJson)

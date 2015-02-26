@@ -1,12 +1,12 @@
 package utils
 
 import play.api.mvc.{RequestHeader, Results}
-import play.api.{Logger, Application, GlobalSettings}
+import play.api.{Application, GlobalSettings}
 import services.ActorSupervisor
 
 import scala.concurrent.Future
 
-object PlayGlobalSettings extends GlobalSettings {
+object PlayGlobalSettings extends GlobalSettings with Logging {
   override def onStart(app: Application) {
     ActorSupervisor.start()
     super.onStart(app)
@@ -27,7 +27,7 @@ object PlayGlobalSettings extends GlobalSettings {
 
   override def onRouteRequest(request: RequestHeader) = {
     if(!request.path.startsWith("/assets")) {
-      Logger.info("Request from [" + request.remoteAddress + "]: " + request.toString)
+      log.info("Request from [" + request.remoteAddress + "]: " + request.toString)
     }
     super.onRouteRequest(request)
   }

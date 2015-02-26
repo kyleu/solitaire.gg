@@ -3,10 +3,14 @@ define(function () {
 
   var noOp = function() {};
 
-  var samePosition = function(pile, card) {
+  var tweenCard = function(card, x, y) {
     var tween = card.game.add.tween(card);
-    tween.to({ x: pile.x, y: pile.y }, 200);
+    tween.to({ x: x, y: y }, 200);
     tween.start();
+  };
+
+  var samePosition = function(pile, card) {
+    tweenCard(card, pile.x, pile.y);
   };
 
   var wasteAdd = function(pile, card) {
