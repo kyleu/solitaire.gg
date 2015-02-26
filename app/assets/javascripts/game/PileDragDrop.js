@@ -1,7 +1,17 @@
 define(function () {
   "use strict";
 
-  var noop = function() {};
+  var noOp = function() {};
+
+  var returnFalse = function() { return false; };
+
+  var topCardOnly = function(pile, card) {
+    return card.pileIndex == pile.cards.length - 1;
+  };
+
+  var tableauCanDrag = function(pile, card) {
+    return true;
+  };
 
   var dragSlice = function(pile, card, p) {
     pile.dragCards = pile.cards.slice(card.pileIndex);
@@ -74,23 +84,23 @@ define(function () {
 
   return {
     stock: {
-      startDrag: noop,
-      getDropTarget: getDropTarget,
+      canDrag: returnFalse,
+      startDrag: noOp,
       endDrag: endDrag
     },
     waste: {
+      canDrag: topCardOnly,
       startDrag: dragSlice,
-      getDropTarget: getDropTarget,
       endDrag: endDrag
     },
     tableau: {
+      canDrag: tableauCanDrag,
       startDrag: dragSlice,
-      getDropTarget: getDropTarget,
       endDrag: endDrag
     },
     foundation: {
+      canDrag: topCardOnly,
       startDrag: dragSlice,
-      getDropTarget: getDropTarget,
       endDrag: endDrag
     }
   };
