@@ -64,7 +64,6 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
         target.addCard(movedCard);
         break;
       case "CancelCardMove":
-        var cancelSource = this.game.piles[v.source];
         for(var cardCancelledIndex in v.cards) {
           this.game.cards[v.cards[cardCancelledIndex]].cancelDrag();
         }

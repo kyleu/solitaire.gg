@@ -32,13 +32,14 @@ define(['game/PileBehavior', 'game/PileDragDrop'], function (PileBehavior, PileD
   };
 
   Pile.prototype.removeCard = function(card) {
-    var index = this.cards.indexOf(card);
-    if(card.pile !== this || index === -1) {
+    if(card.pile !== this) {
       throw "Provided card is not a part of this pile.";
     }
 
     card.pile = null;
     card.pileIndex = 0;
+
+    var index = this.cards.indexOf(card);
     this.cards.splice(index, 1);
 
     for(var cardIndex in this.cards) {

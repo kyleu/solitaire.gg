@@ -52,15 +52,25 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
 
       val waste = gameState.pilesById("waste")
 
-      val topCard = stock.cards.last
-      if(topCard != card) {
-        throw new IllegalArgumentException("Selected card [" + card + "] is not stock top card [" + topCard + "].")
+      val messages = (0 to 2).map { i =>
+        val topCard = stock.cards.last
+        if(i == 0) {
+          if(topCard != card) {
+            throw new IllegalArgumentException("Selected card [" + card + "] is not stock top card [" + topCard + "].")
+          }
+        }
+        stock.cards = stock.cards.dropRight(1)
+        waste.addCard(topCard)
+        topCard.u = true
+        log.info("Stock card [" + topCard + "] moved to waste.")
+        CardMoved(topCard.id, "stock", "waste", turnFaceUp = true)
       }
-      stock.cards = stock.cards.dropRight(1)
-      waste.addCard(card)
-      card.u = true
-      log.info("Stock card [" + card + "] moved to waste.")
-      sendToAll(CardMoved(card.id, "stock", "waste", turnFaceUp = true))
+
+      if(messages.size == 1) {
+        sendToAll(messages(0))
+      } else {
+        sendToAll(MessageSet(messages.toList))
+      }
     } else {
       log.warn("Card [" + card + "] selected with no action.")
     }
@@ -99,7 +109,12 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
         target.addCard(card)
         CardMoved(card.id, sourceId, targetId)
       }
-      sendToAll(MessageSet(messages))
+
+      if(messages.size == 1) {
+        sendToAll(messages(0))
+      } else {
+        sendToAll(MessageSet(messages))
+      }
     }
   }
 

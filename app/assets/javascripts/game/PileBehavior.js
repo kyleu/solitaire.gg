@@ -4,31 +4,33 @@ define(function () {
   var noOp = function() {};
 
   var tweenCard = function(card, x, y) {
-    var tween = card.game.add.tween(card);
-    tween.to({ x: x, y: y }, 200);
-    tween.start();
+    if(x != card.x || y != card.y) {
+      var tween = card.game.add.tween(card);
+      tween.to({x: x, y: y}, 200);
+      tween.start();
+    }
   };
 
   var samePosition = function(pile, card) {
     tweenCard(card, pile.x, pile.y);
   };
 
-  var wasteAdd = function(pile, card) {
-    card.y = pile.y;
+  var wasteAdd = function(pile) {
+    var y = pile.y;
     if(pile.cards.length === 1) {
-      pile.cards[0].x = pile.x;
+      tweenCard(pile.cards[0], pile.x, y);
     } else if(pile.cards.length === 2) {
-      pile.cards[0].x = pile.x;
-      pile.cards[1].x = pile.x + pile.game.cardSet.cardHorizontalOffset;
+      tweenCard(pile.cards[0], pile.x, y);
+      tweenCard(pile.cards[1], pile.x + pile.game.cardSet.cardHorizontalOffset, y);
     } else {
       for(var cardIndex in pile.cards) {
         var cardIndexInt = parseInt(cardIndex);
         if(cardIndexInt === pile.cards.length - 1) {
-          pile.cards[cardIndex].x = pile.x + (pile.game.cardSet.cardHorizontalOffset * 2);
+          tweenCard(pile.cards[cardIndex], pile.x + (pile.game.cardSet.cardHorizontalOffset * 2), y);
         } else if(cardIndexInt === pile.cards.length - 2) {
-          pile.cards[cardIndex].x = pile.x + pile.game.cardSet.cardHorizontalOffset;
+          tweenCard(pile.cards[cardIndex], pile.x + pile.game.cardSet.cardHorizontalOffset, y);
         } else {
-          pile.cards[cardIndex].x = pile.x;
+          tweenCard(pile.cards[cardIndex], pile.x);
         }
       }
     }
@@ -42,24 +44,24 @@ define(function () {
 
   var wasteRemove = function(pile) {
     if(pile.cards.length === 1) {
-      pile.cards[0].x = pile.x;
+      tweenCard(pile.cards[0], pile.x, pile.y);
     } else if(pile.cards.length === 2) {
-      pile.cards[0].x = pile.x;
-      pile.cards[1].x = pile.x + pile.game.cardSet.cardHorizontalOffset;
+      tweenCard(pile.cards[0], pile.x, pile.y);
+      tweenCard(pile.cards[1], pile.x + pile.game.cardSet.cardHorizontalOffset, pile.y);
     } else {
       for(var ci in pile.cards) {
         var cardIndexInt = parseInt(ci);
         if(cardIndexInt === pile.cards.length - 1) {
-          pile.cards[ci].x = pile.x + (pile.game.cardSet.cardHorizontalOffset * 2);
+          tweenCard(pile.cards[ci], pile.x + (pile.game.cardSet.cardHorizontalOffset * 2), pile.y);
         } else if(cardIndexInt === pile.cards.length - 2) {
-          pile.cards[ci].x = pile.x + pile.game.cardSet.cardHorizontalOffset;
+          tweenCard(pile.cards[ci], pile.x + pile.game.cardSet.cardHorizontalOffset, pile.y);
         } else {
-          pile.cards[ci].x = pile.x;
+          tweenCard(pile.cards[ci], pile.x, pile.y);
         }
       }
     }
 
-    var additionalWidth = this.cards.length - 1;
+    var additionalWidth = pile.cards.length - 1;
     if(pile.cards.length > 3) {
       additionalWidth = 2;
     }
