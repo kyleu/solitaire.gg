@@ -22,7 +22,6 @@ define(['game/PileBehavior', 'game/PileDragDrop'], function (PileBehavior, PileD
   Pile.prototype.constructor = Pile;
 
   Pile.prototype.addCard = function(card, index) {
-    card.x = 0;
     card.pile = this;
     card.pileIndex = this.cards.length;
     this.cards.push(card);

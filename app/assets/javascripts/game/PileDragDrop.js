@@ -54,9 +54,7 @@ define(function () {
   };
 
   var endDrag = function(pile) {
-    console.log("pile: " + pile.name);
     var dropTarget = getDropTarget(pile);
-    console.log("dropTarget: " + dropTarget.name);
 
     if(dropTarget === null) {
       for(var cancelIndex in pile.dragCards) {

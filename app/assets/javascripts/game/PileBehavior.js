@@ -4,8 +4,9 @@ define(function () {
   var noOp = function() {};
 
   var samePosition = function(pile, card) {
-    card.y = pile.y;
-    card.x = pile.x;
+    var tween = card.game.add.tween(card);
+    tween.to({ x: pile.x, y: pile.y }, 200);
+    tween.start();
   };
 
   var wasteAdd = function(pile, card) {
@@ -62,12 +63,16 @@ define(function () {
   };
 
   var tableauAdd = function(pile, card) {
-    card.y = pile.y + ((pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset);
-    card.x = pile.x;
+    var tween = card.game.add.tween(card);
+    tween.to({
+      x: pile.x,
+      y: pile.y + ((pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset)
+    }, 200);
+    tween.start();
     pile.intersectHeight = pile.game.cardSet.cardHeight + (pile.cards.length === 0 ? 0 : (pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset);
   };
 
-  var tableauRemove = function(pile, card) {
+  var tableauRemove = function(pile) {
     pile.intersectHeight = pile.game.cardSet.cardHeight + (pile.cards.length === 0 ? 0 : (pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset);
   };
 
