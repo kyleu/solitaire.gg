@@ -1,10 +1,11 @@
-define(['game/PileBehavior'], function (PileBehavior) {
+define(['game/PileBehavior', 'game/PileDragDrop'], function (PileBehavior, PileDragDrop) {
   "use strict";
 
   function Pile(game, id, behavior) {
     Phaser.Group.call(this, game, game.playmat, id);
     this.id = id;
     this.behavior = PileBehavior[behavior];
+    this.dragDrop = PileDragDrop[behavior];
     this.cards = [];
     this.game.addPile(this);
 
@@ -48,70 +49,12 @@ define(['game/PileBehavior'], function (PileBehavior) {
     this.behavior.cardRemoved(this, card);
   };
 
-  Pile.prototype.startDrag = function(card, p) {
-    if(this.behavior == "stock") {
-      // No op
-    } else {
-      this.dragCards = this.cards.slice(card.pileIndex);
-      for(var c in this.dragCards) {
-        this.dragCards[c].startDrag(p, 0);
-      }
-    }
+  Pile.prototype.startDrag = function(card, pointer) {
+    this.dragDrop.startDrag(this, card, pointer);
   };
 
   Pile.prototype.endDrag = function() {
-    var firstCard = this.dragCards[0];
-
-    var minX = firstCard.x;
-    var maxX = firstCard.x + firstCard.width;
-    var xPoint = firstCard.x + firstCard.anchorPointX;
-    var minY = firstCard.y;
-    var maxY = firstCard.y + firstCard.height;
-    var yPoint = firstCard.y + firstCard.anchorPointY;
-
-    var dropTarget = null;
-    var dropDistance = 65536;
-
-    for(var pileIndex in this.game.piles) {
-      var pile = this.game.piles[pileIndex];
-      var overlapX = 0;
-      if((minX > pile.x && minX < pile.x + pile.intersectWidth) || (maxX > pile.x && maxX < pile.x + pile.intersectWidth)) {
-        overlapX = Math.abs(pile.x + (pile.intersectWidth / 2) - xPoint);
-      }
-      var overlapY = 0;
-      if((minY > pile.y && minY < pile.y + pile.intersectHeight) || (maxY > pile.y && maxY < pile.y + pile.intersectHeight)) {
-        overlapY = Math.abs(pile.y + (pile.intersectHeight / 2) - yPoint);
-      }
-      if(overlapX > 0 && overlapY > 0) {
-        if(overlapX + overlapY < dropDistance) {
-          dropDistance = overlapX + overlapY;
-          dropTarget = pile;
-        }
-      }
-    }
-
-    if(dropTarget === null) {
-      for(var cancelIndex in this.dragCards) {
-        var cancelCard = this.dragCards[cancelIndex];
-        cancelCard.dragging = false;
-        cancelCard.cancelDrag();
-      }
-    } else {
-      console.log("Moving [" + this.dragCards + "] to [" + dropTarget.id + "].");
-
-      for(var moveIndex in this.dragCards) {
-        var moveCard = this.dragCards[moveIndex];
-        moveCard.dragging = false;
-      }
-
-      var cardIds = [];
-      for(var dragCardIndex in this.dragCards) {
-        cardIds.push(this.dragCards[dragCardIndex].id);
-      }
-
-      this.game.ws.send("MoveCards", { cards: cardIds, src: this.id, tgt: dropTarget.id });
-    }
-    this.dragCards = [];
+    this.dragDrop.endDrag(this);
   };
 
   Pile.prototype.cardSelected = function(c) {
