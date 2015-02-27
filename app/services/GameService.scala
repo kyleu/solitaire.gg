@@ -1,26 +1,21 @@
 package services
 
-import akka.actor.{Props, ActorRef}
+import akka.actor.{PoisonPill, ActorRef}
 import models.game.{Deck, GameState}
 import models._
+import play.api.libs.concurrent.Akka
 import utils.Logging
 import utils.metrics.InstrumentedActor
 
 import scala.util.Random
 
-object GameService {
-  private def props(gameType: String, seed: Int, players: List[String], connections: Map[String, ActorRef]) = Props(new GameService(gameType, seed, players, connections))
-  private def masterRng = new Random()
-
-  def joinGame(out: ActorRef, gameId: String, username: String, seed: Int = Math.abs(masterRng.nextInt())) = {
-    props(gameId, seed, List(username), Map(username -> out))
-  }
-}
-
-class GameService(gameType: String, seed: Int, players: List[String], connections: Map[String, ActorRef]) extends InstrumentedActor with Logging {
-  log.info("Started game [" + gameType + "] for players [" + players.mkString(", ") + "] with seed [" + seed + "].")
+class GameService(id: String, gameType: String, seed: Int, initialSessions: List[(String, String, ActorRef)]) extends InstrumentedActor with Logging {
+  log.info("Started game [" + gameType + "] for players [" + initialSessions.map(_._2).mkString(", ") + "] with seed [" + seed + "].")
 
   private val rng = new Random(new java.util.Random(seed))
+
+  private val usernames = initialSessions.map(x => x._1 -> x._2).toMap
+  private val connections = collection.mutable.HashMap[String, ActorRef](initialSessions.map(x => x._1 -> x._3): _*)
 
   private val gameState = gameType match {
     case "klondike" => GameState.klondike(Deck.shuffled(rng))
@@ -28,16 +23,26 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
     case _ => throw new IllegalArgumentException("Unknown game type: [" + gameType + "].")
   }
 
-  sendToAll(GameJoined(Nil, gameState))
+  override def preStart() {
+    context.parent ! GameStarted(id, self)
+    sendToAll(GameJoined(Nil, gameState))
+  }
 
   override def receiveRequest = {
     case gr: GameRequest =>
-      log.debug("Handling [" + gr.request.getClass.getSimpleName + "] message from user [" + gr.username + "].")
-      gr.request match {
+      log.debug("Handling [" + gr.message.getClass.getSimpleName + "] message from user [" + gr.username + "].")
+      gr.message match {
         case sc: SelectCard => handleSelectCard(sc.card, sc.pile, sc.pileIndex)
         case sp: SelectPile => handleSelectPile(sp.pile)
         case mc: MoveCards => handleMoveCards(mc.cards, mc.src, mc.tgt)
         case r => log.warn("GameService received unknown game message [" + r.getClass.getSimpleName + "].")
+      }
+    case im: InternalMessage =>
+      log.debug("Handling [" + im.getClass.getSimpleName + "] internal message.")
+      im match {
+        case cs: ConnectionStopped => handleConnectionStopped(cs.id)
+        case StopGameIfEmpty => handleStopGameIfEmpty()
+        case _ => log.warn("GameService received unhandled internal message [" + im.getClass.getSimpleName + "].")
       }
     case x => log.warn("GameService received unknown message [" + x.getClass.getSimpleName + "].")
   }
@@ -115,6 +120,23 @@ class GameService(gameType: String, seed: Int, players: List[String], connection
       } else {
         sendToAll(MessageSet(messages))
       }
+    }
+  }
+
+  private def handleConnectionStopped(id: String) {
+    import scala.concurrent.duration._
+    import play.api.Play.current
+    import play.api.libs.concurrent.Execution.Implicits._
+    log.info("Connection [" + id + "] stopped.")
+    connections.remove(id)
+    Akka.system.scheduler.scheduleOnce(1.seconds, self, StopGameIfEmpty)
+  }
+
+  private def handleStopGameIfEmpty() {
+    if(connections.isEmpty) {
+      log.info("Stopping game [" + id + "] after timeout.")
+      context.parent ! GameStopped(id)
+      self ! PoisonPill
     }
   }
 

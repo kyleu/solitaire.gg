@@ -27,7 +27,7 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
     this.bg.scale = { x: 0.5, y: 0.5 };
     this.add.existing(this.bg);
 
-    this.game.time.events.loop(Phaser.Timer.SECOND * 2, function() {
+    this.game.time.events.loop(Phaser.Timer.SECOND * 30, function() {
       this.ws.send("Ping", { timestamp: new Date().getTime() });
     }, this.game);
 

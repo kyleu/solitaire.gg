@@ -2,13 +2,11 @@ package utils
 
 import play.api.mvc.{RequestHeader, Results}
 import play.api.{Application, GlobalSettings}
-import services.ActorSupervisor
 
 import scala.concurrent.Future
 
 object PlayGlobalSettings extends GlobalSettings with Logging {
   override def onStart(app: Application) {
-    ActorSupervisor.start()
     super.onStart(app)
   }
   override def onStop(app: Application) {
