@@ -53,11 +53,8 @@ class ConnectionService(supervisor: ActorRef, out: ActorRef) extends Instrumente
   }
 
   private def handleGameMessage(gm: GameMessage) = activeGame match {
-    case Some(ag) => username match {
-      case Some(un) => ag forward GameRequest(id, un, gm)
-      case None => throw new IllegalArgumentException("Encountered game message [" + gm.getClass.getSimpleName + "] when not logged in.")
-    }
-    case None => throw new IllegalArgumentException("Unhandled game message [" + gm.getClass.getSimpleName + "].")
+    case Some(ag) => ag forward GameRequest(id, username.get, gm)
+    case None => throw new IllegalArgumentException("Received game message [" + gm.getClass.getSimpleName + "] while not in game.")
   }
 
   private def handleGameStarted(id: String, gameService: ActorRef) {

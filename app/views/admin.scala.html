@@ -1,0 +1,7 @@
+@()(implicit session: Session, flash: Flash)
+
+@layout.basic("Scalataire Admin") {
+  <ul>
+    <li><a href="@routes.AdminController.status().url">Server Status</a></li>
+  </ul>
+}

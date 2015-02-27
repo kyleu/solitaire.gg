@@ -24,8 +24,8 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
   }
 
   override def preStart() {
-    context.parent ! GameStarted(id, self)
-    sendToAll(GameJoined(Nil, gameState))
+    sendToAll(GameStarted(id, self))
+    sendToAll(GameJoined(id, initialSessions.map(_._2), gameState))
   }
 
   override def receiveRequest = {
@@ -57,21 +57,27 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
 
       val waste = gameState.pilesById("waste")
 
-      val messages = (0 to 2).map { i =>
-        val topCard = stock.cards.last
-        if(i == 0) {
-          if(topCard != card) {
-            throw new IllegalArgumentException("Selected card [" + card + "] is not stock top card [" + topCard + "].")
-          }
+      val messages = (0 to 2).flatMap { i =>
+        val topCard = stock.cards.lastOption
+        topCard match {
+          case Some(tc) =>
+            if(i == 0) {
+              if(tc != card) {
+                throw new IllegalArgumentException("Selected card [" + card + "] is not stock top card [" + topCard + "].")
+              }
+            }
+            stock.cards = stock.cards.dropRight(1)
+            waste.addCard(tc)
+            tc.u = true
+            log.info("Stock card [" + tc + "] moved to waste.")
+            Some(CardMoved(tc.id, "stock", "waste", turnFaceUp = true))
+          case None => None
         }
-        stock.cards = stock.cards.dropRight(1)
-        waste.addCard(topCard)
-        topCard.u = true
-        log.info("Stock card [" + topCard + "] moved to waste.")
-        CardMoved(topCard.id, "stock", "waste", turnFaceUp = true)
       }
 
-      if(messages.size == 1) {
+      if(messages.isEmpty) {
+        // noop
+      } else if(messages.size == 1) {
         sendToAll(messages(0))
       } else {
         sendToAll(MessageSet(messages.toList))
@@ -90,7 +96,7 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
 
       val waste = gameState.pilesById("waste")
 
-      val messages = waste.cards.map { card =>
+      val messages = waste.cards.reverse.map { card =>
         waste.removeCard(card)
         stock.addCard(card)
         CardMoved(card.id, "waste", "stock", turnFaceDown = true)
@@ -106,7 +112,7 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
     val source = gameState.pilesById(sourceId)
     val target = gameState.pilesById(targetId)
 
-    if(rng.nextBoolean()) {
+    if(false) {
       sendToAll(CancelCardMove(cardIds, sourceId))
     } else {
       val messages = cards.map { card =>
@@ -142,5 +148,8 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
 
   private def sendToAll(responseMessage: ResponseMessage) = connections.foreach { c =>
     c._2 ! responseMessage
+  }
+  private def sendToAll(internalMessage: InternalMessage) = connections.foreach { c =>
+    c._2 ! internalMessage
   }
 }

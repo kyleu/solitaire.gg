@@ -38,8 +38,10 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
     case cs: ConnectionStopped => handleConnectionStopped(cs.id)
 
     case cg: CreateGame => handleCreateGame(cg.gameType, cg.session, cg.username, cg.conn)
-    case gs: GameStarted => handleGameStarted(gs.id, gs.gameService)
-    case gs: GameStopped => games.remove(gs.id)
+
+    case gs: GameStopped => handleGameStopped(gs.id)
+
+    case GetSystemStatus => sender() ! SystemStatus(games.keys.toList.sorted, connections.keys.toList.sorted)
 
     case sm: InternalMessage => log.warn("Unhandled internal message [" + sm.getClass.getSimpleName + "] received.")
     case x => log.warn("ActorSupervisor encountered unknown message: " + x.toString)
@@ -64,7 +66,7 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
     games(id) = actor
   }
 
-  private def handleGameStarted(id: String, gameService: ActorRef) {
-
+  private def handleGameStopped(id: String) {
+    games.remove(id)
   }
 }

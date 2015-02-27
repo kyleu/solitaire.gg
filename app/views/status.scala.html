@@ -1,0 +1,17 @@
+@(status: SystemStatus)(implicit session: Session, flash: Flash)
+
+@layout.basic("Scalataire Admin") {
+  <h4>@status.connections.size Connections</h4>
+  <ul>
+    @for(connection <- status.connections) {
+      <li>@connection</li>
+    }
+  </ul>
+
+  <h4>@status.games.size Games</h4>
+  <ul>
+    @for(game <- status.games) {
+      <li>@game</li>
+    }
+  </ul>
+}

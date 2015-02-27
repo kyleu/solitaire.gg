@@ -25,14 +25,18 @@ object Pile {
 }
 
 case class Pile(id: String, behavior: String, var cards: List[Card] = Nil) {
+  def addCards(cs: Seq[Card]) = cs.foreach(addCard)
+
   def addCard(c: Card) {
     cards = c :: cards
   }
 
-  def addCards(cs: Seq[Card]) = cs.foreach(addCard)
-
   def removeCard(c: Card) {
-    cards = cards.filter(_ == c)
+    val newCards = cards.filterNot(_.id == c.id)
+    if(cards.size == newCards.size) {
+      throw new IllegalArgumentException("Provided card [" + c + "] is not included in pile [" + id + "].")
+    }
+    cards = newCards
   }
 
   override def toString: String = id + ": " + cards.map(_.toString).mkString(", ")
