@@ -14,6 +14,10 @@ object AdminController extends Controller {
     Ok(views.html.admin())
   }
 
+  def test = Action { implicit request =>
+    Ok(views.html.test())
+  }
+
   def status = Action.async { implicit request =>
     import play.api.libs.concurrent.Execution.Implicits.defaultContext
     (ActorSupervisor.instance ask GetSystemStatus).map { x =>

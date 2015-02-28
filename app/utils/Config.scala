@@ -12,6 +12,8 @@ object Config {
 
   val debug = !Play.isProd(Play.current)
 
+  val defaultCardSet = cnf.getString("game.default.cardSet")
+
   // Metrics
   val jmxEnabled = cnf.getBoolean("metrics.jmx.enabled")
   val graphiteEnabled = cnf.getBoolean("metrics.graphite.enabled")

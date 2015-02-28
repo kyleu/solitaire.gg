@@ -135,7 +135,7 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
     import play.api.libs.concurrent.Execution.Implicits._
     log.info("Connection [" + id + "] stopped.")
     connections.remove(id)
-    Akka.system.scheduler.scheduleOnce(1.seconds, self, StopGameIfEmpty)
+    Akka.system.scheduler.scheduleOnce(30.seconds, self, StopGameIfEmpty)
   }
 
   private def handleStopGameIfEmpty() {

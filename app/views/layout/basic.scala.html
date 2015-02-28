@@ -8,10 +8,10 @@
     <meta httpEquiv="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")" />
     @for(script <- scripts) {
-      <script src="@routes.Assets.at(script)"></script>
+      <script src="@script"></script>
     }
     @for(stylesheet <- stylesheets) {
-      <link rel="stylesheet" media="screen" href="@routes.Assets.at(stylesheet)" />
+      <link rel="stylesheet" media="screen" href="@stylesheet" />
     }
   </head>
   <body>

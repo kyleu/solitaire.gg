@@ -16,7 +16,7 @@ define(['Config', 'game/state/Gameplay', 'game/state/GameState'], function (cfg,
   LoadingScreen.prototype.create = function() {
     GameState.prototype.create.apply(this, arguments);
 
-    this.message = this.game.add.text(this.game.world.centerX - 90, this.game.world.centerY - 60, "Loading Scalataire...", { font: "18px Helvetica", fill: "#ffffff"});
+    this.message = this.game.add.text(this.game.world.centerX - 90, this.game.world.centerY - 60, "Loading " + cfg.name + "...", { font: "18px Helvetica", fill: "#ffffff"});
     this.game.state.start('gameplay');
   };
 

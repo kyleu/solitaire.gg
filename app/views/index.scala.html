@@ -1,11 +1,20 @@
 @()(implicit session: Session, flash: Flash)
 
-@layout.basic("Scalataire", stylesheets = Seq("stylesheets/scalataire.css")) {
+@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
   <div id="game-container">
     <div id="loading-screen">
       <span>Loading...</span>
     </div>
   </div>
+  <script>
+    window.scalataireConfig = {
+      "id": "@utils.Config.projectId",
+      "name": "@utils.Config.projectName",
+      "debug": "@utils.Config.debug",
+      "autoStart": true,
+      "cardSet": "@utils.Config.defaultCardSet"
+    };
+  </script>
   @if(utils.Config.debug) {
     <script src="/assets/lib/phaser/js/phaser.js"></script>
     <script src="/assets/lib/phaser/js/phaser-debug.js"></script>

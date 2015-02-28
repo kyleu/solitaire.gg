@@ -15,4 +15,4 @@ case object StopGameIfEmpty extends InternalMessage
 case class GameRequest(session: String, username: String, message: GameMessage) extends InternalMessage
 
 case object GetSystemStatus extends InternalMessage
-case class SystemStatus(games: List[String], connections: List[String]) extends InternalMessage
+case class SystemStatus(games: List[(String, List[String])], connections: List[(String, String)]) extends InternalMessage

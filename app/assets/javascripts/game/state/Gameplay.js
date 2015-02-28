@@ -13,7 +13,7 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
     this.game.load.image('bg-texture', '/assets/images/game/bg.jpg');
     this.game.load.image('card-back', '/assets/images/game/cards/' + imageKey + '/BACK.png');
     this.game.load.image('empty-pile', '/assets/images/game/cards/' + imageKey + '/EMPTY.png');
-    this.game.load.spritesheet('card', 'assets/images/game/cards/' + imageKey + '/ALL.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight);
+    this.game.load.spritesheet('card', '/assets/images/game/cards/' + imageKey + '/ALL.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight);
   };
 
   Gameplay.prototype.create = function() {

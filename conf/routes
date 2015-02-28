@@ -4,5 +4,6 @@ GET        /websocket           controllers.WebsocketController.connect()
 
 GET        /admin               controllers.AdminController.index
 GET        /admin/status        controllers.AdminController.status
+GET        /admin/test          controllers.AdminController.test
 
 GET        /assets/*file        controllers.Assets.at(path="/public", file)

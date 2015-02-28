@@ -1,10 +1,10 @@
-define(['game/state/InitialState', 'game/CardSet'], function (InitialState, CardSet) {
+define(['Config', 'game/state/InitialState', 'game/CardSet'], function (config, InitialState, CardSet) {
   "use strict";
 
   function Game(id) {
     this.id = id;
     this.ws = null;
-    this.cardSet = CardSet.medium;
+    this.cardSet = CardSet[config.cardSet];
     var initialState = new InitialState(this);
     Phaser.Game.call(this, '100%', '100%', Phaser.AUTO, 'game-container', initialState);
 

@@ -15,7 +15,7 @@ object ActorSupervisor extends Logging {
   lazy val instance =  {
     import play.api.Play.current
     val instanceRef = Akka.system.actorOf(Props[ActorSupervisor], "supervisor")
-    log.info("Actor Supervisor [" + instanceRef.path.toString + "] started for [scalataire].")
+    log.info("Actor Supervisor [" + instanceRef.path.toString + "] started for [" + utils.Config.projectId + "].")
     instanceRef
   }
 }
@@ -41,7 +41,7 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
 
     case gs: GameStopped => handleGameStopped(gs.id)
 
-    case GetSystemStatus => sender() ! SystemStatus(games.keys.toList.sorted, connections.keys.toList.sorted)
+    case GetSystemStatus => sender() ! SystemStatus(games.keys.toList.sorted.map(_ -> Nil), connections.keys.toList.sorted.map(_ -> "?"))
 
     case sm: InternalMessage => log.warn("Unhandled internal message [" + sm.getClass.getSimpleName + "] received.")
     case x => log.warn("ActorSupervisor encountered unknown message: " + x.toString)

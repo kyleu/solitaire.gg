@@ -1,0 +1,35 @@
+@()(implicit session: Session, flash: Flash)
+
+@layout.bootstrap(utils.Config.projectName + " Admin") {
+  <script>
+    $(function() {
+      alert("OK!");
+    });
+  </script>
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="pull-right">
+            Seed: <input type="text" id="game-seed" value="0" />
+            <button>Start</button>
+          </div>
+          <div id="status" style="padding-top: 3px;">Disconnected</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body" style="width: 100%; height: 600px;">
+          <div id="game-container">
+            <div id="loading-screen">
+              <span>Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

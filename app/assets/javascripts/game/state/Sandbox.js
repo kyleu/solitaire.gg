@@ -12,7 +12,7 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
     this.game.load.image("bg-texture", "/assets/images/game/bg.jpg");
     this.game.load.image("card-back", "/assets/images/game/cards/medium/BACK.png");
     this.game.load.image("empty-pile", "/assets/images/game/cards/medium/EMPTY.png");
-    this.game.load.spritesheet('card', 'assets/images/game/cards/medium/ALL.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight);
+    this.game.load.spritesheet('card', '/assets/images/game/cards/medium/ALL.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight);
   };
 
   Sandbox.prototype.create = function() {
