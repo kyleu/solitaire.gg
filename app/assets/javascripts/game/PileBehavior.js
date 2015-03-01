@@ -7,6 +7,10 @@ define(function () {
     if(x != card.x || y != card.y) {
       var tween = card.game.add.tween(card);
       tween.to({x: x, y: y}, 200);
+      tween.onComplete.add(function() {
+        card.tweening = false;
+      }, card);
+      card.tweening = true;
       tween.start();
     }
   };

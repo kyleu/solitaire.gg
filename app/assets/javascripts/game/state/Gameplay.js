@@ -68,6 +68,9 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
           this.game.cards[v.cards[cardCancelledIndex]].cancelDrag();
         }
         break;
+      case "ServerError":
+        console.log("Server error encountered.", v);
+        break;
       default:
         GameState.prototype.onMessage.apply(this, arguments);
     }

@@ -7,9 +7,10 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     this.suit = Suit.fromChar(suit);
     this.name = rank + suit + ": " + id;
     this.faceUp = faceUp;
-    this.inputOriginalPosition = null;
 
+    this.inputOriginalPosition = null;
     this.animation = null;
+    this.tweening = false;
 
     this.spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
     if(this.faceUp) {
@@ -31,7 +32,9 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   Card.prototype.constructor = Card;
 
   Card.prototype.onInputDown = function(e, p) {
-    this.pile.startDrag(this, p);
+    if(!this.tweening) {
+      this.pile.startDrag(this, p);
+    }
   };
 
   Card.prototype.startDrag = function(p) {

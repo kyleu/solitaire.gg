@@ -31,18 +31,28 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
   override def receiveRequest = {
     case gr: GameRequest =>
       log.debug("Handling [" + gr.message.getClass.getSimpleName + "] message from user [" + gr.username + "].")
-      gr.message match {
-        case sc: SelectCard => handleSelectCard(sc.card, sc.pile, sc.pileIndex)
-        case sp: SelectPile => handleSelectPile(sp.pile)
-        case mc: MoveCards => handleMoveCards(mc.cards, mc.src, mc.tgt)
-        case r => log.warn("GameService received unknown game message [" + r.getClass.getSimpleName + "].")
+      try {
+        gr.message match {
+          case sc: SelectCard => handleSelectCard(sc.card, sc.pile, sc.pileIndex)
+          case sp: SelectPile => handleSelectPile(sp.pile)
+          case mc: MoveCards => handleMoveCards(mc.cards, mc.src, mc.tgt)
+          case r => log.warn("GameService received unknown game message [" + r.getClass.getSimpleName + "].")
+        }
+      } catch {
+        case x: Exception =>
+          log.error("Exception processing game request [" + gr + "].", x)
+          sender() ! ServerError(x.getClass.getSimpleName, x.getMessage)
       }
     case im: InternalMessage =>
       log.debug("Handling [" + im.getClass.getSimpleName + "] internal message.")
-      im match {
-        case cs: ConnectionStopped => handleConnectionStopped(cs.id)
-        case StopGameIfEmpty => handleStopGameIfEmpty()
-        case _ => log.warn("GameService received unhandled internal message [" + im.getClass.getSimpleName + "].")
+      try {
+        im match {
+          case cs: ConnectionStopped => handleConnectionStopped(cs.id)
+          case StopGameIfEmpty => handleStopGameIfEmpty()
+          case _ => log.warn("GameService received unhandled internal message [" + im.getClass.getSimpleName + "].")
+        }
+      } catch {
+        case x: Exception => log.error("Exception processing internal message [" + im + "].", x)
       }
     case x => log.warn("GameService received unknown message [" + x.getClass.getSimpleName + "].")
   }
