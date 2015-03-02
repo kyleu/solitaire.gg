@@ -41,5 +41,9 @@ class Tableau(override val id: String) extends Pile(id, "tableau", ArrayBuffer.e
 
 class Foundation(override val id: String) extends Pile(id, "foundation", ArrayBuffer.empty[Card]) {
   override def canDragFrom(cards: Seq[Card]): Boolean = cards.length == 1 && cards(0) == this.cards.last
-  override def canDragTo(cards: Seq[Card]): Boolean = cards.length == 1 && this.cards.last.s == cards(0).s && this.cards.last.r.value + 1 == cards(0).r.value
+  override def canDragTo(cards: Seq[Card]): Boolean = if(cards.length == 1) {
+    this.cards.isEmpty && cards(0).r == Ace || (this.cards.last.s == cards(0).s && this.cards.last.r.value + 1 == cards(0).r.value)
+  } else {
+    false
+  }
 }

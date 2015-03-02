@@ -54,11 +54,10 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
   private def handleSelectCard(cardId: String, pileId: String, pileIndex: Int) {
     val card = gameState.cardsById(cardId)
     val pile = gameState.pilesById(pileId)
+    if(!pile.cards.contains(card)) {
+      log.warn("SelectCard for game [" + id + "]: Card [" + card.toString + "] is not part of the [" + pileId + "] pile.")
+    }
     if(pile.behavior == "stock") {
-      if(!pile.cards.contains(card)) {
-        log.warn("SelectCard for game [" + id + "]: Card [" + card.toString + "] is not part of the [stock] deck.")
-      }
-
       val waste = gameState.pilesById("waste")
 
       val messages = (0 to 2).flatMap { i =>
@@ -91,8 +90,7 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
         card.u = true
         sendToAll(CardRevealed(card))
       }
-
-      } else {
+    } else {
       log.warn("Card [" + card + "] selected with no action.")
     }
   }

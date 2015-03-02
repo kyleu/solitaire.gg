@@ -42,6 +42,8 @@ process()
     then
       echo "Applying transparency...";
       transparent;
+      echo "Stitching...";
+      stitch;
     else
       echo "Shrinking...";
       shrink;
