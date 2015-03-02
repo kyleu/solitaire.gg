@@ -1,43 +1,45 @@
 package models.game
 
-object Pile {
-  def klondike = List(
-    Pile("stock", "stock"),
-    Pile("waste", "waste"),
+import scala.collection.mutable.ArrayBuffer
 
-    Pile("foundation-1", "foundation"),
-    Pile("foundation-2", "foundation"),
-    Pile("foundation-3", "foundation"),
-    Pile("foundation-4", "foundation"),
-
-    Pile("tableau-1", "tableau"),
-    Pile("tableau-2", "tableau"),
-    Pile("tableau-3", "tableau"),
-    Pile("tableau-4", "tableau"),
-    Pile("tableau-5", "tableau"),
-    Pile("tableau-6", "tableau"),
-    Pile("tableau-7", "tableau")
-  )
-
-  def sandbox = List(
-    Pile("sandbox-1", "tableau")
-  )
-}
-
-case class Pile(id: String, behavior: String, var cards: List[Card] = Nil) {
+sealed case class Pile(id: String, behavior: String, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) {
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
 
   def addCard(c: Card) {
-    cards = c :: cards
+    cards += c
   }
 
   def removeCard(c: Card) {
-    val newCards = cards.filterNot(_.id == c.id)
-    if(cards.size == newCards.size) {
-      throw new IllegalArgumentException("Provided card [" + c + "] is not included in pile [" + id + "].")
+    cards.find(_.id == c.id) match {
+      case Some(_) => cards -= c
+      case None => throw new IllegalArgumentException("Provided card [" + c + "] is not included in pile [" + id + "].")
     }
-    cards = newCards
   }
 
+  def canDragFrom(cards: Seq[Card]) = false
+  def canDragTo(cards: Seq[Card]) = false
+  def canSelect(card: Option[Card]) = false
+
   override def toString: String = id + ": " + cards.map(_.toString).mkString(", ")
+}
+
+class Stock(override val id: String) extends Pile(id, "stock", ArrayBuffer.empty[Card]) {
+  override def canSelect(card: Option[Card]) = card match {
+    case Some(c) => c == this.cards.last
+    case None => true
+  }
+}
+
+class Waste(override val id: String) extends Pile(id, "waste", ArrayBuffer.empty[Card]) {
+  override def canDragFrom(cards: Seq[Card]): Boolean = cards.length == 1 && cards(0) == this.cards.last
+}
+
+class Tableau(override val id: String) extends Pile(id, "tableau", ArrayBuffer.empty[Card]) {
+  override def canDragFrom(cards: Seq[Card]): Boolean = true
+  override def canDragTo(cards: Seq[Card]): Boolean = true
+}
+
+class Foundation(override val id: String) extends Pile(id, "foundation", ArrayBuffer.empty[Card]) {
+  override def canDragFrom(cards: Seq[Card]): Boolean = cards.length == 1 && cards(0) == this.cards.last
+  override def canDragTo(cards: Seq[Card]): Boolean = cards.length == 1 && this.cards.last.s == cards(0).s && this.cards.last.r.value + 1 == cards(0).r.value
 }

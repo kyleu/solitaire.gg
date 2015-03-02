@@ -1,10 +1,10 @@
 define(function () {
-  var Playmat = function(game, layout) {
+  var Playmat = function(game, layouts) {
     Phaser.Group.call(this, game, null, 'playmat');
+    this.layout = layouts[0];
 
-    this.layout = layout;
-    this.w = layout.width * this.game.cardSet.cardWidth;
-    this.h = layout.height * this.game.cardSet.cardHeight;
+    this.w = this.layout.width * this.game.cardSet.cardWidth;
+    this.h = this.layout.height * this.game.cardSet.cardHeight;
 
     this.resize();
 
@@ -27,7 +27,7 @@ define(function () {
     pile.y = pileLocation.y * this.game.cardSet.cardHeight;
   };
 
-  Playmat.prototype.resize = function(h, w) {
+  Playmat.prototype.resize = function() {
     var widthRatio = this.game.world.width / this.w;
     var heightRatio = this.game.world.height / this.h;
     if(widthRatio < heightRatio) {

@@ -34,7 +34,7 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat'], function (cfg, Card
   Sandbox.prototype.onMessage = function(c, v) {
     switch(c) {
       case "GameJoined":
-        this.game.playmat = new Playmat(this.game, v.state.layout);
+        this.game.playmat = new Playmat(this.game, v.state.layouts);
 
         for(var pileIndex in v.state.piles) {
           var pile = v.state.piles[pileIndex];

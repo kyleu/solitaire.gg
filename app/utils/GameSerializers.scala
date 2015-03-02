@@ -35,18 +35,9 @@ object GameSerializers {
   implicit val cardReads = Json.reads[Card]
   implicit val cardWrites = Json.writes[Card]
 
-  implicit val deckReads = Json.reads[Deck]
   implicit val deckWrites = Json.writes[Deck]
-
-  implicit val pileReads = Json.reads[Pile]
   implicit val pileWrites = Json.writes[Pile]
-
-  implicit val pileLocationReads = Json.reads[PileLocation]
   implicit val pileLocationWrites = Json.writes[PileLocation]
-
-  implicit val layoutReads = Json.reads[Layout]
   implicit val layoutWrites = Json.writes[Layout]
-
-  implicit val gameStateReads = Json.reads[GameState]
   implicit val gameStateWrites = Json.writes[GameState]
 }

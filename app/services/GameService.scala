@@ -1,29 +1,23 @@
 package services
 
 import akka.actor.{PoisonPill, ActorRef}
-import models.game.{Deck, GameState}
 import models._
 import play.api.libs.concurrent.Akka
+import services.game.GameVariant
 import utils.Logging
 import utils.metrics.InstrumentedActor
-
-import scala.util.Random
 
 class GameService(id: String, gameType: String, seed: Int, initialSessions: List[(String, String, ActorRef)]) extends InstrumentedActor with Logging {
   log.info("Started game [" + gameType + "] for players [" + initialSessions.map(_._2).mkString(", ") + "] with seed [" + seed + "].")
 
-  private val rng = new Random(new java.util.Random(seed))
-
   private val usernames = initialSessions.map(x => x._1 -> x._2).toMap
   private val connections = collection.mutable.HashMap[String, ActorRef](initialSessions.map(x => x._1 -> x._3): _*)
 
-  private val gameState = gameType match {
-    case "klondike" => GameState.klondike(Deck.shuffled(rng))
-    case "sandbox" => GameState.sandbox(Deck.shuffled(rng))
-    case _ => throw new IllegalArgumentException("Unknown game type: [" + gameType + "].")
-  }
+  private val gameVariant = GameVariant(gameType, id, seed)
+  private val gameState = gameVariant.gameState
 
   override def preStart() {
+    gameVariant.initialMoves()
     sendToAll(GameStarted(id, self))
     sendToAll(GameJoined(id, initialSessions.map(_._2), gameState))
   }
@@ -59,24 +53,24 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
 
   private def handleSelectCard(cardId: String, pileId: String, pileIndex: Int) {
     val card = gameState.cardsById(cardId)
-    if(pileId == "stock") {
-      val stock = gameState.pilesById(pileId)
-      if(!stock.cards.contains(card)) {
-        throw new IllegalArgumentException("Card [" + card.toString + "] is not part of the [stock] deck.")
+    val pile = gameState.pilesById(pileId)
+    if(pile.behavior == "stock") {
+      if(!pile.cards.contains(card)) {
+        log.warn("SelectCard for game [" + id + "]: Card [" + card.toString + "] is not part of the [stock] deck.")
       }
 
       val waste = gameState.pilesById("waste")
 
       val messages = (0 to 2).flatMap { i =>
-        val topCard = stock.cards.lastOption
+        val topCard = pile.cards.lastOption
         topCard match {
           case Some(tc) =>
             if(i == 0) {
               if(tc != card) {
-                throw new IllegalArgumentException("Selected card [" + card + "] is not stock top card [" + topCard + "].")
+                log.warn("SelectCard for game [" + id + "]: Selected card [" + card + "] is not stock top card [" + topCard + "].")
               }
             }
-            stock.cards = stock.cards.dropRight(1)
+            pile.removeCard(tc)
             waste.addCard(tc)
             tc.u = true
             log.info("Stock card [" + tc + "] moved to waste.")
@@ -92,26 +86,32 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
       } else {
         sendToAll(MessageSet(messages.toList))
       }
-    } else {
+    } else if(pile.behavior == "tableau") {
+      if(!card.u) {
+        card.u = true
+        sendToAll(CardRevealed(card))
+      }
+
+      } else {
       log.warn("Card [" + card + "] selected with no action.")
     }
   }
 
   private def handleSelectPile(pileId: String) {
-    if(pileId == "stock") {
-      val stock = gameState.pilesById(pileId)
-      if(stock.cards.length > 0) {
-        throw new IllegalArgumentException("SelectPile called on a non-empty deck.")
+    val pile = gameState.pilesById(pileId)
+    if(pile.behavior == "stock") {
+      if(pile.cards.length > 0) {
+        log.warn("SelectPile [" + pileId + "] called on a non-empty deck.")
       }
 
       val waste = gameState.pilesById("waste")
 
       val messages = waste.cards.reverse.map { card =>
         waste.removeCard(card)
-        stock.addCard(card)
+        pile.addCard(card)
         CardMoved(card.id, "waste", "stock", turnFaceDown = true)
       }
-      sendToAll(MessageSet(messages.reverse))
+      sendToAll(MessageSet(messages))
     } else {
       log.warn("Pile [" + pileId + "] selected with no action.")
     }
@@ -123,7 +123,7 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
     val target = gameState.pilesById(targetId)
 
     if(false) {
-      sendToAll(CancelCardMove(cardIds, sourceId))
+      sendToAll(CardMoveCancelled(cardIds, sourceId))
     } else {
       val messages = cards.map { card =>
         source.removeCard(card)
@@ -150,7 +150,7 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
 
   private def handleStopGameIfEmpty() {
     if(connections.isEmpty) {
-      log.info("Stopping game [" + id + "] after timeout.")
+      log.info("Stopping empty game [" + id + "] after timeout.")
       context.parent ! GameStopped(id)
       self ! PoisonPill
     }

@@ -3,7 +3,7 @@ package models.game
 import scala.util.Random
 
 object Deck {
-  def fresh = {
+  def fresh() = {
     val cards = for {
       suit <- Suit.all
       rank <- Rank.all.reverse

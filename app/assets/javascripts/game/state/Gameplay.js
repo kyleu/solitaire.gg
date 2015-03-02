@@ -44,7 +44,7 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
   Gameplay.prototype.onMessage = function(c, v) {
     switch(c) {
       case "GameJoined":
-        this.game.playmat = new Playmat(this.game, v.state.layout);
+        this.game.playmat = new Playmat(this.game, v.state.layouts);
         this.loadPiles(v.state.piles);
         this.loadCards(v.state.piles);
         break;
@@ -63,13 +63,17 @@ define(['Config', 'game/Card', 'game/Pile', 'game/Playmat', 'game/state/GameStat
         source.removeCard(movedCard);
         target.addCard(movedCard);
         break;
-      case "CancelCardMove":
+      case "CardMoveCancelled":
         for(var cardCancelledIndex in v.cards) {
           this.game.cards[v.cards[cardCancelledIndex]].cancelDrag();
         }
         break;
+      case "CardRevealed":
+        var revealedCard = this.game.cards[v.card.id];
+        revealedCard.turnFaceUp();
+        break;
       case "ServerError":
-        console.log("Server error encountered.", v);
+        console.error("Server error encountered.", v);
         break;
       default:
         GameState.prototype.onMessage.apply(this, arguments);
