@@ -18,16 +18,15 @@ sealed case class Pile(id: String, behavior: String, cards: collection.mutable.A
 
   def canDragFrom(cards: Seq[Card]) = false
   def canDragTo(cards: Seq[Card]) = false
-  def canSelect(card: Option[Card]) = false
+  def canSelectCard(card: Card) = false
+  def canSelectPile = false
 
   override def toString: String = id + ": " + cards.map(_.toString).mkString(", ")
 }
 
 class Stock(override val id: String) extends Pile(id, "stock", ArrayBuffer.empty[Card]) {
-  override def canSelect(card: Option[Card]) = card match {
-    case Some(c) => c == this.cards.last
-    case None => true
-  }
+  override def canSelectCard(card: Card) = card == this.cards.last
+  override def canSelectPile = this.cards.isEmpty
 }
 
 class Waste(override val id: String) extends Pile(id, "waste", ArrayBuffer.empty[Card]) {

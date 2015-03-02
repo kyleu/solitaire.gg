@@ -8,16 +8,13 @@ define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) 
   Foundation.prototype = Object.create(Pile.prototype);
   Foundation.prototype.constructor = Foundation;
 
-  Foundation.prototype.canSelect = function() {
-    return false;
-  };
+  Foundation.prototype.canSelectCard = PileHelpers.returnFalse;
+  Foundation.prototype.canSelectPile = PileHelpers.returnFalse;
 
-  Foundation.prototype.canDragFrom = function() {
-    return false;
-  };
+  Foundation.prototype.canDragFrom = PileHelpers.topCardOnly;
 
   Foundation.prototype.canDragTo = function() {
-    return false;
+    return true;
   };
 
   Foundation.prototype.startDrag = PileHelpers.dragSlice;

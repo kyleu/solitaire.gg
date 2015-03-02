@@ -14,9 +14,9 @@ dist
 /RUNNING_PID
 /.settings
 
-/public/images/game/cards/x-small
-/public/images/game/cards/small
-/public/images/game/cards/medium
-/public/images/game/cards/large
+/public/images/game/cards/_resized
 /public/images/game/cards/x-large
-/public/images/game/cards/resized
+/public/images/game/cards/large
+/public/images/game/cards/medium
+/public/images/game/cards/small
+/public/images/game/cards/x-small

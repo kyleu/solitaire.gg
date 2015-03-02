@@ -8,32 +8,52 @@ define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) 
   Tableau.prototype = Object.create(Pile.prototype);
   Tableau.prototype.constructor = Tableau;
 
-  Tableau.prototype.canSelect = PileHelpers.returnFalse;
+  Tableau.prototype.canSelectCard = PileHelpers.returnFalse;
+  Tableau.prototype.canSelectPile = PileHelpers.returnFalse;
 
-  Tableau.prototype.canDragFrom = function() {
-    return true;
+  Tableau.prototype.canDragFrom = function(card) {
+    if(card.pile !== this) {
+      throw "Provided card is not part of this pile.";
+    }
+    var cards = [];
+
+    for(var selectedIndex = card.pileIndex; selectedIndex < this.cards.length; selectedIndex++) {
+      cards.push(this.cards[selectedIndex]);
+    }
+
+    var valid = true;
+    var lastCard = null;
+    for(var c in cards) {
+      if(lastCard === null) {
+
+      } else {
+
+      }
+    }
+
+    return valid;
   };
 
-  Tableau.prototype.canDragTo = function() {
-    return true;
+  Tableau.prototype.canDragTo = function(pile) {
+    return false;
   };
 
   Tableau.prototype.startDrag = PileHelpers.dragSlice;
 
   Tableau.prototype.endDrag = PileHelpers.endDrag;
 
-  Tableau.prototype.cardAdded = function(pile, card) {
+  Tableau.prototype.cardAdded = function(card) {
     var tween = card.game.add.tween(card);
     tween.to({
-      x: pile.x,
-      y: pile.y + ((pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset)
+      x: this.x,
+      y: this.y + ((this.cards.length - 1) * this.game.cardSet.cardVerticalOffset)
     }, 200);
     tween.start();
-    pile.intersectHeight = pile.game.cardSet.cardHeight + (pile.cards.length === 0 ? 0 : (pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset);
+    this.intersectHeight = this.game.cardSet.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
   };
 
-  Tableau.prototype.cardRemoved = function(pile) {
-    pile.intersectHeight = pile.game.cardSet.cardHeight + (pile.cards.length === 0 ? 0 : (pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset);
+  Tableau.prototype.cardRemoved = function() {
+    this.intersectHeight = this.game.cardSet.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
   };
 
   return Tableau;

@@ -33,7 +33,9 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
 
   Card.prototype.onInputDown = function(e, p) {
     if(!this.tweening) {
-      this.pile.startDrag(this, p);
+      if(this.pile.canDragFrom(this)) {
+        this.pile.startDrag(this, p);
+      }
     }
   };
 
@@ -49,7 +51,13 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     if(this.dragging) {
       this.pile.endDrag();
     } else {
-      this.pile.cardSelected(this);
+      var deltaX = Math.abs(p.positionDown.x - p.positionUp.x);
+      var deltaY = Math.abs(p.positionDown.y - p.positionUp.y);
+      if(deltaX < 5 && deltaY < 5) {
+        if(this.pile.canSelectCard(this)) {
+          this.pile.cardSelected(this);
+        }
+      }
     }
   };
 
@@ -61,11 +69,15 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
         // Dragged
         this.game.add.tween(this).to({x: this.inputOriginalPosition.x, y: this.inputOriginalPosition.y}, 500, Phaser.Easing.Quadratic.InOut, true);
       } else {
-        this.pile.cardSelected(this);
+        if(this.pile.canSelectCard(this)) {
+          this.pile.cardSelected(this);
+        }
       }
       this.inputOriginalPosition = null;
     } else {
-      this.pile.cardSelected(this);
+      if(this.pile.canSelectCard(this)) {
+        this.pile.cardSelected(this);
+      }
     }
   };
 

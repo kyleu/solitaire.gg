@@ -10,7 +10,11 @@ define(function () {
 
     this.empty = new Phaser.Sprite(game, 0, 0, 'empty-pile');
     this.empty.inputEnabled = true;
-    this.empty.events.onInputUp.add(this.pileSelected, this);
+    this.empty.events.onInputUp.add(function() {
+      if(this.canSelectPile()) {
+        this.pileSelected();
+      }
+    }, this);
     this.add(this.empty);
 
     this.intersectWidth = this.empty.width;
@@ -21,12 +25,11 @@ define(function () {
   Pile.prototype.constructor = Pile;
 
   Pile.prototype.addCard = function(card, index) {
-    console.log("add");
     card.pile = this;
     card.pileIndex = this.cards.length;
     this.cards.push(card);
 
-    this.cardAdded(this, card);
+    this.cardAdded(card);
 
     this.game.playmat.add(card);
   };

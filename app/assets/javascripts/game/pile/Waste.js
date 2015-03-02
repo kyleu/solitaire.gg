@@ -8,7 +8,8 @@ define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) 
   Waste.prototype = Object.create(Pile.prototype);
   Waste.prototype.constructor = Waste;
 
-  Waste.prototype.canSelect = PileHelpers.returnFalse;
+  Waste.prototype.canSelectCard = PileHelpers.returnFalse;
+  Waste.prototype.canSelectPile = PileHelpers.returnFalse;
 
   Waste.prototype.canDragFrom = PileHelpers.topCardOnly;
 
@@ -18,57 +19,57 @@ define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) 
 
   Waste.prototype.endDrag = PileHelpers.endDrag;
 
-  Waste.prototype.cardAdded = function(pile) {
-    var y = pile.y;
-    if(pile.cards.length === 1) {
-      PileHelpers.tweenCard(pile.cards[0], pile.x, y);
-    } else if(pile.cards.length === 2) {
-      PileHelpers.tweenCard(pile.cards[0], pile.x, y);
-      PileHelpers.tweenCard(pile.cards[1], pile.x + pile.game.cardSet.cardHorizontalOffset, y);
+  Waste.prototype.cardAdded = function(card) {
+    var y = this.y;
+    if(this.cards.length === 1) {
+      PileHelpers.tweenCard(this.cards[0], this.x, y);
+    } else if(this.cards.length === 2) {
+      PileHelpers.tweenCard(this.cards[0], this.x, y);
+      PileHelpers.tweenCard(this.cards[1], this.x + this.game.cardSet.cardHorizontalOffset, y);
     } else {
-      for(var cardIndex in pile.cards) {
+      for(var cardIndex in this.cards) {
         var cardIndexInt = parseInt(cardIndex);
-        if(cardIndexInt === pile.cards.length - 1) {
-          PileHelpers.tweenCard(pile.cards[cardIndex], pile.x + (pile.game.cardSet.cardHorizontalOffset * 2), y);
-        } else if(cardIndexInt === pile.cards.length - 2) {
-          PileHelpers.tweenCard(pile.cards[cardIndex], pile.x + pile.game.cardSet.cardHorizontalOffset, y);
+        if(cardIndexInt === this.cards.length - 1) {
+          PileHelpers.tweenCard(this.cards[cardIndex], this.x + (this.game.cardSet.cardHorizontalOffset * 2), y);
+        } else if(cardIndexInt === this.cards.length - 2) {
+          PileHelpers.tweenCard(this.cards[cardIndex], this.x + this.game.cardSet.cardHorizontalOffset, y);
         } else {
-          PileHelpers.tweenCard(pile.cards[cardIndex], pile.x);
+          PileHelpers.tweenCard(this.cards[cardIndex], this.x);
         }
       }
     }
 
-    var additionalWidth = pile.cards.length - 1;
-    if(pile.cards.length > 3) {
+    var additionalWidth = this.cards.length - 1;
+    if(this.cards.length > 3) {
       additionalWidth = 2;
     }
-    pile.intersectWidth = pile.game.cardSet.cardWidth + (additionalWidth * pile.game.cardSet.cardHorizontalOffset);
+    this.intersectWidth = this.game.cardSet.cardWidth + (additionalWidth * this.game.cardSet.cardHorizontalOffset);
   };
 
-  Waste.prototype.cardRemoved = function(pile) {
-    if(pile.cards.length === 1) {
-      PileHelpers.tweenCard(pile.cards[0], pile.x, pile.y);
-    } else if(pile.cards.length === 2) {
-      PileHelpers.tweenCard(pile.cards[0], pile.x, pile.y);
-      PileHelpers.tweenCard(pile.cards[1], pile.x + pile.game.cardSet.cardHorizontalOffset, pile.y);
+  Waste.prototype.cardRemoved = function(card) {
+    if(this.cards.length === 1) {
+      PileHelpers.tweenCard(this.cards[0], this.x, this.y);
+    } else if(this.cards.length === 2) {
+      PileHelpers.tweenCard(this.cards[0], this.x, this.y);
+      PileHelpers.tweenCard(this.cards[1], this.x + this.game.cardSet.cardHorizontalOffset, this.y);
     } else {
-      for(var ci in pile.cards) {
+      for(var ci in this.cards) {
         var cardIndexInt = parseInt(ci);
-        if(cardIndexInt === pile.cards.length - 1) {
-          PileHelpers.tweenCard(pile.cards[ci], pile.x + (pile.game.cardSet.cardHorizontalOffset * 2), pile.y);
-        } else if(cardIndexInt === pile.cards.length - 2) {
-          PileHelpers.tweenCard(pile.cards[ci], pile.x + pile.game.cardSet.cardHorizontalOffset, pile.y);
+        if(cardIndexInt === this.cards.length - 1) {
+          PileHelpers.tweenCard(this.cards[ci], this.x + (this.game.cardSet.cardHorizontalOffset * 2), this.y);
+        } else if(cardIndexInt === this.cards.length - 2) {
+          PileHelpers.tweenCard(this.cards[ci], this.x + this.game.cardSet.cardHorizontalOffset, this.y);
         } else {
-          PileHelpers.tweenCard(pile.cards[ci], pile.x, pile.y);
+          PileHelpers.tweenCard(this.cards[ci], this.x, this.y);
         }
       }
     }
 
-    var additionalWidth = pile.cards.length - 1;
-    if(pile.cards.length > 3) {
+    var additionalWidth = this.cards.length - 1;
+    if(this.cards.length > 3) {
       additionalWidth = 2;
     }
-    pile.intersectWidth = pile.game.cardSet.cardWidth + (additionalWidth * pile.game.cardSet.cardHorizontalOffset);
+    this.intersectWidth = this.game.cardSet.cardWidth + (additionalWidth * this.game.cardSet.cardHorizontalOffset);
   };
 
   return Waste;

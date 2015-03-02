@@ -8,7 +8,8 @@ define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) 
   Stock.prototype = Object.create(Pile.prototype);
   Stock.prototype.constructor = Stock;
 
-  Stock.prototype.canSelect = PileHelpers.topCardOnly;
+  Stock.prototype.canSelectCard = PileHelpers.topCardOnly;
+  Stock.prototype.canSelectPile = PileHelpers.isEmpty;
 
   Stock.prototype.canDragFrom = PileHelpers.returnFalse;
 

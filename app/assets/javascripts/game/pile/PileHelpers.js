@@ -25,8 +25,10 @@ define([], function() {
         }
         if(overlapX > 0 && overlapY > 0) {
           if(overlapX + overlapY < dropDistance) {
-            dropDistance = overlapX + overlapY;
-            dropTarget = p;
+            if(p.canDragTo(pile)) {
+              dropDistance = overlapX + overlapY;
+              dropTarget = p;
+            }
           }
         }
       }
@@ -38,6 +40,7 @@ define([], function() {
   var PileHelpers = {
     noOp: function() {
     },
+
     returnFalse: function() {
       return false;
     },
@@ -45,12 +48,12 @@ define([], function() {
       return true;
     },
 
-    samePosition: function(pile, card) {
-      PileHelpers.tweenCard(card, pile.x, pile.y);
+    isEmpty: function() {
+      return this.cards.length === 0;
     },
 
-    topCardOnly: function(pile, card) {
-      return card.pileIndex == pile.cards.length - 1;
+    topCardOnly: function(card) {
+      return card.pileIndex == this.cards.length - 1;
     },
 
     dragSlice: function(card, p) {
@@ -58,6 +61,10 @@ define([], function() {
       for(var c in this.dragCards) {
         this.dragCards[c].startDrag(p);
       }
+    },
+
+    samePosition: function(card) {
+      PileHelpers.tweenCard(card, this.x, this.y);
     },
 
     endDrag: function() {
