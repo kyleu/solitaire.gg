@@ -4,7 +4,7 @@ define(['Config', 'game/state/InitialState', 'game/CardSet'], function (config, 
   function Game(id) {
     this.id = id;
     this.ws = null;
-    this.cardSet = CardSet[config.cardSet];
+    this.cardSet = CardSet[config.cardSet][config.cardSize];
     var initialState = new InitialState(this);
     Phaser.Game.call(this, '100%', '100%', Phaser.AUTO, 'game-container', initialState);
 

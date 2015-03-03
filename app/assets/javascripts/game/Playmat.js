@@ -9,7 +9,6 @@ define(function () {
     this.resize();
 
     this.game.add.existing(this);
-    console.log("Playmat created.");
   };
 
   Playmat.prototype = Object.create(Phaser.Group.prototype);

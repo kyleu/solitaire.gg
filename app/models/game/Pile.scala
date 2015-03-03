@@ -30,19 +30,58 @@ class Stock(override val id: String) extends Pile(id, "stock", ArrayBuffer.empty
 }
 
 class Waste(override val id: String) extends Pile(id, "waste", ArrayBuffer.empty[Card]) {
-  override def canDragFrom(cards: Seq[Card]): Boolean = cards.length == 1 && cards(0) == this.cards.last
-}
-
-class Tableau(override val id: String) extends Pile(id, "tableau", ArrayBuffer.empty[Card]) {
-  override def canDragFrom(cards: Seq[Card]): Boolean = true
-  override def canDragTo(cards: Seq[Card]): Boolean = true
+  override def canDragFrom(cards: Seq[Card]) = cards.length == 1 && cards(0) == this.cards.last
 }
 
 class Foundation(override val id: String) extends Pile(id, "foundation", ArrayBuffer.empty[Card]) {
-  override def canDragFrom(cards: Seq[Card]): Boolean = cards.length == 1 && cards(0) == this.cards.last
-  override def canDragTo(cards: Seq[Card]): Boolean = if(cards.length == 1) {
-    this.cards.isEmpty && cards(0).r == Ace || (this.cards.last.s == cards(0).s && this.cards.last.r.value + 1 == cards(0).r.value)
+  override def canDragFrom(cards: Seq[Card]) = cards.length == 1 && cards(0) == this.cards.last
+  override def canDragTo(cards: Seq[Card]) = if(cards.length == 1) {
+    if(this.cards.isEmpty && cards(0).r == Rank.Ace) {
+      true
+    } else if(this.cards.last.s == cards(0).s && this.cards.last.r == Rank.Ace && cards(0).r == Rank.Two) {
+      true
+    } else if(this.cards.last.s == cards(0).s && this.cards.last.r.value + 1 == cards(0).r.value) {
+      true
+    } else {
+      false
+    }
   } else {
     false
+  }
+}
+
+class Tableau(override val id: String) extends Pile(id, "tableau", ArrayBuffer.empty[Card]) {
+  override def canDragFrom(cards: Seq[Card]) = {
+    var valid = true
+    var lastCard: Option[Card] = None
+
+    for(c <- cards) {
+      if(lastCard.isDefined) {
+        if(c.s.color == lastCard.get.s.color) {
+          valid = false
+        }
+        if(c.r == Rank.Ace || c.r.value != (lastCard.get.r.value - 1)) {
+          valid = false
+        }
+      }
+      lastCard = Some(c)
+    }
+    valid
+  }
+
+  override def canDragTo(cards: Seq[Card]) = {
+    if(this.cards.isEmpty) {
+      cards.head.r ==  Rank.King
+    } else {
+      val topCard = this.cards.last
+      val firstDraggedCard = cards.head
+      if(topCard.s.color == firstDraggedCard.s.color) {
+        false
+      } else if(topCard.r == Rank.Ace || firstDraggedCard.r == Rank.King) {
+        false
+      } else {
+        topCard.r.value == firstDraggedCard.r.value + 1
+      }
+    }
   }
 }

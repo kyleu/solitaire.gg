@@ -7,7 +7,7 @@ define(function () {
   var clubs = { char: 'C', name: 'Clubs', color: "black", index: 3 };
   var unknown = { char: '?', name: 'Unknown', color: "" };
 
-  var Suit = {
+  return {
     hearts: hearts,
     spades: spades,
     diamonds: diamonds,
@@ -15,6 +15,7 @@ define(function () {
     unknown: unknown,
 
     all: [hearts, spades, diamonds, clubs],
+
     fromChar: function(c) {
       switch(c) {
         case 'H': return hearts;
@@ -26,6 +27,4 @@ define(function () {
       }
     }
   };
-
-  return Suit;
 });

@@ -31,6 +31,20 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   Card.prototype = Object.create(Phaser.Sprite.prototype);
   Card.prototype.constructor = Card;
 
+  Card.prototype.reveal = function(c) {
+    this.rank = Rank.fromChar(c.r);
+    this.suit = Suit.fromChar(c.s);
+    this.faceUp = c.u;
+    this.spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
+    if(this.faceUp) {
+      this.key = 'card';
+      this.frame = this.spriteIndex;
+    } else {
+      this.key = 'card-back';
+      this.frame = 0;
+    }
+  };
+
   Card.prototype.onInputDown = function(e, p) {
     if(!this.tweening) {
       if(this.pile.canDragFrom(this)) {
@@ -65,7 +79,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     if(this.inputOriginalPosition !== null) {
       var xDelta = Math.abs(this.x - this.inputOriginalPosition.x);
       var yDelta = Math.abs(this.y - this.inputOriginalPosition.y);
-      if(xDelta > 0 || yDelta > 0) {
+      if(xDelta > 5 || yDelta > 5) {
         // Dragged
         this.game.add.tween(this).to({x: this.inputOriginalPosition.x, y: this.inputOriginalPosition.y}, 500, Phaser.Easing.Quadratic.InOut, true);
       } else {

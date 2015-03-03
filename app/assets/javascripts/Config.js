@@ -9,6 +9,7 @@ define(function () {
     debug: c.debug,
     autoStart: c.autoStart,
     cardSet: c.cardSet,
+    cardSize: c.cardSize,
     wsUrl: "ws://" + document.location.host + "/websocket"
   };
 });

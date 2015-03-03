@@ -56,9 +56,22 @@ process()
   cd ..
 }
 
-process _resized _unprocessed
-process x-large _resized
-process large x-large
-process medium large
-process small medium
-process x-small small
+cardset()
+{
+  echo "Processing card set $1"
+  pushd $1
+  process _resized _unprocessed
+  process x-large _resized
+  process large x-large
+  process medium large
+  process small medium
+  process x-small small
+  popd
+}
+
+cardset standard
+cardset anglo
+cardset dondorf
+cardset ornamental
+cardset paris
+

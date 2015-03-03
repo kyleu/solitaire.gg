@@ -73,8 +73,11 @@ define([
         }
         break;
       case "CardRevealed":
-        var revealedCard = this.game.cards[v.card.id];
-        revealedCard.turnFaceUp();
+        var existing = this.game.cards[v.card.id];
+        existing.reveal(v.card);
+        if(v.card.u) {
+          existing.turnFaceUp();
+        }
         break;
       case "ServerError":
         console.error("Server error encountered.", v);

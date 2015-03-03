@@ -16,7 +16,7 @@ define(function () {
   var ace = { value: 14, char: "A", name: "Ace" };
   var unknown = { value: 0, char: "?", name: "Unknown" };
 
-  var Rank = {
+  return {
     two: two,
     three: three,
     four: four,
@@ -33,6 +33,7 @@ define(function () {
     unknown: unknown,
 
     all: [two, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace],
+
     fromChar: function(c) {
       switch(c) {
         case '2': return two;
@@ -53,6 +54,4 @@ define(function () {
       }
     }
   };
-
-  return Rank;
 });

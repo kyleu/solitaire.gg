@@ -10,16 +10,18 @@ import utils.metrics.InstrumentedActor
 class GameService(id: String, gameType: String, seed: Int, initialSessions: List[(String, String, ActorRef)]) extends InstrumentedActor with Logging {
   log.info("Started game [" + gameType + "] for players [" + initialSessions.map(_._2).mkString(", ") + "] with seed [" + seed + "].")
 
-  private val usernames = initialSessions.map(x => x._1 -> x._2).toMap
   private val connections = collection.mutable.HashMap[String, ActorRef](initialSessions.map(x => x._1 -> x._3): _*)
 
   private val gameVariant = GameVariant(gameType, id, seed)
   private val gameState = gameVariant.gameState
 
   override def preStart() {
+    initialSessions.foreach( s => gameState.addPlayer(s._1) )
     gameVariant.initialMoves()
     sendToAll(GameStarted(id, self))
-    sendToAll(GameJoined(id, initialSessions.map(_._2), gameState))
+    connections.foreach { c =>
+      c._2 ! GameJoined(id, initialSessions.map(_._2), gameState.view(c._1))
+    }
   }
 
   override def receiveRequest = {
@@ -120,21 +122,34 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
     val source = gameState.pilesById(sourceId)
     val target = gameState.pilesById(targetId)
 
-    if(false) {
-      sendToAll(CardMoveCancelled(cardIds, sourceId))
-    } else {
-      val messages = cards.map { card =>
-        source.removeCard(card)
-        target.addCard(card)
-        CardMoved(card.id, sourceId, targetId)
-      }
-
-      if(messages.size == 1) {
-        sendToAll(messages(0))
-      } else {
-        sendToAll(MessageSet(messages))
+    for(c <- cards) {
+      if(!source.cards.contains(c)) {
+        throw new IllegalArgumentException("Card [" + c + "] is not a part of source pile [" + source.id + "].")
       }
     }
+
+    if(source.canDragFrom(cards)) {
+      if(target.canDragTo(cards)) {
+        val messages = cards.map { card =>
+          source.removeCard(card)
+          target.addCard(card)
+          CardMoved(card.id, sourceId, targetId)
+        }
+
+        if(messages.size == 1) {
+          sendToAll(messages(0))
+        } else {
+          sendToAll(MessageSet(messages))
+        }
+      } else {
+        log.warn("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] to pile [" + target.id + "].")
+        sendToAll(CardMoveCancelled(cardIds, sourceId))
+      }
+    } else {
+      log.warn("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] from pile [" + source.id + "].")
+      sendToAll(CardMoveCancelled(cardIds, sourceId))
+    }
+
   }
 
   private def handleConnectionStopped(id: String) {
@@ -154,10 +169,7 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
     }
   }
 
-  private def sendToAll(responseMessage: ResponseMessage) = connections.foreach { c =>
-    c._2 ! responseMessage
-  }
-  private def sendToAll(internalMessage: InternalMessage) = connections.foreach { c =>
-    c._2 ! internalMessage
+  private def sendToAll(message: Any) = connections.foreach { c =>
+    c._2 ! message
   }
 }

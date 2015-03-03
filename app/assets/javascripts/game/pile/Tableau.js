@@ -1,4 +1,4 @@
-define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) {
+define(['game/Rank', 'game/pile/Pile', 'game/pile/PileHelpers'], function(Rank, Pile, PileHelpers) {
   "use strict";
 
   var Tableau = function(game, id) {
@@ -8,7 +8,9 @@ define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) 
   Tableau.prototype = Object.create(Pile.prototype);
   Tableau.prototype.constructor = Tableau;
 
-  Tableau.prototype.canSelectCard = PileHelpers.returnFalse;
+  Tableau.prototype.canSelectCard = function(card) {
+    return card == this.cards[this.cards.length - 1];
+  };
   Tableau.prototype.canSelectPile = PileHelpers.returnFalse;
 
   Tableau.prototype.canDragFrom = function(card) {
@@ -24,18 +26,34 @@ define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) 
     var valid = true;
     var lastCard = null;
     for(var c in cards) {
-      if(lastCard === null) {
-
-      } else {
-
+      if(lastCard !== null) {
+        if(cards[c].suit.color == lastCard.suit.color) {
+          valid = false;
+        }
+        if(cards[c].rank === Rank.ace || cards[c].rank.value != (lastCard.rank.value - 1)) {
+          valid = false;
+        }
       }
+      lastCard = cards[c];
     }
 
     return valid;
   };
 
   Tableau.prototype.canDragTo = function(pile) {
-    return false;
+    if(this.cards.length === 0) {
+      return pile.dragCards[0].rank == Rank.king;
+    } else {
+      var topCard = this.cards[this.cards.length - 1];
+      var firstDraggedCard = pile.dragCards[0];
+      if(topCard.suit.color == firstDraggedCard.suit.color) {
+        return false;
+      } else if(topCard.rank === Rank.ace || firstDraggedCard.rank === Rank.king) {
+        return false;
+      } else {
+        return topCard.rank.value == firstDraggedCard.rank.value + 1;
+      }
+    }
   };
 
   Tableau.prototype.startDrag = PileHelpers.dragSlice;
