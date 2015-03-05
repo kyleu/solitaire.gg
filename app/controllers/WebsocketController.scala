@@ -11,6 +11,7 @@ object WebsocketController extends Controller {
   val supervisor = ActorSupervisor.instance
 
   def connect() = WebSocket.acceptWithActor[RequestMessage, ResponseMessage] { request => out =>
-    ConnectionService.props(supervisor, out)
+    val username = request.session.get("username").getOrElse("guest")
+    ConnectionService.props(supervisor, username, out)
   }
 }

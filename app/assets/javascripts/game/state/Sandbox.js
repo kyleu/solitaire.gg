@@ -28,7 +28,7 @@ define(['Config', 'game/Card', 'game/pile/Pile', 'game/Playmat'], function (cfg,
       this.ws.send("Ping", { timestamp: new Date().getTime() });
     }, this.game);
 
-    this.game.ws.send("JoinGame", { "game": "sandbox", "name": "Kyle" });
+    this.game.ws.send("JoinGame", { "game": "sandbox" });
   };
 
   Sandbox.prototype.onMessage = function(c, v) {

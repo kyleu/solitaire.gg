@@ -15,6 +15,8 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
   private val gameVariant = GameVariant(gameType, id, seed)
   private val gameState = gameVariant.gameState
 
+  private val gameMessages = collection.mutable.ArrayBuffer.empty[GameMessage]
+
   override def preStart() {
     initialSessions.foreach( s => gameState.addPlayer(s._1) )
     gameVariant.initialMoves()
@@ -28,6 +30,7 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
     case gr: GameRequest =>
       log.debug("Handling [" + gr.message.getClass.getSimpleName + "] message from user [" + gr.username + "].")
       try {
+        gameMessages += gr.message
         gr.message match {
           case sc: SelectCard => handleSelectCard(sc.card, sc.pile, sc.pileIndex)
           case sp: SelectPile => handleSelectPile(sp.pile)
@@ -45,6 +48,7 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
         im match {
           case cs: ConnectionStopped => handleConnectionStopped(cs.id)
           case StopGameIfEmpty => handleStopGameIfEmpty()
+          case gt: GameTrace => handleGameTrace()
           case _ => log.warn("GameService received unhandled internal message [" + im.getClass.getSimpleName + "].")
         }
       } catch {
@@ -169,6 +173,18 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
       context.parent ! GameStopped(id)
       self ! PoisonPill
     }
+  }
+
+  private def handleGameTrace() {
+    val ret = TraceResponse(List(
+      "id" -> id,
+      "variant" -> gameVariant.name,
+      "seed" -> gameVariant.seed,
+      "connections" -> connections.keys.toList.sorted,
+      "gameMessageCount" -> gameMessages.size,
+      "lastMessage" -> gameMessages.lastOption.map(_.getClass.getSimpleName).getOrElse("none")
+    ))
+    sender() ! ret
   }
 
   private def sendToAll(message: Any) = connections.foreach { c =>

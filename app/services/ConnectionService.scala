@@ -8,18 +8,17 @@ import utils.{Logging, Config}
 import utils.metrics.InstrumentedActor
 
 object ConnectionService {
-  def props(supervisor: ActorRef, out: ActorRef) = Props(new ConnectionService(supervisor, out))
+  def props(supervisor: ActorRef, username: String, out: ActorRef) = Props(new ConnectionService(supervisor, username, out))
 }
 
-class ConnectionService(supervisor: ActorRef, out: ActorRef) extends InstrumentedActor with Logging {
+class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) extends InstrumentedActor with Logging {
   val id = UUID.randomUUID.toString
-  var username: Option[String] = None
 
   var activeGameId: Option[String] = None
   var activeGame: Option[ActorRef] = None
 
   override def preStart() = {
-    supervisor ! ConnectionStarted(id, self)
+    supervisor ! ConnectionStarted(id, username, self)
   }
 
   override def receiveRequest = {
@@ -29,12 +28,13 @@ class ConnectionService(supervisor: ActorRef, out: ActorRef) extends Instrumente
     case GetVersion => out ! VersionResponse(Config.version)
 
     // Incoming game messages
-    case jg: JoinGame => handleJoinGame(jg.game, jg.name)
+    case jg: JoinGame => handleJoinGame(jg.game)
     case gm: GameMessage => handleGameMessage(gm)
 
     // Internal messages
     case gs: GameStarted => handleGameStarted(gs.id, gs.gameService)
     case gs: GameStopped => handleGameStopped(gs.id)
+    case ct: ConnectionTrace => handleConnectionTrace()
 
     // Outgoing messages
     case rm: ResponseMessage => handleResponseMessage(rm)
@@ -47,13 +47,12 @@ class ConnectionService(supervisor: ActorRef, out: ActorRef) extends Instrumente
     supervisor ! ConnectionStopped(id)
   }
 
-  private def handleJoinGame(gameType: String, username: String) {
-    this.username = Some(username)
+  private def handleJoinGame(gameType: String) {
     supervisor ! CreateGame(gameType, id, username, self)
   }
 
   private def handleGameMessage(gm: GameMessage) = activeGame match {
-    case Some(ag) => ag forward GameRequest(id, username.get, gm)
+    case Some(ag) => ag forward GameRequest(id, username, gm)
     case None => throw new IllegalArgumentException("Received game message [" + gm.getClass.getSimpleName + "] while not in game.")
   }
 
@@ -65,6 +64,15 @@ class ConnectionService(supervisor: ActorRef, out: ActorRef) extends Instrumente
   private def handleGameStopped(id: String) {
     activeGameId = None
     activeGame = None
+  }
+
+  private def handleConnectionTrace() {
+    val ret = TraceResponse(List(
+      "id" -> id,
+      "username" -> username,
+      "game" -> activeGameId.getOrElse("Not in game")
+    ))
+    sender() ! ret
   }
 
   private def handleResponseMessage(rm: ResponseMessage) {

@@ -6,14 +6,14 @@
   <h5>@status.connections.size Connections</h5>
   <ul>
     @for(connection <- status.connections) {
-      <li>@connection._1</li>
+      <li>@connection._1 [@connection._2] (<a href="@routes.AdminController.traceConnection(connection._1)">Trace</a>)</li>
     }
   </ul>
 
   <h5>@status.games.size Games</h5>
   <ul>
     @for(game <- status.games) {
-      <li>@game._1</li>
+      <li>@game._1 [@game._2.map(_._2).mkString(", ")] (<a href="@routes.AdminController.traceGame(game._1)">Trace</a>)</li>
     }
   </ul>
 }

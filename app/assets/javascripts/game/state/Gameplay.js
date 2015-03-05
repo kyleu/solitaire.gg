@@ -35,7 +35,9 @@ define([
       this.ws.send("Ping", { timestamp: new Date().getTime() });
     }, this.game);
 
-    this.game.ws.send("JoinGame", { "game": "klondike", name: "Kyle" });
+    this.game.scale.onOrientationChange.add(this.onOrientationChange, this);
+
+    this.game.ws.send("JoinGame", { "game": "klondike" });
   };
 
   Gameplay.prototype.victorious = function() {
@@ -121,6 +123,12 @@ define([
         pileObj.addCard(cardObj);
       }
     }
+  };
+
+  Gameplay.prototype.onOrientationChange = function (scale, prevOrientation) {
+    alert("OC: Was [" + prevOrientation + "], now [" + scale.screenOrientation + "]. Window: [" + window.innerWidth + "x" +  window.innerHeight + "].");
+    document.getElementById("game-container").style.width = windoe.innerWidth;
+    document.getElementById("game-container").style.height = windoe.innerHeight;
   };
 
   Gameplay.prototype.resize = function(w, h) {
