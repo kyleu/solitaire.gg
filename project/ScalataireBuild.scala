@@ -7,6 +7,7 @@ import com.typesafe.sbt.web.Import.{Assets, pipelineStages}
 import com.typesafe.sbt.digest.Import.digest
 import com.typesafe.sbt.gzip.Import.gzip
 import com.typesafe.sbt.less.Import.LessKeys
+import com.typesafe.sbt.jse.JsEngineImport.JsEngineKeys
 
 object ScalataireBuild extends Build with UniversalKeys {
   val id = "scalataire"
@@ -44,7 +45,8 @@ object ScalataireBuild extends Build with UniversalKeys {
     pipelineStages := Seq(rjs, digest, gzip),
     includeFilter in (Assets, LessKeys.less) := "*.less",
     excludeFilter in (Assets, LessKeys.less) := "_*.less",
-    scalacOptions ++= compileOptions
+    scalacOptions ++= compileOptions,
+    JsEngineKeys.engineType := JsEngineKeys.EngineType.Node
   )
 
   lazy val root = Project(
