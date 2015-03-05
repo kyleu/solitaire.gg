@@ -17,11 +17,13 @@ object ScalataireBuild extends Build with UniversalKeys {
       Database.jdub,
       Database.postgresJdbc,
 
-      Metrics.jettyServlet,
       Metrics.metrics,
       Metrics.metricsJvm,
-      Metrics.metricsGraphite,
+      Metrics.metricsHealthChecks,
+      Metrics.metricsJson,
+      Metrics.jettyServlet,
       Metrics.metricsServlets,
+      Metrics.metricsGraphite,
 
       WebJars.requireJs
     )

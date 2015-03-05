@@ -52,21 +52,25 @@ class Foundation(override val id: String) extends Pile(id, "foundation", ArrayBu
 
 class Tableau(override val id: String) extends Pile(id, "tableau", ArrayBuffer.empty[Card]) {
   override def canDragFrom(cards: Seq[Card]) = {
-    var valid = true
-    var lastCard: Option[Card] = None
+    if(cards.exists(!_.u)) {
+      false
+    } else {
+      var valid = true
+      var lastCard: Option[Card] = None
 
-    for(c <- cards) {
-      if(lastCard.isDefined) {
-        if(c.s.color == lastCard.get.s.color) {
-          valid = false
+      for(c <- cards) {
+        if(lastCard.isDefined) {
+          if(c.s.color == lastCard.get.s.color) {
+            valid = false
+          }
+          if(c.r == Rank.Ace || c.r.value != (lastCard.get.r.value - 1)) {
+            valid = false
+          }
         }
-        if(c.r == Rank.Ace || c.r.value != (lastCard.get.r.value - 1)) {
-          valid = false
-        }
+        lastCard = Some(c)
       }
-      lastCard = Some(c)
+      valid
     }
-    valid
   }
 
   override def canDragTo(cards: Seq[Card]) = {
@@ -75,7 +79,9 @@ class Tableau(override val id: String) extends Pile(id, "tableau", ArrayBuffer.e
     } else {
       val topCard = this.cards.last
       val firstDraggedCard = cards.head
-      if(topCard.s.color == firstDraggedCard.s.color) {
+      if(!topCard.u) {
+        false
+      } else if(topCard.s.color == firstDraggedCard.s.color) {
         false
       } else if(topCard.r == Rank.Ace || firstDraggedCard.r == Rank.King) {
         false

@@ -7,11 +7,15 @@ object Dependencies {
   }
 
   object Metrics {
-    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "8.1.9.v20130131" withSources()
     val metrics = "nl.grons" %% "metrics-scala" % "3.3.0" withSources()
     val metricsJvm = "io.dropwizard.metrics" % "metrics-jvm" % "3.1.0" withSources()
-    val metricsGraphite = "io.dropwizard.metrics" % "metrics-graphite" % "3.1.0" withSources() intransitive()
+    val metricsHealthChecks = "io.dropwizard.metrics" % "metrics-healthchecks" % "3.1.0" withSources() intransitive()
+
+    val metricsJson = "io.dropwizard.metrics" % "metrics-json" % "3.1.0" withSources()
+
+    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "8.1.9.v20130131" withSources()
     val metricsServlets = "io.dropwizard.metrics" % "metrics-servlets" % "3.1.0" withSources() intransitive()
+    val metricsGraphite = "io.dropwizard.metrics" % "metrics-graphite" % "3.1.0" withSources() intransitive()
   }
 
   object WebJars {

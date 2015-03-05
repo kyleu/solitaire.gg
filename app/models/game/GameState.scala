@@ -1,5 +1,7 @@
 package models.game
 
+import models.CardRevealed
+
 case class GameState(
   id: String,
   seed: Int,
@@ -19,7 +21,7 @@ case class GameState(
     this.cardsById(card.id) = card
     this.pilesById(pile).addCard(card)
     if(reveal) {
-      revealCard(card, None)
+      revealCardToAll(card)
     }
   }
 
@@ -27,9 +29,16 @@ case class GameState(
     addCard(c, pile, reveal)
   }
 
-  def revealCard(card: Card, player: Option[String]) = player match {
-    case Some(p) => playerKnownCardIds(p) += card.id
-    case None => playerKnownCardIds.foreach(_._2 += card.id)
+  def revealCardToAll(card: Card) = playerKnownCardIds.flatMap(p => revealCardToPlayer(card, p._1)).toList
+
+  def revealCardToPlayer(card: Card, player: String) = {
+    val existing = playerKnownCardIds(player)
+    if(!existing.contains(card.id)) {
+      existing += card.id
+      Some(CardRevealed(card))
+    } else {
+      None
+    }
   }
 
   def view(session: String) = {

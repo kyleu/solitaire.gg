@@ -72,11 +72,13 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
               }
             }
             pile.removeCard(tc)
+            val revealed = gameState.revealCardToAll(tc)
+
             waste.addCard(tc)
             tc.u = true
             log.info("Stock card [" + tc + "] moved to waste.")
-            Some(CardMoved(tc.id, "stock", "waste", turnFaceUp = true))
-          case None => None
+            revealed :+ CardMoved(tc.id, "stock", "waste", turnFaceUp = true)
+          case None => Nil
         }
       }
 

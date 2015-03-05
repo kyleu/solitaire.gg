@@ -74,7 +74,7 @@ define([
         break;
       case "CardRevealed":
         var existing = this.game.cards[v.card.id];
-        existing.reveal(v.card);
+        existing.updateSprite(v.card.r, v.card.s, v.card.u);
         if(v.card.u) {
           existing.turnFaceUp();
         }

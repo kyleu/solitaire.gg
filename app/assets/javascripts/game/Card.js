@@ -3,9 +3,9 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
 
   function Card(game, id, rank, suit, faceUp) {
     this.id = id;
+
     this.rank = Rank.fromChar(rank);
     this.suit = Suit.fromChar(suit);
-    this.name = rank + suit + ": " + id;
     this.faceUp = faceUp;
 
     this.inputOriginalPosition = null;
@@ -16,7 +16,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
     if(this.faceUp) {
       Phaser.Sprite.call(this, game, 0, 0, 'card', this.spriteIndex);
     } else {
-      Phaser.Sprite.call(this, game, 0, 0, 'card-back');
+      Phaser.Sprite.call(this, game, 0, 0, 'card-back', 0);
     }
 
     this.inputEnabled = true;
@@ -31,18 +31,19 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   Card.prototype = Object.create(Phaser.Sprite.prototype);
   Card.prototype.constructor = Card;
 
-  Card.prototype.reveal = function(c) {
-    this.rank = Rank.fromChar(c.r);
-    this.suit = Suit.fromChar(c.s);
-    this.faceUp = c.u;
+  Card.prototype.updateSprite = function(rank, suit, faceUp) {
+    this.rank = Rank.fromChar(rank);
+    this.suit = Suit.fromChar(suit);
+    this.faceUp = faceUp;
     this.spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
     if(this.faceUp) {
-      this.key = 'card';
       this.frame = this.spriteIndex;
+      this.key = 'card';
     } else {
-      this.key = 'card-back';
       this.frame = 0;
+      this.key = 'card-back';
     }
+    this.updateCache();
   };
 
   Card.prototype.onInputDown = function(e, p) {

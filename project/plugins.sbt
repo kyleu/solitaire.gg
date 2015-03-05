@@ -16,5 +16,3 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % "1.0.0")
 
 // Developer Plugins
 addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.5.2")
-
-addSbtPlugin("com.typesafe.sbt" % "sbt-echo" % "0.1.6.2")

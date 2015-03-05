@@ -17,6 +17,11 @@ define(['game/Rank', 'game/pile/Pile', 'game/pile/PileHelpers'], function(Rank, 
     if(card.pile !== this) {
       throw "Provided card is not part of this pile.";
     }
+
+    if(!card.faceUp) {
+      return false;
+    }
+
     var cards = [];
 
     for(var selectedIndex = card.pileIndex; selectedIndex < this.cards.length; selectedIndex++) {
