@@ -3,17 +3,75 @@
 @layout.bootstrap("Server Status") {
   <h4>Server Status</h4>
 
-  <h5>@status.connections.size Connections</h5>
-  <ul>
-    @for(connection <- status.connections) {
-      <li>@connection._1 [@connection._2] (<a href="@routes.AdminController.traceConnection(connection._1)">Trace</a>)</li>
-    }
-  </ul>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h5>@status.connections.size Connections</h5>
+          <div style="height: 200px; overflow: auto;">
+            <table class="table table-bordered">
+              <tr>
+                <th>Connection ID</th>
+                <th>Username</th>
+                <th></th>
+              </tr>
+              @for(connection <- status.connections) {
+                <tr>
+                  <td>@connection._1</td>
+                  <td>@connection._2</td>
+                  <td>
+                    <a href="@routes.AdminController.traceConnection(connection._1)" onclick="trace(this.href);return false;">Trace</a>
+                  </td>
+                </tr>
+              }
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <h5>@status.games.size Games</h5>
-  <ul>
-    @for(game <- status.games) {
-      <li>@game._1 [@game._2.map(_._2).mkString(", ")] (<a href="@routes.AdminController.traceGame(game._1)">Trace</a>)</li>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h5>@status.games.size Games (<a href="" onclick="startNewGame();">New</a>)</h5>
+          <div style="height: 200px; overflow: auto;">
+            <table class="table table-bordered">
+              <tr>
+                <th>Game ID</th>
+                <th>Players</th>
+                <th></th>
+              </tr>
+              @for(game <- status.games) {
+                <tr>
+                  <td>@game._1</td>
+                  <td>@game._2.map(_._2).mkString(", ")</td>
+                  <td>
+                    <a href="@routes.AdminController.traceGame(game._1)" onclick="trace(this.href);return false;">Trace</a>
+                  </td>
+                </tr>
+              }
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="trace-content">
+            Select an option from above.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function trace(url) {
+      $("#trace-content" ).load(url);
     }
-  </ul>
+  </script>
 }

@@ -1,12 +1,19 @@
 package utils
 
+import java.util.TimeZone
+
+import org.joda.time.DateTimeZone
 import play.api.mvc.{RequestHeader, Results}
-import play.api.{Application, GlobalSettings}
+import play.api.{Logger, Application, GlobalSettings}
 
 import scala.concurrent.Future
 
 object PlayGlobalSettings extends GlobalSettings with Logging {
   override def onStart(app: Application) {
+    DateTimeZone.setDefault(DateTimeZone.UTC)
+    TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
+    Logger.info(utils.Config.projectName + " is starting.")
+
     super.onStart(app)
   }
   override def onStop(app: Application) {

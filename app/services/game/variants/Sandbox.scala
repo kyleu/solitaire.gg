@@ -1,9 +1,16 @@
-package services.game
+package services.game.variants
 
 import models.game._
+import services.game.GameVariant
+
+object Sandbox extends GameVariant.Description {
+  override val id = "sandbox"
+  override val name = "Sandbox"
+  override val body = "..."
+}
 
 case class Sandbox(override val id: String, override val seed: Int) extends GameVariant(id, seed) {
-  override val name = "Sandbox"
+  override val description = Sandbox
 
   val piles = List(
     new Tableau("sandbox-1")

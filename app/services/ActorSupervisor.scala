@@ -6,6 +6,7 @@ import akka.actor.SupervisorStrategy.Stop
 import akka.actor.{ActorRef, OneForOneStrategy, Props, SupervisorStrategy}
 import models._
 import play.api.libs.concurrent.Akka
+import services.game.GameService
 import utils.Logging
 import utils.metrics.{InstrumentedActor, MetricsServletActor}
 

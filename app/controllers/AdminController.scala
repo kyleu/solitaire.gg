@@ -26,15 +26,16 @@ object AdminController extends Controller {
     }
   }
 
-  def traceGame(id: String) = Action.async { implicit request =>
-    (ActorSupervisor.instance ask GameTrace(id)).map { x =>
-      Ok(views.html.admin.trace("Game", id, x.asInstanceOf[TraceResponse]))
-    }
-  }
-
   def traceConnection(id: String) = Action.async { implicit request =>
     (ActorSupervisor.instance ask ConnectionTrace(id)).map {
       case tr: TraceResponse => Ok(views.html.admin.trace("Connection", id, tr))
+      case se: ServerError => Ok(se.reason + ": " + se.content)
+    }
+  }
+
+  def traceGame(id: String) = Action.async { implicit request =>
+    (ActorSupervisor.instance ask GameTrace(id)).map {
+      case tr: TraceResponse => Ok(views.html.admin.trace("Game", id, tr))
       case se: ServerError => Ok(se.reason + ": " + se.content)
     }
   }

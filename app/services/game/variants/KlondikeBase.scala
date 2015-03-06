@@ -1,10 +1,9 @@
-package services.game
+package services.game.variants
 
 import models.game._
+import services.game.GameVariant
 
-case class KlondikeThreeCard(override val id: String, override val seed: Int) extends GameVariant(id, seed) {
-  override val name = "Klondike"
-
+abstract class KlondikeBase(override val id: String, override val seed: Int, val cardsToDraw: Int) extends GameVariant(id, seed) {
   val piles = List(
     new Stock("stock"),
     new Waste("waste"),

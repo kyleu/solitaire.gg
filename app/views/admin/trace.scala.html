@@ -1,14 +1,20 @@
 @(traceType: String, id: String, trace: TraceResponse)(implicit session: Session, flash: Flash)
 
-@layout.bootstrap(traceType + " Trace") {
-  <h4>@traceType [@id]</h4>
+<h4>@traceType [@id]</h4>
 
-  <table class="table table-bordered">
-    @for(stat <- trace.data) {
-      <tr>
-        <td>@stat._1</td>
-        <td>@stat._2</td>
-      </tr>
-    }
-  </table>
-}
+<table class="table table-bordered">
+  @for(stat <- trace.data) {
+    <tr>
+      <td>@stat._1</td>
+      <td>@stat._2</td>
+    </tr>
+  }
+</table>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div id="game-container">
+      Loading...
+    </div>
+  </div>
+</div>

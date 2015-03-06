@@ -1,14 +1,16 @@
-package services
+package services.game
 
-import akka.actor.{PoisonPill, ActorRef}
+import akka.actor.{ActorRef, PoisonPill}
 import models._
+import org.joda.time.DateTime
 import play.api.libs.concurrent.Akka
-import services.game.GameVariant
 import utils.Logging
 import utils.metrics.InstrumentedActor
 
 class GameService(id: String, gameType: String, seed: Int, initialSessions: List[(String, String, ActorRef)]) extends InstrumentedActor with Logging {
   log.info("Started game [" + gameType + "] for players [" + initialSessions.map(_._2).mkString(", ") + "] with seed [" + seed + "].")
+
+  private val started = new DateTime()
 
   private val connections = collection.mutable.HashMap[String, ActorRef](initialSessions.map(x => x._1 -> x._3): _*)
 
@@ -159,9 +161,10 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
   }
 
   private def handleConnectionStopped(id: String) {
-    import scala.concurrent.duration._
     import play.api.Play.current
     import play.api.libs.concurrent.Execution.Implicits._
+
+    import scala.concurrent.duration._
     log.info("Connection [" + id + "] stopped.")
     connections.remove(id)
     Akka.system.scheduler.scheduleOnce(30.seconds, self, StopGameIfEmpty)
@@ -178,11 +181,12 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
   private def handleGameTrace() {
     val ret = TraceResponse(List(
       "id" -> id,
-      "variant" -> gameVariant.name,
+      "variant" -> gameVariant.description.id,
       "seed" -> gameVariant.seed,
+      "started" -> started,
       "connections" -> connections.keys.toList.sorted,
       "gameMessageCount" -> gameMessages.size,
-      "lastMessage" -> gameMessages.lastOption.map(_.getClass.getSimpleName).getOrElse("none")
+      "lastMessage" -> gameMessages.lastOption.map(_.toString).getOrElse("none")
     ))
     sender() ! ret
   }
