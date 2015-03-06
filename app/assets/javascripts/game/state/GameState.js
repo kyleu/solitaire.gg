@@ -1,7 +1,8 @@
 define(function () {
   "use strict";
 
-  function GameState(game) {
+  function GameState(id, game) {
+    this.id = id;
     Phaser.State.call(this, game);
   }
 
@@ -29,7 +30,9 @@ define(function () {
     }
   };
 
-  GameState.prototype.resize = function(c, v) {
+  GameState.prototype.resize = function(h, w) {
+    console.log("Resizing [" + this.id + "] to [" + h + ", " + w + "].");
+    console.log(this);
     if(this.game.statusPanel !== undefined) {
       this.game.statusPanel.resize();
     }

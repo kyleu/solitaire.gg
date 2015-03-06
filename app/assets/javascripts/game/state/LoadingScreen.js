@@ -2,7 +2,7 @@ define(['Config', 'game/state/Gameplay', 'game/state/GameState'], function (cfg,
   "use strict";
 
   function LoadingScreen(game) {
-    GameState.call(this, game);
+    GameState.call(this, 'loading', game);
   }
 
   LoadingScreen.prototype = Object.create(GameState.prototype);

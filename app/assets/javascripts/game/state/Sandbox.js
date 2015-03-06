@@ -2,7 +2,7 @@ define(['Config', 'game/Card', 'game/pile/Pile', 'game/Playmat'], function (cfg,
   "use strict";
 
   function Sandbox(game) {
-    Phaser.State.call(this, game);
+    Phaser.State.call(this, 'sandbox', game);
   }
 
   Sandbox.prototype = Object.create(Phaser.State.prototype);

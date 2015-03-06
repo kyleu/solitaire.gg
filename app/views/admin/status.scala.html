@@ -69,9 +69,38 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="loading-screen">
+            Select a game from above, or <a href="">start a new game</a>.
+          </div>
+          <div id="game-container" style="height: 600px;">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     function trace(url) {
       $("#trace-content" ).load(url);
     }
+
+    window.scalataireConfig = {
+      "id": "@utils.Config.projectId",
+      "name": "@utils.Config.projectName",
+      "debug": "@utils.Config.debug",
+      "autoStart": false,
+      "cardSet": "@utils.Config.defaultCardSet",
+      "cardSize": "@utils.Config.defaultCardSize"
+    };
   </script>
+  <script src="/assets/lib/phaser/js/phaser.js"></script>
+  <script src="/assets/lib/phaser/js/phaser-debug.js"></script>
+  <script src="/assets/lib/dat.gui/dat.gui.js"></script>
+
+  <script data-main="/assets/javascripts/main" src="/assets/lib/requirejs/require.min.js"></script>
 }

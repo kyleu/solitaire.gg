@@ -6,7 +6,7 @@ define([
   "use strict";
 
   function Gameplay(game) {
-    GameState.call(this, game);
+    GameState.call(this, 'gameplay', game);
   }
 
   Gameplay.prototype = Object.create(GameState.prototype);
@@ -37,7 +37,7 @@ define([
 
     this.game.scale.onOrientationChange.add(this.onOrientationChange, this);
 
-    this.game.ws.send("JoinGame", { "game": "klondike" });
+    this.game.ws.send("JoinGame", {"game": "klondike"});
   };
 
   Gameplay.prototype.victorious = function() {

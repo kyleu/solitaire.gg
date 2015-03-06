@@ -2,7 +2,7 @@ define(["Config", "Websocket", "game/component/StatusPanel", "game/state/GameSta
   "use strict";
 
   function InitialState(game) {
-    GameState.call(this, game);
+    GameState.call(this, 'initial', game);
   }
 
   InitialState.prototype = Object.create(GameState.prototype);
