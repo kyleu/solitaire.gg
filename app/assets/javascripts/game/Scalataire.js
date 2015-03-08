@@ -4,12 +4,7 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
   function Scalataire(variant) {
     this.ws = new Websocket(cfg.wsUrl, this);
     this.game = null;
-    if(variant !== undefined) {
-      this.startGame(variant);
-    } else {
-      var ctx = this;
-      document.getElementById('game-container').innerHTML = '<div style="text-align: center; margin-top: 100px;"><button onclick="window.scalataire.startGame(\'klondike\');">Click here to start a game.</button></div>';
-    }
+    this.variant = variant;
   }
 
   Scalataire.prototype.startGame = function(variant) {
@@ -19,6 +14,12 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
 
   Scalataire.prototype.onConnect = function(url) {
     console.log(cfg.name + " connected.");
+    if(this.variant !== undefined) {
+      this.startGame(this.variant);
+    } else {
+      var ctx = this;
+      document.getElementById('game-container').innerHTML = '<div style="text-align: center; margin-top: 100px;"><button onclick="window.scalataire.startGame(\'klondike\');">Click here to start a game.</button></div>';
+    }
   };
 
   Scalataire.prototype.onMessage = function(c, v) {

@@ -1,6 +1,7 @@
 package models.game.logic
 
 import models.game._
+import models.game.pile.Pile
 
 object DragConstraints {
   sealed trait DragConstraint {

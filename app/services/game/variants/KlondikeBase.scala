@@ -1,6 +1,7 @@
 package services.game.variants
 
 import models.game._
+import models.game.pile.{Waste, Tableau, Stock, Foundation}
 import services.game.GameVariant
 
 abstract class KlondikeBase(override val id: String, override val seed: Int, val cardsToDraw: Int) extends GameVariant(id, seed) {

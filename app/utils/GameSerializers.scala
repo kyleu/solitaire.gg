@@ -1,6 +1,7 @@
 package utils
 
 import models.game._
+import models.game.pile.Pile
 import play.api.libs.json._
 
 object GameSerializers {

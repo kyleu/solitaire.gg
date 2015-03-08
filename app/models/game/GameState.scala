@@ -1,6 +1,7 @@
 package models.game
 
 import models.CardRevealed
+import models.game.pile.Pile
 
 case class GameState(
   id: String,
