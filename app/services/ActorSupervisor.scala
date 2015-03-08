@@ -49,13 +49,17 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
       val gameStatuses = games.toList.sortBy(_._1).map(x => x._1 -> x._2.connections)
       val connectionStatuses = connections.toList.sortBy(_._2.username).map(x => x._1 -> x._2.username)
       sender() ! SystemStatus(gameStatuses, connectionStatuses)
+    case ct: ConnectionTrace => connections.find(_._1 == ct.id) match {
+      case Some(g) => g._2.actorRef forward ct
+      case None => sender() ! ServerError("Unknown Connection", ct.id)
+    }
+    case ct: ClientTrace => connections.find(_._1 == ct.id) match {
+      case Some(g) => g._2.actorRef forward ct
+      case None => sender() ! ServerError("Unknown Client", ct.id)
+    }
     case gt: GameTrace => games.find(_._1 == gt.id) match {
       case Some(g) => g._2.actorRef forward gt
       case None => sender() ! ServerError("Unknown Game", gt.id)
-    }
-    case ct: ConnectionTrace => connections.find(_._1 == ct.id) match {
-      case Some(g) => g._2.actorRef forward ct
-      case None => sender() ! ServerError("Unknown Game", ct.id)
     }
 
     case sm: InternalMessage => log.warn("Unhandled internal message [" + sm.getClass.getSimpleName + "] received.")

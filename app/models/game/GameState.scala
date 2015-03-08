@@ -29,7 +29,7 @@ case class GameState(
     addCard(c, pile, reveal)
   }
 
-  def revealCardToAll(card: Card) = playerKnownCardIds.flatMap(p => revealCardToPlayer(card, p._1)).toList
+  def revealCardToAll(card: Card) = playerKnownCardIds.keys.flatMap(p => revealCardToPlayer(card, p)).toList
 
   def revealCardToPlayer(card: Card, player: String) = {
     val existing = playerKnownCardIds(player)

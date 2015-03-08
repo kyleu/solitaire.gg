@@ -1,4 +1,4 @@
-define(["Config"], function (cfg) {
+define(["utils/Config"], function (cfg) {
   "use strict";
 
   function Websocket(url, statusObj, messageObj) {
@@ -13,8 +13,8 @@ define(["Config"], function (cfg) {
     };
     ws.onmessage = function(event) {
       var json = JSON.parse(event.data);
-      if(json.c === "Ping") {
-        //console.log("Received message [Ping].");
+      if(json.c === "Pong") {
+        //console.log("Received message [Pong].");
       } else if(json.c === "MessageSet") {
         var messages = "";
         for(var messageIndex in json.v.messages) {

@@ -1,4 +1,4 @@
-define([], function() {
+define(function() {
   var getDropTarget = function(pile) {
     var firstCard = pile.dragCards[0];
 

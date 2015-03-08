@@ -1,4 +1,10 @@
-define(["Config", "Websocket", "game/component/StatusPanel", "game/state/GameState", "game/state/LoadingScreen"], function (cfg, Websocket, StatusPanel, GameState, LoadingScreen) {
+define([
+  "utils/Config",
+  "utils/Websocket",
+  "game/component/StatusPanel",
+  "game/state/GameState",
+  "game/state/LoadingScreen"
+], function (cfg, Websocket, StatusPanel, GameState, LoadingScreen) {
   "use strict";
 
   function InitialState(game) {

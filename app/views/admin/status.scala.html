@@ -17,10 +17,12 @@
               </tr>
               @for(connection <- status.connections) {
                 <tr>
-                  <td>@connection._1</td>
+                  <td>
+                    <a href="@routes.AdminController.traceConnection(connection._1)" onclick="trace(this.href);return false;">@connection._1</a>
+                  </td>
                   <td>@connection._2</td>
                   <td>
-                    <a href="@routes.AdminController.traceConnection(connection._1)" onclick="trace(this.href);return false;">Trace</a>
+                    <a href="@routes.AdminController.traceClient(connection._1)" onclick="trace(this.href);return false;"><span class="glyphicon glyphicon-cloud-download"></span></a>
                   </td>
                 </tr>
               }
@@ -33,21 +35,19 @@
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-body">
-          <h5>@status.games.size Games (<a href="" onclick="startNewGame();">New</a>)</h5>
+          <h5>@status.games.size Games</h5>
           <div style="height: 200px; overflow: auto;">
             <table class="table table-bordered">
               <tr>
                 <th>Game ID</th>
                 <th>Players</th>
-                <th></th>
               </tr>
               @for(game <- status.games) {
                 <tr>
-                  <td>@game._1</td>
-                  <td>@game._2.map(_._2).mkString(", ")</td>
                   <td>
-                    <a href="@routes.AdminController.traceGame(game._1)" onclick="trace(this.href);return false;">Trace</a>
+                    <a href="@routes.AdminController.traceGame(game._1)" onclick="trace(this.href);return false;">@game._1</a>
                   </td>
+                  <td>@game._2.map(_._2).mkString(", ")</td>
                 </tr>
               }
             </table>
@@ -69,38 +69,9 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div id="loading-screen">
-            Select a game from above, or <a href="">start a new game</a>.
-          </div>
-          <div id="game-container" style="height: 600px;">
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
     function trace(url) {
       $("#trace-content" ).load(url);
     }
-
-    window.scalataireConfig = {
-      "id": "@utils.Config.projectId",
-      "name": "@utils.Config.projectName",
-      "debug": "@utils.Config.debug",
-      "autoStart": false,
-      "cardSet": "@utils.Config.defaultCardSet",
-      "cardSize": "@utils.Config.defaultCardSize"
-    };
   </script>
-  <script src="/assets/lib/phaser/js/phaser.js"></script>
-  <script src="/assets/lib/phaser/js/phaser-debug.js"></script>
-  <script src="/assets/lib/dat.gui/dat.gui.js"></script>
-
-  <script data-main="/assets/javascripts/main" src="/assets/lib/requirejs/require.min.js"></script>
 }

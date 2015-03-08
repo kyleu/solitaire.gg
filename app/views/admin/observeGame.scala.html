@@ -1,9 +1,9 @@
-@()(implicit session: Session, flash: Flash)
+@(gameId: Option[String], account: Option[String])(implicit session: Session, flash: Flash)
 
 @layout.bootstrap(utils.Config.projectName + " Admin") {
   <script>
     $(function() {
-      alert("OK!");
+      
     });
   </script>
   <div class="row" style="margin-top: 20px;">
@@ -12,7 +12,7 @@
         <div class="panel-body">
           <div class="pull-right">
             Seed: <input type="text" id="game-seed" value="0" />
-            <button>Start</button>
+            <button>New Game</button>
           </div>
           <div id="status" style="padding-top: 3px;">Disconnected</div>
         </div>

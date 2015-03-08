@@ -1,4 +1,4 @@
-define(function () {
+define(["utils/DebugInfo"], function (di) {
   "use strict";
 
   function GameState(id, game) {
@@ -24,6 +24,9 @@ define(function () {
           var message = v.messages[messageIndex];
           this.onMessage(message.c, message.v);
         }
+        break;
+      case "SendDebugInfo":
+        this.game.ws.send("DebugInfo", { data: di.getDebugInfo(this.id, this.game) });
         break;
       default:
         console.warn("Unhandled message [" + c + "]: " + JSON.stringify(v));

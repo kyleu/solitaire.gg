@@ -1,4 +1,4 @@
-define(['Config', 'game/state/InitialState', 'game/CardSet'], function (config, InitialState, CardSet) {
+define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (config, InitialState, CardSet) {
   "use strict";
 
   function Game(id) {

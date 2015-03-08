@@ -12,7 +12,7 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
 
   private val started = new DateTime()
 
-  private val connections = collection.mutable.HashMap[String, ActorRef](initialSessions.map(x => x._1 -> x._3): _*)
+  private val connections = collection.mutable.HashMap[String, (String, ActorRef)](initialSessions.map(x => x._1 -> (x._2, x._3)): _*)
 
   private val gameVariant = GameVariant(gameType, id, seed)
   private val gameState = gameVariant.gameState
@@ -24,7 +24,7 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
     gameVariant.initialMoves()
     sendToAll(GameStarted(id, self))
     connections.foreach { c =>
-      c._2 ! GameJoined(id, initialSessions.map(_._2), gameState.view(c._1))
+      c._2._2 ! GameJoined(id, initialSessions.map(_._2), gameState.view(c._1))
     }
   }
 
@@ -179,12 +179,11 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
   }
 
   private def handleGameTrace() {
-    val ret = TraceResponse(List(
-      "id" -> id,
+    val ret = TraceResponse(id, List(
       "variant" -> gameVariant.description.id,
       "seed" -> gameVariant.seed,
       "started" -> started,
-      "connections" -> connections.keys.toList.sorted,
+      "connections" -> connections.toList.sortBy(_._2._1).map(x => "[" + x._1 + ": " + x._2._1 + "]"),
       "gameMessageCount" -> gameMessages.size,
       "lastMessage" -> gameMessages.lastOption.map(_.toString).getOrElse("none")
     ))
@@ -192,6 +191,6 @@ class GameService(id: String, gameType: String, seed: Int, initialSessions: List
   }
 
   private def sendToAll(message: Any) = connections.foreach { c =>
-    c._2 ! message
+    c._2._2 ! message
   }
 }

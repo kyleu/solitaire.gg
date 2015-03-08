@@ -21,6 +21,7 @@ object ResponseMessageSerializers {
       case se: ServerError => serverErrorWrites.writes(se)
       case p: Pong => pongWrites.writes(p)
       case vr: VersionResponse => versionResponseWrites.writes(vr)
+      case SendDebugInfo => JsObject(Nil)
 
       case gj: GameJoined => gameJoinedWrites.writes(gj)
 
@@ -30,7 +31,7 @@ object ResponseMessageSerializers {
 
       case _ => throw new IllegalArgumentException("Unhandled ResponseMessage type [" + r.getClass.getSimpleName + "].")
     }
-    JsObject(Seq("c" -> JsString(r.getClass.getSimpleName), "v" -> json))
+    JsObject(Seq("c" -> JsString(r.getClass.getSimpleName.replace("$", "")), "v" -> json))
   }
 
   val messageSetWrites = Writes[MessageSet] { ms: MessageSet =>

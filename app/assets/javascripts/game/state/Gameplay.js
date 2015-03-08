@@ -1,5 +1,5 @@
 define([
-  'Config', 'game/Card', 'game/pile/Pile',
+  'utils/Config', 'game/Card', 'game/pile/Pile',
   'game/pile/Stock', 'game/pile/Waste', 'game/pile/Foundation', 'game/pile/Tableau',
   'game/Playmat', 'game/state/GameState'
 ], function (cfg, Card, Pile, Stock, Waste, Foundation, Tableau, Playmat, GameState) {

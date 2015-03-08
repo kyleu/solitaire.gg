@@ -17,6 +17,7 @@ case class GameRequest(session: String, username: String, message: GameMessage) 
 case object GetSystemStatus extends InternalMessage
 case class SystemStatus(games: Seq[(String, Seq[(String, String)])], connections: Seq[(String, String)]) extends InternalMessage
 
-case class GameTrace(id: String) extends InternalMessage
 case class ConnectionTrace(id: String) extends InternalMessage
-case class TraceResponse(data: Seq[(String, Any)]) extends InternalMessage
+case class ClientTrace(id: String) extends InternalMessage
+case class GameTrace(id: String) extends InternalMessage
+case class TraceResponse(id: String, data: Seq[(String, Any)]) extends InternalMessage

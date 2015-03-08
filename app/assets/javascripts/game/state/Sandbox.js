@@ -1,4 +1,4 @@
-define(['Config', 'game/Card', 'game/pile/Pile', 'game/Playmat'], function (cfg, Card, Pile, Playmat) {
+define(['utils/Config', 'game/Card', 'game/pile/Pile', 'game/Playmat'], function (cfg, Card, Pile, Playmat) {
   "use strict";
 
   function Sandbox(game) {

@@ -1,4 +1,4 @@
-define(["Config"], function(cfg) {
+define(["utils/Config"], function(cfg) {
   var Options = function() {
     this.cardSet = cfg.cardSet;
     this.cardSize = cfg.cardSize;

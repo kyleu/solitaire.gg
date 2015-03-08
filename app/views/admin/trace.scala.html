@@ -1,6 +1,14 @@
-@(traceType: String, id: String, trace: TraceResponse)(implicit session: Session, flash: Flash)
+@(traceType: String, trace: TraceResponse, buttons: Seq[(String, String)] = Nil)(implicit session: Session, flash: Flash)
 
-<h4>@traceType [@id]</h4>
+@if(buttons.nonEmpty) {
+  <div style="float: right;">
+    @buttons.map { b =>
+      <a class="btn btn-default" style="margin-top: -16px;" target="_blank" href="@b._2">@b._1</a>
+    }
+  </div>
+}
+
+<h4>@traceType [@trace.id]</h4>
 
 <table class="table table-bordered">
   @for(stat <- trace.data) {

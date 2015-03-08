@@ -5,9 +5,6 @@ requirejs.config({
   }
 });
 
-requirejs(['Config', 'game/Options', 'game/Scalataire'], function(cfg, options, Scalataire) {
-  options.start();
-  if(cfg.autoStart) {
-    window.game = new Scalataire('klondike');
-  }
+requirejs(['game/Scalataire'], function(Scalataire) {
+  window.game = new Scalataire('klondike');
 });

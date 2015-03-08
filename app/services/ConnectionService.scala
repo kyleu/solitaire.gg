@@ -4,6 +4,7 @@ import java.util.UUID
 
 import akka.actor.{Props, ActorRef}
 import models._
+import play.api.libs.json.JsObject
 import utils.{Logging, Config}
 import utils.metrics.InstrumentedActor
 
@@ -17,6 +18,8 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
   var activeGameId: Option[String] = None
   var activeGame: Option[ActorRef] = None
 
+  private var pendingDebugChannel: Option[ActorRef] = None
+
   override def preStart() = {
     supervisor ! ConnectionStarted(id, username, self)
   }
@@ -26,6 +29,7 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
     case mr: MalformedRequest => log.error("MalformedRequest:  [" + mr.reason + "]: [" + mr.content + "].")
     case p: Ping => out ! Pong(p.timestamp)
     case GetVersion => out ! VersionResponse(Config.version)
+    case di: DebugInfo => handleDebugInfo(di.data)
 
     // Incoming game messages
     case jg: JoinGame => handleJoinGame(jg.game)
@@ -35,6 +39,7 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
     case gs: GameStarted => handleGameStarted(gs.id, gs.gameService)
     case gs: GameStopped => handleGameStopped(gs.id)
     case ct: ConnectionTrace => handleConnectionTrace()
+    case ct: ClientTrace => handleClientTrace()
 
     // Outgoing messages
     case rm: ResponseMessage => handleResponseMessage(rm)
@@ -67,12 +72,21 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
   }
 
   private def handleConnectionTrace() {
-    val ret = TraceResponse(List(
-      "id" -> id,
+    val ret = TraceResponse(id, List(
       "username" -> username,
       "game" -> activeGameId.getOrElse("Not in game")
     ))
     sender() ! ret
+  }
+
+  private def handleClientTrace() {
+    pendingDebugChannel = Some(sender())
+    out ! SendDebugInfo
+  }
+
+  private def handleDebugInfo(data: JsObject) = pendingDebugChannel match {
+    case Some(dc) => dc ! TraceResponse(id, data.fields)
+    case None => log.warn("Received unsolicited DebugInfo [" + data.toString + "] from [" + id + "].")
   }
 
   private def handleResponseMessage(rm: ResponseMessage) {

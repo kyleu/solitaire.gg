@@ -1,4 +1,4 @@
-define(['Config', 'game/state/Gameplay', 'game/state/GameState'], function (cfg, Gameplay, GameState) {
+define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState'], function (cfg, Gameplay, GameState) {
   "use strict";
 
   function LoadingScreen(game) {
