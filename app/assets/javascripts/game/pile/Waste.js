@@ -8,7 +8,7 @@ define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) 
   Waste.prototype = Object.create(Pile.prototype);
   Waste.prototype.constructor = Waste;
 
-  Waste.prototype.canSelectCard = PileHelpers.returnFalse;
+  Waste.prototype.canSelectCard = PileHelpers.topCardOnly;
   Waste.prototype.canSelectPile = PileHelpers.returnFalse;
 
   Waste.prototype.canDragFrom = PileHelpers.topCardOnly;

@@ -14,4 +14,4 @@ trait GameMessage extends RequestMessage
 
 case class SelectCard(card: String, pile: String, pileIndex: Int) extends GameMessage
 case class SelectPile(pile: String) extends GameMessage
-case class MoveCards(cards: List[String], src: String, tgt: String) extends GameMessage
+case class MoveCards(cards: Seq[String], src: String, tgt: String) extends GameMessage

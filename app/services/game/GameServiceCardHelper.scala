@@ -1,6 +1,6 @@
 package services.game
 
-import models.{CardMoveCancelled, CardRevealed, MessageSet, CardMoved}
+import models.{CardMoveCancelled, MessageSet, CardMoved}
 
 trait GameServiceCardHelper { this: GameService =>
   protected def handleSelectCard(cardId: String, pileId: String, pileIndex: Int) {
@@ -22,7 +22,7 @@ trait GameServiceCardHelper { this: GameService =>
     sendToAll(messages)
   }
 
-  protected def handleMoveCards(cardIds: List[String], sourceId: String, targetId: String) {
+  protected def handleMoveCards(cardIds: Seq[String], sourceId: String, targetId: String) {
     val cards = cardIds.map(gameState.cardsById)
     val source = gameState.pilesById(sourceId)
     val target = gameState.pilesById(targetId)
