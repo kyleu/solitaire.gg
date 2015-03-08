@@ -10,7 +10,8 @@ define([], function() {
         "screenHeight": screen.height,
         "screenWidth": screen.width,
         "screenOrientation": window.screen.orientation === undefined ? "?" : window.screen.orientation.type,
-        "gameId": game === null ? "-" : game.id.toString()
+        "gameId": game === null ? "-" : game.id,
+        "currentTime": new Date().toString()
       };
     }
   };

@@ -1,7 +1,7 @@
 define(["utils/Config"], function (cfg) {
   "use strict";
 
-  function Websocket(url, statusObj, messageObj) {
+  function Websocket(url, context) {
     this.url = url;
     this.connected = false;
 
@@ -9,7 +9,7 @@ define(["utils/Config"], function (cfg) {
     var ws = new WebSocket(this.url);
     ws.onopen = function() {
       me.connected = true;
-      statusObj.onConnect(me.url);
+      context.onConnect(me.url);
     };
     ws.onmessage = function(event) {
       var json = JSON.parse(event.data);
@@ -27,7 +27,7 @@ define(["utils/Config"], function (cfg) {
       } else {
         console.log("Received message [" + json.c + "].");
       }
-      messageObj.onMessage(json.c, json.v);
+      context.onMessage(json.c, json.v);
     };
     ws.onclose = function() {
       me.connected = false;

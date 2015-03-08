@@ -1,9 +1,9 @@
 define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (config, InitialState, CardSet) {
   "use strict";
 
-  function Game(id) {
+  function Game(id, ws) {
     this.id = id;
-    this.ws = null;
+    this.ws = ws;
     this.cardSet = CardSet[config.cardSet][config.cardSize];
     var initialState = new InitialState(this);
     Phaser.Game.call(this, '100%', '100%', Phaser.AUTO, 'game-container', initialState);
@@ -23,10 +23,10 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (co
     }
     switch(c) {
       case "Pong":
-        this.statusPanel.setLatency(new Date().getTime() - v.timestamp);
+        //this.statusPanel.setLatency(new Date().getTime() - v.timestamp);
         break;
       case "VersionResponse":
-        this.statusPanel.setVersion(v.version);
+        //this.statusPanel.setVersion(v.version);
         break;
       default:
         this.state.getCurrentState().onMessage(c, v);
@@ -37,7 +37,7 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (co
     this.ws.send("SelectCard", { card: card.id, pile: card.pile.id, pileIndex: card.pileIndex });
   };
 
-  Game.prototype.pileSelected = function(pile, pointer) {
+  Game.prototype.pileSelected = function(pile) {
     this.ws.send("SelectPile", { pile: pile.id } );
   };
 
