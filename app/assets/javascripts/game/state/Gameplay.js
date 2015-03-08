@@ -37,7 +37,7 @@ define([
 
     this.game.scale.onOrientationChange.add(this.onOrientationChange, this);
 
-    this.game.ws.send("JoinGame", {"game": "klondike"});
+    this.game.ws.send("JoinGame", {"variant": this.game.variant});
   };
 
   Gameplay.prototype.victorious = function() {
@@ -51,6 +51,8 @@ define([
     switch(c) {
       case "GameJoined":
         this.game.playmat = new Playmat(this.game, v.state.layouts);
+        this.id = v.state.id;
+        this.seed = v.state.seed;
         this.loadPiles(v.state.piles);
         this.loadCards(v.state.piles);
         break;

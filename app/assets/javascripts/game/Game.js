@@ -1,8 +1,9 @@
 define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (config, InitialState, CardSet) {
   "use strict";
 
-  function Game(id, ws) {
-    this.id = id;
+  function Game(variant, ws) {
+    this.id = null;
+    this.variant = variant;
     this.ws = ws;
     this.cardSet = CardSet[config.cardSet][config.cardSize];
     var initialState = new InitialState(this);
@@ -11,7 +12,7 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (co
     this.piles = {};
     this.cards = {};
 
-    console.log("Game [" + id + "] started.");
+    console.log("Game [" + variant + "] started.");
   }
 
   Game.prototype = Phaser.Game.prototype;

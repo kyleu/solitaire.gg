@@ -21,8 +21,7 @@ define(["utils/Config", "game/state/GameState", "game/state/LoadingScreen"], fun
       this.game.add.plugin(Phaser.Plugin.Debug);
     }
 
-    this.game.ws.send("GetVersion", { "timestamp": new Date().getTime() });
-
+    this.game.ws.send("GetVersion", {});
     this.game.state.start('loading');
   };
 

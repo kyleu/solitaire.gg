@@ -32,7 +32,7 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
     case di: DebugInfo => handleDebugInfo(di.data)
 
     // Incoming game messages
-    case jg: JoinGame => handleJoinGame(jg.game)
+    case jg: JoinGame => handleJoinGame(jg.variant)
     case gm: GameMessage => handleGameMessage(gm)
 
     // Internal messages

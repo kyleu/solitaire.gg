@@ -8,7 +8,7 @@ case class MalformedRequest(reason: String, content: String) extends RequestMess
 case class Ping(timestamp: Long) extends RequestMessage
 case object GetVersion extends RequestMessage
 case class DebugInfo(data: JsObject) extends RequestMessage
-case class JoinGame(game: String) extends RequestMessage
+case class JoinGame(variant: String) extends RequestMessage
 
 trait GameMessage extends RequestMessage
 
