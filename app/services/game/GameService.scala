@@ -15,6 +15,8 @@ class GameService(
   log.info("Started game [" + gameType + "] for players [" + initialSessions.map(_._2).mkString(", ") + "] with seed [" + seed + "].")
 
   protected val connections = collection.mutable.HashMap[String, (String, ActorRef)](initialSessions.map(x => x._1 -> (x._2, x._3)): _*)
+  protected val observers = collection.mutable.HashMap.empty[String, (String, ActorRef)]
+
   protected val gameVariant = GameVariant(gameType, id, seed)
   protected val gameState = gameVariant.gameState
   protected val gameMessages = collection.mutable.ArrayBuffer.empty[GameMessage]

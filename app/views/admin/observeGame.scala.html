@@ -24,15 +24,11 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <div id="game-container" style="width: 100%; height: 600px;">
-            <div id="loading-screen">
-              <span>Loading...</span>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 
   <script>
     window.scalataireConfig = {
@@ -41,6 +37,20 @@
       "debug": "@utils.Config.debug",
       "cardSet": "@utils.Config.defaultCardSet",
       "cardSize": "@utils.Config.defaultCardSize"
+    };
+
+
+    window.onConnected = function(scalataire) {
+      @if(gameId.isEmpty) {
+        scalataire.startGame('klondike');
+      } else {
+        @if(account.isEmpty) {
+          scalataire.observeGame('@gameId.get');
+        } else {
+          scalataire.observeGame('@gameId.get', '@account.get');
+        }
+      }
+      scalataire.startGame("klondike");
     };
   </script>
   <script src="/assets/lib/phaser/js/phaser.js"></script>

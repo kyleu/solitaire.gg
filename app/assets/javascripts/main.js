@@ -6,5 +6,11 @@ requirejs.config({
 });
 
 requirejs(['game/Scalataire'], function(Scalataire) {
-  window.scalataire = new Scalataire('klondike');
+  var callback = function() {
+    alert("No callback defined.");
+  };
+  if(window.onConnected !== undefined) {
+    callback = window.onConnected;
+  }
+  window.scalataire = new Scalataire(callback);
 });

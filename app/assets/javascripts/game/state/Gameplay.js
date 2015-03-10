@@ -37,7 +37,7 @@ define([
 
     this.game.scale.onOrientationChange.add(this.onOrientationChange, this);
 
-    this.game.ws.send("JoinGame", {"variant": this.game.variant});
+    this.game.ws.send("StartGame", {"variant": this.game.variant});
   };
 
   Gameplay.prototype.victorious = function() {
@@ -129,8 +129,8 @@ define([
 
   Gameplay.prototype.onOrientationChange = function (scale, prevOrientation) {
     alert("OC: Was [" + prevOrientation + "], now [" + scale.screenOrientation + "]. Window: [" + window.innerWidth + "x" +  window.innerHeight + "].");
-    document.getElementById("game-container").style.width = windoe.innerWidth;
-    document.getElementById("game-container").style.height = windoe.innerHeight;
+    document.getElementById("game-container").style.width = window.innerWidth;
+    document.getElementById("game-container").style.height = window.innerHeight;
   };
 
   Gameplay.prototype.resize = function(w, h) {

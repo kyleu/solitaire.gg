@@ -2,9 +2,6 @@
 
 @layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
   <div id="game-container">
-    <div id="loading-screen">
-      <span>Loading...</span>
-    </div>
   </div>
   <script>
     window.scalataireConfig = {
@@ -13,6 +10,10 @@
       "debug": "@utils.Config.debug",
       "cardSet": "@utils.Config.defaultCardSet",
       "cardSize": "@utils.Config.defaultCardSize"
+    };
+
+    window.onConnected = function(scalataire) {
+      scalataire.startGame("klondike");
     };
   </script>
   @if(utils.Config.debug) {

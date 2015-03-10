@@ -9,7 +9,7 @@ object RequestMessageSerializers {
   implicit val pingReads = Json.reads[Ping]
   // case object [GetVersion]
   implicit val debugInfoReads = Json.reads[DebugInfo]
-  implicit val joinGameReads = Json.reads[JoinGame]
+  implicit val startGameReads = Json.reads[StartGame]
   implicit val selectCardReads = Json.reads[SelectCard]
   implicit val selectPileReads = Json.reads[SelectPile]
   implicit val moveCardsReads = Json.reads[MoveCards]
@@ -23,7 +23,7 @@ object RequestMessageSerializers {
       case "Ping" => pingReads.reads(v)
       case "GetVersion" => JsSuccess(GetVersion)
       case "DebugInfo" => debugInfoReads.reads(v)
-      case "JoinGame" => joinGameReads.reads(v)
+      case "StartGame" => startGameReads.reads(v)
       case "SelectCard" => selectCardReads.reads(v)
       case "SelectPile" => selectPileReads.reads(v)
       case "MoveCards" => moveCardsReads.reads(v)

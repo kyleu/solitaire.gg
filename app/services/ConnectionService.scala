@@ -32,7 +32,9 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
     case di: DebugInfo => handleDebugInfo(di.data)
 
     // Incoming game messages
-    case jg: JoinGame => handleJoinGame(jg.variant)
+    case sg: StartGame => handleStartGame(sg.variant)
+    case jg: JoinGame => handleJoinGame(jg.id)
+    case og: ObserveGame => handleObserveGame(og.id, og.as)
     case gm: GameMessage => handleGameMessage(gm)
 
     // Internal messages
@@ -52,8 +54,16 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
     supervisor ! ConnectionStopped(id)
   }
 
-  private def handleJoinGame(gameType: String) {
+  private def handleStartGame(gameType: String) {
     supervisor ! CreateGame(gameType, id, username, self)
+  }
+
+  private def handleJoinGame(id: String) {
+    throw new IllegalArgumentException("TODO")
+  }
+
+  private def handleObserveGame(id: String, as: Option[String]) {
+    throw new IllegalArgumentException("TODO")
   }
 
   private def handleGameMessage(gm: GameMessage) = activeGame match {
