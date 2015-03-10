@@ -21,7 +21,7 @@ object ActorSupervisor extends Logging {
   }
 
   private case class GameRecord(connections: Seq[(String, String)], actorRef: ActorRef)
-  private case class ConnectionRecord(username: String, actorRef: ActorRef)
+  private case class ConnectionRecord(name: String, actorRef: ActorRef, var activeGame: Option[String])
 }
 
 private class ActorSupervisor extends InstrumentedActor with Logging {
@@ -42,12 +42,15 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
   override def receiveRequest = {
     case cs: ConnectionStarted => handleConnectionStarted(cs.id, cs.username, cs.conn)
     case cs: ConnectionStopped => handleConnectionStopped(cs.id)
-    case cg: CreateGame => handleCreateGame(cg.gameType, cg.session, cg.username, cg.conn)
+
+    case cg: CreateGame => handleCreateGame(cg.variant, cg.connectionId, cg.seed)
+    case cgj: ConnectionGameJoin => handleConnectionGameJoin(cgj.id, cgj.connectionId)
+    case cgo: ConnectionGameObserve => handleConnectionGameObserve(cgo.id, cgo.connectionId, cgo.as)
     case gs: GameStopped => handleGameStopped(gs.id)
 
     case GetSystemStatus =>
       val gameStatuses = games.toList.sortBy(_._1).map(x => x._1 -> x._2.connections)
-      val connectionStatuses = connections.toList.sortBy(_._2.username).map(x => x._1 -> x._2.username)
+      val connectionStatuses = connections.toList.sortBy(_._2.name).map(x => x._1 -> x._2.name)
       sender() ! SystemStatus(gameStatuses, connectionStatuses)
     case ct: ConnectionTrace => connections.find(_._1 == ct.id) match {
       case Some(g) => g._2.actorRef forward ct
@@ -68,7 +71,7 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
 
   private def handleConnectionStarted(id: String, username: String, conn: ActorRef) {
     log.debug("Connection [" + id + "] registered to [" + conn.path + "].")
-    connections(id) = ConnectionRecord(username, conn)
+    connections(id) = ConnectionRecord(username, conn, None)
   }
 
   private def handleConnectionStopped(id: String) {
@@ -78,14 +81,55 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
     }
   }
 
-  private def handleCreateGame(gameType: String, connectionId: String, username: String, conn: ActorRef) {
+  private def handleCreateGame(variant: String, connectionId: String, seed: Option[Int]) {
     val id = UUID.randomUUID.toString
-    val seed = Math.abs(masterRng.nextInt())
-    val actor = context.actorOf(Props(new GameService(id, gameType, seed, List((connectionId, username, conn)))), "game:" + id)
-    games(id) = GameRecord(List((connectionId, username)), actor)
+    val s = Math.abs(seed.getOrElse(masterRng.nextInt()))
+    val c = connections(connectionId)
+    val actor = context.actorOf(Props(new GameService(id, variant, s, List((connectionId, c.name, c.actorRef)))), "game:" + id)
+    c.activeGame = Some(id)
+    games(id) = GameRecord(List((connectionId, c.name)), actor)
   }
 
-  private def handleGameStopped(id: String) {
-    games.remove(id)
+  private def handleConnectionGameJoin(id: String, connectionId: String) = games.headOption match { //games.get(id) match {
+    case Some(g) =>
+      log.info("Joining game [" + id + "].")
+      val c = connections(connectionId)
+      c.activeGame = Some(id)
+      g._2.actorRef ! AddPlayer(connectionId, c.name, c.actorRef)
+    case None =>
+      log.warn("Attempted to observe invalid game [" + id + "].")
+      sender() ! ServerError("Invalid Game", id)
+  }
+
+  private def handleConnectionGameObserve(id: String, connectionId: String, as: Option[String]) = {
+    val game = if(id == "random") {
+      games.headOption.map(_._2)
+    } else {
+      games.get(id)
+    }
+    game match {
+      case Some(g) =>
+        log.info("Observing game [" + id + "].")
+        val c = connections(connectionId)
+        c.activeGame = Some(id)
+        c.actorRef ! GameStarted(id, g.actorRef)
+        g.actorRef ! AddObserver(connectionId, c.name, as, c.actorRef)
+      case None =>
+        log.warn("Attempted to observe invalid game [" + id + "].")
+        sender() ! ServerError("Invalid Game", id)
+    }
+  }
+
+  private def handleGameStopped(id: String) = games.remove(id) match {
+    case Some(g) =>
+      g.connections.map { c =>
+        connections.get(c._1).map { cr =>
+          cr.activeGame = None
+          cr.actorRef ! GameStopped(id)
+        }
+
+      }
+      log.debug("Game [" + id + "] stopped.")
+    case None => log.warn("Attempted to stop missing game [" + id + "].")
   }
 }

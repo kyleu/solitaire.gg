@@ -7,8 +7,13 @@ sealed trait InternalMessage
 case class ConnectionStarted(id: String, username: String, conn: ActorRef) extends InternalMessage
 case class ConnectionStopped(id: String) extends InternalMessage
 
-case class CreateGame(gameType: String, session: String, username: String, conn: ActorRef) extends InternalMessage
+case class AddPlayer(id: String, name: String, actorRef: ActorRef) extends InternalMessage
+case class AddObserver(id: String, name: String, as: Option[String], actorRef: ActorRef) extends InternalMessage
+
+case class CreateGame(variant: String, connectionId: String, seed: Option[Int]) extends InternalMessage
 case class GameStarted(id: String, gameService: ActorRef) extends InternalMessage
+case class ConnectionGameJoin(id: String, connectionId: String)
+case class ConnectionGameObserve(id: String, connectionId: String, as: Option[String])
 case class GameStopped(id: String) extends InternalMessage
 
 case object StopGameIfEmpty extends InternalMessage

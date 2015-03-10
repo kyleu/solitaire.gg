@@ -5,14 +5,18 @@ import play.api.libs.json._
 import play.api.libs.functional.syntax._
 
 object RequestMessageSerializers {
-  implicit val malformedRequestReads = Json.reads[MalformedRequest]
-  implicit val pingReads = Json.reads[Ping]
+  private val malformedRequestReads = Json.reads[MalformedRequest]
+  private val pingReads = Json.reads[Ping]
   // case object [GetVersion]
-  implicit val debugInfoReads = Json.reads[DebugInfo]
-  implicit val startGameReads = Json.reads[StartGame]
-  implicit val selectCardReads = Json.reads[SelectCard]
-  implicit val selectPileReads = Json.reads[SelectPile]
-  implicit val moveCardsReads = Json.reads[MoveCards]
+  private val debugInfoReads = Json.reads[DebugInfo]
+
+  private val startGameReads = Json.reads[StartGame]
+  private val joinGameReads = Json.reads[JoinGame]
+  private val observeGameReads = Json.reads[ObserveGame]
+
+  private val selectCardReads = Json.reads[SelectCard]
+  private val selectPileReads = Json.reads[SelectPile]
+  private val moveCardsReads = Json.reads[MoveCards]
 
   implicit val requestMessageReads: Reads[RequestMessage] = (
     (__ \ 'c).read[String] and
@@ -23,7 +27,11 @@ object RequestMessageSerializers {
       case "Ping" => pingReads.reads(v)
       case "GetVersion" => JsSuccess(GetVersion)
       case "DebugInfo" => debugInfoReads.reads(v)
+
       case "StartGame" => startGameReads.reads(v)
+      case "JoinGame" => joinGameReads.reads(v)
+      case "ObserveGame" => observeGameReads.reads(v)
+
       case "SelectCard" => selectCardReads.reads(v)
       case "SelectPile" => selectPileReads.reads(v)
       case "MoveCards" => moveCardsReads.reads(v)

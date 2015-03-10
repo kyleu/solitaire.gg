@@ -12,7 +12,8 @@ trait GameServiceTraceHelper { this: GameService =>
       "variant" -> gameVariant.description.id,
       "seed" -> gameVariant.seed,
       "started" -> started,
-      "connections" -> connections.toList.sortBy(_._2._1).map(x => "[" + x._1 + ": " + x._2._1 + "]"),
+      "connections" -> playerConnections.toList.sortBy(_._2._1).map(x => "[" + x._1 + ": " + x._2._1 + "]"),
+      "observers" -> observerConnections.toList.sortBy(_._2._1).map(x => "[" + x._1 + ": " + x._2._1 + " (as " + x._2._2.getOrElse("admin") + ")]"),
       "gameMessageCount" -> gameMessages.size,
       "lastMessage" -> gameMessages.lastOption.map(_.toString).getOrElse("none")
     ))

@@ -5,6 +5,7 @@ import models.game.pile.Pile
 
 case class GameState(
   id: String,
+  variant: String,
   seed: Int,
   deck: Deck,
   piles: Seq[Pile],
@@ -42,8 +43,8 @@ case class GameState(
     }
   }
 
-  def view(session: String) = {
-    val knownCards = playerKnownCardIds(session)
+  def view(player: String) = {
+    val knownCards = playerKnownCardIds(player)
     this.copy(
       deck = deck.copy(cards = deck.cards.map( c => if(knownCards.contains(c.id)) { c } else { c.copy( r = Rank.Unknown, s = Suit.Unknown ) })),
       piles = piles.map( p => p.copy( cards = p.cards.map( c => if(knownCards.contains(c.id)) { c } else { c.copy( r = Rank.Unknown, s = Suit.Unknown ) })) )

@@ -49,7 +49,7 @@ abstract class KlondikeBase(override val id: String, override val seed: Int, val
     )
   )
 
-  val gameState = GameState(id, seed, deck, piles, layouts)
+  lazy val gameState = GameState(id, description.id, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "tableau-1", reveal = true)

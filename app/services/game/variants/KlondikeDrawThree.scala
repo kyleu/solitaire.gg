@@ -1,6 +1,5 @@
 package services.game.variants
 
-import models.game._
 import services.game.GameVariant
 
 object KlondikeDrawThree extends GameVariant.Description {

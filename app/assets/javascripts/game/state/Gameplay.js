@@ -37,7 +37,21 @@ define([
 
     this.game.scale.onOrientationChange.add(this.onOrientationChange, this);
 
-    this.game.ws.send("StartGame", {"variant": this.game.variant});
+    if(cfg.initialAction === undefined) {
+      this.game.ws.send("StartGame", {"variant": "klondike"});
+    } else if(cfg.initialAction[0] === "start") {
+      this.game.ws.send("StartGame", {"variant": cfg.initialAction[1]});
+    } else if(cfg.initialAction[0] === "join") {
+      this.game.ws.send("JoinGame", {"id": cfg.initialAction[1]});
+    } else if(cfg.initialAction[0] === "observe") {
+      if(cfg.initialAction.length === 2) {
+        this.game.ws.send("ObserveGame", {"id": cfg.initialAction[1]});
+      } else {
+        this.game.ws.send("ObserveGame", {"id": cfg.initialAction[1], "account": cfg.initialAction[2]});
+      }
+    } else {
+      alert("Invalid initial action [" + cfg.initialAction + "].");
+    }
   };
 
   Gameplay.prototype.victorious = function() {
@@ -52,6 +66,7 @@ define([
       case "GameJoined":
         this.game.playmat = new Playmat(this.game, v.state.layouts);
         this.id = v.state.id;
+        this.variant = v.variant;
         this.seed = v.state.seed;
         this.loadPiles(v.state.piles);
         this.loadCards(v.state.piles);
@@ -140,8 +155,10 @@ define([
       this.game.playmat.resize();
     }
 
-    this.bg.height = this.game.height * 2;
-    this.bg.width = this.game.width * 2;
+    if(this.bg !== undefined) {
+      this.bg.height = this.game.height * 2;
+      this.bg.width = this.game.width * 2;
+    }
   };
 
   return Gameplay;

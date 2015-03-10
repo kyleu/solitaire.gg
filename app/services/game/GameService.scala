@@ -8,25 +8,30 @@ import utils.metrics.InstrumentedActor
 
 class GameService(
   val id: String,
-  val gameType: String,
+  val variant: String,
   val seed: Int,
-  protected val initialSessions: List[(String, String, ActorRef)]
+  private val initialPlayers: List[(String, String, ActorRef)]
 ) extends InstrumentedActor with GameServiceTraceHelper with GameServiceCardHelper with Logging {
-  log.info("Started game [" + gameType + "] for players [" + initialSessions.map(_._2).mkString(", ") + "] with seed [" + seed + "].")
+  log.info("Started game [" + variant + "] for players [" + initialPlayers.map(_._2).mkString(", ") + "] with seed [" + seed + "].")
 
-  protected val connections = collection.mutable.HashMap[String, (String, ActorRef)](initialSessions.map(x => x._1 -> (x._2, x._3)): _*)
-  protected val observers = collection.mutable.HashMap.empty[String, (String, ActorRef)]
+  protected val playerConnections = collection.mutable.HashMap[String, (String, ActorRef)](initialPlayers.map(x => x._1 -> (x._2, x._3)): _*)
+  protected val observerConnections = collection.mutable.HashMap.empty[String, (String, Option[String], ActorRef)]
 
-  protected val gameVariant = GameVariant(gameType, id, seed)
+  protected val gameVariant = GameVariant(variant, id, seed)
   protected val gameState = gameVariant.gameState
   protected val gameMessages = collection.mutable.ArrayBuffer.empty[GameMessage]
 
   override def preStart() {
-    initialSessions.foreach( s => gameState.addPlayer(s._1) )
+    initialPlayers.foreach( s => gameState.addPlayer(s._1) )
     gameVariant.initialMoves()
-    sendToAll(GameStarted(id, self))
-    connections.foreach { c =>
-      c._2._2 ! GameJoined(id, initialSessions.map(_._2), gameState.view(c._1))
+
+    val message = GameStarted(id, self)
+    playerConnections.foreach { c =>
+      c._2._2 ! message
+    }
+
+    playerConnections.foreach { c =>
+      c._2._2 ! GameJoined(id, initialPlayers.map(_._2), gameState.view(c._1))
     }
   }
 
@@ -50,6 +55,8 @@ class GameService(
       log.debug("Handling [" + im.getClass.getSimpleName + "] internal message.")
       try {
         im match {
+          case ap: AddPlayer => handleAddPlayer(ap.id, ap.name, ap.actorRef)
+          case ap: AddObserver => handleAddObserver(ap.id, ap.name, ap.as, ap.actorRef)
           case cs: ConnectionStopped => handleConnectionStopped(cs.id)
           case StopGameIfEmpty => handleStopGameIfEmpty()
           case gt: GameTrace => handleGameTrace()
@@ -61,30 +68,51 @@ class GameService(
     case x => log.warn("GameService received unknown message [" + x.getClass.getSimpleName + "].")
   }
 
+  private def handleAddPlayer(connectionId: String, name: String, actorRef: ActorRef) {
+    actorRef ! GameJoined(id, initialPlayers.map(_._2), gameState.view(name))
+  }
+
+  private def handleAddObserver(connectionId: String, name: String, as: Option[String], actorRef: ActorRef) {
+    observerConnections(id) = (name, as, actorRef)
+    val gs = as match {
+      case Some(player) => gameState.view(player)
+      case None => gameState
+    }
+    actorRef ! GameJoined(id, initialPlayers.map(_._2), gs)
+  }
+
   private def handleConnectionStopped(id: String) {
     import play.api.Play.current
     import play.api.libs.concurrent.Execution.Implicits._
 
     import scala.concurrent.duration._
-    log.info("Connection [" + id + "] stopped.")
-    connections.remove(id)
+    if(playerConnections.contains(id)) {
+      log.info("Player connection [" + id + "] stopped.")
+      playerConnections.remove(id)
+    } else if(observerConnections.contains(id)) {
+      log.info("Observer connection [" + id + "] stopped.")
+      observerConnections.remove(id)
+    } else {
+      log.warn("Unknown connection [" + id + "] was stopped.")
+    }
     Akka.system.scheduler.scheduleOnce(30.seconds, self, StopGameIfEmpty)
   }
 
   private def handleStopGameIfEmpty() {
-    if(connections.isEmpty) {
+    if(playerConnections.isEmpty && observerConnections.isEmpty) {
       log.info("Stopping empty game [" + id + "] after timeout.")
       context.parent ! GameStopped(id)
       self ! PoisonPill
     }
   }
 
-  protected def sendToAll(message: InternalMessage): Unit = connections.foreach { c =>
-    c._2._2 ! message
-  }
-
-  protected def sendToAll(message: ResponseMessage): Unit = connections.foreach { c =>
-    c._2._2 ! message
+  protected def sendToAll(message: ResponseMessage): Unit = {
+    playerConnections.foreach { c =>
+      c._2._2 ! message
+    }
+    observerConnections.foreach { c =>
+      c._2._3 ! message
+    }
   }
 
   protected def sendToAll(messages: Seq[ResponseMessage]): Unit = {

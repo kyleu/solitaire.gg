@@ -36,21 +36,16 @@
       "name": "@utils.Config.projectName",
       "debug": "@utils.Config.debug",
       "cardSet": "@utils.Config.defaultCardSet",
-      "cardSize": "@utils.Config.defaultCardSize"
-    };
-
-
-    window.onConnected = function(scalataire) {
-      @if(gameId.isEmpty) {
-        scalataire.startGame('klondike');
-      } else {
-        @if(account.isEmpty) {
-          scalataire.observeGame('@gameId.get');
+      "cardSize": "@utils.Config.defaultCardSize",
+      @if(gameId.isDefined) {
+        @if(account.isDefined) {
+          "initialAction" : ["observer", "@gameId.get" ]
         } else {
-          scalataire.observeGame('@gameId.get', '@account.get');
+          "initialAction": ["observe", "@gameId.get"]
         }
+      } else {
+        "initialAction": ["observe", "random"]
       }
-      scalataire.startGame("klondike");
     };
   </script>
   <script src="/assets/lib/phaser/js/phaser.js"></script>

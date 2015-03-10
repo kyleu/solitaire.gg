@@ -55,15 +55,15 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
   }
 
   private def handleStartGame(gameType: String) {
-    supervisor ! CreateGame(gameType, id, username, self)
+    supervisor ! CreateGame(gameType, id, None)
   }
 
-  private def handleJoinGame(id: String) {
-    throw new IllegalArgumentException("TODO")
+  private def handleJoinGame(gameId: String) = {
+    supervisor ! ConnectionGameJoin(gameId, id)
   }
 
-  private def handleObserveGame(id: String, as: Option[String]) {
-    throw new IllegalArgumentException("TODO")
+  private def handleObserveGame(gameId: String, as: Option[String]) = {
+    supervisor ! ConnectionGameObserve(gameId, id, as)
   }
 
   private def handleGameMessage(gm: GameMessage) = activeGame match {

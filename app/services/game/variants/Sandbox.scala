@@ -29,7 +29,7 @@ case class Sandbox(override val id: String, override val seed: Int) extends Game
     )
   )
 
-  override val gameState = GameState(id, seed, deck, piles, layouts)
+  override val gameState = GameState(id, description.id, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(), "sandbox-1")

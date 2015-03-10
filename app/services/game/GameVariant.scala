@@ -24,7 +24,7 @@ object GameVariant {
 }
 
 abstract class GameVariant(val id: String, val seed: Int) {
-  val description: GameVariant.Description
+  def description: GameVariant.Description
   val rng = new Random(new java.util.Random(seed))
   val gameState: GameState
   def initialMoves(): Unit

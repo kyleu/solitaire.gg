@@ -1,24 +1,14 @@
 define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocket, Game) {
   "use strict";
 
-  function Scalataire(callback) {
-    this.callback = callback;
+  function Scalataire() {
     this.ws = new Websocket(cfg.wsUrl, this);
     this.game = null;
   }
 
-  Scalataire.prototype.startGame = function(variant) {
-    this.game = new Game(variant, this.ws);
-  };
-
-  Scalataire.prototype.observeGame = function(id, account) {
-    console.log("Observing game [" + id + "] as [" + account + "].");
-    this.game = new Game("klondike", this.ws);
-  };
-
   Scalataire.prototype.onConnect = function(url) {
     console.log(cfg.name + " connected.");
-    this.callback(this);
+    this.game = new Game(this.ws);
   };
 
   Scalataire.prototype.onMessage = function(c, v) {

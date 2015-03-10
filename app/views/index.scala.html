@@ -9,11 +9,8 @@
       "name": "@utils.Config.projectName",
       "debug": "@utils.Config.debug",
       "cardSet": "@utils.Config.defaultCardSet",
-      "cardSize": "@utils.Config.defaultCardSize"
-    };
-
-    window.onConnected = function(scalataire) {
-      scalataire.startGame("klondike");
+      "cardSize": "@utils.Config.defaultCardSize",
+      "initialAction": ["start", "klondike"]
     };
   </script>
   @if(utils.Config.debug) {
