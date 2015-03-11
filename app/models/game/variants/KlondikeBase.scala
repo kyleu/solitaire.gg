@@ -3,10 +3,10 @@ package models.game.variants
 import models.game._
 import models.game.pile.{Waste, Tableau, Stock, Foundation}
 
-abstract class KlondikeBase(override val id: String, override val seed: Int, val cardsToDraw: Int) extends GameVariant(id, seed) {
+abstract class KlondikeBase(override val id: String, override val seed: Int, cardsToDraw: Int) extends GameVariant(id, seed) {
   val piles = List(
-    new Stock("stock"),
-    new Waste("waste"),
+    new Stock("stock", cardsToDraw),
+    new Waste("waste", Some(3)),
 
     new Foundation("foundation-1"),
     new Foundation("foundation-2"),

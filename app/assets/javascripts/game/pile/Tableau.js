@@ -1,8 +1,8 @@
 define(['game/Rank', 'game/pile/Pile', 'game/pile/PileHelpers'], function(Rank, Pile, PileHelpers) {
   "use strict";
 
-  var Tableau = function(game, id) {
-    Pile.call(this, game, id, "tableau");
+  var Tableau = function(game, id, cardsShown, direction) {
+    Pile.call(this, game, id, "tableau", cardsShown, direction);
   };
 
   Tableau.prototype = Object.create(Pile.prototype);
@@ -66,12 +66,9 @@ define(['game/Rank', 'game/pile/Pile', 'game/pile/PileHelpers'], function(Rank, 
   Tableau.prototype.endDrag = PileHelpers.endDrag;
 
   Tableau.prototype.cardAdded = function(card) {
-    var tween = card.game.add.tween(card);
-    tween.to({
-      x: this.x,
-      y: this.y + ((this.cards.length - 1) * this.game.cardSet.cardVerticalOffset)
-    }, 200);
-    tween.start();
+    var x = this.x;
+    var y = this.y + ((this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
+    PileHelpers.tweenCard(card, x, y);
     this.intersectHeight = this.game.cardSet.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
   };
 

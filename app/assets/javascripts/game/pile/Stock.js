@@ -1,8 +1,8 @@
 define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) {
   "use strict";
 
-  var Stock = function(game, id) {
-    Pile.call(this, game, id, "stock");
+  var Stock = function(game, id, cardsShown, direction) {
+    Pile.call(this, game, id, "stock", cardsShown, direction);
   };
 
   Stock.prototype = Object.create(Pile.prototype);

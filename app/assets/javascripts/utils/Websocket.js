@@ -23,9 +23,9 @@ define(["utils/Config"], function (cfg) {
           }
           messages += json.v.messages[messageIndex].c;
         }
-        console.log("Received message [MessageSet] containing [" + messages + "].");
+        // console.log("Received message [MessageSet] containing [" + messages + "].");
       } else {
-        console.log("Received message [" + json.c + "].");
+        // console.log("Received message [" + json.c + "].");
       }
       context.onMessage(json.c, json.v);
     };
@@ -44,7 +44,7 @@ define(["utils/Config"], function (cfg) {
     var msg = { "c": c, "v": v };
     var s = null;
     if(cfg.debug) {
-      console.log("Sending message [" + c + "].");
+      // console.log("Sending message [" + c + "].");
       s = JSON.stringify(msg, undefined, 2);
     } else {
       s = JSON.stringify(msg);

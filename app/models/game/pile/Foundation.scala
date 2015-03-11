@@ -2,7 +2,7 @@ package models.game.pile
 
 import models.game.{Card, Rank}
 
-class Foundation(override val id: String) extends Pile(id, "foundation") {
+class Foundation(override val id: String) extends Pile(id, "foundation", cardsShown = Some(1)) {
   override def canDragFrom(cards: Seq[Card]) = cards.length == 1 && Some(cards(0)) == this.cards.lastOption
   override def canDragTo(cards: Seq[Card]) = if(cards.length == 1) {
     if(this.cards.isEmpty && cards(0).r == Rank.Ace) {

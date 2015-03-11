@@ -4,7 +4,7 @@ import models.game.pile.actions.SelectCardActions
 import models.CardRevealed
 import models.game.{GameState, Card, Rank}
 
-class Tableau(override val id: String) extends Pile(id, "tableau") {
+class Tableau(id: String) extends Pile(id, "tableau", direction = Some("d")) {
   override def canSelectCard(card: Card) = {
     Some(card) == this.cards.lastOption
   }

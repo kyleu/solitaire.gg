@@ -37,6 +37,9 @@
       "debug": "@utils.Config.debug",
       "cardSet": "@utils.Config.defaultCardSet",
       "cardSize": "@utils.Config.defaultCardSize",
+      "variant": "observe",
+      "variants": [@Html(models.game.GameVariant.all.map(v => "['" + v.id + "', '" + v.name + "']").mkString(", "))],
+
       @if(gameId.isDefined) {
         @if(account.isDefined) {
           "initialAction" : ["observer", "@gameId.get" ]

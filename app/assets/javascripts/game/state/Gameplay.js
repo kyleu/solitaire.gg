@@ -38,9 +38,9 @@ define([
     this.game.scale.onOrientationChange.add(this.onOrientationChange, this);
 
     if(cfg.initialAction === undefined) {
-      this.game.ws.send("StartGame", {"variant": "klondike"});
+      this.game.ws.send("StartGame", {"variant": cfg.variant});
     } else if(cfg.initialAction[0] === "start") {
-      this.game.ws.send("StartGame", {"variant": cfg.initialAction[1]});
+      this.game.ws.send("StartGame", {"variant": cfg.variant});
     } else if(cfg.initialAction[0] === "join") {
       this.game.ws.send("JoinGame", {"id": cfg.initialAction[1]});
     } else if(cfg.initialAction[0] === "observe") {
@@ -112,16 +112,16 @@ define([
       var pileObj = null;
       switch(pile.behavior) {
         case "stock":
-          pileObj = new Stock(this.game, pile.id, pile.behavior);
+          pileObj = new Stock(this.game, pile.id, pile.cardsShown, pile.direction);
           break;
         case "waste":
-          pileObj = new Waste(this.game, pile.id, pile.behavior);
+          pileObj = new Waste(this.game, pile.id, pile.cardsShown, pile.direction);
           break;
         case "foundation":
-          pileObj = new Foundation(this.game, pile.id, pile.behavior);
+          pileObj = new Foundation(this.game, pile.id, pile.cardsShown, pile.direction);
           break;
         case "tableau":
-          pileObj = new Tableau(this.game, pile.id, pile.behavior);
+          pileObj = new Tableau(this.game, pile.id, pile.cardsShown, pile.direction);
           break;
         default:
           throw "Unknown pile behavior [" + pile.behavior + "].";

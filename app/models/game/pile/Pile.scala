@@ -6,7 +6,13 @@ import utils.Logging
 
 import scala.collection.mutable.ArrayBuffer
 
-case class Pile(id: String, behavior: String, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) extends Logging {
+case class Pile(
+  id: String,
+  behavior: String,
+  cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card],
+  cardsShown: Option[Int] = None,
+  direction: Option[String] = None
+) extends Logging {
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
 
   def addCard(c: Card) {

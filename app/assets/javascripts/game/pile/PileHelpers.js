@@ -77,8 +77,7 @@ define(function() {
           cancelCard.cancelDrag();
         }
       } else {
-        console.log("Moving [" + this.dragCards + "] to [" + dropTarget.id + "].");
-
+        // console.log("Moving [" + this.dragCards + "] to [" + dropTarget.id + "].");
         for(var moveIndex in this.dragCards) {
           var moveCard = this.dragCards[moveIndex];
           moveCard.dragging = false;

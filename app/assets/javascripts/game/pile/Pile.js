@@ -1,10 +1,13 @@
 define(function () {
   "use strict";
 
-  function Pile(game, id, behavior) {
+  function Pile(game, id, behavior, cardsShown, direction) {
     Phaser.Group.call(this, game, game.playmat, id);
     this.id = id;
     this.behavior = behavior;
+    this.cardsShown = cardsShown;
+    this.direction = direction;
+    console.log("Pile [" + this.id + "] showing [" + this.cardsShown + "] cards in direction [" + this.direction + "].");
     this.cards = [];
     this.game.addPile(this);
 

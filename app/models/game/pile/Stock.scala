@@ -1,16 +1,16 @@
 package models.game.pile
 
-import models.{ResponseMessage, CardMoved}
+import models.CardMoved
 import models.game.{GameState, Card}
 
-class Stock(override val id: String) extends Pile(id, "stock") {
+class Stock(id: String, cardsToDraw: Int = 3) extends Pile(id, "stock", cardsShown = Some(1)) {
   override def canSelectCard(card: Card) = Some(card) == this.cards.lastOption
   override def canSelectPile = this.cards.isEmpty
 
   override def onSelectCard(card: Card, gameState: GameState) = {
     val waste = gameState.pilesById("waste")
 
-    (0 to 2).flatMap { i =>
+    (0 to (cardsToDraw - 1)).flatMap { i =>
       val topCard = cards.lastOption
       topCard match {
         case Some(tc) =>

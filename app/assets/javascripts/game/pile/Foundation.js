@@ -1,8 +1,8 @@
 define(['game/Rank', 'game/pile/Pile', 'game/pile/PileHelpers'], function(Rank, Pile, PileHelpers) {
   "use strict";
 
-  var Foundation = function(game, id) {
-    Pile.call(this, game, id, "foundation");
+  var Foundation = function(game, id, cardsShown, direction) {
+    Pile.call(this, game, id, "foundation", cardsShown, direction);
   };
 
   Foundation.prototype = Object.create(Pile.prototype);
