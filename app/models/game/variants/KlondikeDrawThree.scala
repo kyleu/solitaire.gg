@@ -1,6 +1,6 @@
-package services.game.variants
+package models.game.variants
 
-import services.game.GameVariant
+import models.game.GameVariant
 
 object KlondikeDrawThree extends GameVariant.Description {
   override val id = "klondike"

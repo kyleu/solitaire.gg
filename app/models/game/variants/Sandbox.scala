@@ -1,8 +1,7 @@
-package services.game.variants
+package models.game.variants
 
 import models.game._
 import models.game.pile.Tableau
-import services.game.GameVariant
 
 object Sandbox extends GameVariant.Description {
   override val id = "sandbox"

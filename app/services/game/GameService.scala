@@ -2,6 +2,7 @@ package services.game
 
 import akka.actor.{ActorRef, PoisonPill}
 import models._
+import models.game.GameVariant
 import play.api.libs.concurrent.Akka
 import utils.Logging
 import utils.metrics.InstrumentedActor

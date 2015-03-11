@@ -1,7 +1,6 @@
-package services.game
+package models.game
 
-import models.game.GameState
-import services.game.variants.{KlondikeDrawThree, KlondikeDrawOne}
+import models.game.variants.{KlondikeDrawOne, KlondikeDrawThree}
 
 import scala.util.Random
 

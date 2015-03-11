@@ -1,8 +1,7 @@
-package services.game.variants
+package models.game.variants
 
 import models.game._
 import models.game.pile.{Waste, Tableau, Stock, Foundation}
-import services.game.GameVariant
 
 abstract class KlondikeBase(override val id: String, override val seed: Int, val cardsToDraw: Int) extends GameVariant(id, seed) {
   val piles = List(
@@ -30,21 +29,21 @@ abstract class KlondikeBase(override val id: String, override val seed: Int, val
       width = 7.8,
       height = 5.0,
       piles = List(
-        PileLocation("stock", 0.1, 0.1),
-        PileLocation("waste", 1.2, 0.1),
+        PileLocation("stock", 0.1, 0.2),
+        PileLocation("waste", 1.2, 0.2),
 
-        PileLocation("foundation-1", 3.4, 0.1),
-        PileLocation("foundation-2", 4.5, 0.1),
-        PileLocation("foundation-3", 5.6, 0.1),
-        PileLocation("foundation-4", 6.7, 0.1),
+        PileLocation("foundation-1", 3.4, 0.2),
+        PileLocation("foundation-2", 4.5, 0.2),
+        PileLocation("foundation-3", 5.6, 0.2),
+        PileLocation("foundation-4", 6.7, 0.2),
 
-        PileLocation("tableau-1", 0.1, 1.2),
-        PileLocation("tableau-2", 1.2, 1.2),
-        PileLocation("tableau-3", 2.3, 1.2),
-        PileLocation("tableau-4", 3.4, 1.2),
-        PileLocation("tableau-5", 4.5, 1.2),
-        PileLocation("tableau-6", 5.6, 1.2),
-        PileLocation("tableau-7", 6.7, 1.2)
+        PileLocation("tableau-1", 0.1, 1.3),
+        PileLocation("tableau-2", 1.2, 1.3),
+        PileLocation("tableau-3", 2.3, 1.3),
+        PileLocation("tableau-4", 3.4, 1.3),
+        PileLocation("tableau-5", 4.5, 1.3),
+        PileLocation("tableau-6", 5.6, 1.3),
+        PileLocation("tableau-7", 6.7, 1.3)
       )
     )
   )

@@ -1,3 +1,5 @@
+@import models.game.GameVariant
+
 @()(implicit session: Session, flash: Flash)
 
 @layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
@@ -10,6 +12,7 @@
       "debug": "@utils.Config.debug",
       "cardSet": "@utils.Config.defaultCardSet",
       "cardSize": "@utils.Config.defaultCardSize",
+      "variants": [@Html(GameVariant.all.map(v => "'" + v.id + "'").mkString(", "))],
       "initialAction": ["start", "klondike"]
     };
   </script>

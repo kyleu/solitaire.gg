@@ -1,4 +1,4 @@
-define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (config, InitialState, CardSet) {
+define(['utils/Config', 'game/Options', 'game/state/InitialState', 'game/CardSet'], function (config, options, InitialState, CardSet) {
   "use strict";
 
   function Game(ws) {
@@ -12,6 +12,8 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (co
     this.cards = {};
 
     console.log("Game started.");
+
+    options.start();
   }
 
   Game.prototype = Phaser.Game.prototype;
