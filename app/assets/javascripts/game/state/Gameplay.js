@@ -1,8 +1,7 @@
 define([
   'utils/Config', 'game/Card', 'game/pile/Pile',
-  'game/pile/Stock', 'game/pile/Waste', 'game/pile/Foundation', 'game/pile/Tableau',
   'game/Playmat', 'game/state/GameState'
-], function (cfg, Card, Pile, Stock, Waste, Foundation, Tableau, Playmat, GameState) {
+], function (cfg, Card, Pile, Playmat, GameState) {
   "use strict";
 
   function Gameplay(game) {
@@ -109,26 +108,7 @@ define([
   Gameplay.prototype.loadPiles = function(piles) {
     for(var pileIndex in piles) {
       var pile = piles[pileIndex];
-      var pileObj = null;
-      switch(pile.behavior) {
-        case "stock":
-          pileObj = new Stock(this.game, pile.id, pile.options);
-          break;
-        case "waste":
-          pileObj = new Waste(this.game, pile.id, pile.options);
-          break;
-        case "foundation":
-          pileObj = new Foundation(this.game, pile.id, pile.options);
-          break;
-        case "tableau":
-          pileObj = new Tableau(this.game, pile.id, pile.options);
-          break;
-        case "reserve":
-          pileObj = new Pile(this.game, pile.id, "reserve", pile.options);
-          break;
-        default:
-          throw "Unknown pile behavior [" + pile.behavior + "].";
-      }
+      var pileObj = new Pile(this.game, pile.id, pile.behavior, pile.options);
       this.game.playmat.addPile(pileObj);
     }
   };
