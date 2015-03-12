@@ -1,7 +1,7 @@
 package models.game.variants
 
 import models.game._
-import models.game.pile.{Stock, Foundation, Tableau}
+import models.game.pile.{PileOptions, Stock, Foundation, Tableau}
 
 object Golf extends GameVariant.Description {
   override val id = "golf"
@@ -21,8 +21,8 @@ case class Golf(override val id: String, override val seed: Int) extends GameVar
     new Tableau("tableau-6"),
     new Tableau("tableau-7"),
 
-    new Foundation("foundation", cardsShown = Some(4), direction = Some("r"), options = Map("drag-from" -> "false")),
-    new Stock("stock", cardsShown = Some(16), direction = Some("r"), cardsToDraw = 1, options = Map("draw-to" -> "foundation"))
+    new Foundation("foundation", PileOptions(cardsShown = Some(4), direction = Some("r"))),
+    new Stock("stock", 1, "foundation", None, PileOptions(cardsShown = Some(16), direction = Some("r")))
   )
 
   val deck = Deck.shuffled(rng)

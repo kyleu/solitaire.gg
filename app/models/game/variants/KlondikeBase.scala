@@ -5,8 +5,8 @@ import models.game.pile.{Waste, Tableau, Stock, Foundation}
 
 abstract class KlondikeBase(override val id: String, override val seed: Int, cardsToDraw: Int) extends GameVariant(id, seed) {
   val piles = List(
-    new Stock("stock", cardsToDraw, options = Map("redraw-to" -> "waste")),
-    new Waste("waste", Some(3)),
+    new Stock("stock", cardsToDraw, "waste", Some("waste")),
+    new Waste("waste"),
 
     new Foundation("foundation-1"),
     new Foundation("foundation-2"),

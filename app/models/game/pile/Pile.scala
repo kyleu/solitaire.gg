@@ -1,19 +1,13 @@
 package models.game.pile
 
 import models.ResponseMessage
+import models.game.pile.constraints.{DragToConstraints, DragFromConstraints, SelectPileConstraints, SelectCardConstraints}
 import models.game.{GameState, Card}
 import utils.Logging
 
 import scala.collection.mutable.ArrayBuffer
 
-case class Pile(
-  id: String,
-  behavior: String,
-  cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card],
-  cardsShown: Option[Int] = None,
-  direction: Option[String] = None,
-  options: Map[String, String] = Map.empty
-) extends Logging {
+case class Pile(id: String, behavior: String, options: PileOptions, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) extends Logging {
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
 
   def addCard(c: Card) {
@@ -27,10 +21,11 @@ case class Pile(
     }
   }
 
-  def canDragFrom(cards: Seq[Card]) = false
-  def canDragTo(cards: Seq[Card]) = false
-  def canSelectCard(card: Card) = false
-  def canSelectPile = false
+  final def canSelectCard(card: Card) = SelectCardConstraints(options.selectCardConstraint)(this, card)
+  final def canSelectPile = SelectPileConstraints(options.selectPileConstraint)(this)
+
+  final def canDragFrom(cards: Seq[Card]) = DragFromConstraints(options.dragFromConstraint)(this, cards)
+  final def canDragTo(cards: Seq[Card]) = DragToConstraints(options.dragToConstraint)(this, cards)
 
   def onSelectCard(card: Card, gameState: GameState): Seq[ResponseMessage] = {
     log.debug("Card [" + card + "] selected with no action.")

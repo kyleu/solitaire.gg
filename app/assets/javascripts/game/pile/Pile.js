@@ -1,13 +1,12 @@
 define(['game/pile/PileLayout'], function (PileLayout) {
   "use strict";
 
-  function Pile(game, id, behavior, cardsShown, direction, options) {
+  function Pile(game, id, behavior, options) {
     Phaser.Group.call(this, game, game.playmat, id);
     this.id = id;
     this.behavior = behavior;
-    this.cardsShown = cardsShown;
-    this.direction = direction;
     this.options = options;
+    console.log(this.id + ": " + this.options);
     this.cards = [];
     this.game.addPile(this);
 
@@ -27,7 +26,7 @@ define(['game/pile/PileLayout'], function (PileLayout) {
   Pile.prototype = Object.create(Phaser.Group.prototype);
   Pile.prototype.constructor = Pile;
 
-  Pile.prototype.addCard = function(card, index) {
+  Pile.prototype.addCard = function(card) {
     card.pile = this;
     card.pileIndex = this.cards.length;
     this.cards.push(card);

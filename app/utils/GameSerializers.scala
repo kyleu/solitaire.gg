@@ -1,7 +1,7 @@
 package utils
 
 import models.game._
-import models.game.pile.Pile
+import models.game.pile.{PileOptions, Pile}
 import play.api.libs.json._
 
 object GameSerializers {
@@ -37,8 +37,12 @@ object GameSerializers {
   implicit val cardWrites = Json.writes[Card]
 
   implicit val deckWrites = Json.writes[Deck]
+
+  implicit val pileOptionsWrites = Json.writes[PileOptions]
   implicit val pileWrites = Json.writes[Pile]
+
   implicit val pileLocationWrites = Json.writes[PileLocation]
   implicit val layoutWrites = Json.writes[Layout]
+
   implicit val gameStateWrites = Json.writes[GameState]
 }

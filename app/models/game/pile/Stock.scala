@@ -3,22 +3,15 @@ package models.game.pile
 import models.CardMoved
 import models.game.{GameState, Card}
 
-import scala.collection.mutable.ArrayBuffer
+object Stock {
+  private val defaultOptions = PileOptions(
+    cardsShown = Some(1),
+    selectCardConstraint = Some("top-card-only"),
+    selectPileConstraint = Some("empty")
+  )
+}
 
-class Stock(
-  id: String,
-  cardsToDraw: Int = 3,
-  cardsShown: Option[Int] = Some(1),
-  direction: Option[String] = None,
-  options: Map[String, String] = Map.empty
-) extends Pile(id, "stock", ArrayBuffer.empty, cardsShown, direction, options) {
-
-  private val drawTo = options.getOrElse("draw-to", "waste")
-  private val redrawTo = options.get("redraw-to")
-
-  override def canSelectCard(card: Card) = Some(card) == this.cards.lastOption
-  override def canSelectPile = this.cards.isEmpty
-
+class Stock(id: String, cardsToDraw: Int = 3, drawTo: String, redrawFrom: Option[String], options: PileOptions = PileOptions.empty) extends Pile(id, "stock", Stock.defaultOptions.combine(options)) {
   override def onSelectCard(card: Card, gameState: GameState) = {
     val waste = gameState.pilesById(drawTo)
 
@@ -43,7 +36,7 @@ class Stock(
     }
   }
 
-  override def onSelectPile(gameState: GameState) = redrawTo match {
+  override def onSelectPile(gameState: GameState) = redrawFrom match {
     case Some(pileId) =>
       val target = gameState.pilesById(pileId)
       target.cards.reverse.map { card =>

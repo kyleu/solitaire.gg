@@ -1,7 +1,7 @@
 package models.game.variants
 
 import models.game._
-import models.game.pile.{Stock, Foundation, Tableau}
+import models.game.pile._
 
 object Nestor extends GameVariant.Description {
   override val id = "nestor"
@@ -22,10 +22,10 @@ case class Nestor(override val id: String, override val seed: Int) extends GameV
     new Tableau("tableau-7"),
     new Tableau("tableau-8"),
 
-    new Stock("reserve-1"),
-    new Stock("reserve-2"),
-    new Stock("reserve-3"),
-    new Stock("reserve-4")
+    new Foundation("reserve-1"),
+    new Foundation("reserve-2"),
+    new Foundation("reserve-3"),
+    new Foundation("reserve-4")
   )
 
   val deck = Deck.shuffled(rng)

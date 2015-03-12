@@ -1,8 +1,8 @@
 define(['game/pile/Pile', 'game/pile/Constraints'], function(Pile, Constraints) {
   "use strict";
 
-  var Stock = function(game, id, cardsShown, direction, options) {
-    Pile.call(this, game, id, "stock", cardsShown, direction, options);
+  var Stock = function(game, id, options) {
+    Pile.call(this, game, id, "stock", options);
   };
 
   Stock.prototype = Object.create(Pile.prototype);

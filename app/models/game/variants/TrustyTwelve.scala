@@ -1,7 +1,7 @@
 package models.game.variants
 
 import models.game._
-import models.game.pile.{Foundation, Stock, Tableau}
+import models.game.pile.{PileOptions, Stock, Tableau}
 
 object TrustyTwelve extends GameVariant.Description {
   override val id = "trusty-twelve"
@@ -13,21 +13,21 @@ case class TrustyTwelve(override val id: String, override val seed: Int) extends
   override def description = TrustyTwelve
 
   val piles = List(
-    new Stock("stock", cardsShown = Some(19), direction = Some("r")),
+    new Stock("stock", 0, "", None, PileOptions(cardsShown = Some(19), direction = Some("r"))),
 
-    new Tableau("tableau-1", cardsShown = Some(2)),
-    new Tableau("tableau-2", cardsShown = Some(2)),
-    new Tableau("tableau-3", cardsShown = Some(2)),
-    new Tableau("tableau-4", cardsShown = Some(2)),
-    new Tableau("tableau-5", cardsShown = Some(2)),
-    new Tableau("tableau-6", cardsShown = Some(2)),
+    new Tableau("tableau-1", PileOptions(cardsShown = Some(2))),
+    new Tableau("tableau-2", PileOptions(cardsShown = Some(2))),
+    new Tableau("tableau-3", PileOptions(cardsShown = Some(2))),
+    new Tableau("tableau-4", PileOptions(cardsShown = Some(2))),
+    new Tableau("tableau-5", PileOptions(cardsShown = Some(2))),
+    new Tableau("tableau-6", PileOptions(cardsShown = Some(2))),
 
-    new Tableau("tableau-7", cardsShown = Some(2)),
-    new Tableau("tableau-8", cardsShown = Some(2)),
-    new Tableau("tableau-9", cardsShown = Some(2)),
-    new Tableau("tableau-10", cardsShown = Some(2)),
-    new Tableau("tableau-11", cardsShown = Some(2)),
-    new Tableau("tableau-12", cardsShown = Some(2))
+    new Tableau("tableau-7", PileOptions(cardsShown = Some(2))),
+    new Tableau("tableau-8", PileOptions(cardsShown = Some(2))),
+    new Tableau("tableau-9", PileOptions(cardsShown = Some(2))),
+    new Tableau("tableau-10", PileOptions(cardsShown = Some(2))),
+    new Tableau("tableau-11", PileOptions(cardsShown = Some(2))),
+    new Tableau("tableau-12", PileOptions(cardsShown = Some(2)))
   )
 
   val deck = Deck.shuffled(rng)
