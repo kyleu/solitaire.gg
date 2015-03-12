@@ -21,7 +21,7 @@ case class Golf(override val id: String, override val seed: Int) extends GameVar
     new Tableau("tableau-6"),
     new Tableau("tableau-7"),
 
-    new Foundation("foundation", cardsShown = Some(4), direction = Some("r"), options = Map("allow-drag-from" -> "none")),
+    new Foundation("foundation", cardsShown = Some(4), direction = Some("r"), options = Map("drag-from" -> "false")),
     new Stock("stock", cardsShown = Some(16), direction = Some("r"), cardsToDraw = 1, options = Map("draw-to" -> "foundation"))
   )
 

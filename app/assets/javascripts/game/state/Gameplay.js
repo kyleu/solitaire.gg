@@ -112,16 +112,16 @@ define([
       var pileObj = null;
       switch(pile.behavior) {
         case "stock":
-          pileObj = new Stock(this.game, pile.id, pile.cardsShown, pile.direction);
+          pileObj = new Stock(this.game, pile.id, pile.cardsShown, pile.direction, pile.options);
           break;
         case "waste":
-          pileObj = new Waste(this.game, pile.id, pile.cardsShown, pile.direction);
+          pileObj = new Waste(this.game, pile.id, pile.cardsShown, pile.direction, pile.options);
           break;
         case "foundation":
-          pileObj = new Foundation(this.game, pile.id, pile.cardsShown, pile.direction);
+          pileObj = new Foundation(this.game, pile.id, pile.cardsShown, pile.direction, pile.options);
           break;
         case "tableau":
-          pileObj = new Tableau(this.game, pile.id, pile.cardsShown, pile.direction);
+          pileObj = new Tableau(this.game, pile.id, pile.cardsShown, pile.direction, pile.options);
           break;
         default:
           throw "Unknown pile behavior [" + pile.behavior + "].";

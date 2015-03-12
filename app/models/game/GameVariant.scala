@@ -1,6 +1,6 @@
 package models.game
 
-import models.game.variants.{Golf, FreeCell, KlondikeDrawOne, KlondikeDrawThree}
+import models.game.variants._
 
 import scala.util.Random
 
@@ -16,11 +16,13 @@ object GameVariant {
     case Golf.id => new Golf(id, seed)
     case KlondikeDrawThree.id => new KlondikeDrawThree(id, seed)
     case KlondikeDrawOne.id => new KlondikeDrawOne(id, seed)
+    case Nestor.id => new Nestor(id, seed)
+    case TrustyTwelve.id => new TrustyTwelve(id, seed)
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 
   val all = List(
-    FreeCell, Golf, KlondikeDrawThree, KlondikeDrawOne
+    FreeCell, Golf, KlondikeDrawThree, KlondikeDrawOne, Nestor, TrustyTwelve
   )
 }
 

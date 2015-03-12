@@ -64,6 +64,7 @@ define(['game/pile/PileHelpers'], function (PileHelpers) {
       } else if(pile.cardsShown == 1) {
         PileHelpers.tweenCard(card, pile.x, pile.y);
       } else {
+        console.log(pile.id);
         redraw(pile);
       }
     },

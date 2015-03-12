@@ -1,8 +1,8 @@
 define(['game/Rank', 'game/pile/Pile', 'game/pile/PileHelpers', 'game/pile/Constraints'], function(Rank, Pile, PileHelpers, Constraints) {
   "use strict";
 
-  var Tableau = function(game, id, cardsShown, direction) {
-    Pile.call(this, game, id, "tableau", cardsShown, direction);
+  var Tableau = function(game, id, cardsShown, direction, options) {
+    Pile.call(this, game, id, "tableau", cardsShown, direction, options);
   };
 
   Tableau.prototype = Object.create(Pile.prototype);

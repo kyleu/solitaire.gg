@@ -1,12 +1,13 @@
 define(['game/pile/PileLayout'], function (PileLayout) {
   "use strict";
 
-  function Pile(game, id, behavior, cardsShown, direction) {
+  function Pile(game, id, behavior, cardsShown, direction, options) {
     Phaser.Group.call(this, game, game.playmat, id);
     this.id = id;
     this.behavior = behavior;
     this.cardsShown = cardsShown;
     this.direction = direction;
+    this.options = options;
     this.cards = [];
     this.game.addPile(this);
 

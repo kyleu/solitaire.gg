@@ -1,8 +1,8 @@
 define(['game/pile/Pile', 'game/pile/PileHelpers', 'game/pile/Constraints'], function(Pile, PileHelpers, Constraints) {
   "use strict";
 
-  var Waste = function(game, id, cardsShown, direction) {
-    Pile.call(this, game, id, "waste", cardsShown, direction);
+  var Waste = function(game, id, cardsShown, direction, options) {
+    Pile.call(this, game, id, "waste", cardsShown, direction, options);
   };
 
   Waste.prototype = Object.create(Pile.prototype);

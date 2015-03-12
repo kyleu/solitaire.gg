@@ -9,12 +9,11 @@ define(['game/Rank'], function(Rank) {
     returnTrue: function() {
       return true;
     },
-
-    // Select Pile
     isEmpty: function() {
       return this.cards.length === 0;
     },
 
+    // Select Card
     topCardOnly: function(card) {
       return card.pileIndex == this.cards.length - 1;
     },
