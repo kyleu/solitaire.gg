@@ -1,5 +1,14 @@
-define(['game/pile/PileLayout'], function (PileLayout) {
+define(['game/pile/PileLayout', 'game/pile/PileHelpers', 'game/pile/SelectCardConstraints', 'game/pile/SelectPileConstraints', 'game/pile/DragFromConstraints', 'game/pile/DragToConstraints'], function (PileLayout, PileHelpers, SelectCardConstraints, SelectPileConstraints, DragFromConstraints, DragToConstraints) {
   "use strict";
+
+  function getConstraint(constraintType, constraints, key) {
+    var ret = constraints[key === undefined ? "never" : key];
+    if(ret === undefined) {
+      throw "Invalid [" + constraintType + "] constraint [" + key + "].";
+    } else {
+      return ret;
+    }
+  }
 
   function Pile(game, id, behavior, options) {
     Phaser.Group.call(this, game, game.playmat, id);
@@ -18,6 +27,11 @@ define(['game/pile/PileLayout'], function (PileLayout) {
       }
     }, this);
     this.add(this.empty);
+
+    this.canSelectCard = getConstraint("selectCard", SelectCardConstraints, options.selectCardConstraint);
+    this.canSelectPile = getConstraint("selectPile", SelectPileConstraints, options.selectPileConstraint);
+    this.canDragFrom = getConstraint("dragFrom", DragFromConstraints, options.dragFromConstraint);
+    this.canDragTo = getConstraint("dragTo", DragToConstraints, options.dragToConstraint);
 
     this.intersectWidth = this.empty.width;
     this.intersectHeight = this.empty.height;
@@ -61,6 +75,9 @@ define(['game/pile/PileLayout'], function (PileLayout) {
   Pile.prototype.cardSelected = function(card) {
     this.game.cardSelected(card);
   };
+
+  Pile.prototype.startDrag = PileHelpers.dragSlice;
+  Pile.prototype.endDrag = PileHelpers.endDrag;
 
   return Pile;
 });

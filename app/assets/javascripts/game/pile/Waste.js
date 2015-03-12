@@ -1,4 +1,4 @@
-define(['game/pile/Pile', 'game/pile/PileHelpers', 'game/pile/Constraints'], function(Pile, PileHelpers, Constraints) {
+define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) {
   "use strict";
 
   var Waste = function(game, id, options) {
@@ -7,15 +7,6 @@ define(['game/pile/Pile', 'game/pile/PileHelpers', 'game/pile/Constraints'], fun
 
   Waste.prototype = Object.create(Pile.prototype);
   Waste.prototype.constructor = Waste;
-
-  Waste.prototype.canSelectCard = Constraints.topCardOnly;
-  Waste.prototype.canSelectPile = Constraints.returnFalse;
-
-  Waste.prototype.canDragFrom = Constraints.topCardOnly;
-  Waste.prototype.canDragTo = Constraints.returnFalse;
-
-  Waste.prototype.startDrag = PileHelpers.dragSlice;
-  Waste.prototype.endDrag = PileHelpers.endDrag;
 
   return Waste;
 });
