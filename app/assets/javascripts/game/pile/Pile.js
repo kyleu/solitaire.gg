@@ -1,4 +1,4 @@
-define(function () {
+define(['game/pile/PileLayout'], function (PileLayout) {
   "use strict";
 
   function Pile(game, id, behavior, cardsShown, direction) {
@@ -32,7 +32,7 @@ define(function () {
     card.pileIndex = this.cards.length;
     this.cards.push(card);
 
-    this.cardAdded(card);
+    PileLayout.cardAdded(this, card);
 
     this.game.playmat.add(card);
   };
@@ -52,7 +52,7 @@ define(function () {
       this.cards[cardIndex].pileIndex = parseInt(cardIndex);
     }
 
-    this.cardRemoved(this, card);
+    PileLayout.cardRemoved(this, card);
   };
 
   Pile.prototype.pileSelected = function(pile, p) {

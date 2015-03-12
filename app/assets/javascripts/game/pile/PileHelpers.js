@@ -63,10 +63,6 @@ define(function() {
       }
     },
 
-    samePosition: function(card) {
-      PileHelpers.tweenCard(card, this.x, this.y);
-    },
-
     endDrag: function() {
       var dropTarget = getDropTarget(this);
 

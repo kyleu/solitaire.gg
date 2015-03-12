@@ -65,16 +65,5 @@ define(['game/Rank', 'game/pile/Pile', 'game/pile/PileHelpers'], function(Rank, 
 
   Tableau.prototype.endDrag = PileHelpers.endDrag;
 
-  Tableau.prototype.cardAdded = function(card) {
-    var x = this.x;
-    var y = this.y + ((this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
-    PileHelpers.tweenCard(card, x, y);
-    this.intersectHeight = this.game.cardSet.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
-  };
-
-  Tableau.prototype.cardRemoved = function() {
-    this.intersectHeight = this.game.cardSet.cardHeight + (this.cards.length === 0 ? 0 : (this.cards.length - 1) * this.game.cardSet.cardVerticalOffset);
-  };
-
   return Tableau;
 });

@@ -28,12 +28,7 @@ define(['game/Rank', 'game/pile/Pile', 'game/pile/PileHelpers'], function(Rank, 
   };
 
   Foundation.prototype.startDrag = PileHelpers.dragSlice;
-
   Foundation.prototype.endDrag = PileHelpers.endDrag;
-
-  Foundation.prototype.cardAdded = PileHelpers.samePosition;
-
-  Foundation.prototype.cardRemoved = PileHelpers.noOp;
 
   return Foundation;
 });
