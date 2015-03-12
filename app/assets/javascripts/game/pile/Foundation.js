@@ -1,4 +1,4 @@
-define(['game/Rank', 'game/pile/Pile', 'game/pile/PileHelpers'], function(Rank, Pile, PileHelpers) {
+define(['game/Rank', 'game/pile/Pile', 'game/pile/PileHelpers', 'game/pile/Constraints'], function(Rank, Pile, PileHelpers, Constraints) {
   "use strict";
 
   var Foundation = function(game, id, cardsShown, direction) {
@@ -8,24 +8,12 @@ define(['game/Rank', 'game/pile/Pile', 'game/pile/PileHelpers'], function(Rank, 
   Foundation.prototype = Object.create(Pile.prototype);
   Foundation.prototype.constructor = Foundation;
 
-  Foundation.prototype.canSelectCard = PileHelpers.returnFalse;
-  Foundation.prototype.canSelectPile = PileHelpers.returnFalse;
+  Foundation.prototype.canSelectCard = Constraints.returnFalse;
+  Foundation.prototype.canSelectPile = Constraints.returnFalse;
 
-  Foundation.prototype.canDragFrom = PileHelpers.topCardOnly;
+  Foundation.prototype.canDragFrom = Constraints.topCardOnly;
 
-  Foundation.prototype.canDragTo = function(pile) {
-    if(pile.dragCards.length == 1) {
-      if(this.cards.length === 0) {
-        return pile.dragCards[0].rank === Rank.ace;
-      } else {
-        var topCard = this.cards[this.cards.length - 1];
-        var dragCard = pile.dragCards[0];
-        return topCard.suit === dragCard.suit && ((topCard.rank === Rank.ace && dragCard.rank === Rank.two) || topCard.rank.value + 1 == dragCard.rank.value);
-      }
-    } else {
-      return false;
-    }
-  };
+  Foundation.prototype.canDragTo = Constraints.klondikeFoundationDragTo;
 
   Foundation.prototype.startDrag = PileHelpers.dragSlice;
   Foundation.prototype.endDrag = PileHelpers.endDrag;

@@ -1,4 +1,4 @@
-define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) {
+define(['game/pile/Pile', 'game/pile/Constraints'], function(Pile, Constraints) {
   "use strict";
 
   var Stock = function(game, id, cardsShown, direction) {
@@ -8,15 +8,15 @@ define(['game/pile/Pile', 'game/pile/PileHelpers'], function(Pile, PileHelpers) 
   Stock.prototype = Object.create(Pile.prototype);
   Stock.prototype.constructor = Stock;
 
-  Stock.prototype.canSelectCard = PileHelpers.topCardOnly;
-  Stock.prototype.canSelectPile = PileHelpers.isEmpty;
+  Stock.prototype.canSelectCard = Constraints.topCardOnly;
+  Stock.prototype.canSelectPile = Constraints.isEmpty;
 
-  Stock.prototype.canDragFrom = PileHelpers.returnFalse;
+  Stock.prototype.canDragFrom = Constraints.returnFalse;
 
-  Stock.prototype.canDragTo = PileHelpers.returnFalse;
+  Stock.prototype.canDragTo = Constraints.returnFalse;
 
-  Stock.prototype.startDrag = PileHelpers.noOp;
-  Stock.prototype.endDrag = PileHelpers.noOp;
+  Stock.prototype.startDrag = Constraints.noOp;
+  Stock.prototype.endDrag = Constraints.noOp;
 
   return Stock;
 });

@@ -11,7 +11,8 @@ case class Pile(
   behavior: String,
   cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card],
   cardsShown: Option[Int] = None,
-  direction: Option[String] = None
+  direction: Option[String] = None,
+  options: Map[String, String] = Map.empty
 ) extends Logging {
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
 

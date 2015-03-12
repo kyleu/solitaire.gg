@@ -39,12 +39,22 @@ class Tableau(id: String) extends Pile(id, "tableau", direction = Some("d")) {
       val firstDraggedCard = cards.head
       if(!topCard.u) {
         false
-      } else if(topCard.s.color == firstDraggedCard.s.color) {
-        false
-      } else if(topCard.r == Rank.Ace || firstDraggedCard.r == Rank.King) {
-        false
       } else {
-        topCard.r.value == firstDraggedCard.r.value + 1
+        options.get("drag-to-constraint") match {
+          case None =>
+            if(topCard.s.color == firstDraggedCard.s.color) {
+              false
+            } else if(topCard.r == Rank.Ace || firstDraggedCard.r == Rank.King) {
+              false
+            } else {
+              topCard.r.value == firstDraggedCard.r.value + 1
+            }
+          case Some(c) if c == "alternating-rank" =>
+            topCard.r.value == firstDraggedCard.r.value + 1 || topCard.r.value == firstDraggedCard.r.value - 1
+          case Some(c) =>
+            log.warn("Invalid drag-to-constraint [" + c + "].")
+            false
+        }
       }
     }
   }

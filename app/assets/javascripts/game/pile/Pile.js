@@ -7,7 +7,6 @@ define(['game/pile/PileLayout'], function (PileLayout) {
     this.behavior = behavior;
     this.cardsShown = cardsShown;
     this.direction = direction;
-    console.log("Pile [" + this.id + "] showing [" + this.cardsShown + "] cards in direction [" + this.direction + "].");
     this.cards = [];
     this.game.addPile(this);
 

@@ -21,30 +21,21 @@ define(['game/pile/PileHelpers'], function (PileHelpers) {
       for(var largeIndex in pile.cards) {
         var largeIndexInt = parseInt(largeIndex);
         var largeX, largeY;
-        if(largeIndexInt === pile.cards.length - 1) {
-          if(pile.direction === 'd') {
-            largeX = pile.x;
-            largeY = pile.y + (pile.game.cardSet.cardVerticalOffset * 2);
-          } else if(pile.direction === 'r') {
-            largeX = pile.x + (pile.game.cardSet.cardHorizontalOffset * 2);
-            largeY = pile.y;
-          } else {
-            throw "Invalid direction [" + pile.direction + "].";
-          }
-        } else if(largeIndexInt === pile.cards.length - 2) {
-          if(pile.direction === 'd') {
-            largeX = pile.x;
-            largeY = pile.y + pile.game.cardSet.cardVerticalOffset;
-          } else if(pile.direction === 'r') {
-            largeX = pile.x + pile.game.cardSet.cardHorizontalOffset;
-            largeY = pile.y;
-          } else {
-            throw "Invalid direction [" + pile.direction + "].";
-          }
-        } else {
-          largeX = pile.x;
-          largeY = pile.y;
+
+        var offset = 0;
+        if((pile.cards.length - largeIndexInt) < pile.cardsShown) {
+          offset = pile.cardsShown - (pile.cards.length - largeIndexInt);
         }
+        if(pile.direction === 'd') {
+          largeX = pile.x;
+          largeY = pile.y + (pile.game.cardSet.cardVerticalOffset * offset);
+        } else if(pile.direction === 'r') {
+          largeX = pile.x + (pile.game.cardSet.cardHorizontalOffset * offset);
+          largeY = pile.y;
+        } else {
+          throw "Invalid direction [" + pile.direction + "].";
+        }
+
         PileHelpers.tweenCard(pile.cards[largeIndex], largeX, largeY);
       }
     }

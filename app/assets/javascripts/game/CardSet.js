@@ -4,36 +4,36 @@ define({
       key: "standard/x-small",
       cardWidth: 50,
       cardHeight: 75,
-      cardVerticalOffset: 11,
-      cardHorizontalOffset: 11
+      cardVerticalOffset: 10,
+      cardHorizontalOffset: 15
     },
     "small": {
       key: "standard/small",
       cardWidth: 100,
       cardHeight: 150,
-      cardVerticalOffset: 22,
-      cardHorizontalOffset: 22
+      cardVerticalOffset: 20,
+      cardHorizontalOffset: 30
     },
     "medium": {
       key: "standard/medium",
       cardWidth: 200,
       cardHeight: 300,
-      cardVerticalOffset: 45,
-      cardHorizontalOffset: 70
+      cardVerticalOffset: 40,
+      cardHorizontalOffset: 60
     },
     "large": {
       key: "standard/large",
       cardWidth: 400,
       cardHeight: 600,
-      cardVerticalOffset: 90,
-      cardHorizontalOffset: 90
+      cardVerticalOffset: 80,
+      cardHorizontalOffset: 120
     },
     "x-large": {
       key: "standard/x-large",
       cardWidth: 800,
       cardHeight: 1200,
-      cardVerticalOffset: 180,
-      cardHorizontalOffset: 180
+      cardVerticalOffset: 160,
+      cardHorizontalOffset: 240
     }
   }
 });

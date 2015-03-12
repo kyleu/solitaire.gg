@@ -1,7 +1,7 @@
 package models.game.variants
 
 import models.game._
-import models.game.pile.Tableau
+import models.game.pile.{Stock, Foundation, Tableau}
 
 object Golf extends GameVariant.Description {
   override val id = "golf"
@@ -19,7 +19,10 @@ case class Golf(override val id: String, override val seed: Int) extends GameVar
     new Tableau("tableau-4"),
     new Tableau("tableau-5"),
     new Tableau("tableau-6"),
-    new Tableau("tableau-7")
+    new Tableau("tableau-7"),
+
+    new Foundation("foundation", cardsShown = Some(4), direction = Some("r"), options = Map("allow-drag-from" -> "none")),
+    new Stock("stock", cardsShown = Some(16), direction = Some("r"), cardsToDraw = 1, options = Map("draw-to" -> "foundation"))
   )
 
   val deck = Deck.shuffled(rng)
@@ -27,7 +30,7 @@ case class Golf(override val id: String, override val seed: Int) extends GameVar
   val layouts = Seq(
     Layout(
       width = 7.8,
-      height = 5.0,
+      height = 3.1,
       piles = List(
         PileLocation("tableau-1", 0.1, 0.2),
         PileLocation("tableau-2", 1.2, 0.2),
@@ -35,7 +38,9 @@ case class Golf(override val id: String, override val seed: Int) extends GameVar
         PileLocation("tableau-4", 3.4, 0.2),
         PileLocation("tableau-5", 4.5, 0.2),
         PileLocation("tableau-6", 5.6, 0.2),
-        PileLocation("tableau-7", 6.7, 0.2)
+        PileLocation("tableau-7", 6.7, 0.2),
+        PileLocation("foundation", 0.1, 2.0),
+        PileLocation("stock", 2.2, 2.0)
       )
     )
   )
@@ -50,5 +55,8 @@ case class Golf(override val id: String, override val seed: Int) extends GameVar
     gameState.addCards(deck.getCards(5, turnFaceUp = true), "tableau-5", reveal = true)
     gameState.addCards(deck.getCards(5, turnFaceUp = true), "tableau-6", reveal = true)
     gameState.addCards(deck.getCards(5, turnFaceUp = true), "tableau-7", reveal = true)
+
+    gameState.addCards(deck.getCards(1, turnFaceUp = true), "foundation", reveal = true)
+    gameState.addCards(deck.getCards(), "stock")
   }
 }

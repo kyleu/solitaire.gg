@@ -38,24 +38,6 @@ define(function() {
 
 
   var PileHelpers = {
-    noOp: function() {
-    },
-
-    returnFalse: function() {
-      return false;
-    },
-    returnTrue: function() {
-      return true;
-    },
-
-    isEmpty: function() {
-      return this.cards.length === 0;
-    },
-
-    topCardOnly: function(card) {
-      return card.pileIndex == this.cards.length - 1;
-    },
-
     dragSlice: function(card, p) {
       this.dragCards = this.cards.slice(card.pileIndex);
       for(var c in this.dragCards) {
