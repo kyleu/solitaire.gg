@@ -1,6 +1,7 @@
 package utils
 
 import models.game._
+import models.game.pile.constraints.{DragToConstraint, DragFromConstraint, SelectPileConstraint, SelectCardConstraint}
 import models.game.pile.{PileOptions, Pile}
 import play.api.libs.json._
 
@@ -37,6 +38,19 @@ object GameSerializers {
   implicit val cardWrites = Json.writes[Card]
 
   implicit val deckWrites = Json.writes[Deck]
+
+  implicit val selectCardConstraintWrites = new Writes[SelectCardConstraint] {
+    override def writes(scc: SelectCardConstraint) = JsString(scc.id)
+  }
+  implicit val selectPileConstraintWrites = new Writes[SelectPileConstraint] {
+    override def writes(spc: SelectPileConstraint) = JsString(spc.id)
+  }
+  implicit val dragFromConstraintWrites = new Writes[DragFromConstraint] {
+    override def writes(dfc: DragFromConstraint) = JsString(dfc.id)
+  }
+  implicit val dragToConstraintWrites = new Writes[DragToConstraint] {
+    override def writes(dtc: DragToConstraint) = JsString(dtc.id)
+  }
 
   implicit val pileOptionsWrites = Json.writes[PileOptions]
   implicit val pileWrites = Json.writes[Pile]

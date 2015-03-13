@@ -3,11 +3,14 @@ package models.game.pile.constraints
 import models.game.{Rank, Card}
 import models.game.pile.Pile
 
-object DragFromConstraints {
-  def never(pile: Pile, cards: Seq[Card]) = false
-  def isTopCard(pile: Pile, cards: Seq[Card]) = cards.headOption == pile.cards.lastOption
+case class DragFromConstraint(id: String, f: (Pile, Seq[Card]) => Boolean)
 
-  def klondike(pile: Pile, cards: Seq[Card]) = if(cards.exists(!_.u)) {
+object DragFromConstraints {
+  val never = DragFromConstraint("never", (pile, cards) => false)
+
+  val topCardOnly = DragFromConstraint("top-card-only", (pile, cards) => cards.headOption == pile.cards.lastOption)
+
+  val klondike = DragFromConstraint("klondike", (pile, cards) => if(cards.exists(!_.u)) {
     false
   } else {
     var valid = true
@@ -25,15 +28,5 @@ object DragFromConstraints {
       lastCard = Some(c)
     }
     valid
-  }
-
-
-  def apply(key: Option[String]) = key match {
-    case Some(k) => k match {
-      case "top-card-only" => isTopCard _
-      case "klondike" => klondike _
-      case _ => throw new IllegalArgumentException("Invalid select card constraint [" + k + "].")
-    }
-    case None => never _
-  }
+  })
 }

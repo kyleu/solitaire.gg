@@ -1,4 +1,4 @@
-define(function() {
+define(['game/Rank'], function(Rank) {
   return {
     "never": function() {
       return false;

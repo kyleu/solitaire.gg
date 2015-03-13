@@ -15,7 +15,6 @@ define(['game/pile/PileLayout', 'game/pile/PileHelpers', 'game/pile/SelectCardCo
     this.id = id;
     this.behavior = behavior;
     this.options = options;
-    console.log(this.id + ": " + this.options);
     this.cards = [];
     this.game.addPile(this);
 

@@ -2,15 +2,10 @@ package models.game.pile.constraints
 
 import models.game.pile.Pile
 
-object SelectPileConstraints {
-  def never(pile: Pile) = false
-  def empty(pile: Pile) = pile.cards.isEmpty
+case class SelectPileConstraint(id: String, f: Pile => Boolean)
 
-  def apply(key: Option[String]) = key match {
-    case Some(k) => k match {
-      case "empty" => empty _
-      case _ => throw new IllegalArgumentException("Invalid select card constraint [" + k + "].")
-    }
-    case None => never _
-  }
+object SelectPileConstraints {
+  val never = SelectPileConstraint("never", pile => false)
+
+  val empty = SelectPileConstraint("empty", pile => pile.cards.isEmpty)
 }

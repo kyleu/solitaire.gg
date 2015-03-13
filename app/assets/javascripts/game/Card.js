@@ -69,6 +69,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
       var deltaX = Math.abs(p.positionDown.x - p.positionUp.x);
       var deltaY = Math.abs(p.positionDown.y - p.positionUp.y);
       if(deltaX < 5 && deltaY < 5) {
+        console.log(this.pile.id + ": " + this.pile.canSelectCard);
         if(this.pile.canSelectCard(this)) {
           this.pile.cardSelected(this);
         }

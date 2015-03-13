@@ -2,14 +2,15 @@ package models.game.pile
 
 import models.game.pile.actions.SelectCardActions
 import models.CardRevealed
+import models.game.pile.constraints.{DragToConstraints, DragFromConstraints, SelectCardConstraints}
 import models.game.{GameState, Card}
 
 object Tableau {
   private val defaultOptions = PileOptions(
     direction = Some("d"),
-    selectCardConstraint = Some("top-card-only"),
-    dragFromConstraint = Some("klondike"),
-    dragToConstraint = Some("klondike")
+    selectCardConstraint = Some(SelectCardConstraints.topCardOnly),
+    dragFromConstraint = Some(DragFromConstraints.klondike),
+    dragToConstraint = Some(DragToConstraints.klondike)
   )
 }
 

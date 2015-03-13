@@ -1,10 +1,12 @@
 package models.game.pile
 
+import models.game.pile.constraints.{DragToConstraints, DragFromConstraints}
+
 object Foundation {
   private val defaultOptions = PileOptions(
     cardsShown = Some(1),
-    dragFromConstraint = Some("top-card-only"),
-    dragToConstraint = Some("foundation")
+    dragFromConstraint = Some(DragFromConstraints.topCardOnly),
+    dragToConstraint = Some(DragToConstraints.foundationDefault)
   )
 }
 

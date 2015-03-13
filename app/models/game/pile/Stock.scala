@@ -1,13 +1,14 @@
 package models.game.pile
 
 import models.CardMoved
+import models.game.pile.constraints.{SelectPileConstraints, SelectCardConstraints}
 import models.game.{GameState, Card}
 
 object Stock {
   private val defaultOptions = PileOptions(
     cardsShown = Some(1),
-    selectCardConstraint = Some("top-card-only"),
-    selectPileConstraint = Some("empty")
+    selectCardConstraint = Some(SelectCardConstraints.topCardOnly),
+    selectPileConstraint = Some(SelectPileConstraints.empty)
   )
 }
 

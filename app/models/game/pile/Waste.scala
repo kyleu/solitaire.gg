@@ -1,14 +1,15 @@
 package models.game.pile
 
 import models.game.pile.actions.SelectCardActions
+import models.game.pile.constraints.{DragFromConstraints, SelectCardConstraints}
 import models.game.{GameState, Card}
 
 object Waste {
   private val defaultOptions = PileOptions(
     cardsShown = Some(3),
     direction = Some("r"),
-    selectCardConstraint = Some("top-card-only"),
-    dragFromConstraint = Some("top-card-only")
+    selectCardConstraint = Some(SelectCardConstraints.topCardOnly),
+    dragFromConstraint = Some(DragFromConstraints.topCardOnly)
   )
 }
 

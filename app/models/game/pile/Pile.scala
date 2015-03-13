@@ -21,11 +21,11 @@ case class Pile(id: String, behavior: String, options: PileOptions, cards: colle
     }
   }
 
-  final def canSelectCard(card: Card) = SelectCardConstraints(options.selectCardConstraint)(this, card)
-  final def canSelectPile = SelectPileConstraints(options.selectPileConstraint)(this)
+  final def canSelectCard(card: Card) = options.selectCardConstraint.getOrElse(SelectCardConstraints.never).f(this, card)
+  final def canSelectPile = options.selectPileConstraint.getOrElse(SelectPileConstraints.never).f(this)
 
-  final def canDragFrom(cards: Seq[Card]) = DragFromConstraints(options.dragFromConstraint)(this, cards)
-  final def canDragTo(cards: Seq[Card]) = DragToConstraints(options.dragToConstraint)(this, cards)
+  final def canDragFrom(cards: Seq[Card]) = options.dragFromConstraint.getOrElse(DragFromConstraints.never).f(this, cards)
+  final def canDragTo(cards: Seq[Card]) = options.dragToConstraint.getOrElse(DragToConstraints.never).f(this, cards)
 
   def onSelectCard(card: Card, gameState: GameState): Seq[ResponseMessage] = {
     log.debug("Card [" + card + "] selected with no action.")
