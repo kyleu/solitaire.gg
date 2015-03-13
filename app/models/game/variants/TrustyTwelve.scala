@@ -64,4 +64,6 @@ case class TrustyTwelve(override val id: String, override val seed: Int) extends
     }
     gameState.addCards(deck.getCards(), "stock")
   }
+
+  override def isWin: Boolean = gameState.pilesById("stock").cards.isEmpty
 }

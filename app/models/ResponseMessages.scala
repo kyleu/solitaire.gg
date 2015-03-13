@@ -10,6 +10,8 @@ case class VersionResponse(version: String) extends ResponseMessage
 case object SendDebugInfo extends ResponseMessage
 
 case class GameJoined(id: String, players: Seq[String], state: GameState) extends ResponseMessage
+case class GameLost(id: String) extends ResponseMessage
+case class GameWon(id: String) extends ResponseMessage
 
 case class CardRevealed(card: Card) extends ResponseMessage
 case class CardMoved(card: String, source: String, target: String, targetIndex: Option[Int] = None, turnFaceUp: Boolean = false, turnFaceDown: Boolean = false) extends ResponseMessage

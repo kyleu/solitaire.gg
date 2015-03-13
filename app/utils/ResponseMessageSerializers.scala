@@ -11,6 +11,8 @@ object ResponseMessageSerializers {
   private val versionResponseWrites = Json.writes[VersionResponse]
 
   private val gameJoinedWrites = Json.writes[GameJoined]
+  private val gameLostWrites = Json.writes[GameLost]
+  private val gameWonWrites = Json.writes[GameWon]
 
   private val revealCardWrites = Json.writes[CardRevealed]
   private val cardMovedWrites = Json.writes[CardMoved]
@@ -24,6 +26,8 @@ object ResponseMessageSerializers {
       case SendDebugInfo => JsObject(Nil)
 
       case gj: GameJoined => gameJoinedWrites.writes(gj)
+      case gl: GameLost => gameLostWrites.writes(gl)
+      case gw: GameWon => gameWonWrites.writes(gw)
 
       case cr: CardRevealed => revealCardWrites.writes(cr)
       case cm: CardMoved => cardMovedWrites.writes(cm)

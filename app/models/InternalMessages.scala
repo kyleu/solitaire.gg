@@ -12,8 +12,8 @@ case class AddObserver(id: String, name: String, as: Option[String], actorRef: A
 
 case class CreateGame(variant: String, connectionId: String, seed: Option[Int]) extends InternalMessage
 case class GameStarted(id: String, gameService: ActorRef) extends InternalMessage
-case class ConnectionGameJoin(id: String, connectionId: String)
-case class ConnectionGameObserve(id: String, connectionId: String, as: Option[String])
+case class ConnectionGameJoin(id: String, connectionId: String) extends InternalMessage
+case class ConnectionGameObserve(id: String, connectionId: String, as: Option[String]) extends InternalMessage
 case class GameStopped(id: String) extends InternalMessage
 
 case object StopGameIfEmpty extends InternalMessage

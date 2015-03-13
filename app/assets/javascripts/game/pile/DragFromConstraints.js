@@ -4,8 +4,7 @@ define(['game/Rank'], function(Rank) {
       return false;
     },
 
-    "top-card-only": function(cards) {
-      var card = cards[0];
+    "top-card-only": function(card) {
       return card.pileIndex == this.cards.length - 1;
     },
 

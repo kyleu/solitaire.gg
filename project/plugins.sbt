@@ -16,3 +16,6 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % "1.0.0")
 
 // Developer Plugins
 addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.5.2")
+
+// Build Info
+addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.3.2")

@@ -38,7 +38,7 @@ class GameService(
 
   override def receiveRequest = {
     case gr: GameRequest =>
-      log.debug("Handling [" + gr.message.getClass.getSimpleName + "] message from user [" + gr.username + "].")
+      log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.username + "].")
       try {
         gameMessages += gr.message
         gr.message match {
@@ -74,7 +74,7 @@ class GameService(
   }
 
   private def handleAddObserver(connectionId: String, name: String, as: Option[String], actorRef: ActorRef) {
-    observerConnections(id) = (name, as, actorRef)
+    observerConnections(connectionId) = (name, as, actorRef)
     val gs = as match {
       case Some(player) => gameState.view(player)
       case None => gameState
@@ -82,19 +82,19 @@ class GameService(
     actorRef ! GameJoined(id, initialPlayers.map(_._2), gs)
   }
 
-  private def handleConnectionStopped(id: String) {
+  private def handleConnectionStopped(connectionId: String) {
     import play.api.Play.current
     import play.api.libs.concurrent.Execution.Implicits._
 
     import scala.concurrent.duration._
-    if(playerConnections.contains(id)) {
-      log.info("Player connection [" + id + "] stopped.")
-      playerConnections.remove(id)
-    } else if(observerConnections.contains(id)) {
-      log.info("Observer connection [" + id + "] stopped.")
-      observerConnections.remove(id)
+    if(playerConnections.contains(connectionId)) {
+      log.info("Player connection [" + connectionId + "] stopped.")
+      playerConnections.remove(connectionId)
+    } else if(observerConnections.contains(connectionId)) {
+      log.info("Observer connection [" + connectionId + "] stopped.")
+      observerConnections.remove(connectionId)
     } else {
-      log.warn("Unknown connection [" + id + "] was stopped.")
+      log.warn("Unknown connection [" + connectionId + "] was stopped.")
     }
     Akka.system.scheduler.scheduleOnce(30.seconds, self, StopGameIfEmpty)
   }

@@ -1,0 +1,28 @@
+@(variant: String)(implicit session: Session, flash: Flash)
+
+@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
+  <div id="game-container">
+  </div>
+  @statusPanel()
+  <script>
+    window.scalataireConfig = {
+      "id": "@utils.Config.projectId",
+      "name": "@utils.Config.projectName",
+      "debug": "@utils.Config.debug",
+      "cardSet": "@utils.Config.defaultCardSet",
+      "cardSize": "@utils.Config.defaultCardSize",
+      "variant": "@variant",
+      "variants": [@Html(models.game.GameVariant.all.map(v => "['" + v.id + "', '" + v.name + "']").mkString(", "))],
+      "initialAction": ["start"]
+    };
+  </script>
+  @if(utils.Config.debug) {
+    <script src="/assets/lib/phaser/js/phaser.js"></script>
+    <script src="/assets/lib/phaser/js/phaser-debug.js"></script>
+    <script src="/assets/lib/dat.gui/dat.gui.js"></script>
+  } else {
+    <script src="/assets/lib/phaser/js/phaser.min.js"></script>
+    <script src="/assets/lib/dat.gui/dat.gui.min.js"></script>
+  }
+  <script data-main="/assets/javascripts/main.js?build=@utils.BuildInfo.buildinfoBuildnumber" src="/assets/lib/requirejs/require.min.js"></script>
+}

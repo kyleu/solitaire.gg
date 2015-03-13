@@ -4,7 +4,7 @@ import models.game._
 import models.game.pile.{Waste, Tableau, Stock, Foundation}
 
 abstract class KlondikeBase(override val id: String, override val seed: Int, cardsToDraw: Int) extends GameVariant(id, seed) {
-  val piles = List(
+  private val piles = List(
     new Stock("stock", cardsToDraw, "waste", Some("waste")),
     new Waste("waste"),
 
@@ -22,9 +22,9 @@ abstract class KlondikeBase(override val id: String, override val seed: Int, car
     new Tableau("tableau-7")
   )
 
-  val deck = Deck.shuffled(rng)
+  private val deck = Deck.shuffled(rng)
 
-  val layouts = List(
+  private val layouts = List(
     Layout(
       width = 7.8,
       height = 5.0,
@@ -73,4 +73,6 @@ abstract class KlondikeBase(override val id: String, override val seed: Int, car
 
     gameState.addCards(deck.getCards(), "stock")
   }
+
+  override def isWin: Boolean = gameState.piles.count(x => x.behavior == "foundation" && x.cards.size == 13) == 4
 }

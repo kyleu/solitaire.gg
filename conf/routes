@@ -1,15 +1,16 @@
-GET        /                                        controllers.HomeController.index(v: Option[String])
+GET        /                                  controllers.HomeController.index
+GET        /play/:variant                      controllers.HomeController.newGame(variant)
 
-GET        /websocket                               controllers.WebsocketController.connect()
+GET        /websocket                         controllers.WebsocketController.connect()
 
-GET        /admin                                   controllers.AdminController.index
-GET        /admin/status                            controllers.AdminController.status
-GET        /admin/trace/connection/:id              controllers.AdminController.traceConnection(id)
-GET        /admin/trace/client/:id                  controllers.AdminController.traceClient(id)
-GET        /admin/trace/game/:id                    controllers.AdminController.traceGame(id)
+GET        /admin                             controllers.AdminController.index
+GET        /admin/status                      controllers.AdminController.status
+GET        /admin/trace/connection/:id        controllers.AdminController.traceConnection(id)
+GET        /admin/trace/client/:id            controllers.AdminController.traceClient(id)
+GET        /admin/trace/game/:id              controllers.AdminController.traceGame(id)
 
-GET        /admin/observe/new/:variant/:seed        controllers.AdminController.observeNewGame(variant, seed: Int)
-GET        /admin/observe/:id                       controllers.AdminController.observeGameAsAdmin(id)
-GET        /admin/observe/:id/:account              controllers.AdminController.observeGameAs(id, account)
+GET        /admin/observe/random              controllers.AdminController.observeRandomGame()
+GET        /admin/observe/:id                 controllers.AdminController.observeGameAsAdmin(id)
+GET        /admin/observe/:id/:account        controllers.AdminController.observeGameAs(id, account)
 
-GET        /assets/*file                            controllers.Assets.at(path="/public", file)
+GET        /assets/*file                      controllers.Assets.at(path="/public", file)

@@ -109,7 +109,7 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
     }
     game match {
       case Some(g) =>
-        log.info("Observing game [" + id + "].")
+        log.info("Connection [" + connectionId + "] is observing game [" + id + "].")
         val c = connections(connectionId)
         c.activeGame = Some(id)
         c.actorRef ! GameStarted(id, g.actorRef)

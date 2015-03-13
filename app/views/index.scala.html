@@ -1,27 +1,64 @@
-@(variant: String)(implicit session: Session, flash: Flash)
+@()(implicit session: Session, flash: Flash)
 
-@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
-  <div id="game-container">
+@layout.bootstrap(utils.Config.projectName) {
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="jumbotron" style="margin-top: 40px;">
+          <h1>Welcome to my game!</h1>
+          <p>I'm trying to build the web's best card games. Thanks for checking out my progress!</p>
+          <p><a class="btn btn-primary btn-lg" href="@routes.HomeController.newGame("klondike").url" role="button">Play Now</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Available Games</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+            @for(v <- models.game.GameVariant.all) {
+              <li><a href="@routes.HomeController.newGame(v.id)">@v.name</a></li>
+            }
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Sign in</h3>
+          </div>
+          <div class="panel-body">
+            <div class="input-group">
+              <input type="text" id="account" class="form-control" placeholder="Account" />
+              <span class="input-group-addon"><a href="" onclick="signIn();return false;">Sign In</a></span>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Administration</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li><a href="@routes.AdminController.status()">Server Status</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <script>
-    window.scalataireConfig = {
-      "id": "@utils.Config.projectId",
-      "name": "@utils.Config.projectName",
-      "debug": "@utils.Config.debug",
-      "cardSet": "@utils.Config.defaultCardSet",
-      "cardSize": "@utils.Config.defaultCardSize",
-      "variant": "@variant",
-      "variants": [@Html(models.game.GameVariant.all.map(v => "['" + v.id + "', '" + v.name + "']").mkString(", "))],
-      "initialAction": ["start"]
-    };
+    function signIn() {
+      var name = document.getElementById("account" ).value;
+      if(name.length == 0) {
+        alert("Please enter your name");
+      } else {
+        alert("Ok, you're \"" + name + "\" now.")
+      }
+    }
   </script>
-  @if(utils.Config.debug) {
-    <script src="/assets/lib/phaser/js/phaser.js"></script>
-    <script src="/assets/lib/phaser/js/phaser-debug.js"></script>
-    <script src="/assets/lib/dat.gui/dat.gui.js"></script>
-  } else {
-    <script src="/assets/lib/phaser/js/phaser.min.js"></script>
-    <script src="/assets/lib/dat.gui/dat.gui.min.js"></script>
-  }
-  <script data-main="/assets/javascripts/main" src="/assets/lib/requirejs/require.min.js"></script>
 }

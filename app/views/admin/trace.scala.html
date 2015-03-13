@@ -14,7 +14,7 @@
   @for(stat <- trace.data) {
     <tr>
       <td>@stat._1</td>
-      <td>@stat._2</td>
+      <td>@Html(stat._2.toString)</td>
     </tr>
   }
 </table>

@@ -1,7 +1,8 @@
 package models.game.variants
 
 import models.game._
-import models.game.pile.{Foundation, Tableau}
+import models.game.pile.constraints.{DragFromConstraints, DragToConstraints}
+import models.game.pile.{PileOptions, Waste, Foundation, Tableau}
 
 object FreeCell extends GameVariant.Description {
   override val id = "freecell"
@@ -12,55 +13,60 @@ object FreeCell extends GameVariant.Description {
 case class FreeCell(override val id: String, override val seed: Int) extends GameVariant(id, seed) {
   override def description = FreeCell
 
-  val piles = List(
+  private val cellOptions = PileOptions(dragToConstraint = Some(DragToConstraints.empty))
+  private val tableauOptions = PileOptions(dragFromConstraint = Some(DragFromConstraints.topCardOnly))
+
+  private val piles = List(
+    new Waste("cell-1", cellOptions),
+    new Waste("cell-2", cellOptions),
+    new Waste("cell-3", cellOptions),
+    new Waste("cell-4", cellOptions),
+
     new Foundation("foundation-1"),
     new Foundation("foundation-2"),
     new Foundation("foundation-3"),
     new Foundation("foundation-4"),
-    new Foundation("foundation-5"),
-    new Foundation("foundation-6"),
-    new Foundation("foundation-7"),
-    new Foundation("foundation-8"),
 
-    new Tableau("tableau-1"),
-    new Tableau("tableau-2"),
-    new Tableau("tableau-3"),
-    new Tableau("tableau-4"),
-    new Tableau("tableau-5"),
-    new Tableau("tableau-6"),
-    new Tableau("tableau-7"),
-    new Tableau("tableau-8")
+    new Tableau("tableau-1", tableauOptions),
+    new Tableau("tableau-2", tableauOptions),
+    new Tableau("tableau-3", tableauOptions),
+    new Tableau("tableau-4", tableauOptions),
+    new Tableau("tableau-5", tableauOptions),
+    new Tableau("tableau-6", tableauOptions),
+    new Tableau("tableau-7", tableauOptions),
+    new Tableau("tableau-8", tableauOptions)
   )
 
-  val deck = Deck.shuffled(rng)
+  private val deck = Deck.shuffled(rng)
 
-  val layouts = Seq(
+  private val layouts = Seq(
     Layout(
-      width = 8.9,
+      width = 9.5,
       height = 5.0,
       piles = List(
-        PileLocation("foundation-1", 0.1, 0.2),
-        PileLocation("foundation-2", 1.2, 0.2),
-        PileLocation("foundation-3", 2.3, 0.2),
-        PileLocation("foundation-4", 3.4, 0.2),
-        PileLocation("foundation-5", 4.5, 0.2),
-        PileLocation("foundation-6", 5.6, 0.2),
-        PileLocation("foundation-7", 6.7, 0.2),
-        PileLocation("foundation-8", 7.8, 0.2),
+        PileLocation("cell-1", 0.1, 0.2),
+        PileLocation("cell-2", 1.2, 0.2),
+        PileLocation("cell-3", 2.3, 0.2),
+        PileLocation("cell-4", 3.4, 0.2),
 
-        PileLocation("tableau-1", 0.1, 1.3),
-        PileLocation("tableau-2", 1.2, 1.3),
-        PileLocation("tableau-3", 2.3, 1.3),
-        PileLocation("tableau-4", 3.4, 1.3),
-        PileLocation("tableau-5", 4.5, 1.3),
-        PileLocation("tableau-6", 5.6, 1.3),
-        PileLocation("tableau-7", 6.7, 1.3),
-        PileLocation("tableau-8", 7.8, 1.3)
+        PileLocation("foundation-1", 5.1, 0.2),
+        PileLocation("foundation-2", 6.2, 0.2),
+        PileLocation("foundation-3", 7.3, 0.2),
+        PileLocation("foundation-4", 8.4, 0.2),
+
+        PileLocation("tableau-1", 0.4, 1.3),
+        PileLocation("tableau-2", 1.5, 1.3),
+        PileLocation("tableau-3", 2.6, 1.3),
+        PileLocation("tableau-4", 3.7, 1.3),
+        PileLocation("tableau-5", 4.8, 1.3),
+        PileLocation("tableau-6", 5.9, 1.3),
+        PileLocation("tableau-7", 7.0, 1.3),
+        PileLocation("tableau-8", 8.1, 1.3)
       )
     )
   )
 
-  lazy val gameState = GameState(id, description.id, seed, deck, piles, layouts)
+  val gameState = GameState(id, description.id, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(7, turnFaceUp = true), "tableau-1", reveal = true)
@@ -72,4 +78,6 @@ case class FreeCell(override val id: String, override val seed: Int) extends Gam
     gameState.addCards(deck.getCards(6, turnFaceUp = true), "tableau-7", reveal = true)
     gameState.addCards(deck.getCards(6, turnFaceUp = true), "tableau-8", reveal = true)
   }
+
+  override def isWin: Boolean = gameState.piles.count(x => x.behavior == "foundation" && x.cards.size == 13) == 4
 }

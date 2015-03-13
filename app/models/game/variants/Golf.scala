@@ -1,6 +1,7 @@
 package models.game.variants
 
 import models.game._
+import models.game.pile.constraints.{DragToConstraints, DragFromConstraints}
 import models.game.pile.{PileOptions, Stock, Foundation, Tableau}
 
 object Golf extends GameVariant.Description {
@@ -12,22 +13,24 @@ object Golf extends GameVariant.Description {
 case class Golf(override val id: String, override val seed: Int) extends GameVariant(id, seed) {
   override def description = Golf
 
-  val piles = List(
-    new Tableau("tableau-1"),
-    new Tableau("tableau-2"),
-    new Tableau("tableau-3"),
-    new Tableau("tableau-4"),
-    new Tableau("tableau-5"),
-    new Tableau("tableau-6"),
-    new Tableau("tableau-7"),
+  private val tableauOptions = PileOptions(dragFromConstraint = Some(DragFromConstraints.topCardOnly), dragToConstraint = None)
 
-    new Foundation("foundation", PileOptions(cardsShown = Some(4), direction = Some("r"))),
+  private val piles = List(
+    new Tableau("tableau-1", tableauOptions),
+    new Tableau("tableau-2", tableauOptions),
+    new Tableau("tableau-3", tableauOptions),
+    new Tableau("tableau-4", tableauOptions),
+    new Tableau("tableau-5", tableauOptions),
+    new Tableau("tableau-6", tableauOptions),
+    new Tableau("tableau-7", tableauOptions),
+
+    new Foundation("foundation", PileOptions(cardsShown = Some(4), direction = Some("r"), dragToConstraint = Some(DragToConstraints.alternatingRank))),
     new Stock("stock", 1, "foundation", None, PileOptions(cardsShown = Some(16), direction = Some("r")))
   )
 
-  val deck = Deck.shuffled(rng)
+  private val deck = Deck.shuffled(rng)
 
-  val layouts = Seq(
+  private val layouts = Seq(
     Layout(
       width = 7.8,
       height = 3.1,
@@ -45,7 +48,7 @@ case class Golf(override val id: String, override val seed: Int) extends GameVar
     )
   )
 
-  lazy val gameState = GameState(id, description.id, seed, deck, piles, layouts)
+  val gameState = GameState(id, description.id, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(5, turnFaceUp = true), "tableau-1", reveal = true)
@@ -59,4 +62,6 @@ case class Golf(override val id: String, override val seed: Int) extends GameVar
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "foundation", reveal = true)
     gameState.addCards(deck.getCards(), "stock")
   }
+
+  override def isWin: Boolean = gameState.pilesById("foundation").cards.length == 52
 }

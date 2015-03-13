@@ -1,5 +1,6 @@
 package models.game.pile.constraints
 
+import models.game.Rank._
 import models.game.{Rank, Card}
 import models.game.pile.Pile
 
@@ -8,7 +9,9 @@ case class DragToConstraint(id: String, f: (Pile, Seq[Card]) => Boolean)
 object DragToConstraints {
   val never = DragToConstraint("never", (pile, cards) => false)
 
-  val foundationDefault = DragToConstraint("never", (pile, cards) => if(cards.length == 1) {
+  val empty = DragToConstraint("empty", (pile, cards) => pile.cards.isEmpty)
+
+  val foundationDefault = DragToConstraint("foundation", (pile, cards) => if(cards.length == 1) {
     if(pile.cards.isEmpty && cards(0).r == Rank.Ace) {
       true
     } else if(pile.cards.last.s == cards(0).s && pile.cards.last.r == Rank.Ace && cards(0).r == Rank.Two) {
@@ -41,8 +44,13 @@ object DragToConstraints {
   })
 
   val alternatingRank = DragToConstraint("alternating-rank", (pile, cards) => {
-    val topCard = pile.cards.last
-    val firstDraggedCard = cards.head
-    topCard.r.value == firstDraggedCard.r.value + 1 || topCard.r.value == firstDraggedCard.r.value - 1
+    val topCardRank = pile.cards.last.r
+    val firstDraggedCardRank = cards.head.r
+    topCardRank match {
+      case King => firstDraggedCardRank == Queen
+      case Ace => firstDraggedCardRank == Two
+      case Two => firstDraggedCardRank == Ace || firstDraggedCardRank == Three
+      case _ => topCardRank.value == firstDraggedCardRank.value + 1 || topCardRank.value == firstDraggedCardRank.value - 1
+    }
   })
 }

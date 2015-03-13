@@ -35,6 +35,9 @@ object RequestMessageSerializers {
       case "SelectCard" => selectCardReads.reads(v)
       case "SelectPile" => selectPileReads.reads(v)
       case "MoveCards" => moveCardsReads.reads(v)
+
+      case "Undo" => Undo
+
       case _ => JsSuccess(MalformedRequest("UnknownType", "c: " + c + ", v: " + Json.stringify(v)))
     }
     jsResult match {

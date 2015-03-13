@@ -97,6 +97,12 @@ define([
           existing.turnFaceUp();
         }
         break;
+      case "GameLost":
+        alert("You lose!");
+        break;
+      case "GameWon":
+        alert("You win!");
+        break;
       case "ServerError":
         console.error("Server error encountered.", v);
         break;

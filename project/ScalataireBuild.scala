@@ -8,6 +8,7 @@ import com.typesafe.sbt.digest.Import.digest
 import com.typesafe.sbt.gzip.Import.gzip
 import com.typesafe.sbt.less.Import.LessKeys
 import com.typesafe.sbt.jse.JsEngineImport.JsEngineKeys
+import sbtbuildinfo.Plugin._
 
 object ScalataireBuild extends Build with UniversalKeys {
   val id = "scalataire"
@@ -41,16 +42,27 @@ object ScalataireBuild extends Build with UniversalKeys {
     name := id,
     version := Versions.app,
     scalaVersion := Versions.scala,
+    scalacOptions ++= compileOptions,
     libraryDependencies ++= dependencies,
+
+    // sbt-web
     pipelineStages := Seq(rjs, digest, gzip),
     includeFilter in (Assets, LessKeys.less) := "*.less",
     excludeFilter in (Assets, LessKeys.less) := "_*.less",
-    scalacOptions ++= compileOptions,
-    JsEngineKeys.engineType := JsEngineKeys.EngineType.Node
+    JsEngineKeys.engineType := JsEngineKeys.EngineType.Node,
+
+    // build info
+    sourceGenerators in Compile <+= buildInfo,
+    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, buildInfoBuildNumber, "builtAtMillis" -> System.currentTimeMillis, "builtAt" -> {
+      val dtf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+      dtf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"))
+      dtf.format(new java.util.Date())
+    }),
+    buildInfoPackage := "utils"
   )
 
   lazy val root = Project(
     id = id,
     base = file(".")
-  ).enablePlugins(play.PlayScala, SbtWeb).settings(serverSettings: _*)
+  ).enablePlugins(play.PlayScala, SbtWeb).settings(buildInfoSettings: _*).settings(serverSettings: _*)
 }

@@ -33,4 +33,6 @@ case class Sandbox(override val id: String, override val seed: Int) extends Game
   override def initialMoves() = {
     gameState.addCards(deck.getCards(), "sandbox-1")
   }
+
+  override def isWin: Boolean = false
 }

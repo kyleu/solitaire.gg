@@ -12,7 +12,7 @@ object Nestor extends GameVariant.Description {
 case class Nestor(override val id: String, override val seed: Int) extends GameVariant(id, seed) {
   override def description = Nestor
 
-  val piles = List(
+  private val piles = List(
     new Tableau("tableau-1"),
     new Tableau("tableau-2"),
     new Tableau("tableau-3"),
@@ -28,9 +28,9 @@ case class Nestor(override val id: String, override val seed: Int) extends GameV
     new Foundation("reserve-4")
   )
 
-  val deck = Deck.shuffled(rng)
+  private val deck = Deck.shuffled(rng)
 
-  val layouts = Seq(
+  private val layouts = Seq(
     Layout(
       width = 8.9,
       height = 3.1,
@@ -52,7 +52,7 @@ case class Nestor(override val id: String, override val seed: Int) extends GameV
     )
   )
 
-  lazy val gameState = GameState(id, description.id, seed, deck, piles, layouts)
+  val gameState = GameState(id, description.id, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(6, turnFaceUp = true), "tableau-1", reveal = true)
@@ -69,4 +69,6 @@ case class Nestor(override val id: String, override val seed: Int) extends GameV
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "reserve-3", reveal = true)
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "reserve-4", reveal = true)
   }
+
+  override def isWin: Boolean = !gameState.piles.exists(_.cards.size != 0)
 }

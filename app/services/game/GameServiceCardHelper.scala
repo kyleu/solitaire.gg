@@ -1,6 +1,6 @@
 package services.game
 
-import models.{CardMoveCancelled, MessageSet, CardMoved}
+import models.{GameWon, CardMoveCancelled, MessageSet, CardMoved}
 
 trait GameServiceCardHelper { this: GameService =>
   protected def handleSelectCard(cardId: String, pileId: String, pileIndex: Int) {
@@ -11,6 +11,7 @@ trait GameServiceCardHelper { this: GameService =>
     }
     val messages = pile.onSelectCard(card, gameState)
     sendToAll(messages)
+    checkWinCondition()
   }
 
   protected def handleSelectPile(pileId: String) {
@@ -20,6 +21,7 @@ trait GameServiceCardHelper { this: GameService =>
     }
     val messages = pile.onSelectPile(gameState)
     sendToAll(messages)
+    checkWinCondition()
   }
 
   protected def handleMoveCards(cardIds: Seq[String], sourceId: String, targetId: String) {
@@ -41,18 +43,21 @@ trait GameServiceCardHelper { this: GameService =>
           CardMoved(card.id, sourceId, targetId)
         }
 
-        if(messages.size == 1) {
-          sendToAll(messages(0))
-        } else {
-          sendToAll(MessageSet(messages))
-        }
+        sendToAll(messages)
+        checkWinCondition()
       } else {
-        log.warn("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] to pile [" + target.id + "].")
+        log.info("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] to pile [" + target.id + "].")
         sendToAll(CardMoveCancelled(cardIds, sourceId))
       }
     } else {
-      log.warn("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] from pile [" + source.id + "].")
+      log.info("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] from pile [" + source.id + "].")
       sendToAll(CardMoveCancelled(cardIds, sourceId))
+    }
+  }
+
+  private def checkWinCondition() = {
+    if(gameVariant.isWin) {
+      sendToAll(GameWon(id))
     }
   }
 }

@@ -12,8 +12,7 @@ object PlayGlobalSettings extends GlobalSettings with Logging {
   override def onStart(app: Application) {
     DateTimeZone.setDefault(DateTimeZone.UTC)
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
-    Logger.info(utils.Config.projectName + " is starting.")
-
+    Logger.info(utils.Config.projectName + " build [" + BuildInfo.buildinfoBuildnumber + "] is starting.")
     super.onStart(app)
   }
   override def onStop(app: Application) {

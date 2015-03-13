@@ -9,6 +9,8 @@ import scala.concurrent.duration._
 
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
+import scala.util.Random
+
 object AdminController extends Controller {
   implicit val timeout = Timeout(10.seconds)
 
@@ -48,8 +50,16 @@ object AdminController extends Controller {
     }
   }
 
-  def observeNewGame(variant: String, seed: Int) = Action { implicit request =>
-    Ok(views.html.admin.observeGame(None, None))
+  def observeRandomGame() = Action.async { implicit request =>
+    (ActorSupervisor.instance ask GetSystemStatus).map {
+      case ss: SystemStatus => if(ss.games.isEmpty) {
+        Ok("No games available.")
+      } else {
+        val gameId = ss.games(new Random().nextInt(ss.games.length))._1
+        Ok(views.html.admin.observeGame(Some(gameId), None))
+      }
+      case se: ServerError => Ok(se.reason + ": " + se.content)
+    }
   }
 
   def observeGameAsAdmin(gameId: String) = Action { implicit request =>
