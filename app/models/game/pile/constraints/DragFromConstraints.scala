@@ -1,9 +1,9 @@
 package models.game.pile.constraints
 
 import models.game.{Rank, Card}
-import models.game.pile.Pile
+import models.game.pile.{PileOption, Pile}
 
-case class DragFromConstraint(id: String, f: (Pile, Seq[Card]) => Boolean)
+case class DragFromConstraint(override val id: String, f: (Pile, Seq[Card]) => Boolean) extends PileOption(id)
 
 object DragFromConstraints {
   val never = DragFromConstraint("never", (pile, cards) => false)

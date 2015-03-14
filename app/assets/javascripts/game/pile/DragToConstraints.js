@@ -38,6 +38,16 @@ define(['game/Rank'], function(Rank) {
       }
     },
 
+    "same-rank": function(pile) {
+      if(this.cards.length === 0) {
+        return false;
+      } else {
+        var topCardRank = this.cards[this.cards.length - 1].rank.value;
+        var draggedCardRank = pile.dragCards[0].rank.value;
+        return topCardRank === draggedCardRank;
+      }
+    },
+
     "alternating-rank": function(pile) {
       if(pile.dragCards.length !== 1) {
         return false;

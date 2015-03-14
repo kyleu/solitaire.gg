@@ -54,14 +54,14 @@ case class FreeCell(override val id: String, override val seed: Int) extends Gam
         PileLocation("foundation-3", 7.3, 0.2),
         PileLocation("foundation-4", 8.4, 0.2),
 
-        PileLocation("tableau-1", 0.4, 1.3),
-        PileLocation("tableau-2", 1.5, 1.3),
-        PileLocation("tableau-3", 2.6, 1.3),
-        PileLocation("tableau-4", 3.7, 1.3),
-        PileLocation("tableau-5", 4.8, 1.3),
-        PileLocation("tableau-6", 5.9, 1.3),
-        PileLocation("tableau-7", 7.0, 1.3),
-        PileLocation("tableau-8", 8.1, 1.3)
+        PileLocation("tableau-1", 0.6, 1.3),
+        PileLocation("tableau-2", 1.7, 1.3),
+        PileLocation("tableau-3", 2.8, 1.3),
+        PileLocation("tableau-4", 3.9, 1.3),
+        PileLocation("tableau-5", 5.0, 1.3),
+        PileLocation("tableau-6", 6.1, 1.3),
+        PileLocation("tableau-7", 7.2, 1.3),
+        PileLocation("tableau-8", 8.3, 1.3)
       )
     )
   )

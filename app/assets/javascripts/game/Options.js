@@ -5,7 +5,7 @@ define(["utils/Config"], function(cfg) {
     this.autoFlip = true;
     this.variant = cfg.variant;
     this.startGame = function() {
-      document.location.href = "/?v=" + this.variant;
+      document.location.href = "/play/" + this.variant;
     };
   };
 

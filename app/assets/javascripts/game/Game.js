@@ -25,10 +25,10 @@ define(['utils/Config', 'game/Options', 'game/state/InitialState', 'game/CardSet
     }
     switch(c) {
       case "Pong":
-        //this.statusPanel.setLatency(new Date().getTime() - v.timestamp);
+        document.getElementById('status-latency').innerText = (new Date().getTime() - v.timestamp).toString();
         break;
       case "VersionResponse":
-        //this.statusPanel.setVersion(v.version);
+        document.getElementById('status-version').innerText = v.version;
         break;
       default:
         this.state.getCurrentState().onMessage(c, v);

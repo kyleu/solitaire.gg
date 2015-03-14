@@ -1,6 +1,7 @@
 package models.game.pile
 
 import models.ResponseMessage
+import models.game.pile.actions.{SelectPileActions, SelectCardActions}
 import models.game.pile.constraints.{DragToConstraints, DragFromConstraints, SelectPileConstraints, SelectCardConstraints}
 import models.game.{GameState, Card}
 import utils.Logging
@@ -27,14 +28,8 @@ case class Pile(id: String, behavior: String, options: PileOptions, cards: colle
   final def canDragFrom(cards: Seq[Card]) = options.dragFromConstraint.getOrElse(DragFromConstraints.never).f(this, cards)
   final def canDragTo(cards: Seq[Card]) = options.dragToConstraint.getOrElse(DragToConstraints.never).f(this, cards)
 
-  def onSelectCard(card: Card, gameState: GameState): Seq[ResponseMessage] = {
-    log.debug("Card [" + card + "] selected with no action.")
-    Nil
-  }
-  def onSelectPile(gameState: GameState): Seq[ResponseMessage] = {
-    log.debug("Pile [" + this + "] selected with no action.")
-    Nil
-  }
+  def onSelectCard(card: Card, gameState: GameState): Seq[ResponseMessage] = options.selectCardAction.getOrElse(SelectCardActions.none).f(this, card, gameState)
+  def onSelectPile(gameState: GameState): Seq[ResponseMessage] = options.selectPileAction.getOrElse(SelectPileActions.none).f(this, gameState)
 
   override def toString: String = id + ": " + cards.map(_.toString).mkString(", ")
 }

@@ -1,6 +1,6 @@
 package services.game
 
-import models.{GameWon, CardMoveCancelled, MessageSet, CardMoved}
+import models._
 
 trait GameServiceCardHelper { this: GameService =>
   protected def handleSelectCard(cardId: String, pileId: String, pileIndex: Int) {
@@ -37,20 +37,29 @@ trait GameServiceCardHelper { this: GameService =>
 
     if(source.canDragFrom(cards)) {
       if(target.canDragTo(cards)) {
-        val messages = cards.map { card =>
-          source.removeCard(card)
-          target.addCard(card)
-          CardMoved(card.id, sourceId, targetId)
+        val messages = if(variant == "nestor") {
+          cards.flatMap { card =>
+            source.removeCard(card)
+            val targetCard = target.cards.last
+            target.removeCard(targetCard)
+            Seq(CardRemoved(card.id), CardRemoved(targetCard.id))
+          }
+        } else {
+          cards.map { card =>
+            source.removeCard(card)
+            target.addCard(card)
+            CardMoved(card.id, sourceId, targetId)
+          }
         }
 
         sendToAll(messages)
         checkWinCondition()
       } else {
-        log.info("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] to pile [" + target.id + "].")
+        log.debug("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] to pile [" + target.id + "].")
         sendToAll(CardMoveCancelled(cardIds, sourceId))
       }
     } else {
-      log.info("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] from pile [" + source.id + "].")
+      log.debug("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] from pile [" + source.id + "].")
       sendToAll(CardMoveCancelled(cardIds, sourceId))
     }
   }

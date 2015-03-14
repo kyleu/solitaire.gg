@@ -1,10 +1,13 @@
 package models.game.pile
 
+import models.game.pile.actions.{SelectPileAction, SelectCardAction}
 import models.game.pile.constraints.{DragToConstraint, DragFromConstraint, SelectPileConstraint, SelectCardConstraint}
 
 object PileOptions {
   val empty = PileOptions()
 }
+
+class PileOption(val id: String)
 
 case class PileOptions(
   cardsShown: Option[Int] = None,
@@ -13,7 +16,10 @@ case class PileOptions(
   selectCardConstraint: Option[SelectCardConstraint] = None,
   selectPileConstraint: Option[SelectPileConstraint] = None,
   dragFromConstraint: Option[DragFromConstraint] = None,
-  dragToConstraint: Option[DragToConstraint] = None
+  dragToConstraint: Option[DragToConstraint] = None,
+
+  selectCardAction: Option[SelectCardAction] = None,
+  selectPileAction: Option[SelectPileAction] = None
 ) {
   def combine(po: PileOptions) = {
     this.copy(

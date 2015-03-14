@@ -9,6 +9,7 @@ define(["utils/Config"], function (cfg) {
     var ws = new WebSocket(this.url);
     ws.onopen = function() {
       me.connected = true;
+      document.getElementById('status-connection').innerText = 'Connected';
       context.onConnect(me.url);
     };
     ws.onmessage = function(event) {
@@ -31,10 +32,12 @@ define(["utils/Config"], function (cfg) {
     };
     ws.onclose = function() {
       me.connected = false;
+      document.getElementById('status-connection').innerText = 'Disconnected';
       console.info("Websocket connection to [" + me.url + "] closed.");
     };
     ws.onerror = function() {
       me.connected = false;
+      document.getElementById('status-connection').innerText = 'Connection Error';
       console.error("Received error from websocket connection to [" + me.url + "].");
     };
     this.connection = ws;

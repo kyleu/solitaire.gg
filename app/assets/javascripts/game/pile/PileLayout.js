@@ -24,7 +24,11 @@ define(['game/pile/PileHelpers'], function (PileHelpers) {
 
         var offset = 0;
         if((pile.cards.length - largeIndexInt) < pile.options.cardsShown) {
-          offset = pile.options.cardsShown - (pile.cards.length - largeIndexInt);
+          if(pile.options.cardsShown === undefined) {
+            offset = pile.cards.length - largeIndexInt;
+          } else {
+            offset = pile.options.cardsShown - (pile.cards.length - largeIndexInt);
+          }
         }
         if(pile.options.direction === 'd') {
           largeX = pile.x;

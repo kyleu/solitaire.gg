@@ -1,7 +1,7 @@
 define([
-  'utils/Config', 'game/Card', 'game/pile/Pile',
+  'utils/Config', 'game/Card', 'game/pile/Pile', 'game/Pile/PileHelpers',
   'game/Playmat', 'game/state/GameState'
-], function (cfg, Card, Pile, Playmat, GameState) {
+], function (cfg, Card, Pile, PileHelpers, Playmat, GameState) {
   "use strict";
 
   function Gameplay(game) {
@@ -30,9 +30,10 @@ define([
     this.bg.scale = { x: 0.5, y: 0.5 };
     this.add.existing(this.bg);
 
-    this.game.time.events.loop(Phaser.Timer.SECOND * 30, function() {
-      this.ws.send("Ping", { timestamp: new Date().getTime() });
-    }, this.game);
+    this.game.ws.send("Ping", { timestamp: new Date().getTime() });
+    this.game.time.events.loop(Phaser.Timer.SECOND * 10, function() {
+      this.game.ws.send("Ping", { timestamp: new Date().getTime() });
+    }, this);
 
     this.game.scale.onOrientationChange.add(this.onOrientationChange, this);
 
@@ -70,6 +71,18 @@ define([
         this.loadPiles(v.state.piles);
         this.loadCards(v.state.piles);
         break;
+      case "CardRevealed":
+        var existing = this.game.cards[v.card.id];
+        existing.updateSprite(v.card.r, v.card.s, v.card.u);
+        if(v.card.u) {
+          existing.turnFaceUp();
+        }
+        break;
+      case "CardRemoved":
+        var removedCard = this.game.cards[v.card];
+        removedCard.pile.removeCard(removedCard);
+        PileHelpers.tweenRemove(removedCard);
+        break;
       case "CardMoved":
         var movedCard = this.game.cards[v.card];
         var source = this.game.piles[v.source];
@@ -88,13 +101,6 @@ define([
       case "CardMoveCancelled":
         for(var cardCancelledIndex in v.cards) {
           this.game.cards[v.cards[cardCancelledIndex]].cancelDrag();
-        }
-        break;
-      case "CardRevealed":
-        var existing = this.game.cards[v.card.id];
-        existing.updateSprite(v.card.r, v.card.s, v.card.u);
-        if(v.card.u) {
-          existing.turnFaceUp();
         }
         break;
       case "GameLost":

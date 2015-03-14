@@ -81,6 +81,16 @@ define(function() {
         card.tweening = true;
         tween.start();
       }
+    },
+
+    tweenRemove: function(card) {
+      var tween = card.game.add.tween(card);
+      tween.to({alpha: 0}, 400);
+      tween.onComplete.add(function() {
+        card.destroy();
+      }, card);
+      card.tweening = true;
+      tween.start();
     }
   };
 

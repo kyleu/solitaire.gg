@@ -2,6 +2,7 @@ package models.game.variants
 
 import models.game._
 import models.game.pile._
+import models.game.pile.constraints.{DragToConstraints, DragFromConstraints}
 
 object Nestor extends GameVariant.Description {
   override val id = "nestor"
@@ -12,20 +13,25 @@ object Nestor extends GameVariant.Description {
 case class Nestor(override val id: String, override val seed: Int) extends GameVariant(id, seed) {
   override def description = Nestor
 
-  private val piles = List(
-    new Tableau("tableau-1"),
-    new Tableau("tableau-2"),
-    new Tableau("tableau-3"),
-    new Tableau("tableau-4"),
-    new Tableau("tableau-5"),
-    new Tableau("tableau-6"),
-    new Tableau("tableau-7"),
-    new Tableau("tableau-8"),
+  private val options = PileOptions(
+    dragFromConstraint = Some(DragFromConstraints.topCardOnly),
+    dragToConstraint = Some(DragToConstraints.sameRank)
+  )
 
-    new Foundation("reserve-1"),
-    new Foundation("reserve-2"),
-    new Foundation("reserve-3"),
-    new Foundation("reserve-4")
+  private val piles = List(
+    new Tableau("tableau-1", options),
+    new Tableau("tableau-2", options),
+    new Tableau("tableau-3", options),
+    new Tableau("tableau-4", options),
+    new Tableau("tableau-5", options),
+    new Tableau("tableau-6", options),
+    new Tableau("tableau-7", options),
+    new Tableau("tableau-8", options),
+
+    new Foundation("reserve-1", options),
+    new Foundation("reserve-2", options),
+    new Foundation("reserve-3", options),
+    new Foundation("reserve-4", options)
   )
 
   private val deck = Deck.shuffled(rng)

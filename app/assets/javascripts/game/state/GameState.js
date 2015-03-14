@@ -14,7 +14,7 @@ define(["utils/DebugInfo"], function (di) {
   };
 
   GameState.prototype.update = function() {
-    // this.game.statusPanel.setFps(this.game.time.fps);
+    document.getElementById('status-fps').innerText = this.game.time.fps;
   };
 
   GameState.prototype.onMessage = function(c, v) {
@@ -35,9 +35,6 @@ define(["utils/DebugInfo"], function (di) {
 
   GameState.prototype.resize = function(h, w) {
     // console.log("Resizing [" + this.id + "] to [" + h + ", " + w + "].");
-    // if(this.game.statusPanel !== undefined) {
-    //   this.game.statusPanel.resize();
-    // }
   };
 
   return GameState;

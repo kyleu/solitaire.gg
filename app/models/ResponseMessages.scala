@@ -15,6 +15,7 @@ case class GameWon(id: String) extends ResponseMessage
 
 case class CardRevealed(card: Card) extends ResponseMessage
 case class CardMoved(card: String, source: String, target: String, targetIndex: Option[Int] = None, turnFaceUp: Boolean = false, turnFaceDown: Boolean = false) extends ResponseMessage
+case class CardRemoved(card: String) extends ResponseMessage
 case class CardMoveCancelled(cards: Seq[String], source: String) extends ResponseMessage
 
 case class MessageSet(messages: Seq[ResponseMessage]) extends ResponseMessage

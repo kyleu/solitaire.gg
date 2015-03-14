@@ -1,9 +1,9 @@
 package models.game.pile.constraints
 
 import models.game.Card
-import models.game.pile.Pile
+import models.game.pile.{PileOption, Pile}
 
-case class SelectCardConstraint(id: String, f: (Pile, Card) => Boolean)
+case class SelectCardConstraint(override val id: String, f: (Pile, Card) => Boolean) extends PileOption(id)
 
 object SelectCardConstraints {
   val never = SelectCardConstraint("never", (pile, card) => false)

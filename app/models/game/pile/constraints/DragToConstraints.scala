@@ -2,9 +2,9 @@ package models.game.pile.constraints
 
 import models.game.Rank._
 import models.game.{Rank, Card}
-import models.game.pile.Pile
+import models.game.pile.{PileOption, Pile}
 
-case class DragToConstraint(id: String, f: (Pile, Seq[Card]) => Boolean)
+case class DragToConstraint(override val id: String, f: (Pile, Seq[Card]) => Boolean) extends PileOption(id)
 
 object DragToConstraints {
   val never = DragToConstraint("never", (pile, cards) => false)
@@ -41,6 +41,12 @@ object DragToConstraints {
         topCard.r.value == firstDraggedCard.r.value + 1
       }
     }
+  })
+
+  val sameRank = DragToConstraint("same-rank", (pile, cards) => {
+    val topCardRank = pile.cards.last.r
+    val firstDraggedCardRank = cards.head.r
+    topCardRank == firstDraggedCardRank
   })
 
   val alternatingRank = DragToConstraint("alternating-rank", (pile, cards) => {
