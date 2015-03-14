@@ -5,17 +5,23 @@ import java.util.TimeZone
 import org.joda.time.DateTimeZone
 import play.api.mvc.{RequestHeader, Results}
 import play.api.{Logger, Application, GlobalSettings}
+import services.database.DatabaseConnection
 
 import scala.concurrent.Future
 
 object PlayGlobalSettings extends GlobalSettings with Logging {
   override def onStart(app: Application) {
+    Logger.info(utils.Config.projectName + " build [" + BuildInfo.buildinfoBuildnumber + "] is starting.")
+
     DateTimeZone.setDefault(DateTimeZone.UTC)
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
-    Logger.info(utils.Config.projectName + " build [" + BuildInfo.buildinfoBuildnumber + "] is starting.")
+
+    //DatabaseConnection.open()
+
     super.onStart(app)
   }
   override def onStop(app: Application) {
+    //DatabaseConnection.close()
     super.onStop(app)
   }
 

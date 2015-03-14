@@ -28,28 +28,18 @@ object SelectCardActions {
         }
       }.headOption
       foundation match {
-        case Some(f) =>
-          pile.removeCard(card)
-          f.addCard(card)
-          Seq(CardMoved(card.id, pile.id, f.id))
+        case Some(f) => moveCard(card, pile, f, gameState)
         case None => Nil
       }
     }
   })
 
-  def drawToPile(cardsToDraw: Int, drawTo: String) = SelectCardAction("draw-to-waste", (pile, card, gameState) => {
-    val waste = gameState.pilesById(drawTo)
-
+  def drawToPile(cardsToDraw: Int, drawTo: String) = SelectCardAction("draw-to-pile", (pile, card, gameState) => {
+    val tgt = gameState.pilesById(drawTo)
     (0 to (cardsToDraw - 1)).flatMap { i =>
       val topCard = pile.cards.lastOption
       topCard match {
-        case Some(tc) =>
-          pile.removeCard(tc)
-          val revealed = gameState.revealCardToAll(tc)
-
-          waste.addCard(tc)
-          tc.u = true
-          revealed :+ CardMoved(tc.id, pile.id, drawTo, turnFaceUp = true)
+        case Some(tc) => moveCard(tc, pile, tgt, gameState)
         case None => Nil
       }
     }
@@ -66,9 +56,35 @@ object SelectCardActions {
       case _ => topCardRank.value == selectedCardRank.value + 1 || topCardRank.value == selectedCardRank.value - 1
     }
     if(shouldMove) {
-      Seq(CardMoved(card.id, pile.id, foundation.id))
+      moveCard(card, pile, foundation, gameState)
     } else {
       Nil
     }
   })
+
+  def drawToEmptyPiles(behavior: String) = SelectCardAction("draw-to-empty", (pile, card, gameState) => {
+    val piles = gameState.piles.filter(_.behavior == behavior)
+    piles.flatMap { p =>
+      if(p.cards.isEmpty) {
+        pile.cards.headOption match {
+          case Some(tc) => moveCard(tc, pile, p, gameState, turnFaceUp = true)
+          case None => Nil
+        }
+      } else {
+        Nil
+      }
+    }
+  })
+
+  private def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turnFaceUp: Boolean = true) = {
+    src.removeCard(card)
+    tgt.addCard(card)
+    if(turnFaceUp && !card.u) {
+      card.u = true
+      val revealed = gameState.revealCardToAll(card)
+      revealed :+ CardMoved(card.id, src.id, tgt.id, turnFaceUp = true)
+    } else {
+      Seq(CardMoved(card.id, src.id, tgt.id))
+    }
+  }
 }

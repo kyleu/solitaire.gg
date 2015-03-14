@@ -2,7 +2,7 @@ import sbt._
 
 object Dependencies {
   object Database {
-    val jdub = "com.simple" %% "jdub" % "0.9.0"
+    val jdub = "com.simple" %% "jdub" % "1.0.0"
     val postgresJdbc = "org.postgresql" % "postgresql" % "9.4-1200-jdbc41" intransitive()
   }
 

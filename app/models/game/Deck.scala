@@ -12,11 +12,11 @@ object Deck {
   }
 
   def shuffled(random: Random) = {
-    Deck(random.shuffle(fresh.cards))
+    Deck(random.shuffle(fresh().cards))
   }
 }
 
-case class Deck(var cards: List[Card]) {
+case class Deck(var cards: Seq[Card]) {
   def getCards(numCards: Int = this.cards.size, turnFaceUp: Boolean = false) = {
     val ret = this.cards.take(numCards)
     if(turnFaceUp) {
@@ -25,6 +25,27 @@ case class Deck(var cards: List[Card]) {
       }
     }
     this.cards = this.cards.drop(numCards)
+    ret
+  }
+
+  def getCardsUniqueRanks(numCards: Int, turnFaceUp: Boolean = false) = {
+    var ret = Seq.empty[Card]
+    var enough = false
+    while(!enough) {
+      val c = cards.head
+      if(ret.exists(_.r == c.r)) {
+        cards = cards.tail :+ c
+      } else {
+        cards = cards.tail
+        ret = ret :+ c
+      }
+      enough = ret.length == numCards
+    }
+    if(turnFaceUp) {
+      ret.foreach { c =>
+        c.u = true
+      }
+    }
     ret
   }
 }

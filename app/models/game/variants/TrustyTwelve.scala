@@ -1,6 +1,8 @@
 package models.game.variants
 
 import models.game._
+import models.game.pile.actions.SelectCardActions
+import models.game.pile.constraints.{SelectCardConstraints, DragFromConstraints, DragToConstraints}
 import models.game.pile.{PileOptions, Stock, Tableau}
 
 object TrustyTwelve extends GameVariant.Description {
@@ -12,22 +14,29 @@ object TrustyTwelve extends GameVariant.Description {
 case class TrustyTwelve(override val id: String, override val seed: Int) extends GameVariant(id, seed) {
   override def description = TrustyTwelve
 
+  val tableauOptions = PileOptions(cardsShown = Some(2), dragFromConstraint = Some(DragFromConstraints.topCardOnly), dragToConstraint = Some(DragToConstraints.lowerRank))
+
   val piles = List(
-    new Stock("stock", 0, "", None, PileOptions(cardsShown = Some(19), direction = Some("r"))),
+    new Stock("stock", 0, "", None, PileOptions(
+      cardsShown = Some(19),
+      direction = Some("r"),
+      selectCardConstraint = Some(SelectCardConstraints.topCardOnly),
+      selectCardAction = Some(SelectCardActions.drawToEmptyPiles("tableau"))
+    )),
 
-    new Tableau("tableau-1", PileOptions(cardsShown = Some(2))),
-    new Tableau("tableau-2", PileOptions(cardsShown = Some(2))),
-    new Tableau("tableau-3", PileOptions(cardsShown = Some(2))),
-    new Tableau("tableau-4", PileOptions(cardsShown = Some(2))),
-    new Tableau("tableau-5", PileOptions(cardsShown = Some(2))),
-    new Tableau("tableau-6", PileOptions(cardsShown = Some(2))),
+    new Tableau("tableau-1", tableauOptions),
+    new Tableau("tableau-2", tableauOptions),
+    new Tableau("tableau-3", tableauOptions),
+    new Tableau("tableau-4", tableauOptions),
+    new Tableau("tableau-5", tableauOptions),
+    new Tableau("tableau-6", tableauOptions),
 
-    new Tableau("tableau-7", PileOptions(cardsShown = Some(2))),
-    new Tableau("tableau-8", PileOptions(cardsShown = Some(2))),
-    new Tableau("tableau-9", PileOptions(cardsShown = Some(2))),
-    new Tableau("tableau-10", PileOptions(cardsShown = Some(2))),
-    new Tableau("tableau-11", PileOptions(cardsShown = Some(2))),
-    new Tableau("tableau-12", PileOptions(cardsShown = Some(2)))
+    new Tableau("tableau-7", tableauOptions),
+    new Tableau("tableau-8", tableauOptions),
+    new Tableau("tableau-9", tableauOptions),
+    new Tableau("tableau-10", tableauOptions),
+    new Tableau("tableau-11", tableauOptions),
+    new Tableau("tableau-12", tableauOptions)
   )
 
   val deck = Deck.shuffled(rng)
@@ -35,7 +44,7 @@ case class TrustyTwelve(override val id: String, override val seed: Int) extends
   val layouts = Seq(
     Layout(
       width = 6.7,
-      height = 3.1,
+      height = 3.9,
       piles = List(
         PileLocation("stock", 0.1, 0.2),
 

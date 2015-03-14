@@ -48,6 +48,21 @@ define(['game/Rank'], function(Rank) {
       }
     },
 
+    "lower-rank": function(pile) {
+      var draggedCardRank = pile.dragCards[0].rank.value;
+      if(this.cards.length === 0) {
+        return false;
+      } else {
+        var topCardRank = this.cards[this.cards.length - 1].rank.value;
+        if(topCardRank == 2) {
+          return draggedCardRank === 14;
+        } else {
+          console.log(topCardRank + ":" + draggedCardRank);
+          return topCardRank === draggedCardRank + 1;
+        }
+      }
+    },
+
     "alternating-rank": function(pile) {
       if(pile.dragCards.length !== 1) {
         return false;
@@ -64,7 +79,6 @@ define(['game/Rank'], function(Rank) {
           return topCardRank === draggedCardRank + 1 || topCardRank === draggedCardRank - 1;
         }
       }
-
     }
   };
 });

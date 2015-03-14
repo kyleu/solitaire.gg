@@ -20,3 +20,5 @@ large/
 medium/
 small/
 x-small/
+
+buildinfo.properties

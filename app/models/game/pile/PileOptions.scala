@@ -29,7 +29,10 @@ case class PileOptions(
       selectCardConstraint = if(po.selectCardConstraint.isDefined) { po.selectCardConstraint } else { selectCardConstraint },
       selectPileConstraint = if(po.selectPileConstraint.isDefined) { po.selectPileConstraint } else { selectPileConstraint },
       dragFromConstraint = if(po.dragFromConstraint.isDefined) { po.dragFromConstraint } else { dragFromConstraint },
-      dragToConstraint = if(po.dragToConstraint.isDefined) { po.dragToConstraint } else { dragToConstraint }
+      dragToConstraint = if(po.dragToConstraint.isDefined) { po.dragToConstraint } else { dragToConstraint },
+
+      selectCardAction = if(po.selectCardAction.isDefined) { po.selectCardAction } else { selectCardAction },
+      selectPileAction = if(po.selectPileAction.isDefined) { po.selectPileAction } else { selectPileAction }
     )
   }
 }

@@ -49,6 +49,17 @@ object DragToConstraints {
     topCardRank == firstDraggedCardRank
   })
 
+  val lowerRank = DragToConstraint("lower-rank", (pile, cards) => {
+    val firstDraggedCardRank = cards.head.r
+    pile.cards.lastOption match {
+      case Some(c) => c.r match {
+        case Two => firstDraggedCardRank == Ace
+        case _ => c.r.value == firstDraggedCardRank.value + 1
+      }
+      case None =>  false
+    }
+  })
+
   val alternatingRank = DragToConstraint("alternating-rank", (pile, cards) => {
     val topCardRank = pile.cards.last.r
     val firstDraggedCardRank = cards.head.r

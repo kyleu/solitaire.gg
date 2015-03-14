@@ -1,6 +1,6 @@
-package services
+package services.database
 
-import com.simple.jdub.{Statement, Database}
+import com.simple.jdub.{Database, Statement}
 
 object DatabaseSchema {
   def create(d: Database) {
