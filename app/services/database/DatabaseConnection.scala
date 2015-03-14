@@ -1,21 +1,19 @@
 package services.database
 
-import com.simple.jdub.{SingleRowQuery, Row, Query, Database}
+import com.simple.jdub._
 import utils.Config
 import utils.metrics.Checked
 
 object DatabaseConnection {
   def open() = {
-    db.query(new SingleRowQuery[Int] {
-      override def sql = "select 0 as num"
-      override def values = Nil
-      override def map(row: Row): Int = row.int("num").get
-    })
+    DatabaseSchema.update()
   }
 
   def close() = {
     db.close()
   }
+
+  def transaction[A](f: (Transaction) => A) = db.transaction(f)
 
   private val db = {
     val url = "jdbc:postgresql://localhost/scalataire"
@@ -23,6 +21,8 @@ object DatabaseConnection {
     val password = "omgWTFdragonz!"
     val name = Some(Config.projectId)
     val healthCheckRegistry = Some(Checked.healthCheckRegistry)
-    Database.connect(url, username, password, name, healthCheckRegistry = healthCheckRegistry)
+    val maxSize = 32
+    val maxWait = 10000
+    Database.connect(url, username, password, name, maxWait = maxWait, maxSize = maxSize, healthCheckRegistry = healthCheckRegistry)
   }
 }

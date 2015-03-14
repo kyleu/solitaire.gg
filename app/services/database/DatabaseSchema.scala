@@ -1,20 +1,20 @@
 package services.database
 
-import com.simple.jdub.{Database, Statement}
+import models.queries.DdlQueries.{DropTable, DoesTableExist, CreateGameTable, CreateAccountTable}
 
 object DatabaseSchema {
-  def create(d: Database) {
-
+  def update() = DatabaseConnection.transaction { t =>
+    if(t.query(DoesTableExist("accounts"))) {
+      t.execute(CreateAccountTable)
+    }
+    if(t.query(DoesTableExist("games"))) {
+      t.execute(CreateGameTable)
+    }
   }
 
-  def destroy(d: Database) = d.transaction { t =>
+  def destroy() = DatabaseConnection.transaction { t =>
     t.execute(DropTable("account"))
     t.execute(DropTable("game"))
     Unit
-  }
-
-  private case class DropTable(name: String) extends Statement {
-    override val sql= "drop table if exists ?"
-    override val values = Seq(name)
   }
 }

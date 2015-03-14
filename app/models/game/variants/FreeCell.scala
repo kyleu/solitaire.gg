@@ -41,7 +41,7 @@ case class FreeCell(override val id: String, override val seed: Int) extends Gam
 
   private val layouts = Seq(
     Layout(
-      width = 9.5,
+      width = 9.9,
       height = 5.0,
       piles = List(
         PileLocation("cell-1", 0.1, 0.2),
@@ -49,10 +49,10 @@ case class FreeCell(override val id: String, override val seed: Int) extends Gam
         PileLocation("cell-3", 2.3, 0.2),
         PileLocation("cell-4", 3.4, 0.2),
 
-        PileLocation("foundation-1", 5.1, 0.2),
-        PileLocation("foundation-2", 6.2, 0.2),
-        PileLocation("foundation-3", 7.3, 0.2),
-        PileLocation("foundation-4", 8.4, 0.2),
+        PileLocation("foundation-1", 5.5, 0.2),
+        PileLocation("foundation-2", 6.6, 0.2),
+        PileLocation("foundation-3", 7.7, 0.2),
+        PileLocation("foundation-4", 8.8, 0.2),
 
         PileLocation("tableau-1", 0.6, 1.3),
         PileLocation("tableau-2", 1.7, 1.3),

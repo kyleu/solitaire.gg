@@ -4,7 +4,7 @@ import com.simple.jdub.{Row, SingleRowQuery, Statement}
 
 object DdlQueries {
   case class DoesTableExist(tableName: String) extends SingleRowQuery[Boolean] {
-    override val sql = "SELECT EXISTS (SELECT * FROM information_schema.tables WHERE table_name = ?);"
+    override val sql = "select exists (select * from information_schema.tables WHERE table_name = ?);"
     override val values = tableName :: Nil
     override def map(row: Row) = row.boolean("exists").get
   }
@@ -21,34 +21,35 @@ object DdlQueries {
 
   case object CreateAccountTable extends Statement {
     override val sql = trim(s"""
-      CREATE TABLE accounts (
+      create table accounts (
         id uuid primary key,
-        email character varying(255) NOT NULL
-        created timestamp NOT NULL
-      ) WITH (
-        OIDS=FALSE
+        email character varying(256) not null
+        created timestamp not null
+      ) with (
+        oids=false
       );
 
-      CREATE INDEX accounts_email_idx
-        ON accounts
-        USING btree (email COLLATE pg_catalog."default");
+      create index accounts_email_idx
+        on accounts
+        using btree (email collate pg_catalog."default");
     """)
     override val values = Nil
   }
 
   case object CreateGameTable extends Statement {
     override val sql = trim(s"""
-      CREATE TABLE games (
+      create table games (
         id uuid primary key,
-        accounts uuid[] NOT NULL DEFAULT ARRAY[]::uuid[],
-        created timestamp NOT NULL
-      ) WITH (
-        OIDS=FALSE
+        variant character varying(128) not null,
+        accounts uuid[] not null default array[]::uuid[],
+        created timestamp not null
+      ) with (
+        oids=false
       );
 
-      CREATE INDEX games_accounts_idx
-        ON games
-        USING GIN (accounts);
+      create index games_accounts_idx
+        on games
+        using gin (accounts);
     """)
     override val values = Nil
   }

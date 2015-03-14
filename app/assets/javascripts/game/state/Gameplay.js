@@ -1,5 +1,5 @@
 define([
-  'utils/Config', 'game/Card', 'game/pile/Pile', 'game/Pile/PileHelpers',
+  'utils/Config', 'game/Card', 'game/pile/Pile', 'game/pile/PileHelpers',
   'game/Playmat', 'game/state/GameState'
 ], function (cfg, Card, Pile, PileHelpers, Playmat, GameState) {
   "use strict";
