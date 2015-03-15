@@ -1,19 +1,19 @@
 package models.game.pile.constraints
 
 import models.game.Rank._
-import models.game.{Rank, Card}
+import models.game.{GameState, Rank, Card}
 import models.game.pile.{PileOption, Pile}
 
-case class DragToConstraint(override val id: String, f: (Pile, Seq[Card]) => Boolean) extends PileOption(id)
+case class DragToConstraint(override val id: String, f: (Pile, Seq[Card], GameState) => Boolean) extends PileOption(id)
 
 object DragToConstraints {
-  val never = DragToConstraint("never", (pile, cards) => false)
+  val never = DragToConstraint("never", (pile, cards, gameState) => false)
 
-  val empty = DragToConstraint("empty", (pile, cards) => pile.cards.isEmpty)
+  val empty = DragToConstraint("empty", (pile, cards, gameState) => pile.cards.isEmpty)
 
-  val foundationDefault = DragToConstraint("foundation", (pile, cards) => if(cards.length == 1) {
-    if(pile.cards.isEmpty && cards(0).r == Rank.Ace) {
-      true
+  val foundationDefault = DragToConstraint("foundation", (pile, cards, gameState) => if(cards.length == 1) {
+    if(pile.cards.isEmpty) {
+      cards(0).r == Rank.Ace
     } else if(pile.cards.last.s == cards(0).s && pile.cards.last.r == Rank.Ace && cards(0).r == Rank.Two) {
       true
     } else if(pile.cards.last.s == cards(0).s && pile.cards.last.r.value + 1 == cards(0).r.value) {
@@ -25,7 +25,7 @@ object DragToConstraints {
     false
   })
 
-  val klondike = DragToConstraint("klondike", (pile, cards) => if(pile.cards.isEmpty) {
+  val klondike = DragToConstraint("klondike", (pile, cards, gameState) => if(pile.cards.isEmpty) {
     cards.head.r ==  Rank.King
   } else {
     val topCard = pile.cards.last
@@ -43,13 +43,13 @@ object DragToConstraints {
     }
   })
 
-  val sameRank = DragToConstraint("same-rank", (pile, cards) => {
+  val sameRank = DragToConstraint("same-rank", (pile, cards, gameState) => {
     val topCardRank = pile.cards.last.r
     val firstDraggedCardRank = cards.head.r
     topCardRank == firstDraggedCardRank
   })
 
-  val lowerRank = DragToConstraint("lower-rank", (pile, cards) => {
+  val lowerRank = DragToConstraint("lower-rank", (pile, cards, gameState) => {
     val firstDraggedCardRank = cards.head.r
     pile.cards.lastOption match {
       case Some(c) => c.r match {
@@ -60,7 +60,7 @@ object DragToConstraints {
     }
   })
 
-  val alternatingRank = DragToConstraint("alternating-rank", (pile, cards) => {
+  val alternatingRank = DragToConstraint("alternating-rank", (pile, cards, gameState) => {
     val topCardRank = pile.cards.last.r
     val firstDraggedCardRank = cards.head.r
     topCardRank match {

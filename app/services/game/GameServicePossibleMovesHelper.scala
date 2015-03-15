@@ -1,27 +1,31 @@
 package services.game
 
-import models.{PossibleMove, PossibleMoves}
-import play.api.libs.json.Json
-import utils.GameSerializers._
+import models.{ServerError, PossibleMove, PossibleMoves}
+
+import scala.util.{Failure, Try, Success}
 
 trait GameServicePossibleMovesHelper { this: GameService =>
-  protected def handleGetPossibleMoves(player: String) = {
-    sendToAll(possibleMoves())
+  protected def handleGetPossibleMoves(player: String) = possibleMoves() match {
+    case Success(moves) =>
+      sendToPlayer(player, moves)
+    case Failure(ex) =>
+      log.warn("Exception encountered processing possible moves.", ex)
+      sendToAll(ServerError("PossibleMovesException", ex.toString))
   }
 
-  private def possibleMoves() = {
+  private def possibleMoves() = Try {
     val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
     gameState.piles.foreach { source =>
-      if(source.canSelectPile) {
+      if(source.canSelectPile(gameState)) {
         ret += PossibleMove("select-pile", Nil, source.id)
       }
       source.cards.zipWithIndex.foreach { c =>
-        if(source.canSelectCard(c._1)) {
+        if(source.canSelectCard(c._1, gameState)) {
           ret += PossibleMove("select-card", Seq(c._1.id), source.id)
         }
-        if(source.canDragFrom(Seq(c._1))) {
+        if(source.canDragFrom(Seq(c._1), gameState)) {
           gameState.piles.filter(_ != source).foreach { target =>
-            if(target.canDragTo(Seq(c._1))) {
+            if(target.canDragTo(Seq(c._1), gameState)) {
               ret += PossibleMove("move-cards", Seq(c._1.id), source.id, Some(target.id))
             }
           }
@@ -29,9 +33,5 @@ trait GameServicePossibleMovesHelper { this: GameService =>
       }
     }
     PossibleMoves(ret)
-  }
-
-  private def logPossibleMoves = {
-    Json.prettyPrint(Json.toJson(gameState))
   }
 }

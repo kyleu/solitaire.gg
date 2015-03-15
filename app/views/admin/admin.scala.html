@@ -5,10 +5,16 @@
   <ul>
     <li><a href="@routes.AdminController.status().url">Server Status</a></li>
     <li>
-      Tests
+      <a href="@routes.AdminController.runTest("all").url">Run All Tests</a>
       <ul>
-        <li><a href="@routes.AdminController.runTest("all").url">Run All Tests</a></li>
-        <li><a href="@routes.AdminController.runTest("variants").url">Run Variant Tests</a></li>
+        <li>
+          <a href="@routes.AdminController.runTest("variants").url">Run All Variant Tests</a>
+          <ul>
+            @for(v <- models.game.variants.GameVariant.all) {
+              <li><a href="@routes.AdminController.runTest(v.key).url">Run @v.name Test</a></li>
+            }
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>

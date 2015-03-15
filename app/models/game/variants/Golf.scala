@@ -16,9 +16,9 @@ case class Golf(override val gameId: UUID, override val seed: Int) extends GameV
   override def description = Golf
 
   private val tableauOptions = PileOptions(
-    selectCardConstraint = Some(SelectCardConstraints.never),
+    selectCardConstraint = Some(SelectCardConstraints.alternatingRankToFoundation),
     dragFromConstraint = Some(DragFromConstraints.topCardOnly),
-    dragToConstraint = None
+    dragToConstraint = Some(DragToConstraints.never)
   )
 
   private val piles = List(
@@ -39,7 +39,7 @@ case class Golf(override val gameId: UUID, override val seed: Int) extends GameV
   private val layouts = Seq(
     Layout(
       width = 7.8,
-      height = 3.1,
+      height = 3.2,
       piles = List(
         PileLocation("tableau-1", 0.1, 0.2),
         PileLocation("tableau-2", 1.2, 0.2),

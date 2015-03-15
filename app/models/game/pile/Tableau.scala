@@ -6,7 +6,7 @@ import models.game.pile.constraints.{DragToConstraints, DragFromConstraints, Sel
 object Tableau {
   private val defaultOptions = PileOptions(
     direction = Some("d"),
-    selectCardConstraint = Some(SelectCardConstraints.topCardOnly),
+    selectCardConstraint = Some(SelectCardConstraints.klondike),
     dragFromConstraint = Some(DragFromConstraints.klondike),
     dragToConstraint = Some(DragToConstraints.klondike),
     selectCardAction = Some(SelectCardActions.klondike)

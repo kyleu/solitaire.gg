@@ -52,4 +52,12 @@ case class GameState(
       piles = piles.map( p => p.copy( cards = p.cards.map( c => if(knownCards.contains(c.id)) { c } else { c.copy( r = Rank.Unknown, s = Suit.Unknown ) })) )
     )
   }
+
+  def toStrings = Seq(
+    "Game ID: " + gameId,
+    "Variant: " + variant,
+    "Seed: " + seed,
+    "Deck: " + deck.cards.toString,
+    piles.size + " Piles: "
+  ) ++ piles.map( p => p.toString)
 }

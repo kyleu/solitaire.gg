@@ -11,7 +11,7 @@ trait GameServiceCardHelper { this: GameService =>
     if(!pile.cards.contains(card)) {
       log.warn("SelectCard for game [" + id + "]: Card [" + card.toString + "] is not part of the [" + pileId + "] pile.")
     }
-    val messages = if(pile.canSelectCard(card)) {
+    val messages = if(pile.canSelectCard(card, gameState)) {
       pile.onSelectCard(card, gameState)
     } else {
       log.warn("SelectCard called on [" + card + "], which cannot be selected.")
@@ -26,7 +26,7 @@ trait GameServiceCardHelper { this: GameService =>
     if(pile.cards.length > 0) {
       log.warn("SelectPile [" + pileId + "] called on a non-empty deck.")
     }
-    val messages = if(pile.canSelectPile) {
+    val messages = if(pile.canSelectPile(gameState)) {
       pile.onSelectPile(gameState)
     } else {
       log.warn("SelectPile called on [" + pile + "], which cannot be selected.")
@@ -47,8 +47,8 @@ trait GameServiceCardHelper { this: GameService =>
       }
     }
 
-    if(sourcePile.canDragFrom(cards)) {
-      if(targetPile.canDragTo(cards)) {
+    if(sourcePile.canDragFrom(cards, gameState)) {
+      if(targetPile.canDragTo(cards, gameState)) {
         val messages = if(variant == "nestor") {
           cards.flatMap { card =>
             sourcePile.removeCard(card)
