@@ -15,9 +15,6 @@ define(function() {
     for(var pileIndex in pile.game.piles) {
       var p = pile.game.piles[pileIndex];
       if(p.id !== pile.id) {
-        if(p.id === "foundation-2") {
-          var breakpoint = 1;
-        }
         var overlapX = 0;
         if((minX >= p.x && minX <= p.x + p.intersectWidth) || (maxX >= p.x && maxX <= p.x + p.intersectWidth)) {
           overlapX = Math.abs(p.x + (p.intersectWidth / 2) - xPoint);
@@ -34,10 +31,10 @@ define(function() {
             }
           }
         }
-        console.log("Pile [" + p.id + "] overlaps [" + overlapX + ", " + overlapY + "]");
+        //console.log("Pile [" + p.id + "] overlaps [" + overlapX + ", " + overlapY + "]");
       }
     }
-    console.log("Choosing [" + (dropTarget === null ? "none" : dropTarget.id) + "] as drop target with distance [" + dropDistance + "].");
+    //console.log("Choosing [" + (dropTarget === null ? "none" : dropTarget.id) + "] as drop target with distance [" + dropDistance + "].");
     return dropTarget;
   };
 

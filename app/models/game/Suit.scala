@@ -6,13 +6,18 @@ case object Red extends Color
 case object Black extends Color
 case object UnknownColor extends Color
 
-sealed trait Suit {
-  def color: Color
-  def toChar: Char
+sealed trait Suit extends Ordered[Suit] {
+  val color: Color
+  val toChar: Char
+  val value: Int
+
+  override def compare(that: Suit) = this.value * 13 - that.value * 13
 }
 
 object Suit {
   val all = Seq(Hearts, Spades, Diamonds, Clubs)
+
+
 
   def fromChar(c: Char) = c match {
     case 'H' => Hearts
@@ -23,28 +28,33 @@ object Suit {
   }
 
   case object Hearts extends Suit {
-    override def color = Red
-    override def toChar = 'H'
+    override val color = Red
+    override val toChar = 'H'
+    override val value = 3
   }
 
   case object Spades extends Suit {
-    override def color = Black
-    override def toChar = 'S'
+    override val color = Black
+    override val toChar = 'S'
+    override val value = 2
   }
 
   case object Diamonds extends Suit {
-    override def color = Red
-    override def toChar = 'D'
+    override val color = Red
+    override val toChar = 'D'
+    override val value = 1
   }
 
   case object Clubs extends Suit {
-    override def color = Black
-    override def toChar = 'C'
+    override val color = Black
+    override val toChar = 'C'
+    override val value = 0
   }
 
   case object Unknown extends Suit {
-    override def color = UnknownColor
-    override def toChar = '?'
+    override val color = UnknownColor
+    override val toChar = '?'
+    override val value = -1
   }
 }
 
