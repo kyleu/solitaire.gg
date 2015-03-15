@@ -4,5 +4,12 @@
   <h4>@utils.Config.projectName Admin</h4>
   <ul>
     <li><a href="@routes.AdminController.status().url">Server Status</a></li>
+    <li>
+      Tests
+      <ul>
+        <li><a href="@routes.AdminController.runTest("all").url">Run All Tests</a></li>
+        <li><a href="@routes.AdminController.runTest("variants").url">Run Variant Tests</a></li>
+      </ul>
+    </li>
   </ul>
 }

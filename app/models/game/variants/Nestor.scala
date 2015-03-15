@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models.game._
 import models.game.pile._
-import models.game.pile.constraints.{DragToConstraints, DragFromConstraints}
+import models.game.pile.constraints.{SelectCardConstraints, DragToConstraints, DragFromConstraints}
 
 object Nestor extends GameVariant.Description {
   override val key = "nestor"
@@ -16,6 +16,7 @@ case class Nestor(override val gameId: UUID, override val seed: Int) extends Gam
   override def description = Nestor
 
   private val options = PileOptions(
+    selectCardConstraint = Some(SelectCardConstraints.never),
     dragFromConstraint = Some(DragFromConstraints.topCardOnly),
     dragToConstraint = Some(DragToConstraints.sameRank)
   )

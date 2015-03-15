@@ -15,4 +15,6 @@ GET        /admin/observe/random              controllers.AdminController.observ
 GET        /admin/observe/:id                 controllers.AdminController.observeGameAsAdmin(id: java.util.UUID)
 GET        /admin/observe/:id/:account        controllers.AdminController.observeGameAs(id: java.util.UUID, account)
 
+GET        /admin/test/:test                  controllers.AdminController.runTest(test)
+
 GET        /assets/*file                      controllers.Assets.at(path="/public", file)

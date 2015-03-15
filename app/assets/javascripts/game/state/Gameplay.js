@@ -47,7 +47,7 @@ define([
       if(cfg.initialAction.length === 2) {
         this.game.ws.send("ObserveGame", {"id": cfg.initialAction[1]});
       } else {
-        this.game.ws.send("ObserveGame", {"id": cfg.initialAction[1], "account": cfg.initialAction[2]});
+        this.game.ws.send("ObserveGame", {"id": cfg.initialAction[1], "as": cfg.initialAction[2]});
       }
     } else {
       alert("Invalid initial action [" + cfg.initialAction + "].");

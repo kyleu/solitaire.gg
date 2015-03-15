@@ -23,7 +23,7 @@ object GameVariant {
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 
-  val all = List(
+  val all = Seq(
     FreeCell, Golf, KlondikeDrawThree, KlondikeDrawOne, Nestor, TrustyTwelve
   )
 }

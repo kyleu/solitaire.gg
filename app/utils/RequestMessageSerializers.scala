@@ -14,6 +14,7 @@ object RequestMessageSerializers {
   private val joinGameReads = Json.reads[JoinGame]
   private val observeGameReads = Json.reads[ObserveGame]
 
+  // case object [GetPossibleMoves]
   private val selectCardReads = Json.reads[SelectCard]
   private val selectPileReads = Json.reads[SelectPile]
   private val moveCardsReads = Json.reads[MoveCards]
@@ -32,6 +33,7 @@ object RequestMessageSerializers {
       case "JoinGame" => joinGameReads.reads(v)
       case "ObserveGame" => observeGameReads.reads(v)
 
+      case "GetPossibleMoves" => JsSuccess(GetPossibleMoves)
       case "SelectCard" => selectCardReads.reads(v)
       case "SelectPile" => selectPileReads.reads(v)
       case "MoveCards" => moveCardsReads.reads(v)

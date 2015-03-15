@@ -14,6 +14,9 @@ object ResponseMessageSerializers {
   private val gameLostWrites = Json.writes[GameLost]
   private val gameWonWrites = Json.writes[GameWon]
 
+  private implicit val possibleMoveWrites = Json.writes[PossibleMove]
+  private val possibleMovesWrites = Json.writes[PossibleMoves]
+
   private val cardRevealedWrites = Json.writes[CardRevealed]
   private val cardMovedWrites = Json.writes[CardMoved]
   private val cardRemovedWrites = Json.writes[CardRemoved]

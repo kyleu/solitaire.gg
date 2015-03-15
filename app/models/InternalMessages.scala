@@ -19,7 +19,7 @@ case class ConnectionGameObserve(id: UUID, connectionId: UUID, as: Option[String
 case class GameStopped(id: UUID) extends InternalMessage
 
 case object StopGameIfEmpty extends InternalMessage
-case class GameRequest(connectionId: UUID, username: String, message: GameMessage) extends InternalMessage
+case class GameRequest(connectionId: UUID, player: String, message: GameMessage) extends InternalMessage
 
 case object GetSystemStatus extends InternalMessage
 case class SystemStatus(games: Seq[(UUID, Seq[(UUID, String)])], connections: Seq[(UUID, String)]) extends InternalMessage

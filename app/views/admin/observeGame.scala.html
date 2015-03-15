@@ -43,7 +43,7 @@
 
       @if(gameId.isDefined) {
         @if(username.isDefined) {
-          "initialAction" : ["observer", "@gameId.get" ]
+          "initialAction" : ["observe", "@gameId.get", "@username.get" ]
         } else {
           "initialAction": ["observe", "@gameId.get"]
         }

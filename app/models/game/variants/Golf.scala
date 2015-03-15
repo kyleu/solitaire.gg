@@ -3,7 +3,7 @@ package models.game.variants
 import java.util.UUID
 
 import models.game._
-import models.game.pile.constraints.{DragToConstraints, DragFromConstraints}
+import models.game.pile.constraints.{SelectCardConstraints, DragToConstraints, DragFromConstraints}
 import models.game.pile.{PileOptions, Stock, Foundation, Tableau}
 
 object Golf extends GameVariant.Description {
@@ -15,7 +15,11 @@ object Golf extends GameVariant.Description {
 case class Golf(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Golf
 
-  private val tableauOptions = PileOptions(dragFromConstraint = Some(DragFromConstraints.topCardOnly), dragToConstraint = None)
+  private val tableauOptions = PileOptions(
+    selectCardConstraint = Some(SelectCardConstraints.never),
+    dragFromConstraint = Some(DragFromConstraints.topCardOnly),
+    dragToConstraint = None
+  )
 
   private val piles = List(
     new Tableau("tableau-1", tableauOptions),

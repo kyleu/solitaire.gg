@@ -23,6 +23,6 @@ object Dependencies {
   }
 
   object Testing {
-    val akkaTestkit = "com.typesafe.akka" %% "akka-testkit" % "2.3.4" % "test"
+    val akkaTestkit = "com.typesafe.akka" %% "akka-testkit" % "2.3.4"
   }
 }

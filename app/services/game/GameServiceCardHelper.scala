@@ -5,28 +5,38 @@ import java.util.UUID
 import models._
 
 trait GameServiceCardHelper { this: GameService =>
-  protected def handleSelectCard(cardId: UUID, pileId: String, pileIndex: Int) {
+  protected def handleSelectCard(player: String, cardId: UUID, pileId: String, pileIndex: Int) {
     val card = gameState.cardsById(cardId)
     val pile = gameState.pilesById(pileId)
     if(!pile.cards.contains(card)) {
       log.warn("SelectCard for game [" + id + "]: Card [" + card.toString + "] is not part of the [" + pileId + "] pile.")
     }
-    val messages = pile.onSelectCard(card, gameState)
+    val messages = if(pile.canSelectCard(card)) {
+      pile.onSelectCard(card, gameState)
+    } else {
+      log.warn("SelectCard called on [" + card + "], which cannot be selected.")
+      Nil
+    }
     sendToAll(messages)
     checkWinCondition()
   }
 
-  protected def handleSelectPile(pileId: String) {
+  protected def handleSelectPile(player: String, pileId: String) {
     val pile = gameState.pilesById(pileId)
     if(pile.cards.length > 0) {
       log.warn("SelectPile [" + pileId + "] called on a non-empty deck.")
     }
-    val messages = pile.onSelectPile(gameState)
+    val messages = if(pile.canSelectPile) {
+      pile.onSelectPile(gameState)
+    } else {
+      log.warn("SelectPile called on [" + pile + "], which cannot be selected.")
+      Nil
+    }
     sendToAll(messages)
     checkWinCondition()
   }
 
-  protected def handleMoveCards(cardIds: Seq[UUID], source: String, target: String) {
+  protected def handleMoveCards(player: String, cardIds: Seq[UUID], source: String, target: String) {
     val cards = cardIds.map(gameState.cardsById)
     val sourcePile = gameState.pilesById(source)
     val targetPile = gameState.pilesById(target)

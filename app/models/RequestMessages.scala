@@ -17,6 +17,7 @@ case class ObserveGame(id: UUID, as: Option[String]) extends RequestMessage
 
 trait GameMessage extends RequestMessage
 
+case object GetPossibleMoves extends GameMessage
 case class SelectCard(card: UUID, pile: String, pileIndex: Int) extends GameMessage
 case class SelectPile(pile: String) extends GameMessage
 case class MoveCards(cards: Seq[UUID], src: String, tgt: String) extends GameMessage
