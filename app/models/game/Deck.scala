@@ -11,8 +11,9 @@ object Deck {
     Deck(cards.toList)
   }
 
-  def shuffled(random: Random) = {
-    Deck(random.shuffle(fresh().cards))
+  def shuffled(random: Random, numDecks: Int = 1) = {
+    val cards = (0 to numDecks).flatMap( i => fresh().cards)
+    Deck(random.shuffle(cards))
   }
 }
 

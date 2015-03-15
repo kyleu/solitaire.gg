@@ -1,4 +1,5 @@
 @()(implicit session: Session, flash: Flash)
+@import models.game.variants.GameVariant
 
 @layout.bootstrap(utils.Config.projectName) {
   <div class="container">
@@ -19,7 +20,7 @@
           </div>
           <div class="panel-body">
             <ul>
-            @for(v <- models.game.GameVariant.all) {
+            @for(v <- GameVariant.all) {
               <li><a href="@routes.HomeController.newGame(v.key)">@v.name</a></li>
             }
             </ul>

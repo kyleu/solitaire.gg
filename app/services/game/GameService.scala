@@ -4,7 +4,7 @@ import java.util.UUID
 
 import akka.actor.ActorRef
 import models._
-import models.game.GameVariant
+import models.game.variants.GameVariant
 import utils.Logging
 import utils.metrics.InstrumentedActor
 

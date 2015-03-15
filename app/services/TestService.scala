@@ -1,8 +1,8 @@
 package services
 
 import akka.testkit.TestProbe
+import models.game.variants.GameVariant
 import models.{PossibleMoves, GetPossibleMoves, GameJoined, StartGame}
-import models.game.GameVariant
 import play.api.libs.concurrent.Akka
 import utils.Logging
 

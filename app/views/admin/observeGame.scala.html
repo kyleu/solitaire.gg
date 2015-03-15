@@ -1,4 +1,5 @@
 @(gameId: Option[java.util.UUID], username: Option[String])(implicit session: Session, flash: Flash)
+@import models.game.variants.GameVariant
 
 @layout.bootstrap(utils.Config.projectName + " Admin") {
   <script>
@@ -39,7 +40,7 @@
       "cardSet": "@utils.Config.defaultCardSet",
       "cardSize": "@utils.Config.defaultCardSize",
       "variant": "observe",
-      "variants": [@Html(models.game.GameVariant.all.map(v => "['" + v.key + "', '" + v.name + "']").mkString(", "))],
+      "variants": [@Html(GameVariant.all.map(v => "['" + v.key + "', '" + v.name + "']").mkString(", "))],
 
       @if(gameId.isDefined) {
         @if(username.isDefined) {

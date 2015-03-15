@@ -15,12 +15,15 @@ define(function() {
     for(var pileIndex in pile.game.piles) {
       var p = pile.game.piles[pileIndex];
       if(p.id !== pile.id) {
+        if(p.id === "foundation-2") {
+          var breakpoint = 1;
+        }
         var overlapX = 0;
-        if((minX > p.x && minX < p.x + p.intersectWidth) || (maxX > p.x && maxX < p.x + p.intersectWidth)) {
+        if((minX >= p.x && minX <= p.x + p.intersectWidth) || (maxX >= p.x && maxX <= p.x + p.intersectWidth)) {
           overlapX = Math.abs(p.x + (p.intersectWidth / 2) - xPoint);
         }
         var overlapY = 0;
-        if((minY > p.y && minY < p.y + p.intersectHeight) || (maxY > p.y && maxY < p.y + p.intersectHeight)) {
+        if((minY >= p.y && minY <= p.y + p.intersectHeight) || (maxY >= p.y && maxY <= p.y + p.intersectHeight)) {
           overlapY = Math.abs(p.y + (p.intersectHeight / 2) - yPoint);
         }
         if(overlapX > 0 && overlapY > 0) {
@@ -31,13 +34,15 @@ define(function() {
             }
           }
         }
+        console.log("Pile [" + p.id + "] overlaps [" + overlapX + ", " + overlapY + "]");
       }
     }
+    console.log("Choosing [" + (dropTarget === null ? "none" : dropTarget.id) + "] as drop target with distance [" + dropDistance + "].");
     return dropTarget;
   };
 
 
-  var PileHelpers = {
+  return {
     dragSlice: function(card, p) {
       this.dragCards = this.cards.slice(card.pileIndex);
       for(var c in this.dragCards) {
@@ -74,7 +79,7 @@ define(function() {
     tweenCard: function(card, x, y) {
       if(x != card.x || y != card.y) {
         var tween = card.game.add.tween(card);
-        tween.to({x: x, y: y}, 200);
+        tween.to({ x: x, y: y }, 200);
         tween.onComplete.add(function() {
           card.tweening = false;
         }, card);
@@ -85,14 +90,22 @@ define(function() {
 
     tweenRemove: function(card) {
       var tween = card.game.add.tween(card);
-      tween.to({alpha: 0}, 400);
+      tween.to({ alpha: 0 }, 400);
       tween.onComplete.add(function() {
         card.destroy();
       }, card);
       card.tweening = true;
       tween.start();
+    },
+
+    tweenFlip: function(card) {
+      var tween = card.game.add.tween(card);
+      tween.to({ width: 0 }, 400);
+      tween.onComplete.add(function() {
+        card.tweening = false;
+      }, card);
+      card.tweening = true;
+      tween.start();
     }
   };
-
-  return PileHelpers;
 });

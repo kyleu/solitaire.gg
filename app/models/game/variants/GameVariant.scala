@@ -1,8 +1,8 @@
-package models.game
+package models.game.variants
 
 import java.util.UUID
 
-import models.game.variants._
+import models.game.GameState
 
 import scala.util.Random
 
@@ -11,6 +11,7 @@ object GameVariant {
     val key: String
     val name: String
     val body: String
+    val inProgress: Boolean  = false
   }
 
   def apply(variant: String, gameId: UUID, seed: Int) = variant match {
@@ -19,12 +20,13 @@ object GameVariant {
     case KlondikeDrawThree.key => new KlondikeDrawThree(gameId, seed)
     case KlondikeDrawOne.key => new KlondikeDrawOne(gameId, seed)
     case Nestor.key => new Nestor(gameId, seed)
+    case Spider.key => new Spider(gameId, seed)
     case TrustyTwelve.key => new TrustyTwelve(gameId, seed)
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 
   val all = Seq(
-    FreeCell, Golf, KlondikeDrawThree, KlondikeDrawOne, Nestor, TrustyTwelve
+    FreeCell, Golf, KlondikeDrawThree, KlondikeDrawOne, Nestor, Spider, TrustyTwelve
   )
 }
 
