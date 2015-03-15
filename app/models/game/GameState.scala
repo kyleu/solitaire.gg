@@ -1,19 +1,21 @@
 package models.game
 
+import java.util.UUID
+
 import models.CardRevealed
 import models.game.pile.Pile
 
 case class GameState(
-  id: String,
+  gameId: UUID,
   variant: String,
   seed: Int,
   deck: Deck,
   piles: Seq[Pile],
   layouts: Seq[Layout]
 ) {
-  val cardsById = collection.mutable.HashMap[String, Card]()
+  val cardsById = collection.mutable.HashMap[UUID, Card]()
   val pilesById = piles.map(p => p.id -> p).toMap
-  val playerKnownCardIds = collection.mutable.HashMap.empty[String, collection.mutable.HashSet[String]]
+  val playerKnownCardIds = collection.mutable.HashMap.empty[String, collection.mutable.HashSet[UUID]]
 
   def addPlayer(p: String) = {
     playerKnownCardIds(p) = collection.mutable.HashSet.empty

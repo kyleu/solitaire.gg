@@ -1,16 +1,18 @@
 package models.game.variants
 
+import java.util.UUID
+
 import models.game._
 import models.game.pile.constraints.{DragFromConstraints, DragToConstraints}
 import models.game.pile.{PileOptions, Waste, Foundation, Tableau}
 
 object FreeCell extends GameVariant.Description {
-  override val id = "freecell"
+  override val key = "freecell"
   override val name = "FreeCell"
   override val body = "Move all the cards to the home cells, using the free cells as placeholders. To win, make four stacks of cards on the home cells, one for each suit, stacked in order of rank, from lowest (ace) to highest (king)."
 }
 
-case class FreeCell(override val id: String, override val seed: Int) extends GameVariant(id, seed) {
+case class FreeCell(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = FreeCell
 
   private val cellOptions = PileOptions(dragToConstraint = Some(DragToConstraints.empty))
@@ -66,7 +68,7 @@ case class FreeCell(override val id: String, override val seed: Int) extends Gam
     )
   )
 
-  val gameState = GameState(id, description.id, seed, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(7, turnFaceUp = true), "tableau-1", reveal = true)

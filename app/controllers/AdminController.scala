@@ -1,5 +1,7 @@
 package controllers
 
+import java.util.UUID
+
 import akka.pattern.ask
 import akka.util.Timeout
 import models._
@@ -24,27 +26,24 @@ object AdminController extends Controller {
     }
   }
 
-  def traceConnection(connectionId: String) = Action.async { implicit request =>
+  def traceConnection(connectionId: UUID) = Action.async { implicit request =>
     (ActorSupervisor.instance ask ConnectionTrace(connectionId)).map {
       case tr: TraceResponse => Ok(views.html.admin.trace("Connection", tr))
       case se: ServerError => Ok(se.reason + ": " + se.content)
     }
   }
 
-  def traceClient(connectionId: String) = Action.async { implicit request =>
+  def traceClient(connectionId: UUID) = Action.async { implicit request =>
     (ActorSupervisor.instance ask ClientTrace(connectionId)).map {
       case tr: TraceResponse => Ok(views.html.admin.trace("Client", tr))
       case se: ServerError => Ok(se.reason + ": " + se.content)
     }
   }
 
-  def traceGame(gameId: String) = Action.async { implicit request =>
+  def traceGame(gameId: UUID) = Action.async { implicit request =>
     (ActorSupervisor.instance ask GameTrace(gameId)).map {
       case tr: TraceResponse =>
-        val buttons = Seq(
-          "Observe As Admin" -> routes.AdminController.observeGameAsAdmin(gameId).url,
-          "Observe As [todo]" -> routes.AdminController.observeGameAs(gameId, "").url
-        )
+        val buttons = Seq("Observe As Admin" -> routes.AdminController.observeGameAsAdmin(gameId).url)
         Ok(views.html.admin.trace("Game", tr, buttons))
       case se: ServerError => Ok(se.reason + ": " + se.content)
     }
@@ -62,11 +61,11 @@ object AdminController extends Controller {
     }
   }
 
-  def observeGameAsAdmin(gameId: String) = Action { implicit request =>
+  def observeGameAsAdmin(gameId: UUID) = Action { implicit request =>
     Ok(views.html.admin.observeGame(Some(gameId), None))
   }
 
-  def observeGameAs(gameId: String, account: String) = Action { implicit request =>
-    Ok(views.html.admin.observeGame(Some(gameId), Some(account)))
+  def observeGameAs(gameId: UUID, username: String) = Action { implicit request =>
+    Ok(views.html.admin.observeGame(Some(gameId), Some(username)))
   }
 }

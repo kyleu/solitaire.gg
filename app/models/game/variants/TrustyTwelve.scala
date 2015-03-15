@@ -1,17 +1,19 @@
 package models.game.variants
 
+import java.util.UUID
+
 import models.game._
 import models.game.pile.actions.SelectCardActions
 import models.game.pile.constraints.{SelectCardConstraints, DragFromConstraints, DragToConstraints}
 import models.game.pile.{PileOptions, Stock, Tableau}
 
 object TrustyTwelve extends GameVariant.Description {
-  override val id = "trusty-twelve"
+  override val key = "trusty-twelve"
   override val name = "Trusty Twelve"
   override val body = "Build the decks down, regardless of suit. Clicking the face down pile will deal cards to any empty spaces. Once you've dealt all the face down cards, you win."
 }
 
-case class TrustyTwelve(override val id: String, override val seed: Int) extends GameVariant(id, seed) {
+case class TrustyTwelve(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = TrustyTwelve
 
   val tableauOptions = PileOptions(cardsShown = Some(2), dragFromConstraint = Some(DragFromConstraints.topCardOnly), dragToConstraint = Some(DragToConstraints.lowerRank))
@@ -65,7 +67,7 @@ case class TrustyTwelve(override val id: String, override val seed: Int) extends
     )
   )
 
-  lazy val gameState = GameState(id, description.id, seed, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     for(i <- 1 to 12) {

@@ -1,16 +1,18 @@
 GET        /                                  controllers.HomeController.index
-GET        /play/:variant                      controllers.HomeController.newGame(variant)
+GET        /play                              controllers.HomeController.newDefaultGame()
+GET        /play/:variant                     controllers.HomeController.newGame(variant)
+GET        /play/:variant/:seed               controllers.HomeController.newGameWithSeed(variant, seed: Int)
 
 GET        /websocket                         controllers.WebsocketController.connect()
 
 GET        /admin                             controllers.AdminController.index
 GET        /admin/status                      controllers.AdminController.status
-GET        /admin/trace/connection/:id        controllers.AdminController.traceConnection(id)
-GET        /admin/trace/client/:id            controllers.AdminController.traceClient(id)
-GET        /admin/trace/game/:id              controllers.AdminController.traceGame(id)
+GET        /admin/trace/connection/:id        controllers.AdminController.traceConnection(id: java.util.UUID)
+GET        /admin/trace/client/:id            controllers.AdminController.traceClient(id: java.util.UUID)
+GET        /admin/trace/game/:id              controllers.AdminController.traceGame(id: java.util.UUID)
 
 GET        /admin/observe/random              controllers.AdminController.observeRandomGame()
-GET        /admin/observe/:id                 controllers.AdminController.observeGameAsAdmin(id)
-GET        /admin/observe/:id/:account        controllers.AdminController.observeGameAs(id, account)
+GET        /admin/observe/:id                 controllers.AdminController.observeGameAsAdmin(id: java.util.UUID)
+GET        /admin/observe/:id/:account        controllers.AdminController.observeGameAs(id: java.util.UUID, account)
 
 GET        /assets/*file                      controllers.Assets.at(path="/public", file)

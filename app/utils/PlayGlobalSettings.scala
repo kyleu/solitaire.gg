@@ -16,13 +16,13 @@ object PlayGlobalSettings extends GlobalSettings with Logging {
     DateTimeZone.setDefault(DateTimeZone.UTC)
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
 
-//    DatabaseConnection.open()
-//    DatabaseSchema.update()
+    DatabaseConnection.open()
+    DatabaseSchema.update()
 
     super.onStart(app)
   }
   override def onStop(app: Application) {
-//    DatabaseConnection.close()
+    DatabaseConnection.close()
     super.onStop(app)
   }
 

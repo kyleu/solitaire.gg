@@ -1,16 +1,18 @@
 package models.game.variants
 
+import java.util.UUID
+
 import models.game._
 import models.game.pile._
 import models.game.pile.constraints.{DragToConstraints, DragFromConstraints}
 
 object Nestor extends GameVariant.Description {
-  override val id = "nestor"
+  override val key = "nestor"
   override val name = "Nestor"
   override val body = "Discard any pair of cards of the same rank, regardless of suit (for example, two Aces, two Fives, etc.). Only the top cards are available for play. Spaces can't be filled."
 }
 
-case class Nestor(override val id: String, override val seed: Int) extends GameVariant(id, seed) {
+case class Nestor(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Nestor
 
   private val options = PileOptions(
@@ -58,7 +60,7 @@ case class Nestor(override val id: String, override val seed: Int) extends GameV
     )
   )
 
-  val gameState = GameState(id, description.id, seed, deck, piles, layouts)
+  val gameState = GameState(gameId, description.key, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCardsUniqueRanks(6, turnFaceUp = true), "tableau-1", reveal = true)

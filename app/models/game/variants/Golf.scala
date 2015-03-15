@@ -1,16 +1,18 @@
 package models.game.variants
 
+import java.util.UUID
+
 import models.game._
 import models.game.pile.constraints.{DragToConstraints, DragFromConstraints}
 import models.game.pile.{PileOptions, Stock, Foundation, Tableau}
 
 object Golf extends GameVariant.Description {
-  override val id = "golf"
+  override val key = "golf"
   override val name = "Golf"
   override val body = "Build the bottom pile up or down regardless of suit. Ranking of cards is not continuous: an Ace may be built only on a 2, a King only on a Queen."
 }
 
-case class Golf(override val id: String, override val seed: Int) extends GameVariant(id, seed) {
+case class Golf(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Golf
 
   private val tableauOptions = PileOptions(dragFromConstraint = Some(DragFromConstraints.topCardOnly), dragToConstraint = None)
@@ -48,7 +50,7 @@ case class Golf(override val id: String, override val seed: Int) extends GameVar
     )
   )
 
-  val gameState = GameState(id, description.id, seed, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(5, turnFaceUp = true), "tableau-1", reveal = true)

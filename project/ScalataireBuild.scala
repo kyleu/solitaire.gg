@@ -27,7 +27,9 @@ object ScalataireBuild extends Build with UniversalKeys {
       Metrics.metricsServlets,
       Metrics.metricsGraphite,
 
-      WebJars.requireJs
+      WebJars.requireJs,
+
+      Testing.akkaTestkit
     )
   }
 
@@ -43,6 +45,7 @@ object ScalataireBuild extends Build with UniversalKeys {
     version := Versions.app,
     scalaVersion := Versions.scala,
     scalacOptions ++= compileOptions,
+    scalacOptions in Test ++= Seq("-Yrangepos"),
     libraryDependencies ++= dependencies,
 
     // sbt-web
@@ -53,11 +56,19 @@ object ScalataireBuild extends Build with UniversalKeys {
 
     // build info
     sourceGenerators in Compile <+= buildInfo,
-    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, buildInfoBuildNumber, "builtAtMillis" -> System.currentTimeMillis, "builtAt" -> {
-      val dtf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-      dtf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"))
-      dtf.format(new java.util.Date())
-    }),
+    buildInfoKeys := Seq[BuildInfoKey](
+      name,
+      version,
+      scalaVersion,
+      sbtVersion,
+      buildInfoBuildNumber,
+      "builtAtMillis" -> System.currentTimeMillis,
+      "builtAt" -> {
+        val dtf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        dtf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"))
+        dtf.format(new java.util.Date())
+      }
+    ),
     buildInfoPackage := "utils"
   )
 

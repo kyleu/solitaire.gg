@@ -7,7 +7,15 @@ object HomeController extends Controller {
     Ok(views.html.index())
   }
 
-  def newGame(variant: String = "klondike") = Action { implicit request =>
+  def newDefaultGame() = Action { implicit request =>
+    Ok(views.html.gameplay("klondike"))
+  }
+
+  def newGame(variant: String) = Action { implicit request =>
     Ok(views.html.gameplay(variant))
+  }
+
+  def newGameWithSeed(variant: String, seed: Int) = Action { implicit request =>
+    Ok(views.html.gameplay(variant, Some(seed)))
   }
 }

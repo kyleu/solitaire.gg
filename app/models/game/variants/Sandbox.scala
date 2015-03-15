@@ -1,15 +1,17 @@
 package models.game.variants
 
+import java.util.UUID
+
 import models.game._
 import models.game.pile.Tableau
 
 object Sandbox extends GameVariant.Description {
-  override val id = "sandbox"
+  override val key = "sandbox"
   override val name = "Sandbox"
   override val body = "..."
 }
 
-case class Sandbox(override val id: String, override val seed: Int) extends GameVariant(id, seed) {
+case class Sandbox(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override val description = Sandbox
 
   val piles = List(
@@ -28,7 +30,7 @@ case class Sandbox(override val id: String, override val seed: Int) extends Game
     )
   )
 
-  override val gameState = GameState(id, description.id, seed, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(), "sandbox-1")

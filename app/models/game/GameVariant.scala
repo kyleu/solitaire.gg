@@ -1,23 +1,25 @@
 package models.game
 
+import java.util.UUID
+
 import models.game.variants._
 
 import scala.util.Random
 
 object GameVariant {
   abstract class Description {
-    val id: String
+    val key: String
     val name: String
     val body: String
   }
 
-  def apply(variant: String, id: String, seed: Int) = variant match {
-    case FreeCell.id => new FreeCell(id, seed)
-    case Golf.id => new Golf(id, seed)
-    case KlondikeDrawThree.id => new KlondikeDrawThree(id, seed)
-    case KlondikeDrawOne.id => new KlondikeDrawOne(id, seed)
-    case Nestor.id => new Nestor(id, seed)
-    case TrustyTwelve.id => new TrustyTwelve(id, seed)
+  def apply(variant: String, gameId: UUID, seed: Int) = variant match {
+    case FreeCell.key => new FreeCell(gameId, seed)
+    case Golf.key => new Golf(gameId, seed)
+    case KlondikeDrawThree.key => new KlondikeDrawThree(gameId, seed)
+    case KlondikeDrawOne.key => new KlondikeDrawOne(gameId, seed)
+    case Nestor.key => new Nestor(gameId, seed)
+    case TrustyTwelve.key => new TrustyTwelve(gameId, seed)
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 
@@ -26,7 +28,7 @@ object GameVariant {
   )
 }
 
-abstract class GameVariant(val id: String, val seed: Int) {
+abstract class GameVariant(val gameId: UUID, val seed: Int) {
   def description: GameVariant.Description
   val rng = new Random(new java.util.Random(seed))
   val gameState: GameState

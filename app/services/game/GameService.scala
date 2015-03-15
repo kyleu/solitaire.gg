@@ -1,5 +1,7 @@
 package services.game
 
+import java.util.UUID
+
 import akka.actor.{ActorRef, PoisonPill}
 import models._
 import models.game.GameVariant
@@ -8,15 +10,15 @@ import utils.Logging
 import utils.metrics.InstrumentedActor
 
 class GameService(
-  val id: String,
+  val id: UUID,
   val variant: String,
   val seed: Int,
-  private val initialPlayers: List[(String, String, ActorRef)]
+  private val initialPlayers: List[(String, UUID, ActorRef)]
 ) extends InstrumentedActor with GameServiceTraceHelper with GameServiceCardHelper with Logging {
   log.info("Started game [" + variant + "] for players [" + initialPlayers.map(_._2).mkString(", ") + "] with seed [" + seed + "].")
 
-  protected val playerConnections = collection.mutable.HashMap[String, (String, ActorRef)](initialPlayers.map(x => x._1 -> (x._2, x._3)): _*)
-  protected val observerConnections = collection.mutable.HashMap.empty[String, (String, Option[String], ActorRef)]
+  protected val playerConnections = collection.mutable.HashMap[String, Option[(UUID, ActorRef)]](initialPlayers.map(x => x._1 -> Some((x._2, x._3))): _*)
+  protected val observerConnections = collection.mutable.HashMap.empty[(String, Option[String]), Option[(UUID, ActorRef)]]
 
   protected val gameVariant = GameVariant(variant, id, seed)
   protected val gameState = gameVariant.gameState
@@ -28,11 +30,11 @@ class GameService(
 
     val message = GameStarted(id, self)
     playerConnections.foreach { c =>
-      c._2._2 ! message
+      c._2.map(_._2 ! message)
     }
 
     playerConnections.foreach { c =>
-      c._2._2 ! GameJoined(id, initialPlayers.map(_._2), gameState.view(c._1))
+      c._2.map(_._2 ! GameJoined(id, initialPlayers.map(_._1), gameState.view(c._1)))
     }
   }
 
@@ -69,32 +71,36 @@ class GameService(
     case x => log.warn("GameService received unknown message [" + x.getClass.getSimpleName + "].")
   }
 
-  private def handleAddPlayer(connectionId: String, name: String, actorRef: ActorRef) {
-    actorRef ! GameJoined(id, initialPlayers.map(_._2), gameState.view(name))
+  private def handleAddPlayer(connectionId: UUID, name: String, actorRef: ActorRef) {
+    playerConnections(name) = Some((connectionId, actorRef))
+    actorRef ! GameJoined(id, playerConnections.keys.toSeq, gameState.view(name))
   }
 
-  private def handleAddObserver(connectionId: String, name: String, as: Option[String], actorRef: ActorRef) {
-    observerConnections(connectionId) = (name, as, actorRef)
+  private def handleAddObserver(connectionId: UUID, name: String, as: Option[String], actorRef: ActorRef) {
+    observerConnections(name -> as) = Some(connectionId -> actorRef)
     val gs = as match {
       case Some(player) => gameState.view(player)
       case None => gameState
     }
-    actorRef ! GameJoined(id, initialPlayers.map(_._2), gs)
+    actorRef ! GameJoined(id, initialPlayers.map(_._1), gs)
   }
 
-  private def handleConnectionStopped(connectionId: String) {
+  private def handleConnectionStopped(connectionId: UUID) {
     import play.api.Play.current
     import play.api.libs.concurrent.Execution.Implicits._
-
     import scala.concurrent.duration._
-    if(playerConnections.contains(connectionId)) {
-      log.info("Player connection [" + connectionId + "] stopped.")
-      playerConnections.remove(connectionId)
-    } else if(observerConnections.contains(connectionId)) {
-      log.info("Observer connection [" + connectionId + "] stopped.")
-      observerConnections.remove(connectionId)
-    } else {
-      log.warn("Unknown connection [" + connectionId + "] was stopped.")
+
+    playerConnections.find(_._2.exists(_._1 == connectionId)) match {
+      case Some(playerConnection) =>
+        log.info("Player connection [" + connectionId + "] stopped.")
+        playerConnections(playerConnection._1) = None
+      case None => // noop
+    }
+    observerConnections.find(_._2.exists(_._1 == connectionId)) match {
+      case Some(observerConnection) =>
+        log.info("Observer connection [" + connectionId + "] stopped.")
+        observerConnections(observerConnection._1) = None
+      case None => // noop
     }
     Akka.system.scheduler.scheduleOnce(30.seconds, self, StopGameIfEmpty)
   }
@@ -109,10 +115,10 @@ class GameService(
 
   protected def sendToAll(message: ResponseMessage): Unit = {
     playerConnections.foreach { c =>
-      c._2._2 ! message
+      c._2.map(_._2 ! message)
     }
     observerConnections.foreach { c =>
-      c._2._3 ! message
+      c._2.map(_._2 ! message)
     }
   }
 

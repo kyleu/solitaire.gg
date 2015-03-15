@@ -1,9 +1,11 @@
 package services.game
 
+import java.util.UUID
+
 import models._
 
 trait GameServiceCardHelper { this: GameService =>
-  protected def handleSelectCard(cardId: String, pileId: String, pileIndex: Int) {
+  protected def handleSelectCard(cardId: UUID, pileId: String, pileIndex: Int) {
     val card = gameState.cardsById(cardId)
     val pile = gameState.pilesById(pileId)
     if(!pile.cards.contains(card)) {
@@ -24,43 +26,43 @@ trait GameServiceCardHelper { this: GameService =>
     checkWinCondition()
   }
 
-  protected def handleMoveCards(cardIds: Seq[String], sourceId: String, targetId: String) {
+  protected def handleMoveCards(cardIds: Seq[UUID], source: String, target: String) {
     val cards = cardIds.map(gameState.cardsById)
-    val source = gameState.pilesById(sourceId)
-    val target = gameState.pilesById(targetId)
+    val sourcePile = gameState.pilesById(source)
+    val targetPile = gameState.pilesById(target)
 
     for(c <- cards) {
-      if(!source.cards.contains(c)) {
-        throw new IllegalArgumentException("Card [" + c + "] is not a part of source pile [" + source.id + "].")
+      if(!sourcePile.cards.contains(c)) {
+        throw new IllegalArgumentException("Card [" + c + "] is not a part of source pile [" + sourcePile.id + "].")
       }
     }
 
-    if(source.canDragFrom(cards)) {
-      if(target.canDragTo(cards)) {
+    if(sourcePile.canDragFrom(cards)) {
+      if(targetPile.canDragTo(cards)) {
         val messages = if(variant == "nestor") {
           cards.flatMap { card =>
-            source.removeCard(card)
-            val targetCard = target.cards.last
-            target.removeCard(targetCard)
+            sourcePile.removeCard(card)
+            val targetCard = targetPile.cards.last
+            targetPile.removeCard(targetCard)
             Seq(CardRemoved(card.id), CardRemoved(targetCard.id))
           }
         } else {
           cards.map { card =>
-            source.removeCard(card)
-            target.addCard(card)
-            CardMoved(card.id, sourceId, targetId)
+            sourcePile.removeCard(card)
+            targetPile.addCard(card)
+            CardMoved(card.id, source, target)
           }
         }
 
         sendToAll(messages)
         checkWinCondition()
       } else {
-        log.debug("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] to pile [" + target.id + "].")
-        sendToAll(CardMoveCancelled(cardIds, sourceId))
+        log.debug("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] to pile [" + targetPile.id + "].")
+        sendToAll(CardMoveCancelled(cardIds, source))
       }
     } else {
-      log.debug("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] from pile [" + source.id + "].")
-      sendToAll(CardMoveCancelled(cardIds, sourceId))
+      log.debug("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] from pile [" + sourcePile.id + "].")
+      sendToAll(CardMoveCancelled(cardIds, source))
     }
   }
 

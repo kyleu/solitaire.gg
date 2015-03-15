@@ -13,9 +13,9 @@ object ConnectionService {
 }
 
 class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) extends InstrumentedActor with Logging {
-  val id = UUID.randomUUID.toString
+  val id = UUID.randomUUID
 
-  var activeGameId: Option[String] = None
+  var activeGameId: Option[UUID] = None
   var activeGame: Option[ActorRef] = None
 
   private var pendingDebugChannel: Option[ActorRef] = None
@@ -58,11 +58,11 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
     supervisor ! CreateGame(gameType, id, None)
   }
 
-  private def handleJoinGame(gameId: String) = {
+  private def handleJoinGame(gameId: UUID) = {
     supervisor ! ConnectionGameJoin(gameId, id)
   }
 
-  private def handleObserveGame(gameId: String, as: Option[String]) = {
+  private def handleObserveGame(gameId: UUID, as: Option[String]) = {
     supervisor ! ConnectionGameObserve(gameId, id, as)
   }
 
@@ -71,12 +71,12 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
     case None => throw new IllegalArgumentException("Received game message [" + gm.getClass.getSimpleName + "] while not in game.")
   }
 
-  private def handleGameStarted(id: String, gameService: ActorRef) {
+  private def handleGameStarted(id: UUID, gameService: ActorRef) {
     activeGameId = Some(id)
     activeGame = Some(gameService)
   }
 
-  private def handleGameStopped(id: String) {
+  private def handleGameStopped(id: UUID) {
     activeGameId = None
     activeGame = None
   }

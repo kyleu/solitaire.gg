@@ -6,6 +6,7 @@ import utils.metrics.Checked
 
 object DatabaseConnection {
   def open() = {
+    Class.forName("org.postgresql.Driver")
     DatabaseSchema.update()
   }
 
