@@ -18,7 +18,9 @@ trait GameServiceCardHelper { this: GameService =>
       Nil
     }
     sendToAll(messages)
-    checkWinCondition()
+    if(!checkWinCondition()) {
+      sendPossibleMoves(player)
+    }
   }
 
   protected def handleSelectPile(player: String, pileId: String) {
@@ -33,7 +35,9 @@ trait GameServiceCardHelper { this: GameService =>
       Nil
     }
     sendToAll(messages)
-    checkWinCondition()
+    if(!checkWinCondition()) {
+      sendPossibleMoves(player)
+    }
   }
 
   protected def handleMoveCards(player: String, cardIds: Seq[UUID], source: String, target: String) {
@@ -65,7 +69,9 @@ trait GameServiceCardHelper { this: GameService =>
         }
 
         sendToAll(messages)
-        checkWinCondition()
+        if(!checkWinCondition()) {
+          sendPossibleMoves(player)
+        }
       } else {
         log.debug("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] to pile [" + targetPile.id + "].")
         sendToAll(CardMoveCancelled(cardIds, source))
@@ -76,9 +82,14 @@ trait GameServiceCardHelper { this: GameService =>
     }
   }
 
+  private def sendPossibleMoves(player: String) = handleGetPossibleMoves(player)
+
   private def checkWinCondition() = {
     if(gameVariant.isWin) {
       sendToAll(GameWon(id))
+      true
+    } else {
+      false
     }
   }
 }
