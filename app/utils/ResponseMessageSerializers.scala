@@ -29,6 +29,8 @@ object ResponseMessageSerializers {
       case vr: VersionResponse => versionResponseWrites.writes(vr)
       case SendDebugInfo => JsObject(Nil)
 
+      case pm: PossibleMoves => possibleMovesWrites.writes(pm)
+
       case gj: GameJoined => gameJoinedWrites.writes(gj)
       case gl: GameLost => gameLostWrites.writes(gl)
       case gw: GameWon => gameWonWrites.writes(gw)

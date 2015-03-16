@@ -39,7 +39,7 @@ class GameService(
 
   override def receiveRequest = {
     case gr: GameRequest =>
-      log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.player + "].")
+      log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.player + "] for game [" + id + "].")
       try {
         gameMessages += gr.message
         gr.message match {
@@ -55,7 +55,7 @@ class GameService(
           sender() ! ServerError(x.getClass.getSimpleName, x.getMessage)
       }
     case im: InternalMessage =>
-      log.debug("Handling [" + im.getClass.getSimpleName.replace("$", "") + "] internal message.")
+      log.debug("Handling [" + im.getClass.getSimpleName.replace("$", "") + "] internal message for game [" + id + "].")
       try {
         im match {
           case ap: AddPlayer => handleAddPlayer(ap.id, ap.name, ap.actorRef)

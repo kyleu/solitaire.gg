@@ -19,7 +19,7 @@ trait GameServiceCardHelper { this: GameService =>
     }
     sendToAll(messages)
     if(!checkWinCondition()) {
-//      sendPossibleMoves(player)
+      sendPossibleMoves(player)
     }
   }
 
@@ -36,7 +36,7 @@ trait GameServiceCardHelper { this: GameService =>
     }
     sendToAll(messages)
     if(!checkWinCondition()) {
-//      sendPossibleMoves(player)
+      sendPossibleMoves(player)
     }
   }
 
@@ -70,7 +70,7 @@ trait GameServiceCardHelper { this: GameService =>
 
         sendToPlayer(player, messages)
         if(!checkWinCondition()) {
-//          sendPossibleMoves(player)
+          sendPossibleMoves(player)
         }
       } else {
         log.debug("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] to pile [" + targetPile.id + "].")

@@ -51,11 +51,11 @@ trait GameServiceConnectionHelper { this: GameService =>
   }
 
   protected def sendToPlayer(player: String, message: ResponseMessage): Unit = {
-    playerConnections(player).map { c =>
+    playerConnections(player).foreach { c =>
       c._2 ! message
     }
     observerConnections.filter(o => o._1._2.isEmpty || o._1._2 == Some(player)).foreach { c =>
-      c._2.map(_._2 ! message)
+      c._2.foreach(_._2 ! message)
     }
   }
 
@@ -71,10 +71,10 @@ trait GameServiceConnectionHelper { this: GameService =>
 
   protected def sendToAll(message: ResponseMessage): Unit = {
     playerConnections.foreach { c =>
-      c._2.map(_._2 ! message)
+      c._2.foreach(_._2 ! message)
     }
     observerConnections.foreach { c =>
-      c._2.map(_._2 ! message)
+      c._2.foreach(_._2 ! message)
     }
   }
 

@@ -71,6 +71,9 @@ define([
         this.loadPiles(v.state.piles);
         this.loadCards(v.state.piles);
         break;
+      case "PossibleMoves":
+        this.game.possibleMoves = v.moves;
+        break;
       case "CardRevealed":
         var existing = this.game.cards[v.card.id];
         existing.updateSprite(v.card.r, v.card.s, v.card.u);
@@ -138,7 +141,7 @@ define([
   };
 
   Gameplay.prototype.onOrientationChange = function (scale, prevOrientation) {
-    alert("OC: Was [" + prevOrientation + "], now [" + scale.screenOrientation + "]. Window: [" + window.innerWidth + "x" +  window.innerHeight + "].");
+    //alert("OC: Was [" + prevOrientation + "], now [" + scale.screenOrientation + "]. Window: [" + window.innerWidth + "x" +  window.innerHeight + "].");
     document.getElementById("game-container").style.width = window.innerWidth;
     document.getElementById("game-container").style.height = window.innerHeight;
   };
