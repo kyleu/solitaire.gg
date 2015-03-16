@@ -33,7 +33,7 @@ class GameService(
     }
 
     playerConnections.foreach { c =>
-      c._2.map(_._2 ! GameJoined(id, initialPlayers.map(_._1), gameState.view(c._1)))
+      c._2.map(_._2 ! GameJoined(id, initialPlayers.map(_._1), gameState.view(c._1), possibleMoves(Some(c._1))))
     }
   }
 
@@ -55,7 +55,7 @@ class GameService(
           sender() ! ServerError(x.getClass.getSimpleName, x.getMessage)
       }
     case im: InternalMessage =>
-      log.debug("Handling [" + im.getClass.getSimpleName + "] internal message.")
+      log.debug("Handling [" + im.getClass.getSimpleName.replace("$", "") + "] internal message.")
       try {
         im match {
           case ap: AddPlayer => handleAddPlayer(ap.id, ap.name, ap.actorRef)

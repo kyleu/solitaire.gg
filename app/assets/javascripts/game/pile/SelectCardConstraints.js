@@ -6,6 +6,10 @@ define(function() {
 
     "top-card-only": function(card) {
       return card.pileIndex === this.cards.length - 1;
+    },
+
+    "klondike": function() {
+      return true;
     }
   };
 });

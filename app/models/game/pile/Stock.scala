@@ -9,7 +9,7 @@ object Stock {
     selectCardConstraint = Some(SelectCardConstraints.topCardOnly),
     selectPileConstraint = Some(SelectPileConstraints.empty),
 
-    selectCardAction = Some(SelectCardActions.drawToPile(cardsToDraw, drawTo)),
+    selectCardAction = Some(SelectCardActions.drawToPile(cardsToDraw, drawTo, turnFaceUp = true)),
     selectPileAction = redrawFrom match {
       case Some(rf) => Some(SelectPileActions.moveAll(rf))
       case None => None

@@ -12,7 +12,7 @@ object Deck {
   }
 
   def shuffled(random: Random, numDecks: Int = 1) = {
-    val cards = (0 to numDecks).flatMap( i => fresh().cards)
+    val cards = (0 to numDecks - 1).flatMap( i => fresh().cards)
     Deck(random.shuffle(cards))
   }
 }

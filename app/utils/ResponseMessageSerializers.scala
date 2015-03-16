@@ -10,12 +10,12 @@ object ResponseMessageSerializers {
   private val pongWrites = Json.writes[Pong]
   private val versionResponseWrites = Json.writes[VersionResponse]
 
+  private implicit val possibleMoveWrites = Json.writes[PossibleMove]
+  private implicit val possibleMovesWrites = Json.writes[PossibleMoves]
+
   private val gameJoinedWrites = Json.writes[GameJoined]
   private val gameLostWrites = Json.writes[GameLost]
   private val gameWonWrites = Json.writes[GameWon]
-
-  private implicit val possibleMoveWrites = Json.writes[PossibleMove]
-  private val possibleMovesWrites = Json.writes[PossibleMoves]
 
   private val cardRevealedWrites = Json.writes[CardRevealed]
   private val cardMovedWrites = Json.writes[CardMoved]

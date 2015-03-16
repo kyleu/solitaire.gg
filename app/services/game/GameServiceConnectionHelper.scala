@@ -9,7 +9,7 @@ import play.api.libs.concurrent.Akka
 trait GameServiceConnectionHelper { this: GameService =>
   protected def handleAddPlayer(connectionId: UUID, name: String, actorRef: ActorRef) {
     playerConnections(name) = Some((connectionId, actorRef))
-    actorRef ! GameJoined(id, playerConnections.keys.toSeq, gameState.view(name))
+    actorRef ! GameJoined(id, playerConnections.keys.toSeq, gameState.view(name), possibleMoves(Some(name)))
   }
 
   protected def handleAddObserver(connectionId: UUID, name: String, as: Option[String], actorRef: ActorRef) {
@@ -18,7 +18,7 @@ trait GameServiceConnectionHelper { this: GameService =>
       case Some(player) => gameState.view(player)
       case None => gameState
     }
-    actorRef ! GameJoined(id, playerConnections.keys.toSeq, gs)
+    actorRef ! GameJoined(id, playerConnections.keys.toSeq, gs, possibleMoves(None))
   }
 
   protected def handleConnectionStopped(connectionId: UUID) {

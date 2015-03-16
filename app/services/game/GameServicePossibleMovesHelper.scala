@@ -1,19 +1,26 @@
 package services.game
 
-import models.{ServerError, PossibleMove, PossibleMoves}
+import models.{ResponseMessage, PossibleMove, PossibleMoves}
 
 import scala.util.{Failure, Try, Success}
 
 trait GameServicePossibleMovesHelper { this: GameService =>
-  protected def handleGetPossibleMoves(player: String) = possibleMoves() match {
-    case Success(moves) =>
-      sendToPlayer(player, moves)
-    case Failure(ex) =>
-      log.warn("Exception encountered processing possible moves.", ex)
-      sendToAll(ServerError("PossibleMovesException", ex.toString))
+  protected def handleGetPossibleMoves(player: String) = sendToPlayer(player, possibleMoves(Some(player)))
+
+  protected def possibleMoves(player: Option[String]): PossibleMoves = {
+    log.info("Generating possible moves for [" + id + "].")
+    val ret = possibleMoves() match {
+      case Success(moves) =>
+        moves
+      case Failure(ex) =>
+        log.error("Exception [" + ex.getClass.getSimpleName + "] encountered trying to calculate possible moves.", ex)
+        PossibleMoves(Nil)
+    }
+    log.info("Generated [" + ret.moves.size + "] possible moves for [" + id + "].")
+    ret
   }
 
-  private def possibleMoves() = Try {
+  protected def possibleMoves(): Try[PossibleMoves] = Try {
     val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
     gameState.piles.foreach { source =>
       if(source.canSelectPile(gameState)) {
