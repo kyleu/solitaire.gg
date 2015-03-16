@@ -9,10 +9,6 @@ trait GameServicePossibleMovesHelper { this: GameService =>
   protected def handleGetPossibleMoves(player: String) = {
     val moves = possibleMoves(Some(player))
     sendToPlayer(player, moves)
-
-    import utils.ResponseMessageSerializers._
-    val json = Json.prettyPrint(Json.toJson(moves))
-    log.info(json)
   }
 
   protected def possibleMoves(player: Option[String]): PossibleMoves = {

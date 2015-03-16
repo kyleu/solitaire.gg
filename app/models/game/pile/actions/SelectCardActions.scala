@@ -84,7 +84,7 @@ object SelectCardActions {
       val revealed = gameState.revealCardToAll(card)
       revealed :+ CardMoved(card.id, src.id, tgt.id, turnFaceUp = true)
     } else {
-      Seq(CardMoved(card.id, src.id, tgt.id))
+      Seq(CardMoved(card.id, src.id, tgt.id, turnFaceUp = turnFaceUp))
     }
   }
 }
