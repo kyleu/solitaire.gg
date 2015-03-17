@@ -9,6 +9,9 @@
     window.scalataireConfig = {
       "id": "@utils.Config.projectId",
       "name": "@utils.Config.projectName",
+      @if(seed.isDefined) {
+        "seed": @seed.get,
+      }
       "debug": "@utils.Config.debug",
       "cardSet": "@utils.Config.defaultCardSet",
       "cardSize": "@utils.Config.defaultCardSize",

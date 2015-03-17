@@ -11,7 +11,7 @@ case class Ping(timestamp: Long) extends RequestMessage
 case object GetVersion extends RequestMessage
 case class DebugInfo(data: JsObject) extends RequestMessage
 
-case class StartGame(variant: String) extends RequestMessage
+case class StartGame(variant: String, seed: Option[Int] = None) extends RequestMessage
 case class JoinGame(id: UUID) extends RequestMessage
 case class ObserveGame(id: UUID, as: Option[String]) extends RequestMessage
 

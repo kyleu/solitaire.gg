@@ -25,6 +25,23 @@ define(function() {
         }
         if(overlapX > 0 && overlapY > 0) {
           if(overlapX + overlapY < dropDistance) {
+            var valid = false;
+            for(var moveIndex in p.game.possibleMoves) {
+              var move = p.game.possibleMoves[moveIndex];
+              console.log(moveIndex, move.moveType, move.cards, move.sourcePile, move.targetPile);
+              if(move.moveType === "move-cards" && move.sourcePile === pile.id && move.targetPile === p.id) {
+                if(pile.dragCards.length == move.cards.length) {
+                  valid = true;
+                  for(var cardIndex in move.cards) {
+                    var cardId = pile.dragCards[cardIndex].id;
+                    if(move.cards[cardIndex] !== cardId) {
+                      valid = false;
+                    }
+                  }
+                }
+              }
+            }
+            //if(valid) {
             if(p.canDragTo(pile)) {
               dropDistance = overlapX + overlapY;
               dropTarget = p;

@@ -1,5 +1,6 @@
 package services
 
+import akka.actor.PoisonPill
 import akka.testkit.TestProbe
 import models.game.variants.GameVariant
 import models.{PossibleMoves, GetPossibleMoves, GameJoined, StartGame}
@@ -47,6 +48,7 @@ object TestService extends Logging {
       val moves = testProbe.expectMsgClass(classOf[PossibleMoves])
       TestResult("Received [" + moves.moves.size + "] possible moves.", if(verbose) { moves.moves.map(x => TestResult(x.toString)) } else { Nil })
     })
+    conn ! PoisonPill
     TestResult("Testing game variant [" + variant + "].", results)
   }
 

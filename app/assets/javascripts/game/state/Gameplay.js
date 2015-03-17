@@ -40,7 +40,11 @@ define([
     if(cfg.initialAction === undefined) {
       this.game.ws.send("StartGame", {"variant": cfg.variant});
     } else if(cfg.initialAction[0] === "start") {
-      this.game.ws.send("StartGame", {"variant": cfg.variant});
+      if(cfg.seed === undefined) {
+        this.game.ws.send("StartGame", {"variant": cfg.variant});
+      } else {
+        this.game.ws.send("StartGame", {"variant": cfg.variant, "seed": cfg.seed});
+      }
     } else if(cfg.initialAction[0] === "join") {
       this.game.ws.send("JoinGame", {"id": cfg.initialAction[1]});
     } else if(cfg.initialAction[0] === "observe") {
@@ -70,6 +74,7 @@ define([
         this.seed = v.state.seed;
         this.loadPiles(v.state.piles);
         this.loadCards(v.state.piles);
+        this.game.possibleMoves = v.moves;
         break;
       case "PossibleMoves":
         this.game.possibleMoves = v.moves;

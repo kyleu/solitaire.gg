@@ -11,7 +11,7 @@ case class Pong(timestamp: Long) extends ResponseMessage
 case class VersionResponse(version: String) extends ResponseMessage
 case object SendDebugInfo extends ResponseMessage
 
-case class GameJoined(id: UUID, players: Seq[String], state: GameState, possibleMoves: PossibleMoves) extends ResponseMessage
+case class GameJoined(id: UUID, players: Seq[String], state: GameState, moves: Seq[PossibleMove]) extends ResponseMessage
 case class GameLost(id: UUID) extends ResponseMessage
 case class GameWon(id: UUID) extends ResponseMessage
 

@@ -32,7 +32,7 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
     case di: DebugInfo => handleDebugInfo(di.data)
 
     // Incoming game messages
-    case sg: StartGame => handleStartGame(sg.variant)
+    case sg: StartGame => handleStartGame(sg.variant, sg.seed)
     case jg: JoinGame => handleJoinGame(jg.id)
     case og: ObserveGame => handleObserveGame(og.id, og.as)
     case gm: GameMessage => handleGameMessage(gm)
@@ -54,8 +54,8 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
     supervisor ! ConnectionStopped(id)
   }
 
-  private def handleStartGame(gameType: String) {
-    supervisor ! CreateGame(gameType, id, None)
+  private def handleStartGame(gameType: String, seed: Option[Int]) {
+    supervisor ! CreateGame(gameType, id, seed)
   }
 
   private def handleJoinGame(gameId: UUID) = {
