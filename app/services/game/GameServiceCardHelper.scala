@@ -53,7 +53,7 @@ trait GameServiceCardHelper { this: GameService =>
 
     if(sourcePile.canDragFrom(cards, gameState)) {
       if(targetPile.canDragTo(cards, gameState)) {
-        val messages = if(variant == "nestor") {
+        val messages = if(variant == "nestor" || variant == "pyramid") {
           cards.flatMap { card =>
             sourcePile.removeCard(card)
             val targetCard = targetPile.cards.last

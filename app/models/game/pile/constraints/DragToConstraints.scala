@@ -2,9 +2,9 @@ package models.game.pile.constraints
 
 import models.game.Rank._
 import models.game.{GameState, Rank, Card}
-import models.game.pile.{PileOption, Pile}
+import models.game.pile.Pile
 
-case class DragToConstraint(override val id: String, f: (Pile, Seq[Card], GameState) => Boolean) extends PileOption(id)
+case class DragToConstraint(id: String, f: (Pile, Seq[Card], GameState) => Boolean)
 
 object DragToConstraints {
   val never = DragToConstraint("never", (pile, cards, gameState) => false)
@@ -13,10 +13,10 @@ object DragToConstraints {
 
   val foundationDefault = DragToConstraint("foundation", (pile, cards, gameState) => if(cards.length == 1) {
     if(pile.cards.isEmpty) {
-      cards(0).r == Rank.Ace
-    } else if(pile.cards.last.s == cards(0).s && pile.cards.last.r == Rank.Ace && cards(0).r == Rank.Two) {
+      cards.head.r == Rank.Ace
+    } else if(pile.cards.last.s == cards.head.s && pile.cards.last.r == Rank.Ace && cards.head.r == Rank.Two) {
       true
-    } else if(pile.cards.last.s == cards(0).s && pile.cards.last.r.value + 1 == cards(0).r.value) {
+    } else if(pile.cards.last.s == cards.head.s && pile.cards.last.r.value + 1 == cards.head.r.value) {
       true
     } else {
       false
@@ -69,5 +69,16 @@ object DragToConstraints {
       case Two => firstDraggedCardRank == Ace || firstDraggedCardRank == Three
       case _ => topCardRank.value == firstDraggedCardRank.value + 1 || topCardRank.value == firstDraggedCardRank.value - 1
     }
+  })
+
+  def aggregate(constraints: DragFromConstraint*) = DragToConstraint("aggregate-" + constraints.map(_.id), (pile, cards, gameState) => {
+    constraints.exists(!_.f(pile, cards, gameState))
+  })
+
+  def total(target: Int) = DragToConstraint("total-" + target, (pile, cards, gameState) => {
+    val topCardRank = pile.cards.last.r
+    val firstDraggedCardRank = cards.head.r
+    val totalValue = topCardRank.value + firstDraggedCardRank.value
+    totalValue == 13
   })
 }

@@ -3,9 +3,9 @@ package models.game.pile.actions
 import models.{CardRevealed, ResponseMessage, CardMoved}
 import models.game.Rank._
 import models.game.{Rank, GameState, Card}
-import models.game.pile.{PileOption, Pile}
+import models.game.pile.Pile
 
-case class SelectCardAction(override val id: String, f: (Pile, Card, GameState) => Seq[ResponseMessage]) extends PileOption(id)
+case class SelectCardAction(id: String, f: (Pile, Card, GameState) => Seq[ResponseMessage])
 
 object SelectCardActions {
   val none = SelectCardAction("none", (pile, card, gameState) => Nil)

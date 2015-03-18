@@ -7,7 +7,10 @@ object PileOptions {
   val empty = PileOptions()
 }
 
-class PileOption(val id: String)
+object ClientPileOptions {
+  def fromPileOptions(po: PileOptions): ClientPileOptions = ClientPileOptions(po.cardsShown, po.direction, po.dragFromConstraint.map(_.id), po.dragFromConstraint.flatMap(_.clientOptions))
+}
+case class ClientPileOptions(cardsShown: Option[Int], direction: Option[String], dragFromConstraint: Option[String], dragFromOptions: Option[Map[String, String]])
 
 case class PileOptions(
   cardsShown: Option[Int] = None,

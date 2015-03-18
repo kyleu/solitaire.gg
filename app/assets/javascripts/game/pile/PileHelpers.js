@@ -3,7 +3,6 @@ define(function() {
     var valid = false;
     for(var moveIndex in src.game.possibleMoves) {
       var move = src.game.possibleMoves[moveIndex];
-      console.log(moveIndex, move.moveType, move.cards, move.sourcePile, move.targetPile);
       if(move.moveType === "move-cards" && move.sourcePile === src.id && move.targetPile === tgt.id) {
         if(src.dragCards.length == move.cards.length) {
           valid = true;

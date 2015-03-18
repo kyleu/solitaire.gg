@@ -1,9 +1,9 @@
 package models.game.pile.constraints
 
 import models.game.{GameState, Rank, Card}
-import models.game.pile.{PileOption, Pile}
+import models.game.pile.Pile
 
-case class DragFromConstraint(override val id: String, f: (Pile, Seq[Card], GameState) => Boolean) extends PileOption(id)
+case class DragFromConstraint(id: String, f: (Pile, Seq[Card], GameState) => Boolean, clientOptions: Option[Map[String, String]] = None)
 
 object DragFromConstraints {
   val never = DragFromConstraint("never", (pile, cards, gameState) => false)
@@ -29,4 +29,14 @@ object DragFromConstraints {
     }
     valid
   })
+
+  def pilesEmpty(piles: String*) = DragFromConstraint("piles-empty", (pile, cards, gameState) => {
+    var ret = true
+    for(p <- piles) {
+      if(gameState.pilesById(p).cards.nonEmpty) {
+        ret = false
+      }
+    }
+    ret
+  }, Some(Map("piles" -> piles.mkString(","))))
 }

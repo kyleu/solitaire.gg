@@ -2,8 +2,6 @@ package models.game.variants
 
 import java.util.UUID
 
-import models.game.variants.GameVariant
-
 object KlondikeDrawThree extends GameVariant.Description {
   override val key = "klondike"
   override val name = "Klondike"

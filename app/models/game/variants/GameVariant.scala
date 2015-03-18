@@ -20,13 +20,14 @@ object GameVariant {
     case KlondikeDrawThree.key => new KlondikeDrawThree(gameId, seed)
     case KlondikeDrawOne.key => new KlondikeDrawOne(gameId, seed)
     case Nestor.key => new Nestor(gameId, seed)
+    case Pyramid.key => new Pyramid(gameId, seed)
     case Spider.key => new Spider(gameId, seed)
     case TrustyTwelve.key => new TrustyTwelve(gameId, seed)
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 
   val all = Seq(
-    FreeCell, Golf, KlondikeDrawThree, KlondikeDrawOne, Nestor, Spider, TrustyTwelve
+    FreeCell, Golf, KlondikeDrawThree, KlondikeDrawOne, Nestor, Pyramid, Spider, TrustyTwelve
   )
 }
 

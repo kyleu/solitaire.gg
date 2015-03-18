@@ -24,6 +24,9 @@ define([
     var victoriousCheatKey = this.game.input.keyboard.addKey(Phaser.Keyboard.V);
     victoriousCheatKey.onDown.add(this.victorious, this);
 
+    var helpKey = this.game.input.keyboard.addKey(Phaser.Keyboard.H);
+    helpKey.onDown.add(this.logGame, this);
+
     this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
     this.bg.height = this.game.height * 2;
     this.bg.width = this.game.width * 2;
@@ -65,16 +68,29 @@ define([
     }
   };
 
+  Gameplay.prototype.logGame = function() {
+    console.log("Game [" + this.game.id + "] (" + this.game.variant + "):");
+    console.log(this.game);
+    console.log("Piles:");
+    for(var cardIndex in this.game.piles) {
+      console.log(this.game.piles[cardIndex]);
+    }
+    console.log("Possible Moves:");
+    for(var moveIndex in this.game.possibleMoves) {
+      console.log(this.game.possibleMoves[moveIndex]);
+    }
+  };
+
   Gameplay.prototype.onMessage = function(c, v) {
     switch(c) {
       case "GameJoined":
         this.game.playmat = new Playmat(this.game, v.state.layouts);
-        this.id = v.state.id;
-        this.variant = v.variant;
-        this.seed = v.state.seed;
+        this.game.id = v.state.gameId;
+        this.game.variant = v.variant;
+        this.game.seed = v.state.seed;
+        this.game.possibleMoves = v.moves;
         this.loadPiles(v.state.piles);
         this.loadCards(v.state.piles);
-        this.game.possibleMoves = v.moves;
         break;
       case "PossibleMoves":
         this.game.possibleMoves = v.moves;

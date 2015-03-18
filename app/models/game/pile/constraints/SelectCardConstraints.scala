@@ -2,9 +2,9 @@ package models.game.pile.constraints
 
 import models.game.Rank._
 import models.game.{GameState, Rank, Card}
-import models.game.pile.{PileOption, Pile}
+import models.game.pile.Pile
 
-case class SelectCardConstraint(override val id: String, f: (Pile, Card, GameState) => Boolean) extends PileOption(id)
+case class SelectCardConstraint(id: String, f: (Pile, Card, GameState) => Boolean)
 
 object SelectCardConstraints {
   val never = SelectCardConstraint("never", (pile, card, gameState) => false)
@@ -50,4 +50,6 @@ object SelectCardConstraints {
       }
     }
   })
+
+  def specificRank(r: Rank) = SelectCardConstraint("rank-" + r, (pile, card, gameState) => card.r == r)
 }

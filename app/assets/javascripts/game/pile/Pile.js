@@ -5,10 +5,10 @@ define([
 ], function (PileLayout, PileHelpers, DragFromConstraints) {
   "use strict";
 
-  function getConstraint(constraintType, constraints, key) {
-    var ret = constraints[key === undefined ? "never" : key];
+  function getConstraint(key) {
+    var ret = DragFromConstraints[key === undefined ? "never" : key];
     if(ret === undefined) {
-      throw "Invalid [" + constraintType + "] constraint [" + key + "].";
+      throw "Invalid dragFrom constraint [" + key + "].";
     } else {
       return ret;
     }
@@ -42,7 +42,7 @@ define([
     }, this);
     this.add(this.empty);
 
-    this.canDragFrom = getConstraint("dragFrom", DragFromConstraints, options.dragFromConstraint);
+    this.canDragFrom = getConstraint(options.dragFromConstraint);
 
     this.intersectWidth = this.empty.width;
     this.intersectHeight = this.empty.height;

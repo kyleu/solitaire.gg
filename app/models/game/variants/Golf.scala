@@ -3,7 +3,8 @@ package models.game.variants
 import java.util.UUID
 
 import models.game._
-import models.game.pile.constraints.{SelectCardConstraints, DragToConstraints, DragFromConstraints}
+import models.game.pile.actions.SelectCardActions
+import models.game.pile.constraints.{SelectPileConstraints, SelectCardConstraints, DragToConstraints, DragFromConstraints}
 import models.game.pile.{PileOptions, Stock, Foundation, Tableau}
 
 object Golf extends GameVariant.Description {
@@ -18,7 +19,8 @@ case class Golf(override val gameId: UUID, override val seed: Int) extends GameV
   private val tableauOptions = PileOptions(
     selectCardConstraint = Some(SelectCardConstraints.alternatingRankToFoundation),
     dragFromConstraint = Some(DragFromConstraints.topCardOnly),
-    dragToConstraint = Some(DragToConstraints.never)
+    dragToConstraint = Some(DragToConstraints.never),
+    selectCardAction = Some(SelectCardActions.drawToPile(1, "foundation", turnFaceUp = false))
   )
 
   private val piles = List(
@@ -31,7 +33,7 @@ case class Golf(override val gameId: UUID, override val seed: Int) extends GameV
     new Tableau("tableau-7", tableauOptions),
 
     new Foundation("foundation", PileOptions(cardsShown = Some(4), direction = Some("r"), dragToConstraint = Some(DragToConstraints.alternatingRank))),
-    new Stock("stock", 1, "foundation", None, PileOptions(cardsShown = Some(16), direction = Some("r")))
+    new Stock("stock", 1, "foundation", None, PileOptions(cardsShown = Some(16), direction = Some("r"), selectPileConstraint = Some(SelectPileConstraints.never)))
   )
 
   private val deck = Deck.shuffled(rng)

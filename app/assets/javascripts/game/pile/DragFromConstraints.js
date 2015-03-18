@@ -30,6 +30,11 @@ define(['game/Rank'], function(Rank) {
         lastCard = cards[c];
       }
       return valid;
+    },
+
+    "piles-empty": function(card, options) {
+      console.log("Options: " + options);
+      return true;
     }
   };
 });
