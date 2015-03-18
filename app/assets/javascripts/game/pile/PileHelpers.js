@@ -1,4 +1,24 @@
 define(function() {
+  var isValidMove = function(src, tgt) {
+    var valid = false;
+    for(var moveIndex in src.game.possibleMoves) {
+      var move = src.game.possibleMoves[moveIndex];
+      console.log(moveIndex, move.moveType, move.cards, move.sourcePile, move.targetPile);
+      if(move.moveType === "move-cards" && move.sourcePile === src.id && move.targetPile === tgt.id) {
+        if(src.dragCards.length == move.cards.length) {
+          valid = true;
+          for(var cardIndex in move.cards) {
+            var cardId = src.dragCards[cardIndex].id;
+            if(move.cards[cardIndex] !== cardId) {
+              valid = false;
+            }
+          }
+        }
+      }
+    }
+    return valid;
+  };
+
   var getDropTarget = function(pile) {
     var firstCard = pile.dragCards[0];
 
@@ -25,24 +45,7 @@ define(function() {
         }
         if(overlapX > 0 && overlapY > 0) {
           if(overlapX + overlapY < dropDistance) {
-            var valid = false;
-            for(var moveIndex in p.game.possibleMoves) {
-              var move = p.game.possibleMoves[moveIndex];
-              console.log(moveIndex, move.moveType, move.cards, move.sourcePile, move.targetPile);
-              if(move.moveType === "move-cards" && move.sourcePile === pile.id && move.targetPile === p.id) {
-                if(pile.dragCards.length == move.cards.length) {
-                  valid = true;
-                  for(var cardIndex in move.cards) {
-                    var cardId = pile.dragCards[cardIndex].id;
-                    if(move.cards[cardIndex] !== cardId) {
-                      valid = false;
-                    }
-                  }
-                }
-              }
-            }
-            //if(valid) {
-            if(p.canDragTo(pile)) {
+            if(isValidMove(pile, p)) {
               dropDistance = overlapX + overlapY;
               dropTarget = p;
             }

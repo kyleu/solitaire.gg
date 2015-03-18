@@ -33,20 +33,11 @@ trait GameServicePossibleMovesHelper { this: GameService =>
         if(source.canSelectCard(c._1, gameState)) {
           ret += PossibleMove("select-card", Seq(c._1.id), source.id)
         }
-        if(source.canDragFrom(Seq(c._1), gameState)) {
-          gameState.piles.filter(_ != source).foreach { target =>
-            if(target.canDragTo(Seq(c._1), gameState)) {
-              ret += PossibleMove("move-cards", Seq(c._1.id), source.id, Some(target.id))
-            }
-          }
-        }
-        if(c._2 > 0) {
-          val cards = source.cards.take(c._2 + 1)
-          if(source.canDragFrom(cards, gameState)) {
-            gameState.piles.filter(_ != source).foreach { target =>
-              if(target.canDragTo(cards, gameState)) {
-                ret += PossibleMove("move-cards", cards.map(_.id), source.id, Some(target.id))
-              }
+        val cards = source.cards.drop(c._2)
+        if(source.canDragFrom(cards, gameState)) {
+          gameState.piles.filter(p => p.id != source.id).foreach { target =>
+            if(target.canDragTo(cards, gameState)) {
+              ret += PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
             }
           }
         }

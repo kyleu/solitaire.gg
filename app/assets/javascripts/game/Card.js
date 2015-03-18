@@ -1,6 +1,19 @@
 define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   "use strict";
 
+  function canSelectCard(card) {
+    var valid = false;
+    for(var moveIndex in card.game.possibleMoves) {
+      var move = card.game.possibleMoves[moveIndex];
+      if(move.moveType === "select-card" && move.sourcePile === card.pile.id) {
+        if(move.cards.length === 1 && move.cards[0] === card.id) {
+          valid = true;
+        }
+      }
+    }
+    return valid;
+  }
+
   function Card(game, id, rank, suit, faceUp) {
     this.id = id;
 
@@ -69,7 +82,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
       var deltaX = Math.abs(p.positionDown.x - p.positionUp.x);
       var deltaY = Math.abs(p.positionDown.y - p.positionUp.y);
       if(deltaX < 5 && deltaY < 5) {
-        if(this.pile.canSelectCard(this)) {
+        if(canSelectCard(this)) {
           this.pile.cardSelected(this);
         }
       }
@@ -84,13 +97,13 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
         // Dragged
         this.game.add.tween(this).to({x: this.inputOriginalPosition.x, y: this.inputOriginalPosition.y}, 500, Phaser.Easing.Quadratic.InOut, true);
       } else {
-        if(this.pile.canSelectCard(this)) {
+        if(canSelectCard(this)) {
           this.pile.cardSelected(this);
         }
       }
       this.inputOriginalPosition = null;
     } else {
-      if(this.pile.canSelectCard(this)) {
+      if(canSelectCard(this)) {
         this.pile.cardSelected(this);
       }
     }

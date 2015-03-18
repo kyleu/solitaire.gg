@@ -73,6 +73,7 @@ object AdminController extends Controller {
     val ret = test match {
       case "all" => TestService.testAll()
       case "variants" => TestService.testVariants()
+      case "known" => TestService.testKnownGame()
       case x => TestService.testVariant(x)
     }
     Ok(views.html.admin.testResults(test, ret.toString(0)))
