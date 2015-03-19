@@ -41,23 +41,28 @@ define([
     this.game.scale.onOrientationChange.add(this.onOrientationChange, this);
 
     if(cfg.initialAction === undefined) {
-      this.game.ws.send("StartGame", {"variant": cfg.variant});
-    } else if(cfg.initialAction[0] === "start") {
-      if(cfg.seed === undefined) {
-        this.game.ws.send("StartGame", {"variant": cfg.variant});
-      } else {
-        this.game.ws.send("StartGame", {"variant": cfg.variant, "seed": cfg.seed});
-      }
-    } else if(cfg.initialAction[0] === "join") {
-      this.game.ws.send("JoinGame", {"id": cfg.initialAction[1]});
-    } else if(cfg.initialAction[0] === "observe") {
-      if(cfg.initialAction.length === 2) {
-        this.game.ws.send("ObserveGame", {"id": cfg.initialAction[1]});
-      } else {
-        this.game.ws.send("ObserveGame", {"id": cfg.initialAction[1], "as": cfg.initialAction[2]});
-      }
-    } else {
-      alert("Invalid initial action [" + cfg.initialAction + "].");
+      cfg.initialAction = ["start"];
+    }
+    switch(cfg.initialAction[0]) {
+      case "start":
+        if(cfg.seed === undefined) {
+          this.game.ws.send("StartGame", {});
+        } else {
+          this.game.ws.send("StartGame", {"seed": cfg.seed});
+        }
+        break;
+      case "join":
+        this.game.ws.send("JoinGame", {"id": cfg.initialAction[1]});
+        break;
+      case "observe":
+        if(cfg.initialAction.length === 2) {
+          this.game.ws.send("ObserveGame", {"id": cfg.initialAction[1]});
+        } else {
+          this.game.ws.send("ObserveGame", {"id": cfg.initialAction[1], "as": cfg.initialAction[2]});
+        }
+        break;
+      default:
+        alert("Invalid initial action [" + cfg.initialAction + "].");
     }
   };
 
@@ -162,7 +167,7 @@ define([
   };
 
   Gameplay.prototype.onOrientationChange = function (scale, prevOrientation) {
-    //alert("OC: Was [" + prevOrientation + "], now [" + scale.screenOrientation + "]. Window: [" + window.innerWidth + "x" +  window.innerHeight + "].");
+    console.log("Orientation change: Was [" + prevOrientation + "], now [" + scale.screenOrientation + "]. Window: [" + window.innerWidth + "x" +  window.innerHeight + "].");
     document.getElementById("game-container").style.width = window.innerWidth;
     document.getElementById("game-container").style.height = window.innerHeight;
   };

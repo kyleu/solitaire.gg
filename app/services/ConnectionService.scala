@@ -50,7 +50,7 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
   }
 
   override def postStop() = {
-    activeGame.map(_ ! ConnectionStopped(id))
+    activeGame.foreach(_ ! ConnectionStopped(id))
     supervisor ! ConnectionStopped(id)
   }
 

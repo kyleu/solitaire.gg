@@ -19,6 +19,5 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
     }
   };
 
-
   return Scalataire;
 });

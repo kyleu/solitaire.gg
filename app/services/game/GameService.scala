@@ -29,11 +29,11 @@ class GameService(
 
     val message = GameStarted(id, self)
     playerConnections.foreach { c =>
-      c._2.map(_._2 ! message)
+      c._2.foreach(_._2 ! message)
     }
 
     playerConnections.foreach { c =>
-      c._2.map(_._2 ! GameJoined(id, initialPlayers.map(_._1), gameState.view(c._1), possibleMoves(Some(c._1))))
+      c._2.foreach(_._2 ! GameJoined(id, initialPlayers.map(_._1), gameState.view(c._1), possibleMoves(Some(c._1))))
     }
   }
 
