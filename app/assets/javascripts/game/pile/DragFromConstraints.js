@@ -32,8 +32,16 @@ define(['game/Rank'], function(Rank) {
       return valid;
     },
 
-    "piles-empty": function(card, options) {
-      console.log("Options: " + options);
+    "piles-empty": function(card) {
+      var options = this.options.dragFromOptions.piles.split(",");
+      for(var pileIndex in this.game.piles) {
+        if(options.indexOf(pileIndex) > -1 && pileIndex !== this.id) {
+          var pile = this.game.piles[pileIndex];
+          if(pile.cards.length > 0) {
+            return false;
+          }
+        }
+      }
       return true;
     }
   };

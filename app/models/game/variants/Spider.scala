@@ -3,8 +3,7 @@ package models.game.variants
 import java.util.UUID
 
 import models.game._
-import models.game.pile.constraints.{DragFromConstraints, DragToConstraints}
-import models.game.pile.{Foundation, PileOptions, Tableau, Waste}
+import models.game.pile.{Foundation, Tableau}
 
 object Spider extends GameVariant.Description {
   override val key = "spider"

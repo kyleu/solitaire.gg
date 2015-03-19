@@ -1,41 +1,49 @@
 package models.game.pile
 
-import models.game.pile.actions.{SelectPileAction, SelectCardAction}
-import models.game.pile.constraints.{DragToConstraint, DragFromConstraint, SelectPileConstraint, SelectCardConstraint}
-
-object PileOptions {
-  val empty = PileOptions()
-}
+import models.game.pile.actions.{DragToAction, SelectPileAction, SelectCardAction}
+import models.game.pile.constraints.{Constraints, Constraint}
 
 object ClientPileOptions {
-  def fromPileOptions(po: PileOptions): ClientPileOptions = ClientPileOptions(po.cardsShown, po.direction, po.dragFromConstraint.map(_.id), po.dragFromConstraint.flatMap(_.clientOptions))
+  def fromPileOptions(po: PileOptions): ClientPileOptions = ClientPileOptions(po.cardsShown, po.direction, po.dragFromConstraint.id, po.dragFromConstraint.clientOptions)
 }
-case class ClientPileOptions(cardsShown: Option[Int], direction: Option[String], dragFromConstraint: Option[String], dragFromOptions: Option[Map[String, String]])
+case class ClientPileOptions(cardsShown: Option[Int], direction: Option[String], dragFromConstraint: String, dragFromOptions: Option[Map[String, String]])
 
 case class PileOptions(
   cardsShown: Option[Int] = None,
   direction: Option[String] = None,
 
-  selectCardConstraint: Option[SelectCardConstraint] = None,
-  selectPileConstraint: Option[SelectPileConstraint] = None,
-  dragFromConstraint: Option[DragFromConstraint] = None,
-  dragToConstraint: Option[DragToConstraint] = None,
+  selectCardConstraint: Constraint = Constraints.never,
+  selectPileConstraint: Constraint = Constraints.never,
+  dragFromConstraint: Constraint = Constraints.never,
+  dragToConstraint: Constraint = Constraints.never,
 
   selectCardAction: Option[SelectCardAction] = None,
-  selectPileAction: Option[SelectPileAction] = None
+  selectPileAction: Option[SelectPileAction] = None,
+  dragToAction: Option[DragToAction] = None
 ) {
-  def combine(po: PileOptions) = {
-    this.copy(
-      cardsShown = if(po.cardsShown.isDefined) { po.cardsShown } else { cardsShown },
-      direction = if(po.direction.isDefined) { po.direction } else { direction },
+  def combine(
+    cardsShown: Option[Int] = None,
+    direction: Option[String] = None,
 
-      selectCardConstraint = if(po.selectCardConstraint.isDefined) { po.selectCardConstraint } else { selectCardConstraint },
-      selectPileConstraint = if(po.selectPileConstraint.isDefined) { po.selectPileConstraint } else { selectPileConstraint },
-      dragFromConstraint = if(po.dragFromConstraint.isDefined) { po.dragFromConstraint } else { dragFromConstraint },
-      dragToConstraint = if(po.dragToConstraint.isDefined) { po.dragToConstraint } else { dragToConstraint },
+    selectCardConstraint: Option[Constraint] = None,
+    selectPileConstraint: Option[Constraint] = None,
+    dragFromConstraint: Option[Constraint] = None,
+    dragToConstraint: Option[Constraint] = None,
 
-      selectCardAction = if(po.selectCardAction.isDefined) { po.selectCardAction } else { selectCardAction },
-      selectPileAction = if(po.selectPileAction.isDefined) { po.selectPileAction } else { selectPileAction }
-    )
-  }
+    selectCardAction: Option[SelectCardAction] = None,
+    selectPileAction: Option[SelectPileAction] = None,
+    dragToAction: Option[DragToAction] = None
+  ) = PileOptions(
+    cardsShown = cardsShown.orElse(this.cardsShown),
+    direction = direction.orElse(this.direction),
+
+    selectCardConstraint = selectCardConstraint.getOrElse(this.selectCardConstraint),
+    selectPileConstraint = selectPileConstraint.getOrElse(this.selectPileConstraint),
+    dragFromConstraint = dragFromConstraint.getOrElse(this.dragFromConstraint),
+    dragToConstraint = dragToConstraint.getOrElse(this.dragToConstraint),
+
+    selectCardAction = selectCardAction.orElse(this.selectCardAction),
+    selectPileAction = selectPileAction.orElse(this.selectPileAction),
+    dragToAction = dragToAction.orElse(this.dragToAction)
+  )
 }

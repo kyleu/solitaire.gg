@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models.game._
 import models.game.pile._
-import models.game.pile.constraints.{SelectCardConstraints, DragToConstraints, DragFromConstraints}
+import models.game.pile.constraints.Constraints
 
 object Nestor extends GameVariant.Description {
   override val key = "nestor"
@@ -15,10 +15,10 @@ object Nestor extends GameVariant.Description {
 case class Nestor(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Nestor
 
-  private val options = PileOptions(
-    selectCardConstraint = Some(SelectCardConstraints.never),
-    dragFromConstraint = Some(DragFromConstraints.topCardOnly),
-    dragToConstraint = Some(DragToConstraints.sameRank)
+  private val options = Tableau.options.combine(
+    selectCardConstraint = Some(Constraints.never),
+    dragFromConstraint = Some(Constraints.topCardOnlyDragFrom),
+    dragToConstraint = Some(Constraints.sameRank)
   )
 
   private val piles = List(

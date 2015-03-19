@@ -1,14 +1,13 @@
 package models.game.pile
 
-import models.game.pile.constraints.{DragToConstraints, DragFromConstraints}
+import models.game.pile.constraints.Constraints
 
 object Foundation {
-  private val defaultOptions = PileOptions(
+  val options = PileOptions(
     cardsShown = Some(1),
-    dragFromConstraint = Some(DragFromConstraints.topCardOnly),
-    dragToConstraint = Some(DragToConstraints.foundationDefault)
+    dragFromConstraint = Constraints.topCardOnlyDragFrom,
+    dragToConstraint = Constraints.klondikeFoundationDragTo
   )
 }
 
-class Foundation(id: String, options: PileOptions = PileOptions.empty) extends Pile(id, "foundation", options = Foundation.defaultOptions.combine(options)) {
-}
+class Foundation(id: String, options: PileOptions = Foundation.options) extends Pile(id, "foundation", options)

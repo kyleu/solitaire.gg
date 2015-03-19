@@ -3,8 +3,8 @@ package models.game.variants
 import java.util.UUID
 
 import models.game._
-import models.game.pile.constraints.{DragFromConstraints, DragToConstraints}
-import models.game.pile.{PileOptions, Waste, Foundation, Tableau}
+import models.game.pile.constraints.Constraints
+import models.game.pile._
 
 object FreeCell extends GameVariant.Description {
   override val key = "freecell"
@@ -15,14 +15,14 @@ object FreeCell extends GameVariant.Description {
 case class FreeCell(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = FreeCell
 
-  private val cellOptions = PileOptions(dragToConstraint = Some(DragToConstraints.empty))
-  private val tableauOptions = PileOptions(dragFromConstraint = Some(DragFromConstraints.topCardOnly))
+  private val cellOptions = Pile.options.combine(cardsShown = Some(1), dragToConstraint = Some(Constraints.empty))
+  private val tableauOptions = Tableau.options.combine(dragFromConstraint = Some(Constraints.topCardOnlyDragFrom))
 
   private val piles = List(
-    new Waste("cell-1", cellOptions),
-    new Waste("cell-2", cellOptions),
-    new Waste("cell-3", cellOptions),
-    new Waste("cell-4", cellOptions),
+    new Pile("cell-1", "pile", cellOptions),
+    new Pile("cell-2", "pile", cellOptions),
+    new Pile("cell-3", "pile", cellOptions),
+    new Pile("cell-4", "pile", cellOptions),
 
     new Foundation("foundation-1"),
     new Foundation("foundation-2"),

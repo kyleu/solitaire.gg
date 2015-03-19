@@ -1,16 +1,16 @@
 package models.game.pile
 
 import models.game.pile.actions.SelectCardActions
-import models.game.pile.constraints.{DragToConstraints, DragFromConstraints, SelectCardConstraints}
+import models.game.pile.constraints.Constraints
 
 object Tableau {
-  private val defaultOptions = PileOptions(
+  val options = PileOptions(
     direction = Some("d"),
-    selectCardConstraint = Some(SelectCardConstraints.klondike),
-    dragFromConstraint = Some(DragFromConstraints.klondike),
-    dragToConstraint = Some(DragToConstraints.klondike),
+    selectCardConstraint = Constraints.klondikeSelectCard,
+    dragFromConstraint = Constraints.klondikeDragFrom,
+    dragToConstraint = Constraints.klondikeTableauDragTo,
     selectCardAction = Some(SelectCardActions.klondike)
   )
 }
 
-class Tableau(id: String, options: PileOptions = PileOptions.empty) extends Pile(id, "tableau", Tableau.defaultOptions.combine(options))
+class Tableau(id: String, options: PileOptions = Tableau.options) extends Pile(id, "tableau", options)

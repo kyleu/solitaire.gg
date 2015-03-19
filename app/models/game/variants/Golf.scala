@@ -4,8 +4,8 @@ import java.util.UUID
 
 import models.game._
 import models.game.pile.actions.SelectCardActions
-import models.game.pile.constraints.{SelectPileConstraints, SelectCardConstraints, DragToConstraints, DragFromConstraints}
-import models.game.pile.{PileOptions, Stock, Foundation, Tableau}
+import models.game.pile.constraints._
+import models.game.pile.{Stock, Foundation, Tableau}
 
 object Golf extends GameVariant.Description {
   override val key = "golf"
@@ -16,10 +16,9 @@ object Golf extends GameVariant.Description {
 case class Golf(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Golf
 
-  private val tableauOptions = PileOptions(
-    selectCardConstraint = Some(SelectCardConstraints.alternatingRankToFoundation),
-    dragFromConstraint = Some(DragFromConstraints.topCardOnly),
-    dragToConstraint = Some(DragToConstraints.never),
+  private val tableauOptions = Tableau.options.combine(
+    selectCardConstraint = Some(Constraints.alternatingRankToFoundation),
+    dragFromConstraint = Some(Constraints.topCardOnlyDragFrom),
     selectCardAction = Some(SelectCardActions.drawToPile(1, "foundation", turnFaceUp = false))
   )
 
@@ -32,8 +31,8 @@ case class Golf(override val gameId: UUID, override val seed: Int) extends GameV
     new Tableau("tableau-6", tableauOptions),
     new Tableau("tableau-7", tableauOptions),
 
-    new Foundation("foundation", PileOptions(cardsShown = Some(4), direction = Some("r"), dragToConstraint = Some(DragToConstraints.alternatingRank))),
-    new Stock("stock", 1, "foundation", None, PileOptions(cardsShown = Some(16), direction = Some("r"), selectPileConstraint = Some(SelectPileConstraints.never)))
+    new Foundation("foundation", Foundation.options.combine(cardsShown = Some(4), direction = Some("r"), dragToConstraint = Some(Constraints.alternatingRank))),
+    new Stock("stock", Stock.options(1, "foundation", None).combine(cardsShown = Some(16), direction = Some("r"), selectPileConstraint = Some(Constraints.never)))
   )
 
   private val deck = Deck.shuffled(rng)

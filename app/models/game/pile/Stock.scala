@@ -1,13 +1,13 @@
 package models.game.pile
 
 import models.game.pile.actions.{SelectPileActions, SelectCardActions}
-import models.game.pile.constraints.{SelectPileConstraints, SelectCardConstraints}
+import models.game.pile.constraints.Constraints
 
 object Stock {
-  private def defaultOptions(cardsToDraw: Int, drawTo: String, redrawFrom: Option[String]) = PileOptions(
+  def options(cardsToDraw: Int, drawTo: String, redrawFrom: Option[String]) = PileOptions(
     cardsShown = Some(1),
-    selectCardConstraint = Some(SelectCardConstraints.topCardOnly),
-    selectPileConstraint = Some(SelectPileConstraints.empty),
+    selectCardConstraint = Constraints.topCardOnlySelectCard,
+    selectPileConstraint = Constraints.empty,
 
     selectCardAction = Some(SelectCardActions.drawToPile(cardsToDraw, drawTo, turnFaceUp = true)),
     selectPileAction = redrawFrom match {
@@ -17,6 +17,4 @@ object Stock {
   )
 }
 
-class Stock(id: String, cardsToDraw: Int = 3, drawTo: String, redrawFrom: Option[String], options: PileOptions = PileOptions.empty) extends Pile(
-  id, "stock", Stock.defaultOptions(cardsToDraw, drawTo, redrawFrom).combine(options)
-)
+class Stock(id: String, options: PileOptions) extends Pile(id, "stock", options)

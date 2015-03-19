@@ -4,8 +4,8 @@ import java.util.UUID
 
 import models.game._
 import models.game.pile.actions.SelectCardActions
-import models.game.pile.constraints.{SelectCardConstraints, DragFromConstraints, DragToConstraints}
-import models.game.pile.{PileOptions, Stock, Tableau}
+import models.game.pile.constraints.Constraints
+import models.game.pile.{Stock, Tableau}
 
 object TrustyTwelve extends GameVariant.Description {
   override val key = "trusty-twelve"
@@ -16,18 +16,18 @@ object TrustyTwelve extends GameVariant.Description {
 case class TrustyTwelve(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = TrustyTwelve
 
-  val tableauOptions = PileOptions(
+  val tableauOptions = Tableau.options.combine(
     cardsShown = Some(2),
-    selectCardConstraint = Some(SelectCardConstraints.never),
-    dragFromConstraint = Some(DragFromConstraints.topCardOnly),
-    dragToConstraint = Some(DragToConstraints.lowerRank)
+    selectCardConstraint = Some(Constraints.never),
+    dragFromConstraint = Some(Constraints.topCardOnlyDragFrom),
+    dragToConstraint = Some(Constraints.lowerRank)
   )
 
   val piles = List(
-    new Stock("stock", 0, "", None, PileOptions(
+    new Stock("stock", Stock.options(0, "", None).combine(
       cardsShown = Some(19),
       direction = Some("r"),
-      selectCardConstraint = Some(SelectCardConstraints.topCardOnly),
+      selectCardConstraint = Some(Constraints.topCardOnlySelectCard),
       selectCardAction = Some(SelectCardActions.drawToEmptyPiles("tableau"))
     )),
 
