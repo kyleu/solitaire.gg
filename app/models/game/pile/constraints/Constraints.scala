@@ -10,6 +10,11 @@ object Constraints {
   val never = new Constraint("never", (pile, cards, gameState) => false)
   val empty = Constraint("empty", (pile, cards, gameState) => pile.cards.isEmpty)
 
+  def allOf(id: String, constraints: Constraint*) = Constraint(id, (pile, cards, gameState) => {
+    val results = constraints.map(_.f(pile, cards, gameState))
+    !results.contains(false)
+  })
+
   def specificRank(r: Rank) = Constraint("rank-" + r, (pile, cards, gameState) => cards.tail.isEmpty && cards.head.r == r)
 
   val topCardOnlyDragFrom = Constraint("top-card-only", (pile, cards, gameState) => cards.headOption == pile.cards.lastOption)
@@ -44,12 +49,16 @@ object Constraints {
   })
 
   def total(target: Int, aceHigh: Boolean = true) = Constraint("total-" + target, (pile, cards, gameState) => {
-    val topCardRank = pile.cards.last.r
-    val topCardRankValue = if(topCardRank == Ace && !aceHigh) { 1 } else { topCardRank.value }
-    val firstDraggedCardRank = cards.head.r
-    val firstDraggedCardRankValue = if(firstDraggedCardRank == Ace && !aceHigh) { 1 } else { firstDraggedCardRank.value }
-    val totalValue = topCardRankValue + firstDraggedCardRankValue
-    totalValue == 13
+    if(pile.cards.isEmpty) {
+      false
+    } else {
+      val topCardRank = pile.cards.last.r
+      val topCardRankValue = if(topCardRank == Ace && !aceHigh) { 1 } else { topCardRank.value }
+      val firstDraggedCardRank = cards.head.r
+      val firstDraggedCardRankValue = if(firstDraggedCardRank == Ace && !aceHigh) { 1 } else { firstDraggedCardRank.value }
+      val totalValue = topCardRankValue + firstDraggedCardRankValue
+      totalValue == target
+    }
   })
 
   val klondikeDragFrom = Constraint("klondike", KlondikeConstraintLogic.dragFrom)

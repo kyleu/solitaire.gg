@@ -4,6 +4,7 @@ import java.util.UUID
 
 import models.game.Rank.King
 import models.game._
+import models.game.pile.actions.SelectCardActions
 import models.game.pile.constraints._
 import models.game.pile._
 
@@ -17,41 +18,47 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
   override def description = Pyramid
 
   private val pileOptions = Waste.options.combine(
-    selectCardConstraint = Some(Constraints.specificRank(King)),
     dragFromConstraint = Some(Constraints.topCardOnlyDragFrom),
-    dragToConstraint = Some(Constraints.total(13, aceHigh = false))
+    dragToConstraint = Some(Constraints.total(13, aceHigh = false)),
+    selectCardConstraint = Some(Constraints.specificRank(King)),
+    selectCardAction = Some(SelectCardActions.remove)
   )
+
+  private def pileOptionsFor(emptyPiles: String*) = {
+    val c = Constraints.pilesEmpty(emptyPiles: _*)
+    pileOptions.copy(dragFromConstraint = c, dragToConstraint = c, selectCardConstraint = Constraints.allOf("pyramid-king", c, pileOptions.selectCardConstraint))
+  }
 
   private val piles = List(
     new Stock("stock", Stock.options(1, "waste", Some("waste")).combine(selectPileConstraint = Some(Constraints.never))),
     new Waste("waste", pileOptions),
 
-    new Tableau("pile-1-1", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-2-1", "pile-2-2"))),
+    new Tableau("pile-1-1", pileOptionsFor("pile-2-1", "pile-2-2")),
 
-    new Tableau("pile-2-1", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-3-1", "pile-3-2"))),
-    new Tableau("pile-2-2", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-3-2", "pile-3-3"))),
+    new Tableau("pile-2-1", pileOptionsFor("pile-3-1", "pile-3-2")),
+    new Tableau("pile-2-2", pileOptionsFor("pile-3-2", "pile-3-3")),
 
-    new Tableau("pile-3-1", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-4-1", "pile-4-2"))),
-    new Tableau("pile-3-2", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-4-2", "pile-4-3"))),
-    new Tableau("pile-3-3", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-4-3", "pile-4-4"))),
+    new Tableau("pile-3-1", pileOptionsFor("pile-4-1", "pile-4-2")),
+    new Tableau("pile-3-2", pileOptionsFor("pile-4-2", "pile-4-3")),
+    new Tableau("pile-3-3", pileOptionsFor("pile-4-3", "pile-4-4")),
 
-    new Tableau("pile-4-1", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-5-1", "pile-5-2"))),
-    new Tableau("pile-4-2", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-5-2", "pile-5-3"))),
-    new Tableau("pile-4-3", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-5-3", "pile-5-4"))),
-    new Tableau("pile-4-4", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-5-4", "pile-5-5"))),
+    new Tableau("pile-4-1", pileOptionsFor("pile-5-1", "pile-5-2")),
+    new Tableau("pile-4-2", pileOptionsFor("pile-5-2", "pile-5-3")),
+    new Tableau("pile-4-3", pileOptionsFor("pile-5-3", "pile-5-4")),
+    new Tableau("pile-4-4", pileOptionsFor("pile-5-4", "pile-5-5")),
 
-    new Tableau("pile-5-1", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-6-1", "pile-6-2"))),
-    new Tableau("pile-5-2", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-6-2", "pile-6-3"))),
-    new Tableau("pile-5-3", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-6-3", "pile-6-4"))),
-    new Tableau("pile-5-4", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-6-4", "pile-6-5"))),
-    new Tableau("pile-5-5", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-6-5", "pile-6-6"))),
+    new Tableau("pile-5-1", pileOptionsFor("pile-6-1", "pile-6-2")),
+    new Tableau("pile-5-2", pileOptionsFor("pile-6-2", "pile-6-3")),
+    new Tableau("pile-5-3", pileOptionsFor("pile-6-3", "pile-6-4")),
+    new Tableau("pile-5-4", pileOptionsFor("pile-6-4", "pile-6-5")),
+    new Tableau("pile-5-5", pileOptionsFor("pile-6-5", "pile-6-6")),
 
-    new Tableau("pile-6-1", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-7-1", "pile-7-2"))),
-    new Tableau("pile-6-2", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-7-2", "pile-7-3"))),
-    new Tableau("pile-6-3", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-7-3", "pile-7-4"))),
-    new Tableau("pile-6-4", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-7-4", "pile-7-5"))),
-    new Tableau("pile-6-5", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-7-5", "pile-7-6"))),
-    new Tableau("pile-6-6", pileOptions.copy(dragFromConstraint = Constraints.pilesEmpty("pile-7-6", "pile-7-7"))),
+    new Tableau("pile-6-1", pileOptionsFor("pile-7-1", "pile-7-2")),
+    new Tableau("pile-6-2", pileOptionsFor("pile-7-2", "pile-7-3")),
+    new Tableau("pile-6-3", pileOptionsFor("pile-7-3", "pile-7-4")),
+    new Tableau("pile-6-4", pileOptionsFor("pile-7-4", "pile-7-5")),
+    new Tableau("pile-6-5", pileOptionsFor("pile-7-5", "pile-7-6")),
+    new Tableau("pile-6-6", pileOptionsFor("pile-7-6", "pile-7-7")),
 
     new Tableau("pile-7-1", pileOptions),
     new Tableau("pile-7-2", pileOptions),

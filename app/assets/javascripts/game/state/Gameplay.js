@@ -46,9 +46,9 @@ define([
     switch(cfg.initialAction[0]) {
       case "start":
         if(cfg.seed === undefined) {
-          this.game.ws.send("StartGame", {});
+          this.game.ws.send("StartGame", {"variant": cfg.variant});
         } else {
-          this.game.ws.send("StartGame", {"seed": cfg.seed});
+          this.game.ws.send("StartGame", {"variant": cfg.variant, "seed": cfg.seed});
         }
         break;
       case "join":

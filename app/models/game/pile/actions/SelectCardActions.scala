@@ -1,6 +1,6 @@
 package models.game.pile.actions
 
-import models.{CardRevealed, ResponseMessage, CardMoved}
+import models.{CardRemoved, CardRevealed, ResponseMessage, CardMoved}
 import models.game.Rank._
 import models.game.{Rank, GameState, Card}
 import models.game.pile.Pile
@@ -74,6 +74,11 @@ object SelectCardActions {
         Nil
       }
     }
+  })
+
+  val remove = SelectCardAction("remove-card", (pile, card, gameState) => {
+    pile.removeCard(card)
+    Seq(CardRemoved(card.id))
   })
 
   private def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turnFaceUp: Boolean = true) = {
