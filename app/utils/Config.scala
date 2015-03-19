@@ -6,7 +6,7 @@ import play.api.Play
 object Config {
   private val cnf = ConfigFactory.load()
 
-  val projectId = "scalataire"
+  val projectId = utils.BuildInfo.name
   val projectName = "Scalataire"
   val version = "0.1"
 

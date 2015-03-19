@@ -11,7 +11,7 @@ import com.typesafe.sbt.jse.JsEngineImport.JsEngineKeys
 import sbtbuildinfo.Plugin._
 
 object ScalataireBuild extends Build with UniversalKeys {
-  val id = "scalataire"
+  val projectId = "scalataire"
 
   val dependencies = {
     import Dependencies._
@@ -41,7 +41,7 @@ object ScalataireBuild extends Build with UniversalKeys {
   }
 
   lazy val serverSettings = Seq(
-    name := id,
+    name := projectId,
     version := Versions.app,
     scalaVersion := Versions.scala,
     scalacOptions ++= compileOptions,
@@ -73,7 +73,7 @@ object ScalataireBuild extends Build with UniversalKeys {
   )
 
   lazy val root = Project(
-    id = id,
+    id = projectId,
     base = file(".")
   ).enablePlugins(play.PlayScala, SbtWeb).settings(buildInfoSettings: _*).settings(serverSettings: _*)
 }
