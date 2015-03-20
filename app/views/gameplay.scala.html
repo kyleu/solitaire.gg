@@ -1,4 +1,4 @@
-@(variant: String, seed: Option[Int] = None)(implicit session: Session, flash: Flash)
+@(variant: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None)(implicit session: Session, flash: Flash)
 @import models.game.variants.GameVariant
 
 @layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
@@ -9,15 +9,23 @@
     window.scalataireConfig = {
       "id": "@utils.Config.projectId",
       "name": "@utils.Config.projectName",
-      @if(seed.isDefined) {
-        "seed": @seed.get,
-      }
+      "account": {
+        "id": "@session.get("account")",
+        "name": "@session.get("name")"
+      },
       "debug": "@utils.Config.debug",
       "cardSet": "@utils.Config.defaultCardSet",
       "cardSize": "@utils.Config.defaultCardSize",
       "variant": "@variant",
       "variants": [@Html(GameVariant.all.map(v => "['" + v.key + "', '" + v.name + "']").mkString(", "))],
-      "initialAction": ["start"]
+      @if(gameId.isEmpty) {
+        @if(seed.isDefined) {
+          "seed": @seed.get,
+        }
+        "initialAction" :[ "start" ]
+      } else {
+        "initialAction" :[ "join", "@gameId.get" ]
+      }
     };
   </script>
   @if(utils.Config.debug) {

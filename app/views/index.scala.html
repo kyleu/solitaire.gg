@@ -1,53 +1,63 @@
-@()(implicit session: Session, flash: Flash)
+@(account: java.util.UUID, name: String)(implicit session: Session, flash: Flash)
 @import models.game.variants.GameVariant
 
 @layout.bootstrap(utils.Config.projectName) {
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="jumbotron" style="margin-top: 40px;">
-          <h1>Welcome to my game!</h1>
-          <p>I'm trying to build the web's best card games. Thanks for checking out my progress!</p>
-          <p><a class="btn btn-primary btn-lg" href="@routes.HomeController.newGame("klondike").url" role="button">Play Now</a></p>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="jumbotron" style="margin: 20px 0 20px 0;">
+        <h1>Welcome to my game!</h1>
+        <p>I'm trying to build the web's best card games. Thanks for checking out my progress!</p>
+        <p><a class="btn btn-primary btn-lg" href="@routes.HomeController.newGame("klondike").url" role="button">Play Now</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Resume Game</h3>
+        </div>
+        <div class="panel-body">
+          No games to resume. Start a new game!
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">New Game</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+          @for(v <- GameVariant.all) {
+            <li><a href="@routes.HomeController.newGame(v.key)">@v.name</a></li>
+          }
+          </ul>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Available Games</h3>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Profile</h3>
+        </div>
+        <div class="panel-body">
+          <div style="margin-bottom: 10px;">
+            You are currently known as <strong>@name</strong>.
           </div>
-          <div class="panel-body">
-            <ul>
-            @for(v <- GameVariant.all) {
-              <li><a href="@routes.HomeController.newGame(v.key)">@v.name</a></li>
-            }
-            </ul>
+          <div class="input-group">
+            <input type="text" id="account" class="form-control" placeholder="Name" />
+            <span class="input-group-addon"><a href="" onclick="signIn();return false;">Change Name</a></span>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Sign in</h3>
-          </div>
-          <div class="panel-body">
-            <div class="input-group">
-              <input type="text" id="account" class="form-control" placeholder="Name" />
-              <span class="input-group-addon"><a href="" onclick="signIn();return false;">Sign In</a></span>
-            </div>
-          </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Administration</h3>
         </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Administration</h3>
-          </div>
-          <div class="panel-body">
-            <ul>
-              <li><a href="@routes.AdminController.status()">Server Status</a></li>
-            </ul>
-          </div>
+        <div class="panel-body">
+          <ul>
+            <li><a href="@routes.AdminController.status()">Server Status</a></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -56,9 +66,9 @@
     function signIn() {
       var name = document.getElementById("account" ).value;
       if(name.length == 0) {
-        alert("Please enter your name");
+        alert("Please enter a name");
       } else {
-        alert("Ok, you're \"" + name + "\" now.")
+        document.location.href = ('@routes.HomeController.changeName("")' + name);
       }
     }
   </script>

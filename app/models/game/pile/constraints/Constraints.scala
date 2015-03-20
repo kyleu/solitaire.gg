@@ -17,11 +17,12 @@ object Constraints {
 
   def specificRank(r: Rank) = Constraint("rank-" + r, (pile, cards, gameState) => cards.tail.isEmpty && cards.head.r == r)
 
-  val topCardOnlyDragFrom = Constraint("top-card-only", (pile, cards, gameState) => cards.headOption == pile.cards.lastOption)
-  val topCardOnlySelectCard = Constraint("top-card-only", (pile, cards, gameState) => pile.cards.lastOption == Some(cards.head))
+  val topCardOnly = Constraint("top-card-only", (pile, cards, gameState) => {
+    pile.cards.lastOption == Some(cards.head)
+  })
 
   val sameRank = Constraint("same-rank", (pile, cards, gameState) => {
-    val topCardRank = pile.cards.last.r
+    val topCardRank = pile.cards.lastOption.map(_.r).getOrElse(Rank.Unknown)
     val firstDraggedCardRank = cards.head.r
     topCardRank == firstDraggedCardRank
   })
@@ -67,7 +68,7 @@ object Constraints {
   val klondikeSelectCard = Constraint("klondike", KlondikeConstraintLogic.selectCard)
 
   val alternatingRankToFoundation = Constraint("alternating-rank", (pile, cards, gameState) => {
-    if(cards.tail.nonEmpty || !topCardOnlySelectCard.f(pile, cards, gameState)) {
+    if(cards.tail.nonEmpty || !topCardOnly.f(pile, cards, gameState)) {
       false
     } else {
       val foundation = gameState.pilesById("foundation")

@@ -1,20 +1,20 @@
 package services.database
 
-import models.queries.DdlQueries.{DropTable, DoesTableExist, CreateGameTable, CreateAccountTable}
+import models.queries.DdlQueries._
 
 object DatabaseSchema {
-  def update() = DatabaseConnection.transaction { t =>
-    if(t.query(DoesTableExist("accounts"))) {
-      t.execute(CreateAccountTable)
-    }
-    if(t.query(DoesTableExist("games"))) {
-      t.execute(CreateGameTable)
+  def update() = DatabaseConnection.transaction { () =>
+    DatabaseConnection.execute(EnableUuidIndex)
+    for(table <- tables) {
+      if(!DatabaseConnection.query(DoesTableExist(table._1))) {
+        DatabaseConnection.execute(table._2)
+      }
     }
   }
 
-  def destroy() = DatabaseConnection.transaction { t =>
-    t.execute(DropTable("account"))
-    t.execute(DropTable("game"))
-    Unit
+  def destroy() = DatabaseConnection.transaction { () =>
+    for(table <- tables) {
+      DatabaseConnection.execute(DropTable(table._1))
+    }
   }
 }

@@ -11,6 +11,8 @@ define(['utils/Config', 'game/Options', 'game/state/InitialState', 'game/CardSet
     this.piles = {};
     this.cards = {};
 
+    document.getElementById("status-username").innerText = config.account.name;
+
     console.log("Game started.");
 
     options.start();

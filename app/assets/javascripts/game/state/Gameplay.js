@@ -99,6 +99,9 @@ define([
         break;
       case "PossibleMoves":
         this.game.possibleMoves = v.moves;
+        if(v.moves.length === 0) {
+          alert("No more moves available.");
+        }
         break;
       case "CardRevealed":
         var existing = this.game.cards[v.card.id];

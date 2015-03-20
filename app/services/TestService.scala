@@ -17,25 +17,53 @@ object TestService extends Logging {
     }
   }
 
-  private def runTest(test: String)(f: () => TestResult) = {
+  private def runTest(f: () => TestResult) = {
     val startMs = System.currentTimeMillis()
-    log.debug("Running test [" + test + "].")
     val ret = Try {
       f()
     }
     ret match {
       case Success(result) =>
-        val msg = "Test [" + test + "] completed successfully in [" + (System.currentTimeMillis - startMs) + "ms] with [" + result.content + "]."
+        val msg = "Test [" + result.content + "] completed successfully in [" + (System.currentTimeMillis - startMs) + "ms]."
         log.debug(msg)
         result
       case Failure(ex) =>
-        val msg = "Test [" + test + "] failed with [" + ex.getClass.getSimpleName + "] in [" + (System.currentTimeMillis - startMs) + "ms]."
+        val msg = "Test failed with [" + ex.getClass.getSimpleName + "] in [" + (System.currentTimeMillis - startMs) + "ms]."
         log.warn(msg, ex)
         TestResult(msg, Seq(TestResult(ex.getMessage)))
     }
   }
 
-  def testVariant(variant: String, verbose: Boolean = true) = runTest(variant + "-game") { () =>
+  def testAll() = TestResult("Running all tests.", Seq(
+    testAccount(),
+    testVariants()
+  ))
+
+  def testAccount() = runTest { () =>
+    val testUser = "test-account"
+    var account: Option[Account] = None
+    val results = Seq(
+      {
+        account = Some(AccountService.createAccount(testUser))
+        TestResult("Account [" + testUser + "] created.")
+      },
+      {
+        AccountService.updateAccountName(account.get.id, "test-account-new-name")
+        TestResult("Account [" + testUser + "] updated with new name.")
+      },
+      {
+        AccountService.removeAccount(account.get.id)
+        TestResult("Account [" + account.get.id + "] removed.")
+      }
+    )
+    TestResult("account", results)
+  }
+
+  def testVariants() = runTest(() => TestResult("all-variants", GameVariant.all.map { v =>
+    testVariant(v.key, verbose = false)
+  }))
+
+  def testVariant(variant: String, verbose: Boolean = true) = runTest { () =>
     implicit val system = Akka.system
     val testProbe = TestProbe()
     val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, "test-user", testProbe.ref))
@@ -49,21 +77,12 @@ object TestService extends Logging {
       TestResult("Received [" + moves.moves.size + "] possible moves.", if(verbose) { moves.moves.map(x => TestResult(x.toString)) } else { Nil })
     })
     conn ! PoisonPill
-    TestResult("Testing game variant [" + variant + "].", results)
+    TestResult(variant, results)
   }
 
-  def testVariants() = TestResult("Testing all game variants.", GameVariant.all.map { v =>
-    testVariant(v.key, verbose = false)
-  })
-
-  def testAll() = TestResult("Running all tests.", Seq(
-    testVariants()
-  ))
-
-  def testKnownGame() = runTest("known-klondike-game") { () =>
+  def testKnownGame() = runTest { () =>
     val variant = "klondike"
     val seed = 5
-
     implicit val system = Akka.system
     val testProbe = TestProbe()
     val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, "test-user", testProbe.ref))
@@ -92,6 +111,6 @@ object TestService extends Logging {
       TestResult("Performed [" + action + "] with result [" + cardMoved + "], received [" + moves.size + "] possible moves.", moves.map( x => TestResult(x.toString)))
     })
     conn ! PoisonPill
-    TestResult("Testing known [" + variant + "] game with seed [" + seed + "].", results)
+    TestResult("known-game", results)
   }
 }

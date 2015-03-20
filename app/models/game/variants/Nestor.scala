@@ -17,7 +17,7 @@ case class Nestor(override val gameId: UUID, override val seed: Int) extends Gam
 
   private val options = Tableau.options.combine(
     selectCardConstraint = Some(Constraints.never),
-    dragFromConstraint = Some(Constraints.topCardOnlyDragFrom),
+    dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.sameRank)
   )
 

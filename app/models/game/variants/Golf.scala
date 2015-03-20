@@ -18,7 +18,7 @@ case class Golf(override val gameId: UUID, override val seed: Int) extends GameV
 
   private val tableauOptions = Tableau.options.combine(
     selectCardConstraint = Some(Constraints.alternatingRankToFoundation),
-    dragFromConstraint = Some(Constraints.topCardOnlyDragFrom),
+    dragFromConstraint = Some(Constraints.topCardOnly),
     selectCardAction = Some(SelectCardActions.drawToPile(1, "foundation", turnFaceUp = false))
   )
 

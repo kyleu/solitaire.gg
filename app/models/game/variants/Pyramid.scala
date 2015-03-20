@@ -18,7 +18,7 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
   override def description = Pyramid
 
   private val pileOptions = Waste.options.combine(
-    dragFromConstraint = Some(Constraints.topCardOnlyDragFrom),
+    dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.total(13, aceHigh = false)),
     selectCardConstraint = Some(Constraints.specificRank(King)),
     selectCardAction = Some(SelectCardActions.remove)

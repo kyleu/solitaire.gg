@@ -16,7 +16,7 @@ case class FreeCell(override val gameId: UUID, override val seed: Int) extends G
   override def description = FreeCell
 
   private val cellOptions = Pile.options.combine(cardsShown = Some(1), dragToConstraint = Some(Constraints.empty))
-  private val tableauOptions = Tableau.options.combine(dragFromConstraint = Some(Constraints.topCardOnlyDragFrom))
+  private val tableauOptions = Tableau.options.combine(dragFromConstraint = Some(Constraints.topCardOnly))
 
   private val piles = List(
     new Pile("cell-1", "pile", cellOptions),

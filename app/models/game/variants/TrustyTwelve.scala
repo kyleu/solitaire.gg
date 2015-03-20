@@ -19,7 +19,7 @@ case class TrustyTwelve(override val gameId: UUID, override val seed: Int) exten
   val tableauOptions = Tableau.options.combine(
     cardsShown = Some(2),
     selectCardConstraint = Some(Constraints.never),
-    dragFromConstraint = Some(Constraints.topCardOnlyDragFrom),
+    dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.lowerRank)
   )
 
@@ -27,7 +27,7 @@ case class TrustyTwelve(override val gameId: UUID, override val seed: Int) exten
     new Stock("stock", Stock.options(0, "", None).combine(
       cardsShown = Some(19),
       direction = Some("r"),
-      selectCardConstraint = Some(Constraints.topCardOnlySelectCard),
+      selectCardConstraint = Some(Constraints.topCardOnly),
       selectCardAction = Some(SelectCardActions.drawToEmptyPiles("tableau"))
     )),
 

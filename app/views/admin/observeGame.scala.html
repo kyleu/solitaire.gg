@@ -36,6 +36,10 @@
     window.scalataireConfig = {
       "id": "@utils.Config.projectId",
       "name": "@utils.Config.projectName",
+      "account": {
+        "id": "@session("account")",
+        "name": "@session("name")"
+      },
       "debug": "@utils.Config.debug",
       "cardSet": "@utils.Config.defaultCardSet",
       "cardSize": "@utils.Config.defaultCardSize",

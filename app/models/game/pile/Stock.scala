@@ -6,7 +6,7 @@ import models.game.pile.constraints.Constraints
 object Stock {
   def options(cardsToDraw: Int, drawTo: String, redrawFrom: Option[String]) = PileOptions(
     cardsShown = Some(1),
-    selectCardConstraint = Constraints.topCardOnlySelectCard,
+    selectCardConstraint = Constraints.topCardOnly,
     selectPileConstraint = Constraints.empty,
 
     selectCardAction = Some(SelectCardActions.drawToPile(cardsToDraw, drawTo, turnFaceUp = true)),

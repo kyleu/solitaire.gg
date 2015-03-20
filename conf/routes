@@ -1,4 +1,6 @@
 GET        /                                  controllers.HomeController.index
+GET        /changeName                        controllers.HomeController.changeName(name)
+
 GET        /play                              controllers.HomeController.newDefaultGame()
 GET        /play/:variant                     controllers.HomeController.newGame(variant)
 GET        /play/:variant/:seed               controllers.HomeController.newGameWithSeed(variant, seed: Int)

@@ -7,8 +7,8 @@ object Waste {
   val options = PileOptions(
     cardsShown = Some(3),
     direction = Some("r"),
-    selectCardConstraint = Constraints.topCardOnlySelectCard,
-    dragFromConstraint = Constraints.topCardOnlyDragFrom,
+    selectCardConstraint = Constraints.topCardOnly,
+    dragFromConstraint = Constraints.topCardOnly,
     selectCardAction = Some(SelectCardActions.klondike)
   )
 }
