@@ -1,4 +1,4 @@
-@(gameId: Option[java.util.UUID], username: Option[String])(implicit session: Session, flash: Flash)
+@(gameId: Option[java.util.UUID], asUsername: Option[String])(implicit session: Session, flash: Flash)
 @import models.game.variants.GameVariant
 
 @layout.bootstrap(utils.Config.projectName + " Admin") {
@@ -47,8 +47,8 @@
       "variants": [@Html(GameVariant.all.map(v => "['" + v.key + "', '" + v.name + "']").mkString(", "))],
 
       @if(gameId.isDefined) {
-        @if(username.isDefined) {
-          "initialAction" : ["observe", "@gameId.get", "@username.get" ]
+        @if(asUsername.isDefined) {
+          "initialAction" : ["observe", "@gameId.get", "@asUsername.get" ]
         } else {
           "initialAction": ["observe", "@gameId.get"]
         }

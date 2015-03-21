@@ -122,8 +122,8 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
 
   private def handleGameStopped(id: UUID) = games.remove(id) match {
     case Some(g) =>
-      g.connections.map { c =>
-        connections.get(c._1).map { cr =>
+      g.connections.foreach { c =>
+        connections.get(c._1).foreach { cr =>
           cr.activeGame = None
           cr.actorRef ! GameStopped(id)
         }
