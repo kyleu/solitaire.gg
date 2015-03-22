@@ -13,7 +13,7 @@ case class DebugInfo(data: JsObject) extends RequestMessage
 
 case class StartGame(variant: String, seed: Option[Int] = None) extends RequestMessage
 case class JoinGame(id: UUID) extends RequestMessage
-case class ObserveGame(id: UUID, as: Option[String]) extends RequestMessage
+case class ObserveGame(id: UUID, as: Option[UUID]) extends RequestMessage
 
 trait GameMessage extends RequestMessage
 

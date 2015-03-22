@@ -5,7 +5,7 @@ import java.util.UUID
 import models._
 
 trait GameServiceCardHelper { this: GameService =>
-  protected def handleSelectCard(player: String, cardId: UUID, pileId: String, pileIndex: Int) {
+  protected def handleSelectCard(accountId: UUID, cardId: UUID, pileId: String, pileIndex: Int) {
     val card = gameState.cardsById(cardId)
     val pile = gameState.pilesById(pileId)
     if(!pile.cards.contains(card)) {
@@ -19,11 +19,11 @@ trait GameServiceCardHelper { this: GameService =>
     }
     sendToAll(messages)
     if(!checkWinCondition()) {
-      sendPossibleMoves(player)
+      sendPossibleMoves(accountId)
     }
   }
 
-  protected def handleSelectPile(player: String, pileId: String) {
+  protected def handleSelectPile(accountId: UUID, pileId: String) {
     val pile = gameState.pilesById(pileId)
     if(pile.cards.length > 0) {
       log.warn("SelectPile [" + pileId + "] called on a non-empty deck.")
@@ -36,11 +36,11 @@ trait GameServiceCardHelper { this: GameService =>
     }
     sendToAll(messages)
     if(!checkWinCondition()) {
-      sendPossibleMoves(player)
+      sendPossibleMoves(accountId)
     }
   }
 
-  protected def handleMoveCards(player: String, cardIds: Seq[UUID], source: String, target: String) {
+  protected def handleMoveCards(accountId: UUID, cardIds: Seq[UUID], source: String, target: String) {
     val cards = cardIds.map(gameState.cardsById)
     val sourcePile = gameState.pilesById(source)
     val targetPile = gameState.pilesById(target)
@@ -68,9 +68,9 @@ trait GameServiceCardHelper { this: GameService =>
           }
         }
 
-        sendToPlayer(player, messages)
+        sendToPlayer(accountId, messages)
         if(!checkWinCondition()) {
-          sendPossibleMoves(player)
+          sendPossibleMoves(accountId)
         }
       } else {
         log.debug("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] to pile [" + targetPile.id + "].")
@@ -82,7 +82,7 @@ trait GameServiceCardHelper { this: GameService =>
     }
   }
 
-  private def sendPossibleMoves(player: String) = handleGetPossibleMoves(player)
+  private def sendPossibleMoves(accountId: UUID) = handleGetPossibleMoves(accountId)
 
   private def checkWinCondition() = {
     if(gameVariant.isWin) {

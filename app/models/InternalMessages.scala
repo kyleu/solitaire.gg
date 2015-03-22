@@ -6,20 +6,20 @@ import akka.actor.ActorRef
 
 sealed trait InternalMessage
 
-case class ConnectionStarted(id: UUID, username: String, conn: ActorRef) extends InternalMessage
-case class ConnectionStopped(id: UUID) extends InternalMessage
+case class ConnectionStarted(accountId: UUID, username: String, connectionId: UUID, conn: ActorRef) extends InternalMessage
+case class ConnectionStopped(connectionId: UUID) extends InternalMessage
 
-case class AddPlayer(id: UUID, name: String, actorRef: ActorRef) extends InternalMessage
-case class AddObserver(id: UUID, name: String, as: Option[String], actorRef: ActorRef) extends InternalMessage
+case class AddPlayer(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef) extends InternalMessage
+case class AddObserver(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef, as: Option[UUID]) extends InternalMessage
 
 case class CreateGame(variant: String, connectionId: UUID, seed: Option[Int]) extends InternalMessage
 case class GameStarted(id: UUID, gameService: ActorRef) extends InternalMessage
 case class ConnectionGameJoin(id: UUID, connectionId: UUID) extends InternalMessage
-case class ConnectionGameObserve(id: UUID, connectionId: UUID, as: Option[String]) extends InternalMessage
+case class ConnectionGameObserve(id: UUID, connectionId: UUID, as: Option[UUID]) extends InternalMessage
 case class GameStopped(id: UUID) extends InternalMessage
 
 case object StopGameIfEmpty extends InternalMessage
-case class GameRequest(connectionId: UUID, player: String, message: GameMessage) extends InternalMessage
+case class GameRequest(accountId: UUID, name: String, message: GameMessage) extends InternalMessage
 
 case object GetSystemStatus extends InternalMessage
 case class SystemStatus(games: Seq[(UUID, Seq[(UUID, String)])], connections: Seq[(UUID, String)]) extends InternalMessage

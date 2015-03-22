@@ -2,7 +2,7 @@ package models.game.variants
 
 import java.util.UUID
 
-import models.game.GameState
+import models.game.{GamePlayer, GameState}
 
 import scala.util.Random
 
@@ -14,15 +14,15 @@ object GameVariant {
     val inProgress: Boolean  = false
   }
 
-  def apply(variant: String, gameId: UUID, seed: Int) = variant match {
-    case FreeCell.key => new FreeCell(gameId, seed)
-    case Golf.key => new Golf(gameId, seed)
-    case KlondikeDrawThree.key => new KlondikeDrawThree(gameId, seed)
-    case KlondikeDrawOne.key => new KlondikeDrawOne(gameId, seed)
-    case Nestor.key => new Nestor(gameId, seed)
-    case Pyramid.key => new Pyramid(gameId, seed)
-    case Spider.key => new Spider(gameId, seed)
-    case TrustyTwelve.key => new TrustyTwelve(gameId, seed)
+  def apply(variant: String, gameId: UUID, seed: Int, players: Seq[GamePlayer]) = variant match {
+    case FreeCell.key => new FreeCell(gameId, seed, players)
+    case Golf.key => new Golf(gameId, seed, players)
+    case KlondikeDrawThree.key => new KlondikeDrawThree(gameId, seed, players)
+    case KlondikeDrawOne.key => new KlondikeDrawOne(gameId, seed, players)
+    case Nestor.key => new Nestor(gameId, seed, players)
+    case Pyramid.key => new Pyramid(gameId, seed, players)
+    case Spider.key => new Spider(gameId, seed, players)
+    case TrustyTwelve.key => new TrustyTwelve(gameId, seed, players)
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 

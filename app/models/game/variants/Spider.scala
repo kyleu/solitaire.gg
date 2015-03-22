@@ -12,7 +12,7 @@ object Spider extends GameVariant.Description {
   override val inProgress = true
 }
 
-case class Spider(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
+case class Spider(override val gameId: UUID, override val seed: Int, players: Seq[GamePlayer]) extends GameVariant(gameId, seed) {
   override def description = Spider
 
   private val piles = List(
@@ -71,7 +71,7 @@ case class Spider(override val gameId: UUID, override val seed: Int) extends Gam
     )
   )
 
-  override val gameState = GameState(gameId, description.key, seed, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, seed, players, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(5), "tableau-1")

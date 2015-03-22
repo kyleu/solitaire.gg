@@ -65,8 +65,8 @@ object AdminController extends Controller {
     Ok(views.html.admin.observeGame(Some(gameId), None))
   }
 
-  def observeGameAs(gameId: UUID, username: String) = Action { implicit request =>
-    Ok(views.html.admin.observeGame(Some(gameId), Some(username)))
+  def observeGameAs(gameId: UUID, as: UUID) = Action { implicit request =>
+    Ok(views.html.admin.observeGame(Some(gameId), Some(as)))
   }
 
   def runTest(test: String) = Action { implicit request =>

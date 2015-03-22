@@ -9,10 +9,10 @@ import utils.{Logging, Config}
 import utils.metrics.InstrumentedActor
 
 object ConnectionService {
-  def props(supervisor: ActorRef, username: String, out: ActorRef) = Props(new ConnectionService(supervisor, username, out))
+  def props(supervisor: ActorRef, accountId: UUID, name: String, out: ActorRef) = Props(new ConnectionService(supervisor, accountId, name, out))
 }
 
-class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) extends InstrumentedActor with Logging {
+class ConnectionService(supervisor: ActorRef, accountId: UUID, name: String, out: ActorRef) extends InstrumentedActor with Logging {
   val id = UUID.randomUUID
 
   var activeGameId: Option[UUID] = None
@@ -21,7 +21,7 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
   private var pendingDebugChannel: Option[ActorRef] = None
 
   override def preStart() = {
-    supervisor ! ConnectionStarted(id, username, self)
+    supervisor ! ConnectionStarted(accountId, name, id, self)
   }
 
   override def receiveRequest = {
@@ -62,12 +62,12 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
     supervisor ! ConnectionGameJoin(gameId, id)
   }
 
-  private def handleObserveGame(gameId: UUID, as: Option[String]) = {
+  private def handleObserveGame(gameId: UUID, as: Option[UUID]) = {
     supervisor ! ConnectionGameObserve(gameId, id, as)
   }
 
   private def handleGameMessage(gm: GameMessage) = activeGame match {
-    case Some(ag) => ag forward GameRequest(id, username, gm)
+    case Some(ag) => ag forward GameRequest(accountId, name, gm)
     case None => throw new IllegalArgumentException("Received game message [" + gm.getClass.getSimpleName + "] while not in game.")
   }
 
@@ -83,7 +83,8 @@ class ConnectionService(supervisor: ActorRef, username: String, out: ActorRef) e
 
   private def handleConnectionTrace() {
     val ret = TraceResponse(id, List(
-      "username" -> username,
+      "accountId" -> accountId,
+      "name" -> name,
       "game" -> activeGameId.map( i => "<a href=\"" + controllers.routes.AdminController.traceGame(i) + "\" onclick=\"trace(this.href);return false;\">" + i + "</a>").getOrElse("Not in game")
     ))
     sender() ! ret

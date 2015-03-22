@@ -1,16 +1,18 @@
 package services.game
 
+import java.util.UUID
+
 import models.{PossibleMove, PossibleMoves}
 
 import scala.util.{Failure, Try, Success}
 
 trait GameServicePossibleMovesHelper { this: GameService =>
-  protected def handleGetPossibleMoves(player: String) = {
+  protected def handleGetPossibleMoves(player: UUID) = {
     val moves = possibleMoves(Some(player))
     sendToPlayer(player, PossibleMoves(moves))
   }
 
-  protected def possibleMoves(player: Option[String]): Seq[PossibleMove] = {
+  protected def possibleMoves(player: Option[UUID]): Seq[PossibleMove] = {
     log.info("Generating possible moves for [" + id + "].")
     val ret = possibleMoves() match {
       case Success(moves) =>

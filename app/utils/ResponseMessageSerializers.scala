@@ -9,6 +9,7 @@ object ResponseMessageSerializers {
   private val serverErrorWrites = Json.writes[ServerError]
   private val pongWrites = Json.writes[Pong]
   private val versionResponseWrites = Json.writes[VersionResponse]
+  private val disconnectedResponseWrites = Json.writes[Disconnected]
 
   private implicit val possibleMoveWrites = Json.writes[PossibleMove]
   private implicit val possibleMovesWrites = Json.writes[PossibleMoves]
@@ -28,6 +29,7 @@ object ResponseMessageSerializers {
       case p: Pong => pongWrites.writes(p)
       case vr: VersionResponse => versionResponseWrites.writes(vr)
       case SendDebugInfo => JsObject(Nil)
+      case d: Disconnected => disconnectedResponseWrites.writes(d)
 
       case pm: PossibleMoves => possibleMovesWrites.writes(pm)
 

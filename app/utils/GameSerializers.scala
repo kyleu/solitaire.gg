@@ -47,5 +47,6 @@ object GameSerializers {
   implicit val pileLocationWrites = Json.writes[PileLocation]
   implicit val layoutWrites = Json.writes[Layout]
 
+  implicit val gamePlayerWrites = Json.writes[GamePlayer]
   implicit val gameStateWrites = Json.writes[GameState]
 }

@@ -1,5 +1,7 @@
 package services
 
+import java.util.UUID
+
 import akka.actor.PoisonPill
 import akka.testkit.TestProbe
 import models.game.variants.GameVariant
@@ -66,7 +68,8 @@ object TestService extends Logging {
   def testVariant(variant: String, verbose: Boolean = true) = runTest { () =>
     implicit val system = Akka.system
     val testProbe = TestProbe()
-    val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, "test-user", testProbe.ref))
+    val accountId = UUID.randomUUID
+    val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, accountId, "test-user", testProbe.ref))
     val results = Seq({
       conn ! StartGame(variant)
       val gameJoined = testProbe.expectMsgClass(classOf[GameJoined])
@@ -85,7 +88,8 @@ object TestService extends Logging {
     val seed = 5
     implicit val system = Akka.system
     val testProbe = TestProbe()
-    val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, "test-user", testProbe.ref))
+    val accountId = UUID.randomUUID
+    val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, accountId, "test-user", testProbe.ref))
     var moves = Seq.empty[PossibleMove]
     val results = Seq({
       conn ! StartGame("klondike", Some(seed))

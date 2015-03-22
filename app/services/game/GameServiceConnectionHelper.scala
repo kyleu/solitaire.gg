@@ -7,18 +7,26 @@ import models._
 import play.api.libs.concurrent.Akka
 
 trait GameServiceConnectionHelper { this: GameService =>
-  protected def handleAddPlayer(connectionId: UUID, name: String, actorRef: ActorRef) {
-    playerConnections(name) = Some((connectionId, actorRef))
-    actorRef ! GameJoined(id, playerConnections.keys.toSeq, gameState.view(name), possibleMoves(Some(name)))
+  protected def handleAddPlayer(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef) {
+    playerConnections.find(_.accountID == accountId) match {
+      case Some(p) =>
+        p.connectionActor.foreach(_ ! Disconnected("Joined from another connection."))
+        p.connectionId = Some(connectionId)
+        p.connectionActor = Some(connectionActor)
+      case None =>
+        playerConnections += PlayerRecord(accountId, name, Some(connectionId), Some(connectionActor))
+    }
+
+    connectionActor ! GameJoined(id, gameState.view(accountId), possibleMoves(Some(accountId)))
   }
 
-  protected def handleAddObserver(connectionId: UUID, name: String, as: Option[String], actorRef: ActorRef) {
-    observerConnections(name -> as) = Some(connectionId -> actorRef)
+  protected def handleAddObserver(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef, as: Option[UUID]) {
+    observerConnections += (PlayerRecord(accountId, name, Some(connectionId), Some(connectionActor)) -> as)
     val gs = as match {
       case Some(player) => gameState.view(player)
       case None => gameState
     }
-    actorRef ! GameJoined(id, playerConnections.keys.toSeq, gs, possibleMoves(None))
+    connectionActor ! GameJoined(id, gs, possibleMoves(None))
   }
 
   protected def handleConnectionStopped(connectionId: UUID) {
@@ -27,16 +35,18 @@ trait GameServiceConnectionHelper { this: GameService =>
 
     import scala.concurrent.duration._
 
-    playerConnections.find(_._2.exists(_._1 == connectionId)) match {
+    playerConnections.find(_.connectionId == connectionId) match {
       case Some(playerConnection) =>
         log.info("Player connection [" + connectionId + "] stopped.")
-        playerConnections(playerConnection._1) = None
+        playerConnection.connectionId = None
+        playerConnection.connectionActor = None
       case None => // noop
     }
-    observerConnections.find(_._2.exists(_._1 == connectionId)) match {
+    observerConnections.find(_._1.connectionId.contains(connectionId)) match {
       case Some(observerConnection) =>
         log.info("Observer connection [" + connectionId + "] stopped.")
-        observerConnections(observerConnection._1) = None
+        observerConnection._1.connectionId = None
+        observerConnection._1.connectionActor = None
       case None => // noop
     }
     Akka.system.scheduler.scheduleOnce(30.seconds, self, StopGameIfEmpty)
@@ -50,16 +60,18 @@ trait GameServiceConnectionHelper { this: GameService =>
     }
   }
 
-  protected def sendToPlayer(player: String, message: ResponseMessage): Unit = {
-    playerConnections(player).foreach { c =>
-      c._2 ! message
+  protected def sendToPlayer(player: UUID, message: ResponseMessage): Unit = {
+    playerConnections.find(_.accountID == player).foreach { c =>
+      c.connectionActor.foreach(_ ! message)
     }
-    observerConnections.filter(o => o._1._2.isEmpty || o._1._2 == Some(player)).foreach { c =>
-      c._2.foreach(_._2 ! message)
+    observerConnections.filter(o => o._2.isEmpty || o._2 == Some(player)).foreach { c =>
+      if(c._2.isEmpty || c._2.get == player) {
+        c._1.connectionActor.foreach(_ ! message)
+      }
     }
   }
 
-  protected def sendToPlayer(player: String, messages: Seq[ResponseMessage]): Unit = {
+  protected def sendToPlayer(player: UUID, messages: Seq[ResponseMessage]): Unit = {
     if(messages.isEmpty) {
       // noop
     } else if(messages.tail.isEmpty) {
@@ -71,10 +83,10 @@ trait GameServiceConnectionHelper { this: GameService =>
 
   protected def sendToAll(message: ResponseMessage): Unit = {
     playerConnections.foreach { c =>
-      c._2.foreach(_._2 ! message)
+      c.connectionActor.foreach(_ ! message)
     }
     observerConnections.foreach { c =>
-      c._2.foreach(_._2 ! message)
+      c._1.connectionActor.foreach(_ ! message)
     }
   }
 

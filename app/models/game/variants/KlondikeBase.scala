@@ -5,7 +5,7 @@ import java.util.UUID
 import models.game._
 import models.game.pile.{Waste, Tableau, Stock, Foundation}
 
-abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, cardsToDraw: Int) extends GameVariant(gameId, seed) {
+abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, players: Seq[GamePlayer], cardsToDraw: Int) extends GameVariant(gameId, seed) {
   private val piles = List(
     new Stock("stock", Stock.options(cardsToDraw, "waste", Some("waste"))),
     new Waste("waste"),
@@ -50,7 +50,7 @@ abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, c
     )
   )
 
-  lazy val gameState = GameState(gameId, description.key, seed, deck, piles, layouts)
+  lazy val gameState = GameState(gameId, description.key, seed, players, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "tableau-1", reveal = true)

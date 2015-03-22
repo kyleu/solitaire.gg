@@ -6,7 +6,7 @@ import akka.actor.SupervisorStrategy.Stop
 import akka.actor.{ActorRef, OneForOneStrategy, Props, SupervisorStrategy}
 import models._
 import play.api.libs.concurrent.Akka
-import services.game.GameService
+import services.game.{PlayerRecord, GameService}
 import utils.Logging
 import utils.metrics.{InstrumentedActor, MetricsServletActor}
 
@@ -21,7 +21,7 @@ object ActorSupervisor extends Logging {
   }
 
   private case class GameRecord(connections: Seq[(UUID, String)], actorRef: ActorRef)
-  private case class ConnectionRecord(name: String, actorRef: ActorRef, var activeGame: Option[UUID])
+  private case class ConnectionRecord(accountId: UUID, name: String, actorRef: ActorRef, var activeGame: Option[UUID])
 }
 
 private class ActorSupervisor extends InstrumentedActor with Logging {
@@ -40,8 +40,8 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
   }
 
   override def receiveRequest = {
-    case cs: ConnectionStarted => handleConnectionStarted(cs.id, cs.username, cs.conn)
-    case cs: ConnectionStopped => handleConnectionStopped(cs.id)
+    case cs: ConnectionStarted => handleConnectionStarted(cs.accountId, cs.username, cs.connectionId, cs.conn)
+    case cs: ConnectionStopped => handleConnectionStopped(cs.connectionId)
 
     case cg: CreateGame => handleCreateGame(cg.variant, cg.connectionId, cg.seed)
     case cgj: ConnectionGameJoin => handleConnectionGameJoin(cgj.id, cgj.connectionId)
@@ -69,9 +69,9 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
     case x => log.warn("ActorSupervisor encountered unknown message: " + x.toString)
   }
 
-  private def handleConnectionStarted(id: UUID, username: String, conn: ActorRef) {
-    log.debug("Connection [" + id + "] registered to [" + conn.path + "].")
-    connections(id) = ConnectionRecord(username, conn, None)
+  private def handleConnectionStarted(accountId: UUID, username: String, connectionId: UUID, conn: ActorRef) {
+    log.debug("Connection [" + connectionId + "] registered to [" + username + "] with path [" + conn.path + "].")
+    connections(connectionId) = ConnectionRecord(accountId, username, conn, None)
   }
 
   private def handleConnectionStopped(id: UUID) {
@@ -85,38 +85,38 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
     val id = UUID.randomUUID
     val s = Math.abs(seed.getOrElse(masterRng.nextInt()))
     val c = connections(connectionId)
-    val actor = context.actorOf(Props(new GameService(id, variant, s, List((c.name, connectionId, c.actorRef)))), "game:" + id)
+    val actor = context.actorOf(Props(new GameService(id, variant, s, List(PlayerRecord(c.accountId, c.name, Some(connectionId), Some(c.actorRef))))), "game:" + id)
     c.activeGame = Some(id)
     games(id) = GameRecord(List((connectionId, c.name)), actor)
   }
 
-  private def handleConnectionGameJoin(id: UUID, connectionId: UUID) = games.headOption match { //games.get(id) match {
+  private def handleConnectionGameJoin(id: UUID, connectionId: UUID) = games.get(id) match {
     case Some(g) =>
       log.info("Joining game [" + id + "].")
       val c = connections(connectionId)
       c.activeGame = Some(id)
-      g._2.actorRef ! AddPlayer(connectionId, c.name, c.actorRef)
+      g.actorRef ! AddPlayer(c.accountId, c.name, connectionId, c.actorRef)
     case None =>
       log.warn("Attempted to observe invalid game [" + id + "].")
       sender() ! ServerError("Invalid Game", id.toString)
   }
 
-  private def handleConnectionGameObserve(id: UUID, connectionId: UUID, as: Option[String]) = {
-    val game = if(id == UUID.fromString("00000000-0000-0000-0000-000000000000")) {
+  private def handleConnectionGameObserve(gameId: UUID, connectionId: UUID, as: Option[UUID]) = {
+    val game = if(gameId == UUID.fromString("00000000-0000-0000-0000-000000000000")) {
       games.headOption.map(_._2)
     } else {
-      games.get(id)
+      games.get(gameId)
     }
     game match {
       case Some(g) =>
-        log.info("Connection [" + connectionId + "] is observing game [" + id + "].")
+        log.info("Connection [" + connectionId + "] is observing game [" + gameId + "].")
         val c = connections(connectionId)
-        c.activeGame = Some(id)
-        c.actorRef ! GameStarted(id, g.actorRef)
-        g.actorRef ! AddObserver(connectionId, c.name, as, c.actorRef)
+        c.activeGame = Some(gameId)
+        c.actorRef ! GameStarted(gameId, g.actorRef)
+        g.actorRef ! AddObserver(c.accountId, c.name, connectionId, c.actorRef, as)
       case None =>
-        log.warn("Attempted to observe invalid game [" + id + "].")
-        sender() ! ServerError("Invalid Game", id.toString)
+        log.warn("Attempted to observe invalid game [" + gameId + "].")
+        sender() ! ServerError("Invalid Game", gameId.toString)
     }
   }
 
@@ -127,7 +127,6 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
           cr.activeGame = None
           cr.actorRef ! GameStopped(id)
         }
-
       }
       log.debug("Game [" + id + "] stopped.")
     case None => log.warn("Attempted to stop missing game [" + id + "].")

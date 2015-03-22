@@ -15,7 +15,7 @@ GET        /admin/trace/game/:id              controllers.AdminController.traceG
 
 GET        /admin/observe/random              controllers.AdminController.observeRandomGame()
 GET        /admin/observe/:id                 controllers.AdminController.observeGameAsAdmin(id: java.util.UUID)
-GET        /admin/observe/:id/:account        controllers.AdminController.observeGameAs(id: java.util.UUID, account)
+GET        /admin/observe/:id/:as             controllers.AdminController.observeGameAs(id: java.util.UUID, as: java.util.UUID)
 
 GET        /admin/test/:test                  controllers.AdminController.runTest(test)
 

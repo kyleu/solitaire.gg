@@ -4,49 +4,51 @@ import java.util.UUID
 
 import akka.actor.ActorRef
 import models._
+import models.game.GamePlayer
 import models.game.variants.GameVariant
 import utils.Logging
 import utils.metrics.InstrumentedActor
+
+case class PlayerRecord(accountID: UUID, name: String, var connectionId: Option[UUID], var connectionActor: Option[ActorRef])
 
 class GameService(
   val id: UUID,
   val variant: String,
   val seed: Int,
-  private val initialPlayers: List[(String, UUID, ActorRef)]
+  private val initialPlayers: List[PlayerRecord]
 ) extends InstrumentedActor with GameServiceHelper with Logging {
-  log.info("Started game [" + variant + "] for players [" + initialPlayers.map(_._2).mkString(", ") + "] with seed [" + seed + "].")
+  log.info("Started game [" + variant + "] for players [" + initialPlayers.map(_.name).mkString(", ") + "] with seed [" + seed + "].")
 
-  val playerConnections = collection.mutable.HashMap[String, Option[(UUID, ActorRef)]](initialPlayers.map(x => x._1 -> Some((x._2, x._3))): _*)
-  val observerConnections = collection.mutable.HashMap.empty[(String, Option[String]), Option[(UUID, ActorRef)]]
+  val playerConnections = collection.mutable.ArrayBuffer[PlayerRecord](initialPlayers: _*)
+  val observerConnections = collection.mutable.ArrayBuffer.empty[(PlayerRecord, Option[UUID])]
 
-  val gameVariant = GameVariant(variant, id, seed)
+  val gameVariant = GameVariant(variant, id, seed, initialPlayers.map(p => GamePlayer(p.accountID, p.name)))
   val gameState = gameVariant.gameState
   val gameMessages = collection.mutable.ArrayBuffer.empty[GameMessage]
 
   override def preStart() {
-    initialPlayers.foreach( s => gameState.addPlayer(s._1) )
     gameVariant.initialMoves()
 
     val message = GameStarted(id, self)
     playerConnections.foreach { c =>
-      c._2.foreach(_._2 ! message)
+      c.connectionActor.foreach(_ ! message)
     }
 
     playerConnections.foreach { c =>
-      c._2.foreach(_._2 ! GameJoined(id, initialPlayers.map(_._1), gameState.view(c._1), possibleMoves(Some(c._1))))
+      c.connectionActor.foreach(_ ! GameJoined(id, gameState.view(c.accountID), possibleMoves(Some(c.accountID))))
     }
   }
 
   override def receiveRequest = {
     case gr: GameRequest =>
-      log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.player + "] for game [" + id + "].")
+      log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.name + "] for game [" + id + "].")
       try {
         gameMessages += gr.message
         gr.message match {
-          case GetPossibleMoves => handleGetPossibleMoves(gr.player)
-          case sc: SelectCard => handleSelectCard(gr.player, sc.card, sc.pile, sc.pileIndex)
-          case sp: SelectPile => handleSelectPile(gr.player, sp.pile)
-          case mc: MoveCards => handleMoveCards(gr.player, mc.cards, mc.src, mc.tgt)
+          case GetPossibleMoves => handleGetPossibleMoves(gr.accountId)
+          case sc: SelectCard => handleSelectCard(gr.accountId, sc.card, sc.pile, sc.pileIndex)
+          case sp: SelectPile => handleSelectPile(gr.accountId, sp.pile)
+          case mc: MoveCards => handleMoveCards(gr.accountId, mc.cards, mc.src, mc.tgt)
           case r => log.warn("GameService received unknown game message [" + r.getClass.getSimpleName.replace("$", "") + "].")
         }
       } catch {
@@ -58,9 +60,9 @@ class GameService(
       log.debug("Handling [" + im.getClass.getSimpleName.replace("$", "") + "] internal message for game [" + id + "].")
       try {
         im match {
-          case ap: AddPlayer => handleAddPlayer(ap.id, ap.name, ap.actorRef)
-          case ao: AddObserver => handleAddObserver(ao.id, ao.name, ao.as, ao.actorRef)
-          case cs: ConnectionStopped => handleConnectionStopped(cs.id)
+          case ap: AddPlayer => handleAddPlayer(ap.accountId, ap.name, ap.connectionId, ap.connectionActor)
+          case ao: AddObserver => handleAddObserver(ao.accountId, ao.name, ao.connectionId, ao.connectionActor, ao.as)
+          case cs: ConnectionStopped => handleConnectionStopped(cs.connectionId)
           case StopGameIfEmpty => handleStopGameIfEmpty()
           case gt: GameTrace => handleGameTrace()
           case _ => log.warn("GameService received unhandled internal message [" + im.getClass.getSimpleName + "].")

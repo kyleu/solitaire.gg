@@ -12,7 +12,7 @@ object Nestor extends GameVariant.Description {
   override val body = "Discard any pair of cards of the same rank, regardless of suit (for example, two Aces, two Fives, etc.). Only the top cards are available for play. Spaces can't be filled."
 }
 
-case class Nestor(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
+case class Nestor(override val gameId: UUID, override val seed: Int, players: Seq[GamePlayer]) extends GameVariant(gameId, seed) {
   override def description = Nestor
 
   private val options = Tableau.options.combine(
@@ -61,7 +61,7 @@ case class Nestor(override val gameId: UUID, override val seed: Int) extends Gam
     )
   )
 
-  val gameState = GameState(gameId, description.key, seed, deck, piles, layouts)
+  val gameState = GameState(gameId, description.key, seed, players, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCardsUniqueRanks(6, turnFaceUp = true), "tableau-1", reveal = true)

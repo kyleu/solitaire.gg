@@ -11,7 +11,7 @@ object Sandbox extends GameVariant.Description {
   override val body = "..."
 }
 
-case class Sandbox(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
+case class Sandbox(override val gameId: UUID, override val seed: Int, players: Seq[GamePlayer]) extends GameVariant(gameId, seed) {
   override val description = Sandbox
 
   val piles = List(
@@ -30,7 +30,7 @@ case class Sandbox(override val gameId: UUID, override val seed: Int) extends Ga
     )
   )
 
-  override val gameState = GameState(gameId, description.key, seed, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, seed, players, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(), "sandbox-1")

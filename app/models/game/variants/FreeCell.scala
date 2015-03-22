@@ -12,7 +12,7 @@ object FreeCell extends GameVariant.Description {
   override val body = "Move all the cards to the home cells, using the free cells as placeholders. To win, make four stacks of cards on the home cells, one for each suit, stacked in order of rank, from lowest (ace) to highest (king)."
 }
 
-case class FreeCell(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
+case class FreeCell(override val gameId: UUID, override val seed: Int, players: Seq[GamePlayer]) extends GameVariant(gameId, seed) {
   override def description = FreeCell
 
   private val cellOptions = Pile.options.combine(cardsShown = Some(1), dragToConstraint = Some(Constraints.empty))
@@ -68,7 +68,7 @@ case class FreeCell(override val gameId: UUID, override val seed: Int) extends G
     )
   )
 
-  override val gameState = GameState(gameId, description.key, seed, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, seed, players, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(7, turnFaceUp = true), "tableau-1", reveal = true)

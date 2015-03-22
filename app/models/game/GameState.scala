@@ -9,16 +9,22 @@ case class GameState(
   gameId: UUID,
   variant: String,
   seed: Int,
+  var players: Seq[GamePlayer],
   deck: Deck,
   piles: Seq[Pile],
   layouts: Seq[Layout]
 ) {
   val cardsById = collection.mutable.HashMap[UUID, Card]()
   val pilesById = piles.map(p => p.id -> p).toMap
-  val playerKnownCardIds = collection.mutable.HashMap.empty[String, collection.mutable.HashSet[UUID]]
+  val playerKnownCardIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
 
-  def addPlayer(p: String) = {
-    playerKnownCardIds(p) = collection.mutable.HashSet.empty
+  for(p <- players) {
+    addPlayer(p.account, p.name)
+  }
+
+  def addPlayer(accountId: UUID, name: String) = {
+    players = players :+ GamePlayer(accountId, name)
+    playerKnownCardIds(accountId) = collection.mutable.HashSet.empty
   }
 
   def addCard(card: Card, pile: String, reveal: Boolean = false) {
@@ -35,7 +41,7 @@ case class GameState(
 
   def revealCardToAll(card: Card) = playerKnownCardIds.keys.flatMap(p => revealCardToPlayer(card, p)).toList
 
-  def revealCardToPlayer(card: Card, player: String) = {
+  def revealCardToPlayer(card: Card, player: UUID) = {
     val existing = playerKnownCardIds(player)
     if(!existing.contains(card.id)) {
       existing += card.id
@@ -45,8 +51,8 @@ case class GameState(
     }
   }
 
-  def view(player: String) = {
-    val knownCards = playerKnownCardIds(player)
+  def view(accountId: UUID) = {
+    val knownCards = playerKnownCardIds(accountId)
     this.copy(
       deck = deck.copy(cards = deck.cards.map( c => if(knownCards.contains(c.id)) { c } else { c.copy( r = Rank.Unknown, s = Suit.Unknown ) })),
       piles = piles.map( p => p.copy( cards = p.cards.map( c => if(knownCards.contains(c.id)) { c } else { c.copy( r = Rank.Unknown, s = Suit.Unknown ) })) )
@@ -57,6 +63,7 @@ case class GameState(
     "Game ID: " + gameId,
     "Variant: " + variant,
     "Seed: " + seed,
+    "Players: " + players.map(x => x.account + " (" + x.name + ")").mkString(", "),
     "Deck: " + deck.cards.toString,
     piles.size + " Piles: "
   ) ++ piles.map( p => p.toString)
