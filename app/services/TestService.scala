@@ -38,7 +38,8 @@ object TestService extends Logging {
 
   def testAll() = TestResult("Running all tests.", Seq(
     testAccount(),
-    testVariants()
+    testVariants(),
+    testKnownGame()
   ))
 
   def testAccount() = runTest { () =>

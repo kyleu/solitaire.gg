@@ -23,7 +23,10 @@ case class GameState(
   }
 
   def addPlayer(accountId: UUID, name: String) = {
-    players = players :+ GamePlayer(accountId, name)
+    players.find(_.account == accountId) match {
+      case Some(p) => // no op, reconnect
+      case None => players = players :+ GamePlayer(accountId, name)
+    }
     playerKnownCardIds(accountId) = collection.mutable.HashSet.empty
   }
 
