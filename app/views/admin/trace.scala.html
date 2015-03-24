@@ -1,5 +1,4 @@
 @(traceType: String, trace: TraceResponse, buttons: Seq[(String, String)] = Nil)(implicit session: Session, flash: Flash)
-
 @if(buttons.nonEmpty) {
   <div class="pull-right">
     @buttons.map { b =>

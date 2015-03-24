@@ -1,6 +1,4 @@
-@(status: SystemStatus)(implicit session: Session, flash: Flash)
-
-@layout.bootstrap("Server Status") {
+@(status: SystemStatus)(implicit session: Session, flash: Flash)@layout.bootstrap("Server Status") {
   <div class="buttons-right">
     <a href="@routes.AdminController.observeRandomGame()" target="_blank" class="btn btn-default">Observe Random Game</a>
   </div>

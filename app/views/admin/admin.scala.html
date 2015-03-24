@@ -1,6 +1,4 @@
-@()(implicit session: Session, flash: Flash)
-
-@layout.bootstrap(utils.Config.projectName + " Admin") {
+@()(implicit session: Session, flash: Flash)@layout.bootstrap(utils.Config.projectName + " Admin") {
   <h4>@utils.Config.projectName Admin</h4>
   <ul>
     <li><a href="@routes.AdminController.status().url">Server Status</a></li>

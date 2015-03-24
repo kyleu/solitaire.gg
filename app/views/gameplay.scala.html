@@ -1,7 +1,8 @@
-@(variant: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None)(implicit session: Session, flash: Flash)
-@import models.game.variants.GameVariant
-
-@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
+@(
+  variant: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None
+)(
+  implicit session: Session, flash: Flash
+)@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
   <div id="game-container">
   </div>
   @statusPanel()
@@ -17,7 +18,7 @@
       "cardSet": "@utils.Config.defaultCardSet",
       "cardSize": "@utils.Config.defaultCardSize",
       "variant": "@variant",
-      "variants": [@Html(GameVariant.all.map(v => "['" + v.key + "', '" + v.name + "']").mkString(", "))],
+      "variants": [@Html(models.game.variants.GameVariant.all.map(v => "['" + v.key + "', '" + v.name + "']").mkString(", "))],
       @if(gameId.isEmpty) {
         @if(seed.isDefined) {
           "seed": @seed.get,

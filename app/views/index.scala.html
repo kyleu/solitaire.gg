@@ -1,7 +1,4 @@
-@(account: java.util.UUID, name: String)(implicit session: Session, flash: Flash)
-@import models.game.variants.GameVariant
-
-@layout.bootstrap(utils.Config.projectName) {
+@(account: java.util.UUID, name: String)(implicit session: Session, flash: Flash)@layout.bootstrap(utils.Config.projectName) {
   <div class="row">
     <div class="col-md-12">
       <div class="jumbotron">
@@ -28,7 +25,7 @@
         </div>
         <div class="panel-body">
           <ul>
-          @for(v <- GameVariant.all) {
+          @for(v <- models.game.variants.GameVariant.all) {
             <li><a href="@routes.HomeController.newGame(v.key)">@v.name</a></li>
           }
           </ul>

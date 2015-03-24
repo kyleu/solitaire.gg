@@ -1,22 +1,21 @@
-@(title: String, scripts: Seq[String] = Nil, stylesheets: Seq[String] = Nil)(content: Html)(implicit session: Session, flash: Flash)
-
-@message(severity: String, msgContent: String) = {
-  <div class="alert alert-@severity alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    @msgContent
-  </div>
-}
-
-@basic(
+@(title: String, scripts: Seq[String] = Nil, stylesheets: Seq[String] = Nil)(content: Html)(implicit session: Session, flash: Flash)@basic(
   title,
   scripts = scripts ++ Seq(routes.Assets.at("lib/jquery/jquery.min.js").url, routes.Assets.at("lib/bootstrap/js/bootstrap.min.js").url),
   stylesheets = stylesheets ++ Seq(routes.Assets.at("stylesheets/common.css").url, routes.Assets.at("lib/bootstrap/css/bootstrap.min.css").url)
 ) {
   <div class="container">
-    @flash.get("error").map { msg => @message("danger", msg) }
-    @flash.get("info").map { msg => @message("info", msg) }
-    @flash.get("success").map { msg => @message("success", msg) }
-
+    @flash.get("error").map { msg => <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      @msg
+    </div> }
+    @flash.get("info").map { msg => <div class="alert alert-info alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      @msg
+    </div> }
+    @flash.get("success").map { msg => <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      @msg
+    </div> }
     @content
   </div>
 }
