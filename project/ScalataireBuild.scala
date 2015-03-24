@@ -1,14 +1,19 @@
 import sbt._
 import sbt.Keys._
-import com.typesafe.sbt.rjs.Import.rjs
 import com.typesafe.sbt.packager.universal.UniversalKeys
+
 import com.typesafe.sbt.web.SbtWeb
-import com.typesafe.sbt.web.Import.{Assets, pipelineStages}
-import com.typesafe.sbt.digest.Import.digest
-import com.typesafe.sbt.gzip.Import.gzip
-import com.typesafe.sbt.less.Import.LessKeys
 import com.typesafe.sbt.jse.JsEngineImport.JsEngineKeys
+
+import com.typesafe.sbt.digest.Import._
+import com.typesafe.sbt.gzip.Import._
+import com.typesafe.sbt.less.Import._
+import com.typesafe.sbt.rjs.Import._
+import com.typesafe.sbt.web.Import._
+
 import sbtbuildinfo.Plugin._
+
+import play.Play.autoImport._
 
 object ScalataireBuild extends Build with UniversalKeys {
   val projectId = "scalataire"
@@ -28,8 +33,11 @@ object ScalataireBuild extends Build with UniversalKeys {
       Metrics.metricsGraphite,
 
       WebJars.requireJs,
+      WebJars.bootstrap,
 
-      Testing.akkaTestkit
+      Testing.akkaTestkit,
+
+      filters
     )
   }
 
@@ -75,5 +83,5 @@ object ScalataireBuild extends Build with UniversalKeys {
   lazy val root = Project(
     id = projectId,
     base = file(".")
-  ).enablePlugins(play.PlayScala, SbtWeb).settings(buildInfoSettings: _*).settings(serverSettings: _*)
+  ).enablePlugins(SbtWeb).enablePlugins(play.PlayScala).settings(buildInfoSettings: _*).settings(serverSettings: _*)
 }

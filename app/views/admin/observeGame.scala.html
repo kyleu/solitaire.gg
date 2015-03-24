@@ -7,7 +7,7 @@
 
     });
   </script>
-  <div class="row" style="margin-top: 20px;">
+  <div class="row status-row">
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-body">
@@ -15,7 +15,7 @@
             Seed: <input type="text" id="game-seed" value="0" />
             <button>New Game</button>
           </div>
-          <div id="status" style="padding-top: 3px;">Disconnected</div>
+          <div id="status">Disconnected</div>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-body">
-          <div id="game-container" style="width: 100%; height: 600px;">
+          <div id="game-container inline-game">
           </div>
           @statusPanel()
         </div>

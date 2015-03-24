@@ -4,7 +4,7 @@
 @layout.bootstrap(utils.Config.projectName) {
   <div class="row">
     <div class="col-md-12">
-      <div class="jumbotron" style="margin: 20px 0 20px 0;">
+      <div class="jumbotron">
         <h1>Welcome to my game!</h1>
         <p>I'm trying to build the web's best card games. Thanks for checking out my progress!</p>
         <p><a class="btn btn-primary btn-lg" href="@routes.HomeController.newGame("klondike").url" role="button">Play Now</a></p>
@@ -41,7 +41,7 @@
           <h3 class="panel-title">Profile</h3>
         </div>
         <div class="panel-body">
-          <div style="margin-bottom: 10px;">
+          <div class="name-panel">
             You are currently known as <strong>@name</strong>.
           </div>
           <div class="input-group">

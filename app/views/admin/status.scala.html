@@ -1,8 +1,8 @@
 @(status: SystemStatus)(implicit session: Session, flash: Flash)
 
 @layout.bootstrap("Server Status") {
-  <div style="text-align: right;">
-    <a style="margin: 10px 0 10px 0;" href="@routes.AdminController.observeRandomGame()" target="_blank" class="btn btn-default">Observe Random Game</a>
+  <div class="buttons-right">
+    <a href="@routes.AdminController.observeRandomGame()" target="_blank" class="btn btn-default">Observe Random Game</a>
   </div>
 
   <div class="row">
@@ -10,7 +10,7 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <h5>@status.connections.size Connections</h5>
-          <div style="height: 200px; overflow: auto;">
+          <div class="list-panel">
             <table class="table table-bordered">
               <tr>
                 <th>Connection ID</th>
@@ -38,7 +38,7 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <h5>@status.games.size Games</h5>
-          <div style="height: 200px; overflow: auto;">
+          <div class="list-panel">
             <table class="table table-bordered">
               <tr>
                 <th>Game ID</th>

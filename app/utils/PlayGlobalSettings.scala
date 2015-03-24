@@ -3,13 +3,15 @@ package utils
 import java.util.TimeZone
 
 import org.joda.time.DateTimeZone
-import play.api.mvc.{RequestHeader, Results}
-import play.api.{Logger, Application, GlobalSettings}
-import services.database.{DatabaseSchema, DatabaseConnection}
+import play.api.mvc.{RequestHeader, Results, WithFilters}
+import play.api.{Application, GlobalSettings, Logger}
+import play.filters.gzip.GzipFilter
+import play.filters.headers.SecurityHeadersFilter
+import services.database.{DatabaseConnection, DatabaseSchema}
 
 import scala.concurrent.Future
 
-object PlayGlobalSettings extends GlobalSettings with Logging {
+object PlayGlobalSettings extends WithFilters(SecurityHeadersFilter(), new GzipFilter()) with GlobalSettings with Logging {
   override def onStart(app: Application) {
     Logger.info(utils.Config.projectName + " build [" + BuildInfo.buildinfoBuildnumber + "] is starting.")
 

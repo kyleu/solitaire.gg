@@ -1,9 +1,9 @@
 @(traceType: String, trace: TraceResponse, buttons: Seq[(String, String)] = Nil)(implicit session: Session, flash: Flash)
 
 @if(buttons.nonEmpty) {
-  <div style="float: right;">
+  <div class="pull-right">
     @buttons.map { b =>
-      <a class="btn btn-default" style="margin-top: -16px;" target="_blank" href="@b._2">@b._1</a>
+      <a class="btn btn-default" target="_blank" href="@b._2">@b._1</a>
     }
   </div>
 }

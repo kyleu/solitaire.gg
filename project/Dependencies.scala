@@ -8,6 +8,7 @@ object Dependencies {
 
   object WebJars {
     val requireJs = "org.webjars" % "requirejs" % "2.1.11-1"
+    val bootstrap = "org.webjars" % "bootstrap" % "3.3.4"
   }
 
   object Metrics {
