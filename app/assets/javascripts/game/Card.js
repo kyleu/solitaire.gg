@@ -110,7 +110,9 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   };
 
   Card.prototype.turnFaceUp = function() {
+
     this.faceUp = true;
+
     this.loadTexture('card', this.spriteIndex);
   };
 

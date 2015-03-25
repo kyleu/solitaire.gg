@@ -11,7 +11,7 @@ import services.database.{DatabaseConnection, DatabaseSchema}
 
 import scala.concurrent.Future
 
-object PlayGlobalSettings extends WithFilters(SecurityHeadersFilter(), new GzipFilter()) with GlobalSettings with Logging {
+object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeadersFilter(), new GzipFilter()) with GlobalSettings with Logging {
   override def onStart(app: Application) {
     Logger.info(utils.Config.projectName + " build [" + BuildInfo.buildinfoBuildnumber + "] is starting.")
 

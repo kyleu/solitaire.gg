@@ -19,14 +19,14 @@ trait GameServiceTraceHelper { this: GameService =>
           case Some(connId) =>
             "Connection ID: " + connId + "<br>" +
             "Account ID:" + x.accountID + "<br />" +
-            " <a class=\"btn btn-default\" href=\"" + connUrl(connId) + "\" onclick=\"trace(this.href);return false;\">Trace Connection</a>" +
+            " <a class=\"btn btn-default\" href=\"" + connUrl(connId) + "\" class=\"trace-link\">Trace Connection</a>" +
             " <a class=\"btn btn-default\" href=\"" + controllers.routes.AdminController.observeGameAs(id, x.accountID).url + "\" target=\"_blank\">Observe game as [" + x.name + "]</a>"
           case None => x.accountID + " (Disconnected)"
         }
       }.mkString("<br/>\n"),
       "observers" -> observerConnections.map { x =>
         x._1.connectionId match {
-          case Some(connId) => "<a href=\"" + connUrl(connId) + "\" onclick=\"trace(this.href);return false;\">" + connId + "</a> (" + x._1.name + " as " + x._2.getOrElse("admin") + ")"
+          case Some(connId) => "<a href=\"" + connUrl(connId) + "\" class=\"trace-link\">" + connId + "</a> (" + x._1.name + " as " + x._2.getOrElse("admin") + ")"
           case None => x._1 + " (Disconnected)"
         }
       }.mkString("<br/>\n"),

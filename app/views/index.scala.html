@@ -1,4 +1,4 @@
-@(account: java.util.UUID, name: String)(implicit session: Session, flash: Flash)@layout.bootstrap(utils.Config.projectName) {
+@(account: java.util.UUID, name: String)(implicit session: Session, flash: Flash)@layout.bootstrap(utils.Config.projectName, scripts = Seq(routes.Assets.at("javascripts/common.js").url)) {
   <div class="row">
     <div class="col-md-12">
       <div class="jumbotron">
@@ -43,7 +43,7 @@
           </div>
           <div class="input-group">
             <input type="text" id="account" class="form-control" placeholder="Name" />
-            <span class="input-group-addon"><a href="" onclick="signIn();return false;">Change Name</a></span>
+            <span class="input-group-addon"><a href="" id="change-name-link">Change Name</a></span>
           </div>
         </div>
       </div>
@@ -59,14 +59,4 @@
       </div>
     </div>
   </div>
-  <script>
-    function signIn() {
-      var name = document.getElementById("account" ).value;
-      if(name.length === 0) {
-        alert("Please enter a name");
-      } else {
-        document.location.href = ('@routes.HomeController.changeName("")' + name);
-      }
-    }
-  </script>
 }

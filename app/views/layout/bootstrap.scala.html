@@ -1,7 +1,7 @@
 @(title: String, scripts: Seq[String] = Nil, stylesheets: Seq[String] = Nil)(content: Html)(implicit session: Session, flash: Flash)@basic(
   title,
-  scripts = scripts ++ Seq(routes.Assets.at("lib/jquery/jquery.min.js").url, routes.Assets.at("lib/bootstrap/js/bootstrap.min.js").url),
-  stylesheets = stylesheets ++ Seq(routes.Assets.at("stylesheets/common.css").url, routes.Assets.at("lib/bootstrap/css/bootstrap.min.css").url)
+  scripts = Seq(routes.Assets.at("lib/jquery/jquery.min.js").url, routes.Assets.at("lib/bootstrap/js/bootstrap.min.js").url) ++ scripts,
+  stylesheets = Seq(routes.Assets.at("stylesheets/common.css").url, routes.Assets.at("lib/bootstrap/css/bootstrap.min.css").url) ++ stylesheets
 ) {
   <div class="container">
     @flash.get("error").map { msg => <div class="alert alert-danger alert-dismissable">

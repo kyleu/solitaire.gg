@@ -22,11 +22,10 @@
     }
     @if(utils.Config.debug) {
     <script src="/assets/lib/phaser/js/phaser.js"></script>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/phaser-debug.css").url" />
     <script src="/assets/lib/phaser/js/phaser-debug.js"></script>
-    <script src="/assets/lib/dat.gui/dat.gui.js"></script>
     } else {
     <script src="/assets/lib/phaser/js/phaser.min.js"></script>
-    <script src="/assets/lib/dat.gui/dat.gui.min.js"></script>
     }
     <script data-main="/assets/javascripts/main.js?build=@utils.BuildInfo.buildinfoBuildnumber" src="/assets/lib/requirejs/require.min.js"></script>
 }

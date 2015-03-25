@@ -85,7 +85,7 @@ class ConnectionService(supervisor: ActorRef, accountId: UUID, name: String, out
     val ret = TraceResponse(id, List(
       "accountId" -> accountId,
       "name" -> name,
-      "game" -> activeGameId.map( i => "<a href=\"" + controllers.routes.AdminController.traceGame(i) + "\" onclick=\"trace(this.href);return false;\">" + i + "</a>").getOrElse("Not in game")
+      "game" -> activeGameId.map( i => "<a href=\"" + controllers.routes.AdminController.traceGame(i) + "\" class=\"trace-link\">" + i + "</a>").getOrElse("Not in game")
     ))
     sender() ! ret
   }

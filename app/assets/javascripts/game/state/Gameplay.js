@@ -93,10 +93,10 @@ define([
   Gameplay.prototype.toggleDebug = function() {
     var debugPanels = document.getElementsByClassName("pdebug");
     if(debugPanels.length == 1) {
-      if(debugPanels[0].style.display === "none") {
-        debugPanels[0].style.display = "block";
-      } else {
+      if(debugPanels[0].style.display === "block") {
         debugPanels[0].style.display = "none";
+      } else {
+        debugPanels[0].style.display = "block";
       }
     }
   };

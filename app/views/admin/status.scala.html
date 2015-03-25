@@ -1,4 +1,7 @@
-@(status: SystemStatus)(implicit session: Session, flash: Flash)@layout.bootstrap("Server Status") {
+@(status: SystemStatus)(implicit session: Session, flash: Flash)@layout.bootstrap(
+  "Server Status",
+  scripts = Seq(routes.Assets.at("javascripts/admin.js").url)
+) {
   <div class="buttons-right">
     <a href="@routes.AdminController.observeRandomGame()" target="_blank" class="btn btn-default">Observe Random Game</a>
   </div>
@@ -18,11 +21,11 @@
               @for(connection <- status.connections) {
                 <tr>
                   <td>
-                    <a href="@routes.AdminController.traceConnection(connection._1)" onclick="trace(this.href);return false;">@connection._1</a>
+                    <a href="@routes.AdminController.traceConnection(connection._1)" class="trace-link">@connection._1</a>
                   </td>
                   <td>@connection._2</td>
                   <td>
-                    <a href="@routes.AdminController.traceClient(connection._1)" onclick="trace(this.href);return false;"><span class="glyphicon glyphicon-cloud-download"></span></a>
+                    <a href="@routes.AdminController.traceClient(connection._1)" class="trace-link"><span class="glyphicon glyphicon-cloud-download"></span></a>
                   </td>
                 </tr>
               }
@@ -45,7 +48,7 @@
               @for(game <- status.games) {
                 <tr>
                   <td>
-                    <a href="@routes.AdminController.traceGame(game._1)" onclick="trace(this.href);return false;">@game._1</a>
+                    <a href="@routes.AdminController.traceGame(game._1)" class="trace-link">@game._1</a>
                   </td>
                   <td>@game._2.map(_._2).mkString(", ")</td>
                 </tr>
@@ -68,10 +71,4 @@
       </div>
     </div>
   </div>
-
-  <script>
-    function trace(url) {
-      $("#trace-content" ).load(url);
-    }
-  </script>
 }

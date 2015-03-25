@@ -90,7 +90,7 @@ Debug.prototype.init = function () {
     this.panels.scene = new ScenePanel(this.game, this);
 
     // add elements to the page
-    ui.addCss(css);
+    // REMOVED ui.addCss(css);
     document.body.appendChild(this._createElement());
 
     this._bindEvents();
