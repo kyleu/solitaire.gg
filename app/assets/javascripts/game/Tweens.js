@@ -23,13 +23,21 @@ define([], function() {
     },
 
     tweenFlip: function(card) {
-      var tween = card.game.add.tween(card);
-      tween.to({ width: 0 }, 400);
-      tween.onComplete.add(function() {
-        card.tweening = false;
+      var origWidth = card.width;
+      var hideTween = card.game.add.tween(card);
+      hideTween.to({ width: 0 }, 100);
+      hideTween.onComplete.add(function() {
+        card.updateSprite(true);
+        var showTween = card.game.add.tween(card);
+        showTween.to({ width: origWidth }, 100);
+        showTween.onComplete.add(function() {
+          card.tweening = false;
+          console.log(card);
+        }, card);
+        showTween.start();
       }, card);
       card.tweening = true;
-      tween.start();
+      hideTween.start();
     }
   };
 });

@@ -1,7 +1,7 @@
 define([
-  'utils/Config', 'game/Card', 'game/pile/Pile', 'game/pile/PileHelpers',
+  'utils/Config', 'game/Rank', 'game/Suit', 'game/Card', 'game/pile/Pile', 'game/pile/PileHelpers',
   'game/Playmat', 'game/state/GameState'
-], function (cfg, Card, Pile, PileHelpers, Playmat, GameState) {
+], function (cfg, Rank, Suit, Card, Pile, PileHelpers, Playmat, GameState) {
   "use strict";
 
   function Gameplay(game) {
@@ -120,8 +120,10 @@ define([
         break;
       case "CardRevealed":
         var existing = this.game.cards[v.card.id];
-        existing.updateSprite(v.card.r, v.card.s, v.card.u);
-        if(v.card.u) {
+        var wasFaceUp = existing.faceUp;
+        existing.rank = Rank.fromChar(v.card.r);
+        existing.suit = Suit.fromChar(v.card.s);
+        if(v.card.u && !wasFaceUp) {
           existing.turnFaceUp();
         }
         break;
@@ -135,9 +137,9 @@ define([
         var source = this.game.piles[v.source];
         var target = this.game.piles[v.target];
 
-        if(v.turnFaceUp) {
+        if(v.turnFaceUp && !movedCard.faceUp) {
           movedCard.turnFaceUp();
-        } else if(v.turnFaceDown) {
+        } else if(v.turnFaceDown && movedCard.faceUp) {
           movedCard.turnFaceDown();
         }
 

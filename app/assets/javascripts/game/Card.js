@@ -1,4 +1,4 @@
-define(["game/Rank", "game/Suit"], function (Rank, Suit) {
+define(['game/Rank', 'game/Suit', 'game/Tweens'], function (Rank, Suit, Tweens) {
   "use strict";
 
   function canSelectCard(card) {
@@ -44,19 +44,14 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   Card.prototype = Object.create(Phaser.Sprite.prototype);
   Card.prototype.constructor = Card;
 
-  Card.prototype.updateSprite = function(rank, suit, faceUp) {
-    this.rank = Rank.fromChar(rank);
-    this.suit = Suit.fromChar(suit);
+  Card.prototype.updateSprite = function(faceUp) {
     this.faceUp = faceUp;
     this.spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
     if(this.faceUp) {
-      this.frame = this.spriteIndex;
-      this.key = 'card';
+      this.loadTexture('card', this.spriteIndex);
     } else {
-      this.frame = 0;
-      this.key = 'card-back';
+      this.loadTexture('card-back', 0);
     }
-    this.updateCache();
   };
 
   Card.prototype.onInputDown = function(e, p) {
@@ -110,10 +105,7 @@ define(["game/Rank", "game/Suit"], function (Rank, Suit) {
   };
 
   Card.prototype.turnFaceUp = function() {
-
-    this.faceUp = true;
-
-    this.loadTexture('card', this.spriteIndex);
+    Tweens.tweenFlip(this);
   };
 
   Card.prototype.turnFaceDown = function() {
