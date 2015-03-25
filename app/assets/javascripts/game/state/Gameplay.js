@@ -21,11 +21,15 @@ define([
 
   Gameplay.prototype.create = function() {
     GameState.prototype.create.apply(this, arguments);
+
     var victoriousCheatKey = this.game.input.keyboard.addKey(Phaser.Keyboard.V);
     victoriousCheatKey.onDown.add(this.victorious, this);
 
     var helpKey = this.game.input.keyboard.addKey(Phaser.Keyboard.H);
     helpKey.onDown.add(this.logGame, this);
+
+    var debugKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    debugKey.onDown.add(this.toggleDebug, this);
 
     this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
     this.bg.height = this.game.height * 2;
@@ -83,6 +87,17 @@ define([
     console.log("Possible Moves:");
     for(var moveIndex in this.game.possibleMoves) {
       console.log(this.game.possibleMoves[moveIndex]);
+    }
+  };
+
+  Gameplay.prototype.toggleDebug = function() {
+    var debugPanels = document.getElementsByClassName("pdebug");
+    if(debugPanels.length == 1) {
+      if(debugPanels[0].style.display === "none") {
+        debugPanels[0].style.display = "block";
+      } else {
+        debugPanels[0].style.display = "none";
+      }
     }
   };
 

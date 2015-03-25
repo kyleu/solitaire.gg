@@ -34,7 +34,7 @@ trait GameServiceConnectionHelper { this: GameService =>
 
   protected def handleConnectionStopped(connectionId: UUID) {
     import play.api.Play.current
-    import play.api.libs.concurrent.Execution.Implicits._
+    import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
     import scala.concurrent.duration._
 

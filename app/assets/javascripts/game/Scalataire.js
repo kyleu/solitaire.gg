@@ -7,7 +7,7 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
   }
 
   Scalataire.prototype.onConnect = function(url) {
-    console.log(cfg.name + " connected.");
+    console.log(cfg.account.name + " connected.");
     this.game = new Game(this.ws);
   };
 

@@ -1,14 +1,16 @@
 package services.database
 
 import com.simple.jdub._
+import play.api.Play
 import utils.Config
 import utils.metrics.Checked
 
 object DatabaseConnection {
   private val db = {
-    val url = "jdbc:postgresql://localhost/scalataire"
-    val username = "scalataire"
-    val password = "omgWTFdragonz!"
+    val cfg = Play.current.configuration
+    val url = cfg.getString("db.default.url").getOrElse(throw new IllegalArgumentException("No database url provided."))
+    val username = cfg.getString("db.default.username").getOrElse(Config.projectId)
+    val password = cfg.getString("db.default.password").getOrElse(Config.projectId)
     val name = Some(Config.projectId)
     val healthCheckRegistry = Some(Checked.healthCheckRegistry)
     val maxSize = 32
@@ -17,7 +19,6 @@ object DatabaseConnection {
   }
 
   def open() = {
-    Class.forName("org.postgresql.Driver")
     DatabaseSchema.update()
   }
 
