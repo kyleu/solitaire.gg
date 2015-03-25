@@ -1,9 +1,10 @@
 define(function () {
   "use strict";
-  var c = window.scalataireConfig;
+  var c = document.getElementById('scalataire-config');
   if(c === undefined) {
     throw "NoConfigurationException";
   }
-  c.wsUrl = "ws://" + document.location.host + "/websocket";
-  return c;
+  var json = JSON.parse(c.innerText);
+  json.wsUrl = "ws://" + document.location.host + "/websocket";
+  return json;
 });

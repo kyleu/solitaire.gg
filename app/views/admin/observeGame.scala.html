@@ -1,15 +1,10 @@
 @(gameId: Option[java.util.UUID], as: Option[java.util.UUID])(implicit session: Session, flash: Flash)@layout.bootstrap(utils.Config.projectName + " Admin") {
-  <script>
-    $(function() {
-
-    });
-  </script>
   <div class="row status-row">
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="pull-right">
-            Seed: <input type="text" id="game-seed" value="0" />
+            <label for="game-seed">Seed</label>: <input type="text" id="game-seed" value="0" />
             <button>New Game</button>
           </div>
           <div id="status">Disconnected</div>
@@ -21,7 +16,7 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-body">
-          <div id="game-container inline-game">
+          <div id="game-container" class="inline-game">
           </div>
           @statusPanel()
         </div>
@@ -29,31 +24,30 @@
     </div>
   </div>
 
-  <script>
-    window.scalataireConfig = {
-      "id": "@utils.Config.projectId",
-      "name": "@utils.Config.projectName",
+  @defining(if(gameId.isDefined) {
+    if(as.isDefined) {
+      Seq("observe", gameId.get, as.get)
+    } else {
+      Seq("observe", gameId.get)
+    }
+  } else {
+      Seq("observe", "random")
+  } ) { initialAction =>
+    <pre id="@utils.Config.projectId-config">
+    {
       "account": {
         "id": "@session("account")",
         "name": "@session("name")"
       },
+      "gameId": "@utils.Config.projectId",
+      "gameName": "@utils.Config.projectName",
       "debug": "@utils.Config.debug",
       "cardSet": "@utils.Config.defaultCardSet",
       "cardSize": "@utils.Config.defaultCardSize",
-      "variant": "observe",
-      "variants": [@Html(models.game.variants.GameVariant.all.map(v => "['" + v.key + "', '" + v.name + "']").mkString(", "))],
-
-      @if(gameId.isDefined) {
-        @if(as.isDefined) {
-          "initialAction" : ["observe", "@gameId.get", "@as.get" ]
-        } else {
-          "initialAction": ["observe", "@gameId.get"]
-        }
-      } else {
-        "initialAction": ["observe", "random"]
-      }
-    };
-  </script>
+      "initialAction": [ @initialAction.map("\"" + _ + "\"").mkString(", ") ]
+    }
+    </pre>
+  }
   <script src="/assets/lib/phaser/js/phaser.js"></script>
   <script src="/assets/lib/phaser/js/phaser-debug.js"></script>
   <script src="/assets/lib/dat.gui/dat.gui.js"></script>

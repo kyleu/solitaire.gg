@@ -1,41 +1,32 @@
-@(
-  variant: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None
-)(
+@(variant: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None)(
   implicit session: Session, flash: Flash
 )@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
-  <div id="game-container">
-  </div>
-  @statusPanel()
-  <script>
-    window.scalataireConfig = {
-      "id": "@utils.Config.projectId",
-      "name": "@utils.Config.projectName",
+    <div id="game-container"></div>
+    @statusPanel()
+    @defining(if(gameId.isDefined) { Seq("join", gameId.get) } else { Seq("start") } ) { initialAction =>
+    <pre id="@utils.Config.projectId-config">
+    {
       "account": {
-        "id": "@session.get("account")",
-        "name": "@session.get("name")"
+        "id": "@session("account")",
+        "name": "@session("name")"
       },
+      "gameId": "@utils.Config.projectId",
+      "gameName": "@utils.Config.projectName",
       "debug": "@utils.Config.debug",
       "cardSet": "@utils.Config.defaultCardSet",
       "cardSize": "@utils.Config.defaultCardSize",
       "variant": "@variant",
-      "variants": [@Html(models.game.variants.GameVariant.all.map(v => "['" + v.key + "', '" + v.name + "']").mkString(", "))],
-      @if(gameId.isEmpty) {
-        @if(seed.isDefined) {
-          "seed": @seed.get,
-        }
-        "initialAction" :[ "start" ]
-      } else {
-        "initialAction" :[ "join", "@gameId.get" ]
-      }
-    };
-  </script>
-  @if(utils.Config.debug) {
+      "initialAction": [ @initialAction.map("\"" + _ + "\"").mkString(", ") ]
+    }
+    </pre>
+    }
+    @if(utils.Config.debug) {
     <script src="/assets/lib/phaser/js/phaser.js"></script>
     <script src="/assets/lib/phaser/js/phaser-debug.js"></script>
     <script src="/assets/lib/dat.gui/dat.gui.js"></script>
-  } else {
+    } else {
     <script src="/assets/lib/phaser/js/phaser.min.js"></script>
     <script src="/assets/lib/dat.gui/dat.gui.min.js"></script>
-  }
-  <script data-main="/assets/javascripts/main.js?build=@utils.BuildInfo.buildinfoBuildnumber" src="/assets/lib/requirejs/require.min.js"></script>
+    }
+    <script data-main="/assets/javascripts/main.js?build=@utils.BuildInfo.buildinfoBuildnumber" src="/assets/lib/requirejs/require.min.js"></script>
 }
