@@ -66,7 +66,7 @@ object SelectCardActions {
     val piles = gameState.piles.filter(_.behavior == behavior)
     piles.flatMap { p =>
       if(p.cards.isEmpty) {
-        pile.cards.headOption match {
+        pile.cards.lastOption match {
           case Some(tc) => moveCard(tc, pile, p, gameState, turnFaceUp = true)
           case None => Nil
         }

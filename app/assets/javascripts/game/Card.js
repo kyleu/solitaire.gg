@@ -32,6 +32,8 @@ define(['game/Rank', 'game/Suit', 'game/Tweens'], function (Rank, Suit, Tweens) 
       Phaser.Sprite.call(this, game, 0, 0, 'card-back', 0);
     }
 
+    this.anchor.setTo(0.5, 0.5);
+
     this.inputEnabled = true;
     this.dragging = false;
 

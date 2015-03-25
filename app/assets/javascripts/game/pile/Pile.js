@@ -40,6 +40,7 @@ define([
         this.pileSelected();
       }
     }, this);
+    this.empty.anchor.setTo(0.5, 0.5);
     this.add(this.empty);
 
     this.canDragFrom = getConstraint(options.dragFromConstraint);

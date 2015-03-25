@@ -46,27 +46,27 @@ case class Spider(override val gameId: UUID, override val seed: Int, players: Se
       width = 11.1,
       height = 5.0,
       piles = List(
-        PileLocation("stock", 0.1, 0.2),
+        PileLocation("stock", 0.6, 0.7),
 
-        PileLocation("foundation-1", 2.3, 0.2),
-        PileLocation("foundation-2", 3.4, 0.2),
-        PileLocation("foundation-3", 4.5, 0.2),
-        PileLocation("foundation-4", 5.6, 0.2),
-        PileLocation("foundation-5", 6.7, 0.2),
-        PileLocation("foundation-6", 7.8, 0.2),
-        PileLocation("foundation-7", 8.9, 0.2),
-        PileLocation("foundation-8", 10.0, 0.2),
+        PileLocation("foundation-1", 2.8, 0.7),
+        PileLocation("foundation-2", 3.9, 0.7),
+        PileLocation("foundation-3", 5.0, 0.7),
+        PileLocation("foundation-4", 6.1, 0.7),
+        PileLocation("foundation-5", 7.2, 0.7),
+        PileLocation("foundation-6", 8.3, 0.7),
+        PileLocation("foundation-7", 9.4, 0.7),
+        PileLocation("foundation-8", 10.5, 0.7),
 
-        PileLocation("tableau-1", 0.1, 1.3),
-        PileLocation("tableau-2", 1.2, 1.3),
-        PileLocation("tableau-3", 2.3, 1.3),
-        PileLocation("tableau-4", 3.4, 1.3),
-        PileLocation("tableau-5", 4.5, 1.3),
-        PileLocation("tableau-6", 5.6, 1.3),
-        PileLocation("tableau-7", 6.7, 1.3),
-        PileLocation("tableau-8", 7.8, 1.3),
-        PileLocation("tableau-9", 8.9, 1.3),
-        PileLocation("tableau-10", 10.0, 1.3)
+        PileLocation("tableau-1", 0.6, 1.8),
+        PileLocation("tableau-2", 1.7, 1.8),
+        PileLocation("tableau-3", 2.8, 1.8),
+        PileLocation("tableau-4", 3.9, 1.8),
+        PileLocation("tableau-5", 5.0, 1.8),
+        PileLocation("tableau-6", 6.1, 1.8),
+        PileLocation("tableau-7", 7.2, 1.8),
+        PileLocation("tableau-8", 8.3, 1.8),
+        PileLocation("tableau-9", 9.4, 1.8),
+        PileLocation("tableau-10", 10.5, 1.8)
       )
     )
   )

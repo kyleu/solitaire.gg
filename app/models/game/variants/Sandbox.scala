@@ -25,7 +25,7 @@ case class Sandbox(override val gameId: UUID, override val seed: Int, players: S
       width = 8.0,
       height = 6.0,
       piles = List(
-        PileLocation("sandbox-1", 3.5, 2.5)
+        PileLocation("sandbox-1", 4.0, 3.0)
       )
     )
   )
