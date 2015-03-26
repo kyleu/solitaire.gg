@@ -13,7 +13,7 @@ import scala.concurrent.Future
 
 object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeadersFilter(), new GzipFilter()) with GlobalSettings with Logging {
   override def onStart(app: Application) {
-    Logger.info(utils.Config.projectName + " build [" + BuildInfo.buildinfoBuildnumber + "] is starting.")
+    Logger.info(utils.Config.projectName + " build [" + BuildInfo.buildinfoBuildnumber + "] is starting on [" + utils.Config.hostname + "].")
 
     DateTimeZone.setDefault(DateTimeZone.UTC)
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))

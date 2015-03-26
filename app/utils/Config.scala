@@ -9,6 +9,7 @@ object Config {
   val projectId = utils.BuildInfo.name
   val projectName = "Scalataire"
   val version = "0.1"
+  val hostname = cnf.getString("play.host")
 
   val debug = !Play.isProd(Play.current)
 
