@@ -55,6 +55,7 @@ object ScalataireBuild extends Build with UniversalKeys {
     scalacOptions ++= compileOptions,
     scalacOptions in Test ++= Seq("-Yrangepos"),
     libraryDependencies ++= dependencies,
+    doc in Compile <<= target.map(_ / "none"),
 
     // sbt-web
     pipelineStages := Seq(rjs, digest, gzip),
