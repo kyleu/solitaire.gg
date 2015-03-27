@@ -11,6 +11,7 @@ object GameVariant {
     val key: String
     val name: String
     val body: String
+    val maxPlayers: Int = 1
     val inProgress: Boolean  = false
   }
 

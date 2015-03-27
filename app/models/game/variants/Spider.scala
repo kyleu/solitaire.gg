@@ -71,7 +71,7 @@ case class Spider(override val gameId: UUID, override val seed: Int, players: Se
     )
   )
 
-  override val gameState = GameState(gameId, description.key, seed, players, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, players, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(5), "tableau-1")

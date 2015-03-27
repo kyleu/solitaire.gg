@@ -61,7 +61,7 @@ case class Nestor(override val gameId: UUID, override val seed: Int, players: Se
     )
   )
 
-  val gameState = GameState(gameId, description.key, seed, players, deck, piles, layouts)
+  val gameState = GameState(gameId, description.key, description.maxPlayers, seed, players, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCardsUniqueRanks(6, turnFaceUp = true), "tableau-1", reveal = true)

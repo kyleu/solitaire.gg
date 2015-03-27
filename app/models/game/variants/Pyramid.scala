@@ -117,7 +117,7 @@ case class Pyramid(override val gameId: UUID, override val seed: Int, players: S
     )
   )
 
-  override val gameState = GameState(gameId, description.key, seed, players, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, players, deck, piles, layouts)
 
   override def initialMoves() = {
     for(p <- gameState.piles) {

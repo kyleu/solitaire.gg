@@ -4,19 +4,22 @@ import java.util.UUID
 
 import models.CardRevealed
 import models.game.pile.Pile
+import utils.Logging
 
 case class GameState(
   gameId: UUID,
   variant: String,
+  maxPlayers: Int,
   seed: Int,
   var players: Seq[GamePlayer],
   deck: Deck,
   piles: Seq[Pile],
   layouts: Seq[Layout]
-) {
+) extends Logging {
+
+  private val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
   val cardsById = collection.mutable.HashMap[UUID, Card]()
   val pilesById = piles.map(p => p.id -> p).toMap
-  val playerKnownCardIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
 
   for(p <- players) {
     addPlayer(p.account, p.name)
@@ -24,10 +27,18 @@ case class GameState(
 
   def addPlayer(accountId: UUID, name: String) = {
     players.find(_.account == accountId) match {
-      case Some(p) => // no op, reconnect
-      case None => players = players :+ GamePlayer(accountId, name)
+      case Some(p) =>
+        log.info("Reconnecting to game [" + gameId + "] from account [" + name + ": " + accountId + "]")
+        // TODO Reconnect
+      case None =>
+        log.info("Adding player [" + name + ": " + accountId + "] to game [" + gameId + "].")
+        val playerIndex = playerKnownIds.size
+        if(playerIndex == maxPlayers) {
+          throw new IllegalArgumentException("Too many players.")
+        }
+        players = players :+ GamePlayer(accountId, name)
+        playerKnownIds(accountId) = collection.mutable.HashSet.empty
     }
-    playerKnownCardIds(accountId) = collection.mutable.HashSet.empty
   }
 
   def addCard(card: Card, pile: String, reveal: Boolean = false) {
@@ -42,10 +53,10 @@ case class GameState(
     addCard(c, pile, reveal)
   }
 
-  def revealCardToAll(card: Card) = playerKnownCardIds.keys.flatMap(p => revealCardToPlayer(card, p)).toList
+  def revealCardToAll(card: Card) = playerKnownIds.keys.flatMap(p => revealCardToPlayer(card, p)).toList
 
   def revealCardToPlayer(card: Card, player: UUID) = {
-    val existing = playerKnownCardIds(player)
+    val existing = playerKnownIds(player)
     if(!existing.contains(card.id)) {
       existing += card.id
       Some(CardRevealed(card))
@@ -55,7 +66,7 @@ case class GameState(
   }
 
   def view(accountId: UUID) = {
-    val knownCards = playerKnownCardIds(accountId)
+    val knownCards = playerKnownIds(accountId)
     this.copy(
       deck = deck.copy(cards = deck.cards.map( c => if(knownCards.contains(c.id)) { c } else { c.copy( r = Rank.Unknown, s = Suit.Unknown ) })),
       piles = piles.map( p => p.copy( cards = p.cards.map( c => if(knownCards.contains(c.id)) { c } else { c.copy( r = Rank.Unknown, s = Suit.Unknown ) })) )

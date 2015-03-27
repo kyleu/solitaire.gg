@@ -17,7 +17,6 @@ trait GameServiceConnectionHelper { this: GameService =>
         playerConnections += PlayerRecord(accountId, name, Some(connectionId), Some(connectionActor))
     }
 
-    // TODO test
     gameState.addPlayer(accountId, name)
     connectionActor ! GameStarted(id, self)
     connectionActor ! GameJoined(id, gameState.view(accountId), possibleMoves(Some(accountId)))

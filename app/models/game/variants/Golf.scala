@@ -55,7 +55,7 @@ case class Golf(override val gameId: UUID, override val seed: Int, players: Seq[
     )
   )
 
-  override val gameState = GameState(gameId, description.key, seed, players, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, players, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(5, turnFaceUp = true), "tableau-1", reveal = true)
