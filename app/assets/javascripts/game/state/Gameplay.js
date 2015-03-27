@@ -1,7 +1,7 @@
 define([
   'utils/Config', 'game/Rank', 'game/Suit', 'game/Card', 'game/pile/Pile', 'game/pile/PileHelpers',
-  'game/Playmat', 'game/state/GameState'
-], function (cfg, Rank, Suit, Card, Pile, PileHelpers, Playmat, GameState) {
+  'game/helpers/Display', 'game/helpers/Keyboard', 'game/Playmat', 'game/state/GameState'
+], function (cfg, Rank, Suit, Card, Pile, PileHelpers, Display, Keyboard, Playmat, GameState) {
   "use strict";
 
   function Gameplay(game) {
@@ -22,14 +22,8 @@ define([
   Gameplay.prototype.create = function() {
     GameState.prototype.create.apply(this, arguments);
 
-    var victoriousCheatKey = this.game.input.keyboard.addKey(Phaser.Keyboard.V);
-    victoriousCheatKey.onDown.add(this.victorious, this);
-
-    var helpKey = this.game.input.keyboard.addKey(Phaser.Keyboard.H);
-    helpKey.onDown.add(this.logGame, this);
-
-    var debugKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    debugKey.onDown.add(this.toggleDebug, this);
+    Display.init(this.game);
+    Keyboard.init(this.game);
 
     this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
     this.bg.height = this.game.height * 2;
@@ -41,8 +35,6 @@ define([
     this.game.time.events.loop(Phaser.Timer.SECOND * 10, function() {
       this.game.ws.send("Ping", { timestamp: new Date().getTime() });
     }, this);
-
-    this.game.scale.onOrientationChange.add(this.onOrientationChange, this);
 
     if(cfg.initialAction === undefined) {
       cfg.initialAction = ["start"];
@@ -67,37 +59,6 @@ define([
         break;
       default:
         alert("Invalid initial action [" + cfg.initialAction + "].");
-    }
-  };
-
-  Gameplay.prototype.victorious = function() {
-    console.log("Victorious!");
-    for(var cardIndex in this.game.cards) {
-      this.game.cards[cardIndex].animation = {id: "mouse", speed: 200 + Math.floor(Math.random() * 200)};
-    }
-  };
-
-  Gameplay.prototype.logGame = function() {
-    console.log("Game [" + this.game.id + "] (" + this.game.variant + "):");
-    console.log(this.game);
-    console.log("Piles:");
-    for(var cardIndex in this.game.piles) {
-      console.log(this.game.piles[cardIndex]);
-    }
-    console.log("Possible Moves:");
-    for(var moveIndex in this.game.possibleMoves) {
-      console.log(this.game.possibleMoves[moveIndex]);
-    }
-  };
-
-  Gameplay.prototype.toggleDebug = function() {
-    var debugPanels = document.getElementsByClassName("pdebug");
-    if(debugPanels.length == 1) {
-      if(debugPanels[0].style.display === "block") {
-        debugPanels[0].style.display = "none";
-      } else {
-        debugPanels[0].style.display = "block";
-      }
     }
   };
 
@@ -184,12 +145,6 @@ define([
         pileObj.addCard(cardObj);
       }
     }
-  };
-
-  Gameplay.prototype.onOrientationChange = function (scale, prevOrientation) {
-    console.log("Orientation change: Was [" + prevOrientation + "], now [" + scale.screenOrientation + "]. Window: [" + window.innerWidth + "x" +  window.innerHeight + "].");
-    document.getElementById("game-container").style.width = window.innerWidth;
-    document.getElementById("game-container").style.height = window.innerHeight;
   };
 
   Gameplay.prototype.resize = function(w, h) {
