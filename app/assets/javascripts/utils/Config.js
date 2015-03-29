@@ -4,7 +4,7 @@ define(function () {
   if(c === undefined) {
     throw "NoConfigurationException";
   }
-  var json = JSON.parse(c.innerText);
+  var json = JSON.parse(c.innerHTML);
   json.wsUrl = "ws://" + document.location.host + "/websocket";
   return json;
 });

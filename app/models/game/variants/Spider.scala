@@ -3,7 +3,9 @@ package models.game.variants
 import java.util.UUID
 
 import models.game._
-import models.game.pile.{Foundation, Tableau}
+import models.game.pile.actions.SelectCardActions
+import models.game.pile.constraints.Constraints
+import models.game.pile.{Stock, PileOptions, Foundation, Tableau}
 
 object Spider extends GameVariant.Description {
   override val key = "spider"
@@ -12,11 +14,24 @@ object Spider extends GameVariant.Description {
   override val inProgress = true
 }
 
-case class Spider(override val gameId: UUID, override val seed: Int, players: Seq[GamePlayer]) extends GameVariant(gameId, seed) {
+case class Spider(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Spider
 
+  private val drawPiles = Seq("tableau-1", "tableau-2", "tableau-3", "tableau-4", "tableau-5", "tableau-6", "tableau-7", "tableau-8", "tableau-9", "tableau-10")
+
+  val stockOptions = new PileOptions(
+    cardsShown = Some(1),
+    selectCardConstraint = Constraints.notEmpty,
+    selectCardAction = Some(SelectCardActions.drawToPiles(1, drawPiles, true))
+  )
+
+  val tableauOptions = Tableau.options.copy(
+    dragToConstraint = Constraints.lowerRank,
+    dragFromConstraint = Constraints.descendingSequenceSameSuit
+  )
+
   private val piles = List(
-    new Foundation("stock"),
+    new Stock("stock", stockOptions),
 
     new Foundation("foundation-1"),
     new Foundation("foundation-2"),
@@ -27,16 +42,16 @@ case class Spider(override val gameId: UUID, override val seed: Int, players: Se
     new Foundation("foundation-7"),
     new Foundation("foundation-8"),
 
-    new Tableau("tableau-1"),
-    new Tableau("tableau-2"),
-    new Tableau("tableau-3"),
-    new Tableau("tableau-4"),
-    new Tableau("tableau-5"),
-    new Tableau("tableau-6"),
-    new Tableau("tableau-7"),
-    new Tableau("tableau-8"),
-    new Tableau("tableau-9"),
-    new Tableau("tableau-10")
+    new Tableau("tableau-1", tableauOptions),
+    new Tableau("tableau-2", tableauOptions),
+    new Tableau("tableau-3", tableauOptions),
+    new Tableau("tableau-4", tableauOptions),
+    new Tableau("tableau-5", tableauOptions),
+    new Tableau("tableau-6", tableauOptions),
+    new Tableau("tableau-7", tableauOptions),
+    new Tableau("tableau-8", tableauOptions),
+    new Tableau("tableau-9", tableauOptions),
+    new Tableau("tableau-10", tableauOptions)
   )
 
   private val deck = Deck.shuffled(rng, 2)
@@ -71,7 +86,7 @@ case class Spider(override val gameId: UUID, override val seed: Int, players: Se
     )
   )
 
-  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, players, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(5), "tableau-1")

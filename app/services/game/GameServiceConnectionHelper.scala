@@ -8,7 +8,7 @@ import play.api.libs.concurrent.Akka
 
 trait GameServiceConnectionHelper { this: GameService =>
   protected def handleAddPlayer(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef) {
-    playerConnections.find(_.accountID == accountId) match {
+    playerConnections.find(_.accountId == accountId) match {
       case Some(p) =>
         p.connectionActor.foreach(_ ! Disconnected("Joined from another connection."))
         p.connectionId = Some(connectionId)
@@ -63,7 +63,7 @@ trait GameServiceConnectionHelper { this: GameService =>
   }
 
   protected def sendToPlayer(player: UUID, message: ResponseMessage): Unit = {
-    playerConnections.find(_.accountID == player).foreach { c =>
+    playerConnections.find(_.accountId == player).foreach { c =>
       c.connectionActor.foreach(_ ! message)
     }
     observerConnections.filter(o => o._2.isEmpty || o._2 == Some(player)).foreach { c =>

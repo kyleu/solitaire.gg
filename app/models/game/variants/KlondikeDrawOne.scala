@@ -10,6 +10,6 @@ object KlondikeDrawOne extends GameVariant.Description {
   override val body = "The standard Solitaire game, drawing one card at a time."
 }
 
-case class KlondikeDrawOne(override val gameId: UUID, override val seed: Int, players: Seq[GamePlayer]) extends KlondikeBase(gameId, seed, players, 1) {
+case class KlondikeDrawOne(override val gameId: UUID, override val seed: Int) extends KlondikeBase(gameId, seed, 1) {
   override val description = KlondikeDrawOne
 }

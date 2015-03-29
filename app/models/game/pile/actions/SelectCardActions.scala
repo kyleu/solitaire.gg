@@ -34,8 +34,10 @@ object SelectCardActions {
     }
   })
 
-  def drawToPile(cardsToDraw: Int, drawTo: String, turnFaceUp: Boolean) = SelectCardAction("draw-to-pile", (pile, card, gameState) => {
-    val tgt = gameState.pilesById(drawTo)
+  def drawToPile(cardsToDraw: Int, drawTo: String, turnFaceUp: Boolean) = drawToPiles(cardsToDraw, Seq(drawTo), turnFaceUp)
+
+  def drawToPiles(cardsToDraw: Int, drawTo: Seq[String], turnFaceUp: Boolean) = SelectCardAction("draw-to-piles", (pile, card, gameState) => drawTo.flatMap { p =>
+    val tgt = gameState.pilesById(p)
     (0 to (cardsToDraw - 1)).flatMap { i =>
       val topCard = pile.cards.lastOption
       topCard match {

@@ -4,10 +4,9 @@ import java.util.UUID
 
 import akka.actor.ActorRef
 import models._
-import models.game.GamePlayer
 import models.game.variants.GameVariant
 
-case class PlayerRecord(accountID: UUID, name: String, var connectionId: Option[UUID], var connectionActor: Option[ActorRef])
+case class PlayerRecord(accountId: UUID, name: String, var connectionId: Option[UUID], var connectionActor: Option[ActorRef])
 
 class GameService(val id: UUID, val variant: String, val seed: Int, private val initialPlayers: List[PlayerRecord]) extends GameServiceHelper {
   log.info("Started game [" + variant + "] for players [" + initialPlayers.map(_.name).mkString(", ") + "] with seed [" + seed + "].")
@@ -15,20 +14,21 @@ class GameService(val id: UUID, val variant: String, val seed: Int, private val 
   val playerConnections = collection.mutable.ArrayBuffer[PlayerRecord](initialPlayers: _*)
   val observerConnections = collection.mutable.ArrayBuffer.empty[(PlayerRecord, Option[UUID])]
 
-  val gameVariant = GameVariant(variant, id, seed, initialPlayers.map(p => GamePlayer(p.accountID, p.name)))
+  val gameVariant = GameVariant(variant, id, seed)
   val gameState = gameVariant.gameState
+
+  initialPlayers.foreach { p =>
+    gameState.addPlayer(p.accountId, p.name)
+  }
+
   val gameMessages = collection.mutable.ArrayBuffer.empty[GameMessage]
 
   override def preStart() {
     gameVariant.initialMoves()
 
-    val message = GameStarted(id, self)
     playerConnections.foreach { c =>
-      c.connectionActor.foreach(_ ! message)
-    }
-
-    playerConnections.foreach { c =>
-      c.connectionActor.foreach(_ ! GameJoined(id, gameState.view(c.accountID), possibleMoves(Some(c.accountID))))
+      c.connectionActor.foreach(_ ! GameStarted(id, self))
+      c.connectionActor.foreach(_ ! GameJoined(id, gameState.view(c.accountId), possibleMoves(Some(c.accountId))))
     }
   }
 

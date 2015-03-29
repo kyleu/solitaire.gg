@@ -11,19 +11,15 @@ case class GameState(
   variant: String,
   maxPlayers: Int,
   seed: Int,
-  var players: Seq[GamePlayer],
   deck: Deck,
   piles: Seq[Pile],
-  layouts: Seq[Layout]
+  layouts: Seq[Layout],
+  var players: Seq[GamePlayer] = Nil
 ) extends Logging {
 
   private val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
   val cardsById = collection.mutable.HashMap[UUID, Card]()
   val pilesById = piles.map(p => p.id -> p).toMap
-
-  for(p <- players) {
-    addPlayer(p.account, p.name)
-  }
 
   def addPlayer(accountId: UUID, name: String) = {
     players.find(_.account == accountId) match {

@@ -14,7 +14,7 @@ object Pyramid extends GameVariant.Description {
   override val body = "Build the bottom pile up or down regardless of suit. Ranking of cards is not continuous: an Ace may be built only on a 2, a King only on a Queen."
 }
 
-case class Pyramid(override val gameId: UUID, override val seed: Int, players: Seq[GamePlayer]) extends GameVariant(gameId, seed) {
+case class Pyramid(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Pyramid
 
   private val pileOptions = Waste.options.combine(
@@ -117,7 +117,7 @@ case class Pyramid(override val gameId: UUID, override val seed: Int, players: S
     )
   )
 
-  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, players, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     for(p <- gameState.piles) {

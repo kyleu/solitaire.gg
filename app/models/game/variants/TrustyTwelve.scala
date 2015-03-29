@@ -13,7 +13,7 @@ object TrustyTwelve extends GameVariant.Description {
   override val body = "Build the decks down, regardless of suit. Clicking the face down pile will deal cards to any empty spaces. Once you've dealt all the face down cards, you win."
 }
 
-case class TrustyTwelve(override val gameId: UUID, override val seed: Int, players: Seq[GamePlayer]) extends GameVariant(gameId, seed) {
+case class TrustyTwelve(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = TrustyTwelve
 
   val tableauOptions = Tableau.options.combine(
@@ -72,7 +72,7 @@ case class TrustyTwelve(override val gameId: UUID, override val seed: Int, playe
     )
   )
 
-  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, players, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, layouts)
 
   override def initialMoves() = {
     for(i <- 1 to 12) {

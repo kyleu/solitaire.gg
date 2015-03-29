@@ -9,6 +9,7 @@ case class Constraint(id: String, f: (Pile, Seq[Card], GameState) => Boolean, cl
 object Constraints {
   val never = new Constraint("never", (pile, cards, gameState) => false)
   val empty = Constraint("empty", (pile, cards, gameState) => pile.cards.isEmpty)
+  val notEmpty = Constraint("empty", (pile, cards, gameState) => pile.cards.nonEmpty)
 
   def allOf(id: String, constraints: Constraint*) = Constraint(id, (pile, cards, gameState) => {
     val results = constraints.map(_.f(pile, cards, gameState))
@@ -60,6 +61,21 @@ object Constraints {
       val totalValue = topCardRankValue + firstDraggedCardRankValue
       totalValue == target
     }
+  })
+
+  val descendingSequenceSameSuit = Constraint("descending", (pile, cards, gameState) => {
+    var priorCard: Option[Card] = None
+    var valid = true
+    for(card <- cards) {
+      if(priorCard.isDefined && priorCard.get.s != card.s) {
+        valid = false
+      }
+      if(priorCard.isDefined && priorCard.get.r.value != card.r.value - 1) {
+        valid = false
+      }
+      priorCard = Some(card)
+    }
+    valid
   })
 
   val klondikeDragFrom = Constraint("klondike", KlondikeConstraintLogic.dragFrom)

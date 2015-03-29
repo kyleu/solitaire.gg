@@ -32,6 +32,30 @@ define(['game/Rank'], function(Rank) {
       return valid;
     },
 
+    "descending": function(card) {
+      if(!card.faceUp) {
+        return false;
+      }
+      var cards = [];
+      for(var selectedIndex = card.pileIndex; selectedIndex < this.cards.length; selectedIndex++) {
+        cards.push(this.cards[selectedIndex]);
+      }
+      var valid = true;
+      var lastCard = null;
+      for(var c in cards) {
+        if(lastCard !== null) {
+          if(cards[c].suit !== lastCard.suit) {
+            valid = false;
+          }
+          if(cards[c].rank === Rank.ace || cards[c].rank.value != (lastCard.rank.value - 1)) {
+            valid = false;
+          }
+        }
+        lastCard = cards[c];
+      }
+      return valid;
+    },
+
     "piles-empty": function(card) {
       var options = this.options.dragFromOptions.piles.split(",");
       for(var pileIndex in this.game.piles) {
