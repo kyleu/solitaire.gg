@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models.game.Rank.King
 import models.game._
-import models.game.pile.actions.SelectCardActions
+import models.game.pile.actions.{DragToActions, SelectCardActions}
 import models.game.pile.constraints._
 import models.game.pile._
 
@@ -21,7 +21,8 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.total(13, aceHigh = false)),
     selectCardConstraint = Some(Constraints.specificRank(King)),
-    selectCardAction = Some(SelectCardActions.remove)
+    selectCardAction = Some(SelectCardActions.remove),
+    dragToAction = Some(DragToActions.remove)
   )
 
   private def pileOptionsFor(emptyPiles: String*) = {

@@ -1,7 +1,7 @@
 package models.game.pile
 
 import models.ResponseMessage
-import models.game.pile.actions.{SelectPileActions, SelectCardActions}
+import models.game.pile.actions.{DragToActions, SelectPileActions, SelectCardActions}
 import models.game.{GameState, Card}
 import utils.Logging
 
@@ -33,6 +33,7 @@ case class Pile(id: String, behavior: String, options: PileOptions, cards: colle
 
   def onSelectCard(card: Card, gameState: GameState): Seq[ResponseMessage] = options.selectCardAction.getOrElse(SelectCardActions.none).f(this, card, gameState)
   def onSelectPile(gameState: GameState): Seq[ResponseMessage] = options.selectPileAction.getOrElse(SelectPileActions.none).f(this, gameState)
+  def onDragTo(src: Pile, cards: Seq[Card], gameState: GameState) = options.dragToAction.getOrElse(DragToActions.moveCards).f(src, cards, this, gameState)
 
   override def toString: String = id + ": " + cards.map(_.toString).mkString(", ")
 }

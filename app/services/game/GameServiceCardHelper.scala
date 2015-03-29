@@ -53,20 +53,7 @@ trait GameServiceCardHelper { this: GameService =>
 
     if(sourcePile.canDragFrom(cards, gameState)) {
       if(targetPile.canDragTo(cards, gameState)) {
-        val messages = if(variant == "nestor" || variant == "pyramid") {
-          cards.flatMap { card =>
-            sourcePile.removeCard(card)
-            val targetCard = targetPile.cards.last
-            targetPile.removeCard(targetCard)
-            Seq(CardRemoved(card.id), CardRemoved(targetCard.id))
-          }
-        } else {
-          cards.map { card =>
-            sourcePile.removeCard(card)
-            targetPile.addCard(card)
-            CardMoved(card.id, source, target)
-          }
-        }
+        val messages = targetPile.onDragTo(sourcePile, cards, gameState)
 
         sendToPlayer(accountId, messages)
         if(!checkWinCondition()) {
