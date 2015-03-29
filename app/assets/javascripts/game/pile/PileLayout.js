@@ -1,4 +1,4 @@
-define(['game/Tweens'], function (Tweens) {
+define(['game/helpers/Tweens'], function (Tweens) {
   "use strict";
 
   function redraw(pile) {

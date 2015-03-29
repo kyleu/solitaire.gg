@@ -1,4 +1,4 @@
-define(['game/Rank', 'game/Suit', 'game/Tweens'], function (Rank, Suit, Tweens) {
+define(['game/Rank', 'game/Suit', 'game/helpers/Tweens'], function (Rank, Suit, Tweens) {
   "use strict";
 
   function canSelectCard(card) {

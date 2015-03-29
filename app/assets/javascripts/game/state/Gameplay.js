@@ -1,7 +1,8 @@
 define([
-  'utils/Config', 'game/Rank', 'game/Suit', 'game/Card', 'game/pile/Pile', 'game/pile/PileHelpers',
-  'game/helpers/Display', 'game/helpers/Keyboard', 'game/Playmat', 'game/state/GameState'
-], function (cfg, Rank, Suit, Card, Pile, PileHelpers, Display, Keyboard, Playmat, GameState) {
+  'utils/Config', 'game/Rank', 'game/Suit', 'game/Card', 'game/pile/Pile',
+  'game/helpers/Display', 'game/helpers/Keyboard', 'game/helpers/Tweens',
+  'game/Playmat', 'game/state/GameState'
+], function (cfg, Rank, Suit, Card, Pile, Display, Keyboard, Tweens, Playmat, GameState) {
   "use strict";
 
   function Gameplay(game) {
@@ -91,7 +92,7 @@ define([
       case "CardRemoved":
         var removedCard = this.game.cards[v.card];
         removedCard.pile.removeCard(removedCard);
-        PileHelpers.tweenRemove(removedCard);
+        Tweens.tweenRemove(removedCard);
         break;
       case "CardMoved":
         var movedCard = this.game.cards[v.card];
