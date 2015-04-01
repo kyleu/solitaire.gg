@@ -2,7 +2,7 @@ package services.game
 
 import java.util.UUID
 
-import models.{ResponseMessage, GameMessage}
+import models.ResponseMessage
 
 case class UndoService() {
   private val undoQueue = collection.mutable.ArrayBuffer.empty[ResponseMessage]

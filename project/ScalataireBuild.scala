@@ -15,6 +15,10 @@ import sbtbuildinfo.Plugin._
 
 import play.Play.autoImport._
 
+import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
+import net.virtualvoid.sbt.graph.Plugin.graphSettings
+import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, defaultScalariformSettings}
+
 object ScalataireBuild extends Build with UniversalKeys {
   val projectId = "scalataire"
 
@@ -78,11 +82,23 @@ object ScalataireBuild extends Build with UniversalKeys {
         dtf.format(new java.util.Date())
       }
     ),
-    buildInfoPackage := "utils"
+    buildInfoPackage := "utils",
+
+    // code quality
+    scapegoatConsoleOutput := false,
+    scapegoatIgnoredFiles := Seq(".*/routes_routing.scala", ".*/routes_reverseRouting.scala", ".*\\.template\\.scala"),
+    scapegoatDisabledInspections := Seq("DuplicateImport"),
+    ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
 
   lazy val root = Project(
     id = projectId,
     base = file(".")
-  ).enablePlugins(SbtWeb).enablePlugins(play.PlayScala).settings(buildInfoSettings: _*).settings(serverSettings: _*)
+  )
+  .enablePlugins(SbtWeb)
+  .enablePlugins(play.PlayScala)
+  .settings(buildInfoSettings: _*)
+  .settings(serverSettings: _*)
+  .settings(graphSettings: _*)
+  .settings(defaultScalariformSettings: _*)
 }
