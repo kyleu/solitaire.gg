@@ -2,7 +2,7 @@ package services.game
 
 import java.util.UUID
 
-import akka.actor.{PoisonPill, ActorRef}
+import akka.actor.{ PoisonPill, ActorRef }
 import models._
 import play.api.libs.concurrent.Akka
 
@@ -55,7 +55,7 @@ trait GameServiceConnectionHelper { this: GameService =>
   }
 
   protected def handleStopGameIfEmpty() {
-    if(playerConnections.isEmpty && observerConnections.isEmpty) {
+    if (playerConnections.isEmpty && observerConnections.isEmpty) {
       log.info("Stopping empty game [" + id + "] after timeout.")
       context.parent ! GameStopped(id)
       self ! PoisonPill
@@ -67,16 +67,16 @@ trait GameServiceConnectionHelper { this: GameService =>
       c.connectionActor.foreach(_ ! message)
     }
     observerConnections.filter(o => o._2.isEmpty || o._2 == Some(player)).foreach { c =>
-      if(c._2.isEmpty || c._2.get == player) {
+      if (c._2.isEmpty || c._2.get == player) {
         c._1.connectionActor.foreach(_ ! message)
       }
     }
   }
 
   protected def sendToPlayer(player: UUID, messages: Seq[ResponseMessage]): Unit = {
-    if(messages.isEmpty) {
+    if (messages.isEmpty) {
       // noop
-    } else if(messages.tail.isEmpty) {
+    } else if (messages.tail.isEmpty) {
       sendToPlayer(player, messages.head)
     } else {
       sendToPlayer(player, MessageSet(messages))
@@ -93,9 +93,9 @@ trait GameServiceConnectionHelper { this: GameService =>
   }
 
   protected def sendToAll(messages: Seq[ResponseMessage]): Unit = {
-    if(messages.isEmpty) {
+    if (messages.isEmpty) {
       // noop
-    } else if(messages.tail.isEmpty) {
+    } else if (messages.tail.isEmpty) {
       sendToAll(messages.head)
     } else {
       sendToAll(MessageSet(messages))

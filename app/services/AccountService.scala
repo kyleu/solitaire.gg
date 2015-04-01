@@ -18,7 +18,7 @@ object AccountService {
   }
 
   def getAccount(map: Map[String, String]) = {
-    if(map.get("account").isDefined && map.get("name").isDefined) {
+    if (map.get("account").isDefined && map.get("name").isDefined) {
       UUID.fromString(map("account")) -> map("name")
     } else {
       val name = "guest-" + Math.abs(Random.nextInt(100000))

@@ -2,7 +2,7 @@ package models
 
 import java.util.UUID
 
-import models.game.{Card, GameState}
+import models.game.{ Card, GameState }
 
 sealed trait ResponseMessage
 

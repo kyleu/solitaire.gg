@@ -5,7 +5,7 @@ import java.util.UUID
 import models.game._
 import models.game.pile.actions.SelectCardActions
 import models.game.pile.constraints._
-import models.game.pile.{Stock, Foundation, Tableau}
+import models.game.pile.{ Stock, Foundation, Tableau }
 
 object Golf extends GameVariant.Description {
   override val key = "golf"

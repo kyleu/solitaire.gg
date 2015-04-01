@@ -10,7 +10,7 @@ import play.api.libs.concurrent.Akka
 import play.api.Play.current
 import utils.Logging
 
-import scala.util.{Failure, Success, Try}
+import scala.util.{ Failure, Success, Try }
 
 object TestService extends Logging {
   case class TestResult(content: String, children: Seq[TestResult] = Nil) {
@@ -74,11 +74,11 @@ object TestService extends Logging {
     val results = Seq({
       conn ! StartGame(variant)
       val gameJoined = testProbe.expectMsgClass(classOf[GameJoined])
-      TestResult("Started [" + variant + "] game [" + gameJoined.id + "].", if(verbose) { gameJoined.state.toStrings.map(x => TestResult(x)) } else { Nil })
+      TestResult("Started [" + variant + "] game [" + gameJoined.id + "].", if (verbose) { gameJoined.state.toStrings.map(x => TestResult(x)) } else { Nil })
     }, {
       conn ! GetPossibleMoves
       val moves = testProbe.expectMsgClass(classOf[PossibleMoves])
-      TestResult("Received [" + moves.moves.size + "] possible moves.", if(verbose) { moves.moves.map(x => TestResult(x.toString)) } else { Nil })
+      TestResult("Received [" + moves.moves.size + "] possible moves.", if (verbose) { moves.moves.map(x => TestResult(x.toString)) } else { Nil })
     })
     conn ! PoisonPill
     TestResult(variant, results)
@@ -99,21 +99,21 @@ object TestService extends Logging {
     }, {
       conn ! GetPossibleMoves
       moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
-      TestResult("Received [" + moves.size + "] possible moves.", moves.map( x => TestResult(x.toString)))
+      TestResult("Received [" + moves.size + "] possible moves.", moves.map(x => TestResult(x.toString)))
     }, {
       val action = MoveCards(moves.find(_.sourcePile == "tableau-1").get.cards, "tableau-1", "tableau-6")
       conn ! action
       val cardMoved = testProbe.expectMsgClass(classOf[CardMoved])
       println(cardMoved)
       moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
-      TestResult("Performed [" + action + "] with result [" + cardMoved + "], received [" + moves.size + "] possible moves.", moves.map( x => TestResult(x.toString)))
+      TestResult("Performed [" + action + "] with result [" + cardMoved + "], received [" + moves.size + "] possible moves.", moves.map(x => TestResult(x.toString)))
     }, {
       val action = MoveCards(moves.find(_.sourcePile == "tableau-6").get.cards, "tableau-6", "tableau-4")
       conn ! action
       val cardMoved = testProbe.expectMsgClass(classOf[MessageSet])
       println(cardMoved)
       moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
-      TestResult("Performed [" + action + "] with result [" + cardMoved + "], received [" + moves.size + "] possible moves.", moves.map( x => TestResult(x.toString)))
+      TestResult("Performed [" + action + "] with result [" + cardMoved + "], received [" + moves.size + "] possible moves.", moves.map(x => TestResult(x.toString)))
     })
     conn ! PoisonPill
     TestResult("known-game", results)

@@ -5,7 +5,7 @@ import java.util.UUID
 import models.game._
 import models.game.pile.actions.SelectCardActions
 import models.game.pile.constraints.Constraints
-import models.game.pile.{Stock, PileOptions, Foundation, Tableau}
+import models.game.pile.{ Stock, PileOptions, Foundation, Tableau }
 
 object Spider extends GameVariant.Description {
   override val key = "spider"

@@ -6,7 +6,7 @@ import akka.pattern.ask
 import akka.util.Timeout
 import models._
 import play.api.mvc._
-import services.{TestService, ActorSupervisor}
+import services.{ TestService, ActorSupervisor }
 import scala.concurrent.duration._
 
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -51,7 +51,7 @@ object AdminController extends Controller {
 
   def observeRandomGame() = Action.async { implicit request =>
     (ActorSupervisor.instance ask GetSystemStatus).map {
-      case ss: SystemStatus => if(ss.games.isEmpty) {
+      case ss: SystemStatus => if (ss.games.isEmpty) {
         Ok("No games available.")
       } else {
         val gameId = ss.games(new Random().nextInt(ss.games.length))._1

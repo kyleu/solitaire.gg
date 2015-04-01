@@ -3,13 +3,13 @@ package utils.metrics
 import java.net.InetSocketAddress
 import java.util.concurrent.TimeUnit
 
-import com.codahale.metrics.graphite.{Graphite, GraphiteReporter}
-import com.codahale.metrics.{MetricFilter, JmxReporter}
+import com.codahale.metrics.graphite.{ Graphite, GraphiteReporter }
+import com.codahale.metrics.{ MetricFilter, JmxReporter }
 import com.codahale.metrics.servlets.AdminServlet
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.server.nio.SelectChannelConnector
 import org.eclipse.jetty.servlet.ServletContextHandler
-import utils.{Logging, Config}
+import utils.{ Logging, Config }
 
 class MetricsServletActor extends InstrumentedActor with Logging {
   private var jmxReporter: Option[JmxReporter] = None
@@ -17,27 +17,27 @@ class MetricsServletActor extends InstrumentedActor with Logging {
   private var httpServer: Option[Server] = None
 
   override def preStart() {
-    if(Config.jmxEnabled) {
+    if (Config.jmxEnabled) {
       log.info("Reporting metrics over JMX.")
       jmxReporter = Some(JmxReporter.forRegistry(Instrumented.metricRegistry).build())
       jmxReporter.get.start()
     }
 
-    if(Config.graphiteEnabled) {
+    if (Config.graphiteEnabled) {
       log.info("Starting Graphite reporter for [" + Config.graphiteServer + ":" + Config.graphitePort + "].")
       val graphiteServer = new Graphite(new InetSocketAddress(Config.graphiteServer, Config.graphitePort))
       graphiteReporter = Some(
         GraphiteReporter.forRegistry(Instrumented.metricRegistry)
-        .prefixedWith("web1.example.com")
-        .convertRatesTo(TimeUnit.SECONDS)
-        .convertDurationsTo(TimeUnit.MILLISECONDS)
-        .filter(MetricFilter.ALL)
-        .build(graphiteServer)
+          .prefixedWith("web1.example.com")
+          .convertRatesTo(TimeUnit.SECONDS)
+          .convertDurationsTo(TimeUnit.MILLISECONDS)
+          .filter(MetricFilter.ALL)
+          .build(graphiteServer)
       )
       graphiteReporter.get.start(1, TimeUnit.MINUTES)
     }
 
-    if(Config.servletEnabled) {
+    if (Config.servletEnabled) {
       log.info("Starting metrics servlet at [http://0.0.0.0:" + Config.servletPort + "/].")
       httpServer = Some(createJettyServer())
       httpServer.get.start()

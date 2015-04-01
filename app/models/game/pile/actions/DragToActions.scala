@@ -1,8 +1,8 @@
 package models.game.pile.actions
 
 import models.game.pile.Pile
-import models.game.{Card, GameState}
-import models.{CardRemoved, CardMoved, ResponseMessage}
+import models.game.{ Card, GameState }
+import models.{ CardRemoved, CardMoved, ResponseMessage }
 
 case class DragToAction(id: String, f: (Pile, Seq[Card], Pile, GameState) => Seq[ResponseMessage])
 

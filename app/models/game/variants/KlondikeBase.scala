@@ -3,7 +3,7 @@ package models.game.variants
 import java.util.UUID
 
 import models.game._
-import models.game.pile.{Waste, Tableau, Stock, Foundation}
+import models.game.pile.{ Waste, Tableau, Stock, Foundation }
 
 abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, cardsToDraw: Int) extends GameVariant(gameId, seed) {
   private val piles = List(

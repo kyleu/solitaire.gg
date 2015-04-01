@@ -1,6 +1,6 @@
 package models.game.pile
 
-import models.game.pile.actions.{SelectPileActions, SelectCardActions}
+import models.game.pile.actions.{ SelectPileActions, SelectCardActions }
 import models.game.pile.constraints.Constraints
 
 object Stock {

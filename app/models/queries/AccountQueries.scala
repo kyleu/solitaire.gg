@@ -2,7 +2,7 @@ package models.queries
 
 import java.util.UUID
 
-import com.simple.jdub.{FlatSingleRowQuery, Statement, Row}
+import com.simple.jdub.{ FlatSingleRowQuery, Statement, Row }
 import models.Account
 import org.joda.time.LocalDateTime
 

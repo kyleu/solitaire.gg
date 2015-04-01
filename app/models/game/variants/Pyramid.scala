@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models.game.Rank.King
 import models.game._
-import models.game.pile.actions.{DragToActions, SelectCardActions}
+import models.game.pile.actions.{ DragToActions, SelectCardActions }
 import models.game.pile.constraints._
 import models.game.pile._
 
@@ -121,8 +121,8 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
   override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, layouts)
 
   override def initialMoves() = {
-    for(p <- gameState.piles) {
-      if(p.id.startsWith("pile-")) {
+    for (p <- gameState.piles) {
+      if (p.id.startsWith("pile-")) {
         gameState.addCards(deck.getCards(1, turnFaceUp = true), p.id, reveal = true)
       }
     }

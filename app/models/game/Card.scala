@@ -12,6 +12,6 @@ case class Card(id: UUID = UUID.randomUUID, r: Rank, s: Suit, var u: Boolean) ex
   }
 
   override def toString = {
-    "" + this.r.toChar + this.s.toChar + { if(u) { "+" } else { "-" } } + ": " + id.toString.substring(0, 8)
+    "" + this.r.toChar + this.s.toChar + { if (u) { "+" } else { "-" } } + ": " + id.toString.substring(0, 8)
   }
 }

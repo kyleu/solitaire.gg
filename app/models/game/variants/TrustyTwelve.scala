@@ -5,7 +5,7 @@ import java.util.UUID
 import models.game._
 import models.game.pile.actions.SelectCardActions
 import models.game.pile.constraints.Constraints
-import models.game.pile.{Stock, Tableau}
+import models.game.pile.{ Stock, Tableau }
 
 object TrustyTwelve extends GameVariant.Description {
   override val key = "trusty-twelve"
@@ -75,7 +75,7 @@ case class TrustyTwelve(override val gameId: UUID, override val seed: Int) exten
   override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, layouts)
 
   override def initialMoves() = {
-    for(i <- 1 to 12) {
+    for (i <- 1 to 12) {
       gameState.addCards(deck.getCards(1, turnFaceUp = true), "tableau-" + i, reveal = true)
     }
     gameState.addCards(deck.getCards(), "stock")

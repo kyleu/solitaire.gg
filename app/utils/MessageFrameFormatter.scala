@@ -1,6 +1,6 @@
 package utils
 
-import models.{MessageSet, MalformedRequest, RequestMessage, ResponseMessage}
+import models.{ MessageSet, MalformedRequest, RequestMessage, ResponseMessage }
 import play.api.libs.json._
 import play.api.mvc.WebSocket.FrameFormatter
 
@@ -11,7 +11,7 @@ object MessageFrameFormatter {
   private def requestToJson(r: RequestMessage): JsValue = throw new IllegalArgumentException("Attempted to serialize RequestMessage [" + r + "] on server.")
   private def requestFromJson(json: JsValue): RequestMessage = Json.fromJson[RequestMessage](json) match {
     case rm: JsSuccess[RequestMessage @unchecked] => rm.get
-    case e: JsError => MalformedRequest(e.errors.map(x =>  x._1.toString + ": [" + x._2.mkString(" :: ")).mkString(", "), Json.stringify(json))
+    case e: JsError => MalformedRequest(e.errors.map(x => x._1.toString + ": [" + x._2.mkString(" :: ")).mkString(", "), Json.stringify(json))
   }
 
   private def responseToJson(r: ResponseMessage): JsValue = {
@@ -25,7 +25,7 @@ object MessageFrameFormatter {
   private def responseFromJson(json: JsValue): ResponseMessage = throw new IllegalArgumentException("Attempted to deserialize ResponseMessage [" + json + "] on server.")
 
   private val jsValueFrame: FrameFormatter[JsValue] = {
-    val toStr = if(Config.debug) { Json.prettyPrint _ } else { Json.stringify _ }
+    val toStr = if (Config.debug) { Json.prettyPrint _ } else { Json.stringify _ }
     FrameFormatter.stringFrame.transform(toStr, { (s: String) =>
       val ret = try {
         Json.parse(s)

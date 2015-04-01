@@ -12,7 +12,7 @@ object Deck {
   }
 
   def shuffled(random: Random, numDecks: Int = 1) = {
-    val cards = (0 to numDecks - 1).flatMap( i => fresh().cards)
+    val cards = (0 to numDecks - 1).flatMap(i => fresh().cards)
     Deck(random.shuffle(cards))
   }
 }
@@ -20,7 +20,7 @@ object Deck {
 case class Deck(var cards: Seq[Card]) {
   def getCards(numCards: Int = this.cards.size, turnFaceUp: Boolean = false) = {
     val ret = this.cards.take(numCards)
-    if(turnFaceUp) {
+    if (turnFaceUp) {
       ret.foreach { c =>
         c.u = true
       }
@@ -32,9 +32,9 @@ case class Deck(var cards: Seq[Card]) {
   def getCardsUniqueRanks(numCards: Int, turnFaceUp: Boolean = false) = {
     var ret = Seq.empty[Card]
     var enough = false
-    while(!enough) {
+    while (!enough) {
       val c = cards.head
-      if(ret.exists(_.r == c.r)) {
+      if (ret.exists(_.r == c.r)) {
         cards = cards.tail :+ c
       } else {
         cards = cards.tail
@@ -42,7 +42,7 @@ case class Deck(var cards: Seq[Card]) {
       }
       enough = ret.length == numCards
     }
-    if(turnFaceUp) {
+    if (turnFaceUp) {
       ret.foreach { c =>
         c.u = true
       }

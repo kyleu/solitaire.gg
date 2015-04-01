@@ -1,6 +1,6 @@
 package models.queries
 
-import com.simple.jdub.{Row, SingleRowQuery, Statement}
+import com.simple.jdub.{ Row, SingleRowQuery, Statement }
 
 object DdlQueries {
   val tables = Map("accounts" -> CreateAccountTable, "games" -> CreateGameTable)

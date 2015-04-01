@@ -3,17 +3,17 @@ package services
 import java.util.UUID
 
 import akka.actor.SupervisorStrategy.Stop
-import akka.actor.{ActorRef, OneForOneStrategy, Props, SupervisorStrategy}
+import akka.actor.{ ActorRef, OneForOneStrategy, Props, SupervisorStrategy }
 import models._
 import play.api.libs.concurrent.Akka
-import services.game.{PlayerRecord, GameService}
+import services.game.{ PlayerRecord, GameService }
 import utils.Logging
-import utils.metrics.{InstrumentedActor, MetricsServletActor}
+import utils.metrics.{ InstrumentedActor, MetricsServletActor }
 
 import scala.util.Random
 
 object ActorSupervisor extends Logging {
-  lazy val instance =  {
+  lazy val instance = {
     import play.api.Play.current
     val instanceRef = Akka.system.actorOf(Props[ActorSupervisor], "supervisor")
     log.info("Actor Supervisor [" + instanceRef.path.toString + "] started for [" + utils.Config.projectId + "].")
@@ -25,7 +25,7 @@ object ActorSupervisor extends Logging {
 }
 
 private class ActorSupervisor extends InstrumentedActor with Logging {
-  import services.ActorSupervisor.{GameRecord, ConnectionRecord}
+  import services.ActorSupervisor.{ GameRecord, ConnectionRecord }
 
   private def masterRng = new Random()
   private val connections = collection.mutable.HashMap.empty[UUID, ConnectionRecord]
@@ -102,7 +102,7 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
   }
 
   private def handleConnectionGameObserve(gameId: UUID, connectionId: UUID, as: Option[UUID]) = {
-    val game = if(gameId == UUID.fromString("00000000-0000-0000-0000-000000000000")) {
+    val game = if (gameId == UUID.fromString("00000000-0000-0000-0000-000000000000")) {
       games.headOption.map(_._2)
     } else {
       games.get(gameId)

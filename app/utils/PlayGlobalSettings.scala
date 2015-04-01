@@ -3,11 +3,11 @@ package utils
 import java.util.TimeZone
 
 import org.joda.time.DateTimeZone
-import play.api.mvc.{RequestHeader, Results, WithFilters}
-import play.api.{Application, GlobalSettings, Logger}
+import play.api.mvc.{ RequestHeader, Results, WithFilters }
+import play.api.{ Application, GlobalSettings, Logger }
 import play.filters.gzip.GzipFilter
 import play.filters.headers.SecurityHeadersFilter
-import services.database.{DatabaseConnection, DatabaseSchema}
+import services.database.{ DatabaseConnection, DatabaseSchema }
 
 import scala.concurrent.Future
 
@@ -39,7 +39,7 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeaders
   )
 
   override def onRouteRequest(request: RequestHeader) = {
-    if(!request.path.startsWith("/assets")) {
+    if (!request.path.startsWith("/assets")) {
       log.info("Request from [" + request.remoteAddress + "]: " + request.toString)
     }
     super.onRouteRequest(request)

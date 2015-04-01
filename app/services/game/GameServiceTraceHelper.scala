@@ -18,9 +18,9 @@ trait GameServiceTraceHelper { this: GameService =>
         x.connectionId match {
           case Some(connId) =>
             "Connection ID: " + connId + "<br>" +
-            "Account ID:" + x.accountId + "<br />" +
-            " <a class=\"btn btn-default\" href=\"" + connUrl(connId) + "\" class=\"trace-link\">Trace Connection</a>" +
-            " <a class=\"btn btn-default\" href=\"" + controllers.routes.AdminController.observeGameAs(id, x.accountId).url + "\" target=\"_blank\">Observe game as [" + x.name + "]</a>"
+              "Account ID:" + x.accountId + "<br />" +
+              " <a class=\"btn btn-default\" href=\"" + connUrl(connId) + "\" class=\"trace-link\">Trace Connection</a>" +
+              " <a class=\"btn btn-default\" href=\"" + controllers.routes.AdminController.observeGameAs(id, x.accountId).url + "\" target=\"_blank\">Observe game as [" + x.name + "]</a>"
           case None => x.accountId + " (Disconnected)"
         }
       }.mkString("<br/>\n"),

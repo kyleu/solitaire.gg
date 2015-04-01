@@ -2,7 +2,7 @@ package models.game.variants
 
 import java.util.UUID
 
-import models.game.{GamePlayer, GameState}
+import models.game.{ GamePlayer, GameState }
 
 import scala.util.Random
 
@@ -12,7 +12,7 @@ object GameVariant {
     val name: String
     val body: String
     val maxPlayers: Int = 1
-    val inProgress: Boolean  = false
+    val inProgress: Boolean = false
   }
 
   def apply(variant: String, gameId: UUID, seed: Int) = variant match {

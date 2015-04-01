@@ -5,7 +5,7 @@ sealed trait Rank extends Ordered[Rank] {
   def toChar: Char
 
   override def compare(that: Rank) = this.value - that.value
-  def compareAceLow(that: Rank) = {if(this == Rank.Ace) { 1 } else { this.value }} - {if(that == Rank.Ace) { 1 } else { that.value }}
+  def compareAceLow(that: Rank) = { if (this == Rank.Ace) { 1 } else { this.value } } - { if (that == Rank.Ace) { 1 } else { that.value } }
 }
 
 object Rank {

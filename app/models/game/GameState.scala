@@ -7,14 +7,14 @@ import models.game.pile.Pile
 import utils.Logging
 
 case class GameState(
-  gameId: UUID,
-  variant: String,
-  maxPlayers: Int,
-  seed: Int,
-  deck: Deck,
-  piles: Seq[Pile],
-  layouts: Seq[Layout],
-  var players: Seq[GamePlayer] = Nil
+    gameId: UUID,
+    variant: String,
+    maxPlayers: Int,
+    seed: Int,
+    deck: Deck,
+    piles: Seq[Pile],
+    layouts: Seq[Layout],
+    var players: Seq[GamePlayer] = Nil
 ) extends Logging {
 
   private val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
@@ -25,11 +25,11 @@ case class GameState(
     players.find(_.account == accountId) match {
       case Some(p) =>
         log.info("Reconnecting to game [" + gameId + "] from account [" + name + ": " + accountId + "]")
-        // TODO Reconnect
+      // TODO Reconnect
       case None =>
         log.info("Adding player [" + name + ": " + accountId + "] to game [" + gameId + "].")
         val playerIndex = playerKnownIds.size
-        if(playerIndex == maxPlayers) {
+        if (playerIndex == maxPlayers) {
           throw new IllegalArgumentException("Too many players.")
         }
         players = players :+ GamePlayer(accountId, name)
@@ -40,7 +40,7 @@ case class GameState(
   def addCard(card: Card, pile: String, reveal: Boolean = false) {
     this.cardsById(card.id) = card
     this.pilesById(pile).addCard(card)
-    if(reveal) {
+    if (reveal) {
       revealCardToAll(card)
     }
   }
@@ -53,7 +53,7 @@ case class GameState(
 
   def revealCardToPlayer(card: Card, player: UUID) = {
     val existing = playerKnownIds(player)
-    if(!existing.contains(card.id)) {
+    if (!existing.contains(card.id)) {
       existing += card.id
       Some(CardRevealed(card))
     } else {
@@ -64,8 +64,8 @@ case class GameState(
   def view(accountId: UUID) = {
     val knownCards = playerKnownIds(accountId)
     this.copy(
-      deck = deck.copy(cards = deck.cards.map( c => if(knownCards.contains(c.id)) { c } else { c.copy( r = Rank.Unknown, s = Suit.Unknown ) })),
-      piles = piles.map( p => p.copy( cards = p.cards.map( c => if(knownCards.contains(c.id)) { c } else { c.copy( r = Rank.Unknown, s = Suit.Unknown ) })) )
+      deck = deck.copy(cards = deck.cards.map(c => if (knownCards.contains(c.id)) { c } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) })),
+      piles = piles.map(p => p.copy(cards = p.cards.map(c => if (knownCards.contains(c.id)) { c } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) })))
     )
   }
 
@@ -76,5 +76,5 @@ case class GameState(
     "Players: " + players.map(x => x.account + " (" + x.name + ")").mkString(", "),
     "Deck: " + deck.cards.toString,
     piles.size + " Piles: "
-  ) ++ piles.map( p => p.toString)
+  ) ++ piles.map(p => p.toString)
 }

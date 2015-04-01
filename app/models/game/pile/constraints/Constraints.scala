@@ -2,7 +2,7 @@ package models.game.pile.constraints
 
 import models.game.Rank._
 import models.game.pile.Pile
-import models.game.{Rank, Card, GameState}
+import models.game.{ Rank, Card, GameState }
 
 case class Constraint(id: String, f: (Pile, Seq[Card], GameState) => Boolean, clientOptions: Option[Map[String, String]] = None)
 
@@ -35,7 +35,7 @@ object Constraints {
         case Two => firstDraggedCardRank == Ace
         case _ => c.r.value == firstDraggedCardRank.value + 1
       }
-      case None =>  false
+      case None => false
     }
   })
 
@@ -51,13 +51,13 @@ object Constraints {
   })
 
   def total(target: Int, aceHigh: Boolean = true) = Constraint("total-" + target, (pile, cards, gameState) => {
-    if(pile.cards.isEmpty) {
+    if (pile.cards.isEmpty) {
       false
     } else {
       val topCardRank = pile.cards.last.r
-      val topCardRankValue = if(topCardRank == Ace && !aceHigh) { 1 } else { topCardRank.value }
+      val topCardRankValue = if (topCardRank == Ace && !aceHigh) { 1 } else { topCardRank.value }
       val firstDraggedCardRank = cards.head.r
-      val firstDraggedCardRankValue = if(firstDraggedCardRank == Ace && !aceHigh) { 1 } else { firstDraggedCardRank.value }
+      val firstDraggedCardRankValue = if (firstDraggedCardRank == Ace && !aceHigh) { 1 } else { firstDraggedCardRank.value }
       val totalValue = topCardRankValue + firstDraggedCardRankValue
       totalValue == target
     }
@@ -66,11 +66,11 @@ object Constraints {
   val descendingSequenceSameSuit = Constraint("descending", (pile, cards, gameState) => {
     var priorCard: Option[Card] = None
     var valid = true
-    for(card <- cards) {
-      if(priorCard.isDefined && priorCard.get.s != card.s) {
+    for (card <- cards) {
+      if (priorCard.isDefined && priorCard.get.s != card.s) {
         valid = false
       }
-      if(priorCard.isDefined && priorCard.get.r.value != card.r.value - 1) {
+      if (priorCard.isDefined && priorCard.get.r.value != card.r.value - 1) {
         valid = false
       }
       priorCard = Some(card)
@@ -84,7 +84,7 @@ object Constraints {
   val klondikeSelectCard = Constraint("klondike", KlondikeConstraintLogic.selectCard)
 
   val alternatingRankToFoundation = Constraint("alternating-rank", (pile, cards, gameState) => {
-    if(cards.tail.nonEmpty || !topCardOnly.f(pile, cards, gameState)) {
+    if (cards.tail.nonEmpty || !topCardOnly.f(pile, cards, gameState)) {
       false
     } else {
       val foundation = gameState.pilesById("foundation")
@@ -98,11 +98,10 @@ object Constraints {
     }
   })
 
-
   def pilesEmpty(piles: String*) = Constraint("piles-empty", (pile, cards, gameState) => {
     var ret = true
-    for(p <- piles) {
-      if(gameState.pilesById(p).cards.nonEmpty) {
+    for (p <- piles) {
+      if (gameState.pilesById(p).cards.nonEmpty) {
         ret = false
       }
     }

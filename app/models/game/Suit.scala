@@ -17,8 +17,6 @@ sealed trait Suit extends Ordered[Suit] {
 object Suit {
   val all = Seq(Hearts, Spades, Diamonds, Clubs)
 
-
-
   def fromChar(c: Char) = c match {
     case 'H' => Hearts
     case 'S' => Spades
@@ -57,5 +55,4 @@ object Suit {
     override val value = -1
   }
 }
-
 

@@ -1,8 +1,8 @@
 package models.game.pile.actions
 
-import models.{CardRemoved, CardRevealed, ResponseMessage, CardMoved}
+import models.{ CardRemoved, CardRevealed, ResponseMessage, CardMoved }
 import models.game.Rank._
-import models.game.{Rank, GameState, Card}
+import models.game.{ Rank, GameState, Card }
 import models.game.pile.Pile
 
 case class SelectCardAction(id: String, f: (Pile, Card, GameState) => Seq[ResponseMessage])
@@ -11,17 +11,17 @@ object SelectCardActions {
   val none = SelectCardAction("none", (pile, card, gameState) => Nil)
 
   val klondike = SelectCardAction("klondike", (pile, card, gameState) => {
-    if(!card.u) {
+    if (!card.u) {
       card.u = true
       Seq(CardRevealed(card))
     } else {
       val foundations = gameState.piles.filter(_.behavior == "foundation")
       val foundation = foundations.flatMap { f =>
-        if(f.cards.isEmpty && card.r == Rank.Ace) {
+        if (f.cards.isEmpty && card.r == Rank.Ace) {
           Some(f)
-        } else if(f.cards.lastOption.map(_.s) == Some(card.s) && f.cards.lastOption.map(_.r) == Some(Rank.Ace) && card.r == Rank.Two) {
+        } else if (f.cards.lastOption.map(_.s) == Some(card.s) && f.cards.lastOption.map(_.r) == Some(Rank.Ace) && card.r == Rank.Two) {
           Some(f)
-        } else if(f.cards.lastOption.map(_.s) == Some(card.s) && f.cards.lastOption.map(_.r.value) == Some(card.r.value - 1)) {
+        } else if (f.cards.lastOption.map(_.s) == Some(card.s) && f.cards.lastOption.map(_.r.value) == Some(card.r.value - 1)) {
           Some(f)
         } else {
           None
@@ -57,7 +57,7 @@ object SelectCardActions {
       case Two => selectedCardRank == Ace || selectedCardRank == Three
       case _ => topCardRank.value == selectedCardRank.value + 1 || topCardRank.value == selectedCardRank.value - 1
     }
-    if(shouldMove) {
+    if (shouldMove) {
       moveCard(card, pile, foundation, gameState)
     } else {
       Nil
@@ -67,7 +67,7 @@ object SelectCardActions {
   def drawToEmptyPiles(behavior: String) = SelectCardAction("draw-to-empty", (pile, card, gameState) => {
     val piles = gameState.piles.filter(_.behavior == behavior)
     piles.flatMap { p =>
-      if(p.cards.isEmpty) {
+      if (p.cards.isEmpty) {
         pile.cards.lastOption match {
           case Some(tc) => moveCard(tc, pile, p, gameState, turnFaceUp = true)
           case None => Nil
@@ -87,7 +87,7 @@ object SelectCardActions {
     src.removeCard(card)
     tgt.addCard(card)
     val msg = CardMoved(card.id, src.id, tgt.id, turnFaceUp = turnFaceUp)
-    if(turnFaceUp && !card.u) {
+    if (turnFaceUp && !card.u) {
       card.u = true
       val revealed = gameState.revealCardToAll(card)
       revealed :+ msg

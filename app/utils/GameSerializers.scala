@@ -1,13 +1,13 @@
 package utils
 
 import models.game._
-import models.game.pile.{ClientPileOptions, PileOptions, Pile}
+import models.game.pile.{ ClientPileOptions, PileOptions, Pile }
 import play.api.libs.json._
 
 object GameSerializers {
   implicit val rankReads = new Reads[Rank] {
     override def reads(json: JsValue): JsResult[Rank] = json match {
-      case JsString(s) => if(s.length == 1) {
+      case JsString(s) => if (s.length == 1) {
         JsSuccess(Rank.fromChar(s.head))
       } else {
         JsError("Invalid card suit value [" + s + "].")
@@ -21,7 +21,7 @@ object GameSerializers {
 
   implicit val suitReads = new Reads[Suit] {
     override def reads(json: JsValue): JsResult[Suit] = json match {
-      case JsString(s) => if(s.length == 1) {
+      case JsString(s) => if (s.length == 1) {
         JsSuccess(Suit.fromChar(s.head))
       } else {
         JsError("Invalid card suit value [" + s + "].")
