@@ -17,8 +17,6 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % "1.0.0")
 // Developer Plugins
 addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.5.2")
 
-addSbtPlugin("com.orrsella" % "sbt-sublime" % "1.0.11")
-
 addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "3.0.0")
 
 // Code Quality
