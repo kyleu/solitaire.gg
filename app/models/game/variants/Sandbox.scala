@@ -3,7 +3,7 @@ package models.game.variants
 import java.util.UUID
 
 import models.game._
-import models.game.pile.Tableau
+import models.game.pile.{ Pile, PileOptionsHelper }
 
 object Sandbox extends GameVariant.Description {
   override val key = "sandbox"
@@ -16,7 +16,7 @@ case class Sandbox(override val gameId: UUID, override val seed: Int) extends Ga
   override val description = Sandbox
 
   val piles = List(
-    new Tableau("sandbox-1")
+    new Pile("sandbox-1", "tableau", PileOptionsHelper.tableau)
   )
 
   val deck = Deck.fresh()

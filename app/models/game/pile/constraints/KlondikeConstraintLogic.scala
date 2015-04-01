@@ -11,9 +11,9 @@ object KlondikeConstraintLogic {
     var lastCard: Option[Card] = None
 
     for (c <- cards) {
-      if (lastCard.isDefined) {
-        if (c.s.color == lastCard.get.s.color) { valid = false }
-        if (c.r == Rank.Ace || c.r.value != (lastCard.get.r.value - 1)) { valid = false }
+      lastCard.foreach { lc =>
+        if (c.s.color == lc.s.color) { valid = false }
+        if (c.r == Rank.Ace || c.r.value != (lc.r.value - 1)) { valid = false }
       }
       lastCard = Some(c)
     }
@@ -21,24 +21,23 @@ object KlondikeConstraintLogic {
   }
 
   val foundationDragTo = (pile: Pile, cards: Seq[Card], gameState: GameState) => if (cards.length == 1) {
+    val firstCard = cards.headOption.getOrElse(throw new IllegalStateException())
     if (pile.cards.isEmpty) {
-      cards.head.r == Rank.Ace
-    } else if (pile.cards.last.s == cards.head.s && pile.cards.last.r == Rank.Ace && cards.head.r == Rank.Two) {
-      true
-    } else if (pile.cards.last.s == cards.head.s && pile.cards.last.r.value + 1 == cards.head.r.value) {
+      firstCard.r == Rank.Ace
+    } else if (pile.cards.last.s == firstCard.s && pile.cards.last.r == Rank.Ace && firstCard.r == Rank.Two) {
       true
     } else {
-      false
+      pile.cards.last.s == firstCard.s && pile.cards.last.r.value + 1 == firstCard.r.value
     }
   } else {
     false
   }
 
   val tableauDragTo = (pile: Pile, cards: Seq[Card], gameState: GameState) => if (pile.cards.isEmpty) {
-    cards.head.r == Rank.King
+    cards.headOption.getOrElse(throw new IllegalStateException()).r == Rank.King
   } else {
-    val topCard = pile.cards.last
-    val firstDraggedCard = cards.head
+    val topCard = pile.cards.lastOption.getOrElse(throw new IllegalStateException())
+    val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
     if (!topCard.u) {
       false
     } else {
@@ -53,18 +52,19 @@ object KlondikeConstraintLogic {
   }
 
   val selectCard = (pile: Pile, cards: Seq[Card], gameState: GameState) => {
-    if (pile.cards.lastOption != Some(cards.head)) {
+    val firstCard = cards.headOption.getOrElse(throw new IllegalStateException())
+    if (pile.cards.lastOption != cards.headOption) {
       false
-    } else if (!cards.head.u) {
+    } else if (!firstCard.u) {
       true
     } else {
       val foundations = gameState.piles.filter(_.behavior == "foundation")
       val foundation = foundations.flatMap { f =>
-        if (f.cards.isEmpty && cards.head.r == Rank.Ace) {
+        if (f.cards.isEmpty && firstCard.r == Rank.Ace) {
           Some(f)
-        } else if (f.cards.lastOption.map(_.s) == Some(cards.head.s) && f.cards.lastOption.map(_.r) == Some(Rank.Ace) && cards.head.r == Rank.Two) {
+        } else if (f.cards.lastOption.map(_.s) == Some(firstCard.s) && f.cards.lastOption.map(_.r) == Some(Rank.Ace) && firstCard.r == Rank.Two) {
           Some(f)
-        } else if (f.cards.lastOption.map(_.s) == Some(cards.head.s) && f.cards.lastOption.map(_.r.value) == Some(cards.head.r.value - 1)) {
+        } else if (f.cards.lastOption.map(_.s) == Some(firstCard.s) && f.cards.lastOption.map(_.r.value) == Some(firstCard.r.value - 1)) {
           Some(f)
         } else {
           None

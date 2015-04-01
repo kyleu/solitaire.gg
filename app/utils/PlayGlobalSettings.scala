@@ -44,7 +44,4 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeaders
     }
     super.onRouteRequest(request)
   }
-  override def onRequestCompletion(request: RequestHeader) {
-    super.onRequestCompletion(request)
-  }
 }

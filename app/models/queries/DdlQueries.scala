@@ -8,7 +8,7 @@ object DdlQueries {
   case class DoesTableExist(tableName: String) extends SingleRowQuery[Boolean] {
     override val sql = "select exists (select * from information_schema.tables WHERE table_name = ?);"
     override val values = tableName :: Nil
-    override def map(row: Row) = row.boolean("exists").get
+    override def map(row: Row) = row.boolean("exists").getOrElse(throw new IllegalStateException())
   }
 
   case class TruncateTable(tableName: String) extends Statement {
@@ -47,7 +47,7 @@ object DdlQueries {
   }
 
   case object CreateAccountTable extends Statement {
-    override val sql = trim(s"""
+    override val sql = trim("""
       create table accounts (
         id uuid primary key,
         name character varying(256) not null,
@@ -64,7 +64,7 @@ object DdlQueries {
   }
 
   case object CreateGameTable extends Statement {
-    override val sql = trim(s"""
+    override val sql = trim("""
       create table games (
         id uuid primary key,
         seed int not null,

@@ -10,7 +10,7 @@ import scala.util.Random
 object AccountService {
   def createAccount(name: String) = DatabaseConnection.transaction {
     DatabaseConnection.execute(CreateAccount(name))
-    DatabaseConnection.query(GetAccountByName(name)).get
+    DatabaseConnection.query(GetAccountByName(name)).getOrElse(throw new IllegalStateException("Invalid account."))
   }
 
   def getAccount(id: UUID) = DatabaseConnection.transaction {

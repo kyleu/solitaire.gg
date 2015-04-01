@@ -6,8 +6,7 @@ import java.util.concurrent.TimeUnit
 import com.codahale.metrics.graphite.{ Graphite, GraphiteReporter }
 import com.codahale.metrics.{ MetricFilter, JmxReporter }
 import com.codahale.metrics.servlets.AdminServlet
-import org.eclipse.jetty.server.Server
-import org.eclipse.jetty.server.nio.SelectChannelConnector
+import org.eclipse.jetty.server.{ ServerConnector, Server }
 import org.eclipse.jetty.servlet.ServletContextHandler
 import utils.{ Logging, Config }
 
@@ -20,7 +19,7 @@ class MetricsServletActor extends InstrumentedActor with Logging {
     if (Config.jmxEnabled) {
       log.info("Reporting metrics over JMX.")
       jmxReporter = Some(JmxReporter.forRegistry(Instrumented.metricRegistry).build())
-      jmxReporter.get.start()
+      jmxReporter.foreach(r => r.start())
     }
 
     if (Config.graphiteEnabled) {
@@ -34,32 +33,32 @@ class MetricsServletActor extends InstrumentedActor with Logging {
           .filter(MetricFilter.ALL)
           .build(graphiteServer)
       )
-      graphiteReporter.get.start(1, TimeUnit.MINUTES)
+      graphiteReporter.foreach(r => r.start(1, TimeUnit.MINUTES))
     }
 
     if (Config.servletEnabled) {
       log.info("Starting metrics servlet at [http://0.0.0.0:" + Config.servletPort + "/].")
       httpServer = Some(createJettyServer())
-      httpServer.get.start()
+      httpServer.foreach(s => s.start())
     }
 
     super.preStart()
   }
 
   override def postStop() {
-    jmxReporter.map { r =>
+    jmxReporter.foreach { r =>
       r.stop()
       r.close()
     }
     jmxReporter = None
 
-    graphiteReporter.map { r =>
+    graphiteReporter.foreach { r =>
       r.stop()
       r.close()
     }
     graphiteReporter = None
 
-    httpServer.map { s =>
+    httpServer.foreach { s =>
       s.stop()
       s.join()
     }
@@ -75,7 +74,7 @@ class MetricsServletActor extends InstrumentedActor with Logging {
   def createJettyServer(): Server = {
     val server = new Server()
 
-    val connector = new SelectChannelConnector()
+    val connector = new ServerConnector(server)
     connector.setHost("0.0.0.0")
     connector.setPort(Config.servletPort)
     server.addConnector(connector)

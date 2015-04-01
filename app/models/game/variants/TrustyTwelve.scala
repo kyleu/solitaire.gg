@@ -3,9 +3,9 @@ package models.game.variants
 import java.util.UUID
 
 import models.game._
+import models.game.pile.{ PileOptionsHelper, Pile }
 import models.game.pile.actions.SelectCardActions
 import models.game.pile.constraints.Constraints
-import models.game.pile.{ Stock, Tableau }
 
 object TrustyTwelve extends GameVariant.Description {
   override val key = "trusty-twelve"
@@ -16,7 +16,7 @@ object TrustyTwelve extends GameVariant.Description {
 case class TrustyTwelve(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = TrustyTwelve
 
-  val tableauOptions = Tableau.options.combine(
+  val tableauOptions = PileOptionsHelper.tableau.combine(
     cardsShown = Some(2),
     selectCardConstraint = Some(Constraints.never),
     dragFromConstraint = Some(Constraints.topCardOnly),
@@ -24,26 +24,26 @@ case class TrustyTwelve(override val gameId: UUID, override val seed: Int) exten
   )
 
   val piles = List(
-    new Stock("stock", Stock.options(0, "", None).combine(
+    new Pile("stock", "stock", PileOptionsHelper.stock(0, "", None).combine(
       cardsShown = Some(19),
       direction = Some("r"),
       selectCardConstraint = Some(Constraints.topCardOnly),
       selectCardAction = Some(SelectCardActions.drawToEmptyPiles("tableau"))
     )),
 
-    new Tableau("tableau-1", tableauOptions),
-    new Tableau("tableau-2", tableauOptions),
-    new Tableau("tableau-3", tableauOptions),
-    new Tableau("tableau-4", tableauOptions),
-    new Tableau("tableau-5", tableauOptions),
-    new Tableau("tableau-6", tableauOptions),
+    new Pile("tableau-1", "tableau", tableauOptions),
+    new Pile("tableau-2", "tableau", tableauOptions),
+    new Pile("tableau-3", "tableau", tableauOptions),
+    new Pile("tableau-4", "tableau", tableauOptions),
+    new Pile("tableau-5", "tableau", tableauOptions),
+    new Pile("tableau-6", "tableau", tableauOptions),
 
-    new Tableau("tableau-7", tableauOptions),
-    new Tableau("tableau-8", tableauOptions),
-    new Tableau("tableau-9", tableauOptions),
-    new Tableau("tableau-10", tableauOptions),
-    new Tableau("tableau-11", tableauOptions),
-    new Tableau("tableau-12", tableauOptions)
+    new Pile("tableau-7", "tableau", tableauOptions),
+    new Pile("tableau-8", "tableau", tableauOptions),
+    new Pile("tableau-9", "tableau", tableauOptions),
+    new Pile("tableau-10", "tableau", tableauOptions),
+    new Pile("tableau-11", "tableau", tableauOptions),
+    new Pile("tableau-12", "tableau", tableauOptions)
   )
 
   val deck = Deck.shuffled(rng)

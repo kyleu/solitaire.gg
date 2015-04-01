@@ -5,7 +5,7 @@ import java.util.UUID
 import models.game._
 import models.game.pile.actions.SelectCardActions
 import models.game.pile.constraints.Constraints
-import models.game.pile.{ Stock, PileOptions, Foundation, Tableau }
+import models.game.pile._
 
 object Spider extends GameVariant.Description {
   override val key = "spider"
@@ -22,36 +22,36 @@ case class Spider(override val gameId: UUID, override val seed: Int) extends Gam
   val stockOptions = new PileOptions(
     cardsShown = Some(1),
     selectCardConstraint = Constraints.notEmpty,
-    selectCardAction = Some(SelectCardActions.drawToPiles(1, drawPiles, true))
+    selectCardAction = Some(SelectCardActions.drawToPiles(1, drawPiles, turnFaceUp = true))
   )
 
-  val tableauOptions = Tableau.options.copy(
+  val tableauOptions = PileOptionsHelper.tableau.copy(
     dragToConstraint = Constraints.lowerRank,
     dragFromConstraint = Constraints.descendingSequenceSameSuit
   )
 
   private val piles = List(
-    new Stock("stock", stockOptions),
+    new Pile("stock", "stock", stockOptions),
 
-    new Foundation("foundation-1"),
-    new Foundation("foundation-2"),
-    new Foundation("foundation-3"),
-    new Foundation("foundation-4"),
-    new Foundation("foundation-5"),
-    new Foundation("foundation-6"),
-    new Foundation("foundation-7"),
-    new Foundation("foundation-8"),
+    new Pile("foundation-1", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-2", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-3", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-4", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-5", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-6", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-7", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-8", "foundation", PileOptionsHelper.foundation),
 
-    new Tableau("tableau-1", tableauOptions),
-    new Tableau("tableau-2", tableauOptions),
-    new Tableau("tableau-3", tableauOptions),
-    new Tableau("tableau-4", tableauOptions),
-    new Tableau("tableau-5", tableauOptions),
-    new Tableau("tableau-6", tableauOptions),
-    new Tableau("tableau-7", tableauOptions),
-    new Tableau("tableau-8", tableauOptions),
-    new Tableau("tableau-9", tableauOptions),
-    new Tableau("tableau-10", tableauOptions)
+    new Pile("tableau-1", "tableau", tableauOptions),
+    new Pile("tableau-2", "tableau", tableauOptions),
+    new Pile("tableau-3", "tableau", tableauOptions),
+    new Pile("tableau-4", "tableau", tableauOptions),
+    new Pile("tableau-5", "tableau", tableauOptions),
+    new Pile("tableau-6", "tableau", tableauOptions),
+    new Pile("tableau-7", "tableau", tableauOptions),
+    new Pile("tableau-8", "tableau", tableauOptions),
+    new Pile("tableau-9", "tableau", tableauOptions),
+    new Pile("tableau-10", "tableau", tableauOptions)
   )
 
   private val deck = Deck.shuffled(rng, 2)

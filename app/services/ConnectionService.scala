@@ -77,6 +77,9 @@ class ConnectionService(supervisor: ActorRef, accountId: UUID, name: String, out
   }
 
   private def handleGameStopped(id: UUID) {
+    if (activeGameId != Some(id)) {
+      throw new IllegalStateException("Provided game [" + id + "] is not the active game.")
+    }
     activeGameId = None
     activeGame = None
   }

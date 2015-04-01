@@ -21,8 +21,8 @@ object AdminController extends Controller {
   }
 
   def status = Action.async { implicit request =>
-    (ActorSupervisor.instance ask GetSystemStatus).map { x =>
-      Ok(views.html.admin.status(x.asInstanceOf[SystemStatus]))
+    (ActorSupervisor.instance ask GetSystemStatus).map {
+      case x: SystemStatus => Ok(views.html.admin.status(x))
     }
   }
 

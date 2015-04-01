@@ -3,9 +3,9 @@ package models.game.variants
 import java.util.UUID
 
 import models.game._
+import models.game.pile.{ PileOptionsHelper, Pile }
 import models.game.pile.actions.SelectCardActions
 import models.game.pile.constraints._
-import models.game.pile.{ Stock, Foundation, Tableau }
 
 object Golf extends GameVariant.Description {
   override val key = "golf"
@@ -16,23 +16,23 @@ object Golf extends GameVariant.Description {
 case class Golf(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Golf
 
-  private val tableauOptions = Tableau.options.combine(
+  private val tableauOptions = PileOptionsHelper.tableau.combine(
     selectCardConstraint = Some(Constraints.alternatingRankToFoundation),
     dragFromConstraint = Some(Constraints.topCardOnly),
     selectCardAction = Some(SelectCardActions.drawToPile(1, "foundation", turnFaceUp = false))
   )
 
   private val piles = List(
-    new Tableau("tableau-1", tableauOptions),
-    new Tableau("tableau-2", tableauOptions),
-    new Tableau("tableau-3", tableauOptions),
-    new Tableau("tableau-4", tableauOptions),
-    new Tableau("tableau-5", tableauOptions),
-    new Tableau("tableau-6", tableauOptions),
-    new Tableau("tableau-7", tableauOptions),
+    new Pile("tableau-1", "tableau", tableauOptions),
+    new Pile("tableau-2", "tableau", tableauOptions),
+    new Pile("tableau-3", "tableau", tableauOptions),
+    new Pile("tableau-4", "tableau", tableauOptions),
+    new Pile("tableau-5", "tableau", tableauOptions),
+    new Pile("tableau-6", "tableau", tableauOptions),
+    new Pile("tableau-7", "tableau", tableauOptions),
 
-    new Foundation("foundation", Foundation.options.combine(cardsShown = Some(4), direction = Some("r"), dragToConstraint = Some(Constraints.alternatingRank))),
-    new Stock("stock", Stock.options(1, "foundation", None).combine(cardsShown = Some(16), direction = Some("r"), selectPileConstraint = Some(Constraints.never)))
+    new Pile("foundation", "foundation", PileOptionsHelper.foundation.combine(cardsShown = Some(4), direction = Some("r"), dragToConstraint = Some(Constraints.alternatingRank))),
+    new Pile("stock", "stock", PileOptionsHelper.stock(1, "foundation", None).combine(cardsShown = Some(16), direction = Some("r"), selectPileConstraint = Some(Constraints.never)))
   )
 
   private val deck = Deck.shuffled(rng)

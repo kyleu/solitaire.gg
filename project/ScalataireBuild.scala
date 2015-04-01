@@ -49,7 +49,7 @@ object ScalataireBuild extends Build with UniversalKeys {
 
   object Versions {
     val app = "0.1-SNAPSHOT"
-    val scala = "2.11.5"
+    val scala = "2.11.6"
   }
 
   lazy val serverSettings = Seq(

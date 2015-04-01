@@ -17,7 +17,7 @@ object Pyramid extends GameVariant.Description {
 case class Pyramid(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Pyramid
 
-  private val pileOptions = Waste.options.combine(
+  private val pileOptions = PileOptionsHelper.waste.combine(
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.total(13, aceHigh = false)),
     selectCardConstraint = Some(Constraints.specificRank(King)),
@@ -31,43 +31,43 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
   }
 
   private val piles = List(
-    new Stock("stock", Stock.options(1, "waste", Some("waste")).combine(selectPileConstraint = Some(Constraints.never))),
-    new Waste("waste", pileOptions),
+    new Pile("stock", "stock", PileOptionsHelper.stock(1, "waste", Some("waste")).combine(selectPileConstraint = Some(Constraints.never))),
+    new Pile("waste", "waste", pileOptions),
 
-    new Tableau("pile-1-1", pileOptionsFor("pile-2-1", "pile-2-2")),
+    new Pile("pile-1-1", "tableau", pileOptionsFor("pile-2-1", "pile-2-2")),
 
-    new Tableau("pile-2-1", pileOptionsFor("pile-3-1", "pile-3-2")),
-    new Tableau("pile-2-2", pileOptionsFor("pile-3-2", "pile-3-3")),
+    new Pile("pile-2-1", "tableau", pileOptionsFor("pile-3-1", "pile-3-2")),
+    new Pile("pile-2-2", "tableau", pileOptionsFor("pile-3-2", "pile-3-3")),
 
-    new Tableau("pile-3-1", pileOptionsFor("pile-4-1", "pile-4-2")),
-    new Tableau("pile-3-2", pileOptionsFor("pile-4-2", "pile-4-3")),
-    new Tableau("pile-3-3", pileOptionsFor("pile-4-3", "pile-4-4")),
+    new Pile("pile-3-1", "tableau", pileOptionsFor("pile-4-1", "pile-4-2")),
+    new Pile("pile-3-2", "tableau", pileOptionsFor("pile-4-2", "pile-4-3")),
+    new Pile("pile-3-3", "tableau", pileOptionsFor("pile-4-3", "pile-4-4")),
 
-    new Tableau("pile-4-1", pileOptionsFor("pile-5-1", "pile-5-2")),
-    new Tableau("pile-4-2", pileOptionsFor("pile-5-2", "pile-5-3")),
-    new Tableau("pile-4-3", pileOptionsFor("pile-5-3", "pile-5-4")),
-    new Tableau("pile-4-4", pileOptionsFor("pile-5-4", "pile-5-5")),
+    new Pile("pile-4-1", "tableau", pileOptionsFor("pile-5-1", "pile-5-2")),
+    new Pile("pile-4-2", "tableau", pileOptionsFor("pile-5-2", "pile-5-3")),
+    new Pile("pile-4-3", "tableau", pileOptionsFor("pile-5-3", "pile-5-4")),
+    new Pile("pile-4-4", "tableau", pileOptionsFor("pile-5-4", "pile-5-5")),
 
-    new Tableau("pile-5-1", pileOptionsFor("pile-6-1", "pile-6-2")),
-    new Tableau("pile-5-2", pileOptionsFor("pile-6-2", "pile-6-3")),
-    new Tableau("pile-5-3", pileOptionsFor("pile-6-3", "pile-6-4")),
-    new Tableau("pile-5-4", pileOptionsFor("pile-6-4", "pile-6-5")),
-    new Tableau("pile-5-5", pileOptionsFor("pile-6-5", "pile-6-6")),
+    new Pile("pile-5-1", "tableau", pileOptionsFor("pile-6-1", "pile-6-2")),
+    new Pile("pile-5-2", "tableau", pileOptionsFor("pile-6-2", "pile-6-3")),
+    new Pile("pile-5-3", "tableau", pileOptionsFor("pile-6-3", "pile-6-4")),
+    new Pile("pile-5-4", "tableau", pileOptionsFor("pile-6-4", "pile-6-5")),
+    new Pile("pile-5-5", "tableau", pileOptionsFor("pile-6-5", "pile-6-6")),
 
-    new Tableau("pile-6-1", pileOptionsFor("pile-7-1", "pile-7-2")),
-    new Tableau("pile-6-2", pileOptionsFor("pile-7-2", "pile-7-3")),
-    new Tableau("pile-6-3", pileOptionsFor("pile-7-3", "pile-7-4")),
-    new Tableau("pile-6-4", pileOptionsFor("pile-7-4", "pile-7-5")),
-    new Tableau("pile-6-5", pileOptionsFor("pile-7-5", "pile-7-6")),
-    new Tableau("pile-6-6", pileOptionsFor("pile-7-6", "pile-7-7")),
+    new Pile("pile-6-1", "tableau", pileOptionsFor("pile-7-1", "pile-7-2")),
+    new Pile("pile-6-2", "tableau", pileOptionsFor("pile-7-2", "pile-7-3")),
+    new Pile("pile-6-3", "tableau", pileOptionsFor("pile-7-3", "pile-7-4")),
+    new Pile("pile-6-4", "tableau", pileOptionsFor("pile-7-4", "pile-7-5")),
+    new Pile("pile-6-5", "tableau", pileOptionsFor("pile-7-5", "pile-7-6")),
+    new Pile("pile-6-6", "tableau", pileOptionsFor("pile-7-6", "pile-7-7")),
 
-    new Tableau("pile-7-1", pileOptions),
-    new Tableau("pile-7-2", pileOptions),
-    new Tableau("pile-7-3", pileOptions),
-    new Tableau("pile-7-4", pileOptions),
-    new Tableau("pile-7-5", pileOptions),
-    new Tableau("pile-7-6", pileOptions),
-    new Tableau("pile-7-7", pileOptions)
+    new Pile("pile-7-1", "tableau", pileOptions),
+    new Pile("pile-7-2", "tableau", pileOptions),
+    new Pile("pile-7-3", "tableau", pileOptions),
+    new Pile("pile-7-4", "tableau", pileOptions),
+    new Pile("pile-7-5", "tableau", pileOptions),
+    new Pile("pile-7-6", "tableau", pileOptions),
+    new Pile("pile-7-7", "tableau", pileOptions)
   )
 
   private val deck = Deck.shuffled(rng)

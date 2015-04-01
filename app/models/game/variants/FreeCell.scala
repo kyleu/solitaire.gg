@@ -20,7 +20,7 @@ case class FreeCell(override val gameId: UUID, override val seed: Int) extends G
     dragToConstraint = Some(Constraints.empty),
     dragFromConstraint = Some(Constraints.topCardOnly)
   )
-  private val tableauOptions = Tableau.options.combine(dragFromConstraint = Some(Constraints.topCardOnly))
+  private val tableauOptions = PileOptionsHelper.tableau.combine(dragFromConstraint = Some(Constraints.topCardOnly))
 
   private val piles = List(
     new Pile("cell-1", "pile", cellOptions),
@@ -28,19 +28,19 @@ case class FreeCell(override val gameId: UUID, override val seed: Int) extends G
     new Pile("cell-3", "pile", cellOptions),
     new Pile("cell-4", "pile", cellOptions),
 
-    new Foundation("foundation-1"),
-    new Foundation("foundation-2"),
-    new Foundation("foundation-3"),
-    new Foundation("foundation-4"),
+    new Pile("foundation-1", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-2", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-3", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-4", "foundation", PileOptionsHelper.foundation),
 
-    new Tableau("tableau-1", tableauOptions),
-    new Tableau("tableau-2", tableauOptions),
-    new Tableau("tableau-3", tableauOptions),
-    new Tableau("tableau-4", tableauOptions),
-    new Tableau("tableau-5", tableauOptions),
-    new Tableau("tableau-6", tableauOptions),
-    new Tableau("tableau-7", tableauOptions),
-    new Tableau("tableau-8", tableauOptions)
+    new Pile("tableau-1", "tableau", tableauOptions),
+    new Pile("tableau-2", "tableau", tableauOptions),
+    new Pile("tableau-3", "tableau", tableauOptions),
+    new Pile("tableau-4", "tableau", tableauOptions),
+    new Pile("tableau-5", "tableau", tableauOptions),
+    new Pile("tableau-6", "tableau", tableauOptions),
+    new Pile("tableau-7", "tableau", tableauOptions),
+    new Pile("tableau-8", "tableau", tableauOptions)
   )
 
   private val deck = Deck.shuffled(rng)

@@ -18,13 +18,21 @@ object AccountQueries {
   case class GetAccount(id: UUID) extends FlatSingleRowQuery[Account] {
     val sql = s"select $columns from $tableName where id = ?"
     val values = Seq(id)
-    override def flatMap(row: Row) = Some(Account(row.uuid("id").get, row.string("name").get, new LocalDateTime(row.timestamp("created").get.getTime)))
+    override def flatMap(row: Row) = for {
+      id <- row.uuid("id")
+      name <- row.string("name")
+      created <- row.timestamp("created")
+    } yield Account(id, name, new LocalDateTime(created.getTime))
   }
 
   case class GetAccountByName(name: String) extends FlatSingleRowQuery[Account] {
     val sql = s"select $columns from $tableName where name = ?"
     val values = Seq(name)
-    override def flatMap(row: Row) = Some(Account(row.uuid("id").get, row.string("name").get, new LocalDateTime(row.timestamp("created").get.getTime)))
+    override def flatMap(row: Row) = for {
+      id <- row.uuid("id")
+      name <- row.string("name")
+      created <- row.timestamp("created")
+    } yield Account(id, name, new LocalDateTime(created.getTime))
   }
 
   case class UpdateAccountName(id: UUID, name: String) extends Statement {

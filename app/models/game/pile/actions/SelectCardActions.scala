@@ -90,7 +90,7 @@ object SelectCardActions {
     if (turnFaceUp && !card.u) {
       card.u = true
       val revealed = gameState.revealCardToAll(card)
-      revealed :+ msg
+      revealed ++ Seq(msg)
     } else {
       Seq(msg)
     }

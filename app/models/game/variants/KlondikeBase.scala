@@ -3,25 +3,25 @@ package models.game.variants
 import java.util.UUID
 
 import models.game._
-import models.game.pile.{ Waste, Tableau, Stock, Foundation }
+import models.game.pile._
 
 abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, cardsToDraw: Int) extends GameVariant(gameId, seed) {
   private val piles = List(
-    new Stock("stock", Stock.options(cardsToDraw, "waste", Some("waste"))),
-    new Waste("waste"),
+    new Pile("stock", "stock", PileOptionsHelper.stock(cardsToDraw, "waste", Some("waste"))),
+    new Pile("waste", "waste", PileOptionsHelper.waste),
 
-    new Foundation("foundation-1"),
-    new Foundation("foundation-2"),
-    new Foundation("foundation-3"),
-    new Foundation("foundation-4"),
+    new Pile("foundation-1", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-2", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-3", "foundation", PileOptionsHelper.foundation),
+    new Pile("foundation-4", "foundation", PileOptionsHelper.foundation),
 
-    new Tableau("tableau-1"),
-    new Tableau("tableau-2"),
-    new Tableau("tableau-3"),
-    new Tableau("tableau-4"),
-    new Tableau("tableau-5"),
-    new Tableau("tableau-6"),
-    new Tableau("tableau-7")
+    new Pile("tableau-1", "tableau", PileOptionsHelper.tableau),
+    new Pile("tableau-2", "tableau", PileOptionsHelper.tableau),
+    new Pile("tableau-3", "tableau", PileOptionsHelper.tableau),
+    new Pile("tableau-4", "tableau", PileOptionsHelper.tableau),
+    new Pile("tableau-5", "tableau", PileOptionsHelper.tableau),
+    new Pile("tableau-6", "tableau", PileOptionsHelper.tableau),
+    new Pile("tableau-7", "tableau", PileOptionsHelper.tableau)
   )
 
   private val deck = Deck.shuffled(rng)

@@ -3,15 +3,16 @@ package services.game
 import java.util.UUID
 
 import models.ResponseMessage
+import utils.Logging
 
-case class UndoService() {
-  private val undoQueue = collection.mutable.ArrayBuffer.empty[ResponseMessage]
+class UndoService() extends Logging {
+  private val undoQueue = collection.mutable.ArrayBuffer.empty[(Option[UUID], ResponseMessage)]
 
   def registerResponse(player: Option[UUID], rm: ResponseMessage) = {
-    undoQueue += rm
+    undoQueue += (player -> rm)
   }
 
   def undo(player: UUID) = {
-
+    log.info("Undoing move for player [" + player + "].")
   }
 }

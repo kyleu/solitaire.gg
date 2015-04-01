@@ -1,7 +1,7 @@
 package utils
 
-object DatabaseStructure {
+object DatabaseStructure extends Logging {
   def update() = {
-
+    log.info("Updating database structure.")
   }
 }

@@ -7,7 +7,7 @@ import models.game.{ Rank, Card, GameState }
 case class Constraint(id: String, f: (Pile, Seq[Card], GameState) => Boolean, clientOptions: Option[Map[String, String]] = None)
 
 object Constraints {
-  val never = new Constraint("never", (pile, cards, gameState) => false)
+  val never = Constraint("never", (pile, cards, gameState) => false)
   val empty = Constraint("empty", (pile, cards, gameState) => pile.cards.isEmpty)
   val notEmpty = Constraint("empty", (pile, cards, gameState) => pile.cards.nonEmpty)
 
@@ -16,20 +16,20 @@ object Constraints {
     !results.contains(false)
   })
 
-  def specificRank(r: Rank) = Constraint("rank-" + r, (pile, cards, gameState) => cards.tail.isEmpty && cards.head.r == r)
+  def specificRank(r: Rank) = Constraint("rank-" + r, (pile, cards, gameState) => cards.tail.isEmpty && cards.headOption.getOrElse(throw new IllegalStateException()).r == r)
 
   val topCardOnly = Constraint("top-card-only", (pile, cards, gameState) => {
-    pile.cards.lastOption == Some(cards.head)
+    pile.cards.lastOption == cards.headOption
   })
 
   val sameRank = Constraint("same-rank", (pile, cards, gameState) => {
     val topCardRank = pile.cards.lastOption.map(_.r).getOrElse(Rank.Unknown)
-    val firstDraggedCardRank = cards.head.r
+    val firstDraggedCardRank = cards.headOption.getOrElse(throw new IllegalStateException()).r
     topCardRank == firstDraggedCardRank
   })
 
   val lowerRank = Constraint("lower-rank", (pile, cards, gameState) => {
-    val firstDraggedCardRank = cards.head.r
+    val firstDraggedCardRank = cards.headOption.getOrElse(throw new IllegalStateException()).r
     pile.cards.lastOption match {
       case Some(c) => c.r match {
         case Two => firstDraggedCardRank == Ace
@@ -41,7 +41,7 @@ object Constraints {
 
   val alternatingRank = Constraint("alternating-rank", (pile, cards, gameState) => {
     val topCardRank = pile.cards.last.r
-    val firstDraggedCardRank = cards.head.r
+    val firstDraggedCardRank = cards.headOption.getOrElse(throw new IllegalStateException()).r
     topCardRank match {
       case King => firstDraggedCardRank == Queen
       case Ace => firstDraggedCardRank == Two
@@ -56,7 +56,7 @@ object Constraints {
     } else {
       val topCardRank = pile.cards.last.r
       val topCardRankValue = if (topCardRank == Ace && !aceHigh) { 1 } else { topCardRank.value }
-      val firstDraggedCardRank = cards.head.r
+      val firstDraggedCardRank = cards.headOption.getOrElse(throw new IllegalStateException()).r
       val firstDraggedCardRankValue = if (firstDraggedCardRank == Ace && !aceHigh) { 1 } else { firstDraggedCardRank.value }
       val totalValue = topCardRankValue + firstDraggedCardRankValue
       totalValue == target
@@ -67,11 +67,13 @@ object Constraints {
     var priorCard: Option[Card] = None
     var valid = true
     for (card <- cards) {
-      if (priorCard.isDefined && priorCard.get.s != card.s) {
-        valid = false
-      }
-      if (priorCard.isDefined && priorCard.get.r.value != card.r.value - 1) {
-        valid = false
+      priorCard.foreach { pc =>
+        if (pc.s != card.s) {
+          valid = false
+        }
+        if (pc.r.value != card.r.value - 1) {
+          valid = false
+        }
       }
       priorCard = Some(card)
     }
@@ -89,11 +91,12 @@ object Constraints {
     } else {
       val foundation = gameState.pilesById("foundation")
       val topCardRank = foundation.cards.last.r
+      val firstCard = cards.headOption.getOrElse(throw new IllegalStateException())
       topCardRank match {
-        case King => cards.head.r == Queen
-        case Ace => cards.head.r == Two
-        case Two => cards.head.r == Ace || cards.head.r == Three
-        case _ => topCardRank.value == cards.head.r.value + 1 || topCardRank.value == cards.head.r.value - 1
+        case King => firstCard.r == Queen
+        case Ace => firstCard.r == Two
+        case Two => firstCard.r == Ace || firstCard.r == Three
+        case _ => topCardRank.value == firstCard.r.value + 1 || topCardRank.value == firstCard.r.value - 1
       }
     }
   })

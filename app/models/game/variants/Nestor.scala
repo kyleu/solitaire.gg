@@ -16,7 +16,7 @@ object Nestor extends GameVariant.Description {
 case class Nestor(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Nestor
 
-  private val options = Tableau.options.combine(
+  private val options = PileOptionsHelper.tableau.combine(
     selectCardConstraint = Some(Constraints.never),
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.sameRank),
@@ -24,19 +24,19 @@ case class Nestor(override val gameId: UUID, override val seed: Int) extends Gam
   )
 
   private val piles = List(
-    new Tableau("tableau-1", options),
-    new Tableau("tableau-2", options),
-    new Tableau("tableau-3", options),
-    new Tableau("tableau-4", options),
-    new Tableau("tableau-5", options),
-    new Tableau("tableau-6", options),
-    new Tableau("tableau-7", options),
-    new Tableau("tableau-8", options),
+    new Pile("tableau-1", "tableau", options),
+    new Pile("tableau-2", "tableau", options),
+    new Pile("tableau-3", "tableau", options),
+    new Pile("tableau-4", "tableau", options),
+    new Pile("tableau-5", "tableau", options),
+    new Pile("tableau-6", "tableau", options),
+    new Pile("tableau-7", "tableau", options),
+    new Pile("tableau-8", "tableau", options),
 
-    new Foundation("reserve-1", options),
-    new Foundation("reserve-2", options),
-    new Foundation("reserve-3", options),
-    new Foundation("reserve-4", options)
+    new Pile("reserve-1", "reserve", options),
+    new Pile("reserve-2", "reserve", options),
+    new Pile("reserve-3", "reserve", options),
+    new Pile("reserve-4", "reserve", options)
   )
 
   private val deck = Deck.shuffled(rng)
@@ -81,5 +81,5 @@ case class Nestor(override val gameId: UUID, override val seed: Int) extends Gam
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "reserve-4", reveal = true)
   }
 
-  override def isWin: Boolean = !gameState.piles.exists(_.cards.size != 0)
+  override def isWin: Boolean = !gameState.piles.exists(_.cards.nonEmpty)
 }

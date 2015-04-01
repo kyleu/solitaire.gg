@@ -25,11 +25,11 @@ case class Pile(id: String, behavior: String, options: PileOptions, cards: colle
     }
   }
 
-  final def canSelectCard(card: Card, gameState: GameState) = options.selectCardConstraint.f(this, Seq(card), gameState)
-  final def canSelectPile(gameState: GameState) = options.selectPileConstraint.f(this, Nil, gameState)
+  def canSelectCard(card: Card, gameState: GameState) = options.selectCardConstraint.f(this, Seq(card), gameState)
+  def canSelectPile(gameState: GameState) = options.selectPileConstraint.f(this, Nil, gameState)
 
-  final def canDragFrom(cards: Seq[Card], gameState: GameState) = options.dragFromConstraint.f(this, cards, gameState)
-  final def canDragTo(cards: Seq[Card], gameState: GameState) = options.dragToConstraint.f(this, cards, gameState)
+  def canDragFrom(cards: Seq[Card], gameState: GameState) = options.dragFromConstraint.f(this, cards, gameState)
+  def canDragTo(cards: Seq[Card], gameState: GameState) = options.dragToConstraint.f(this, cards, gameState)
 
   def onSelectCard(card: Card, gameState: GameState): Seq[ResponseMessage] = options.selectCardAction.getOrElse(SelectCardActions.none).f(this, card, gameState)
   def onSelectPile(gameState: GameState): Seq[ResponseMessage] = options.selectPileAction.getOrElse(SelectPileActions.none).f(this, gameState)

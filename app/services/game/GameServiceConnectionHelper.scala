@@ -37,7 +37,7 @@ trait GameServiceConnectionHelper { this: GameService =>
 
     import scala.concurrent.duration._
 
-    playerConnections.find(_.connectionId == connectionId) match {
+    playerConnections.find(_.connectionId == Some(connectionId)) match {
       case Some(playerConnection) =>
         log.info("Player connection [" + connectionId + "] stopped.")
         playerConnection.connectionId = None
@@ -67,17 +67,19 @@ trait GameServiceConnectionHelper { this: GameService =>
       c.connectionActor.foreach(_ ! message)
     }
     observerConnections.filter(o => o._2.isEmpty || o._2 == Some(player)).foreach { c =>
-      if (c._2.isEmpty || c._2.get == player) {
-        c._1.connectionActor.foreach(_ ! message)
+      c._2.foreach { cp =>
+        if (cp == player) {
+          c._1.connectionActor.foreach(_ ! message)
+        }
       }
     }
   }
 
   protected def sendToPlayer(player: UUID, messages: Seq[ResponseMessage]): Unit = {
     if (messages.isEmpty) {
-      // noop
+      log.info("No messages to send to player.")
     } else if (messages.tail.isEmpty) {
-      sendToPlayer(player, messages.head)
+      sendToPlayer(player, messages.headOption.getOrElse(throw new IllegalStateException()))
     } else {
       sendToPlayer(player, MessageSet(messages))
     }
@@ -94,9 +96,9 @@ trait GameServiceConnectionHelper { this: GameService =>
 
   protected def sendToAll(messages: Seq[ResponseMessage]): Unit = {
     if (messages.isEmpty) {
-      // noop
+      log.info("No messages to send to all players.")
     } else if (messages.tail.isEmpty) {
-      sendToAll(messages.head)
+      sendToAll(messages.headOption.getOrElse(throw new IllegalStateException()))
     } else {
       sendToAll(MessageSet(messages))
     }

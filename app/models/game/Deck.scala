@@ -33,7 +33,7 @@ case class Deck(var cards: Seq[Card]) {
     var ret = Seq.empty[Card]
     var enough = false
     while (!enough) {
-      val c = cards.head
+      val c = cards.headOption.getOrElse(throw new IllegalStateException())
       if (ret.exists(_.r == c.r)) {
         cards = cards.tail :+ c
       } else {

@@ -6,6 +6,7 @@ import akka.actor.PoisonPill
 import akka.testkit.TestProbe
 import models.game.variants.GameVariant
 import models._
+import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Akka
 import play.api.Play.current
 import utils.Logging
@@ -44,19 +45,19 @@ object TestService extends Logging {
 
   def testAccount() = runTest { () =>
     val testUser = "test-account"
-    var account: Option[Account] = None
+    var account: Account = new Account(UUID.randomUUID, "Invalid user", new LocalDateTime())
     val results = Seq(
       {
-        account = Some(AccountService.createAccount(testUser))
+        account = AccountService.createAccount(testUser)
         TestResult("Account [" + testUser + "] created.")
       },
       {
-        AccountService.updateAccountName(account.get.id, "test-account-new-name")
+        AccountService.updateAccountName(account.id, "test-account-new-name")
         TestResult("Account [" + testUser + "] updated with new name.")
       },
       {
-        AccountService.removeAccount(account.get.id)
-        TestResult("Account [" + account.get.id + "] removed.")
+        AccountService.removeAccount(account.id)
+        TestResult("Account [" + account.id + "] removed.")
       }
     )
     TestResult("account", results)
@@ -101,14 +102,14 @@ object TestService extends Logging {
       moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
       TestResult("Received [" + moves.size + "] possible moves.", moves.map(x => TestResult(x.toString)))
     }, {
-      val action = MoveCards(moves.find(_.sourcePile == "tableau-1").get.cards, "tableau-1", "tableau-6")
+      val action = MoveCards(moves.find(_.sourcePile == "tableau-1").getOrElse(throw new IllegalStateException()).cards, "tableau-1", "tableau-6")
       conn ! action
       val cardMoved = testProbe.expectMsgClass(classOf[CardMoved])
       println(cardMoved)
       moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
       TestResult("Performed [" + action + "] with result [" + cardMoved + "], received [" + moves.size + "] possible moves.", moves.map(x => TestResult(x.toString)))
     }, {
-      val action = MoveCards(moves.find(_.sourcePile == "tableau-6").get.cards, "tableau-6", "tableau-4")
+      val action = MoveCards(moves.find(_.sourcePile == "tableau-6").getOrElse(throw new IllegalStateException()).cards, "tableau-6", "tableau-4")
       conn ! action
       val cardMoved = testProbe.expectMsgClass(classOf[MessageSet])
       println(cardMoved)
