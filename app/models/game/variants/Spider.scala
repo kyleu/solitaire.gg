@@ -21,13 +21,13 @@ case class Spider(override val gameId: UUID, override val seed: Int) extends Gam
 
   val stockOptions = new PileOptions(
     cardsShown = Some(1),
-    selectCardConstraint = Constraints.notEmpty,
+    selectCardConstraint = Some(Constraints.notEmpty),
     selectCardAction = Some(SelectCardActions.drawToPiles(1, drawPiles, turnFaceUp = true))
   )
 
   val tableauOptions = PileOptionsHelper.tableau.copy(
-    dragToConstraint = Constraints.lowerRank,
-    dragFromConstraint = Constraints.descendingSequenceSameSuit
+    dragToConstraint = Some(Constraints.lowerRank),
+    dragFromConstraint = Some(Constraints.descendingSequenceSameSuit)
   )
 
   private val piles = List(

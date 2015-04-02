@@ -16,7 +16,9 @@ object Constraints {
     !results.contains(false)
   })
 
-  def specificRank(r: Rank) = Constraint("rank-" + r, (pile, cards, gameState) => cards.tail.isEmpty && cards.headOption.getOrElse(throw new IllegalStateException()).r == r)
+  def specificRank(r: Rank) = Constraint("rank-" + r, (pile, cards, gameState) => {
+    cards.tail.isEmpty && cards.headOption.getOrElse(throw new IllegalStateException()).r == r
+  })
 
   val topCardOnly = Constraint("top-card-only", (pile, cards, gameState) => {
     pile.cards.lastOption == cards.headOption

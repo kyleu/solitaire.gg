@@ -3,33 +3,36 @@ package models.game.variants
 import java.util.UUID
 
 import models.game._
-import models.game.pile.{ PileOptionsHelper, Pile }
+import models.game.pile.{ PileOptions, PileOptionsHelper, Pile }
 import models.game.pile.actions.SelectCardActions
 import models.game.pile.constraints.Constraints
 
 object TrustyTwelve extends GameVariant.Description {
   override val key = "trusty-twelve"
   override val name = "Trusty Twelve"
-  override val body = "Build the decks down, regardless of suit. Clicking the face down pile will deal cards to any empty spaces. Once you've dealt all the face down cards, you win."
+  override val body = """
+    Build the decks down, regardless of suit.
+    Clicking the face down pile will deal cards to any empty spaces. Once you've dealt all the face down cards, you win.
+  """
 }
 
 case class TrustyTwelve(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = TrustyTwelve
 
-  val tableauOptions = PileOptionsHelper.tableau.combine(
+  val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(
     cardsShown = Some(2),
     selectCardConstraint = Some(Constraints.never),
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.lowerRank)
-  )
+  ))
 
   val piles = List(
-    new Pile("stock", "stock", PileOptionsHelper.stock(0, "", None).combine(
+    new Pile("stock", "stock", PileOptionsHelper.stock(0, "", None).combine(PileOptions(
       cardsShown = Some(19),
       direction = Some("r"),
       selectCardConstraint = Some(Constraints.topCardOnly),
       selectCardAction = Some(SelectCardActions.drawToEmptyPiles("tableau"))
-    )),
+    ))),
 
     new Pile("tableau-1", "tableau", tableauOptions),
     new Pile("tableau-2", "tableau", tableauOptions),

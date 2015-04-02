@@ -105,16 +105,18 @@ object TestService extends Logging {
       val action = MoveCards(moves.find(_.sourcePile == "tableau-1").getOrElse(throw new IllegalStateException()).cards, "tableau-1", "tableau-6")
       conn ! action
       val cardMoved = testProbe.expectMsgClass(classOf[CardMoved])
-      println(cardMoved)
       moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
-      TestResult("Performed [" + action + "] with result [" + cardMoved + "], received [" + moves.size + "] possible moves.", moves.map(x => TestResult(x.toString)))
+      TestResult("Performed [" + action + "] with result [" + cardMoved + "], received [" + moves.size + "] possible moves.", moves.map { x =>
+        TestResult(x.toString)
+      })
     }, {
       val action = MoveCards(moves.find(_.sourcePile == "tableau-6").getOrElse(throw new IllegalStateException()).cards, "tableau-6", "tableau-4")
       conn ! action
       val cardMoved = testProbe.expectMsgClass(classOf[MessageSet])
-      println(cardMoved)
       moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
-      TestResult("Performed [" + action + "] with result [" + cardMoved + "], received [" + moves.size + "] possible moves.", moves.map(x => TestResult(x.toString)))
+      TestResult("Performed [" + action + "] with result [" + cardMoved + "], received [" + moves.size + "] possible moves.", moves.map { x =>
+        TestResult(x.toString)
+      })
     })
     conn ! PoisonPill
     TestResult("known-game", results)

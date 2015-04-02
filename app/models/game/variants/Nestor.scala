@@ -10,18 +10,21 @@ import models.game.pile.constraints.Constraints
 object Nestor extends GameVariant.Description {
   override val key = "nestor"
   override val name = "Nestor"
-  override val body = "Discard any pair of cards of the same rank, regardless of suit (for example, two Aces, two Fives, etc.). Only the top cards are available for play. Spaces can't be filled."
+  override val body = """
+    Discard any pair of cards of the same rank, regardless of suit (for example, two Aces, two Fives, etc.).
+    Only the top cards are available for play. Spaces can't be filled.
+  """
 }
 
 case class Nestor(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Nestor
 
-  private val options = PileOptionsHelper.tableau.combine(
+  private val options = PileOptionsHelper.tableau.combine(PileOptions(
     selectCardConstraint = Some(Constraints.never),
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.sameRank),
     dragToAction = Some(DragToActions.remove)
-  )
+  ))
 
   private val piles = List(
     new Pile("tableau-1", "tableau", options),

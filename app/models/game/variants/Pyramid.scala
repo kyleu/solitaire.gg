@@ -11,27 +11,33 @@ import models.game.pile._
 object Pyramid extends GameVariant.Description {
   override val key = "pyramid"
   override val name = "Pyramid"
-  override val body = "Build the bottom pile up or down regardless of suit. Ranking of cards is not continuous: an Ace may be built only on a 2, a King only on a Queen."
+  override val body = """
+    Build the bottom pile up or down regardless of suit. Ranking of cards is not continuous: an Ace may be built only on a 2, a King only on a Queen.
+  """
 }
 
 case class Pyramid(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Pyramid
 
-  private val pileOptions = PileOptionsHelper.waste.combine(
+  private val pileOptions = PileOptionsHelper.waste.combine(PileOptions(
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.total(13, aceHigh = false)),
     selectCardConstraint = Some(Constraints.specificRank(King)),
     selectCardAction = Some(SelectCardActions.remove),
     dragToAction = Some(DragToActions.remove)
-  )
+  ))
 
   private def pileOptionsFor(emptyPiles: String*) = {
-    val c = Constraints.pilesEmpty(emptyPiles: _*)
-    pileOptions.copy(dragFromConstraint = c, dragToConstraint = c, selectCardConstraint = Constraints.allOf("pyramid-king", c, pileOptions.selectCardConstraint))
+    val c = Some(Constraints.pilesEmpty(emptyPiles: _*))
+    pileOptions.copy(
+      dragFromConstraint = c,
+      dragToConstraint = c,
+      selectCardConstraint = Some(Constraints.allOf("pyramid-king", c.orNull, pileOptions.selectCardConstraint.orNull))
+    )
   }
 
   private val piles = List(
-    new Pile("stock", "stock", PileOptionsHelper.stock(1, "waste", Some("waste")).combine(selectPileConstraint = Some(Constraints.never))),
+    new Pile("stock", "stock", PileOptionsHelper.stock(1, "waste", Some("waste")).combine(PileOptions(selectPileConstraint = Some(Constraints.never)))),
     new Pile("waste", "waste", pileOptions),
 
     new Pile("pile-1-1", "tableau", pileOptionsFor("pile-2-1", "pile-2-2")),

@@ -9,18 +9,21 @@ import models.game.pile._
 object FreeCell extends GameVariant.Description {
   override val key = "freecell"
   override val name = "FreeCell"
-  override val body = "Move all the cards to the home cells, using the free cells as placeholders. To win, make four stacks of cards on the home cells, one for each suit, stacked in order of rank, from lowest (ace) to highest (king)."
+  override val body = """
+    Move all the cards to the home cells, using the free cells as placeholders.
+    To win, make four stacks of cards on the home cells, one for each suit, stacked in order of rank, from lowest (ace) to highest (king).
+  """
 }
 
 case class FreeCell(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = FreeCell
 
-  private val cellOptions = Pile.options.combine(
+  private val cellOptions = Pile.options.combine(PileOptions(
     cardsShown = Some(1),
     dragToConstraint = Some(Constraints.empty),
     dragFromConstraint = Some(Constraints.topCardOnly)
-  )
-  private val tableauOptions = PileOptionsHelper.tableau.combine(dragFromConstraint = Some(Constraints.topCardOnly))
+  ))
+  private val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(dragFromConstraint = Some(Constraints.topCardOnly)))
 
   private val piles = List(
     new Pile("cell-1", "pile", cellOptions),

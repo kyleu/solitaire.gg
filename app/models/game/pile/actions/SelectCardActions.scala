@@ -36,13 +36,15 @@ object SelectCardActions {
 
   def drawToPile(cardsToDraw: Int, drawTo: String, turnFaceUp: Boolean) = drawToPiles(cardsToDraw, Seq(drawTo), turnFaceUp)
 
-  def drawToPiles(cardsToDraw: Int, drawTo: Seq[String], turnFaceUp: Boolean) = SelectCardAction("draw-to-piles", (pile, card, gameState) => drawTo.flatMap { p =>
-    val tgt = gameState.pilesById(p)
-    (0 to (cardsToDraw - 1)).flatMap { i =>
-      val topCard = pile.cards.lastOption
-      topCard match {
-        case Some(tc) => moveCard(tc, pile, tgt, gameState, turnFaceUp = turnFaceUp)
-        case None => Nil
+  def drawToPiles(cardsToDraw: Int, drawTo: Seq[String], turnFaceUp: Boolean) = SelectCardAction("draw-to-piles", (pile, card, gameState) => {
+    drawTo.flatMap { p =>
+      val tgt = gameState.pilesById(p)
+      (0 to (cardsToDraw - 1)).flatMap { i =>
+        val topCard = pile.cards.lastOption
+        topCard match {
+          case Some(tc) => moveCard(tc, pile, tgt, gameState, turnFaceUp = turnFaceUp)
+          case None => Nil
+        }
       }
     }
   })

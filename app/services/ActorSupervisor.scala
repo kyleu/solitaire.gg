@@ -85,7 +85,11 @@ private class ActorSupervisor extends InstrumentedActor with Logging {
     val id = UUID.randomUUID
     val s = Math.abs(seed.getOrElse(masterRng.nextInt()))
     val c = connections(connectionId)
-    val actor = context.actorOf(Props(new GameService(id, variant, s, List(PlayerRecord(c.accountId, c.name, Some(connectionId), Some(c.actorRef))))), "game:" + id)
+
+    val actor = context.actorOf(Props(new GameService(id, variant, s, List(
+      PlayerRecord(c.accountId, c.name, Some(connectionId), Some(c.actorRef))
+    ))), "game:" + id)
+
     c.activeGame = Some(id)
     games(id) = GameRecord(List((connectionId, c.name)), actor)
   }

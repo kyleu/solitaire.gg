@@ -6,14 +6,14 @@ import models.game.pile.constraints.Constraints
 object PileOptionsHelper {
   val foundation = PileOptions(
     cardsShown = Some(1),
-    dragFromConstraint = Constraints.topCardOnly,
-    dragToConstraint = Constraints.klondikeFoundationDragTo
+    dragFromConstraint = Some(Constraints.topCardOnly),
+    dragToConstraint = Some(Constraints.klondikeFoundationDragTo)
   )
 
   def stock(cardsToDraw: Int, drawTo: String, redrawFrom: Option[String]) = PileOptions(
     cardsShown = Some(1),
-    selectCardConstraint = Constraints.topCardOnly,
-    selectPileConstraint = Constraints.empty,
+    selectCardConstraint = Some(Constraints.topCardOnly),
+    selectPileConstraint = Some(Constraints.empty),
 
     selectCardAction = Some(SelectCardActions.drawToPile(cardsToDraw, drawTo, turnFaceUp = true)),
     selectPileAction = redrawFrom match {
@@ -24,17 +24,17 @@ object PileOptionsHelper {
 
   val tableau = PileOptions(
     direction = Some("d"),
-    selectCardConstraint = Constraints.klondikeSelectCard,
-    dragFromConstraint = Constraints.klondikeDragFrom,
-    dragToConstraint = Constraints.klondikeTableauDragTo,
+    selectCardConstraint = Some(Constraints.klondikeSelectCard),
+    dragFromConstraint = Some(Constraints.klondikeDragFrom),
+    dragToConstraint = Some(Constraints.klondikeTableauDragTo),
     selectCardAction = Some(SelectCardActions.klondike)
   )
 
   val waste = PileOptions(
     cardsShown = Some(3),
     direction = Some("r"),
-    selectCardConstraint = Constraints.topCardOnly,
-    dragFromConstraint = Constraints.topCardOnly,
+    selectCardConstraint = Some(Constraints.topCardOnly),
+    dragFromConstraint = Some(Constraints.topCardOnly),
     selectCardAction = Some(SelectCardActions.klondike)
   )
 }

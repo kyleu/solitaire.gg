@@ -22,7 +22,9 @@ object MessageFrameFormatter {
         Json.toJson(r)
     }
   }
-  private def responseFromJson(json: JsValue): ResponseMessage = throw new IllegalArgumentException("Attempted to deserialize ResponseMessage [" + json + "] on server.")
+  private def responseFromJson(json: JsValue): ResponseMessage = throw new IllegalArgumentException(
+    "Attempted to deserialize ResponseMessage [" + json + "] on server."
+  )
 
   private val jsValueFrame: FrameFormatter[JsValue] = {
     val toStr = if (Config.debug) { Json.prettyPrint _ } else { Json.stringify _ }
