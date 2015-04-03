@@ -1,5 +1,5 @@
 function wireLinks() {
-  console.log($(".trace-link").size());
+  "use strict";
 
   $(".trace-link").on('click', function(ev) {
     var url = ev.currentTarget.href;

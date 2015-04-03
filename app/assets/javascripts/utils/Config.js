@@ -1,5 +1,6 @@
 define(function () {
   "use strict";
+
   var c = document.getElementById('scalataire-config');
   if(c === undefined) {
     throw "NoConfigurationException";

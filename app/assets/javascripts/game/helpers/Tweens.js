@@ -1,4 +1,6 @@
 define([], function() {
+  "use strict";
+
   return {
     tweenCardTo: function(card, x, y) {
       if(x != card.x || y != card.y) {

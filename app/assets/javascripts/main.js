@@ -6,5 +6,7 @@ requirejs.config({
 });
 
 requirejs(['game/Scalataire'], function(Scalataire) {
+  "use strict";
+
   window.scalataire = new Scalataire();
 });

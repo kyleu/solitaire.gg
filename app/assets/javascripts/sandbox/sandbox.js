@@ -1,4 +1,5 @@
 function go() {
+  "use strict";
   var container = document.getElementById("container");
   document.getElementById("win").innerText = (window.innerWidth + "x" + window.innerHeight);
   document.getElementById("doc").innerText = (document.body.clientHeight + "x" + document.body.clientWidth);
@@ -7,6 +8,7 @@ function go() {
 }
 
 window.addEventListener("orientationchange", function() {
+  "use strict";
   alert("the orientation of the device is now " + screen.orientation);
   go();
 });

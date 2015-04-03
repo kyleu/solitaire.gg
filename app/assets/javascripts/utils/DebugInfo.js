@@ -1,4 +1,6 @@
 define([], function() {
+  "use strict";
+
   return {
     getDebugInfo: function(scene, game) {
       return {

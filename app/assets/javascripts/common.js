@@ -1,4 +1,6 @@
 $(function() {
+  "use strict";
+
   $("#change-name-link").on('click', function() {
     var name = document.getElementById("account" ).value;
     if(name.length === 0) {

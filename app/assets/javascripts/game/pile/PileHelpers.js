@@ -1,4 +1,6 @@
 define(function() {
+  "use strict";
+
   var isValidMove = function(src, tgt) {
     var valid = false;
     for(var moveIndex in src.game.possibleMoves) {

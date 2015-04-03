@@ -1,4 +1,6 @@
 define(['game/Rank'], function(Rank) {
+  "use strict";
+
   return {
     "never": function() {
       return false;

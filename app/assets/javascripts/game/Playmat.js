@@ -1,4 +1,6 @@
 define(function () {
+  "use strict";
+
   var Playmat = function(game, layouts) {
     Phaser.Group.call(this, game, null, 'playmat');
     this.layout = layouts[0];
