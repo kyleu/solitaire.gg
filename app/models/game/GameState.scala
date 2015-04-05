@@ -73,7 +73,7 @@ case class GameState(
     "Game ID: " + gameId,
     "Variant: " + variant,
     "Seed: " + seed,
-    "Players: " + players.map(x => x.account + " (" + x.name + ")").mkString(", "),
+    "Players: " + players.map(x => x.account.toString + " (" + x.name + ")").mkString(", "),
     "Deck: " + deck.cards.toString,
     piles.size + " Piles: "
   ) ++ piles.map(p => p.toString)

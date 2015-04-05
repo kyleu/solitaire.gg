@@ -3,7 +3,7 @@ package models.queries
 import com.simple.jdub.{ Row, SingleRowQuery, Statement }
 
 object DdlQueries {
-  val tables = Map("accounts" -> CreateAccountTable, "games" -> CreateGameTable)
+  val tables: Map[String, Statement] = Map("accounts" -> CreateAccountTable, "games" -> CreateGameTable)
 
   case class DoesTableExist(tableName: String) extends SingleRowQuery[Boolean] {
     override val sql = "select exists (select * from information_schema.tables WHERE table_name = ?);"

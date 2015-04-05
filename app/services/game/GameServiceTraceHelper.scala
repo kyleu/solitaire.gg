@@ -23,7 +23,7 @@ trait GameServiceTraceHelper { this: GameService =>
               " <a class=\"btn btn-default\" href=\"" + controllers.routes.AdminController.observeGameAs(id, x.accountId).url + "\" target=\"_blank\">" +
               "Observe game as [" + x.name + "]" +
               "</a>"
-          case None => x.accountId + " (Disconnected)"
+          case None => x.accountId.toString + " (Disconnected)"
         }
       }.mkString("<br/>\n"),
       "observers" -> observerConnections.map { x =>
@@ -31,7 +31,7 @@ trait GameServiceTraceHelper { this: GameService =>
           case Some(connId) =>
             "<a href=\"" + connUrl(connId) + "\" class=\"trace-link\">" + connId + "</a>" +
               " (" + x._1.name + " as " + x._2.getOrElse("admin") + ")"
-          case None => x._1 + " (Disconnected)"
+          case None => x._1.toString + " (Disconnected)"
         }
       }.mkString("<br/>\n"),
       "gameMessageCount" -> gameMessages.size,

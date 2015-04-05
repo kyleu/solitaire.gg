@@ -39,5 +39,5 @@ define([], function() {
         cardHorizontalOffset: 240
       }
     }
-  }
+  };
 });

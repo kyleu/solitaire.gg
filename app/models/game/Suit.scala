@@ -15,7 +15,7 @@ sealed trait Suit extends Ordered[Suit] {
 }
 
 object Suit {
-  val all = Seq(Hearts, Spades, Diamonds, Clubs)
+  val all: Seq[Suit] = Seq(Hearts, Spades, Diamonds, Clubs)
 
   def fromChar(c: Char) = c match {
     case 'H' => Hearts

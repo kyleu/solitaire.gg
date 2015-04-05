@@ -16,6 +16,7 @@ object GameVariant {
   }
 
   def apply(variant: String, gameId: UUID, seed: Int) = variant match {
+    case Canfield.key => new Canfield(gameId, seed)
     case FreeCell.key => new FreeCell(gameId, seed)
     case Golf.key => new Golf(gameId, seed)
     case KlondikeDrawThree.key => new KlondikeDrawThree(gameId, seed)
@@ -28,7 +29,7 @@ object GameVariant {
   }
 
   val all = Seq(
-    FreeCell, Golf, KlondikeDrawThree, KlondikeDrawOne, Nestor, Pyramid, Spider, TrustyTwelve
+    Canfield, FreeCell, Golf, KlondikeDrawThree, KlondikeDrawOne, Nestor, Pyramid, Spider, TrustyTwelve
   )
 }
 

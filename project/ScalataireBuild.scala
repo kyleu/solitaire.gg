@@ -45,7 +45,11 @@ object ScalataireBuild extends Build with UniversalKeys {
     )
   }
 
-  private val compileOptions = Seq("-encoding", "UTF-8", "-feature", "-deprecation", "-unchecked")
+  private val compileOptions = Seq(
+    "-encoding", "UTF-8",
+    "-feature", "-deprecation", "-unchecked",
+    "–Xcheck-null", "-Xfatal-warnings", "-Xlint"
+  )
 
   object Versions {
     val app = "0.1-SNAPSHOT"

@@ -9,7 +9,7 @@ sealed trait Rank extends Ordered[Rank] {
 }
 
 object Rank {
-  val all = Seq(Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace)
+  val all: Seq[Rank] = Seq(Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace)
 
   def fromChar(c: Char) = c match {
     case '2' => Two
