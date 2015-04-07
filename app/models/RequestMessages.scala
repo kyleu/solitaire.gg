@@ -23,3 +23,4 @@ case class SelectPile(pile: String) extends GameMessage
 case class MoveCards(cards: Seq[UUID], src: String, tgt: String) extends GameMessage
 
 case object Undo extends GameMessage
+case object Redo extends GameMessage

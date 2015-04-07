@@ -11,7 +11,6 @@ object Spider extends GameVariant.Description {
   override val key = "spider"
   override val name = "Spider"
   override val body = "..."
-  override val inProgress = true
 }
 
 case class Spider(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {

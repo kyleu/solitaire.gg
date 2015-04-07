@@ -17,8 +17,6 @@ class GameService(val id: UUID, val variant: String, val seed: Int, private val 
   val gameVariant = GameVariant(variant, id, seed)
   val gameState = gameVariant.gameState
 
-  val undoService = new UndoService()
-
   initialPlayers.foreach { p =>
     gameState.addPlayer(p.accountId, p.name)
   }

@@ -35,6 +35,20 @@ define([], function () {
         }
       }
 
+      function undo() {
+        game.ws.send("Undo", {});
+      }
+
+      function redo() {
+        game.ws.send("Redo", {});
+      }
+
+      var undoKey = game.input.keyboard.addKey(Phaser.Keyboard.Z);
+      undoKey.onDown.add(undo);
+
+      var redoKey = game.input.keyboard.addKey(Phaser.Keyboard.Y);
+      redoKey.onDown.add(redo);
+
       var victoriousCheatKey = game.input.keyboard.addKey(Phaser.Keyboard.V);
       victoriousCheatKey.onDown.add(victorious);
 

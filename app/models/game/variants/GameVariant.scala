@@ -12,7 +12,7 @@ object GameVariant {
     val name: String
     val body: String
     val maxPlayers: Int = 1
-    val inProgress: Boolean = false
+    val undoAllowed: Boolean = true
   }
 
   def apply(variant: String, gameId: UUID, seed: Int) = variant match {

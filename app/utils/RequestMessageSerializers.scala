@@ -19,6 +19,9 @@ object RequestMessageSerializers {
   private val selectPileReads = Json.reads[SelectPile]
   private val moveCardsReads = Json.reads[MoveCards]
 
+  // case object Undo
+  // case object Redo
+
   implicit val requestMessageReads: Reads[RequestMessage] = (
     (__ \ 'c).read[String] and
     (__ \ 'v).read[JsValue]
@@ -38,7 +41,8 @@ object RequestMessageSerializers {
         case "SelectPile" => selectPileReads.reads(v)
         case "MoveCards" => moveCardsReads.reads(v)
 
-        case "Undo" => Undo
+        case "Undo" => JsSuccess(Undo)
+        case "Redo" => JsSuccess(Redo)
 
         case _ => JsSuccess(MalformedRequest("UnknownType", "c: " + c + ", v: " + Json.stringify(v)))
       }

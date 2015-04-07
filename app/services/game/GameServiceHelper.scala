@@ -9,6 +9,7 @@ trait GameServiceHelper
     with GameServiceCardHelper
     with GameServiceConnectionHelper
     with GameServicePossibleMovesHelper
-    with GameServiceTraceHelper { this: GameService =>
+    with GameServiceTraceHelper
+    with GameServiceUndoHelper { this: GameService =>
 
 }

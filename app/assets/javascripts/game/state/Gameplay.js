@@ -13,6 +13,7 @@ define([
   Gameplay.prototype.constructor = Gameplay;
 
   Gameplay.prototype.preload = function() {
+    this.game.stage.disableVisibilityChange = true;
     var imageKey = this.game.cardSet.key;
     this.game.load.image('bg-texture', '/assets/images/game/bg.jpg');
     this.game.load.image('card-back', '/assets/images/game/cards/' + imageKey + '/BACK.png');
