@@ -6,22 +6,23 @@ import play.api.libs.json._
 import play.api.libs.functional.syntax._
 
 object ResponseMessageSerializers {
-  private val serverErrorWrites = Json.writes[ServerError]
-  private val pongWrites = Json.writes[Pong]
-  private val versionResponseWrites = Json.writes[VersionResponse]
-  private val disconnectedResponseWrites = Json.writes[Disconnected]
+  private[this] val serverErrorWrites = Json.writes[ServerError]
+  private[this] val pongWrites = Json.writes[Pong]
+  private[this] val versionResponseWrites = Json.writes[VersionResponse]
+  private[this] val disconnectedResponseWrites = Json.writes[Disconnected]
 
-  private implicit val possibleMoveWrites = Json.writes[PossibleMove]
-  private implicit val possibleMovesWrites = Json.writes[PossibleMoves]
+  private[this] implicit val possibleMoveWrites = Json.writes[PossibleMove]
+  private[this] implicit val possibleMovesWrites = Json.writes[PossibleMoves]
 
-  private val gameJoinedWrites = Json.writes[GameJoined]
-  private val gameLostWrites = Json.writes[GameLost]
-  private val gameWonWrites = Json.writes[GameWon]
+  private[this] val gameJoinedWrites = Json.writes[GameJoined]
+  private[this] val gameLostWrites = Json.writes[GameLost]
+  private[this] val gameWonWrites = Json.writes[GameWon]
 
-  private val cardRevealedWrites = Json.writes[CardRevealed]
-  private val cardMovedWrites = Json.writes[CardMoved]
-  private val cardRemovedWrites = Json.writes[CardRemoved]
-  private val cardMoveCancelledWrites = Json.writes[CardMoveCancelled]
+  private[this] val cardRevealedWrites = Json.writes[CardRevealed]
+  private[this] val cardRemovedWrites = Json.writes[CardRemoved]
+
+  private[this] val cardMoveCancelledWrites = Json.writes[CardMoveCancelled]
+  private[this] val cardMovedWrites = Json.writes[CardMoved]
 
   implicit val responseMessageWrites = Writes[ResponseMessage] { r: ResponseMessage =>
     val json = r match {

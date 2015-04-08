@@ -11,9 +11,9 @@ import org.eclipse.jetty.servlet.ServletContextHandler
 import utils.{ Logging, Config }
 
 class MetricsServletActor extends InstrumentedActor with Logging {
-  private var jmxReporter: Option[JmxReporter] = None
-  private var graphiteReporter: Option[GraphiteReporter] = None
-  private var httpServer: Option[Server] = None
+  private[this] var jmxReporter: Option[JmxReporter] = None
+  private[this] var graphiteReporter: Option[GraphiteReporter] = None
+  private[this] var httpServer: Option[Server] = None
 
   override def preStart() {
     if (Config.jmxEnabled) {

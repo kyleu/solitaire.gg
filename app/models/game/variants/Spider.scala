@@ -16,20 +16,20 @@ object Spider extends GameVariant.Description {
 case class Spider(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Spider
 
-  private val drawPiles = Seq("tableau-1", "tableau-2", "tableau-3", "tableau-4", "tableau-5", "tableau-6", "tableau-7", "tableau-8", "tableau-9", "tableau-10")
+  private[this] val drawPiles = Seq("tableau-1", "tableau-2", "tableau-3", "tableau-4", "tableau-5", "tableau-6", "tableau-7", "tableau-8", "tableau-9", "tableau-10")
 
-  val stockOptions = new PileOptions(
+  private[this] val stockOptions = new PileOptions(
     cardsShown = Some(1),
     selectCardConstraint = Some(Constraints.notEmpty),
     selectCardAction = Some(SelectCardActions.drawToPiles(1, drawPiles, turnFaceUp = true))
   )
 
-  val tableauOptions = PileOptionsHelper.tableau.copy(
+  private[this] val tableauOptions = PileOptionsHelper.tableau.copy(
     dragToConstraint = Some(Constraints.lowerRank),
     dragFromConstraint = Some(Constraints.descendingSequenceSameSuit)
   )
 
-  private val piles = List(
+  private[this] val piles = List(
     new Pile("stock", "stock", stockOptions),
 
     new Pile("foundation-1", "foundation", PileOptionsHelper.foundation),
@@ -53,9 +53,9 @@ case class Spider(override val gameId: UUID, override val seed: Int) extends Gam
     new Pile("tableau-10", "tableau", tableauOptions)
   )
 
-  private val deck = Deck.shuffled(rng, 2)
+  private[this] val deck = Deck.shuffled(rng, 2)
 
-  private val layouts = Seq(
+  private[this] val layouts = Seq(
     Layout(
       width = 11.1,
       height = 5.0,

@@ -19,14 +19,14 @@ object Nestor extends GameVariant.Description {
 case class Nestor(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Nestor
 
-  private val options = PileOptionsHelper.tableau.combine(PileOptions(
+  private[this] val options = PileOptionsHelper.tableau.combine(PileOptions(
     selectCardConstraint = Some(Constraints.never),
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.sameRank),
     dragToAction = Some(DragToActions.remove)
   ))
 
-  private val piles = List(
+  private[this] val piles = List(
     new Pile("tableau-1", "tableau", options),
     new Pile("tableau-2", "tableau", options),
     new Pile("tableau-3", "tableau", options),
@@ -42,9 +42,9 @@ case class Nestor(override val gameId: UUID, override val seed: Int) extends Gam
     new Pile("reserve-4", "reserve", options)
   )
 
-  private val deck = Deck.shuffled(rng)
+  private[this] val deck = Deck.shuffled(rng)
 
-  private val layouts = Seq(
+  private[this] val layouts = Seq(
     Layout(
       width = 8.9,
       height = 3.1,

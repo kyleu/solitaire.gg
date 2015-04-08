@@ -7,12 +7,12 @@ import models.{ PossibleMove, PossibleMoves }
 import scala.util.{ Failure, Try, Success }
 
 trait GameServicePossibleMovesHelper { this: GameService =>
-  protected def handleGetPossibleMoves(player: UUID) = {
+  protected[this] def handleGetPossibleMoves(player: UUID) = {
     val moves = possibleMoves(Some(player))
-    sendToPlayer(player, PossibleMoves(moves))
+    sendToAll(PossibleMoves(moves))
   }
 
-  protected def possibleMoves(player: Option[UUID]): Seq[PossibleMove] = {
+  protected[this] def possibleMoves(player: Option[UUID]): Seq[PossibleMove] = {
     log.info("Generating possible moves for [" + id + "].")
     val ret = possibleMoves() match {
       case Success(moves) =>
@@ -25,7 +25,7 @@ trait GameServicePossibleMovesHelper { this: GameService =>
     ret
   }
 
-  protected def possibleMoves(): Try[Seq[PossibleMove]] = Try {
+  protected[this] def possibleMoves(): Try[Seq[PossibleMove]] = Try {
     val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
     gameState.piles.foreach { source =>
       if (source.canSelectPile(gameState)) {

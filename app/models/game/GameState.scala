@@ -17,7 +17,7 @@ case class GameState(
     var players: Seq[GamePlayer] = Nil
 ) extends Logging {
 
-  private val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
+  private[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
   val cardsById = collection.mutable.HashMap[UUID, Card]()
   val pilesById = piles.map(p => p.id -> p).toMap
 

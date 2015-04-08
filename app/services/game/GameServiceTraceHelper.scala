@@ -6,9 +6,9 @@ import models.TraceResponse
 import org.joda.time.DateTime
 
 trait GameServiceTraceHelper { this: GameService =>
-  private val started = new DateTime()
+  private[this] val started = new DateTime()
 
-  protected def handleGameTrace() {
+  protected[this] def handleGameTrace() {
     def connUrl(id: UUID) = controllers.routes.AdminController.traceConnection(id).url
     val ret = TraceResponse(this.id, List(
       "variant" -> gameVariant.description.key,

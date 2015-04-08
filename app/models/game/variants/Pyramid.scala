@@ -19,7 +19,7 @@ object Pyramid extends GameVariant.Description {
 case class Pyramid(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Pyramid
 
-  private val pileOptions = PileOptionsHelper.waste.combine(PileOptions(
+  private[this] val pileOptions = PileOptionsHelper.waste.combine(PileOptions(
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.total(13, aceHigh = false)),
     selectCardConstraint = Some(Constraints.specificRank(King)),
@@ -27,7 +27,7 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
     dragToAction = Some(DragToActions.remove)
   ))
 
-  private def pileOptionsFor(emptyPiles: String*) = {
+  private[this] def pileOptionsFor(emptyPiles: String*) = {
     val c = Some(Constraints.pilesEmpty(emptyPiles: _*))
     pileOptions.copy(
       dragFromConstraint = c,
@@ -36,7 +36,7 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
     )
   }
 
-  private val piles = List(
+  private[this] val piles = List(
     new Pile("stock", "stock", PileOptionsHelper.stock(1, "waste", Some("waste")).combine(PileOptions(selectPileConstraint = Some(Constraints.never)))),
     new Pile("waste", "waste", pileOptions),
 
@@ -76,9 +76,9 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
     new Pile("pile-7-7", "tableau", pileOptions)
   )
 
-  private val deck = Deck.shuffled(rng)
+  private[this] val deck = Deck.shuffled(rng)
 
-  private val layouts = Seq(
+  private[this] val layouts = Seq(
     Layout(
       width = 7.8,
       height = 4.3,

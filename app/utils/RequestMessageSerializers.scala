@@ -5,19 +5,19 @@ import play.api.libs.json._
 import play.api.libs.functional.syntax._
 
 object RequestMessageSerializers {
-  private val malformedRequestReads = Json.reads[MalformedRequest]
-  private val pingReads = Json.reads[Ping]
+  private[this] val malformedRequestReads = Json.reads[MalformedRequest]
+  private[this] val pingReads = Json.reads[Ping]
   // case object [GetVersion]
-  private val debugInfoReads = Json.reads[DebugInfo]
+  private[this] val debugInfoReads = Json.reads[DebugInfo]
 
-  private val startGameReads = Json.reads[StartGame]
-  private val joinGameReads = Json.reads[JoinGame]
-  private val observeGameReads = Json.reads[ObserveGame]
+  private[this] val startGameReads = Json.reads[StartGame]
+  private[this] val joinGameReads = Json.reads[JoinGame]
+  private[this] val observeGameReads = Json.reads[ObserveGame]
 
   // case object [GetPossibleMoves]
-  private val selectCardReads = Json.reads[SelectCard]
-  private val selectPileReads = Json.reads[SelectPile]
-  private val moveCardsReads = Json.reads[MoveCards]
+  private[this] val selectCardReads = Json.reads[SelectCard]
+  private[this] val selectPileReads = Json.reads[SelectPile]
+  private[this] val moveCardsReads = Json.reads[MoveCards]
 
   // case object Undo
   // case object Redo

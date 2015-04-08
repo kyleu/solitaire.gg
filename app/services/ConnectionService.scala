@@ -4,21 +4,19 @@ import java.util.UUID
 
 import akka.actor.{ Props, ActorRef }
 import models._
-import play.api.libs.json.JsObject
 import utils.{ Logging, Config }
-import utils.metrics.InstrumentedActor
 
 object ConnectionService {
   def props(supervisor: ActorRef, accountId: UUID, name: String, out: ActorRef) = Props(new ConnectionService(supervisor, accountId, name, out))
 }
 
-class ConnectionService(supervisor: ActorRef, accountId: UUID, name: String, out: ActorRef) extends InstrumentedActor with Logging {
-  val id = UUID.randomUUID
+class ConnectionService(val supervisor: ActorRef, val accountId: UUID, val name: String, val out: ActorRef) extends ConnectionServiceHelper with Logging {
+  protected[this] val id = UUID.randomUUID
 
-  var activeGameId: Option[UUID] = None
-  var activeGame: Option[ActorRef] = None
+  protected[this] var activeGameId: Option[UUID] = None
+  protected[this] var activeGame: Option[ActorRef] = None
 
-  private var pendingDebugChannel: Option[ActorRef] = None
+  protected[this] var pendingDebugChannel: Option[ActorRef] = None
 
   override def preStart() = {
     supervisor ! ConnectionStarted(accountId, name, id, self)
@@ -52,60 +50,5 @@ class ConnectionService(supervisor: ActorRef, accountId: UUID, name: String, out
   override def postStop() = {
     activeGame.foreach(_ ! ConnectionStopped(id))
     supervisor ! ConnectionStopped(id)
-  }
-
-  private def handleStartGame(gameType: String, seed: Option[Int]) {
-    supervisor ! CreateGame(gameType, id, seed)
-  }
-
-  private def handleJoinGame(gameId: UUID) = {
-    supervisor ! ConnectionGameJoin(gameId, id)
-  }
-
-  private def handleObserveGame(gameId: UUID, as: Option[UUID]) = {
-    supervisor ! ConnectionGameObserve(gameId, id, as)
-  }
-
-  private def handleGameMessage(gm: GameMessage) = activeGame match {
-    case Some(ag) => ag forward GameRequest(accountId, name, gm)
-    case None => throw new IllegalArgumentException("Received game message [" + gm.getClass.getSimpleName + "] while not in game.")
-  }
-
-  private def handleGameStarted(id: UUID, gameService: ActorRef) {
-    activeGameId = Some(id)
-    activeGame = Some(gameService)
-  }
-
-  private def handleGameStopped(id: UUID) {
-    if (activeGameId != Some(id)) {
-      throw new IllegalStateException("Provided game [" + id + "] is not the active game.")
-    }
-    activeGameId = None
-    activeGame = None
-  }
-
-  private def handleConnectionTrace() {
-    val ret = TraceResponse(id, List(
-      "accountId" -> accountId,
-      "name" -> name,
-      "game" -> activeGameId.map { i =>
-        "<a href=\"" + controllers.routes.AdminController.traceGame(i) + "\" class=\"trace-link\">" + i + "</a>"
-      }.getOrElse("Not in game")
-    ))
-    sender() ! ret
-  }
-
-  private def handleClientTrace() {
-    pendingDebugChannel = Some(sender())
-    out ! SendDebugInfo
-  }
-
-  private def handleDebugInfo(data: JsObject) = pendingDebugChannel match {
-    case Some(dc) => dc ! TraceResponse(id, data.fields)
-    case None => log.warn("Received unsolicited DebugInfo [" + data.toString + "] from [" + id + "].")
-  }
-
-  private def handleResponseMessage(rm: ResponseMessage) {
-    out ! rm
   }
 }

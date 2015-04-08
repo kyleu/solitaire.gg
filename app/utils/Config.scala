@@ -4,7 +4,7 @@ import com.typesafe.config.ConfigFactory
 import play.api.Play
 
 object Config {
-  private val cnf = ConfigFactory.load()
+  private[this] val cnf = ConfigFactory.load()
 
   val projectId = utils.BuildInfo.name
   val projectName = "Scalataire"

@@ -22,7 +22,7 @@ import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, defaultScalariformSetti
 object ScalataireBuild extends Build with UniversalKeys {
   val projectId = "scalataire"
 
-  val dependencies = {
+  private[this] val dependencies = {
     import Dependencies._
     Seq(
       Database.jdub,
@@ -45,18 +45,18 @@ object ScalataireBuild extends Build with UniversalKeys {
     )
   }
 
-  private val compileOptions = Seq(
+  private[this] val compileOptions = Seq(
     "-encoding", "UTF-8",
     "-feature", "-deprecation", "-unchecked",
     "–Xcheck-null", "-Xfatal-warnings", "-Xlint"
   )
 
-  object Versions {
+  private[this] object Versions {
     val app = "0.1-SNAPSHOT"
     val scala = "2.11.6"
   }
 
-  lazy val serverSettings = Seq(
+  private[this] lazy val serverSettings = Seq(
     name := projectId,
     version := Versions.app,
     scalaVersion := Versions.scala,

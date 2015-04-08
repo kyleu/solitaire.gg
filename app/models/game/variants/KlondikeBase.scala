@@ -6,7 +6,7 @@ import models.game._
 import models.game.pile._
 
 abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, cardsToDraw: Int) extends GameVariant(gameId, seed) {
-  private val piles = List(
+  private[this] val piles = List(
     new Pile("stock", "stock", PileOptionsHelper.stock(cardsToDraw, "waste", Some("waste"))),
     new Pile("waste", "waste", PileOptionsHelper.waste),
 
@@ -24,9 +24,9 @@ abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, c
     new Pile("tableau-7", "tableau", PileOptionsHelper.tableau)
   )
 
-  private val deck = Deck.shuffled(rng)
+  private[this] val deck = Deck.shuffled(rng)
 
-  private val layouts = List(
+  private[this] val layouts = List(
     Layout(
       width = 7.8,
       height = 5.0,

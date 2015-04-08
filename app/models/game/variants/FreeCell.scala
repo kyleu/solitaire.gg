@@ -18,14 +18,14 @@ object FreeCell extends GameVariant.Description {
 case class FreeCell(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = FreeCell
 
-  private val cellOptions = Pile.options.combine(PileOptions(
+  private[this] val cellOptions = Pile.options.combine(PileOptions(
     cardsShown = Some(1),
     dragToConstraint = Some(Constraints.empty),
     dragFromConstraint = Some(Constraints.topCardOnly)
   ))
-  private val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(dragFromConstraint = Some(Constraints.topCardOnly)))
+  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(dragFromConstraint = Some(Constraints.topCardOnly)))
 
-  private val piles = List(
+  private[this] val piles = List(
     new Pile("cell-1", "pile", cellOptions),
     new Pile("cell-2", "pile", cellOptions),
     new Pile("cell-3", "pile", cellOptions),
@@ -46,9 +46,9 @@ case class FreeCell(override val gameId: UUID, override val seed: Int) extends G
     new Pile("tableau-8", "tableau", tableauOptions)
   )
 
-  private val deck = Deck.shuffled(rng)
+  private[this] val deck = Deck.shuffled(rng)
 
-  private val layouts = Seq(
+  private[this] val layouts = Seq(
     Layout(
       width = 9.9,
       height = 5.0,

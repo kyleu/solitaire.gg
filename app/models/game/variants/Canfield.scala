@@ -14,7 +14,7 @@ object Canfield extends GameVariant.Description {
 case class Canfield(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Canfield
 
-  private val piles = List(
+  private[this] val piles = List(
     new Pile("stock", "stock", PileOptionsHelper.stock(3, "waste", Some("waste"))),
     new Pile("waste", "waste", PileOptionsHelper.waste),
     new Pile("reserve", "reserve", PileOptionsHelper.waste.combine(PileOptions(cardsShown = Some(1)))),
@@ -30,9 +30,9 @@ case class Canfield(override val gameId: UUID, override val seed: Int) extends G
     new Pile("tableau-4", "tableau", PileOptionsHelper.tableau)
   )
 
-  private val deck = Deck.shuffled(rng)
+  private[this] val deck = Deck.shuffled(rng)
 
-  private val layouts = Seq(
+  private[this] val layouts = Seq(
     Layout(
       width = 7.4,
       height = 5.0,

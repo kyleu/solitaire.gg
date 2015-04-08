@@ -38,7 +38,7 @@ object GameSerializers {
 
   implicit val deckWrites = Json.writes[Deck]
 
-  private val clientPileOptionsWrites = Json.writes[ClientPileOptions]
+  private[this] val clientPileOptionsWrites = Json.writes[ClientPileOptions]
   implicit val pileOptionsWrites = new Writes[PileOptions] {
     override def writes(po: PileOptions) = clientPileOptionsWrites.writes(ClientPileOptions.fromPileOptions(po))
   }

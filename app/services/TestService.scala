@@ -20,7 +20,7 @@ object TestService extends Logging {
     }
   }
 
-  private def runTest(f: () => TestResult) = {
+  private[this] def runTest(f: () => TestResult) = {
     val startMs = System.currentTimeMillis()
     val ret = Try {
       f()

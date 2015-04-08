@@ -8,7 +8,7 @@ import models.game.variants.GameVariant
 
 case class PlayerRecord(accountId: UUID, name: String, var connectionId: Option[UUID], var connectionActor: Option[ActorRef])
 
-class GameService(val id: UUID, val variant: String, val seed: Int, private val initialPlayers: List[PlayerRecord]) extends GameServiceHelper {
+class GameService(val id: UUID, val variant: String, val seed: Int, private[this] val initialPlayers: List[PlayerRecord]) extends GameServiceHelper {
   log.info("Started game [" + variant + "] for players [" + initialPlayers.map(_.name).mkString(", ") + "] with seed [" + seed + "].")
 
   val playerConnections = collection.mutable.ArrayBuffer[PlayerRecord](initialPlayers: _*)
@@ -42,6 +42,8 @@ class GameService(val id: UUID, val variant: String, val seed: Int, private val 
           case sc: SelectCard => handleSelectCard(gr.accountId, sc.card, sc.pile, sc.pileIndex)
           case sp: SelectPile => handleSelectPile(gr.accountId, sp.pile)
           case mc: MoveCards => handleMoveCards(gr.accountId, mc.cards, mc.src, mc.tgt)
+          case Undo => handleUndo(gr.accountId)
+          case Redo => handleRedo(gr.accountId)
           case r => log.warn("GameService received unknown game message [" + r.getClass.getSimpleName.replace("$", "") + "].")
         }
       } catch {

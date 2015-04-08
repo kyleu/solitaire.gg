@@ -7,7 +7,7 @@ import models._
 import play.api.libs.concurrent.Akka
 
 trait GameServiceConnectionHelper { this: GameService =>
-  protected def handleAddPlayer(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef) {
+  protected[this] def handleAddPlayer(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef) {
     playerConnections.find(_.accountId == accountId) match {
       case Some(p) =>
         p.connectionActor.foreach(_ ! Disconnected("Joined from another connection."))
@@ -22,7 +22,7 @@ trait GameServiceConnectionHelper { this: GameService =>
     connectionActor ! GameJoined(id, gameState.view(accountId), possibleMoves(Some(accountId)))
   }
 
-  protected def handleAddObserver(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef, as: Option[UUID]) {
+  protected[this] def handleAddObserver(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef, as: Option[UUID]) {
     observerConnections += (PlayerRecord(accountId, name, Some(connectionId), Some(connectionActor)) -> as)
     val gs = as match {
       case Some(player) => gameState.view(player)
@@ -31,7 +31,7 @@ trait GameServiceConnectionHelper { this: GameService =>
     connectionActor ! GameJoined(id, gs, possibleMoves(None))
   }
 
-  protected def handleConnectionStopped(connectionId: UUID) {
+  protected[this] def handleConnectionStopped(connectionId: UUID) {
     import play.api.Play.current
     import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
@@ -54,7 +54,7 @@ trait GameServiceConnectionHelper { this: GameService =>
     Akka.system.scheduler.scheduleOnce(30.seconds, self, StopGameIfEmpty)
   }
 
-  protected def handleStopGameIfEmpty() {
+  protected[this] def handleStopGameIfEmpty() {
     if (playerConnections.isEmpty && observerConnections.isEmpty) {
       log.info("Stopping empty game [" + id + "] after timeout.")
       context.parent ! GameStopped(id)
@@ -62,45 +62,23 @@ trait GameServiceConnectionHelper { this: GameService =>
     }
   }
 
-  protected def sendToPlayer(player: UUID, message: ResponseMessage): Unit = {
-    playerConnections.find(_.accountId == player).foreach { c =>
-      c.connectionActor.foreach(_ ! message)
-    }
-    observerConnections.filter(o => o._2.isEmpty || o._2 == Some(player)).foreach { c =>
-      c._2.foreach { cp =>
-        if (cp == player) {
-          c._1.connectionActor.foreach(_ ! message)
-        }
-      }
-    }
-  }
-
-  protected def sendToPlayer(player: UUID, messages: Seq[ResponseMessage]): Unit = {
-    if (messages.isEmpty) {
-      log.info("No messages to send to player.")
-    } else if (messages.tail.isEmpty) {
-      sendToPlayer(player, messages.headOption.getOrElse(throw new IllegalStateException()))
-    } else {
-      sendToPlayer(player, MessageSet(messages))
-    }
-  }
-
-  protected def sendToAll(message: ResponseMessage): Unit = {
-    playerConnections.foreach { c =>
-      c.connectionActor.foreach(_ ! message)
-    }
-    observerConnections.foreach { c =>
-      c._1.connectionActor.foreach(_ ! message)
-    }
-  }
-
-  protected def sendToAll(messages: Seq[ResponseMessage]): Unit = {
+  protected[this] def sendToAll(messages: Seq[ResponseMessage]): Unit = {
     if (messages.isEmpty) {
       log.info("No messages to send to all players.")
     } else if (messages.tail.isEmpty) {
       sendToAll(messages.headOption.getOrElse(throw new IllegalStateException()))
     } else {
       sendToAll(MessageSet(messages))
+    }
+  }
+
+  protected[this] def sendToAll(message: ResponseMessage): Unit = {
+    registerResponse(message)
+    playerConnections.foreach { c =>
+      c.connectionActor.foreach(_ ! message)
+    }
+    observerConnections.foreach { c =>
+      c._1.connectionActor.foreach(_ ! message)
     }
   }
 }

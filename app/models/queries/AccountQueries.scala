@@ -7,8 +7,8 @@ import models.Account
 import org.joda.time.LocalDateTime
 
 object AccountQueries {
-  private val tableName = "accounts"
-  private val columns = "id, name, created"
+  private[this] val tableName = "accounts"
+  private[this] val columns = "id, name, created"
 
   case class CreateAccount(name: String) extends Statement {
     val sql = s"insert into $tableName ($columns) values (?, ?, now())"

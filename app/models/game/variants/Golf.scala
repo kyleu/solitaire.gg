@@ -18,13 +18,13 @@ object Golf extends GameVariant.Description {
 case class Golf(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Golf
 
-  private val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(
+  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(
     selectCardConstraint = Some(Constraints.alternatingRankToFoundation),
     dragFromConstraint = Some(Constraints.topCardOnly),
     selectCardAction = Some(SelectCardActions.drawToPile(1, "foundation", turnFaceUp = false))
   ))
 
-  private val piles = List(
+  private[this] val piles = List(
     new Pile("tableau-1", "tableau", tableauOptions),
     new Pile("tableau-2", "tableau", tableauOptions),
     new Pile("tableau-3", "tableau", tableauOptions),
@@ -43,9 +43,9 @@ case class Golf(override val gameId: UUID, override val seed: Int) extends GameV
     )))
   )
 
-  private val deck = Deck.shuffled(rng)
+  private[this] val deck = Deck.shuffled(rng)
 
-  private val layouts = Seq(
+  private[this] val layouts = Seq(
     Layout(
       width = 7.8,
       height = 3.2,

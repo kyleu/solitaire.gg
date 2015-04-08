@@ -85,7 +85,7 @@ object SelectCardActions {
     Seq(CardRemoved(card.id))
   })
 
-  private def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turnFaceUp: Boolean = true) = {
+  private[this] def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turnFaceUp: Boolean = true) = {
     src.removeCard(card)
     tgt.addCard(card)
     val msg = CardMoved(card.id, src.id, tgt.id, turnFaceUp = turnFaceUp)

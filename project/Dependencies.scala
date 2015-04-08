@@ -7,7 +7,7 @@ object Dependencies {
   }
 
   object WebJars {
-    val requireJs = "org.webjars" % "requirejs" % "2.1.16"
+    val requireJs = "org.webjars" % "requirejs" % "2.1.17"
     val bootstrap = "org.webjars" % "bootstrap" % "3.3.4"
   }
 

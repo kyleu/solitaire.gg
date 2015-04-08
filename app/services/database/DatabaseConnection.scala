@@ -6,7 +6,7 @@ import utils.Config
 import utils.metrics.Checked
 
 object DatabaseConnection {
-  private val db = {
+  private[this] val db = {
     val cfg = Play.current.configuration
     val url = cfg.getString("db.default.url").getOrElse(throw new IllegalArgumentException("No database url provided."))
     val username = cfg.getString("db.default.username").getOrElse(Config.projectId)
