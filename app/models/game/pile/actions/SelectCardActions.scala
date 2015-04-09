@@ -13,7 +13,7 @@ object SelectCardActions {
   val klondike = SelectCardAction("klondike", (pile, card, gameState) => {
     if (!card.u) {
       card.u = true
-      Seq(CardRevealed(card))
+      gameState.revealCardToAll(card)
     } else {
       val foundations = gameState.piles.filter(_.behavior == "foundation")
       val foundation = foundations.flatMap { f =>
@@ -80,7 +80,7 @@ object SelectCardActions {
     }
   })
 
-  private[this] def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turnFaceUp: Boolean = true) = {
+  private[this] def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turnFaceUp: Boolean = false) = {
     src.removeCard(card)
     tgt.addCard(card)
     val msg = CardMoved(card.id, src.id, tgt.id, turnFaceUp = turnFaceUp)

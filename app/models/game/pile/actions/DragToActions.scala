@@ -19,9 +19,11 @@ object DragToActions {
     val gy = gameState.pilesById(graveyard)
     cards.flatMap { card =>
       src.removeCard(card)
+      gy.addCard(card)
 
       val targetCard = tgt.cards.last
       tgt.removeCard(targetCard)
+      gy.addCard(targetCard)
 
       Seq(CardMoved(card.id, src.id, graveyard), CardMoved(targetCard.id, tgt.id, graveyard))
     }

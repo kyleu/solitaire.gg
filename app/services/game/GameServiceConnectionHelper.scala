@@ -72,8 +72,10 @@ trait GameServiceConnectionHelper { this: GameService =>
     }
   }
 
-  protected[this] def sendToAll(message: ResponseMessage): Unit = {
-    registerResponse(message)
+  protected[this] def sendToAll(message: ResponseMessage, registerUndoResponse: Boolean = true): Unit = {
+    if(registerUndoResponse) {
+      registerResponse(message)
+    }
     playerConnections.foreach { c =>
       c.connectionActor.foreach(_ ! message)
     }

@@ -18,8 +18,10 @@ trait GameServiceUndoHelper { this: GameService =>
       log.info("Attempt to undo with no actions available.")
     } else {
       val msg = historyQueue.pop()
-      log.info("Undoing message [" + msg.toString + "] (" + historyQueue.length + " other messages in history queue).")
-      undoQueue.push(msg)
+      val reverse = getReverse(msg)
+      undoQueue.push(reverse)
+      log.info("Undoing message [" + msg.toString + "] with message [" + reverse + "] (" + historyQueue.length + " other messages in history queue).")
+      sendToAll(reverse, registerUndoResponse = false)
     }
   }
 
@@ -28,29 +30,34 @@ trait GameServiceUndoHelper { this: GameService =>
       log.info("Attempt to redo from empty undo stack.")
     } else {
       val msg = undoQueue.pop()
-      log.info("Performing redo of [" + msg.toString + "] (" + undoQueue.length + " other messages in undo queue).")
-      msg match {
-        case cr: CardRevealed => handleCardRevealed(accountId, cr)
-        case cm: CardMoved => handleCardMoved(accountId, cm)
-        case ms: MessageSet => handleMessageSet(accountId, ms)
-      }
-      historyQueue.push(msg)
+      val reverse = getReverse(msg)
+      historyQueue.push(reverse)
+      log.info("Performing redo of [" + msg.toString + "] with message [" + reverse + "] (" + undoQueue.length + " other messages in undo queue).")
+      sendToAll(msg)
     }
   }
 
-  private[this] def handleCardRevealed(player: UUID, msg: CardRevealed) = {
+  private[this] def getReverse(rrm: ReversibleResponseMessage): ReversibleResponseMessage = rrm match {
+    case cr: CardRevealed => cr
 
+    case cm: CardMoved =>
+      val src = gameState.pilesById(cm.source)
+      val tgt = gameState.pilesById(cm.target)
+      val card = tgt.cards(cm.targetIndex.getOrElse(tgt.cards.size - 1))
+      tgt.removeCard(card)
+      src.addCard(card)
+
+      cm.copy(
+        source = cm.target,
+        target = cm.source,
+        turnFaceUp = cm.turnFaceDown,
+        turnFaceDown = cm.turnFaceUp
+      )
+
+    case ms: MessageSet =>
+      MessageSet(ms.messages.flatMap {
+        case rrm: ReversibleResponseMessage => Some(rrm)
+        case _ => None
+      }.reverseMap(getReverse))
   }
-
-  private[this] def handleCardMoved(player: UUID, msg: CardMoved) = {
-
-  }
-
-  private[this] def handleMessageSet(player: UUID, msg: MessageSet) = {
-    val newMessages = msg.messages.flatMap {
-      case rrm: ReversibleResponseMessage => Some(rrm)
-      case _ => None
-    }.reverse
-  }
-
 }
