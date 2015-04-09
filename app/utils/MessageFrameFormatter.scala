@@ -8,7 +8,10 @@ import utils.RequestMessageSerializers._
 import utils.ResponseMessageSerializers._
 
 object MessageFrameFormatter {
-  private[this] def requestToJson(r: RequestMessage): JsValue = throw new IllegalArgumentException("Attempted to serialize RequestMessage [" + r + "] on server.")
+  private[this] def requestToJson(r: RequestMessage): JsValue = {
+    throw new IllegalArgumentException("Attempted to serialize RequestMessage [" + r + "] on server.")
+  }
+
   private[this] def requestFromJson(json: JsValue): RequestMessage = Json.fromJson[RequestMessage](json) match {
     case rm: JsSuccess[RequestMessage @unchecked] => rm.get
     case e: JsError => MalformedRequest(e.errors.map(x => x._1.toString + ": [" + x._2.mkString(" :: ")).mkString(", "), Json.stringify(json))

@@ -6,7 +6,8 @@ import akka.pattern.ask
 import akka.util.Timeout
 import models._
 import play.api.mvc._
-import services.{ TestService, ActorSupervisor }
+import services.ActorSupervisor
+import services.test.TestService
 import scala.concurrent.duration._
 
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -70,12 +71,13 @@ object AdminController extends Controller {
   }
 
   def runTest(test: String) = Action { implicit request =>
+    val ts = new TestService()
     val ret = test match {
-      case "all" => TestService.testAll()
-      case "account" => TestService.testAccount()
-      case "variants" => TestService.testVariants()
-      case "known" => TestService.testKnownGame()
-      case x => TestService.testVariant(x)
+      case "all" => ts.testAll()
+      case "account" => ts.testAccount()
+      case "variants" => ts.testVariants()
+      case "known" => ts.testKnownGame()
+      case x => ts.testVariant(x)
     }
     Ok(views.html.admin.testResults(test, ret.toString(0)))
   }
