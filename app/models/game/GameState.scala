@@ -49,15 +49,39 @@ case class GameState(
     addCard(c, pile, reveal)
   }
 
-  def revealCardToAll(card: Card) = playerKnownIds.keys.flatMap(p => revealCardToPlayer(card, p)).toList
+  def revealCardToAll(card: Card) = {
+    if(playerKnownIds.keys.exists(p => revealCardToPlayer(card, p))) {
+      Seq(CardRevealed(card))
+    } else {
+      Nil
+    }
+  }
 
   def revealCardToPlayer(card: Card, player: UUID) = {
     val existing = playerKnownIds(player)
     if (!existing.contains(card.id)) {
       existing += card.id
-      Some(CardRevealed(card))
+      true
     } else {
-      None
+      false
+    }
+  }
+
+  def hideCardFromAll(card: Card) = {
+    if(playerKnownIds.keys.exists(p => hideCardFromPlayer(card, p))) {
+      Seq(CardHidden(card.id))
+    } else {
+      Nil
+    }
+  }
+
+  def hideCardFromPlayer(card: Card, player: UUID) = {
+    val existing = playerKnownIds(player)
+    if (existing.contains(card.id)) {
+      existing -= card.id
+      true
+    } else {
+      false
     }
   }
 

@@ -90,6 +90,10 @@ define([
           existing.turnFaceUp();
         }
         break;
+      case "CardHidden":
+        var hidden = this.game.cards[v.id];
+        hidden.turnFaceDown();
+        break;
       case "CardMoved":
         var movedCard = this.game.cards[v.card];
         var source = this.game.piles[v.source];

@@ -107,12 +107,11 @@ define(['game/Rank', 'game/Suit', 'game/helpers/Tweens'], function (Rank, Suit, 
   };
 
   Card.prototype.turnFaceUp = function() {
-    Tweens.tweenFlip(this);
+    Tweens.tweenFlip(this, true);
   };
 
   Card.prototype.turnFaceDown = function() {
-    this.faceUp = false;
-    this.loadTexture('card-back', 0);
+    Tweens.tweenFlip(this, false);
   };
 
   Card.prototype.toString = function() {
