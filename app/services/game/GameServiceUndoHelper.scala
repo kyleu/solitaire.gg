@@ -5,6 +5,8 @@ import java.util.UUID
 import models._
 
 trait GameServiceUndoHelper { this: GameService =>
+  protected var undosByPlayer = collection.mutable.HashMap.empty[UUID, Int]
+
   private[this] val historyQueue = collection.mutable.Stack[ReversibleResponseMessage]()
   private[this] val undoQueue = collection.mutable.Stack[ReversibleResponseMessage]()
 
@@ -17,11 +19,13 @@ trait GameServiceUndoHelper { this: GameService =>
     if (historyQueue.isEmpty) {
       log.info("Attempt to undo with no actions available.")
     } else {
+      undosByPlayer(accountId) = undosByPlayer.getOrElseUpdate(accountId, 0) + 1
       val msg = historyQueue.pop()
       val reverse = getReverse(msg)
       undoQueue.push(reverse)
       log.info("Undoing message [" + msg.toString + "] with message [" + reverse + "] (" + historyQueue.length + " other messages in history queue).")
       sendToAll(reverse, registerUndoResponse = false)
+      handleGetPossibleMoves(accountId)
     }
   }
 
@@ -33,12 +37,14 @@ trait GameServiceUndoHelper { this: GameService =>
       val reverse = getReverse(msg)
       historyQueue.push(reverse)
       log.info("Performing redo of [" + msg.toString + "] with message [" + reverse + "] (" + undoQueue.length + " other messages in undo queue).")
-      sendToAll(msg)
+      sendToAll(reverse, registerUndoResponse = false)
+      handleGetPossibleMoves(accountId)
     }
   }
 
   private[this] def getReverse(rrm: ReversibleResponseMessage): ReversibleResponseMessage = rrm match {
-    case cr: CardRevealed => cr
+    case cr: CardRevealed => CardHidden(cr.card.id)
+    case ch: CardHidden => CardRevealed(gameState.getCard(ch.id))
 
     case cm: CardMoved =>
       val src = gameState.pilesById(cm.source)

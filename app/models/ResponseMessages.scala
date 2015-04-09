@@ -21,6 +21,7 @@ case class PossibleMove(moveType: String, cards: Seq[UUID], sourcePile: String, 
 case class PossibleMoves(moves: Seq[PossibleMove]) extends ResponseMessage
 
 case class CardRevealed(card: Card) extends ReversibleResponseMessage
+case class CardHidden(id: UUID) extends ReversibleResponseMessage
 
 case class CardMoveCancelled(cards: Seq[UUID], source: String) extends ResponseMessage
 case class CardMoved(

@@ -53,5 +53,6 @@ class ConnectionService(val supervisor: ActorRef, val accountId: UUID, val name:
     case gs: GameStopped => handleGameStopped(gs.id)
     case ct: ConnectionTrace => handleConnectionTrace()
     case ct: ClientTrace => handleClientTrace()
+    case x => throw new IllegalArgumentException("Unhandled internal message [" + x.getClass.getSimpleName + "].")
   }
 }

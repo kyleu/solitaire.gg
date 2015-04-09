@@ -19,6 +19,7 @@ object ResponseMessageSerializers {
   private[this] val gameWonWrites = Json.writes[GameWon]
 
   private[this] val cardRevealedWrites = Json.writes[CardRevealed]
+  private[this] val cardHiddenWrites = Json.writes[CardHidden]
 
   private[this] val cardMoveCancelledWrites = Json.writes[CardMoveCancelled]
   private[this] val cardMovedWrites = Json.writes[CardMoved]
@@ -38,6 +39,7 @@ object ResponseMessageSerializers {
       case gw: GameWon => gameWonWrites.writes(gw)
 
       case cr: CardRevealed => cardRevealedWrites.writes(cr)
+      case cr: CardHidden => cardHiddenWrites.writes(cr)
 
       case cm: CardMoved => cardMovedWrites.writes(cm)
       case cmc: CardMoveCancelled => cardMoveCancelledWrites.writes(cmc)

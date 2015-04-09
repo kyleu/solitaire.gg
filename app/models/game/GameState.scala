@@ -2,7 +2,7 @@ package models.game
 
 import java.util.UUID
 
-import models.CardRevealed
+import models.{ ResponseMessage, CardHidden, CardRevealed }
 import models.game.pile.Pile
 import utils.Logging
 
@@ -60,6 +60,8 @@ case class GameState(
       None
     }
   }
+
+  def getCard(id: UUID) = piles.flatMap(_.cards.find(_.id == id)).headOption.getOrElse(throw new IllegalStateException("Invalid card [" + id + "]."))
 
   def view(accountId: UUID) = {
     val knownCards = playerKnownIds(accountId)
