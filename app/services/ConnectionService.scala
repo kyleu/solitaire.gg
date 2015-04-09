@@ -35,11 +35,7 @@ class ConnectionService(val supervisor: ActorRef, val accountId: UUID, val name:
     case og: ObserveGame => handleObserveGame(og.id, og.as)
     case gm: GameMessage => handleGameMessage(gm)
 
-    // Internal messages
-    case gs: GameStarted => handleGameStarted(gs.id, gs.gameService)
-    case gs: GameStopped => handleGameStopped(gs.id)
-    case ct: ConnectionTrace => handleConnectionTrace()
-    case ct: ClientTrace => handleClientTrace()
+    case im: InternalMessage => handleInternalMessage(im)
 
     // Outgoing messages
     case rm: ResponseMessage => handleResponseMessage(rm)
@@ -50,5 +46,12 @@ class ConnectionService(val supervisor: ActorRef, val accountId: UUID, val name:
   override def postStop() = {
     activeGame.foreach(_ ! ConnectionStopped(id))
     supervisor ! ConnectionStopped(id)
+  }
+
+  private[this] def handleInternalMessage(im: InternalMessage) = im match {
+    case gs: GameStarted => handleGameStarted(gs.id, gs.gameService)
+    case gs: GameStopped => handleGameStopped(gs.id)
+    case ct: ConnectionTrace => handleConnectionTrace()
+    case ct: ClientTrace => handleClientTrace()
   }
 }
