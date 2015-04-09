@@ -2,7 +2,7 @@ package models.game.pile.actions
 
 import models.game.pile.Pile
 import models.game.{ Card, GameState }
-import models.{ CardRemoved, CardMoved, ResponseMessage }
+import models.{ CardMoved, ResponseMessage }
 
 case class DragToAction(id: String, f: (Pile, Seq[Card], Pile, GameState) => Seq[ResponseMessage])
 
@@ -15,12 +15,15 @@ object DragToActions {
     }
   })
 
-  val remove = DragToAction("remove-cards", (src, cards, tgt, gameState) => {
+  def remove(graveyard: String = "graveyard") = DragToAction("remove-cards", (src, cards, tgt, gameState) => {
+    val gy = gameState.pilesById(graveyard)
     cards.flatMap { card =>
       src.removeCard(card)
+
       val targetCard = tgt.cards.last
       tgt.removeCard(targetCard)
-      Seq(CardRemoved(card.id), CardRemoved(targetCard.id))
+
+      Seq(CardMoved(card.id, src.id, graveyard), CardMoved(targetCard.id, tgt.id, graveyard))
     }
   })
 }

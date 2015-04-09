@@ -23,10 +23,12 @@ case class Nestor(override val gameId: UUID, override val seed: Int) extends Gam
     selectCardConstraint = Some(Constraints.never),
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.sameRank),
-    dragToAction = Some(DragToActions.remove)
+    dragToAction = Some(DragToActions.remove())
   ))
 
   private[this] val piles = List(
+    new Pile("graveyard", "graveyard", PileOptionsHelper.empty),
+
     new Pile("tableau-1", "tableau", options),
     new Pile("tableau-2", "tableau", options),
     new Pile("tableau-3", "tableau", options),
@@ -49,6 +51,8 @@ case class Nestor(override val gameId: UUID, override val seed: Int) extends Gam
       width = 8.9,
       height = 3.1,
       piles = List(
+        PileLocation("graveyard", -1.0, -1.0),
+
         PileLocation("tableau-1", 0.6, 0.7),
         PileLocation("tableau-2", 1.7, 0.7),
         PileLocation("tableau-3", 2.8, 0.7),

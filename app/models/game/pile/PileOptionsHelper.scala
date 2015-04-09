@@ -4,6 +4,8 @@ import models.game.pile.actions.{ SelectPileActions, SelectCardActions }
 import models.game.pile.constraints.Constraints
 
 object PileOptionsHelper {
+  val empty = PileOptions()
+
   val foundation = PileOptions(
     cardsShown = Some(1),
     dragFromConstraint = Some(Constraints.topCardOnly),

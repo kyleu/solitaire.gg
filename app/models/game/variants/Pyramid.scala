@@ -23,8 +23,8 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.total(13, aceHigh = false)),
     selectCardConstraint = Some(Constraints.specificRank(King)),
-    selectCardAction = Some(SelectCardActions.remove),
-    dragToAction = Some(DragToActions.remove)
+    selectCardAction = Some(SelectCardActions.drawToPile(1, "graveyard")),
+    dragToAction = Some(DragToActions.remove())
   ))
 
   private[this] def pileOptionsFor(emptyPiles: String*) = {
@@ -37,6 +37,8 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
   }
 
   private[this] val piles = List(
+    new Pile("graveyard", "graveyard", PileOptionsHelper.empty),
+
     new Pile("stock", "stock", PileOptionsHelper.stock(1, "waste", Some("waste")).combine(PileOptions(selectPileConstraint = Some(Constraints.never)))),
     new Pile("waste", "waste", pileOptions),
 
@@ -83,6 +85,8 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
       width = 7.8,
       height = 4.3,
       piles = List(
+        PileLocation("graveyard", -1.0, -1.0),
+
         PileLocation("stock", 3.3, 3.6),
         PileLocation("waste", 4.4, 3.6),
 

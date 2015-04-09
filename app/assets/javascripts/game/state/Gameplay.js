@@ -90,11 +90,6 @@ define([
           existing.turnFaceUp();
         }
         break;
-      case "CardRemoved":
-        var removedCard = this.game.cards[v.card];
-        removedCard.pile.removeCard(removedCard);
-        Tweens.tweenRemove(removedCard);
-        break;
       case "CardMoved":
         var movedCard = this.game.cards[v.card];
         var source = this.game.piles[v.source];

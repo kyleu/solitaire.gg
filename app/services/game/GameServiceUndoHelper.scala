@@ -31,7 +31,6 @@ trait GameServiceUndoHelper { this: GameService =>
       log.info("Performing redo of [" + msg.toString + "] (" + undoQueue.length + " other messages in undo queue).")
       msg match {
         case cr: CardRevealed => handleCardRevealed(accountId, cr)
-        case cr: CardRemoved => handleCardRemoved(accountId, cr)
         case cm: CardMoved => handleCardMoved(accountId, cm)
         case ms: MessageSet => handleMessageSet(accountId, ms)
       }
@@ -39,9 +38,19 @@ trait GameServiceUndoHelper { this: GameService =>
     }
   }
 
-  private[this] def handleCardRevealed(uuid: UUID, revealed: CardRevealed) = ???
-  private[this] def handleCardRemoved(uuid: UUID, removed: CardRemoved) = ???
-  private[this] def handleCardMoved(uuid: UUID, moved: CardMoved) = ???
-  private[this] def handleMessageSet(uuid: UUID, set: MessageSet) = ???
+  private[this] def handleCardRevealed(player: UUID, msg: CardRevealed) = {
+
+  }
+
+  private[this] def handleCardMoved(player: UUID, msg: CardMoved) = {
+
+  }
+
+  private[this] def handleMessageSet(player: UUID, msg: MessageSet) = {
+    val newMessages = msg.messages.flatMap {
+      case rrm: ReversibleResponseMessage => Some(rrm)
+      case _ => None
+    }.reverse
+  }
 
 }

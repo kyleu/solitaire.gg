@@ -21,16 +21,10 @@ case class PossibleMove(moveType: String, cards: Seq[UUID], sourcePile: String, 
 case class PossibleMoves(moves: Seq[PossibleMove]) extends ResponseMessage
 
 case class CardRevealed(card: Card) extends ReversibleResponseMessage
-case class CardRemoved(card: UUID) extends ReversibleResponseMessage
 
 case class CardMoveCancelled(cards: Seq[UUID], source: String) extends ResponseMessage
 case class CardMoved(
   card: UUID, source: String, target: String, targetIndex: Option[Int] = None, turnFaceUp: Boolean = false, turnFaceDown: Boolean = false
 ) extends ReversibleResponseMessage
 
-case class MessageSet(messages: Seq[ResponseMessage]) extends ReversibleResponseMessage {
-  def reverse = MessageSet(messages.flatMap {
-    case rrm: ReversibleResponseMessage => Some(rrm)
-    case _ => None
-  }.reverse)
-}
+case class MessageSet(messages: Seq[ResponseMessage]) extends ReversibleResponseMessage

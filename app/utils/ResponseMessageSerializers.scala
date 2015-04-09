@@ -19,7 +19,6 @@ object ResponseMessageSerializers {
   private[this] val gameWonWrites = Json.writes[GameWon]
 
   private[this] val cardRevealedWrites = Json.writes[CardRevealed]
-  private[this] val cardRemovedWrites = Json.writes[CardRemoved]
 
   private[this] val cardMoveCancelledWrites = Json.writes[CardMoveCancelled]
   private[this] val cardMovedWrites = Json.writes[CardMoved]
@@ -39,8 +38,8 @@ object ResponseMessageSerializers {
       case gw: GameWon => gameWonWrites.writes(gw)
 
       case cr: CardRevealed => cardRevealedWrites.writes(cr)
+
       case cm: CardMoved => cardMovedWrites.writes(cm)
-      case cr: CardRemoved => cardRemovedWrites.writes(cr)
       case cmc: CardMoveCancelled => cardMoveCancelledWrites.writes(cmc)
 
       case _ => throw new IllegalArgumentException("Unhandled ResponseMessage type [" + r.getClass.getSimpleName + "].")

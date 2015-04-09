@@ -1,6 +1,6 @@
 package models.game.pile.actions
 
-import models.{ CardRemoved, CardRevealed, ResponseMessage, CardMoved }
+import models.{ CardRevealed, ResponseMessage, CardMoved }
 import models.game.Rank._
 import models.game.{ Rank, GameState, Card }
 import models.game.pile.Pile
@@ -34,9 +34,9 @@ object SelectCardActions {
     }
   })
 
-  def drawToPile(cardsToDraw: Int, drawTo: String, turnFaceUp: Boolean) = drawToPiles(cardsToDraw, Seq(drawTo), turnFaceUp)
+  def drawToPile(cardsToDraw: Int, drawTo: String, turnFaceUp: Boolean = false) = drawToPiles(cardsToDraw, Seq(drawTo), turnFaceUp)
 
-  def drawToPiles(cardsToDraw: Int, drawTo: Seq[String], turnFaceUp: Boolean) = SelectCardAction("draw-to-piles", (pile, card, gameState) => {
+  def drawToPiles(cardsToDraw: Int, drawTo: Seq[String], turnFaceUp: Boolean = false) = SelectCardAction("draw-to-piles", (pile, card, gameState) => {
     drawTo.flatMap { p =>
       val tgt = gameState.pilesById(p)
       (0 to (cardsToDraw - 1)).flatMap { i =>
@@ -78,11 +78,6 @@ object SelectCardActions {
         Nil
       }
     }
-  })
-
-  val remove = SelectCardAction("remove-card", (pile, card, gameState) => {
-    pile.removeCard(card)
-    Seq(CardRemoved(card.id))
   })
 
   private[this] def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turnFaceUp: Boolean = true) = {
