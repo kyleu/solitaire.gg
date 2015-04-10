@@ -58,7 +58,7 @@ define(['game/Rank'], function(Rank) {
       return valid;
     },
 
-    "piles-empty": function(card) {
+    "piles-empty": function() {
       var options = this.options.dragFromOptions.piles.split(",");
       for(var pileIndex in this.game.piles) {
         if(options.indexOf(pileIndex) > -1 && pileIndex !== this.id) {

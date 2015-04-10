@@ -6,7 +6,7 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
     this.game = null;
   }
 
-  Scalataire.prototype.onConnect = function(url) {
+  Scalataire.prototype.onConnect = function() {
     console.log(cfg.account.name + " connected.");
     this.game = new Game(this.ws);
   };

@@ -8,9 +8,9 @@ define(['game/helpers/Tweens'], function (Tweens) {
         var smallX, smallY;
         if(pile.options.direction === 'd') {
           smallX = pile.x;
-          smallY = pile.y + (pile.game.cardSet.cardVerticalOffset * smallIndex);
+          smallY = pile.y + (pile.game.cardSet.cardVerticalOffset * smallIndexInt);
         } else if(pile.options.direction === 'r') {
-          smallX = pile.x + (pile.game.cardSet.cardHorizontalOffset * smallIndex);
+          smallX = pile.x + (pile.game.cardSet.cardHorizontalOffset * smallIndexInt);
           smallY = pile.y;
         } else {
           throw "Invalid direction [" + pile.options.direction + "].";
