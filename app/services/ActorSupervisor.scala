@@ -9,7 +9,6 @@ import play.api.libs.concurrent.Akka
 import utils.Logging
 import utils.metrics.MetricsServletActor
 
-
 object ActorSupervisor extends Logging {
   lazy val instance = {
     import play.api.Play.current

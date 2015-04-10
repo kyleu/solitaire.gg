@@ -44,7 +44,7 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
   ) ++
     (1 to 7).flatMap { i =>
       (1 to i).map { j =>
-        val po = if(i == 7) { pileOptions } else { pileOptionsFor("pile-" + i + "-" + j, "pile-" + i + "-" + (j + 1)) }
+        val po = if (i == 7) { pileOptions } else { pileOptionsFor("pile-" + i + "-" + j, "pile-" + i + "-" + (j + 1)) }
         new Pile("pile-1-" + j, "tableau", pileOptions)
       }
     }

@@ -33,7 +33,6 @@ case class Spider(override val gameId: UUID, override val seed: Int) extends Gam
     (1 to 8).map(i => new Pile("foundation-" + i, "foundation", PileOptionsHelper.foundation)) ++
     (1 to 10).map(i => new Pile("tableau-" + i, "tableau", tableauOptions))
 
-
   private[this] val deck = Deck.shuffled(rng, 2)
 
   private[this] val layouts = Seq(

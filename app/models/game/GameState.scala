@@ -2,19 +2,12 @@ package models.game
 
 import java.util.UUID
 
-import models.{ ResponseMessage, CardHidden, CardRevealed }
+import models.{ CardHidden, CardRevealed }
 import models.game.pile.Pile
 import utils.Logging
 
 case class GameState(
-    gameId: UUID,
-    variant: String,
-    maxPlayers: Int,
-    seed: Int,
-    deck: Deck,
-    piles: Seq[Pile],
-    layouts: Seq[Layout],
-    var players: Seq[GamePlayer] = Nil
+    gameId: UUID, variant: String, maxPlayers: Int, seed: Int, deck: Deck, piles: Seq[Pile], layouts: Seq[Layout], var players: Seq[GamePlayer] = Nil
 ) extends Logging {
 
   private[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
@@ -50,7 +43,7 @@ case class GameState(
   }
 
   def revealCardToAll(card: Card) = {
-    if(playerKnownIds.keys.exists(p => revealCardToPlayer(card, p))) {
+    if (playerKnownIds.keys.exists(p => revealCardToPlayer(card, p))) {
       Seq(CardRevealed(card))
     } else {
       Nil
@@ -68,7 +61,7 @@ case class GameState(
   }
 
   def hideCardFromAll(card: Card) = {
-    if(playerKnownIds.keys.exists(p => hideCardFromPlayer(card, p))) {
+    if (playerKnownIds.keys.exists(p => hideCardFromPlayer(card, p))) {
       Seq(CardHidden(card.id))
     } else {
       Nil
@@ -96,11 +89,8 @@ case class GameState(
   }
 
   def toStrings = Seq(
-    "Game ID: " + gameId,
-    "Variant: " + variant,
-    "Seed: " + seed,
+    "Game ID: " + gameId, "Variant: " + variant, "Seed: " + seed,
     "Players: " + players.map(x => x.account.toString + " (" + x.name + ")").mkString(", "),
-    "Deck: " + deck.cards.toString,
-    piles.size + " Piles: "
+    "Deck: " + deck.cards.toString, piles.size + " Piles: "
   ) ++ piles.map(p => p.toString)
 }

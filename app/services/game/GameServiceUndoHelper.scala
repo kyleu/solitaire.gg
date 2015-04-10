@@ -70,6 +70,6 @@ trait GameServiceUndoHelper { this: GameService =>
       MessageSet(ms.messages.flatMap {
         case rrm: ReversibleResponseMessage => Some(rrm)
         case _ => None
-      }.reverseMap(getReverse))
+      }.map(getReverse))
   }
 }
