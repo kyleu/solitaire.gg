@@ -11,31 +11,7 @@ object Spider extends GameVariant.Description {
   override val key = "spider"
   override val name = "Spider"
   override val body = "..."
-}
-
-case class Spider(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
-  override def description = Spider
-
-  private[this] val drawPiles = (1 to 10).map("tableau-" + _).toSeq
-
-  private[this] val stockOptions = new PileOptions(
-    cardsShown = Some(1),
-    selectCardConstraint = Some(Constraints.notEmpty),
-    selectCardAction = Some(SelectCardActions.drawToPiles(1, drawPiles, turnFaceUp = true))
-  )
-
-  private[this] val tableauOptions = PileOptionsHelper.tableau.copy(
-    dragToConstraint = Some(Constraints.lowerRank),
-    dragFromConstraint = Some(Constraints.descendingSequenceSameSuit)
-  )
-
-  private[this] val piles = List(new Pile("stock", "stock", stockOptions)) ++
-    (1 to 8).map(i => new Pile("foundation-" + i, "foundation", PileOptionsHelper.foundation)) ++
-    (1 to 10).map(i => new Pile("tableau-" + i, "tableau", tableauOptions))
-
-  private[this] val deck = Deck.shuffled(rng, 2)
-
-  private[this] val layouts = Seq(
+  override val layouts = Seq(
     Layout(
       width = 11.1,
       height = 5.0,
@@ -64,8 +40,33 @@ case class Spider(override val gameId: UUID, override val seed: Int) extends Gam
       )
     )
   )
+}
 
-  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, layouts)
+case class Spider(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
+  override def description = Spider
+
+  private[this] val drawPiles = (1 to 10).map("tableau-" + _).toSeq
+
+  private[this] val stockOptions = new PileOptions(
+    cardsShown = Some(1),
+    selectCardConstraint = Some(Constraints.notEmpty),
+    selectCardAction = Some(SelectCardActions.drawToPiles(1, drawPiles, turnFaceUp = true))
+  )
+
+  private[this] val tableauOptions = PileOptionsHelper.tableau.copy(
+    dragToConstraint = Some(Constraints.lowerRank),
+    dragFromConstraint = Some(Constraints.descendingSequenceSameSuit)
+  )
+
+  private[this] val piles = {
+    List(new Pile("stock", "stock", stockOptions)) ++
+    (1 to 8).map(i => Pile("foundation-" + i, "foundation", PileOptionsHelper.foundation)) ++
+    (1 to 10).map(i => Pile("tableau-" + i, "tableau", tableauOptions))
+  }
+
+  private[this] val deck = Deck.shuffled(rng, 2)
+
+  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(5), "tableau-1")

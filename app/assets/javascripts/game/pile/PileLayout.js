@@ -77,18 +77,22 @@ define(['game/helpers/Tweens'], function (Tweens) {
     },
 
     cardRemoved: function(pile, card) {
-      if(pile.options.cardsShown === undefined) {
-        if(pile.options.direction === "d") {
-          pile.intersectHeight = pile.game.cardSet.cardHeight + (pile.cards.length === 0 ? 0 : (pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset);
-        } else if(pile.options.direction === "r") {
-          pile.intersectWidth = pile.game.cardSet.cardWidth + (pile.cards.length === 0 ? 0 : (pile.cards.length - 1) * pile.game.cardSet.cardHorizontalOffset);
-        } else {
-          throw "Invalid direction [" + pile.options.direction + "].";
-        }
-      } else if(pile.options.cardsShown == 1) {
-        // no op
+      if(pile.behavior === "graveyard") {
+        Tweens.tweenRestore(card);
       } else {
-        redraw(pile);
+        if(pile.options.cardsShown === undefined) {
+          if(pile.options.direction === "d") {
+            pile.intersectHeight = pile.game.cardSet.cardHeight + (pile.cards.length === 0 ? 0 : (pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset);
+          } else if(pile.options.direction === "r") {
+            pile.intersectWidth = pile.game.cardSet.cardWidth + (pile.cards.length === 0 ? 0 : (pile.cards.length - 1) * pile.game.cardSet.cardHorizontalOffset);
+          } else {
+            throw "Invalid direction [" + pile.options.direction + "].";
+          }
+        } else if(pile.options.cardsShown == 1) {
+          // no op
+        } else {
+          redraw(pile);
+        }
       }
     }
   };

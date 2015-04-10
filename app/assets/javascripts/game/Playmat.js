@@ -20,7 +20,7 @@ define(function () {
     var pileLocation = null;
     for(var pileLocationIndex in this.layout.piles) {
       var pl = this.layout.piles[pileLocationIndex];
-      if(pl.id == pile.id) {
+      if(pl.id === pile.id) {
         pileLocation = pl;
       }
     }

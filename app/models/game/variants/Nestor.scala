@@ -14,39 +14,7 @@ object Nestor extends GameVariant.Description {
     Discard any pair of cards of the same rank, regardless of suit (for example, two Aces, two Fives, etc.).
     Only the top cards are available for play. Spaces can't be filled.
   """
-}
-
-case class Nestor(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
-  override def description = Nestor
-
-  private[this] val options = PileOptionsHelper.tableau.combine(PileOptions(
-    selectCardConstraint = Some(Constraints.never),
-    dragFromConstraint = Some(Constraints.topCardOnly),
-    dragToConstraint = Some(Constraints.sameRank),
-    dragToAction = Some(DragToActions.remove())
-  ))
-
-  private[this] val piles = List(
-    new Pile("graveyard", "graveyard", PileOptionsHelper.empty),
-
-    new Pile("tableau-1", "tableau", options),
-    new Pile("tableau-2", "tableau", options),
-    new Pile("tableau-3", "tableau", options),
-    new Pile("tableau-4", "tableau", options),
-    new Pile("tableau-5", "tableau", options),
-    new Pile("tableau-6", "tableau", options),
-    new Pile("tableau-7", "tableau", options),
-    new Pile("tableau-8", "tableau", options),
-
-    new Pile("reserve-1", "reserve", options),
-    new Pile("reserve-2", "reserve", options),
-    new Pile("reserve-3", "reserve", options),
-    new Pile("reserve-4", "reserve", options)
-  )
-
-  private[this] val deck = Deck.shuffled(rng)
-
-  private[this] val layouts = Seq(
+  override val layouts = Seq(
     Layout(
       width = 8.9,
       height = 3.1,
@@ -69,8 +37,39 @@ case class Nestor(override val gameId: UUID, override val seed: Int) extends Gam
       )
     )
   )
+}
 
-  val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, layouts)
+case class Nestor(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
+  override def description = Nestor
+
+  private[this] val options = PileOptionsHelper.tableau.combine(PileOptions(
+    selectCardConstraint = Some(Constraints.never),
+    dragFromConstraint = Some(Constraints.topCardOnly),
+    dragToConstraint = Some(Constraints.sameRank),
+    dragToAction = Some(DragToActions.remove())
+  ))
+
+  private[this] val piles = List(
+    Pile("graveyard", "graveyard", PileOptionsHelper.empty),
+
+    Pile("tableau-1", "tableau", options),
+    Pile("tableau-2", "tableau", options),
+    Pile("tableau-3", "tableau", options),
+    Pile("tableau-4", "tableau", options),
+    Pile("tableau-5", "tableau", options),
+    Pile("tableau-6", "tableau", options),
+    Pile("tableau-7", "tableau", options),
+    Pile("tableau-8", "tableau", options),
+
+    Pile("reserve-1", "reserve", options),
+    Pile("reserve-2", "reserve", options),
+    Pile("reserve-3", "reserve", options),
+    Pile("reserve-4", "reserve", options)
+  )
+
+  private[this] val deck = Deck.shuffled(rng)
+
+  val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCardsUniqueRanks(6, turnFaceUp = true), "tableau-1", reveal = true)

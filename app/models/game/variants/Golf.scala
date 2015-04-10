@@ -13,39 +13,7 @@ object Golf extends GameVariant.Description {
   override val body = """
     Build the bottom pile up or down regardless of suit. Ranking of cards is not continuous: an Ace may be built only on a 2, a King only on a Queen.
   """
-}
-
-case class Golf(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
-  override def description = Golf
-
-  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(
-    selectCardConstraint = Some(Constraints.alternatingRankToFoundation),
-    dragFromConstraint = Some(Constraints.topCardOnly),
-    selectCardAction = Some(SelectCardActions.drawToPile(1, "foundation", turnFaceUp = false))
-  ))
-
-  private[this] val piles = List(
-    new Pile("tableau-1", "tableau", tableauOptions),
-    new Pile("tableau-2", "tableau", tableauOptions),
-    new Pile("tableau-3", "tableau", tableauOptions),
-    new Pile("tableau-4", "tableau", tableauOptions),
-    new Pile("tableau-5", "tableau", tableauOptions),
-    new Pile("tableau-6", "tableau", tableauOptions),
-    new Pile("tableau-7", "tableau", tableauOptions),
-
-    new Pile("foundation", "foundation", PileOptionsHelper.foundation.combine(PileOptions(
-      cardsShown = Some(4), direction = Some("r"), dragToConstraint = Some(Constraints.alternatingRank)
-    ))),
-    new Pile("stock", "stock", PileOptionsHelper.stock(1, "foundation", None).combine(PileOptions(
-      cardsShown = Some(16),
-      direction = Some("r"),
-      selectPileConstraint = Some(Constraints.never)
-    )))
-  )
-
-  private[this] val deck = Deck.shuffled(rng)
-
-  private[this] val layouts = Seq(
+  override val layouts = Seq(
     Layout(
       width = 7.8,
       height = 3.2,
@@ -62,8 +30,39 @@ case class Golf(override val gameId: UUID, override val seed: Int) extends GameV
       )
     )
   )
+}
 
-  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, layouts)
+case class Golf(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
+  override def description = Golf
+
+  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(
+    selectCardConstraint = Some(Constraints.alternatingRankToFoundation),
+    dragFromConstraint = Some(Constraints.topCardOnly),
+    selectCardAction = Some(SelectCardActions.drawToPile(1, "foundation", turnFaceUp = false))
+  ))
+
+  private[this] val piles = List(
+    Pile("tableau-1", "tableau", tableauOptions),
+    Pile("tableau-2", "tableau", tableauOptions),
+    Pile("tableau-3", "tableau", tableauOptions),
+    Pile("tableau-4", "tableau", tableauOptions),
+    Pile("tableau-5", "tableau", tableauOptions),
+    Pile("tableau-6", "tableau", tableauOptions),
+    Pile("tableau-7", "tableau", tableauOptions),
+
+    Pile("foundation", "foundation", PileOptionsHelper.foundation.combine(PileOptions(
+      cardsShown = Some(4), direction = Some("r"), dragToConstraint = Some(Constraints.alternatingRank)
+    ))),
+    Pile("stock", "stock", PileOptionsHelper.stock(1, "foundation", None).combine(PileOptions(
+      cardsShown = Some(16),
+      direction = Some("r"),
+      selectPileConstraint = Some(Constraints.never)
+    )))
+  )
+
+  private[this] val deck = Deck.shuffled(rng)
+
+  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(5, turnFaceUp = true), "tableau-1", reveal = true)

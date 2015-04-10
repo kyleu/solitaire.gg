@@ -13,42 +13,7 @@ object FreeCell extends GameVariant.Description {
     Move all the cards to the home cells, using the free cells as placeholders.
     To win, make four stacks of cards on the home cells, one for each suit, stacked in order of rank, from lowest (ace) to highest (king).
   """
-}
-
-case class FreeCell(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
-  override def description = FreeCell
-
-  private[this] val cellOptions = Pile.options.combine(PileOptions(
-    cardsShown = Some(1),
-    dragToConstraint = Some(Constraints.empty),
-    dragFromConstraint = Some(Constraints.topCardOnly)
-  ))
-  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(dragFromConstraint = Some(Constraints.topCardOnly)))
-
-  private[this] val piles = List(
-    new Pile("cell-1", "pile", cellOptions),
-    new Pile("cell-2", "pile", cellOptions),
-    new Pile("cell-3", "pile", cellOptions),
-    new Pile("cell-4", "pile", cellOptions),
-
-    new Pile("foundation-1", "foundation", PileOptionsHelper.foundation),
-    new Pile("foundation-2", "foundation", PileOptionsHelper.foundation),
-    new Pile("foundation-3", "foundation", PileOptionsHelper.foundation),
-    new Pile("foundation-4", "foundation", PileOptionsHelper.foundation),
-
-    new Pile("tableau-1", "tableau", tableauOptions),
-    new Pile("tableau-2", "tableau", tableauOptions),
-    new Pile("tableau-3", "tableau", tableauOptions),
-    new Pile("tableau-4", "tableau", tableauOptions),
-    new Pile("tableau-5", "tableau", tableauOptions),
-    new Pile("tableau-6", "tableau", tableauOptions),
-    new Pile("tableau-7", "tableau", tableauOptions),
-    new Pile("tableau-8", "tableau", tableauOptions)
-  )
-
-  private[this] val deck = Deck.shuffled(rng)
-
-  private[this] val layouts = Seq(
+  override val layouts = Seq(
     Layout(
       width = 9.9,
       height = 5.0,
@@ -74,8 +39,42 @@ case class FreeCell(override val gameId: UUID, override val seed: Int) extends G
       )
     )
   )
+}
 
-  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, layouts)
+case class FreeCell(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
+  override def description = FreeCell
+
+  private[this] val cellOptions = Pile.options.combine(PileOptions(
+    cardsShown = Some(1),
+    dragToConstraint = Some(Constraints.empty),
+    dragFromConstraint = Some(Constraints.topCardOnly)
+  ))
+  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(dragFromConstraint = Some(Constraints.topCardOnly)))
+
+  private[this] val piles = List(
+    Pile("cell-1", "pile", cellOptions),
+    Pile("cell-2", "pile", cellOptions),
+    Pile("cell-3", "pile", cellOptions),
+    Pile("cell-4", "pile", cellOptions),
+
+    Pile("foundation-1", "foundation", PileOptionsHelper.foundation),
+    Pile("foundation-2", "foundation", PileOptionsHelper.foundation),
+    Pile("foundation-3", "foundation", PileOptionsHelper.foundation),
+    Pile("foundation-4", "foundation", PileOptionsHelper.foundation),
+
+    Pile("tableau-1", "tableau", tableauOptions),
+    Pile("tableau-2", "tableau", tableauOptions),
+    Pile("tableau-3", "tableau", tableauOptions),
+    Pile("tableau-4", "tableau", tableauOptions),
+    Pile("tableau-5", "tableau", tableauOptions),
+    Pile("tableau-6", "tableau", tableauOptions),
+    Pile("tableau-7", "tableau", tableauOptions),
+    Pile("tableau-8", "tableau", tableauOptions)
+  )
+
+  private[this] val deck = Deck.shuffled(rng)
+
+  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(7, turnFaceUp = true), "tableau-1", reveal = true)

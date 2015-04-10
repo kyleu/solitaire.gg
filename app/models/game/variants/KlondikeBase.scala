@@ -5,28 +5,8 @@ import java.util.UUID
 import models.game._
 import models.game.pile._
 
-abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, cardsToDraw: Int) extends GameVariant(gameId, seed) {
-  private[this] val piles = List(
-    new Pile("stock", "stock", PileOptionsHelper.stock(cardsToDraw, "waste", Some("waste"))),
-    new Pile("waste", "waste", PileOptionsHelper.waste),
-
-    new Pile("foundation-1", "foundation", PileOptionsHelper.foundation),
-    new Pile("foundation-2", "foundation", PileOptionsHelper.foundation),
-    new Pile("foundation-3", "foundation", PileOptionsHelper.foundation),
-    new Pile("foundation-4", "foundation", PileOptionsHelper.foundation),
-
-    new Pile("tableau-1", "tableau", PileOptionsHelper.tableau),
-    new Pile("tableau-2", "tableau", PileOptionsHelper.tableau),
-    new Pile("tableau-3", "tableau", PileOptionsHelper.tableau),
-    new Pile("tableau-4", "tableau", PileOptionsHelper.tableau),
-    new Pile("tableau-5", "tableau", PileOptionsHelper.tableau),
-    new Pile("tableau-6", "tableau", PileOptionsHelper.tableau),
-    new Pile("tableau-7", "tableau", PileOptionsHelper.tableau)
-  )
-
-  private[this] val deck = Deck.shuffled(rng)
-
-  private[this] val layouts = List(
+object KlondikeBase {
+  val layouts = Seq(
     Layout(
       width = 7.8,
       height = 5.0,
@@ -49,8 +29,30 @@ abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, c
       )
     )
   )
+}
 
-  lazy val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, layouts)
+abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, cardsToDraw: Int) extends GameVariant(gameId, seed) {
+  private[this] val piles = List(
+    Pile("stock", "stock", PileOptionsHelper.stock(cardsToDraw, "waste", Some("waste"))),
+    Pile("waste", "waste", PileOptionsHelper.waste),
+
+    Pile("foundation-1", "foundation", PileOptionsHelper.foundation),
+    Pile("foundation-2", "foundation", PileOptionsHelper.foundation),
+    Pile("foundation-3", "foundation", PileOptionsHelper.foundation),
+    Pile("foundation-4", "foundation", PileOptionsHelper.foundation),
+
+    Pile("tableau-1", "tableau", PileOptionsHelper.tableau),
+    Pile("tableau-2", "tableau", PileOptionsHelper.tableau),
+    Pile("tableau-3", "tableau", PileOptionsHelper.tableau),
+    Pile("tableau-4", "tableau", PileOptionsHelper.tableau),
+    Pile("tableau-5", "tableau", PileOptionsHelper.tableau),
+    Pile("tableau-6", "tableau", PileOptionsHelper.tableau),
+    Pile("tableau-7", "tableau", PileOptionsHelper.tableau)
+  )
+
+  private[this] val deck = Deck.shuffled(rng)
+
+  lazy val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "tableau-1", reveal = true)

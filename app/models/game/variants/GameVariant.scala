@@ -2,7 +2,7 @@ package models.game.variants
 
 import java.util.UUID
 
-import models.game.{ GamePlayer, GameState }
+import models.game.{ Layout, GameState }
 
 import scala.util.Random
 
@@ -11,6 +11,7 @@ object GameVariant {
     val key: String
     val name: String
     val body: String
+    val layouts: Seq[Layout]
     val maxPlayers: Int = 1
     val undoAllowed: Boolean = true
   }

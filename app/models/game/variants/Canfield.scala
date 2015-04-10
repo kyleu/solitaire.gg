@@ -9,52 +9,56 @@ object Canfield extends GameVariant.Description {
   override val key = "canfield"
   override val name = "Canfield"
   override val body = "Originally created for casinos, this game is very hard to win."
+  override val layouts = Seq(
+    Layout(
+      width = 9.9,
+      height = 5.0,
+      piles = List(
+        PileLocation("cell-1", 0.6, 0.7),
+        PileLocation("cell-2", 1.7, 0.7),
+        PileLocation("cell-3", 2.8, 0.7),
+        PileLocation("cell-4", 3.9, 0.7),
+
+        PileLocation("foundation-1", 6.0, 0.7),
+        PileLocation("foundation-2", 7.1, 0.7),
+        PileLocation("foundation-3", 8.2, 0.7),
+        PileLocation("foundation-4", 9.3, 0.7),
+
+        PileLocation("tableau-1", 1.1, 1.8),
+        PileLocation("tableau-2", 2.2, 1.8),
+        PileLocation("tableau-3", 3.3, 1.8),
+        PileLocation("tableau-4", 4.4, 1.8),
+        PileLocation("tableau-5", 5.5, 1.8),
+        PileLocation("tableau-6", 6.6, 1.8),
+        PileLocation("tableau-7", 7.7, 1.8),
+        PileLocation("tableau-8", 8.8, 1.8)
+      )
+    )
+  )
 }
 
 case class Canfield(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = Canfield
 
   private[this] val piles = List(
-    new Pile("stock", "stock", PileOptionsHelper.stock(3, "waste", Some("waste"))),
-    new Pile("waste", "waste", PileOptionsHelper.waste),
-    new Pile("reserve", "reserve", PileOptionsHelper.waste.combine(PileOptions(cardsShown = Some(1)))),
+    Pile("stock", "stock", PileOptionsHelper.stock(3, "waste", Some("waste"))),
+    Pile("waste", "waste", PileOptionsHelper.waste),
+    Pile("reserve", "reserve", PileOptionsHelper.waste.combine(PileOptions(cardsShown = Some(1)))),
 
-    new Pile("foundation-1", "foundation", PileOptionsHelper.foundation),
-    new Pile("foundation-2", "foundation", PileOptionsHelper.foundation),
-    new Pile("foundation-3", "foundation", PileOptionsHelper.foundation),
-    new Pile("foundation-4", "foundation", PileOptionsHelper.foundation),
+    Pile("foundation-1", "foundation", PileOptionsHelper.foundation),
+    Pile("foundation-2", "foundation", PileOptionsHelper.foundation),
+    Pile("foundation-3", "foundation", PileOptionsHelper.foundation),
+    Pile("foundation-4", "foundation", PileOptionsHelper.foundation),
 
-    new Pile("tableau-1", "tableau", PileOptionsHelper.tableau),
-    new Pile("tableau-2", "tableau", PileOptionsHelper.tableau),
-    new Pile("tableau-3", "tableau", PileOptionsHelper.tableau),
-    new Pile("tableau-4", "tableau", PileOptionsHelper.tableau)
+    Pile("tableau-1", "tableau", PileOptionsHelper.tableau),
+    Pile("tableau-2", "tableau", PileOptionsHelper.tableau),
+    Pile("tableau-3", "tableau", PileOptionsHelper.tableau),
+    Pile("tableau-4", "tableau", PileOptionsHelper.tableau)
   )
 
   private[this] val deck = Deck.shuffled(rng)
 
-  private[this] val layouts = Seq(
-    Layout(
-      width = 7.4,
-      height = 5.0,
-      piles = List(
-        PileLocation("stock", 0.6, 0.7),
-        PileLocation("waste", 1.7, 0.7),
-        PileLocation("reserve", 1.7, 1.8),
-
-        PileLocation("foundation-1", 3.5, 0.7),
-        PileLocation("foundation-2", 4.6, 0.7),
-        PileLocation("foundation-3", 5.7, 0.7),
-        PileLocation("foundation-4", 6.8, 0.7),
-
-        PileLocation("tableau-1", 3.5, 1.8),
-        PileLocation("tableau-2", 4.6, 1.8),
-        PileLocation("tableau-3", 5.7, 1.8),
-        PileLocation("tableau-4", 6.8, 1.8)
-      )
-    )
-  )
-
-  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, layouts)
+  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 
   override def initialMoves() = {
     gameState.addCards(deck.getCards(34), "stock")

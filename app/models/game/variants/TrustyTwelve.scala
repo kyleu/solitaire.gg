@@ -14,44 +14,7 @@ object TrustyTwelve extends GameVariant.Description {
     Build the decks down, regardless of suit.
     Clicking the face down pile will deal cards to any empty spaces. Once you've dealt all the face down cards, you win.
   """
-}
-
-case class TrustyTwelve(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
-  override def description = TrustyTwelve
-
-  val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(
-    cardsShown = Some(2),
-    selectCardConstraint = Some(Constraints.never),
-    dragFromConstraint = Some(Constraints.topCardOnly),
-    dragToConstraint = Some(Constraints.lowerRank)
-  ))
-
-  val piles = List(
-    new Pile("stock", "stock", PileOptionsHelper.stock(0, "", None).combine(PileOptions(
-      cardsShown = Some(19),
-      direction = Some("r"),
-      selectCardConstraint = Some(Constraints.topCardOnly),
-      selectCardAction = Some(SelectCardActions.drawToEmptyPiles("tableau"))
-    ))),
-
-    new Pile("tableau-1", "tableau", tableauOptions),
-    new Pile("tableau-2", "tableau", tableauOptions),
-    new Pile("tableau-3", "tableau", tableauOptions),
-    new Pile("tableau-4", "tableau", tableauOptions),
-    new Pile("tableau-5", "tableau", tableauOptions),
-    new Pile("tableau-6", "tableau", tableauOptions),
-
-    new Pile("tableau-7", "tableau", tableauOptions),
-    new Pile("tableau-8", "tableau", tableauOptions),
-    new Pile("tableau-9", "tableau", tableauOptions),
-    new Pile("tableau-10", "tableau", tableauOptions),
-    new Pile("tableau-11", "tableau", tableauOptions),
-    new Pile("tableau-12", "tableau", tableauOptions)
-  )
-
-  val deck = Deck.shuffled(rng)
-
-  val layouts = Seq(
+  override val layouts = Seq(
     Layout(
       width = 6.7,
       height = 3.9,
@@ -74,8 +37,44 @@ case class TrustyTwelve(override val gameId: UUID, override val seed: Int) exten
       )
     )
   )
+}
 
-  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, layouts)
+case class TrustyTwelve(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
+  override def description = TrustyTwelve
+
+  val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(
+    cardsShown = Some(2),
+    selectCardConstraint = Some(Constraints.never),
+    dragFromConstraint = Some(Constraints.topCardOnly),
+    dragToConstraint = Some(Constraints.lowerRank)
+  ))
+
+  val piles = List(
+    Pile("stock", "stock", PileOptionsHelper.stock(0, "", None).combine(PileOptions(
+      cardsShown = Some(19),
+      direction = Some("r"),
+      selectCardConstraint = Some(Constraints.topCardOnly),
+      selectCardAction = Some(SelectCardActions.drawToEmptyPiles("tableau"))
+    ))),
+
+    Pile("tableau-1", "tableau", tableauOptions),
+    Pile("tableau-2", "tableau", tableauOptions),
+    Pile("tableau-3", "tableau", tableauOptions),
+    Pile("tableau-4", "tableau", tableauOptions),
+    Pile("tableau-5", "tableau", tableauOptions),
+    Pile("tableau-6", "tableau", tableauOptions),
+
+    Pile("tableau-7", "tableau", tableauOptions),
+    Pile("tableau-8", "tableau", tableauOptions),
+    Pile("tableau-9", "tableau", tableauOptions),
+    Pile("tableau-10", "tableau", tableauOptions),
+    Pile("tableau-11", "tableau", tableauOptions),
+    Pile("tableau-12", "tableau", tableauOptions)
+  )
+
+  val deck = Deck.shuffled(rng)
+
+  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 
   override def initialMoves() = {
     for (i <- 1 to 12) {

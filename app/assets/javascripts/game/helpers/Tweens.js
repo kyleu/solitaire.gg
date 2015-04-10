@@ -18,23 +18,34 @@ define([], function() {
       var tween = card.game.add.tween(card);
       tween.to({ alpha: 0 }, 400);
       tween.onComplete.add(function() {
-        card.destroy();
+        card.game.playmat.remove(card);
       }, card);
       card.tweening = true;
       tween.start();
     },
 
-    tweenFlip: function(card) {
+    tweenRestore: function(card) {
+      card.game.playmat.add(card);
+
+      var tween = card.game.add.tween(card);
+      tween.to({ alpha: 1 }, 400);
+      tween.onComplete.add(function() {
+        //card.destroy();
+      }, card);
+      card.tweening = true;
+      tween.start();
+    },
+
+    tweenFlip: function(card, faceUp) {
       var origWidth = card.width;
       var hideTween = card.game.add.tween(card);
       hideTween.to({ width: 0 }, 100);
       hideTween.onComplete.add(function() {
-        card.updateSprite(true);
+        card.updateSprite(faceUp);
         var showTween = card.game.add.tween(card);
         showTween.to({ width: origWidth }, 100);
         showTween.onComplete.add(function() {
           card.tweening = false;
-          console.log(card);
         }, card);
         showTween.start();
       }, card);
