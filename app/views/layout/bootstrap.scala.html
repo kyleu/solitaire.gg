@@ -7,15 +7,12 @@
     @flash.get("error").map { msg => <div class="alert alert-danger alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       @msg
-    </div> }
-    @flash.get("info").map { msg => <div class="alert alert-info alert-dismissable">
+    </div> }@flash.get("info").map { msg => <div class="alert alert-info alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       @msg
-    </div> }
-    @flash.get("success").map { msg => <div class="alert alert-success alert-dismissable">
+    </div> }@flash.get("success").map { msg => <div class="alert alert-success alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       @msg
-    </div> }
-    @content
+    </div> }@content
   </div>
 }

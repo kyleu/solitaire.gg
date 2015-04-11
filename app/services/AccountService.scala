@@ -13,6 +13,8 @@ object AccountService {
     DatabaseConnection.query(GetAccountByName(name)).getOrElse(throw new IllegalStateException("Invalid account."))
   }
 
+  def searchAccounts(q: String) = DatabaseConnection.query(SearchAccounts(q))
+
   def getAccount(map: Map[String, String], fallbackAccount: Option[UUID]) = {
     if (map.get("account").isDefined && map.get("name").isDefined) {
       val accountId = UUID.fromString(map("account"))

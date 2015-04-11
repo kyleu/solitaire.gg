@@ -1,4 +1,7 @@
-@(account: java.util.UUID, name: String, gameId: Option[java.util.UUID], as: Option[java.util.UUID])(implicit session: Session, flash: Flash)@layout.bootstrap(utils.Config.projectName + " Admin") {
+@(account: java.util.UUID, name: String, gameId: Option[java.util.UUID], as: Option[java.util.UUID])(implicit session: Session, flash: Flash)@layout.bootstrap(
+  utils.Config.projectName + " Admin",
+  stylesheets = Seq(routes.Assets.at("stylesheets/admin.css").url)
+) {
   <div class="row status-row">
     <div class="col-md-12">
       <div class="panel panel-default">

@@ -1,6 +1,10 @@
-@()(implicit session: Session, flash: Flash)@layout.bootstrap(utils.Config.projectName + " Admin") {
-  <h4>@utils.Config.projectName Admin</h4>
+@()(implicit session: Session, flash: Flash)@layout.bootstrap(
+  utils.Config.projectName + " Admin",
+  stylesheets = Seq(routes.Assets.at("stylesheets/admin.css").url)
+) {
+  <h3>@utils.Config.projectName Admin</h3>
   <ul>
+    <li><a href="@routes.AdminController.accountList().url">Account List</a></li>
     <li><a href="@routes.AdminController.status().url">Server Status</a></li>
     <li>
       <a href="@routes.AdminController.runTest("all").url">Run All Tests</a>

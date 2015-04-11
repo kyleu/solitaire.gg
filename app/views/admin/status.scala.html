@@ -1,6 +1,7 @@
 @(status: SystemStatus)(implicit session: Session, flash: Flash)@layout.bootstrap(
   "Server Status",
-  scripts = Seq(routes.Assets.at("javascripts/admin.js").url)
+  scripts = Seq(routes.Assets.at("javascripts/admin.js").url),
+  stylesheets = Seq(routes.Assets.at("stylesheets/admin.css").url)
 ) {
   <div class="buttons-right">
     <a href="@routes.AdminController.observeRandomGame()" target="_blank" class="btn btn-default">Observe Random Game</a>

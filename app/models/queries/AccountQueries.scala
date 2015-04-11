@@ -2,7 +2,7 @@ package models.queries
 
 import java.util.UUID
 
-import com.simple.jdub.{ FlatSingleRowQuery, Statement, Row }
+import com.simple.jdub._
 import models.Account
 import org.joda.time.LocalDateTime
 
@@ -15,9 +15,21 @@ object AccountQueries {
     val values = Seq(UUID.randomUUID, name)
   }
 
+  case class SearchAccounts(q: String) extends Query[List[Account]] {
+    override val sql = s"select $columns from $tableName where id::character varying like lower(?) or lower(name) like lower(?) order by created desc"
+    override val values = Seq("%" + q + "%", "%" + q + "%")
+    override def reduce(rows: Iterator[Row]) = rows.map { row =>
+      for {
+        id <- row.uuid("id")
+        name <- row.string("name")
+        created <- row.timestamp("created")
+      } yield Account(id, name, new LocalDateTime(created.getTime))
+    }.flatten.toList
+  }
+
   case class GetAccount(id: UUID) extends FlatSingleRowQuery[Account] {
-    val sql = s"select $columns from $tableName where id = ?"
-    val values = Seq(id)
+    override val sql = s"select $columns from $tableName where id = ?"
+    override val values = Seq(id)
     override def flatMap(row: Row) = for {
       id <- row.uuid("id")
       name <- row.string("name")

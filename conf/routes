@@ -8,6 +8,8 @@ GET        /play/:variant/:seed               controllers.HomeController.newGame
 GET        /websocket                         controllers.WebsocketController.connect()
 
 GET        /admin                             controllers.AdminController.index
+GET        /admin/accounts                    controllers.AdminController.accountList(q ?= "")
+GET        /admin/accounts/remove/:id         controllers.AdminController.removeAccount(id: java.util.UUID)
 GET        /admin/status                      controllers.AdminController.status
 GET        /admin/trace/connection/:id        controllers.AdminController.traceConnection(id: java.util.UUID)
 GET        /admin/trace/client/:id            controllers.AdminController.traceClient(id: java.util.UUID)

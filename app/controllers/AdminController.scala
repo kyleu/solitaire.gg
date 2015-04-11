@@ -7,7 +7,7 @@ import akka.util.Timeout
 import controllers.BaseController.AuthenticatedAction
 import models._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.ActorSupervisor
+import services.{ AccountService, ActorSupervisor }
 import services.test.TestService
 
 import scala.concurrent.duration._
@@ -18,6 +18,16 @@ object AdminController extends BaseController {
 
   def index = AuthenticatedAction { implicit request =>
     Ok(views.html.admin.admin())
+  }
+
+  def accountList(q: String) = AuthenticatedAction { implicit request =>
+    val accounts = AccountService.searchAccounts(q)
+    Ok(views.html.admin.accountList(q, accounts))
+  }
+
+  def removeAccount(id: UUID) = AuthenticatedAction { implicit request =>
+    AccountService.removeAccount(id)
+    Redirect(routes.AdminController.accountList(""))
   }
 
   def status = AuthenticatedAction.async { implicit request =>
