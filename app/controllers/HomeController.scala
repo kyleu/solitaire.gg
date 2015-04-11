@@ -1,36 +1,30 @@
 package controllers
 
-import java.util.UUID
-
-import play.api.mvc._
+import controllers.BaseController.AuthenticatedAction
 import services.AccountService
 
-object HomeController extends Controller {
-  def index() = Action { implicit request =>
-    val (accountId, name) = AccountService.getAccount(request.session.data)
-    Ok(views.html.index(accountId, name)).withSession {
-      request.session + ("account" -> accountId.toString) + ("name" -> name)
-    }
+object HomeController extends BaseController {
+  def index() = AuthenticatedAction { implicit request =>
+    Ok(views.html.index(request.accountId, request.name))
   }
 
-  def changeName(name: String) = Action { implicit request =>
-    val accountId = UUID.fromString(request.session("account"))
-    AccountService.updateAccountName(accountId, name)
+  def changeName(name: String) = AuthenticatedAction { implicit request =>
+    AccountService.updateAccountName(request.accountId, name)
 
     Redirect(routes.HomeController.index()).withSession {
       request.session + ("name" -> name)
     }.flashing("success" -> "Name changed.")
   }
 
-  def newDefaultGame() = Action { implicit request =>
-    Ok(views.html.gameplay("klondike"))
+  def newDefaultGame() = AuthenticatedAction { implicit request =>
+    Ok(views.html.gameplay(request.accountId, request.name, "klondike"))
   }
 
-  def newGame(variant: String) = Action { implicit request =>
-    Ok(views.html.gameplay(variant))
+  def newGame(variant: String) = AuthenticatedAction { implicit request =>
+    Ok(views.html.gameplay(request.accountId, request.name, variant))
   }
 
-  def newGameWithSeed(variant: String, seed: Int) = Action { implicit request =>
-    Ok(views.html.gameplay(variant, None, Some(seed)))
+  def newGameWithSeed(variant: String, seed: Int) = AuthenticatedAction { implicit request =>
+    Ok(views.html.gameplay(request.accountId, request.name, variant, None, Some(seed)))
   }
 }

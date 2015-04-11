@@ -1,4 +1,4 @@
-@(gameId: Option[java.util.UUID], as: Option[java.util.UUID])(implicit session: Session, flash: Flash)@layout.bootstrap(utils.Config.projectName + " Admin") {
+@(account: java.util.UUID, name: String, gameId: Option[java.util.UUID], as: Option[java.util.UUID])(implicit session: Session, flash: Flash)@layout.bootstrap(utils.Config.projectName + " Admin") {
   <div class="row status-row">
     <div class="col-md-12">
       <div class="panel panel-default">
@@ -36,8 +36,8 @@
     <pre id="@utils.Config.projectId-config">
     {
       "account": {
-        "id": "@session("account")",
-        "name": "@session("name")"
+        "id": "@account",
+        "name": "@name"
       },
       "gameId": "@utils.Config.projectId",
       "gameName": "@utils.Config.projectName",

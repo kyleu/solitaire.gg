@@ -8,10 +8,12 @@ trait GameServiceUndoHelper { this: GameService =>
   protected var undosByPlayer = collection.mutable.HashMap.empty[UUID, Int]
 
   private[this] val historyQueue = collection.mutable.Stack[ReversibleResponseMessage]()
-  private[this] val undoQueue = collection.mutable.Stack[ReversibleResponseMessage]()
+  private[this] val undoneQueue = collection.mutable.Stack[ReversibleResponseMessage]()
 
   protected[this] def registerResponse(message: ResponseMessage) = message match {
-    case rrm: ReversibleResponseMessage => historyQueue.push(rrm)
+    case rrm: ReversibleResponseMessage =>
+      historyQueue.push(rrm)
+      undoneQueue.clear()
     case _ => // no-op
   }
 
@@ -22,7 +24,7 @@ trait GameServiceUndoHelper { this: GameService =>
       undosByPlayer(accountId) = undosByPlayer.getOrElseUpdate(accountId, 0) + 1
       val msg = historyQueue.pop()
       val reverse = getReverse(msg)
-      undoQueue.push(reverse)
+      undoneQueue.push(reverse)
       log.info("Undoing message [" + msg.toString + "] with message [" + reverse + "] (" + historyQueue.length + " other messages in history queue).")
       sendToAll(reverse, registerUndoResponse = false)
       handleGetPossibleMoves(accountId)
@@ -30,13 +32,13 @@ trait GameServiceUndoHelper { this: GameService =>
   }
 
   protected[this] def handleRedo(accountId: UUID) = {
-    if (undoQueue.isEmpty) {
+    if (undoneQueue.isEmpty) {
       log.info("Attempt to redo from empty undo stack.")
     } else {
-      val msg = undoQueue.pop()
+      val msg = undoneQueue.pop()
       val reverse = getReverse(msg)
       historyQueue.push(reverse)
-      log.info("Performing redo of [" + msg.toString + "] with message [" + reverse + "] (" + undoQueue.length + " other messages in undo queue).")
+      log.info("Performing redo of [" + msg.toString + "] with message [" + reverse + "] (" + undoneQueue.length + " other messages in undo queue).")
       sendToAll(reverse, registerUndoResponse = false)
       handleGetPossibleMoves(accountId)
     }

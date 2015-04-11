@@ -13,22 +13,27 @@ object AccountService {
     DatabaseConnection.query(GetAccountByName(name)).getOrElse(throw new IllegalStateException("Invalid account."))
   }
 
-  def getAccount(id: UUID) = DatabaseConnection.transaction {
-    DatabaseConnection.query(GetAccount(id))
-  }
-
-  def getAccount(map: Map[String, String]) = {
+  def getAccount(map: Map[String, String], fallbackAccount: Option[UUID]) = {
     if (map.get("account").isDefined && map.get("name").isDefined) {
-      UUID.fromString(map("account")) -> map("name")
+      val accountId = UUID.fromString(map("account"))
+      (accountId, map("name"), false)
     } else {
-      val name = "guest-" + Math.abs(Random.nextInt(100000))
-      val a = AccountService.createAccount(name)
-      a.id -> a.name
+      fallbackAccount match {
+        case Some(acctId) =>
+          DatabaseConnection.query(GetAccount(acctId)) match {
+            case Some(a) =>
+              (a.id , a.name,true)
+            case None =>
+              val name = "guest-" + Math.abs(Random.nextInt(100000))
+              val a = AccountService.createAccount(name)
+              (a.id , a.name, true)
+          }
+        case None =>
+          val name = "guest-" + Math.abs(Random.nextInt(100000))
+          val a = AccountService.createAccount(name)
+          (a.id , a.name, true)
+      }
     }
-  }
-
-  def getAccountByName(name: String) = DatabaseConnection.transaction {
-    DatabaseConnection.query(GetAccountByName(name))
   }
 
   def updateAccountName(id: UUID, name: String) = DatabaseConnection.transaction {

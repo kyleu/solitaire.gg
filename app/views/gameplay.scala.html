@@ -1,4 +1,4 @@
-@(variant: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None)(
+@(account: java.util.UUID, name: String, variant: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None)(
   implicit session: Session, flash: Flash
 )@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
     <div id="game-container"></div>
@@ -7,8 +7,8 @@
     <pre id="@utils.Config.projectId-config">
     {
       "account": {
-        "id": "@session("account")",
-        "name": "@session("name")"
+        "id": "@account",
+        "name": "@name"
       },
       "gameId": "@utils.Config.projectId",
       "gameName": "@utils.Config.projectName",
