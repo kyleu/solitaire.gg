@@ -27,7 +27,7 @@ trait GameServiceUndoHelper {
       completedMoves = 0
       val reverse = getReverse(msg)
       undoneQueue.push(reverse)
-      log.info("Undoing message [" + msg.toString + "] with message [" + reverse + "] (" + historyQueue.length + " other messages in history queue).")
+      //log.info("Undoing message [" + msg.toString + "] with message [" + reverse + "] (" + historyQueue.length + " other messages in history queue).")
       sendToAll(reverse, registerUndoResponse = false)
       handleGetPossibleMoves(accountId)
     }
@@ -41,7 +41,7 @@ trait GameServiceUndoHelper {
       completedMoves = 0
       val reverse = getReverse(msg)
       historyQueue.push(reverse)
-      log.info("Performing redo of [" + msg.toString + "] with message [" + reverse + "] (" + undoneQueue.length + " other messages in undo queue).")
+      //log.info("Performing redo of [" + msg.toString + "] with message [" + reverse + "] (" + undoneQueue.length + " other messages in undo queue).")
       sendToAll(reverse, registerUndoResponse = false)
       handleGetPossibleMoves(accountId)
     }
@@ -63,13 +63,12 @@ trait GameServiceUndoHelper {
       case cm: CardMoved =>
         val src = gameState.pilesById(cm.source)
         val tgt = gameState.pilesById(cm.target)
-        log.info("completedMoves: " + completedMoves)
         val card = tgt.cards(cm.targetIndex - completedMoves)
         tgt.removeCard(card)
         val reverseTgtIdx = src.addCard(card)
 
         completedMoves += 1
-        log.info("Card [" + card + "] moved from [" + cm.source + "] to [" + cm.target + "].")
+        //log.info("Card [" + card + "] moved from [" + cm.source + "] to [" + cm.target + "].")
 
         cm.copy(
           source = cm.target,
@@ -88,8 +87,8 @@ trait GameServiceUndoHelper {
           case rrm: ReversibleResponseMessage => Some(rrm)
           case _ => None
         }.map(x => getReverse(x)))
-        log.info("Original: " + ms)
-        log.info("Reversed: " + ret)
+        //log.info("Original: " + ms)
+        //log.info("Reversed: " + ret)
         ret
     }
   }

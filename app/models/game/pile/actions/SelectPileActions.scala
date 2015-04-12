@@ -11,10 +11,15 @@ object SelectPileActions {
 
   def moveAll(target: String) = SelectPileAction("move-all", (pile, gameState) => {
     val targetPile = gameState.pilesById(target)
-    targetPile.cards.map { card =>
-      targetPile.removeCard(card)
-      val tgtIdx = pile.addCard(card)
-      CardMoved(card.id, target, pile.id, tgtIdx, turnFaceDown = true)
+    val cards = Seq(targetPile.cards: _*)
+    cards.map { card =>
+      try {
+        targetPile.removeCard(card)
+        val tgtIdx = pile.addCard(card)
+        CardMoved(card.id, target, pile.id, tgtIdx, turnFaceDown = true)
+      } catch {
+        case t: Throwable => throw t
+      }
     }
   })
 }

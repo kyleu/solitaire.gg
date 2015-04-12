@@ -1,6 +1,6 @@
 package models.game.pile.actions
 
-import models.{ CardRevealed, ResponseMessage, CardMoved }
+import models.{ ResponseMessage, CardMoved }
 import models.game.Rank._
 import models.game.{ Rank, GameState, Card }
 import models.game.pile.Pile
