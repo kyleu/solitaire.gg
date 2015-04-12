@@ -11,7 +11,7 @@ object SelectPileActions {
 
   def moveAll(target: String) = SelectPileAction("move-all", (pile, gameState) => {
     val targetPile = gameState.pilesById(target)
-    val cards = Seq(targetPile.cards: _*)
+    val cards = Seq(targetPile.cards.reverse: _*)
     cards.map { card =>
       try {
         targetPile.removeCard(card)

@@ -67,7 +67,7 @@ case class Nestor(override val gameId: UUID, override val seed: Int) extends Gam
     Pile("reserve-4", "reserve", options)
   )
 
-  private[this] val deck = Deck.shuffled(rng)
+  private[this] val deck = newShuffledDecks()
 
   val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 

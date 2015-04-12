@@ -50,7 +50,7 @@ abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, c
     Pile("tableau-7", "tableau", PileOptionsHelper.tableau)
   )
 
-  private[this] val deck = Deck.shuffled(rng)
+  private[this] val deck = newShuffledDecks()
 
   lazy val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 

@@ -64,7 +64,7 @@ case class Spider(override val gameId: UUID, override val seed: Int) extends Gam
     (1 to 10).map(i => Pile("tableau-" + i, "tableau", tableauOptions))
   }
 
-  private[this] val deck = Deck.shuffled(rng, 2)
+  private[this] val deck = newShuffledDecks(2)
 
   override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 

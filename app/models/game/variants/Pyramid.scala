@@ -48,7 +48,7 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
     }
   }
 
-  private[this] val deck = Deck.shuffled(rng)
+  private[this] val deck = newShuffledDecks()
 
   override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 

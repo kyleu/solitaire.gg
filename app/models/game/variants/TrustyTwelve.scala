@@ -42,14 +42,14 @@ object TrustyTwelve extends GameVariant.Description {
 case class TrustyTwelve(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
   override def description = TrustyTwelve
 
-  val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(
+  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(
     cardsShown = Some(2),
     selectCardConstraint = Some(Constraints.never),
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.lowerRank)
   ))
 
-  val piles = List(
+  private[this] val piles = List(
     Pile("stock", "stock", PileOptionsHelper.stock(0, "", None).combine(PileOptions(
       cardsShown = Some(19),
       direction = Some("r"),
@@ -72,7 +72,7 @@ case class TrustyTwelve(override val gameId: UUID, override val seed: Int) exten
     Pile("tableau-12", "tableau", tableauOptions)
   )
 
-  val deck = Deck.shuffled(rng)
+  private[this] val deck = newShuffledDecks()
 
   override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 

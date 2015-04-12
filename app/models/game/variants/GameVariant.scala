@@ -2,7 +2,7 @@ package models.game.variants
 
 import java.util.UUID
 
-import models.game.{ Layout, GameState }
+import models.game.{ Deck, Layout, GameState }
 
 import scala.util.Random
 
@@ -40,4 +40,10 @@ abstract class GameVariant(val gameId: UUID, val seed: Int) {
   val gameState: GameState
   def initialMoves(): Unit
   def isWin: Boolean
+
+  def newShuffledDecks(numDecks: Int = 1) = if(seed == 0) {
+    Deck((0 to numDecks - 1).flatMap(i => Deck.fresh().cards))
+  } else {
+    Deck.shuffled(rng, numDecks)
+  }
 }

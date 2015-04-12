@@ -56,7 +56,7 @@ case class Canfield(override val gameId: UUID, override val seed: Int) extends G
     Pile("tableau-4", "tableau", PileOptionsHelper.tableau)
   )
 
-  private[this] val deck = Deck.shuffled(rng)
+  private[this] val deck = newShuffledDecks()
 
   override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 
