@@ -10,8 +10,8 @@ object DragToActions {
   val moveCards = DragToAction("move-cards", (src, cards, tgt, gameState) => {
     cards.map { card =>
       src.removeCard(card)
-      tgt.addCard(card)
-      CardMoved(card.id, src.id, tgt.id)
+      val tgtIdx = tgt.addCard(card)
+      CardMoved(card.id, src.id, tgt.id, tgtIdx)
     }
   })
 
@@ -23,9 +23,9 @@ object DragToActions {
 
       val targetCard = tgt.cards.last
       tgt.removeCard(targetCard)
-      gy.addCard(targetCard)
+      val tgtIdx = gy.addCard(targetCard)
 
-      Seq(CardMoved(card.id, src.id, graveyard), CardMoved(targetCard.id, tgt.id, graveyard))
+      Seq(CardMoved(card.id, src.id, graveyard, tgtIdx), CardMoved(targetCard.id, tgt.id, graveyard, tgtIdx))
     }
   })
 }

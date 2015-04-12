@@ -16,6 +16,7 @@
       "cardSet": "@utils.Config.defaultCardSet",
       "cardSize": "@utils.Config.defaultCardSize",
       "variant": "@variant",
+      @if(seed.isDefined) {"seed": @seed.get, }
       "initialAction": [ @Html(initialAction.map("\"" + _ + "\"").mkString(", ")) ]
     }
     </pre>

@@ -13,8 +13,10 @@ object Pile {
 case class Pile(id: String, behavior: String, options: PileOptions, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) extends Logging {
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
 
-  def addCard(c: Card) {
+  def addCard(c: Card) = {
+    log.info("Adding card [" + c + "] to pile [" + id + "].")
     cards += c
+    cards.size - 1
   }
 
   def removeCard(card: Card) {

@@ -82,8 +82,8 @@ object SelectCardActions {
 
   private[this] def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turnFaceUp: Boolean = false) = {
     src.removeCard(card)
-    tgt.addCard(card)
-    val msg = CardMoved(card.id, src.id, tgt.id, turnFaceUp = turnFaceUp)
+    val tgtIdx = tgt.addCard(card)
+    val msg = CardMoved(card.id, src.id, tgt.id, tgtIdx, turnFaceUp = turnFaceUp)
     if (turnFaceUp && !card.u) {
       card.u = true
       val revealed = gameState.revealCardToAll(card)
