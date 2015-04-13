@@ -24,10 +24,9 @@ trait GameServiceUndoHelper {
     } else {
       undosByPlayer(accountId) = undosByPlayer.getOrElseUpdate(accountId, 0) + 1
       val msg = historyQueue.pop()
-      completedMoves = 0
       val reverse = getReverse(msg)
       undoneQueue.push(reverse)
-      //log.info("Undoing message [" + msg.toString + "] with message [" + reverse + "] (" + historyQueue.length + " other messages in history queue).")
+      log.info("Undoing message [" + msg.toString + "] with message [" + reverse + "] (" + historyQueue.length + " other messages in history queue).")
       sendToAll(reverse, registerUndoResponse = false)
       handleGetPossibleMoves(accountId)
     }
@@ -38,7 +37,6 @@ trait GameServiceUndoHelper {
       log.info("Attempt to redo from empty undo stack.")
     } else {
       val msg = undoneQueue.pop()
-      completedMoves = 0
       val reverse = getReverse(msg)
       historyQueue.push(reverse)
       //log.info("Performing redo of [" + msg.toString + "] with message [" + reverse + "] (" + undoneQueue.length + " other messages in undo queue).")
@@ -47,9 +45,7 @@ trait GameServiceUndoHelper {
     }
   }
 
-  protected var completedMoves = 0
-
-  private[this] def getReverse(rrm: ReversibleResponseMessage): ReversibleResponseMessage = {
+  private[this] def getReverse(rrm: ReversibleResponseMessage, completedMoves: Int = 0): ReversibleResponseMessage = {
     rrm match {
       case cr: CardRevealed =>
         cr.card.u = false
@@ -67,7 +63,6 @@ trait GameServiceUndoHelper {
         tgt.removeCard(card)
         val reverseTgtIdx = src.addCard(card)
 
-        completedMoves += 1
         //log.info("Card [" + card + "] moved from [" + cm.source + "] to [" + cm.target + "].")
 
         cm.copy(
@@ -79,17 +74,19 @@ trait GameServiceUndoHelper {
         )
 
       case ms: MessageSet =>
-        completedMoves = 0
-        val ret = MessageSet(ms.messages.sortBy {
+        val sortedMessages = ms.messages.sortBy {
           case cm: CardMoved => cm.targetIndex
           case _ => 1
-        }.flatMap {
-          case rrm: ReversibleResponseMessage => Some(rrm)
-          case _ => None
-        }.map(x => getReverse(x)))
+        }
+        val ret = sortedMessages.foldLeft((0, List.empty[ReversibleResponseMessage]))((a, i) => i match {
+          case cm: CardMoved => (a._1 + 1) -> (a._2 :+ getReverse(cm, a._1))
+          case rrm: ReversibleResponseMessage => a._1 -> (a._2 :+ getReverse(rrm, a._1))
+          case _ => a
+        })._2
+
         //log.info("Original: " + ms)
         //log.info("Reversed: " + ret)
-        ret
+        MessageSet(ret)
     }
   }
 }

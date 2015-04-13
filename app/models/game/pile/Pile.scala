@@ -19,11 +19,13 @@ case class Pile(id: String, behavior: String, options: PileOptions, cards: colle
     cards.size - 1
   }
 
-  def removeCard(card: Card) {
-    cards.find(_.id == card.id) match {
-      case Some(_) => cards -= card
-      case None => throw new IllegalArgumentException("Provided card [" + card + "] is not included in pile [" + id + "].")
+  def removeCard(card: Card) = {
+    val srcIdx = cards.indexOf(card)
+    srcIdx match {
+      case -1 => throw new IllegalArgumentException("Provided card [" + card + "] is not included in pile [" + id + "].")
+      case _ => cards -= card
     }
+    srcIdx
   }
 
   def canSelectCard(card: Card, gameState: GameState) = options.selectCardConstraint.exists(_.f(this, Seq(card), gameState))
