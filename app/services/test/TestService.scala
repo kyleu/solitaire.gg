@@ -4,7 +4,7 @@ import utils.Logging
 
 import scala.util.{ Failure, Success, Try }
 
-class TestService extends Logging with AccountTests with VariantTests with KnownGameTests {
+class TestService extends Logging with AccountTests with KnownGameTests with SolverTests with VariantTests {
   case class TestResult(content: String, children: Seq[TestResult] = Nil) {
     def toString(indentionLevel: Int): String = {
       (0 to indentionLevel).map(x => "  ").mkString + content + "\n" + children.map(_.toString(indentionLevel + 1)).mkString
@@ -30,7 +30,8 @@ class TestService extends Logging with AccountTests with VariantTests with Known
 
   def testAll() = TestResult("Running all tests.", Seq(
     testAccount(),
-    testVariants(),
-    testKnownGame()
+    testKnownGame(),
+    testSolver(),
+    testVariants()
   ))
 }

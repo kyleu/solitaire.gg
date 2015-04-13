@@ -5,19 +5,18 @@ import java.util.UUID
 import models._
 
 trait GameServiceCardHelper { this: GameService =>
-  protected[this] def handleSelectCard(accountId: UUID, cardId: UUID, pileId: String, pileIndex: Int) {
+  protected[this] def handleSelectCard(accountId: UUID, cardId: UUID, pileId: String) {
     val card = gameState.cardsById(cardId)
     val pile = gameState.pilesById(pileId)
     if (!pile.cards.contains(card)) {
       log.warn("SelectCard for game [" + id + "]: Card [" + card.toString + "] is not part of the [" + pileId + "] pile.")
     }
-    val messages = if (pile.canSelectCard(card, gameState)) {
-      pile.onSelectCard(card, gameState)
+    if (pile.canSelectCard(card, gameState)) {
+      val messages = pile.onSelectCard(card, gameState)
+      sendToAll(messages)
     } else {
       log.warn("SelectCard called on [" + card + "], which cannot be selected.")
-      Nil
     }
-    sendToAll(messages)
     if (!checkWinCondition()) {
       handleGetPossibleMoves(accountId)
     }

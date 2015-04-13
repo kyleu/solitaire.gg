@@ -39,12 +39,12 @@ class GameService(val id: UUID, val variant: String, val seed: Int, private[this
   }
 
   private[this] def handleGameRequest(gr: GameRequest) = {
-    log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.accountId + "] for game [" + id + "].")
+    //log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.accountId + "] for game [" + id + "].")
     try {
       gameMessages += gr.message
       gr.message match {
         case GetPossibleMoves => handleGetPossibleMoves(gr.accountId)
-        case sc: SelectCard => handleSelectCard(gr.accountId, sc.card, sc.pile, sc.pileIndex)
+        case sc: SelectCard => handleSelectCard(gr.accountId, sc.card, sc.pile)
         case sp: SelectPile => handleSelectPile(gr.accountId, sp.pile)
         case mc: MoveCards => handleMoveCards(gr.accountId, mc.cards, mc.src, mc.tgt)
         case Undo => handleUndo(gr.accountId)
@@ -59,7 +59,7 @@ class GameService(val id: UUID, val variant: String, val seed: Int, private[this
   }
 
   private[this] def handleInternalMessage(im: InternalMessage) = {
-    log.debug("Handling [" + im.getClass.getSimpleName.replace("$", "") + "] internal message for game [" + id + "].")
+    //log.debug("Handling [" + im.getClass.getSimpleName.replace("$", "") + "] internal message for game [" + id + "].")
     try {
       im match {
         case ap: AddPlayer => handleAddPlayer(ap.accountId, ap.name, ap.connectionId, ap.connectionActor)

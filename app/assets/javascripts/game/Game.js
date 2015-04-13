@@ -36,7 +36,7 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (co
   };
 
   Game.prototype.cardSelected = function(card) {
-    this.ws.send("SelectCard", { card: card.id, pile: card.pile.id, pileIndex: card.pileIndex });
+    this.ws.send("SelectCard", { card: card.id, pile: card.pile.id });
   };
 
   Game.prototype.pileSelected = function(pile) {

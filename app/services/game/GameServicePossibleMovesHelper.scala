@@ -13,7 +13,6 @@ trait GameServicePossibleMovesHelper { this: GameService =>
   }
 
   protected[this] def possibleMoves(player: Option[UUID]): Seq[PossibleMove] = {
-    log.info("Generating possible moves for [" + id + "].")
     val ret = possibleMoves() match {
       case Success(moves) =>
         moves
@@ -21,7 +20,7 @@ trait GameServicePossibleMovesHelper { this: GameService =>
         log.error("Exception [" + ex.getClass.getSimpleName + "] encountered trying to calculate possible moves.", ex)
         Nil
     }
-    log.info("Generated [" + ret.size + "] possible moves for [" + id + "].")
+    //log.info("Generated [" + ret.size + "] possible moves for [" + id + "].")
     ret
   }
 
