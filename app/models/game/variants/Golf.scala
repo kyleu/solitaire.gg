@@ -38,7 +38,7 @@ case class Golf(override val gameId: UUID, override val seed: Int) extends GameV
   private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(
     selectCardConstraint = Some(Constraints.alternatingRankToFoundation),
     dragFromConstraint = Some(Constraints.topCardOnly),
-    selectCardAction = Some(SelectCardActions.drawToPile(1, "foundation", turnFaceUp = false))
+    selectCardAction = Some(SelectCardActions.drawToPile(1, "foundation"))
   ))
 
   private[this] val piles = List(

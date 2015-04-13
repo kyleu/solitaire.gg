@@ -17,7 +17,7 @@ object PileOptionsHelper {
     selectCardConstraint = Some(Constraints.topCardOnly),
     selectPileConstraint = Some(Constraints.empty),
 
-    selectCardAction = Some(SelectCardActions.drawToPile(cardsToDraw, drawTo, turnFaceUp = true)),
+    selectCardAction = Some(SelectCardActions.drawToPile(cardsToDraw, drawTo, Some(true))),
     selectPileAction = redrawFrom match {
       case Some(rf) => Some(SelectPileActions.moveAll(rf))
       case None => None

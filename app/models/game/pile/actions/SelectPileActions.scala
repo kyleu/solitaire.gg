@@ -15,8 +15,8 @@ object SelectPileActions {
     cards.map { card =>
       try {
         targetPile.removeCard(card)
-        val tgtIdx = pile.addCard(card)
-        CardMoved(card.id, target, pile.id, tgtIdx, turnFaceDown = true)
+        pile.addCard(card)
+        CardMoved(card.id, target, pile.id, turn = Some(false))
       } catch {
         case t: Throwable => throw t
       }

@@ -50,7 +50,7 @@ case class Spider(override val gameId: UUID, override val seed: Int) extends Gam
   private[this] val stockOptions = new PileOptions(
     cardsShown = Some(1),
     selectCardConstraint = Some(Constraints.notEmpty),
-    selectCardAction = Some(SelectCardActions.drawToPiles(1, drawPiles, turnFaceUp = true))
+    selectCardAction = Some(SelectCardActions.drawToPiles(1, drawPiles, turn = Some(true)))
   )
 
   private[this] val tableauOptions = PileOptionsHelper.tableau.copy(

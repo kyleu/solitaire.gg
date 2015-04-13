@@ -13,19 +13,15 @@ object Pile {
 case class Pile(id: String, behavior: String, options: PileOptions, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) extends Logging {
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
 
-  def addCard(c: Card) = {
-    log.info("Adding card [" + c + "] to pile [" + id + "].")
+  def addCard(c: Card) {
     cards += c
-    cards.size - 1
   }
 
-  def removeCard(card: Card) = {
-    val srcIdx = cards.indexOf(card)
-    srcIdx match {
-      case -1 => throw new IllegalArgumentException("Provided card [" + card + "] is not included in pile [" + id + "].")
-      case _ => cards -= card
+  def removeCard(card: Card) {
+    if(!cards.contains(card)) {
+      throw new IllegalArgumentException("Provided card [" + card + "] is not included in pile [" + id + "].")
     }
-    srcIdx
+    cards -= card
   }
 
   def canSelectCard(card: Card, gameState: GameState) = options.selectCardConstraint.exists(_.f(this, Seq(card), gameState))

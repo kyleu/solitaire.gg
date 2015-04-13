@@ -95,19 +95,12 @@ define([
         hidden.turnFaceDown();
         break;
       case "CardMoved":
-        var movedCard = this.game.cards[v.card];
-        var source = this.game.piles[v.source];
-        var target = this.game.piles[v.target];
-
-        if(v.turnFaceUp && !movedCard.faceUp) {
-          movedCard.turnFaceUp();
-        } else if(v.turnFaceDown && movedCard.faceUp) {
-          movedCard.turnFaceDown();
+        this.moveCard(v.card, v.source, v.target, v.turn);
+        break;
+      case "CardsMoved":
+        for(var cardIndex in v.cards) {
+          this.moveCard(v.cards[cardIndex], v.source, v.target, v.turn);
         }
-
-        movedCard.bringToTop();
-        source.removeCard(movedCard);
-        target.addCard(movedCard);
         break;
       case "CardMoveCancelled":
         for(var cardCancelledIndex in v.cards) {
@@ -126,6 +119,23 @@ define([
       default:
         GameState.prototype.onMessage.apply(this, arguments);
     }
+  };
+
+  Gameplay.prototype.moveCard = function(card, src, tgt, turn) {
+    var movedCard = this.game.cards[card];
+    var source = this.game.piles[src];
+    var target = this.game.piles[tgt];
+
+    if(turn === true && !movedCard.faceUp) {
+      movedCard.turnFaceUp();
+    }
+    if(turn === false && movedCard.faceUp) {
+      movedCard.turnFaceDown();
+    }
+
+    movedCard.bringToTop();
+    source.removeCard(movedCard);
+    target.addCard(movedCard);
   };
 
   Gameplay.prototype.loadPiles = function(piles) {

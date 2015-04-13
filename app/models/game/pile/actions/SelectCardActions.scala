@@ -34,14 +34,14 @@ object SelectCardActions {
     }
   })
 
-  def drawToPile(cardsToDraw: Int, drawTo: String, turnFaceUp: Boolean = false) = drawToPiles(cardsToDraw, Seq(drawTo), turnFaceUp)
+  def drawToPile(cardsToDraw: Int, drawTo: String, turn: Option[Boolean] = None) = drawToPiles(cardsToDraw, Seq(drawTo), turn)
 
-  def drawToPiles(cardsToDraw: Int, drawTo: Seq[String], turnFaceUp: Boolean = false) = SelectCardAction("draw-to-piles", (pile, card, gameState) => {
+  def drawToPiles(cardsToDraw: Int, drawTo: Seq[String], turn: Option[Boolean] = None) = SelectCardAction("draw-to-piles", (pile, card, gameState) => {
     drawTo.flatMap { p =>
       val tgt = gameState.pilesById(p)
       val cards = pile.cards.takeRight(cardsToDraw).reverse
       cards.flatMap { card =>
-        moveCard(card, pile, tgt, gameState, turnFaceUp = turnFaceUp)
+        moveCard(card, pile, tgt, gameState, turn = turn)
       }
     }
   })
@@ -68,7 +68,7 @@ object SelectCardActions {
     piles.flatMap { p =>
       if (p.cards.isEmpty) {
         pile.cards.lastOption match {
-          case Some(tc) => moveCard(tc, pile, p, gameState, turnFaceUp = true)
+          case Some(tc) => moveCard(tc, pile, p, gameState, turn = Some(true))
           case None => Nil
         }
       } else {
@@ -77,11 +77,11 @@ object SelectCardActions {
     }
   })
 
-  private[this] def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turnFaceUp: Boolean = false) = {
+  private[this] def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turn: Option[Boolean] = None) = {
     src.removeCard(card)
-    val tgtIdx = tgt.addCard(card)
-    val msg = CardMoved(card.id, src.id, tgt.id, tgtIdx, turnFaceUp = turnFaceUp)
-    if (turnFaceUp && !card.u) {
+    tgt.addCard(card)
+    val msg = CardMoved(card.id, src.id, tgt.id, turn = turn)
+    if (turn.exists(x => x) && !card.u) {
       card.u = true
       val revealed = gameState.revealCardToAll(card)
       revealed ++ Seq(msg)
