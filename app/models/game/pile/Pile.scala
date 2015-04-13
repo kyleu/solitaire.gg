@@ -18,7 +18,7 @@ case class Pile(id: String, behavior: String, options: PileOptions, cards: colle
   }
 
   def removeCard(card: Card) {
-    if(!cards.contains(card)) {
+    if (!cards.contains(card)) {
       throw new IllegalArgumentException("Provided card [" + card + "] is not included in pile [" + id + "].")
     }
     cards -= card

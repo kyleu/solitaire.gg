@@ -13,13 +13,9 @@ object SelectPileActions {
     val targetPile = gameState.pilesById(target)
     val cards = Seq(targetPile.cards.reverse: _*)
     cards.map { card =>
-      try {
-        targetPile.removeCard(card)
-        pile.addCard(card)
-        CardMoved(card.id, target, pile.id, turn = Some(false))
-      } catch {
-        case t: Throwable => throw t
-      }
+      targetPile.removeCard(card)
+      pile.addCard(card)
+      CardMoved(card.id, target, pile.id, turn = Some(false))
     }
   })
 }

@@ -18,7 +18,7 @@ case class GameLost(id: UUID) extends ResponseMessage
 case class GameWon(id: UUID) extends ResponseMessage
 
 case class PossibleMove(moveType: String, cards: Seq[UUID], sourcePile: String, targetPile: Option[String] = None)
-case class PossibleMoves(moves: Seq[PossibleMove]) extends ResponseMessage
+case class PossibleMoves(moves: Seq[PossibleMove], undoCount: Int, redoCount: Int) extends ResponseMessage
 
 case class CardRevealed(card: Card) extends ReversibleResponseMessage
 case class CardHidden(id: UUID) extends ReversibleResponseMessage

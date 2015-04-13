@@ -24,16 +24,16 @@ object AccountService {
         case Some(acctId) =>
           DatabaseConnection.query(GetAccount(acctId)) match {
             case Some(a) =>
-              (a.id , a.name,true)
+              (a.id, a.name, true)
             case None =>
               val name = "guest-" + Math.abs(Random.nextInt(100000))
               val a = AccountService.createAccount(name)
-              (a.id , a.name, true)
+              (a.id, a.name, true)
           }
         case None =>
           val name = "guest-" + Math.abs(Random.nextInt(100000))
           val a = AccountService.createAccount(name)
-          (a.id , a.name, true)
+          (a.id, a.name, true)
       }
     }
   }

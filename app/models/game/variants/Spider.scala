@@ -60,8 +60,8 @@ case class Spider(override val gameId: UUID, override val seed: Int) extends Gam
 
   private[this] val piles = {
     List(new Pile("stock", "stock", stockOptions)) ++
-    (1 to 8).map(i => Pile("foundation-" + i, "foundation", PileOptionsHelper.foundation)) ++
-    (1 to 10).map(i => Pile("tableau-" + i, "tableau", tableauOptions))
+      (1 to 8).map(i => Pile("foundation-" + i, "foundation", PileOptionsHelper.foundation)) ++
+      (1 to 10).map(i => Pile("tableau-" + i, "tableau", tableauOptions))
   }
 
   private[this] val deck = newShuffledDecks(2)

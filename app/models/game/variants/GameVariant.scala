@@ -41,7 +41,7 @@ abstract class GameVariant(val gameId: UUID, val seed: Int) {
   def initialMoves(): Unit
   def isWin: Boolean
 
-  def newShuffledDecks(numDecks: Int = 1) = if(seed == 0) {
+  def newShuffledDecks(numDecks: Int = 1) = if (seed == 0) {
     Deck((0 to numDecks - 1).flatMap(i => Deck.fresh().cards))
   } else {
     Deck.shuffled(rng, numDecks)

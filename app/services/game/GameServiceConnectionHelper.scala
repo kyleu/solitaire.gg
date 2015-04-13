@@ -51,15 +51,24 @@ trait GameServiceConnectionHelper { this: GameService =>
         observerConnection._1.connectionActor = None
       case None => // noop
     }
-    Akka.system.scheduler.scheduleOnce(30.seconds, self, StopGameIfEmpty)
+
+    val hasPlayer = playerConnections.exists(_.connectionId.isDefined) || observerConnections.exists(_._1.connectionId.isDefined)
+    if(!hasPlayer) {
+      Akka.system.scheduler.scheduleOnce(30.seconds, self, StopGameIfEmpty)
+    }
   }
 
   protected[this] def handleStopGameIfEmpty() {
-    if (playerConnections.isEmpty && observerConnections.isEmpty) {
-      log.info("Stopping empty game [" + id + "] after timeout.")
-      context.parent ! GameStopped(id)
-      self ! PoisonPill
+    val hasPlayer = playerConnections.exists(_.connectionId.isDefined) || observerConnections.exists(_._1.connectionId.isDefined)
+    if(!hasPlayer) {
+      self ! StopGame("timeout")
     }
+  }
+
+  protected[this] def handleStopGame(reason: String) {
+    log.info("Stopping empty game [" + id + "] for reason [" + reason + "].")
+    context.parent ! GameStopped(id)
+    self ! PoisonPill
   }
 
   protected[this] def sendToAll(messages: Seq[ResponseMessage]): Unit = {

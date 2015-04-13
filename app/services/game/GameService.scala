@@ -39,7 +39,7 @@ class GameService(val id: UUID, val variant: String, val seed: Int, private[this
   }
 
   private[this] def handleGameRequest(gr: GameRequest) = {
-    log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.name + "] for game [" + id + "].")
+    log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.accountId + "] for game [" + id + "].")
     try {
       gameMessages += gr.message
       gr.message match {
@@ -65,6 +65,7 @@ class GameService(val id: UUID, val variant: String, val seed: Int, private[this
         case ap: AddPlayer => handleAddPlayer(ap.accountId, ap.name, ap.connectionId, ap.connectionActor)
         case ao: AddObserver => handleAddObserver(ao.accountId, ao.name, ao.connectionId, ao.connectionActor, ao.as)
         case cs: ConnectionStopped => handleConnectionStopped(cs.connectionId)
+        case sg: StopGame => handleStopGame(sg.reason)
         case StopGameIfEmpty => handleStopGameIfEmpty()
         case gt: GameTrace => handleGameTrace()
         case _ => log.warn("GameService received unhandled internal message [" + im.getClass.getSimpleName + "].")

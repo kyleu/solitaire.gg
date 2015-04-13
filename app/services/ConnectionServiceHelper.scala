@@ -21,7 +21,7 @@ trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionServic
   }
 
   protected[this] def handleGameMessage(gm: GameMessage) = activeGame match {
-    case Some(ag) => ag forward GameRequest(accountId, name, gm)
+    case Some(ag) => ag forward GameRequest(accountId, gm)
     case None => throw new IllegalArgumentException("Received game message [" + gm.getClass.getSimpleName + "] while not in game.")
   }
 

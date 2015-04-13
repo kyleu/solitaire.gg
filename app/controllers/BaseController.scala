@@ -16,7 +16,7 @@ object BaseController {
 
   object AuthenticatedAction extends ActionBuilder[AuthenticatedRequest] {
     override def invokeBlock[A](request: Request[A], block: (AuthenticatedRequest[A]) => Future[Result]): Future[Result] = {
-      val fallBackAccount = request.cookies.get(Config.projectId + "_account").map( c => UUID.fromString(Crypto.decryptAES(c.value)))
+      val fallBackAccount = request.cookies.get(Config.projectId + "_account").map(c => UUID.fromString(Crypto.decryptAES(c.value)))
       val (accountId, name, newAccount) = AccountService.getAccount(request.session.data, fallBackAccount)
       val newRequest = new AuthenticatedRequest(accountId, name, request)
       if (newAccount) {
@@ -24,7 +24,7 @@ object BaseController {
           result.withSession {
             request.session + ("account" -> accountId.toString) + ("name" -> name)
           }.withCookies(
-            Cookie("scalataire_account", Crypto.encryptAES(accountId.toString), Some(31556000/* 1 year */), "/", None, secure = false)
+            Cookie("scalataire_account", Crypto.encryptAES(accountId.toString), Some(31556000 /* 1 year */ ), "/", None, secure = false)
           )
         }
       } else {
