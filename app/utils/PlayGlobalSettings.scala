@@ -2,12 +2,15 @@ package utils
 
 import java.util.TimeZone
 
+import com.codahale.metrics.SharedMetricRegistries
 import org.joda.time.DateTimeZone
 import play.api.mvc.{ RequestHeader, Results, WithFilters }
 import play.api.{ Application, GlobalSettings, Logger }
 import play.filters.gzip.GzipFilter
 import play.filters.headers.SecurityHeadersFilter
+import services.ActorSupervisor
 import services.database.{ DatabaseConnection, DatabaseSchema }
+import utils.metrics.Instrumented
 
 import scala.concurrent.Future
 
@@ -15,11 +18,16 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeaders
   override def onStart(app: Application) {
     Logger.info(utils.Config.projectName + " build [" + BuildInfo.buildinfoBuildnumber + "] is starting on [" + utils.Config.hostname + "].")
 
+    SharedMetricRegistries.remove("default")
+    SharedMetricRegistries.add("default", Instrumented.metricRegistry)
+
     DateTimeZone.setDefault(DateTimeZone.UTC)
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
 
     DatabaseConnection.open()
     DatabaseSchema.update()
+
+    ActorSupervisor.instance
 
     super.onStart(app)
   }

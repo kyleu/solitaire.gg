@@ -1,11 +1,18 @@
 package services.database
 
-import com.simple.jdub._
+import java.util.concurrent.Callable
+
+import com.simple.jdub.{ Statement, RawQuery, Database }
 import play.api.Play
 import utils.{ Logging, Config }
-import utils.metrics.Checked
+import utils.metrics.{ Instrumented, Checked }
 
-object DatabaseConnection extends Logging {
+object DatabaseConnection extends Logging with Instrumented {
+  case class DatabaseException(queryType: String, sql: String, values: Seq[Any], ex: Exception) extends Exception(ex) {
+    private[this] val valStr = values.mkString(", ")
+    override def getMessage = "Exception [" + ex.getClass.getSimpleName + "] encountered processing " + queryType + " [" + sql + "] with values [" + valStr + "]."
+  }
+
   private[this] val db = {
     val cfg = Play.current.configuration
     val url = cfg.getString("db.default.url").getOrElse(throw new IllegalArgumentException("No database url provided."))
@@ -30,13 +37,21 @@ object DatabaseConnection extends Logging {
     db.transactionScope(f)
   }
 
-  def query[A](query: RawQuery[A]) = {
-    log.debug("Running query [" + query.sql + "] with values [" + query.values.mkString(", ") + "].")
-    db.query(query)
+  def query[A](query: RawQuery[A]) = try {
+    val timer = metricRegistry.timer(query.getClass.getName)
+    timer.time(new Callable[A] {
+      override def call() = db.query(query)
+    })
+  } catch {
+    case ex: Exception => throw new DatabaseException("query", query.sql, query.values, ex)
   }
 
-  def execute(statement: Statement) = {
-    log.debug("Executing statement [" + statement.sql + "] with values [" + statement.values.mkString(", ") + "].")
-    db.execute(statement)
+  def execute(statement: Statement) = try {
+    val timer = metricRegistry.timer(statement.getClass.getName)
+    timer.time(new Callable[Int] {
+      override def call() = db.execute(statement)
+    })
+  } catch {
+    case ex: Exception => throw new DatabaseException("statement", statement.sql, statement.values, ex)
   }
 }
