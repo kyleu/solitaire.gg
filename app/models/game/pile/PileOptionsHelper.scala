@@ -35,7 +35,7 @@ object PileOptionsHelper {
   val waste = PileOptions(
     cardsShown = Some(3),
     direction = Some("r"),
-    selectCardConstraint = Some(Constraints.topCardOnly),
+    selectCardConstraint = Some(Constraints.klondikeSelectCard),
     dragFromConstraint = Some(Constraints.topCardOnly),
     selectCardAction = Some(SelectCardActions.klondike)
   )

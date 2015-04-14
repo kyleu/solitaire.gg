@@ -38,6 +38,8 @@
         <tr>
           <th class="th-account-id">Account ID</th>
           <th class="th-name">Name</th>
+          <th class="th-game-count">Games</th>
+          <th class="th-last-played">Last Played</th>
           <th class="th-created">Created</th>
           <th class="th-actions"></th>
         </tr>
@@ -47,7 +49,9 @@
           <tr>
             <td>@a.id</td>
             <td>@a.name</td>
-            <td>@a.created</td>
+            <td>@a.gamesPlayed</td>
+            <td>@a.lastGameStarted.map(_.toString("yyyy-MM-dd HH:mm:ss")).getOrElse("-")</td>
+            <td>@a.created.toString("yyyy-MM-dd HH:mm:ss")</td>
             <td>
               <a href="@routes.AdminController.removeAccount(a.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
             </td>

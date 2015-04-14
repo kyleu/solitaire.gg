@@ -7,5 +7,7 @@ import org.joda.time.LocalDateTime
 case class Account(
   id: UUID,
   name: String,
+  gamesPlayed: Int,
+  lastGameStarted: Option[LocalDateTime],
   created: LocalDateTime
 )

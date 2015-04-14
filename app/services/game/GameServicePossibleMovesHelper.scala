@@ -24,7 +24,7 @@ trait GameServicePossibleMovesHelper { this: GameService =>
     ret
   }
 
-  protected[this] def possibleMoves(): Try[Seq[PossibleMove]] = Try {
+  private[this] def possibleMoves(): Try[Seq[PossibleMove]] = Try {
     val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
     gameState.piles.foreach { source =>
       if (source.canSelectPile(gameState)) {

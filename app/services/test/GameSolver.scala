@@ -24,30 +24,65 @@ case class GameSolver(variant: String, testSeed: Int, gameSeed: Option[Int] = No
   val gameJoined = testProbe.expectMsgClass(classOf[GameJoined])
   val gameId = gameJoined.id
   var moves = gameJoined.moves
+  var undosAvailable = 0
+
+  val exploredStates = collection.mutable.HashMap.empty[Seq[PossibleMove], collection.mutable.HashMap[PossibleMove, Seq[PossibleMove]]]
 
   def onMsg() = testProbe.expectMsgPF() {
-    case cr: CardRevealed => true
-    case cm: CardMoved => true
-    case cm: CardsMoved => true
-    case ms: MessageSet => true
-    case pm: PossibleMoves =>
-      moves = pm.moves
-      false
+    case rm: ResponseMessage =>
+      rm match {
+        case cr: CardRevealed =>
+          log.info("Received [" + rm + "].")
+          true
+        case ch: CardHidden =>
+          log.info("Received [" + rm + "].")
+          true
+        case cm: CardMoved =>
+          log.info("Received [" + cm + "].")
+          true
+        case cm: CardsMoved =>
+          log.info("Received [" + cm + "].")
+          true
+        case ms: MessageSet =>
+          log.info("Received [MessageSet(...)].")
+          true
+        case pm: PossibleMoves =>
+          log.info("Received [PossibleMoves(" + pm.moves.size + ": " + pm.moves.hashCode() + ")].")
+          moves = pm.moves
+          undosAvailable = pm.undosAvailable
+          false
+        case _ => throw new IllegalStateException(rm.toString)
+      }
+  }
+
+  def pointless(move: PossibleMove) = {
+    move.sourcePile.startsWith("foundation")
   }
 
   def performMove() = {
-    val move = moves(rng.nextInt(moves.size))
-    move.moveType match {
-      case "move-cards" =>
-        conn ! MoveCards(move.cards, move.sourcePile, move.targetPile.getOrElse(throw new IllegalStateException()))
-        while(onMsg()) {}
-      case "select-card" =>
-        conn ! SelectCard(move.cards.headOption.getOrElse(throw new IllegalStateException()), move.sourcePile)
-        while(onMsg()) {}
-      case "select-pile" =>
-        conn ! SelectPile(move.sourcePile)
-        while(onMsg()) {}
-      case _ => throw new IllegalArgumentException("Invalid possible move [" + move.moveType + "].")
+    val results = exploredStates.getOrElseUpdate(moves, collection.mutable.HashMap.empty[PossibleMove, Seq[PossibleMove]])
+    val unexploredMoves = moves.filter(x => !pointless(x) && !results.contains(x))
+    if(unexploredMoves.isEmpty) {
+      if(undosAvailable == 0) {
+        throw new IllegalStateException("No undos available, no unexplored moves.")
+      } else {
+        log.info("Sending [Undo].")
+        conn ! Undo
+        while(onMsg()) { Unit }
+        results(PossibleMove("undo", Nil, "", None)) = moves
+      }
+    } else {
+      val move = moves(rng.nextInt(moves.size))
+      val msg = move.moveType match {
+        case "move-cards" => MoveCards(move.cards, move.sourcePile, move.targetPile.getOrElse(throw new IllegalStateException()))
+        case "select-card" => SelectCard(move.cards.headOption.getOrElse(throw new IllegalStateException()), move.sourcePile)
+        case "select-pile" => SelectPile(move.sourcePile)
+        case _ => throw new IllegalArgumentException("Invalid possible move [" + move.moveType + "].")
+      }
+      log.info("Sending [" + msg + "].")
+      conn ! msg
+      while(onMsg()) { Unit }
+      results(move) = moves
     }
   }
 }
