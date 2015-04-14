@@ -1,7 +1,5 @@
 package services.database
 
-import java.util.concurrent.Callable
-
 import com.simple.jdub.{ Statement, RawQuery, Database }
 import play.api.Play
 import utils.{ Logging, Config }
@@ -10,7 +8,9 @@ import utils.metrics.{ Instrumented, Checked }
 object DatabaseConnection extends Logging with Instrumented {
   case class DatabaseException(queryType: String, sql: String, values: Seq[Any], ex: Exception) extends Exception(ex) {
     private[this] val valStr = values.mkString(", ")
-    override def getMessage = "Exception [" + ex.getClass.getSimpleName + "] encountered processing " + queryType + " [" + sql + "] with values [" + valStr + "]."
+    override def getMessage = {
+      "Exception [" + ex.getClass.getSimpleName + "] encountered processing " + queryType + " [" + sql + "] with values [" + valStr + "]."
+    }
   }
 
   private[this] val db = {
@@ -38,19 +38,13 @@ object DatabaseConnection extends Logging with Instrumented {
   }
 
   def query[A](query: RawQuery[A]) = try {
-    val timer = metricRegistry.timer(query.getClass.getName)
-    timer.time(new Callable[A] {
-      override def call() = db.query(query)
-    })
+    db.query(query)
   } catch {
     case ex: Exception => throw new DatabaseException("query", query.sql, query.values, ex)
   }
 
   def execute(statement: Statement) = try {
-    val timer = metricRegistry.timer(statement.getClass.getName)
-    timer.time(new Callable[Int] {
-      override def call() = db.execute(statement)
-    })
+    db.execute(statement)
   } catch {
     case ex: Exception => throw new DatabaseException("statement", statement.sql, statement.values, ex)
   }

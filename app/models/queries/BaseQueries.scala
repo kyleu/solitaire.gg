@@ -8,7 +8,7 @@ trait BaseQueries {
   protected lazy val insertSql = s"insert into $tableName (${columns.mkString(", ")}) values (${columns.map(x => "?").mkString(", ")})"
 
   protected def updateSql(updateColumns: Seq[String], additionalUpdates: Option[String] = None) = trim(s"""
-    update $tableName set ${updateColumns.map(x => x + " = ?").mkString(", ")}${additionalUpdates.map( x => ", " + x).getOrElse("")} where $idColumn = ?
+    update $tableName set ${updateColumns.map(x => x + " = ?").mkString(", ")}${additionalUpdates.map(x => ", " + x).getOrElse("")} where $idColumn = ?
   """)
 
   protected lazy val getByIdSql = s"select ${columns.mkString(", ")} from $tableName where $idColumn = ?"

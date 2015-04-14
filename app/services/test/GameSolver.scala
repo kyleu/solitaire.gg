@@ -62,13 +62,13 @@ case class GameSolver(variant: String, testSeed: Int, gameSeed: Option[Int] = No
   def performMove() = {
     val results = exploredStates.getOrElseUpdate(moves, collection.mutable.HashMap.empty[PossibleMove, Seq[PossibleMove]])
     val unexploredMoves = moves.filter(x => !pointless(x) && !results.contains(x))
-    if(unexploredMoves.isEmpty) {
-      if(undosAvailable == 0) {
+    if (unexploredMoves.isEmpty) {
+      if (undosAvailable == 0) {
         throw new IllegalStateException("No undos available, no unexplored moves.")
       } else {
         log.info("Sending [Undo].")
         conn ! Undo
-        while(onMsg()) { Unit }
+        while (onMsg()) { Unit }
         results(PossibleMove("undo", Nil, "", None)) = moves
       }
     } else {
@@ -81,7 +81,7 @@ case class GameSolver(variant: String, testSeed: Int, gameSeed: Option[Int] = No
       }
       log.info("Sending [" + msg + "].")
       conn ! msg
-      while(onMsg()) { Unit }
+      while (onMsg()) { Unit }
       results(move) = moves
     }
   }
