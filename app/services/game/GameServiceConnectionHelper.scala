@@ -4,7 +4,9 @@ import java.util.UUID
 
 import akka.actor.{ PoisonPill, ActorRef }
 import models._
+import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Akka
+import services.GameHistoryService
 
 trait GameServiceConnectionHelper { this: GameService =>
   protected[this] def handleAddPlayer(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef) {
@@ -67,6 +69,7 @@ trait GameServiceConnectionHelper { this: GameService =>
 
   protected[this] def handleStopGame(reason: String) {
     log.info("Stopping empty game [" + id + "] for reason [" + reason + "].")
+    GameHistoryService.updateGameHistory(id, reason, moveCount, undoCount, redoCount, Some(new LocalDateTime))
     context.parent ! GameStopped(id)
     self ! PoisonPill
   }

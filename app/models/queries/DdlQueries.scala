@@ -73,10 +73,10 @@ object DdlQueries {
         variant character varying(128) not null,
         status character varying(128) not null,
         accounts uuid[] not null default array[]::uuid[],
-        moves integer not null,
-        undos integer not null,
-        redos integer not null,
-        created timestamp not null,
+        moves integer not null default 0,
+        undos integer not null default 0,
+        redos integer not null default 0,
+        created timestamp not null default now(),
         completed timestamp
       ) with (
         oids=false

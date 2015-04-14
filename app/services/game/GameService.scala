@@ -5,26 +5,32 @@ import java.util.UUID
 import akka.actor.ActorRef
 import models._
 import models.game.variants.GameVariant
+import org.joda.time.LocalDateTime
+import services.GameHistoryService
 
 case class PlayerRecord(accountId: UUID, name: String, var connectionId: Option[UUID], var connectionActor: Option[ActorRef])
 
 class GameService(val id: UUID, val variant: String, val seed: Int, private[this] val initialPlayers: List[PlayerRecord]) extends GameServiceHelper {
   log.info("Started game [" + variant + "] for players [" + initialPlayers.map(_.name).mkString(", ") + "] with seed [" + seed + "].")
 
-  val playerConnections = collection.mutable.ArrayBuffer[PlayerRecord](initialPlayers: _*)
-  val observerConnections = collection.mutable.ArrayBuffer.empty[(PlayerRecord, Option[UUID])]
+  protected[this] val playerConnections = collection.mutable.ArrayBuffer[PlayerRecord](initialPlayers: _*)
+  protected[this] val observerConnections = collection.mutable.ArrayBuffer.empty[(PlayerRecord, Option[UUID])]
 
-  val gameVariant = GameVariant(variant, id, seed)
-  val gameState = gameVariant.gameState
+  protected[this] val gameVariant = GameVariant(variant, id, seed)
+  protected[this] val gameState = gameVariant.gameState
 
   initialPlayers.foreach { p =>
     gameState.addPlayer(p.accountId, p.name)
   }
 
-  val gameMessages = collection.mutable.ArrayBuffer.empty[GameMessage]
+  protected[this] val gameMessages = collection.mutable.ArrayBuffer.empty[GameMessage]
+  protected[this] var moveCount = 0
+  protected[this] var lastMoveMade: Option[LocalDateTime] = None
 
   override def preStart() {
     gameVariant.initialMoves()
+
+    GameHistoryService.startGame(id, seed, variant, "started", initialPlayers.map(_.accountId))
 
     playerConnections.foreach { c =>
       c.connectionActor.foreach(_ ! GameStarted(id, self))
@@ -42,6 +48,8 @@ class GameService(val id: UUID, val variant: String, val seed: Int, private[this
     //log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.accountId + "] for game [" + id + "].")
     try {
       gameMessages += gr.message
+      moveCount += 1
+      lastMoveMade = Some(new LocalDateTime())
       gr.message match {
         case GetPossibleMoves => handleGetPossibleMoves(gr.accountId)
         case sc: SelectCard => handleSelectCard(gr.accountId, sc.card, sc.pile)

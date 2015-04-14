@@ -11,14 +11,16 @@ object GameHistoryQueries extends BaseQueries {
   override protected val tableName = "games"
   override protected val columns = Seq("id", "seed", "variant", "status", "accounts", "moves", "undos", "redos", "created", "completed")
 
+  override protected lazy val insertSql = s"insert into $tableName (id, seed, variant, status, accounts) values (?, ?, ?, ?, ?::uuid[])"
+
   case class CreateGameHistory(id: UUID, seed: Int, variant: String, status: String, accounts: Seq[UUID]) extends Statement {
     val sql = insertSql
-    val values = Seq(id, seed, variant, status, accounts, 0, 0, 0, DateUtils.toSqlTimestamp(new LocalDateTime), None): Seq[Any]
+    val values = Seq(id, seed, variant, status, "{ " + accounts.mkString(", ") + " }"): Seq[Any]
   }
 
-  case class UpdateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int) extends Statement {
-    val sql = updateSql(Seq("status", "moves", "undos", "redos"))
-    val values = Seq(status, moves, undos, redos, id): Seq[Any]
+  case class UpdateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int, completed: Option[LocalDateTime]) extends Statement {
+    val sql = updateSql(Seq("status", "moves", "undos", "redos", "completed"))
+    val values = Seq(status, moves, undos, redos, completed.map(DateUtils.toSqlTimestamp), id): Seq[Any]
   }
 
   case class SearchGameHistories(q: String) extends Query[List[GameHistory]] {
@@ -50,7 +52,7 @@ object GameHistoryQueries extends BaseQueries {
     created <- row.timestamp("created").map(x => new LocalDateTime(x.getTime))
   } yield GameHistory(
     id, seed, variant,
-    status, Seq()/* accounts */,
+    status, accounts.getArray.asInstanceOf[Array[UUID]],
     moves, undos, redos,
     created, row.timestamp("completed").map(x => new LocalDateTime(x.getTime))
   )

@@ -6,6 +6,7 @@ import models.game._
 import models.game.pile.{ Pile, PileOptionsHelper }
 
 object Sandbox extends GameVariant.Description {
+  override val completed = false
   override val key = "sandbox"
   override val name = "Sandbox"
   override val body = "..."

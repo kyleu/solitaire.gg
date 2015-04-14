@@ -6,6 +6,7 @@ import models.game.pile._
 import models.game.{ Deck, GameState, Layout, PileLocation }
 
 object Canfield extends GameVariant.Description {
+  override val completed = false
   override val key = "canfield"
   override val name = "Canfield"
   override val body = "Originally created for casinos, this game is very hard to win."
