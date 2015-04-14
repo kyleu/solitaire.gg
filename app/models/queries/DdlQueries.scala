@@ -71,8 +71,13 @@ object DdlQueries {
         id uuid primary key,
         seed int not null,
         variant character varying(128) not null,
+        status character varying(128) not null,
         accounts uuid[] not null default array[]::uuid[],
-        created timestamp not null
+        moves integer not null,
+        undos integer not null,
+        redos integer not null,
+        created timestamp not null,
+        completed timestamp
       ) with (
         oids=false
       );

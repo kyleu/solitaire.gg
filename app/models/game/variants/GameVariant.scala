@@ -13,6 +13,7 @@ object GameVariant {
     val body: String
     val layouts: Seq[Layout]
     val maxPlayers: Int = 1
+    val completed: Boolean = false
     val undoAllowed: Boolean = true
   }
 
@@ -24,14 +25,13 @@ object GameVariant {
     case KlondikeDrawOne.key => new KlondikeDrawOne(gameId, seed)
     case Nestor.key => new Nestor(gameId, seed)
     case Pyramid.key => new Pyramid(gameId, seed)
+    case Sandbox.key => new Sandbox(gameId, seed)
     case Spider.key => new Spider(gameId, seed)
     case TrustyTwelve.key => new TrustyTwelve(gameId, seed)
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 
-  val all = Seq(
-    Canfield, FreeCell, Golf, KlondikeDrawThree, KlondikeDrawOne, Nestor, Pyramid, Spider, TrustyTwelve
-  )
+  val all = Seq(Canfield, FreeCell, Golf, KlondikeDrawThree, KlondikeDrawOne, Nestor, Pyramid, Sandbox, Spider, TrustyTwelve)
 }
 
 abstract class GameVariant(val gameId: UUID, val seed: Int) {

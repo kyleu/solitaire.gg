@@ -5,14 +5,15 @@ import java.util.UUID
 import com.simple.jdub._
 import models.Account
 import org.joda.time.LocalDateTime
+import utils.DateUtils
 
 object AccountQueries extends BaseQueries {
   override protected val tableName = "accounts"
   override protected val columns = Seq("id", "name", "games_played", "last_game_started", "created")
 
   case class CreateAccount(name: String) extends Statement {
-    val sql = s"insert into $tableName (${columns.mkString(", ")}) values (?, ?, 0, null, now())"
-    val values = Seq(UUID.randomUUID, name)
+    val sql = insertSql
+    val values = Seq(UUID.randomUUID, name, 0, None, DateUtils.toSqlTimestamp(new LocalDateTime())): Seq[Any]
   }
 
   case class SearchAccounts(q: String) extends Query[List[Account]] {
