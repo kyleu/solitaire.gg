@@ -13,6 +13,7 @@
     </div> }@flash.get("success").map { msg => <div class="alert alert-success alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       @msg
-    </div> }@content
+    </div> }
   </div>
+  @content
 }

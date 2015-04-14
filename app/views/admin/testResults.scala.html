@@ -1,7 +1,6 @@
-@(test: String, results: String)(implicit session: Session, flash: Flash)@layout.bootstrap(
-  utils.Config.projectName + " Test Results",
-  stylesheets = Seq(routes.Assets.at("stylesheets/admin.css").url)
-) {
-  <h4>@utils.Config.projectName [@test] Test Results</h4>
-  <pre>@results</pre>
+@(test: String, results: String)(implicit session: Session, flash: Flash)@layout.admin(utils.Config.projectName + " Test Results", "tests") {
+  <div class="container">
+    <h4>@utils.Config.projectName [@test] Test Results</h4>
+    <pre>@results</pre>
+  </div>
 }

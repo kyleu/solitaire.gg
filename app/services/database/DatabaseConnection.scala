@@ -2,10 +2,10 @@ package services.database
 
 import com.simple.jdub._
 import play.api.Play
-import utils.Config
+import utils.{ Logging, Config }
 import utils.metrics.Checked
 
-object DatabaseConnection {
+object DatabaseConnection extends Logging {
   private[this] val db = {
     val cfg = Play.current.configuration
     val url = cfg.getString("db.default.url").getOrElse(throw new IllegalArgumentException("No database url provided."))
@@ -31,10 +31,12 @@ object DatabaseConnection {
   }
 
   def query[A](query: RawQuery[A]) = {
+    log.debug("Running query [" + query.sql + "] with values [" + query.values.mkString(", ") + "].")
     db.query(query)
   }
 
   def execute(statement: Statement) = {
+    log.debug("Executing statement [" + statement.sql + "] with values [" + statement.values.mkString(", ") + "].")
     db.execute(statement)
   }
 }

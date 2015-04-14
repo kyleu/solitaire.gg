@@ -1,63 +1,61 @@
-@(q: String, accounts: Seq[Account])(implicit session: Session, flash: Flash)@layout.bootstrap(
-  utils.Config.projectName + " Accounts",
-  scripts = Seq(routes.Assets.at("javascripts/admin.js").url),
-  stylesheets = Seq(routes.Assets.at("stylesheets/admin.css").url)
-) {
-  <h3>@utils.Config.projectName Account Management</h3>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="pull-right">
-        <form id="search-form" action="@routes.AdminController.accountList()" class="form-inline">
-          <div class="form-group">
-            <div class="input-group">
-              <input type="text" class="form-control" name="q" id="searchInput" placeholder="Search Accounts" value="@q">
-              <div class="input-group-addon" id="search-button"><span class="glyphicon glyphicon-search"></span></div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="text-large">
-        @if(q.isEmpty) {
-          @accounts.size account@if(accounts.size != 1){s}.
-        } else {
-          @accounts.size account@if(accounts.size != 1){s} for query [@q].
-        }
-      </div>
-    </div>
-  </div>
-
-  @if(accounts.isEmpty) {
+@(q: String, accounts: Seq[Account])(implicit session: Session, flash: Flash)@layout.admin(utils.Config.projectName + " Accounts", "accounts") {
+  <div class="container">
+    <h3>@utils.Config.projectName Account Management</h3>
     <div class="panel panel-default">
       <div class="panel-body">
-        No accounts found.
+        <div class="pull-right">
+          <form id="search-form" action="@routes.AccountController.accountList()" class="form-inline">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" class="form-control" name="q" id="searchInput" placeholder="Search Accounts" value="@q">
+                <div class="input-group-addon" id="search-button"><span class="glyphicon glyphicon-search"></span></div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="text-large">
+          @if(q.isEmpty) {
+            @accounts.size account@if(accounts.size != 1){s}.
+          } else {
+            @accounts.size account@if(accounts.size != 1){s} for query [@q].
+          }
+        </div>
       </div>
     </div>
-  } else {
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th class="th-account-id">Account ID</th>
-          <th class="th-name">Name</th>
-          <th class="th-game-count">Games</th>
-          <th class="th-last-played">Last Played</th>
-          <th class="th-created">Created</th>
-          <th class="th-actions"></th>
-        </tr>
-      </thead>
-      <tbody>
-        @for(a <- accounts) {
+
+    @if(accounts.isEmpty) {
+      <div class="panel panel-default">
+        <div class="panel-body">
+          No accounts found.
+        </div>
+      </div>
+    } else {
+      <table class="table table-bordered">
+        <thead>
           <tr>
-            <td>@a.id</td>
-            <td>@a.name</td>
-            <td>@a.gamesPlayed</td>
-            <td>@a.lastGameStarted.map(_.toString("yyyy-MM-dd HH:mm:ss")).getOrElse("-")</td>
-            <td>@a.created.toString("yyyy-MM-dd HH:mm:ss")</td>
-            <td>
-              <a href="@routes.AdminController.removeAccount(a.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
-            </td>
+            <th class="th-account-id">Account ID</th>
+            <th class="th-name">Name</th>
+            <th class="th-game-count">Games</th>
+            <th class="th-last-played">Last Played</th>
+            <th class="th-created">Created</th>
+            <th class="th-actions"></th>
           </tr>
-        }
-      </tbody>
-    </table>
-  }
+        </thead>
+        <tbody>
+          @for(a <- accounts) {
+            <tr>
+              <td>@a.id</td>
+              <td>@a.name</td>
+              <td>@a.gamesPlayed</td>
+              <td>@a.lastGameStarted.map(_.toString("yyyy-MM-dd HH:mm:ss")).getOrElse("-")</td>
+              <td>@a.created.toString("yyyy-MM-dd HH:mm:ss")</td>
+              <td>
+                <a href="@routes.AccountController.removeAccount(a.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
 }
