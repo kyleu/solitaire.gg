@@ -7,12 +7,10 @@ GET        /play/:variant/:seed               controllers.HomeController.newGame
 
 GET        /websocket                         controllers.WebsocketController.connect()
 
-GET        /admin/accounts                    controllers.admin.AccountController.accountList(q ?= "")
-GET        /admin/accounts/remove/:id         controllers.admin.AccountController.removeAccount(id: java.util.UUID)
-
-GET        /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "")
+GET        /admin/enable                      controllers.admin.AdminController.enable
 
 GET        /admin/status                      controllers.admin.AdminController.status
+
 GET        /admin/trace/connection/:id        controllers.admin.AdminController.traceConnection(id: java.util.UUID)
 GET        /admin/trace/client/:id            controllers.admin.AdminController.traceClient(id: java.util.UUID)
 GET        /admin/trace/game/:id              controllers.admin.AdminController.traceGame(id: java.util.UUID)
@@ -21,7 +19,12 @@ GET        /admin/observe/random              controllers.admin.AdminController.
 GET        /admin/observe/:id                 controllers.admin.AdminController.observeGameAsAdmin(id: java.util.UUID)
 GET        /admin/observe/:id/:as             controllers.admin.AdminController.observeGameAs(id: java.util.UUID, as: java.util.UUID)
 
-GET        /admin/test                        controllers.admin.AdminController.tests
-GET        /admin/test/:test                  controllers.admin.AdminController.runTest(test)
+GET        /admin/test                        controllers.admin.TestController.tests
+GET        /admin/test/:test                  controllers.admin.TestController.runTest(test)
+
+GET        /admin/accounts                    controllers.admin.AccountController.accountList(q ?= "")
+GET        /admin/accounts/remove/:id         controllers.admin.AccountController.removeAccount(id: java.util.UUID)
+
+GET        /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "")
 
 GET        /assets/*file                      controllers.Assets.at(path="/public", file)

@@ -14,10 +14,10 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.0.0")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % "1.0.0")
 
-// Developer Plugins
-addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.5.2") // gen-idea
+// Scala.js
+addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.2")
 
-addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "3.0.0") // eclipse
+addSbtPlugin("com.vmunier" % "sbt-play-scalajs" % "0.2.4")
 
 // Code Quality
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.6.0") // scalastyle
