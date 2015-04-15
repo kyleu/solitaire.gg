@@ -26,13 +26,17 @@ object RankConstraintLogic {
   })
 
   val alternatingRank = Constraint("alternating-rank", (pile, cards, gameState) => {
-    val topCardRank = pile.cards.last.r
-    val firstDraggedCardRank = cards.headOption.getOrElse(throw new IllegalStateException()).r
-    topCardRank match {
-      case King => firstDraggedCardRank == Queen
-      case Ace => firstDraggedCardRank == Two
-      case Two => firstDraggedCardRank == Ace || firstDraggedCardRank == Three
-      case _ => topCardRank.value == firstDraggedCardRank.value + 1 || topCardRank.value == firstDraggedCardRank.value - 1
+    pile.cards.lastOption match {
+      case Some(last) =>
+        val topCardRank = last.r
+        val firstDraggedCardRank = cards.headOption.getOrElse(throw new IllegalStateException()).r
+        topCardRank match {
+          case King => firstDraggedCardRank == Queen
+          case Ace => firstDraggedCardRank == Two
+          case Two => firstDraggedCardRank == Ace || firstDraggedCardRank == Three
+          case _ => topCardRank.value == firstDraggedCardRank.value + 1 || topCardRank.value == firstDraggedCardRank.value - 1
+        }
+      case None => false
     }
   })
 
@@ -41,13 +45,17 @@ object RankConstraintLogic {
       false
     } else {
       val foundation = gameState.pilesById("foundation")
-      val topCardRank = foundation.cards.last.r
-      val firstCard = cards.headOption.getOrElse(throw new IllegalStateException())
-      topCardRank match {
-        case King => firstCard.r == Queen
-        case Ace => firstCard.r == Two
-        case Two => firstCard.r == Ace || firstCard.r == Three
-        case _ => topCardRank.value == firstCard.r.value + 1 || topCardRank.value == firstCard.r.value - 1
+      foundation.cards.lastOption match {
+        case Some(last) =>
+          val topCardRank = last.r
+          val firstCard = cards.headOption.getOrElse(throw new IllegalStateException())
+          topCardRank match {
+            case King => firstCard.r == Queen
+            case Ace => firstCard.r == Two
+            case Two => firstCard.r == Ace || firstCard.r == Three
+            case _ => topCardRank.value == firstCard.r.value + 1 || topCardRank.value == firstCard.r.value - 1
+          }
+        case None => false
       }
     }
   })

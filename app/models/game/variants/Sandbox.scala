@@ -13,10 +13,11 @@ object Sandbox extends GameVariant.Description {
   override val maxPlayers = 3
   override val layouts = Seq(
     Layout(
-      width = 8.0,
-      height = 6.0,
+      width = 4.0,
+      height = 3.0,
       piles = List(
-        PileLocation("sandbox-1", 4.0, 3.0)
+        PileLocation("stock", 1.0, 1.5),
+        PileLocation("foundation-1", 3.0, 1.5)
       )
     )
   )
@@ -26,16 +27,17 @@ case class Sandbox(override val gameId: UUID, override val seed: Int) extends Ga
   override val description = Sandbox
 
   val piles = List(
-    Pile("sandbox-1", "tableau", PileOptionsHelper.tableau)
+    Pile("stock", "stock", PileOptionsHelper.stock(3, "foundation-1", None)),
+    Pile("foundation-1", "foundation", PileOptionsHelper.foundation)
   )
 
-  val deck = Deck.fresh()
+  val deck = Deck.shuffled(rng)
 
   override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
 
   override def initialMoves() = {
-    gameState.addCards(deck.getCards(), "sandbox-1")
+    gameState.addCards(deck.getCards(), "stock")
   }
 
-  override def isWin: Boolean = false
+  override def isWin = gameState.pilesById("stock").cards.isEmpty
 }
