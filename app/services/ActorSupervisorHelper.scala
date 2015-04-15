@@ -5,7 +5,7 @@ import java.util.UUID
 import akka.actor.{ ActorRef, Props }
 import models._
 import services.ActorSupervisor.{ ConnectionRecord, GameRecord }
-import services.game.{ GameService, PlayerRecord }
+import services.game.GameService
 import utils.metrics.InstrumentedActor
 
 import scala.util.Random
