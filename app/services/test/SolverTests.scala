@@ -29,12 +29,12 @@ trait SolverTests { this: TestService =>
     val solver = GameSolver(variant, 0, Some(seed))
     val maxMoves = 2000
     var movesPerformed = 0
-    while(!solver.gameWon && movesPerformed < maxMoves) {
+    while (!solver.gameWon && movesPerformed < maxMoves) {
       movesPerformed += 1
       solver.performMove()
     }
 
-    if(solver.gameWon) {
+    if (solver.gameWon) {
       val msg = "Won game [" + variant + "] with seed [" + seed + "] in [" + movesPerformed + "] moves."
       TestResult(msg)
     } else {

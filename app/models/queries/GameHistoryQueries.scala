@@ -50,10 +50,12 @@ object GameHistoryQueries extends BaseQueries {
     undos <- row.int("undos")
     redos <- row.int("redos")
     created <- row.timestamp("created").map(x => new LocalDateTime(x.getTime))
-  } yield GameHistory(
-    id, seed, variant,
-    status, accounts.getArray.asInstanceOf[Array[UUID]],
-    moves, undos, redos,
-    created, row.timestamp("completed").map(x => new LocalDateTime(x.getTime))
-  )
+  } yield {
+    val accts = accounts.getArray match {
+      case x: Array[UUID] => x
+      case _ => throw new IllegalStateException()
+    }
+    val complete = row.timestamp("completed").map(x => new LocalDateTime(x.getTime))
+    GameHistory(id, seed, variant, status, accts, moves, undos, redos, created, complete)
+  }
 }

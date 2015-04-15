@@ -17,14 +17,14 @@ object HomeController extends BaseController {
   }
 
   def newDefaultGame() = AuthenticatedAction { implicit request =>
-    Ok(views.html.gameplay(request.accountId, request.name, "klondike"))
+    Ok(views.html.game.gameplay(request.accountId, request.name, "klondike"))
   }
 
   def newGame(variant: String) = AuthenticatedAction { implicit request =>
-    Ok(views.html.gameplay(request.accountId, request.name, variant))
+    Ok(views.html.game.gameplay(request.accountId, request.name, variant))
   }
 
   def newGameWithSeed(variant: String, seed: Int) = AuthenticatedAction { implicit request =>
-    Ok(views.html.gameplay(request.accountId, request.name, variant, None, Some(seed)))
+    Ok(views.html.game.gameplay(request.accountId, request.name, variant, None, Some(seed)))
   }
 }
