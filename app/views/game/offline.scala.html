@@ -1,5 +1,9 @@
 @(account: java.util.UUID, name: String, variant: String)(implicit session: Session, flash: Flash)@layout.basic("Offline " + utils.Config.projectName) {
-  @utils.Config.projectName is offline! <div id="scalajs-test"></div>
+  <h3>@utils.Config.projectName is offline!</h3>
+  <ul>
+    <li>Server: <span id="server-test">Somehow, it works!</span></li>
+    <li>Client: <span id="client-test"></span></li>
+  </ul>
 
   @if(play.api.Play.isProd(play.api.Play.current)) {
   <script src="/assets/client-opt.js" type="text/javascript"></script>

@@ -2,7 +2,6 @@ package models.game.pile
 
 import models.game.pile.actions.{ DragToActions, SelectPileActions, SelectCardActions }
 import models.game.{ GameState, Card }
-import utils.Logging
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -10,7 +9,7 @@ object Pile {
   val options = PileOptions()
 }
 
-case class Pile(id: String, behavior: String, options: PileOptions, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) extends Logging {
+case class Pile(id: String, behavior: String, options: PileOptions, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) {
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
 
   def addCard(c: Card) {

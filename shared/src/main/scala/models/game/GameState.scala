@@ -2,13 +2,12 @@ package models.game
 
 import java.util.UUID
 
-import models.{ CardHidden, CardRevealed }
 import models.game.pile.Pile
-import utils.Logging
+import models.{ CardHidden, CardRevealed }
 
 case class GameState(
     gameId: UUID, variant: String, maxPlayers: Int, seed: Int, deck: Deck, piles: Seq[Pile], layouts: Seq[Layout], var players: Seq[GamePlayer] = Nil
-) extends Logging {
+) {
 
   private[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
   val cardsById = collection.mutable.HashMap[UUID, Card]()
@@ -17,10 +16,10 @@ case class GameState(
   def addPlayer(accountId: UUID, name: String) = {
     players.find(_.account == accountId) match {
       case Some(p) =>
-        log.info("Reconnecting to game [" + gameId + "] from account [" + name + ": " + accountId + "]")
-      // TODO Reconnect
+        //log.info("Reconnecting to game [" + gameId + "] from account [" + name + ": " + accountId + "]")
+        // TODO Reconnect
       case None =>
-        log.info("Adding player [" + name + ": " + accountId + "] to game [" + gameId + "].")
+        //log.info("Adding player [" + name + ": " + accountId + "] to game [" + gameId + "].")
         val playerIndex = playerKnownIds.size
         if (playerIndex == maxPlayers) {
           throw new IllegalArgumentException("Too many players.")

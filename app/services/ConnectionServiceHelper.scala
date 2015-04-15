@@ -4,7 +4,7 @@ import java.util.UUID
 
 import akka.actor.ActorRef
 import models._
-import play.api.libs.json.JsObject
+import play.api.libs.json.{ Json, JsObject }
 import utils.metrics.InstrumentedActor
 
 trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionService =>
@@ -54,9 +54,9 @@ trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionServic
     out ! SendDebugInfo
   }
 
-  protected[this] def handleDebugInfo(data: JsObject) = pendingDebugChannel match {
-    case Some(dc) => dc ! TraceResponse(id, data.fields)
-    case None => log.warn("Received unsolicited DebugInfo [" + data.toString + "] from [" + id + "].")
+  protected[this] def handleDebugInfo(data: String) = pendingDebugChannel match {
+    case Some(dc) => dc ! TraceResponse(id, Json.parse(data).as[JsObject].fields)
+    case None => log.warn("Received unsolicited DebugInfo [" + data + "] from [" + id + "].")
   }
 
   protected[this] def handleResponseMessage(rm: ResponseMessage) {
