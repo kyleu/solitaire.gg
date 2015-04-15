@@ -1,7 +1,7 @@
 @(status: SystemStatus)(implicit session: Session, flash: Flash)@layout.admin("Server Status", "activity") {
   <div class="container">
     <div class="buttons-right">
-      <a href="@routes.AdminController.observeRandomGame()" target="_blank" class="btn btn-default">Observe Random Game</a>
+      <a href="@controllers.admin.routes.AdminController.observeRandomGame()" target="_blank" class="btn btn-default">Observe Random Game</a>
     </div>
 
     <div class="row">
@@ -19,11 +19,11 @@
                 @for(connection <- status.connections) {
                   <tr>
                     <td>
-                      <a href="@routes.AdminController.traceConnection(connection._1)" class="trace-link">@connection._1</a>
+                      <a href="@controllers.admin.routes.AdminController.traceConnection(connection._1)" class="trace-link">@connection._1</a>
                     </td>
                     <td>@connection._2</td>
                     <td>
-                      <a href="@routes.AdminController.traceClient(connection._1)" class="trace-link"><span class="glyphicon glyphicon-cloud-download"></span></a>
+                      <a href="@controllers.admin.routes.AdminController.traceClient(connection._1)" class="trace-link"><span class="glyphicon glyphicon-cloud-download"></span></a>
                     </td>
                   </tr>
                 }
@@ -46,7 +46,7 @@
                 @for(game <- status.games) {
                   <tr>
                     <td>
-                      <a href="@routes.AdminController.traceGame(game._1)" class="trace-link">@game._1</a>
+                      <a href="@controllers.admin.routes.AdminController.traceGame(game._1)" class="trace-link">@game._1</a>
                     </td>
                     <td>@game._2.map(_._2).mkString(", ")</td>
                   </tr>

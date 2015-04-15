@@ -13,14 +13,14 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="@routes.HomeController.index()"><img alt="@utils.Config.projectName" src="@routes.Assets.at("images/favicon.png")"></a>
-        <a class="navbar-brand" href="@routes.AdminController.status()">@utils.Config.projectName Admin</a>
+        <a class="navbar-brand" href="@controllers.admin.routes.AdminController.status()">@utils.Config.projectName Admin</a>
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav">
-          <li @if(section == "activity") { class="active" }><a href="@routes.AdminController.status()">Activity</a></li>
-          <li @if(section == "accounts") { class="active" }><a href="@routes.AccountController.accountList()">Accounts</a></li>
-          <li @if(section == "games") { class="active" }><a href="@routes.GameHistoryController.gameList()">Games</a></li>
-          <li @if(section == "tests") { class="active" }><a href="@routes.AdminController.tests()">Tests</a></li>
+          <li @if(section == "activity") { class="active" }><a href="@controllers.admin.routes.AdminController.status()">Activity</a></li>
+          <li @if(section == "accounts") { class="active" }><a href="@controllers.admin.routes.AccountController.accountList()">Accounts</a></li>
+          <li @if(section == "games") { class="active" }><a href="@controllers.admin.routes.GameHistoryController.gameList()">Games</a></li>
+          <li @if(section == "tests") { class="active" }><a href="@controllers.admin.routes.TestController.tests()">Tests</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">

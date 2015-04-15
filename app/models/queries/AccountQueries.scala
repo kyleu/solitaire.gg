@@ -9,11 +9,11 @@ import utils.DateUtils
 
 object AccountQueries extends BaseQueries {
   override protected val tableName = "accounts"
-  override protected val columns = Seq("id", "name", "games_played", "last_game_started", "created")
+  override protected val columns = Seq("id", "name", "role", "games_played", "last_game_started", "created")
 
   case class CreateAccount(name: String) extends Statement {
     val sql = insertSql
-    val values = Seq(UUID.randomUUID, name, 0, None, DateUtils.toSqlTimestamp(new LocalDateTime())): Seq[Any]
+    val values = Seq(UUID.randomUUID, name, "player", 0, None, DateUtils.toSqlTimestamp(new LocalDateTime())): Seq[Any]
   }
 
   case class SearchAccounts(q: String) extends Query[List[Account]] {
@@ -39,6 +39,11 @@ object AccountQueries extends BaseQueries {
     val values = Seq(name, id)
   }
 
+  case class UpdateAccountRole(id: UUID, role: String) extends Statement {
+    val sql = updateSql(Seq("role"))
+    val values = Seq(role, id)
+  }
+
   case class IncrementAccountGamesPlayed(id: UUID, started: LocalDateTime) extends Statement {
     val sql = updateSql(Seq("last_game_started"), Some("games_played = games_played + 1"))
     val values = Seq(Some(started), id)
@@ -52,7 +57,10 @@ object AccountQueries extends BaseQueries {
   private[this] def fromRow(row: Row) = for {
     id <- row.uuid("id")
     name <- row.string("name")
+    role <- row.string("role")
     gamesPlayed <- row.int("games_played")
     created <- row.timestamp("created")
-  } yield Account(id, name, gamesPlayed, row.timestamp("last_game_started").map(x => new LocalDateTime(x)), new LocalDateTime(created.getTime))
+  } yield {
+    Account(id, name, role, gamesPlayed, row.timestamp("last_game_started").map(x => new LocalDateTime(x)), new LocalDateTime(created.getTime))
+  }
 }

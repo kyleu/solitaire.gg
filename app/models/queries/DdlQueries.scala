@@ -51,6 +51,7 @@ object DdlQueries {
       create table accounts (
         id uuid primary key,
         name character varying(256) not null,
+        role character varying(64) not null,
         games_played integer not null default 0,
         last_game_started timestamp,
         created timestamp not null

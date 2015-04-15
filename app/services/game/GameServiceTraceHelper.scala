@@ -9,7 +9,7 @@ trait GameServiceTraceHelper { this: GameService =>
   private[this] val started = new DateTime()
 
   protected[this] def handleGameTrace() {
-    def connUrl(id: UUID) = controllers.routes.AdminController.traceConnection(id).url
+    def connUrl(id: UUID) = controllers.admin.routes.AdminController.traceConnection(id).url
     val ret = TraceResponse(this.id, List(
       "variant" -> gameVariant.description.key,
       "seed" -> gameVariant.seed,
@@ -20,7 +20,7 @@ trait GameServiceTraceHelper { this: GameService =>
             "Connection ID: " + connId + "<br>" +
               "Account ID:" + x.accountId + "<br />" +
               " <a class=\"btn btn-default\" href=\"" + connUrl(connId) + "\" class=\"trace-link\">Trace Connection</a>" +
-              " <a class=\"btn btn-default\" href=\"" + controllers.routes.AdminController.observeGameAs(id, x.accountId).url + "\" target=\"_blank\">" +
+              " <a class=\"btn btn-default\" href=\"" + controllers.admin.routes.AdminController.observeGameAs(id, x.accountId).url + "\" target=\"_blank\">" +
               "Observe game as [" + x.name + "]" +
               "</a>"
           case None => x.accountId.toString + " (Disconnected)"
