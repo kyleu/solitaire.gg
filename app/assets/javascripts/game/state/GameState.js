@@ -22,7 +22,11 @@ define(["utils/DebugInfo"], function (di) {
       case "MessageSet":
         for(var messageIndex in v.messages) {
           var message = v.messages[messageIndex];
-          this.onMessage(message.c, message.v);
+          if(message.c !== undefined) {
+            this.onMessage(message.c, message.v);
+          } else {
+            this.onMessage(message[0].replace("models.", ""), message[1]);
+          }
         }
         break;
       case "SendDebugInfo":
