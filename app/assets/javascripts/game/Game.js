@@ -16,9 +16,7 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (co
       var self = this;
       var callback = function(json) {
         var ret = JSON.parse(json);
-        var c = ret[0].replace("models.", "");
-        var v = ret[1];
-        self.onMessage(c, v);
+        self.onMessage(ret.c, ret.v);
       };
 
       this.offlineService = new Scalataire();

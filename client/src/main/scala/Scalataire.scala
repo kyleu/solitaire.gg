@@ -36,12 +36,14 @@ object Scalataire extends js.JSApp with ScalataireHelper {
       case "Ping" => send(JsonUtils.write(Pong(JsonUtils.getLong(v.timestamp))))
       case "StartGame" => handleStartGame(v.variant.toString, JsonUtils.getIntOption(v.seed))
       case "SelectCard" => handleSelectCard(accountId, UUID.fromString(v.card.toString), v.pile.toString)
+      case "SelectPile" => handleSelectPile(accountId, v.pile.toString)
+      case "MoveCards" => handleMoveCards(accountId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString)
       case _ => throw new IllegalStateException("Invalid message [" + c + "].")
     }
   }
 
   protected[this] def send(v: Js.Value) = {
-    val json = JsonUtils.w(v)
+    val json = JsonUtils.write(v)
     println("Sending [" + json + "].")
     sendCallback(json)
   }
