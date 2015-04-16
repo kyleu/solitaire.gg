@@ -89,7 +89,7 @@ define(function() {
           cardIds.push(this.dragCards[dragCardIndex].id);
         }
 
-        this.game.ws.send("MoveCards", {cards: cardIds, src: this.id, tgt: dropTarget.id});
+        this.game.send("MoveCards", {cards: cardIds, src: this.id, tgt: dropTarget.id});
       }
       this.dragCards = [];
     }

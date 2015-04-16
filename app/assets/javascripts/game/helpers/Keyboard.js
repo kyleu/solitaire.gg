@@ -36,11 +36,11 @@ define([], function () {
       }
 
       function undo() {
-        game.ws.send("Undo", {});
+        game.send("Undo", {});
       }
 
       function redo() {
-        game.ws.send("Redo", {});
+        game.send("Redo", {});
       }
 
       var undoKey = game.input.keyboard.addKey(Phaser.Keyboard.Z);

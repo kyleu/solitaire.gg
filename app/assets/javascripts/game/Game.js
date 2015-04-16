@@ -3,7 +3,6 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (co
 
   function Game(ws) {
     this.id = null;
-    this.ws = ws;
     this.cardSet = CardSet[config.cardSet][config.cardSize];
     var initialState = new InitialState(this);
     Phaser.Game.call(this, '100%', '100%', Phaser.AUTO, 'game-container', initialState);
@@ -12,6 +11,21 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (co
     this.cards = {};
 
     document.getElementById("status-username").innerText = config.account.name;
+
+    if(config.offline) {
+      var self = this;
+      var callback = function(json) {
+        var ret = JSON.parse(json);
+        var c = ret[0].replace("models.", "");
+        var v = ret[1];
+        self.onMessage(c, v);
+      };
+
+      this.offlineService = new Scalataire();
+      this.offlineService.register(callback);
+    } else {
+      this.ws = ws;
+    }
 
     console.log("Game started.");
   }
@@ -36,11 +50,11 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (co
   };
 
   Game.prototype.cardSelected = function(card) {
-    this.ws.send("SelectCard", { card: card.id, pile: card.pile.id });
+    this.send("SelectCard", { card: card.id, pile: card.pile.id });
   };
 
   Game.prototype.pileSelected = function(pile) {
-    this.ws.send("SelectPile", { pile: pile.id } );
+    this.send("SelectPile", { pile: pile.id } );
   };
 
   Game.prototype.addPile = function(p) {
@@ -49,6 +63,14 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (co
 
   Game.prototype.addCard = function(c) {
     this.cards[c.id] = c;
+  };
+
+  Game.prototype.send = function(c, v) {
+    if(config.offline) {
+      this.offlineService.receive(c, v);
+    } else {
+      this.ws.send(c, v);
+    }
   };
 
   return Game;

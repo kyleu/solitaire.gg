@@ -18,6 +18,6 @@ object Instrumented {
 }
 
 trait Instrumented extends InstrumentedBuilder {
-  override lazy val metricBaseName = MetricName(Config.projectId)
+  override lazy val metricBaseName = MetricName(Config.projectId + "." + getClass.getSimpleName.replaceAllLiterally("$", ""))
   override val metricRegistry = Instrumented.metricRegistry
 }

@@ -1,32 +1,32 @@
 @(account: java.util.UUID, name: String, variant: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None)(
   implicit session: Session, flash: Flash
 )@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
-    <div id="game-container"></div>
-    @statusPanel()
-    @defining(if(gameId.isDefined) { Seq("join", gameId.get) } else { Seq("start") } ) { initialAction =>
-    <pre id="@utils.Config.projectId-config">
-    {
-      "account": {
-        "id": "@account",
-        "name": "@name"
-      },
-      "gameId": "@utils.Config.projectId",
-      "gameName": "@utils.Config.projectName",
-      "debug": "@utils.Config.debug",
-      "cardSet": "@utils.Config.defaultCardSet",
-      "cardSize": "@utils.Config.defaultCardSize",
-      "variant": "@variant",
-      @if(seed.isDefined) {"seed": @seed.get, }
-      "initialAction": [ @Html(initialAction.map("\"" + _ + "\"").mkString(", ")) ]
-    }
-    </pre>
-    }
-    @if(utils.Config.debug) {
-    <script src="/assets/lib/phaser/js/phaser.js"></script>
-    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/phaser-debug.css").url" />
-    <script src="/assets/lib/phaser/js/phaser-debug.js"></script>
-    } else {
-    <script src="/assets/lib/phaser/js/phaser.min.js"></script>
-    }
-    <script data-main="/assets/javascripts/main.js?build=@utils.BuildInfo.buildinfoBuildnumber" src="/assets/lib/requirejs/require.min.js"></script>
+  <div id="game-container"></div>
+  @statusPanel()
+  @defining(if(gameId.isDefined) { Seq("join", gameId.get) } else { Seq("start") } ) { initialAction =>
+  <pre id="@utils.Config.projectId-config">
+  {
+    "account": {
+      "id": "@account",
+      "name": "@name"
+    },
+    "gameId": "@utils.Config.projectId",
+    "gameName": "@utils.Config.projectName",
+    "debug": "@utils.Config.debug",
+    "cardSet": "@utils.Config.defaultCardSet",
+    "cardSize": "@utils.Config.defaultCardSize",
+    "variant": "@variant",
+    @if(seed.isDefined) {"seed": @seed.get, }
+    "initialAction": [ @Html(initialAction.map("\"" + _ + "\"").mkString(", ")) ]
+  }
+  </pre>
+  }
+  @if(utils.Config.debug) {
+  <script src="/assets/lib/phaser/js/phaser.js"></script>
+  <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/phaser-debug.css").url" />
+  <script src="/assets/lib/phaser/js/phaser-debug.js"></script>
+  } else {
+  <script src="/assets/lib/phaser/js/phaser.min.js"></script>
+  }
+  <script data-main="/assets/javascripts/main.js?build=@utils.BuildInfo.buildinfoBuildnumber" src="/assets/lib/requirejs/require.min.js"></script>
 }

@@ -33,9 +33,9 @@ define([
     this.bg.scale = { x: 0.5, y: 0.5 };
     this.add.existing(this.bg);
 
-    this.game.ws.send("Ping", { timestamp: new Date().getTime() });
+    this.game.send("Ping", { timestamp: new Date().getTime() });
     this.game.time.events.loop(Phaser.Timer.SECOND * 10, function() {
-      this.game.ws.send("Ping", { timestamp: new Date().getTime() });
+      this.game.send("Ping", { timestamp: new Date().getTime() });
     }, this);
 
     if(cfg.initialAction === undefined) {
@@ -44,19 +44,19 @@ define([
     switch(cfg.initialAction[0]) {
       case "start":
         if(cfg.seed === undefined) {
-          this.game.ws.send("StartGame", {"variant": cfg.variant});
+          this.game.send("StartGame", {"variant": cfg.variant});
         } else {
-          this.game.ws.send("StartGame", {"variant": cfg.variant, "seed": cfg.seed});
+          this.game.send("StartGame", {"variant": cfg.variant, "seed": cfg.seed});
         }
         break;
       case "join":
-        this.game.ws.send("JoinGame", {"id": cfg.initialAction[1]});
+        this.game.send("JoinGame", {"id": cfg.initialAction[1]});
         break;
       case "observe":
         if(cfg.initialAction.length === 2) {
-          this.game.ws.send("ObserveGame", {"id": cfg.initialAction[1]});
+          this.game.send("ObserveGame", {"id": cfg.initialAction[1]});
         } else {
-          this.game.ws.send("ObserveGame", {"id": cfg.initialAction[1], "as": cfg.initialAction[2]});
+          this.game.send("ObserveGame", {"id": cfg.initialAction[1], "as": cfg.initialAction[2]});
         }
         break;
       default:

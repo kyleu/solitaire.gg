@@ -2,8 +2,12 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
   "use strict";
 
   function Scalataire() {
-    this.ws = new Websocket(cfg.wsUrl, this);
-    this.game = null;
+    if(cfg.offline) {
+      this.game = new Game();
+    } else {
+      this.game = null;
+      this.ws = new Websocket(cfg.wsUrl, this);
+    }
   }
 
   Scalataire.prototype.onConnect = function() {
