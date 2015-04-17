@@ -2,9 +2,12 @@ GET        /                                  controllers.HomeController.index
 GET        /changeName                        controllers.HomeController.changeName(name)
 
 GET        /play                              controllers.HomeController.newDefaultGame()
-GET        /play/offline                      controllers.HomeController.newOfflineGame()
 GET        /play/:variant                     controllers.HomeController.newGame(variant)
 GET        /play/:variant/:seed               controllers.HomeController.newGameWithSeed(variant, seed: Int)
+
+GET        /offline                           controllers.HomeController.newDefaultOfflineGame()
+GET        /offline/:variant                  controllers.HomeController.newOfflineGame(variant)
+GET        /offline/:variant/:seed            controllers.HomeController.newOfflineGameWithSeed(variant, seed: Int)
 
 GET        /websocket                         controllers.WebsocketController.connect()
 

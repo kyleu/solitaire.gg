@@ -44,7 +44,6 @@ object Scalataire extends js.JSApp with ScalataireHelper {
 
   protected[this] def send(v: Js.Value) = {
     val json = JsonUtils.write(v)
-    println("Sending [" + json + "].")
     sendCallback(json)
   }
 

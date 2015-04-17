@@ -24,7 +24,7 @@ define(['game/helpers/Tweens'], function (Tweens) {
 
         var offset = 0;
         if((pile.cards.length - largeIndexInt) < pile.options.cardsShown) {
-          if(pile.options.cardsShown === undefined) {
+          if(pile.options.cardsShown === undefined || pile.options.cardsShown === null) {
             offset = pile.cards.length - largeIndexInt;
           } else {
             offset = pile.options.cardsShown - (pile.cards.length - largeIndexInt);
@@ -56,7 +56,7 @@ define(['game/helpers/Tweens'], function (Tweens) {
       if(pile.behavior === "graveyard") {
         Tweens.tweenRemove(card);
       } else {
-        if(pile.options.cardsShown === undefined) {
+        if(pile.options.cardsShown === undefined || pile.options.cardsShown === null) {
           if(pile.options.direction === "d") {
             var newY = pile.y + ((pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset);
             Tweens.tweenCardTo(card, pile.x, newY);
@@ -80,7 +80,7 @@ define(['game/helpers/Tweens'], function (Tweens) {
       if(pile.behavior === "graveyard") {
         Tweens.tweenRestore(card);
       } else {
-        if(pile.options.cardsShown === undefined) {
+        if(pile.options.cardsShown === undefined || pile.options.cardsShown === null) {
           if(pile.options.direction === "d") {
             pile.intersectHeight = pile.game.cardSet.cardHeight + (pile.cards.length === 0 ? 0 : (pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset);
           } else if(pile.options.direction === "r") {

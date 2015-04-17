@@ -20,7 +20,6 @@ object JsonUtils {
   private implicit val pileOptionsWriter = upickle.Writer[PileOptions] { case po => writeJs(ClientPileOptions.fromPileOptions(po)) }
   private implicit val pileWriter = upickle.Writer[Pile] { case p => writeJs(p) }
   private implicit val gameStateWriter = upickle.Writer[GameState] { case gs => writeJs(gs) }
-  private implicit val gameJoinedWriter = upickle.Writer[GameJoined] { case gj => writeJs(gj) }
   private implicit val possibleMoveWriter = upickle.Writer[PossibleMove] { case pm => Js.Obj(
     "moveType" -> writeJs(pm.moveType),
     "cards" -> writeJs(pm.cards),
@@ -28,6 +27,7 @@ object JsonUtils {
     "targetPile" -> pm.targetPile.map(x => Js.Str(x): Js.Value).getOrElse(Js.Null: Js.Value)
   ) }
   private implicit val possibleMovesWriter = upickle.Writer[PossibleMoves] { case pm => writeJs(pm) }
+  private implicit val gameJoinedWriter = upickle.Writer[GameJoined] { case gj => writeJs(gj) }
 
   private implicit val responseMessageWriter: Writer[ResponseMessage] = upickle.Writer[ResponseMessage] {
     case rm =>
@@ -61,7 +61,13 @@ object JsonUtils {
   def getIntOption(o: js.Dynamic) = if(o.isInstanceOf[Unit]) { None } else { Some(getInt(o)) }
   def getLong(o: js.Dynamic) = o.toString.toLong
   def getUuidSeq(o: js.Dynamic) = {
-    println(o)
-    Seq(UUID.fromString(o.toString))
+    val a = o.asInstanceOf[js.Array[String]]
+    var idx = 0
+    val ret = collection.mutable.ArrayBuffer.empty[UUID]
+    while(idx < a.length) {
+      ret += UUID.fromString(a(idx))
+      idx += 1
+    }
+    ret.toSeq
   }
 }

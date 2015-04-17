@@ -11,7 +11,7 @@ object SolverTests {
     KlondikeDrawThree.key -> 11,
     KlondikeDrawOne.key -> 11,
     Nestor.key -> 100,
-    Pyramid.key -> 1,
+    Pyramid.key -> 2,
     Sandbox.key -> 1,
     Spider.key -> 50,
     TrustyTwelve.key -> 3
@@ -25,7 +25,7 @@ trait SolverTests { this: TestService =>
 
   def testSolver(variant: String, verbose: Boolean) = runTest { () =>
     val seed = SolverTests.solvableSeeds(variant)
-    runTest(() => runSolver(variant, seed, verbose))
+    runSolver(variant, seed, verbose)
   }
 
   private[this] def runSolver(variant: String, seed: Int, verbose: Boolean): TestResult = {

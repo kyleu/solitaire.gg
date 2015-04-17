@@ -23,7 +23,7 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
   private[this] val pileOptions = PileOptionsHelper.waste.combine(PileOptions(
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.total(13, aceHigh = false)),
-    selectCardConstraint = Some(Constraints.specificRank(King)),
+    selectCardConstraint = Some(Constraints.allOf("top-card-king", Constraints.topCardOnly, Constraints.specificRank(King))),
     selectCardAction = Some(SelectCardActions.drawToPile(1, "graveyard")),
     dragToAction = Some(DragToActions.remove())
   ))
@@ -34,14 +34,14 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
       cardsShown = Some(1),
       direction = None,
       dragFromConstraint = Some(c),
-      dragToConstraint = Some(c),
+      dragToConstraint = Some(Constraints.allOf("pyramid-total", c, Constraints.total(13, aceHigh = false))),
       selectCardConstraint = Some(Constraints.allOf("pyramid-king", c, Constraints.specificRank(King)))
     )
   }
 
   private[this] val piles = List(
     Pile("graveyard", "graveyard", PileOptionsHelper.empty),
-    Pile("stock", "stock", PileOptionsHelper.stock(1, "waste", Some("waste")).combine(PileOptions(selectPileConstraint = Some(Constraints.never)))),
+    Pile("stock", "stock", PileOptionsHelper.stock(1, "waste", None).combine(PileOptions(selectPileConstraint = Some(Constraints.never)))),
     Pile("waste", "waste", pileOptions)
   ) ++ (1 to 7).flatMap { i =>
     (1 to i).map { j =>

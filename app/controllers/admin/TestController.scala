@@ -22,7 +22,7 @@ object TestController extends BaseController {
         case "solver" => ts.testSolvers()
         case x if x.startsWith("solve-") => ts.testSolver(x.substring(6), verbose = true)
         case "variants" => ts.testVariants()
-        case x => ts.testVariant(x)
+        case x if x.startsWith("variant-") => ts.testVariant(x.substring(8))
       }
       Ok(views.html.admin.testResults(test, ret.toString(0)))
     }
