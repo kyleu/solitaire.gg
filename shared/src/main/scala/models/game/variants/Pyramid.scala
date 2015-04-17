@@ -44,11 +44,11 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
     Pile("stock", "stock", PileOptionsHelper.stock(1, "waste", None).combine(PileOptions(selectPileConstraint = Some(Constraints.never)))),
     Pile("waste", "waste", pileOptions)
   ) ++ (1 to 7).flatMap { i =>
-    (1 to i).map { j =>
-      val po = if (i == 7) { pileOptions } else { pileOptionsFor("pile-" + (i + 1) + "-" + j, "pile-" + (i + 1) + "-" + (j + 1)) }
-      Pile("pile-" + i + "-" + j, "tableau", po)
+      (1 to i).map { j =>
+        val po = if (i == 7) { pileOptions } else { pileOptionsFor("pile-" + (i + 1) + "-" + j, "pile-" + (i + 1) + "-" + (j + 1)) }
+        Pile("pile-" + i + "-" + j, "tableau", po)
+      }
     }
-  }
 
   private[this] val deck = newShuffledDecks()
 

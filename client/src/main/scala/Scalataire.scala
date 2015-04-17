@@ -28,7 +28,6 @@ object Scalataire extends js.JSApp with ScalataireHelper {
 
   @JSExport
   def receive(c: String, v: js.Dynamic) = {
-    //println("Received [" + c + "].")
     c match {
       case "GetVersion" => send(JsonUtils.write(VersionResponse("0.offline")))
       case "Ping" => send(JsonUtils.write(Pong(JsonUtils.getLong(v.timestamp))))

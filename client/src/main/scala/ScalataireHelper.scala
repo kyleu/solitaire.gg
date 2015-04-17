@@ -38,7 +38,7 @@ trait ScalataireHelper {
     val card = gameState.cardsById(cardId)
     val pile = gameState.pilesById(pileId)
     if (!pile.cards.contains(card)) {
-      println("SelectCard for game [" + gameId + "]: Card [" + card.toString + "] is not part of the [" + pileId + "] pile.")
+      throw new IllegalStateException("SelectCard for game [" + gameId + "]: Card [" + card.toString + "] is not part of the [" + pileId + "] pile.")
     }
     if (pile.canSelectCard(card, gameState)) {
       val messages = pile.onSelectCard(card, gameState)
@@ -52,7 +52,7 @@ trait ScalataireHelper {
   protected[this] def handleSelectPile(accountId: UUID, pileId: String) {
     val pile = gameState.pilesById(pileId)
     if (pile.cards.length > 0) {
-      println("SelectPile [" + pileId + "] called on a non-empty deck.")
+      throw new IllegalStateException("SelectPile [" + pileId + "] called on a non-empty deck.")
     }
     val messages = if (pile.canSelectPile(gameState)) { pile.onSelectPile(gameState) } else { Nil }
     send(JsonUtils.write(MessageSet(messages)))

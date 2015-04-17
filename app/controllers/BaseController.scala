@@ -45,7 +45,7 @@ object BaseController extends Instrumented {
 
 abstract class BaseController extends Controller with Logging {
   def requireAdmin(f: => Result)(implicit request: AuthenticatedRequest[AnyContent]) = {
-    if(request.isAdmin) {
+    if (request.isAdmin) {
       f
     } else {
       Redirect(controllers.routes.HomeController.index())

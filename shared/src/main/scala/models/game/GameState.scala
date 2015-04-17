@@ -16,8 +16,8 @@ case class GameState(
   def addPlayer(accountId: UUID, name: String) = {
     players.find(_.account == accountId) match {
       case Some(p) =>
-        //log.info("Reconnecting to game [" + gameId + "] from account [" + name + ": " + accountId + "]")
-        // TODO Reconnect
+      //log.info("Reconnecting to game [" + gameId + "] from account [" + name + ": " + accountId + "]")
+      // TODO Reconnect
       case None =>
         //log.info("Adding player [" + name + ": " + accountId + "] to game [" + gameId + "].")
         val playerIndex = playerKnownIds.size

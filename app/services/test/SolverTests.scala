@@ -37,7 +37,7 @@ trait SolverTests { this: TestService =>
       movesPerformed += move
     }
 
-    val children = if(verbose) {
+    val children = if (verbose) {
       movesPerformed.map(m => TestResult("Performed [" + m.toString + "]."))
     } else {
       Nil

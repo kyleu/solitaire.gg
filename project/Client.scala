@@ -1,6 +1,10 @@
 import sbt.Keys._
 import sbt._
 
+import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
+import net.virtualvoid.sbt.graph.Plugin.graphSettings
+import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, defaultScalariformSettings}
+
 import org.scalajs.sbtplugin.ScalaJSPlugin
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import playscalajs.ScalaJSPlay
@@ -16,6 +20,9 @@ object Client {
     libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom" % "0.8.0",
       "com.lihaoyi" %%% "upickle" % "0.2.8"
-    )
-  ).enablePlugins(ScalaJSPlugin, ScalaJSPlay).dependsOn(Shared.sharedJs)
+    ),
+    scapegoatConsoleOutput := false,
+    scapegoatIgnoredFiles := Seq(".*/JsonUtils.scala"),
+    ScalariformKeys.preferences := ScalariformKeys.preferences.value
+  ).settings(graphSettings: _*).settings(defaultScalariformSettings: _*).enablePlugins(ScalaJSPlugin, ScalaJSPlay).dependsOn(Shared.sharedJs)
 }

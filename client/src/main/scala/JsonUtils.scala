@@ -8,25 +8,49 @@ import upickle._
 import scala.scalajs.js
 
 object JsonUtils {
-  private implicit val rankWriter = upickle.Writer[Rank]{ case r => Js.Str(r.toChar.toString) }
-  private implicit val suitWriter = upickle.Writer[Suit]{ case s => Js.Str(s.toChar.toString) }
-  private implicit val cardWriter = upickle.Writer[Card]{ case c => writeJs(c) }
-  private implicit val clientPileOptionsWriter = upickle.Writer[ClientPileOptions]{ case cpo => Js.Obj(
-    "cardsShown" -> cpo.cardsShown.map(x => Js.Num(x)).getOrElse(Js.Null: Js.Value),
-    "direction" -> cpo.direction.map(x => Js.Str(x)).getOrElse(Js.Null: Js.Value),
-    "dragFromConstraint" -> Js.Str(cpo.dragFromConstraint),
-    "dragFromOptions" -> Js.Obj(Seq.empty[(String, Js.Value)]: _*)
-  ) }
+  private implicit val rankWriter = upickle.Writer[Rank] { case r => Js.Str(r.toChar.toString) }
+  private implicit val suitWriter = upickle.Writer[Suit] { case s => Js.Str(s.toChar.toString) }
+  private implicit val cardWriter = upickle.Writer[Card] { case c => writeJs(c) }
+
+  private implicit val clientPileOptionsWriter = upickle.Writer[ClientPileOptions] {
+    case cpo => Js.Obj(
+      "cardsShown" -> cpo.cardsShown.map(x => Js.Num(x)).getOrElse(Js.Null: Js.Value),
+      "direction" -> cpo.direction.map(x => Js.Str(x)).getOrElse(Js.Null: Js.Value),
+      "dragFromConstraint" -> Js.Str(cpo.dragFromConstraint),
+      "dragFromOptions" -> Js.Obj(Seq.empty[(String, Js.Value)]: _*)
+    )
+  }
   private implicit val pileOptionsWriter = upickle.Writer[PileOptions] { case po => writeJs(ClientPileOptions.fromPileOptions(po)) }
   private implicit val pileWriter = upickle.Writer[Pile] { case p => writeJs(p) }
-  private implicit val gameStateWriter = upickle.Writer[GameState] { case gs => writeJs(gs) }
-  private implicit val possibleMoveWriter = upickle.Writer[PossibleMove] { case pm => Js.Obj(
-    "moveType" -> writeJs(pm.moveType),
-    "cards" -> writeJs(pm.cards),
-    "sourcePile" -> writeJs(pm.sourcePile),
-    "targetPile" -> pm.targetPile.map(x => Js.Str(x): Js.Value).getOrElse(Js.Null: Js.Value)
-  ) }
+
+  private implicit val possibleMoveWriter = upickle.Writer[PossibleMove] {
+    case pm => Js.Obj(
+      "moveType" -> writeJs(pm.moveType),
+      "cards" -> writeJs(pm.cards),
+      "sourcePile" -> writeJs(pm.sourcePile),
+      "targetPile" -> pm.targetPile.map(x => Js.Str(x): Js.Value).getOrElse(Js.Null: Js.Value)
+    )
+  }
   private implicit val possibleMovesWriter = upickle.Writer[PossibleMoves] { case pm => writeJs(pm) }
+
+  private implicit val cardMovedWriter = upickle.Writer[CardMoved] {
+    case cm => Js.Arr(Js.Str("CardMoved"), Js.Obj(
+      "card" -> writeJs(cm.card),
+      "source" -> writeJs(cm.source),
+      "target" -> writeJs(cm.target),
+      "turn" -> cm.turn.map(x => if (x) Js.True else Js.False).getOrElse(Js.Null: Js.Value)
+    ))
+  }
+  private implicit val cardsMovedWriter = upickle.Writer[CardsMoved] {
+    case cm => Js.Arr(Js.Str("CardsMoved"), Js.Obj(
+      "cards" -> writeJs(cm.cards),
+      "source" -> writeJs(cm.source),
+      "target" -> writeJs(cm.target),
+      "turn" -> cm.turn.map(x => if (x) Js.True else Js.False).getOrElse(Js.Null: Js.Value)
+    ))
+  }
+
+  private implicit val gameStateWriter = upickle.Writer[GameState] { case gs => writeJs(gs) }
   private implicit val gameJoinedWriter = upickle.Writer[GameJoined] { case gj => writeJs(gj) }
 
   private implicit val responseMessageWriter: Writer[ResponseMessage] = upickle.Writer[ResponseMessage] {
@@ -44,37 +68,30 @@ object JsonUtils {
         case ms: MessageSet => writeJs(ms)
         case _ => throw new IllegalStateException("Invalid Message [" + rm.getClass.getName + "].")
       }
-      val jsArray = jsVal match {
-        case a: Js.Arr => a
-        case _ => throw new IllegalStateException()
-      }
+      val jsArray = jsVal.asInstanceOf[Js.Arr]
       jsArray.value.toList match {
         case one :: two :: Nil =>
           val oneStr = Js.Str(one match {
             case s: Js.Str => s.value.replace("models.", "")
+            case _ => throw new IllegalStateException()
           })
           Js.Obj("c" -> oneStr, "v" -> two)
         case _ => throw new IllegalStateException()
       }
   }
 
-  def write(rm: ResponseMessage) = {
-    responseMessageWriter.write(rm)
-  }
+  def write(rm: ResponseMessage) = responseMessageWriter.write(rm)
+  def write(j: Js.Value) = upickle.json.write(j)
 
-  def write(j: Js.Value) = {
-    upickle.json.write(j)
-  }
-
-  def getStringOption(o: js.Dynamic) = if(o.isInstanceOf[Unit]) { None } else { Some(o.toString) }
+  def getStringOption(o: js.Dynamic) = if (o.isInstanceOf[Unit]) { None } else { Some(o.toString) }
   def getInt(o: js.Dynamic) = o.toString.toInt
-  def getIntOption(o: js.Dynamic) = if(o.isInstanceOf[Unit]) { None } else { Some(getInt(o)) }
+  def getIntOption(o: js.Dynamic) = if (o.isInstanceOf[Unit]) { None } else { Some(getInt(o)) }
   def getLong(o: js.Dynamic) = o.toString.toLong
   def getUuidSeq(o: js.Dynamic) = {
     val a = o.asInstanceOf[js.Array[String]]
     var idx = 0
     val ret = collection.mutable.ArrayBuffer.empty[UUID]
-    while(idx < a.length) {
+    while (idx < a.length) {
       ret += UUID.fromString(a(idx))
       idx += 1
     }
