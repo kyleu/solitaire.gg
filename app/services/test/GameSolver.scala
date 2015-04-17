@@ -77,6 +77,7 @@ case class GameSolver(variant: String, testSeed: Int, gameSeed: Option[Int] = No
         while (onMsg()) { Unit }
         results(PossibleMove("undo", Nil, "", None)) = moves
       }
+      Undo
     } else {
       val move = moves(rng.nextInt(moves.size))
       val msg = move.moveType match {
@@ -89,6 +90,7 @@ case class GameSolver(variant: String, testSeed: Int, gameSeed: Option[Int] = No
       conn ! msg
       while (onMsg()) { Unit }
       results(move) = moves
+      msg
     }
   }
 }

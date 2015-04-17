@@ -51,13 +51,7 @@ object Constraints {
   })
 
   def pilesEmpty(piles: String*) = Constraint("piles-empty", (pile, cards, gameState) => {
-    var ret = true
-    for (p <- piles) {
-      if (gameState.pilesById(p).cards.nonEmpty) {
-        ret = false
-      }
-    }
-    ret
+    !piles.exists(p => gameState.pilesById(p).cards.nonEmpty)
   }, Some(Map("piles" -> piles.mkString(","))))
 
   def specificRank(r: Rank) = RankConstraintLogic.specificRank(r)

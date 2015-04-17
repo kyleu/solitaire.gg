@@ -29,11 +29,13 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
   ))
 
   private[this] def pileOptionsFor(emptyPiles: String*) = {
-    val c = Some(Constraints.pilesEmpty(emptyPiles: _*))
+    val c = Constraints.pilesEmpty(emptyPiles: _*)
     pileOptions.copy(
-      dragFromConstraint = c,
-      dragToConstraint = c,
-      selectCardConstraint = Some(Constraints.allOf("pyramid-king", c.orNull, pileOptions.selectCardConstraint.orNull))
+      cardsShown = Some(1),
+      direction = None,
+      dragFromConstraint = Some(c),
+      dragToConstraint = Some(c),
+      selectCardConstraint = Some(Constraints.allOf("pyramid-king", c, Constraints.specificRank(King)))
     )
   }
 
@@ -42,11 +44,11 @@ case class Pyramid(override val gameId: UUID, override val seed: Int) extends Ga
     Pile("stock", "stock", PileOptionsHelper.stock(1, "waste", Some("waste")).combine(PileOptions(selectPileConstraint = Some(Constraints.never)))),
     Pile("waste", "waste", pileOptions)
   ) ++ (1 to 7).flatMap { i =>
-      (1 to i).map { j =>
-        val po = if (i == 7) { pileOptions } else { pileOptionsFor("pile-" + i + "-" + j, "pile-" + i + "-" + (j + 1)) }
-        Pile("pile-" + i + "-" + j, "tableau", pileOptions)
-      }
+    (1 to i).map { j =>
+      val po = if (i == 7) { pileOptions } else { pileOptionsFor("pile-" + (i + 1) + "-" + j, "pile-" + (i + 1) + "-" + (j + 1)) }
+      Pile("pile-" + i + "-" + j, "tableau", po)
     }
+  }
 
   private[this] val deck = newShuffledDecks()
 

@@ -7,7 +7,14 @@
         <ul>
           <li><a href="@controllers.admin.routes.TestController.runTest("account").url">Run Account Tests</a></li>
           <li><a href="@controllers.admin.routes.TestController.runTest("known").url">Run Known Game Tests</a></li>
-          <li><a href="@controllers.admin.routes.TestController.runTest("solver").url">Run Solver Tests</a></li>
+          <li>
+            <a href="@controllers.admin.routes.TestController.runTest("solver").url">Run All Solver Tests</a>
+            <ul>
+            @for(v <- models.game.variants.GameVariant.all) {
+              <li><a href="@controllers.admin.routes.TestController.runTest("solve-" + v.key).url">Solve @v.name</a></li>
+            }
+            </ul>
+          </li>
           <li>
             <a href="@controllers.admin.routes.TestController.runTest("variants").url">Run All Variant Tests</a>
             <ul>

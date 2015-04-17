@@ -13,7 +13,7 @@ object GameVariant {
     val body: String
     val layouts: Seq[Layout]
     val maxPlayers: Int = 1
-    val completed: Boolean = false
+    val completed: Boolean = true
     val undoAllowed: Boolean = true
   }
 

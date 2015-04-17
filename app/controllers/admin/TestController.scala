@@ -19,7 +19,8 @@ object TestController extends BaseController {
         case "all" => ts.testAll()
         case "account" => ts.testAccount()
         case "known" => ts.testKnownGame()
-        case "solver" => ts.testSolver()
+        case "solver" => ts.testSolvers()
+        case x if x.startsWith("solve-") => ts.testSolver(x.substring(6), verbose = true)
         case "variants" => ts.testVariants()
         case x => ts.testVariant(x)
       }

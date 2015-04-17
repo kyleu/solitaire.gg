@@ -31,7 +31,7 @@ class TestService extends Logging with AccountTests with KnownGameTests with Sol
   def testAll() = TestResult("Running all tests.", Seq(
     testAccount(),
     testKnownGame(),
-    testSolver(),
+    testSolvers(),
     testVariants()
   ))
 }

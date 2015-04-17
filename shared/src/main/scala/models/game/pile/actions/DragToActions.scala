@@ -26,7 +26,7 @@ object DragToActions {
       tgt.removeCard(targetCard)
       gy.addCard(targetCard)
 
-      Seq(CardsMoved(Seq(card.id, targetCard.id), src.id, graveyard))
+      Seq(CardMoved(card.id, src.id, graveyard), CardMoved(targetCard.id, tgt.id, graveyard))
     }
   })
 }

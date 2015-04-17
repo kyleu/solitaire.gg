@@ -1,5 +1,6 @@
 package services.test
 
+import models.GameMessage
 import models.game.variants._
 
 object SolverTests {
@@ -18,28 +19,36 @@ object SolverTests {
 }
 
 trait SolverTests { this: TestService =>
-  def testSolver() = runTest { () =>
-    TestResult("solver", GameVariant.all.map { variant =>
-      val seed = SolverTests.solvableSeeds(variant.key)
-      runTest(() => testVariant(variant.key, seed))
-    })
+  def testSolvers() = runTest { () =>
+    TestResult("solver", GameVariant.all.map(v => testSolver(v.key, verbose = false)))
   }
 
-  private[this] def testVariant(variant: String, seed: Int): TestResult = {
+  def testSolver(variant: String, verbose: Boolean) = runTest { () =>
+    val seed = SolverTests.solvableSeeds(variant)
+    runTest(() => runSolver(variant, seed, verbose))
+  }
+
+  private[this] def runSolver(variant: String, seed: Int, verbose: Boolean): TestResult = {
     val solver = GameSolver(variant, 0, Some(seed))
     val maxMoves = 2000
-    var movesPerformed = 0
-    while (!solver.gameWon && movesPerformed < maxMoves) {
-      movesPerformed += 1
-      solver.performMove()
+    var movesPerformed = collection.mutable.ArrayBuffer.empty[GameMessage]
+    while (!solver.gameWon && movesPerformed.size < maxMoves) {
+      val move = solver.performMove()
+      movesPerformed += move
+    }
+
+    val children = if(verbose) {
+      movesPerformed.map(m => TestResult("Performed [" + m.toString + "]."))
+    } else {
+      Nil
     }
 
     if (solver.gameWon) {
-      val msg = "Won game [" + variant + "] with seed [" + seed + "] in [" + movesPerformed + "] moves."
-      TestResult(msg)
+      val msg = "Won game [" + variant + "] with seed [" + seed + "] in [" + movesPerformed.size + "] moves."
+      TestResult(msg, children)
     } else {
-      val msg = "Unable to find a solution for [" + variant + "] seed [" + seed + "] in [" + movesPerformed + "] moves."
-      TestResult(msg)
+      val msg = "Unable to find a solution for [" + variant + "] seed [" + seed + "] in [" + movesPerformed.size + "] moves."
+      TestResult(msg, children)
     }
   }
 }
