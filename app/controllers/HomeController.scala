@@ -8,6 +8,10 @@ object HomeController extends BaseController {
     Ok(views.html.index(request.accountId, request.name))
   }
 
+  def untrail(path: String) = AuthenticatedAction {
+    MovedPermanently("/" + path)
+  }
+
   def changeName(name: String) = AuthenticatedAction { implicit request =>
     AccountService.updateAccountName(request.accountId, name)
 

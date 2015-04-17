@@ -42,10 +42,20 @@ object JsonUtils {
         case pm: PossibleMoves => writeJs(pm)
         case gw: GameWon => writeJs(gw)
         case ms: MessageSet => writeJs(ms)
-        case _ => throw new IllegalStateException(rm.getClass.getName)
+        case _ => throw new IllegalStateException("Invalid Message [" + rm.getClass.getName + "].")
       }
-      val jsArray = jsVal.asInstanceOf[Js.Arr]
-      Js.Obj("c" -> Js.Str(jsArray.value.head.asInstanceOf[Js.Str].value.replace("models.", "")), "v" -> jsArray.value.tail.head)
+      val jsArray = jsVal match {
+        case a: Js.Arr => a
+        case _ => throw new IllegalStateException()
+      }
+      jsArray.value.toList match {
+        case one :: two :: Nil =>
+          val oneStr = Js.Str(one match {
+            case s: Js.Str => s.value.replace("models.", "")
+          })
+          Js.Obj("c" -> oneStr, "v" -> two)
+        case _ => throw new IllegalStateException()
+      }
   }
 
   def write(rm: ResponseMessage) = {

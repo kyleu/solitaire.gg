@@ -21,16 +21,14 @@ object Scalataire extends js.JSApp with ScalataireHelper {
   protected[this] var gameVariant: GameVariant = _
   protected[this] var gameState: GameState = _
 
-  def main(): Unit = {
-    println("Somehow, it works!")
-  }
+  def main() = Unit
 
   @JSExport
   def register(callback: js.Function1[String, Unit]) = sendCallback = callback
 
   @JSExport
   def receive(c: String, v: js.Dynamic) = {
-    println("Received [" + c + "].")
+    //println("Received [" + c + "].")
     c match {
       case "GetVersion" => send(JsonUtils.write(VersionResponse("0.offline")))
       case "Ping" => send(JsonUtils.write(Pong(JsonUtils.getLong(v.timestamp))))
