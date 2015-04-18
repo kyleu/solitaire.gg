@@ -31,7 +31,7 @@ trait SolverTests { this: TestService =>
   private[this] def runSolver(variant: String, seed: Int, verbose: Boolean): TestResult = {
     val solver = GameSolver(variant, 0, Some(seed))
     val maxMoves = 2000
-    var movesPerformed = collection.mutable.ArrayBuffer.empty[GameMessage]
+    val movesPerformed = collection.mutable.ArrayBuffer.empty[GameMessage]
     while (!solver.gameWon && movesPerformed.size < maxMoves) {
       val move = solver.performMove()
       movesPerformed += move

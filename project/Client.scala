@@ -22,7 +22,7 @@ object Client {
     ),
     scalaJSStage in Global := FastOptStage,
     scapegoatConsoleOutput := false,
-    scapegoatIgnoredFiles := Seq(".*/JsonUtils.scala"),
+    scapegoatIgnoredFiles := Seq(".*/JsonUtils.scala", ".*/JsonSerializers.scala"),
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   ).settings(graphSettings: _*).settings(defaultScalariformSettings: _*).enablePlugins(ScalaJSPlugin, ScalaJSPlay).dependsOn(Shared.sharedJs)
 }

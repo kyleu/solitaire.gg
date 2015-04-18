@@ -29,8 +29,8 @@ object Scalataire extends js.JSApp with ScalataireHelper {
   @JSExport
   def receive(c: String, v: js.Dynamic) = {
     c match {
-      case "GetVersion" => send(JsonUtils.write(VersionResponse("0.offline")))
-      case "Ping" => send(JsonUtils.write(Pong(JsonUtils.getLong(v.timestamp))))
+      case "GetVersion" => send(JsonSerializers.write(VersionResponse("0.offline")))
+      case "Ping" => send(JsonSerializers.write(Pong(JsonUtils.getLong(v.timestamp))))
       case "StartGame" => handleStartGame(v.variant.toString, JsonUtils.getIntOption(v.seed))
       case "SelectCard" => handleSelectCard(accountId, UUID.fromString(v.card.toString), v.pile.toString)
       case "SelectPile" => handleSelectPile(accountId, v.pile.toString)
@@ -40,7 +40,7 @@ object Scalataire extends js.JSApp with ScalataireHelper {
   }
 
   protected[this] def send(v: Js.Value) = {
-    val json = JsonUtils.write(v)
+    val json = JsonSerializers.write(v)
     sendCallback(json)
   }
 
@@ -55,6 +55,6 @@ object Scalataire extends js.JSApp with ScalataireHelper {
 
     val msg = GameJoined(gameId, gameState.view(accountId), possibleMoves())
 
-    send(JsonUtils.write(msg))
+    send(JsonSerializers.write(msg))
   }
 }

@@ -42,10 +42,10 @@ trait ScalataireHelper {
     }
     if (pile.canSelectCard(card, gameState)) {
       val messages = pile.onSelectCard(card, gameState)
-      send(JsonUtils.write(MessageSet(messages)))
+      send(JsonSerializers.write(MessageSet(messages)))
     }
     if (!checkWinCondition()) {
-      send(JsonUtils.write(PossibleMoves(possibleMoves(), 0, 0)))
+      send(JsonSerializers.write(PossibleMoves(possibleMoves(), 0, 0)))
     }
   }
 
@@ -55,8 +55,8 @@ trait ScalataireHelper {
       throw new IllegalStateException("SelectPile [" + pileId + "] called on a non-empty deck.")
     }
     val messages = if (pile.canSelectPile(gameState)) { pile.onSelectPile(gameState) } else { Nil }
-    send(JsonUtils.write(MessageSet(messages)))
-    if (!checkWinCondition()) { send(JsonUtils.write(PossibleMoves(possibleMoves(), 0, 0))) }
+    send(JsonSerializers.write(MessageSet(messages)))
+    if (!checkWinCondition()) { send(JsonSerializers.write(PossibleMoves(possibleMoves(), 0, 0))) }
   }
 
   protected[this] def handleMoveCards(accountId: UUID, cardIds: Seq[UUID], source: String, target: String) {
@@ -71,21 +71,21 @@ trait ScalataireHelper {
     if (sourcePile.canDragFrom(cards, gameState)) {
       if (targetPile.canDragTo(cards, gameState)) {
         val messages = targetPile.onDragTo(sourcePile, cards, gameState)
-        send(JsonUtils.write(MessageSet(messages)))
+        send(JsonSerializers.write(MessageSet(messages)))
         if (!checkWinCondition()) {
-          send(JsonUtils.write(PossibleMoves(possibleMoves(), 0, 0)))
+          send(JsonSerializers.write(PossibleMoves(possibleMoves(), 0, 0)))
         }
       } else {
-        send(JsonUtils.write(CardMoveCancelled(cardIds, source)))
+        send(JsonSerializers.write(CardMoveCancelled(cardIds, source)))
       }
     } else {
-      send(JsonUtils.write(CardMoveCancelled(cardIds, source)))
+      send(JsonSerializers.write(CardMoveCancelled(cardIds, source)))
     }
   }
 
   private[this] def checkWinCondition() = {
     if (gameVariant.isWin) {
-      send(JsonUtils.write(GameWon(gameId)))
+      send(JsonSerializers.write(GameWon(gameId)))
       true
     } else {
       false
