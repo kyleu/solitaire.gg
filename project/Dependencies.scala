@@ -12,11 +12,6 @@ object Dependencies {
     val bootstrap = "org.webjars" % "bootstrap" % "3.3.4"
   }
 
-  object ScalaJs {
-    val scalaJsDom = "org.scala-js" %%% "scalajs-dom" % "0.8.0"
-    val uPickle = "com.lihaoyi" %%% "upickle" % "0.2.8"
-  }
-
   object Metrics {
     val metrics = "nl.grons" %% "metrics-scala" % "3.4.0" withSources()
     val metricsJvm = "io.dropwizard.metrics" % "metrics-jvm" % "3.1.1" withSources()

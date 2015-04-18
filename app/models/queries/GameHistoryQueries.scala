@@ -24,14 +24,14 @@ object GameHistoryQueries extends BaseQueries {
   }
 
   case class SearchGameHistories(q: String, orderBy: String) extends Query[List[GameHistory]] {
-    override val sql = getSql("id::character varying like lower(?)", Some(orderBy))
-    override val values = Seq("%" + q + "%")
+    override val sql = getSql("id::character varying like lower(?)", Some("?"))
+    override val values = Seq("%" + q + "%", orderBy)
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).flatten.toList
   }
 
   case class GetGameHistoriesByAccount(id: UUID, sortBy: String) extends Query[List[GameHistory]] {
-    override val sql = getSql("accounts @> array[?]", Some(sortBy))
-    override val values = Seq(id)
+    override val sql = getSql("accounts @> array[?]", Some("?"))
+    override val values = Seq(id, sortBy)
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).flatten.toList
   }
 
