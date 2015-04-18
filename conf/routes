@@ -29,10 +29,10 @@ GET        /admin/observe/:id/:as             controllers.admin.AdminController.
 GET        /admin/test                        controllers.admin.TestController.tests
 GET        /admin/test/:test                  controllers.admin.TestController.runTest(test)
 
-GET        /admin/accounts                    controllers.admin.AccountController.accountList(q ?= "")
-GET        /admin/accounts/:id                controllers.admin.AccountController.accountDetail(id: java.util.UUID)
+GET        /admin/accounts                    controllers.admin.AccountController.accountList(q ?= "", sortBy ?= "created")
+GET        /admin/accounts/:id                controllers.admin.AccountController.accountDetail(id: java.util.UUID, sortBy ?= "created")
 GET        /admin/accounts/:id/remove         controllers.admin.AccountController.removeAccount(id: java.util.UUID)
 
-GET        /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "")
+GET        /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created")
 
 GET        /assets/*file                      controllers.Assets.at(path="/public", file)

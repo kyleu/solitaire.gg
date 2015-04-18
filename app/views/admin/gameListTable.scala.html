@@ -1,17 +1,26 @@
-@(games: Seq[GameHistory], link: Boolean = false)
+@(sortBy: String, games: Seq[GameHistory], link: Boolean = false)
+
+@th(key: String, label: String) = {
+  @if(sortBy == key) {
+    <th nowrap="nowrap" class="th-@key">@label <span class="caret"></span></th>
+  } else {
+    <th nowrap="nowrap" class="th-@key"><a href="?sortBy=@key">@label</a></th>
+  }
+}
+
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th class="th-game-id">Game ID</th>
-      <th class="th-seed">Seed</th>
-      <th class="th-variant">Variant</th>
-      <th class="th-status">Status</th>
-      <th class="th-accounts">Accounts</th>
-      <th class="th-moves">Moves</th>
-      <th class="th-undos">Undos</th>
-      <th class="th-redos">Redos</th>
-      <th class="th-created">Created</th>
-      <th class="th-completed">Completed</th>
+      @th("game-id", "Game ID")
+      @th("seed", "Seed")
+      @th("variant", "Variant")
+      @th("status", "Status")
+      @th("accounts", "Accounts")
+      @th("moves", "Moves")
+      @th("undos", "Undos")
+      @th("redos", "Redos")
+      @th("created", "Created")
+      @th("completed", "Completed")
     </tr>
   </thead>
   <tbody>

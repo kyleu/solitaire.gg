@@ -1,4 +1,14 @@
-@(q: String, accounts: Seq[Account])(implicit session: Session, flash: Flash)@layout.admin(utils.Config.projectName + " Accounts", "accounts") {
+@(q: String, sortBy: String, accounts: Seq[Account])(implicit session: Session, flash: Flash)
+
+@th(key: String, label: String) = {
+  @if(sortBy == key) {
+    <th nowrap="nowrap" class="th-@key">@label <span class="caret"></span></th>
+  } else {
+    <th nowrap="nowrap" class="th-@key"><a href="?sortBy=@key">@label</a></th>
+  }
+}
+
+@layout.admin(utils.Config.projectName + " Accounts", "accounts") {
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -32,12 +42,12 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th class="th-account-id">Account ID</th>
-            <th class="th-name">Name</th>
-            <th class="th-role">Role</th>
-            <th class="th-game-count">Games</th>
-            <th class="th-last-played">Last Played</th>
-            <th class="th-created">Created</th>
+            @th("id", "Account ID")
+            @th("name", "Name")
+            @th("role", "Role")
+            @th("game-count", "Games")
+            @th("played", "Last Played")
+            @th("created", "Created")
             <th class="th-actions"></th>
           </tr>
         </thead>

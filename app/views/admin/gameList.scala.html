@@ -1,4 +1,4 @@
-@(q: String, games: Seq[GameHistory])(implicit session: Session, flash: Flash)@layout.admin(utils.Config.projectName + " Games", "games") {
+@(q: String, sortBy: String, games: Seq[GameHistory])(implicit session: Session, flash: Flash)@layout.admin(utils.Config.projectName + " Games", "games") {
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -29,7 +29,7 @@
         </div>
       </div>
     } else {
-      @gameListTable(games, true)
+      @gameListTable(sortBy, games, true)
     }
   </div>
 }
