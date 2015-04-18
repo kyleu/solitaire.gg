@@ -49,6 +49,7 @@ object JsonSerializers {
         case p: Pong => writeJs(p)
         case gj: GameJoined => writeJs(gj)
         case cr: CardRevealed => writeJs(cr)
+        case ch: CardHidden => writeJs(ch)
         case cmc: CardMoveCancelled => writeJs(cmc)
         case cm: CardMoved => writeJs(cm)
         case cm: CardsMoved => writeJs(cm)

@@ -69,7 +69,7 @@ trait GameServiceConnectionHelper { this: GameService =>
 
   protected[this] def handleStopGame(reason: String) {
     log.info("Stopping empty game [" + id + "] for reason [" + reason + "].")
-    GameHistoryService.updateGameHistory(id, reason, moveCount, undoCount, redoCount, Some(new LocalDateTime))
+    GameHistoryService.updateGameHistory(id, reason, moveCount, undoHelper.undoCount, undoHelper.redoCount, Some(new LocalDateTime))
     context.parent ! GameStopped(id)
     self ! PoisonPill
   }
@@ -86,7 +86,7 @@ trait GameServiceConnectionHelper { this: GameService =>
 
   protected[this] def sendToAll(message: ResponseMessage, registerUndoResponse: Boolean = true): Unit = {
     if (registerUndoResponse) {
-      registerResponse(message)
+      undoHelper.registerResponse(message)
     }
     playerConnections.foreach { c =>
       c.connectionActor.foreach(_ ! message)

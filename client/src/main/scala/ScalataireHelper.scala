@@ -3,13 +3,12 @@ import java.util.UUID
 import models.game.GameState
 import models._
 import models.game.variants.GameVariant
-import upickle.Js
 
 trait ScalataireHelper {
   protected[this] def gameId: UUID
   protected[this] def gameVariant: GameVariant
   protected[this] def gameState: GameState
-  protected[this] def send(v: Js.Value)
+  protected[this] def send(rm: ResponseMessage, registerUndoResponse: Boolean = true)
 
   protected[this] def possibleMoves() = {
     val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
@@ -42,10 +41,10 @@ trait ScalataireHelper {
     }
     if (pile.canSelectCard(card, gameState)) {
       val messages = pile.onSelectCard(card, gameState)
-      send(JsonSerializers.write(MessageSet(messages)))
+      send(MessageSet(messages))
     }
     if (!checkWinCondition()) {
-      send(JsonSerializers.write(PossibleMoves(possibleMoves(), 0, 0)))
+      send(PossibleMoves(possibleMoves(), 0, 0))
     }
   }
 
@@ -55,8 +54,8 @@ trait ScalataireHelper {
       throw new IllegalStateException("SelectPile [" + pileId + "] called on a non-empty deck.")
     }
     val messages = if (pile.canSelectPile(gameState)) { pile.onSelectPile(gameState) } else { Nil }
-    send(JsonSerializers.write(MessageSet(messages)))
-    if (!checkWinCondition()) { send(JsonSerializers.write(PossibleMoves(possibleMoves(), 0, 0))) }
+    send(MessageSet(messages))
+    if (!checkWinCondition()) { send(PossibleMoves(possibleMoves(), 0, 0)) }
   }
 
   protected[this] def handleMoveCards(accountId: UUID, cardIds: Seq[UUID], source: String, target: String) {
@@ -71,21 +70,21 @@ trait ScalataireHelper {
     if (sourcePile.canDragFrom(cards, gameState)) {
       if (targetPile.canDragTo(cards, gameState)) {
         val messages = targetPile.onDragTo(sourcePile, cards, gameState)
-        send(JsonSerializers.write(MessageSet(messages)))
+        send(MessageSet(messages))
         if (!checkWinCondition()) {
-          send(JsonSerializers.write(PossibleMoves(possibleMoves(), 0, 0)))
+          send(PossibleMoves(possibleMoves(), 0, 0))
         }
       } else {
-        send(JsonSerializers.write(CardMoveCancelled(cardIds, source)))
+        send(CardMoveCancelled(cardIds, source))
       }
     } else {
-      send(JsonSerializers.write(CardMoveCancelled(cardIds, source)))
+      send(CardMoveCancelled(cardIds, source))
     }
   }
 
   private[this] def checkWinCondition() = {
     if (gameVariant.isWin) {
-      send(JsonSerializers.write(GameWon(gameId)))
+      send(GameWon(gameId))
       true
     } else {
       false
