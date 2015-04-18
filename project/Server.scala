@@ -87,5 +87,6 @@ object Server {
     .settings(buildInfoSettings: _*)
     .settings(serverSettings: _*)
     .aggregate(projectToRef(Client.client))
+    .aggregate(Shared.sharedJvm)
     .dependsOn(Shared.sharedJvm)
 }

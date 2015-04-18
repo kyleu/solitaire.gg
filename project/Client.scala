@@ -13,14 +13,14 @@ import playscalajs.ScalaJSPlay.autoImport._
 object Client {
   lazy val client = (project in file("client")).settings(
     scalaVersion := Shared.Versions.scala,
-    persistLauncher := true,
-    persistLauncher in Test := false,
+    persistLauncher := false,
     sourceMapsDirectories += Shared.sharedJs.base / "..",
     unmanagedSourceDirectories in Compile := Seq((scalaSource in Compile).value),
     libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom" % "0.8.0",
       "com.lihaoyi" %%% "upickle" % "0.2.8"
     ),
+    scalaJSStage in Global := FastOptStage,
     scapegoatConsoleOutput := false,
     scapegoatIgnoredFiles := Seq(".*/JsonUtils.scala"),
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
