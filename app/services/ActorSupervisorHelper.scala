@@ -4,6 +4,7 @@ import java.util.UUID
 
 import akka.actor.{ ActorRef, Props }
 import models._
+import org.joda.time.LocalDateTime
 import services.ActorSupervisor.{ ConnectionRecord, GameRecord }
 import services.game.GameService
 import utils.metrics.InstrumentedActor
@@ -15,7 +16,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
 
   protected[this] def handleConnectionStarted(accountId: UUID, username: String, connectionId: UUID, conn: ActorRef) {
     log.debug("Connection [" + connectionId + "] registered to [" + username + "] with path [" + conn.path + "].")
-    connections(connectionId) = ConnectionRecord(accountId, username, conn, None)
+    connections(connectionId) = ConnectionRecord(accountId, username, conn, None, new LocalDateTime())
   }
 
   protected[this] def handleConnectionStopped(id: UUID) {
@@ -30,12 +31,13 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
     val s = Math.abs(seed.getOrElse(masterRng.nextInt()))
     val c = connections(connectionId)
 
-    val actor = context.actorOf(Props(new GameService(id, variant, s, List(
+    val started = new LocalDateTime()
+    val actor = context.actorOf(Props(new GameService(id, variant, s, started, List(
       PlayerRecord(c.accountId, c.name, Some(connectionId), Some(c.actorRef))
     ))), "game:" + id)
 
     c.activeGame = Some(id)
-    games(id) = GameRecord(List((connectionId, c.name)), actor)
+    games(id) = GameRecord(List((connectionId, c.name)), actor, started)
   }
 
   protected[this] def handleConnectionGameJoin(id: UUID, connectionId: UUID) = games.get(id) match {
@@ -60,7 +62,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
         log.info("Connection [" + connectionId + "] is observing game [" + gameId + "].")
         val c = connections(connectionId)
         c.activeGame = Some(gameId)
-        c.actorRef ! GameStarted(gameId, g.actorRef)
+        c.actorRef ! GameStarted(gameId, g.actorRef, g.started)
         g.actorRef ! AddObserver(c.accountId, c.name, connectionId, c.actorRef, as)
       case None =>
         log.warn("Attempted to observe invalid game [" + gameId + "].")

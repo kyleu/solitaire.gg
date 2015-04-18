@@ -1,0 +1,22 @@
+@(account: Account, games: Seq[GameHistory])(implicit session: Session, flash: Flash)@layout.admin(utils.Config.projectName + " Accounts", "accounts") {
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4>@account.name</h4>
+        <h5>@account.id</h5>
+      </div>
+    </div>
+
+    @if(games.isEmpty) {
+      <div class="panel panel-default">
+        <div class="panel-body">
+          No games found for this account.
+        </div>
+      </div>
+    } else {
+      <div class="pull-right">@account.lastGameStarted.map( x => "Last played " + utils.Formatter.niceDateTime(x)).getOrElse("")</div>
+      <h4>@utils.Formatter.withCommas(games.size) games</h4>
+      @gameListTable(games)
+    }
+  </div>
+}

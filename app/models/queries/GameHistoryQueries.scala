@@ -11,11 +11,11 @@ object GameHistoryQueries extends BaseQueries {
   override protected val tableName = "games"
   override protected val columns = Seq("id", "seed", "variant", "status", "accounts", "moves", "undos", "redos", "created", "completed")
 
-  override protected lazy val insertSql = s"insert into $tableName (id, seed, variant, status, accounts) values (?, ?, ?, ?, ?::uuid[])"
+  override protected lazy val insertSql = s"insert into $tableName (id, seed, variant, status, accounts, created) values (?, ?, ?, ?, ?::uuid[], ?)"
 
-  case class CreateGameHistory(id: UUID, seed: Int, variant: String, status: String, accounts: Seq[UUID]) extends Statement {
+  case class CreateGameHistory(id: UUID, seed: Int, variant: String, status: String, accounts: Seq[UUID], created: LocalDateTime) extends Statement {
     val sql = insertSql
-    val values = Seq(id, seed, variant, status, "{ " + accounts.mkString(", ") + " }"): Seq[Any]
+    val values = Seq(id, seed, variant, status, "{ " + accounts.mkString(", ") + " }", DateUtils.toSqlTimestamp(created)): Seq[Any]
   }
 
   case class UpdateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int, completed: Option[LocalDateTime]) extends Statement {
@@ -26,6 +26,12 @@ object GameHistoryQueries extends BaseQueries {
   case class SearchGameHistories(q: String) extends Query[List[GameHistory]] {
     override val sql = getSql("id::character varying like lower(?)", Some("created desc"))
     override val values = Seq("%" + q + "%")
+    override def reduce(rows: Iterator[Row]) = rows.map(fromRow).flatten.toList
+  }
+
+  case class GetGameHistoriesByAccount(id: UUID) extends Query[List[GameHistory]] {
+    override val sql = getSql("accounts @> array[?]", Some("created desc"))
+    override val values = Seq(id)
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).flatten.toList
   }
 

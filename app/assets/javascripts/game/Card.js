@@ -142,17 +142,16 @@ define(['game/Rank', 'game/Suit', 'game/helpers/Tweens'], function (Rank, Suit, 
           totalDelta += this.inertiaHistory[inertiaIndex][1];
         }
         var angle = totalDelta / this.inertiaHistory.length;
-        if(angle > 20) {
-          angle = 20;
+        if(angle > 10) {
+          angle = 10;
         }
-        if(angle < -20) {
-          angle = -20;
+        if(angle < -10) {
+          angle = -10;
         }
         this.angle = angle;
 
         this.actualX = newX;
-
-        this.x = newX;// - (this.dragIndex * angle * 2);
+        this.x = newX - (this.dragIndex * angle);
         this.y = ((this.game.input.y - this.game.playmat.y) / this.game.playmat.scale.y) - this.anchorPointY;
       }
     } else if(this.animation.id === "mouse") {

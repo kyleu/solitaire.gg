@@ -49,7 +49,7 @@ class ConnectionService(val supervisor: ActorRef, val accountId: UUID, val name:
   }
 
   private[this] def handleInternalMessage(im: InternalMessage) = im match {
-    case gs: GameStarted => handleGameStarted(gs.id, gs.gameService)
+    case gs: GameStarted => handleGameStarted(gs.id, gs.gameService, gs.started)
     case gs: GameStopped => handleGameStopped(gs.id)
     case ct: ConnectionTrace => handleConnectionTrace()
     case ct: ClientTrace => handleClientTrace()

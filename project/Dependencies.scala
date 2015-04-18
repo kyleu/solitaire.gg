@@ -1,4 +1,5 @@
 import sbt._
+import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 
 object Dependencies {
   object Database {
@@ -9,6 +10,11 @@ object Dependencies {
   object WebJars {
     val requireJs = "org.webjars" % "requirejs" % "2.1.17"
     val bootstrap = "org.webjars" % "bootstrap" % "3.3.4"
+  }
+
+  object ScalaJs {
+    val scalaJsDom = "org.scala-js" %%% "scalajs-dom" % "0.8.0"
+    val uPickle = "com.lihaoyi" %%% "upickle" % "0.2.8"
   }
 
   object Metrics {

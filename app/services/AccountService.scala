@@ -3,6 +3,7 @@ package services
 import java.util.UUID
 
 import models.queries.AccountQueries._
+import org.joda.time.LocalDateTime
 import services.database.DatabaseConnection
 
 import scala.util.Random
@@ -14,6 +15,8 @@ object AccountService {
   }
 
   def searchAccounts(q: String) = DatabaseConnection.query(SearchAccounts(q))
+
+  def getAccount(id: UUID) = DatabaseConnection.query(GetAccount(id))
 
   def getAccount(map: Map[String, String], fallbackAccount: Option[UUID]) = {
     if (map.get("account").isDefined && map.get("name").isDefined && map.get("role").isDefined) {
@@ -44,6 +47,10 @@ object AccountService {
 
   def updateAccountRole(id: UUID, role: String) = DatabaseConnection.transaction {
     DatabaseConnection.execute(UpdateAccountRole(id, role)) == 1
+  }
+
+  def incrementAccountGamesPlayed(id: UUID, started: LocalDateTime) = DatabaseConnection.transaction {
+    DatabaseConnection.execute(IncrementAccountGamesPlayed(id, started)) == 1
   }
 
   def removeAccount(id: UUID) = DatabaseConnection.transaction {

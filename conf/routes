@@ -30,7 +30,8 @@ GET        /admin/test                        controllers.admin.TestController.t
 GET        /admin/test/:test                  controllers.admin.TestController.runTest(test)
 
 GET        /admin/accounts                    controllers.admin.AccountController.accountList(q ?= "")
-GET        /admin/accounts/remove/:id         controllers.admin.AccountController.removeAccount(id: java.util.UUID)
+GET        /admin/accounts/:id                controllers.admin.AccountController.accountDetail(id: java.util.UUID)
+GET        /admin/accounts/:id/remove         controllers.admin.AccountController.removeAccount(id: java.util.UUID)
 
 GET        /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "")
 

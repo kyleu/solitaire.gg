@@ -3,6 +3,7 @@ package models
 import java.util.UUID
 
 import akka.actor.ActorRef
+import org.joda.time.LocalDateTime
 
 sealed trait InternalMessage
 
@@ -13,7 +14,7 @@ case class AddPlayer(accountId: UUID, name: String, connectionId: UUID, connecti
 case class AddObserver(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef, as: Option[UUID]) extends InternalMessage
 
 case class CreateGame(variant: String, connectionId: UUID, seed: Option[Int]) extends InternalMessage
-case class GameStarted(id: UUID, gameService: ActorRef) extends InternalMessage
+case class GameStarted(id: UUID, gameService: ActorRef, started: LocalDateTime) extends InternalMessage
 case class ConnectionGameJoin(id: UUID, connectionId: UUID) extends InternalMessage
 case class ConnectionGameObserve(id: UUID, connectionId: UUID, as: Option[UUID]) extends InternalMessage
 case class GameStopped(id: UUID) extends InternalMessage

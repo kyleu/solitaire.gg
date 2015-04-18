@@ -17,10 +17,10 @@ trait GameServiceConnectionHelper { this: GameService =>
         p.connectionActor = Some(connectionActor)
       case None =>
         playerConnections += PlayerRecord(accountId, name, Some(connectionId), Some(connectionActor))
+        gameState.addPlayer(accountId, name)
     }
 
-    gameState.addPlayer(accountId, name)
-    connectionActor ! GameStarted(id, self)
+    connectionActor ! GameStarted(id, self, started)
     connectionActor ! GameJoined(id, gameState.view(accountId), possibleMoves(Some(accountId)))
   }
 
@@ -63,7 +63,12 @@ trait GameServiceConnectionHelper { this: GameService =>
   protected[this] def handleStopGameIfEmpty() {
     val hasPlayer = playerConnections.exists(_.connectionId.isDefined) || observerConnections.exists(_._1.connectionId.isDefined)
     if (!hasPlayer) {
-      self ! StopGame("timeout")
+      val status = if(gameVariant.isWin) {
+        "won"
+      } else {
+        "timeout"
+      }
+      self ! StopGame(status)
     }
   }
 

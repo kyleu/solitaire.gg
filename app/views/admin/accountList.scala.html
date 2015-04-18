@@ -44,7 +44,7 @@
         <tbody>
           @for(a <- accounts) {
             <tr>
-              <td>@a.id</td>
+              <td><a href="@controllers.admin.routes.AccountController.accountDetail(a.id)">@a.id</a></td>
               <td>@a.name</td>
               <td>@a.role</td>
               <td>@a.gamesPlayed</td>

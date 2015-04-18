@@ -5,6 +5,7 @@ import java.util.UUID
 import akka.actor.SupervisorStrategy.Stop
 import akka.actor._
 import models._
+import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Akka
 import utils.Logging
 import utils.metrics.MetricsServletActor
@@ -17,8 +18,8 @@ object ActorSupervisor extends Logging {
     instanceRef
   }
 
-  case class GameRecord(connections: Seq[(UUID, String)], actorRef: ActorRef)
-  case class ConnectionRecord(accountId: UUID, name: String, actorRef: ActorRef, var activeGame: Option[UUID])
+  case class GameRecord(connections: Seq[(UUID, String)], actorRef: ActorRef, started: LocalDateTime)
+  case class ConnectionRecord(accountId: UUID, name: String, actorRef: ActorRef, var activeGame: Option[UUID], started: LocalDateTime)
 }
 
 class ActorSupervisor extends ActorSupervisorHelper with Logging {

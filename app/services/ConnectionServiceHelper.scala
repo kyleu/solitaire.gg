@@ -4,6 +4,7 @@ import java.util.UUID
 
 import akka.actor.ActorRef
 import models._
+import org.joda.time.LocalDateTime
 import play.api.libs.json.{ Json, JsObject }
 import utils.metrics.InstrumentedActor
 
@@ -25,7 +26,8 @@ trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionServic
     case None => throw new IllegalArgumentException("Received game message [" + gm.getClass.getSimpleName + "] while not in game.")
   }
 
-  protected[this] def handleGameStarted(id: UUID, gameService: ActorRef) {
+  protected[this] def handleGameStarted(id: UUID, gameService: ActorRef, started: LocalDateTime) {
+    AccountService.incrementAccountGamesPlayed(accountId, started)
     activeGameId = Some(id)
     activeGame = Some(gameService)
   }

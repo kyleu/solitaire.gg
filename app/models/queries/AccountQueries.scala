@@ -44,9 +44,9 @@ object AccountQueries extends BaseQueries {
     val values = Seq(role, id)
   }
 
-  case class IncrementAccountGamesPlayed(id: UUID, started: LocalDateTime) extends Statement {
-    val sql = updateSql(Seq("last_game_started"), Some("games_played = games_played + 1"))
-    val values = Seq(Some(started), id)
+  case class IncrementAccountGamesPlayed(accountId: UUID, started: LocalDateTime) extends Statement {
+    val sql = s"update $tableName set last_game_started = ?, games_played = games_played + 1 where id = ?"
+    val values = Seq(DateUtils.toSqlTimestamp(started), accountId)
   }
 
   case class RemoveAccount(id: UUID) extends Statement {
