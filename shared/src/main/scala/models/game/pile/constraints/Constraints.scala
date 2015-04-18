@@ -71,6 +71,6 @@ object Constraints {
 
   val klondikeDragFrom = Constraint("klondike", KlondikeConstraintLogic.dragFrom)
   val klondikeFoundationDragTo = Constraint("foundation", KlondikeConstraintLogic.foundationDragTo)
-  val klondikeTableauDragTo = Constraint("klondike", KlondikeConstraintLogic.tableauDragTo)
+  def klondikeTableauDragTo(emptyPileConstraint: Option[Rank]) = Constraint("klondike", KlondikeConstraintLogic.tableauDragTo(emptyPileConstraint))
   val klondikeSelectCard = Constraint("klondike", KlondikeConstraintLogic.selectCard)
 }

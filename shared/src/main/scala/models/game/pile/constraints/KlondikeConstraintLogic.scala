@@ -33,8 +33,11 @@ object KlondikeConstraintLogic {
     false
   }
 
-  val tableauDragTo = (pile: Pile, cards: Seq[Card], gameState: GameState) => if (pile.cards.isEmpty) {
-    cards.headOption.getOrElse(throw new IllegalStateException()).r == Rank.King
+  def tableauDragTo(emptyPileRank: Option[Rank]) = (pile: Pile, cards: Seq[Card], gameState: GameState) => if (pile.cards.isEmpty) {
+    emptyPileRank match {
+      case Some(r) => cards.headOption.getOrElse(throw new IllegalStateException()).r == r
+      case None => cards.length == 1
+    }
   } else {
     val topCard = pile.cards.lastOption.getOrElse(throw new IllegalStateException())
     val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())

@@ -93,5 +93,5 @@ case class Spider(override val gameId: UUID, override val seed: Int) extends Gam
     gameState.addCards(deck.getCards(), "stock")
   }
 
-  override def isWin: Boolean = gameState.piles.count(x => x.behavior == "foundation" && x.cards.size == 13) == 4
+  override def isWin: Boolean = gameState.piles.count(x => x.behavior == "foundation" && x.cards.size == 13) == 8
 }

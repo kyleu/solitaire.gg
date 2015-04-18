@@ -14,7 +14,7 @@ object Yukon extends GameVariant.Description {
   """
   override val layouts = Seq(
     Layout(
-      width = 9.9,
+      width = 10.1,
       height = 5.0,
       piles = List(
         PileLocation("tableau-1", 1.1, 0.7),

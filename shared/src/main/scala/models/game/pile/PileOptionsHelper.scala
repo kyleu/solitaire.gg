@@ -1,5 +1,6 @@
 package models.game.pile
 
+import models.game.Rank
 import models.game.pile.actions.{ SelectPileActions, SelectCardActions }
 import models.game.pile.constraints.Constraints
 
@@ -28,7 +29,7 @@ object PileOptionsHelper {
     direction = Some("d"),
     selectCardConstraint = Some(Constraints.klondikeSelectCard),
     dragFromConstraint = Some(Constraints.klondikeDragFrom),
-    dragToConstraint = Some(Constraints.klondikeTableauDragTo),
+    dragToConstraint = Some(Constraints.klondikeTableauDragTo(Some(Rank.King))),
     selectCardAction = Some(SelectCardActions.klondike)
   )
 

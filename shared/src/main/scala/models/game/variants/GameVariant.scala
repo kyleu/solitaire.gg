@@ -21,6 +21,7 @@ object GameVariant {
     case Canfield.key => new Canfield(gameId, seed)
     case FreeCell.key => new FreeCell(gameId, seed)
     case Golf.key => new Golf(gameId, seed)
+    case Gypsy.key => new Gypsy(gameId, seed)
     case KlondikeDrawThree.key => new KlondikeDrawThree(gameId, seed)
     case KlondikeDrawOne.key => new KlondikeDrawOne(gameId, seed)
     case Nestor.key => new Nestor(gameId, seed)
@@ -32,7 +33,7 @@ object GameVariant {
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 
-  val all = Seq(Canfield, FreeCell, Golf, KlondikeDrawThree, KlondikeDrawOne, Nestor, Pyramid, Sandbox, Spider, TrustyTwelve, Yukon)
+  val all = Seq(Canfield, FreeCell, Golf, Gypsy, KlondikeDrawThree, KlondikeDrawOne, Nestor, Pyramid, Sandbox, Spider, TrustyTwelve, Yukon)
 }
 
 abstract class GameVariant(val gameId: UUID, val seed: Int) {
