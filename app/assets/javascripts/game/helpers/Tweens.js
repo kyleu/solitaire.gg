@@ -5,7 +5,7 @@ define([], function() {
     tweenCardTo: function(card, x, y) {
       if(x != card.x || y != card.y) {
         var tween = card.game.add.tween(card);
-        tween.to({ x: x, y: y }, 200);
+        tween.to({ x: x, y: y, angle: 0 }, 200);
         tween.onComplete.add(function() {
           card.tweening = false;
         }, card);

@@ -36,6 +36,7 @@ define(['game/Rank', 'game/Suit', 'game/helpers/Tweens'], function (Rank, Suit, 
 
     this.inputEnabled = true;
     this.dragging = false;
+    this.inertiaHistory = [];
 
     this.game.addCard(this);
 
@@ -64,8 +65,9 @@ define(['game/Rank', 'game/Suit', 'game/helpers/Tweens'], function (Rank, Suit, 
     }
   };
 
-  Card.prototype.startDrag = function(p) {
+  Card.prototype.startDrag = function(p, dragIndex) {
     this.dragging = true;
+    this.dragIndex = dragIndex;
     this.inputOriginalPosition = this.position.clone();
     this.anchorPointX = ((p.positionDown.x - this.game.playmat.x) / this.game.playmat.scale.x) - this.x;
     this.anchorPointY = ((p.positionDown.y - this.game.playmat.y) / this.game.playmat.scale.y) - this.y;
@@ -92,12 +94,14 @@ define(['game/Rank', 'game/Suit', 'game/helpers/Tweens'], function (Rank, Suit, 
       var yDelta = Math.abs(this.y - this.inputOriginalPosition.y);
       if(xDelta > 5 || yDelta > 5) {
         // Dragged
-        this.game.add.tween(this).to({x: this.inputOriginalPosition.x, y: this.inputOriginalPosition.y}, 500, Phaser.Easing.Quadratic.InOut, true);
+        this.game.add.tween(this).to({ x: this.inputOriginalPosition.x, y: this.inputOriginalPosition.y, angle: 0 }, 500, Phaser.Easing.Quadratic.InOut, true);
       } else {
         if(canSelectCard(this)) {
           this.pile.cardSelected(this);
         }
       }
+      this.dragIndex = null;
+      this.actualX = null;
       this.inputOriginalPosition = null;
     } else {
       if(canSelectCard(this)) {
@@ -121,8 +125,35 @@ define(['game/Rank', 'game/Suit', 'game/helpers/Tweens'], function (Rank, Suit, 
   Card.prototype.update = function() {
     if(this.animation === null) {
       if(this.dragging) {
-        this.x = ((this.game.input.x - this.game.playmat.x) / this.game.playmat.scale.x) - (this.anchorPointX);
-        this.y = ((this.game.input.y - this.game.playmat.y) / this.game.playmat.scale.y) - (this.anchorPointY);
+        if(this.actualX === undefined || this.actualX === null) {
+          this.actualX = this.x;
+        }
+        var newX = ((this.game.input.x - this.game.playmat.x) / this.game.playmat.scale.x) - this.anchorPointX;
+        var xDelta = newX - this.actualX;
+
+        var now = this.game.time.now;
+        while(this.inertiaHistory.length > 0 && now - this.inertiaHistory[0][0] > 200) {
+          this.inertiaHistory.shift();
+        }
+        this.inertiaHistory.push([now, xDelta]);
+
+        var totalDelta = 0;
+        for(var inertiaIndex in this.inertiaHistory) {
+          totalDelta += this.inertiaHistory[inertiaIndex][1];
+        }
+        var angle = totalDelta / this.inertiaHistory.length;
+        if(angle > 20) {
+          angle = 20;
+        }
+        if(angle < -20) {
+          angle = -20;
+        }
+        this.angle = angle;
+
+        this.actualX = newX;
+
+        this.x = newX;// - (this.dragIndex * angle * 2);
+        this.y = ((this.game.input.y - this.game.playmat.y) / this.game.playmat.scale.y) - this.anchorPointY;
       }
     } else if(this.animation.id === "mouse") {
       var tgtX = this.game.input.x - ((this.width / 2) * this.game.playmat.scale.x);

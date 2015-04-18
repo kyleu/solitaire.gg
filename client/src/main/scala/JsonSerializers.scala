@@ -70,5 +70,5 @@ object JsonSerializers {
   }
 
   def write(rm: ResponseMessage) = responseMessageWriter.write(rm)
-  def write(j: Js.Value) = upickle.json.write(j)
+  def write(j: Js.Value) = json.write(j)
 }

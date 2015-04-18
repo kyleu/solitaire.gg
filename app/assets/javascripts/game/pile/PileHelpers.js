@@ -64,7 +64,7 @@ define(function() {
     dragSlice: function(card, p) {
       this.dragCards = this.cards.slice(card.pileIndex);
       for(var c in this.dragCards) {
-        this.dragCards[c].startDrag(p);
+        this.dragCards[c].startDrag(p, c);
       }
     },
 
