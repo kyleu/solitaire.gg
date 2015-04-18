@@ -12,7 +12,11 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
 
   Scalataire.prototype.onConnect = function() {
     console.log(cfg.account.name + " connected.");
-    this.game = new Game(this.ws);
+    if(this.game === null) {
+      this.game = new Game(this.ws);
+    } else {
+      this.game.onMessage("Reconnect", {});
+    }
   };
 
   Scalataire.prototype.onMessage = function(c, v) {

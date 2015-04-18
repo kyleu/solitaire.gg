@@ -43,6 +43,10 @@ define([], function () {
         game.send("Redo", {});
       }
 
+      function closeConnection() {
+        game.ws.close();
+      }
+
       var undoKey = game.input.keyboard.addKey(Phaser.Keyboard.Z);
       undoKey.onDown.add(undo);
 
@@ -54,6 +58,9 @@ define([], function () {
 
       var helpKey = game.input.keyboard.addKey(Phaser.Keyboard.H);
       helpKey.onDown.add(logGame);
+
+      var closeKey = game.input.keyboard.addKey(Phaser.Keyboard.C);
+      closeKey.onDown.add(closeConnection);
 
       var debugKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
       debugKey.onDown.add(toggleDebug);

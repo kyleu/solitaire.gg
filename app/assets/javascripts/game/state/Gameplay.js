@@ -113,6 +113,11 @@ define([
       case "GameWon":
         alert("You win!");
         break;
+      case "Reconnect":
+        this.game.playmat.destroy();
+        this.game.send("JoinGame", { "id": this.game.id });
+        console.log("Reconnecting to game [" + this.game.id + "].");
+        break;
       case "ServerError":
         console.error("Server error encountered.", v);
         break;

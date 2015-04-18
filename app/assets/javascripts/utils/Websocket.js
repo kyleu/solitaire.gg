@@ -4,7 +4,10 @@ define(["utils/Config"], function (cfg) {
   function Websocket(url, context) {
     this.url = url;
     this.connected = false;
+    this.connect(context);
+  }
 
+  Websocket.prototype.connect = function(context) {
     var me = this;
     var ws = new WebSocket(this.url);
     ws.onopen = function() {
@@ -33,15 +36,20 @@ define(["utils/Config"], function (cfg) {
     ws.onclose = function() {
       me.connected = false;
       document.getElementById('status-connection').innerText = 'Disconnected';
-      console.info("Websocket connection to [" + me.url + "] closed.");
+      console.info("Websocket connection closed. Attempting to reconnect.");
+      me.connect(context);
     };
-    ws.onerror = function() {
+    ws.onerror = function(err) {
       me.connected = false;
       document.getElementById('status-connection').innerText = 'Connection Error';
-      console.error("Received error from websocket connection to [" + me.url + "].");
+      console.error("Received error from websocket connection [" + err + "].");
     };
     this.connection = ws;
-  }
+  };
+
+  Websocket.prototype.close = function() {
+    this.connection.close();
+  };
 
   Websocket.prototype.send = function(c, v) {
     var msg = { "c": c, "v": v };

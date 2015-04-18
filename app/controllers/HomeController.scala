@@ -33,14 +33,14 @@ object HomeController extends BaseController {
   }
 
   def newDefaultOfflineGame() = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.offline(request.accountId, request.name, "klondike"))
+    Ok(views.html.game.gameplay(request.accountId, request.name, "klondike", offline = true))
   }
 
   def newOfflineGame(variant: String) = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.offline(request.accountId, request.name, variant))
+    Ok(views.html.game.gameplay(request.accountId, request.name, variant, offline = true))
   }
 
   def newOfflineGameWithSeed(variant: String, seed: Int) = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.offline(request.accountId, request.name, variant, Some(seed)))
+    Ok(views.html.game.gameplay(request.accountId, request.name, variant, seed = Some(seed), offline = true))
   }
 }

@@ -1,4 +1,4 @@
-@(account: java.util.UUID, name: String, variant: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None)(
+@(account: java.util.UUID, name: String, variant: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None, offline: Boolean = false)(
   implicit session: Session, flash: Flash
 )@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
   <div id="game-container"></div>
@@ -17,10 +17,20 @@
     "cardSize": "@utils.Config.defaultCardSize",
     "variant": "@variant",
     @if(seed.isDefined) {"seed": @seed.get, }
+    @if(offline) {"offline": true, }
     "initialAction": [ @Html(initialAction.map("\"" + _ + "\"").mkString(", ")) ]
   }
   </pre>
   }
+
+  @if(offline) {
+  @if(play.api.Play.isProd(play.api.Play.current)) {
+  <script src="/assets/client-opt.js" type="text/javascript"></script>
+  } else {
+  <script src="/assets/client-fastopt.js" type="text/javascript"></script>
+  }
+  }
+
   @if(utils.Config.debug) {
   <script src="/assets/lib/phaser/js/phaser.js"></script>
   <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/phaser-debug.css").url" />
