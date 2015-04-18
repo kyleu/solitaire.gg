@@ -28,6 +28,7 @@ object GameVariant {
     case Sandbox.key => new Sandbox(gameId, seed)
     case Spider.key => new Spider(gameId, seed)
     case TrustyTwelve.key => new TrustyTwelve(gameId, seed)
+    case Yukon.key => new Yukon(gameId, seed)
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 

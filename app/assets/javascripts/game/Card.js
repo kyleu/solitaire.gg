@@ -141,7 +141,7 @@ define(['game/Rank', 'game/Suit', 'game/helpers/Tweens'], function (Rank, Suit, 
         for(var inertiaIndex in this.inertiaHistory) {
           totalDelta += this.inertiaHistory[inertiaIndex][1];
         }
-        var angle = totalDelta / this.inertiaHistory.length;
+        var angle = totalDelta / this.inertiaHistory.length / 2;
         if(angle > 10) {
           angle = 10;
         }

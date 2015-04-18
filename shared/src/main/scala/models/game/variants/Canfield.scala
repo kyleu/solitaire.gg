@@ -15,10 +15,9 @@ object Canfield extends GameVariant.Description {
       width = 9.9,
       height = 5.0,
       piles = List(
-        PileLocation("cell-1", 0.6, 0.7),
-        PileLocation("cell-2", 1.7, 0.7),
-        PileLocation("cell-3", 2.8, 0.7),
-        PileLocation("cell-4", 3.9, 0.7),
+        PileLocation("stock", 0.6, 0.7),
+        PileLocation("waste", 1.7, 0.7),
+        PileLocation("reserve", 2.8, 0.7),
 
         PileLocation("foundation-1", 6.0, 0.7),
         PileLocation("foundation-2", 7.1, 0.7),
@@ -28,11 +27,7 @@ object Canfield extends GameVariant.Description {
         PileLocation("tableau-1", 1.1, 1.8),
         PileLocation("tableau-2", 2.2, 1.8),
         PileLocation("tableau-3", 3.3, 1.8),
-        PileLocation("tableau-4", 4.4, 1.8),
-        PileLocation("tableau-5", 5.5, 1.8),
-        PileLocation("tableau-6", 6.6, 1.8),
-        PileLocation("tableau-7", 7.7, 1.8),
-        PileLocation("tableau-8", 8.8, 1.8)
+        PileLocation("tableau-4", 4.4, 1.8)
       )
     )
   )

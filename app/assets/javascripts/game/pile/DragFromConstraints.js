@@ -10,6 +10,16 @@ define(['game/Rank'], function(Rank) {
       return card.pileIndex == this.cards.length - 1;
     },
 
+    "face-up": function(card) {
+      var valid = true;
+      for(var selectedIndex = card.pileIndex; selectedIndex < this.cards.length; selectedIndex++) {
+        if(!this.cards[selectedIndex].faceUp) {
+          valid = false;
+        }
+      }
+      return valid;
+    },
+
     "klondike": function(card) {
       if(!card.faceUp) {
         return false;
