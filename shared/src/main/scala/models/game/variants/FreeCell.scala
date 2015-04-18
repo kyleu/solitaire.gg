@@ -46,10 +46,11 @@ case class FreeCell(override val gameId: UUID, override val seed: Int) extends G
 
   private[this] val cellOptions = Pile.options.combine(PileOptions(
     cardsShown = Some(1),
+    selectCardConstraint = Some(Constraints.klondikeSelectCard),
     dragToConstraint = Some(Constraints.empty),
     dragFromConstraint = Some(Constraints.topCardOnly)
   ))
-  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(dragFromConstraint = Some(Constraints.topCardOnly)))
+  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(dragFromConstraint = Some(Constraints.klondikeDragFrom)))
 
   private[this] val piles = List(
     Pile("cell-1", "pile", cellOptions),
