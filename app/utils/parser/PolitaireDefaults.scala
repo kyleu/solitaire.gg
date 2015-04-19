@@ -97,6 +97,7 @@ object PolitaireDefaults {
     "drawrule" -> 0,
     "gallery" -> 0,
     "leftfunc" -> 0,
+    "like" -> "",
     "lowpip" -> 1,
     "maxdeals" -> 1,
     "midfunc" -> 3,
@@ -123,4 +124,13 @@ object PolitaireDefaults {
     "vsuit" -> 1,
     "wrapdeal" -> 0
   )
+
+  def getDefault(key: String) = {
+    val c = key(1)
+    if(c == '1' || c == '2' || c == '3' || c == '4') {
+      defaults.get(key.head + "0" + key.tail.tail)
+    } else {
+      defaults.get(key)
+    }
+  }
 }

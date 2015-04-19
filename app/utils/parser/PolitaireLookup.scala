@@ -17,4 +17,6 @@ object PolitaireLookup {
       "nrot" -> "Allowed tableau rotations",
       "ndraw" -> "Allowed draws"
     )
+
+  val titleMap = titleTable.toMap
 }

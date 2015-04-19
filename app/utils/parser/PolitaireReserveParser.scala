@@ -1,7 +1,11 @@
 package utils.parser
 
 object PolitaireReserveParser {
-  val titles = Seq("R0n" -> "Number of reserve piles")
+  val titles = Seq(
+    "R0n" -> "Number of reserve piles",
+    "R0d" -> "Reserve initial cards",
+    "R0df" -> "Reserve cards face down"
+  )
 
   val translations = Map(
     "r0n" -> Map(

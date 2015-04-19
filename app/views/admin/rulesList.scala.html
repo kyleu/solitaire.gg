@@ -1,4 +1,8 @@
-@(ruleSet: Seq[models.game.GameRules])(implicit session: Session, flash: Flash)
+@(ruleSet: Seq[models.game.rules.GameRules])(implicit session: Session, flash: Flash)
+
+@import play.api.libs.json.Json
+@import utils.GameRulesSerializers._
+
 @layout.admin(utils.Config.projectName + " Rules", "rules") {
   <div class="container">
     <div class="panel panel-default">
@@ -15,6 +19,7 @@
         <div class="panel-body">
           <div class="text-large">@rules.title (@rules.id)</div>
           <div class="game-description"><em>@rules.description</em></div>
+          <pre>@Json.prettyPrint(Json.toJson(rules))</pre>
         </div>
       </div>
     }

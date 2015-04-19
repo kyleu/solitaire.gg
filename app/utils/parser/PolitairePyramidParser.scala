@@ -2,23 +2,28 @@ package utils.parser
 
 object PolitairePyramidParser {
   val titles = Seq(
-    "Pn" -> "Number of pyramids",
-    "P0Nm" -> "Pyramid name",
-    "P0type" -> "Pyramid type",
-    "P0size" -> "Pyramid size",
-    "P0df" -> "Pyramid cards dealt face down",
-    "P0s" -> "Pyramid suit match rule for building",
-    "P0r" -> "Pyramid rank match rule for building",
-    "P0w" -> "Pyramid wraps from king to ace",
-    "P0ts" -> "Pyramid suit match rule for moving stacks",
-    "P0tr" -> "Pyramid rank match rule for moving stacks",
-    "P0o" -> "May move to non-empty tableau from",
-    "P0f" -> "Empty pyramid is filled with",
-    "P0fo" -> "Empty pyramid is filled from"
+    "P0Nm" -> "Pyramid name", "P0type" -> "Pyramid type", "P0size" -> "Pyramid size", "P0df" -> "Pyramid cards dealt face down",
+    "P0s" -> "Pyramid suit match rule for building", "P0r" -> "Pyramid rank match rule for building", "P0w" -> "Pyramid wraps from king to ace",
+    "P0ts" -> "Pyramid suit match rule for moving stacks", "P0tr" -> "Pyramid rank match rule for moving stacks",
+    "P0o" -> "May move to non-empty pyramid from", "P0f" -> "Empty pyramid is filled with", "P0fo" -> "Empty pyramid is filled from",
+
+    "P1Nm" -> "Pyramid B name", "P1type" -> "Pyramid B type", "P1size" -> "Pyramid B size", "P1df" -> "Pyramid B cards dealt face down",
+    "P1s" -> "Pyramid B suit match rule for building", "P1r" -> "Pyramid B rank match rule for building", "P1w" -> "Pyramid B wraps from king to ace",
+    "P1ts" -> "Pyramid B suit match rule for moving stacks", "P1tr" -> "Pyramid B rank match rule for moving stacks",
+    "P1o" -> "May move to non-empty pyramid B from", "P1f" -> "Empty pyramid B is filled with", "P1fo" -> "Empty pyramid B is filled from",
+
+    "P2Nm" -> "Pyramid C name", "P2type" -> "Pyramid C type", "P2size" -> "Pyramid C size", "P2df" -> "Pyramid C cards dealt face down",
+    "P2s" -> "Pyramid C suit match rule for building", "P2r" -> "Pyramid C rank match rule for building", "P2w" -> "Pyramid C wraps from king to ace",
+    "P2ts" -> "Pyramid C suit match rule for moving stacks", "P2tr" -> "Pyramid C rank match rule for moving stacks",
+    "P2o" -> "May move to non-empty pyramid C from", "P2f" -> "Empty pyramid C is filled with", "P2fo" -> "Empty pyramid C is filled from",
+
+    "P3Nm" -> "Pyramid D name", "P3type" -> "Pyramid D type", "P3size" -> "Pyramid D size", "P3df" -> "Pyramid D cards dealt face down",
+    "P3s" -> "Pyramid D suit match rule for building", "P3r" -> "Pyramid D rank match rule for building", "P3w" -> "Pyramid D wraps from king to ace",
+    "P3ts" -> "Pyramid D suit match rule for moving stacks", "P3tr" -> "Pyramid D rank match rule for moving stacks",
+    "P3o" -> "May move to non-empty pyramid D from", "P3f" -> "Empty pyramid D is filled with", "P3fo" -> "Empty pyramid D is filled from"
   )
 
   val translations = Map(
-    "Pn" -> Map(0 -> "0 pyramids", 1 -> "1 pyramid", 2 -> "2 pyramids", 3 -> "3 pyramids", 4 -> "4 pyramids"),
     "P0type" -> Map(1 -> "Standard Pyramid", 2 -> "Inverted Pyramid", 3 -> "Custom"),
     "P0size" -> Map(
       2 -> "Height 2 (3 cards total)", 3 -> "Height 3 (6 cards total)", 4 -> "Height 4 (10 cards total)", 5 -> "Height 5 (15 cards total)",

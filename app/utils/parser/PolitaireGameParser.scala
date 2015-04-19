@@ -5,7 +5,12 @@ object PolitaireGameParser {
     "title" -> "Title",
     "desc" -> "Description",
     "victory" -> "Victory condition",
-    "pairs" -> "Card removal method"
+    "pairs" -> "Card removal method",
+    "like" -> "Similar to",
+
+    "Fn" -> "Foundation Sets",
+    "Tn" -> "Tableau sets",
+    "Pn" -> "Number of pyramids"
   )
 
   val translations = Map(
@@ -40,6 +45,8 @@ object PolitaireGameParser {
       22 -> "Remove pairs with consecutive ranks or A-K",
       17 -> "Remove pairs with consecutive or equal ranks",
       20 -> "Stack cards of same rank/suit in waste"
-    )
+    ),
+    "Tn" -> Map(0 -> "0 tableau sets", 1 -> "1 tableau set", 2 -> "2 tableau sets", 3 -> "3 tableau sets", 4 -> "4 tableau sets"),
+    "Pn" -> Map(0 -> "0 pyramids", 1 -> "1 pyramid", 2 -> "2 pyramids", 3 -> "3 pyramids", 4 -> "4 pyramids")
   )
 }

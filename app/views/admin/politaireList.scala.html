@@ -15,18 +15,20 @@
         <div class="game-attributes">
           <table class="table table-bordered">
             <tr>
-              <th class="th-attribute-name">Attribute</th>
+              <th class="th-attribute-id">ID</th>
+              <th class="th-attribute-title">Attribute</th>
               <th class="th-attribute-value">Value</th>
               <th>Meaning</th>
             </tr>
             @for(title <- utils.parser.PolitaireLookup.titleTable) {
-              @defining(utils.parser.PolitaireDefaults.defaults(title._1)) { attr =>
+              @defining(utils.parser.PolitaireDefaults.getDefault(title._1).getOrElse(throw new IllegalStateException())) { attr =>
                 <tr>
-                  <td title="@title._1">@title._2</td>
+                  <td>@title._1</td>
+                  <td>@title._2</td>
                   <td>@attr</td>
-                  <td>@utils.parser.PolitaireTranslations.translationTable.get(title._1) match {
+                  <td>@utils.parser.PolitaireTranslations.getTranslation(title._1) match {
                     case Some(x) => { @x.get(attr.toString.toInt) }
-                    case None => { None }
+                    case None => { }
                   }</td>
                 </tr>
               }
@@ -40,20 +42,22 @@
     @for(game <- variants.sortBy(_.id)) {
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="text-large">@game.attributes("Title")._1 (@game.id)</div>
-          <div class="game-description"><em>@game.attributes("Description")._1</em></div>
+          <div class="text-large">@game.attributes("title").value (@game.id)</div>
+          <div class="game-description"><em>@game.attributes("desc").value</em></div>
           <div class="game-attributes">
             <table class="table table-bordered">
               <tr>
-                <th class="th-attribute-name">Attribute</th>
+                <th class="th-attribute-id">ID</th>
+                <th class="th-attribute-title">Attribute</th>
                 <th class="th-attribute-value">Value</th>
                 <th>Meaning</th>
               </tr>
-              @for(attr <- game.attributes.filterNot(x => x._1 == "Variant title" || x._1 == "Description")) {
+              @for(attr <- game.attributes.filterNot(x => x._2.defaultVal || x._2.id == "title" || x._2.id == "desc")) {
                 <tr>
-                  <td>@attr._1</td>
-                  <td>@attr._2._1</td>
-                  <td>@attr._2._2</td>
+                  <td>@attr._2.id</td>
+                  <td>@attr._2.title</td>
+                  <td>@attr._2.value</td>
+                  <td>@attr._2.translation</td>
                 </tr>
               }
             </table>

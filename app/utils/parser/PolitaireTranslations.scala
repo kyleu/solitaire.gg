@@ -1,7 +1,7 @@
 package utils.parser
 
 object PolitaireTranslations {
-  val translationTable = {
+  private[this] val translationTable = {
     PolitaireGameParser.translations ++
     PolitaireDeckParser.translations ++
     PolitaireFoundationParser.translations ++
@@ -17,6 +17,15 @@ object PolitaireTranslations {
       "nrot" -> Map(1 -> "1", 2 -> "2", 3 -> "3", 4 -> "4", 5 -> "5", 6 -> "6", 7 -> "7", 8 -> "8", 9 -> "9", 10 -> "10", -1 -> "Unlimited"),
       "ndraw" -> Map(1 -> "1", 2 -> "2", 3 -> "3", 4 -> "4", 5 -> "5", 6 -> "6", 7 -> "7", 8 -> "8", 9 -> "9", 10 -> "10", -1 -> "Unlimited")
     )
+  }
+
+  def getTranslation(key: String) = {
+    val c = key(1)
+    if(c == '1' || c == '2' || c == '3' || c == '4') {
+      translationTable.get(key.head + "0" + key.tail.tail)
+    } else {
+      translationTable.get(key)
+    }
   }
 
   def parseBitmask(key: String, i: Int) = {
