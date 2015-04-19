@@ -6,13 +6,9 @@ import utils.JsonUtils
 import scala.io.Source
 
 object PolitaireParser {
-  case class Variant(
-    id: String,
-    attributes: collection.mutable.LinkedHashMap[String, (Any, Option[String])],
-    body: JsValue
-  )
+  case class Variant(id: String, attributes: collection.mutable.LinkedHashMap[String, (Any, Option[String])], body: JsValue)
 
-  lazy val gameList = {
+  lazy val politaireList = {
     val body = Source.fromFile("../politaire.js").getLines().mkString("\n")
     val gamesStartIndex = body.indexOf("var games=") + 10
     if(gamesStartIndex < 10) {
@@ -25,9 +21,11 @@ object PolitaireParser {
 
     val gamesContent = body.substring(gamesStartIndex, gamesEndIndex).replaceAll("([a-zA-Z0-9]*):", "\"$1\":")
     val cleanGamesContent = JsonUtils.cleanJson(gamesContent)
-    val gamesJson = parseJson(cleanGamesContent)
+    val gamesJson = Json.parse(cleanGamesContent).as[JsObject]
     parseVariants(gamesJson).toSeq
   }
+
+  lazy val gameRules = politaireList.map(new PolitaireGameRulesParser(_).parse())
 
   private[this] def parseVariants(json: JsObject) = json.value.flatMap { js =>
     try {
@@ -50,7 +48,7 @@ object PolitaireParser {
           case Some(x) => n.toInt -> x.get(n.toInt)
           case None => n.toInt -> None
         }
-        case x: JsUndefined => default.foreach(x => ret(attr._2) = (x, PolitaireTranslations.translationTable.get(attr._1) match {
+        case _: JsUndefined => default.foreach(x => ret(attr._2) = (x, PolitaireTranslations.translationTable.get(attr._1) match {
           case Some(a) => try { a.get(x.toString.toInt) } catch { case x: Exception => Some(x.toString) }
           case None => None
         }))
@@ -69,9 +67,5 @@ object PolitaireParser {
       ret("*" + unknown._1) = unknown._2 -> None
     }
     ret
-  }
-
-  private[this] def parseJson(json: String) = {
-    Json.parse(json).as[JsObject]
   }
 }

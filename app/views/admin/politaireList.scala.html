@@ -40,7 +40,7 @@
     @for(game <- variants.sortBy(_.id)) {
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="text-large">@game.attributes("Variant title")._1 (@game.id)</div>
+          <div class="text-large">@game.attributes("Title")._1 (@game.id)</div>
           <div class="game-description"><em>@game.attributes("Description")._1</em></div>
           <div class="game-attributes">
             <table class="table table-bordered">

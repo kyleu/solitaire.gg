@@ -23,8 +23,20 @@ object AdminController extends BaseController {
   }
 
   def testbed = AuthenticatedAction { implicit request =>
-     requireAdmin {
-      Ok(views.html.admin.politaireParser(PolitaireParser.gameList))
+    requireAdmin {
+      Ok("Testbed!")
+    }
+  }
+
+  def politaire = AuthenticatedAction { implicit request =>
+    requireAdmin {
+      Ok(views.html.admin.politaireList(PolitaireParser.politaireList))
+    }
+  }
+
+  def rules = AuthenticatedAction { implicit request =>
+    requireAdmin {
+      Ok(views.html.admin.rulesList(PolitaireParser.gameRules))
     }
   }
 

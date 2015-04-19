@@ -2,7 +2,9 @@ package utils.parser
 
 object PolitaireFoundationParser {
   val titles = Seq(
+    "Fn" -> "Foundation Sets",
     "F0Nm" -> "Foundation name",
+    "F0n" -> "Number of foundation piles",
     "F0b" -> "Foundation low card",
     "F0d" -> "Foundation initial cards",
     "F0s" -> "Foundation suit match rule",
@@ -17,6 +19,7 @@ object PolitaireFoundationParser {
     "F0ao" -> "Perform auto-moves from"
   )
   val translations = Map(
+    "F0n" -> Map(-1 -> "4 per deck", 1 -> "1 stack", 2 -> "2 stacks", 4 -> "4 stacks", 8 -> "8 stacks", 12 -> "12 stacks", 16 -> "16 stacks"),
     "F0b" -> Map(
       21 -> "Deck's low card", 22 -> "Deck's high card",
       1 -> "Ace", 2 -> "Two", 3 -> "Three", 4 -> "Four", 5 -> "Five", 6 -> "Six", 7 -> "Seven", 8 -> "Eight", 9 -> "Nine", 10 -> "Ten",

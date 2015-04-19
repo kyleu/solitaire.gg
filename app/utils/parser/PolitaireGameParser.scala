@@ -2,7 +2,7 @@ package utils.parser
 
 object PolitaireGameParser {
   val titles = Seq(
-    "title" -> "Variant title",
+    "title" -> "Title",
     "desc" -> "Description",
     "victory" -> "Victory condition",
     "pairs" -> "Card removal method"

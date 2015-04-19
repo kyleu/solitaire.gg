@@ -1,7 +1,8 @@
 package utils.parser
 
 object PolitaireLookup {
-  val titleTable = PolitaireGameParser.titles ++
+  val titleTable =
+    PolitaireGameParser.titles ++
     PolitaireDeckParser.titles ++
     PolitaireFoundationParser.titles ++
     PolitaireTableauParser.titles ++

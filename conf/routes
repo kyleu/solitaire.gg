@@ -17,7 +17,10 @@ GET        /websocket                         controllers.WebsocketController.co
 GET        /admin/enable                      controllers.admin.AdminController.enable
 
 GET        /admin/status                      controllers.admin.AdminController.status
+
 GET        /admin/testbed                     controllers.admin.AdminController.testbed
+GET        /admin/politaire                   controllers.admin.AdminController.politaire
+GET        /admin/rules                       controllers.admin.AdminController.rules
 
 GET        /admin/trace/connection/:id        controllers.admin.AdminController.traceConnection(id: java.util.UUID)
 GET        /admin/trace/client/:id            controllers.admin.AdminController.traceClient(id: java.util.UUID)
