@@ -1,0 +1,67 @@
+@(variants: Seq[utils.parser.PolitaireParser.Variant])(implicit session: Session, flash: Flash)
+@layout.admin(utils.Config.projectName + " Parser", "parser") {
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="text-large">
+          @utils.Formatter.withCommas(variants.size) Available Games
+        </div>
+      </div>
+    </div>
+
+    <h4>Defaults</h4>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="game-attributes">
+          <table class="table table-bordered">
+            <tr>
+              <th class="th-attribute-name">Attribute</th>
+              <th class="th-attribute-value">Value</th>
+              <th>Meaning</th>
+            </tr>
+            @for(title <- utils.parser.PolitaireLookup.titleTable) {
+              @defining(utils.parser.PolitaireDefaults.defaults(title._1)) { attr =>
+                <tr>
+                  <td title="@title._1">@title._2</td>
+                  <td>@attr</td>
+                  <td>@utils.parser.PolitaireTranslations.translationTable.get(title._1) match {
+                    case Some(x) => { @x.get(attr.toString.toInt) }
+                    case None => { None }
+                  }</td>
+                </tr>
+              }
+            }
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <h4>Variants</h4>
+    @for(game <- variants.sortBy(_.id)) {
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="text-large">@game.attributes("Variant title")._1 (@game.id)</div>
+          <div class="game-description"><em>@game.attributes("Description")._1</em></div>
+          <div class="game-attributes">
+            <table class="table table-bordered">
+              <tr>
+                <th class="th-attribute-name">Attribute</th>
+                <th class="th-attribute-value">Value</th>
+                <th>Meaning</th>
+              </tr>
+              @for(attr <- game.attributes.filterNot(x => x._1 == "Variant title" || x._1 == "Description")) {
+                <tr>
+                  <td>@attr._1</td>
+                  <td>@attr._2._1</td>
+                  <td>@attr._2._2</td>
+                </tr>
+              }
+            </table>
+          </div>
+          <div class="game-json"><pre>@play.api.libs.json.Json.prettyPrint(game.body)</pre></div>
+        </div>
+      </div>
+    }
+  </div>
+
+}

@@ -26,11 +26,9 @@ object Server {
     import Dependencies._
     Seq(
       Database.jdub, Database.postgresJdbc,
-      WebJars.requireJs, WebJars.bootstrap,
-      Testing.akkaTestkit,
-      filters,
-      Metrics.metrics, Metrics.metricsHealthChecks, Metrics.metricsJson,
-      Metrics.metricsJvm, Metrics.jettyServlet, Metrics.metricsServlets, Metrics.metricsGraphite
+      filters, Network.playWs, Testing.akkaTestkit,
+      Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
+      WebJars.requireJs, WebJars.bootstrap
     )
   }
 

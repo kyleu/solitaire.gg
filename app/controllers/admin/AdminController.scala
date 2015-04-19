@@ -9,6 +9,7 @@ import controllers.BaseController.AuthenticatedAction
 import models._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.{ AccountService, ActorSupervisor }
+import utils.parser.PolitaireParser
 
 import scala.concurrent.duration._
 import scala.util.Random
@@ -19,6 +20,12 @@ object AdminController extends BaseController {
   def enable = AuthenticatedAction { implicit request =>
     AccountService.updateAccountRole(request.accountId, "admin")
     Ok("OK").withSession(request.session + ("role" -> "admin"))
+  }
+
+  def testbed = AuthenticatedAction { implicit request =>
+     requireAdmin {
+      Ok(views.html.admin.politaireParser(PolitaireParser.gameList))
+    }
   }
 
   def status = AuthenticatedAction.async { implicit request =>
