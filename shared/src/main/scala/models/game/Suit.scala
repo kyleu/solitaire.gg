@@ -14,7 +14,7 @@ sealed trait Suit extends Ordered[Suit] {
   def toChar: Char
   def value: Int
 
-  override def compare(that: Suit) = this.value * 13 - that.value * 13
+  override def compare(that: Suit) = -(that.value * 13 - this.value * 13)
 }
 
 object Suit {

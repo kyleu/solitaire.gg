@@ -8,7 +8,7 @@ import controllers.BaseController
 import controllers.BaseController.AuthenticatedAction
 import models._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.{ AccountService, ActorSupervisor }
+import services.{ Testbed, AccountService, ActorSupervisor }
 import utils.parser.PolitaireParser
 
 import scala.concurrent.duration._
@@ -24,7 +24,7 @@ object AdminController extends BaseController {
 
   def testbed = AuthenticatedAction { implicit request =>
     requireAdmin {
-      Ok("Testbed!")
+      Ok(Testbed.go())
     }
   }
 
