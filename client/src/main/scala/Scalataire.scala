@@ -45,7 +45,7 @@ object Scalataire extends js.JSApp with ScalataireHelper {
   }
 
   protected[this] def send(rm: ResponseMessage, registerUndoResponse: Boolean = true) = {
-    if(registerUndoResponse) {
+    if (registerUndoResponse) {
       undoHelper.registerResponse(rm)
     }
     val json = JsonSerializers.write(rm)
@@ -63,9 +63,7 @@ object Scalataire extends js.JSApp with ScalataireHelper {
   }
 
   private[this] def handleUndo() = {
-    if (undoHelper.historyQueue.isEmpty) {
-      // no op
-    } else {
+    if (undoHelper.historyQueue.nonEmpty) {
       val undone = undoHelper.undo(gameState)
       send(undone, registerUndoResponse = false)
       send(PossibleMoves(possibleMoves(), undoHelper.historyQueue.size, undoHelper.undoneQueue.size), registerUndoResponse = false)
@@ -73,9 +71,7 @@ object Scalataire extends js.JSApp with ScalataireHelper {
   }
 
   private[this] def handleRedo() = {
-    if (undoHelper.undoneQueue.isEmpty) {
-      // no op
-    } else {
+    if (undoHelper.undoneQueue.nonEmpty) {
       val redone = undoHelper.redo(gameState)
       send(redone, registerUndoResponse = false)
       send(PossibleMoves(possibleMoves(), undoHelper.historyQueue.size, undoHelper.undoneQueue.size), registerUndoResponse = false)

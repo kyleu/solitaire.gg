@@ -45,7 +45,7 @@ trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionServic
       "accountId" -> accountId,
       "name" -> name,
       "game" -> activeGameId.map { i =>
-        "<a href=\"" + controllers.admin.routes.AdminController.traceGame(i) + "\" class=\"trace-link\">" + i + "</a>"
+        "<a href=\"" + controllers.admin.routes.TraceController.traceGame(i) + "\" class=\"trace-link\">" + i + "</a>"
       }.getOrElse("Not in game")
     ))
     sender() ! ret

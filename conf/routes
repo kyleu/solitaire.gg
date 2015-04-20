@@ -22,9 +22,9 @@ GET        /admin/testbed                     controllers.admin.AdminController.
 GET        /admin/politaire                   controllers.admin.AdminController.politaire
 GET        /admin/rules                       controllers.admin.AdminController.rules
 
-GET        /admin/trace/connection/:id        controllers.admin.AdminController.traceConnection(id: java.util.UUID)
-GET        /admin/trace/client/:id            controllers.admin.AdminController.traceClient(id: java.util.UUID)
-GET        /admin/trace/game/:id              controllers.admin.AdminController.traceGame(id: java.util.UUID)
+GET        /admin/trace/connection/:id        controllers.admin.TraceController.traceConnection(id: java.util.UUID)
+GET        /admin/trace/client/:id            controllers.admin.TraceController.traceClient(id: java.util.UUID)
+GET        /admin/trace/game/:id              controllers.admin.TraceController.traceGame(id: java.util.UUID)
 
 GET        /admin/observe/random              controllers.admin.AdminController.observeRandomGame()
 GET        /admin/observe/:id                 controllers.admin.AdminController.observeGameAsAdmin(id: java.util.UUID)

@@ -8,7 +8,7 @@ class PolitaireGameRulesParser(val variant: PolitaireParser.Variant) extends Pol
     parseInternal()
   } catch {
     case x: Exception =>
-      throw new IllegalStateException("Exception [" + x.getClass.getSimpleName + ": " +  x.getMessage + "] encountered while parsing [" + variant.id + "].", x)
+      throw new IllegalStateException("Exception [" + x.getClass.getSimpleName + ": " + x.getMessage + "] encountered while parsing [" + variant.id + "].", x)
   }
   private[this] def parseInternal() = {
     val deckOptions = DeckOptions(
@@ -17,7 +17,7 @@ class PolitaireGameRulesParser(val variant: PolitaireParser.Variant) extends Pol
       ranks = Rank.all,
       lowRank = {
         val lowChar = getString("lowpip").headOption.getOrElse(throw new IllegalStateException())
-        if(lowChar == '.') { None } else { Some(Rank.fromChar(lowChar)) }
+        if (lowChar == '.') { None } else { Some(Rank.fromChar(lowChar)) }
       }
     )
 

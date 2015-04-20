@@ -71,7 +71,7 @@ object PolitaireTableauParser {
       0 -> "Do nothing special", 1 -> "Move kings to stack bottoms", 3 -> "Move cards to foundations", 5 -> "Move cards to foundations and replace",
       2 -> "Move cards to empty foundations", 4 -> "Move cards to empty foundations and replace"
     ),
-    "T0fx" -> Map(0 ->"Do nothing special", 2 -> "limit piles to two jacks"),
+    "T0fx" -> Map(0 -> "Do nothing special", 2 -> "limit piles to two jacks"),
     "T0dc" -> Map(
       0 -> "0 columns", 1 -> "1 columns", 2 -> "2 columns", 3 -> "3 columns", 4 -> "4 columns", 5 -> "5 columns", 6 -> "6 columns", 7 -> "7 columns"
     )

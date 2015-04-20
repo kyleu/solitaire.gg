@@ -13,12 +13,12 @@ object VictoryCondition {
 }
 
 case class DeckOptions(
-  numDecks: Int = 1,
-  suits: Seq[Suit] = Suit.all,
-  ranks: Seq[Rank] = Rank.all,
-  lowRank: Option[Rank] = Some(Rank.Ace)
+    numDecks: Int = 1,
+    suits: Seq[Suit] = Suit.all,
+    ranks: Seq[Rank] = Rank.all,
+    lowRank: Option[Rank] = Some(Rank.Ace)
 ) {
-  val highRank = lowRank.map(lr => if(lr == Rank.Ace) { Rank.King } else { Rank.Ace })
+  val highRank = lowRank.map(lr => if (lr == Rank.Ace) { Rank.King } else { Rank.Ace })
 }
 
 sealed trait InitialCards

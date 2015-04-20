@@ -8,11 +8,11 @@ import org.joda.time.LocalDateTime
 import services.GameHistoryService
 
 class GameService(
-  val id: UUID,
-  val variant: String,
-  val seed: Int,
-  val started: LocalDateTime,
-  private[this] val initialPlayers: List[PlayerRecord]
+    val id: UUID,
+    val variant: String,
+    val seed: Int,
+    val started: LocalDateTime,
+    private[this] val initialPlayers: List[PlayerRecord]
 ) extends GameServiceHelper {
 
   log.info("Started game [" + variant + "] for players [" + initialPlayers.map(_.name).mkString(", ") + "] with seed [" + seed + "].")

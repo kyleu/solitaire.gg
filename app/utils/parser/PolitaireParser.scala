@@ -12,11 +12,11 @@ object PolitaireParser {
   lazy val politaireList = {
     val body = Source.fromFile("../politaire.js").getLines().mkString("\n")
     val gamesStartIndex = body.indexOf("var games=") + 10
-    if(gamesStartIndex < 10) {
+    if (gamesStartIndex < 10) {
       throw new IllegalStateException()
     }
     val gamesEndIndex = body.indexOf("};", gamesStartIndex) + 1
-    if(gamesEndIndex < 10) {
+    if (gamesEndIndex < 10) {
       throw new IllegalStateException()
     }
 
@@ -45,11 +45,7 @@ object PolitaireParser {
       variants.find(_.id == parentId) match {
         case Some(parent) =>
           val mergedParent = parent.attributes.get("like").map { x =>
-            if(x.value.toString.nonEmpty) {
-              withParent(parent, x.value.toString)
-            } else {
-              parent
-            }
+            if (x.value.toString.nonEmpty) { withParent(parent, x.value.toString) } else { parent }
           }.getOrElse(parent)
           val newAttributes = new collection.mutable.LinkedHashMap[String, Attr]()
           newAttributes ++= mergedParent.attributes
@@ -70,7 +66,6 @@ object PolitaireParser {
 
   private[this] def getAttributes(id: String, data: JsObject) = {
     val ret = collection.mutable.LinkedHashMap.empty[String, Attr]
-
     def processAttr(attr: (String, String), default: Option[Any] = None, markDefaults: Boolean = true) {
       data \ attr._1 match {
         case JsString(s) => ret(attr._1) = Attr(attr._1, attr._2, s.trim, None, defaultVal = false)
@@ -87,18 +82,15 @@ object PolitaireParser {
         case x => throw new IllegalArgumentException("Invalid type [" + x.getClass.getSimpleName + ": " + x + "].")
       }
     }
-
-    for(attr <- PolitaireLookup.titleTable) {
+    for (attr <- PolitaireLookup.titleTable) {
       attr._1 match {
         case "title" => processAttr(attr, Some(id.head.toUpper + id.tail), markDefaults = false)
         case _ => processAttr(attr, PolitaireDefaults.getDefault(attr._1))
       }
     }
-
     data.value.filterNot(x => PolitaireLookup.titleMap.get(x._1).isDefined).foreach { unknown =>
       processAttr((unknown._1, "*" + unknown._1), PolitaireDefaults.getDefault(unknown._1))
     }
-
     ret
   }
 }

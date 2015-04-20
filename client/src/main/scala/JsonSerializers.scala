@@ -13,7 +13,7 @@ object JsonSerializers {
     case None => Js.Null
   }
   private implicit val boolOptionWriter = upickle.Writer[Option[Boolean]] {
-    case Some(b) => if(b) { Js.True } else { Js.False }
+    case Some(b) => if (b) { Js.True } else { Js.False }
     case None => Js.Null
   }
 
@@ -21,14 +21,15 @@ object JsonSerializers {
   private implicit val suitWriter = upickle.Writer[Suit] { case s => Js.Str(s.toChar.toString) }
   private implicit val cardWriter = upickle.Writer[Card] { case c => writeJs(c) }
 
-  private implicit val clientPileOptionsWriter = upickle.Writer[ClientPileOptions] { case cpo =>
-    val dfo = cpo.dragFromOptions.map( opts => Js.Obj(opts.map(opt => opt._1 -> Js.Str(opt._2)).toSeq: _*)).getOrElse(Js.Null)
-    Js.Obj(
-      "cardsShown" -> writeJs(cpo.cardsShown),
-      "direction" -> writeJs(cpo.direction),
-      "dragFromConstraint" -> Js.Str(cpo.dragFromConstraint),
-      "dragFromOptions" -> dfo
-    )
+  private implicit val clientPileOptionsWriter = upickle.Writer[ClientPileOptions] {
+    case cpo =>
+      val dfo = cpo.dragFromOptions.map(opts => Js.Obj(opts.map(opt => opt._1 -> Js.Str(opt._2)).toSeq: _*)).getOrElse(Js.Null)
+      Js.Obj(
+        "cardsShown" -> writeJs(cpo.cardsShown),
+        "direction" -> writeJs(cpo.direction),
+        "dragFromConstraint" -> Js.Str(cpo.dragFromConstraint),
+        "dragFromOptions" -> dfo
+      )
   }
   private implicit val pileOptionsWriter = upickle.Writer[PileOptions] { case po => writeJs(ClientPileOptions.fromPileOptions(po)) }
   private implicit val pileWriter = upickle.Writer[Pile] { case p => writeJs(p) }

@@ -1,6 +1,6 @@
 package utils
 
-import org.joda.time.{LocalDateTime, LocalTime, LocalDate}
+import org.joda.time.{ LocalDateTime, LocalTime, LocalDate }
 
 object Formatter {
   private[this] val numFormatter = java.text.NumberFormat.getNumberInstance(java.util.Locale.US)

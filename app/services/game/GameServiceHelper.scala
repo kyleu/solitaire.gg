@@ -8,8 +8,8 @@ trait GameServiceHelper
     with Logging
     with GameServiceCardHelper
     with GameServiceConnectionHelper
+    with GameServiceMessageHelper
     with GameServicePossibleMovesHelper
     with GameServiceTraceHelper
     with GameServiceUndoHelper { this: GameService =>
-
 }

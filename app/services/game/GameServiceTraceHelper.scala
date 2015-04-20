@@ -9,7 +9,7 @@ trait GameServiceTraceHelper { this: GameService =>
   private[this] val started = new DateTime()
 
   protected[this] def handleGameTrace() {
-    def connUrl(id: UUID) = controllers.admin.routes.AdminController.traceConnection(id).url
+    def connUrl(id: UUID) = controllers.admin.routes.TraceController.traceConnection(id).url
     val ret = TraceResponse(this.id, List(
       "variant" -> gameVariant.description.key,
       "seed" -> gameVariant.seed,
