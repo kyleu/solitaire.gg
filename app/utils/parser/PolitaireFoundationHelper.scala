@@ -39,10 +39,10 @@ trait PolitaireFoundationHelper { this: PolitaireGameRulesParser =>
             case true => FoundationCanMoveFrom.Always
           }
         },
-        mayMoveToFrom = Nil, //o
+        mayMoveToFrom = PolitaireTranslations.parseBitmask("F0o", getInt(prefix + "o")),
         offscreen = getBoolean(prefix + "i"),
         autoMoveCards = getBoolean(prefix + "a"),
-        autoMoveFrom = Nil //ao
+        autoMoveFrom = PolitaireTranslations.parseBitmask("F0ao", getInt(prefix + "ao"))
       )
     }.toSeq
     foundations

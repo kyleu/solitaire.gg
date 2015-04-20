@@ -37,5 +37,5 @@ object PolitaireTranslations {
         None
       }
     }
-  }
+  }.toSeq
 }

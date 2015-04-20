@@ -57,12 +57,12 @@ object PolitaireTableauParser {
       256 -> "Build up by 2", 16 -> "Build down by 2", 512 -> "Build up by 3", 8 -> "Build down by 3", 1024 -> "Build up by 4",
       4 -> "Build down by 4", 8192 -> "Build nth pile up by n", 8191 -> "Regardless of rank"
     ),
-    "T0o" -> Map(2 -> "Waste", 4 -> "Tableau", 128 -> "Pyramid", 8 -> "Foundation"),
+    "T0o" -> PolitaireParserHelper.pileTypes,
     "T0af" -> Map(0 -> "Nowhere", 4 -> "Stock", 2 -> "Waste", 6 -> "First waste then stock", 10 -> "First stock then waste", -1 -> "Next tableau column"),
     "T0f" -> Map(
       0 -> "Any card", 5 -> "No card", 1 -> "Kings only", 2 -> "Kings only until stock empty", 7 -> "Aces only", 9 -> "Kings or aces only", 8 -> "Sevens only"
     ),
-    "T0fo" -> Map(2 -> "Waste", 4 -> "Tableau", 128 -> "Pyramid", 8 -> "Foundation"),
+    "T0fo" -> PolitaireParserHelper.pileTypes,
     "T0m" -> Map(
       0 -> "Unlimited", 1 -> "1 cards", 2 -> "2 cards", 3 -> "3 cards", 4 -> "4 cards", 5 -> "5 cards", 6 -> "6 cards", 7 -> "7 cards", 8 -> "8 cards",
       9 -> "9 cards", 10 -> "10 cards", 11 -> "11 cards", 12 -> "12 cards", 13 -> "13 cards"

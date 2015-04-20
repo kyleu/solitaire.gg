@@ -43,12 +43,12 @@ object PolitaireFoundationParser {
     "FOw" -> Map(0 -> "No", 1 -> "Yes"),
     "F0cs" -> Map(0 -> "No", 1 -> "Yes"),
     "F0mb" -> Map(0 -> "Never", 1 -> "Always", 2 -> "Once the stock is empty"),
-    "F0o" -> Map(2 -> "Waste", 4 -> "Tableau", 128 -> "Pyramid", 8 -> "Foundation"),
+    "F0o" -> PolitaireParserHelper.pileTypes,
     "F0i" -> Map(0 -> "No", 1 -> "Yes"),
     "F0a" -> Map(
       0 -> "Never", 4 -> "Keeping piles level", 3 -> "When all stackable cards are off", 2 -> "When one stackable card is off",
       5 -> "When stackable cards are removable", 1 -> "Whenever possible"
     ),
-    "F0ao" -> Map(2 -> "Waste", 4 -> "Tableau", 128 -> "Pyramid", 8 -> "Foundation")
+    "F0ao" -> PolitaireParserHelper.pileTypes
   )
 }

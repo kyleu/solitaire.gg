@@ -23,7 +23,7 @@ object PolitaireParser {
     val gamesContent = body.substring(gamesStartIndex, gamesEndIndex).replaceAll("([a-zA-Z0-9]*):", "\"$1\":")
     val cleanGamesContent = JsonUtils.cleanJson(gamesContent)
     val gamesJson = Json.parse(cleanGamesContent).as[JsObject]
-    parseVariants(gamesJson).toSeq
+    parseVariants(gamesJson).toSeq.sortBy(_.id)
   }
 
   lazy val gameRules = politaireList.map(p => new PolitaireGameRulesParser(p).parse())

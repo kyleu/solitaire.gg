@@ -5,7 +5,7 @@ import scala.util.Random
 object Deck {
   def fresh() = {
     val cards = for {
-      suit <- Suit.all
+      suit <- Suit.standard
       rank <- Rank.all.reverse
     } yield Card(r = rank, s = suit, u = false)
     Deck(cards.toList)

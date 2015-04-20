@@ -61,5 +61,5 @@ case class TableauSet(
   maxCards: Int,
   actionDuringDeal: PileAction,
   actionAfterDeal: PileAction,
-  pileWithLowCardsAtBottom: Int
+  pilesWithLowCardsAtBottom: Int
 )

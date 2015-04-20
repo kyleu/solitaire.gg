@@ -13,8 +13,8 @@ class PolitaireGameRulesParser(val variant: PolitaireParser.Variant) extends Pol
   private[this] def parseInternal() = {
     val deckOptions = DeckOptions(
       numDecks = getInt("ndecks"),
-      suits = Suit.all,
-      ranks = Rank.all,
+      suits = PolitaireTranslations.parseBitmask("suits", getInt("stdsuits")).map(x => Suit.fromChar(x.head)).sortBy(_.value),
+      ranks = PolitaireTranslations.parseBitmask("ranks", getInt("ranks")).map(x => Rank.fromChar(x.head)).sortBy(_.value),
       lowRank = {
         val lowChar = getString("lowpip").headOption.getOrElse(throw new IllegalStateException())
         if (lowChar == '.') { None } else { Some(Rank.fromChar(lowChar)) }

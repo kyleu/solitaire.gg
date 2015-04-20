@@ -14,7 +14,7 @@ object VictoryCondition {
 
 case class DeckOptions(
     numDecks: Int = 1,
-    suits: Seq[Suit] = Suit.all,
+    suits: Seq[Suit] = Suit.standard,
     ranks: Seq[Rank] = Rank.all,
     lowRank: Option[Rank] = Some(Rank.Ace)
 ) {

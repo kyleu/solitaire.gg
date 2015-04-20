@@ -51,13 +51,25 @@ trait PolitaireTableauHelper { this: PolitaireGameRulesParser =>
           case 8 => TableauFillEmptyWith.Sevens
         },
 
-        mayMoveToNonEmptyFrom = Nil,
-        mayMoveToEmptyFrom = Nil,
+        mayMoveToNonEmptyFrom = PolitaireTranslations.parseBitmask("T0o", getInt(prefix + "o")),
+        mayMoveToEmptyFrom = PolitaireTranslations.parseBitmask("T0fo", getInt(prefix + "fo")),
 
-        maxCards = 1,
-        actionDuringDeal = PileAction.None,
-        actionAfterDeal = PileAction.None,
-        pileWithLowCardsAtBottom = 1
+        maxCards = getInt(prefix + "m"),
+        actionDuringDeal = getInt(prefix + "dd") match {
+          case 0 => PileAction.None
+          case 1 => PileAction.MoveKingsToBottom
+          case 2 => PileAction.MoveToEmptyFoundation
+          case 3 => PileAction.MoveToFoundation
+          case 4 => PileAction.MoveToEmptyFoundationAndReplace
+          case 5 => PileAction.MoveToFoundationAndReplace
+          case _ => throw new IllegalStateException(i.toString)
+        },
+        actionAfterDeal = getInt(prefix + "fx") match {
+          case 0 => PileAction.None
+          case 2 => PileAction.LimitToTwoJacks
+          case _ => throw new IllegalStateException(i.toString)
+        },
+        pilesWithLowCardsAtBottom = getInt(prefix + "dc")
       )
     }.toSeq
     tableaus
