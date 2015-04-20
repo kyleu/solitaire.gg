@@ -2,7 +2,7 @@ package utils.parser.politaire
 
 import models.game.rules.{ InitialCards, RankMatchRule, SuitMatchRule }
 
-trait GameRulesParserHelper extends FoundationParserHelper with TableauParserHelper { this: GameRulesParser =>
+trait GameRulesParserHelper extends ParserStockHelper with ParserFoundationHelper with ParserTableauHelper { this: GameRulesParser =>
   protected[this] def getString(key: String) = {
     val attr = variant.attributes(key)
     attr.translation.getOrElse(attr.value match {

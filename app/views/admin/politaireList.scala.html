@@ -1,6 +1,7 @@
 @(variants: Seq[utils.parser.politaire.PolitaireParser.Variant])(implicit session: Session, flash: Flash)
-@import utils.parser.politaire.PolitaireTranslations
-@import utils.parser.politaire.PolitaireLookup
+@import utils.parser.politaire.lookup.PolitaireLookup
+@import utils.parser.politaire.lookup.PolitaireLookup
+@import utils.parser.politaire.lookup.PolitaireLookup
 @import utils.parser.politaire.ParserDefaults
 @layout.admin(utils.Config.projectName + " Parser", "parser") {
   <div class="container">
@@ -29,7 +30,7 @@
                   <td>@title._1</td>
                   <td>@title._2</td>
                   <td>@attr</td>
-                  <td>@PolitaireTranslations.getTranslation(title._1) match {
+                  <td>@PolitaireLookup.getTranslation(title._1) match {
                     case Some(x) => { @x.get(attr.toString.toInt) }
                     case None => { }
                   }</td>

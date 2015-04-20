@@ -1,6 +1,8 @@
-package utils.parser.politaire
+package utils.parser.politaire.lookup
 
-object TableauParser {
+import utils.parser.politaire.PolitaireParserHelper
+
+object TableauLookup {
   val titles = Seq(
     "T0Nm" -> "Tableau name", "T0n" -> "Tableau piles", "T0d" -> "Tableau initial cards", "T0df" -> "Tableau cards face down",
     "T0s" -> "Tableau suit match rule for building", "T0r" -> "Tableau rank match rule for building", "T0w" -> "Tableau wraps from king to ace",

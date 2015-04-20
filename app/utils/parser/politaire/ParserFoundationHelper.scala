@@ -2,8 +2,9 @@ package utils.parser.politaire
 
 import models.game._
 import models.game.rules._
+import utils.parser.politaire.lookup.PolitaireLookup
 
-trait FoundationParserHelper { this: GameRulesParser =>
+trait ParserFoundationHelper { this: GameRulesParser =>
   protected[this] def getFoundations(deckOptions: DeckOptions) = {
     val foundationCount = getInt("Fn")
     val foundations = (0 to foundationCount - 1).map { i =>
@@ -39,10 +40,10 @@ trait FoundationParserHelper { this: GameRulesParser =>
             case true => FoundationCanMoveFrom.Always
           }
         },
-        mayMoveToFrom = PolitaireTranslations.parseBitmask("F0o", getInt(prefix + "o")),
+        mayMoveToFrom = PolitaireLookup.parseBitmask("F0o", getInt(prefix + "o")),
         offscreen = getBoolean(prefix + "i"),
         autoMoveCards = getBoolean(prefix + "a"),
-        autoMoveFrom = PolitaireTranslations.parseBitmask("F0ao", getInt(prefix + "ao"))
+        autoMoveFrom = PolitaireLookup.parseBitmask("F0ao", getInt(prefix + "ao"))
       )
     }.toSeq
     foundations

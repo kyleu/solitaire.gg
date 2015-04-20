@@ -1,16 +1,35 @@
-package utils.parser.politaire
+package utils.parser.politaire.lookup
 
-object PolitaireTranslations {
+object PolitaireLookup {
+  val titleTable =
+    GameLookup.titles ++
+      DeckLookup.titles ++
+      FoundationLookup.titles ++
+      TableauLookup.titles ++
+      StockLookup.titles ++
+      WasteLookup.titles ++
+      ReserveLookup.titles ++
+      CellLookup.titles ++
+      PyramidLookup.titles ++
+      Seq(
+        // Special
+        "RDn" -> "Allowed pick ups/redeals",
+        "nrot" -> "Allowed tableau rotations",
+        "ndraw" -> "Allowed draws"
+      )
+
+  val titleMap = titleTable.toMap
+
   private[this] val translationTable = {
-    GameParser.translations ++
-      DeckParser.translations ++
-      FoundationParser.translations ++
-      TableauParser.translations ++
-      StockParser.translations ++
-      WasteParser.translations ++
-      ReserveParser.translations ++
-      CellParser.translations ++
-      PyramidParser.translations ++
+    GameLookup.translations ++
+      DeckLookup.translations ++
+      FoundationLookup.translations ++
+      TableauLookup.translations ++
+      StockLookup.translations ++
+      WasteLookup.translations ++
+      ReserveLookup.translations ++
+      CellLookup.translations ++
+      PyramidLookup.translations ++
       Map(
         // Special
         "RDn" -> Map(1 -> "1", 2 -> "2", 3 -> "3", 4 -> "4", 5 -> "5", 6 -> "6", 7 -> "7", 8 -> "8", 9 -> "9", 10 -> "10", -1 -> "Unlimited"),

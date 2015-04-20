@@ -1,6 +1,6 @@
-package utils.parser.politaire
+package utils.parser.politaire.lookup
 
-object GameParser {
+object GameLookup {
   val titles = Seq(
     "title" -> "Title",
     "desc" -> "Description",

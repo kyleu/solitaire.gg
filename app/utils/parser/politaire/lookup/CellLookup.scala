@@ -1,6 +1,6 @@
-package utils.parser.politaire
+package utils.parser.politaire.lookup
 
-object CellParser {
+object CellLookup {
   val titles = Seq(
     "C0n" -> "Number of cells",
     "C0Nm" -> "Cells name",

@@ -1,6 +1,6 @@
-package utils.parser.politaire
+package utils.parser.politaire.lookup
 
-object StockParser {
+object StockLookup {
   val titles = Seq(
     "smode" -> "Stock pile",
     "S0Nm" -> "Stock name",

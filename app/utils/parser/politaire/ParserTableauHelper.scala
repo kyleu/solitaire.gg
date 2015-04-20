@@ -1,8 +1,9 @@
 package utils.parser.politaire
 
 import models.game.rules._
+import utils.parser.politaire.lookup.PolitaireLookup
 
-trait TableauParserHelper { this: GameRulesParser =>
+trait ParserTableauHelper { this: GameRulesParser =>
   protected[this] def getTableaus(deckOptions: DeckOptions) = {
     val tableauCount = getInt("Fn")
     val tableaus = (0 to tableauCount - 1).map { i =>
@@ -51,8 +52,8 @@ trait TableauParserHelper { this: GameRulesParser =>
           case 8 => TableauFillEmptyWith.Sevens
         },
 
-        mayMoveToNonEmptyFrom = PolitaireTranslations.parseBitmask("T0o", getInt(prefix + "o")),
-        mayMoveToEmptyFrom = PolitaireTranslations.parseBitmask("T0fo", getInt(prefix + "fo")),
+        mayMoveToNonEmptyFrom = PolitaireLookup.parseBitmask("T0o", getInt(prefix + "o")),
+        mayMoveToEmptyFrom = PolitaireLookup.parseBitmask("T0fo", getInt(prefix + "fo")),
 
         maxCards = getInt(prefix + "m"),
         actionDuringDeal = getInt(prefix + "dd") match {

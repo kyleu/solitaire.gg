@@ -1,6 +1,6 @@
-package utils.parser.politaire
+package utils.parser.politaire.lookup
 
-object ReserveParser {
+object ReserveLookup {
   val titles = Seq(
     "R0n" -> "Number of reserve piles",
     "R0d" -> "Reserve initial cards",

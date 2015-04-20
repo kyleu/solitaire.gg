@@ -2,6 +2,7 @@ package utils.parser.politaire
 
 import play.api.libs.json._
 import utils.JsonUtils
+import utils.parser.politaire.lookup.PolitaireLookup
 
 import scala.io.Source
 
@@ -69,13 +70,13 @@ object PolitaireParser {
     def processAttr(attr: (String, String), default: Option[Any] = None, markDefaults: Boolean = true) {
       data \ attr._1 match {
         case JsString(s) => ret(attr._1) = Attr(attr._1, attr._2, s.trim, None, defaultVal = false)
-        case JsNumber(n) => ret(attr._1) = PolitaireTranslations.getTranslation(attr._1) match {
+        case JsNumber(n) => ret(attr._1) = PolitaireLookup.getTranslation(attr._1) match {
           case Some(x) => Attr(attr._1, attr._2, n.toInt, x.get(n.toInt), defaultVal = false)
           case None => Attr(attr._1, attr._2, n.toInt, None, defaultVal = false)
         }
         case b: JsBoolean => ret(attr._1) = Attr(attr._1, attr._2, b.value, None, defaultVal = false)
         case _: JsUndefined =>
-          default.foreach(x => ret(attr._1) = Attr(attr._1, attr._2, x, PolitaireTranslations.getTranslation(attr._1) match {
+          default.foreach(x => ret(attr._1) = Attr(attr._1, attr._2, x, PolitaireLookup.getTranslation(attr._1) match {
             case Some(a) => try { a.get(x.toString.toInt) } catch { case x: Exception => Some(x.toString) }
             case None => None
           }, defaultVal = markDefaults))

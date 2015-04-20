@@ -2,6 +2,7 @@ package utils.parser.politaire
 
 import models.game._
 import models.game.rules._
+import utils.parser.politaire.lookup.PolitaireLookup
 
 class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesParserHelper {
   def parse() = try {
@@ -13,8 +14,8 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
   private[this] def parseInternal() = {
     val deckOptions = DeckOptions(
       numDecks = getInt("ndecks"),
-      suits = PolitaireTranslations.parseBitmask("suits", getInt("stdsuits")).map(x => Suit.fromChar(x.head)).sortBy(_.value),
-      ranks = PolitaireTranslations.parseBitmask("ranks", getInt("ranks")).map(x => Rank.fromChar(x.head)).sortBy(_.value),
+      suits = PolitaireLookup.parseBitmask("suits", getInt("stdsuits")).map(x => Suit.fromChar(x.head)).sortBy(_.value),
+      ranks = PolitaireLookup.parseBitmask("ranks", getInt("ranks")).map(x => Rank.fromChar(x.head)).sortBy(_.value),
       lowRank = {
         val lowChar = getString("lowpip").headOption.getOrElse(throw new IllegalStateException())
         if (lowChar == '.') { None } else { Some(Rank.fromChar(lowChar)) }
@@ -66,6 +67,7 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
       victoryCondition = victoryCondition,
       cardRemovalMethod = cardRemovalMethod,
       deckOptions = deckOptions,
+      stock = getStock,
       foundations = getFoundations(deckOptions),
       tableaus = getTableaus(deckOptions)
     )

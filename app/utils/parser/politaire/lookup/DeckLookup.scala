@@ -1,6 +1,8 @@
-package utils.parser.politaire
+package utils.parser.politaire.lookup
 
-object DeckParser {
+import utils.parser.politaire.PolitaireParserHelper
+
+object DeckLookup {
   val titles = Seq(
     "ndecks" -> "Number of decks",
     "stdsuits" -> "Suits in use",

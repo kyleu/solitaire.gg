@@ -17,6 +17,12 @@ object GameRulesSerializers {
 
   implicit val initialCardsWrites = stringWriter[InitialCards]
 
+  // Stock
+  implicit val stockDealToWrites = stringWriter[StockDealTo]
+  implicit val stockCardsDealtWrites = stringWriter[StockCardsDealt]
+
+  implicit val stockWrites = Json.writes[Stock]
+
   // Foundation
   implicit val foundationCanMoveFromWrites = stringWriter[FoundationCanMoveFrom]
   implicit val foundationLowRankWrites = stringWriter[FoundationLowRank]

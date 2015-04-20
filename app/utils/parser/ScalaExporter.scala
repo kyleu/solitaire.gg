@@ -54,64 +54,15 @@ object ScalaExporter {
     add(s"""    ranks = Seq(${rules.deckOptions.ranks.map(x => "Rank." + x).mkString(", ")}),""")
     add(s"""    lowRank = ${rules.deckOptions.lowRank.map("Rank." + _)}""")
     add(s"""  ),""")
-    if(rules.foundations.isEmpty) {
-      add(s"""  foundations = Nil,""")
-    } else {
-      add(s"""  foundations = Seq(""")
-      add(rules.foundations.map { f =>
-        s"""    FoundationSet(\n""" +
-        s"""      name = "${f.name.replaceAllLiterally("\"", "")}",\n""" +
-        s"""      numPiles = ${f.numPiles},\n""" +
-        s"""      lowRank = FoundationLowRank.${cls(f.lowRank)},\n""" +
-        s"""      initialCards = InitialCards.${cls(f.initialCards)},\n""" +
-        s"""      suitMatchRule = SuitMatchRule.${cls(f.suitMatchRule)},\n""" +
-        s"""      rankMatchRule = RankMatchRule.${cls(f.rankMatchRule)},\n""" +
-        s"""      wrapFromKingToAce = ${f.wrapFromKingToAce},\n""" +
-        s"""      moveCompleteSequencesOnly = ${f.moveCompleteSequencesOnly},\n""" +
-        s"""      maxCards = ${f.maxCards},\n""" +
-        s"""      canMoveFrom = FoundationCanMoveFrom.${cls(f.canMoveFrom)},\n""" +
-        s"""      mayMoveToFrom = Seq(${f.mayMoveToFrom.map(x => "\"" + x + "\"").mkString(", ")}),\n""" +
-        s"""      offscreen = ${f.offscreen},\n""" +
-        s"""      autoMoveCards = ${f.autoMoveCards},\n""" +
-        s"""      autoMoveFrom = Seq(${f.autoMoveFrom.map(x => "\"" + x + "\"").mkString(", ")})\n""" +
-        s"""    )"""
-      }.mkString(",\n"))
-      add(s"""  ),""")
-    }
-    if(rules.tableaus.isEmpty) {
-      add( s"""  tableaus = Nil""")
-    } else {
-      add(s"""  tableaus = Seq(""")
-      add(rules.tableaus.map { t =>
-        s"""    TableauSet(\n""" +
-        s"""      name = "${t.name.replaceAllLiterally("\"", "")}",\n""" +
-        s"""      numPiles = ${t.numPiles},\n""" +
-        s"""      initialCards = InitialCards.${cls(t.initialCards)},\n""" +
-        s"""      cardsFaceDown = TableauFaceDownCards.${cls(t.cardsFaceDown)},\n""" +
-        s"""      suitMatchRuleForBuilding = SuitMatchRule.${cls(t.suitMatchRuleForBuilding)},\n""" +
-        s"""      rankMatchRuleForBuilding = RankMatchRule.${cls(t.rankMatchRuleForBuilding)},\n""" +
-        s"""      wrapFromKingToAce = ${t.wrapFromKingToAce},\n""" +
-        s"""      suitMatchRuleForMovingStacks = SuitMatchRule.${cls(t.suitMatchRuleForMovingStacks)},\n""" +
-        s"""      rankMatchRuleForMovingStacks = RankMatchRule.${cls(t.rankMatchRuleForMovingStacks)},\n""" +
-        s"""      autoFillEmptyFrom = TableauAutoFillEmptyFrom.${cls(t.autoFillEmptyFrom)},\n""" +
-        s"""      emptyFilledWith = TableauFillEmptyWith.${cls(t.emptyFilledWith)},\n""" +
-        s"""      mayMoveToNonEmptyFrom = Seq(${t.mayMoveToNonEmptyFrom.map(x => "\"" + x + "\"").mkString(", ")}),\n""" +
-        s"""      mayMoveToEmptyFrom = Seq(${t.mayMoveToEmptyFrom.map(x => "\"" + x + "\"").mkString(", ")}),\n""" +
-        s"""      maxCards = ${t.maxCards},\n""" +
-        s"""      actionDuringDeal = PileAction.${cls(t.actionDuringDeal)},\n""" +
-        s"""      actionAfterDeal = PileAction.${cls(t.actionAfterDeal)},\n""" +
-        s"""      pilesWithLowCardsAtBottom = ${t.pilesWithLowCardsAtBottom}\n""" +
-        s"""    )"""
-      }.mkString(",\n"))
-      add(s"""  )""")
-    }
+    ScalaFoundationExporter.exportFoundations(rules, ret)
+    ScalaTableauExporter.exportTableaus(rules, ret)
     add(")")
     add("")
 
     ret.toString()
   }
 
-  private def cls(o: Any) = o match {
+  def cls(o: Any) = o match {
     case count: InitialCards.Count => "Count(" + count.n + ")"
     case count: TableauFaceDownCards.Count => "Count(" + count.n + ")"
     case specificRank: FoundationLowRank.SpecificRank => "SpecificRank(Rank." + specificRank.r + ")"

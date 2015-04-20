@@ -36,6 +36,7 @@ case class GameRules(
   victoryCondition: VictoryCondition,
   cardRemovalMethod: CardRemovalMethod,
   deckOptions: DeckOptions,
+  stock: Option[Stock],
   foundations: Seq[FoundationSet],
   tableaus: Seq[TableauSet]
 )
