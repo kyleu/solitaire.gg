@@ -70,7 +70,11 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
       stock = getStock,
       waste = getWaste,
       foundations = getFoundations(deckOptions),
-      tableaus = getTableaus(deckOptions)
+      tableaus = getTableaus(deckOptions),
+      cells = getCells,
+      pocket = getPocket,
+      reserves = getReserves,
+      pyramids = getPyramids
     )
   }
 }

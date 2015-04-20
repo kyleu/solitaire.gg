@@ -1,13 +1,13 @@
 package utils.parser.politaire
 
-import models.game.rules.{ WastePlayableCards, Waste }
+import models.game.rules.{ WastePlayableCards, WasteSet }
 
 trait ParserWasteHelper { this: GameRulesParser =>
   protected[this] def getWaste = {
     getInt("W0n") match {
       case 0 => None
       case numPiles =>
-        Some(Waste(
+        Some(WasteSet(
           name = getString("W0Nm"),
           numPiles = numPiles,
           playableCards = try {

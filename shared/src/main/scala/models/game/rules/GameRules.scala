@@ -29,6 +29,11 @@ object InitialCards {
   case object Custom extends InitialCards
 }
 
+case class CellSet(i: Int)
+case class Pocket(i: Int)
+case class ReserveSet(i: Int)
+case class PyramidSet(i: Int)
+
 case class GameRules(
   id: String,
   title: String,
@@ -37,7 +42,11 @@ case class GameRules(
   cardRemovalMethod: CardRemovalMethod,
   deckOptions: DeckOptions,
   stock: Option[Stock],
-  waste: Option[Waste],
+  waste: Option[WasteSet],
   foundations: Seq[FoundationSet],
-  tableaus: Seq[TableauSet]
+  tableaus: Seq[TableauSet],
+  cells: Option[CellSet],
+  pocket: Option[Pocket],
+  reserves: Option[ReserveSet],
+  pyramids: Seq[PyramidSet]
 )
