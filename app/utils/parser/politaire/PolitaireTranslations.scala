@@ -1,16 +1,16 @@
-package utils.parser
+package utils.parser.politaire
 
 object PolitaireTranslations {
   private[this] val translationTable = {
-    PolitaireGameParser.translations ++
-      PolitaireDeckParser.translations ++
-      PolitaireFoundationParser.translations ++
-      PolitaireTableauParser.translations ++
-      PolitaireStockParser.translations ++
-      PolitaireWasteParser.translations ++
-      PolitaireReserveParser.translations ++
-      PolitaireCellParser.translations ++
-      PolitairePyramidParser.translations ++
+    GameParser.translations ++
+      DeckParser.translations ++
+      FoundationParser.translations ++
+      TableauParser.translations ++
+      StockParser.translations ++
+      WasteParser.translations ++
+      ReserveParser.translations ++
+      CellParser.translations ++
+      PyramidParser.translations ++
       Map(
         // Special
         "RDn" -> Map(1 -> "1", 2 -> "2", 3 -> "3", 4 -> "4", 5 -> "5", 6 -> "6", 7 -> "7", 8 -> "8", 9 -> "9", 10 -> "10", -1 -> "Unlimited"),

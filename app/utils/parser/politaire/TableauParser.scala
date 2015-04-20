@@ -1,6 +1,6 @@
-package utils.parser
+package utils.parser.politaire
 
-object PolitaireTableauParser {
+object TableauParser {
   val titles = Seq(
     "T0Nm" -> "Tableau name", "T0n" -> "Tableau piles", "T0d" -> "Tableau initial cards", "T0df" -> "Tableau cards face down",
     "T0s" -> "Tableau suit match rule for building", "T0r" -> "Tableau rank match rule for building", "T0w" -> "Tableau wraps from king to ace",

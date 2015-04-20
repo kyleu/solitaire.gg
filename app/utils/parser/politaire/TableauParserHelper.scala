@@ -1,8 +1,8 @@
-package utils.parser
+package utils.parser.politaire
 
 import models.game.rules._
 
-trait PolitaireTableauHelper { this: PolitaireGameRulesParser =>
+trait TableauParserHelper { this: GameRulesParser =>
   protected[this] def getTableaus(deckOptions: DeckOptions) = {
     val tableauCount = getInt("Fn")
     val tableaus = (0 to tableauCount - 1).map { i =>

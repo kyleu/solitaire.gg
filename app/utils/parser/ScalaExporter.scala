@@ -4,7 +4,7 @@ import java.nio.file.{ Files, Path, Paths }
 
 import models.game.rules._
 
-object PolitaireScalaExporter {
+object ScalaExporter {
   def export(rulesSet: Seq[GameRules]) = {
     val srcDir = Paths.get(".", "shared", "src", "main", "scala", "models", "game", "generated")
     writeFile(srcDir.resolve("GameRulesSet.scala"), exportRulesSet(rulesSet))

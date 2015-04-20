@@ -1,6 +1,7 @@
 package services
 
-import utils.parser.{ PolitaireParser, PolitaireScalaExporter }
+import utils.parser.ScalaExporter
+import utils.parser.politaire.PolitaireParser
 
 import scala.util.Random
 
@@ -10,7 +11,7 @@ object Testbed {
     //val rules = rulesSet(Random.nextInt(rulesSet.size))
     //PolitaireScalaExporter.exportRules(rules)
     //PolitaireScalaExporter.exportRuleSet(rulesSet)
-    PolitaireScalaExporter.export(rulesSet)
+    ScalaExporter.export(rulesSet)
     "OK!"
   }
 }

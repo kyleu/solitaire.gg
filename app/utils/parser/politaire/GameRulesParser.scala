@@ -1,9 +1,9 @@
-package utils.parser
+package utils.parser.politaire
 
 import models.game._
 import models.game.rules._
 
-class PolitaireGameRulesParser(val variant: PolitaireParser.Variant) extends PolitaireGameRulesHelper {
+class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesParserHelper {
   def parse() = try {
     parseInternal()
   } catch {

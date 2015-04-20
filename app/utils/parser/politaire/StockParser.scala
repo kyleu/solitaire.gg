@@ -1,6 +1,6 @@
-package utils.parser
+package utils.parser.politaire
 
-object PolitaireStockParser {
+object StockParser {
   val titles = Seq(
     "smode" -> "Stock pile",
     "S0Nm" -> "Stock name",

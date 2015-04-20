@@ -1,4 +1,4 @@
-package utils.parser
+package utils.parser.politaire
 
 object PolitaireParserHelper {
   val pileTypes = Map(

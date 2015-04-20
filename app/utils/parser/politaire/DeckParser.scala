@@ -1,6 +1,6 @@
-package utils.parser
+package utils.parser.politaire
 
-object PolitaireDeckParser {
+object DeckParser {
   val titles = Seq(
     "ndecks" -> "Number of decks",
     "stdsuits" -> "Suits in use",

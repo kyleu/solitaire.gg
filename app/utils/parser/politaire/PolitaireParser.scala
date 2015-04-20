@@ -1,4 +1,4 @@
-package utils.parser
+package utils.parser.politaire
 
 import play.api.libs.json._
 import utils.JsonUtils
@@ -26,7 +26,7 @@ object PolitaireParser {
     parseVariants(gamesJson).toSeq.sortBy(_.id)
   }
 
-  lazy val gameRules = politaireList.map(p => new PolitaireGameRulesParser(p).parse())
+  lazy val gameRules = politaireList.map(p => new GameRulesParser(p).parse())
 
   private[this] def parseVariants(json: JsObject) = {
     val variants = json.value.flatMap { js =>
@@ -85,11 +85,11 @@ object PolitaireParser {
     for (attr <- PolitaireLookup.titleTable) {
       attr._1 match {
         case "title" => processAttr(attr, Some(id.head.toUpper + id.tail), markDefaults = false)
-        case _ => processAttr(attr, PolitaireDefaults.getDefault(attr._1))
+        case _ => processAttr(attr, ParserDefaults.getDefault(attr._1))
       }
     }
     data.value.filterNot(x => PolitaireLookup.titleMap.get(x._1).isDefined).foreach { unknown =>
-      processAttr((unknown._1, "*" + unknown._1), PolitaireDefaults.getDefault(unknown._1))
+      processAttr((unknown._1, "*" + unknown._1), ParserDefaults.getDefault(unknown._1))
     }
     ret
   }

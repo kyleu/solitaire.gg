@@ -1,6 +1,6 @@
-package utils.parser
+package utils.parser.politaire
 
-object PolitaireCellParser {
+object CellParser {
   val titles = Seq(
     "C0n" -> "Number of cells",
     "C0Nm" -> "Cells name",

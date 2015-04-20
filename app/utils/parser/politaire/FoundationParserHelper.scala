@@ -1,9 +1,9 @@
-package utils.parser
+package utils.parser.politaire
 
 import models.game._
 import models.game.rules._
 
-trait PolitaireFoundationHelper { this: PolitaireGameRulesParser =>
+trait FoundationParserHelper { this: GameRulesParser =>
   protected[this] def getFoundations(deckOptions: DeckOptions) = {
     val foundationCount = getInt("Fn")
     val foundations = (0 to foundationCount - 1).map { i =>

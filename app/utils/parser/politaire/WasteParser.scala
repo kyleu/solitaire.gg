@@ -1,6 +1,6 @@
-package utils.parser
+package utils.parser.politaire
 
-object PolitaireWasteParser {
+object WasteParser {
   val titles = Seq(
     "W0n" -> "Number of waste piles",
     "W0Nm" -> "Waste name",

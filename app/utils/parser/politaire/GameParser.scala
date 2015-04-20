@@ -1,6 +1,6 @@
-package utils.parser
+package utils.parser.politaire
 
-object PolitaireGameParser {
+object GameParser {
   val titles = Seq(
     "title" -> "Title",
     "desc" -> "Description",

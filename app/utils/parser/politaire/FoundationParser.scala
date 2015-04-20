@@ -1,6 +1,6 @@
-package utils.parser
+package utils.parser.politaire
 
-object PolitaireFoundationParser {
+object FoundationParser {
   val titles = Seq(
     "F0Nm" -> "Foundation name", "F0n" -> "Number of foundation piles", "F0b" -> "Foundation low rank", "F0d" -> "Foundation initial cards",
     "F0s" -> "Foundation suit match rule", "F0r" -> "Foundation rank match rule", "F0w" -> "Foundation wraps from king to ace",

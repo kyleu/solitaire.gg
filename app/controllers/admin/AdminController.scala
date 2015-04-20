@@ -9,7 +9,7 @@ import controllers.BaseController.AuthenticatedAction
 import models._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.{ Testbed, AccountService, ActorSupervisor }
-import utils.parser.PolitaireParser
+import utils.parser.politaire.PolitaireParser
 
 import scala.concurrent.duration._
 import scala.util.Random

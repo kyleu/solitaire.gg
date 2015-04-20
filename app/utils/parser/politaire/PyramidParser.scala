@@ -1,6 +1,6 @@
-package utils.parser
+package utils.parser.politaire
 
-object PolitairePyramidParser {
+object PyramidParser {
   val titles = Seq(
     "P0Nm" -> "Pyramid name", "P0type" -> "Pyramid type", "P0size" -> "Pyramid size", "P0df" -> "Pyramid cards dealt face down",
     "P0s" -> "Pyramid suit match rule for building", "P0r" -> "Pyramid rank match rule for building", "P0w" -> "Pyramid wraps from king to ace",
