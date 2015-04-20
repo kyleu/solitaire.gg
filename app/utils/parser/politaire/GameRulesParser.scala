@@ -68,6 +68,7 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
       cardRemovalMethod = cardRemovalMethod,
       deckOptions = deckOptions,
       stock = getStock,
+      waste = getWaste,
       foundations = getFoundations(deckOptions),
       tableaus = getTableaus(deckOptions)
     )

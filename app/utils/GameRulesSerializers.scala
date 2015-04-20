@@ -23,6 +23,11 @@ object GameRulesSerializers {
 
   implicit val stockWrites = Json.writes[Stock]
 
+  // Waste
+  implicit val wastePlayableCardsWrites = stringWriter[WastePlayableCards]
+
+  implicit val wasteWrites = Json.writes[Waste]
+
   // Foundation
   implicit val foundationCanMoveFromWrites = stringWriter[FoundationCanMoveFrom]
   implicit val foundationLowRankWrites = stringWriter[FoundationLowRank]
@@ -39,5 +44,6 @@ object GameRulesSerializers {
 
   implicit val tableauSetWrites = Json.writes[TableauSet]
 
+  // Game Rules
   implicit val gameRulesWrites = Json.writes[GameRules]
 }

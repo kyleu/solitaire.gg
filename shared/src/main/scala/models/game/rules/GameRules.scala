@@ -37,6 +37,7 @@ case class GameRules(
   cardRemovalMethod: CardRemovalMethod,
   deckOptions: DeckOptions,
   stock: Option[Stock],
+  waste: Option[Waste],
   foundations: Seq[FoundationSet],
   tableaus: Seq[TableauSet]
 )
