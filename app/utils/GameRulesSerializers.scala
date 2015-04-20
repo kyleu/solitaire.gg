@@ -6,27 +6,32 @@ import play.api.libs.json._
 object GameRulesSerializers {
   import GameSerializers._
 
-  implicit val victoryConditionWrites = new Writes[VictoryCondition] {
-    override def writes(vc: VictoryCondition) = JsString(vc.toString)
+  def stringWriter[T] = new Writes[T] {
+    override def writes(t: T) = JsString(t.toString)
   }
 
-  implicit val cardRemovalMethodWrites = new Writes[CardRemovalMethod] {
-    override def writes(cr: CardRemovalMethod) = JsString(cr.toString)
-  }
+  implicit val victoryConditionWrites = stringWriter[VictoryCondition]
+  implicit val cardRemovalMethodWrites = stringWriter[CardRemovalMethod]
 
   implicit val deckOptionsWrites = Json.writes[DeckOptions]
 
-  implicit val foundationLowRankWrites = new Writes[FoundationLowRank] {
-    override def writes(flr: FoundationLowRank) = JsString(flr.toString)
-  }
-  implicit val suitMatchRuleWrites = new Writes[SuitMatchRule] {
-    override def writes(smr: SuitMatchRule) = JsString(smr.toString)
-  }
-  implicit val rankMatchRuleWrites = new Writes[RankMatchRule] {
-    override def writes(rmr: RankMatchRule) = JsString(rmr.toString)
-  }
+  implicit val initialCardsWrites = stringWriter[InitialCards]
+
+  // Foundation
+  implicit val foundationCanMoveFromWrites = stringWriter[FoundationCanMoveFrom]
+  implicit val foundationLowRankWrites = stringWriter[FoundationLowRank]
+  implicit val suitMatchRuleWrites = stringWriter[SuitMatchRule]
+  implicit val rankMatchRuleWrites = stringWriter[RankMatchRule]
 
   implicit val foundationSetWrites = Json.writes[FoundationSet]
+
+  // Tableau
+  implicit val tableauFaceDownCardsWrites = stringWriter[TableauFaceDownCards]
+  implicit val tableauAutoFillEmptyFromWrites = stringWriter[TableauAutoFillEmptyFrom]
+  implicit val tableauFillEmptyWithWrites = stringWriter[TableauFillEmptyWith]
+  implicit val pileActionWrites = stringWriter[PileAction]
+
+  implicit val tableauSetWrites = Json.writes[TableauSet]
 
   implicit val gameRulesWrites = Json.writes[GameRules]
 }

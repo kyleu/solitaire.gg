@@ -3,6 +3,7 @@ package models.game.rules
 sealed trait RankMatchRule
 
 object RankMatchRule {
+  case object None extends RankMatchRule
   case object Up extends RankMatchRule
   case object Down extends RankMatchRule
   case object Equal extends RankMatchRule

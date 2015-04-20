@@ -21,22 +21,13 @@ case class DeckOptions(
   val highRank = lowRank.map(lr => if(lr == Rank.Ace) { Rank.King } else { Rank.Ace })
 }
 
-sealed trait FoundationLowRank
-object FoundationLowRank {
-  case object AnyCard extends FoundationLowRank
-  case object DeckLowRank extends FoundationLowRank
-  case object DeckHighRank extends FoundationLowRank
-  case object Ascending extends FoundationLowRank
-  case class SpecificRank(r: Rank) extends FoundationLowRank
+sealed trait InitialCards
+object InitialCards {
+  case class Count(n: Int) extends InitialCards
+  case object PileIndex extends InitialCards
+  case object RestOfDeck extends InitialCards
+  case object Custom extends InitialCards
 }
-
-case class FoundationSet(
-  numPiles: Int,
-  lowRank: FoundationLowRank,
-  initialCards: Int,
-  suitMatchRule: SuitMatchRule,
-  rankMatchRule: RankMatchRule
-)
 
 case class GameRules(
   id: String,
@@ -45,5 +36,6 @@ case class GameRules(
   victoryCondition: VictoryCondition,
   cardRemovalMethod: CardRemovalMethod,
   deckOptions: DeckOptions,
-  foundations: Seq[FoundationSet]
+  foundations: Seq[FoundationSet],
+  tableaus: Seq[TableauSet]
 )

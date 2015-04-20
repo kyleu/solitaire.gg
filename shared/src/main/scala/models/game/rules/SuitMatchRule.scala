@@ -3,6 +3,7 @@ package models.game.rules
 sealed trait SuitMatchRule
 
 object SuitMatchRule {
+  case object None extends SuitMatchRule
   case object SameSuit extends SuitMatchRule
   case object DifferentSuits extends SuitMatchRule
   case object SameColor extends SuitMatchRule
