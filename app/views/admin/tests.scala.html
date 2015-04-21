@@ -1,30 +1,76 @@
 @()(implicit session: Session, flash: Flash)@layout.admin(utils.Config.projectName + " Tests", "tests") {
   <div class="container">
     <h3>@utils.Config.projectName Tests</h3>
-    <ul>
-      <li>
-        <a href="@controllers.admin.routes.TestController.runTest("all").url">Run All Tests</a>
-        <ul>
-          <li><a href="@controllers.admin.routes.TestController.runTest("account").url">Run Account Tests</a></li>
-          <li><a href="@controllers.admin.routes.TestController.runTest("known").url">Run Known Game Tests</a></li>
-          <li>
-            <a href="@controllers.admin.routes.TestController.runTest("solver").url">Run All Solver Tests</a>
+    <div class="row">
+      <div class="col-md-3">
+        <h4>All Tests</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
             <ul>
-            @for(v <- models.game.variants.GameVariant.all) {
-              <li><a href="@controllers.admin.routes.TestController.runTest("solve-" + v.key).url">Solve @v.name</a></li>
-            }
+              <li>
+                <a href="@controllers.admin.routes.TestController.runTest("all").url">Run All Tests</a>
+                <ul>
+                  <li><a href="@controllers.admin.routes.TestController.runTest("account").url">Run Account Tests</a></li>
+                  <li><a href="@controllers.admin.routes.TestController.runTest("known").url">Run Known Game Tests</a></li>
+                  <li><a href="@controllers.admin.routes.TestController.runTest("solver").url">Run All Solver Tests</a></li>
+                  <li><a href="@controllers.admin.routes.TestController.runTest("variants").url">Run All Variant Tests</a></li>
+                </ul>
+              </li>
             </ul>
-          </li>
-          <li>
-            <a href="@controllers.admin.routes.TestController.runTest("variants").url">Run All Variant Tests</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h4>Variant Tests</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
             <ul>
-            @for(v <- models.game.variants.GameVariant.all) {
-              <li><a href="@controllers.admin.routes.TestController.runTest(v.key).url">Run @v.name Test</a></li>
-            }
+              <li>
+                <a href="@controllers.admin.routes.TestController.runTest("variants").url">Run All Variant Tests</a>
+                <ul>
+                @for(v <- models.game.variants.GameVariant.all) {
+                  <li><a href="@controllers.admin.routes.TestController.runTest(v.key).url">@v.name Test</a></li>
+                }
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h4>Solver Tests</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul>
+              <li>
+                <a href="@controllers.admin.routes.TestController.runTest("solver").url">Run All Solver Tests</a>
+                <ul>
+                @for(v <- models.game.variants.GameVariant.all) {
+                  <li><a href="@controllers.admin.routes.TestController.runTest("solve-" + v.key).url">Solve @v.name</a></li>
+                }
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h4>Rules Tests</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul>
+              <li>
+                <a href="@controllers.admin.routes.TestController.runTest("rules").url">Run All Rules Tests</a>
+                <ul>
+                @for(v <- models.game.variants.GameVariant.all) {
+                  <li><a href="@controllers.admin.routes.TestController.runTest("rules-" + v.key).url">@v.name Rules</a></li>
+                }
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 }
