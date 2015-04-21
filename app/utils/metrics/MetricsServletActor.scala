@@ -27,7 +27,6 @@ class MetricsServletActor extends InstrumentedActor with Logging {
       val graphiteServer = new Graphite(new InetSocketAddress(Config.graphiteServer, Config.graphitePort))
       graphiteReporter = Some(
         GraphiteReporter.forRegistry(Instrumented.metricRegistry)
-          .prefixedWith("web1.example.com")
           .convertRatesTo(TimeUnit.SECONDS)
           .convertDurationsTo(TimeUnit.MILLISECONDS)
           .filter(MetricFilter.ALL)

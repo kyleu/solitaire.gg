@@ -27,6 +27,7 @@ object GameVariant {
     case Nestor.key => new Nestor(gameId, seed)
     case Pyramid.key => new Pyramid(gameId, seed)
     case Sandbox.key => new Sandbox(gameId, seed)
+    case SandboxB.key => new SandboxB(gameId, seed)
     case Spider.key => new Spider(gameId, seed)
     case TrustyTwelve.key => new TrustyTwelve(gameId, seed)
     case Yukon.key => new Yukon(gameId, seed)
