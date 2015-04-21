@@ -2,6 +2,7 @@ package utils.parser.politaire.lookup
 
 object ReserveLookup {
   val titles = Seq(
+    "R0Nm" -> "Reserve name",
     "R0n" -> "Number of reserve piles",
     "R0d" -> "Reserve initial cards",
     "R0df" -> "Reserve cards face down"

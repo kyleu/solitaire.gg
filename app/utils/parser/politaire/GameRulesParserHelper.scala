@@ -7,7 +7,6 @@ trait GameRulesParserHelper extends ParserStockHelper
     with ParserFoundationHelper
     with ParserTableauHelper
     with ParserCellHelper
-    with ParserPocketHelper
     with ParserReserveHelper
     with ParserPyramidHelper
 { this: GameRulesParser =>

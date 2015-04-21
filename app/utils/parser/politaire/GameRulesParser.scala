@@ -72,7 +72,6 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
       foundations = getFoundations(deckOptions),
       tableaus = getTableaus(deckOptions),
       cells = getCells,
-      pocket = getPocket,
       reserves = getReserves,
       pyramids = getPyramids
     )

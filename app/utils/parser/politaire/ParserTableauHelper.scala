@@ -26,6 +26,7 @@ trait ParserTableauHelper { this: GameRulesParser =>
           case 102 => TableauFaceDownCards.OddNumbered
           case x => TableauFaceDownCards.Count(x)
         },
+
         suitMatchRuleForBuilding = getSuitMatchRule(getInt(prefix + "s")),
         rankMatchRuleForBuilding = getRankMatchRule(getInt(prefix + "r")),
         wrapFromKingToAce = getBoolean(prefix + "w"),

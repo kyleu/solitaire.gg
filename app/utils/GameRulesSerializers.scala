@@ -47,13 +47,14 @@ object GameRulesSerializers {
   // Cell
   implicit val cellSetWrites = Json.writes[CellSet]
 
-  // Pocket
-  implicit val pocketWrites = Json.writes[Pocket]
-
   // Reserve
   implicit val reserveSetWrites = Json.writes[ReserveSet]
 
   // Pyramid
+  implicit val pyramidTypeWrites = stringWriter[PyramidType]
+  implicit val pyramidFaceDownCardsWrites = stringWriter[PyramidFaceDownCards]
+  implicit val pyramidFillEmptyWithWrites = stringWriter[PyramidFillEmptyWith]
+
   implicit val pyramidSetWrites = Json.writes[PyramidSet]
 
   // Game Rules

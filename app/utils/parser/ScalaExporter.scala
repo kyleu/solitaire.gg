@@ -20,6 +20,7 @@ object ScalaExporter {
 
     add("package models.game.generated")
     add("")
+    add(s"""// scalastyle:off""")
     add("object GameRulesSet {")
     add("  val all = Seq(")
     //add(ruleset.groupBy(_.title.head).toList.sortBy(_._1).map(l => "    " + l._2.map( r => getObjectName(r)).mkString(", ")).mkString("\n"))
@@ -28,6 +29,7 @@ object ScalaExporter {
     add("")
     add("  val allById = all.map(x => x.id -> x).toMap")
     add("}")
+    add(s"""// scalastyle:on""")
     add("")
 
     ret.toString()
@@ -42,6 +44,7 @@ object ScalaExporter {
     add(s"""import models.game._""")
     add(s"""import models.game.rules._""")
     add(s"""""")
+    add(s"""// scalastyle:off""")
     add(s"""object ${getObjectName(rules)} extends GameRules(""")
     add(s"""  id = \"${rules.id}\",""")
     add(s"""  title = \"${rules.title}\",""")
@@ -59,10 +62,10 @@ object ScalaExporter {
     ScalaFoundationExporter.exportFoundations(rules, ret)
     ScalaTableauExporter.exportTableaus(rules, ret)
     ScalaCellExporter.exportCells(rules, ret)
-    add(s"""  pocket = None,""")
-    add(s"""  reserves = None,""")
-    add(s"""  pyramids = Nil""")
+    ScalaReserveExporter.exportReserves(rules, ret)
+    ScalaPyramidExporter.exportPyramids(rules, ret)
     add(s""")""")
+    add(s"""// scalastyle:on""")
     add("")
 
     ret.toString()
@@ -71,6 +74,7 @@ object ScalaExporter {
   def cls(o: Any) = o match {
     case count: InitialCards.Count => "Count(" + count.n + ")"
     case count: TableauFaceDownCards.Count => "Count(" + count.n + ")"
+    case count: PyramidFaceDownCards.Count => "Count(" + count.n + ")"
     case specificRank: FoundationLowRank.SpecificRank => "SpecificRank(Rank." + specificRank.r + ")"
     case cn => cn.getClass.getSimpleName.replaceAllLiterally("$", "")
   }

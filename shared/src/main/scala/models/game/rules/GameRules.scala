@@ -39,9 +39,12 @@ case class CellSet(
 
 )
 
-case class Pocket(i: Int)
-case class ReserveSet(i: Int)
-case class PyramidSet(i: Int)
+case class ReserveSet(
+  name: String,
+  numPiles: Int,
+  initialCards: Int,
+  cardsFaceDown: Int
+)
 
 case class GameRules(
   id: String,
@@ -55,7 +58,6 @@ case class GameRules(
   foundations: Seq[FoundationSet],
   tableaus: Seq[TableauSet],
   cells: Option[CellSet],
-  pocket: Option[Pocket],
   reserves: Option[ReserveSet],
   pyramids: Seq[PyramidSet]
 )
