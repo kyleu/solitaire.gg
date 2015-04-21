@@ -9,7 +9,6 @@ import controllers.BaseController.AuthenticatedAction
 import models._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.{ Testbed, AccountService, ActorSupervisor }
-import utils.parser.politaire.PolitaireParser
 
 import scala.concurrent.duration._
 import scala.util.Random
@@ -25,18 +24,6 @@ object AdminController extends BaseController {
   def testbed = AuthenticatedAction { implicit request =>
     requireAdmin {
       Ok(Testbed.go())
-    }
-  }
-
-  def politaire = AuthenticatedAction { implicit request =>
-    requireAdmin {
-      Ok(views.html.admin.politaireList(PolitaireParser.politaireList))
-    }
-  }
-
-  def rules = AuthenticatedAction { implicit request =>
-    requireAdmin {
-      Ok(views.html.admin.rulesList(PolitaireParser.gameRules))
     }
   }
 
