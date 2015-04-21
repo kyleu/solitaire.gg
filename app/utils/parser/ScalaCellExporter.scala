@@ -8,17 +8,17 @@ object ScalaCellExporter {
 
     rules.cells match {
       case Some(c) =>
-        add(s"""  cells = Some(""")
-        add(s"""    CellSet(\n""")
+        add("""  cells = Some(""")
+        add("""    CellSet(\n""")
         add(s"""      name = "${c.name.replaceAllLiterally("\"", "")}",\n""")
         add(s"""      pluralName = "${c.pluralName}",\n""")
         add(s"""      numPiles = ${c.numPiles},\n""")
         add(s"""      canMoveFrom = Seq(${c.canMoveFrom.map(x => "\"" + x + "\"").mkString(", ")}),\n""")
         add(s"""      initialCards = ${c.initialCards},\n""")
         add(s"""      numEphemeral = ${c.numEphemeral}\n""")
-        add(s"""    )""")
-        add(s"""  ),""")
-      case None => add(s"""  cells = None,""")
+        add("""    )""")
+        add("""  ),""")
+      case None => add("  cells = None,")
     }
   }
 }

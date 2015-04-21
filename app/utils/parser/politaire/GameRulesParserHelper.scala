@@ -8,8 +8,7 @@ trait GameRulesParserHelper extends ParserStockHelper
     with ParserTableauHelper
     with ParserCellHelper
     with ParserReserveHelper
-    with ParserPyramidHelper
-{ this: GameRulesParser =>
+    with ParserPyramidHelper { this: GameRulesParser =>
   protected[this] def getString(key: String) = {
     val attr = variant.attributes(key)
     attr.translation.getOrElse(attr.value match {

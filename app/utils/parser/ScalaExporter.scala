@@ -9,7 +9,7 @@ object ScalaExporter {
     val srcDir = Paths.get(".", "shared", "src", "main", "scala", "models", "game", "generated")
     writeFile(srcDir.resolve("GameRulesSet.scala"), exportRulesSet(rulesSet))
 
-    for(rules <- rulesSet) {
+    for (rules <- rulesSet) {
       writeFile(srcDir.resolve(getObjectName(rules) + ".scala"), exportRules(rules))
     }
   }
@@ -20,7 +20,7 @@ object ScalaExporter {
 
     add("package models.game.generated")
     add("")
-    add(s"""// scalastyle:off""")
+    add("// scalastyle:off")
     add("object GameRulesSet {")
     add("  val all = Seq(")
     //add(ruleset.groupBy(_.title.head).toList.sortBy(_._1).map(l => "    " + l._2.map( r => getObjectName(r)).mkString(", ")).mkString("\n"))
@@ -29,7 +29,7 @@ object ScalaExporter {
     add("")
     add("  val allById = all.map(x => x.id -> x).toMap")
     add("}")
-    add(s"""// scalastyle:on""")
+    add("// scalastyle:on")
     add("")
 
     ret.toString()
@@ -39,24 +39,24 @@ object ScalaExporter {
     val ret = new StringBuilder()
     def add(s: String) = ret ++= s + "\n"
 
-    add(s"""package models.game.generated""")
+    add("""package models.game.generated""")
     add("")
-    add(s"""import models.game._""")
-    add(s"""import models.game.rules._""")
-    add(s"""""")
-    add(s"""// scalastyle:off""")
+    add("""import models.game._""")
+    add("""import models.game.rules._""")
+    add("""""")
+    add("// scalastyle:off")
     add(s"""object ${getObjectName(rules)} extends GameRules(""")
     add(s"""  id = \"${rules.id}\",""")
     add(s"""  title = \"${rules.title}\",""")
     add(s"""  description = \"${rules.description.replaceAllLiterally("\"", "\\\"")}\",""")
     add(s"""  victoryCondition = VictoryCondition.${cls(rules.victoryCondition)},""")
     add(s"""  cardRemovalMethod = CardRemovalMethod.${cls(rules.cardRemovalMethod)},""")
-    add(s"""  deckOptions = DeckOptions(""")
+    add("""  deckOptions = DeckOptions(""")
     add(s"""    numDecks = ${rules.deckOptions.numDecks},""")
     add(s"""    suits = Seq(${rules.deckOptions.suits.map(x => "Suit." + x).mkString(", ")}),""")
     add(s"""    ranks = Seq(${rules.deckOptions.ranks.map(x => "Rank." + x).mkString(", ")}),""")
     add(s"""    lowRank = ${rules.deckOptions.lowRank.map("Rank." + _)}""")
-    add(s"""  ),""")
+    add("""  ),""")
     ScalaStockExporter.exportStock(rules, ret)
     ScalaWasteExporter.exportWaste(rules, ret)
     ScalaFoundationExporter.exportFoundations(rules, ret)
@@ -64,8 +64,8 @@ object ScalaExporter {
     ScalaCellExporter.exportCells(rules, ret)
     ScalaReserveExporter.exportReserves(rules, ret)
     ScalaPyramidExporter.exportPyramids(rules, ret)
-    add(s""")""")
-    add(s"""// scalastyle:on""")
+    add(""")""")
+    add("// scalastyle:on")
     add("")
 
     ret.toString()

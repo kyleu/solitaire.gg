@@ -25,7 +25,7 @@ trait ParserStockHelper { this: GameRulesParser =>
           },
           maximumDeals = {
             val maxDeals = getInt("maxdeals")
-            if(maxDeals == 10 || maxDeals == 0) { None } else { Some(maxDeals) }
+            if (maxDeals == 10 || maxDeals == 0) { None } else { Some(maxDeals) }
           },
           cardsDealt = getInt("dealchunk") match {
             case -1 => StockCardsDealt.FewerEachTime
