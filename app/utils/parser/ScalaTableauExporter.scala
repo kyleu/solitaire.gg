@@ -8,7 +8,7 @@ object ScalaTableauExporter {
     def cls(o: Any) = ScalaExporter.cls(o)
 
     if(rules.tableaus.isEmpty) {
-      add( s"""  tableaus = Nil""")
+      add( s"""  tableaus = Nil,""")
     } else {
       add(s"""  tableaus = Seq(""")
       add(rules.tableaus.map { t =>
@@ -32,7 +32,7 @@ object ScalaTableauExporter {
         s"""      pilesWithLowCardsAtBottom = ${t.pilesWithLowCardsAtBottom}\n""" +
         s"""    )"""
       }.mkString(",\n"))
-      add(s"""  )""")
+      add(s"""  ),""")
     }
   }
 }

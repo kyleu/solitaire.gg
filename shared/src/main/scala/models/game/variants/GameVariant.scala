@@ -34,7 +34,7 @@ object GameVariant {
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 
-  val all = Seq(Canfield, FreeCell, Golf, Gypsy, KlondikeDrawThree, KlondikeDrawOne, Nestor, Pyramid, Sandbox, Spider, TrustyTwelve, Yukon)
+  val all = Seq(Canfield, FreeCell, Golf, Gypsy, KlondikeDrawThree, KlondikeDrawOne, Nestor, Pyramid, Sandbox, SandboxB, Spider, TrustyTwelve, Yukon)
 }
 
 abstract class GameVariant(val gameId: UUID, val seed: Int) {

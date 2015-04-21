@@ -29,7 +29,16 @@ object InitialCards {
   case object Custom extends InitialCards
 }
 
-case class CellSet(i: Int)
+case class CellSet(
+  name: String,
+  pluralName: String,
+  numPiles: Int,
+  canMoveFrom: Seq[String],
+  initialCards: Int,
+  numEphemeral: Int
+
+)
+
 case class Pocket(i: Int)
 case class ReserveSet(i: Int)
 case class PyramidSet(i: Int)
