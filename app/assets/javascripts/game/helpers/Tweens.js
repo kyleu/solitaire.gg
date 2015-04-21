@@ -2,11 +2,12 @@ define([], function() {
   "use strict";
 
   return {
-    tweenCardTo: function(card, x, y) {
+    tweenCardTo: function(card, x, y, angle) {
       if(x != card.x || y != card.y) {
         var tween = card.game.add.tween(card);
-        tween.to({ x: x, y: y, angle: 0 }, 200);
+        tween.to({ x: x, y: y, angle: angle }, 200);
         tween.onComplete.add(function() {
+          card.actualX = x;
           card.tweening = false;
         }, card);
         card.tweening = true;

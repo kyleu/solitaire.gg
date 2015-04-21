@@ -26,7 +26,10 @@ class ActorSupervisor extends ActorSupervisorHelper with Logging {
   import ActorSupervisor.{ ConnectionRecord, GameRecord }
 
   protected[this] val connections = collection.mutable.HashMap.empty[UUID, ConnectionRecord]
+  protected[this] val connectionsCounter = metrics.counter("active-connections")
+
   protected[this] val games = collection.mutable.HashMap.empty[UUID, GameRecord]
+  protected[this] val gamesCounter = metrics.counter("active-games")
 
   override def preStart() {
     context.actorOf(Props[MetricsServletActor], "metrics-servlet")

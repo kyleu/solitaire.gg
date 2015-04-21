@@ -17,11 +17,14 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
   protected[this] def handleConnectionStarted(accountId: UUID, username: String, connectionId: UUID, conn: ActorRef) {
     log.debug("Connection [" + connectionId + "] registered to [" + username + "] with path [" + conn.path + "].")
     connections(connectionId) = ConnectionRecord(accountId, username, conn, None, new LocalDateTime())
+    connectionsCounter.inc()
   }
 
   protected[this] def handleConnectionStopped(id: UUID) {
     connections.remove(id) match {
-      case Some(conn) => log.debug("Connection [" + id + "] [" + conn.actorRef.path + "] stopped.")
+      case Some(conn) =>
+        connectionsCounter.dec()
+        log.debug("Connection [" + id + "] [" + conn.actorRef.path + "] stopped.")
       case None => log.warn("Connection [" + id + "] stopped but is not registered.")
     }
   }
@@ -38,6 +41,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
 
     c.activeGame = Some(id)
     games(id) = GameRecord(List((connectionId, c.name)), actor, started)
+    gamesCounter.inc()
   }
 
   protected[this] def handleConnectionGameJoin(id: UUID, connectionId: UUID) = games.get(id) match {
@@ -72,6 +76,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
 
   protected[this] def handleGameStopped(id: UUID) = games.remove(id) match {
     case Some(g) =>
+      gamesCounter.dec()
       g.connections.foreach { c =>
         connections.get(c._1).foreach { cr =>
           cr.activeGame = None
