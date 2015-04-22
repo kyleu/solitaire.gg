@@ -12,4 +12,12 @@ trait RulesTests { this: TestService =>
     val ret = "OK"
     TestResult(gr.id + ": " + ret)
   }
+
+  def getDeck(rules: GameRules) = {
+
+  }
+
+  def getPileGroups(rules: GameRules) = {
+
+  }
 }

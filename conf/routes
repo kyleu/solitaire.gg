@@ -20,9 +20,10 @@ GET        /admin/status                      controllers.admin.AdminController.
 
 GET        /admin/testbed                     controllers.admin.AdminController.testbed
 
-GET        /admin/politaire                   controllers.admin.RulesController.politaire
 GET        /admin/rules                       controllers.admin.RulesController.rules
-GET        /admin/export                      controllers.admin.RulesController.exportRules
+GET        /admin/rules/politaire             controllers.admin.RulesController.politaire
+GET        /admin/rules/import                controllers.admin.RulesController.importRules
+GET        /admin/rules/export                controllers.admin.RulesController.exportRules
 
 GET        /admin/trace/connection/:id        controllers.admin.TraceController.traceConnection(id: java.util.UUID)
 GET        /admin/trace/client/:id            controllers.admin.TraceController.traceClient(id: java.util.UUID)
