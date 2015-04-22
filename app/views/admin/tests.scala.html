@@ -1,55 +1,53 @@
 @()(implicit session: Session, flash: Flash)@layout.admin(utils.Config.projectName + " Tests", "tests") {
-  <div class="container">
-    <h3>@utils.Config.projectName Tests</h3>
-    <div class="row">
-      <div class="col-md-3">
-        <h4><a href="@controllers.admin.routes.TestController.runTest("all").url">All Tests</a></h4>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <ul>
-              <li><a href="@controllers.admin.routes.TestController.runTest("account").url">Account Tests</a></li>
-              <li><a href="@controllers.admin.routes.TestController.runTest("known").url">Known Game Tests</a></li>
-              <li><a href="@controllers.admin.routes.TestController.runTest("solver").url">All Solver Tests</a></li>
-              <li><a href="@controllers.admin.routes.TestController.runTest("variants").url">All Variant Tests</a></li>
-              <li><a href="@controllers.admin.routes.TestController.runTest("variants").url">All Rules Tests</a></li>
-            </ul>
-          </div>
+  <h3>@utils.Config.projectName Tests</h3>
+  <div class="row">
+    <div class="col-md-3">
+      <h4><a href="@controllers.admin.routes.TestController.runTest("all").url">All Tests</a></h4>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <ul>
+            <li><a href="@controllers.admin.routes.TestController.runTest("account").url">Account Tests</a></li>
+            <li><a href="@controllers.admin.routes.TestController.runTest("known").url">Known Game Tests</a></li>
+            <li><a href="@controllers.admin.routes.TestController.runTest("solver").url">All Solver Tests</a></li>
+            <li><a href="@controllers.admin.routes.TestController.runTest("variants").url">All Variant Tests</a></li>
+            <li><a href="@controllers.admin.routes.TestController.runTest("variants").url">All Rules Tests</a></li>
+          </ul>
         </div>
       </div>
-      <div class="col-md-3">
-        <h4><a href="@controllers.admin.routes.TestController.runTest("variants").url">All Variant Tests</a></h4>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <ul>
-            @for(v <- models.game.variants.GameVariant.all) {
-              <li><a href="@controllers.admin.routes.TestController.runTest(v.key).url">@v.name Test</a></li>
-            }
-            </ul>
-          </div>
+    </div>
+    <div class="col-md-3">
+      <h4><a href="@controllers.admin.routes.TestController.runTest("variants").url">All Variant Tests</a></h4>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <ul>
+          @for(v <- models.game.variants.GameVariant.all) {
+            <li><a href="@controllers.admin.routes.TestController.runTest(v.key).url">@v.name Test</a></li>
+          }
+          </ul>
         </div>
       </div>
-      <div class="col-md-3">
-        <h4><a href="@controllers.admin.routes.TestController.runTest("solver").url">All Solver Tests</a></h4>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <ul>
-            @for(v <- models.game.variants.GameVariant.all) {
-              <li><a href="@controllers.admin.routes.TestController.runTest("solve-" + v.key).url">Solve @v.name</a></li>
-            }
-            </ul>
-          </div>
+    </div>
+    <div class="col-md-3">
+      <h4><a href="@controllers.admin.routes.TestController.runTest("solver").url">All Solver Tests</a></h4>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <ul>
+          @for(v <- models.game.variants.GameVariant.all) {
+            <li><a href="@controllers.admin.routes.TestController.runTest("solve-" + v.key).url">Solve @v.name</a></li>
+          }
+          </ul>
         </div>
       </div>
-      <div class="col-md-3">
-        <h4><a href="@controllers.admin.routes.TestController.runTest("rules").url">All Rules Tests</a></h4>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <ul>
-            @for(v <- models.game.variants.GameVariant.all) {
-              <li><a href="@controllers.admin.routes.TestController.runTest("rules-" + v.key).url">@v.name Rules</a></li>
-            }
-            </ul>
-          </div>
+    </div>
+    <div class="col-md-3">
+      <h4><a href="@controllers.admin.routes.TestController.runTest("rules").url">All Rules Tests</a></h4>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <ul>
+          @for(r <- models.game.generated.GameRulesSet.all) {
+            <li><a href="@controllers.admin.routes.TestController.runTest("rules-" + r.id).url">@r.title Rules</a></li>
+          }
+          </ul>
         </div>
       </div>
     </div>

@@ -1,29 +1,31 @@
 package services.test
 
-import java.util.UUID
-
 import models.Account
-import org.joda.time.LocalDateTime
+import models.test.{ Tree, Test }
 import services.AccountService
 
-trait AccountTests { this: TestService =>
-  def testAccount() = runTest { () =>
-    val testUser = "test-account"
-    var account = new Account(UUID.randomUUID, "Invalid user", "player", 0, None, new LocalDateTime())
-    val results = Seq(
-      {
-        account = AccountService.createAccount(testUser)
-        TestResult("Account [" + testUser + "] created.")
-      },
-      {
-        AccountService.updateAccountName(account.id, "test-account-new-name")
-        TestResult("Account [" + testUser + "] updated with new name.")
-      },
-      {
-        AccountService.removeAccount(account.id)
-        TestResult("Account [" + account.id + "] removed.")
-      }
-    )
-    TestResult("account", results)
+class AccountTests {
+  private[this] val testUser = "test-account"
+  private[this] var account: Account = _
+
+  private[this] def create() = Test("create", () => {
+    account = AccountService.createAccount(testUser)
+    assert(account.name == "test-account")
+  })
+
+  private[this] def updateName() = Test("update-name", () => {
+    AccountService.updateAccountName(account.id, "test-account-new-name")
+    val newName = AccountService.getAccount(account.id).map(_.name).getOrElse("missing")
+    assert(newName == "test-account-new-name")
+  })
+
+  private[this] def remove() = Test("remove", () => {
+    AccountService.removeAccount(account.id)
+    val missing = AccountService.getAccount(account.id)
+    assert(missing == None)
+  })
+
+  val all = {
+    Tree(Test("account"), Seq(create().toTree, updateName().toTree, remove().toTree))
   }
 }

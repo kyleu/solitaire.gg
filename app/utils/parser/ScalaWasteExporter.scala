@@ -8,13 +8,13 @@ object ScalaWasteExporter {
 
     rules.waste match {
       case Some(w) =>
-        add("""  waste = Some(""")
-        add("""    WasteSet(\n""")
+        add("  waste = Some(")
+        add("    WasteSet(\n")
         add(s"""      name = "${w.name.replaceAllLiterally("\"", "")}",""")
         add(s"""      numPiles = ${w.numPiles},""")
         add(s"""      playableCards = WastePlayableCards.${w.playableCards}""")
-        add("""    )""")
-        add("""  ),""")
+        add("    )")
+        add("  ),")
       case None => add("  waste = None,")
     }
   }

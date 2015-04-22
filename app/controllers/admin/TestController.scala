@@ -2,8 +2,7 @@ package controllers.admin
 
 import controllers.BaseController
 import controllers.BaseController.AuthenticatedAction
-import models.game.generated.{ GameRulesSet, Klondike }
-import services.test.TestService
+import services.test._
 
 object TestController extends BaseController {
   def tests = AuthenticatedAction { implicit request =>
@@ -14,24 +13,26 @@ object TestController extends BaseController {
 
   def runTest(test: String) = AuthenticatedAction { implicit request =>
     requireAdmin {
-      val ts = new TestService()
-      val ret = test match {
-        case "all" => ts.testAll()
+      val testTree = test match {
+        case "all" => new AllTests().all
+        case "account" => new AccountTests().all
+        case "known" => new KnownGameTests().all
 
-        case "account" => ts.testAccount()
+        case "solver" => new SolverTests().all
+        case x if x.startsWith("solve-") => new SolverTests().testSolver(x.substring(6)).toTree
 
-        case "known" => ts.testKnownGame()
+        case "variants" => new VariantTests().all
+        case x if x.startsWith("variant-") => new VariantTests().testVariant(x.substring(8)).toTree
 
-        case "solver" => ts.testSolvers()
-        case x if x.startsWith("solve-") => ts.testSolver(x.substring(6), verbose = true)
+        case "rules" => new RulesTests().all
+        case x if x.startsWith("rules-") => new RulesTests().testGameRules(x.substring(6)).toTree
 
-        case "variants" => ts.testVariants()
-        case x if x.startsWith("variant-") => ts.testVariant(x.substring(8))
-
-        case "rules" => ts.testAllGameRules()
-        case x if x.startsWith("rules-") => ts.testGameRules(GameRulesSet.allById(x.substring(6)))
+        case _ => throw new IllegalArgumentException("Invalid test [" + test + "].")
       }
-      Ok(views.html.admin.testResults(test, ret.toString(0)))
+
+      val resultTree = TestService.run(testTree)
+
+      Ok(views.html.admin.testResults(resultTree.toSeq()))
     }
   }
 }

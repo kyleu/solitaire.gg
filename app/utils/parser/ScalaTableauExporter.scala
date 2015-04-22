@@ -8,11 +8,11 @@ object ScalaTableauExporter {
     def cls(o: Any) = ScalaExporter.cls(o)
 
     if (rules.tableaus.isEmpty) {
-      add("""  tableaus = Nil,""")
+      add("  tableaus = Nil,")
     } else {
-      add("""  tableaus = Seq(""")
+      add("  tableaus = Seq(")
       add(rules.tableaus.map { t =>
-        """    TableauSet(\n""" +
+        "    TableauSet(\n" +
           s"""      name = "${t.name.replaceAllLiterally("\"", "")}",\n""" +
           s"""      numPiles = ${t.numPiles},\n""" +
           s"""      initialCards = InitialCards.${cls(t.initialCards)},\n""" +
@@ -30,7 +30,7 @@ object ScalaTableauExporter {
           s"""      actionDuringDeal = PileAction.${cls(t.actionDuringDeal)},\n""" +
           s"""      actionAfterDeal = PileAction.${cls(t.actionAfterDeal)},\n""" +
           s"""      pilesWithLowCardsAtBottom = ${t.pilesWithLowCardsAtBottom}\n""" +
-          """    )"""
+          "    )"
       }.mkString(",\n"))
       add("  ),")
     }

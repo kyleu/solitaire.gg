@@ -4,18 +4,49 @@
 @import utils.parser.politaire.lookup.PolitaireLookup
 @import utils.parser.politaire.ParserDefaults
 @layout.admin(utils.Config.projectName + " Parser", "parser") {
-  <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="text-large">
-          @utils.Formatter.withCommas(variants.size) Available Games
-        </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="text-large">
+        @utils.Formatter.withCommas(variants.size) Available Games
       </div>
     </div>
+  </div>
 
-    <h4>Defaults</h4>
+  <h4>Defaults</h4>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="game-attributes">
+        <table class="table table-bordered">
+          <tr>
+            <th class="th-attribute-id">ID</th>
+            <th class="th-attribute-title">Attribute</th>
+            <th class="th-attribute-value">Value</th>
+            <th>Meaning</th>
+          </tr>
+          @for(title <- PolitaireLookup.titleTable) {
+            @defining(ParserDefaults.getDefault(title._1).getOrElse(throw new IllegalStateException())) { attr =>
+              <tr>
+                <td>@title._1</td>
+                <td>@title._2</td>
+                <td>@attr</td>
+                <td>@PolitaireLookup.getTranslation(title._1) match {
+                  case Some(x) => { @x.get(attr.toString.toInt) }
+                  case None => { }
+                }</td>
+              </tr>
+            }
+          }
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <h4>Variants</h4>
+  @for(game <- variants.sortBy(_.id)) {
     <div class="panel panel-default">
       <div class="panel-body">
+        <div class="text-large">@game.attributes("title").value (@game.id)</div>
+        <div class="game-description"><em>@game.attributes("desc").value</em></div>
         <div class="game-attributes">
           <table class="table table-bordered">
             <tr>
@@ -24,52 +55,18 @@
               <th class="th-attribute-value">Value</th>
               <th>Meaning</th>
             </tr>
-            @for(title <- PolitaireLookup.titleTable) {
-              @defining(ParserDefaults.getDefault(title._1).getOrElse(throw new IllegalStateException())) { attr =>
-                <tr>
-                  <td>@title._1</td>
-                  <td>@title._2</td>
-                  <td>@attr</td>
-                  <td>@PolitaireLookup.getTranslation(title._1) match {
-                    case Some(x) => { @x.get(attr.toString.toInt) }
-                    case None => { }
-                  }</td>
-                </tr>
-              }
+            @for(attr <- game.attributes.filterNot(x => x._2.defaultVal || x._2.id == "title" || x._2.id == "desc")) {
+              <tr>
+                <td>@attr._2.id</td>
+                <td>@attr._2.title</td>
+                <td>@attr._2.value</td>
+                <td>@attr._2.translation</td>
+              </tr>
             }
           </table>
         </div>
+        <div class="game-json"><pre>@play.api.libs.json.Json.prettyPrint(game.body)</pre></div>
       </div>
     </div>
-
-    <h4>Variants</h4>
-    @for(game <- variants.sortBy(_.id)) {
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="text-large">@game.attributes("title").value (@game.id)</div>
-          <div class="game-description"><em>@game.attributes("desc").value</em></div>
-          <div class="game-attributes">
-            <table class="table table-bordered">
-              <tr>
-                <th class="th-attribute-id">ID</th>
-                <th class="th-attribute-title">Attribute</th>
-                <th class="th-attribute-value">Value</th>
-                <th>Meaning</th>
-              </tr>
-              @for(attr <- game.attributes.filterNot(x => x._2.defaultVal || x._2.id == "title" || x._2.id == "desc")) {
-                <tr>
-                  <td>@attr._2.id</td>
-                  <td>@attr._2.title</td>
-                  <td>@attr._2.value</td>
-                  <td>@attr._2.translation</td>
-                </tr>
-              }
-            </table>
-          </div>
-          <div class="game-json"><pre>@play.api.libs.json.Json.prettyPrint(game.body)</pre></div>
-        </div>
-      </div>
-    }
-  </div>
-
+  }
 }

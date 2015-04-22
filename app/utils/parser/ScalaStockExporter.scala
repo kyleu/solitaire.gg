@@ -8,8 +8,8 @@ object ScalaStockExporter {
 
     rules.stock match {
       case Some(s) =>
-        add("""  stock = Some(""")
-        add("""    Stock(""")
+        add("  stock = Some(")
+        add("    Stock(")
         add(s"""      name = "${s.name.replaceAllLiterally("\"", "")}",""")
         add(s"""      dealTo = StockDealTo.${s.dealTo},""")
         add(s"""      maximumDeals = ${s.maximumDeals},""")
@@ -17,8 +17,8 @@ object ScalaStockExporter {
         add(s"""      stopAfterPartialDeal = ${s.stopAfterPartialDeal},""")
         add(s"""      createPocketWhenEmpty = ${s.createPocketWhenEmpty},""")
         add(s"""      galleryMode = ${s.galleryMode}""")
-        add("""    )""")
-        add("""  ),""")
+        add("    )")
+        add("  ),")
       case None => add("  stock = None,")
     }
   }

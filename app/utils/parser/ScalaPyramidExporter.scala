@@ -8,11 +8,11 @@ object ScalaPyramidExporter {
     def cls(o: Any) = ScalaExporter.cls(o)
 
     if (rules.pyramids.isEmpty) {
-      add("""  pyramids = Nil""")
+      add("  pyramids = Nil")
     } else {
-      add("""  pyramids = Seq(""")
+      add("  pyramids = Seq(")
       add(rules.pyramids.map { p =>
-        """    PyramidSet(\n""" +
+        "    PyramidSet(\n" +
           s"""      name = "${p.name.replaceAllLiterally("\"", "")}",\n""" +
           s"""      pyramidType = PyramidType.${p.pyramidType},\n""" +
           s"""      height = ${p.height},\n""" +
@@ -25,7 +25,7 @@ object ScalaPyramidExporter {
           s"""      mayMoveToNonEmptyFrom = Seq(${p.mayMoveToNonEmptyFrom.map(x => "\"" + x + "\"").mkString(", ")}),\n""" +
           s"""      mayMoveToEmptyFrom = Seq(${p.mayMoveToEmptyFrom.map(x => "\"" + x + "\"").mkString(", ")}),\n""" +
           s"""      emptyFilledWith = PyramidFillEmptyWith.${cls(p.emptyFilledWith)}\n""" +
-          """    )"""
+          "    )"
       }.mkString(",\n"))
       add("  )")
     }

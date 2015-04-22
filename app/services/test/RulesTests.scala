@@ -1,20 +1,25 @@
 package services.test
 
+import models.game.Deck
 import models.game.generated.GameRulesSet
 import models.game.rules.GameRules
+import models.test.{ Test, Tree }
 
-trait RulesTests { this: TestService =>
-  def testAllGameRules() = runTest(() => TestResult("all-rules", GameRulesSet.all.map { gr =>
-    testGameRules(gr, verbose = false)
-  }))
+import scala.util.Random
 
-  def testGameRules(gr: GameRules, verbose: Boolean = true) = runTest { () =>
+class RulesTests {
+  val all = Tree(Test("rules"), GameRulesSet.all.map(x => testGameRules(x.id).toTree))
+
+  def testGameRules(id: String) = Test("rules-" + id, () => {
+    val rules = GameRulesSet.allById(id)
     val ret = "OK"
-    TestResult(gr.id + ": " + ret)
-  }
+    val rng = new Random()
+    val deck = getDeck(rules, rng)
+    "OK"
+  })
 
-  def getDeck(rules: GameRules) = {
-
+  def getDeck(rules: GameRules, rng: Random) = {
+    Deck.shuffled(rng, rules.deckOptions.numDecks)
   }
 
   def getPileGroups(rules: GameRules) = {

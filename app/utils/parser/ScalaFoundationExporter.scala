@@ -8,11 +8,11 @@ object ScalaFoundationExporter {
     def cls(o: Any) = ScalaExporter.cls(o)
 
     if (rules.foundations.isEmpty) {
-      add("""  foundations = Nil,""")
+      add("  foundations = Nil,")
     } else {
-      add("""  foundations = Seq(""")
+      add("  foundations = Seq(")
       add(rules.foundations.map { f =>
-        """    FoundationSet(\n""" +
+        "    FoundationSet(\n" +
           s"""      name = "${f.name.replaceAllLiterally("\"", "")}",\n""" +
           s"""      numPiles = ${f.numPiles},\n""" +
           s"""      lowRank = FoundationLowRank.${cls(f.lowRank)},\n""" +
@@ -27,7 +27,7 @@ object ScalaFoundationExporter {
           s"""      offscreen = ${f.offscreen},\n""" +
           s"""      autoMoveCards = ${f.autoMoveCards},\n""" +
           s"""      autoMoveFrom = Seq(${f.autoMoveFrom.map(x => "\"" + x + "\"").mkString(", ")})\n""" +
-          """    )"""
+          "    )"
       }.mkString(",\n"))
       add("  ),")
     }

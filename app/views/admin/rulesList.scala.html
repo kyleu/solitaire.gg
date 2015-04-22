@@ -4,25 +4,22 @@
 @import utils.GameRulesSerializers._
 
 @layout.admin(utils.Config.projectName + " Rules", "rules") {
-  <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="text-large">
-          @utils.Formatter.withCommas(ruleSet.size) Available Games
-        </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="text-large">
+        @utils.Formatter.withCommas(ruleSet.size) Available Games
       </div>
     </div>
-
-    <h4>Variants</h4>
-    @for(rules <- ruleSet.sortBy(_.title)) {
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="text-large">@rules.title (@rules.id)</div>
-          <div class="game-description"><em>@rules.description</em></div>
-          <pre>@Json.prettyPrint(Json.toJson(rules))</pre>
-        </div>
-      </div>
-    }
   </div>
 
+  <h4>Variants</h4>
+  @for(rules <- ruleSet.sortBy(_.title)) {
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="text-large">@rules.title (@rules.id)</div>
+        <div class="game-description"><em>@rules.description</em></div>
+        <pre>@Json.prettyPrint(Json.toJson(rules))</pre>
+      </div>
+    </div>
+  }
 }

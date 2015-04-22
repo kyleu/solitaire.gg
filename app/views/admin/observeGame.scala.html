@@ -1,28 +1,26 @@
 @(account: java.util.UUID, name: String, gameId: Option[java.util.UUID], as: Option[java.util.UUID])(implicit session: Session, flash: Flash)@layout.admin(
   utils.Config.projectName + " Admin", "activity"
 ) {
-  <div class="container">
-    <div class="row status-row">
-      <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="pull-right">
-              <label for="game-seed">Seed</label>: <input type="text" id="game-seed" value="0" />
-              <button>New Game</button>
-            </div>
-            <div id="status">Disconnected</div>
+  <div class="row status-row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="pull-right">
+            <label for="game-seed">Seed</label>: <input type="text" id="game-seed" value="0" />
+            <button>New Game</button>
           </div>
+          <div id="status">Disconnected</div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div id="game-container" class="inline-game">
-            </div>
-            @views.html.game.statusPanel()
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="game-container" class="inline-game">
           </div>
+          @views.html.game.statusPanel()
         </div>
       </div>
     </div>
