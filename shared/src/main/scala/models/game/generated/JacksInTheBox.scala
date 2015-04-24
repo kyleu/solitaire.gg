@@ -17,7 +17,7 @@ object JacksInTheBox extends GameRules(
     lowRank = Some(Rank.Jack)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -28,15 +28,14 @@ object JacksInTheBox extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -54,7 +53,7 @@ object JacksInTheBox extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 6,
       initialCards = InitialCards.Count(1),
@@ -75,7 +74,7 @@ object JacksInTheBox extends GameRules(
     )
   ),
   cells = Some(
-    CellSet(
+    CellRules(
 
       name = "Cell",
 

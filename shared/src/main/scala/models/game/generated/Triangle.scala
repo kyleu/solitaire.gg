@@ -17,7 +17,7 @@ object Triangle extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.WasteOrPairManually,
       maximumDeals = Some(1),
@@ -28,15 +28,14 @@ object Triangle extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 2,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -54,7 +53,7 @@ object Triangle extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(4),
@@ -77,7 +76,7 @@ object Triangle extends GameRules(
   cells = None,
   reserves = None,
   pyramids = Seq(
-    PyramidSet(
+    PyramidRules(
       name = "Pyramid",
       pyramidType = PyramidType.Standard,
       height = 7,

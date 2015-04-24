@@ -9,7 +9,7 @@ object ScalaCellExporter {
     rules.cells match {
       case Some(c) =>
         add("  cells = Some(")
-        add("    CellSet(\n")
+        add("    CellRules(\n")
         add(s"""      name = "${c.name.replaceAllLiterally("\"", "")}",\n""")
         add(s"""      pluralName = "${c.pluralName}",\n""")
         add(s"""      numPiles = ${c.numPiles},\n""")

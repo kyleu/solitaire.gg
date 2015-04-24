@@ -40,4 +40,6 @@ object PileOptionsHelper {
     dragFromConstraint = Some(Constraints.topCardOnly),
     selectCardAction = Some(SelectCardActions.klondike)
   )
+
+  val reserve = waste.combine(PileOptions(cardsShown = Some(1)))
 }

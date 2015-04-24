@@ -17,7 +17,7 @@ object FlowerGarden extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -28,15 +28,14 @@ object FlowerGarden extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Bouquet",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -54,7 +53,7 @@ object FlowerGarden extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Flower Beds",
       numPiles = 6,
       initialCards = InitialCards.Count(6),

@@ -17,7 +17,7 @@ object PyramidDozen extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.WasteOrPairManually,
       maximumDeals = Some(3),
@@ -29,7 +29,7 @@ object PyramidDozen extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object PyramidDozen extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 6,
       initialCards = InitialCards.Count(4),
@@ -70,7 +70,7 @@ object PyramidDozen extends GameRules(
   cells = None,
   reserves = None,
   pyramids = Seq(
-    PyramidSet(
+    PyramidRules(
       name = "Pyramid",
       pyramidType = PyramidType.Standard,
       height = 7,

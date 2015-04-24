@@ -1,6 +1,6 @@
 package models.game.rules
 
-case class ReserveSet(
+case class ReserveRules(
   name: String,
   numPiles: Int,
   initialCards: Int,

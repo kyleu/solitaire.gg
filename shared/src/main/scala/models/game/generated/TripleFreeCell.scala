@@ -17,7 +17,7 @@ object TripleFreeCell extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object TripleFreeCell extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 12,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object TripleFreeCell extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 13,
       initialCards = InitialCards.Count(12),
@@ -68,7 +68,7 @@ object TripleFreeCell extends GameRules(
     )
   ),
   cells = Some(
-    CellSet(
+    CellRules(
 
       name = "Cell",
 

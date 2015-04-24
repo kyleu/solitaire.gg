@@ -17,7 +17,7 @@ object Spider extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.TableauIfNoneEmpty,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object Spider extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object Spider extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 10,
       initialCards = InitialCards.Custom,

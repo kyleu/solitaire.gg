@@ -17,7 +17,7 @@ object Scorpion extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Reserve",
       dealTo = StockDealTo.Tableau,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object Scorpion extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object Scorpion extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 7,
       initialCards = InitialCards.Custom,

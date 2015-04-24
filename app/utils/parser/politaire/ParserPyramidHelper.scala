@@ -1,6 +1,6 @@
 package utils.parser.politaire
 
-import models.game.rules.{ PyramidFillEmptyWith, PyramidType, PyramidFaceDownCards, PyramidSet }
+import models.game.rules.{ PyramidFillEmptyWith, PyramidType, PyramidFaceDownCards, PyramidRules }
 import utils.parser.politaire.lookup.PolitaireLookup
 
 trait ParserPyramidHelper { this: GameRulesParser =>
@@ -8,7 +8,7 @@ trait ParserPyramidHelper { this: GameRulesParser =>
     val pyramidCount = getInt("Pn")
     val pyramids = (0 to pyramidCount - 1).map { i =>
       val prefix = "P" + i
-      PyramidSet(
+      PyramidRules(
         name = getString(prefix + "Nm"),
         pyramidType = getInt(prefix + "type") match {
           case 1 => PyramidType.Standard

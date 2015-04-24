@@ -1,6 +1,6 @@
 package utils.parser.politaire
 
-import models.game.rules.CellSet
+import models.game.rules.CellRules
 import utils.parser.politaire.lookup.PolitaireLookup
 
 trait ParserCellHelper { this: GameRulesParser =>
@@ -8,7 +8,7 @@ trait ParserCellHelper { this: GameRulesParser =>
     getInt("C0n") match {
       case 0 => None
       case numPiles =>
-        Some(CellSet(
+        Some(CellRules(
           name = getString("C0Ns"),
           pluralName = getString("C0Nm"),
           numPiles = numPiles,

@@ -6,7 +6,7 @@ object WastePlayableCards {
   case object All extends WastePlayableCards
 }
 
-case class WasteSet(
+case class WasteRules(
   name: String,
   numPiles: Int,
   playableCards: WastePlayableCards

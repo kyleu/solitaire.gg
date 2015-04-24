@@ -18,7 +18,7 @@ object FoundationCanMoveFrom {
   case object EmptyStock extends FoundationCanMoveFrom
 }
 
-case class FoundationSet(
+case class FoundationRules(
   name: String,
   numPiles: Int,
   lowRank: FoundationLowRank,

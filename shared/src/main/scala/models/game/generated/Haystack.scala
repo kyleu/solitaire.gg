@@ -17,7 +17,7 @@ object Haystack extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object Haystack extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object Haystack extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Reserve",
       numPiles = 1,
       initialCards = InitialCards.Count(8),

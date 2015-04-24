@@ -1,13 +1,13 @@
 package utils.parser.politaire
 
-import models.game.rules.{ StockDealTo, StockCardsDealt, Stock }
+import models.game.rules.{ StockCardsDealt, StockDealTo, StockRules }
 
 trait ParserStockHelper { this: GameRulesParser =>
   protected[this] def getStock = {
     getInt("smode") match {
       case 0 => None
       case stockMode =>
-        Some(Stock(
+        Some(StockRules(
           name = getString("S0Nm"),
           dealTo = getInt("dealto") match {
             case 1 => StockDealTo.Waste

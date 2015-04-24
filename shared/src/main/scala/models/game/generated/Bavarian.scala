@@ -17,7 +17,7 @@ object Bavarian extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -28,8 +28,7 @@ object Bavarian extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly

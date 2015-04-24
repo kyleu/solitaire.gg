@@ -17,7 +17,7 @@ object DoubleAcesAndKings extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -28,15 +28,14 @@ object DoubleAcesAndKings extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Ace Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -52,7 +51,7 @@ object DoubleAcesAndKings extends GameRules(
       autoMoveCards = false,
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     ),
-    FoundationSet(
+    FoundationRules(
       name = "King Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckHighRank,
@@ -70,7 +69,7 @@ object DoubleAcesAndKings extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(1),
@@ -89,7 +88,7 @@ object DoubleAcesAndKings extends GameRules(
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
     ),
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(4),
@@ -111,7 +110,7 @@ object DoubleAcesAndKings extends GameRules(
   ),
   cells = None,
   reserves = Some(
-    ReserveSet(
+    ReserveRules(
 
       name = "Reserve",
 

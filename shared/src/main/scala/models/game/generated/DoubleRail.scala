@@ -17,7 +17,7 @@ object DoubleRail extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -28,15 +28,14 @@ object DoubleRail extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -54,7 +53,7 @@ object DoubleRail extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 5,
       initialCards = InitialCards.Count(1),

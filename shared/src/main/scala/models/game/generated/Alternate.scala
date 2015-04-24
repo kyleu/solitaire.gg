@@ -17,7 +17,7 @@ object Alternate extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Manually,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object Alternate extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Red Foundation",
       numPiles = 2,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -45,7 +45,7 @@ object Alternate extends GameRules(
       autoMoveCards = true,
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     ),
-    FoundationSet(
+    FoundationRules(
       name = "Black Foundation",
       numPiles = 2,
       lowRank = FoundationLowRank.DeckHighRank,
@@ -63,7 +63,7 @@ object Alternate extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Reserve",
       numPiles = 4,
       initialCards = InitialCards.Count(0),
@@ -82,7 +82,7 @@ object Alternate extends GameRules(
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
     ),
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(4),

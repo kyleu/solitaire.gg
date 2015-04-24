@@ -3,9 +3,12 @@ package models.game.variants
 import java.util.UUID
 
 import models.game._
-import models.game.pile._
 
-object KlondikeBase {
+object Klondike extends GameVariant.Description {
+  override val key = "klondike-draw-one"
+  override val name = "Klondike (Draw 1)"
+  override val body = "The standard Solitaire game, drawing one card at a time."
+
   val layouts = Seq(
     Layout(
       width = 7.8,
@@ -29,32 +32,8 @@ object KlondikeBase {
       )
     )
   )
-}
 
-abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, cardsToDraw: Int) extends GameVariant(gameId, seed) {
-  private[this] val piles = List(
-    Pile("stock", "stock", PileOptionsHelper.stock(cardsToDraw, "waste", Some("waste"))),
-    Pile("waste", "waste", PileOptionsHelper.waste),
-
-    Pile("foundation-1", "foundation", PileOptionsHelper.foundation),
-    Pile("foundation-2", "foundation", PileOptionsHelper.foundation),
-    Pile("foundation-3", "foundation", PileOptionsHelper.foundation),
-    Pile("foundation-4", "foundation", PileOptionsHelper.foundation),
-
-    Pile("tableau-1", "tableau", PileOptionsHelper.tableau),
-    Pile("tableau-2", "tableau", PileOptionsHelper.tableau),
-    Pile("tableau-3", "tableau", PileOptionsHelper.tableau),
-    Pile("tableau-4", "tableau", PileOptionsHelper.tableau),
-    Pile("tableau-5", "tableau", PileOptionsHelper.tableau),
-    Pile("tableau-6", "tableau", PileOptionsHelper.tableau),
-    Pile("tableau-7", "tableau", PileOptionsHelper.tableau)
-  )
-
-  private[this] val deck = newShuffledDecks()
-
-  lazy val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
-
-  override def initialMoves() = {
+  def initialMoves(gameState: GameState, deck: Deck) = {
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "tableau-1", reveal = true)
 
     gameState.addCards(deck.getCards(1), "tableau-2")
@@ -77,6 +56,6 @@ abstract class KlondikeBase(override val gameId: UUID, override val seed: Int, c
 
     gameState.addCards(deck.getCards(), "stock")
   }
-
-  override def isWin: Boolean = gameState.piles.count(x => x.behavior == "foundation" && x.cards.size == 13) == 4
 }
+
+class Klondike(gameId: UUID, seed: Int) extends GameVariant("klondike", Klondike, gameId, seed)

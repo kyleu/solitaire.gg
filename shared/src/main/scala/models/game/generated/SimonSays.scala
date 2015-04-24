@@ -17,7 +17,7 @@ object SimonSays extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -31,7 +31,7 @@ object SimonSays extends GameRules(
   foundations = Nil,
   tableaus = Nil,
   cells = Some(
-    CellSet(
+    CellRules(
 
       name = "Cell",
 

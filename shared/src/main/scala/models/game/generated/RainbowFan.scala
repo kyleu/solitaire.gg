@@ -17,7 +17,7 @@ object RainbowFan extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Never,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object RainbowFan extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Aces Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -45,7 +45,7 @@ object RainbowFan extends GameRules(
       autoMoveCards = true,
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     ),
-    FoundationSet(
+    FoundationRules(
       name = "Kings Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
@@ -63,7 +63,7 @@ object RainbowFan extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 20,
       initialCards = InitialCards.Count(3),
@@ -82,7 +82,7 @@ object RainbowFan extends GameRules(
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
     ),
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(4),

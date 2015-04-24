@@ -17,7 +17,7 @@ object Minerva extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(2),
@@ -28,15 +28,14 @@ object Minerva extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -54,7 +53,7 @@ object Minerva extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 7,
       initialCards = InitialCards.Count(4),
@@ -76,7 +75,7 @@ object Minerva extends GameRules(
   ),
   cells = None,
   reserves = Some(
-    ReserveSet(
+    ReserveRules(
 
       name = "Reserve",
 

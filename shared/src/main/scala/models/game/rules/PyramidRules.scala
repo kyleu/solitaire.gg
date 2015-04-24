@@ -26,7 +26,7 @@ object PyramidFillEmptyWith {
   case object Sevens extends PyramidFillEmptyWith
 }
 
-case class PyramidSet(
+case class PyramidRules(
   name: String,
   pyramidType: PyramidType,
   height: Int,

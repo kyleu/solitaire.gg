@@ -17,7 +17,7 @@ object Contradance extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(2),
@@ -28,15 +28,14 @@ object Contradance extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
@@ -52,7 +51,7 @@ object Contradance extends GameRules(
       autoMoveCards = true,
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     ),
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
@@ -70,7 +69,7 @@ object Contradance extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(4),
@@ -89,7 +88,7 @@ object Contradance extends GameRules(
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
     ),
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(4),

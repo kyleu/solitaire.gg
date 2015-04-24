@@ -17,7 +17,7 @@ object DoubleDot extends GameRules(
     lowRank = None
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Tableau,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object DoubleDot extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 2,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
@@ -45,7 +45,7 @@ object DoubleDot extends GameRules(
       autoMoveCards = true,
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     ),
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 2,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
@@ -63,7 +63,7 @@ object DoubleDot extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(1),
@@ -82,7 +82,7 @@ object DoubleDot extends GameRules(
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
     ),
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(4),

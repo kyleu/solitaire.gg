@@ -17,7 +17,7 @@ object TripleTriangle extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Tableau,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object TripleTriangle extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 12,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object TripleTriangle extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 13,
       initialCards = InitialCards.PileIndex,

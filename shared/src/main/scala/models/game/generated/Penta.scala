@@ -17,7 +17,7 @@ object Penta extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -28,15 +28,14 @@ object Penta extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Left Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
@@ -52,7 +51,7 @@ object Penta extends GameRules(
       autoMoveCards = false,
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     ),
-    FoundationSet(
+    FoundationRules(
       name = "Right Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
@@ -70,7 +69,7 @@ object Penta extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Left Tableau",
       numPiles = 3,
       initialCards = InitialCards.Count(1),
@@ -89,7 +88,7 @@ object Penta extends GameRules(
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
     ),
-    TableauSet(
+    TableauRules(
       name = "Right Tableau",
       numPiles = 3,
       initialCards = InitialCards.Count(1),

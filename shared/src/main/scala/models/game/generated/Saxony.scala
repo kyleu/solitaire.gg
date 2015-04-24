@@ -17,7 +17,7 @@ object Saxony extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Reserve,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object Saxony extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object Saxony extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Reserve",
       numPiles = 4,
       initialCards = InitialCards.Count(1),
@@ -68,7 +68,7 @@ object Saxony extends GameRules(
     )
   ),
   cells = Some(
-    CellSet(
+    CellRules(
 
       name = "Cell",
 
@@ -85,7 +85,7 @@ object Saxony extends GameRules(
     )
   ),
   reserves = Some(
-    ReserveSet(
+    ReserveRules(
 
       name = "Tableau",
 

@@ -17,7 +17,7 @@ object TripleEasthaven extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Tableau,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object TripleEasthaven extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 12,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object TripleEasthaven extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 12,
       initialCards = InitialCards.Count(3),

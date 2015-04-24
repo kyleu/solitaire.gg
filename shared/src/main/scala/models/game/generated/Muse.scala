@@ -17,7 +17,7 @@ object Muse extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object Muse extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object Muse extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 9,
       initialCards = InitialCards.PileIndex,
@@ -68,7 +68,7 @@ object Muse extends GameRules(
     )
   ),
   cells = Some(
-    CellSet(
+    CellRules(
 
       name = "Cell",
 

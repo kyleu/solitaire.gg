@@ -17,7 +17,7 @@ object AgnesBernauer extends GameRules(
     lowRank = Some(Rank.Unknown)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Reserve,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object AgnesBernauer extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object AgnesBernauer extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 7,
       initialCards = InitialCards.PileIndex,
@@ -69,7 +69,7 @@ object AgnesBernauer extends GameRules(
   ),
   cells = None,
   reserves = Some(
-    ReserveSet(
+    ReserveRules(
 
       name = "Reserve",
 

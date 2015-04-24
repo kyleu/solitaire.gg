@@ -31,32 +31,8 @@ object Canfield extends GameVariant.Description {
       )
     )
   )
-}
 
-case class Canfield(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
-  override def description = Canfield
-
-  private[this] val piles = List(
-    Pile("stock", "stock", PileOptionsHelper.stock(3, "waste", Some("waste"))),
-    Pile("waste", "waste", PileOptionsHelper.waste),
-    Pile("reserve", "reserve", PileOptionsHelper.waste.combine(PileOptions(cardsShown = Some(1)))),
-
-    Pile("foundation-1", "foundation", PileOptionsHelper.foundation),
-    Pile("foundation-2", "foundation", PileOptionsHelper.foundation),
-    Pile("foundation-3", "foundation", PileOptionsHelper.foundation),
-    Pile("foundation-4", "foundation", PileOptionsHelper.foundation),
-
-    Pile("tableau-1", "tableau", PileOptionsHelper.tableau),
-    Pile("tableau-2", "tableau", PileOptionsHelper.tableau),
-    Pile("tableau-3", "tableau", PileOptionsHelper.tableau),
-    Pile("tableau-4", "tableau", PileOptionsHelper.tableau)
-  )
-
-  private[this] val deck = newShuffledDecks()
-
-  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
-
-  override def initialMoves() = {
+  def initialMoves(gameState: GameState, deck: Deck) = {
     gameState.addCards(deck.getCards(34), "stock")
     gameState.addCards(deck.getCards(13, turnFaceUp = true), "reserve", reveal = true)
 
@@ -65,6 +41,6 @@ case class Canfield(override val gameId: UUID, override val seed: Int) extends G
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "tableau-3", reveal = true)
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "tableau-4", reveal = true)
   }
-
-  override def isWin: Boolean = gameState.piles.count(x => x.behavior == "foundation" && x.cards.size == 13) == 4
 }
+
+class Canfield(gameId: UUID, seed: Int) extends GameVariant("canfield", Canfield, gameId, seed)

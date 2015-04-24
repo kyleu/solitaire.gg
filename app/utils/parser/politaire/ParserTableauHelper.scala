@@ -8,7 +8,7 @@ trait ParserTableauHelper { this: GameRulesParser =>
     val tableauCount = getInt("Fn")
     val tableaus = (0 to tableauCount - 1).map { i =>
       val prefix = "T" + i
-      TableauSet(
+      TableauRules(
         name = getString(prefix + "Nm"),
         numPiles = getInt(prefix + "n") match {
           case -1 => 4 * deckOptions.numDecks

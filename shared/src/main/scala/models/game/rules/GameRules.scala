@@ -7,11 +7,11 @@ case class GameRules(
   victoryCondition: VictoryCondition,
   cardRemovalMethod: CardRemovalMethod,
   deckOptions: DeckOptions,
-  stock: Option[Stock],
-  waste: Option[WasteSet],
-  foundations: Seq[FoundationSet],
-  tableaus: Seq[TableauSet],
-  cells: Option[CellSet],
-  reserves: Option[ReserveSet],
-  pyramids: Seq[PyramidSet]
+  stock: Option[StockRules],
+  waste: Option[WasteRules],
+  foundations: Seq[FoundationRules],
+  tableaus: Seq[TableauRules],
+  cells: Option[CellRules],
+  reserves: Option[ReserveRules],
+  pyramids: Seq[PyramidRules]
 )

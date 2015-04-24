@@ -9,7 +9,7 @@ object ScalaStockExporter {
     rules.stock match {
       case Some(s) =>
         add("  stock = Some(")
-        add("    Stock(")
+        add("    StockRules(")
         add(s"""      name = "${s.name.replaceAllLiterally("\"", "")}",""")
         add(s"""      dealTo = StockDealTo.${s.dealTo},""")
         add(s"""      maximumDeals = ${s.maximumDeals},""")

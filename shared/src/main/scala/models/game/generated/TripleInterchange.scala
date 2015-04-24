@@ -17,7 +17,7 @@ object TripleInterchange extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = None,
@@ -28,15 +28,14 @@ object TripleInterchange extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 12,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -54,7 +53,7 @@ object TripleInterchange extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 9,
       initialCards = InitialCards.Count(9),

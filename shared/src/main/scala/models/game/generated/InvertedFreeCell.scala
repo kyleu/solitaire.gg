@@ -17,7 +17,7 @@ object InvertedFreeCell extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object InvertedFreeCell extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
@@ -47,7 +47,7 @@ object InvertedFreeCell extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,
@@ -68,7 +68,7 @@ object InvertedFreeCell extends GameRules(
     )
   ),
   cells = Some(
-    CellSet(
+    CellRules(
 
       name = "Cell",
 

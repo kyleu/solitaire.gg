@@ -12,7 +12,7 @@ object ScalaPyramidExporter {
     } else {
       add("  pyramids = Seq(")
       add(rules.pyramids.map { p =>
-        "    PyramidSet(\n" +
+        "    PyramidRules(\n" +
           s"""      name = "${p.name.replaceAllLiterally("\"", "")}",\n""" +
           s"""      pyramidType = PyramidType.${p.pyramidType},\n""" +
           s"""      height = ${p.height},\n""" +

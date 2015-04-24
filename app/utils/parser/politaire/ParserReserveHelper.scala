@@ -1,13 +1,13 @@
 package utils.parser.politaire
 
-import models.game.rules.ReserveSet
+import models.game.rules.ReserveRules
 
 trait ParserReserveHelper { this: GameRulesParser =>
   protected[this] def getReserves = {
     getInt("R0n") match {
       case 0 => None
       case numPiles =>
-        Some(ReserveSet(
+        Some(ReserveRules(
           name = getString("R0Nm"),
           numPiles = numPiles,
           initialCards = getInt("R0d"),

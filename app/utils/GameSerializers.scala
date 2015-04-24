@@ -1,7 +1,7 @@
 package utils
 
 import models.game._
-import models.game.pile.{ ClientPileOptions, PileOptions, Pile }
+import models.game.pile.{ PileSet, ClientPileOptions, PileOptions, Pile }
 import play.api.libs.json._
 
 object GameSerializers {
@@ -43,6 +43,7 @@ object GameSerializers {
     override def writes(po: PileOptions) = clientPileOptionsWrites.writes(ClientPileOptions.fromPileOptions(po))
   }
   implicit val pileWrites = Json.writes[Pile]
+  implicit val pileSetWrites = Json.writes[PileSet]
 
   implicit val pileLocationWrites = Json.writes[PileLocation]
   implicit val layoutWrites = Json.writes[Layout]

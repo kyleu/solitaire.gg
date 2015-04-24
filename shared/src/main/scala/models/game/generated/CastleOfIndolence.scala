@@ -17,7 +17,7 @@ object CastleOfIndolence extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object CastleOfIndolence extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object CastleOfIndolence extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,
@@ -69,7 +69,7 @@ object CastleOfIndolence extends GameRules(
   ),
   cells = None,
   reserves = Some(
-    ReserveSet(
+    ReserveRules(
 
       name = "Reserve",
 

@@ -17,7 +17,7 @@ object Carthage extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.TableauFirstSet,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object Carthage extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object Carthage extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Reserve",
       numPiles = 6,
       initialCards = InitialCards.Count(6),

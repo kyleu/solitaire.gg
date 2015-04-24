@@ -17,7 +17,7 @@ object FortyDevils extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -28,15 +28,14 @@ object FortyDevils extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Left Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -52,7 +51,7 @@ object FortyDevils extends GameRules(
       autoMoveCards = false,
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     ),
-    FoundationSet(
+    FoundationRules(
       name = "Right Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -70,7 +69,7 @@ object FortyDevils extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 10,
       initialCards = InitialCards.Count(4),
@@ -89,7 +88,7 @@ object FortyDevils extends GameRules(
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
     ),
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(4),

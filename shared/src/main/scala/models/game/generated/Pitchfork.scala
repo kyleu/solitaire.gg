@@ -17,7 +17,7 @@ object Pitchfork extends GameRules(
     lowRank = Some(Rank.Unknown)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object Pitchfork extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object Pitchfork extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 9,
       initialCards = InitialCards.Custom,
@@ -69,7 +69,7 @@ object Pitchfork extends GameRules(
   ),
   cells = None,
   reserves = Some(
-    ReserveSet(
+    ReserveRules(
 
       name = "Reserve",
 

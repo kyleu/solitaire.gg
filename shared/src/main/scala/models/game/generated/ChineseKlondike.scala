@@ -17,7 +17,7 @@ object ChineseKlondike extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = None,
@@ -28,15 +28,14 @@ object ChineseKlondike extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 16,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -54,7 +53,7 @@ object ChineseKlondike extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 12,
       initialCards = InitialCards.PileIndex,

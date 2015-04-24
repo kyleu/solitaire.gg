@@ -17,7 +17,7 @@ object Chequers extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Tableau,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object Chequers extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Ace Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -45,7 +45,7 @@ object Chequers extends GameRules(
       autoMoveCards = true,
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     ),
-    FoundationSet(
+    FoundationRules(
       name = "King Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
@@ -63,7 +63,7 @@ object Chequers extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 25,
       initialCards = InitialCards.Count(4),
@@ -82,7 +82,7 @@ object Chequers extends GameRules(
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
     ),
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(4),
@@ -104,7 +104,7 @@ object Chequers extends GameRules(
   ),
   cells = None,
   reserves = Some(
-    ReserveSet(
+    ReserveRules(
 
       name = "Reserve",
 

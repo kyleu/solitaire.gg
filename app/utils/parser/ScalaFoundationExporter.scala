@@ -12,7 +12,7 @@ object ScalaFoundationExporter {
     } else {
       add("  foundations = Seq(")
       add(rules.foundations.map { f =>
-        "    FoundationSet(\n" +
+        "    FoundationRules(\n" +
           s"""      name = "${f.name.replaceAllLiterally("\"", "")}",\n""" +
           s"""      numPiles = ${f.numPiles},\n""" +
           s"""      lowRank = FoundationLowRank.${cls(f.lowRank)},\n""" +

@@ -12,7 +12,7 @@ object ScalaTableauExporter {
     } else {
       add("  tableaus = Seq(")
       add(rules.tableaus.map { t =>
-        "    TableauSet(\n" +
+        "    TableauRules(\n" +
           s"""      name = "${t.name.replaceAllLiterally("\"", "")}",\n""" +
           s"""      numPiles = ${t.numPiles},\n""" +
           s"""      initialCards = InitialCards.${cls(t.initialCards)},\n""" +

@@ -1,0 +1,27 @@
+package models.game.pile
+
+import models.game.rules.StockCardsDealt.Count
+import models.game.rules.{ StockDealTo, StockRules }
+
+object StockSet {
+  def apply(stockRules: StockRules): StockSet = {
+    val cardsToDraw = stockRules.cardsDealt match {
+      case Count(i) => i
+      case _ => throw new NotImplementedError()
+    }
+
+    // TODO Match others
+    val drawTo = stockRules.dealTo match {
+      case StockDealTo.Waste => "waste-1"
+    }
+
+    // TODO Support max redraws
+    val redrawFrom = Some(drawTo)
+
+    val options = PileOptionsHelper.stock(cardsToDraw, drawTo, redrawFrom)
+    val piles = Seq(Pile("stock", "stock", options))
+    new StockSet(piles)
+  }
+}
+
+class StockSet(piles: Seq[Pile]) extends PileSet(piles)

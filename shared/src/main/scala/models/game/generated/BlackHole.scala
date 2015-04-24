@@ -17,7 +17,7 @@ object BlackHole extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Foundation,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object BlackHole extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 1,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object BlackHole extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 17,
       initialCards = InitialCards.Count(3),

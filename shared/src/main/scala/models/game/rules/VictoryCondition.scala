@@ -1,11 +1,28 @@
 package models.game.rules
 
-sealed trait VictoryCondition
+import models.game.GameState
+
+sealed trait VictoryCondition {
+  def check(gs: GameState): Boolean
+}
+
 object VictoryCondition {
-  case object AllOnFoundation extends VictoryCondition
-  case object AllButFourCardsOnFoundation extends VictoryCondition
-  case object AllOnFoundationOrStock extends VictoryCondition
-  case object NoneInStock extends VictoryCondition
-  case object NoneInPyramid extends VictoryCondition
-  case object AllOnTableauSorted extends VictoryCondition
+  case object AllOnFoundation extends VictoryCondition {
+    override def check(gs: GameState) = false
+  }
+  case object AllButFourCardsOnFoundation extends VictoryCondition {
+    override def check(gs: GameState) = false
+  }
+  case object AllOnFoundationOrStock extends VictoryCondition {
+    override def check(gs: GameState) = false
+  }
+  case object NoneInStock extends VictoryCondition {
+    override def check(gs: GameState) = false
+  }
+  case object NoneInPyramid extends VictoryCondition {
+    override def check(gs: GameState) = false
+  }
+  case object AllOnTableauSorted extends VictoryCondition {
+    override def check(gs: GameState) = false
+  }
 }

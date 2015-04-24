@@ -17,7 +17,7 @@ object BinaryStar extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Foundation,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object BinaryStar extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 1,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -45,7 +45,7 @@ object BinaryStar extends GameRules(
       autoMoveCards = true,
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     ),
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 1,
       lowRank = FoundationLowRank.DeckHighRank,
@@ -63,7 +63,7 @@ object BinaryStar extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 17,
       initialCards = InitialCards.Count(6),
@@ -82,7 +82,7 @@ object BinaryStar extends GameRules(
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
     ),
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(4),

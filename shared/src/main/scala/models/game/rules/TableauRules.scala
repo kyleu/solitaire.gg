@@ -41,7 +41,7 @@ object PileAction {
   case object LimitToTwoJacks extends PileAction
 }
 
-case class TableauSet(
+case class TableauRules(
   name: String,
   numPiles: Int,
   initialCards: InitialCards,

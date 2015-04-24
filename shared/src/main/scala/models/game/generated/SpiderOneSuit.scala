@@ -17,7 +17,7 @@ object SpiderOneSuit extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.TableauIfNoneEmpty,
       maximumDeals = Some(1),

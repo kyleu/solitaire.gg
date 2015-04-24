@@ -21,12 +21,12 @@ object GameRulesSerializers {
   implicit val stockDealToWrites = stringWriter[StockDealTo]
   implicit val stockCardsDealtWrites = stringWriter[StockCardsDealt]
 
-  implicit val stockWrites = Json.writes[Stock]
+  implicit val stockWrites = Json.writes[StockRules]
 
   // Waste
   implicit val wastePlayableCardsWrites = stringWriter[WastePlayableCards]
 
-  implicit val wasteWrites = Json.writes[WasteSet]
+  implicit val wasteWrites = Json.writes[WasteRules]
 
   // Foundation
   implicit val foundationCanMoveFromWrites = stringWriter[FoundationCanMoveFrom]
@@ -34,7 +34,7 @@ object GameRulesSerializers {
   implicit val suitMatchRuleWrites = stringWriter[SuitMatchRule]
   implicit val rankMatchRuleWrites = stringWriter[RankMatchRule]
 
-  implicit val foundationSetWrites = Json.writes[FoundationSet]
+  implicit val foundationSetWrites = Json.writes[FoundationRules]
 
   // Tableau
   implicit val tableauFaceDownCardsWrites = stringWriter[TableauFaceDownCards]
@@ -42,20 +42,20 @@ object GameRulesSerializers {
   implicit val tableauFillEmptyWithWrites = stringWriter[TableauFillEmptyWith]
   implicit val pileActionWrites = stringWriter[PileAction]
 
-  implicit val tableauSetWrites = Json.writes[TableauSet]
+  implicit val tableauSetWrites = Json.writes[TableauRules]
 
   // Cell
-  implicit val cellSetWrites = Json.writes[CellSet]
+  implicit val cellSetWrites = Json.writes[CellRules]
 
   // Reserve
-  implicit val reserveSetWrites = Json.writes[ReserveSet]
+  implicit val reserveSetWrites = Json.writes[ReserveRules]
 
   // Pyramid
   implicit val pyramidTypeWrites = stringWriter[PyramidType]
   implicit val pyramidFaceDownCardsWrites = stringWriter[PyramidFaceDownCards]
   implicit val pyramidFillEmptyWithWrites = stringWriter[PyramidFillEmptyWith]
 
-  implicit val pyramidSetWrites = Json.writes[PyramidSet]
+  implicit val pyramidSetWrites = Json.writes[PyramidRules]
 
   // Game Rules
   implicit val gameRulesWrites = Json.writes[GameRules]

@@ -9,7 +9,7 @@ trait ParserFoundationHelper { this: GameRulesParser =>
     val foundationCount = getInt("Fn")
     val foundations = (0 to foundationCount - 1).map { i =>
       val prefix = "F" + i
-      FoundationSet(
+      FoundationRules(
         name = getString(prefix + "Nm"),
         numPiles = getInt(prefix + "n") match {
           case -1 => 4 * deckOptions.numDecks

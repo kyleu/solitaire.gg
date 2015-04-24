@@ -17,7 +17,7 @@ object Pharaohs extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object Pharaohs extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +47,7 @@ object Pharaohs extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(4),
@@ -70,7 +70,7 @@ object Pharaohs extends GameRules(
   cells = None,
   reserves = None,
   pyramids = Seq(
-    PyramidSet(
+    PyramidRules(
       name = "Pyramid",
       pyramidType = PyramidType.Standard,
       height = 7,
@@ -84,7 +84,7 @@ object Pharaohs extends GameRules(
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       emptyFilledWith = PyramidFillEmptyWith.None
     ),
-    PyramidSet(
+    PyramidRules(
       name = "Pyramid",
       pyramidType = PyramidType.Standard,
       height = 7,
@@ -98,7 +98,7 @@ object Pharaohs extends GameRules(
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       emptyFilledWith = PyramidFillEmptyWith.None
     ),
-    PyramidSet(
+    PyramidRules(
       name = "Pyramid",
       pyramidType = PyramidType.Standard,
       height = 7,

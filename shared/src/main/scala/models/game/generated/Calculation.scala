@@ -17,7 +17,7 @@ object Calculation extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Manually,
       maximumDeals = Some(1),
@@ -29,7 +29,7 @@ object Calculation extends GameRules(
   ),
   waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.Ascending,
@@ -47,7 +47,7 @@ object Calculation extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Reserve",
       numPiles = 4,
       initialCards = InitialCards.Count(0),

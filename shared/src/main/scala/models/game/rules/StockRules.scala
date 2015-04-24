@@ -20,7 +20,7 @@ object StockCardsDealt {
   case object FewerEachTime extends StockCardsDealt
 }
 
-case class Stock(
+case class StockRules(
   name: String,
   dealTo: StockDealTo,
   maximumDeals: Option[Int],

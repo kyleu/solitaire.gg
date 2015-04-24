@@ -1,6 +1,6 @@
 package models.game.rules
 
-case class CellSet(
+case class CellRules(
   name: String,
   pluralName: String,
   numPiles: Int,
