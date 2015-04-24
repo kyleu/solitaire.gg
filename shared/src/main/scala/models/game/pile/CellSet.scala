@@ -6,7 +6,7 @@ object CellSet {
   def apply(cellRules: CellRules): CellSet = {
     val prefix = "cell-"
     val options = PileOptions()
-    val piles = (0 until cellRules.numPiles).map { i =>
+    val piles = (1 to cellRules.numPiles).map { i =>
       Pile(prefix + i, "cell", options)
     }
     new CellSet(piles)

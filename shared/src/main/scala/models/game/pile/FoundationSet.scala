@@ -5,8 +5,8 @@ import models.game.rules.FoundationRules
 object FoundationSet {
   def apply(FoundationRules: FoundationRules): FoundationSet = {
     val prefix = "foundation-"
-    val options = PileOptions()
-    val piles = (0 until FoundationRules.numPiles).map { i =>
+    val options = PileOptionsHelper.foundation
+    val piles = (1 to FoundationRules.numPiles).map { i =>
       Pile(prefix + i, "foundation", options)
     }
     new FoundationSet(piles)

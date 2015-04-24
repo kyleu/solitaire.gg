@@ -39,7 +39,7 @@ object GameVariant {
   val all = Seq(Canfield, Klondike)
 }
 
-case class GameVariant(rulesKey: String, description: GameVariant.Description, gameId: UUID, seed: Int) {
+case class GameVariant(rulesKey: String, description: GameVariant.Description, gameId: UUID, seed: Int, initialMoves: (GameState, Deck) => Unit) {
   val rules = GameRulesSet.allById(rulesKey)
 
   val rng = new Random(new java.util.Random(seed))
@@ -56,8 +56,8 @@ case class GameVariant(rulesKey: String, description: GameVariant.Description, g
 
   val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, pileSets, description.layouts)
 
-  def initialMoves() = {
-    // TODO
+  def performInitialMoves() = {
+    initialMoves(gameState, deck)
   }
 
   def isWin = {

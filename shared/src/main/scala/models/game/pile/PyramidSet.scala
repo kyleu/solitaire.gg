@@ -6,8 +6,8 @@ object PyramidSet {
   def apply(pyramidRules: PyramidRules): PyramidSet = {
     val prefix = "pyramid-"
     val options = PileOptions()
-    val piles = (0 until pyramidRules.height).flatMap { i =>
-      (0 until i).map { j =>
+    val piles = (1 to pyramidRules.height).flatMap { i =>
+      (1 to i).map { j =>
         Pile(prefix + i + "-" + j, "pyramid", options)
       }
     }

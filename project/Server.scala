@@ -2,24 +2,21 @@ import sbt._
 import sbt.Keys._
 import sbt.Project.projectToRef
 
-import com.typesafe.sbt.web.SbtWeb
-import com.typesafe.sbt.jse.JsEngineImport.JsEngineKeys
+import play.Play.autoImport._
+import playscalajs.PlayScalaJS.autoImport._
 
 import com.typesafe.sbt.digest.Import._
 import com.typesafe.sbt.gzip.Import._
+import com.typesafe.sbt.jse.JsEngineImport.JsEngineKeys
 import com.typesafe.sbt.less.Import._
 import com.typesafe.sbt.rjs.Import._
 import com.typesafe.sbt.web.Import._
+import com.typesafe.sbt.web.SbtWeb
 
 import sbtbuildinfo.Plugin._
-
-import play.Play.autoImport._
-
-import playscalajs.PlayScalaJS.autoImport._
-
 import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
+import com.typesafe.sbt.SbtScalariform.{ ScalariformKeys, defaultScalariformSettings }
 import net.virtualvoid.sbt.graph.Plugin.graphSettings
-import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, defaultScalariformSettings}
 
 object Server {
   private[this] val dependencies = {
@@ -46,13 +43,13 @@ object Server {
 
     scalaJSProjects := Seq(Client.client),
 
-    // sbt-web
+    // Sbt-Web
     pipelineStages := Seq(scalaJSProd, rjs, digest, gzip),
     includeFilter in (Assets, LessKeys.less) := "*.less",
     excludeFilter in (Assets, LessKeys.less) := "_*.less",
     JsEngineKeys.engineType := JsEngineKeys.EngineType.Node,
 
-    // build info
+    // Build Info
     sourceGenerators in Compile <+= buildInfo,
     buildInfoKeys := Seq[BuildInfoKey](
       name,
@@ -69,7 +66,7 @@ object Server {
     ),
     buildInfoPackage := "utils",
 
-    // code quality
+    // Code Quality
     scapegoatConsoleOutput := false,
     scapegoatIgnoredFiles := Seq(".*/routes_routing.scala", ".*/routes_reverseRouting.scala", ".*\\.template\\.scala"),
     scapegoatDisabledInspections := Seq("DuplicateImport"),

@@ -22,7 +22,7 @@ trait ScalataireHelper {
         }
         val cards = source.cards.drop(c._2)
         if (source.canDragFrom(cards, gameState)) {
-          gameState.piles.filter(p => p.id != source.id).foreach { target =>
+          gameState.piles.filterNot(_.id == source.id).foreach { target =>
             if (target.canDragTo(cards, gameState)) {
               ret += PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
             }

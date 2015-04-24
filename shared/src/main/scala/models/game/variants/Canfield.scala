@@ -16,8 +16,8 @@ object Canfield extends GameVariant.Description {
       height = 5.0,
       piles = List(
         PileLocation("stock", 0.6, 0.7),
-        PileLocation("waste", 1.7, 0.7),
-        PileLocation("reserve", 2.8, 0.7),
+        PileLocation("waste-1", 1.7, 0.7),
+        PileLocation("reserve-1", 2.8, 0.7),
 
         PileLocation("foundation-1", 6.0, 0.7),
         PileLocation("foundation-2", 7.1, 0.7),
@@ -34,7 +34,7 @@ object Canfield extends GameVariant.Description {
 
   def initialMoves(gameState: GameState, deck: Deck) = {
     gameState.addCards(deck.getCards(34), "stock")
-    gameState.addCards(deck.getCards(13, turnFaceUp = true), "reserve", reveal = true)
+    gameState.addCards(deck.getCards(13, turnFaceUp = true), "reserve-1", reveal = true)
 
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "tableau-1", reveal = true)
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "tableau-2", reveal = true)
@@ -43,4 +43,4 @@ object Canfield extends GameVariant.Description {
   }
 }
 
-class Canfield(gameId: UUID, seed: Int) extends GameVariant("canfield", Canfield, gameId, seed)
+class Canfield(gameId: UUID, seed: Int) extends GameVariant("canfield", Canfield, gameId, seed, Canfield.initialMoves)

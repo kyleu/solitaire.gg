@@ -5,8 +5,8 @@ import models.game.rules.ReserveRules
 object ReserveSet {
   def apply(reserveRules: ReserveRules): ReserveSet = {
     val prefix = "reserve-"
-    val options = PileOptions()
-    val piles = (0 until reserveRules.numPiles).map { i =>
+    val options = PileOptionsHelper.reserve
+    val piles = (1 to reserveRules.numPiles).map { i =>
       Pile(prefix + i, "reserve", options)
     }
     new ReserveSet(piles)

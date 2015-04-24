@@ -6,7 +6,7 @@ object WasteSet {
   def apply(wasteRules: WasteRules): WasteSet = {
     val prefix = "waste-"
     val options = PileOptionsHelper.waste
-    val piles = (0 until wasteRules.numPiles).map { i =>
+    val piles = (1 to wasteRules.numPiles).map { i =>
       Pile(prefix + i, "waste", options)
     }
     new WasteSet(piles)

@@ -5,9 +5,9 @@ import java.util.UUID
 import models.game._
 
 object Klondike extends GameVariant.Description {
-  override val key = "klondike-draw-one"
-  override val name = "Klondike (Draw 1)"
-  override val body = "The standard Solitaire game, drawing one card at a time."
+  override val key = "klondike"
+  override val name = "Klondike"
+  override val body = "The standard Solitaire game. Enjoy!"
 
   val layouts = Seq(
     Layout(
@@ -15,7 +15,7 @@ object Klondike extends GameVariant.Description {
       height = 5.0,
       piles = List(
         PileLocation("stock", 0.6, 0.7),
-        PileLocation("waste", 1.7, 0.7),
+        PileLocation("waste-1", 1.7, 0.7),
 
         PileLocation("foundation-1", 3.9, 0.7),
         PileLocation("foundation-2", 5.0, 0.7),
@@ -58,4 +58,4 @@ object Klondike extends GameVariant.Description {
   }
 }
 
-class Klondike(gameId: UUID, seed: Int) extends GameVariant("klondike", Klondike, gameId, seed)
+class Klondike(gameId: UUID, seed: Int) extends GameVariant("klondike", Klondike, gameId, seed, Klondike.initialMoves)
