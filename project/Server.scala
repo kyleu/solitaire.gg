@@ -84,4 +84,5 @@ object Server {
     .aggregate(Shared.sharedJvm)
     .dependsOn(Shared.sharedJvm)
     .dependsOn(Utilities.rulesParser)
+    .dependsOn(Utilities.rulesReset)
 }
