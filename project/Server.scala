@@ -2,7 +2,6 @@ import sbt._
 import sbt.Keys._
 import sbt.Project.projectToRef
 
-import play.Play.autoImport._
 import playscalajs.PlayScalaJS.autoImport._
 
 import com.typesafe.sbt.digest.Import._
@@ -23,7 +22,7 @@ object Server {
     import Dependencies._
     Seq(
       Database.jdub, Database.postgresJdbc,
-      filters, Network.playWs, Testing.akkaTestkit,
+      Play.playFilters, Play.playWs, Testing.akkaTestkit,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap
     )
@@ -84,4 +83,5 @@ object Server {
     .aggregate(projectToRef(Client.client))
     .aggregate(Shared.sharedJvm)
     .dependsOn(Shared.sharedJvm)
+    .dependsOn(Utilities.rulesParser)
 }
