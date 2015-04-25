@@ -16,17 +16,7 @@ object BigBertha extends GameRules(
     ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
     lowRank = Some(Rank.Ace)
   ),
-  stock = Some(
-    StockRules(
-      name = "Stock",
-      dealTo = StockDealTo.Waste,
-      maximumDeals = Some(1),
-      cardsDealt = StockCardsDealt.Count(1),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
-    )
-  ),
+  stock = None,
   waste = Some(
     WasteRules(
       name = "Reserve",
@@ -78,25 +68,6 @@ object BigBertha extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Down,
       wrapFromKingToAce = false,
       suitMatchRuleForMovingStacks = SuitMatchRule.AlternatingColors,
-      rankMatchRuleForMovingStacks = RankMatchRule.Down,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
-      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      maxCards = 0,
-      actionDuringDeal = PileAction.None,
-      actionAfterDeal = PileAction.None,
-      pilesWithLowCardsAtBottom = 0
-    ),
-    TableauRules(
-      name = "Tableau",
-      numPiles = 8,
-      initialCards = InitialCards.Count(4),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
       emptyFilledWith = TableauFillEmptyWith.Aces,

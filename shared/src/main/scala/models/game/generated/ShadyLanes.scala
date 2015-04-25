@@ -76,15 +76,10 @@ object ShadyLanes extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 4,
-
       initialCards = 1,
-
       cardsFaceDown = 100
-
     )
   ),
   pyramids = Nil

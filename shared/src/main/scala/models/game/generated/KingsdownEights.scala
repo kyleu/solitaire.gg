@@ -70,15 +70,10 @@ object KingsdownEights extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 8,
-
       initialCards = 4,
-
       cardsFaceDown = 0
-
     )
   ),
   pyramids = Nil

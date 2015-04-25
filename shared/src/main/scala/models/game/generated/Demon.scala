@@ -76,15 +76,10 @@ object Demon extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 40,
-
       cardsFaceDown = 100
-
     )
   ),
   pyramids = Nil

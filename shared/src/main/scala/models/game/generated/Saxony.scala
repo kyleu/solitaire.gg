@@ -86,15 +86,10 @@ object Saxony extends GameRules(
   ),
   reserves = Some(
     ReserveRules(
-
       name = "Tableau",
-
       numPiles = 8,
-
       initialCards = 1,
-
       cardsFaceDown = 100
-
     )
   ),
   pyramids = Nil

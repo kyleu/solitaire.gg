@@ -42,8 +42,11 @@ define(function () {
         default:
       }
       switch(c) {
-        case '+':
+        case ':':
           xOffset += 1 + padding;
+          break;
+        case '.':
+          xOffset += (1 + padding) / 2;
           break;
         default:
           if(pileSet === undefined) {

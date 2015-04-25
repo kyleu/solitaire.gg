@@ -71,6 +71,25 @@ object Batsford extends GameRules(
       actionDuringDeal = PileAction.None,
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
+    ),
+    TableauRules(
+      name = "Reserve",
+      numPiles = 1,
+      initialCards = InitialCards.Count(0),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.Any,
+      rankMatchRuleForBuilding = RankMatchRule.Equal,
+      wrapFromKingToAce = false,
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      rankMatchRuleForMovingStacks = RankMatchRule.Down,
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
+      emptyFilledWith = TableauFillEmptyWith.Kings,
+      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      maxCards = 3,
+      actionDuringDeal = PileAction.None,
+      actionAfterDeal = PileAction.None,
+      pilesWithLowCardsAtBottom = 0
     )
   ),
   cells = None,

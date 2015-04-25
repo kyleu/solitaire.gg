@@ -48,6 +48,7 @@ case class GameVariant(rulesKey: String, description: GameVariant.Description, g
     rules.stock.map(s => StockSet(s)) ++
     rules.waste.map(w => WasteSet(w)) ++
     rules.reserves.map(r => ReserveSet(r)) ++
+    rules.cells.map(c => CellSet(c)) ++
     rules.foundations.map(f => FoundationSet(f)) ++
     rules.tableaus.map(t => TableauSet(t))
   }.toSeq

@@ -76,15 +76,10 @@ object TripleMinerva extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 15,
-
       cardsFaceDown = 0
-
     )
   ),
   pyramids = Nil

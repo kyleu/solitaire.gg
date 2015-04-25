@@ -76,15 +76,10 @@ object Balcony extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 7,
-
       cardsFaceDown = 0
-
     )
   ),
   pyramids = Nil

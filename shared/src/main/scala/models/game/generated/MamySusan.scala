@@ -76,15 +76,10 @@ object MamySusan extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 5,
-
       cardsFaceDown = 100
-
     )
   ),
   pyramids = Nil

@@ -70,15 +70,10 @@ object Fly extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Fly",
-
       numPiles = 1,
-
       initialCards = 13,
-
       cardsFaceDown = 0
-
     )
   ),
   pyramids = Nil

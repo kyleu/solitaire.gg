@@ -76,15 +76,10 @@ object Kansas extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 13,
-
       cardsFaceDown = 100
-
     )
   ),
   pyramids = Nil

@@ -52,27 +52,7 @@ object Robert extends GameRules(
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     )
   ),
-  tableaus = Seq(
-    TableauRules(
-      name = "Tableau",
-      numPiles = 8,
-      initialCards = InitialCards.Count(4),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      rankMatchRuleForMovingStacks = RankMatchRule.Down,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
-      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      maxCards = 0,
-      actionDuringDeal = PileAction.None,
-      actionAfterDeal = PileAction.None,
-      pilesWithLowCardsAtBottom = 0
-    )
-  ),
+  tableaus = Nil,
   cells = None,
   reserves = None,
   pyramids = Nil

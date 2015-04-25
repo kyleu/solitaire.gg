@@ -76,15 +76,10 @@ object Mystique extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 9,
-
       cardsFaceDown = 0
-
     )
   ),
   pyramids = Nil

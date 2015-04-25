@@ -65,6 +65,25 @@ object Friday extends GameRules(
       actionDuringDeal = PileAction.None,
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
+    ),
+    TableauRules(
+      name = "Right Tableau",
+      numPiles = 10,
+      initialCards = InitialCards.Count(3),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.None,
+      rankMatchRuleForBuilding = RankMatchRule.Down,
+      wrapFromKingToAce = false,
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      rankMatchRuleForMovingStacks = RankMatchRule.Down,
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
+      emptyFilledWith = TableauFillEmptyWith.None,
+      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      maxCards = 0,
+      actionDuringDeal = PileAction.None,
+      actionAfterDeal = PileAction.None,
+      pilesWithLowCardsAtBottom = 0
     )
   ),
   cells = None,

@@ -76,15 +76,10 @@ object QuadrupleCanfield extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 39,
-
       cardsFaceDown = 100
-
     )
   ),
   pyramids = Nil

@@ -76,15 +76,10 @@ object DoubleStorehouse extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Storehouse",
-
       numPiles = 1,
-
       initialCards = 19,
-
       cardsFaceDown = 100
-
     )
   ),
   pyramids = Nil

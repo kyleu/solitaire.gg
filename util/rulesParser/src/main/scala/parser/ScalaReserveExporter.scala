@@ -9,11 +9,11 @@ object ScalaReserveExporter {
     rules.reserves match {
       case Some(r) =>
         add("  reserves = Some(")
-        add("    ReserveRules(\n")
-        add(s"""      name = "${r.name.replaceAllLiterally("\"", "")}",\n""")
-        add(s"""      numPiles = ${r.numPiles},\n""")
-        add(s"""      initialCards = ${r.initialCards},\n""")
-        add(s"""      cardsFaceDown = ${r.cardsFaceDown}\n""")
+        add("    ReserveRules(")
+        add(s"""      name = "${r.name.replaceAllLiterally("\"", "")}",""")
+        add(s"""      numPiles = ${r.numPiles},""")
+        add(s"""      initialCards = ${r.initialCards},""")
+        add(s"""      cardsFaceDown = ${r.cardsFaceDown}""")
         add("    )")
         add("  ),")
       case None => add("  reserves = None,")

@@ -76,15 +76,10 @@ object ThreeDemons extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 48,
-
       cardsFaceDown = 100
-
     )
   ),
   pyramids = Nil

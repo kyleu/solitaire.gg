@@ -76,15 +76,10 @@ object TripleCanfield extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 26,
-
       cardsFaceDown = 100
-
     )
   ),
   pyramids = Nil

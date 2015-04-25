@@ -76,15 +76,10 @@ object Countess extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 4,
-
       initialCards = 3,
-
       cardsFaceDown = 0
-
     )
   ),
   pyramids = Nil

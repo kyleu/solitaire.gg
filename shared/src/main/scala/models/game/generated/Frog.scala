@@ -70,15 +70,10 @@ object Frog extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Frog",
-
       numPiles = 1,
-
       initialCards = 13,
-
       cardsFaceDown = 0
-
     )
   ),
   pyramids = Nil

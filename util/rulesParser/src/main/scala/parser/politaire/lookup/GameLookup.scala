@@ -10,7 +10,8 @@ object GameLookup {
 
     "Fn" -> "Foundation Sets",
     "Tn" -> "Tableau sets",
-    "Pn" -> "Number of pyramids"
+    "Pn" -> "Number of pyramids",
+    "Sn" -> "Enable stock"
   )
 
   val translations = Map(
@@ -46,6 +47,7 @@ object GameLookup {
       17 -> "Remove pairs with consecutive or equal ranks",
       20 -> "Stack cards of same rank/suit in waste"
     ),
+    "Sn" -> Map(0 -> "No stock", 1 -> "1 stock"),
     "Tn" -> Map(0 -> "0 tableau sets", 1 -> "1 tableau set", 2 -> "2 tableau sets", 3 -> "3 tableau sets", 4 -> "4 tableau sets"),
     "Pn" -> Map(0 -> "0 pyramids", 1 -> "1 pyramid", 2 -> "2 pyramids", 3 -> "3 pyramids", 4 -> "4 pyramids")
   )

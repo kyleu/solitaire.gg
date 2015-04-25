@@ -71,20 +71,34 @@ object DemonsAndThieves extends GameRules(
       actionDuringDeal = PileAction.None,
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
+    ),
+    TableauRules(
+      name = "Right Tableau",
+      numPiles = 5,
+      initialCards = InitialCards.Count(8),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
+      rankMatchRuleForBuilding = RankMatchRule.Down,
+      wrapFromKingToAce = false,
+      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
+      rankMatchRuleForMovingStacks = RankMatchRule.Down,
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
+      emptyFilledWith = TableauFillEmptyWith.Aces,
+      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      maxCards = 0,
+      actionDuringDeal = PileAction.None,
+      actionAfterDeal = PileAction.None,
+      pilesWithLowCardsAtBottom = 0
     )
   ),
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 13,
-
       cardsFaceDown = 100
-
     )
   ),
   pyramids = Nil

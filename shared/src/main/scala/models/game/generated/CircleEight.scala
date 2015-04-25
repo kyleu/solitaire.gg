@@ -35,7 +35,27 @@ object CircleEight extends GameRules(
     )
   ),
   foundations = Nil,
-  tableaus = Nil,
+  tableaus = Seq(
+    TableauRules(
+      name = "Tableau",
+      numPiles = 8,
+      initialCards = InitialCards.Count(1),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.Any,
+      rankMatchRuleForBuilding = RankMatchRule.Up,
+      wrapFromKingToAce = true,
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      rankMatchRuleForMovingStacks = RankMatchRule.Down,
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
+      emptyFilledWith = TableauFillEmptyWith.Aces,
+      mayMoveToNonEmptyFrom = Seq("Waste"),
+      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      maxCards = 0,
+      actionDuringDeal = PileAction.None,
+      actionAfterDeal = PileAction.None,
+      pilesWithLowCardsAtBottom = 0
+    )
+  ),
   cells = None,
   reserves = None,
   pyramids = Nil

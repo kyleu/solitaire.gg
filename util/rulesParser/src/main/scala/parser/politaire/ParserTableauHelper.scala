@@ -5,7 +5,7 @@ import parser.politaire.lookup.PolitaireLookup
 
 trait ParserTableauHelper { this: GameRulesParser =>
   protected[this] def getTableaus(deckOptions: DeckOptions) = {
-    val tableauCount = getInt("Fn")
+    val tableauCount = getInt("Tn")
     val tableaus = (0 to tableauCount - 1).map { i =>
       val prefix = "T" + i
       TableauRules(

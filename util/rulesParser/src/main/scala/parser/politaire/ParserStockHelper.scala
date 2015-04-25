@@ -4,8 +4,11 @@ import models.game.rules.{ StockCardsDealt, StockDealTo, StockRules }
 
 trait ParserStockHelper { this: GameRulesParser =>
   protected[this] def getStock = {
+    val stockEnabled = getInt("Sn") == 1
+
     getInt("smode") match {
       case 0 => None
+      case _ if !stockEnabled => None
       case stockMode =>
         Some(StockRules(
           name = getString("S0Nm"),

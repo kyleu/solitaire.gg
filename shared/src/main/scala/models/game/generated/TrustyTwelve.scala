@@ -29,7 +29,27 @@ object TrustyTwelve extends GameRules(
   ),
   waste = None,
   foundations = Nil,
-  tableaus = Nil,
+  tableaus = Seq(
+    TableauRules(
+      name = "Tableau",
+      numPiles = 12,
+      initialCards = InitialCards.Count(1),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.Any,
+      rankMatchRuleForBuilding = RankMatchRule.Down,
+      wrapFromKingToAce = false,
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      rankMatchRuleForMovingStacks = RankMatchRule.Down,
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
+      emptyFilledWith = TableauFillEmptyWith.Aces,
+      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      maxCards = 0,
+      actionDuringDeal = PileAction.None,
+      actionAfterDeal = PileAction.None,
+      pilesWithLowCardsAtBottom = 0
+    )
+  ),
   cells = None,
   reserves = None,
   pyramids = Nil

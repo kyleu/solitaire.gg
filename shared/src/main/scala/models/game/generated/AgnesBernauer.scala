@@ -70,15 +70,10 @@ object AgnesBernauer extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 7,
-
       initialCards = 1,
-
       cardsFaceDown = 100
-
     )
   ),
   pyramids = Nil

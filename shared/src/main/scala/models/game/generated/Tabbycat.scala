@@ -65,6 +65,25 @@ object Tabbycat extends GameRules(
       actionDuringDeal = PileAction.None,
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
+    ),
+    TableauRules(
+      name = "Tail",
+      numPiles = 1,
+      initialCards = InitialCards.Count(0),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.None,
+      rankMatchRuleForBuilding = RankMatchRule.Down,
+      wrapFromKingToAce = false,
+      suitMatchRuleForMovingStacks = SuitMatchRule.Any,
+      rankMatchRuleForMovingStacks = RankMatchRule.Any,
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
+      emptyFilledWith = TableauFillEmptyWith.Aces,
+      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      maxCards = 0,
+      actionDuringDeal = PileAction.None,
+      actionAfterDeal = PileAction.None,
+      pilesWithLowCardsAtBottom = 0
     )
   ),
   cells = None,

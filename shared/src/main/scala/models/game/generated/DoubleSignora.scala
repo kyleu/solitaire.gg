@@ -76,15 +76,10 @@ object DoubleSignora extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 21,
-
       cardsFaceDown = 0
-
     )
   ),
   pyramids = Nil

@@ -76,15 +76,10 @@ object Beehive extends GameRules(
   cells = None,
   reserves = Some(
     ReserveRules(
-
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 10,
-
       cardsFaceDown = 100
-
     )
   ),
   pyramids = Nil
