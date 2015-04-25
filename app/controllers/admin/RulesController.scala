@@ -4,8 +4,8 @@ package controllers.admin
 import controllers.BaseController
 import controllers.BaseController.AuthenticatedAction
 import models.game.generated.GameRulesSet
-import utils.parser.ScalaExporter
-import utils.parser.politaire.PolitaireParser
+import parser.ScalaExporter
+import parser.politaire.PolitaireParser
 
 object RulesController extends BaseController {
   def politaire = AuthenticatedAction { implicit request =>

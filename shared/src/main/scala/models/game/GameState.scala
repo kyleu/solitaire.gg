@@ -5,7 +5,9 @@ import java.util.UUID
 import models.game.pile.PileSet
 import models.{ CardHidden, CardRevealed }
 
-case class GameState(gameId: UUID, variant: String, maxPlayers: Int, seed: Int, deck: Deck, pileSets: Seq[PileSet], var players: Seq[GamePlayer] = Nil) {
+case class GameState(
+  gameId: UUID, variant: String, maxPlayers: Int, seed: Int, deck: Deck, pileSets: Seq[PileSet], layout: Seq[String], var players: Seq[GamePlayer] = Nil
+) {
 
   private[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
   val cardsById = collection.mutable.HashMap[UUID, Card]()

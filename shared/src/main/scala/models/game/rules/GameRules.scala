@@ -4,6 +4,7 @@ case class GameRules(
   id: String,
   title: String,
   description: String,
+  layout: Seq[String] = Seq.empty,
   victoryCondition: VictoryCondition,
   cardRemovalMethod: CardRemovalMethod,
   deckOptions: DeckOptions,

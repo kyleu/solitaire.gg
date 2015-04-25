@@ -67,7 +67,7 @@ define([
   Gameplay.prototype.onMessage = function(c, v) {
     switch(c) {
       case "GameJoined":
-        this.game.playmat = new Playmat(this.game, v.state.pileSets);
+        this.game.playmat = new Playmat(this.game, v.state.pileSets, v.state.layout);
         this.game.id = v.state.gameId;
         this.game.variant = v.variant;
         this.game.seed = v.state.seed;

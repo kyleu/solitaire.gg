@@ -20,7 +20,7 @@ object GameVariant {
 
   def apply(variant: String, gameId: UUID, seed: Int) = variant match {
     case Canfield.key => new Canfield(gameId, seed)
-//    case FreeCell.key => new FreeCell(gameId, seed)
+    case FreeCell.key => new FreeCell(gameId, seed)
 //    case Golf.key => new Golf(gameId, seed)
 //    case Gypsy.key => new Gypsy(gameId, seed)
     case Klondike.key => new Klondike(gameId, seed)
@@ -35,11 +35,12 @@ object GameVariant {
   }
 
 //  val all = Seq(Canfield, FreeCell, Golf, Gypsy, Klondike, Nestor, Pyramid, Sandbox, SandboxB, Spider, TrustyTwelve, Yukon)
-  val all = Seq(Canfield, Klondike)
+  val all = Seq(Canfield, FreeCell, Klondike)
 }
 
 case class GameVariant(rulesKey: String, description: GameVariant.Description, gameId: UUID, seed: Int, initialMoves: (GameState, Deck) => Unit) {
   val rules = GameRulesSet.allById(rulesKey)
+  val layout = Layouts.forVariant(rulesKey)
 
   val rng = new Random(new java.util.Random(seed))
 
@@ -53,7 +54,7 @@ case class GameVariant(rulesKey: String, description: GameVariant.Description, g
 
   private[this] val deck = newShuffledDecks(rules.deckOptions.numDecks)
 
-  val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, pileSets)
+  val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, pileSets, layout)
 
   def performInitialMoves() = {
     initialMoves(gameState, deck)

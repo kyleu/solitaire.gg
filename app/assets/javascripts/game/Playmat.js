@@ -1,9 +1,9 @@
 define(['game/helpers/Layout'], function (calculateLayout) {
   "use strict";
 
-  var Playmat = function(game, pileSets) {
+  var Playmat = function(game, pileSets, layout) {
     Phaser.Group.call(this, game, null, 'playmat');
-    this.layout = calculateLayout(pileSets, this.game.world.width / this.game.world.height);
+    this.layout = calculateLayout(pileSets, layout, this.game.world.width / this.game.world.height);
 
     this.w = this.layout.width * this.game.cardSet.cardWidth;
     this.h = this.layout.height * this.game.cardSet.cardHeight;

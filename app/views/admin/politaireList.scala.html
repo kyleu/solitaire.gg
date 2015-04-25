@@ -1,8 +1,6 @@
-@(variants: Seq[utils.parser.politaire.PolitaireParser.Variant])(implicit session: Session, flash: Flash)
-@import utils.parser.politaire.lookup.PolitaireLookup
-@import utils.parser.politaire.lookup.PolitaireLookup
-@import utils.parser.politaire.lookup.PolitaireLookup
-@import utils.parser.politaire.ParserDefaults
+@(variants: Seq[parser.politaire.PolitaireParser.Variant])(implicit session: Session, flash: Flash)
+@import parser.politaire.lookup.PolitaireLookup
+@import parser.politaire.ParserDefaults
 @layout.admin(utils.Config.projectName + " Parser", "parser") {
   <div class="panel panel-default">
     <div class="panel-body">

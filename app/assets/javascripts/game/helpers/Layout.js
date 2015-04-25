@@ -8,7 +8,7 @@ define(function () {
     var ret = [pileSet.piles.length * (1 + padding), 1 + padding];
     switch(pileSet.behavior) {
       case "tableau":
-        ret = [ret[0], 2 * (1 + padding)];
+        ret = [ret[0], 3 * (1 + padding)];
         break;
       case "pryamid":
         ret = [0, 0];
@@ -18,38 +18,66 @@ define(function () {
     return ret;
   }
 
-  function calculateLayout(pileSets, aspectRatio) {
-    console.log("Creating layout for [" + pileSets.length + "] pile sets with aspect ratio of [" + aspectRatio + "].");
+  function calculateLayout(pileSets, layout, aspectRatio) {
+    console.log("Creating layout for [" + pileSets.length + "] pile sets using layout [" + layout + "] with aspect ratio of [" + aspectRatio + "].");
     var locations = {};
 
     var xOffset = margin;
     var yOffset = margin;
 
-    var dimensions = [];
+    var remainingPileSets = pileSets;
 
-    for(var pileSetIndex in pileSets) {
-      var pileSet = pileSets[pileSetIndex];
-      var pileSetDimensions = getDimensions(pileSet);
-      for(var pileIndex in pileSet.piles) {
-        var pile = pileSet.piles[pileIndex];
-        locations[pile.id] = { x: xOffset, y: yOffset };
-        if(xOffset > 7) {
-          xOffset = margin;
-          yOffset = yOffset + 1 + padding;
-        } else {
-          if(pileSet.behavior == "waste") {
-            xOffset = xOffset + 2 + (padding * 2);
-          } else {
-            xOffset = xOffset + 1 + padding;
+    var currentRowMaxHeight = 0;
+
+    var maxWidth = 0;
+
+    function processCharacter(c) {
+      var pileSet;
+      switch(c) {
+        case 's': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "stock"; }); break;
+        case 'w': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "waste"; }); break;
+        case 'f': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "foundation"; }); break;
+        case 't': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "tableau"; }); break;
+        case 'c': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "cell"; }); break;
+        default:
+      }
+      switch(c) {
+        case '+':
+          xOffset += 1 + padding;
+          break;
+        default:
+          if(pileSet === undefined) {
+            throw "Unable to find set matching [" + c + "]";
           }
-        }
+          remainingPileSets = _.without(remainingPileSets, pileSet);
+          var pileSetDimensions = getDimensions(pileSet);
+          _.each(pileSet.piles, function(pile) {
+            locations[pile.id] = { x: xOffset, y: yOffset };
+            xOffset = xOffset + 1 + padding;
+          });
+          if(pileSetDimensions[1] > currentRowMaxHeight) {
+            currentRowMaxHeight = pileSetDimensions[1];
+          }
       }
     }
 
-    var width = 7.9;
-    var height = 6.0;
+    function newRow() {
+      if(xOffset > maxWidth) {
+        maxWidth = xOffset;
+      }
+      xOffset = margin;
+      yOffset += currentRowMaxHeight;
+      currentRowMaxHeight = 0;
+    }
 
-    return { "width": width, "height": height, "locations": locations };
+    _.each(layout, function(line) {
+      _.each(line.split(''), function(char) {
+        processCharacter(char);
+      });
+      newRow();
+    });
+
+    return { "width": maxWidth + padding, "height": yOffset, "locations": locations };
   }
 
   return calculateLayout;
