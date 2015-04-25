@@ -15,7 +15,7 @@ object SelectCardActions {
       card.u = true
       gameState.revealCardToAll(card)
     } else {
-      val foundations = gameState.piles.filter(_.behavior == "foundation")
+      val foundations = gameState.pileSets.filter(_.behavior == "foundation").flatMap(_.piles)
       val foundation = foundations.flatMap { f =>
         if (f.cards.isEmpty && card.r == Rank.Ace) {
           Some(f)
@@ -64,7 +64,7 @@ object SelectCardActions {
   })
 
   def drawToEmptyPiles(behavior: String) = SelectCardAction("draw-to-empty", (pile, card, gameState) => {
-    val piles = gameState.piles.filter(_.behavior == behavior)
+    val piles = gameState.pileSets.filter(_.behavior == behavior).flatMap(_.piles)
     piles.flatMap { p =>
       if (p.cards.isEmpty) {
         pile.cards.lastOption match {

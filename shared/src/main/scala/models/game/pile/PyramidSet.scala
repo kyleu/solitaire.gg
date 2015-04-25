@@ -8,11 +8,11 @@ object PyramidSet {
     val options = PileOptions()
     val piles = (1 to pyramidRules.height).flatMap { i =>
       (1 to i).map { j =>
-        Pile(prefix + i + "-" + j, "pyramid", options)
+        Pile(prefix + i + "-" + j, options)
       }
     }
     new PyramidSet(piles)
   }
 }
 
-class PyramidSet(piles: Seq[Pile]) extends PileSet(piles)
+class PyramidSet(piles: Seq[Pile]) extends PileSet("pyramid", piles)

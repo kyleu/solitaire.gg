@@ -61,7 +61,7 @@ object KlondikeConstraintLogic {
     } else if (!firstCard.u) {
       true
     } else {
-      val foundations = gameState.piles.filter(_.behavior == "foundation")
+      val foundations = gameState.pileSets.filter(_.behavior == "foundation").flatMap(_.piles)
       val foundation = foundations.flatMap { f =>
         if (f.cards.isEmpty && firstCard.r == Rank.Ace) {
           Some(f)

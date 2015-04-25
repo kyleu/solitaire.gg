@@ -53,7 +53,7 @@ define(['game/helpers/Tweens'], function (Tweens) {
 
   return {
     cardAdded: function(pile, card) {
-      if(pile.behavior === "graveyard") {
+      if(pile.pileSet.behavior === "graveyard") {
         Tweens.tweenRemove(card);
       } else {
         if(pile.options.cardsShown === undefined || pile.options.cardsShown === null) {
@@ -77,7 +77,7 @@ define(['game/helpers/Tweens'], function (Tweens) {
     },
 
     cardRemoved: function(pile, card) {
-      if(pile.behavior === "graveyard") {
+      if(pile.pileSet.behavior === "graveyard") {
         Tweens.tweenRestore(card);
       } else {
         if(pile.options.cardsShown === undefined || pile.options.cardsShown === null) {

@@ -7,10 +7,10 @@ object FoundationSet {
     val prefix = "foundation-"
     val options = PileOptionsHelper.foundation
     val piles = (1 to FoundationRules.numPiles).map { i =>
-      Pile(prefix + i, "foundation", options)
+      Pile(prefix + i, options)
     }
     new FoundationSet(piles)
   }
 }
 
-class FoundationSet(piles: Seq[Pile]) extends PileSet(piles)
+class FoundationSet(piles: Seq[Pile]) extends PileSet("foundation", piles)

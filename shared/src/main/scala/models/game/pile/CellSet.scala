@@ -7,10 +7,10 @@ object CellSet {
     val prefix = "cell-"
     val options = PileOptions()
     val piles = (1 to cellRules.numPiles).map { i =>
-      Pile(prefix + i, "cell", options)
+      Pile(prefix + i, options)
     }
     new CellSet(piles)
   }
 }
 
-class CellSet(piles: Seq[Pile]) extends PileSet(piles)
+class CellSet(piles: Seq[Pile]) extends PileSet("cell", piles)

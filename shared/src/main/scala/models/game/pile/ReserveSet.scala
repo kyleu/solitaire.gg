@@ -7,10 +7,10 @@ object ReserveSet {
     val prefix = "reserve-"
     val options = PileOptionsHelper.reserve
     val piles = (1 to reserveRules.numPiles).map { i =>
-      Pile(prefix + i, "reserve", options)
+      Pile(prefix + i, options)
     }
     new ReserveSet(piles)
   }
 }
 
-class ReserveSet(piles: Seq[Pile]) extends PileSet(piles)
+class ReserveSet(piles: Seq[Pile]) extends PileSet("reserve", piles)

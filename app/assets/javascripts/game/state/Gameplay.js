@@ -67,7 +67,7 @@ define([
   Gameplay.prototype.onMessage = function(c, v) {
     switch(c) {
       case "GameJoined":
-        this.game.playmat = new Playmat(this.game, v.state.layouts);
+        this.game.playmat = new Playmat(this.game, v.state.pileSets);
         this.game.id = v.state.gameId;
         this.game.variant = v.variant;
         this.game.seed = v.state.seed;
@@ -144,11 +144,12 @@ define([
   };
 
   Gameplay.prototype.loadPileSets = function(pileSets) {
+    this.game.pileSets = pileSets;
     for(var pileSetIndex in pileSets) {
       var pileSet = pileSets[pileSetIndex];
       for(var pileIndex in pileSet.piles) {
         var pile = pileSet.piles[pileIndex];
-        var pileObj = new Pile(this.game, pile.id, pile.behavior, pile.options);
+        var pileObj = new Pile(this.game, pile.id, pileSet, pile.options);
         this.game.playmat.addPile(pileObj);
       }
     }

@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models.game.generated.GameRulesSet
 import models.game.pile._
-import models.game.{ Deck, Layout, GameState }
+import models.game.{ Deck, GameState }
 
 import scala.util.Random
 
@@ -13,7 +13,6 @@ object GameVariant {
     val key: String
     val name: String
     val body: String
-    val layouts: Seq[Layout]
     val maxPlayers: Int = 1
     val completed: Boolean = true
     val undoAllowed: Boolean = true
@@ -54,7 +53,7 @@ case class GameVariant(rulesKey: String, description: GameVariant.Description, g
 
   private[this] val deck = newShuffledDecks(rules.deckOptions.numDecks)
 
-  val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, pileSets, description.layouts)
+  val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, pileSets)
 
   def performInitialMoves() = {
     initialMoves(gameState, deck)

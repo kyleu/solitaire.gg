@@ -1,9 +1,9 @@
 define(function () {
   "use strict";
 
-  var Playmat = function(game, layouts) {
+  var Playmat = function(game, pileSets) {
     Phaser.Group.call(this, game, null, 'playmat');
-    this.layout = layouts[0];
+    this.layout = this.calculateLayout(pileSets);
 
     this.w = this.layout.width * this.game.cardSet.cardWidth;
     this.h = this.layout.height * this.game.cardSet.cardHeight;
@@ -16,16 +16,33 @@ define(function () {
   Playmat.prototype = Object.create(Phaser.Group.prototype);
   Playmat.prototype.constructor = Playmat;
 
-  Playmat.prototype.addPile = function(pile) {
-    var pileLocation = null;
-    for(var pileLocationIndex in this.layout.piles) {
-      var pl = this.layout.piles[pileLocationIndex];
-      if(pl.id === pile.id) {
-        pileLocation = pl;
+  Playmat.prototype.calculateLayout = function(pileSets) {
+    console.log(this.game);
+    var locations = {};
+    var aspectRatio = this.game.world.width / this.game.world.height;
+    var margin = 0.6;
+
+    var pileCounter = 0;
+
+    for(var pileSetIndex in pileSets) {
+      var pileSet = pileSets[pileSetIndex];
+      for(var pileIndex in pileSet.piles) {
+        var pile = pileSet.piles[pileIndex];
+        locations[pile.id] = { x: margin + (1.1 * pileCounter), y: margin };
+        pileCounter++;
       }
     }
-    pile.x = pileLocation.x * this.game.cardSet.cardWidth;
-    pile.y = pileLocation.y * this.game.cardSet.cardHeight;
+
+    var width = 10.0;
+    var height = 10.0;
+
+    return { "width": width, "height": height, "locations": locations };
+  };
+
+  Playmat.prototype.addPile = function(pile) {
+    var pileLocation = this.layout.locations[pile.id];
+    pile.x = this.layout.locations[pile.id].x * this.game.cardSet.cardWidth;
+    pile.y = this.layout.locations[pile.id].y * this.game.cardSet.cardHeight;
   };
 
   Playmat.prototype.resize = function() {

@@ -19,9 +19,9 @@ object StockSet {
     val redrawFrom = Some(drawTo)
 
     val options = PileOptionsHelper.stock(cardsToDraw, drawTo, redrawFrom)
-    val piles = Seq(Pile("stock", "stock", options))
+    val piles = Seq(Pile("stock", options))
     new StockSet(piles)
   }
 }
 
-class StockSet(piles: Seq[Pile]) extends PileSet(piles)
+class StockSet(piles: Seq[Pile]) extends PileSet("stock", piles)

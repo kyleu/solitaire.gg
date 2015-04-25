@@ -5,9 +5,7 @@ import java.util.UUID
 import models.game.pile.PileSet
 import models.{ CardHidden, CardRevealed }
 
-case class GameState(
-    gameId: UUID, variant: String, maxPlayers: Int, seed: Int, deck: Deck, pileSets: Seq[PileSet], layouts: Seq[Layout], var players: Seq[GamePlayer] = Nil
-) {
+case class GameState(gameId: UUID, variant: String, maxPlayers: Int, seed: Int, deck: Deck, pileSets: Seq[PileSet], var players: Seq[GamePlayer] = Nil) {
 
   private[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
   val cardsById = collection.mutable.HashMap[UUID, Card]()
@@ -78,7 +76,7 @@ case class GameState(
     this.copy(
       deck = deck.copy(cards = deck.cards.map(c => if (knownCards.contains(c.id)) { c } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) })),
       pileSets = pileSets.map { ps =>
-        new PileSet(ps.piles.map(p => p.copy(cards = p.cards.map { c =>
+        new PileSet(ps.behavior, ps.piles.map(p => p.copy(cards = p.cards.map { c =>
           if (knownCards.contains(c.id)) { c } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) }
         })))
       }
