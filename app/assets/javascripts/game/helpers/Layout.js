@@ -19,6 +19,7 @@ define(function () {
     return ret;
   }
 
+
   function calculateLayout(pileSets, layout, aspectRatio) {
     console.log("Creating layout for [" + pileSets.length + "] pile sets using layout [" + layout + "] with aspect ratio of [" + aspectRatio + "].");
     var locations = {};
@@ -32,6 +33,15 @@ define(function () {
 
     var maxWidth = 0;
 
+    function newRow() {
+      if(xOffset > maxWidth) {
+        maxWidth = xOffset;
+      }
+      xOffset = margin;
+      yOffset += currentRowMaxHeight;
+      currentRowMaxHeight = 1;
+    }
+
     function processCharacter(c) {
       var pileSet;
       switch(c) {
@@ -40,6 +50,7 @@ define(function () {
         case 'f': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "foundation"; }); break;
         case 't': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "tableau"; }); break;
         case 'c': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "cell"; }); break;
+        case 'r': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "reserve"; }); break;
         default:
       }
       switch(c) {
@@ -48,6 +59,9 @@ define(function () {
           break;
         case '.':
           xOffset += (1 + padding) / 2;
+          break;
+        case '|':
+          newRow();
           break;
         default:
           if(pileSet === undefined) {
@@ -65,20 +79,8 @@ define(function () {
       }
     }
 
-    function newRow() {
-      if(xOffset > maxWidth) {
-        maxWidth = xOffset;
-      }
-      xOffset = margin;
-      yOffset += currentRowMaxHeight;
-      currentRowMaxHeight = 1;
-    }
-
-    _.each(layout, function(line) {
-      _.each(line.split(''), function(char) {
-        processCharacter(char);
-      });
-      newRow();
+    _.each(layout.split(''), function(char) {
+      processCharacter(char);
     });
 
     return { "width": maxWidth + padding, "height": yOffset, "locations": locations };

@@ -10,14 +10,16 @@ package models.game.pile
  *
  *   : - Full-size spacer
  *   . - Half-size spacer
+ *
+ *   | - New line
  */
 object Layouts {
   private [this] val layouts = Map(
-    "canfield" -> "sw:f,:r:t",
-    "freecell" -> "f:c,.t,",
-    "golf" -> "t,f:s",
-    "klondike" -> "sw:f,t,",
-    "nestor" -> "t,..r"
+    "canfield" -> "sw:f|:r:t",
+    "freecell" -> "f:c|.t|",
+    "golf" -> "t|f:s",
+    "klondike" -> "sw:f|t|",
+    "nestor" -> "t|::r"
   )
 
   def forVariant(v: String) = {
