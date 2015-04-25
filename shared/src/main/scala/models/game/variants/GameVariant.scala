@@ -21,10 +21,10 @@ object GameVariant {
   def apply(variant: String, gameId: UUID, seed: Int) = variant match {
     case Canfield.key => new Canfield(gameId, seed)
     case FreeCell.key => new FreeCell(gameId, seed)
-//    case Golf.key => new Golf(gameId, seed)
-//    case Gypsy.key => new Gypsy(gameId, seed)
+    case Golf.key => new Golf(gameId, seed)
+    case Gypsy.key => new Gypsy(gameId, seed)
     case Klondike.key => new Klondike(gameId, seed)
-//    case Nestor.key => new Nestor(gameId, seed)
+    case Nestor.key => new Nestor(gameId, seed)
 //    case Pyramid.key => new Pyramid(gameId, seed)
 //    case Sandbox.key => new Sandbox(gameId, seed)
 //    case SandboxB.key => new SandboxB(gameId, seed)
@@ -35,7 +35,7 @@ object GameVariant {
   }
 
 //  val all = Seq(Canfield, FreeCell, Golf, Gypsy, Klondike, Nestor, Pyramid, Sandbox, SandboxB, Spider, TrustyTwelve, Yukon)
-  val all = Seq(Canfield, FreeCell, Klondike)
+  val all = Seq(Canfield, FreeCell, Golf, Gypsy, Klondike, Nestor)
 }
 
 case class GameVariant(rulesKey: String, description: GameVariant.Description, gameId: UUID, seed: Int, initialMoves: (GameState, Deck) => Unit) {

@@ -13,6 +13,8 @@ object StockSet {
     // TODO Match others
     val drawTo = stockRules.dealTo match {
       case StockDealTo.Waste => "waste-1"
+      case StockDealTo.Foundation => "foundation-1"
+      case _ => throw new NotImplementedError()
     }
 
     // TODO Support max redraws

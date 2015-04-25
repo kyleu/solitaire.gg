@@ -8,7 +8,8 @@ define(function () {
     var ret = [pileSet.piles.length * (1 + padding), 1 + padding];
     switch(pileSet.behavior) {
       case "tableau":
-        ret = [ret[0], 3 * (1 + padding)];
+        var maxCards = _.max(pileSet.piles, function(pile) { return pile.cards.length; }).cards.length;
+        ret = [ret[0], 1 + padding + (maxCards * padding)];
         break;
       case "pryamid":
         ret = [0, 0];
@@ -27,7 +28,7 @@ define(function () {
 
     var remainingPileSets = pileSets;
 
-    var currentRowMaxHeight = 0;
+    var currentRowMaxHeight = 1.0;
 
     var maxWidth = 0;
 
@@ -70,7 +71,7 @@ define(function () {
       }
       xOffset = margin;
       yOffset += currentRowMaxHeight;
-      currentRowMaxHeight = 0;
+      currentRowMaxHeight = 1;
     }
 
     _.each(layout, function(line) {

@@ -20,9 +20,11 @@ object ScalaExporter {
 
     add("package models.game.generated")
     add("")
+    add("import models.game.rules.GameRules")
+    add("")
     add("// scalastyle:off")
     add("object GameRulesSet {")
-    add("  val all = Seq(")
+    add("  val all: Seq[GameRules] = Seq(")
     //add(ruleset.groupBy(_.title.head).toList.sortBy(_._1).map(l => "    " + l._2.map( r => getObjectName(r)).mkString(", ")).mkString("\n"))
     add(rulesSet.map(r => "    " + getObjectName(r)).mkString(",\n"))
     add("  )")

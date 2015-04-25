@@ -1,8 +1,10 @@
 package models.game.generated
 
+import models.game.rules.GameRules
+
 // scalastyle:off
 object GameRulesSet {
-  val all = Seq(
+  val all: Seq[GameRules] = Seq(
     Accordion,
     AceOfHearts,
     AcesAndKings,

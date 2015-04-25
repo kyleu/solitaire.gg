@@ -6,7 +6,7 @@ import models.game.pile.PileSet
 import models.{ CardHidden, CardRevealed }
 
 case class GameState(
-  gameId: UUID, variant: String, maxPlayers: Int, seed: Int, deck: Deck, pileSets: Seq[PileSet], layout: Seq[String], var players: Seq[GamePlayer] = Nil
+  gameId: UUID, variant: String, maxPlayers: Int, seed: Int, deck: Deck, pileSets: Seq[PileSet], layout: String, var players: Seq[GamePlayer] = Nil
 ) {
 
   private[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
