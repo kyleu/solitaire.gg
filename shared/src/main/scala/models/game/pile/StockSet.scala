@@ -15,16 +15,17 @@ object StockSet {
   private[this] def getOptions(stockRules: StockRules) = {
     val cardsToDraw = stockRules.cardsDealt match {
       case Count(i) => i
-      case _ => throw new NotImplementedError()
+      case x => throw new NotImplementedError(x.toString)
     }
 
     val drawTo = stockRules.dealTo match {
       case StockDealTo.Waste => "waste-1"
       case StockDealTo.Foundation => "foundation-1"
+      case StockDealTo.Tableau => "???"
       case StockDealTo.TableauIfNoneEmpty => "???"
       case StockDealTo.Never => "???"
       case StockDealTo.WasteOrPairManually => "waste-1"
-      case _ => throw new NotImplementedError()
+      case x => throw new NotImplementedError(x.toString)
     }
 
     // TODO Support max redraws

@@ -1,3 +1,4 @@
+// Generated 2015-04-26 for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -9,48 +10,24 @@ object YukonOneSuit extends GameRules(
   title = "Yukon One Suit",
   description = "A one-suit variation of ^yukon^. The game is almost always winnable, but still makes you think a bit.",
   deckOptions = DeckOptions(
-    numDecks = 4,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
+    numDecks = 4
   ),
   foundations = Seq(
     FoundationRules(
-      name = "Foundation",
       numPiles = 16,
-      lowRank = FoundationLowRank.DeckLowRank,
-      initialCards = InitialCards.Count(0),
-      suitMatchRule = SuitMatchRule.SameSuit,
-      rankMatchRule = RankMatchRule.Up,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = false,
-      maxCards = -1,
       canMoveFrom = FoundationCanMoveFrom.Never,
-      mayMoveToFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      offscreen = false,
-      autoMoveCards = true,
-      autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+      autoMoveCards = true
     )
   ),
   tableaus = Seq(
     TableauRules(
-      name = "Tableau",
-      numPiles = 7,
       initialCards = InitialCards.Custom,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
-      rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
-      emptyFilledWith = TableauFillEmptyWith.Kings,
-      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      maxCards = 0,
-      actionDuringDeal = PileAction.None,
-      actionAfterDeal = PileAction.None,
-      pilesWithLowCardsAtBottom = 0
+      emptyFilledWith = TableauFillEmptyWith.Kings
     )
   ),
   complete = false

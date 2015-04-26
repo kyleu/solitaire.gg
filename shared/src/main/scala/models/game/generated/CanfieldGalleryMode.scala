@@ -1,3 +1,4 @@
+// Generated 2015-04-26 for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -9,66 +10,34 @@ object CanfieldGalleryMode extends GameRules(
   title = "Canfield (Gallery Mode)",
   description = "This is just ^canfield^ with a different user \"interface\": all the cards that would normally start in the stock are fanned out face up, with the ones that would normally be playable if you were going through the stock three at a time automatically raised up to indicate that they are playable.",
   deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
     lowRank = Some(Rank.Unknown)
   ),
   stock = Some(
     StockRules(
-      name = "Stock",
-      dealTo = StockDealTo.Waste,
-      maximumDeals = None,
-      cardsDealt = StockCardsDealt.Count(3),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
+      cardsDealt = StockCardsDealt.Count(3)
     )
   ),
   waste = Some(
     WasteRules(
-      name = "Gallery",
-      numPiles = 1,
-      playableCards = WastePlayableCards.TopCardOnly
+      name = "Gallery"
     )
   ),
   foundations = Seq(
     FoundationRules(
-      name = "Foundation",
       numPiles = 4,
-      lowRank = FoundationLowRank.DeckLowRank,
       initialCards = InitialCards.Count(1),
-      suitMatchRule = SuitMatchRule.SameSuit,
-      rankMatchRule = RankMatchRule.Up,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = false,
-      maxCards = -1,
       canMoveFrom = FoundationCanMoveFrom.Never,
-      mayMoveToFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      offscreen = false,
-      autoMoveCards = true,
-      autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+      autoMoveCards = true
     )
   ),
   tableaus = Seq(
     TableauRules(
-      name = "Tableau",
       numPiles = 4,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.AlternatingColors,
-      rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
-      suitMatchRuleForMovingStacks = SuitMatchRule.AlternatingColors,
-      rankMatchRuleForMovingStacks = RankMatchRule.Down,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
-      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      maxCards = 0,
-      actionDuringDeal = PileAction.None,
-      actionAfterDeal = PileAction.None,
-      pilesWithLowCardsAtBottom = 0
+      emptyFilledWith = TableauFillEmptyWith.Aces
     )
   ),
   reserves = Some(

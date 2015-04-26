@@ -1,3 +1,4 @@
+// Generated 2015-04-26 for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -10,52 +11,27 @@ object Dnieper extends GameRules(
   description = "Exactly like ^kiev^ but slightly easier because kings can be played on aces.",
   stock = Some(
     StockRules(
-      name = "Stock",
       dealTo = StockDealTo.Tableau,
-      maximumDeals = Some(1),
-      cardsDealt = StockCardsDealt.Count(1),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
+      maximumDeals = Some(1)
     )
   ),
   foundations = Seq(
     FoundationRules(
-      name = "Foundation",
       numPiles = 4,
-      lowRank = FoundationLowRank.DeckLowRank,
-      initialCards = InitialCards.Count(0),
-      suitMatchRule = SuitMatchRule.SameSuit,
-      rankMatchRule = RankMatchRule.Up,
       wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true,
-      maxCards = -1,
       canMoveFrom = FoundationCanMoveFrom.Never,
-      mayMoveToFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      offscreen = false,
-      autoMoveCards = true,
-      autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+      autoMoveCards = true
     )
   ),
   tableaus = Seq(
     TableauRules(
-      name = "Tableau",
-      numPiles = 7,
       initialCards = InitialCards.Count(4),
-      cardsFaceDown = TableauFaceDownCards.AllButOne,
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      rankMatchRuleForBuilding = RankMatchRule.Down,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
-      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      maxCards = 0,
-      actionDuringDeal = PileAction.None,
-      actionAfterDeal = PileAction.None,
-      pilesWithLowCardsAtBottom = 0
+      emptyFilledWith = TableauFillEmptyWith.Aces
     )
   ),
   complete = false

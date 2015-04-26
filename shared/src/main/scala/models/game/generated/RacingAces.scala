@@ -1,3 +1,4 @@
+// Generated 2015-04-26 for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -9,114 +10,60 @@ object RacingAces extends GameRules(
   title = "Racing Aces",
   description = "A three-deck version of ^acesandkings^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
-    numDecks = 3,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
+    numDecks = 3
   ),
   stock = Some(
     StockRules(
-      name = "Stock",
-      dealTo = StockDealTo.Waste,
-      maximumDeals = Some(1),
-      cardsDealt = StockCardsDealt.Count(1),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
+      maximumDeals = Some(1)
     )
   ),
   waste = Some(
     WasteRules(
-      name = "Waste",
-      numPiles = 1,
-      playableCards = WastePlayableCards.TopCardOnly
+
     )
   ),
   foundations = Seq(
     FoundationRules(
       name = "Aces Foundation",
       numPiles = 4,
-      lowRank = FoundationLowRank.DeckLowRank,
-      initialCards = InitialCards.Count(0),
       suitMatchRule = SuitMatchRule.Any,
-      rankMatchRule = RankMatchRule.Up,
-      wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = false,
-      maxCards = -1,
-      canMoveFrom = FoundationCanMoveFrom.Always,
-      mayMoveToFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      offscreen = false,
-      autoMoveCards = false,
-      autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+      wrapFromKingToAce = true
     ),
     FoundationRules(
       name = "Sixes Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
-      initialCards = InitialCards.Count(0),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = false,
-      maxCards = 6,
-      canMoveFrom = FoundationCanMoveFrom.Always,
-      mayMoveToFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      offscreen = false,
-      autoMoveCards = false,
-      autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+      maxCards = 6
     ),
     FoundationRules(
       name = "Sevens Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
-      initialCards = InitialCards.Count(0),
       suitMatchRule = SuitMatchRule.Any,
-      rankMatchRule = RankMatchRule.Up,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = false,
-      maxCards = 7,
-      canMoveFrom = FoundationCanMoveFrom.Always,
-      mayMoveToFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      offscreen = false,
-      autoMoveCards = false,
-      autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+      maxCards = 7
     ),
     FoundationRules(
       name = "Kings Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
-      initialCards = InitialCards.Count(0),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = false,
-      maxCards = -1,
-      canMoveFrom = FoundationCanMoveFrom.Always,
-      mayMoveToFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      offscreen = false,
-      autoMoveCards = false,
-      autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+      wrapFromKingToAce = true
     )
   ),
   tableaus = Seq(
     TableauRules(
-      name = "Tableau",
       numPiles = 6,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.None,
-      rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      rankMatchRuleForMovingStacks = RankMatchRule.Down,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
-      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      maxCards = 0,
-      actionDuringDeal = PileAction.None,
-      actionAfterDeal = PileAction.None,
-      pilesWithLowCardsAtBottom = 0
+      emptyFilledWith = TableauFillEmptyWith.Aces
     )
   ),
   reserves = Some(

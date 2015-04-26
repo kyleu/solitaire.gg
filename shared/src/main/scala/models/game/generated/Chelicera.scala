@@ -1,3 +1,4 @@
+// Generated 2015-04-26 for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -11,34 +12,19 @@ object Chelicera extends GameRules(
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   stock = Some(
     StockRules(
-      name = "Stock",
       dealTo = StockDealTo.Never,
-      maximumDeals = Some(1),
-      cardsDealt = StockCardsDealt.Count(1),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
+      maximumDeals = Some(1)
     )
   ),
   tableaus = Seq(
     TableauRules(
-      name = "Tableau",
-      numPiles = 7,
       initialCards = InitialCards.Custom,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Kings,
-      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      maxCards = 0,
-      actionDuringDeal = PileAction.None,
-      actionAfterDeal = PileAction.None,
-      pilesWithLowCardsAtBottom = 0
+      emptyFilledWith = TableauFillEmptyWith.Kings
     )
   ),
   complete = false

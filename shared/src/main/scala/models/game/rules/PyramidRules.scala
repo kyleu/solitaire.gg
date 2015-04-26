@@ -27,18 +27,18 @@ object PyramidFillEmptyWith {
 }
 
 case class PyramidRules(
-  name: String,
-  pyramidType: PyramidType,
-  height: Int,
-  cardsFaceDown: PyramidFaceDownCards,
+  name: String = "Pyramid",
+  pyramidType: PyramidType = PyramidType.Standard,
+  height: Int = 7,
+  cardsFaceDown: PyramidFaceDownCards = PyramidFaceDownCards.Count(0),
 
-  suitMatchRuleForBuilding: SuitMatchRule,
-  rankMatchRuleForBuilding: RankMatchRule,
-  wrapFromKingToAce: Boolean,
-  suitMatchRuleForMovingStacks: SuitMatchRule,
-  rankMatchRuleForMovingStacks: RankMatchRule,
+  suitMatchRuleForBuilding: SuitMatchRule = SuitMatchRule.None,
+  rankMatchRuleForBuilding: RankMatchRule = RankMatchRule.None,
+  wrapFromKingToAce: Boolean = false,
+  suitMatchRuleForMovingStacks: SuitMatchRule = SuitMatchRule.None,
+  rankMatchRuleForMovingStacks: RankMatchRule = RankMatchRule.None,
 
-  mayMoveToNonEmptyFrom: Seq[String],
-  mayMoveToEmptyFrom: Seq[String],
-  emptyFilledWith: PyramidFillEmptyWith
+  mayMoveToNonEmptyFrom: Seq[String] = GameRules.allSources,
+  mayMoveToEmptyFrom: Seq[String] = GameRules.allSources,
+  emptyFilledWith: PyramidFillEmptyWith = PyramidFillEmptyWith.None
 )

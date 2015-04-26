@@ -1,3 +1,4 @@
+// Generated 2015-04-26 for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -10,61 +11,34 @@ object DoublePyramid extends GameRules(
   description = "Thomas Warfield's two-deck version of ^pyramid^.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   deckOptions = DeckOptions(
-    numDecks = 2,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
+    numDecks = 2
   ),
   stock = Some(
     StockRules(
-      name = "Stock",
       dealTo = StockDealTo.WasteOrPairManually,
-      maximumDeals = Some(3),
-      cardsDealt = StockCardsDealt.Count(1),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
+      maximumDeals = Some(3)
     )
   ),
   waste = Some(
     WasteRules(
-      name = "Waste",
-      numPiles = 1,
-      playableCards = WastePlayableCards.TopCardOnly
+
     )
   ),
   foundations = Seq(
     FoundationRules(
-      name = "Foundation",
       numPiles = 8,
-      lowRank = FoundationLowRank.DeckLowRank,
-      initialCards = InitialCards.Count(0),
-      suitMatchRule = SuitMatchRule.SameSuit,
-      rankMatchRule = RankMatchRule.Up,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = false,
-      maxCards = -1,
       canMoveFrom = FoundationCanMoveFrom.Never,
-      mayMoveToFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
       offscreen = true,
-      autoMoveCards = true,
-      autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+      autoMoveCards = true
     )
   ),
   pyramids = Seq(
     PyramidRules(
-      name = "Pyramid",
-      pyramidType = PyramidType.Standard,
-      height = 7,
-      cardsFaceDown = PyramidFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.None,
       rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      emptyFilledWith = PyramidFillEmptyWith.None
+      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
     )
   ),
   complete = false

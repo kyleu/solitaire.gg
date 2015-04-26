@@ -3,13 +3,13 @@ package parser
 import models.game.rules._
 
 object ScalaCellExporter {
+  private[this] val defaults = CellRules()
+
   def exportCells(rules: GameRules, ret: StringBuilder): Unit = {
     def add(s: String) = ret ++= s + "\n"
 
     rules.cells match {
       case Some(c) =>
-        val defaults = CellRules()
-
         add("  cells = Some(")
         add("    CellRules(\n")
         val props = collection.mutable.ArrayBuffer.empty[String]
@@ -22,7 +22,7 @@ object ScalaCellExporter {
         if(c.numPiles != defaults.numPiles) {
           props += "      numPiles = " + c.numPiles
         }
-        if(c.canMoveFrom != defaults.canMoveFrom) {
+        if(!c.canMoveFrom.sameElements(defaults.canMoveFrom)) {
           props += "      canMoveFrom = Seq(" + c.canMoveFrom.map(x => "\"" + x + "\"").mkString(", ") + ")"
         }
         if(c.initialCards != defaults.initialCards) {

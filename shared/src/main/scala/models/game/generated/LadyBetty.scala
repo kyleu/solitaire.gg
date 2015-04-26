@@ -1,3 +1,4 @@
+// Generated 2015-04-26 for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -10,31 +11,16 @@ object LadyBetty extends GameRules(
   description = "This cousin of ^sirtommy^ requires you to build the foundation in suit, but gives you two extra tableau piles to work with.",
   stock = Some(
     StockRules(
-      name = "Stock",
       dealTo = StockDealTo.Manually,
-      maximumDeals = Some(1),
-      cardsDealt = StockCardsDealt.Count(1),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
+      maximumDeals = Some(1)
     )
   ),
   foundations = Seq(
     FoundationRules(
-      name = "Foundation",
       numPiles = 4,
-      lowRank = FoundationLowRank.DeckLowRank,
-      initialCards = InitialCards.Count(0),
-      suitMatchRule = SuitMatchRule.SameSuit,
-      rankMatchRule = RankMatchRule.Up,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = false,
-      maxCards = -1,
       canMoveFrom = FoundationCanMoveFrom.Never,
-      mayMoveToFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      offscreen = false,
-      autoMoveCards = true,
-      autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+      autoMoveCards = true
     )
   ),
   tableaus = Seq(
@@ -45,17 +31,10 @@ object LadyBetty extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
-      wrapFromKingToAce = false,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      rankMatchRuleForMovingStacks = RankMatchRule.Down,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
       emptyFilledWith = TableauFillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock"),
-      mayMoveToEmptyFrom = Seq("Stock"),
-      maxCards = 0,
-      actionDuringDeal = PileAction.None,
-      actionAfterDeal = PileAction.None,
-      pilesWithLowCardsAtBottom = 0
+      mayMoveToEmptyFrom = Seq("Stock")
     )
   ),
   complete = false

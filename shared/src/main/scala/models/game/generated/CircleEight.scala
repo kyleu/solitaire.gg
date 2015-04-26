@@ -1,3 +1,4 @@
+// Generated 2015-04-26 for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -11,25 +12,16 @@ object CircleEight extends GameRules(
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(
     StockRules(
-      name = "Stock",
-      dealTo = StockDealTo.Waste,
-      maximumDeals = Some(2),
-      cardsDealt = StockCardsDealt.Count(1),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
+      maximumDeals = Some(2)
     )
   ),
   waste = Some(
     WasteRules(
-      name = "Waste",
-      numPiles = 1,
-      playableCards = WastePlayableCards.TopCardOnly
+
     )
   ),
   tableaus = Seq(
     TableauRules(
-      name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
@@ -37,15 +29,8 @@ object CircleEight extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Up,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      rankMatchRuleForMovingStacks = RankMatchRule.Down,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
       emptyFilledWith = TableauFillEmptyWith.Aces,
-      mayMoveToNonEmptyFrom = Seq("Waste"),
-      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      maxCards = 0,
-      actionDuringDeal = PileAction.None,
-      actionAfterDeal = PileAction.None,
-      pilesWithLowCardsAtBottom = 0
+      mayMoveToNonEmptyFrom = Seq("Waste")
     )
   ),
   complete = false

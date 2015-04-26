@@ -3,6 +3,7 @@ package parser
 import java.nio.file.{ Files, Path, Paths }
 
 import models.game.rules._
+import org.joda.time.LocalDateTime
 
 object ScalaExporter {
   def export(rulesSet: Seq[GameRules]) = {
@@ -42,6 +43,7 @@ object ScalaExporter {
 
     val defaults = GameRules("default", "default", "default")
 
+    add("// Generated " + new LocalDateTime().toString("yyyy-MM-dd") + " for Scalataire.")
     add("package models.game.generated")
     add("")
     add("import models.game._")
@@ -58,14 +60,7 @@ object ScalaExporter {
     if(rules.cardRemovalMethod != defaults.cardRemovalMethod) {
       add("  cardRemovalMethod = CardRemovalMethod." + cls(rules.cardRemovalMethod) + ",")
     }
-    if(rules.deckOptions != defaults.deckOptions) {
-      add("  deckOptions = DeckOptions(")
-      add("    numDecks = " + rules.deckOptions.numDecks + ",")
-      add("    suits = Seq(" + rules.deckOptions.suits.map(x => "Suit." + x).mkString(", ") + "),")
-      add("    ranks = Seq(" + rules.deckOptions.ranks.map(x => "Rank." + x).mkString(", ") + "),")
-      add("    lowRank = " + rules.deckOptions.lowRank.map("Rank." + _))
-      add("  ),")
-    }
+    ScalaDeckOptionsExporter.exportDeckOptions(rules, ret)
     ScalaStockExporter.exportStock(rules, ret)
     ScalaWasteExporter.exportWaste(rules, ret)
     ScalaFoundationExporter.exportFoundations(rules, ret)

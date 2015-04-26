@@ -10,10 +10,12 @@ object ScalaReserveExporter {
       case Some(r) =>
         add("  reserves = Some(")
         add("    ReserveRules(")
-        add(s"""      name = "${r.name.replaceAllLiterally("\"", "")}",""")
-        add(s"""      numPiles = ${r.numPiles},""")
-        add(s"""      initialCards = ${r.initialCards},""")
-        add(s"""      cardsFaceDown = ${r.cardsFaceDown}""")
+        val props = collection.mutable.ArrayBuffer.empty[String]
+        props += "      name = \"" + r.name.replaceAllLiterally("\"", "") + "\""
+        props += "      numPiles = " + r.numPiles
+        props += "      initialCards = " + r.initialCards
+        props += "      cardsFaceDown = " + r.cardsFaceDown
+        add(props.mkString(",\n"))
         add("    )")
         add("  ),")
       case None =>  // no op

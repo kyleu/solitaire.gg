@@ -1,3 +1,4 @@
+// Generated 2015-04-26 for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -11,64 +12,31 @@ object Pharaohs extends GameRules(
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   foundations = Seq(
     FoundationRules(
-      name = "Foundation",
       numPiles = 4,
-      lowRank = FoundationLowRank.DeckLowRank,
-      initialCards = InitialCards.Count(0),
-      suitMatchRule = SuitMatchRule.SameSuit,
-      rankMatchRule = RankMatchRule.Up,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = false,
-      maxCards = -1,
       canMoveFrom = FoundationCanMoveFrom.Never,
-      mayMoveToFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
       offscreen = true,
-      autoMoveCards = true,
-      autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+      autoMoveCards = true
     )
   ),
   pyramids = Seq(
     PyramidRules(
-      name = "Pyramid",
-      pyramidType = PyramidType.Standard,
-      height = 7,
-      cardsFaceDown = PyramidFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.None,
       rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      emptyFilledWith = PyramidFillEmptyWith.None
+      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
     ),
     PyramidRules(
-      name = "Pyramid",
-      pyramidType = PyramidType.Standard,
-      height = 7,
-      cardsFaceDown = PyramidFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.None,
       rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      emptyFilledWith = PyramidFillEmptyWith.None
+      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
     ),
     PyramidRules(
-      name = "Pyramid",
-      pyramidType = PyramidType.Standard,
-      height = 7,
-      cardsFaceDown = PyramidFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.None,
       rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      emptyFilledWith = PyramidFillEmptyWith.None
+      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
     )
   ),
   complete = false

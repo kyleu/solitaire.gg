@@ -27,10 +27,10 @@ case class FoundationRules(
   rankMatchRule: RankMatchRule = RankMatchRule.Up,
   wrapFromKingToAce: Boolean = false,
   moveCompleteSequencesOnly: Boolean = false,
-  maxCards: Int = 0,
+  maxCards: Int = -1,
   canMoveFrom: FoundationCanMoveFrom = FoundationCanMoveFrom.Always,
-  mayMoveToFrom: Seq[String] = Seq.empty,
+  mayMoveToFrom: Seq[String] = GameRules.allSources,
   offscreen: Boolean = false,
   autoMoveCards: Boolean = false,
-  autoMoveFrom: Seq[String] = Seq.empty
+  autoMoveFrom: Seq[String] = GameRules.allSources
 )

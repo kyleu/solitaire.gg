@@ -18,6 +18,7 @@ object Layouts {
     "canfield" -> "sw:f|:r:t",
     "freecell" -> "f:c|.t|",
     "golf" -> "t|f:s",
+    "gypsy" -> "sf|:t",
     "klondike" -> "sw:f|t|",
     "nestor" -> "t|::r",
     "pyramid" -> "p|::.sw|f",

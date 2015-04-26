@@ -3,6 +3,8 @@ package parser
 import models.game.rules._
 
 object ScalaStockExporter {
+  private[this] val defaults = StockRules()
+
   def exportStock(rules: GameRules, ret: StringBuilder): Unit = {
     def add(s: String) = ret ++= s + "\n"
 
@@ -10,13 +12,29 @@ object ScalaStockExporter {
       case Some(s) =>
         add("  stock = Some(")
         add("    StockRules(")
-        add(s"""      name = "${s.name.replaceAllLiterally("\"", "")}",""")
-        add(s"""      dealTo = StockDealTo.${s.dealTo},""")
-        add(s"""      maximumDeals = ${s.maximumDeals},""")
-        add(s"""      cardsDealt = StockCardsDealt.${s.cardsDealt},""")
-        add(s"""      stopAfterPartialDeal = ${s.stopAfterPartialDeal},""")
-        add(s"""      createPocketWhenEmpty = ${s.createPocketWhenEmpty},""")
-        add(s"""      galleryMode = ${s.galleryMode}""")
+        val props = collection.mutable.ArrayBuffer.empty[String]
+        if(s.name != defaults.name) {
+          props += "      name = \"" + s.name.replaceAllLiterally("\"", "") + "\""
+        }
+        if(s.dealTo != defaults.dealTo) {
+          props += "      dealTo = StockDealTo." + s.dealTo
+        }
+        if(s.maximumDeals != defaults.maximumDeals) {
+          props += "      maximumDeals = " + s.maximumDeals
+        }
+        if(s.cardsDealt != defaults.cardsDealt) {
+          props += "      cardsDealt = StockCardsDealt." + s.cardsDealt
+        }
+        if(s.stopAfterPartialDeal != defaults.stopAfterPartialDeal) {
+          props += "      stopAfterPartialDeal = " + s.stopAfterPartialDeal
+        }
+        if(s.createPocketWhenEmpty != defaults.createPocketWhenEmpty) {
+          props += "      createPocketWhenEmpty = " + s.createPocketWhenEmpty
+        }
+        if(s.galleryMode != defaults.galleryMode) {
+          props += "      galleryMode = " + s.galleryMode
+        }
+        add(props.mkString(",\n"))
         add("    )")
         add("  ),")
       case None => // no op
