@@ -19,18 +19,18 @@ object FoundationCanMoveFrom {
 }
 
 case class FoundationRules(
-  name: String,
-  numPiles: Int,
-  lowRank: FoundationLowRank,
-  initialCards: InitialCards,
-  suitMatchRule: SuitMatchRule,
-  rankMatchRule: RankMatchRule,
-  wrapFromKingToAce: Boolean,
-  moveCompleteSequencesOnly: Boolean,
-  maxCards: Int,
-  canMoveFrom: FoundationCanMoveFrom,
-  mayMoveToFrom: Seq[String],
-  offscreen: Boolean,
-  autoMoveCards: Boolean,
-  autoMoveFrom: Seq[String]
+  name: String = "Foundation",
+  numPiles: Int = 1,
+  lowRank: FoundationLowRank = FoundationLowRank.DeckLowRank,
+  initialCards: InitialCards = InitialCards.Count(0),
+  suitMatchRule: SuitMatchRule =  SuitMatchRule.SameSuit,
+  rankMatchRule: RankMatchRule = RankMatchRule.Up,
+  wrapFromKingToAce: Boolean = false,
+  moveCompleteSequencesOnly: Boolean = false,
+  maxCards: Int = 0,
+  canMoveFrom: FoundationCanMoveFrom = FoundationCanMoveFrom.Always,
+  mayMoveToFrom: Seq[String] = Seq.empty,
+  offscreen: Boolean = false,
+  autoMoveCards: Boolean = false,
+  autoMoveFrom: Seq[String] = Seq.empty
 )

@@ -7,7 +7,8 @@ object WastePlayableCards {
 }
 
 case class WasteRules(
-  name: String,
-  numPiles: Int,
-  playableCards: WastePlayableCards
+  name: String = "Waste",
+  numPiles: Int = 1,
+  cardsShown: Int = 3,
+  playableCards: WastePlayableCards = WastePlayableCards.All
 )

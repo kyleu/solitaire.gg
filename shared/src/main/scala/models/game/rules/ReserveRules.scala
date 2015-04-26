@@ -1,8 +1,8 @@
 package models.game.rules
 
 case class ReserveRules(
-  name: String,
-  numPiles: Int,
-  initialCards: Int,
-  cardsFaceDown: Int
+  name: String = "Reserve",
+  numPiles: Int = 1,
+  initialCards: Int = 1,
+  cardsFaceDown: Int = 0
 )

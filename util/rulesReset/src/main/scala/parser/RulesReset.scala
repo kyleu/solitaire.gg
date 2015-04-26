@@ -25,11 +25,10 @@ object RulesReset extends App {
 
     add("package models.game.generated")
     add("")
-    add("import models.game.rules.GameRules")
-    add("import models.game.rules.custom._")
+    add("import models.game.rules.custom.CustomRulesSet")
     add("")
     add("object GameRulesSet {")
-    add("  val all: Seq[GameRules] = Seq(Nestor)")
+    add("  val all = CustomRulesSet.all")
     add("  val allById = all.map(x => x.id -> x).toMap")
     add("}")
     add("")

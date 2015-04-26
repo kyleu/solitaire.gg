@@ -41,25 +41,29 @@ object PileAction {
   case object LimitToTwoJacks extends PileAction
 }
 
+object TableauRules {
+  val allSources = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+}
+
 case class TableauRules(
-  name: String,
-  numPiles: Int,
-  initialCards: InitialCards,
-  cardsFaceDown: TableauFaceDownCards,
-  suitMatchRuleForBuilding: SuitMatchRule,
-  rankMatchRuleForBuilding: RankMatchRule,
-  wrapFromKingToAce: Boolean,
-  suitMatchRuleForMovingStacks: SuitMatchRule,
-  rankMatchRuleForMovingStacks: RankMatchRule,
+  name: String = "Tableau",
+  numPiles: Int = 7,
+  initialCards: InitialCards = InitialCards.PileIndex,
+  cardsFaceDown: TableauFaceDownCards = TableauFaceDownCards.AllButOne,
+  suitMatchRuleForBuilding: SuitMatchRule = SuitMatchRule.AlternatingColors,
+  rankMatchRuleForBuilding: RankMatchRule = RankMatchRule.Down,
+  wrapFromKingToAce: Boolean = false,
+  suitMatchRuleForMovingStacks: SuitMatchRule = SuitMatchRule.AlternatingColors,
+  rankMatchRuleForMovingStacks: RankMatchRule = RankMatchRule.Down,
 
-  autoFillEmptyFrom: TableauAutoFillEmptyFrom,
-  emptyFilledWith: TableauFillEmptyWith,
+  autoFillEmptyFrom: TableauAutoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
+  emptyFilledWith: TableauFillEmptyWith = TableauFillEmptyWith.None,
 
-  mayMoveToNonEmptyFrom: Seq[String],
-  mayMoveToEmptyFrom: Seq[String],
+  mayMoveToNonEmptyFrom: Seq[String] = TableauRules.allSources,
+  mayMoveToEmptyFrom: Seq[String] = TableauRules.allSources,
 
-  maxCards: Int,
-  actionDuringDeal: PileAction,
-  actionAfterDeal: PileAction,
-  pilesWithLowCardsAtBottom: Int
+  maxCards: Int = 0,
+  actionDuringDeal: PileAction = PileAction.None,
+  actionAfterDeal: PileAction = PileAction.None,
+  pilesWithLowCardsAtBottom: Int = 0
 )

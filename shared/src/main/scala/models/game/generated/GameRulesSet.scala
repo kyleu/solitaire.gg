@@ -1,11 +1,10 @@
 package models.game.generated
 
-import models.game.rules.GameRules
-import models.game.rules.custom._
+import models.game.rules.custom.CustomRulesSet
 
 // scalastyle:off
 object GameRulesSet {
-  val all: Seq[GameRules] = Seq(
+  val all = Seq(
     Accordion,
     AceOfHearts,
     AcesAndKings,
@@ -541,9 +540,8 @@ object GameRulesSet {
     YukonicPlague,
     YukonKings,
     YukonOneSuit,
-    Zerline,
-    Nestor
-  )
+    Zerline
+  ) ++ CustomRulesSet.all
 
   val allById = all.map(x => x.id -> x).toMap
 }

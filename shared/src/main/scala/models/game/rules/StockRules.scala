@@ -21,11 +21,11 @@ object StockCardsDealt {
 }
 
 case class StockRules(
-  name: String,
-  dealTo: StockDealTo,
-  maximumDeals: Option[Int],
-  cardsDealt: StockCardsDealt,
-  stopAfterPartialDeal: Boolean,
-  createPocketWhenEmpty: Boolean,
-  galleryMode: Boolean
+  name: String = "Stock",
+  dealTo: StockDealTo = StockDealTo.Waste,
+  maximumDeals: Option[Int] = None,
+  cardsDealt: StockCardsDealt = StockCardsDealt.Count(1),
+  stopAfterPartialDeal: Boolean = true,
+  createPocketWhenEmpty: Boolean = false,
+  galleryMode: Boolean = false
 )

@@ -82,8 +82,9 @@ define(function () {
     _.each(layout.split(''), function(char) {
       processCharacter(char);
     });
+    newRow();
 
-    return { "width": maxWidth + padding, "height": yOffset, "locations": locations };
+    return { "width": maxWidth - (margin - padding), "height": yOffset, "locations": locations };
   }
 
   return calculateLayout;

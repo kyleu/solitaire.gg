@@ -10,10 +10,11 @@ object StockSet {
       case _ => throw new NotImplementedError()
     }
 
-    // TODO Match others
     val drawTo = stockRules.dealTo match {
       case StockDealTo.Waste => "waste-1"
       case StockDealTo.Foundation => "foundation-1"
+      case StockDealTo.TableauIfNoneEmpty => "???"
+      case StockDealTo.Never => "???"
       case _ => throw new NotImplementedError()
     }
 

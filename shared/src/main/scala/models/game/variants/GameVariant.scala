@@ -26,16 +26,15 @@ object GameVariant {
     case Klondike.key => new Klondike(gameId, seed)
     case Nestor.key => new Nestor(gameId, seed)
 //    case Pyramid.key => new Pyramid(gameId, seed)
-//    case Sandbox.key => new Sandbox(gameId, seed)
-//    case SandboxB.key => new SandboxB(gameId, seed)
-//    case Spider.key => new Spider(gameId, seed)
-//    case TrustyTwelve.key => new TrustyTwelve(gameId, seed)
-//    case Yukon.key => new Yukon(gameId, seed)
+    case Sandbox.key => new Sandbox(gameId, seed)
+    case SandboxB.key => new SandboxB(gameId, seed)
+    case Spider.key => new Spider(gameId, seed)
+    case TrustyTwelve.key => new TrustyTwelve(gameId, seed)
+    case Yukon.key => new Yukon(gameId, seed)
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 
-//  val all = Seq(Canfield, FreeCell, Golf, Gypsy, Klondike, Nestor, Pyramid, Sandbox, SandboxB, Spider, TrustyTwelve, Yukon)
-  val all = Seq(Canfield, FreeCell, Golf, Gypsy, Klondike, Nestor)
+  val all = Seq(Canfield, FreeCell, Golf, Gypsy, Klondike, Nestor, /* Pyramid, */ Sandbox, SandboxB, Spider, TrustyTwelve, Yukon)
 }
 
 case class GameVariant(rulesKey: String, description: GameVariant.Description, gameId: UUID, seed: Int, initialMoves: (GameState, Deck) => Unit) {

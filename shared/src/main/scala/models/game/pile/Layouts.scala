@@ -19,7 +19,12 @@ object Layouts {
     "freecell" -> "f:c|.t|",
     "golf" -> "t|f:s",
     "klondike" -> "sw:f|t|",
-    "nestor" -> "t|::r"
+    "nestor" -> "t|::r",
+    "sandbox" -> "s:f",
+    "sandboxb" -> "s",
+    "spider" -> "s:f|t",
+    "trustytwelve" -> "s|t",
+    "yukon" -> ":::f|t"
   )
 
   def forVariant(v: String) = {
