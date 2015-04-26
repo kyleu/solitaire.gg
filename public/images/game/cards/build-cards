@@ -71,8 +71,8 @@ cardset()
 }
 
 cardset standard
-cardset anglo
-cardset dondorf
-cardset ornamental
-cardset paris
+# cardset anglo
+# cardset dondorf
+# cardset ornamental
+# cardset paris
 
