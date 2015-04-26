@@ -7,8 +7,7 @@ import models.game.rules._
 object VariegatedCanfield extends GameRules(
   id = "variegatedcanfield",
   title = "Variegated Canfield",
-  description = "A difficult two-deck version of ^canfield^, with aces starting on the foundation and only three pass" +
-  "es through the waste allowed.",
+  description = "A difficult two-deck version of ^canfield^, with aces starting on the foundation and only three passes through the waste allowed.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

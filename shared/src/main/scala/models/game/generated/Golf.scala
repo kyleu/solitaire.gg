@@ -7,8 +7,7 @@ import models.game.rules._
 object Golf extends GameRules(
   id = "golf",
   title = "Golf",
-  description = "Build up or down on the single foundation to take cards off the tableau, where no building is allowe" +
-  "d.",
+  description = "Build up or down on the single foundation to take cards off the tableau, where no building is allowed.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(
     StockRules(

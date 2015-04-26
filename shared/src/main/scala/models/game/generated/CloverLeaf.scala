@@ -7,8 +7,8 @@ import models.game.rules._
 object CloverLeaf extends GameRules(
   id = "cloverleaf",
   title = "Clover Leaf",
-  description = "An easy game invented by Thomas Warfield where you build up or down on the tableau, two foundation p" +
-  "iles build up, and two build down.",
+  description = "An easy game invented by Thomas Warfield where you build up or down on the tableau, two foundation piles build up, and two build d" +
+  "own.",
   foundations = Seq(
     FoundationRules(
       name = "Red Foundation",

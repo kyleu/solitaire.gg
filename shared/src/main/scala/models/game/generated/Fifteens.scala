@@ -7,8 +7,7 @@ import models.game.rules._
 object Fifteens extends GameRules(
   id = "fifteens",
   title = "Fifteens",
-  description = "A simple game where you remove sets that add to 15 or sets of four tens, four jacks, four queens, or" +
-  " four kings.",
+  description = "A simple game where you remove sets that add to 15 or sets of four tens, four jacks, four queens, or four kings.",
   cardRemovalMethod = CardRemovalMethod.RemoveSetsAddingToFifteenOrFour10JQK,
   stock = Some(
     StockRules(

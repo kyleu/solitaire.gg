@@ -7,8 +7,8 @@ import models.game.rules._
 object Manx extends GameRules(
   id = "manx",
   title = "Manx",
-  description = "Build complete sequences by rearranging four piles regardless of suit in this game invented by Rick " +
-  "Holzgrafe of Solitaire Til Dawn.",
+  description = "Build complete sequences by rearranging four piles regardless of suit in this game invented by Rick Holzgrafe of Solitaire Til Daw" +
+  "n.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

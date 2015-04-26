@@ -7,8 +7,8 @@ import models.game.rules._
 object Alternations extends GameRules(
   id = "alternations",
   title = "Alternations",
-  description = "A variation of ^interchange^ that has the same 7 by 7 tableau with alternate cards face down, but wh" +
-  "ere you build in alternate colors.",
+  description = "A variation of ^interchange^ that has the same 7 by 7 tableau with alternate cards face down, but where you build in alternate col" +
+  "ors.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

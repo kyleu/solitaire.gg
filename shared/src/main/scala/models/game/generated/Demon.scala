@@ -7,9 +7,8 @@ import models.game.rules._
 object Demon extends GameRules(
   id = "demon",
   title = "Demon",
-  description = "An two-deck version of ^canfield^, not quite as easy as ^doublecanfield^. \"Demon\" is the standard " +
-  "English name for Canfield. We follow Thomas Warfield in fostering confusion by using the name for th" +
-  "is different game.",
+  description = "An two-deck version of ^canfield^, not quite as easy as ^doublecanfield^. \"Demon\" is the standard English name for Canfield. We " +
+  "follow Thomas Warfield in fostering confusion by using the name for this different game.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Unknown)

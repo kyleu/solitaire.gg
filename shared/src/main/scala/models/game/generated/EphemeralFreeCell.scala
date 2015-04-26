@@ -7,9 +7,8 @@ import models.game.rules._
 object EphemeralFreeCell extends GameRules(
   id = "ephemeralfreecell",
   title = "Ephemeral FreeCell",
-  description = "Ephemeral FreeCell is like standard ^freecell^, except that one of the cells will vanish after it's " +
-  "first use. Michael Keller invented this idea. You can experiment with different numbers of ephemeral" +
-  " cells.",
+  description = "Ephemeral FreeCell is like standard ^freecell^, except that one of the cells will vanish after it's first use. Michael Keller inve" +
+  "nted this idea. You can experiment with different numbers of ephemeral cells.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -7,8 +7,8 @@ import models.game.rules._
 object Gargantua extends GameRules(
   id = "gargantua",
   title = "Gargantua",
-  description = "A two-deck version of ^klondike^ invented by Albert Morehead and Geoffrey Mott-Smith. You get two pa" +
-  "sses through the deck, dealing cards one at a time.",
+  description = "A two-deck version of ^klondike^ invented by Albert Morehead and Geoffrey Mott-Smith. You get two passes through the deck, dealing" +
+  " cards one at a time.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

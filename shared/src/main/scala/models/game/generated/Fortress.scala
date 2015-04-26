@@ -7,8 +7,7 @@ import models.game.rules._
 object Fortress extends GameRules(
   id = "fortress",
   title = "Fortress",
-  description = "A classic and usually insolvable ancestor of ^beleagueredcastle^ where you can build both up and dow" +
-  "n in the tableau.",
+  description = "A classic and usually insolvable ancestor of ^beleagueredcastle^ where you can build both up and down in the tableau.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

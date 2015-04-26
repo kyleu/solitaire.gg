@@ -7,8 +7,7 @@ import models.game.rules._
 object Inquisitor extends GameRules(
   id = "inquisitor",
   title = "Inquisitor",
-  description = "This ^ladyjane^ variation by Thomas Warfield requires you to build in suit, but gives you an extra r" +
-  "edeal.",
+  description = "This ^ladyjane^ variation by Thomas Warfield requires you to build in suit, but gives you an extra redeal.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -7,8 +7,8 @@ import models.game.rules._
 object Chelicera extends GameRules(
   id = "chelicera",
   title = "Chelicera",
-  description = "A variation on ^scorpion^ invented by Erik den Hollander in which we fill spaces with three cards fr" +
-  "om the stock instead of dealing from the stock.",
+  description = "A variation on ^scorpion^ invented by Erik den Hollander in which we fill spaces with three cards from the stock instead of dealin" +
+  "g from the stock.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   stock = Some(
     StockRules(

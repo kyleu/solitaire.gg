@@ -7,8 +7,7 @@ import models.game.rules._
 object AllInARow extends GameRules(
   id = "allinarow",
   title = "All in a Row",
-  description = "A variation of ^golf^ without a stock. Most deals are winnable, but require a lot of advance plannin" +
-  "g to win.",
+  description = "A variation of ^golf^ without a stock. Most deals are winnable, but require a lot of advance planning to win.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(
     FoundationRules(

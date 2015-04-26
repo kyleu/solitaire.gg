@@ -7,8 +7,7 @@ import models.game.rules._
 object RoyalCotillion extends GameRules(
   id = "royalcotillion",
   title = "Royal Cotillion",
-  description = "A variation of ^oddandeven^ with some extra tableau and reserve piles, but only one pass allowed thr" +
-  "ough the deck.",
+  description = "A variation of ^oddandeven^ with some extra tableau and reserve piles, but only one pass allowed through the deck.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

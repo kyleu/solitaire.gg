@@ -7,8 +7,7 @@ import models.game.rules._
 object BlindAlleys extends GameRules(
   id = "blindalleys",
   title = "Blind Alleys",
-  description = "A ^klondike^ variant with a square tableau, differing from ^passeul^ only in the number of passes th" +
-  "rough the deck allowed.",
+  description = "A ^klondike^ variant with a square tableau, differing from ^passeul^ only in the number of passes through the deck allowed.",
   stock = Some(
     StockRules(
       maximumDeals = Some(2)

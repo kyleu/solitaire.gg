@@ -7,8 +7,8 @@ import models.game.rules._
 object BigBertha extends GameRules(
   id = "bigbertha",
   title = "Big Bertha",
-  description = "This two-deck version of ^kingalbert^ which has 14 reserve cards that are all playable, and a separa" +
-  "te foundation pile that you can put all the kings on.",
+  description = "This two-deck version of ^kingalbert^ which has 14 reserve cards that are all playable, and a separate foundation pile that you ca" +
+  "n put all the kings on.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

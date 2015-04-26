@@ -7,8 +7,7 @@ import models.game.rules._
 object Yukon extends GameRules(
   id = "yukon",
   title = "Yukon",
-  description = "A well-known game with no stock, in which stacks of cards can be moved even if they aren't in sequen" +
-  "ce.",
+  description = "A well-known game with no stock, in which stacks of cards can be moved even if they aren't in sequence.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

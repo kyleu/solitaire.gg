@@ -7,8 +7,8 @@ import models.game.rules._
 object Cornelius extends GameRules(
   id = "cornelius",
   title = "Cornelius",
-  description = "A version of ^fortyandeight^ that allows non-top cards to be played (moving whatever cards are on to" +
-  "p of them along with them) as in ^yukon^.",
+  description = "A version of ^fortyandeight^ that allows non-top cards to be played (moving whatever cards are on top of them along with them) as " +
+  "in ^yukon^.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

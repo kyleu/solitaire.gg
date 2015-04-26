@@ -7,8 +7,7 @@ import models.game.rules._
 object Storehouse extends GameRules(
   id = "storehouse",
   title = "Storehouse",
-  description = "A old ^canfield^ variant first described in 1939. A pleasant game, but there is scarcely any strateg" +
-  "y required.",
+  description = "A old ^canfield^ variant first described in 1939. A pleasant game, but there is scarcely any strategy required.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Two)
   ),

@@ -7,8 +7,7 @@ import models.game.rules._
 object Whitehorse extends GameRules(
   id = "whitehorse",
   title = "Whitehorse",
-  description = "An easy ^klondike^ variant where instead of dealing a lot of cards to the tableau, we have spaces th" +
-  "at autofill",
+  description = "An easy ^klondike^ variant where instead of dealing a lot of cards to the tableau, we have spaces that autofill",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

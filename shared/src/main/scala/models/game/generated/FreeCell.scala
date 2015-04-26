@@ -7,8 +7,8 @@ import models.game.rules._
 object FreeCell extends GameRules(
   id = "freecell",
   title = "FreeCell",
-  description = "Invented by Paul Alfille, made famous by Microsoft, this game provide four temporary storage cells t" +
-  "hat can be used to move cards around.",
+  description = "Invented by Paul Alfille, made famous by Microsoft, this game provide four temporary storage cells that can be used to move cards " +
+  "around.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

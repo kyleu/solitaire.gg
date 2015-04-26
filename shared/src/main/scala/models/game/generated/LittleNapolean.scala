@@ -7,8 +7,8 @@ import models.game.rules._
 object LittleNapolean extends GameRules(
   id = "littlenapoleon",
   title = "Little Napolean",
-  description = "A ^fortythieves^ variant that shows some ^spider^ influences, because you can build regardless of su" +
-  "it, but only move same-suit sequences.",
+  description = "A ^fortythieves^ variant that shows some ^spider^ influences, because you can build regardless of suit, but only move same-suit se" +
+  "quences.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

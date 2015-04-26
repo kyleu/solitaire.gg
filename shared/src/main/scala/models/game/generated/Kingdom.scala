@@ -7,8 +7,8 @@ import models.game.rules._
 object Kingdom extends GameRules(
   id = "kingdom",
   title = "Kingdom",
-  description = "A game where no building is allowed in the tableau and suits are ignored while building up the table" +
-  "au. Our version may be slightly less dreadful than the usual.",
+  description = "A game where no building is allowed in the tableau and suits are ignored while building up the tableau. Our version may be slightl" +
+  "y less dreadful than the usual.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

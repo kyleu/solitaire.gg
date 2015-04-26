@@ -7,8 +7,7 @@ import models.game.rules._
 object Dorothy extends GameRules(
   id = "dorothy",
   title = "Dorothy",
-  description = "Another brainless variation of ^captivequeens^ and ^sixesandsevens^ with separate foundations for od" +
-  "ds, evens and face cards.",
+  description = "Another brainless variation of ^captivequeens^ and ^sixesandsevens^ with separate foundations for odds, evens and face cards.",
   stock = Some(
     StockRules(
       maximumDeals = Some(2)

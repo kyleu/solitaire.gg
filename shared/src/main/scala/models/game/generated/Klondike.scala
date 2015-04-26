@@ -7,8 +7,7 @@ import models.game.rules._
 object Klondike extends GameRules(
   id = "klondike",
   title = "Klondike",
-  description = "The world's most famous solitaire game features a triangular tableau where you build down in alterna" +
-  "ting colors.",
+  description = "The world's most famous solitaire game features a triangular tableau where you build down in alternating colors.",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

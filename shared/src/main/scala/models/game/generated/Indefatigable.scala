@@ -7,8 +7,8 @@ import models.game.rules._
 object Indefatigable extends GameRules(
   id = "indefatigable",
   title = "Indefatigable",
-  description = "This variation of ^royalfamily^ is basically the same, but the foundations build up from ace, and it" +
-  " is made even easier by a extra redeal.",
+  description = "This variation of ^royalfamily^ is basically the same, but the foundations build up from ace, and it is made even easier by a extr" +
+  "a redeal.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

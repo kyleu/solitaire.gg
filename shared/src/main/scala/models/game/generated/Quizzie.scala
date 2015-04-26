@@ -7,8 +7,7 @@ import models.game.rules._
 object Quizzie extends GameRules(
   id = "quizzie",
   title = "Quizzie",
-  description = "A variation of ^inquisitor^ by Thomas Warfield where you deal fewer cards in each pass through the d" +
-  "eck.",
+  description = "A variation of ^inquisitor^ by Thomas Warfield where you deal fewer cards in each pass through the deck.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

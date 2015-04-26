@@ -7,8 +7,7 @@ import models.game.rules._
 object Corners extends GameRules(
   id = "corners",
   title = "Corners",
-  description = "This completely mindless variation on ^czarina^ allows no building on the tableau, but allows three " +
-  "passes through the stock.",
+  description = "This completely mindless variation on ^czarina^ allows no building on the tableau, but allows three passes through the stock.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),

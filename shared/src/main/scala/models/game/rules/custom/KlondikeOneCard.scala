@@ -1,16 +1,15 @@
-// Generated 2015-04-26 for Scalataire.
-package models.game.generated
+package models.game.rules.custom
 
-import models.game._
 import models.game.rules._
 
-object AuntMary extends GameRules(
-  id = "auntmary",
-  title = "Aunt Mary",
-  description = "A difficult ^klondike^ variation where the tableau contains one fewer pile but all cards are face up.",
+object KlondikeOneCard extends GameRules(
+  id = "klondike-1-card",
+  title = "Klondike (One Card)",
+  description = "The world's most famous solitaire game features a triangular tableau where you build down in alternating colors. In this version, "
+  + "you draw one card from the stock at a time.",
   stock = Some(
     StockRules(
-      maximumDeals = Some(1)
+      cardsDealt = StockCardsDealt.Count(3)
     )
   ),
   waste = Some(WasteRules()),
@@ -24,8 +23,6 @@ object AuntMary extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      numPiles = 6,
-      cardsFaceDown = TableauFaceDownCards.Count(0),
       emptyFilledWith = TableauFillEmptyWith.Kings
     )
   ),

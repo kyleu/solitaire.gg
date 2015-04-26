@@ -7,8 +7,7 @@ import models.game.rules._
 object Coyote extends GameRules(
   id = "coyote",
   title = "Coyote",
-  description = "An slightly easier, but still difficult, variation of ^acme^ in which sequences can be moved. Named " +
-  "after Acme's best customer.",
+  description = "An slightly easier, but still difficult, variation of ^acme^ in which sequences can be moved. Named after Acme's best customer.",
   stock = Some(
     StockRules(
       maximumDeals = Some(2)

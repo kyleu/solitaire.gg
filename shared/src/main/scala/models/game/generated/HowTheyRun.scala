@@ -7,8 +7,7 @@ import models.game.rules._
 object HowTheyRun extends GameRules(
   id = "howtheyrun",
   title = "How They Run",
-  description = "A variation of ^threeblindmice^ invented by Erik den Hollander with two cells replacing the two card" +
-  " reserve.",
+  description = "A variation of ^threeblindmice^ invented by Erik den Hollander with two cells replacing the two card reserve.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

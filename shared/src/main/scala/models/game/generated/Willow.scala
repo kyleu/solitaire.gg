@@ -7,8 +7,7 @@ import models.game.rules._
 object Willow extends GameRules(
   id = "willow",
   title = "Willow",
-  description = "A ^klondike^ variation with four fan piles where we can build with cards of equal rank. Invented by " +
-  "Thomas Warfield.",
+  description = "A ^klondike^ variation with four fan piles where we can build with cards of equal rank. Invented by Thomas Warfield.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

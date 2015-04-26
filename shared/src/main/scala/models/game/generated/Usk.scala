@@ -7,8 +7,8 @@ import models.game.rules._
 object Usk extends GameRules(
   id = "usk",
   title = "Usk",
-  description = "A ^klondike^ variant without stock or waste. Unlike ^somerset^, moves of stacks are allowed and ther" +
-  "e is a redeal, but spaces can only be filled by kings.",
+  description = "A ^klondike^ variant without stock or waste. Unlike ^somerset^, moves of stacks are allowed and there is a redeal, but spaces can " +
+  "only be filled by kings.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

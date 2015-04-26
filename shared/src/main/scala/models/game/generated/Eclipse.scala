@@ -7,8 +7,7 @@ import models.game.rules._
 object Eclipse extends GameRules(
   id = "eclipse",
   title = "Eclipse",
-  description = "A variant of ^waningmoon^, where sequence moves are allowed and cards are dealt to the tableau inste" +
-  "ad of to a waste pile.",
+  description = "A variant of ^waningmoon^, where sequence moves are allowed and cards are dealt to the tableau instead of to a waste pile.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

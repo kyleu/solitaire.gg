@@ -7,8 +7,8 @@ import models.game.rules._
 object PatientPairs extends GameRules(
   id = "patientpairs",
   title = "Patient Pairs",
-  description = "As in ^simplepairs^, you remove pairs of cards of the same rank, but the cards start out all dealt t" +
-  "o the tableau, so a smidgeon more skill is involved.",
+  description = "As in ^simplepairs^, you remove pairs of cards of the same rank, but the cards start out all dealt to the tableau, so a smidgeon m" +
+  "ore skill is involved.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   foundations = Seq(
     FoundationRules(

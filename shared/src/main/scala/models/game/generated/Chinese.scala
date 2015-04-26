@@ -7,8 +7,7 @@ import models.game.rules._
 object Chinese extends GameRules(
   id = "chinese",
   title = "Chinese",
-  description = "This ^scorpion^ variation has a different layout, a smaller stock, and allows cards to be moved to t" +
-  "he foundation one at a time.",
+  description = "This ^scorpion^ variation has a different layout, a smaller stock, and allows cards to be moved to the foundation one at a time.",
   stock = Some(
     StockRules(
       name = "Reserve",

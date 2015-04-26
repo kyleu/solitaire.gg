@@ -7,8 +7,8 @@ import models.game.rules._
 object Midshipman extends GameRules(
   id = "midshipman",
   title = "Midshipman",
-  description = "A slightly easier variation of ^maria^ where we build by different suits instead of alternate colors" +
-  " and where some cards start out face down.",
+  description = "A slightly easier variation of ^maria^ where we build by different suits instead of alternate colors and where some cards start ou" +
+  "t face down.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

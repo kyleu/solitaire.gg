@@ -7,8 +7,8 @@ import models.game.rules._
 object Penguin extends GameRules(
   id = "penguin",
   title = "Penguin",
-  description = "A satisfying game with seven cells developed by David Parlett where one of the cards you need to sta" +
-  "rt the foundation is always buried at the bottom of the first tableau pile.",
+  description = "A satisfying game with seven cells developed by David Parlett where one of the cards you need to start the foundation is always bu" +
+  "ried at the bottom of the first tableau pile.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),

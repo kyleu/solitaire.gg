@@ -7,8 +7,7 @@ import models.game.rules._
 object FortyThieves extends GameRules(
   id = "fortythieves",
   title = "Forty Thieves",
-  description = "Similar to ^fortyandeight^, but the tableau has forty cards in ten stacks of four, and we only allow" +
-  " one pass through the deck.",
+  description = "Similar to ^fortyandeight^, but the tableau has forty cards in ten stacks of four, and we only allow one pass through the deck.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

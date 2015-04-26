@@ -7,8 +7,8 @@ import models.game.rules._
 object Saxony extends GameRules(
   id = "saxony",
   title = "Saxony",
-  description = "You have four cells, four reserve piles where you can build down in suit, and eight tableau piles, w" +
-  "here cards are dealt, but no building is allowed.",
+  description = "You have four cells, four reserve piles where you can build down in suit, and eight tableau piles, where cards are dealt, but no b" +
+  "uilding is allowed.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

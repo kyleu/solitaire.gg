@@ -7,8 +7,7 @@ import models.game.rules._
 object LaBelleLucie extends GameRules(
   id = "labellelucie",
   title = "La Belle Lucie",
-  description = "A classic solitaire where you build down in suit on the tableau and can redeal twice. Rarely winnabl" +
-  "e.",
+  description = "A classic solitaire where you build down in suit on the tableau and can redeal twice. Rarely winnable.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

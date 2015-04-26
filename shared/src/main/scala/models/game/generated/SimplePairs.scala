@@ -7,8 +7,7 @@ import models.game.rules._
 object SimplePairs extends GameRules(
   id = "simplepairs",
   title = "Simple Pairs",
-  description = "A game where you remove pairs of cards of the same rank. Bring your luck, not your brain, to this ga" +
-  "me.",
+  description = "A game where you remove pairs of cards of the same rank. Bring your luck, not your brain, to this game.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(
     StockRules(

@@ -7,8 +7,8 @@ import models.game.rules._
 object Bucket extends GameRules(
   id = "bucket",
   title = "Bucket",
-  description = "A ^canister^ variation which ends up looking rather like ^freecell^ without the cells. Naturally, it" +
-  " ends up being rather difficult.",
+  description = "A ^canister^ variation which ends up looking rather like ^freecell^ without the cells. Naturally, it ends up being rather difficul" +
+  "t.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

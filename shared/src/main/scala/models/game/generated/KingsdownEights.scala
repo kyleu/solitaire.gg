@@ -7,8 +7,7 @@ import models.game.rules._
 object KingsdownEights extends GameRules(
   id = "kingsdowneights",
   title = "Kingsdown Eights",
-  description = "This variation of ^tournament^ has a tableau where you can build by alternate color instead of cells" +
-  ".",
+  description = "This variation of ^tournament^ has a tableau where you can build by alternate color instead of cells.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

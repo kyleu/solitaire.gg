@@ -7,8 +7,8 @@ import models.game.rules._
 object Indian extends GameRules(
   id = "indian",
   title = "Indian",
-  description = "An easy game that is similar to ^fortythieves^, except that the first card in each stack of the 10 b" +
-  "y 3 tableau is face down, and cards can be played on any suit other than their own.",
+  description = "An easy game that is similar to ^fortythieves^, except that the first card in each stack of the 10 by 3 tableau is face down, and " +
+  "cards can be played on any suit other than their own.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

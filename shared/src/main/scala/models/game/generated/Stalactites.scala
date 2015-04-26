@@ -7,8 +7,7 @@ import models.game.rules._
 object Stalactites extends GameRules(
   id = "stalactites",
   title = "Stalactites",
-  description = "This suitless game with no building requires you to clear the tableau with only two cells you help y" +
-  "ou.",
+  description = "This suitless game with no building requires you to clear the tableau with only two cells you help you.",
   deckOptions = DeckOptions(
     lowRank = None
   ),

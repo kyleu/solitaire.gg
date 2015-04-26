@@ -7,8 +7,8 @@ import models.game.rules._
 object Escalator extends GameRules(
   id = "escalator",
   title = "Escalator",
-  description = "Deconstruct a pyramid by building up or down on a single foundation pile. This game is also known by" +
-  " the more descriptive name \"Pyramid Golf.\"",
+  description = "Deconstruct a pyramid by building up or down on a single foundation pile. This game is also known by the more descriptive name \"P" +
+  "yramid Golf.\"",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(
     StockRules(

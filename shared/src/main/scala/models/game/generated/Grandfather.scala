@@ -7,8 +7,8 @@ import models.game.rules._
 object Grandfather extends GameRules(
   id = "grandfather",
   title = "Grandfather",
-  description = "A game with twenty tableau piles, each of which can hold any two cards. You build up on half the fou" +
-  "ndations and down on the others.",
+  description = "A game with twenty tableau piles, each of which can hold any two cards. You build up on half the foundations and down on the other" +
+  "s.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

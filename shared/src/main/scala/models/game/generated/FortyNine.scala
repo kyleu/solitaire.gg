@@ -7,8 +7,8 @@ import models.game.rules._
 object FortyNine extends GameRules(
   id = "fortynine",
   title = "Forty-Nine",
-  description = "This ^fortyandeight^ variation has forty-nine cards in a seven by seven tableau. You build down rega" +
-  "rdless of suit, moving cards one at a time.",
+  description = "This ^fortyandeight^ variation has forty-nine cards in a seven by seven tableau. You build down regardless of suit, moving cards o" +
+  "ne at a time.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

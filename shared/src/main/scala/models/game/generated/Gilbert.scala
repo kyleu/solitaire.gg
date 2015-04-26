@@ -7,8 +7,8 @@ import models.game.rules._
 object Gilbert extends GameRules(
   id = "gilbert",
   title = "Gilbert",
-  description = "An odd ^klondike^ variation with one set of foundations building up and one set building down. The f" +
-  "act that only sevens can fill gaps in the tableau makes it nearly unplayable.",
+  description = "An odd ^klondike^ variation with one set of foundations building up and one set building down. The fact that only sevens can fill " +
+  "gaps in the tableau makes it nearly unplayable.",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

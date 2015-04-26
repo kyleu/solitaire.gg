@@ -7,8 +7,7 @@ import models.game.rules._
 object Eighteens extends GameRules(
   id = "eighteens",
   title = "Eighteens",
-  description = "A game where you remove singleton aces, or sets consisting of a face card with three other cards tha" +
-  "t add to eighteen.",
+  description = "A game where you remove singleton aces, or sets consisting of a face card with three other cards that add to eighteen.",
   cardRemovalMethod = CardRemovalMethod.RemoveSetsOfOneFaceCardAnd3ThatAddToEighteen,
   stock = Some(
     StockRules(

@@ -7,8 +7,8 @@ import models.game.rules._
 object Dover extends GameRules(
   id = "dover",
   title = "Dover",
-  description = "This two-deck version of ^bristol^ still has three waste piles, but foundation piles must be built u" +
-  "p in suit and empty tableau spaces may be filled, though only from the waste.",
+  description = "This two-deck version of ^bristol^ still has three waste piles, but foundation piles must be built up in suit and empty tableau sp" +
+  "aces may be filled, though only from the waste.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

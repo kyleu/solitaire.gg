@@ -7,8 +7,7 @@ import models.game.rules._
 object Incompatibility extends GameRules(
   id = "incompatibility",
   title = "Incompatibility",
-  description = "A ^spider^ game where cards can be moved to the foundation one at a time and where cards are not dea" +
-  "lt to empty columns.",
+  description = "A ^spider^ game where cards can be moved to the foundation one at a time and where cards are not dealt to empty columns.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -7,8 +7,7 @@ import models.game.rules._
 object Alternate extends GameRules(
   id = "alternate",
   title = "Alternate",
-  description = "A variation of ^sirtommy^ where the foundations are built in alternate color, half upwards, half dow" +
-  "nwards.",
+  description = "A variation of ^sirtommy^ where the foundations are built in alternate color, half upwards, half downwards.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Manually,

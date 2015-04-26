@@ -7,8 +7,7 @@ import models.game.rules._
 object CornerSuite extends GameRules(
   id = "cornersuite",
   title = "Corner Suite",
-  description = "This rather easy game resembles a one deck version of ^congress^, except that the tableau starts emp" +
-  "ty.",
+  description = "This rather easy game resembles a one deck version of ^congress^, except that the tableau starts empty.",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

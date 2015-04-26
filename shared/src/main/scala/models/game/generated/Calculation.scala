@@ -7,8 +7,7 @@ import models.game.rules._
 object Calculation extends GameRules(
   id = "calculation",
   title = "Calculation",
-  description = "Basically similar to ^sirtommy^, but much more complex to play because each foundation pile advances" +
-  " by a different increment.",
+  description = "Basically similar to ^sirtommy^, but much more complex to play because each foundation pile advances by a different increment.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Manually,

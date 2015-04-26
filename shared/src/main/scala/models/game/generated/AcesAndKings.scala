@@ -7,8 +7,7 @@ import models.game.rules._
 object AcesAndKings extends GameRules(
   id = "acesandkings",
   title = "Aces and Kings",
-  description = "Build up on one foundation, down on the other, but don't build at all on the tableau. Suits don't ma" +
-  "tter.",
+  description = "Build up on one foundation, down on the other, but don't build at all on the tableau. Suits don't matter.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

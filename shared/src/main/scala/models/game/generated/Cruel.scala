@@ -7,8 +7,7 @@ import models.game.rules._
 object Cruel extends GameRules(
   id = "cruel",
   title = "Cruel",
-  description = "A game where you can redeal the tableau as often as you like, so long as you can take off at least o" +
-  "ne card between deals.",
+  description = "A game where you can redeal the tableau as often as you like, so long as you can take off at least one card between deals.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

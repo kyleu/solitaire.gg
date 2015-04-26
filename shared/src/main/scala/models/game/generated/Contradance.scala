@@ -7,8 +7,7 @@ import models.game.rules._
 object Contradance extends GameRules(
   id = "contradance",
   title = "Contradance",
-  description = "A variation of ^sixesandsevens^ that is just as brainless as ^captivequeens^, but requires vastly mo" +
-  "re luck to ever win.",
+  description = "A variation of ^sixesandsevens^ that is just as brainless as ^captivequeens^, but requires vastly more luck to ever win.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

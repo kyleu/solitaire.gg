@@ -52,7 +52,7 @@ object ScalaExporter {
     add("object " + getObjectName(rules) + " extends GameRules(")
     add("  id = \"" + rules.id + "\",")
     add("  title = \"" + rules.title + "\",")
-    val desc = rules.description.replaceAllLiterally("\"", "\\\"").grouped(100)
+    val desc = rules.description.replaceAllLiterally("\"", "\\\"").grouped(130)
     add("  description = \"" + desc.mkString("\" +\n  \"") + "\",")
     if(rules.victoryCondition != defaults.victoryCondition) {
       add("  victoryCondition = VictoryCondition." + cls(rules.victoryCondition) + ",")

@@ -7,8 +7,8 @@ import models.game.rules._
 object Tarantula extends GameRules(
   id = "tarantula",
   title = "Tarantula",
-  description = "An easier variation of ^spider^ where you are allowed to move sequences that are all one color even " +
-  "if they aren't all of one suit.",
+  description = "An easier variation of ^spider^ where you are allowed to move sequences that are all one color even if they aren't all of one suit" +
+  ".",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2

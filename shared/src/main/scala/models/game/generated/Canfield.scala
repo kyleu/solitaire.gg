@@ -7,8 +7,8 @@ import models.game.rules._
 object Canfield extends GameRules(
   id = "canfield",
   title = "Canfield",
-  description = "An old Casino game where the house usually wins. It's distinctive features include a reserve and fou" +
-  "ndations built up from the value of one random card dealt into them.",
+  description = "An old Casino game where the house usually wins. It's distinctive features include a reserve and foundations built up from the val" +
+  "ue of one random card dealt into them.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),

@@ -7,8 +7,7 @@ import models.game.rules._
 object KlondikeTerritory extends GameRules(
   id = "klondiketerritory",
   title = "Klondike Territory",
-  description = "A cross between ^flowergarden^ and ^klondike^, slightly more difficult than the similar Northwest Te" +
-  "rritory game.",
+  description = "A cross between ^flowergarden^ and ^klondike^, slightly more difficult than the similar Northwest Territory game.",
   waste = Some(
     WasteRules(
       name = "Reserve"

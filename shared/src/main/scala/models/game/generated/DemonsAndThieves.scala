@@ -7,8 +7,8 @@ import models.game.rules._
 object DemonsAndThieves extends GameRules(
   id = "demonsandthieves",
   title = "Demons and Thieves",
-  description = "In this game, the tableau is split into two halves, one half where you play by ^canfield^ rules, and" +
-  " one half where you play by ^fortythieves^ rules.",
+  description = "In this game, the tableau is split into two halves, one half where you play by ^canfield^ rules, and one half where you play by ^f" +
+  "ortythieves^ rules.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Unknown)

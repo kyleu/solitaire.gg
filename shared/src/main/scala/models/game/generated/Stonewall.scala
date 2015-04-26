@@ -7,8 +7,8 @@ import models.game.rules._
 object Stonewall extends GameRules(
   id = "stonewall",
   title = "Stonewall",
-  description = "Similar to ^flowergarden^, except some cards start face down, you must build in alternate colors, an" +
-  "d you can move sequences.  A hard game to win.",
+  description = "Similar to ^flowergarden^, except some cards start face down, you must build in alternate colors, and you can move sequences.  A h" +
+  "ard game to win.",
   waste = Some(
     WasteRules(
       name = "Reserve"

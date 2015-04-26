@@ -7,8 +7,8 @@ import models.game.rules._
 object SeaTowers extends GameRules(
   id = "seatowers",
   title = "Sea Towers",
-  description = "A popular ^freecell^ variation invented in 1988 by Art Cabral. The initial layout is different, and " +
-  "we must build down in suit instead of in alternating colors.",
+  description = "A popular ^freecell^ variation invented in 1988 by Art Cabral. The initial layout is different, and we must build down in suit ins" +
+  "tead of in alternating colors.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

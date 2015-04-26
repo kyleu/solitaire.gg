@@ -7,8 +7,8 @@ import models.game.rules._
 object DoubleTrigon extends GameRules(
   id = "doubletrigon",
   title = "Double Trigon",
-  description = "A two-deck version of ^trigon^ or maybe a version of ^doubleklondike^ with building in suit. I suppo" +
-  "se it depends on how you look at it.",
+  description = "A two-deck version of ^trigon^ or maybe a version of ^doubleklondike^ with building in suit. I suppose it depends on how you look " +
+  "at it.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

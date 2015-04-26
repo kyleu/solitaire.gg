@@ -7,8 +7,8 @@ import models.game.rules._
 object Alaska extends GameRules(
   id = "alaska",
   title = "Alaska",
-  description = "A somewhat more difficult variation of ^yukon^ in which you can build up or down, but must build in " +
-  "the same suit. I think they call it \"Alaska\" because it is so cool when things work out.",
+  description = "A somewhat more difficult variation of ^yukon^ in which you can build up or down, but must build in the same suit. I think they ca" +
+  "ll it \"Alaska\" because it is so cool when things work out.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

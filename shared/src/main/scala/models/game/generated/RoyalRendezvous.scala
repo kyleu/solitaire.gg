@@ -7,8 +7,8 @@ import models.game.rules._
 object RoyalRendezvous extends GameRules(
   id = "royalrendezvous",
   title = "Royal Rendezvous",
-  description = "An odd Austrian game with four foundation sets, one normal, one for evens, one for odds, and one for" +
-  " kings. No building on the tableau.",
+  description = "An odd Austrian game with four foundation sets, one normal, one for evens, one for odds, and one for kings. No building on the tab" +
+  "leau.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

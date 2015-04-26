@@ -7,8 +7,7 @@ import models.game.rules._
 object Block extends GameRules(
   id = "block",
   title = "Block",
-  description = "A nearly unwinnably difficult two-deck game that gets its name from the fact that it routinely block" +
-  "s.",
+  description = "A nearly unwinnably difficult two-deck game that gets its name from the fact that it routinely blocks.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

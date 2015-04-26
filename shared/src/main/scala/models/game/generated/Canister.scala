@@ -7,8 +7,7 @@ import models.game.rules._
 object Canister extends GameRules(
   id = "canister",
   title = "Canister",
-  description = "Yet another generic solitaire game, with all cards dealt face up and no stock. This is quite easy wh" +
-  "en it's not impossible.",
+  description = "Yet another generic solitaire game, with all cards dealt face up and no stock. This is quite easy when it's not impossible.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

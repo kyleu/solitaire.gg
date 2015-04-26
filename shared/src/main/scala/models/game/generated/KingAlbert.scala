@@ -7,8 +7,8 @@ import models.game.rules._
 object KingAlbert extends GameRules(
   id = "kingalbert",
   title = "King Albert",
-  description = "This game, one of several games also known as \"Idiot's Delight,\" has a triangular tableau and seve" +
-  "n reserve cards, all playable. It's usually unsolvable.",
+  description = "This game, one of several games also known as \"Idiot's Delight,\" has a triangular tableau and seven reserve cards, all playable." +
+  " It's usually unsolvable.",
   waste = Some(
     WasteRules(
       name = "Reserve"

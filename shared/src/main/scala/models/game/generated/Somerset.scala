@@ -7,8 +7,7 @@ import models.game.rules._
 object Somerset extends GameRules(
   id = "somerset",
   title = "Somerset",
-  description = "A ^klondike^ variant without stock or waste. Unlike ^usk^, moves of stacks are not allowed, but spac" +
-  "es can be filled by any card.",
+  description = "A ^klondike^ variant without stock or waste. Unlike ^usk^, moves of stacks are not allowed, but spaces can be filled by any card.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -7,8 +7,8 @@ import models.game.rules._
 object ThreesCompany extends GameRules(
   id = "threescompany",
   title = "Three's Company",
-  description = "A rather difficult variation of ^deuces^ or ^busyaces^ with still fewer tableau piles but stack move" +
-  "s are allowed. Invented by Thomas Warfield.",
+  description = "A rather difficult variation of ^deuces^ or ^busyaces^ with still fewer tableau piles but stack moves are allowed. Invented by Tho" +
+  "mas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Three)

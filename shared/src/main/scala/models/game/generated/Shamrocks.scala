@@ -7,8 +7,7 @@ import models.game.rules._
 object Shamrocks extends GameRules(
   id = "shamrocks",
   title = "Shamrocks",
-  description = "A variation of ^fan^ where you can build up or down regardless of suit, but are limited to three car" +
-  "ds per stack.",
+  description = "A variation of ^fan^ where you can build up or down regardless of suit, but are limited to three cards per stack.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -7,8 +7,7 @@ import models.game.rules._
 object BarricadeA extends GameRules(
   id = "barricadea",
   title = "Barricade A",
-  description = "A simple game where we build regardless of suit on both tableau and foundation and which uses a stoc" +
-  "k but not a waste.",
+  description = "A simple game where we build regardless of suit on both tableau and foundation and which uses a stock but not a waste.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

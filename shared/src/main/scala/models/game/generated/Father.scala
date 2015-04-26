@@ -7,9 +7,8 @@ import models.game.rules._
 object Father extends GameRules(
   id = "father",
   title = "Father",
-  description = "This variation of ^grandfather^ by Thomas Warfield adds difficulty by reducing the number of tableau" +
-  " piles, and adds strategy by eliminating the automatic filling of empty spaces, but it's still a pre" +
-  "tty easy game.",
+  description = "This variation of ^grandfather^ by Thomas Warfield adds difficulty by reducing the number of tableau piles, and adds strategy by e" +
+  "liminating the automatic filling of empty spaces, but it's still a pretty easy game.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

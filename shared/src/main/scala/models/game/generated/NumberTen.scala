@@ -7,8 +7,8 @@ import models.game.rules._
 object NumberTen extends GameRules(
   id = "numberten",
   title = "Number Ten",
-  description = "Like ^fortythieves^, but two cards in each tableau stack are dealt face down, we build in alternatin" +
-  "g colors, and can move stacks as a whole.",
+  description = "Like ^fortythieves^, but two cards in each tableau stack are dealt face down, we build in alternating colors, and can move stacks " +
+  "as a whole.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

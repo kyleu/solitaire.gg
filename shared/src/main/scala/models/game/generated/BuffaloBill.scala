@@ -7,8 +7,8 @@ import models.game.rules._
 object BuffaloBill extends GameRules(
   id = "buffalobill",
   title = "Buffalo Bill",
-  description = "In this easy variation of ^littlebillie^, by David Parlett, there are more fans and the reserve cell" +
-  "s start empty, but there are no redeals.",
+  description = "In this easy variation of ^littlebillie^, by David Parlett, there are more fans and the reserve cells start empty, but there are n" +
+  "o redeals.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

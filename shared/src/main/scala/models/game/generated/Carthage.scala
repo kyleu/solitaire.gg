@@ -7,8 +7,7 @@ import models.game.rules._
 object Carthage extends GameRules(
   id = "carthage",
   title = "Carthage",
-  description = "A two-deck games where you deal to the reserves and build on the tableau. Empty reserves function as" +
-  " cells.",
+  description = "A two-deck games where you deal to the reserves and build on the tableau. Empty reserves function as cells.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -7,8 +7,7 @@ import models.game.rules._
 object FallingStar extends GameRules(
   id = "fallingstar",
   title = "Falling Star",
-  description = "A more difficult ^signora^ variation with one fewer tableau pile and a predetermined foundation base" +
-  ".",
+  description = "A more difficult ^signora^ variation with one fewer tableau pile and a predetermined foundation base.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Unknown)

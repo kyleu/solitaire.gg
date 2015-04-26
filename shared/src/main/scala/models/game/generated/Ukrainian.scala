@@ -7,8 +7,7 @@ import models.game.rules._
 object Ukrainian extends GameRules(
   id = "ukrainian",
   title = "Ukrainian",
-  description = "A rarely winnable version of ^russian^ Solitaire where only complete sequences can be taken off, as " +
-  "in spider.",
+  description = "A rarely winnable version of ^russian^ Solitaire where only complete sequences can be taken off, as in spider.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

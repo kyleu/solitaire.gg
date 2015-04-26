@@ -7,8 +7,8 @@ import models.game.rules._
 object Whitehead extends GameRules(
   id = "whitehead",
   title = "Whitehead",
-  description = "Like ^klondike^, but with cards face up and you build in matching colors instead of alternating colo" +
-  "rs. You can move sequences, but only if the suits match.",
+  description = "Like ^klondike^, but with cards face up and you build in matching colors instead of alternating colors. You can move sequences, bu" +
+  "t only if the suits match.",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

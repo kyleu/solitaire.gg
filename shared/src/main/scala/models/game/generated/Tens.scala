@@ -7,8 +7,8 @@ import models.game.rules._
 object Tens extends GameRules(
   id = "tens",
   title = "Tens",
-  description = "A set removal game similar to ^simplepairs^ where you can take off pairs that add to 10 or a set fou" +
-  "r matching cards ten or higher. A game of pure luck.",
+  description = "A set removal game similar to ^simplepairs^ where you can take off pairs that add to 10 or a set four matching cards ten or higher" +
+  ". A game of pure luck.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOrFour10JQK,
   stock = Some(
     StockRules(

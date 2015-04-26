@@ -7,8 +7,7 @@ import models.game.rules._
 object LadyBetty extends GameRules(
   id = "ladybetty",
   title = "Lady Betty",
-  description = "This cousin of ^sirtommy^ requires you to build the foundation in suit, but gives you two extra tabl" +
-  "eau piles to work with.",
+  description = "This cousin of ^sirtommy^ requires you to build the foundation in suit, but gives you two extra tableau piles to work with.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Manually,

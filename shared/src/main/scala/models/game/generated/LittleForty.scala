@@ -7,8 +7,8 @@ import models.game.rules._
 object LittleForty extends GameRules(
   id = "littleforty",
   title = "Little Forty",
-  description = "Like ^fortythieves^, but we build in regardless of color, can move sequences, and can make three pas" +
-  "ses through the deck, dealing three cards at a time.",
+  description = "Like ^fortythieves^, but we build in regardless of color, can move sequences, and can make three passes through the deck, dealing " +
+  "three cards at a time.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

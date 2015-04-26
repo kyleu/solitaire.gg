@@ -7,8 +7,7 @@ import models.game.rules._
 object Colonel extends GameRules(
   id = "colonel",
   title = "Colonel",
-  description = "A variation of ^signora^ invented by Thomas Warfield where we built in the same suit instead of alte" +
-  "rnating colors.",
+  description = "A variation of ^signora^ invented by Thomas Warfield where we built in the same suit instead of alternating colors.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Unknown)

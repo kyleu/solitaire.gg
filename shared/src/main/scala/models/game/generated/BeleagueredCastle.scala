@@ -7,8 +7,8 @@ import models.game.rules._
 object BeleagueredCastle extends GameRules(
   id = "beleagueredcastle",
   title = "Beleaguered Castle",
-  description = "A challenging game with simple rules. All cards start dealt face up and you build down regardless of" +
-  " suit, moving only single cards. Somewhat similar to ^bakersdozen^.",
+  description = "A challenging game with simple rules. All cards start dealt face up and you build down regardless of suit, moving only single card" +
+  "s. Somewhat similar to ^bakersdozen^.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

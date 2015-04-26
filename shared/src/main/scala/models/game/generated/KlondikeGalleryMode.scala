@@ -7,8 +7,8 @@ import models.game.rules._
 object KlondikeGalleryMode extends GameRules(
   id = "klondikegallery",
   title = "Klondike (Gallery Mode)",
-  description = "The world's most famous solitaire game played in gallery mode so all stock cards are always visible " +
-  "and the playable ones are raised",
+  description = "The world's most famous solitaire game played in gallery mode so all stock cards are always visible and the playable ones are rais" +
+  "ed",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

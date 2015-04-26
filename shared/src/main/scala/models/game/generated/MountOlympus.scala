@@ -7,8 +7,7 @@ import models.game.rules._
 object MountOlympus extends GameRules(
   id = "mountolympus",
   title = "Mount Olympus",
-  description = "Build by twos, so odds and evens are in separate sequences on the tableau and separate piles on the " +
-  "foundation.",
+  description = "Build by twos, so odds and evens are in separate sequences on the tableau and separate piles on the foundation.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

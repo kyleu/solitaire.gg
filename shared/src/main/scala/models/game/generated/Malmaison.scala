@@ -7,8 +7,8 @@ import models.game.rules._
 object Malmaison extends GameRules(
   id = "malmaison",
   title = "Malmaison",
-  description = "A difficult four-deck version of ^josephine^, or, if you prefer, a version of ^eightythieves^ which " +
-  "allows sequences to be moved. Invented by Thomas Warfield.",
+  description = "A difficult four-deck version of ^josephine^, or, if you prefer, a version of ^eightythieves^ which allows sequences to be moved. " +
+  "Invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3
   ),

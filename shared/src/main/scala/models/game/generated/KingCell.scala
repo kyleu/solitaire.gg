@@ -7,8 +7,8 @@ import models.game.rules._
 object KingCell extends GameRules(
   id = "kingcell",
   title = "KingCell",
-  description = "A variation of ^freecell^ where we build down regardless of suit instead of by alternate color, and " +
-  "only kings may be played to empty tableau spaces",
+  description = "A variation of ^freecell^ where we build down regardless of suit instead of by alternate color, and only kings may be played to em" +
+  "pty tableau spaces",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

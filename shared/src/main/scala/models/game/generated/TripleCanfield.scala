@@ -7,8 +7,8 @@ import models.game.rules._
 object TripleCanfield extends GameRules(
   id = "triplecanfield",
   title = "Triple Canfield",
-  description = "An easy three-deck version of ^canfield^ invented by Thomas Warfield that has fewer tableau piles an" +
-  "d a smaller reserve than ^threedemons^.",
+  description = "An easy three-deck version of ^canfield^ invented by Thomas Warfield that has fewer tableau piles and a smaller reserve than ^thre" +
+  "edemons^.",
   deckOptions = DeckOptions(
     numDecks = 3,
     lowRank = Some(Rank.Unknown)

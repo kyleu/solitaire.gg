@@ -7,9 +7,8 @@ import models.game.rules._
 object Wood extends GameRules(
   id = "wood",
   title = "Wood",
-  description = "A game where we build both the foundation and the tableau in alternate colors. The big problem is th" +
-  "e ten-card reserve, which can be played only to the foundation, which generally requires some advanc" +
-  "ed planning to achieve.",
+  description = "A game where we build both the foundation and the tableau in alternate colors. The big problem is the ten-card reserve, which can " +
+  "be played only to the foundation, which generally requires some advanced planning to achieve.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Unknown)

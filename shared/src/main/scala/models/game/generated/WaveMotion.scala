@@ -7,8 +7,8 @@ import models.game.rules._
 object WaveMotion extends GameRules(
   id = "wavemotion",
   title = "Wave Motion",
-  description = "In David Bernazzani's variation on ^freecell^ and ^scorpion^, all cards start on the reserve. They n" +
-  "eed to be arranged into sequences on the tableau.",
+  description = "In David Bernazzani's variation on ^freecell^ and ^scorpion^, all cards start on the reserve. They need to be arranged into sequen" +
+  "ces on the tableau.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
     TableauRules(

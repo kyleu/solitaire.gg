@@ -7,8 +7,7 @@ import models.game.rules._
 object Acquaintance extends GameRules(
   id = "acquaintance",
   title = "Acquaintance",
-  description = "A variation of ^auldlangsyne^ suggested by Michael Keller that adds some interest by allowing two re" +
-  "deals.",
+  description = "A variation of ^auldlangsyne^ suggested by Michael Keller that adds some interest by allowing two redeals.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

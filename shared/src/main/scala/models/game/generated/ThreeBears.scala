@@ -7,8 +7,7 @@ import models.game.rules._
 object ThreeBears extends GameRules(
   id = "threebears",
   title = "Three Bears",
-  description = "A variation on ^tripleklondike^ invented by Thomas Warfield. You build in the same suit instead of a" +
-  "lternate colors.",
+  description = "A variation on ^tripleklondike^ invented by Thomas Warfield. You build in the same suit instead of alternate colors.",
   deckOptions = DeckOptions(
     numDecks = 3
   ),

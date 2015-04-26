@@ -7,8 +7,8 @@ import models.game.rules._
 object BrownRecluse extends GameRules(
   id = "brownrecluse",
   title = "Brown Recluse",
-  description = "This ^spider^ variant by Thomas Warfield has a stock and a waste pile. The tableau starts with just " +
-  "one card in each column, but spaces are autofilled from the waste or stock.",
+  description = "This ^spider^ variant by Thomas Warfield has a stock and a waste pile. The tableau starts with just one card in each column, but s" +
+  "paces are autofilled from the waste or stock.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2

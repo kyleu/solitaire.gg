@@ -7,8 +7,7 @@ import models.game.rules._
 object OddAndEven extends GameRules(
   id = "oddandeven",
   title = "Odd and Even",
-  description = "A difficult, old and remarkably stupid game where foundation piles are built up by twos and no build" +
-  "ing is allowed on the tableau.",
+  description = "A difficult, old and remarkably stupid game where foundation piles are built up by twos and no building is allowed on the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

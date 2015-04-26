@@ -7,8 +7,8 @@ import models.game.rules._
 object Queenie extends GameRules(
   id = "queenie",
   title = "Queenie",
-  description = "Build stacks of cards in alternating colors as in ^klondike^, move arbitrary groups of cards as in ^" +
-  "yukon^, and deal waves of cards onto to the tableau, as in ^spider^.",
+  description = "Build stacks of cards in alternating colors as in ^klondike^, move arbitrary groups of cards as in ^yukon^, and deal waves of card" +
+  "s onto to the tableau, as in ^spider^.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

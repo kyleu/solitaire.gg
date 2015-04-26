@@ -7,8 +7,8 @@ import models.game.rules._
 object ForeCell extends GameRules(
   id = "forecell",
   title = "ForeCell",
-  description = "A Swedish predecessor to ^freecell^, originally one of many games called \"Napolean at St. Helena\"." +
-  " The initial layout is a bit different from FreeCell, and spaces can only be filled by Kings.",
+  description = "A Swedish predecessor to ^freecell^, originally one of many games called \"Napolean at St. Helena\". The initial layout is a bit d" +
+  "ifferent from FreeCell, and spaces can only be filled by Kings.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

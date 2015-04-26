@@ -7,9 +7,9 @@ import models.game.rules._
 object CastleMount extends GameRules(
   id = "castlemount",
   title = "Castle Mount",
-  description = "A three-deck version of ^beleagueredcastle^ invented by Thomas Warfield. Since kings can only be mov" +
-  "ed to empty spaces or the foundation, opening up some columns is the key to the game, except there a" +
-  "re 12 cards in each column that need to be gotten out of the way first.",
+  description = "A three-deck version of ^beleagueredcastle^ invented by Thomas Warfield. Since kings can only be moved to empty spaces or the foun" +
+  "dation, opening up some columns is the key to the game, except there are 12 cards in each column that need to be gotten out of the" +
+  " way first.",
   deckOptions = DeckOptions(
     numDecks = 3
   ),

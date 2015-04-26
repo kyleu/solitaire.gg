@@ -7,8 +7,7 @@ import models.game.rules._
 object Australian extends GameRules(
   id = "australian",
   title = "Australian",
-  description = "A variation of ^klondike^ that allows non-top cards to be moved (with the cards on top of them) as i" +
-  "n ^yukon^.",
+  description = "A variation of ^klondike^ that allows non-top cards to be moved (with the cards on top of them) as in ^yukon^.",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

@@ -7,8 +7,8 @@ import models.game.rules._
 object Chameleon extends GameRules(
   id = "chameleon",
   title = "Chameleon",
-  description = "In case ^canfield^ wasn't hard enough for you, here's a version with only three tableau piles. But y" +
-  "ou can stack cards regardless of suit, so it'll be OK. Occasionally.",
+  description = "In case ^canfield^ wasn't hard enough for you, here's a version with only three tableau piles. But you can stack cards regardless " +
+  "of suit, so it'll be OK. Occasionally.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),
