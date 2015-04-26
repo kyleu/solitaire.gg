@@ -25,7 +25,7 @@ object GameVariant {
     case Gypsy.key => new Gypsy(gameId, seed)
     case Klondike.key => new Klondike(gameId, seed)
     case Nestor.key => new Nestor(gameId, seed)
-//    case Pyramid.key => new Pyramid(gameId, seed)
+    case Pyramid.key => new Pyramid(gameId, seed)
     case Sandbox.key => new Sandbox(gameId, seed)
     case SandboxB.key => new SandboxB(gameId, seed)
     case Spider.key => new Spider(gameId, seed)
@@ -34,7 +34,7 @@ object GameVariant {
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 
-  val all = Seq(Canfield, FreeCell, Golf, Gypsy, Klondike, Nestor, /* Pyramid, */ Sandbox, SandboxB, Spider, TrustyTwelve, Yukon)
+  val all = Seq(Canfield, FreeCell, Golf, Gypsy, Klondike, Nestor, Pyramid, Sandbox, SandboxB, Spider, TrustyTwelve, Yukon)
 }
 
 case class GameVariant(rulesKey: String, description: GameVariant.Description, gameId: UUID, seed: Int, initialMoves: (GameState, Deck) => Unit) {
@@ -49,7 +49,8 @@ case class GameVariant(rulesKey: String, description: GameVariant.Description, g
     rules.reserves.map(r => ReserveSet(r)) ++
     rules.cells.map(c => CellSet(c)) ++
     rules.foundations.map(f => FoundationSet(f)) ++
-    rules.tableaus.map(t => TableauSet(t))
+    rules.tableaus.map(t => TableauSet(t)) ++
+    rules.pyramids.map(p => PyramidSet(p))
   }.toSeq
 
   private[this] val deck = newShuffledDecks(rules.deckOptions.numDecks)

@@ -1,7 +1,7 @@
 package models.game.pile
 
 import models.game.Rank
-import models.game.pile.actions.{ SelectPileActions, SelectCardActions }
+import models.game.pile.actions.SelectCardActions
 import models.game.pile.constraints.Constraints
 
 object PileOptionsHelper {
@@ -11,18 +11,6 @@ object PileOptionsHelper {
     cardsShown = Some(1),
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.klondikeFoundationDragTo)
-  )
-
-  def stock(cardsToDraw: Int, drawTo: String, redrawFrom: Option[String]) = PileOptions(
-    cardsShown = Some(1),
-    selectCardConstraint = Some(Constraints.topCardOnly),
-    selectPileConstraint = Some(Constraints.empty),
-
-    selectCardAction = Some(SelectCardActions.drawToPile(cardsToDraw, drawTo, Some(true))),
-    selectPileAction = redrawFrom match {
-      case Some(rf) => Some(SelectPileActions.moveAll(rf))
-      case None => None
-    }
   )
 
   val tableau = PileOptions(

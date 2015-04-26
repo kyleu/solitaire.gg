@@ -8,6 +8,12 @@ object Nestor extends GameRules(
   description = "...",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
 
+  foundations = Seq(
+    FoundationRules(
+      numPiles = 1,
+      offscreen = true
+    )
+  ),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,

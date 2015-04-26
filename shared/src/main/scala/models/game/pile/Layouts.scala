@@ -20,6 +20,7 @@ object Layouts {
     "golf" -> "t|f:s",
     "klondike" -> "sw:f|t|",
     "nestor" -> "t|::r",
+    "pyramid" -> "p|::.sw|f",
     "sandbox" -> "s:f",
     "sandboxb" -> "s",
     "spider" -> "s:f|t",
