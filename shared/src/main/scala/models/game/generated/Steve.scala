@@ -8,8 +8,6 @@ object Steve extends GameRules(
   id = "steve",
   title = "Steve",
   description = "A two-deck ^klondike^ variant where we build regardless of suit, but can only move same-suit sequences.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +25,6 @@ object Steve extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -67,9 +64,7 @@ object Steve extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

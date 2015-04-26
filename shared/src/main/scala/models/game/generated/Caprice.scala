@@ -8,8 +8,6 @@ object Caprice extends GameRules(
   id = "caprice",
   title = "Caprice",
   description = "Build up or down in suit and stock deals to the tableau.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +25,6 @@ object Caprice extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Ace Foundation",
@@ -83,9 +80,7 @@ object Caprice extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

@@ -8,8 +8,6 @@ object Backbone extends GameRules(
   id = "backbone",
   title = "Backbone",
   description = "A difficult game of Victorian origin with a forked reserve pile",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,8 +71,6 @@ object Backbone extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
   pyramids = Seq(
     PyramidRules(
       name = "Backbone",
@@ -90,7 +86,8 @@ object Backbone extends GameRules(
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       emptyFilledWith = PyramidFillEmptyWith.None
     )
-  )
+  ),
+  complete = false
 )
 // scalastyle:on
 

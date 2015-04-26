@@ -8,16 +8,12 @@ object Pitchfork extends GameRules(
   id = "pitchfork",
   title = "Pitchfork",
   description = "Thomas Warfield's variation of ^needle^ and ^haystack^ in which you cannot build on the reserve.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 1,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
     ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
     lowRank = Some(Rank.Unknown)
   ),
-  stock = None,
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -57,7 +53,6 @@ object Pitchfork extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -66,7 +61,7 @@ object Pitchfork extends GameRules(
       cardsFaceDown = 0
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

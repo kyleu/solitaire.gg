@@ -8,8 +8,6 @@ object OddAndEven extends GameRules(
   id = "oddandeven",
   title = "Odd and Even",
   description = "A difficult, old and remarkably stupid game where foundation piles are built up by twos and no building is allowed on the tableau.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -89,9 +87,7 @@ object OddAndEven extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

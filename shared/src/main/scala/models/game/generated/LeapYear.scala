@@ -8,8 +8,6 @@ object LeapYear extends GameRules(
   id = "leapyear",
   title = "Leap Year",
   description = "A four-deck version of ^auldlangsyne^. Requires a large screen.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 4,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +25,6 @@ object LeapYear extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -67,9 +64,7 @@ object LeapYear extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

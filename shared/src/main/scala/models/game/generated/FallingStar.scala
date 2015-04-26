@@ -8,8 +8,6 @@ object FallingStar extends GameRules(
   id = "fallingstar",
   title = "Falling Star",
   description = "A more difficult ^signora^ variation with one fewer tableau pile and a predetermined foundation base.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,7 +71,6 @@ object FallingStar extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -82,7 +79,7 @@ object FallingStar extends GameRules(
       cardsFaceDown = 0
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

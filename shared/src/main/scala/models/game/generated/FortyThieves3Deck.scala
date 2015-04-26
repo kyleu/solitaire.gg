@@ -8,8 +8,6 @@ object FortyThieves3Deck extends GameRules(
   id = "fortythieves3",
   title = "Forty Thieves (3 deck)",
   description = "A three deck version of ^fortythieves^ with a 12 by 4 tableau.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 3,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object FortyThieves3Deck extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

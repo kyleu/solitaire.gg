@@ -8,7 +8,6 @@ object TheWish extends GameRules(
   id = "thewish",
   title = "The Wish",
   description = "This easy pair-removal game uses a short deck and no stock, but is otherwise similar to ^doublets^.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   deckOptions = DeckOptions(
     numDecks = 1,
@@ -16,8 +15,6 @@ object TheWish extends GameRules(
     ranks = Seq(Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
     lowRank = Some(Rank.Ace)
   ),
-  stock = None,
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -57,9 +54,7 @@ object TheWish extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

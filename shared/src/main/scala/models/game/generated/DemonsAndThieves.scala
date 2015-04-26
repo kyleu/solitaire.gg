@@ -8,8 +8,6 @@ object DemonsAndThieves extends GameRules(
   id = "demonsandthieves",
   title = "Demons and Thieves",
   description = "In this game, the tableau is split into two halves, one half where you play by ^canfield^ rules, and one half where you play by ^fortythieves^ rules.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -92,7 +90,6 @@ object DemonsAndThieves extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -101,7 +98,7 @@ object DemonsAndThieves extends GameRules(
       cardsFaceDown = 100
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

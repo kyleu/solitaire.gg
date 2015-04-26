@@ -8,16 +8,12 @@ object Chequers extends GameRules(
   id = "chequers",
   title = "Chequers",
   description = "This game has twenty-five tableau piles where you can build up or down, and you build up on half the foundations, and down on the others. It needs a large screen.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
     ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
     lowRank = Some(Rank.Ace)
   ),
-  stock = None,
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Ace Foundation",
@@ -73,7 +69,6 @@ object Chequers extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -82,7 +77,7 @@ object Chequers extends GameRules(
       cardsFaceDown = 100
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

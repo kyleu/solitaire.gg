@@ -8,16 +8,6 @@ object SuperChallengeFreeCell extends GameRules(
   id = "superchallengefreecell",
   title = "Super Challenge FreeCell",
   description = "A version of ^freecell^ invented by Thomas Warfield where the aces and twos are always at the bottoms of the eight stacks and where spaces can only be filled by Kings.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
-  stock = None,
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -60,22 +50,10 @@ object SuperChallengeFreeCell extends GameRules(
   cells = Some(
     CellRules(
 
-      name = "Cell",
-
-      pluralName = "Cells",
-
-      numPiles = 4,
-
-      canMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-
-      initialCards = 0,
-
-      numEphemeral = 0
 
     )
   ),
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

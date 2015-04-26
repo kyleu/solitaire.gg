@@ -8,8 +8,6 @@ object Quadrennial extends GameRules(
   id = "quadrennial",
   title = "Quadrennial",
   description = "A version of ^leapyear^ with two redeals, or a version of ^acquaintance^ with four deck.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 4,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +25,6 @@ object Quadrennial extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -67,9 +64,7 @@ object Quadrennial extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

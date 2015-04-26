@@ -8,8 +8,6 @@ object RougeEtNoir extends GameRules(
   id = "rougeetnoir",
   title = "Rouge et Noir",
   description = "A variant of ^diavolo^ with a different tableau and no waste. Invented by Charles Jewell.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +25,6 @@ object RougeEtNoir extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -99,9 +96,7 @@ object RougeEtNoir extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

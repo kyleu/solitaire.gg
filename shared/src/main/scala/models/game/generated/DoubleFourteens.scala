@@ -8,7 +8,6 @@ object DoubleFourteens extends GameRules(
   id = "doublefourteens",
   title = "Double Fourteens",
   description = "An two-deck version of ^fourteenout^.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -16,8 +15,6 @@ object DoubleFourteens extends GameRules(
     ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
     lowRank = Some(Rank.Ace)
   ),
-  stock = None,
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -57,9 +54,7 @@ object DoubleFourteens extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

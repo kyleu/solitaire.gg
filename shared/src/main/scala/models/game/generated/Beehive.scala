@@ -8,14 +8,6 @@ object Beehive extends GameRules(
   id = "beehive",
   title = "Beehive",
   description = "In this ^storehouse^ variant, we build and remove stacks of four cards of equal rank.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
   stock = Some(
     StockRules(
       name = "Stock",
@@ -73,7 +65,6 @@ object Beehive extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -82,7 +73,7 @@ object Beehive extends GameRules(
       cardsFaceDown = 100
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

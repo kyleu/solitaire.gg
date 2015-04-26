@@ -8,8 +8,6 @@ object Dieppe extends GameRules(
   id = "dieppe",
   title = "Dieppe",
   description = "A variation on ^congress^ where stacks may be moved, blanks can be filled by any card, and three rows of cards are dealt initially. Almost every game seems winnable without any great difficulty.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object Dieppe extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

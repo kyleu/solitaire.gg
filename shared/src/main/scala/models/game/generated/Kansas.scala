@@ -8,8 +8,6 @@ object Kansas extends GameRules(
   id = "kansas",
   title = "Kansas",
   description = "Like ^rainbow^ this is a ^canfield^ variation where you build regardless of suit, but this is a bit more difficult because you only have three tableau piles.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 1,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,7 +71,6 @@ object Kansas extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -82,7 +79,7 @@ object Kansas extends GameRules(
       cardsFaceDown = 100
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

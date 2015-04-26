@@ -9,7 +9,6 @@ object Trillium extends GameRules(
   title = "Trillium",
   description = "A ^spider^ variant with a 13x4 tableau where you build down by alternate color.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +26,6 @@ object Trillium extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -67,9 +65,7 @@ object Trillium extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

@@ -8,16 +8,7 @@ object Pharaohs extends GameRules(
   id = "pharaohs",
   title = "Pharaohs",
   description = "A variation of ^pyramid^ with three pyramids.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
-  stock = None,
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -36,9 +27,6 @@ object Pharaohs extends GameRules(
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     )
   ),
-  tableaus = Nil,
-  cells = None,
-  reserves = None,
   pyramids = Seq(
     PyramidRules(
       name = "Pyramid",
@@ -82,7 +70,8 @@ object Pharaohs extends GameRules(
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       emptyFilledWith = PyramidFillEmptyWith.None
     )
-  )
+  ),
+  complete = false
 )
 // scalastyle:on
 

@@ -8,8 +8,6 @@ object RoyalCotillion extends GameRules(
   id = "royalcotillion",
   title = "Royal Cotillion",
   description = "A variation of ^oddandeven^ with some extra tableau and reserve piles, but only one pass allowed through the deck.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -89,7 +87,6 @@ object RoyalCotillion extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -98,7 +95,7 @@ object RoyalCotillion extends GameRules(
       cardsFaceDown = 0
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

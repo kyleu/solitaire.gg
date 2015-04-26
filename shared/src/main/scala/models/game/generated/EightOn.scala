@@ -8,16 +8,6 @@ object EightOn extends GameRules(
   id = "eighton",
   title = "Eight On",
   description = "A harder variation of ^eightoff^ where the aces start on the bottoms of the piles. Invented by Thomas Warfield.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
-  stock = None,
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -60,22 +50,11 @@ object EightOn extends GameRules(
   cells = Some(
     CellRules(
 
-      name = "Cell",
-
-      pluralName = "Cells",
-
       numPiles = 8,
-
-      canMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-
-      initialCards = 8,
-
-      numEphemeral = 0
-
+      initialCards = 8
     )
   ),
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

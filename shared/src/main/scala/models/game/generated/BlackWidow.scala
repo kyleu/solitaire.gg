@@ -9,7 +9,6 @@ object BlackWidow extends GameRules(
   title = "Black Widow",
   description = "An easier variation of ^spider^ where you are allowed to move sequences even if they aren't all of one suit.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +26,6 @@ object BlackWidow extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -67,9 +65,7 @@ object BlackWidow extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

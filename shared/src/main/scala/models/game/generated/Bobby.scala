@@ -8,14 +8,6 @@ object Bobby extends GameRules(
   id = "bobby",
   title = "Bobby",
   description = "A variation of ^robert^ with a second foundation pile to make it easier, but not much easier.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
   stock = Some(
     StockRules(
       name = "Stock",
@@ -52,10 +44,7 @@ object Bobby extends GameRules(
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     )
   ),
-  tableaus = Nil,
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

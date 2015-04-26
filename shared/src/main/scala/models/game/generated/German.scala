@@ -9,7 +9,6 @@ object German extends GameRules(
   title = "German",
   description = "A strange and difficult game where you must build sequences on the tableau, regardless of suit.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -34,7 +33,6 @@ object German extends GameRules(
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
-  foundations = Nil,
   tableaus = Seq(
     TableauRules(
       name = "Tableau",
@@ -56,9 +54,7 @@ object German extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

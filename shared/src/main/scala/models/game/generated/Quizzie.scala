@@ -8,8 +8,6 @@ object Quizzie extends GameRules(
   id = "quizzie",
   title = "Quizzie",
   description = "A variation of ^inquisitor^ by Thomas Warfield where you deal fewer cards in each pass through the deck.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object Quizzie extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

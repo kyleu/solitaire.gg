@@ -8,8 +8,6 @@ object Boulevard extends GameRules(
   id = "boulevard",
   title = "Boulevard",
   description = "No building on the tableau, three reserve piles, and foundations that build up by twos.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -89,7 +87,6 @@ object Boulevard extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -98,7 +95,7 @@ object Boulevard extends GameRules(
       cardsFaceDown = 100
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

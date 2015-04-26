@@ -9,13 +9,6 @@ object Bunker extends GameRules(
   title = "Bunker",
   description = "Build up regardless of suit to try to get all cards onto the tableau.",
   victoryCondition = VictoryCondition.NoneInStock,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
   stock = Some(
     StockRules(
       name = "Stock",
@@ -34,7 +27,6 @@ object Bunker extends GameRules(
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
-  foundations = Nil,
   tableaus = Seq(
     TableauRules(
       name = "Tableau",
@@ -56,9 +48,7 @@ object Bunker extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

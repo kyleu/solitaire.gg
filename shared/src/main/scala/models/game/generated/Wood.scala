@@ -8,8 +8,6 @@ object Wood extends GameRules(
   id = "wood",
   title = "Wood",
   description = "A game where we build both the foundation and the tableau in alternate colors. The big problem is the ten-card reserve, which can be played only to the foundation, which generally requires some advanced planning to achieve.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,7 +71,6 @@ object Wood extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -82,7 +79,7 @@ object Wood extends GameRules(
       cardsFaceDown = 0
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

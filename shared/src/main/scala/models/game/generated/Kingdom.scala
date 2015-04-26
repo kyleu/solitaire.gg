@@ -8,8 +8,6 @@ object Kingdom extends GameRules(
   id = "kingdom",
   title = "Kingdom",
   description = "A game where no building is allowed in the tableau and suits are ignored while building up the tableau. Our version may be slightly less dreadful than the usual.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object Kingdom extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

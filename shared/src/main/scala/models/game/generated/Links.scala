@@ -8,14 +8,7 @@ object Links extends GameRules(
   id = "links",
   title = "Links",
   description = "A pair-removal game by Thomas Warfield, distantly related to ^golf^. Your priority should be to clear the cards in the stock.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
   stock = Some(
     StockRules(
       name = "Stock",
@@ -73,9 +66,7 @@ object Links extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

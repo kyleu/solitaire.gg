@@ -8,14 +8,7 @@ object Tens extends GameRules(
   id = "tens",
   title = "Tens",
   description = "A set removal game similar to ^simplepairs^ where you can take off pairs that add to 10 or a set four matching cards ten or higher. A game of pure luck.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOrFour10JQK,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
   stock = Some(
     StockRules(
       name = "Stock",
@@ -27,7 +20,6 @@ object Tens extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -67,9 +59,7 @@ object Tens extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

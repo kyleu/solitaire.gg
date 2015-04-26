@@ -8,8 +8,6 @@ object FortyAndEight extends GameRules(
   id = "fortyandeight",
   title = "Forty and Eight",
   description = "Two decks, forty cards in the tableau, eight foundation piles, building down in the same suit. You can only move single cards. Often it feels like nothing is happening for a long time, and then the game works out after all. A good game for making you feel smart.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object FortyAndEight extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

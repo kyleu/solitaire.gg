@@ -8,8 +8,6 @@ object KingsdownEights extends GameRules(
   id = "kingsdowneights",
   title = "Kingsdown Eights",
   description = "This variation of ^tournament^ has a tableau where you can build by alternate color instead of cells.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +25,6 @@ object KingsdownEights extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -67,7 +64,6 @@ object KingsdownEights extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -76,7 +72,7 @@ object KingsdownEights extends GameRules(
       cardsFaceDown = 0
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

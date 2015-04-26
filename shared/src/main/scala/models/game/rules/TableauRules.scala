@@ -41,10 +41,6 @@ object PileAction {
   case object LimitToTwoJacks extends PileAction
 }
 
-object TableauRules {
-  val allSources = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
-}
-
 case class TableauRules(
   name: String = "Tableau",
   numPiles: Int = 7,
@@ -59,8 +55,8 @@ case class TableauRules(
   autoFillEmptyFrom: TableauAutoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
   emptyFilledWith: TableauFillEmptyWith = TableauFillEmptyWith.None,
 
-  mayMoveToNonEmptyFrom: Seq[String] = TableauRules.allSources,
-  mayMoveToEmptyFrom: Seq[String] = TableauRules.allSources,
+  mayMoveToNonEmptyFrom: Seq[String] = GameRules.allSources,
+  mayMoveToEmptyFrom: Seq[String] = GameRules.allSources,
 
   maxCards: Int = 0,
   actionDuringDeal: PileAction = PileAction.None,

@@ -8,8 +8,6 @@ object FourSeasons extends GameRules(
   id = "fourseasons",
   title = "Four Seasons",
   description = "A simple game of luck and skill where you move cards one at a time, stacking regardless of suit. The five tableau piles are supposed to be arranged in a cross with the foundation piles in the four corners, but Politaire is still too stupid to do that.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 1,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object FourSeasons extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

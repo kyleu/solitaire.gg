@@ -8,8 +8,6 @@ object LucasLeaps extends GameRules(
   id = "lucasleaps",
   title = "Lucas Leaps",
   description = "An easy ^fortythieves^ variant similar to ^waningmoon^ except that sequences can be moved.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object LucasLeaps extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

@@ -8,8 +8,6 @@ object BigApple extends GameRules(
   id = "bigapple",
   title = "Big Apple",
   description = "A difficult variation of ^newyork^ with three cells instead of three waste piles, but where stacks can be moved.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +25,6 @@ object BigApple extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -70,22 +67,10 @@ object BigApple extends GameRules(
   cells = Some(
     CellRules(
 
-      name = "Cell",
-
-      pluralName = "Cells",
-
-      numPiles = 3,
-
-      canMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-
-      initialCards = 0,
-
-      numEphemeral = 0
-
+      numPiles = 3
     )
   ),
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

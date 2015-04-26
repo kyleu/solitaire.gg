@@ -8,8 +8,6 @@ object DeucesAndQueens extends GameRules(
   id = "deucesandqueens",
   title = "Deuces and Queens",
   description = "A variation on ^acesandkings^ where building is allowed on the tableau.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -89,7 +87,6 @@ object DeucesAndQueens extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -98,7 +95,7 @@ object DeucesAndQueens extends GameRules(
       cardsFaceDown = 0
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

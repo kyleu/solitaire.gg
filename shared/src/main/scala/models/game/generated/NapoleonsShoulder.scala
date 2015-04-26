@@ -8,8 +8,6 @@ object NapoleonsShoulder extends GameRules(
   id = "napoleonsshoulder",
   title = "Napoleon's Shoulder",
   description = "A varient of ^napoleonssquare^ where you build regardless of suit.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object NapoleonsShoulder extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

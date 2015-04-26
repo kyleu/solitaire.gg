@@ -9,7 +9,6 @@ object LincolnGreens extends GameRules(
   title = "Lincoln Greens",
   description = "A four-deck variation of ^puttputt^, or a version of ^panthercreek^ that allows wrapping.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 4,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +26,6 @@ object LincolnGreens extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -67,9 +65,7 @@ object LincolnGreens extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

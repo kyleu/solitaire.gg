@@ -8,7 +8,6 @@ object Anubis extends GameRules(
   id = "anubis",
   title = "Anubis",
   description = "A variation of ^doublepyramid^ with three waste piles.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -52,9 +51,6 @@ object Anubis extends GameRules(
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     )
   ),
-  tableaus = Nil,
-  cells = None,
-  reserves = None,
   pyramids = Seq(
     PyramidRules(
       name = "Pyramid",
@@ -70,7 +66,8 @@ object Anubis extends GameRules(
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       emptyFilledWith = PyramidFillEmptyWith.None
     )
-  )
+  ),
+  complete = false
 )
 // scalastyle:on
 

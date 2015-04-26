@@ -8,16 +8,12 @@ object BuffaloBill extends GameRules(
   id = "buffalobill",
   title = "Buffalo Bill",
   description = "In this easy variation of ^littlebillie^, by David Parlett, there are more fans and the reserve cells start empty, but there are no redeals.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
     ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
     lowRank = Some(Rank.Ace)
   ),
-  stock = None,
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Aces Foundation",
@@ -77,21 +73,11 @@ object BuffaloBill extends GameRules(
     CellRules(
 
       name = "Reserve",
-
       pluralName = "Reserve",
-
-      numPiles = 8,
-
-      canMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-
-      initialCards = 0,
-
-      numEphemeral = 0
-
+      numPiles = 8
     )
   ),
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

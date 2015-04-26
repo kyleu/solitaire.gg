@@ -3,13 +3,11 @@ package parser
 import models.game.rules._
 
 object ScalaTableauExporter {
-  def exportTableaus(rules: GameRules, ret: StringBuilder) = {
+  def exportTableaus(rules: GameRules, ret: StringBuilder): Unit = {
     def add(s: String) = ret ++= s + "\n"
     def cls(o: Any) = ScalaExporter.cls(o)
 
-    if (rules.tableaus.isEmpty) {
-      add("  tableaus = Nil,")
-    } else {
+    if (rules.tableaus.nonEmpty) {
       add("  tableaus = Seq(")
       add(rules.tableaus.map { t =>
         "    TableauRules(\n" +

@@ -8,8 +8,6 @@ object BusyAces extends GameRules(
   id = "busyaces",
   title = "Busy Aces",
   description = "A fairly easy game dating back to 1939. Twelve tableau stacks of one card each mean you can easily get lots of empty spaces to work with.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object BusyAces extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

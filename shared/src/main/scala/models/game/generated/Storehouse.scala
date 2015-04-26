@@ -8,8 +8,6 @@ object Storehouse extends GameRules(
   id = "storehouse",
   title = "Storehouse",
   description = "A old ^canfield^ variant first described in 1939. A pleasant game, but there is scarcely any strategy required.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 1,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,7 +71,6 @@ object Storehouse extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Storehouse",
@@ -82,7 +79,7 @@ object Storehouse extends GameRules(
       cardsFaceDown = 100
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

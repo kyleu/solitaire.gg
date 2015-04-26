@@ -8,8 +8,6 @@ object Grandfather extends GameRules(
   id = "grandfather",
   title = "Grandfather",
   description = "A game with twenty tableau piles, each of which can hold any two cards. You build up on half the foundations and down on the others.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -89,9 +87,7 @@ object Grandfather extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

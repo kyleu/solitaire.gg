@@ -9,7 +9,6 @@ object Spider extends GameRules(
   title = "Spider",
   description = "On the 10 tableau piles you can build down regardless of suit, but you can only move single suit sequences. When you click on the stock, one card will be dealt to each tableau pile. Single cards cannot be moved to the foundation, only complete sequences.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +26,6 @@ object Spider extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -67,9 +65,7 @@ object Spider extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

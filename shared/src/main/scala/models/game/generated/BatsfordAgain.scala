@@ -8,8 +8,6 @@ object BatsfordAgain extends GameRules(
   id = "batsfordagain",
   title = "Batsford Again",
   description = "A variation of ^batsford^ with a redeal.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -92,9 +90,7 @@ object BatsfordAgain extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

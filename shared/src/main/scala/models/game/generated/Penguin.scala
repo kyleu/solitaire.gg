@@ -8,16 +8,12 @@ object Penguin extends GameRules(
   id = "penguin",
   title = "Penguin",
   description = "A satisfying game with seven cells developed by David Parlett where one of the cards you need to start the foundation is always buried at the bottom of the first tableau pile.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 1,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
     ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
     lowRank = Some(Rank.Unknown)
   ),
-  stock = None,
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -60,22 +56,10 @@ object Penguin extends GameRules(
   cells = Some(
     CellRules(
 
-      name = "Cell",
-
-      pluralName = "Cells",
-
-      numPiles = 7,
-
-      canMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-
-      initialCards = 0,
-
-      numEphemeral = 0
-
+      numPiles = 7
     )
   ),
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

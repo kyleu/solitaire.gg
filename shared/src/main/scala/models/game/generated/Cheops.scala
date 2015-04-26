@@ -8,14 +8,7 @@ object Cheops extends GameRules(
   id = "cheops",
   title = "Cheops",
   description = "A variation of ^pyramid^ where you remove pairs of cards with equal or consecutive ranks",
-  victoryCondition = VictoryCondition.AllOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveOrEqualRankPairs,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
   stock = Some(
     StockRules(
       name = "Stock",
@@ -52,9 +45,6 @@ object Cheops extends GameRules(
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     )
   ),
-  tableaus = Nil,
-  cells = None,
-  reserves = None,
   pyramids = Seq(
     PyramidRules(
       name = "Pyramid",
@@ -70,7 +60,8 @@ object Cheops extends GameRules(
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       emptyFilledWith = PyramidFillEmptyWith.None
     )
-  )
+  ),
+  complete = false
 )
 // scalastyle:on
 

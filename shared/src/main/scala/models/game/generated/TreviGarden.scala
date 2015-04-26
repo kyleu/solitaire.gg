@@ -8,15 +8,6 @@ object TreviGarden extends GameRules(
   id = "trevigarden",
   title = "Trevi Garden",
   description = "A variation of ^stonewall^ made easier by the addition of two cells.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
-  stock = None,
   waste = Some(
     WasteRules(
       name = "Fountain",
@@ -66,22 +57,11 @@ object TreviGarden extends GameRules(
   cells = Some(
     CellRules(
 
-      name = "Cell",
-
-      pluralName = "Cells",
-
       numPiles = 2,
-
-      canMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-
-      initialCards = 2,
-
-      numEphemeral = 0
-
+      initialCards = 2
     )
   ),
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

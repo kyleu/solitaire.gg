@@ -3,13 +3,11 @@ package parser
 import models.game.rules._
 
 object ScalaPyramidExporter {
-  def exportPyramids(rules: GameRules, ret: StringBuilder) = {
+  def exportPyramids(rules: GameRules, ret: StringBuilder): Unit = {
     def add(s: String) = ret ++= s + "\n"
     def cls(o: Any) = ScalaExporter.cls(o)
 
-    if (rules.pyramids.isEmpty) {
-      add("  pyramids = Nil")
-    } else {
+    if (rules.pyramids.nonEmpty) {
       add("  pyramids = Seq(")
       add(rules.pyramids.map { p =>
         "    PyramidRules(\n" +
@@ -27,7 +25,7 @@ object ScalaPyramidExporter {
           s"""      emptyFilledWith = PyramidFillEmptyWith.${cls(p.emptyFilledWith)}\n""" +
           "    )"
       }.mkString(",\n"))
-      add("  )")
+      add("  ),")
     }
   }
 }

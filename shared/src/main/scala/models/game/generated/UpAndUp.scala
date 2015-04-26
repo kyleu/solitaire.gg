@@ -9,13 +9,6 @@ object UpAndUp extends GameRules(
   title = "Up and Up",
   description = "A variation of ^trustytwelve^ where you can build kings on aces.",
   victoryCondition = VictoryCondition.NoneInStock,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
   stock = Some(
     StockRules(
       name = "Stock",
@@ -27,8 +20,6 @@ object UpAndUp extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
-  foundations = Nil,
   tableaus = Seq(
     TableauRules(
       name = "Tableau",
@@ -50,9 +41,7 @@ object UpAndUp extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

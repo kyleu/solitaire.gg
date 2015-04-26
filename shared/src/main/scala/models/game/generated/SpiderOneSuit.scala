@@ -9,7 +9,6 @@ object SpiderOneSuit extends GameRules(
   title = "Spider One Suit",
   description = "^spider^ with nothing but spades, spades, spades, as far as the eye can see.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 8,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,8 +26,6 @@ object SpiderOneSuit extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
-  foundations = Nil,
   tableaus = Seq(
     TableauRules(
       name = "Tableau",
@@ -50,9 +47,7 @@ object SpiderOneSuit extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

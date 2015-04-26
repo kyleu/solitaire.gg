@@ -8,8 +8,6 @@ object CanfieldGalleryMode extends GameRules(
   id = "canfieldgallery",
   title = "Canfield (Gallery Mode)",
   description = "This is just ^canfield^ with a different user \"interface\": all the cards that would normally start in the stock are fanned out face up, with the ones that would normally be playable if you were going through the stock three at a time automatically raised up to indicate that they are playable.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 1,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,7 +71,6 @@ object CanfieldGalleryMode extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -82,7 +79,7 @@ object CanfieldGalleryMode extends GameRules(
       cardsFaceDown = 100
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

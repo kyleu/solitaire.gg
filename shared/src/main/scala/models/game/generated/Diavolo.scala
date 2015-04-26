@@ -8,8 +8,6 @@ object Diavolo extends GameRules(
   id = "diavolo",
   title = "Diavolo",
   description = "A ^klondike^ variant with four foundation piles that are built one card at a time, while the other four need completed sequences.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -105,9 +103,7 @@ object Diavolo extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

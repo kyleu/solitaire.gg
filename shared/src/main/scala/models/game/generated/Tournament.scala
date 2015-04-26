@@ -8,8 +8,6 @@ object Tournament extends GameRules(
   id = "tournament",
   title = "Tournament",
   description = "A two-deck game where no building is allowed on the tableau, and you must rely on eight cells to move your cards to the foundation.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +25,6 @@ object Tournament extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Ace Foundation",
@@ -86,22 +83,12 @@ object Tournament extends GameRules(
   cells = Some(
     CellRules(
 
-      name = "Cell",
-
-      pluralName = "Cells",
-
       numPiles = 8,
-
       canMoveFrom = Seq("Tableau"),
-
-      initialCards = 8,
-
-      numEphemeral = 0
-
+      initialCards = 8
     )
   ),
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

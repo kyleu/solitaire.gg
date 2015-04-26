@@ -9,7 +9,6 @@ object BrownRecluse extends GameRules(
   title = "Brown Recluse",
   description = "This ^spider^ variant by Thomas Warfield has a stock and a waste pile. The tableau starts with just one card in each column, but spaces are autofilled from the waste or stock.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -34,7 +33,6 @@ object BrownRecluse extends GameRules(
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
-  foundations = Nil,
   tableaus = Seq(
     TableauRules(
       name = "Tableau",
@@ -56,9 +54,7 @@ object BrownRecluse extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

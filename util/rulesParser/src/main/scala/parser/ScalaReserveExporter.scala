@@ -3,7 +3,7 @@ package parser
 import models.game.rules._
 
 object ScalaReserveExporter {
-  def exportReserves(rules: GameRules, ret: StringBuilder) = {
+  def exportReserves(rules: GameRules, ret: StringBuilder): Unit = {
     def add(s: String) = ret ++= s + "\n"
 
     rules.reserves match {
@@ -16,7 +16,7 @@ object ScalaReserveExporter {
         add(s"""      cardsFaceDown = ${r.cardsFaceDown}""")
         add("    )")
         add("  ),")
-      case None => add("  reserves = None,")
+      case None =>  // no op
     }
   }
 }

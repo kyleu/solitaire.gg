@@ -8,8 +8,6 @@ object AceyAndKingsley extends GameRules(
   id = "aceyandkingsley",
   title = "Acey and Kingsley",
   description = "A variation of ^acesandkings^ which starts with an ace or a king dealt to each foundation.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -89,7 +87,6 @@ object AceyAndKingsley extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -98,7 +95,7 @@ object AceyAndKingsley extends GameRules(
       cardsFaceDown = 0
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

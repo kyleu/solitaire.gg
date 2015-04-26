@@ -8,8 +8,6 @@ object NapoleonsSquare extends GameRules(
   id = "napoleonssquare",
   title = "Napoleon's Square",
   description = "This French game, first described by Lady Adelaide Cadogen in the early 1900's, is an easy variant of ^fortythieves^.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object NapoleonsSquare extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

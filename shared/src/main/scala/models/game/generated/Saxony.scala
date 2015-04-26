@@ -8,8 +8,6 @@ object Saxony extends GameRules(
   id = "saxony",
   title = "Saxony",
   description = "You have four cells, four reserve piles where you can build down in suit, and eight tableau piles, where cards are dealt, but no building is allowed.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -27,7 +25,6 @@ object Saxony extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Foundation",
@@ -70,18 +67,7 @@ object Saxony extends GameRules(
   cells = Some(
     CellRules(
 
-      name = "Cell",
-
-      pluralName = "Cells",
-
-      numPiles = 4,
-
-      canMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-
-      initialCards = 4,
-
-      numEphemeral = 0
-
+      initialCards = 4
     )
   ),
   reserves = Some(
@@ -92,7 +78,7 @@ object Saxony extends GameRules(
       cardsFaceDown = 100
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

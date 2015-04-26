@@ -8,8 +8,6 @@ object AcesAndKings extends GameRules(
   id = "acesandkings",
   title = "Aces and Kings",
   description = "Build up on one foundation, down on the other, but don't build at all on the tableau. Suits don't matter.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -89,7 +87,6 @@ object AcesAndKings extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
     ReserveRules(
       name = "Reserve",
@@ -98,7 +95,7 @@ object AcesAndKings extends GameRules(
       cardsFaceDown = 0
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

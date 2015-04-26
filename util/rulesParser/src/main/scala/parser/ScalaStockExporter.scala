@@ -3,7 +3,7 @@ package parser
 import models.game.rules._
 
 object ScalaStockExporter {
-  def exportStock(rules: GameRules, ret: StringBuilder) = {
+  def exportStock(rules: GameRules, ret: StringBuilder): Unit = {
     def add(s: String) = ret ++= s + "\n"
 
     rules.stock match {
@@ -19,7 +19,7 @@ object ScalaStockExporter {
         add(s"""      galleryMode = ${s.galleryMode}""")
         add("    )")
         add("  ),")
-      case None => add("  stock = None,")
+      case None => // no op
     }
   }
 }

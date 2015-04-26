@@ -3,13 +3,11 @@ package parser
 import models.game.rules._
 
 object ScalaFoundationExporter {
-  def exportFoundations(rules: GameRules, ret: StringBuilder) = {
+  def exportFoundations(rules: GameRules, ret: StringBuilder): Unit = {
     def add(s: String) = ret ++= s + "\n"
     def cls(o: Any) = ScalaExporter.cls(o)
 
-    if (rules.foundations.isEmpty) {
-      add("  foundations = Nil,")
-    } else {
+    if (rules.foundations.nonEmpty) {
       add("  foundations = Seq(")
       add(rules.foundations.map { f =>
         "    FoundationRules(\n" +

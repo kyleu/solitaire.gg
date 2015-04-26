@@ -8,8 +8,6 @@ object Cornelius extends GameRules(
   id = "cornelius",
   title = "Cornelius",
   description = "A version of ^fortyandeight^ that allows non-top cards to be played (moving whatever cards are on top of them along with them) as in ^yukon^.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object Cornelius extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

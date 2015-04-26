@@ -8,8 +8,6 @@ object RedAndBlack extends GameRules(
   id = "redandblack",
   title = "Red and Black",
   description = "A game where everything is built in alternate colors. Also known as \"Rouge et Noir\" or \"Zebra.\"",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object RedAndBlack extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

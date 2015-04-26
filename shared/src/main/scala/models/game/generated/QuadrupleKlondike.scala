@@ -8,8 +8,6 @@ object QuadrupleKlondike extends GameRules(
   id = "quadrupleklondike",
   title = "Quadruple Klondike",
   description = "A four-deck variation of ^klondike^, invented by Thomas Warfield. You will need a large screen for this. Try using the F11 key to put your browser into full-screen mode.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 4,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object QuadrupleKlondike extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

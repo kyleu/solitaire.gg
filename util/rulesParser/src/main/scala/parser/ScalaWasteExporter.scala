@@ -3,7 +3,7 @@ package parser
 import models.game.rules._
 
 object ScalaWasteExporter {
-  def exportWaste(rules: GameRules, ret: StringBuilder) = {
+  def exportWaste(rules: GameRules, ret: StringBuilder): Unit = {
     def add(s: String) = ret ++= s + "\n"
 
     rules.waste match {
@@ -15,7 +15,7 @@ object ScalaWasteExporter {
         add(s"""      playableCards = WastePlayableCards.${w.playableCards}""")
         add("    )")
         add("  ),")
-      case None => add("  waste = None,")
+      case None => //no op
     }
   }
 }

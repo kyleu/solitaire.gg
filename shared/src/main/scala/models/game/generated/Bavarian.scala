@@ -9,7 +9,6 @@ object Bavarian extends GameRules(
   title = "Bavarian",
   description = "Thomas Warfield's easier version of ^german^ patience with a few extra tableau columns.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -34,7 +33,6 @@ object Bavarian extends GameRules(
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
-  foundations = Nil,
   tableaus = Seq(
     TableauRules(
       name = "Tableau",
@@ -56,9 +54,7 @@ object Bavarian extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

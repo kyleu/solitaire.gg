@@ -40,6 +40,8 @@ object ScalaExporter {
     val ret = new StringBuilder()
     def add(s: String) = ret ++= s + "\n"
 
+    val defaults = GameRules("default", "default", "default")
+
     add("package models.game.generated")
     add("")
     add("import models.game._")
@@ -50,14 +52,20 @@ object ScalaExporter {
     add("  id = \"" + rules.id + "\",")
     add("  title = \"" + rules.title + "\",")
     add("  description = \"" + rules.description.replaceAllLiterally("\"", "\\\"") + "\",")
-    add("  victoryCondition = VictoryCondition." + cls(rules.victoryCondition) + ",")
-    add("  cardRemovalMethod = CardRemovalMethod." + cls(rules.cardRemovalMethod) + ",")
-    add("  deckOptions = DeckOptions(")
-    add("    numDecks = " + rules.deckOptions.numDecks + ",")
-    add("    suits = Seq(" + rules.deckOptions.suits.map(x => "Suit." + x).mkString(", ") + "),")
-    add("    ranks = Seq(" + rules.deckOptions.ranks.map(x => "Rank." + x).mkString(", ") + "),")
-    add("    lowRank = " + rules.deckOptions.lowRank.map("Rank." + _))
-    add("  ),")
+    if(rules.victoryCondition != defaults.victoryCondition) {
+      add("  victoryCondition = VictoryCondition." + cls(rules.victoryCondition) + ",")
+    }
+    if(rules.cardRemovalMethod != defaults.cardRemovalMethod) {
+      add("  cardRemovalMethod = CardRemovalMethod." + cls(rules.cardRemovalMethod) + ",")
+    }
+    if(rules.deckOptions != defaults.deckOptions) {
+      add("  deckOptions = DeckOptions(")
+      add("    numDecks = " + rules.deckOptions.numDecks + ",")
+      add("    suits = Seq(" + rules.deckOptions.suits.map(x => "Suit." + x).mkString(", ") + "),")
+      add("    ranks = Seq(" + rules.deckOptions.ranks.map(x => "Rank." + x).mkString(", ") + "),")
+      add("    lowRank = " + rules.deckOptions.lowRank.map("Rank." + _))
+      add("  ),")
+    }
     ScalaStockExporter.exportStock(rules, ret)
     ScalaWasteExporter.exportWaste(rules, ret)
     ScalaFoundationExporter.exportFoundations(rules, ret)
@@ -65,7 +73,8 @@ object ScalaExporter {
     ScalaCellExporter.exportCells(rules, ret)
     ScalaReserveExporter.exportReserves(rules, ret)
     ScalaPyramidExporter.exportPyramids(rules, ret)
-    add(""")""")
+    add("  complete = " + rules.complete)
+    add(")")
     add("// scalastyle:on")
     add("")
 

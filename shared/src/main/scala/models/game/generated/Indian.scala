@@ -8,8 +8,6 @@ object Indian extends GameRules(
   id = "indian",
   title = "Indian",
   description = "An easy game that is similar to ^fortythieves^, except that the first card in each stack of the 10 by 3 tableau is face down, and cards can be played on any suit other than their own.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -73,9 +71,7 @@ object Indian extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

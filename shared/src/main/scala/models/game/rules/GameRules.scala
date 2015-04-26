@@ -1,5 +1,9 @@
 package models.game.rules
 
+object GameRules {
+  val allSources = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+}
+
 case class GameRules(
   id: String,
   title: String,
@@ -13,5 +17,6 @@ case class GameRules(
   tableaus: Seq[TableauRules] = Nil,
   cells: Option[CellRules] = None,
   reserves: Option[ReserveRules] = None,
-  pyramids: Seq[PyramidRules] = Nil
+  pyramids: Seq[PyramidRules] = Nil,
+  complete: Boolean = false
 )

@@ -8,16 +8,12 @@ object LittleBillie extends GameRules(
   id = "littlebillie",
   title = "Little Billie",
   description = "In this game dating back to around 1900, no building is allowed, but you have some cells that can be used to uncover the cards you need. Two redeals are allowed.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
     ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
     lowRank = Some(Rank.Ace)
   ),
-  stock = None,
-  waste = None,
   foundations = Seq(
     FoundationRules(
       name = "Aces Foundation",
@@ -77,21 +73,12 @@ object LittleBillie extends GameRules(
     CellRules(
 
       name = "Reserve",
-
       pluralName = "Reserve",
-
       numPiles = 8,
-
-      canMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-
-      initialCards = 8,
-
-      numEphemeral = 0
-
+      initialCards = 8
     )
   ),
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 
