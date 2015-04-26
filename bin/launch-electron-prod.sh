@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-/Applications/Electron.app/Contents/MacOS/Electron ../offline/build/prod/electron
+../offline/resources/osx/Scalataire.app/Contents/MacOS/Scalataire ../offline/build/prod/electron

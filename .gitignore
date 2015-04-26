@@ -24,3 +24,5 @@ x-small/
 buildinfo.properties
 
 /offline/build/
+/offline/bin/
+/offline/resources/

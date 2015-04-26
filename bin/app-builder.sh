@@ -12,6 +12,9 @@ mkdir -p "build/dev"
 mkdir -p "build/prod"
 printf "Scalataire\\n  Build Generated: $_now" > "build/build-info"
 
+rm -rf bin/dev
+rm -rf bin/prod
+
 echo "  Updating web assets..."
 
 # Dev
@@ -44,14 +47,34 @@ cp "../target/web/rjs/build/lib/requirejs/require.min.js" "build/prod/web/lib"
 mkdir -p build/prod/web/assets
 cp -R "../public/images/" "build/prod/web/assets/images"
 
-echo "  Building Electron app..."
+echo "  Building Electron apps..."
+
+# Dev
+mkdir -p bin/dev
+cp -R "resources/" "bin/dev"
 
 mkdir -p build/dev/electron
 cp -R "build/dev/web/" "build/dev/electron"
 cp -R "electron/dev/" "build/dev/electron"
+asar pack build/dev/electron bin/dev/scalataire.asar
+
+cp bin/dev/scalataire.asar bin/dev/osx/Scalataire.app/Contents/Resources/app.asar
+cp bin/dev/scalataire.asar bin/dev/linux/resources/app.asar
+cp bin/dev/scalataire.asar bin/dev/win32/resources/app.asar
+cp bin/dev/scalataire.asar bin/dev/win64/resources/app.asar
+
+# Prod
+mkdir -p bin/dev
+cp -R "resources/" "bin/prod"
 
 mkdir -p build/prod/electron
 cp -R "build/prod/web/" "build/prod/electron"
 cp -R "electron/prod/" "build/prod/electron"
+asar pack build/prod/electron bin/prod/scalataire.asar
+
+cp bin/prod/scalataire.asar bin/prod/osx/Scalataire.app/Contents/Resources/app.asar
+cp bin/prod/scalataire.asar bin/prod/linux/resources/app.asar
+cp bin/prod/scalataire.asar bin/prod/win32/resources/app.asar
+cp bin/prod/scalataire.asar bin/prod/win64/resources/app.asar
 
 echo "  Build complete!"
