@@ -4,21 +4,17 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Whitehorse extends GameRules(
   id = "whitehorse",
   title = "Whitehorse",
-  description = "An easy ^klondike^ variant where instead of dealing a lot of cards to the tableau, we have spaces that autofill",
+  description = "An easy ^klondike^ variant where instead of dealing a lot of cards to the tableau, we have spaces th" +
+  "at autofill",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -36,5 +32,4 @@ object Whitehorse extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

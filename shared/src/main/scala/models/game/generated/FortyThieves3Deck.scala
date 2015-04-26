@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object FortyThieves3Deck extends GameRules(
   id = "fortythieves3",
   title = "Forty Thieves (3 deck)",
@@ -17,11 +16,7 @@ object FortyThieves3Deck extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 12,
@@ -42,5 +37,4 @@ object FortyThieves3Deck extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

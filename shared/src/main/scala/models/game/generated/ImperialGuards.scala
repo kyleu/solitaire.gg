@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object ImperialGuards extends GameRules(
   id = "imperialguards",
   title = "Imperial Guards",
-  description = "A version of ^missmilligan^ where empty tableau spaces can be filled with any card instead of Kings only. Since empty spaces are common in these games, this greatly simplifies the game.",
+  description = "A version of ^missmilligan^ where empty tableau spaces can be filled with any card instead of Kings " +
+  "only. Since empty spaces are common in these games, this greatly simplifies the game.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -36,5 +36,4 @@ object ImperialGuards extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

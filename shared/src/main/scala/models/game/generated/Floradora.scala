@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Floradora extends GameRules(
   id = "floradora",
   title = "Floradora",
@@ -17,11 +16,7 @@ object Floradora extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       name = "Main Foundation",
@@ -53,5 +48,4 @@ object Floradora extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -10,8 +10,6 @@ object ScalaStockExporter {
 
     rules.stock match {
       case Some(s) =>
-        add("  stock = Some(")
-        add("    StockRules(")
         val props = collection.mutable.ArrayBuffer.empty[String]
         if(s.name != defaults.name) {
           props += "      name = \"" + s.name.replaceAllLiterally("\"", "") + "\""
@@ -34,9 +32,16 @@ object ScalaStockExporter {
         if(s.galleryMode != defaults.galleryMode) {
           props += "      galleryMode = " + s.galleryMode
         }
-        add(props.mkString(",\n"))
-        add("    )")
-        add("  ),")
+
+        if(props.isEmpty) {
+          add("  stock = Some(StockRules()),")
+        } else {
+          add("  stock = Some(")
+          add("    StockRules(")
+          add(props.mkString(",\n"))
+          add("    )")
+          add("  ),")
+        }
       case None => // no op
     }
   }

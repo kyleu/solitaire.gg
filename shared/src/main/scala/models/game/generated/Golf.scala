@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Golf extends GameRules(
   id = "golf",
   title = "Golf",
-  description = "Build up or down on the single foundation to take cards off the tableau, where no building is allowed.",
+  description = "Build up or down on the single foundation to take cards off the tableau, where no building is allowe" +
+  "d.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(
     StockRules(
@@ -38,5 +38,4 @@ object Golf extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

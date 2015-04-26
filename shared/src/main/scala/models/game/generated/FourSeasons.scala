@@ -4,11 +4,12 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object FourSeasons extends GameRules(
   id = "fourseasons",
   title = "Four Seasons",
-  description = "A simple game of luck and skill where you move cards one at a time, stacking regardless of suit. The five tableau piles are supposed to be arranged in a cross with the foundation piles in the four corners, but Politaire is still too stupid to do that.",
+  description = "A simple game of luck and skill where you move cards one at a time, stacking regardless of suit. The" +
+  " five tableau piles are supposed to be arranged in a cross with the foundation piles in the four cor" +
+  "ners, but Politaire is still too stupid to do that.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),
@@ -17,11 +18,7 @@ object FourSeasons extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -43,5 +40,4 @@ object FourSeasons extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object MovingLeft extends GameRules(
   id = "movingleft",
   title = "Moving Left",
-  description = "A variant of ^gargantua^ or ^doubleklondike^ where empty spaces are automatically filled from the next column.",
+  description = "A variant of ^gargantua^ or ^doubleklondike^ where empty spaces are automatically filled from the ne" +
+  "xt column.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object MovingLeft extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -39,5 +35,4 @@ object MovingLeft extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

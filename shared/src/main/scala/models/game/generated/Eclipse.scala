@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Eclipse extends GameRules(
   id = "eclipse",
   title = "Eclipse",
-  description = "A variant of ^waningmoon^, where sequence moves are allowed and cards are dealt to the tableau instead of to a waste pile.",
+  description = "A variant of ^waningmoon^, where sequence moves are allowed and cards are dealt to the tableau inste" +
+  "ad of to a waste pile.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -38,5 +38,4 @@ object Eclipse extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

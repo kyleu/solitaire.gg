@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object NumberTen extends GameRules(
   id = "numberten",
   title = "Number Ten",
-  description = "Like ^fortythieves^, but two cards in each tableau stack are dealt face down, we build in alternating colors, and can move stacks as a whole.",
+  description = "Like ^fortythieves^, but two cards in each tableau stack are dealt face down, we build in alternatin" +
+  "g colors, and can move stacks as a whole.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object NumberTen extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -40,5 +36,4 @@ object NumberTen extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

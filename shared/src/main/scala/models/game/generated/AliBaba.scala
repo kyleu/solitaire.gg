@@ -4,21 +4,19 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object AliBaba extends GameRules(
   id = "alibaba",
   title = "Ali Baba",
-  description = "A one-deck variation of ^fortyandeight^ where you can move sequences of cards together instead of just one at a time. With 40 cards in the tableau, you only have 12 cards in your deck which makes for a lot of unsolvable games. But with a bit of luck you can open an empty space in your tableau and then things are likely to go smoothly.",
+  description = "A one-deck variation of ^fortyandeight^ where you can move sequences of cards together instead of ju" +
+  "st one at a time. With 40 cards in the tableau, you only have 12 cards in your deck which makes for " +
+  "a lot of unsolvable games. But with a bit of luck you can open an empty space in your tableau and th" +
+  "en things are likely to go smoothly.",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -39,5 +37,4 @@ object AliBaba extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

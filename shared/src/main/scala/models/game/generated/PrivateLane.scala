@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object PrivateLane extends GameRules(
   id = "privatelane",
   title = "Private Lane",
@@ -35,5 +34,4 @@ object PrivateLane extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

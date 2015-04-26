@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Malmaison extends GameRules(
   id = "malmaison",
   title = "Malmaison",
-  description = "A difficult four-deck version of ^josephine^, or, if you prefer, a version of ^eightythieves^ which allows sequences to be moved. Invented by Thomas Warfield.",
+  description = "A difficult four-deck version of ^josephine^, or, if you prefer, a version of ^eightythieves^ which " +
+  "allows sequences to be moved. Invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3
   ),
@@ -17,11 +17,7 @@ object Malmaison extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 12,
@@ -42,5 +38,4 @@ object Malmaison extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

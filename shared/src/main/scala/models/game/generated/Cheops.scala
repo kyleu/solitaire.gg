@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Cheops extends GameRules(
   id = "cheops",
   title = "Cheops",
@@ -16,11 +15,7 @@ object Cheops extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -40,5 +35,4 @@ object Cheops extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

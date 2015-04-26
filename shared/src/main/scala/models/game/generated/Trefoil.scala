@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Trefoil extends GameRules(
   id = "trefoil",
   title = "Trefoil",
-  description = "A slightly easier variation of ^labellelucie^ where the aces start on the foundation and there are fewer tableau columns.",
+  description = "A slightly easier variation of ^labellelucie^ where the aces start on the foundation and there are f" +
+  "ewer tableau columns.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -29,5 +29,4 @@ object Trefoil extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

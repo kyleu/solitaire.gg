@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object SuitTriangle extends GameRules(
   id = "suittriangle",
   title = "Suit Triangle",
@@ -17,11 +16,7 @@ object SuitTriangle extends GameRules(
       cardsDealt = StockCardsDealt.Count(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -40,5 +35,4 @@ object SuitTriangle extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

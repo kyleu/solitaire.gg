@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Canister extends GameRules(
   id = "canister",
   title = "Canister",
-  description = "Yet another generic solitaire game, with all cards dealt face up and no stock. This is quite easy when it's not impossible.",
+  description = "Yet another generic solitaire game, with all cards dealt face up and no stock. This is quite easy wh" +
+  "en it's not impossible.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -29,5 +29,4 @@ object Canister extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

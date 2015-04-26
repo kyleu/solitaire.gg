@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object PatientPairs extends GameRules(
   id = "patientpairs",
   title = "Patient Pairs",
-  description = "As in ^simplepairs^, you remove pairs of cards of the same rank, but the cards start out all dealt to the tableau, so a smidgeon more skill is involved.",
+  description = "As in ^simplepairs^, you remove pairs of cards of the same rank, but the cards start out all dealt t" +
+  "o the tableau, so a smidgeon more skill is involved.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   foundations = Seq(
     FoundationRules(
@@ -32,5 +32,4 @@ object PatientPairs extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

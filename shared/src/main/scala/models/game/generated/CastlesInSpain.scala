@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object CastlesInSpain extends GameRules(
   id = "castlesinspain",
   title = "Castles in Spain",
-  description = "A variant of ^bakersdozen^ that allows filling in spaces with any card and where we build in alternate colors.",
+  description = "A variant of ^bakersdozen^ that allows filling in spaces with any card and where we build in alterna" +
+  "te colors.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -28,5 +28,4 @@ object CastlesInSpain extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Diavolo extends GameRules(
   id = "diavolo",
   title = "Diavolo",
-  description = "A ^klondike^ variant with four foundation piles that are built one card at a time, while the other four need completed sequences.",
+  description = "A ^klondike^ variant with four foundation piles that are built one card at a time, while the other f" +
+  "our need completed sequences.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Diavolo extends GameRules(
       maximumDeals = Some(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 2,
@@ -49,5 +45,4 @@ object Diavolo extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

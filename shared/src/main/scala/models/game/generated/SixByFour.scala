@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object SixByFour extends GameRules(
   id = "sixbyfour",
   title = "Six by Four",
@@ -26,13 +25,7 @@ object SixByFour extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Aces
     )
   ),
-  cells = Some(
-    CellRules(
-
-
-    )
-  ),
+  cells = Some(CellRules()),
   complete = false
 )
-// scalastyle:on
 

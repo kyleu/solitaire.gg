@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object LeapYear extends GameRules(
   id = "leapyear",
   title = "Leap Year",
@@ -39,5 +38,4 @@ object LeapYear extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

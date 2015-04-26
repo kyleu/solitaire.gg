@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object SelectiveCastle extends GameRules(
   id = "selectivecastle",
   title = "Selective Castle",
-  description = "A version of ^beleagueredcastle^ where the base of the foundation is determined by the first card you play to it.",
+  description = "A version of ^beleagueredcastle^ where the base of the foundation is determined by the first card yo" +
+  "u play to it.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),
@@ -32,5 +32,4 @@ object SelectiveCastle extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

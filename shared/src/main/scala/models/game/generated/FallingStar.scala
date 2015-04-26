@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object FallingStar extends GameRules(
   id = "fallingstar",
   title = "Falling Star",
-  description = "A more difficult ^signora^ variation with one fewer tableau pile and a predetermined foundation base.",
+  description = "A more difficult ^signora^ variation with one fewer tableau pile and a predetermined foundation base" +
+  ".",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Unknown)
@@ -18,11 +18,7 @@ object FallingStar extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -54,5 +50,4 @@ object FallingStar extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

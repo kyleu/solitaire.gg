@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object BlackWidow extends GameRules(
   id = "blackwidow",
   title = "Black Widow",
-  description = "An easier variation of ^spider^ where you are allowed to move sequences even if they aren't all of one suit.",
+  description = "An easier variation of ^spider^ where you are allowed to move sequences even if they aren't all of o" +
+  "ne suit.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2
@@ -39,5 +39,4 @@ object BlackWidow extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

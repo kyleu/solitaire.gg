@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object HowTheyRun extends GameRules(
   id = "howtheyrun",
   title = "How They Run",
-  description = "A variation of ^threeblindmice^ invented by Erik den Hollander with two cells replacing the two card reserve.",
+  description = "A variation of ^threeblindmice^ invented by Erik den Hollander with two cells replacing the two card" +
+  " reserve.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -37,5 +37,4 @@ object HowTheyRun extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

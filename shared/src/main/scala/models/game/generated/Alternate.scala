@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Alternate extends GameRules(
   id = "alternate",
   title = "Alternate",
-  description = "A variation of ^sirtommy^ where the foundations are built in alternate color, half upwards, half downwards.",
+  description = "A variation of ^sirtommy^ where the foundations are built in alternate color, half upwards, half dow" +
+  "nwards.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Manually,
@@ -53,5 +53,4 @@ object Alternate extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

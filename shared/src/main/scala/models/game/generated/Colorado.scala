@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Colorado extends GameRules(
   id = "colorado",
   title = "Colorado",
-  description = "A game where cards may be stacked arbitrarily on 20 tableau piles. Usually winnable, but requires some planning.",
+  description = "A game where cards may be stacked arbitrarily on 20 tableau piles. Usually winnable, but requires so" +
+  "me planning.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -50,5 +50,4 @@ object Colorado extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

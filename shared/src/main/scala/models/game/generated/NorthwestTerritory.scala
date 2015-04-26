@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object NorthwestTerritory extends GameRules(
   id = "northwestterritory",
   title = "Northwest Territory",
-  description = "A cross between ^flowergarden^ and ^klondike^, slightly easier than the similar ^klondiketerritory^ game.",
+  description = "A cross between ^flowergarden^ and ^klondike^, slightly easier than the similar ^klondiketerritory^ " +
+  "game.",
   waste = Some(
     WasteRules(
       name = "Reserve"
@@ -31,5 +31,4 @@ object NorthwestTerritory extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

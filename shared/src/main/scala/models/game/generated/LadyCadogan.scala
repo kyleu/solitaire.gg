@@ -4,24 +4,16 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object LadyCadogan extends GameRules(
   id = "ladycadogan",
   title = "Lady Cadogan",
-  description = "Thomas Warfield's ^rougeetnoir^ variant where we build regardless of suit instead of in alternating colors.",
+  description = "Thomas Warfield's ^rougeetnoir^ variant where we build regardless of suit instead of in alternating " +
+  "colors.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
-  stock = Some(
-    StockRules(
-
-    )
-  ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  stock = Some(StockRules()),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       name = "Left Foundation",
@@ -45,5 +37,4 @@ object LadyCadogan extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

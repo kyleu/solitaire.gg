@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Trillium extends GameRules(
   id = "trillium",
   title = "Trillium",
@@ -38,5 +37,4 @@ object Trillium extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

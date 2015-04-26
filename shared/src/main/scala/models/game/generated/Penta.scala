@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Penta extends GameRules(
   id = "penta",
   title = "Penta",
-  description = "Another ^busyaces^ variation by Thomas Warfield, in this one, half the tabeau builds up, and half builds down.",
+  description = "Another ^busyaces^ variation by Thomas Warfield, in this one, half the tabeau builds up, and half bu" +
+  "ilds down.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Penta extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       name = "Left Foundation",
@@ -65,5 +61,4 @@ object Penta extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

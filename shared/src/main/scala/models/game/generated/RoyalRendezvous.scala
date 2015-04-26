@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object RoyalRendezvous extends GameRules(
   id = "royalrendezvous",
   title = "Royal Rendezvous",
-  description = "An odd Austrian game with four foundation sets, one normal, one for evens, one for odds, and one for kings. No building on the tableau.",
+  description = "An odd Austrian game with four foundation sets, one normal, one for evens, one for odds, and one for" +
+  " kings. No building on the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object RoyalRendezvous extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       name = "Straight Foundation",
@@ -70,5 +66,4 @@ object RoyalRendezvous extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

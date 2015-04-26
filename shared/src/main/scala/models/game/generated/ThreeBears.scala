@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object ThreeBears extends GameRules(
   id = "threebears",
   title = "Three Bears",
-  description = "A variation on ^tripleklondike^ invented by Thomas Warfield. You build in the same suit instead of alternate colors.",
+  description = "A variation on ^tripleklondike^ invented by Thomas Warfield. You build in the same suit instead of a" +
+  "lternate colors.",
   deckOptions = DeckOptions(
     numDecks = 3
   ),
@@ -17,11 +17,7 @@ object ThreeBears extends GameRules(
       cardsDealt = StockCardsDealt.Count(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 12,
@@ -40,5 +36,4 @@ object ThreeBears extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

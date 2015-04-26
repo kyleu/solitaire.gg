@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Tens extends GameRules(
   id = "tens",
   title = "Tens",
-  description = "A set removal game similar to ^simplepairs^ where you can take off pairs that add to 10 or a set four matching cards ten or higher. A game of pure luck.",
+  description = "A set removal game similar to ^simplepairs^ where you can take off pairs that add to 10 or a set fou" +
+  "r matching cards ten or higher. A game of pure luck.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOrFour10JQK,
   stock = Some(
     StockRules(
@@ -36,5 +36,4 @@ object Tens extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

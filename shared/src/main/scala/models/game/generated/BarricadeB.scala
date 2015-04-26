@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object BarricadeB extends GameRules(
   id = "barricadeb",
   title = "Barricade B",
-  description = "An easier, but still very difficult, modification of ^block^ invented by Richard Mechen and Thomas Warfield.",
+  description = "An easier, but still very difficult, modification of ^block^ invented by Richard Mechen and Thomas W" +
+  "arfield.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -38,5 +38,4 @@ object BarricadeB extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

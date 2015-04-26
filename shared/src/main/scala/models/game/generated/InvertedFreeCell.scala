@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object InvertedFreeCell extends GameRules(
   id = "invertedfreecell",
   title = "Inverted FreeCell",
@@ -29,13 +28,7 @@ object InvertedFreeCell extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Aces
     )
   ),
-  cells = Some(
-    CellRules(
-
-
-    )
-  ),
+  cells = Some(CellRules()),
   complete = false
 )
-// scalastyle:on
 

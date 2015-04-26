@@ -4,11 +4,12 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object AuldLangSyne extends GameRules(
   id = "auldlangsyne",
   title = "Auld Lang Syne",
-  description = "An old solitaire game in which no building is allowed on the tableau. The secret to winning is to get extremely lucky before you abandon the game out of shear boredom or to play a more skill-dependent variation like ^sirtommy^ instead.",
+  description = "An old solitaire game in which no building is allowed on the tableau. The secret to winning is to ge" +
+  "t extremely lucky before you abandon the game out of shear boredom or to play a more skill-dependent" +
+  " variation like ^sirtommy^ instead.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,
@@ -36,5 +37,4 @@ object AuldLangSyne extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

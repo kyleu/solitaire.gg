@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Alternations extends GameRules(
   id = "alternations",
   title = "Alternations",
-  description = "A variation of ^interchange^ that has the same 7 by 7 tableau with alternate cards face down, but where you build in alternate colors.",
+  description = "A variation of ^interchange^ that has the same 7 by 7 tableau with alternate cards face down, but wh" +
+  "ere you build in alternate colors.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Alternations extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -39,5 +35,4 @@ object Alternations extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

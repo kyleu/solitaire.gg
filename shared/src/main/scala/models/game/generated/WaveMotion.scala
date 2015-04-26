@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object WaveMotion extends GameRules(
   id = "wavemotion",
   title = "Wave Motion",
-  description = "In David Bernazzani's variation on ^freecell^ and ^scorpion^, all cards start on the reserve. They need to be arranged into sequences on the tableau.",
+  description = "In David Bernazzani's variation on ^freecell^ and ^scorpion^, all cards start on the reserve. They n" +
+  "eed to be arranged into sequences on the tableau.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
     TableauRules(
@@ -30,5 +30,4 @@ object WaveMotion extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

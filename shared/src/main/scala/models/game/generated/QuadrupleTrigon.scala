@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object QuadrupleTrigon extends GameRules(
   id = "quadrupletrigon",
   title = "Quadruple Trigon",
@@ -12,16 +11,8 @@ object QuadrupleTrigon extends GameRules(
   deckOptions = DeckOptions(
     numDecks = 4
   ),
-  stock = Some(
-    StockRules(
-
-    )
-  ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  stock = Some(StockRules()),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 16,
@@ -40,5 +31,4 @@ object QuadrupleTrigon extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

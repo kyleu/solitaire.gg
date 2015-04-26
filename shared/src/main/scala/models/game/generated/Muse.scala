@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Muse extends GameRules(
   id = "muse",
   title = "Muse",
@@ -33,5 +32,4 @@ object Muse extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

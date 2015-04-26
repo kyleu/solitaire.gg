@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object CastOutNines extends GameRules(
   id = "castoutnines",
   title = "Cast Out Nines",
-  description = "A difficult variation of ^deuces^ or ^busyaces^ where no cards are already on the foundation and there are only seven tableau piles. Invented by Thomas Warfield.",
+  description = "A difficult variation of ^deuces^ or ^busyaces^ where no cards are already on the foundation and the" +
+  "re are only seven tableau piles. Invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Nine)
@@ -18,11 +18,7 @@ object CastOutNines extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -42,5 +38,4 @@ object CastOutNines extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

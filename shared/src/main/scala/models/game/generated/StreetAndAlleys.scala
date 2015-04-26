@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object StreetAndAlleys extends GameRules(
   id = "streetsandalleys",
   title = "Street and Alleys",
-  description = "A more difficult variation of ^beleagueredcastle^ that starts with no cards dealt into the foundation.",
+  description = "A more difficult variation of ^beleagueredcastle^ that starts with no cards dealt into the foundatio" +
+  "n.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -29,5 +29,4 @@ object StreetAndAlleys extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

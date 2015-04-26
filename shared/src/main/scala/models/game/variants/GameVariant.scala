@@ -45,12 +45,12 @@ case class GameVariant(rulesKey: String, description: GameVariant.Description, g
 
   private[this] val pileSets = {
     rules.stock.map(s => StockSet(s)) ++
-    rules.waste.map(w => WasteSet(w)) ++
-    rules.reserves.map(r => ReserveSet(r)) ++
-    rules.cells.map(c => CellSet(c)) ++
-    rules.foundations.map(f => FoundationSet(f)) ++
-    rules.tableaus.map(t => TableauSet(t)) ++
-    rules.pyramids.map(p => PyramidSet(p))
+      rules.waste.map(w => WasteSet(w)) ++
+      rules.reserves.map(r => ReserveSet(r)) ++
+      rules.cells.map(c => CellSet(c)) ++
+      rules.foundations.map(f => FoundationSet(f)) ++
+      rules.tableaus.map(t => TableauSet(t)) ++
+      rules.pyramids.map(p => PyramidSet(p))
   }.toSeq
 
   private[this] val deck = newShuffledDecks(rules.deckOptions.numDecks)

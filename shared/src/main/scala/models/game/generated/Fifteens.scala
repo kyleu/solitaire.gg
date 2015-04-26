@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Fifteens extends GameRules(
   id = "fifteens",
   title = "Fifteens",
-  description = "A simple game where you remove sets that add to 15 or sets of four tens, four jacks, four queens, or four kings.",
+  description = "A simple game where you remove sets that add to 15 or sets of four tens, four jacks, four queens, or" +
+  " four kings.",
   cardRemovalMethod = CardRemovalMethod.RemoveSetsAddingToFifteenOrFour10JQK,
   stock = Some(
     StockRules(
@@ -38,5 +38,4 @@ object Fifteens extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

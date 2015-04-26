@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Rueil extends GameRules(
   id = "rueil",
   title = "Rueil",
@@ -17,11 +16,7 @@ object Rueil extends GameRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 12,
@@ -42,5 +37,4 @@ object Rueil extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

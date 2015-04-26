@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Doublets extends GameRules(
   id = "doublets",
   title = "Doublets",
-  description = "A similar game to ^simplepairs^. You remove pairs of cards of the same rank. The only way to bring any strategy into the game is by using the undo button.",
+  description = "A similar game to ^simplepairs^. You remove pairs of cards of the same rank. The only way to bring a" +
+  "ny strategy into the game is by using the undo button.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(
     StockRules(
@@ -37,5 +37,4 @@ object Doublets extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object LittleBillie extends GameRules(
   id = "littlebillie",
   title = "Little Billie",
-  description = "In this game dating back to around 1900, no building is allowed, but you have some cells that can be used to uncover the cards you need. Two redeals are allowed.",
+  description = "In this game dating back to around 1900, no building is allowed, but you have some cells that can be" +
+  " used to uncover the cards you need. Two redeals are allowed.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -52,5 +52,4 @@ object LittleBillie extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object SuperiorCanfield extends GameRules(
   id = "superiorcanfield",
   title = "Superior Canfield",
-  description = "Canfield made a bit easier and a bit more strategic by dealing the reserve cards face up and not automatically filling spaces from the reserve.",
+  description = "Canfield made a bit easier and a bit more strategic by dealing the reserve cards face up and not aut" +
+  "omatically filling spaces from the reserve.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),
@@ -17,11 +17,7 @@ object SuperiorCanfield extends GameRules(
       cardsDealt = StockCardsDealt.Count(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -49,5 +45,4 @@ object SuperiorCanfield extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

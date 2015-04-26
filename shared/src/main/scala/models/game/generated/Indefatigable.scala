@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Indefatigable extends GameRules(
   id = "indefatigable",
   title = "Indefatigable",
-  description = "This variation of ^royalfamily^ is basically the same, but the foundations build up from ace, and it is made even easier by a extra redeal.",
+  description = "This variation of ^royalfamily^ is basically the same, but the foundations build up from ace, and it" +
+  " is made even easier by a extra redeal.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -31,5 +31,4 @@ object Indefatigable extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

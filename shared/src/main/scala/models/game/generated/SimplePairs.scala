@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object SimplePairs extends GameRules(
   id = "simplepairs",
   title = "Simple Pairs",
-  description = "A game where you remove pairs of cards of the same rank. Bring your luck, not your brain, to this game.",
+  description = "A game where you remove pairs of cards of the same rank. Bring your luck, not your brain, to this ga" +
+  "me.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(
     StockRules(
@@ -38,5 +38,4 @@ object SimplePairs extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

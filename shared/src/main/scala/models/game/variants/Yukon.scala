@@ -20,5 +20,5 @@ object Yukon extends GameVariant.Description {
 }
 
 class Yukon(override val gameId: UUID, override val seed: Int) extends GameVariant("yukon", Yukon, gameId, seed, Yukon.initialMoves) {
-//  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(dragFromConstraint = Some(Constraints.faceUp)))
+  //  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(dragFromConstraint = Some(Constraints.faceUp)))
 }

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Bakers extends GameRules(
   id = "bakers",
   title = "Baker's",
-  description = "A predecessor of ^freecell^ invented by C. L. Baker. The rules are the same as FreeCell, except that you build down in suit instead of in alternating colors.",
+  description = "A predecessor of ^freecell^ invented by C. L. Baker. The rules are the same as FreeCell, except that" +
+  " you build down in suit instead of in alternating colors.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -27,13 +27,7 @@ object Bakers extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Aces
     )
   ),
-  cells = Some(
-    CellRules(
-
-
-    )
-  ),
+  cells = Some(CellRules()),
   complete = false
 )
-// scalastyle:on
 

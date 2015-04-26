@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object NapoleonsShoulder extends GameRules(
   id = "napoleonsshoulder",
   title = "Napoleon's Shoulder",
@@ -17,11 +16,7 @@ object NapoleonsShoulder extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -43,5 +38,4 @@ object NapoleonsShoulder extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

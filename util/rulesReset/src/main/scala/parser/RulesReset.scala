@@ -9,11 +9,10 @@ object RulesReset extends App {
   println("Reset complete in [" + (System.currentTimeMillis - startMs) + "ms].")
 
   def go() = {
-    import collection.JavaConversions._
-
     val srcDir = Paths.get(".", "shared", "src", "main", "scala", "models", "game", "generated")
     val dStream = Files.newDirectoryStream(srcDir)
-    for(f <- dStream.iterator()) {
+    val itr = collection.JavaConverters.asScalaIteratorConverter(dStream.iterator()).asScala
+    for(f <- itr) {
       Files.delete(f)
     }
     writeFile(srcDir.resolve("GameRulesSet.scala"), exportRulesSet())

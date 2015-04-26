@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object LittleNapolean extends GameRules(
   id = "littlenapoleon",
   title = "Little Napolean",
-  description = "A ^fortythieves^ variant that shows some ^spider^ influences, because you can build regardless of suit, but only move same-suit sequences.",
+  description = "A ^fortythieves^ variant that shows some ^spider^ influences, because you can build regardless of su" +
+  "it, but only move same-suit sequences.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object LittleNapolean extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -41,5 +37,4 @@ object LittleNapolean extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

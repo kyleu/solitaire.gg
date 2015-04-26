@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Darwin extends GameRules(
   id = "darwin",
   title = "Darwin",
@@ -17,11 +16,7 @@ object Darwin extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 12,
@@ -43,5 +38,4 @@ object Darwin extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

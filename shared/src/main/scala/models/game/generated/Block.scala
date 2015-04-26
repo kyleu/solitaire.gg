@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Block extends GameRules(
   id = "block",
   title = "Block",
-  description = "A nearly unwinnably difficult two-deck game that gets its name from the fact that it routinely blocks.",
+  description = "A nearly unwinnably difficult two-deck game that gets its name from the fact that it routinely block" +
+  "s.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -39,5 +39,4 @@ object Block extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

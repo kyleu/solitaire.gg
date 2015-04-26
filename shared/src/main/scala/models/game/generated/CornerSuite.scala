@@ -4,21 +4,17 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object CornerSuite extends GameRules(
   id = "cornersuite",
   title = "Corner Suite",
-  description = "This rather easy game resembles a one deck version of ^congress^, except that the tableau starts empty.",
+  description = "This rather easy game resembles a one deck version of ^congress^, except that the tableau starts emp" +
+  "ty.",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -40,5 +36,4 @@ object CornerSuite extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

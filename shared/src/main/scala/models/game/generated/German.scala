@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object German extends GameRules(
   id = "german",
   title = "German",
@@ -18,11 +17,7 @@ object German extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,
@@ -37,5 +32,4 @@ object German extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

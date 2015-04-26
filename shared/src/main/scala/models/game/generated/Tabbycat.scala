@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Tabbycat extends GameRules(
   id = "tabbycat",
   title = "Tabbycat",
-  description = "An easier version of ^manx^ which allows a sequence to be parkted in the tail. Also invented by Rick Holzgrafe of Solitaire Til Dawn.",
+  description = "An easier version of ^manx^ which allows a sequence to be parkted in the tail. Also invented by Rick" +
+  " Holzgrafe of Solitaire Til Dawn.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.TableauFirstSet,
@@ -48,5 +48,4 @@ object Tabbycat extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Shamrocks extends GameRules(
   id = "shamrocks",
   title = "Shamrocks",
-  description = "A variation of ^fan^ where you can build up or down regardless of suit, but are limited to three cards per stack.",
+  description = "A variation of ^fan^ where you can build up or down regardless of suit, but are limited to three car" +
+  "ds per stack.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -31,5 +31,4 @@ object Shamrocks extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

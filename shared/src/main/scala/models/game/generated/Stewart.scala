@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Stewart extends GameRules(
   id = "stewart",
   title = "Stewart",
-  description = "A more difficult variation of ^martha^ in which only single cards may be moved. It is similar to ^bakersdozen^.",
+  description = "A more difficult variation of ^martha^ in which only single cards may be moved. It is similar to ^ba" +
+  "kersdozen^.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -29,5 +29,4 @@ object Stewart extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

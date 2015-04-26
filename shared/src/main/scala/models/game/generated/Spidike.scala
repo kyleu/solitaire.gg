@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Spidike extends GameRules(
   id = "spidike",
   title = "Spidike",
-  description = "Thomas Warfield's blend of ^spider^ with a ^klondike^ ends up looking a lot like ^spiderette^ except that cards can be moved singly to the foundation.",
+  description = "Thomas Warfield's blend of ^spider^ with a ^klondike^ ends up looking a lot like ^spiderette^ except" +
+  " that cards can be moved singly to the foundation.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,
@@ -32,5 +32,4 @@ object Spidike extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

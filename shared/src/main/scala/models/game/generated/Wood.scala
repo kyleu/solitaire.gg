@@ -4,11 +4,12 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Wood extends GameRules(
   id = "wood",
   title = "Wood",
-  description = "A game where we build both the foundation and the tableau in alternate colors. The big problem is the ten-card reserve, which can be played only to the foundation, which generally requires some advanced planning to achieve.",
+  description = "A game where we build both the foundation and the tableau in alternate colors. The big problem is th" +
+  "e ten-card reserve, which can be played only to the foundation, which generally requires some advanc" +
+  "ed planning to achieve.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Unknown)
@@ -18,11 +19,7 @@ object Wood extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -54,5 +51,4 @@ object Wood extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

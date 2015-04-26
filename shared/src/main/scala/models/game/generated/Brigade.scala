@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Brigade extends GameRules(
   id = "brigade",
   title = "Brigade",
-  description = "An easier variation of ^flowergarden^ with more tableau piles of fewer cards, and aces starting on the foundation.",
+  description = "An easier variation of ^flowergarden^ with more tableau piles of fewer cards, and aces starting on t" +
+  "he foundation.",
   waste = Some(
     WasteRules(
       name = "Reserve"
@@ -34,5 +34,4 @@ object Brigade extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

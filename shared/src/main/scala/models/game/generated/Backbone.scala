@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Backbone extends GameRules(
   id = "backbone",
   title = "Backbone",
@@ -17,11 +16,7 @@ object Backbone extends GameRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -51,5 +46,4 @@ object Backbone extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

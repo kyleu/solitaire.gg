@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object DoublePyramid extends GameRules(
   id = "doublepyramid",
   title = "Double Pyramid",
@@ -19,11 +18,7 @@ object DoublePyramid extends GameRules(
       maximumDeals = Some(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -43,5 +38,4 @@ object DoublePyramid extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object FreeCell extends GameRules(
   id = "freecell",
   title = "FreeCell",
-  description = "Invented by Paul Alfille, made famous by Microsoft, this game provide four temporary storage cells that can be used to move cards around.",
+  description = "Invented by Paul Alfille, made famous by Microsoft, this game provide four temporary storage cells t" +
+  "hat can be used to move cards around.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -26,13 +26,7 @@ object FreeCell extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Aces
     )
   ),
-  cells = Some(
-    CellRules(
-
-
-    )
-  ),
+  cells = Some(CellRules()),
   complete = false
 )
-// scalastyle:on
 

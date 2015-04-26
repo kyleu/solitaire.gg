@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Fly extends GameRules(
   id = "fly",
   title = "Fly",
@@ -51,5 +50,4 @@ object Fly extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

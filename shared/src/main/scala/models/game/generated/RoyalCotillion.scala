@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object RoyalCotillion extends GameRules(
   id = "royalcotillion",
   title = "Royal Cotillion",
-  description = "A variation of ^oddandeven^ with some extra tableau and reserve piles, but only one pass allowed through the deck.",
+  description = "A variation of ^oddandeven^ with some extra tableau and reserve piles, but only one pass allowed thr" +
+  "ough the deck.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object RoyalCotillion extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -59,5 +55,4 @@ object RoyalCotillion extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

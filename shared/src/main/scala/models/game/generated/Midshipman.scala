@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Midshipman extends GameRules(
   id = "midshipman",
   title = "Midshipman",
-  description = "A slightly easier variation of ^maria^ where we build by different suits instead of alternate colors and where some cards start out face down.",
+  description = "A slightly easier variation of ^maria^ where we build by different suits instead of alternate colors" +
+  " and where some cards start out face down.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Midshipman extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -42,5 +38,4 @@ object Midshipman extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

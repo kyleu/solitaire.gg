@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object SimpleSimon extends GameRules(
   id = "simplesimon",
   title = "Simple Simon",
-  description = "Like a one-deck ^spider^ where all cards start face up in a triangular tableau and there are no further cards to deal.",
+  description = "Like a one-deck ^spider^ where all cards start face up in a triangular tableau and there are no furt" +
+  "her cards to deal.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   foundations = Seq(
     FoundationRules(
@@ -31,5 +31,4 @@ object SimpleSimon extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

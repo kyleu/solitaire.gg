@@ -23,7 +23,7 @@ case class FoundationRules(
   numPiles: Int = 1,
   lowRank: FoundationLowRank = FoundationLowRank.DeckLowRank,
   initialCards: InitialCards = InitialCards.Count(0),
-  suitMatchRule: SuitMatchRule =  SuitMatchRule.SameSuit,
+  suitMatchRule: SuitMatchRule = SuitMatchRule.SameSuit,
   rankMatchRule: RankMatchRule = RankMatchRule.Up,
   wrapFromKingToAce: Boolean = false,
   moveCompleteSequencesOnly: Boolean = false,

@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object AmericanToad extends GameRules(
   id = "americantoad",
   title = "American Toad",
@@ -18,11 +17,7 @@ object AmericanToad extends GameRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -52,5 +47,4 @@ object AmericanToad extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

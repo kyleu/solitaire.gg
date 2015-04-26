@@ -4,21 +4,17 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Athena extends GameRules(
   id = "athena",
   title = "Athena",
-  description = "A ^klondike^ variation with a rectangular starting tableau in which cards alternate face-up and face-down.",
+  description = "A ^klondike^ variation with a rectangular starting tableau in which cards alternate face-up and face" +
+  "-down.",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -36,5 +32,4 @@ object Athena extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

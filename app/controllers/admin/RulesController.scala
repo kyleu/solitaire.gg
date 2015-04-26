@@ -1,6 +1,5 @@
 package controllers.admin
 
-
 import controllers.BaseController
 import controllers.BaseController.AuthenticatedAction
 import models.game.generated.GameRulesSet

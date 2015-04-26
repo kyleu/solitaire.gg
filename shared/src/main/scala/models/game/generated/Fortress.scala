@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Fortress extends GameRules(
   id = "fortress",
   title = "Fortress",
-  description = "A classic and usually insolvable ancestor of ^beleagueredcastle^ where you can build both up and down in the tableau.",
+  description = "A classic and usually insolvable ancestor of ^beleagueredcastle^ where you can build both up and dow" +
+  "n in the tableau.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -30,5 +30,4 @@ object Fortress extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

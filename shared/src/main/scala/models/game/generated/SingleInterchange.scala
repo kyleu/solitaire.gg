@@ -4,21 +4,12 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object SingleInterchange extends GameRules(
   id = "singleinterchange",
   title = "Single Interchange",
   description = "A difficult one-deck variant of ^interchange^ invented by Thomas Warfield.",
-  stock = Some(
-    StockRules(
-
-    )
-  ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  stock = Some(StockRules()),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -39,5 +30,4 @@ object SingleInterchange extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

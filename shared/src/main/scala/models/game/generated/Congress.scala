@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Congress extends GameRules(
   id = "congress",
   title = "Congress",
-  description = "This has similarities to ^fortyandeight^, but spaces in the tableau may only be filled from the waste. This gives the game a very different feel.",
+  description = "This has similarities to ^fortyandeight^, but spaces in the tableau may only be filled from the wast" +
+  "e. This gives the game a very different feel.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Congress extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -43,5 +39,4 @@ object Congress extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

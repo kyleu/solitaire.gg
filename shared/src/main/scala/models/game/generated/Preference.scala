@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Preference extends GameRules(
   id = "preference",
   title = "Preference",
@@ -14,11 +13,7 @@ object Preference extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -41,5 +36,4 @@ object Preference extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

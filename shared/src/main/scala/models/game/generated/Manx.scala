@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Manx extends GameRules(
   id = "manx",
   title = "Manx",
-  description = "Build complete sequences by rearranging four piles regardless of suit in this game invented by Rick Holzgrafe of Solitaire Til Dawn.",
+  description = "Build complete sequences by rearranging four piles regardless of suit in this game invented by Rick " +
+  "Holzgrafe of Solitaire Til Dawn.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,
@@ -45,5 +45,4 @@ object Manx extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

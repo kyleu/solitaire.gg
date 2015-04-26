@@ -14,7 +14,7 @@ package models.game.pile
  *   | - New line
  */
 object Layouts {
-  private [this] val layouts = Map(
+  private[this] val layouts = Map(
     "canfield" -> "sw:f|:r:t",
     "freecell" -> "f:c|.t|",
     "golf" -> "t|f:s",

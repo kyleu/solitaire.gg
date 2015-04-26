@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Saxony extends GameRules(
   id = "saxony",
   title = "Saxony",
-  description = "You have four cells, four reserve piles where you can build down in suit, and eight tableau piles, where cards are dealt, but no building is allowed.",
+  description = "You have four cells, four reserve piles where you can build down in suit, and eight tableau piles, w" +
+  "here cards are dealt, but no building is allowed.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -53,5 +53,4 @@ object Saxony extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

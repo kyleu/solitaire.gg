@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object MarieRose extends GameRules(
   id = "marierose",
   title = "Marie Rose",
-  description = "A three-deck version of ^josephine^ or a version of ^sixtythieves^ which allows sequences to be moved.",
+  description = "A three-deck version of ^josephine^ or a version of ^sixtythieves^ which allows sequences to be move" +
+  "d.",
   deckOptions = DeckOptions(
     numDecks = 3
   ),
@@ -17,11 +17,7 @@ object MarieRose extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 12,
@@ -42,5 +38,4 @@ object MarieRose extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

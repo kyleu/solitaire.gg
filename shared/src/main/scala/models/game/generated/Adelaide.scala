@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Adelaide extends GameRules(
   id = "adelaide",
   title = "Adelaide",
-  description = "This two-deck solitaire allows moving unsorted stacks, as in ^yukon^. It is exactly like ^outback^, but you get to do two passes through the deck.",
+  description = "This two-deck solitaire allows moving unsorted stacks, as in ^yukon^. It is exactly like ^outback^, " +
+  "but you get to do two passes through the deck.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Adelaide extends GameRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -43,5 +39,4 @@ object Adelaide extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

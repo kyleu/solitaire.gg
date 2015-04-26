@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Storehouse extends GameRules(
   id = "storehouse",
   title = "Storehouse",
-  description = "A old ^canfield^ variant first described in 1939. A pleasant game, but there is scarcely any strategy required.",
+  description = "A old ^canfield^ variant first described in 1939. A pleasant game, but there is scarcely any strateg" +
+  "y required.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Two)
   ),
@@ -17,11 +17,7 @@ object Storehouse extends GameRules(
       maximumDeals = Some(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -52,5 +48,4 @@ object Storehouse extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

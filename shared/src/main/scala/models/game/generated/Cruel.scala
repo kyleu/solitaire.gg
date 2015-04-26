@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Cruel extends GameRules(
   id = "cruel",
   title = "Cruel",
-  description = "A game where you can redeal the tableau as often as you like, so long as you can take off at least one card between deals.",
+  description = "A game where you can redeal the tableau as often as you like, so long as you can take off at least o" +
+  "ne card between deals.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -29,5 +29,4 @@ object Cruel extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Chameleon extends GameRules(
   id = "chameleon",
   title = "Chameleon",
-  description = "In case ^canfield^ wasn't hard enough for you, here's a version with only three tableau piles. But you can stack cards regardless of suit, so it'll be OK. Occasionally.",
+  description = "In case ^canfield^ wasn't hard enough for you, here's a version with only three tableau piles. But y" +
+  "ou can stack cards regardless of suit, so it'll be OK. Occasionally.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),
@@ -17,11 +17,7 @@ object Chameleon extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -52,5 +48,4 @@ object Chameleon extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

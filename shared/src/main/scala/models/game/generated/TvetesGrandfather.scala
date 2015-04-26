@@ -4,11 +4,12 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object TvetesGrandfather extends GameRules(
   id = "tvetesgrandfather",
   title = "Tvete's Grandfather",
-  description = "Paul Olav Tvete learned this game from his grandfather and included it in <a target=\"_blank\" href=\"\"http\"://www.kde.org/applications/games/kpatience/\">KPatience</a>. It is a difficult game with an unusual tableau, ^yukon^-style stack moves, and two redeals.",
+  description = "Paul Olav Tvete learned this game from his grandfather and included it in <a target=\"_blank\" href=" +
+  "\"\"http\"://www.kde.org/applications/games/kpatience/\">KPatience</a>. It is a difficult game with " +
+  "an unusual tableau, ^yukon^-style stack moves, and two redeals.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -29,5 +30,4 @@ object TvetesGrandfather extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

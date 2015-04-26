@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Limited extends GameRules(
   id = "limited",
   title = "Limited",
@@ -17,11 +16,7 @@ object Limited extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -42,5 +37,4 @@ object Limited extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

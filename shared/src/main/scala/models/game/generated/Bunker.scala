@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Bunker extends GameRules(
   id = "bunker",
   title = "Bunker",
@@ -15,11 +14,7 @@ object Bunker extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,
@@ -33,5 +28,4 @@ object Bunker extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

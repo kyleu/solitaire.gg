@@ -6,7 +6,7 @@ import models.game.pile.PileSet
 import models.{ CardHidden, CardRevealed }
 
 case class GameState(
-  gameId: UUID, variant: String, maxPlayers: Int, seed: Int, deck: Deck, pileSets: Seq[PileSet], layout: String, var players: Seq[GamePlayer] = Nil
+    gameId: UUID, variant: String, maxPlayers: Int, seed: Int, deck: Deck, pileSets: Seq[PileSet], layout: String, var players: Seq[GamePlayer] = Nil
 ) {
 
   private[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
@@ -17,8 +17,8 @@ case class GameState(
 
   def addPlayer(accountId: UUID, name: String) = players.find(_.account == accountId) match {
     case Some(p) =>
-      //log.info("Reconnecting to game [" + gameId + "] from account [" + name + ": " + accountId + "]")
-      // TODO Reconnect
+    //log.info("Reconnecting to game [" + gameId + "] from account [" + name + ": " + accountId + "]")
+    // TODO Reconnect
     case None =>
       //log.info("Adding player [" + name + ": " + accountId + "] to game [" + gameId + "].")
       val playerIndex = playerKnownIds.size
@@ -37,7 +37,7 @@ case class GameState(
     }
   }
 
-  def addCards(cards: Seq[Card], pile: String, reveal: Boolean = false) = cards.foreach( c => addCard(c, pile, reveal))
+  def addCards(cards: Seq[Card], pile: String, reveal: Boolean = false) = cards.foreach(c => addCard(c, pile, reveal))
 
   def revealCardToAll(card: Card) = if (playerKnownIds.keys.exists(p => revealCardToPlayer(card, p))) {
     Seq(CardRevealed(card))

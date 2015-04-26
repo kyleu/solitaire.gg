@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object TripleCanfield extends GameRules(
   id = "triplecanfield",
   title = "Triple Canfield",
-  description = "An easy three-deck version of ^canfield^ invented by Thomas Warfield that has fewer tableau piles and a smaller reserve than ^threedemons^.",
+  description = "An easy three-deck version of ^canfield^ invented by Thomas Warfield that has fewer tableau piles an" +
+  "d a smaller reserve than ^threedemons^.",
   deckOptions = DeckOptions(
     numDecks = 3,
     lowRank = Some(Rank.Unknown)
@@ -18,11 +18,7 @@ object TripleCanfield extends GameRules(
       cardsDealt = StockCardsDealt.Count(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 12,
@@ -50,5 +46,4 @@ object TripleCanfield extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

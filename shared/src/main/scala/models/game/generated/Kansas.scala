@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Kansas extends GameRules(
   id = "kansas",
   title = "Kansas",
-  description = "Like ^rainbow^ this is a ^canfield^ variation where you build regardless of suit, but this is a bit more difficult because you only have three tableau piles.",
+  description = "Like ^rainbow^ this is a ^canfield^ variation where you build regardless of suit, but this is a bit " +
+  "more difficult because you only have three tableau piles.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),
@@ -17,11 +17,7 @@ object Kansas extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -52,5 +48,4 @@ object Kansas extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

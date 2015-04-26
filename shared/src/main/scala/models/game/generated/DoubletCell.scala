@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object DoubletCell extends GameRules(
   id = "doubletcell",
   title = "Doublet Cell",
@@ -29,13 +28,7 @@ object DoubletCell extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
-  cells = Some(
-    CellRules(
-
-
-    )
-  ),
+  cells = Some(CellRules()),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Escalator extends GameRules(
   id = "escalator",
   title = "Escalator",
-  description = "Deconstruct a pyramid by building up or down on a single foundation pile. This game is also known by the more descriptive name \"Pyramid Golf.\"",
+  description = "Deconstruct a pyramid by building up or down on a single foundation pile. This game is also known by" +
+  " the more descriptive name \"Pyramid Golf.\"",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(
     StockRules(
@@ -38,5 +38,4 @@ object Escalator extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

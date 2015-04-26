@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object LaBelleLucie extends GameRules(
   id = "labellelucie",
   title = "La Belle Lucie",
-  description = "A classic solitaire where you build down in suit on the tableau and can redeal twice. Rarely winnable.",
+  description = "A classic solitaire where you build down in suit on the tableau and can redeal twice. Rarely winnabl" +
+  "e.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -28,5 +28,4 @@ object LaBelleLucie extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

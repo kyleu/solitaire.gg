@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object LuckierThirteen extends GameRules(
   id = "luckierthirteen",
   title = "Luckier Thirteen",
-  description = "An easier version of ^luckythirteen^, or a cell-free version of ^freecell^. Also known as \"Thirteen by Zero\".",
+  description = "An easier version of ^luckythirteen^, or a cell-free version of ^freecell^. Also known as \"Thirteen" +
+  " by Zero\".",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -28,5 +28,4 @@ object LuckierThirteen extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

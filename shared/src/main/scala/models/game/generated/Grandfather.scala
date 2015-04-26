@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Grandfather extends GameRules(
   id = "grandfather",
   title = "Grandfather",
-  description = "A game with twenty tableau piles, each of which can hold any two cards. You build up on half the foundations and down on the others.",
+  description = "A game with twenty tableau piles, each of which can hold any two cards. You build up on half the fou" +
+  "ndations and down on the others.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Grandfather extends GameRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -54,5 +50,4 @@ object Grandfather extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

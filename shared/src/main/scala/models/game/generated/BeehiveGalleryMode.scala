@@ -4,11 +4,12 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object BeehiveGalleryMode extends GameRules(
   id = "beehivegallery",
   title = "Beehive (Gallery Mode)",
-  description = "This is just ^beehive^ with a different user \"interface\": all the cards that would normally start in the stock are fanned out face up, with the ones that would normally be playable if you were going through the stock three at a time automatically raised up to indicate that they are playable.",
+  description = "This is just ^beehive^ with a different user \"interface\": all the cards that would normally start " +
+  "in the stock are fanned out face up, with the ones that would normally be playable if you were going" +
+  " through the stock three at a time automatically raised up to indicate that they are playable.",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)
@@ -54,5 +55,4 @@ object BeehiveGalleryMode extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

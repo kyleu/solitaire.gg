@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Chelicera extends GameRules(
   id = "chelicera",
   title = "Chelicera",
-  description = "A variation on ^scorpion^ invented by Erik den Hollander in which we fill spaces with three cards from the stock instead of dealing from the stock.",
+  description = "A variation on ^scorpion^ invented by Erik den Hollander in which we fill spaces with three cards fr" +
+  "om the stock instead of dealing from the stock.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   stock = Some(
     StockRules(
@@ -29,5 +29,4 @@ object Chelicera extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

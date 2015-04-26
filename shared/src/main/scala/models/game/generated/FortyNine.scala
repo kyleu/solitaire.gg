@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object FortyNine extends GameRules(
   id = "fortynine",
   title = "Forty-Nine",
-  description = "This ^fortyandeight^ variation has forty-nine cards in a seven by seven tableau. You build down regardless of suit, moving cards one at a time.",
+  description = "This ^fortyandeight^ variation has forty-nine cards in a seven by seven tableau. You build down rega" +
+  "rdless of suit, moving cards one at a time.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object FortyNine extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -41,5 +37,4 @@ object FortyNine extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

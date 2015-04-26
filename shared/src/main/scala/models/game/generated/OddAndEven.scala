@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object OddAndEven extends GameRules(
   id = "oddandeven",
   title = "Odd and Even",
-  description = "A difficult, old and remarkably stupid game where foundation piles are built up by twos and no building is allowed on the tableau.",
+  description = "A difficult, old and remarkably stupid game where foundation piles are built up by twos and no build" +
+  "ing is allowed on the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object OddAndEven extends GameRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -49,5 +45,4 @@ object OddAndEven extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

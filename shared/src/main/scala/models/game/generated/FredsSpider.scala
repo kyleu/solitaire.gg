@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object FredsSpider extends GameRules(
   id = "fredsspider",
   title = "Fred's Spider",
-  description = "In this easy variation on ^spider^, designed by Fred Lunde of Livonia, Michigan, cards are dealt face up and can be moved to the foundation singly.",
+  description = "In this easy variation on ^spider^, designed by Fred Lunde of Livonia, Michigan, cards are dealt fac" +
+  "e up and can be moved to the foundation singly.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2
@@ -39,5 +39,4 @@ object FredsSpider extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

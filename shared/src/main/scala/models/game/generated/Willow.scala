@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Willow extends GameRules(
   id = "willow",
   title = "Willow",
-  description = "A ^klondike^ variation with four fan piles where we can build with cards of equal rank. Invented by Thomas Warfield.",
+  description = "A ^klondike^ variation with four fan piles where we can build with cards of equal rank. Invented by " +
+  "Thomas Warfield.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -34,5 +34,4 @@ object Willow extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

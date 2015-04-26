@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object ScorpionHead extends GameRules(
   id = "scorpionhead",
   title = "Scorpion Head",
@@ -27,13 +26,7 @@ object ScorpionHead extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Kings
     )
   ),
-  cells = Some(
-    CellRules(
-
-
-    )
-  ),
+  cells = Some(CellRules()),
   complete = false
 )
-// scalastyle:on
 

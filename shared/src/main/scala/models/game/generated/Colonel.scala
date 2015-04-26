@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Colonel extends GameRules(
   id = "colonel",
   title = "Colonel",
-  description = "A variation of ^signora^ invented by Thomas Warfield where we built in the same suit instead of alternating colors.",
+  description = "A variation of ^signora^ invented by Thomas Warfield where we built in the same suit instead of alte" +
+  "rnating colors.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Unknown)
@@ -18,11 +18,7 @@ object Colonel extends GameRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -53,5 +49,4 @@ object Colonel extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

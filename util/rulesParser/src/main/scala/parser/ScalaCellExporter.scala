@@ -10,8 +10,6 @@ object ScalaCellExporter {
 
     rules.cells match {
       case Some(c) =>
-        add("  cells = Some(")
-        add("    CellRules(\n")
         val props = collection.mutable.ArrayBuffer.empty[String]
         if(c.name != defaults.name) {
           props += "      name = \"" + c.name.replaceAllLiterally("\"", "") + "\""
@@ -31,9 +29,16 @@ object ScalaCellExporter {
         if(c.numEphemeral != defaults.numEphemeral) {
           props += "      numEphemeral = " + c.numEphemeral
         }
-        add(props.mkString(",\n"))
-        add("    )")
-        add("  ),")
+
+        if(props.isEmpty) {
+          add("  cells = Some(CellRules()),")
+        } else {
+          add("  cells = Some(")
+          add("    CellRules(\n")
+          add(props.mkString(",\n"))
+          add("    )")
+          add("  ),")
+        }
       case None =>  // no op
     }
   }

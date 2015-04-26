@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object BigApple extends GameRules(
   id = "bigapple",
   title = "Big Apple",
-  description = "A difficult variation of ^newyork^ with three cells instead of three waste piles, but where stacks can be moved.",
+  description = "A difficult variation of ^newyork^ with three cells instead of three waste piles, but where stacks c" +
+  "an be moved.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Unknown)
@@ -46,5 +46,4 @@ object BigApple extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

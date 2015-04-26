@@ -4,21 +4,17 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Kingsley extends GameRules(
   id = "kingsley",
   title = "Kingsley",
-  description = "Reverse ^klondike^ which in theory is no more difficult, but which proves hard to wrap your head around if you are used to playing it the other way round.",
+  description = "Reverse ^klondike^ which in theory is no more difficult, but which proves hard to wrap your head aro" +
+  "und if you are used to playing it the other way round.",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -38,5 +34,4 @@ object Kingsley extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

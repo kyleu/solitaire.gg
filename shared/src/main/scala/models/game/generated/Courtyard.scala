@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Courtyard extends GameRules(
   id = "courtyard",
   title = "Courtyard",
-  description = "A variation of ^busyaces^ which increases the difficulty by autofilling empty tableau spaces the waste and stock.",
+  description = "A variation of ^busyaces^ which increases the difficulty by autofilling empty tableau spaces the was" +
+  "te and stock.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Courtyard extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -43,5 +39,4 @@ object Courtyard extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

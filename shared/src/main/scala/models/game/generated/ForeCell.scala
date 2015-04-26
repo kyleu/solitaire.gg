@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object ForeCell extends GameRules(
   id = "forecell",
   title = "ForeCell",
-  description = "A Swedish predecessor to ^freecell^, originally one of many games called \"Napolean at St. Helena\". The initial layout is a bit different from FreeCell, and spaces can only be filled by Kings.",
+  description = "A Swedish predecessor to ^freecell^, originally one of many games called \"Napolean at St. Helena\"." +
+  " The initial layout is a bit different from FreeCell, and spaces can only be filled by Kings.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -34,5 +34,4 @@ object ForeCell extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

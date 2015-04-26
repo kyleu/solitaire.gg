@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object ChineseFreeCell extends GameRules(
   id = "chinesefreecell",
   title = "Chinese FreeCell",
@@ -30,13 +29,7 @@ object ChineseFreeCell extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Kings
     )
   ),
-  cells = Some(
-    CellRules(
-
-
-    )
-  ),
+  cells = Some(CellRules()),
   complete = false
 )
-// scalastyle:on
 

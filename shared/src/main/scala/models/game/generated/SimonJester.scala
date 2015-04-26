@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object SimonJester extends GameRules(
   id = "simonjester",
   title = "Simon Jester",
-  description = "A two-deck variant of ^simplesimon^ invented by Adam Selene. It is like ^spider^ except that all cards start face up in a triangular tableau and there are no further cards be dealt.",
+  description = "A two-deck variant of ^simplesimon^ invented by Adam Selene. It is like ^spider^ except that all car" +
+  "ds start face up in a triangular tableau and there are no further cards be dealt.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -33,5 +33,4 @@ object SimonJester extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

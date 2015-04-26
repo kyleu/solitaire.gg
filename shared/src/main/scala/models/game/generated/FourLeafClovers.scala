@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object FourLeafClovers extends GameRules(
   id = "fourleafclovers",
   title = "Four Leaf Clovers",
-  description = "A single foundation pile is built regardless of suit from ace to king and then from ace to king again with the help of a tableau where you can build both up and down.",
+  description = "A single foundation pile is built regardless of suit from ace to king and then from ace to king agai" +
+  "n with the help of a tableau where you can build both up and down.",
   foundations = Seq(
     FoundationRules(
       suitMatchRule = SuitMatchRule.Any,
@@ -31,5 +31,4 @@ object FourLeafClovers extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

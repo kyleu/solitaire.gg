@@ -4,21 +4,17 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object AuntMary extends GameRules(
   id = "auntmary",
   title = "Aunt Mary",
-  description = "A difficult ^klondike^ variation where the tableau contains one fewer pile but all cards are face up.",
+  description = "A difficult ^klondike^ variation where the tableau contains one fewer pile but all cards are face up" +
+  ".",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -36,5 +32,4 @@ object AuntMary extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

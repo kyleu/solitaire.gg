@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Carousel extends GameRules(
   id = "carousel",
   title = "Carousel",
@@ -18,11 +17,7 @@ object Carousel extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       name = "Ace Foundation",
@@ -67,5 +62,4 @@ object Carousel extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

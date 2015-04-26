@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Quizzie extends GameRules(
   id = "quizzie",
   title = "Quizzie",
-  description = "A variation of ^inquisitor^ by Thomas Warfield where you deal fewer cards in each pass through the deck.",
+  description = "A variation of ^inquisitor^ by Thomas Warfield where you deal fewer cards in each pass through the d" +
+  "eck.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -18,11 +18,7 @@ object Quizzie extends GameRules(
       cardsDealt = StockCardsDealt.FewerEachTime
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -42,5 +38,4 @@ object Quizzie extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

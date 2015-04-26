@@ -4,21 +4,17 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Klondike extends GameRules(
   id = "klondike",
   title = "Klondike",
-  description = "The world's most famous solitaire game features a triangular tableau where you build down in alternating colors.",
+  description = "The world's most famous solitaire game features a triangular tableau where you build down in alterna" +
+  "ting colors.",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -34,5 +30,4 @@ object Klondike extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Steve extends GameRules(
   id = "steve",
   title = "Steve",
-  description = "A two-deck ^klondike^ variant where we build regardless of suit, but can only move same-suit sequences.",
+  description = "A two-deck ^klondike^ variant where we build regardless of suit, but can only move same-suit sequenc" +
+  "es.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -37,5 +37,4 @@ object Steve extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

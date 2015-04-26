@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Gargantua extends GameRules(
   id = "gargantua",
   title = "Gargantua",
-  description = "A two-deck version of ^klondike^ invented by Albert Morehead and Geoffrey Mott-Smith. You get two passes through the deck, dealing cards one at a time.",
+  description = "A two-deck version of ^klondike^ invented by Albert Morehead and Geoffrey Mott-Smith. You get two pa" +
+  "sses through the deck, dealing cards one at a time.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Gargantua extends GameRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -38,5 +34,4 @@ object Gargantua extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

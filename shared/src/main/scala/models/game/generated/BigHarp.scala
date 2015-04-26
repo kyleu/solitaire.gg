@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object BigHarp extends GameRules(
   id = "bigharp",
   title = "Big Harp",
-  description = "A two-deck ^klondike^ variation that is different than ^harp^ in several ways, without really being that much bigger.",
+  description = "A two-deck ^klondike^ variation that is different than ^harp^ in several ways, without really being " +
+  "that much bigger.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -18,11 +18,7 @@ object BigHarp extends GameRules(
       cardsDealt = StockCardsDealt.Count(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -39,5 +35,4 @@ object BigHarp extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

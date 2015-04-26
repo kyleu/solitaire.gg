@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Giza extends GameRules(
   id = "giza",
   title = "Giza",
-  description = "Michael Keller's variation of ^pyramid^ has a tableau of cards instead of a stock, making it a completely open game.",
+  description = "Michael Keller's variation of ^pyramid^ has a tableau of cards instead of a stock, making it a compl" +
+  "etely open game.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   foundations = Seq(
     FoundationRules(
@@ -38,5 +38,4 @@ object Giza extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

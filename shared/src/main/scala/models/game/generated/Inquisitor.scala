@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Inquisitor extends GameRules(
   id = "inquisitor",
   title = "Inquisitor",
-  description = "This ^ladyjane^ variation by Thomas Warfield requires you to build in suit, but gives you an extra redeal.",
+  description = "This ^ladyjane^ variation by Thomas Warfield requires you to build in suit, but gives you an extra r" +
+  "edeal.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -18,11 +18,7 @@ object Inquisitor extends GameRules(
       cardsDealt = StockCardsDealt.Count(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -42,5 +38,4 @@ object Inquisitor extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

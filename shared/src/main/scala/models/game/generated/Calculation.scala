@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Calculation extends GameRules(
   id = "calculation",
   title = "Calculation",
-  description = "Basically similar to ^sirtommy^, but much more complex to play because each foundation pile advances by a different increment.",
+  description = "Basically similar to ^sirtommy^, but much more complex to play because each foundation pile advances" +
+  " by a different increment.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Manually,
@@ -43,5 +43,4 @@ object Calculation extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

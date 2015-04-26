@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Bureau extends GameRules(
   id = "bureau",
   title = "Bureau",
-  description = "This game has rules similar to ^klondike^, except you build the foundation in alternate colors and cannot fill spaces in the tableau.",
+  description = "This game has rules similar to ^klondike^, except you build the foundation in alternate colors and c" +
+  "annot fill spaces in the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Bureau extends GameRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -40,5 +36,4 @@ object Bureau extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

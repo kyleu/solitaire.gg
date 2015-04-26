@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object SirTommy extends GameRules(
   id = "sirtommy",
   title = "Sir Tommy",
-  description = "A classic old solitaire game where cards may be placed anywhere on the tableau, but cannot be rearranged.",
+  description = "A classic old solitaire game where cards may be placed anywhere on the tableau, but cannot be rearra" +
+  "nged.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Manually,
@@ -40,5 +40,4 @@ object SirTommy extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object ThreesCompany extends GameRules(
   id = "threescompany",
   title = "Three's Company",
-  description = "A rather difficult variation of ^deuces^ or ^busyaces^ with still fewer tableau piles but stack moves are allowed. Invented by Thomas Warfield.",
+  description = "A rather difficult variation of ^deuces^ or ^busyaces^ with still fewer tableau piles but stack move" +
+  "s are allowed. Invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Three)
@@ -18,11 +18,7 @@ object ThreesCompany extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -44,5 +40,4 @@ object ThreesCompany extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

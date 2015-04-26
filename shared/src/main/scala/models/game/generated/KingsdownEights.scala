@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object KingsdownEights extends GameRules(
   id = "kingsdowneights",
   title = "Kingsdown Eights",
-  description = "This variation of ^tournament^ has a tableau where you can build by alternate color instead of cells.",
+  description = "This variation of ^tournament^ has a tableau where you can build by alternate color instead of cells" +
+  ".",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -46,5 +46,4 @@ object KingsdownEights extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

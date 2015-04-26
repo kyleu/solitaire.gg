@@ -49,11 +49,11 @@ object ScalaExporter {
     add("import models.game._")
     add("import models.game.rules._")
     add("")
-    add("// scalastyle:off")
     add("object " + getObjectName(rules) + " extends GameRules(")
     add("  id = \"" + rules.id + "\",")
     add("  title = \"" + rules.title + "\",")
-    add("  description = \"" + rules.description.replaceAllLiterally("\"", "\\\"") + "\",")
+    val desc = rules.description.replaceAllLiterally("\"", "\\\"").grouped(100)
+    add("  description = \"" + desc.mkString("\" +\n  \"") + "\",")
     if(rules.victoryCondition != defaults.victoryCondition) {
       add("  victoryCondition = VictoryCondition." + cls(rules.victoryCondition) + ",")
     }
@@ -70,7 +70,6 @@ object ScalaExporter {
     ScalaPyramidExporter.exportPyramids(rules, ret)
     add("  complete = " + rules.complete)
     add(")")
-    add("// scalastyle:on")
     add("")
 
     ret.toString()

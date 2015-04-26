@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Kingdom extends GameRules(
   id = "kingdom",
   title = "Kingdom",
-  description = "A game where no building is allowed in the tableau and suits are ignored while building up the tableau. Our version may be slightly less dreadful than the usual.",
+  description = "A game where no building is allowed in the tableau and suits are ignored while building up the table" +
+  "au. Our version may be slightly less dreadful than the usual.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Kingdom extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -43,5 +39,4 @@ object Kingdom extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Bucket extends GameRules(
   id = "bucket",
   title = "Bucket",
-  description = "A ^canister^ variation which ends up looking rather like ^freecell^ without the cells. Naturally, it ends up being rather difficult.",
+  description = "A ^canister^ variation which ends up looking rather like ^freecell^ without the cells. Naturally, it" +
+  " ends up being rather difficult.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -28,5 +28,4 @@ object Bucket extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

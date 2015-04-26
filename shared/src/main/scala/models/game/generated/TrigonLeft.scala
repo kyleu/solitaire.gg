@@ -4,21 +4,12 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object TrigonLeft extends GameRules(
   id = "trigonleft",
   title = "Trigon Left",
   description = "A blend of ^trigon^ and ^movingleft^.",
-  stock = Some(
-    StockRules(
-
-    )
-  ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  stock = Some(StockRules()),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -37,5 +28,4 @@ object TrigonLeft extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

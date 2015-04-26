@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object NapoleonsQuadrilateral extends GameRules(
   id = "napoleonsquadrilateral",
   title = "Napoleon's Quadrilateral",
-  description = "This older, more difficult, version of ^napoleonssquare^ does not allow stack moves, but moves a lot of cards to the foundation during the deal.",
+  description = "This older, more difficult, version of ^napoleonssquare^ does not allow stack moves, but moves a lot" +
+  " of cards to the foundation during the deal.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object NapoleonsQuadrilateral extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -44,5 +40,4 @@ object NapoleonsQuadrilateral extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

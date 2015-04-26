@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object BeleagueredCastle extends GameRules(
   id = "beleagueredcastle",
   title = "Beleaguered Castle",
-  description = "A challenging game with simple rules. All cards start dealt face up and you build down regardless of suit, moving only single cards. Somewhat similar to ^bakersdozen^.",
+  description = "A challenging game with simple rules. All cards start dealt face up and you build down regardless of" +
+  " suit, moving only single cards. Somewhat similar to ^bakersdozen^.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -30,5 +30,4 @@ object BeleagueredCastle extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

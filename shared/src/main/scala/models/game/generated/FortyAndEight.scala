@@ -4,11 +4,12 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object FortyAndEight extends GameRules(
   id = "fortyandeight",
   title = "Forty and Eight",
-  description = "Two decks, forty cards in the tableau, eight foundation piles, building down in the same suit. You can only move single cards. Often it feels like nothing is happening for a long time, and then the game works out after all. A good game for making you feel smart.",
+  description = "Two decks, forty cards in the tableau, eight foundation piles, building down in the same suit. You c" +
+  "an only move single cards. Often it feels like nothing is happening for a long time, and then the ga" +
+  "me works out after all. A good game for making you feel smart.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +18,7 @@ object FortyAndEight extends GameRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -42,5 +39,4 @@ object FortyAndEight extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

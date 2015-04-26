@@ -9,7 +9,6 @@ object ScalaDeckOptionsExporter {
     def add(s: String) = ret ++= s + "\n"
 
     if(rules.deckOptions != defaults) {
-      add("  deckOptions = DeckOptions(")
       val props = collection.mutable.ArrayBuffer.empty[String]
       if(rules.deckOptions.numDecks != defaults.numDecks) {
         props += "    numDecks = " + rules.deckOptions.numDecks
@@ -23,8 +22,14 @@ object ScalaDeckOptionsExporter {
       if(rules.deckOptions.lowRank != defaults.lowRank) {
         props += "    lowRank = " + rules.deckOptions.lowRank.map("Rank." + _)
       }
-      add(props.mkString(",\n"))
-      add("  ),")
+
+      if(props.isEmpty) {
+        add("  deckOptions = DeckOptions(),")
+      } else {
+        add("  deckOptions = DeckOptions(")
+        add(props.mkString(",\n"))
+        add("  ),")
+      }
     }
   }
 }

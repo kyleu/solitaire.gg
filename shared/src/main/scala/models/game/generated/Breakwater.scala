@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Breakwater extends GameRules(
   id = "breakwater",
   title = "Breakwater",
@@ -17,11 +16,7 @@ object Breakwater extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -41,5 +36,4 @@ object Breakwater extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

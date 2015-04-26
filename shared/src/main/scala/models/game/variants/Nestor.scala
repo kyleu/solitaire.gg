@@ -30,10 +30,10 @@ object Nestor extends GameVariant.Description {
 }
 
 class Nestor(override val gameId: UUID, override val seed: Int) extends GameVariant("nestor", Nestor, gameId, seed, Nestor.initialMoves) {
-//  private[this] val options = PileOptionsHelper.tableau.combine(PileOptions(
-//    selectCardConstraint = Some(Constraints.never),
-//    dragFromConstraint = Some(Constraints.topCardOnly),
-//    dragToConstraint = Some(Constraints.sameRank),
-//    dragToAction = Some(DragToActions.remove())
-//  ))
+  //  private[this] val options = PileOptionsHelper.tableau.combine(PileOptions(
+  //    selectCardConstraint = Some(Constraints.never),
+  //    dragFromConstraint = Some(Constraints.topCardOnly),
+  //    dragToConstraint = Some(Constraints.sameRank),
+  //    dragToAction = Some(DragToActions.remove())
+  //  ))
 }

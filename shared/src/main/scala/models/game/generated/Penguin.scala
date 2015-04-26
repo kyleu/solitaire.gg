@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Penguin extends GameRules(
   id = "penguin",
   title = "Penguin",
-  description = "A satisfying game with seven cells developed by David Parlett where one of the cards you need to start the foundation is always buried at the bottom of the first tableau pile.",
+  description = "A satisfying game with seven cells developed by David Parlett where one of the cards you need to sta" +
+  "rt the foundation is always buried at the bottom of the first tableau pile.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),
@@ -39,5 +39,4 @@ object Penguin extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

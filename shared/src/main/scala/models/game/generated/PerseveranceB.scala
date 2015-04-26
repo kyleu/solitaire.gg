@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object PerseveranceB extends GameRules(
   id = "perseveranceb",
   title = "Perseverance B",
-  description = "An alternate version of ^perseverancea^ where there are only two redeals, the redeal method is different, and kings are automatically moved to the bottoms of their stacks.",
+  description = "An alternate version of ^perseverancea^ where there are only two redeals, the redeal method is diffe" +
+  "rent, and kings are automatically moved to the bottoms of their stacks.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -30,5 +30,4 @@ object PerseveranceB extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object FortressOfMercy extends GameRules(
   id = "fortressofmercy",
   title = "Fortress of Mercy",
-  description = "A variation of ^fortress^ that allows you one \"merci\" move, in which any one card can be moved to the top of its stack.",
+  description = "A variation of ^fortress^ that allows you one \"merci\" move, in which any one card can be moved to " +
+  "the top of its stack.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -31,5 +31,4 @@ object FortressOfMercy extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

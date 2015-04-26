@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object SuperFlowerGarden extends GameRules(
   id = "superflowergarden",
   title = "Super Flower Garden",
-  description = "This is an easier version of ^labellelucie^ in which one may build regardless of suit. It is unrelated to ^flowergarden^.",
+  description = "This is an easier version of ^labellelucie^ in which one may build regardless of suit. It is unrelat" +
+  "ed to ^flowergarden^.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -28,5 +28,4 @@ object SuperFlowerGarden extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

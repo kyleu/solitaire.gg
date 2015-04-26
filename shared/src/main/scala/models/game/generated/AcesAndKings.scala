@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object AcesAndKings extends GameRules(
   id = "acesandkings",
   title = "Aces and Kings",
-  description = "Build up on one foundation, down on the other, but don't build at all on the tableau. Suits don't matter.",
+  description = "Build up on one foundation, down on the other, but don't build at all on the tableau. Suits don't ma" +
+  "tter.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object AcesAndKings extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       name = "Ace Foundation",
@@ -59,5 +55,4 @@ object AcesAndKings extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

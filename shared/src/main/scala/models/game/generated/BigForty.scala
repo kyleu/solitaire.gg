@@ -4,21 +4,12 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object BigForty extends GameRules(
   id = "bigforty",
   title = "Big Forty",
   description = "A one-deck variant of ^fortythieves^ that allows stack moves.",
-  stock = Some(
-    StockRules(
-
-    )
-  ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  stock = Some(StockRules()),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -39,5 +30,4 @@ object BigForty extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

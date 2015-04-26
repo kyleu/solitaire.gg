@@ -4,21 +4,17 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object BlindAlleys extends GameRules(
   id = "blindalleys",
   title = "Blind Alleys",
-  description = "A ^klondike^ variant with a square tableau, differing from ^passeul^ only in the number of passes through the deck allowed.",
+  description = "A ^klondike^ variant with a square tableau, differing from ^passeul^ only in the number of passes th" +
+  "rough the deck allowed.",
   stock = Some(
     StockRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -36,5 +32,4 @@ object BlindAlleys extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

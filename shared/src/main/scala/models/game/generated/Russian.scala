@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Russian extends GameRules(
   id = "russian",
   title = "Russian",
-  description = "A harder variation of ^yukon^ where you must build down in the same suit instead of in alternate colors.",
+  description = "A harder variation of ^yukon^ where you must build down in the same suit instead of in alternate col" +
+  "ors.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -29,5 +29,4 @@ object Russian extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

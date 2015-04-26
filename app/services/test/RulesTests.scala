@@ -21,8 +21,4 @@ class RulesTests {
   def getDeck(rules: GameRules, rng: Random) = {
     Deck.shuffled(rng, rules.deckOptions.numDecks)
   }
-
-  def getPileGroups(rules: GameRules) = {
-
-  }
 }

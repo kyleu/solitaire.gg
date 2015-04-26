@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Cornelius extends GameRules(
   id = "cornelius",
   title = "Cornelius",
-  description = "A version of ^fortyandeight^ that allows non-top cards to be played (moving whatever cards are on top of them along with them) as in ^yukon^.",
+  description = "A version of ^fortyandeight^ that allows non-top cards to be played (moving whatever cards are on to" +
+  "p of them along with them) as in ^yukon^.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Cornelius extends GameRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -43,5 +39,4 @@ object Cornelius extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

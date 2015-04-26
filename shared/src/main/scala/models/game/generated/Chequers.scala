@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Chequers extends GameRules(
   id = "chequers",
   title = "Chequers",
-  description = "This game has twenty-five tableau piles where you can build up or down, and you build up on half the foundations, and down on the others. It needs a large screen.",
+  description = "This game has twenty-five tableau piles where you can build up or down, and you build up on half the" +
+  " foundations, and down on the others. It needs a large screen.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -53,5 +53,4 @@ object Chequers extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

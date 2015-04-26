@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object DemonsAndThieves extends GameRules(
   id = "demonsandthieves",
   title = "Demons and Thieves",
-  description = "In this game, the tableau is split into two halves, one half where you play by ^canfield^ rules, and one half where you play by ^fortythieves^ rules.",
+  description = "In this game, the tableau is split into two halves, one half where you play by ^canfield^ rules, and" +
+  " one half where you play by ^fortythieves^ rules.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Some(Rank.Unknown)
@@ -18,11 +18,7 @@ object DemonsAndThieves extends GameRules(
       maximumDeals = Some(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -60,5 +56,4 @@ object DemonsAndThieves extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

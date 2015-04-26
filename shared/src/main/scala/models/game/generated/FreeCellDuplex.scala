@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object FreeCellDuplex extends GameRules(
   id = "freecellduplex",
   title = "FreeCell Duplex",
@@ -37,5 +36,4 @@ object FreeCellDuplex extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

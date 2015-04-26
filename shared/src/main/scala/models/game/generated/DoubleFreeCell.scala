@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object DoubleFreeCell extends GameRules(
   id = "doublefreecell",
   title = "Double FreeCell",
@@ -39,5 +38,4 @@ object DoubleFreeCell extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

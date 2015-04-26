@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object BrownRecluse extends GameRules(
   id = "brownrecluse",
   title = "Brown Recluse",
-  description = "This ^spider^ variant by Thomas Warfield has a stock and a waste pile. The tableau starts with just one card in each column, but spaces are autofilled from the waste or stock.",
+  description = "This ^spider^ variant by Thomas Warfield has a stock and a waste pile. The tableau starts with just " +
+  "one card in each column, but spaces are autofilled from the waste or stock.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2
@@ -18,11 +18,7 @@ object BrownRecluse extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
@@ -37,5 +33,4 @@ object BrownRecluse extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

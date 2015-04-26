@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Balcony extends GameRules(
   id = "balcony",
   title = "Balcony",
-  description = "Similar to ^canfield^, but foundations are built up in alternate colors, reserve cards can only be played to the foundation, and empty spaces are autofilled from the stock.",
+  description = "Similar to ^canfield^, but foundations are built up in alternate colors, reserve cards can only be p" +
+  "layed to the foundation, and empty spaces are autofilled from the stock.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),
@@ -17,11 +17,7 @@ object Balcony extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -52,5 +48,4 @@ object Balcony extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

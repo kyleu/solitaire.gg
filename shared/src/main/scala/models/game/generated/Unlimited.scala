@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Unlimited extends GameRules(
   id = "unlimited",
   title = "Unlimited",
@@ -12,16 +11,8 @@ object Unlimited extends GameRules(
   deckOptions = DeckOptions(
     numDecks = 2
   ),
-  stock = Some(
-    StockRules(
-
-    )
-  ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  stock = Some(StockRules()),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -41,5 +32,4 @@ object Unlimited extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,21 +4,13 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Cassim extends GameRules(
   id = "cassim",
   title = "Cassim",
-  description = "A version of ^alibaba^ with a smaller tableau and an infinity of redeals. In the <em>One Thousand and One Nights</em> Cassim was Ali Baba's brother and the leader of the ^fortythieves^.",
-  stock = Some(
-    StockRules(
-
-    )
-  ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  description = "A version of ^alibaba^ with a smaller tableau and an infinity of redeals. In the <em>One Thousand an" +
+  "d One Nights</em> Cassim was Ali Baba's brother and the leader of the ^fortythieves^.",
+  stock = Some(StockRules()),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -38,5 +30,4 @@ object Cassim extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

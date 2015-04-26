@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object AllInARow extends GameRules(
   id = "allinarow",
   title = "All in a Row",
-  description = "A variation of ^golf^ without a stock. Most deals are winnable, but require a lot of advance planning to win.",
+  description = "A variation of ^golf^ without a stock. Most deals are winnable, but require a lot of advance plannin" +
+  "g to win.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(
     FoundationRules(
@@ -33,5 +33,4 @@ object AllInARow extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Strata extends GameRules(
   id = "strata",
   title = "Strata",
@@ -13,11 +12,7 @@ object Strata extends GameRules(
     numDecks = 2,
     ranks = Seq(Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace)
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -37,5 +32,4 @@ object Strata extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

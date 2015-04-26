@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Contradance extends GameRules(
   id = "contradance",
   title = "Contradance",
-  description = "A variation of ^sixesandsevens^ that is just as brainless as ^captivequeens^, but requires vastly more luck to ever win.",
+  description = "A variation of ^sixesandsevens^ that is just as brainless as ^captivequeens^, but requires vastly mo" +
+  "re luck to ever win.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Contradance extends GameRules(
       maximumDeals = Some(2)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -43,5 +39,4 @@ object Contradance extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

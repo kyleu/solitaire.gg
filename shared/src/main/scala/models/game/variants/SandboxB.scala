@@ -12,12 +12,12 @@ object SandboxB extends GameVariant.Description {
   override val maxPlayers = 3
 
   def initialMoves(gameState: GameState, deck: Deck) = {
-    gameState.addCards(deck.getCards(turnFaceUp = true), "waste", reveal = true)
+    gameState.addCards(deck.getCards(turnFaceUp = true), "waste-1", reveal = true)
   }
 }
 
 class SandboxB(override val gameId: UUID, override val seed: Int) extends GameVariant("sandboxb", SandboxB, gameId, seed, SandboxB.initialMoves) {
-//  val piles = List(
-//    Pile("waste", "waste", PileOptionsHelper.waste.combine(PileOptions(cardsShown = Some(52), direction = Some("r"))))
-//  )
+  //  val piles = List(
+  //    Pile("waste", "waste", PileOptionsHelper.waste.combine(PileOptions(cardsShown = Some(52), direction = Some("r"))))
+  //  )
 }

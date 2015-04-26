@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Tournament extends GameRules(
   id = "tournament",
   title = "Tournament",
-  description = "A two-deck game where no building is allowed on the tableau, and you must rely on eight cells to move your cards to the foundation.",
+  description = "A two-deck game where no building is allowed on the tableau, and you must rely on eight cells to mov" +
+  "e your cards to the foundation.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -55,5 +55,4 @@ object Tournament extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

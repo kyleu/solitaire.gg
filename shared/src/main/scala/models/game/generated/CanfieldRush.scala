@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object CanfieldRush extends GameRules(
   id = "canfieldrush",
   title = "Canfield Rush",
-  description = "A ^canfield^ variant where cards are dealt by threes in the first pass, by twos in the second and one-at-a-time in the last. Easier than standard Canfield, but still a challenging game.",
+  description = "A ^canfield^ variant where cards are dealt by threes in the first pass, by twos in the second and on" +
+  "e-at-a-time in the last. Easier than standard Canfield, but still a challenging game.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),
@@ -18,11 +18,7 @@ object CanfieldRush extends GameRules(
       cardsDealt = StockCardsDealt.FewerEachTime
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -51,5 +47,4 @@ object CanfieldRush extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

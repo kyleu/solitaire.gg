@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Alaska extends GameRules(
   id = "alaska",
   title = "Alaska",
-  description = "A somewhat more difficult variation of ^yukon^ in which you can build up or down, but must build in the same suit. I think they call it \"Alaska\" because it is so cool when things work out.",
+  description = "A somewhat more difficult variation of ^yukon^ in which you can build up or down, but must build in " +
+  "the same suit. I think they call it \"Alaska\" because it is so cool when things work out.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -30,5 +30,4 @@ object Alaska extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

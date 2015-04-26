@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object YukonOneSuit extends GameRules(
   id = "yukononesuit",
   title = "Yukon One Suit",
-  description = "A one-suit variation of ^yukon^. The game is almost always winnable, but still makes you think a bit.",
+  description = "A one-suit variation of ^yukon^. The game is almost always winnable, but still makes you think a bit" +
+  ".",
   deckOptions = DeckOptions(
     numDecks = 4
   ),
@@ -32,5 +32,4 @@ object YukonOneSuit extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

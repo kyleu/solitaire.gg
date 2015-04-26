@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object MilliganCell extends GameRules(
   id = "milligancell",
   title = "Milligan Cell",
@@ -34,13 +33,7 @@ object MilliganCell extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Kings
     )
   ),
-  cells = Some(
-    CellRules(
-
-
-    )
-  ),
+  cells = Some(CellRules()),
   complete = false
 )
-// scalastyle:on
 

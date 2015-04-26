@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Stalactites extends GameRules(
   id = "stalactites",
   title = "Stalactites",
-  description = "This suitless game with no building requires you to clear the tableau with only two cells you help you.",
+  description = "This suitless game with no building requires you to clear the tableau with only two cells you help y" +
+  "ou.",
   deckOptions = DeckOptions(
     lowRank = None
   ),
@@ -40,5 +40,4 @@ object Stalactites extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

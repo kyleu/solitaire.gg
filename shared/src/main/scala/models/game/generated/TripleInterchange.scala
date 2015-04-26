@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object TripleInterchange extends GameRules(
   id = "tripleinterchange",
   title = "Triple Interchange",
@@ -12,16 +11,8 @@ object TripleInterchange extends GameRules(
   deckOptions = DeckOptions(
     numDecks = 3
   ),
-  stock = Some(
-    StockRules(
-
-    )
-  ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  stock = Some(StockRules()),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 12,
@@ -42,5 +33,4 @@ object TripleInterchange extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

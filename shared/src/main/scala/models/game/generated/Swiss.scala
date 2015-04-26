@@ -4,7 +4,6 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Swiss extends GameRules(
   id = "swiss",
   title = "Swiss",
@@ -17,11 +16,7 @@ object Swiss extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -40,5 +35,4 @@ object Swiss extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

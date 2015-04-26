@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Yukon extends GameRules(
   id = "yukon",
   title = "Yukon",
-  description = "A well-known game with no stock, in which stacks of cards can be moved even if they aren't in sequence.",
+  description = "A well-known game with no stock, in which stacks of cards can be moved even if they aren't in sequen" +
+  "ce.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -28,5 +28,4 @@ object Yukon extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,12 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object MissMilligan extends GameRules(
   id = "missmilligan",
   title = "Miss Milligan",
-  description = "Starting with one card in each column, build sequences down by alternate color. Deal new cards from the deck into all columns. When the deck is empty, gain a reserve area you can waive a stack of cards into.",
+  description = "Starting with one card in each column, build sequences down by alternate color. Deal new cards from " +
+  "the deck into all columns. When the deck is empty, gain a reserve area you can waive a stack of card" +
+  "s into.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -36,5 +37,4 @@ object MissMilligan extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

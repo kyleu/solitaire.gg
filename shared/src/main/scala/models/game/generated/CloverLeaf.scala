@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object CloverLeaf extends GameRules(
   id = "cloverleaf",
   title = "Clover Leaf",
-  description = "An easy game invented by Thomas Warfield where you build up or down on the tableau, two foundation piles build up, and two build down.",
+  description = "An easy game invented by Thomas Warfield where you build up or down on the tableau, two foundation p" +
+  "iles build up, and two build down.",
   foundations = Seq(
     FoundationRules(
       name = "Red Foundation",
@@ -43,5 +43,4 @@ object CloverLeaf extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

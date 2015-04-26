@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object BuffaloBill extends GameRules(
   id = "buffalobill",
   title = "Buffalo Bill",
-  description = "In this easy variation of ^littlebillie^, by David Parlett, there are more fans and the reserve cells start empty, but there are no redeals.",
+  description = "In this easy variation of ^littlebillie^, by David Parlett, there are more fans and the reserve cell" +
+  "s start empty, but there are no redeals.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -51,5 +51,4 @@ object BuffaloBill extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

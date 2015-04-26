@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object KingCell extends GameRules(
   id = "kingcell",
   title = "KingCell",
-  description = "A variation of ^freecell^ where we build down regardless of suit instead of by alternate color, and only kings may be played to empty tableau spaces",
+  description = "A variation of ^freecell^ where we build down regardless of suit instead of by alternate color, and " +
+  "only kings may be played to empty tableau spaces",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -27,13 +27,7 @@ object KingCell extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Kings
     )
   ),
-  cells = Some(
-    CellRules(
-
-
-    )
-  ),
+  cells = Some(CellRules()),
   complete = false
 )
-// scalastyle:on
 

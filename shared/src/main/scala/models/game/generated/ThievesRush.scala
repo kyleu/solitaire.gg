@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object ThievesRush extends GameRules(
   id = "thievesrush",
   title = "Thieves Rush",
-  description = "A ^fortythieves^ variant invented by Thomas Warfield where in each pass through the deck you deal in smaller chunks.",
+  description = "A ^fortythieves^ variant invented by Thomas Warfield where in each pass through the deck you deal in" +
+  " smaller chunks.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -18,11 +18,7 @@ object ThievesRush extends GameRules(
       cardsDealt = StockCardsDealt.FewerEachTime
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -43,5 +39,4 @@ object ThievesRush extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

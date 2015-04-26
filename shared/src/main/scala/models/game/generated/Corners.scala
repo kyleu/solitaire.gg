@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Corners extends GameRules(
   id = "corners",
   title = "Corners",
-  description = "This completely mindless variation on ^czarina^ allows no building on the tableau, but allows three passes through the stock.",
+  description = "This completely mindless variation on ^czarina^ allows no building on the tableau, but allows three " +
+  "passes through the stock.",
   deckOptions = DeckOptions(
     lowRank = Some(Rank.Unknown)
   ),
@@ -17,11 +17,7 @@ object Corners extends GameRules(
       maximumDeals = Some(3)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -43,5 +39,4 @@ object Corners extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

@@ -4,11 +4,11 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Corona extends GameRules(
   id = "corona",
   title = "Corona",
-  description = "A game similar to ^fortyandeight^ where spaces are autofilled from the waste and stock. The best way to win seems to be to get lucky.",
+  description = "A game similar to ^fortyandeight^ where spaces are autofilled from the waste and stock. The best way" +
+  " to win seems to be to get lucky.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -17,11 +17,7 @@ object Corona extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -43,5 +39,4 @@ object Corona extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 

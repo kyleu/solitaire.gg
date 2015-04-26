@@ -4,21 +4,17 @@ package models.game.generated
 import models.game._
 import models.game.rules._
 
-// scalastyle:off
 object Australian extends GameRules(
   id = "australian",
   title = "Australian",
-  description = "A variation of ^klondike^ that allows non-top cards to be moved (with the cards on top of them) as in ^yukon^.",
+  description = "A variation of ^klondike^ that allows non-top cards to be moved (with the cards on top of them) as i" +
+  "n ^yukon^.",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)
     )
   ),
-  waste = Some(
-    WasteRules(
-
-    )
-  ),
+  waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -39,5 +35,4 @@ object Australian extends GameRules(
   ),
   complete = false
 )
-// scalastyle:on
 
