@@ -9,7 +9,6 @@ object SpiderTwoSuits extends GameRules(
   title = "Spider Two Suits",
   description = "The name says it \"all\": ^spider^ with only two suits.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 4,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -17,7 +16,7 @@ object SpiderTwoSuits extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.TableauIfNoneEmpty,
       maximumDeals = Some(1),
@@ -27,9 +26,8 @@ object SpiderTwoSuits extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 16,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +45,7 @@ object SpiderTwoSuits extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 10,
       initialCards = InitialCards.Custom,
@@ -67,9 +65,7 @@ object SpiderTwoSuits extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

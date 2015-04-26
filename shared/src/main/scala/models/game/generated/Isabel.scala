@@ -8,28 +8,9 @@ object Isabel extends GameRules(
   id = "isabel",
   title = "Isabel",
   description = "Remove pairs of cards of equal rank from a 13x4 tableau.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
-  stock = Some(
-    Stock(
-      name = "Stock",
-      dealTo = StockDealTo.Waste,
-      maximumDeals = Some(1),
-      cardsDealt = StockCardsDealt.Count(1),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
-    )
-  ),
-  waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.AnyCard,
@@ -47,7 +28,7 @@ object Isabel extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 13,
       initialCards = InitialCards.Count(4),
@@ -67,9 +48,7 @@ object Isabel extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

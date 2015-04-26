@@ -9,7 +9,6 @@ object SpiderThreeDeck extends GameRules(
   title = "Spider Three Deck",
   description = "This three-deck version of ^spider^ is a bit easier than ^bigspider^.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 3,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -17,7 +16,7 @@ object SpiderThreeDeck extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.TableauIfNoneEmpty,
       maximumDeals = Some(1),
@@ -27,9 +26,8 @@ object SpiderThreeDeck extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 12,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +45,7 @@ object SpiderThreeDeck extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 12,
       initialCards = InitialCards.Custom,
@@ -67,9 +65,7 @@ object SpiderThreeDeck extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

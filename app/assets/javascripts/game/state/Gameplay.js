@@ -67,13 +67,13 @@ define([
   Gameplay.prototype.onMessage = function(c, v) {
     switch(c) {
       case "GameJoined":
-        this.game.playmat = new Playmat(this.game, v.state.layouts);
+        this.game.playmat = new Playmat(this.game, v.state.pileSets, v.state.layout);
         this.game.id = v.state.gameId;
         this.game.variant = v.variant;
         this.game.seed = v.state.seed;
         this.game.possibleMoves = v.moves;
-        this.loadPiles(v.state.piles);
-        this.loadCards(v.state.piles);
+        this.loadPileSets(v.state.pileSets);
+        this.loadCards(v.state.pileSets);
         break;
       case "PossibleMoves":
         this.game.possibleMoves = v.moves;
@@ -143,22 +143,29 @@ define([
     target.addCard(movedCard);
   };
 
-  Gameplay.prototype.loadPiles = function(piles) {
-    for(var pileIndex in piles) {
-      var pile = piles[pileIndex];
-      var pileObj = new Pile(this.game, pile.id, pile.behavior, pile.options);
-      this.game.playmat.addPile(pileObj);
+  Gameplay.prototype.loadPileSets = function(pileSets) {
+    this.game.pileSets = pileSets;
+    for(var pileSetIndex in pileSets) {
+      var pileSet = pileSets[pileSetIndex];
+      for(var pileIndex in pileSet.piles) {
+        var pile = pileSet.piles[pileIndex];
+        var pileObj = new Pile(this.game, pile.id, pileSet, pile.options);
+        this.game.playmat.addPile(pileObj);
+      }
     }
   };
 
-  Gameplay.prototype.loadCards = function(piles) {
-    for(var pileIndex in piles) {
-      var pile = piles[pileIndex];
-      var pileObj = this.game.piles[pile.id];
-      for(var cardIndex in pile.cards) {
-        var card = pile.cards[cardIndex];
-        var cardObj = new Card(this.game, card.id, card.r, card.s, card.u);
-        pileObj.addCard(cardObj);
+  Gameplay.prototype.loadCards = function(pileSets) {
+    for(var pileSetIndex in pileSets) {
+      var pileSet = pileSets[pileSetIndex];
+      for(var pileIndex in pileSet.piles) {
+        var pile = pileSet.piles[pileIndex];
+        var pileObj = this.game.piles[pile.id];
+        for(var cardIndex in pile.cards) {
+          var card = pile.cards[cardIndex];
+          var cardObj = new Card(this.game, card.id, card.r, card.s, card.u);
+          pileObj.addCard(cardObj);
+        }
       }
     }
   };

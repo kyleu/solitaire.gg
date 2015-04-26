@@ -9,27 +9,8 @@ object AllInARow extends GameRules(
   title = "All in a Row",
   description = "A variation of ^golf^ without a stock. Most deals are winnable, but require a lot of advance planning to win.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
-  stock = Some(
-    Stock(
-      name = "Stock",
-      dealTo = StockDealTo.Foundation,
-      maximumDeals = Some(1),
-      cardsDealt = StockCardsDealt.Count(1),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
-    )
-  ),
-  waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 1,
       lowRank = FoundationLowRank.AnyCard,
@@ -47,7 +28,7 @@ object AllInARow extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 13,
       initialCards = InitialCards.Count(4),
@@ -67,9 +48,7 @@ object AllInARow extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

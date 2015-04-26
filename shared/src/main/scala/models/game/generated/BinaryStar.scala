@@ -9,27 +9,14 @@ object BinaryStar extends GameRules(
   title = "Binary Star",
   description = "Thomas Warfield's two-deck version of ^blackhole^ has two foundation piles.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
     ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
     lowRank = Some(Rank.Ace)
   ),
-  stock = Some(
-    Stock(
-      name = "Stock",
-      dealTo = StockDealTo.Foundation,
-      maximumDeals = Some(1),
-      cardsDealt = StockCardsDealt.Count(1),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
-    )
-  ),
-  waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 1,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -45,7 +32,7 @@ object BinaryStar extends GameRules(
       autoMoveCards = true,
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     ),
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 1,
       lowRank = FoundationLowRank.DeckHighRank,
@@ -63,7 +50,7 @@ object BinaryStar extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 17,
       initialCards = InitialCards.Count(6),
@@ -81,30 +68,9 @@ object BinaryStar extends GameRules(
       actionDuringDeal = PileAction.None,
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
-    ),
-    TableauSet(
-      name = "Tableau",
-      numPiles = 8,
-      initialCards = InitialCards.Count(4),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      rankMatchRuleForMovingStacks = RankMatchRule.Down,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
-      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      maxCards = 0,
-      actionDuringDeal = PileAction.None,
-      actionAfterDeal = PileAction.None,
-      pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

@@ -8,28 +8,9 @@ object DoubletCell extends GameRules(
   id = "doubletcell",
   title = "Doublet Cell",
   description = "A combination between ^doublets^ and ^freecell^.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRankAndColor,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
-  stock = Some(
-    Stock(
-      name = "Stock",
-      dealTo = StockDealTo.Never,
-      maximumDeals = Some(1),
-      cardsDealt = StockCardsDealt.Count(1),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
-    )
-  ),
-  waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.AnyCard,
@@ -47,7 +28,7 @@ object DoubletCell extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,
@@ -68,24 +49,12 @@ object DoubletCell extends GameRules(
     )
   ),
   cells = Some(
-    CellSet(
+    CellRules(
 
-      name = "Cell",
-
-      pluralName = "Cells",
-
-      numPiles = 4,
-
-      canMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-
-      initialCards = 0,
-
-      numEphemeral = 0
 
     )
   ),
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

@@ -8,8 +8,6 @@ object Fly extends GameRules(
   id = "fly",
   title = "Fly",
   description = "A variation of ^frog^ where the aces start on the foundation.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -17,7 +15,7 @@ object Fly extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Manually,
       maximumDeals = Some(1),
@@ -27,9 +25,8 @@ object Fly extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +44,7 @@ object Fly extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 5,
       initialCards = InitialCards.Count(0),
@@ -67,21 +64,15 @@ object Fly extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
-    ReserveSet(
-
+    ReserveRules(
       name = "Fly",
-
       numPiles = 1,
-
       initialCards = 13,
-
       cardsFaceDown = 0
-
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

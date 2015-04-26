@@ -9,7 +9,6 @@ object BrownRecluse extends GameRules(
   title = "Brown Recluse",
   description = "This ^spider^ variant by Thomas Warfield has a stock and a waste pile. The tableau starts with just one card in each column, but spaces are autofilled from the waste or stock.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -17,7 +16,7 @@ object BrownRecluse extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -28,18 +27,34 @@ object BrownRecluse extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
-  foundations = Nil,
-  tableaus = Nil,
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  tableaus = Seq(
+    TableauRules(
+      name = "Tableau",
+      numPiles = 10,
+      initialCards = InitialCards.Count(1),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.Any,
+      rankMatchRuleForBuilding = RankMatchRule.Down,
+      wrapFromKingToAce = true,
+      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
+      rankMatchRuleForMovingStacks = RankMatchRule.Down,
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
+      emptyFilledWith = TableauFillEmptyWith.Kings,
+      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
+      maxCards = 0,
+      actionDuringDeal = PileAction.None,
+      actionAfterDeal = PileAction.None,
+      pilesWithLowCardsAtBottom = 0
+    )
+  ),
+  complete = false
 )
 // scalastyle:on
 

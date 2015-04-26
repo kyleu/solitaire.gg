@@ -8,7 +8,6 @@ object Anubis extends GameRules(
   id = "anubis",
   title = "Anubis",
   description = "A variation of ^doublepyramid^ with three waste piles.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -17,7 +16,7 @@ object Anubis extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(2),
@@ -28,15 +27,14 @@ object Anubis extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 3,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -53,31 +51,8 @@ object Anubis extends GameRules(
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     )
   ),
-  tableaus = Seq(
-    TableauSet(
-      name = "Tableau",
-      numPiles = 8,
-      initialCards = InitialCards.Count(4),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      rankMatchRuleForMovingStacks = RankMatchRule.Down,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
-      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      maxCards = 0,
-      actionDuringDeal = PileAction.None,
-      actionAfterDeal = PileAction.None,
-      pilesWithLowCardsAtBottom = 0
-    )
-  ),
-  cells = None,
-  reserves = None,
   pyramids = Seq(
-    PyramidSet(
+    PyramidRules(
       name = "Pyramid",
       pyramidType = PyramidType.Standard,
       height = 7,
@@ -91,7 +66,8 @@ object Anubis extends GameRules(
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       emptyFilledWith = PyramidFillEmptyWith.None
     )
-  )
+  ),
+  complete = false
 )
 // scalastyle:on
 

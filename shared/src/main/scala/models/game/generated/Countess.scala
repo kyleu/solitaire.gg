@@ -8,8 +8,6 @@ object Countess extends GameRules(
   id = "countess",
   title = "Countess",
   description = "A ^canfield^ variation with four reserves.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 1,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -17,7 +15,7 @@ object Countess extends GameRules(
     lowRank = Some(Rank.Unknown)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(3),
@@ -28,15 +26,14 @@ object Countess extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -54,7 +51,7 @@ object Countess extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 4,
       initialCards = InitialCards.Count(1),
@@ -74,21 +71,15 @@ object Countess extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
-    ReserveSet(
-
+    ReserveRules(
       name = "Reserve",
-
       numPiles = 4,
-
       initialCards = 3,
-
       cardsFaceDown = 0
-
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

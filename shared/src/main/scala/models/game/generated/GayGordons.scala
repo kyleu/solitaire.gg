@@ -8,28 +8,9 @@ object GayGordons extends GameRules(
   id = "gaygordons",
   title = "Gay Gordons",
   description = "A pair removal game where you remove pairs that add to 11, Kings with Queens, or Jacks together.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJPairOrQK,
-  deckOptions = DeckOptions(
-    numDecks = 1,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
-    ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace),
-    lowRank = Some(Rank.Ace)
-  ),
-  stock = Some(
-    Stock(
-      name = "Stock",
-      dealTo = StockDealTo.Waste,
-      maximumDeals = Some(1),
-      cardsDealt = StockCardsDealt.Count(1),
-      stopAfterPartialDeal = true,
-      createPocketWhenEmpty = false,
-      galleryMode = false
-    )
-  ),
-  waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +28,7 @@ object GayGordons extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 10,
       initialCards = InitialCards.Count(5),
@@ -67,21 +48,15 @@ object GayGordons extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
-    ReserveSet(
-
+    ReserveRules(
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 2,
-
       cardsFaceDown = 0
-
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

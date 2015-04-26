@@ -8,8 +8,6 @@ object QuadrupleCanfield extends GameRules(
   id = "quadruplecanfield",
   title = "Quadruple Canfield",
   description = "An easy four-deck version of ^canfield^ invented by Thomas Warfield.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 4,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -17,7 +15,7 @@ object QuadrupleCanfield extends GameRules(
     lowRank = Some(Rank.Unknown)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = None,
@@ -28,15 +26,14 @@ object QuadrupleCanfield extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 16,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -54,7 +51,7 @@ object QuadrupleCanfield extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = InitialCards.Count(1),
@@ -74,21 +71,15 @@ object QuadrupleCanfield extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
-    ReserveSet(
-
+    ReserveRules(
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 39,
-
       cardsFaceDown = 100
-
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

@@ -2,15 +2,14 @@ define(['game/Rank', 'game/Suit', 'game/helpers/Tweens'], function (Rank, Suit, 
   "use strict";
 
   function canSelectCard(card) {
-    var valid = false;
-    for(var moveIndex in card.game.possibleMoves) {
-      var move = card.game.possibleMoves[moveIndex];
+    var valid = _.some(card.game.possibleMoves, function(move) {
       if(move.moveType === "select-card" && move.sourcePile === card.pile.id) {
         if(move.cards.length === 1 && move.cards[0] === card.id) {
-          valid = true;
+          return true;
         }
       }
-    }
+      return false;
+    });
     return valid;
   }
 
@@ -138,9 +137,9 @@ define(['game/Rank', 'game/Suit', 'game/helpers/Tweens'], function (Rank, Suit, 
         this.inertiaHistory.push([now, xDelta]);
 
         var totalDelta = 0;
-        for(var inertiaIndex in this.inertiaHistory) {
-          totalDelta += this.inertiaHistory[inertiaIndex][1];
-        }
+        _.each(this.inertiaHistory, function (inertiaHist) {
+          totalDelta += inertiaHist[1];
+        });
         var angle = totalDelta / this.inertiaHistory.length / 2;
         if(angle > 10) {
           angle = 10;

@@ -19,6 +19,9 @@ addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.2")
 
 addSbtPlugin("com.vmunier" % "sbt-play-scalajs" % "0.2.4")
 
+// Build Info
+addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.3.2")
+
 // Code Quality
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.6.0") // scalastyle
 
@@ -31,6 +34,3 @@ addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.7.5") // dependenc
 addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.1.8") // dependencyUpdates
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-scalariform" % "1.3.0") // scalariformFormat
-
-// Build Info
-addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.3.2")

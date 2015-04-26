@@ -8,8 +8,6 @@ object MountOlympus extends GameRules(
   id = "mountolympus",
   title = "Mount Olympus",
   description = "Build by twos, so odds and evens are in separate sequences on the tableau and separate piles on the foundation.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -17,7 +15,7 @@ object MountOlympus extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Tableau,
       maximumDeals = Some(1),
@@ -27,9 +25,8 @@ object MountOlympus extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -45,7 +42,7 @@ object MountOlympus extends GameRules(
       autoMoveCards = true,
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     ),
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
@@ -63,7 +60,7 @@ object MountOlympus extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 9,
       initialCards = InitialCards.Count(1),
@@ -81,30 +78,9 @@ object MountOlympus extends GameRules(
       actionDuringDeal = PileAction.None,
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
-    ),
-    TableauSet(
-      name = "Tableau",
-      numPiles = 8,
-      initialCards = InitialCards.Count(4),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      rankMatchRuleForBuilding = RankMatchRule.Down,
-      wrapFromKingToAce = false,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      rankMatchRuleForMovingStacks = RankMatchRule.Down,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
-      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-      maxCards = 0,
-      actionDuringDeal = PileAction.None,
-      actionAfterDeal = PileAction.None,
-      pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

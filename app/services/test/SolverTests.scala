@@ -7,18 +7,17 @@ import models.test.{ Test, Tree, TestResult }
 object SolverTests {
   val solvableSeeds = Map(
     Canfield.key -> 100,
-    FreeCell.key -> 100,
-    Golf.key -> 100,
-    Gypsy.key -> 100,
-    KlondikeDrawThree.key -> 11,
-    KlondikeDrawOne.key -> 11,
-    Nestor.key -> 100,
-    Pyramid.key -> 2,
-    Sandbox.key -> 1,
-    SandboxB.key -> 1,
-    Spider.key -> 50,
-    TrustyTwelve.key -> 3,
-    Yukon.key -> 0
+//    FreeCell.key -> 100,
+//    Golf.key -> 100,
+//    Gypsy.key -> 100,
+    Klondike.key -> 11
+//    Nestor.key -> 100,
+//    Pyramid.key -> 2,
+//    Sandbox.key -> 1,
+//    SandboxB.key -> 1,
+//    Spider.key -> 50,
+//    TrustyTwelve.key -> 3,
+//    Yukon.key -> 0
   )
 }
 

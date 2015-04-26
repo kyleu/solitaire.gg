@@ -38,11 +38,11 @@ define(function() {
       if(p.id !== pile.id) {
         var overlapX = 0;
         if((minX >= p.x && minX <= p.x + p.intersectWidth) || (maxX >= p.x && maxX <= p.x + p.intersectWidth)) {
-          overlapX = Math.abs(p.x + (p.intersectWidth / 2) - xPoint);
+          overlapX = Math.abs(p.x - xPoint);
         }
         var overlapY = 0;
         if((minY >= p.y && minY <= p.y + p.intersectHeight) || (maxY >= p.y && maxY <= p.y + p.intersectHeight)) {
-          overlapY = Math.abs(p.y + (p.intersectHeight / 2) - yPoint);
+          overlapY = Math.abs(p.y - yPoint);
         }
         if(overlapX > 0 && overlapY > 0) {
           if(overlapX + overlapY < dropDistance) {

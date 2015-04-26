@@ -4,8 +4,8 @@ package controllers.admin
 import controllers.BaseController
 import controllers.BaseController.AuthenticatedAction
 import models.game.generated.GameRulesSet
-import utils.parser.ScalaExporter
-import utils.parser.politaire.PolitaireParser
+import parser.{ ScalaExporter, RulesReset }
+import parser.politaire.PolitaireParser
 
 object RulesController extends BaseController {
   def politaire = AuthenticatedAction { implicit request =>
@@ -29,6 +29,11 @@ object RulesController extends BaseController {
   def exportRules = AuthenticatedAction { implicit request =>
     val rulesSet = PolitaireParser.gameRules
     ScalaExporter.export(rulesSet)
+    Ok("OK!")
+  }
+
+  def wipeRules = AuthenticatedAction { implicit request =>
+    RulesReset.go()
     Ok("OK!")
   }
 }

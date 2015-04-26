@@ -8,8 +8,6 @@ object VariegatedCanfield extends GameRules(
   id = "variegatedcanfield",
   title = "Variegated Canfield",
   description = "A difficult two-deck version of ^canfield^, with aces starting on the foundation and only three passes through the waste allowed.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -17,7 +15,7 @@ object VariegatedCanfield extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(3),
@@ -28,15 +26,14 @@ object VariegatedCanfield extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -54,7 +51,7 @@ object VariegatedCanfield extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Tableau",
       numPiles = 5,
       initialCards = InitialCards.Count(1),
@@ -74,21 +71,15 @@ object VariegatedCanfield extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
   reserves = Some(
-    ReserveSet(
-
+    ReserveRules(
       name = "Reserve",
-
       numPiles = 1,
-
       initialCards = 13,
-
       cardsFaceDown = 100
-
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

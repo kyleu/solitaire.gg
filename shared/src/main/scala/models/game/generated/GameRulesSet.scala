@@ -1,5 +1,7 @@
 package models.game.generated
 
+import models.game.rules.custom.CustomRulesSet
+
 // scalastyle:off
 object GameRulesSet {
   val all = Seq(
@@ -539,7 +541,7 @@ object GameRulesSet {
     YukonKings,
     YukonOneSuit,
     Zerline
-  )
+  ) ++ CustomRulesSet.all
 
   val allById = all.map(x => x.id -> x).toMap
 }

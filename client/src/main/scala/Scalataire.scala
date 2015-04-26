@@ -57,7 +57,7 @@ object Scalataire extends js.JSApp with ScalataireHelper {
     gameVariant = GameVariant(variant, gameId, seed.getOrElse(Math.abs(rng.nextInt())))
     gameState = gameVariant.gameState
     gameState.addPlayer(accountId, "Offline Player")
-    gameVariant.initialMoves()
+    gameVariant.performInitialMoves()
 
     send(GameJoined(gameId, gameState.view(accountId), possibleMoves()))
   }

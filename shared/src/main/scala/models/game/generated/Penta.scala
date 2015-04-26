@@ -8,8 +8,6 @@ object Penta extends GameRules(
   id = "penta",
   title = "Penta",
   description = "Another ^busyaces^ variation by Thomas Warfield, in this one, half the tabeau builds up, and half builds down.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -17,7 +15,7 @@ object Penta extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Waste,
       maximumDeals = Some(1),
@@ -28,15 +26,14 @@ object Penta extends GameRules(
     )
   ),
   waste = Some(
-    WasteSet(
-
+    WasteRules(
       name = "Waste",
       numPiles = 1,
       playableCards = WastePlayableCards.TopCardOnly
     )
   ),
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Left Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
@@ -52,7 +49,7 @@ object Penta extends GameRules(
       autoMoveCards = false,
       autoMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
     ),
-    FoundationSet(
+    FoundationRules(
       name = "Right Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
@@ -70,7 +67,7 @@ object Penta extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Left Tableau",
       numPiles = 3,
       initialCards = InitialCards.Count(1),
@@ -89,7 +86,7 @@ object Penta extends GameRules(
       actionAfterDeal = PileAction.None,
       pilesWithLowCardsAtBottom = 0
     ),
-    TableauSet(
+    TableauRules(
       name = "Right Tableau",
       numPiles = 3,
       initialCards = InitialCards.Count(1),
@@ -109,9 +106,7 @@ object Penta extends GameRules(
       pilesWithLowCardsAtBottom = 0
     )
   ),
-  cells = None,
-  reserves = None,
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

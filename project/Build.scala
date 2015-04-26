@@ -7,4 +7,7 @@ object Build extends Build with UniversalKeys {
 
   lazy val sharedJvm = Shared.sharedJvm
   lazy val server = Server.server
+
+  lazy val rulesParser = Utilities.rulesParser
+  lazy val rulesReset = Utilities.rulesReset
 }

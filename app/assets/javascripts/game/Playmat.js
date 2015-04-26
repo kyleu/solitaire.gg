@@ -1,9 +1,9 @@
-define(function () {
+define(['game/helpers/Layout'], function (calculateLayout) {
   "use strict";
 
-  var Playmat = function(game, layouts) {
+  var Playmat = function(game, pileSets, layout) {
     Phaser.Group.call(this, game, null, 'playmat');
-    this.layout = layouts[0];
+    this.layout = calculateLayout(pileSets, layout, this.game.world.width / this.game.world.height);
 
     this.w = this.layout.width * this.game.cardSet.cardWidth;
     this.h = this.layout.height * this.game.cardSet.cardHeight;
@@ -17,15 +17,9 @@ define(function () {
   Playmat.prototype.constructor = Playmat;
 
   Playmat.prototype.addPile = function(pile) {
-    var pileLocation = null;
-    for(var pileLocationIndex in this.layout.piles) {
-      var pl = this.layout.piles[pileLocationIndex];
-      if(pl.id === pile.id) {
-        pileLocation = pl;
-      }
-    }
-    pile.x = pileLocation.x * this.game.cardSet.cardWidth;
-    pile.y = pileLocation.y * this.game.cardSet.cardHeight;
+    var pileLocation = this.layout.locations[pile.id];
+    pile.x = this.layout.locations[pile.id].x * this.game.cardSet.cardWidth;
+    pile.y = this.layout.locations[pile.id].y * this.game.cardSet.cardHeight;
   };
 
   Playmat.prototype.resize = function() {

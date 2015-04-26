@@ -8,8 +8,10 @@ object Dependencies {
     val postgresJdbc = "org.postgresql" % "postgresql" % "9.4-1201-jdbc41" intransitive()
   }
 
-  object Network {
+  object Play {
+    val playFilters = filters
     val playWs = ws
+    val playJson = json
   }
 
   object WebJars {

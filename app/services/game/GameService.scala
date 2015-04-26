@@ -32,7 +32,7 @@ class GameService(
   protected[this] var lastMoveMade: Option[LocalDateTime] = None
 
   override def preStart() {
-    gameVariant.initialMoves()
+    gameVariant.performInitialMoves()
 
     GameHistoryService.startGame(id, seed, variant, "started", initialPlayers.map(_.accountId), started)
 

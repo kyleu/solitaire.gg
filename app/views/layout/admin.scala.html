@@ -21,6 +21,16 @@
           <li @if(section == "accounts") { class="active" }><a href="@controllers.admin.routes.AccountController.accountList()">Accounts</a></li>
           <li @if(section == "games") { class="active" }><a href="@controllers.admin.routes.GameHistoryController.gameList()">Games</a></li>
           <li @if(section == "tests") { class="active" }><a href="@controllers.admin.routes.TestController.tests()">Tests</a></li>
+          <li @if(section == "rules") { class="active" }>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rules <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="@controllers.admin.routes.RulesController.rules()">View</a></li>
+              <li><a href="@controllers.admin.routes.RulesController.politaire()">Parse</a></li>
+              <li><a href="@controllers.admin.routes.RulesController.importRules()">Import</a></li>
+              <li><a href="@controllers.admin.routes.RulesController.exportRules()">Export</a></li>
+              <li><a href="@controllers.admin.routes.RulesController.wipeRules()">Wipe</a></li>
+            </ul>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">

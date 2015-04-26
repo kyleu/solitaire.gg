@@ -9,7 +9,7 @@ object Pile {
   val options = PileOptions()
 }
 
-case class Pile(id: String, behavior: String, options: PileOptions, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) {
+case class Pile(id: String, options: PileOptions, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) {
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
 
   def addCard(c: Card) {

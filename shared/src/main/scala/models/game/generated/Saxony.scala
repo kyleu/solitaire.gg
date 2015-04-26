@@ -8,8 +8,6 @@ object Saxony extends GameRules(
   id = "saxony",
   title = "Saxony",
   description = "You have four cells, four reserve piles where you can build down in suit, and eight tableau piles, where cards are dealt, but no building is allowed.",
-  victoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs),
@@ -17,7 +15,7 @@ object Saxony extends GameRules(
     lowRank = Some(Rank.Ace)
   ),
   stock = Some(
-    Stock(
+    StockRules(
       name = "Stock",
       dealTo = StockDealTo.Reserve,
       maximumDeals = Some(1),
@@ -27,9 +25,8 @@ object Saxony extends GameRules(
       galleryMode = false
     )
   ),
-  waste = None,
   foundations = Seq(
-    FoundationSet(
+    FoundationRules(
       name = "Foundation",
       numPiles = 8,
       lowRank = FoundationLowRank.DeckLowRank,
@@ -47,7 +44,7 @@ object Saxony extends GameRules(
     )
   ),
   tableaus = Seq(
-    TableauSet(
+    TableauRules(
       name = "Reserve",
       numPiles = 4,
       initialCards = InitialCards.Count(1),
@@ -68,36 +65,20 @@ object Saxony extends GameRules(
     )
   ),
   cells = Some(
-    CellSet(
+    CellRules(
 
-      name = "Cell",
-
-      pluralName = "Cells",
-
-      numPiles = 4,
-
-      canMoveFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau"),
-
-      initialCards = 4,
-
-      numEphemeral = 0
-
+      initialCards = 4
     )
   ),
   reserves = Some(
-    ReserveSet(
-
+    ReserveRules(
       name = "Tableau",
-
       numPiles = 8,
-
       initialCards = 1,
-
       cardsFaceDown = 100
-
     )
   ),
-  pyramids = Nil
+  complete = false
 )
 // scalastyle:on
 

@@ -2,7 +2,9 @@ package models.game.variants
 
 import java.util.UUID
 
-import models.game.{ Deck, Layout, GameState }
+import models.game.generated.GameRulesSet
+import models.game.pile._
+import models.game.{ Deck, GameState }
 
 import scala.util.Random
 
@@ -11,7 +13,6 @@ object GameVariant {
     val key: String
     val name: String
     val body: String
-    val layouts: Seq[Layout]
     val maxPlayers: Int = 1
     val completed: Boolean = true
     val undoAllowed: Boolean = true
@@ -22,8 +23,7 @@ object GameVariant {
     case FreeCell.key => new FreeCell(gameId, seed)
     case Golf.key => new Golf(gameId, seed)
     case Gypsy.key => new Gypsy(gameId, seed)
-    case KlondikeDrawThree.key => new KlondikeDrawThree(gameId, seed)
-    case KlondikeDrawOne.key => new KlondikeDrawOne(gameId, seed)
+    case Klondike.key => new Klondike(gameId, seed)
     case Nestor.key => new Nestor(gameId, seed)
     case Pyramid.key => new Pyramid(gameId, seed)
     case Sandbox.key => new Sandbox(gameId, seed)
@@ -34,17 +34,38 @@ object GameVariant {
     case _ => throw new IllegalArgumentException("Invalid game variant [" + variant + "].")
   }
 
-  val all = Seq(Canfield, FreeCell, Golf, Gypsy, KlondikeDrawThree, KlondikeDrawOne, Nestor, Pyramid, Sandbox, SandboxB, Spider, TrustyTwelve, Yukon)
+  val all = Seq(Canfield, FreeCell, Golf, Gypsy, Klondike, Nestor, Pyramid, Sandbox, SandboxB, Spider, TrustyTwelve, Yukon)
 }
 
-abstract class GameVariant(val gameId: UUID, val seed: Int) {
-  def description: GameVariant.Description
-  val rng = new Random(new java.util.Random(seed))
-  val gameState: GameState
-  def initialMoves(): Unit
-  def isWin: Boolean
+case class GameVariant(rulesKey: String, description: GameVariant.Description, gameId: UUID, seed: Int, initialMoves: (GameState, Deck) => Unit) {
+  val rules = GameRulesSet.allById(rulesKey)
+  val layout = Layouts.forVariant(rulesKey)
 
-  def newShuffledDecks(numDecks: Int = 1) = if (seed == 0) {
+  val rng = new Random(new java.util.Random(seed))
+
+  private[this] val pileSets = {
+    rules.stock.map(s => StockSet(s)) ++
+    rules.waste.map(w => WasteSet(w)) ++
+    rules.reserves.map(r => ReserveSet(r)) ++
+    rules.cells.map(c => CellSet(c)) ++
+    rules.foundations.map(f => FoundationSet(f)) ++
+    rules.tableaus.map(t => TableauSet(t)) ++
+    rules.pyramids.map(p => PyramidSet(p))
+  }.toSeq
+
+  private[this] val deck = newShuffledDecks(rules.deckOptions.numDecks)
+
+  val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, pileSets, layout)
+
+  def performInitialMoves() = {
+    initialMoves(gameState, deck)
+  }
+
+  def isWin = {
+    rules.victoryCondition.check(gameState)
+  }
+
+  private[this] def newShuffledDecks(numDecks: Int = 1) = if (seed == 0) {
     Deck((0 to numDecks - 1).flatMap(i => Deck.fresh().cards))
   } else {
     Deck.shuffled(rng, numDecks)

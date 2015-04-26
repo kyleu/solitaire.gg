@@ -1,8 +1,4 @@
-define([
-  'game/pile/PileLayout',
-  'game/pile/PileHelpers',
-  'game/pile/DragFromConstraints'
-], function (PileLayout, PileHelpers, DragFromConstraints) {
+define(['game/pile/PileLayout', 'game/pile/PileHelpers', 'game/pile/DragFromConstraints'], function (PileLayout, PileHelpers, DragFromConstraints) {
   "use strict";
 
   function getConstraint(key) {
@@ -25,10 +21,10 @@ define([
     return valid;
   }
 
-  function Pile(game, id, behavior, options) {
+  function Pile(game, id, pileSet, options) {
     Phaser.Group.call(this, game, game.playmat, id);
     this.id = id;
-    this.behavior = behavior;
+    this.pileSet = pileSet;
     this.options = options;
     this.cards = [];
     this.game.addPile(this);
