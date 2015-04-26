@@ -1,4 +1,4 @@
-define(["utils/DebugInfo"], function (di) {
+define(['utils/DebugInfo'], function (di) {
   "use strict";
 
   function GameState(id, game) {

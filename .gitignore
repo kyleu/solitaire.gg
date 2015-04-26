@@ -22,3 +22,5 @@ small/
 x-small/
 
 buildinfo.properties
+
+/offline/build/

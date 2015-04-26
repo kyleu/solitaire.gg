@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scalataire</title>
+    <meta charset="utf-8"/>
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge">
+    <meta httpEquiv="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" media="screen" href="scalataire.css"/>
+  </head>
+  <body>
+    <div id="game-container"></div>
+    <div id="status-panel">
+      <span id="status-username"></span>
+      (<span id="status-connection">Not Connected</span>,
+      <span id="status-latency">0</span>ms,
+      <span id="status-fps">0</span> fps,
+      v<span id="status-version">0</span>)
+    </div>
+
+    <pre id="scalataire-config">
+      {
+        "account": {
+          "id": "30bb735f-41b7-4070-b859-8c8139222a27",
+          "name": "Kyle"
+        },
+        "gameId": "scalataire",
+        "gameName": "Scalataire",
+        "debug": "false",
+        "cardSet": "standard",
+        "cardSize": "medium",
+        "variant": "klondike",
+
+        "offline": true,
+        "assetRoot": "",
+        "initialAction": [ "start" ]
+      }
+    </pre>
+
+    <script src="client-opt.js" type="text/javascript"></script>
+    <script src="lib/phaser.min.js"></script>
+    <script src="lib/underscore.min.js"></script>
+    <script data-main="scalataire.js" src="lib/require.min.js"></script>
+  </body>
+</html>
+

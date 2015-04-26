@@ -7,6 +7,10 @@ define([
 
   function Gameplay(game) {
     GameState.call(this, 'gameplay', game);
+    this.assetRoot = "/";
+    if(cfg.assetRoot !== undefined) {
+      this.assetRoot = cfg.assetRoot;
+    }
   }
 
   Gameplay.prototype = Object.create(GameState.prototype);
@@ -15,10 +19,12 @@ define([
   Gameplay.prototype.preload = function() {
     this.game.stage.disableVisibilityChange = true;
     var imageKey = this.game.cardSet.key;
-    this.game.load.image('bg-texture', '/assets/images/game/bg.jpg');
-    this.game.load.image('card-back', '/assets/images/game/cards/' + imageKey + '/BACK.png');
-    this.game.load.image('empty-pile', '/assets/images/game/cards/' + imageKey + '/EMPTY.png');
-    this.game.load.spritesheet('card', '/assets/images/game/cards/' + imageKey + '/ALL.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight);
+    this.game.load.image('bg-texture', this.assetRoot + 'assets/images/game/bg.jpg');
+    this.game.load.image('card-back', this.assetRoot + 'assets/images/game/cards/' + imageKey + '/BACK.png');
+    this.game.load.image('empty-pile', this.assetRoot + 'assets/images/game/cards/' + imageKey + '/EMPTY.png');
+    this.game.load.spritesheet(
+      'card', this.assetRoot + 'assets/images/game/cards/' + imageKey + '/ALL.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight
+    );
   };
 
   Gameplay.prototype.create = function() {
