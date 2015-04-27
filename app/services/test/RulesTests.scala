@@ -1,24 +1,31 @@
 package services.test
 
-import models.game.Deck
-import models.game.generated.GameRulesSet
-import models.game.rules.GameRules
-import models.test.{ Test, Tree }
+import java.util.UUID
 
-import scala.util.Random
+import models.game.{ GameState, Deck }
+import models.game.generated.GameRulesSet
+import models.game.variants.GameVariant
+import models.game.variants.GameVariant.Description
+import models.test.{ Test, Tree }
 
 class RulesTests {
   val all = Tree(Test("rules"), GameRulesSet.all.map(x => testGameRules(x.id).toTree))
 
   def testGameRules(id: String) = Test("rules-" + id, () => {
     val rules = GameRulesSet.allById(id)
-    val ret = "OK"
-    val rng = new Random()
-    val deck = getDeck(rules, rng)
-    "OK"
-  })
+    val description = new Description {
+      override val key: String = rules.id
+      override val name = rules.title
+      override val body = rules.description
+    }
 
-  def getDeck(rules: GameRules, rng: Random) = {
-    Deck.shuffled(rng, rules.deckOptions.numDecks)
-  }
+    def initialMoves(gameState: GameState, deck: Deck) = {
+
+    }
+
+    var ret = "OK"
+    val variant = GameVariant(id, description, UUID.randomUUID(), 0, initialMoves)
+    ret = ret + " (" + variant.deck.cards.size + " cards)"
+    ret
+  })
 }

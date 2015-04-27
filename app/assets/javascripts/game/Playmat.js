@@ -25,7 +25,6 @@ define(['game/helpers/Layout'], function (calculateLayout) {
   Playmat.prototype.resize = function() {
     document.getElementById('status-version').innerText = "D: " + this.game.world.width + ", " + this.game.world.height;
 
-    console.log(this.game.world.width, this.game.world.height);
     var widthRatio = this.game.world.width / this.w;
     var heightRatio = this.game.world.height / this.h;
     if(widthRatio < heightRatio) {

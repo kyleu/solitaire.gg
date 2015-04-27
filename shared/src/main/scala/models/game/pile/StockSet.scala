@@ -2,8 +2,8 @@ package models.game.pile
 
 import models.game.pile.actions.{ SelectPileActions, SelectCardActions }
 import models.game.pile.constraints.Constraints
-import models.game.rules.StockCardsDealt.Count
-import models.game.rules.{ StockDealTo, StockRules }
+import models.game.rules.StockCardsDealt.{ FewerEachTime, Count }
+import models.game.rules.{ StockCardsDealt, StockDealTo, StockRules }
 
 object StockSet {
   def apply(stockRules: StockRules): StockSet = {
@@ -14,17 +14,21 @@ object StockSet {
 
   private[this] def getOptions(stockRules: StockRules) = {
     val cardsToDraw = stockRules.cardsDealt match {
-      case Count(i) => i
-      case x => throw new NotImplementedError(x.toString)
+      case StockCardsDealt.Count(i) => i
+      case StockCardsDealt.FewerEachTime => 1 // ???
     }
 
     val drawTo = stockRules.dealTo match {
       case StockDealTo.Waste => "waste-1"
+      case StockDealTo.WasteOrPairManually => "waste-1"
       case StockDealTo.Foundation => "foundation-1"
       case StockDealTo.Tableau => "???"
+      case StockDealTo.TableauFirstSet => "???"
+      case StockDealTo.TableauNonEmpty => "???"
       case StockDealTo.TableauIfNoneEmpty => "???"
+      case StockDealTo.Reserve => "???"
+      case StockDealTo.Manually => "???"
       case StockDealTo.Never => "???"
-      case StockDealTo.WasteOrPairManually => "waste-1"
       case x => throw new NotImplementedError(x.toString)
     }
 

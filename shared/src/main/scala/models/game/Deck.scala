@@ -3,16 +3,16 @@ package models.game
 import scala.util.Random
 
 object Deck {
-  def fresh() = {
+  def fresh(ranks: Seq[Rank], suits: Seq[Suit]) = {
     val cards = for {
-      suit <- Suit.standard
-      rank <- Rank.all.reverse
+      suit <- suits
+      rank <- ranks.reverse
     } yield Card(r = rank, s = suit, u = false)
     Deck(cards.toList)
   }
 
-  def shuffled(random: Random, numDecks: Int = 1) = {
-    val cards = (0 to numDecks - 1).flatMap(i => fresh().cards)
+  def shuffled(random: Random, numDecks: Int = 1, ranks: Seq[Rank], suits: Seq[Suit]) = {
+    val cards = (0 to numDecks - 1).flatMap(i => fresh(ranks, suits).cards)
     Deck(random.shuffle(cards))
   }
 }

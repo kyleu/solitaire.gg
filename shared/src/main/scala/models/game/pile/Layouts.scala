@@ -30,6 +30,6 @@ object Layouts {
   )
 
   def forVariant(v: String) = {
-    layouts.getOrElse(v, throw new NotImplementedError())
+    layouts.getOrElse(v, "s")
   }
 }

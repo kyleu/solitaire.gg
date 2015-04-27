@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models.game.generated.GameRulesSet
 import models.game.pile._
-import models.game.{ Deck, GameState }
+import models.game.{ Suit, Rank, Deck, GameState }
 
 import scala.util.Random
 
@@ -43,7 +43,7 @@ case class GameVariant(rulesKey: String, description: GameVariant.Description, g
 
   val rng = new Random(new java.util.Random(seed))
 
-  private[this] val pileSets = {
+  val pileSets = {
     rules.stock.map(s => StockSet(s)) ++
       rules.waste.map(w => WasteSet(w)) ++
       rules.reserves.map(r => ReserveSet(r)) ++
@@ -53,7 +53,7 @@ case class GameVariant(rulesKey: String, description: GameVariant.Description, g
       rules.pyramids.map(p => PyramidSet(p))
   }.toSeq
 
-  private[this] val deck = newShuffledDecks(rules.deckOptions.numDecks)
+  val deck = newShuffledDecks(rules.deckOptions.numDecks, rules.deckOptions.ranks, rules.deckOptions.suits)
 
   val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, pileSets, layout)
 
@@ -65,9 +65,9 @@ case class GameVariant(rulesKey: String, description: GameVariant.Description, g
     rules.victoryCondition.check(gameState)
   }
 
-  private[this] def newShuffledDecks(numDecks: Int = 1) = if (seed == 0) {
-    Deck((0 to numDecks - 1).flatMap(i => Deck.fresh().cards))
+  private[this] def newShuffledDecks(numDecks: Int = 1, ranks: Seq[Rank], suits: Seq[Suit]) = if (seed == 0) {
+    Deck((0 to numDecks - 1).flatMap(i => Deck.fresh(ranks, suits).cards))
   } else {
-    Deck.shuffled(rng, numDecks)
+    Deck.shuffled(rng, numDecks, ranks, suits)
   }
 }
