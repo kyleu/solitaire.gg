@@ -176,7 +176,7 @@ define([
     }
   };
 
-  Gameplay.prototype.resize = function(w, h) {
+  Gameplay.prototype.resize = function() {
     GameState.prototype.resize.apply(this, arguments);
 
     if(this.game.playmat !== undefined) {

@@ -11,14 +11,15 @@ app.on('window-all-closed', function() {
 
 app.on('ready', function() {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 720,
     resizable: true,
     'auto-hide-menu-bar': true,
     'use-content-size': true
   });
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
   mainWindow.focus();
+  mainWindow.maximize();
 
   if (process.platform == 'darwin') {
     var osxTemplate = [
@@ -140,6 +141,21 @@ app.on('ready', function() {
             label: '&Close',
             accelerator: 'Ctrl+W',
             click: function() { mainWindow.close(); }
+          }
+        ]
+      },
+      {
+        label: '&Edit',
+        submenu: [
+          {
+            label: '&Undo',
+            accelerator: 'Ctrl+Z',
+            selector: 'undo:'
+          },
+          {
+            label: '&Redo',
+            accelerator: 'Shift+Ctrl+Z',
+            selector: 'redo:'
           }
         ]
       },

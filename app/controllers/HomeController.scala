@@ -8,6 +8,10 @@ object HomeController extends BaseController {
     Ok(views.html.index(request.accountId, request.name))
   }
 
+  def sandbox() = AuthenticatedAction { implicit request =>
+    Ok(views.html.sandbox())
+  }
+
   def untrail(path: String) = AuthenticatedAction {
     MovedPermanently("/" + path)
   }

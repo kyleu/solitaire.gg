@@ -32,6 +32,9 @@ cp "../target/web/rjs/appdir/lib/requirejs/require.js" "build/dev/web/lib"
 
 mkdir -p build/dev/web/assets
 cp -R "../public/images/" "build/dev/web/assets/images"
+rm -Rf "build/dev/web/assets/images/game/cards/standard/_resized"
+rm -Rf "build/dev/web/assets/images/game/cards/standard/_unprocessed"
+rm -Rf "build/dev/web/assets/images/game/cards/standard/x-large"
 
 # Prod
 mkdir -p build/prod/web
@@ -46,6 +49,9 @@ cp "../target/web/rjs/build/lib/requirejs/require.min.js" "build/prod/web/lib"
 
 mkdir -p build/prod/web/assets
 cp -R "../public/images/" "build/prod/web/assets/images"
+rm -Rf "build/prod/web/assets/images/game/cards/standard/_resized"
+rm -Rf "build/prod/web/assets/images/game/cards/standard/_unprocessed"
+rm -Rf "build/prod/web/assets/images/game/cards/standard/x-large"
 
 echo "  Building Electron apps..."
 
@@ -64,7 +70,7 @@ cp bin/dev/scalataire.asar bin/dev/win32/resources/app.asar
 cp bin/dev/scalataire.asar bin/dev/win64/resources/app.asar
 
 # Prod
-mkdir -p bin/dev
+mkdir -p bin/prod
 cp -R "resources/" "bin/prod"
 
 mkdir -p build/prod/electron
@@ -72,9 +78,23 @@ cp -R "build/prod/web/" "build/prod/electron"
 cp -R "electron/prod/" "build/prod/electron"
 asar pack build/prod/electron bin/prod/scalataire.asar
 
-cp bin/prod/scalataire.asar bin/prod/osx/Scalataire.app/Contents/Resources/app.asar
-cp bin/prod/scalataire.asar bin/prod/linux/resources/app.asar
-cp bin/prod/scalataire.asar bin/prod/win32/resources/app.asar
-cp bin/prod/scalataire.asar bin/prod/win64/resources/app.asar
+cp bin/dev/scalataire.asar bin/prod/osx/Scalataire.app/Contents/Resources/app.asar
+cp bin/dev/scalataire.asar bin/prod/linux/resources/app.asar
+cp bin/dev/scalataire.asar bin/prod/win32/resources/app.asar
+cp bin/dev/scalataire.asar bin/prod/win64/resources/app.asar
+
+echo "  Building Cocoon.js distribution..."
+
+# Dev
+mkdir -p build/dev/cocoon
+cp -R "build/dev/web/" "build/dev/cocoon"
+cp -R "cocoon/dev/" "build/dev/cocoon"
+zip -r -q bin/dev/scalataire.zip build/dev/web/*
+
+# Prod
+mkdir -p build/prod/cocoon
+cp -R "build/prod/web/" "build/prod/cocoon"
+cp -R "cocoon/prod/" "build/prod/cocoon"
+zip -r -q bin/prod/scalataire.zip build/prod/web/*
 
 echo "  Build complete!"

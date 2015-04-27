@@ -23,13 +23,16 @@ define(['game/helpers/Layout'], function (calculateLayout) {
   };
 
   Playmat.prototype.resize = function() {
+    document.getElementById('status-version').innerText = "D: " + this.game.world.width + ", " + this.game.world.height;
+
+    console.log(this.game.world.width, this.game.world.height);
     var widthRatio = this.game.world.width / this.w;
     var heightRatio = this.game.world.height / this.h;
     if(widthRatio < heightRatio) {
       this.scale = new Phaser.Point(widthRatio, widthRatio);
       var yOffset = (this.game.world.height - (this.h * widthRatio)) / 2;
       if(yOffset > 0 || this.y !== 0) {
-        this.y = 0;//yOffset;
+        this.y = 0; //yOffset;
       }
     } else {
       this.scale = new Phaser.Point(heightRatio, heightRatio);
