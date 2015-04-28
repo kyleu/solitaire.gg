@@ -4,8 +4,8 @@ import models.game.pile.options.StockPileOptions
 import models.game.rules.StockRules
 
 object StockSet {
-  def apply(rules: StockRules): StockSet = {
-    val options = StockPileOptions(rules)
+  def apply(rules: StockRules, pileIdsByType: Map[String, Seq[String]]): StockSet = {
+    val options = StockPileOptions(rules, pileIdsByType)
     val piles = Seq(Pile("stock", options))
     new StockSet(piles)
   }

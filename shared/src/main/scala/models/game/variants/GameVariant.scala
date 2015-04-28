@@ -45,7 +45,7 @@ case class GameVariant(rulesKey: String, description: GameVariant.Description, g
 
   val deck = newShuffledDecks(rules.deckOptions.numDecks, rules.deckOptions.ranks, rules.deckOptions.suits)
 
-  val pileSets = rules.prototypePileSets.map(_.copy())
+  val pileSets = rules.newPileSets()
 
   val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, pileSets, layout)
 
