@@ -5,7 +5,10 @@ import models.game.rules._
 object Nestor extends GameRules(
   id = "nestor",
   title = "Nestor",
-  description = "...",
+  description = """
+    Discard any pair of cards of the same rank, regardless of suit (for example, two Aces, two Fives, etc.).
+    Only the top cards are available for play. Spaces can't be filled.
+  """,
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
 
   foundations = Seq(

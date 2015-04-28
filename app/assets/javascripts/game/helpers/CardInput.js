@@ -69,7 +69,7 @@ define(function () {
           var xDelta = newX - card.actualX;
 
           var now = card.game.time.now;
-          while(card.inertiaHistory.length > 0 && now - card.inertiaHistory[0][0] > 200) {
+          while(card.inertiaHistory.length > 0 && now - card.inertiaHistory[0][0] > 300) {
             card.inertiaHistory.shift();
           }
           card.inertiaHistory.push([now, xDelta]);

@@ -13,7 +13,7 @@ import services.{ ActorSupervisor, ConnectionService }
 import play.api.Play.current
 
 class VariantTests {
-  val all = Tree(Test("variant"), GameVariant.all.map(x => testVariant(x.key).toTree))
+  val all = Tree(Test("variant"), GameVariant.completed.map(x => testVariant(x).toTree))
 
   def testVariant(variant: String) = Test("variant-" + variant, () => {
     implicit val system = Akka.system

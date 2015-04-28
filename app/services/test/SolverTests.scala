@@ -6,26 +6,18 @@ import models.test.{ Test, Tree }
 
 object SolverTests {
   val solvableSeeds = Map(
-    Canfield.key -> 100,
-    FreeCell.key -> 100,
-    Golf.key -> 100,
-    Gypsy.key -> 100,
-    Klondike.key -> 11,
-    Nestor.key -> 100,
-    Pyramid.key -> 2,
-    Sandbox.key -> 1,
-    SandboxB.key -> 1,
-    Spider.key -> 50,
-    TrustyTwelve.key -> 3,
-    Yukon.key -> 0
+    "klondike" -> 11,
+    "pyramid" -> 2,
+    "spider" -> 50,
+    "trustyTwelve" -> 3
   )
 }
 
 class SolverTests {
-  val all = Tree(Test("solver"), GameVariant.all.map(x => testSolver(x.key).toTree))
+  val all = Tree(Test("solver"), GameVariant.completed.map(x => testSolver(x).toTree))
 
   def testSolver(variant: String) = Test("solver-" + variant, { () =>
-    val seed = SolverTests.solvableSeeds(variant)
+    val seed = SolverTests.solvableSeeds.getOrElse(variant, 1)
     runSolver(variant, seed)
   })
 

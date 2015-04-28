@@ -11,7 +11,7 @@ trait GameServiceTraceHelper { this: GameService =>
   protected[this] def handleGameTrace() {
     def connUrl(id: UUID) = controllers.admin.routes.TraceController.traceConnection(id).url
     val ret = TraceResponse(this.id, List(
-      "variant" -> gameVariant.description.key,
+      "variant" -> gameVariant.rulesKey,
       "seed" -> gameVariant.seed,
       "started" -> started,
       "connections" -> playerConnections.map { x =>

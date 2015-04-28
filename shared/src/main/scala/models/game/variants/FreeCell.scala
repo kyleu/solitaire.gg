@@ -1,18 +1,10 @@
 package models.game.variants
 
-import java.util.UUID
+import models.game.GameState
 
-import models.game._
-
-object FreeCell extends GameVariant.Description {
-  override val key = "freecell"
-  override val name = "FreeCell"
-  override val body = """
-    Move all the cards to the home cells, using the free cells as placeholders.
-    To win, make four stacks of cards on the home cells, one for each suit, stacked in order of rank, from lowest (ace) to highest (king).
-  """
-
-  def initialMoves(gameState: GameState, deck: Deck) = {
+object FreeCell {
+  def initialMoves(gameState: GameState) = {
+    val deck = gameState.deck
     gameState.addCards(deck.getCards(7, turnFaceUp = true), "tableau-1", reveal = true)
     gameState.addCards(deck.getCards(7, turnFaceUp = true), "tableau-2", reveal = true)
     gameState.addCards(deck.getCards(7, turnFaceUp = true), "tableau-3", reveal = true)
@@ -24,9 +16,6 @@ object FreeCell extends GameVariant.Description {
   }
 }
 
-class FreeCell(gameId: UUID, seed: Int) extends GameVariant("freecell", FreeCell, gameId, seed, FreeCell.initialMoves)
-
-//case class FreeCell(override val gameId: UUID, override val seed: Int) extends GameVariant(gameId, seed) {
 //  override def description = FreeCell
 //
 //  private[this] val cellOptions = Pile.options.combine(PileOptions(
@@ -64,4 +53,3 @@ class FreeCell(gameId: UUID, seed: Int) extends GameVariant("freecell", FreeCell
 //
 //
 //  override def isWin: Boolean = gameState.piles.count(x => x.behavior == "foundation" && x.cards.size == 13) == 4
-//}

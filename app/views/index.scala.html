@@ -21,8 +21,8 @@
           </div>
           <div class="panel-body">
             <ul>
-            @for(v <- models.game.variants.GameVariant.all.filter(_.completed)) {
-              <li><a href="@routes.HomeController.newGame(v.key)">@v.name</a></li>
+            @for(v <- models.game.variants.GameVariant.completed) {
+              <li><a href="@routes.HomeController.newGame(v)">@v</a></li>
             }
             </ul>
           </div>
@@ -34,8 +34,8 @@
           </div>
           <div class="panel-body">
             <ul>
-            @for(v <- models.game.variants.GameVariant.all.filterNot(_.completed)) {
-              <li><a href="@routes.HomeController.newGame(v.key)">@v.name</a></li>
+            @for(v <- models.game.variants.GameVariant.completed) {
+              <li><a href="@routes.HomeController.newGame(v)">@v</a></li>
             }
             </ul>
           </div>

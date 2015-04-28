@@ -20,8 +20,8 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <ul>
-          @for(v <- models.game.variants.GameVariant.all) {
-            <li><a href="@controllers.admin.routes.TestController.runTest(v.key).url">@v.name Test</a></li>
+          @for(r <- models.game.generated.GameRulesSet.all) {
+            <li><a href="@controllers.admin.routes.TestController.runTest(r.id).url">@r.title Test</a></li>
           }
           </ul>
         </div>
@@ -32,8 +32,8 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <ul>
-          @for(v <- models.game.variants.GameVariant.all) {
-            <li><a href="@controllers.admin.routes.TestController.runTest("solve-" + v.key).url">Solve @v.name</a></li>
+          @for(r <- models.game.generated.GameRulesSet.all) {
+            <li><a href="@controllers.admin.routes.TestController.runTest("solve-" + r.id).url">Solve @r.title</a></li>
           }
           </ul>
         </div>

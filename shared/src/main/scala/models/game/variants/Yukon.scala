@@ -1,15 +1,10 @@
 package models.game.variants
 
-import java.util.UUID
+import models.game.GameState
 
-import models.game._
-
-object Yukon extends GameVariant.Description {
-  override val key = "yukon"
-  override val name = "Yukon"
-  override val body = "..."
-
-  def initialMoves(gameState: GameState, deck: Deck) = {
+object Yukon {
+  def initialMoves(gameState: GameState) = {
+    val deck = gameState.deck
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "tableau-1", reveal = true)
 
     (2 to 7).foreach { i =>
@@ -19,6 +14,4 @@ object Yukon extends GameVariant.Description {
   }
 }
 
-class Yukon(override val gameId: UUID, override val seed: Int) extends GameVariant("yukon", Yukon, gameId, seed, Yukon.initialMoves) {
-  //  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(dragFromConstraint = Some(Constraints.faceUp)))
-}
+//  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(dragFromConstraint = Some(Constraints.faceUp)))

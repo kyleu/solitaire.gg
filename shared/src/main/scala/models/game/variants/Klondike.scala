@@ -1,15 +1,11 @@
 package models.game.variants
 
-import java.util.UUID
+import models.game.GameState
 
-import models.game._
+object Klondike {
+  def initialMoves(gameState: GameState) = {
+    val deck = gameState.deck
 
-object Klondike extends GameVariant.Description {
-  override val key = "klondike"
-  override val name = "Klondike"
-  override val body = "The standard Solitaire game. Enjoy!"
-
-  def initialMoves(gameState: GameState, deck: Deck) = {
     gameState.addCards(deck.getCards(1, turnFaceUp = true), "tableau-1", reveal = true)
 
     gameState.addCards(deck.getCards(1), "tableau-2")
@@ -34,4 +30,3 @@ object Klondike extends GameVariant.Description {
   }
 }
 
-class Klondike(gameId: UUID, seed: Int) extends GameVariant("klondike", Klondike, gameId, seed, Klondike.initialMoves)
