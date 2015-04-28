@@ -7,11 +7,7 @@ object KlondikeOneCard extends GameRules(
   title = "Klondike (One Card)",
   description = "The world's most famous solitaire game features a triangular tableau where you build down in alternating colors. In this version, "
   + "you draw one card from the stock at a time.",
-  stock = Some(
-    StockRules(
-      cardsDealt = StockCardsDealt.Count(3)
-    )
-  ),
+  stock = Some(StockRules()),
   waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(

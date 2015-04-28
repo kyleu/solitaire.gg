@@ -3,6 +3,7 @@ package models.game.pile
 import models.game.Rank.King
 import models.game.pile.actions.{ SelectCardActions, DragToActions }
 import models.game.pile.constraints.Constraints
+import models.game.pile.options.PileOptions
 import models.game.rules.PyramidRules
 
 object PyramidSet {
@@ -12,7 +13,7 @@ object PyramidSet {
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.total(13, aceHigh = false)),
     selectCardConstraint = Some(Constraints.allOf("top-card-king", Constraints.topCardOnly, Constraints.specificRank(King))),
-    selectCardAction = Some(SelectCardActions.drawToPile(1, "graveyard")),
+    selectCardAction = Some(SelectCardActions.drawToPiles(1, Seq("graveyard"))),
     dragToAction = Some(DragToActions.remove())
   )
 

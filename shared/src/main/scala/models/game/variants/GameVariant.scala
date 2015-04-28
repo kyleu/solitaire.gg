@@ -43,17 +43,9 @@ case class GameVariant(rulesKey: String, description: GameVariant.Description, g
 
   val rng = new Random(new java.util.Random(seed))
 
-  val pileSets = {
-    rules.stock.map(s => StockSet(s)) ++
-      rules.waste.map(w => WasteSet(w)) ++
-      rules.reserves.map(r => ReserveSet(r)) ++
-      rules.cells.map(c => CellSet(c)) ++
-      rules.foundations.map(f => FoundationSet(f)) ++
-      rules.tableaus.map(t => TableauSet(t)) ++
-      rules.pyramids.map(p => PyramidSet(p))
-  }.toSeq
-
   val deck = newShuffledDecks(rules.deckOptions.numDecks, rules.deckOptions.ranks, rules.deckOptions.suits)
+
+  val pileSets = rules.prototypePileSets.map(_.copy())
 
   val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, pileSets, layout)
 

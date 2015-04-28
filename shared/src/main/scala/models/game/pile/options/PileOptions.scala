@@ -1,7 +1,7 @@
-package models.game.pile
+package models.game.pile.options
 
-import models.game.pile.actions.{ DragToAction, SelectPileAction, SelectCardAction }
-import models.game.pile.constraints.{ Constraints, Constraint }
+import models.game.pile.actions.{ DragToAction, SelectCardAction, SelectPileAction }
+import models.game.pile.constraints.Constraint
 
 object ClientPileOptions {
   def fromPileOptions(po: PileOptions) = ClientPileOptions(

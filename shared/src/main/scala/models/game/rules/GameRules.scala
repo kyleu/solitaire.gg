@@ -1,5 +1,7 @@
 package models.game.rules
 
+import models.game.pile._
+
 object GameRules {
   val allSources = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
 }
@@ -19,4 +21,14 @@ case class GameRules(
   reserves: Option[ReserveRules] = None,
   pyramids: Seq[PyramidRules] = Nil,
   complete: Boolean = false
-)
+) {
+  lazy val prototypePileSets = {
+    stock.map( s => StockSet(s)) ++
+    waste.map( w =>  WasteSet(w)) ++
+    reserves.map(r => ReserveSet(r)) ++
+    cells.map(c => CellSet(c)) ++
+    foundations.map(f => FoundationSet(f)) ++
+    tableaus.map(t => TableauSet(t)) ++
+    pyramids.map(p => PyramidSet(p))
+  }.toSeq
+}

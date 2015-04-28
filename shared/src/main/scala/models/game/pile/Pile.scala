@@ -1,6 +1,7 @@
 package models.game.pile
 
 import models.game.pile.actions.{ DragToActions, SelectPileActions, SelectCardActions }
+import models.game.pile.options.PileOptions
 import models.game.{ GameState, Card }
 
 import scala.collection.mutable.ArrayBuffer
