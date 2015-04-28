@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -24,11 +24,13 @@ object RougeEtNoir extends GameRules(
       wrapFromKingToAce = true
     ),
     FoundationRules(
+      setNumber = 1,
       numPiles = 2,
       suitMatchRule = SuitMatchRule.SameColor,
       wrapFromKingToAce = true
     ),
     FoundationRules(
+      setNumber = 2,
       numPiles = 4,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       wrapFromKingToAce = true,

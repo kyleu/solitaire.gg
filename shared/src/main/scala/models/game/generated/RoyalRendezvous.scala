@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -28,6 +28,7 @@ object RoyalRendezvous extends GameRules(
     ),
     FoundationRules(
       name = "Odd Foundation",
+      setNumber = 1,
       numPiles = 4,
       initialCards = InitialCards.PileIndex,
       rankMatchRule = RankMatchRule.UpBy2,
@@ -37,6 +38,7 @@ object RoyalRendezvous extends GameRules(
     ),
     FoundationRules(
       name = "Even Foundation",
+      setNumber = 2,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       initialCards = InitialCards.PileIndex,
@@ -47,6 +49,7 @@ object RoyalRendezvous extends GameRules(
     ),
     FoundationRules(
       name = "King Foundation",
+      setNumber = 3,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       wrapFromKingToAce = true,

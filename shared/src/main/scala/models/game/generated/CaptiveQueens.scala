@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -27,6 +27,7 @@ object CaptiveQueens extends GameRules(
     ),
     FoundationRules(
       name = "Sixes Foundation",
+      setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       wrapFromKingToAce = true,
@@ -35,6 +36,7 @@ object CaptiveQueens extends GameRules(
     ),
     FoundationRules(
       name = "Queens Foundation",
+      setNumber = 2,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       wrapFromKingToAce = true,

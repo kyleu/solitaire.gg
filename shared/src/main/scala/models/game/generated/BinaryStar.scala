@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -22,6 +22,7 @@ object BinaryStar extends GameRules(
       autoMoveCards = true
     ),
     FoundationRules(
+      setNumber = 1,
       lowRank = FoundationLowRank.DeckHighRank,
       initialCards = InitialCards.Count(1),
       suitMatchRule = SuitMatchRule.Any,

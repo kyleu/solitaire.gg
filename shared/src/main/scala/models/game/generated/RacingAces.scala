@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -26,6 +26,7 @@ object RacingAces extends GameRules(
     ),
     FoundationRules(
       name = "Sixes Foundation",
+      setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       suitMatchRule = SuitMatchRule.Any,
@@ -35,6 +36,7 @@ object RacingAces extends GameRules(
     ),
     FoundationRules(
       name = "Sevens Foundation",
+      setNumber = 2,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       suitMatchRule = SuitMatchRule.Any,
@@ -43,6 +45,7 @@ object RacingAces extends GameRules(
     ),
     FoundationRules(
       name = "Kings Foundation",
+      setNumber = 3,
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
       suitMatchRule = SuitMatchRule.Any,

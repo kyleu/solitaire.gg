@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -38,6 +38,7 @@ object Algiers extends GameRules(
       maxCards = 1
     ),
     TableauRules(
+      setNumber = 1,
       numPiles = 12,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),

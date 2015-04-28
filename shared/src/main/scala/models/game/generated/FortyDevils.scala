@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -25,6 +25,7 @@ object FortyDevils extends GameRules(
     ),
     FoundationRules(
       name = "Right Foundation",
+      setNumber = 1,
       numPiles = 4,
       wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true

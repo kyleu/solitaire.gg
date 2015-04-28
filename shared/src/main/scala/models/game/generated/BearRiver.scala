@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -31,6 +31,7 @@ object BearRiver extends GameRules(
     ),
     TableauRules(
       name = "Hole",
+      setNumber = 1,
       numPiles = 3,
       initialCards = InitialCards.Count(2),
       cardsFaceDown = TableauFaceDownCards.Count(0),

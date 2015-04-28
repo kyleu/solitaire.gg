@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -38,6 +38,7 @@ object DemonsAndThieves extends GameRules(
     ),
     TableauRules(
       name = "Right Tableau",
+      setNumber = 1,
       numPiles = 5,
       initialCards = InitialCards.Count(8),
       cardsFaceDown = TableauFaceDownCards.Count(0),

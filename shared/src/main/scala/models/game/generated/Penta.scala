@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -27,6 +27,7 @@ object Penta extends GameRules(
     ),
     FoundationRules(
       name = "Right Foundation",
+      setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       suitMatchRule = SuitMatchRule.Any,
@@ -48,6 +49,7 @@ object Penta extends GameRules(
     ),
     TableauRules(
       name = "Right Tableau",
+      setNumber = 1,
       numPiles = 3,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),

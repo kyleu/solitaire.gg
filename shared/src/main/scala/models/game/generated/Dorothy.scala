@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -24,6 +24,7 @@ object Dorothy extends GameRules(
       canMoveFrom = FoundationCanMoveFrom.Never
     ),
     FoundationRules(
+      setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       rankMatchRule = RankMatchRule.DownBy2,
@@ -32,6 +33,7 @@ object Dorothy extends GameRules(
       canMoveFrom = FoundationCanMoveFrom.Never
     ),
     FoundationRules(
+      setNumber = 2,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       wrapFromKingToAce = true,

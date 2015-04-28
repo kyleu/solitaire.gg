@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -28,6 +28,7 @@ object MountOlympus extends GameRules(
       autoMoveCards = true
     ),
     FoundationRules(
+      setNumber = 1,
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       initialCards = InitialCards.PileIndex,

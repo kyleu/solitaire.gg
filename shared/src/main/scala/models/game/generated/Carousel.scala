@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -30,6 +30,7 @@ object Carousel extends GameRules(
     ),
     FoundationRules(
       name = "Evens Foundation",
+      setNumber = 1,
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       rankMatchRule = RankMatchRule.UpBy2,
@@ -40,6 +41,7 @@ object Carousel extends GameRules(
     ),
     FoundationRules(
       name = "Odds Foundation",
+      setNumber = 2,
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       rankMatchRule = RankMatchRule.UpBy2,

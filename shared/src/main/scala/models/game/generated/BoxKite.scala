@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -20,6 +20,7 @@ object BoxKite extends GameRules(
       autoMoveCards = true
     ),
     FoundationRules(
+      setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
       initialCards = InitialCards.PileIndex,

@@ -1,4 +1,4 @@
-// Generated 2015-04-26 for Scalataire.
+// Generated rules for Scalataire.
 package models.game.generated
 
 import models.game._
@@ -26,12 +26,14 @@ object Pharaohs extends GameRules(
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
     ),
     PyramidRules(
+      setNumber = 1,
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
     ),
     PyramidRules(
+      setNumber = 2,
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
