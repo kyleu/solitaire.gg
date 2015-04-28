@@ -177,15 +177,19 @@ define([
   };
 
   Gameplay.prototype.resize = function() {
-    GameState.prototype.resize.apply(this, arguments);
+    if(this.lastSize === undefined || this.lastSize[0] !== this.game.width || this.lastSize[1] !== this.game.height) {
+      GameState.prototype.resize.apply(this, arguments);
 
-    if(this.game.playmat !== undefined) {
-      this.game.playmat.resize();
-    }
+      this.lastSize = [this.game.width, this.game.height];
 
-    if(this.bg !== undefined) {
-      this.bg.height = this.game.height * 2;
-      this.bg.width = this.game.width * 2;
+      if(this.game.playmat !== undefined) {
+        this.game.playmat.resize();
+      }
+
+      if(this.bg !== undefined) {
+        this.bg.height = this.game.height * 2;
+        this.bg.width = this.game.width * 2;
+      }
     }
   };
 
