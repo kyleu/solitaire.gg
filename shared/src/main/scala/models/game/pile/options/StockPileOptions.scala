@@ -17,19 +17,21 @@ object StockPileOptions {
 
     val drawTo = rules.dealTo match {
       case StockDealTo.Waste => pileIdsByType("waste")
+      case StockDealTo.WasteOrPairManually => pileIdsByType("waste") // TODO throw new NotImplementedError()
       case StockDealTo.Foundation => pileIdsByType("foundations")
       case StockDealTo.Tableau => pileIdsByType("tableaus")
       case StockDealTo.TableauFirstSet => throw new NotImplementedError()
       case StockDealTo.TableauIfNoneEmpty => pileIdsByType("tableaus") // TODO throw new NotImplementedError()
       case StockDealTo.TableauNonEmpty => throw new NotImplementedError()
+      case StockDealTo.Manually => throw new NotImplementedError()
       case StockDealTo.Never => Nil
-      case _ => throw new NotImplementedError()
+      case x => throw new NotImplementedError(x.toString)
     }
 
     val redrawFrom = rules.maximumDeals match {
       case Some(1) => None
       case None => drawTo.headOption
-      case _ => throw new NotImplementedError()
+      case _ => drawTo.headOption // TODO throw new NotImplementedError()
     }
 
     val selectCardAction = if(drawTo.nonEmpty) {

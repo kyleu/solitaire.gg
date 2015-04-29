@@ -1,6 +1,7 @@
 package parser.politaire
 
 import models.game.rules.{ InitialCards, RankMatchRule, SuitMatchRule }
+import parser.politaire.lookup.PolitaireLookup
 
 trait GameRulesParserHelper extends ParserStockHelper
     with ParserWasteHelper
@@ -9,15 +10,19 @@ trait GameRulesParserHelper extends ParserStockHelper
     with ParserCellHelper
     with ParserReserveHelper
     with ParserPyramidHelper { this: GameRulesParser =>
-  protected[this] def getString(key: String) = {
-    val attr = variant.attributes(key)
-    attr.translation.getOrElse(attr.value match {
-      case s: String => s
-      case x => throw new IllegalArgumentException("Value [" + x + "] is not a string.")
-    })
+
+  private[this] def getValue(key: String): Any = {
+    variant.attributes.get(key).map(_.value).getOrElse(ParserDefaults.getDefault(key).getOrElse(throw new IllegalStateException()))
   }
 
-  protected[this] def getInt(key: String) = variant.attributes(key).value match {
+  protected[this] def getString(key: String) = getValue(key) match {
+    case s: String => s
+    case i: Int =>
+      PolitaireLookup.getTranslation(key).map(_(i)).getOrElse(throw new IllegalArgumentException("Value [" + key + ":" + i + "] has no translation."))
+    case x => throw new IllegalArgumentException("Value [" + x + "] is not a string.")
+  }
+
+  protected[this] def getInt(key: String) = getValue(key) match {
     case i: Int => i
     case s: String if s == "0x0020|0x0080" || s == "0x0080|0x0020" => 160
     case s: String if s == "0x0020|0x0080" || s == "0x0080|0x0020" => 160
@@ -47,10 +52,7 @@ trait GameRulesParserHelper extends ParserStockHelper
   }
 
   protected[this] def getBoolean(key: String) = {
-    if (!variant.attributes.contains(key)) {
-      throw new IllegalArgumentException("Invalid boolean at key [" + key + "].")
-    }
-    variant.attributes(key).value match {
+    getValue(key) match {
       case i: Int => i != 0
       case b: Boolean => b
       case x => throw new IllegalArgumentException("Invalid boolean [" + x + "].")

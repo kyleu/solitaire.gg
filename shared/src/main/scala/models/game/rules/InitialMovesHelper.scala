@@ -95,12 +95,18 @@ object InitialMovesHelper {
       }
     }
 
+    rules.pyramids.foreach { pr =>
+      (1 to pr.height).foreach { i =>
+        (1 to i).foreach { j =>
+          addCards(1, "pyramid-" + i + "-" + j, reveal = true)
+        }
+      }
+    }
+
     rules.foundations.foreach { fr =>
       fr.initialCards match {
-        case InitialCards.Count(i) => (1 to i).foreach { row =>
-          (1 to fr.numPiles).foreach { col =>
-            addCards(1, "foundation-" + col, reveal = true)
-          }
+        case InitialCards.Count(i) => (1 to i).foreach { idx =>
+          addCards(1, "foundation-" + (idx % fr.numPiles), reveal = true)
         }
         case InitialCards.PileIndex => throw new NotImplementedError()
         case InitialCards.RestOfDeck => throw new NotImplementedError()

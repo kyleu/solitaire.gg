@@ -18,7 +18,16 @@ object PolitaireLookup {
         "ndraw" -> "Allowed draws"
       )
 
-  val titleMap = titleTable.toMap
+  private[this] val titleMap = titleTable.toMap
+
+  def getTitle(key: String) = {
+    val c = key(1)
+    if (c == '1' || c == '2' || c == '3' || c == '4') {
+      titleMap.get(key.head + "0" + key.tail.tail)
+    } else {
+      titleMap.get(key)
+    }
+  }
 
   private[this] val translationTable = {
     GameLookup.translations ++

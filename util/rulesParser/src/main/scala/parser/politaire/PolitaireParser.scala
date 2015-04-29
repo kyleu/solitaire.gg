@@ -83,15 +83,13 @@ object PolitaireParser {
         case x => throw new IllegalArgumentException("Invalid type [" + x.getClass.getSimpleName + ": " + x + "].")
       }
     }
-    for (attr <- PolitaireLookup.titleTable) {
-      attr._1 match {
-        case "title" => processAttr(attr, Some(id.head.toUpper + id.tail), markDefaults = false)
-        case _ => processAttr(attr, ParserDefaults.getDefault(attr._1))
-      }
+
+    data.value.foreach { value =>
+      val translation = PolitaireLookup.getTitle(value._1)
+      processAttr((value._1, translation.getOrElse("*" + value._1)), ParserDefaults.getDefault(value._1))
     }
-    data.value.filterNot(x => PolitaireLookup.titleMap.get(x._1).isDefined).foreach { unknown =>
-      processAttr((unknown._1, "*" + unknown._1), ParserDefaults.getDefault(unknown._1))
-    }
+    processAttr("title" -> "Title", Some(id.head.toUpper + id.tail), markDefaults = false)
+
     ret
   }
 }

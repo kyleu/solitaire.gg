@@ -5,7 +5,7 @@ import java.util.TimeZone
 import com.codahale.metrics.SharedMetricRegistries
 import org.joda.time.DateTimeZone
 import play.api.mvc.{ RequestHeader, Results, WithFilters }
-import play.api.{ Application, GlobalSettings, Logger }
+import play.api.{ Mode, Application, GlobalSettings, Logger }
 import play.filters.gzip.GzipFilter
 import play.filters.headers.SecurityHeadersFilter
 import services.ActorSupervisor
@@ -36,9 +36,13 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeaders
     super.onStop(app)
   }
 
-  override def onError(request: RequestHeader, ex: Throwable) = Future.successful(
-    Results.InternalServerError(views.html.error.serverError(request.path, Some(ex))(request.session, request.flash))
-  )
+  override def onError(request: RequestHeader, ex: Throwable) = if(play.api.Play.current.mode == Mode.Dev) {
+    super.onError(request, ex)
+  } else {
+    Future.successful(
+      Results.InternalServerError(views.html.error.serverError(request.path, Some(ex))(request.session, request.flash))
+    )
+  }
   override def onHandlerNotFound(request: RequestHeader) = Future.successful(
     Results.NotFound(views.html.error.notFound(request.path)(request.session, request.flash))
   )

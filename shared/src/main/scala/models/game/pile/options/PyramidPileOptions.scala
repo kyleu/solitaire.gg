@@ -12,7 +12,7 @@ object PyramidPileOptions {
         val opts = if (i == 7) {
           baseOptions
         } else {
-          optionsFor("pile-" + (i + 1) + "-" + j, "pile-" + (i + 1) + "-" + (j + 1))
+          optionsFor("pyramid-" + (i + 1) + "-" + j, "pyramid-" + (i + 1) + "-" + (j + 1))
         }
         (opts, i, j)
       }
