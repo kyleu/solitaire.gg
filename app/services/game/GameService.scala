@@ -3,25 +3,26 @@ package services.game
 import java.util.UUID
 
 import models._
-import models.game.variants.GameVariant
+import models.game.generated.GameRulesSet
+import models.game.rules.InitialMovesHelper
 import org.joda.time.LocalDateTime
 import services.GameHistoryService
 
 class GameService(
     val id: UUID,
-    val variant: String,
+    val rules: String,
     val seed: Int,
     val started: LocalDateTime,
     private[this] val initialPlayers: List[PlayerRecord]
 ) extends GameServiceHelper {
 
-  log.info("Started game [" + variant + "] for players [" + initialPlayers.map(_.name).mkString(", ") + "] with seed [" + seed + "].")
+  log.info("Started game [" + rules + "] for players [" + initialPlayers.map(_.name).mkString(", ") + "] with seed [" + seed + "].")
 
   protected[this] val playerConnections = collection.mutable.ArrayBuffer[PlayerRecord](initialPlayers: _*)
   protected[this] val observerConnections = collection.mutable.ArrayBuffer.empty[(PlayerRecord, Option[UUID])]
 
-  protected[this] val gameVariant = GameVariant(variant, id, seed)
-  protected[this] val gameState = gameVariant.gameState
+  protected[this] val gameRules = GameRulesSet.allById(rules)
+  protected[this] val gameState = gameRules.newGame(id, seed)
 
   initialPlayers.foreach { p =>
     gameState.addPlayer(p.accountId, p.name)
@@ -32,9 +33,9 @@ class GameService(
   protected[this] var lastMoveMade: Option[LocalDateTime] = None
 
   override def preStart() {
-    gameVariant.performInitialMoves()
+    InitialMovesHelper.performInitialMoves(gameRules, gameState)
 
-    GameHistoryService.startGame(id, seed, variant, "started", initialPlayers.map(_.accountId), started)
+    GameHistoryService.startGame(id, seed, rules, "started", initialPlayers.map(_.accountId), started)
 
     playerConnections.foreach { c =>
       c.connectionActor.foreach(_ ! GameStarted(id, self, started))

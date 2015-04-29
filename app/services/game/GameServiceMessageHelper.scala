@@ -9,7 +9,7 @@ trait GameServiceMessageHelper { this: GameService =>
   protected[this] def handleStopGameIfEmpty() {
     val hasPlayer = playerConnections.exists(_.connectionId.isDefined) || observerConnections.exists(_._1.connectionId.isDefined)
     if (!hasPlayer) {
-      val status = if (gameVariant.isWin) {
+      val status = if (gameRules.victoryCondition.check(gameState)) {
         "won"
       } else {
         "timeout"

@@ -9,30 +9,31 @@ import scala.util.Random
 
 object GameRules {
   val allSources = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+  val completed = Seq("klondike")
 }
 
 case class GameRules(
-  id: String,
-  title: String,
-  description: String,
-  victoryCondition: VictoryCondition = VictoryCondition.AllOnFoundation,
-  cardRemovalMethod: CardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
-  deckOptions: DeckOptions = DeckOptions(),
-  stock: Option[StockRules] = None,
-  waste: Option[WasteRules] = None,
-  reserves: Option[ReserveRules] = None,
-  cells: Option[CellRules] = None,
-  foundations: Seq[FoundationRules] = Nil,
-  tableaus: Seq[TableauRules] = Nil,
-  pyramids: Seq[PyramidRules] = Nil,
-  complete: Boolean = false
+    id: String,
+    title: String,
+    description: String,
+    victoryCondition: VictoryCondition = VictoryCondition.AllOnFoundation,
+    cardRemovalMethod: CardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
+    deckOptions: DeckOptions = DeckOptions(),
+    stock: Option[StockRules] = None,
+    waste: Option[WasteRules] = None,
+    reserves: Option[ReserveRules] = None,
+    cells: Option[CellRules] = None,
+    foundations: Seq[FoundationRules] = Nil,
+    tableaus: Seq[TableauRules] = Nil,
+    pyramids: Seq[PyramidRules] = Nil,
+    complete: Boolean = false
 ) {
   def newGame(gameId: UUID, seed: Int) = {
     val rng = new Random(new java.util.Random(seed))
     val maxPlayers = 1
     val deck = newShuffledDecks(seed, rng, deckOptions.numDecks, deckOptions.ranks, deckOptions.suits)
     val pileSets = newPileSets()
-    val layout = Layouts.forVariant(id)
+    val layout = Layouts.forRules(id)
     val gameState = GameState(gameId, id, maxPlayers, seed, deck, pileSets, layout)
     gameState
   }
@@ -49,31 +50,27 @@ case class GameRules(
 
   private[this] lazy val pileIdsByType = Map(
     "stock" -> stock.map(s => Seq("stock")).getOrElse(Nil),
-    "waste" -> waste.map(w => (1 to w.numPiles).map( i => "waste-" + i)).getOrElse(Nil),
-    "reserves" -> reserves.map(r => (1 to r.numPiles).map( i => "reserve-" + i)).getOrElse(Nil),
-    "cells" -> cells.map(c => (1 to c.numPiles).map( i => "cells-" + i)).getOrElse(Nil),
-    "foundations" -> foundations.zipWithIndex.flatMap( fs => (1 to fs._1.numPiles).map { i =>
-      val id = if(fs._2 == 0) { i.toString } else { throw new NotImplementedError() }
-      "foundation-" + id
+    "waste" -> waste.map(w => (1 to w.numPiles).map(i => "waste-" + i)).getOrElse(Nil),
+    "reserves" -> reserves.map(r => (1 to r.numPiles).map(i => "reserve-" + i)).getOrElse(Nil),
+    "cells" -> cells.map(c => (1 to c.numPiles).map(i => "cells-" + i)).getOrElse(Nil),
+    "foundations" -> foundations.flatMap(fs => (1 to fs.numPiles).map { i =>
+      if (fs.setNumber == 0) { "foundation-" + i } else { "foundation" + fs.setNumber + "-" + i }
     }),
-    "tableaus" -> tableaus.zipWithIndex.flatMap( ts => (1 to ts._1.numPiles).map { i =>
-      val id = if(ts._2 == 0) { i.toString } else { throw new NotImplementedError() }
-      "tableau-" + id
+    "tableaus" -> tableaus.flatMap(ts => (1 to ts.numPiles).map { i =>
+      if (ts.setNumber == 0) { "tableau-" + i } else { "tableau" + ts.setNumber + "-" + i }
     }),
-    "pyramids" -> pyramids.zipWithIndex.flatMap { ps =>
-      (1 to ps._1.height).flatMap { i =>
+    "pyramids" -> pyramids.flatMap { ps =>
+      (1 to ps.height).flatMap { i =>
         (1 to i).map { j =>
-          val location = i + "-" + j
-          val id = if (ps._2 == 0) { location } else { throw new NotImplementedError() }
-          "pyramid-" + id
+          if (ps.setNumber == 0) { "pyramid-" + i + "-" + j } else { "pyramid" + ps.setNumber + "-" + i + "-" + j }
         }
       }
     }
   )
 
   private[this] lazy val prototypePileSets = {
-    stock.map( s => StockSet(s, pileIdsByType)) ++
-      waste.map( w =>  WasteSet(w)) ++
+    stock.map(s => StockSet(s, pileIdsByType)) ++
+      waste.map(w => WasteSet(w)) ++
       reserves.map(r => ReserveSet(r)) ++
       cells.map(c => CellSet(c)) ++
       foundations.map(f => FoundationSet(f)) ++

@@ -11,10 +11,14 @@ object ScalaTableauExporter {
 
     if (rules.tableaus.nonEmpty) {
       add("  tableaus = Seq(")
-      add(rules.tableaus.map { t =>
+      add(rules.tableaus.zipWithIndex.map { ti =>
+        val t = ti._1
         val props = collection.mutable.ArrayBuffer.empty[String]
         if(t.name != defaults.name) {
           props += "      name = \"" + t.name.replaceAllLiterally("\"", "") + "\""
+        }
+        if(ti._2 != defaults.setNumber) {
+          props += "      setNumber = " + ti._2
         }
         if(t.numPiles != defaults.numPiles) {
           props += "      numPiles = " + t.numPiles

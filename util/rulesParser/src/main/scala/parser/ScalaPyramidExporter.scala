@@ -11,10 +11,14 @@ object ScalaPyramidExporter {
 
     if (rules.pyramids.nonEmpty) {
       add("  pyramids = Seq(")
-      add(rules.pyramids.map { p =>
+      add(rules.pyramids.zipWithIndex.map { pi =>
+        val p = pi._1
         val props = collection.mutable.ArrayBuffer.empty[String]
         if(p.name != defaults.name) {
           props += "      name = \"" + p.name.replaceAllLiterally("\"", "") + "\""
+        }
+        if(pi._2 != defaults.setNumber) {
+          props += "      setNumber = " + pi._2
         }
         if(p.pyramidType != defaults.pyramidType) {
           props += "      pyramidType = PyramidType." + p.pyramidType

@@ -3,7 +3,6 @@ package services.test
 import java.util.UUID
 
 import models.game.generated.GameRulesSet
-import models.game.variants.GameVariant
 import models.test.{ Test, Tree }
 
 class RulesTests {
@@ -12,9 +11,7 @@ class RulesTests {
   def testGameRules(id: String) = Test("rules-" + id, () => {
     val rules = GameRulesSet.allById(id)
 
-    var ret = "OK"
-    val variant = GameVariant(id, UUID.randomUUID(), 0)
-    ret = ret + " (" + variant.gameState.deck.cards.size + " cards)"
-    ret
+    val game = rules.newGame(UUID.randomUUID(), 0)
+    "OK (" + game.deck.cards.size + " cards)"
   })
 }

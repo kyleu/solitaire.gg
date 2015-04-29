@@ -1,14 +1,13 @@
 import java.util.UUID
 
-import models.game.GameState
 import models._
-import models.game.variants.GameVariant
+import models.game.GameState
+import models.game.rules.GameRules
 
-trait ScalataireHelper {
-  protected[this] def gameId: UUID
-  protected[this] def gameVariant: GameVariant
-  protected[this] def gameState: GameState
-  protected[this] def send(rm: ResponseMessage, registerUndoResponse: Boolean = true)
+trait ScalataireHelper { this: Scalataire =>
+  protected var gameId: UUID = _
+  protected var gameRules: GameRules = _
+  protected var gameState: GameState = _
 
   protected[this] def possibleMoves() = {
     val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
@@ -83,7 +82,7 @@ trait ScalataireHelper {
   }
 
   private[this] def checkWinCondition() = {
-    if (gameVariant.isWin) {
+    if (gameRules.victoryCondition.check(gameState)) {
       send(GameWon(gameId))
       true
     } else {

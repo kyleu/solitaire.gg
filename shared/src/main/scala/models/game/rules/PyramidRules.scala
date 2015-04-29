@@ -28,6 +28,7 @@ object PyramidFillEmptyWith {
 
 case class PyramidRules(
   name: String = "Pyramid",
+  setNumber: Int = 0,
   pyramidType: PyramidType = PyramidType.Standard,
   height: Int = 7,
   cardsFaceDown: PyramidFaceDownCards = PyramidFaceDownCards.Count(0),

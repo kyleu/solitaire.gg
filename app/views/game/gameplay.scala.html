@@ -1,4 +1,4 @@
-@(account: java.util.UUID, name: String, variant: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None, offline: Boolean = false)(
+@(account: java.util.UUID, name: String, rules: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None, offline: Boolean = false)(
   implicit session: Session, flash: Flash
 )@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
   <div id="game-container"></div>
@@ -15,7 +15,7 @@
     "debug": "@utils.Config.debug",
     "cardSet": "@utils.Config.defaultCardSet",
     "cardSize": "@utils.Config.defaultCardSize",
-    "variant": "@variant",
+    "rules": "@rules",
     @if(seed.isDefined) {"seed": @seed.get, }
     @if(offline) {"offline": true, }
     "initialAction": [ @Html(initialAction.map("\"" + _ + "\"").mkString(", ")) ]

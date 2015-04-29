@@ -12,7 +12,7 @@ import utils.Logging
 
 import scala.util.Random
 
-case class GameSolver(variant: String, testSeed: Int, gameSeed: Option[Int] = None) extends Logging {
+case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None) extends Logging {
   val rng = new Random(testSeed)
 
   var gameWon = false
@@ -22,7 +22,7 @@ case class GameSolver(variant: String, testSeed: Int, gameSeed: Option[Int] = No
   val accountId = UUID.randomUUID
   val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, accountId, "test-user", testProbe.ref))
 
-  conn ! StartGame(variant, gameSeed)
+  conn ! StartGame(rules, gameSeed)
   val gameJoined = testProbe.expectMsgClass(classOf[GameJoined])
   val gameId = gameJoined.id
   var moves = gameJoined.moves

@@ -1,7 +1,7 @@
 import java.util.UUID
 
-import models.game.GameState
-import models.game.variants.GameVariant
+import models.game.generated.GameRulesSet
+import models.game.rules.InitialMovesHelper
 import models._
 
 import scala.scalajs.js
@@ -9,22 +9,16 @@ import scala.scalajs.js.annotation.JSExport
 
 import scala.util.Random
 
-object Scalataire extends js.JSApp with ScalataireHelper {
-  protected[this] var gameId: UUID = _
+object Scalataire extends js.JSApp {
+  override def main() = Unit
+}
 
-  private[this] var sendCallback: js.Function1[String, Unit] = _
-
+class Scalataire extends ScalataireHelper {
   private[this] val accountId = UUID.randomUUID
   private[this] val rng = new Random()
 
-  protected[this] var gameVariant: GameVariant = _
-  protected[this] var gameState: GameState = _
-
   protected[this] var undoHelper = new UndoHelper()
-
-  def main() = {
-    Unit
-  }
+  private[this] var sendCallback: js.Function1[String, Unit] = _
 
   @JSExport
   def register(callback: js.Function1[String, Unit]) = sendCallback = callback
@@ -34,7 +28,7 @@ object Scalataire extends js.JSApp with ScalataireHelper {
     c match {
       case "GetVersion" => send(VersionResponse("0.0"))
       case "Ping" => send(Pong(JsonUtils.getLong(v.timestamp)))
-      case "StartGame" => handleStartGame(v.variant.toString, JsonUtils.getIntOption(v.seed))
+      case "StartGame" => handleStartGame(v.rules.toString, JsonUtils.getIntOption(v.seed))
       case "SelectCard" => handleSelectCard(accountId, UUID.fromString(v.card.toString), v.pile.toString)
       case "SelectPile" => handleSelectPile(accountId, v.pile.toString)
       case "MoveCards" => handleMoveCards(accountId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString)
@@ -52,12 +46,12 @@ object Scalataire extends js.JSApp with ScalataireHelper {
     sendCallback(JsonSerializers.write(json))
   }
 
-  private[this] def handleStartGame(variant: String, seed: Option[Int]) = {
+  private[this] def handleStartGame(rules: String, seed: Option[Int]) = {
     gameId = UUID.randomUUID
-    gameVariant = GameVariant(variant, gameId, seed.getOrElse(Math.abs(rng.nextInt())))
-    gameState = gameVariant.gameState
+    val gameRules = GameRulesSet.allById(rules)
+    gameState = gameRules.newGame(gameId, seed.getOrElse(Math.abs(rng.nextInt())))
     gameState.addPlayer(accountId, "Offline Player")
-    gameVariant.performInitialMoves()
+    InitialMovesHelper.performInitialMoves(gameRules, gameState)
 
     send(GameJoined(gameId, gameState.view(accountId), possibleMoves()))
   }

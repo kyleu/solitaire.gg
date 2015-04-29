@@ -9,12 +9,16 @@ object ScalaFoundationExporter {
     def add(s: String) = ret ++= s + "\n"
     def cls(o: Any) = ScalaExporter.cls(o)
 
-    if (rules.foundations.nonEmpty) {
+    if (rules.foundations.zipWithIndex.nonEmpty) {
       add("  foundations = Seq(")
-      add(rules.foundations.map { f =>
+      add(rules.foundations.zipWithIndex.map { fi =>
+        val f = fi._1
         val props = collection.mutable.ArrayBuffer.empty[String]
         if(f.name != defaults.name) {
           props += "      name = \"" + f.name.replaceAllLiterally("\"", "") + "\""
+        }
+        if(fi._2 != defaults.setNumber) {
+          props += "      setNumber = " + fi._2
         }
         if(f.numPiles != defaults.numPiles) {
           props += "      numPiles = " + f.numPiles

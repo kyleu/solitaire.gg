@@ -43,6 +43,7 @@ object PileAction {
 
 case class TableauRules(
   name: String = "Tableau",
+  setNumber: Int = 0,
   numPiles: Int = 7,
   initialCards: InitialCards = InitialCards.PileIndex,
   cardsFaceDown: TableauFaceDownCards = TableauFaceDownCards.AllButOne,

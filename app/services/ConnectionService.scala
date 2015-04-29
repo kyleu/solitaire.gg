@@ -30,7 +30,7 @@ class ConnectionService(val supervisor: ActorRef, val accountId: UUID, val name:
     case di: DebugInfo => handleDebugInfo(di.data)
 
     // Incoming game messages
-    case sg: StartGame => handleStartGame(sg.variant, sg.seed)
+    case sg: StartGame => handleStartGame(sg.rules, sg.seed)
     case jg: JoinGame => handleJoinGame(jg.id)
     case og: ObserveGame => handleObserveGame(og.id, og.as)
     case gm: GameMessage => handleGameMessage(gm)

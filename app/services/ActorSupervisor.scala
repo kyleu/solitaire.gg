@@ -43,7 +43,7 @@ class ActorSupervisor extends ActorSupervisorHelper with Logging {
     case cs: ConnectionStarted => handleConnectionStarted(cs.accountId, cs.username, cs.connectionId, cs.conn)
     case cs: ConnectionStopped => handleConnectionStopped(cs.connectionId)
 
-    case cg: CreateGame => handleCreateGame(cg.variant, cg.connectionId, cg.seed)
+    case cg: CreateGame => handleCreateGame(cg.rules, cg.connectionId, cg.seed)
     case cgj: ConnectionGameJoin => handleConnectionGameJoin(cgj.id, cgj.connectionId)
     case cgo: ConnectionGameObserve => handleConnectionGameObserve(cgo.id, cgo.connectionId, cgo.as)
     case gs: GameStopped => handleGameStopped(gs.id)

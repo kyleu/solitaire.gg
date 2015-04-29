@@ -5,7 +5,11 @@ import models.game.rules.PyramidRules
 
 object PyramidSet {
   def apply(pyramidRules: PyramidRules): PyramidSet = {
-    val prefix = "pyramid-"
+    val prefix = if(pyramidRules.setNumber == 0) {
+      "pyramid-"
+    } else {
+      "pyramid" + pyramidRules.setNumber + "-"
+    }
     val pileOptions = PyramidPileOptions(pyramidRules)
     val piles = pileOptions.map {
       case (o, i, j) => Pile(prefix + i + "-" + j, o)

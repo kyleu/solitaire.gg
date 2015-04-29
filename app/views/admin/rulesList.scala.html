@@ -7,12 +7,12 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="text-large">
-        @utils.Formatter.withCommas(ruleSet.size) Available Variants
+        @utils.Formatter.withCommas(ruleSet.size) Available Rules
       </div>
     </div>
   </div>
 
-  <h4>Variants</h4>
+  <h4>Rules</h4>
   @for(rules <- ruleSet.sortBy(_.title)) {
     <div class="panel panel-default">
       <div class="panel-body">

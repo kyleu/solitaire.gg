@@ -43,7 +43,7 @@ object ScalaExporter {
 
     val defaults = GameRules("default", "default", "default")
 
-    add("// Generated " + new LocalDateTime().toString("yyyy-MM-dd") + " for Scalataire.")
+    add("// Generated rules for Scalataire.")
     add("package models.game.generated")
     add("")
     add("import models.game._")

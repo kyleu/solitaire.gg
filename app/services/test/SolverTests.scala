@@ -1,7 +1,7 @@
 package services.test
 
 import models.GameMessage
-import models.game.variants._
+import models.game.rules.GameRules
 import models.test.{ Test, Tree }
 
 object SolverTests {
@@ -14,15 +14,15 @@ object SolverTests {
 }
 
 class SolverTests {
-  val all = Tree(Test("solver"), GameVariant.completed.map(x => testSolver(x).toTree))
+  val all = Tree(Test("solver"), GameRules.completed.map(x => testSolver(x).toTree))
 
-  def testSolver(variant: String) = Test("solver-" + variant, { () =>
-    val seed = SolverTests.solvableSeeds.getOrElse(variant, 1)
-    runSolver(variant, seed)
+  def testSolver(rules: String) = Test("solver-" + rules, { () =>
+    val seed = SolverTests.solvableSeeds.getOrElse(rules, 1)
+    runSolver(rules, seed)
   })
 
-  private[this] def runSolver(variant: String, seed: Int) = {
-    val solver = GameSolver(variant, 0, Some(seed))
+  private[this] def runSolver(rules: String, seed: Int) = {
+    val solver = GameSolver(rules, 0, Some(seed))
     val maxMoves = 2000
     val movesPerformed = collection.mutable.ArrayBuffer.empty[GameMessage]
     while (!solver.gameWon && movesPerformed.size < maxMoves) {
@@ -31,10 +31,10 @@ class SolverTests {
     }
 
     if (solver.gameWon) {
-      val msg = "Won game [" + variant + "] with seed [" + seed + "] in [" + movesPerformed.size + "] moves."
+      val msg = "Won game [" + rules + "] with seed [" + seed + "] in [" + movesPerformed.size + "] moves."
       msg
     } else {
-      val msg = "Unable to find a solution for [" + variant + "] seed [" + seed + "] in [" + movesPerformed.size + "] moves."
+      val msg = "Unable to find a solution for [" + rules + "] seed [" + seed + "] in [" + movesPerformed.size + "] moves."
       msg
     }
   }

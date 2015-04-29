@@ -71,7 +71,7 @@ object DdlQueries {
       create table games (
         id uuid primary key,
         seed int not null,
-        variant character varying(128) not null,
+        rules character varying(128) not null,
         status character varying(128) not null,
         accounts uuid[] not null default array[]::uuid[],
         moves integer not null default 0,

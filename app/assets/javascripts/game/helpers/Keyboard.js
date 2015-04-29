@@ -16,7 +16,7 @@ define([], function () {
   return {
     "init": function(game) {
       function logGame() {
-        console.log("Game [" + game.id + "] (" + game.variant + "):");
+        console.log("Game [" + game.id + "] (" + game.rules + "):");
         console.log(game);
         console.log("Piles:");
         for(var cardIndex in game.piles) {

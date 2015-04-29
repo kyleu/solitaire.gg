@@ -29,13 +29,13 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
     }
   }
 
-  protected[this] def handleCreateGame(variant: String, connectionId: UUID, seed: Option[Int]) {
+  protected[this] def handleCreateGame(rules: String, connectionId: UUID, seed: Option[Int]) {
     val id = UUID.randomUUID
     val s = Math.abs(seed.getOrElse(masterRng.nextInt()))
     val c = connections(connectionId)
 
     val started = new LocalDateTime()
-    val actor = context.actorOf(Props(new GameService(id, variant, s, started, List(
+    val actor = context.actorOf(Props(new GameService(id, rules, s, started, List(
       PlayerRecord(c.accountId, c.name, Some(connectionId), Some(c.actorRef))
     ))), "game:" + id)
 

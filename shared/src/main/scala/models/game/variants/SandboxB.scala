@@ -3,7 +3,7 @@ package models.game.variants
 import models.game.GameState
 
 object SandboxB {
-//  override val completed = false
+  //  override val completed = false
 
   def initialMoves(gameState: GameState) = {
     gameState.addCards(gameState.deck.getCards(turnFaceUp = true), "waste-1", reveal = true)

@@ -7,8 +7,8 @@ import org.joda.time.LocalDateTime
 import services.database.DatabaseConnection
 
 object GameHistoryService {
-  def startGame(id: UUID, seed: Int, variant: String, status: String, accounts: Seq[UUID], created: LocalDateTime) = {
-    DatabaseConnection.execute(CreateGameHistory(id, seed, variant, status, accounts, created))
+  def startGame(id: UUID, seed: Int, rules: String, status: String, accounts: Seq[UUID], created: LocalDateTime) = {
+    DatabaseConnection.execute(CreateGameHistory(id, seed, rules, status, accounts, created))
   }
 
   def searchGames(q: String, orderBy: String) = DatabaseConnection.query(SearchGameHistories(q, orderBy))

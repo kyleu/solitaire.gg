@@ -28,23 +28,23 @@ object HomeController extends BaseController {
     Ok(views.html.game.gameplay(request.accountId, request.name, "klondike"))
   }
 
-  def newGame(variant: String) = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.gameplay(request.accountId, request.name, variant))
+  def newGame(rules: String) = AuthenticatedAction { implicit request =>
+    Ok(views.html.game.gameplay(request.accountId, request.name, rules))
   }
 
-  def newGameWithSeed(variant: String, seed: Int) = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.gameplay(request.accountId, request.name, variant, None, Some(seed)))
+  def newGameWithSeed(rules: String, seed: Int) = AuthenticatedAction { implicit request =>
+    Ok(views.html.game.gameplay(request.accountId, request.name, rules, None, Some(seed)))
   }
 
   def newDefaultOfflineGame() = AuthenticatedAction { implicit request =>
     Ok(views.html.game.gameplay(request.accountId, request.name, "klondike", offline = true))
   }
 
-  def newOfflineGame(variant: String) = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.gameplay(request.accountId, request.name, variant, offline = true))
+  def newOfflineGame(rules: String) = AuthenticatedAction { implicit request =>
+    Ok(views.html.game.gameplay(request.accountId, request.name, rules, offline = true))
   }
 
-  def newOfflineGameWithSeed(variant: String, seed: Int) = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.gameplay(request.accountId, request.name, variant, seed = Some(seed), offline = true))
+  def newOfflineGameWithSeed(rules: String, seed: Int) = AuthenticatedAction { implicit request =>
+    Ok(views.html.game.gameplay(request.accountId, request.name, rules, seed = Some(seed), offline = true))
   }
 }

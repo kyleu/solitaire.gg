@@ -6,7 +6,7 @@ import models.game.pile.PileSet
 import models.{ CardHidden, CardRevealed }
 
 case class GameState(
-    gameId: UUID, variant: String, maxPlayers: Int, seed: Int, deck: Deck, pileSets: Seq[PileSet], layout: String, var players: Seq[GamePlayer] = Nil
+    gameId: UUID, rules: String, maxPlayers: Int, seed: Int, deck: Deck, pileSets: Seq[PileSet], layout: String, var players: Seq[GamePlayer] = Nil
 ) {
 
   private[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
@@ -86,7 +86,7 @@ case class GameState(
   }
 
   def toStrings = Seq(
-    "Game ID: " + gameId, "Variant: " + variant, "Seed: " + seed,
+    "Game ID: " + gameId, "Rules: " + rules, "Seed: " + seed,
     "Players: " + players.map(x => x.account.toString + " (" + x.name + ")").mkString(", "),
     "Deck: " + deck.cards.toString, piles.size + " Piles: "
   ) ++ piles.map(p => p.toString)

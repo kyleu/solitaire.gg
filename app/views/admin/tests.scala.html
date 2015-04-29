@@ -10,7 +10,7 @@
             <li><a href="@controllers.admin.routes.TestController.runTest("known").url">Known Game Tests</a></li>
             <li><a href="@controllers.admin.routes.TestController.runTest("solver").url">All Solver Tests</a></li>
             <li><a href="@controllers.admin.routes.TestController.runTest("variants").url">All Variant Tests</a></li>
-            <li><a href="@controllers.admin.routes.TestController.runTest("variants").url">All Rules Tests</a></li>
+            <li><a href="@controllers.admin.routes.TestController.runTest("rules").url">All Rules Tests</a></li>
           </ul>
         </div>
       </div>
@@ -21,7 +21,7 @@
         <div class="panel-body">
           <ul>
           @for(r <- models.game.generated.GameRulesSet.all) {
-            <li><a href="@controllers.admin.routes.TestController.runTest(r.id).url">@r.title Test</a></li>
+            <li><a href="@controllers.admin.routes.TestController.runTest("variant-" + r.id).url">@r.title Test</a></li>
           }
           </ul>
         </div>

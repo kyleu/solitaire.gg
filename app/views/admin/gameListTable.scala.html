@@ -13,7 +13,7 @@
     <tr>
       @th("game-id", "Game ID")
       @th("seed", "Seed")
-      @th("variant", "Variant")
+      @th("rules", "Rules")
       @th("status", "Status")
       @th("accounts", "Accounts")
       @th("moves", "Moves")
@@ -28,7 +28,7 @@
     <tr>
       <td title="@g.id">@g.id.toString.substring(0, 8)</td>
       <td>@g.seed</td>
-      <td>@g.variant</td>
+      <td>@g.rules</td>
       <td>@g.status</td>
       @if(link) {
         <td>@Html(g.accounts.map(a => "<a href=\"" + controllers.admin.routes.AccountController.accountDetail(a) + "\"><div title=\"" + a.toString + "\">" + a.toString.substring(0, 8) + "</div></a>").mkString(", "))</td>

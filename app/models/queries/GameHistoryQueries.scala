@@ -9,13 +9,13 @@ import utils.DateUtils
 
 object GameHistoryQueries extends BaseQueries {
   override protected val tableName = "games"
-  override protected val columns = Seq("id", "seed", "variant", "status", "accounts", "moves", "undos", "redos", "created", "completed")
+  override protected val columns = Seq("id", "seed", "rules", "status", "accounts", "moves", "undos", "redos", "created", "completed")
 
-  override protected lazy val insertSql = s"insert into $tableName (id, seed, variant, status, accounts, created) values (?, ?, ?, ?, ?::uuid[], ?)"
+  override protected lazy val insertSql = s"insert into $tableName (id, seed, rules, status, accounts, created) values (?, ?, ?, ?, ?::uuid[], ?)"
 
-  case class CreateGameHistory(id: UUID, seed: Int, variant: String, status: String, accounts: Seq[UUID], created: LocalDateTime) extends Statement {
+  case class CreateGameHistory(id: UUID, seed: Int, rules: String, status: String, accounts: Seq[UUID], created: LocalDateTime) extends Statement {
     val sql = insertSql
-    val values = Seq(id, seed, variant, status, "{ " + accounts.mkString(", ") + " }", DateUtils.toSqlTimestamp(created)): Seq[Any]
+    val values = Seq(id, seed, rules, status, "{ " + accounts.mkString(", ") + " }", DateUtils.toSqlTimestamp(created)): Seq[Any]
   }
 
   case class UpdateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int, completed: Option[LocalDateTime]) extends Statement {
@@ -49,7 +49,7 @@ object GameHistoryQueries extends BaseQueries {
   private[this] def fromRow(row: Row) = for {
     id <- row.uuid("id")
     seed <- row.int("seed")
-    variant <- row.string("variant")
+    rules <- row.string("rules")
     status <- row.string("status")
     accounts <- row.sqlArray("accounts")
     moves <- row.int("moves")
@@ -62,6 +62,6 @@ object GameHistoryQueries extends BaseQueries {
       case _ => throw new IllegalStateException()
     }
     val complete = row.timestamp("completed").map(x => new LocalDateTime(x.getTime))
-    GameHistory(id, seed, variant, status, accts, moves, undos, redos, created, complete)
+    GameHistory(id, seed, rules, status, accts, moves, undos, redos, created, complete)
   }
 }

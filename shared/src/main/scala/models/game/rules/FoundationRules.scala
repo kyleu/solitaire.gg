@@ -20,6 +20,7 @@ object FoundationCanMoveFrom {
 
 case class FoundationRules(
   name: String = "Foundation",
+  setNumber: Int = 0,
   numPiles: Int = 1,
   lowRank: FoundationLowRank = FoundationLowRank.DeckLowRank,
   initialCards: InitialCards = InitialCards.Count(0),

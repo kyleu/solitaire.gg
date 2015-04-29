@@ -29,7 +29,7 @@ object Layouts {
     "yukon" -> ":::f|t"
   )
 
-  def forVariant(v: String) = {
+  def forRules(v: String) = {
     layouts.getOrElse(v, "s")
   }
 }

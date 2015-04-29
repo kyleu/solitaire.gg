@@ -7,7 +7,7 @@ import org.joda.time.LocalDateTime
 case class GameHistory(
   id: UUID,
   seed: Int,
-  variant: String,
+  rules: String,
   status: String,
   accounts: Seq[UUID],
   moves: Int,

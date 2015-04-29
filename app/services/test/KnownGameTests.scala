@@ -7,12 +7,12 @@ import akka.testkit.TestProbe
 import models._
 import models.test.{ Tree, Test }
 import play.api.libs.concurrent.Akka
-import services.{ AccountService, ActorSupervisor, ConnectionService }
+import services.{ ActorSupervisor, ConnectionService }
 
 import play.api.Play.current
 
 class KnownGameTests {
-  val variant = "klondike"
+  val rules = "klondike"
   val seed = 5
   implicit val system = Akka.system
   val testProbe = TestProbe()
@@ -29,13 +29,13 @@ class KnownGameTests {
     conn ! StartGame("klondike", Some(seed))
     val gameJoined = testProbe.expectMsgClass(classOf[GameJoined])
     activeGameId = gameJoined.id
-    "Started [" + variant + "] game [" + activeGameId + "]."
+    "Started [" + rules + "] game [" + activeGameId + "]."
   })
 
   private[this] def possibleMoves() = Test("possible-moves", () => {
     conn ! GetPossibleMoves
     moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
-    "Started [" + variant + "] game [" + activeGameId + "]."
+    "Started [" + rules + "] game [" + activeGameId + "]."
   })
 
   private[this] def moveCardsA() = Test("move-cards-a", () => {

@@ -50,9 +50,9 @@ define([
     switch(cfg.initialAction[0]) {
       case "start":
         if(cfg.seed === undefined) {
-          this.game.send("StartGame", {"variant": cfg.variant});
+          this.game.send("StartGame", {"rules": cfg.rules});
         } else {
-          this.game.send("StartGame", {"variant": cfg.variant, "seed": cfg.seed});
+          this.game.send("StartGame", {"rules": cfg.rules, "seed": cfg.seed});
         }
         break;
       case "join":
@@ -75,7 +75,7 @@ define([
       case "GameJoined":
         this.game.playmat = new Playmat(this.game, v.state.pileSets, v.state.layout);
         this.game.id = v.state.gameId;
-        this.game.variant = v.variant;
+        this.game.rules = v.rules;
         this.game.seed = v.state.seed;
         this.game.possibleMoves = v.moves;
         this.loadPileSets(v.state.pileSets);
