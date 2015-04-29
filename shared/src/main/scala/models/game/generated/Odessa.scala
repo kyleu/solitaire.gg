@@ -19,6 +19,7 @@ object Odessa extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("DDDUUU", "DDDUUUUU", "DDDUUUUU", "DDDUUUUU", "DDDUUUUU", "DDDUUUUU", "DDDUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,

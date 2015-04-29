@@ -22,6 +22,7 @@ object SpiderOneSuit extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("DDDDDU", "DDDDDU", "DDDDDU", "DDDDDU", "DDDDU", "DDDDU", "DDDDU", "DDDDU", "DDDDU", "DDDDU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,

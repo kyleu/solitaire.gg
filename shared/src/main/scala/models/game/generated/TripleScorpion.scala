@@ -24,6 +24,7 @@ object TripleScorpion extends GameRules(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("DDDDDUUUUUUU", "DDDDDUUUUUUU", "DDDDDUUUUUUU", "DDDDDUUUUUUU", "DDDDDUUUUUUU", "DDDDDUUUUUUU", "UUUUUUUUUUUU", "UUUUUUUUUUUU", "UUUUUUUUUUUU", "UUUUUUUUUUUU", "UUUUUUUUUUUU", "UUUUUUUUUUUU", "UUUUUUUUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,

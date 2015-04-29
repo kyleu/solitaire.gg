@@ -23,6 +23,7 @@ object CellEleven extends GameRules(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUUUUUUUUU", "UUUUUUUUUUUUU", "UUUUUUUUUUUUU", "UUUUUUUUUUUUU", "UUUUUUUUUUUUU", "UUUUUUUUUUUU", "UUUUUUUUUUUU", "UUUUUUUUUUUUU", "UUUUUUUUUUUUU", "UUUUUUUUUUUUU", "UUUUUUUUUUUUU", "UUUUUUUUUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = TableauFillEmptyWith.Aces

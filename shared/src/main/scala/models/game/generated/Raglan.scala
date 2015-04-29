@@ -26,6 +26,7 @@ object Raglan extends GameRules(
     TableauRules(
       numPiles = 9,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUUU", "UUUUUUU", "UUUUUUU", "UUUUUU", "UUUUU", "UUUU", "UUU", "UU", "U"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = TableauFillEmptyWith.Aces

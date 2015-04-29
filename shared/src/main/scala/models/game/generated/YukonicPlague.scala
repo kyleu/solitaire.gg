@@ -19,6 +19,7 @@ object YukonicPlague extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("U", "DDUU", "DDUUU", "DDUUUU", "DDUUUUU", "DDUUUUUU", "DDUUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,

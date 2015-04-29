@@ -24,6 +24,7 @@ object Applegate extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUUU", "DDUUUUU", "DDUUUUU", "DDUUUUU", "DDUUUUU", "DDUUUUU", "DDUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       wrapFromKingToAce = true,

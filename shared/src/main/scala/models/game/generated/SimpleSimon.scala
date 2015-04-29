@@ -22,6 +22,7 @@ object SimpleSimon extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUUUU", "UUUUUUUU", "UUUUUUUU", "UUUUUUU", "UUUUUU", "UUUUU", "UUUU", "UUU", "UU", "U"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,

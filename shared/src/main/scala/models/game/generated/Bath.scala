@@ -20,6 +20,7 @@ object Bath extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("U", "UU", "UUU", "UUUU", "UUUUU", "UUUUUU", "UUUUUUU", "UUUUUUUU", "UUUUUUUU", "UUUUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = TableauFillEmptyWith.Kings

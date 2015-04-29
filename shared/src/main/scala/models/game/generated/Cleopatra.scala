@@ -29,6 +29,7 @@ object Cleopatra extends GameRules(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("U", "DU", "UDU", "DUDU", "UDUDU", "DUDUDU", "UDUDUDU", "DUDUDU", "UDUDU", "DUDU", "UDU", "DU", "U"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,

@@ -39,6 +39,7 @@ object InitialMovesHelper {
             addCards(1, "tableau-" + col, reveal = reveal)
           }
         }
+
         case InitialCards.PileIndex => (1 to tr.numPiles).foreach { row =>
           (1 to tr.numPiles).foreach { col =>
             if (col < row) {
@@ -56,6 +57,7 @@ object InitialMovesHelper {
             }
           }
         }
+
         case InitialCards.RestOfDeck => (0 until gameState.deck.cards.size).foreach { i =>
           val row = (i / tr.numPiles) + 1
           val col = (i % tr.numPiles) + 1
@@ -68,12 +70,46 @@ object InitialMovesHelper {
           addCards(1, "tableau-" + col, reveal = reveal)
         }
 
+        case InitialCards.Custom =>
+          val maxLength = tr.customInitialCards.map(_.length).max
+          (1 to maxLength).foreach { row =>
+            tr.customInitialCards.zipWithIndex.foreach { cards =>
+              if(cards._1.length >= row) {
+                val reveal = cards._1(row - 1) match {
+                  case 'U' => true
+                  case 'D' => false
+                  case _ => throw new IllegalStateException()
+                }
+                addCards(1, "tableau-" + (cards._2 + 1), reveal = reveal)
+              }
+            }
+          }
+      }
+    }
+
+    rules.reserves.foreach { rr =>
+      (1 to rr.initialCards).foreach { row =>
+        (1 to rr.numPiles).foreach { col =>
+          addCards(1, "reserve-" + col, reveal = true)
+        }
+      }
+    }
+
+    rules.foundations.foreach { fr =>
+      fr.initialCards match {
+        case InitialCards.Count(i) => (1 to i).foreach { row =>
+          (1 to fr.numPiles).foreach { col =>
+            addCards(1, "foundation-" + col, reveal = true)
+          }
+        }
+        case InitialCards.PileIndex => throw new NotImplementedError()
+        case InitialCards.RestOfDeck => throw new NotImplementedError()
         case InitialCards.Custom => throw new NotImplementedError()
       }
+    }
 
-      rules.stock.foreach { s =>
-        gameState.addCards(gameState.deck.getCards().reverse, "stock")
-      }
+    rules.stock.foreach { s =>
+      gameState.addCards(gameState.deck.getCards().reverse, "stock")
     }
   }
 }

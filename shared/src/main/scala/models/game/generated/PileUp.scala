@@ -13,6 +13,7 @@ object PileUp extends GameRules(
     TableauRules(
       numPiles = 15,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUU", "UUUU", "UUUU", "UUUU", "UUUU", "UUUU", "UUUU", "UUUU", "UUUU", "UUUU", "UUUU", "UUUU", "UUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Equal,

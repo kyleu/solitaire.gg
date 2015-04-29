@@ -19,6 +19,7 @@ object Tuxedo extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUUUU", "UUUUUUU", "UUUUUUU", "UUUUUUUU", "UUUUUUU", "UUUUUUU", "UUUUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,

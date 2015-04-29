@@ -19,6 +19,7 @@ object Chelicera extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUU", "UUUU", "UUUU", "UUUU", "UUUUUUU", "UUUUUUU", "UUUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,

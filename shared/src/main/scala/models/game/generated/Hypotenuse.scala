@@ -29,6 +29,7 @@ object Hypotenuse extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("DDDDDDDDDU", "DDDDDDDDU", "DDDDDDDU", "DDDDDDU", "DDDDDU", "DDDDU", "DDDU", "DDU", "DU", "U"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       emptyFilledWith = TableauFillEmptyWith.Kings
     )

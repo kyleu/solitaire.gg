@@ -19,6 +19,7 @@ object ScorpionHead extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUUUU", "UUUUUUUU", "UUUUUUUU", "DDDDUUU", "DDDDUUU", "DDDDUUU", "DDDDUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,

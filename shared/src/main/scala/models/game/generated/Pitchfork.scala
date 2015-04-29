@@ -24,6 +24,7 @@ object Pitchfork extends GameRules(
     TableauRules(
       numPiles = 9,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUUUU", "UUUUUUUU", "UUUU", "UU", "", "UU", "UUUU", "UUUUUUUU", "UUUUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = TableauFillEmptyWith.Aces

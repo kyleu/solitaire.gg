@@ -8,17 +8,26 @@ trait ParserTableauHelper { this: GameRulesParser =>
     val tableauCount = getInt("Tn")
     val tableaus = (0 to tableauCount - 1).map { i =>
       val prefix = "T" + i
+
+      val initialCards = getInt(prefix + "d") match {
+        case -1 => InitialCards.PileIndex
+        case -3 => InitialCards.RestOfDeck
+        case -2 => InitialCards.Custom
+        case x => InitialCards.Count(x)
+      }
+      val numPiles = getInt(prefix + "n") match {
+        case -1 => 4 * deckOptions.numDecks
+        case x => x
+      }
+
       TableauRules(
         name = getString(prefix + "Nm"),
-        numPiles = getInt(prefix + "n") match {
-          case -1 => 4 * deckOptions.numDecks
-          case x => x
-        },
-        initialCards = getInt(prefix + "d") match {
-          case -1 => InitialCards.PileIndex
-          case -3 => InitialCards.RestOfDeck
-          case -2 => InitialCards.Custom
-          case x => InitialCards.Count(x)
+        numPiles = numPiles,
+        initialCards = initialCards,
+        customInitialCards = if(initialCards == InitialCards.Custom) {
+          getString(prefix + "ds").split(" ")
+        } else {
+          Nil
         },
         cardsFaceDown = getInt(prefix + "df") match {
           case 100 => TableauFaceDownCards.AllButOne

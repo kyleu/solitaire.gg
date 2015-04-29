@@ -21,6 +21,7 @@ object Usk extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUUUU", "UUUUUUUU", "UUUUUUUU", "UUUUUUU", "UUUUUU", "UUUUU", "UUUU", "UUU", "UU", "U"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       emptyFilledWith = TableauFillEmptyWith.Kings
     )

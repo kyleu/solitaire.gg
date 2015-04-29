@@ -10,7 +10,7 @@ import scala.util.Random
 
 object GameRules {
   val allSources = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
-  val completed = Seq("canfield", "freecell", "golf", "gypsy", "klondike", "klondike1card", "nestor", "pyramid", "spider", "spider", "trustytwelve", "yukon")
+  val completed = Seq("canfield", "freecell", "golf", "gypsy", "klondike", "klondike1card", "nestor", "pyramid", "spider", "trustytwelve", "yukon")
   lazy val unfinished = GameRulesSet.all.filter(r => !completed.contains(r.id))
 }
 

@@ -25,6 +25,7 @@ object Gloucestershire extends GameRules(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUU", "UUUU", "UUUUU", "UUUUUU", "UUUUUUU", "UUUUUUUU", "UUUUUUUUU", "UUUUUUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,

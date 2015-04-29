@@ -30,6 +30,7 @@ object Beetle extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUU", "UUUUUU", "UUUUUU", "UUUUUU", "UUUUU", "UUUUU", "UUUUU", "UUUUU", "UUUUU", "UUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,

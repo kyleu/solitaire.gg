@@ -30,6 +30,7 @@ object MondoSpider extends GameRules(
     TableauRules(
       numPiles = 18,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("DDDDDDDU", "UUUUUUU", "DDDDDDDU", "UUUUUUU", "DDDDDDDU", "UUUUUUU", "DDDDDDDU", "UUUUUUU", "DDDDDDDU", "DDDDDDDU", "UUUUUUU", "DDDDDDDU", "UUUUUUU", "DDDDDDDU", "UUUUUUU", "DDDDDDDU", "UUUUUUU", "DDDDDDDU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,

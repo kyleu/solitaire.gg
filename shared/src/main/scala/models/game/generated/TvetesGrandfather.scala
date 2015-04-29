@@ -21,6 +21,7 @@ object TvetesGrandfather extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("D", "DDUUUUU", "DDDDUUUUU", "DDDDDDUUUUU", "DDDDDUUUUU", "DDDUUUUU", "DUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,

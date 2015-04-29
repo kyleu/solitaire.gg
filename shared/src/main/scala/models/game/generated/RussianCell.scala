@@ -19,6 +19,7 @@ object RussianCell extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("U", "DUUUUU", "DDUUUUU", "DDDUUUUU", "DDDDUUUUU", "DDDDDUUUUU", "DDDDDDUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,

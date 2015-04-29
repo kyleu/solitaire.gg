@@ -19,6 +19,7 @@ object Brisbane extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUU", "DUUUUU", "DDUUUUU", "DDDUUUU", "DDDDUUUU", "DDDDDUUUU", "DDDDDDUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,

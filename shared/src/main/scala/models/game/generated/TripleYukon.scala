@@ -23,6 +23,7 @@ object TripleYukon extends GameRules(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUU", "DUUUUUU", "DDUUUUUU", "DDDUUUUUU", "DDDDUUUUUU", "DDDDDUUUUUU", "DDDDDDUUUUUU", "DDDDDDDUUUUUU", "DDDDDDDDUUUUUU", "DDDDDDDDDUUUUUU", "DDDDDDDDDDUUUUUU", "DDDDDDDDDDDUUUUUU", "DDDDDDDDDDDDUUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,

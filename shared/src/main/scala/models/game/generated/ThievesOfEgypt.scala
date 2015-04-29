@@ -29,6 +29,7 @@ object ThievesOfEgypt extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("U", "UUU", "UUUUU", "UUUUUUU", "UUUUUUUUU", "UUUUUUUUUU", "UUUUUUUU", "UUUUUU", "UUUU", "UU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       emptyFilledWith = TableauFillEmptyWith.Kings
     )

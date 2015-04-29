@@ -23,6 +23,7 @@ object TripleRussian extends GameRules(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("U", "DUUUUUU", "DDUUUUUU", "DDDUUUUUU", "DDDDUUUUUU", "DDDDDUUUUUU", "DDDDDDUUUUUU", "DDDDDDDUUUUUU", "DDDDDDDDUUUUUU", "DDDDDDDDDUUUUUU", "DDDDDDDDDDU", "DDDDDDDDDDDU", "DDDDDDDDDDDDU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,

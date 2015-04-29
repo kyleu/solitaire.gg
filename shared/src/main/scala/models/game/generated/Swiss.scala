@@ -29,6 +29,7 @@ object Swiss extends GameRules(
     TableauRules(
       numPiles = 9,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("U", "DU", "DDU", "DDDU", "DDDDU", "DDDU", "DDU", "DU", "U"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       emptyFilledWith = TableauFillEmptyWith.Kings
     )

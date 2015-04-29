@@ -42,6 +42,7 @@ object RougeEtNoir extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("DDDDDDDU", "DDDDDDU", "DDDDDU", "DDDDU", "DDDU", "DDU", "DU", "U", "U"),
       emptyFilledWith = TableauFillEmptyWith.Kings
     )
   ),

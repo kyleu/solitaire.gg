@@ -25,6 +25,7 @@ object SimonJester extends GameRules(
     TableauRules(
       numPiles = 14,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUUUUUUUUU", "UUUUUUUUUUUUU", "UUUUUUUUUUUU", "UUUUUUUUUUU", "UUUUUUUUUU", "UUUUUUUUU", "UUUUUUUU", "UUUUUUU", "UUUUUU", "UUUUU", "UUUU", "UUU", "UU", "U"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,

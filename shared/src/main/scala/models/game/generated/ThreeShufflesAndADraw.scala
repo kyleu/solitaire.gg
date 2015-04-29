@@ -20,6 +20,7 @@ object ThreeShufflesAndADraw extends GameRules(
     TableauRules(
       numPiles = 18,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "U"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None

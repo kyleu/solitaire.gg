@@ -20,6 +20,7 @@ object Shamrocks extends GameRules(
       name = "Fan",
       numPiles = 18,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "UUU", "U"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,

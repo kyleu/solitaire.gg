@@ -29,6 +29,7 @@ object Alexandria extends GameRules(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("U", "UU", "UUU", "UUUU", "UUUUU", "UUUUUU", "UUUUUUU", "UUUUUU", "UUUUU", "UUUU", "UUU", "UU", "U"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       emptyFilledWith = TableauFillEmptyWith.Kings
     )

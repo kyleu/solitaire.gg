@@ -20,9 +20,9 @@ object StockPileOptions {
       case StockDealTo.Foundation => pileIdsByType("foundations")
       case StockDealTo.Tableau => pileIdsByType("tableaus")
       case StockDealTo.TableauFirstSet => throw new NotImplementedError()
-      case StockDealTo.TableauIfNoneEmpty => throw new NotImplementedError()
+      case StockDealTo.TableauIfNoneEmpty => pileIdsByType("tableaus") // TODO throw new NotImplementedError()
       case StockDealTo.TableauNonEmpty => throw new NotImplementedError()
-      case StockDealTo.Never => throw new NotImplementedError()
+      case StockDealTo.Never => Nil
       case _ => throw new NotImplementedError()
     }
 
@@ -32,8 +32,11 @@ object StockPileOptions {
       case _ => throw new NotImplementedError()
     }
 
-    val selectCardAction = Some(SelectCardActions.drawToPiles(cardsToDraw, drawTo, Some(true)))
-
+    val selectCardAction = if(drawTo.nonEmpty) {
+      Some(SelectCardActions.drawToPiles(cardsToDraw, drawTo, Some(true)))
+    } else {
+      None
+    }
     val selectPileAction = redrawFrom match {
       case Some(rf) => Some(SelectPileActions.moveAll(rf))
       case None => None

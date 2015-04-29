@@ -30,6 +30,7 @@ object SpiderThreeDeck extends GameRules(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("DDDDU", "DDDDU", "DDDDU", "DDDDU", "DDDDU", "DDDDU", "DDDU", "DDDU", "DDDU", "DDDU", "DDDU", "DDDU"),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       emptyFilledWith = TableauFillEmptyWith.Aces

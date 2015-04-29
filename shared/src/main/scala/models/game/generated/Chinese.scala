@@ -26,6 +26,7 @@ object Chinese extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUUU", "UUUUUUU", "UUUUUUU", "DDDUUUU", "DDDDUUU", "DDDDDUU", "DDDDDDU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,

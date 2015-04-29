@@ -26,6 +26,7 @@ object Dragon extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("UUUUUUUU", "DUUUUUUU", "DDUUUUUU", "DDDUUUU", "DDDDUUU", "DDDDDUU", "DDDDDDU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,

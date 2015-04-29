@@ -26,6 +26,9 @@ object ScalaTableauExporter {
         if(t.initialCards != defaults.initialCards) {
           props += "      initialCards = InitialCards." + cls(t.initialCards)
         }
+        if(!t.customInitialCards.sameElements(defaults.customInitialCards)) {
+          props += "      customInitialCards = Seq(" + t.customInitialCards.map("\"" + _ + "\"").mkString(", ") + ")"
+        }
         if(t.cardsFaceDown != defaults.cardsFaceDown) {
           props += "      cardsFaceDown = TableauFaceDownCards." + cls(t.cardsFaceDown)
         }
@@ -51,10 +54,10 @@ object ScalaTableauExporter {
           props += "      emptyFilledWith = TableauFillEmptyWith." + cls(t.emptyFilledWith)
         }
         if(!t.mayMoveToNonEmptyFrom.sameElements(defaults.mayMoveToNonEmptyFrom)) {
-          props += "      mayMoveToNonEmptyFrom = Seq(" + t.mayMoveToNonEmptyFrom.map(x => "\"" + x + "\"").mkString(", ") + ")"
+          props += "      mayMoveToNonEmptyFrom = Seq(" + t.mayMoveToNonEmptyFrom.map("\"" + _ + "\"").mkString(", ") + ")"
         }
         if(!t.mayMoveToEmptyFrom.sameElements(defaults.mayMoveToEmptyFrom)) {
-          props += "      mayMoveToEmptyFrom = Seq(" + t.mayMoveToEmptyFrom.map(x => "\"" + x + "\"").mkString(", ") + ")"
+          props += "      mayMoveToEmptyFrom = Seq(" + t.mayMoveToEmptyFrom.map("\"" + _ + "\"").mkString(", ") + ")"
         }
         if(t.maxCards != defaults.maxCards) {
           props += "      maxCards = " + t.maxCards

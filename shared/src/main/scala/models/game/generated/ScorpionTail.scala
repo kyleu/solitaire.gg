@@ -27,6 +27,7 @@ object ScorpionTail extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
+      customInitialCards = Seq("DDDUUUU", "DDDUUUU", "DDDUUUU", "DDDUUUU", "UUUUUUU", "UUUUUUU", "UUUUUUU"),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,

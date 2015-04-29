@@ -1,7 +1,7 @@
 define(function () {
   "use strict";
 
-  var margin = 0.6;
+  var margin = 0.7;
   var padding = 0.1;
 
   function getDimensions(pileSet) {
@@ -12,7 +12,7 @@ define(function () {
     switch(pileSet.behavior) {
       case "tableau":
         var maxCards = _.max(pileSet.piles, function(pile) { return pile.cards.length; }).cards.length;
-        ret = [ret[0], 1 + padding + (maxCards * padding)];
+        ret = [ret[0], 1 + padding + padding + (maxCards * padding)];
         break;
       case "pyramid":
         var rows = 1;
@@ -31,6 +31,7 @@ define(function () {
       default:
     }
     pileSet.dimensions = ret;
+    console.log(pileSet, ret);
     return ret;
   }
 
@@ -113,7 +114,7 @@ define(function () {
     });
     newRow();
 
-    return { "width": maxWidth - (margin - padding), "height": yOffset, "locations": locations };
+    return { "width": maxWidth - (margin / 2), "height": yOffset - 0.5, "locations": locations };
   }
 
   return calculateLayout;
