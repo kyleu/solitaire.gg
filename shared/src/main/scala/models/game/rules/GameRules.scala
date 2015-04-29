@@ -2,6 +2,7 @@ package models.game.rules
 
 import java.util.UUID
 
+import models.game.generated.GameRulesSet
 import models.game.{ Deck, Suit, Rank, GameState }
 import models.game.pile._
 
@@ -9,7 +10,8 @@ import scala.util.Random
 
 object GameRules {
   val allSources = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
-  val completed = Seq("klondike")
+  val completed = Seq("canfield", "freecell", "golf", "gypsy", "klondike", "klondike1card", "nestor", "pyramid", "spider", "spider", "trustytwelve", "yukon")
+  lazy val unfinished = GameRulesSet.all.filter(r => !completed.contains(r.id))
 }
 
 case class GameRules(

@@ -1,4 +1,4 @@
-define(function () {
+define(['game/helpers/Tweens'], function (Tweens) {
   "use strict";
 
   function canSelectCard(card) {
@@ -43,7 +43,8 @@ define(function () {
         var yDelta = Math.abs(card.y - card.inputOriginalPosition.y);
         if(xDelta > 5 || yDelta > 5) {
           // Dragged
-          card.game.add.tween(card).to({x: card.inputOriginalPosition.x, y: card.inputOriginalPosition.y, angle: 0}, 500, Phaser.Easing.Quadratic.InOut, true);
+          //card.game.add.tween(card).to({x: card.inputOriginalPosition.x, y: card.inputOriginalPosition.y, angle: 0}, 500, Phaser.Easing.Quadratic.InOut, true);
+          Tweens.tweenCardTo(card, card.inputOriginalPosition.x, card.inputOriginalPosition.y, 0);
         } else {
           if(canSelectCard(card)) {
             card.pile.cardSelected(card);

@@ -21,25 +21,27 @@
           </div>
           <div class="panel-body">
             <ul>
-            @for(v <- models.game.rules.GameRules.completed) {
-              <li><a href="@routes.HomeController.newGame(v)">@v</a></li>
+            @for(r <- models.game.rules.GameRules.completed) {
+              <li><a href="@routes.HomeController.newGame(r)">@models.game.generated.GameRulesSet.allById(r).title</a></li>
             }
             </ul>
           </div>
         </div>
 
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Unfinished Games</h3>
+        @if(request.isAdmin) {
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Unfinished Games</h3>
+            </div>
+            <div class="panel-body">
+              <ul>
+              @for(r <- models.game.rules.GameRules.unfinished) {
+                <li><a href="@routes.HomeController.newGame(r.id)">@r.title</a></li>
+              }
+              </ul>
+            </div>
           </div>
-          <div class="panel-body">
-            <ul>
-            @for(v <- models.game.rules.GameRules.completed) {
-              <li><a href="@routes.HomeController.newGame(v)">@v</a></li>
-            }
-            </ul>
-          </div>
-        </div>
+        }
       </div>
       <div class="col-md-6">
         <div class="panel panel-default">

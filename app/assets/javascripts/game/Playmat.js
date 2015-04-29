@@ -18,8 +18,11 @@ define(['game/helpers/Layout'], function (calculateLayout) {
 
   Playmat.prototype.addPile = function(pile) {
     var pileLocation = this.layout.locations[pile.id];
-    pile.x = this.layout.locations[pile.id].x * this.game.cardSet.cardWidth;
-    pile.y = this.layout.locations[pile.id].y * this.game.cardSet.cardHeight;
+    if(pileLocation === undefined) {
+      throw "Cannot find location for pile [" + pile.id + "].";
+    }
+    pile.x = pileLocation.x * this.game.cardSet.cardWidth;
+    pile.y = pileLocation.y * this.game.cardSet.cardHeight;
   };
 
   Playmat.prototype.resize = function() {

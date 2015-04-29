@@ -21,7 +21,7 @@ object FreeCell extends GameRules(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,
-      cardsFaceDown = TableauFaceDownCards.Count(0),
+      cardsFaceDown = TableauFaceDownCards.AllButOne,//Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = TableauFillEmptyWith.Aces
     )
