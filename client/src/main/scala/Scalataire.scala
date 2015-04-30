@@ -1,8 +1,8 @@
 import java.util.UUID
 
-import models.game.generated.GameRulesSet
-import models.game.rules.InitialMovesHelper
+import models.game.rules.GameRulesSet
 import models._
+import models.game.rules.moves.InitialMoves
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport
@@ -51,7 +51,7 @@ class Scalataire extends ScalataireHelper {
     val gameRules = GameRulesSet.allById(rules)
     gameState = gameRules.newGame(gameId, seed.getOrElse(Math.abs(rng.nextInt())))
     gameState.addPlayer(accountId, "Offline Player")
-    InitialMovesHelper.performInitialMoves(gameRules, gameState)
+    InitialMoves.performInitialMoves(gameRules, gameState)
 
     send(GameJoined(gameId, gameState.view(accountId), possibleMoves()))
   }

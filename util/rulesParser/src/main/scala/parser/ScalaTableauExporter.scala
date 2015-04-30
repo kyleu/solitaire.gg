@@ -23,11 +23,14 @@ object ScalaTableauExporter {
         if(t.numPiles != defaults.numPiles) {
           props += "      numPiles = " + t.numPiles
         }
+        if(t.cardsShown != defaults.cardsShown) {
+          props += "      cardsShown = " + t.cardsShown
+        }
         if(t.initialCards != defaults.initialCards) {
           props += "      initialCards = InitialCards." + cls(t.initialCards)
         }
         if(!t.customInitialCards.sameElements(defaults.customInitialCards)) {
-          props += "      customInitialCards = Seq(" + t.customInitialCards.map("\"" + _ + "\"").mkString(", ") + ")"
+          props += "      customInitialCards = Seq(\n" + t.customInitialCards.map("        \"" + _ + "\"").mkString(",\n") + "\n      )"
         }
         if(t.cardsFaceDown != defaults.cardsFaceDown) {
           props += "      cardsFaceDown = TableauFaceDownCards." + cls(t.cardsFaceDown)

@@ -22,6 +22,7 @@ object StockCardsDealt {
 
 case class StockRules(
   name: String = "Stock",
+  cardsShown: Int = 1,
   dealTo: StockDealTo = StockDealTo.Waste,
   maximumDeals: Option[Int] = None,
   cardsDealt: StockCardsDealt = StockCardsDealt.Count(1),

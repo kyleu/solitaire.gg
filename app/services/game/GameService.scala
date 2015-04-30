@@ -3,8 +3,8 @@ package services.game
 import java.util.UUID
 
 import models._
-import models.game.generated.GameRulesSet
-import models.game.rules.InitialMovesHelper
+import models.game.rules.GameRulesSet
+import models.game.rules.moves.InitialMoves
 import org.joda.time.LocalDateTime
 import services.GameHistoryService
 
@@ -33,7 +33,7 @@ class GameService(
   protected[this] var lastMoveMade: Option[LocalDateTime] = None
 
   override def preStart() {
-    InitialMovesHelper.performInitialMoves(gameRules, gameState)
+    InitialMoves.performInitialMoves(gameRules, gameState)
 
     GameHistoryService.startGame(id, seed, rules, "started", initialPlayers.map(_.accountId), started)
 

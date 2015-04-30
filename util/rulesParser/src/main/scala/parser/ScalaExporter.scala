@@ -3,12 +3,11 @@ package parser
 import java.nio.file.{ Files, Path, Paths }
 
 import models.game.rules._
-import org.joda.time.LocalDateTime
 
 object ScalaExporter {
   def export(rulesSet: Seq[GameRules]) = {
-    val srcDir = Paths.get(".", "shared", "src", "main", "scala", "models", "game", "generated")
-    writeFile(srcDir.resolve("GameRulesSet.scala"), exportRulesSet(rulesSet))
+    val srcDir = Paths.get(".", "shared", "src", "main", "scala", "models", "game", "rules", "generated")
+    writeFile(srcDir.resolve("GeneratedGameRules.scala"), exportRulesSet(rulesSet))
 
     for (rules <- rulesSet) {
       writeFile(srcDir.resolve(getObjectName(rules) + ".scala"), exportRules(rules))
@@ -19,17 +18,13 @@ object ScalaExporter {
     val ret = new StringBuilder()
     def add(s: String) = ret ++= s + "\n"
 
-    add("package models.game.generated")
-    add("")
-    add("import models.game.rules.custom.CustomRulesSet")
+    add("package models.game.rules.generated")
     add("")
     add("// scalastyle:off")
-    add("object GameRulesSet {")
+    add("object GeneratedGameRules {")
     add("  val all = Seq(")
     add(rulesSet.map(r => "    " + getObjectName(r)).mkString(",\n"))
-    add("  ) ++ CustomRulesSet.all")
-    add("")
-    add("  val allById = all.map(x => x.id -> x).toMap")
+    add("  )")
     add("}")
     add("// scalastyle:on")
     add("")
@@ -44,7 +39,7 @@ object ScalaExporter {
     val defaults = GameRules("default", "default", "default")
 
     add("// Generated rules for Scalataire.")
-    add("package models.game.generated")
+    add("package models.game.rules.generated")
     add("")
     add("import models.game._")
     add("import models.game.rules._")

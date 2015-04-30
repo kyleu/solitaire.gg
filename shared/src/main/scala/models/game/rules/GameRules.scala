@@ -2,7 +2,6 @@ package models.game.rules
 
 import java.util.UUID
 
-import models.game.generated.GameRulesSet
 import models.game.{ Deck, Suit, Rank, GameState }
 import models.game.pile._
 
@@ -48,7 +47,7 @@ case class GameRules(
 
   private[this] def newPileSets() = prototypePileSets.map(ps => PileSet(ps.behavior, ps.piles.map { p =>
     p.copy(cards = collection.mutable.ArrayBuffer.empty)
-  }))
+  }, ps.visible))
 
   private[this] lazy val pileIdsByType = Map(
     "stock" -> stock.map(s => Seq("stock")).getOrElse(Nil),

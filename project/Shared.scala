@@ -1,7 +1,6 @@
 import sbt._
 import sbt.Keys._
 
-import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
 import net.virtualvoid.sbt.graph.Plugin.graphSettings
 import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, defaultScalariformSettings}
 
@@ -26,7 +25,6 @@ object Shared {
 
   lazy val sharedJvm = (project in file("shared")).settings(
     scalaVersion := Versions.scala,
-    scapegoatConsoleOutput := false,
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   ).settings(graphSettings: _*).settings(defaultScalariformSettings: _*)
 }

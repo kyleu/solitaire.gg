@@ -15,7 +15,7 @@ object RulesReset extends App {
     for(f <- itr) {
       Files.delete(f)
     }
-    writeFile(srcDir.resolve("GameRulesSet.scala"), exportRulesSet())
+    writeFile(srcDir.resolve("GeneratedGameRules.scala"), exportRulesSet())
   }
 
   def exportRulesSet() = {
@@ -24,11 +24,8 @@ object RulesReset extends App {
 
     add("package models.game.generated")
     add("")
-    add("import models.game.rules.custom.CustomRulesSet")
-    add("")
-    add("object GameRulesSet {")
-    add("  val all = CustomRulesSet.all")
-    add("  val allById = all.map(x => x.id -> x).toMap")
+    add("object GeneratedGameRules {")
+    add("  val all = Nil")
     add("}")
     add("")
 

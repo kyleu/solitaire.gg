@@ -5,7 +5,7 @@ import models.game.rules.FoundationRules
 
 object FoundationSet {
   def apply(foundationRules: FoundationRules): FoundationSet = {
-    val prefix = if(foundationRules.setNumber == 0) {
+    val prefix = if (foundationRules.setNumber == 0) {
       "foundation-"
     } else {
       "foundation" + foundationRules.setNumber + "-"
@@ -14,8 +14,8 @@ object FoundationSet {
     val piles = (1 to foundationRules.numPiles).map { i =>
       Pile(prefix + i, options)
     }
-    new FoundationSet(piles)
+    new FoundationSet(piles, foundationRules.visible)
   }
 }
 
-class FoundationSet(piles: Seq[Pile]) extends PileSet("foundation", piles)
+class FoundationSet(piles: Seq[Pile], visible: Boolean) extends PileSet("foundation", piles, visible)

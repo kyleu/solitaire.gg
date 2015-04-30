@@ -5,10 +5,10 @@ import models.game.rules.TableauRules
 
 object TableauSet {
   def apply(tableauRules: TableauRules): TableauSet = {
-    val prefix = if(tableauRules.setNumber == 0) {
+    val prefix = if (tableauRules.setNumber == 0) {
       "tableau-"
     } else {
-      "tableau" + tableauRules.setNumber + "-"
+      "tableau" + (tableauRules.setNumber + 1) + "-"
     }
 
     val options = TableauPileOptions(tableauRules)

@@ -1,0 +1,42 @@
+// Generated rules for Scalataire.
+package models.game.rules.generated
+
+import models.game._
+import models.game.rules._
+
+object PileUp extends GameRules(
+  id = "pileup",
+  title = "Pile Up",
+  description = "A game where you must sort the cards by rank rather than suit.",
+  victoryCondition = VictoryCondition.AllOnTableauSorted,
+  tableaus = Seq(
+    TableauRules(
+      numPiles = 15,
+      initialCards = InitialCards.Custom,
+      customInitialCards = Seq(
+        "UUUU",
+        "UUUU",
+        "UUUU",
+        "UUUU",
+        "UUUU",
+        "UUUU",
+        "UUUU",
+        "UUUU",
+        "UUUU",
+        "UUUU",
+        "UUUU",
+        "UUUU",
+        "UUUU"
+      ),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.Any,
+      rankMatchRuleForBuilding = RankMatchRule.Equal,
+      suitMatchRuleForMovingStacks = SuitMatchRule.Any,
+      rankMatchRuleForMovingStacks = RankMatchRule.Equal,
+      emptyFilledWith = TableauFillEmptyWith.Aces,
+      maxCards = 4
+    )
+  ),
+  complete = false
+)
+

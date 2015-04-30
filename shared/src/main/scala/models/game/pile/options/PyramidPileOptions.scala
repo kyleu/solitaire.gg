@@ -17,7 +17,6 @@ object PyramidPileOptions {
         (opts, i, j)
       }
     }
-
     ret
   }
 
@@ -27,7 +26,7 @@ object PyramidPileOptions {
     dragFromConstraint = Some(Constraints.topCardOnly),
     dragToConstraint = Some(Constraints.total(13, aceHigh = false)),
     selectCardConstraint = Some(Constraints.allOf("top-card-king", Constraints.topCardOnly, Constraints.specificRank(King))),
-    selectCardAction = Some(SelectCardActions.drawToPiles(1, Seq("graveyard"))),
+    selectCardAction = Some(SelectCardActions.drawToPiles(1, Seq("foundation-1"))),
     dragToAction = Some(DragToActions.remove())
   )
 

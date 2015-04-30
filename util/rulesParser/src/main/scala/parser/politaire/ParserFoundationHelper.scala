@@ -41,7 +41,7 @@ trait ParserFoundationHelper { this: GameRulesParser =>
           }
         },
         mayMoveToFrom = PolitaireLookup.parseBitmask("F0o", getInt(prefix + "o")),
-        offscreen = getBoolean(prefix + "i"),
+        visible = !getBoolean(prefix + "i"),
         autoMoveCards = getBoolean(prefix + "a"),
         autoMoveFrom = PolitaireLookup.parseBitmask("F0ao", getInt(prefix + "ao"))
       )

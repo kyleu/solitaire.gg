@@ -37,6 +37,7 @@ case class GameState(
     }
   }
 
+  def addCardsFromDeck(numCards: Int, pile: String, reveal: Boolean = false) = addCards(deck.getCards(numCards, reveal), pile, reveal)
   def addCards(cards: Seq[Card], pile: String, reveal: Boolean = false) = cards.foreach(c => addCard(c, pile, reveal))
 
   def revealCardToAll(card: Card) = if (playerKnownIds.keys.exists(p => revealCardToPlayer(card, p))) {
@@ -80,7 +81,7 @@ case class GameState(
       pileSets = pileSets.map { ps =>
         new PileSet(ps.behavior, ps.piles.map(p => p.copy(cards = p.cards.map { c =>
           if (knownCards.contains(c.id)) { c } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) }
-        })))
+        })), visible = ps.visible)
       }
     )
   }

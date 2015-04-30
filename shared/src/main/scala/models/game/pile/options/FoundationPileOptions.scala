@@ -6,7 +6,7 @@ import models.game.rules.FoundationRules
 object FoundationPileOptions {
   def apply(rules: FoundationRules) = {
     PileOptions(
-      cardsShown = Some(1),
+      cardsShown = Some(rules.cardsShown),
       dragFromConstraint = Some(Constraints.topCardOnly),
       dragToConstraint = Some(Constraints.klondikeFoundationDragTo)
     )

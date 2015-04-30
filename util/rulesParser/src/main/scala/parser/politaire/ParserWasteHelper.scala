@@ -10,7 +10,7 @@ trait ParserWasteHelper { this: GameRulesParser =>
         Some(WasteRules(
           name = getString("W0Nm"),
           numPiles = numPiles,
-          cardsShown = 3,
+          cardsShown = getInt("W0cardsShown"),
           playableCards = try {
             getInt("W0a") match {
               case 0 => WastePlayableCards.TopCardOnly

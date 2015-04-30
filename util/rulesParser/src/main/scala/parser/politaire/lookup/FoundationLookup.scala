@@ -6,6 +6,7 @@ object FoundationLookup {
   val titles = Seq(
     "F0Nm" -> "Foundation name",
     "F0n" -> "Number of foundation piles",
+    "F0cardsShown" -> "Number of visible cards",
     "F0b" -> "Foundation low rank",
     "F0d" -> "Foundation initial cards",
     "F0s" -> "Foundation suit match rule",

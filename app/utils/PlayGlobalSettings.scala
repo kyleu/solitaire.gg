@@ -36,7 +36,7 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeaders
     super.onStop(app)
   }
 
-  override def onError(request: RequestHeader, ex: Throwable) = if(play.api.Play.current.mode == Mode.Dev) {
+  override def onError(request: RequestHeader, ex: Throwable) = if (play.api.Play.current.mode == Mode.Dev) {
     super.onError(request, ex)
   } else {
     Future.successful(

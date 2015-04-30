@@ -16,7 +16,6 @@ object Pyramid {
 }
 
 //  private[this] val piles = List(
-//    Pile("graveyard", "graveyard", PileOptionsHelper.empty),
 //    Pile("stock", "stock", PileOptionsHelper.stock(1, "waste", None).combine(PileOptions(selectPileConstraint = Some(Constraints.never)))),
 //    Pile("waste", "waste", pileOptions)
 //  ) ++ (1 to 7).flatMap { i =>

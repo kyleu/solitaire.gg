@@ -16,8 +16,8 @@ object DragToActions {
     Seq(CardsMoved(cardIds, src.id, tgt.id))
   })
 
-  def remove(graveyard: String = "graveyard") = DragToAction("remove-cards", (src, cards, tgt, gameState) => {
-    val gy = gameState.pilesById(graveyard)
+  def remove() = DragToAction("remove-cards", (src, cards, tgt, gameState) => {
+    val gy = gameState.pilesById("foundation-1")
     cards.flatMap { card =>
       src.removeCard(card)
       gy.addCard(card)
@@ -26,7 +26,7 @@ object DragToActions {
       tgt.removeCard(targetCard)
       gy.addCard(targetCard)
 
-      Seq(CardMoved(card.id, src.id, graveyard), CardMoved(targetCard.id, tgt.id, graveyard))
+      Seq(CardMoved(card.id, src.id, "foundation-1"), CardMoved(targetCard.id, tgt.id, "foundation-1"))
     }
   })
 }

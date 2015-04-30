@@ -8,10 +8,15 @@ object ClientPileOptions {
     po.cardsShown,
     po.direction,
     po.dragFromConstraint.map(_.id).getOrElse("never"),
-    po.dragFromConstraint.map(_.clientOptions).getOrElse(Some(Map.empty))
+    po.dragFromConstraint.flatMap(_.clientOptions)
   )
 }
-case class ClientPileOptions(cardsShown: Option[Int], direction: Option[String], dragFromConstraint: String, dragFromOptions: Option[Map[String, String]])
+case class ClientPileOptions(
+  cardsShown: Option[Int] = None,
+  direction: Option[String] = None,
+  dragFromConstraint: String = "never",
+  dragFromOptions: Option[Map[String, String]] = None
+)
 
 case class PileOptions(
     cardsShown: Option[Int] = None,

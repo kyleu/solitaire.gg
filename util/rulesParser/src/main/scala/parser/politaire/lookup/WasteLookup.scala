@@ -4,7 +4,8 @@ object WasteLookup {
   val titles = Seq(
     "W0n" -> "Number of waste piles",
     "W0Nm" -> "Waste name",
-    "W0a" -> "Playable waste cards"
+    "W0a" -> "Playable waste cards",
+    "W0cardsShown" -> "Number of cards shown"
   )
 
   val translations = Map(

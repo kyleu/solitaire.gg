@@ -45,6 +45,7 @@ case class TableauRules(
   name: String = "Tableau",
   setNumber: Int = 0,
   numPiles: Int = 7,
+  cardsShown: Int = 0,
   initialCards: InitialCards = InitialCards.PileIndex,
   customInitialCards: Seq[String] = Seq.empty,
   cardsFaceDown: TableauFaceDownCards = TableauFaceDownCards.AllButOne,

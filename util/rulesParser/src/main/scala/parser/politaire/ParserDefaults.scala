@@ -5,7 +5,7 @@ object ParserDefaults {
     "C0Nm" -> "Cells", "C0Ns" -> "Cell", "C0d" -> 0, "C0e" -> 0, "C0fx" -> 0, "C0n" -> 0, "C0o" -> 255,
 
     "F0Nm" -> "Foundation", "F0a" -> 3, "F0ao" -> 255, "F0b" -> 21, "F0cs" -> 0, "F0d" -> 0, "F0i" -> 0, "F0m" -> -1,
-    "F0mb" -> 0, "F0n" -> -1, "F0o" -> 255, "F0r" -> 128, "F0s" -> 1, "F0u" -> 0, "F0w" -> true, "Fn" -> 1,
+    "F0mb" -> 0, "F0n" -> -1, "F0o" -> 255, "F0r" -> 128, "F0s" -> 1, "F0u" -> 0, "F0w" -> true, "Fn" -> 1, "F0cardsShown" -> 1,
 
     "Nf" -> 1, "Ni" -> 0, "Nl" -> 0, "Nw" -> 0,
 
@@ -15,13 +15,13 @@ object ParserDefaults {
     "R0Nm" -> "Reserve", "R0af" -> 0, "R0an" -> 1, "R0d" -> 0, "R0dd" -> 0, "R0df" -> 100, "R0n" -> 0, "R0t" -> 1, "RDc" -> 0,
     "RDd" -> 1, "RDdo" -> 4, "RDn" -> 0, "RDp" -> 1, "RDpo" -> 4, "RDs" -> 0, "RDx" -> -1,
 
-    "S0Nm" -> "Stock", "Sn" -> 1,
+    "S0Nm" -> "Stock", "Sn" -> 1, "S0cardsShown" -> 1,
 
     "T0Nm" -> "Tableau", "T0af" -> 0, "T0an" -> 1, "T0d" -> 4, "T0db" -> 1, "T0dc" -> 0, "T0dd" -> 0, "T0df" -> 0, "T0ds" -> "",
     "T0f" -> 0, "T0fo" -> 255, "T0fx" -> 0, "T0m" -> 0, "T0n" -> 8, "T0o" -> 255, "T0r" -> 32, "T0s" -> 1, "T0sc" -> true,
-    "T0tr" -> 32, "T0ts" -> 0, "T0w" -> 0, "Tn" -> 1,
+    "T0tr" -> 32, "T0ts" -> 0, "T0w" -> 0, "Tn" -> 1, "T0cardsShown" -> 0,
 
-    "W0Nm" -> "Waste", "W0a" -> 0, "W0n" -> 1, "W0s" -> 0,
+    "W0Nm" -> "Waste", "W0a" -> 0, "W0n" -> 1, "W0s" -> 0, "W0cardsShown" -> 3,
 
     "Z0Nm" -> "Pocket",
 
@@ -52,7 +52,7 @@ object ParserDefaults {
     "stdsuits" -> 15,
     "suits" -> 0,
     "supermoves" -> 0,
-    "title" -> "Web Solitaire",
+    "title" -> "Scalataire",
     "toptobot" -> true,
     "touchfunc" -> 0,
     "victory" -> 0,

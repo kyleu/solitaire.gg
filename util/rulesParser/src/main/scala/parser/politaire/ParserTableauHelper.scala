@@ -23,6 +23,7 @@ trait ParserTableauHelper { this: GameRulesParser =>
       TableauRules(
         name = getString(prefix + "Nm"),
         numPiles = numPiles,
+        cardsShown = getInt(prefix + "cardsShown"),
         initialCards = initialCards,
         customInitialCards = if(initialCards == InitialCards.Custom) {
           getString(prefix + "ds").split(" ")

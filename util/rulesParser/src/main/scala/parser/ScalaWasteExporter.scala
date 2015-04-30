@@ -17,6 +17,9 @@ object ScalaWasteExporter {
         if(w.numPiles != defaults.numPiles) {
           props += "      numPiles = " + w.numPiles
         }
+        if(w.cardsShown != defaults.cardsShown) {
+          props += "      cardsShown = " + w.cardsShown
+        }
         if(w.playableCards != defaults.playableCards) {
           props += "      playableCards = WastePlayableCards." + w.playableCards
         }

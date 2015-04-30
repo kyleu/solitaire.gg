@@ -6,7 +6,6 @@ import models.game.rules.{ StockRules, StockCardsDealt, StockDealTo }
 
 object StockPileOptions {
   def apply(rules: StockRules, pileIdsByType: Map[String, Seq[String]]) = {
-    val cardsShown = Some(1)
     val selectCardConstraint = Some(Constraints.topCardOnly)
     val selectPileConstraint = Some(Constraints.empty)
 
@@ -34,7 +33,7 @@ object StockPileOptions {
       case _ => drawTo.headOption // TODO throw new NotImplementedError()
     }
 
-    val selectCardAction = if(drawTo.nonEmpty) {
+    val selectCardAction = if (drawTo.nonEmpty) {
       Some(SelectCardActions.drawToPiles(cardsToDraw, drawTo, Some(true)))
     } else {
       None
@@ -45,7 +44,8 @@ object StockPileOptions {
     }
 
     PileOptions(
-      cardsShown = cardsShown,
+      cardsShown = Some(rules.cardsShown),
+      direction = Some("r"),
       selectCardConstraint = selectCardConstraint,
       selectPileConstraint = selectPileConstraint,
       selectCardAction = selectCardAction,

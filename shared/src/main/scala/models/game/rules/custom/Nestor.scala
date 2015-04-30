@@ -14,7 +14,7 @@ object Nestor extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 1,
-      offscreen = true
+      visible = false
     )
   ),
   tableaus = Seq(

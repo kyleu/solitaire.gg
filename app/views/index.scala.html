@@ -22,7 +22,7 @@
           <div class="panel-body">
             <ul>
             @for(r <- models.game.rules.GameRules.completed) {
-              <li><a href="@routes.HomeController.newGame(r)">@models.game.generated.GameRulesSet.allById(r).title</a></li>
+              <li><a href="@routes.HomeController.newGame(r)">@models.game.rules.GameRulesSet.allById(r).title</a></li>
             }
             </ul>
           </div>

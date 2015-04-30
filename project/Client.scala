@@ -16,7 +16,6 @@ object Client {
     unmanagedSourceDirectories in Compile := Seq((scalaSource in Compile).value),
     libraryDependencies ++= Seq("org.scala-js" %%% "scalajs-dom" % "0.8.0", "com.lihaoyi" %%% "upickle" % "0.2.8"),
     scalaJSStage in Global := FastOptStage,
-    scapegoatConsoleOutput := false,
     scapegoatIgnoredFiles := Seq(".*/JsonUtils.scala", ".*/JsonSerializers.scala"),
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   ).settings(graphSettings: _*).settings(defaultScalariformSettings: _*).enablePlugins(ScalaJSPlugin, ScalaJSPlay).dependsOn(Shared.sharedJs)

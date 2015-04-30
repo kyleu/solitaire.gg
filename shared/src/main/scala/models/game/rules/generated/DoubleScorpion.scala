@@ -1,0 +1,48 @@
+// Generated rules for Scalataire.
+package models.game.rules.generated
+
+import models.game._
+import models.game.rules._
+
+object DoubleScorpion extends GameRules(
+  id = "doublescorpion",
+  title = "Double Scorpion",
+  description = "An easy two-deck variation of ^scorpion^ where all cards are already dealt in the beginning.",
+  deckOptions = DeckOptions(
+    numDecks = 2
+  ),
+  foundations = Seq(
+    FoundationRules(
+      numPiles = 8,
+      wrapFromKingToAce = true,
+      moveCompleteSequencesOnly = true,
+      canMoveFrom = FoundationCanMoveFrom.Never,
+      visible = false
+    )
+  ),
+  tableaus = Seq(
+    TableauRules(
+      numPiles = 10,
+      initialCards = InitialCards.Custom,
+      customInitialCards = Seq(
+        "DDDDUUUUUUU",
+        "DDDDUUUUUUU",
+        "DDDDUUUUUUU",
+        "DDDDUUUUUUU",
+        "DDDDUUUUUU",
+        "UUUUUUUUUU",
+        "UUUUUUUUUU",
+        "UUUUUUUUUU",
+        "UUUUUUUUUU",
+        "UUUUUUUUUU"
+      ),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
+      suitMatchRuleForMovingStacks = SuitMatchRule.Any,
+      rankMatchRuleForMovingStacks = RankMatchRule.Any,
+      emptyFilledWith = TableauFillEmptyWith.Kings
+    )
+  ),
+  complete = false
+)
+

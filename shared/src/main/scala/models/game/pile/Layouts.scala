@@ -21,12 +21,12 @@ object Layouts {
     "gypsy" -> "sf|:t",
     "klondike" -> "sw:f|t|",
     "klondike1card" -> "sw:f|t|",
-    "nestor" -> "t|::r:f",
-    "pyramid" -> "p|::.sw|f",
+    "nestor" -> "t|::rf",
+    "pyramid" -> "p|::.swf",
     "sandbox" -> "s:f",
     "sandboxb" -> "s",
     "spider" -> "s:f|t",
-    "trustytwelve" -> "s|t",
+    "trustytwelve" -> "s|t|t",
     "yukon" -> ":::f|t"
   )
 

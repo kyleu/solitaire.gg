@@ -14,6 +14,9 @@ object ScalaStockExporter {
         if(s.name != defaults.name) {
           props += "      name = \"" + s.name.replaceAllLiterally("\"", "") + "\""
         }
+        if(s.cardsShown != defaults.cardsShown) {
+          props += "      cardsShown = " + s.cardsShown
+        }
         if(s.dealTo != defaults.dealTo) {
           props += "      dealTo = StockDealTo." + s.dealTo
         }

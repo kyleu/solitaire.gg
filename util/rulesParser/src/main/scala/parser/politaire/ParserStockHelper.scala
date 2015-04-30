@@ -12,6 +12,7 @@ trait ParserStockHelper { this: GameRulesParser =>
       case stockMode =>
         Some(StockRules(
           name = getString("S0Nm"),
+          cardsShown = getInt("S0cardsShown"),
           dealTo = getInt("dealto") match {
             case 1 => StockDealTo.Waste
             case 2 => StockDealTo.Tableau

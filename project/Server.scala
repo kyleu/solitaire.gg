@@ -66,7 +66,6 @@ object Server {
     buildInfoPackage := "utils",
 
     // Code Quality
-    scapegoatConsoleOutput := false,
     scapegoatIgnoredFiles := Seq(".*/routes_routing.scala", ".*/routes_reverseRouting.scala", ".*\\.template\\.scala"),
     scapegoatDisabledInspections := Seq("DuplicateImport"),
     ScalariformKeys.preferences := ScalariformKeys.preferences.value

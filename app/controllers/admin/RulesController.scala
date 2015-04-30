@@ -2,7 +2,7 @@ package controllers.admin
 
 import controllers.BaseController
 import controllers.BaseController.AuthenticatedAction
-import models.game.generated.GameRulesSet
+import models.game.rules.GameRulesSet
 import parser.{ ScalaExporter, RulesReset }
 import parser.politaire.PolitaireParser
 

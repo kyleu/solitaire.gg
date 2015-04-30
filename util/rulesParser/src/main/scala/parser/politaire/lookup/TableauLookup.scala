@@ -6,6 +6,7 @@ object TableauLookup {
   val titles = Seq(
     "T0Nm" -> "Tableau name",
     "T0n" -> "Tableau piles",
+    "T0cardsShown" -> "Cards shown",
     "T0d" -> "Tableau initial cards",
     "T0ds" -> "Custom initial cards",
     "T0df" -> "Tableau cards face down",

@@ -31,7 +31,6 @@ define(function () {
       default:
     }
     pileSet.dimensions = ret;
-    console.log(pileSet, ret);
     return ret;
   }
 
@@ -44,6 +43,7 @@ define(function () {
     var remainingPileSets = pileSets;
     var currentRowMaxHeight = 1.0;
     var maxWidth = 0;
+    var lastChar = null;
 
     function newRow() {
       if(xOffset > maxWidth) {
@@ -82,31 +82,41 @@ define(function () {
           }
           remainingPileSets = _.without(remainingPileSets, pileSet);
           var pileSetDimensions = getDimensions(pileSet);
-          if(pileSet.behavior === "pyramid") {
-            var currentRow = 1;
-            var rowCounter = 0;
-            xOffset = margin + ((pileSet.rows - currentRow) / 2)  * (1 + padding);
-            _.each(pileSet.piles, function(pile) {
-              if(rowCounter === currentRow) {
-                currentRow += 1;
-                rowCounter -= rowCounter;
-                xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding);
-              }
-
-              locations[pile.id] = {x: xOffset, y: yOffset + ((currentRow - 1) * 0.5)};
-              xOffset = xOffset + 1 + padding;
-              rowCounter += 1;
+          console.log(pileSet);
+          if(!pileSet.visible) { // Hide this pile
+            _.each(pileSet.piles, function(pile, pileIndex) {
+              console.log("Adding [" + pile.id + "]!");
+              locations[pile.id] = {x: (pileIndex * (1 + padding)) + 0.5, y: -0.5};
             });
           } else {
-            _.each(pileSet.piles, function(pile) {
-              locations[pile.id] = {x: xOffset, y: yOffset};
-              xOffset = xOffset + 1 + padding;
-            });
+            if(pileSet.behavior === "pyramid") {
+              var currentRow = 1;
+              var rowCounter = 0;
+              xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding);
+              _.each(pileSet.piles, function(pile) {
+                if(rowCounter === currentRow) {
+                  currentRow += 1;
+                  rowCounter -= rowCounter;
+                  xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding);
+                }
+
+                locations[pile.id] = {x: xOffset, y: yOffset + ((currentRow - 1) * 0.5)};
+                xOffset = xOffset + 1 + padding;
+                rowCounter += 1;
+              });
+            } else {
+              _.each(pileSet.piles, function(pile) {
+                locations[pile.id] = {x: xOffset, y: yOffset};
+                xOffset = xOffset + 1 + padding;
+              });
+            }
+            if(pileSetDimensions[1] > currentRowMaxHeight) {
+              currentRowMaxHeight = pileSetDimensions[1];
+            }
           }
-          if(pileSetDimensions[1] > currentRowMaxHeight) {
-            currentRowMaxHeight = pileSetDimensions[1];
-          }
+          break;
       }
+      lastChar = c;
     }
 
     _.each(layout.split(''), function(char) {

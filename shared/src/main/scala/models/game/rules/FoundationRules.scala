@@ -22,6 +22,7 @@ case class FoundationRules(
   name: String = "Foundation",
   setNumber: Int = 0,
   numPiles: Int = 1,
+  cardsShown: Int = 1,
   lowRank: FoundationLowRank = FoundationLowRank.DeckLowRank,
   initialCards: InitialCards = InitialCards.Count(0),
   suitMatchRule: SuitMatchRule = SuitMatchRule.SameSuit,
@@ -31,7 +32,7 @@ case class FoundationRules(
   maxCards: Int = -1,
   canMoveFrom: FoundationCanMoveFrom = FoundationCanMoveFrom.Always,
   mayMoveToFrom: Seq[String] = GameRules.allSources,
-  offscreen: Boolean = false,
+  visible: Boolean = true,
   autoMoveCards: Boolean = false,
   autoMoveFrom: Seq[String] = GameRules.allSources
 )

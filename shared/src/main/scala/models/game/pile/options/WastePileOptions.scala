@@ -7,7 +7,7 @@ import models.game.rules.WasteRules
 object WastePileOptions {
   def apply(rules: WasteRules) = {
     PileOptions(
-      cardsShown = Some(3),
+      cardsShown = Some(rules.cardsShown),
       direction = Some("r"),
       selectCardConstraint = Some(Constraints.klondikeSelectCard),
       dragFromConstraint = Some(Constraints.topCardOnly),

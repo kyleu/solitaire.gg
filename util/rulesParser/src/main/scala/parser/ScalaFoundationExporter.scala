@@ -23,6 +23,9 @@ object ScalaFoundationExporter {
         if(f.numPiles != defaults.numPiles) {
           props += "      numPiles = " + f.numPiles
         }
+        if(f.cardsShown != defaults.cardsShown) {
+          props += "      cardsShown = " + f.cardsShown
+        }
         if(f.lowRank != defaults.lowRank) {
           props += "      lowRank = FoundationLowRank." + cls(f.lowRank)
         }
@@ -50,8 +53,8 @@ object ScalaFoundationExporter {
         if(!f.mayMoveToFrom.sameElements(defaults.mayMoveToFrom)) {
           props += "      mayMoveToFrom = Seq(" + f.mayMoveToFrom.map(x => "\"" + x + "\"").mkString(", ") + ")"
         }
-        if(f.offscreen != defaults.offscreen) {
-          props += "      offscreen = " + f.offscreen
+        if(f.visible != defaults.visible) {
+          props += "      visible = " + f.visible
         }
         if(f.autoMoveCards != defaults.autoMoveCards) {
           props += "      autoMoveCards = " + f.autoMoveCards
