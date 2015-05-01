@@ -1,5 +1,6 @@
 package parser.politaire
 
+import parser.politaire.defaults.ParserDefaults
 import play.api.libs.json._
 import parser.JsonUtils
 import parser.politaire.lookup.PolitaireLookup

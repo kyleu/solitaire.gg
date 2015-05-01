@@ -1,6 +1,7 @@
 package parser.politaire
 
 import models.game.rules.{ InitialCards, RankMatchRule, SuitMatchRule }
+import parser.politaire.defaults.ParserDefaults
 import parser.politaire.lookup.PolitaireLookup
 
 trait GameRulesParserHelper extends ParserStockHelper

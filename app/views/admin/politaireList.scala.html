@@ -1,6 +1,4 @@
 @(variants: Seq[parser.politaire.PolitaireParser.Variant])(implicit session: Session, flash: Flash)
-@import parser.politaire.lookup.PolitaireLookup
-@import parser.politaire.ParserDefaults
 @layout.admin(utils.Config.projectName + " Parser", "parser") {
   <div class="panel panel-default">
     <div class="panel-body">
@@ -21,13 +19,13 @@
             <th class="th-attribute-value">Value</th>
             <th>Meaning</th>
           </tr>
-          @for(title <- PolitaireLookup.titleTable) {
-            @defining(ParserDefaults.getDefault(title._1).getOrElse(throw new IllegalStateException())) { attr =>
+          @for(title <- parser.politaire.lookup.PolitaireLookup.titleTable) {
+            @defining(parser.politaire.defaults.ParserDefaults.getDefault(title._1).getOrElse(throw new IllegalStateException())) { attr =>
               <tr>
                 <td>@title._1</td>
                 <td>@title._2</td>
                 <td>@attr</td>
-                <td>@PolitaireLookup.getTranslation(title._1) match {
+                <td>@parser.politaire.lookup.PolitaireLookup.getTranslation(title._1) match {
                   case Some(x) => { @x.get(attr.toString.toInt) }
                   case None => { }
                 }</td>
