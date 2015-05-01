@@ -6,7 +6,8 @@ package models.game.pile
  *   w - Waste
  *   f - Foundation
  *   c - Cell
- *   r - reserve
+ *   r - Reserve
+ *   p - Pyramid
  *
  *   : - Full-size spacer
  *   . - Half-size spacer
@@ -15,12 +16,18 @@ package models.game.pile
  */
 object Layouts {
   private[this] val layouts = Map(
+    "accordion" -> "t",
+    "bakersdozen" -> ":.f|t|.t",
     "canfield" -> "sw:f|:r:t",
+    "congress" ->  "sw|f|t",
     "freecell" -> "f:c|.t|",
+    "fourteenout" -> "tf",
+    "fortyandeight" -> "sw|f|t",
     "golf" -> "t|f:s",
     "gypsy" -> "sf|:t",
     "klondike" -> "sw:f|t|",
     "klondike1card" -> "sw:f|t|",
+    "missmilligan" -> "sf|:t",
     "nestor" -> "t|::rf",
     "pyramid" -> "p|::.swf",
     "sandbox" -> "s:f",

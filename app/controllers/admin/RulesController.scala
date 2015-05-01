@@ -28,11 +28,11 @@ object RulesController extends BaseController {
   def exportRules = AuthenticatedAction { implicit request =>
     val rulesSet = PolitaireParser.gameRules
     ScalaExporter.export(rulesSet)
-    Ok("OK!")
+    Redirect(routes.RulesController.rules())
   }
 
   def wipeRules = AuthenticatedAction { implicit request =>
     RulesReset.go()
-    Ok("OK!")
+    Redirect(routes.RulesController.rules())
   }
 }

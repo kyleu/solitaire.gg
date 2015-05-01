@@ -4,7 +4,7 @@ import java.util.UUID
 
 import akka.actor.PoisonPill
 import akka.testkit.TestProbe
-import models.game.rules.GameRules
+import models.game.rules.GameRulesSet
 import models.test.{ Test, Tree }
 import models.{ GetPossibleMoves, PossibleMoves, GameJoined, StartGame }
 import play.api.libs.concurrent.Akka
@@ -13,7 +13,7 @@ import services.{ ActorSupervisor, ConnectionService }
 import play.api.Play.current
 
 class VariantTests {
-  val all = Tree(Test("variant"), GameRules.completed.map(x => testVariant(x).toTree))
+  val all = Tree(Test("variant"), GameRulesSet.completed.map(x => testVariant(x).toTree))
 
   def testVariant(rules: String) = Test("variant-" + rules, () => {
     implicit val system = Akka.system

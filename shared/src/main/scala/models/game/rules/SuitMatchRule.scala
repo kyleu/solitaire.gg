@@ -1,12 +1,28 @@
 package models.game.rules
 
-sealed trait SuitMatchRule
+import models.game.Suit
+
+sealed trait SuitMatchRule {
+  def check(l: Suit, r: Suit): Boolean
+}
 
 object SuitMatchRule {
-  case object None extends SuitMatchRule
-  case object SameSuit extends SuitMatchRule
-  case object DifferentSuits extends SuitMatchRule
-  case object SameColor extends SuitMatchRule
-  case object AlternatingColors extends SuitMatchRule
-  case object Any extends SuitMatchRule
+  case object None extends SuitMatchRule {
+    override def check(l: Suit, r: Suit) = false
+  }
+  case object SameSuit extends SuitMatchRule {
+    override def check(l: Suit, r: Suit) = l.value == r.value
+  }
+  case object DifferentSuits extends SuitMatchRule {
+    override def check(l: Suit, r: Suit) = l.value != r.value
+  }
+  case object SameColor extends SuitMatchRule {
+    override def check(l: Suit, r: Suit) = l.color == r.color
+  }
+  case object AlternatingColors extends SuitMatchRule {
+    override def check(l: Suit, r: Suit) = l.color != r.color
+  }
+  case object Any extends SuitMatchRule {
+    override def check(l: Suit, r: Suit) = true
+  }
 }

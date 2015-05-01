@@ -5,7 +5,7 @@ import models.game.pile.constraints.Constraints
 import models.game.rules.ReserveRules
 
 object ReservePileOptions {
-  def apply(rules: ReserveRules) = {
+  def apply() = {
     PileOptions(
       cardsShown = Some(1),
       direction = Some("r"),

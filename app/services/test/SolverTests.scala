@@ -1,7 +1,7 @@
 package services.test
 
 import models.GameMessage
-import models.game.rules.GameRules
+import models.game.rules.GameRulesSet
 import models.test.{ Test, Tree }
 
 object SolverTests {
@@ -14,7 +14,7 @@ object SolverTests {
 }
 
 class SolverTests {
-  val all = Tree(Test("solver"), GameRules.completed.map(x => testSolver(x).toTree))
+  val all = Tree(Test("solver"), GameRulesSet.completed.map(x => testSolver(x).toTree))
 
   def testSolver(rules: String) = Test("solver-" + rules, { () =>
     val seed = SolverTests.solvableSeeds.getOrElse(rules, 1)

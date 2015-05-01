@@ -19,7 +19,15 @@ object BakersDozen extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      numPiles = 13,
+      initialCards = InitialCards.Count(4),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.Any,
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      actionDuringDeal = PileAction.MoveKingsToBottom
+    ),
+    TableauRules(
+      setNumber = 1,
+      numPiles = 6,
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,

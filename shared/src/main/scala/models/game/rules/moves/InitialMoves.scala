@@ -11,12 +11,18 @@ object InitialMoves {
   }
 
   private[this] def performDefault(rules: GameRules, gameState: GameState) = {
-    TableauInitialMoves.performInitialMoves(rules, gameState)
-
     rules.reserves.foreach { rr =>
       (1 to rr.initialCards).foreach { row =>
         (1 to rr.numPiles).foreach { col =>
           gameState.addCardsFromDeck(1, "reserve-" + col, reveal = true)
+        }
+      }
+    }
+
+    rules.cells.foreach { cr =>
+      (1 to cr.initialCards).foreach { row =>
+        (1 to cr.numPiles).foreach { col =>
+          gameState.addCardsFromDeck(1, "cell-" + col, reveal = true)
         }
       }
     }
@@ -39,6 +45,8 @@ object InitialMoves {
         case InitialCards.Custom => throw new NotImplementedError()
       }
     }
+
+    TableauInitialMoves.performInitialMoves(rules, gameState)
 
     rules.stock.foreach { s =>
       gameState.addCards(gameState.deck.getCards().reverse, "stock")
