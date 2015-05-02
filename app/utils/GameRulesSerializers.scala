@@ -6,7 +6,7 @@ import play.api.libs.json._
 object GameRulesSerializers {
   import GameSerializers._
 
-  def stringWriter[T] = new Writes[T] {
+  private[this] def stringWriter[T] = new Writes[T] {
     override def writes(t: T) = JsString(t.toString)
   }
 
@@ -56,6 +56,11 @@ object GameRulesSerializers {
   implicit val pyramidFillEmptyWithWrites = stringWriter[PyramidFillEmptyWith]
 
   implicit val pyramidSetWrites = Json.writes[PyramidRules]
+
+  // Special
+  implicit val dealOrderWrites = stringWriter[DealOrder]
+
+  implicit val specialWrites = Json.writes[SpecialRules]
 
   // Game Rules
   implicit val gameRulesWrites = Json.writes[GameRules]

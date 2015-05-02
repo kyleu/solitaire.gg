@@ -63,6 +63,7 @@ object ScalaExporter {
     ScalaCellExporter.exportCells(rules, ret)
     ScalaReserveExporter.exportReserves(rules, ret)
     ScalaPyramidExporter.exportPyramids(rules, ret)
+    ScalaSpecialExporter.exportSpecial(rules, ret)
     add("  complete = " + rules.complete)
     add(")")
     add("")

@@ -6,7 +6,7 @@ import models.game.rules.{ GameRules, InitialCards, TableauFaceDownCards }
 object TableauInitialMoves {
   def performInitialMoves(rules: GameRules, gameState: GameState) = {
     rules.tableaus.foreach { tr =>
-      val prefix = if(tr.setNumber == 0) {
+      val prefix = if (tr.setNumber == 0) {
         "tableau-"
       } else {
         "tableau" + (tr.setNumber + 1) + "-"

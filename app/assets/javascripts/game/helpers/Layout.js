@@ -82,10 +82,10 @@ define(function () {
           }
           remainingPileSets = _.without(remainingPileSets, pileSet);
           var pileSetDimensions = getDimensions(pileSet);
-          console.log(pileSet);
-          if(!pileSet.visible) { // Hide this pile
+          //console.log(pileSet);
+          if(pileSet.visible !== undefined && !pileSet.visible) { // Hide this pile
             _.each(pileSet.piles, function(pile, pileIndex) {
-              console.log("Adding [" + pile.id + "]!");
+              //console.log("Adding [" + pile.id + "]!");
               locations[pile.id] = {x: (pileIndex * (1 + padding)) + 0.5, y: -0.5};
             });
           } else {

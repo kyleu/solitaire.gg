@@ -18,23 +18,26 @@ rm -rf bin/prod
 echo "  Updating web assets..."
 
 # Dev
-mkdir -p build/dev/web
+mkdir -p build/dev/web/assets
+
 cp "../target/web/rjs/build/client-opt.js" "build/dev/web"
-cp "../target/web/rjs/build/javascripts/main.js" "build/dev/web/scalataire.js"
+cp "../target/web/rjs/build/client-opt.js.map" "build/dev/web"
+cp -R "../app/assets/javascripts" "build/dev/web/assets"
+mv "build/dev/web/assets/javascripts/main.js" "build/dev/web/assets/javascripts/scalataire.js"
 cp "../target/web/less/main/stylesheets/scalataire.css" "build/dev/web"
 cp "../target/web/less/main/stylesheets/scalataire.css.map" "build/dev/web"
 cp "../app/assets/stylesheets/scalataire.less" "build/dev/web"
+
+cp -R "../public/images/" "build/dev/web/assets/images"
+rm -Rf "build/dev/web/assets/images/game/cards/standard/_resized"
+rm -Rf "build/dev/web/assets/images/game/cards/standard/_unprocessed"
+rm -Rf "build/dev/web/assets/images/game/cards/standard/x-large"
 
 mkdir -p build/dev/web/lib
 cp "../public/lib/phaser/js/phaser.js" "build/dev/web/lib"
 cp "../public/lib/underscore/underscore.js" "build/dev/web/lib"
 cp "../target/web/rjs/appdir/lib/requirejs/require.js" "build/dev/web/lib"
 
-mkdir -p build/dev/web/assets
-cp -R "../public/images/" "build/dev/web/assets/images"
-rm -Rf "build/dev/web/assets/images/game/cards/standard/_resized"
-rm -Rf "build/dev/web/assets/images/game/cards/standard/_unprocessed"
-rm -Rf "build/dev/web/assets/images/game/cards/standard/x-large"
 
 # Prod
 mkdir -p build/prod/web

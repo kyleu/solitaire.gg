@@ -4,7 +4,9 @@ import models._
 import models.game.GameState
 import models.game.rules.GameRules
 
-trait ScalataireHelper { this: Scalataire =>
+trait ScalataireHelper {
+  protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit
+
   protected var gameId: UUID = _
   protected var gameRules: GameRules = _
   protected var gameState: GameState = _

@@ -9,11 +9,9 @@ import scala.scalajs.js.annotation.JSExport
 
 import scala.util.Random
 
-object Scalataire extends js.JSApp {
-  override def main() = Unit
-}
+object Scalataire extends js.JSApp with ScalataireHelper {
+  override def main() = {}
 
-class Scalataire extends ScalataireHelper {
   private[this] val accountId = UUID.randomUUID
   private[this] val rng = new Random()
 
@@ -38,7 +36,7 @@ class Scalataire extends ScalataireHelper {
     }
   }
 
-  protected[this] def send(rm: ResponseMessage, registerUndoResponse: Boolean = true) = {
+  protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true) = {
     if (registerUndoResponse) {
       undoHelper.registerResponse(rm)
     }
@@ -48,7 +46,7 @@ class Scalataire extends ScalataireHelper {
 
   private[this] def handleStartGame(rules: String, seed: Option[Int]) = {
     gameId = UUID.randomUUID
-    val gameRules = GameRulesSet.allById(rules)
+    gameRules = GameRulesSet.allById(rules)
     gameState = gameRules.newGame(gameId, seed.getOrElse(Math.abs(rng.nextInt())))
     gameState.addPlayer(accountId, "Offline Player")
     InitialMoves.performInitialMoves(gameRules, gameState)

@@ -11,7 +11,8 @@ object FlowerGarden extends GameRules(
   "nd waste piles, you have a bouquet of 16 cards, any of which can be played at any time.",
   waste = Some(
     WasteRules(
-      name = "Bouquet"
+      name = "Bouquet",
+      cardsShown = 20
     )
   ),
   foundations = Seq(

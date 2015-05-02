@@ -20,8 +20,6 @@ object PyramidPileOptions {
     ret
   }
 
-
-
   private[this] val baseOptions = PileOptions(
     cardsShown = Some(1),
     direction = Some("r"),

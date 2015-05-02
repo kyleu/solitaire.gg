@@ -22,7 +22,7 @@ object DatabaseConnection extends Logging with Instrumented {
     val healthCheckRegistry = Some(Checked.healthCheckRegistry)
     val maxSize = 32
     val maxWait = 10000
-    Database.connect(url, username, password, name, maxWait = maxWait, maxSize = maxSize, healthCheckRegistry = healthCheckRegistry)
+    Database.connect(url, username, password, name, maxWait = maxWait, maxSize = maxSize, healthCheckRegistry = healthCheckRegistry, metricRegistry = Some(metricRegistry))
   }
 
   def open() = {

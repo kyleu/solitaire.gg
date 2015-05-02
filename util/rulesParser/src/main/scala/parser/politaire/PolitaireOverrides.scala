@@ -11,6 +11,9 @@ object PolitaireOverrides {
       "T1f" -> 5,
       "T1dd" -> 1
     ),
+    "flowergarden" -> Map(
+      "W0cardsShown" -> 20
+    ),
     "fourteenout" -> Map(
       "F0n" -> 1,
       "F0i" -> 1

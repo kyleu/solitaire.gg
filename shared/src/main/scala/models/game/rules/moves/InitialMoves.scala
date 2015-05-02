@@ -51,5 +51,9 @@ object InitialMoves {
     rules.stock.foreach { s =>
       gameState.addCards(gameState.deck.getCards().reverse, "stock")
     }
+
+    rules.waste.foreach { w =>
+      gameState.addCards(gameState.deck.getCards(), "waste-1", reveal = true)
+    }
   }
 }

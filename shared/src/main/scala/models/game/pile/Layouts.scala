@@ -19,7 +19,7 @@ object Layouts {
     "accordion" -> "t",
     "bakersdozen" -> ":.f|t|.t",
     "canfield" -> "sw:f|:r:t",
-    "congress" ->  "sw|f|t",
+    "congress" -> "sw|f|t",
     "flowergarden" -> ":f|t|w",
     "freecell" -> "f:c|.t|",
     "fourteenout" -> "tf",

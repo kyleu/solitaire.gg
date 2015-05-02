@@ -25,6 +25,7 @@ case class GameRules(
     foundations: Seq[FoundationRules] = Nil,
     tableaus: Seq[TableauRules] = Nil,
     pyramids: Seq[PyramidRules] = Nil,
+    special: Option[SpecialRules] = None,
     complete: Boolean = false
 ) {
   def newGame(gameId: UUID, seed: Int) = {
