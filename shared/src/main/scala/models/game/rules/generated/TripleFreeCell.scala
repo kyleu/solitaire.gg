@@ -30,7 +30,6 @@ object TripleFreeCell extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 10
     )
   ),

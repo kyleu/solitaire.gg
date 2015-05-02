@@ -28,7 +28,6 @@ object EphemeralFreeCell extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numEphemeral = 1
     )
   ),

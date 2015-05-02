@@ -30,7 +30,6 @@ object Repair extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       initialCards = 4
     )
   ),

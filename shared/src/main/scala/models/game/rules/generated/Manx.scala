@@ -38,7 +38,6 @@ object Manx extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       pluralName = "Tail",
       numPiles = 1
     )

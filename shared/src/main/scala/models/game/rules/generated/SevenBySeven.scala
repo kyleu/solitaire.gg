@@ -28,9 +28,15 @@ object SevenBySeven extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 3,
       initialCards = 3
+    )
+  ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 2,
+      shuffleBeforeRedeal = false,
+      dealOrder = DealOrder.RowsLeftToRightTopToBottom
     )
   ),
   complete = false

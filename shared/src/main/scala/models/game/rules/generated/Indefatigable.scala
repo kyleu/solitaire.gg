@@ -29,6 +29,13 @@ object Indefatigable extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Aces
     )
   ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 2,
+      shuffleBeforeRedeal = false,
+      dealOrder = DealOrder.RowsLeftToRightTopToBottom
+    )
+  ),
   complete = false
 )
 

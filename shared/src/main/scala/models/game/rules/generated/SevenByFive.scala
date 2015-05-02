@@ -26,7 +26,6 @@ object SevenByFive extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 5
     )
   ),

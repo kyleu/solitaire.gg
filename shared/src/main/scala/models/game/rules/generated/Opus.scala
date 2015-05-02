@@ -32,7 +32,6 @@ object Opus extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 5
     )
   ),

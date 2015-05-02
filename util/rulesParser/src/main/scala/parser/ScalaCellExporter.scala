@@ -34,7 +34,7 @@ object ScalaCellExporter {
           add("  cells = Some(CellRules()),")
         } else {
           add("  cells = Some(")
-          add("    CellRules(\n")
+          add("    CellRules(")
           add(props.mkString(",\n"))
           add("    )")
           add("  ),")

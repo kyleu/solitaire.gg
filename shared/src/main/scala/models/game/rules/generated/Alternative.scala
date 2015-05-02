@@ -39,6 +39,11 @@ object Alternative extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 1
+    )
+  ),
   complete = false
 )
 

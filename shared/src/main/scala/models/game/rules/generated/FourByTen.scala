@@ -27,7 +27,6 @@ object FourByTen extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 10
     )
   ),

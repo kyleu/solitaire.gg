@@ -31,6 +31,13 @@ object RoyalFamily extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Aces
     )
   ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 1,
+      shuffleBeforeRedeal = false,
+      dealOrder = DealOrder.RowsLeftToRightTopToBottom
+    )
+  ),
   complete = false
 )
 

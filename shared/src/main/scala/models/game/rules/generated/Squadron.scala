@@ -37,7 +37,6 @@ object Squadron extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 3,
       initialCards = 3
     )

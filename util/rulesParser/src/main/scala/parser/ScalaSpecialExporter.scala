@@ -33,14 +33,14 @@ object ScalaSpecialExporter {
           props += "      drawsAllowed = " + s.drawsAllowed
         }
         if(s.drawsAfterRedeals != defaults.drawsAfterRedeals) {
-          props += "      drawsAfterRedeals = " + s.pickupOrder
+          props += "      drawsAfterRedeals = " + s.drawsAfterRedeals
         }
 
         if(props.isEmpty) {
           add("  special = Some(SpecialRules()),")
         } else {
           add("  special = Some(")
-          add("    SpecialRules(\n")
+          add("    SpecialRules(")
           add(props.mkString(",\n"))
           add("    )")
           add("  ),")

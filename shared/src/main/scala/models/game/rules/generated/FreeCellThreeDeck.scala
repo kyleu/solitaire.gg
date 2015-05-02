@@ -30,7 +30,6 @@ object FreeCellThreeDeck extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 12
     )
   ),

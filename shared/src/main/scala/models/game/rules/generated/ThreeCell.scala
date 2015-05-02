@@ -27,7 +27,6 @@ object ThreeCell extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 3
     )
   ),

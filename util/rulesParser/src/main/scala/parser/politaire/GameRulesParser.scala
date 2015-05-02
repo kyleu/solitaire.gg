@@ -75,7 +75,8 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
       tableaus = getTableaus(deckOptions),
       cells = getCells,
       reserves = getReserves,
-      pyramids = getPyramids
+      pyramids = getPyramids,
+      special = getSpecial
     )
   }
 }

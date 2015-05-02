@@ -39,7 +39,6 @@ object Saxony extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       initialCards = 4
     )
   ),

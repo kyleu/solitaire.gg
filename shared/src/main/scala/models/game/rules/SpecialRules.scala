@@ -13,13 +13,13 @@ object DealOrder {
 
 case class SpecialRules(
   redealsAllowed: Int = 0,
-  pickupOrder: DealOrder = DealOrder.ColumnsLeftToRightTopToBottom,
-  shuffleBeforeRedeal: Boolean = false,
-  dealOrder: DealOrder = DealOrder.ColumnsLeftToRightTopToBottom,
+  pickupOrder: DealOrder = DealOrder.ColumnsLeftToRightBottomToTop,
+  shuffleBeforeRedeal: Boolean = true,
+  dealOrder: DealOrder = DealOrder.ColumnsLeftToRightBottomToTop,
 
   rotationsAllowed: Int = 0,
   rotationTopToBottom: Boolean = true,
 
   drawsAllowed: Int = 0,
-  drawsAfterRedeals: Boolean = true
+  drawsAfterRedeals: Boolean = false
 )

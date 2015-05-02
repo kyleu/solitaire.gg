@@ -28,6 +28,12 @@ object Cromwell extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
     )
   ),
+  special = Some(
+    SpecialRules(
+      shuffleBeforeRedeal = false,
+      drawsAllowed = 1
+    )
+  ),
   complete = false
 )
 

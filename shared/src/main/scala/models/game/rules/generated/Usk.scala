@@ -37,6 +37,13 @@ object Usk extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Kings
     )
   ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 1,
+      shuffleBeforeRedeal = false,
+      dealOrder = DealOrder.RowsLeftToRightTopToBottom
+    )
+  ),
   complete = false
 )
 

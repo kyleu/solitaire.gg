@@ -29,7 +29,6 @@ object EightOn extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 8,
       initialCards = 8
     )

@@ -44,7 +44,6 @@ object BuffaloBill extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       name = "Reserve",
       pluralName = "Reserve",
       numPiles = 8

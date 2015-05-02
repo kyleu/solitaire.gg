@@ -28,7 +28,6 @@ object Stronghold extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 1
     )
   ),

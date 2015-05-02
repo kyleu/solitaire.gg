@@ -37,6 +37,13 @@ object TvetesGrandfather extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Kings
     )
   ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 2,
+      shuffleBeforeRedeal = false,
+      dealOrder = DealOrder.ColumnsLeftToRightTopToBottom
+    )
+  ),
   complete = false
 )
 

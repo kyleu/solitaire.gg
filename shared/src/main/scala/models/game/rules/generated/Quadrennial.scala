@@ -36,6 +36,12 @@ object Quadrennial extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 2,
+      shuffleBeforeRedeal = false
+    )
+  ),
   complete = false
 )
 

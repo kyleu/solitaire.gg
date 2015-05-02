@@ -28,7 +28,6 @@ object EightOff extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 8,
       initialCards = 4
     )

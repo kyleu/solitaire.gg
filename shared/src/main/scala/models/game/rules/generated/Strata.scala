@@ -30,6 +30,14 @@ object Strata extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Aces
     )
   ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 2,
+      pickupOrder = DealOrder.ColumnsRightToLeftBottomToTop,
+      shuffleBeforeRedeal = false,
+      dealOrder = DealOrder.RowsLeftToRightTopToBottom
+    )
+  ),
   complete = false
 )
 

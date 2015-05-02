@@ -25,7 +25,6 @@ object Muse extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 7,
       initialCards = 7
     )

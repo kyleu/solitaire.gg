@@ -10,7 +10,8 @@ trait GameRulesParserHelper extends ParserGameHelper
     with ParserTableauHelper
     with ParserCellHelper
     with ParserReserveHelper
-    with ParserPyramidHelper { this: GameRulesParser =>
+    with ParserPyramidHelper
+    with ParserSpecialHelper { this: GameRulesParser =>
 
   private[this] def getValue(key: String): Any = if(overrides.isDefinedAt(key)) {
     overrides(key)
@@ -31,6 +32,10 @@ trait GameRulesParserHelper extends ParserGameHelper
     case s: String if s == "0x0020|0x0080" || s == "0x0080|0x0020" => 160
     case s: String if s == "0x0020|0x0080" || s == "0x0080|0x0020" => 160
     case s: String if s == "2*13" || s == "13*2" => 26
+    case s: String if s == "0|0|0" => 0
+    case s: String if s == "1|0|0" => 1
+    case s: String if s == "1|2|0" => 3
+    case s: String if s == "1|0|8" => 9
     case s: String if s == "2|4" => 6
     case s: String if s == "8|2" => 10
     case s: String if s == "BIT_STOCK" => 1

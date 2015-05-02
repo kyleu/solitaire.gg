@@ -23,6 +23,13 @@ object DemonFan extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 6,
+      shuffleBeforeRedeal = false,
+      dealOrder = DealOrder.RowsLeftToRightTopToBottom
+    )
+  ),
   complete = false
 )
 

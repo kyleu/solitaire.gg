@@ -32,7 +32,6 @@ object DoubleFreeCell extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 6
     )
   ),

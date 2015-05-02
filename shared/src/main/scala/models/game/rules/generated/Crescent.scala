@@ -42,6 +42,13 @@ object Crescent extends GameRules(
       mayMoveToNonEmptyFrom = Seq("Tableau")
     )
   ),
+  special = Some(
+    SpecialRules(
+      shuffleBeforeRedeal = false,
+      rotationsAllowed = 3,
+      rotationTopToBottom = false
+    )
+  ),
   complete = false
 )
 

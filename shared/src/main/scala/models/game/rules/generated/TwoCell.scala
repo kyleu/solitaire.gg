@@ -27,7 +27,6 @@ object TwoCell extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 2
     )
   ),

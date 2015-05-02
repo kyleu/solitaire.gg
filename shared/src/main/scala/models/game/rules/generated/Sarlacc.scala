@@ -18,7 +18,6 @@ object Sarlacc extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 6
     )
   ),

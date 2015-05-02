@@ -28,6 +28,12 @@ object MidnightClover extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Kings
     )
   ),
+  special = Some(
+    SpecialRules(
+      shuffleBeforeRedeal = false,
+      drawsAllowed = 1
+    )
+  ),
   complete = false
 )
 

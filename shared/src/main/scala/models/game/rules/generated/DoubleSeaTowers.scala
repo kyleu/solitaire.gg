@@ -31,7 +31,6 @@ object DoubleSeaTowers extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 9,
       initialCards = 5
     )

@@ -44,11 +44,16 @@ object LittleBillie extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       name = "Reserve",
       pluralName = "Reserve",
       numPiles = 8,
       initialCards = 8
+    )
+  ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 2,
+      dealOrder = DealOrder.ColumnsLeftToRightTopToBottom
     )
   ),
   complete = false

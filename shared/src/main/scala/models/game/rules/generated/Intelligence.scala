@@ -37,6 +37,12 @@ object Intelligence extends GameRules(
       actionDuringDeal = PileAction.MoveToEmptyFoundationAndReplace
     )
   ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 2,
+      dealOrder = DealOrder.ColumnsLeftToRightTopToBottom
+    )
+  ),
   complete = false
 )
 

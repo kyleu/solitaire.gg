@@ -28,6 +28,12 @@ object FortressOfMercy extends GameRules(
       emptyFilledWith = TableauFillEmptyWith.Aces
     )
   ),
+  special = Some(
+    SpecialRules(
+      shuffleBeforeRedeal = false,
+      drawsAllowed = 1
+    )
+  ),
   complete = false
 )
 

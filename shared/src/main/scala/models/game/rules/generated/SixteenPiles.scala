@@ -28,6 +28,12 @@ object SixteenPiles extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 2,
+      dealOrder = DealOrder.ColumnsLeftToRightTopToBottom
+    )
+  ),
   complete = false
 )
 

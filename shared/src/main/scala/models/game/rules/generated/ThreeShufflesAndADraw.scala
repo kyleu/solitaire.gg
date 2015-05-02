@@ -45,6 +45,14 @@ object ThreeShufflesAndADraw extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 2,
+      dealOrder = DealOrder.ColumnsLeftToRightTopToBottom,
+      drawsAllowed = 1,
+      drawsAfterRedeals = true
+    )
+  ),
   complete = false
 )
 

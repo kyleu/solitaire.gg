@@ -44,7 +44,6 @@ object CellEleven extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 11,
       initialCards = 2
     )

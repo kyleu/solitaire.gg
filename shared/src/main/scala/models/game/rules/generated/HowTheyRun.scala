@@ -41,7 +41,6 @@ object HowTheyRun extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 2,
       initialCards = 2
     )

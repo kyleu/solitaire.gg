@@ -46,7 +46,6 @@ object Cicely extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 8,
       canMoveFrom = Seq("Tableau"),
       initialCards = 8

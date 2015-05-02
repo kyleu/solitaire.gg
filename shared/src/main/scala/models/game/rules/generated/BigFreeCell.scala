@@ -30,7 +30,6 @@ object BigFreeCell extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 8
     )
   ),

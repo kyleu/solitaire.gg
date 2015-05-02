@@ -28,6 +28,13 @@ object PerseveranceB extends GameRules(
       actionDuringDeal = PileAction.MoveKingsToBottom
     )
   ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 2,
+      shuffleBeforeRedeal = false,
+      dealOrder = DealOrder.RowsLeftToRightTopToBottom
+    )
+  ),
   complete = false
 )
 

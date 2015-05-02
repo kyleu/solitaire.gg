@@ -22,7 +22,6 @@ object SimonSays extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 2
     )
   ),

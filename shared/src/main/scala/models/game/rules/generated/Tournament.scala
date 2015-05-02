@@ -48,10 +48,15 @@ object Tournament extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 8,
       canMoveFrom = Seq("Tableau"),
       initialCards = 8
+    )
+  ),
+  special = Some(
+    SpecialRules(
+      redealsAllowed = 2,
+      shuffleBeforeRedeal = false
     )
   ),
   complete = false

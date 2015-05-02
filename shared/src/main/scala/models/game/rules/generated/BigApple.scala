@@ -39,7 +39,6 @@ object BigApple extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 3
     )
   ),

@@ -48,6 +48,12 @@ object RainbowFan extends GameRules(
       mayMoveToNonEmptyFrom = Seq("Tableau")
     )
   ),
+  special = Some(
+    SpecialRules(
+      shuffleBeforeRedeal = false,
+      rotationsAllowed = 3
+    )
+  ),
   complete = false
 )
 

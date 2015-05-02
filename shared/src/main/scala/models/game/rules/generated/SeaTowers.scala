@@ -29,7 +29,6 @@ object SeaTowers extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       initialCards = 2
     )
   ),

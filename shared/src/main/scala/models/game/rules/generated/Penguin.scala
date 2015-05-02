@@ -33,7 +33,6 @@ object Penguin extends GameRules(
   ),
   cells = Some(
     CellRules(
-
       numPiles = 7
     )
   ),
