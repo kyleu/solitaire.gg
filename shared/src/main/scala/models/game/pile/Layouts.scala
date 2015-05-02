@@ -21,6 +21,7 @@ object Layouts {
     "canfield" -> "sw:f|:r:t",
     "congress" -> "sw|f|t",
     "cruel" -> "::f|t|t",
+    "doubleklondike" -> "swf|:t",
     "flowergarden" -> ":f|t|w",
     "freecell" -> "f:c|.t|",
     "fourteenout" -> "t|tf",

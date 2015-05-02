@@ -36,12 +36,28 @@ object SelectCardActions {
 
   def drawToPile(cardsToDraw: Int, drawTo: String, turn: Option[Boolean] = None) = drawToPiles(cardsToDraw, Seq(drawTo), turn)
 
-  def drawToPiles(cardsToDraw: Int, drawTo: Seq[String], turn: Option[Boolean] = None) = SelectCardAction("draw-to-piles", (pile, card, gameState) => {
+  def drawToPiles(cardsToDraw: Int, drawTo: Seq[String], turn: Option[Boolean] = None) = {
+    SelectCardAction("draw-to-piles", (pile, card, gameState) => {
+      drawTo.flatMap { p =>
+        val tgt = gameState.pilesById(p)
+        val cards = pile.cards.takeRight(cardsToDraw).reverse
+        cards.flatMap { card =>
+          moveCard(card, pile, tgt, gameState, turn = turn)
+        }
+      }
+    })
+  }
+
+  def drawToNonEmptyPiles(cardsToDraw: Int, drawTo: Seq[String], turn: Option[Boolean] = None) = SelectCardAction("draw-to-piles", (pile, card, gameState) => {
     drawTo.flatMap { p =>
       val tgt = gameState.pilesById(p)
-      val cards = pile.cards.takeRight(cardsToDraw).reverse
-      cards.flatMap { card =>
-        moveCard(card, pile, tgt, gameState, turn = turn)
+      if(tgt.cards.nonEmpty) {
+        val cards = pile.cards.takeRight(cardsToDraw).reverse
+        cards.flatMap { card =>
+          moveCard(card, pile, tgt, gameState, turn = turn)
+        }
+      } else {
+        Nil
       }
     }
   })

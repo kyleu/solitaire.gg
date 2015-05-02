@@ -25,6 +25,16 @@ object Constraints {
     pile.cards.lastOption == cards.headOption
   })
 
+  def finiteTimes(i: Int) = Constraint("finite-times", (pile, cards, gameState) => {
+    throw new NotImplementedError()
+  })
+
+  def allNonEmpty(piles: Seq[String]) = Constraint("all-non-empty", (pile, cards, gameState) => {
+    !piles.exists { p =>
+      gameState.pilesById(p).cards.isEmpty
+    }
+  })
+
   def total(target: Int, aceHigh: Boolean = true) = Constraint("total-" + target, (pile, cards, gameState) => {
     if (pile.cards.isEmpty) {
       false

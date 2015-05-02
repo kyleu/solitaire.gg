@@ -6,46 +6,68 @@ import models.game.rules.{ StockRules, StockCardsDealt, StockDealTo }
 
 object StockPileOptions {
   def apply(rules: StockRules, pileIdsByType: Map[String, Seq[String]]) = {
-    val selectCardConstraint = Some(Constraints.topCardOnly)
-    val selectPileConstraint = Some(Constraints.empty)
+    val dragFromConstraint = if(rules.dealTo == StockDealTo.Manually) {
+      Some(Constraints.topCardOnly)
+    } else if(rules.dealTo == StockDealTo.WasteOrPairManually) {
+      Some(Constraints.topCardOnly)
+    } else {
+      None
+    }
+
+    val selectCardConstraint = if(rules.dealTo == StockDealTo.TableauIfNoneEmpty) {
+      Some(Constraints.allOf("all-non-empty-top-card", Constraints.allNonEmpty(pileIdsByType("tableaus")), Constraints.topCardOnly))
+    } else {
+      Some(Constraints.topCardOnly)
+    }
+
+    val selectPileConstraint = rules.maximumDeals match {
+      case Some(1) => Some(Constraints.never)
+      case Some(i) => Some(Constraints.finiteTimes(i))
+      case None => Some(Constraints.empty)
+    }
 
     val cardsToDraw = rules.cardsDealt match {
       case StockCardsDealt.Count(i) => i
-      case StockCardsDealt.FewerEachTime => throw new NotImplementedError()
+      case StockCardsDealt.FewerEachTime => 3 // TODO throw new NotImplementedError()
     }
 
     val drawTo = rules.dealTo match {
       case StockDealTo.Waste => pileIdsByType("waste")
-      case StockDealTo.WasteOrPairManually => pileIdsByType("waste") // TODO throw new NotImplementedError()
+      case StockDealTo.WasteOrPairManually => pileIdsByType("waste")
+      case StockDealTo.Reserve => pileIdsByType("reserves")
       case StockDealTo.Foundation => pileIdsByType("foundations")
       case StockDealTo.Tableau => pileIdsByType("tableaus")
-      case StockDealTo.TableauFirstSet => throw new NotImplementedError()
-      case StockDealTo.TableauIfNoneEmpty => pileIdsByType("tableaus") // TODO throw new NotImplementedError()
-      case StockDealTo.TableauNonEmpty => throw new NotImplementedError()
-      case StockDealTo.Manually => throw new NotImplementedError()
+      case StockDealTo.TableauFirstSet => pileIdsByType("tableaus").filter(_.startsWith("tableau-"))
+      case StockDealTo.TableauIfNoneEmpty => pileIdsByType("tableaus")
+      case StockDealTo.TableauNonEmpty => pileIdsByType("tableaus")
+      case StockDealTo.Manually => Nil
       case StockDealTo.Never => Nil
-      case x => throw new NotImplementedError(x.toString)
     }
 
     val redrawFrom = rules.maximumDeals match {
-      case Some(1) => None
-      case None => drawTo.headOption
-      case _ => drawTo.headOption // TODO throw new NotImplementedError()
+      case Some(1) => Nil
+      case None => drawTo
+      case _ => drawTo // TODO throw new NotImplementedError()
     }
 
     val selectCardAction = if (drawTo.nonEmpty) {
-      Some(SelectCardActions.drawToPiles(cardsToDraw, drawTo, Some(true)))
+      if(rules.dealTo == StockDealTo.Manually) {
+        None
+      } else if(rules.dealTo == StockDealTo.TableauNonEmpty) {
+        Some(SelectCardActions.drawToNonEmptyPiles(cardsToDraw, drawTo, Some(true)))
+      } else {
+        Some(SelectCardActions.drawToPiles(cardsToDraw, drawTo, Some(true)))
+      }
     } else {
       None
     }
-    val selectPileAction = redrawFrom match {
-      case Some(rf) => Some(SelectPileActions.moveAll(rf))
-      case None => None
-    }
+
+    val selectPileAction = if(redrawFrom.isEmpty) { None } else { Some(SelectPileActions.moveAllFrom(redrawFrom)) }
 
     PileOptions(
       cardsShown = Some(rules.cardsShown),
       direction = Some("r"),
+      dragFromConstraint = dragFromConstraint,
       selectCardConstraint = selectCardConstraint,
       selectPileConstraint = selectPileConstraint,
       selectCardAction = selectCardAction,

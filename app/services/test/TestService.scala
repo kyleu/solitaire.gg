@@ -16,7 +16,7 @@ object TestService extends Logging {
       val ret = test.run()
       TestResult(test.id, (System.currentTimeMillis - startMs).toInt, Some(ret))
     } catch {
-      case x: Exception =>
+      case x: Throwable =>
         log.warn("Exception encountered processing test [" + test.id + "].", x)
         TestResult(test.id, (System.currentTimeMillis - startMs).toInt, None, Some(x))
     }

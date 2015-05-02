@@ -9,7 +9,19 @@ case class SelectPileAction(id: String, f: (Pile, GameState) => Seq[ResponseMess
 object SelectPileActions {
   val none = SelectPileAction("none", (pile, gameState) => Nil)
 
-  def moveAll(target: String) = SelectPileAction("move-all", (pile, gameState) => {
+  def moveAllFrom(targets: Seq[String]) = SelectPileAction("move-all", (pile, gameState) => {
+    targets.flatMap { target =>
+      val targetPile = gameState.pilesById(target)
+      val cards = Seq(targetPile.cards.reverse: _*)
+      cards.map { card =>
+        targetPile.removeCard(card)
+        pile.addCard(card)
+        CardMoved(card.id, target, pile.id, turn = Some(false))
+      }
+    }
+  })
+
+  def moveAllNonEmpty(target: String) = SelectPileAction("move-all", (pile, gameState) => {
     val targetPile = gameState.pilesById(target)
     val cards = Seq(targetPile.cards.reverse: _*)
     cards.map { card =>
