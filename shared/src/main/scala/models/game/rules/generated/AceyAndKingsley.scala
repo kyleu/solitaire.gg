@@ -21,7 +21,7 @@ object AceyAndKingsley extends GameRules(
     FoundationRules(
       name = "Ace Foundation",
       numPiles = 4,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 4,
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true
     ),
@@ -30,7 +30,7 @@ object AceyAndKingsley extends GameRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 4,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true

@@ -11,6 +11,7 @@ object GameRulesSet {
     "bakersdozen",
     "canfield",
     "congress",
+    "cruel",
     "flowergarden",
     "fourteenout",
     "freecell",

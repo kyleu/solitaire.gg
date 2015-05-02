@@ -9,7 +9,7 @@ object RulesReset extends App {
   println("Reset complete in [" + (System.currentTimeMillis - startMs) + "ms].")
 
   def go() = {
-    val srcDir = Paths.get(".", "shared", "src", "main", "scala", "models", "game", "generated")
+    val srcDir = Paths.get(".", "shared", "src", "main", "scala", "models", "game", "rules", "generated")
     val dStream = Files.newDirectoryStream(srcDir)
     val itr = collection.JavaConverters.asScalaIteratorConverter(dStream.iterator()).asScala
     for(f <- itr) {
@@ -22,7 +22,7 @@ object RulesReset extends App {
     val ret = new StringBuilder()
     def add(s: String) = ret ++= s + "\n"
 
-    add("package models.game.generated")
+    add("package models.game.rules.generated")
     add("")
     add("object GeneratedGameRules {")
     add("  val all = Nil")

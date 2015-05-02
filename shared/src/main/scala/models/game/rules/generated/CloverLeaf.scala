@@ -13,7 +13,7 @@ object CloverLeaf extends GameRules(
     FoundationRules(
       name = "Red Foundation",
       numPiles = 2,
-      initialCards = InitialCards.Count(2),
+      initialCards = 2,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
@@ -23,7 +23,7 @@ object CloverLeaf extends GameRules(
       setNumber = 1,
       numPiles = 2,
       lowRank = FoundationLowRank.DeckHighRank,
-      initialCards = InitialCards.Count(2),
+      initialCards = 2,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,

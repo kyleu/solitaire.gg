@@ -21,6 +21,7 @@ object Nestor extends GameRules(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(6),
+      uniqueRanks = true,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.None,
       rankMatchRuleForBuilding = RankMatchRule.None,

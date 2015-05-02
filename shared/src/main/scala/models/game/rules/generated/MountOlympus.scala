@@ -20,7 +20,7 @@ object MountOlympus extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 8,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
       maxCards = 7,
@@ -31,7 +31,7 @@ object MountOlympus extends GameRules(
       setNumber = 1,
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
-      initialCards = InitialCards.PileIndex,
+      initialCards = 8,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
       maxCards = 6,

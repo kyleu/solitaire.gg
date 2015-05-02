@@ -21,7 +21,7 @@ object DoubleDot extends GameRules(
     FoundationRules(
       numPiles = 2,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
-      initialCards = InitialCards.Count(2),
+      initialCards = 2,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
       maxCards = 13,
@@ -32,7 +32,7 @@ object DoubleDot extends GameRules(
       setNumber = 1,
       numPiles = 2,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
-      initialCards = InitialCards.Count(2),
+      initialCards = 2,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
       maxCards = 13,

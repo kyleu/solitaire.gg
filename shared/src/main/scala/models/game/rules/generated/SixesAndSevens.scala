@@ -21,7 +21,7 @@ object SixesAndSevens extends GameRules(
     FoundationRules(
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
-      initialCards = InitialCards.PileIndex,
+      initialCards = 8,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
       maxCards = 6,
@@ -32,7 +32,7 @@ object SixesAndSevens extends GameRules(
       setNumber = 1,
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
-      initialCards = InitialCards.PileIndex,
+      initialCards = 8,
       wrapFromKingToAce = true,
       maxCards = 7,
       canMoveFrom = FoundationCanMoveFrom.Never,

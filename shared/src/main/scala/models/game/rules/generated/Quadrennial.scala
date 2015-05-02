@@ -20,7 +20,7 @@ object Quadrennial extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 16,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 16,
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never

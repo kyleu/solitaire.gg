@@ -21,7 +21,7 @@ object NapoleonsQuadrilateral extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 8,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true

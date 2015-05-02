@@ -24,7 +24,7 @@ case class FoundationRules(
   numPiles: Int = 1,
   cardsShown: Int = 1,
   lowRank: FoundationLowRank = FoundationLowRank.DeckLowRank,
-  initialCards: InitialCards = InitialCards.Count(0),
+  initialCards: Int = 0,
   suitMatchRule: SuitMatchRule = SuitMatchRule.SameSuit,
   rankMatchRule: RankMatchRule = RankMatchRule.Up,
   wrapFromKingToAce: Boolean = false,

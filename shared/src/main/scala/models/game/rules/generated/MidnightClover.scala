@@ -11,7 +11,7 @@ object MidnightClover extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 4,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true

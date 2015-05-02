@@ -21,7 +21,7 @@ object QuadrupleCanfield extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 16,
-      initialCards = InitialCards.Count(1),
+      initialCards = 1,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true

@@ -21,7 +21,7 @@ object EmpressOfItaly extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 16,
-      initialCards = InitialCards.Count(1),
+      initialCards = 1,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never

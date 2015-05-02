@@ -20,6 +20,7 @@ object Layouts {
     "bakersdozen" -> ":.f|t|.t",
     "canfield" -> "sw:f|:r:t",
     "congress" -> "sw|f|t",
+    "cruel" -> "::f|t|t",
     "flowergarden" -> ":f|t|w",
     "freecell" -> "f:c|.t|",
     "fourteenout" -> "tf",

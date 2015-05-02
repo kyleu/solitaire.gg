@@ -8,5 +8,5 @@ case class DeckOptions(
     ranks: Seq[Rank] = Rank.all,
     lowRank: Option[Rank] = Some(Rank.Ace)
 ) {
-  val highRank = lowRank.map(lr => if (lr == Rank.Ace) { Rank.King } else { Rank.Ace })
+  val highRank: Option[Rank] = lowRank.map(lr => if (lr == Rank.Ace) { Rank.King } else { Rank.Ace })
 }

@@ -11,7 +11,7 @@ object BlackHole extends GameRules(
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(
     FoundationRules(
-      initialCards = InitialCards.Count(1),
+      initialCards = 1,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,
       wrapFromKingToAce = true,

@@ -20,7 +20,7 @@ object Fly extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 8,
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,

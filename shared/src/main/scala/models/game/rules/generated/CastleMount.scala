@@ -16,7 +16,7 @@ object CastleMount extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 12,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 12,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true

@@ -13,7 +13,7 @@ object RoyalFamily extends GameRules(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 4,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,

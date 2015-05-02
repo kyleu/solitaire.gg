@@ -21,7 +21,7 @@ object SanJuanHill extends GameRules(
     FoundationRules(
       name = "Hill",
       numPiles = 8,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 8,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true

@@ -30,7 +30,7 @@ object ScalaFoundationExporter {
           props += "      lowRank = FoundationLowRank." + cls(f.lowRank)
         }
         if(f.initialCards != defaults.initialCards) {
-          props += "      initialCards = InitialCards." + cls(f.initialCards)
+          props += "      initialCards = " + f.initialCards
         }
         if(f.suitMatchRule != defaults.suitMatchRule) {
           props += "      suitMatchRule = SuitMatchRule." + cls(f.suitMatchRule)

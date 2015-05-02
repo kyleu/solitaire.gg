@@ -14,7 +14,7 @@ object BinaryStar extends GameRules(
   ),
   foundations = Seq(
     FoundationRules(
-      initialCards = InitialCards.Count(1),
+      initialCards = 1,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,
       wrapFromKingToAce = true,
@@ -24,7 +24,7 @@ object BinaryStar extends GameRules(
     FoundationRules(
       setNumber = 1,
       lowRank = FoundationLowRank.DeckHighRank,
-      initialCards = InitialCards.Count(1),
+      initialCards = 1,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,
       wrapFromKingToAce = true,

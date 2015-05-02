@@ -18,7 +18,7 @@ object GolfRush extends GameRules(
   foundations = Seq(
     FoundationRules(
       lowRank = FoundationLowRank.AnyCard,
-      initialCards = InitialCards.Count(1),
+      initialCards = 1,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,
       maxCards = 0,

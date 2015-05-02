@@ -9,12 +9,13 @@ trait ParserFoundationHelper { this: GameRulesParser =>
     val foundationCount = getInt("Fn")
     val foundations = (0 to foundationCount - 1).map { i =>
       val prefix = "F" + i
+      val numPiles = getInt(prefix + "n") match {
+        case -1 => 4 * deckOptions.numDecks
+        case x => x
+      }
       FoundationRules(
         name = getString(prefix + "Nm"),
-        numPiles = getInt(prefix + "n") match {
-          case -1 => 4 * deckOptions.numDecks
-          case x => x
-        },
+        numPiles = numPiles,
         lowRank = getInt(prefix + "b") match {
           case 20 => FoundationLowRank.AnyCard
           case 21 => FoundationLowRank.DeckLowRank
@@ -22,7 +23,10 @@ trait ParserFoundationHelper { this: GameRulesParser =>
           case 23 => FoundationLowRank.Ascending
           case _ => FoundationLowRank.SpecificRank(Rank.King)
         },
-        initialCards = getInitialCards(getInt(prefix + "d")),
+        initialCards = getInt(prefix + "d") match {
+          case -1 => numPiles
+          case ic => ic
+        },
         suitMatchRule = getSuitMatchRule(getInt(prefix + "s")),
         rankMatchRule = getRankMatchRule(getInt(prefix + "r")),
         wrapFromKingToAce = getBoolean(prefix + "w"),

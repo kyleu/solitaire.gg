@@ -20,7 +20,7 @@ object TableauInitialMoves {
               case TableauFaceDownCards.EvenNumbered => row % 2 != 0
               case TableauFaceDownCards.OddNumbered => row % 2 == 0
             }
-            gameState.addCardsFromDeck(1, prefix + col, reveal = reveal)
+            gameState.addCardsFromDeck(1, prefix + col, reveal = reveal, uniqueRanks = tr.uniqueRanks)
           }
         }
 
@@ -29,7 +29,7 @@ object TableauInitialMoves {
             if (col < row) {
               Unit // no op
             } else if (row == col && tr.cardsFaceDown == TableauFaceDownCards.AllButOne) {
-              gameState.addCardsFromDeck(1, prefix + row, reveal = true)
+              gameState.addCardsFromDeck(1, prefix + row, reveal = true, uniqueRanks = tr.uniqueRanks)
             } else {
               val reveal = tr.cardsFaceDown match {
                 case TableauFaceDownCards.Count(count) => row > count
@@ -37,7 +37,7 @@ object TableauInitialMoves {
                 case TableauFaceDownCards.EvenNumbered => row % 2 != 0
                 case TableauFaceDownCards.OddNumbered => row % 2 == 0
               }
-              gameState.addCardsFromDeck(1, prefix + col, reveal = reveal)
+              gameState.addCardsFromDeck(1, prefix + col, reveal = reveal, uniqueRanks = tr.uniqueRanks)
             }
           }
         }
@@ -51,7 +51,7 @@ object TableauInitialMoves {
             case TableauFaceDownCards.EvenNumbered => row % 2 != 0
             case TableauFaceDownCards.OddNumbered => row % 2 == 0
           }
-          gameState.addCardsFromDeck(1, prefix + col, reveal = reveal)
+          gameState.addCardsFromDeck(1, prefix + col, reveal = reveal, uniqueRanks = tr.uniqueRanks)
         }
 
         case InitialCards.Custom =>
@@ -64,7 +64,7 @@ object TableauInitialMoves {
                   case 'D' => false
                   case _ => throw new IllegalStateException()
                 }
-                gameState.addCardsFromDeck(1, prefix + (cards._2 + 1), reveal = reveal)
+                gameState.addCardsFromDeck(1, prefix + (cards._2 + 1), reveal = reveal, uniqueRanks = tr.uniqueRanks)
               }
             }
           }

@@ -8,6 +8,11 @@ object GameLookup {
     "pairs" -> "Card removal method",
     "like" -> "Similar to",
 
+    "touchfunc" -> "Touch interface function",
+    "leftfunc" -> "Left mouse interface function",
+    "rightfunc" -> "Right mouse interface function",
+    "supermoves" -> "Enable super moves, whatever those are",
+
     "Fn" -> "Foundation Sets",
     "Tn" -> "Tableau sets",
     "Pn" -> "Number of pyramids",

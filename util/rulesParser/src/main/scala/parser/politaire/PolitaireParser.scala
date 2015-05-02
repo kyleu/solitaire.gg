@@ -15,11 +15,11 @@ object PolitaireParser {
     val body = Source.fromFile("../politaire.js").getLines().mkString("\n")
     val gamesStartIndex = body.indexOf("var games=") + 10
     if (gamesStartIndex < 10) {
-      throw new IllegalStateException()
+      throw new IllegalStateException("Can't find games declaration.")
     }
     val gamesEndIndex = body.indexOf("};", gamesStartIndex) + 1
     if (gamesEndIndex < 10) {
-      throw new IllegalStateException()
+      throw new IllegalStateException("Can't parse games declaration.")
     }
 
     val gamesContent = body.substring(gamesStartIndex, gamesEndIndex).replaceAll("([a-zA-Z0-9]*):", "\"$1\":")

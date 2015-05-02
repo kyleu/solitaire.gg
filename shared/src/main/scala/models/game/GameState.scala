@@ -37,8 +37,12 @@ case class GameState(
     }
   }
 
-  def addCardsFromDeck(numCards: Int, pile: String, reveal: Boolean = false) = addCards(deck.getCards(numCards, reveal), pile, reveal)
   def addCards(cards: Seq[Card], pile: String, reveal: Boolean = false) = cards.foreach(c => addCard(c, pile, reveal))
+  def addCardsFromDeck(numCards: Int, pile: String, reveal: Boolean = false, uniqueRanks: Boolean = false) = if(uniqueRanks) {
+    addCards(deck.getCardsUniqueRanks(pilesById(pile).cards.map(_.r), numCards, reveal), pile, reveal)
+  } else {
+    addCards(deck.getCards(numCards, reveal), pile, reveal)
+  }
 
   def revealCardToAll(card: Card) = if (playerKnownIds.keys.exists(p => revealCardToPlayer(card, p))) {
     Seq(CardRevealed(card))

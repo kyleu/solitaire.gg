@@ -18,7 +18,7 @@ object Alternate extends GameRules(
     FoundationRules(
       name = "Red Foundation",
       numPiles = 2,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 2,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
@@ -29,7 +29,7 @@ object Alternate extends GameRules(
       setNumber = 1,
       numPiles = 2,
       lowRank = FoundationLowRank.DeckHighRank,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 2,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,

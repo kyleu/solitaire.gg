@@ -26,6 +26,7 @@
                 <td>@title._2</td>
                 <td>@attr</td>
                 <td>@parser.politaire.lookup.PolitaireLookup.getTranslation(title._1) match {
+                  case _ if attr == true => { true }
                   case Some(x) => { @x.get(attr.toString.toInt) }
                   case None => { }
                 }</td>

@@ -47,6 +47,7 @@ case class TableauRules(
   numPiles: Int = 7,
   cardsShown: Int = 0,
   initialCards: InitialCards = InitialCards.PileIndex,
+  uniqueRanks: Boolean = true,
   customInitialCards: Seq[String] = Seq.empty,
   cardsFaceDown: TableauFaceDownCards = TableauFaceDownCards.AllButOne,
   suitMatchRuleForBuilding: SuitMatchRule = SuitMatchRule.AlternatingColors,

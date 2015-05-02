@@ -11,6 +11,15 @@ object PolitaireOverrides {
       "T1f" -> 5,
       "T1dd" -> 1
     ),
+    "cruel" -> Map(
+      "Tn" -> 2,
+      "T0n" -> 6,
+      "T1n" -> 6,
+      "T1ds" -> 4,
+      "T1df" -> 0,
+      "T1s" -> 1,
+      "T1ts" -> 0
+    ),
     "flowergarden" -> Map(
       "W0cardsShown" -> 20
     ),

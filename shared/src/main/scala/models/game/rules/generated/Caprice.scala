@@ -21,7 +21,7 @@ object Caprice extends GameRules(
     FoundationRules(
       name = "Ace Foundation",
       numPiles = 4,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 4,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
@@ -31,7 +31,7 @@ object Caprice extends GameRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 4,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,

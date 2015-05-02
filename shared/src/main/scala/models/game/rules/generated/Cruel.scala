@@ -11,7 +11,7 @@ object Cruel extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 4,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
@@ -19,11 +19,20 @@ object Cruel extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      numPiles = 12,
+      numPiles = 6,
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None
+    ),
+    TableauRules(
+      setNumber = 1,
+      numPiles = 6,
+      initialCards = InitialCards.Count(4),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      emptyFilledWith = TableauFillEmptyWith.Aces
     )
   ),
   complete = false

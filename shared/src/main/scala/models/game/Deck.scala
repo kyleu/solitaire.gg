@@ -18,23 +18,28 @@ object Deck {
 }
 
 case class Deck(var cards: Seq[Card]) {
-  def getCards(numCards: Int = this.cards.size, turnFaceUp: Boolean = false) = {
-    val ret = this.cards.take(numCards)
+  def getCards(numCards: Int = this.cards.size, turnFaceUp: Boolean = false, rank: Option[Rank] = None) = {
+    val ret = rank match {
+      case Some(r) => (0 until numCards).map { i =>
+        this.cards.find(_.r == r).getOrElse(throw new IllegalStateException("Cannot find card with rank [" + r + "]."))
+      }
+      case None => this.cards.take(numCards)
+    }
     if (turnFaceUp) {
       ret.foreach { c =>
         c.u = true
       }
     }
-    this.cards = this.cards.drop(numCards)
+    this.cards = this.cards.filterNot(ret.contains)
     ret
   }
 
-  def getCardsUniqueRanks(numCards: Int, turnFaceUp: Boolean = false) = {
+  def getCardsUniqueRanks(ranks: Seq[Rank], numCards: Int, turnFaceUp: Boolean = false) = {
     var ret = Seq.empty[Card]
     var enough = false
     while (!enough) {
       val c = cards.headOption.getOrElse(throw new IllegalStateException())
-      if (ret.exists(_.r == c.r)) {
+      if (ret.exists(_.r == c.r) || ranks.contains(c.r)) {
         cards = cards.tail :+ c
       } else {
         cards = cards.tail

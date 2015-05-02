@@ -21,7 +21,7 @@ object RainbowFan extends GameRules(
     FoundationRules(
       name = "Aces Foundation",
       numPiles = 4,
-      initialCards = InitialCards.Count(4),
+      initialCards = 4,
       wrapFromKingToAce = true,
       autoMoveCards = true
     ),
@@ -30,7 +30,7 @@ object RainbowFan extends GameRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
-      initialCards = InitialCards.Count(4),
+      initialCards = 4,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
       autoMoveCards = true

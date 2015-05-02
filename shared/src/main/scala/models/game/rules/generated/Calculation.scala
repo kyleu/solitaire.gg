@@ -18,7 +18,7 @@ object Calculation extends GameRules(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.Ascending,
-      initialCards = InitialCards.PileIndex,
+      initialCards = 4,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpByPileIndex,
       wrapFromKingToAce = true,
