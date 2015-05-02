@@ -11,7 +11,7 @@ object DemonsAndThieves extends GameRules(
   "ortythieves^ rules.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

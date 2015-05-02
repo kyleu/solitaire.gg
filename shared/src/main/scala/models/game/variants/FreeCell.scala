@@ -1,23 +1,3 @@
-package models.game.variants
-
-import models.game.GameState
-
-object FreeCell {
-  def initialMoves(gameState: GameState) = {
-    val deck = gameState.deck
-    gameState.addCards(deck.getCards(7, turnFaceUp = true), "tableau-1", reveal = true)
-    gameState.addCards(deck.getCards(7, turnFaceUp = true), "tableau-2", reveal = true)
-    gameState.addCards(deck.getCards(7, turnFaceUp = true), "tableau-3", reveal = true)
-    gameState.addCards(deck.getCards(7, turnFaceUp = true), "tableau-4", reveal = true)
-    gameState.addCards(deck.getCards(6, turnFaceUp = true), "tableau-5", reveal = true)
-    gameState.addCards(deck.getCards(6, turnFaceUp = true), "tableau-6", reveal = true)
-    gameState.addCards(deck.getCards(6, turnFaceUp = true), "tableau-7", reveal = true)
-    gameState.addCards(deck.getCards(6, turnFaceUp = true), "tableau-8", reveal = true)
-  }
-}
-
-//  override def description = FreeCell
-//
 //  private[this] val cellOptions = Pile.options.combine(PileOptions(
 //    cardsShown = Some(1),
 //    selectCardConstraint = Some(Constraints.klondikeSelectCard),
@@ -50,6 +30,5 @@ object FreeCell {
 //  private[this] val deck = newShuffledDecks()
 //
 //  override val gameState = GameState(gameId, description.key, description.maxPlayers, seed, deck, piles, description.layouts)
-//
 //
 //  override def isWin: Boolean = gameState.piles.count(x => x.behavior == "foundation" && x.cards.size == 13) == 4

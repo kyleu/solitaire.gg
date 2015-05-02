@@ -10,7 +10,7 @@ object DoubleSignora extends GameRules(
   description = "A four-deck version of ^signora^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 4,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

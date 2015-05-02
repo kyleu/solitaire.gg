@@ -10,7 +10,7 @@ object Chameleon extends GameRules(
   description = "In case ^canfield^ wasn't hard enough for you, here's a version with only three tableau piles. But you can stack cards regardless " +
   "of suit, so it'll be OK. Occasionally.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

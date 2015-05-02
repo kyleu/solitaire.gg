@@ -10,7 +10,7 @@ object BigApple extends GameRules(
   description = "A difficult variation of ^newyork^ with three cells instead of three waste piles, but where stacks can be moved.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

@@ -9,7 +9,7 @@ object CastlesEnd extends GameRules(
   title = "Castle's End",
   description = "A slightly different version of ^chessboard^ with a two-card reserve.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   foundations = Seq(
     FoundationRules(

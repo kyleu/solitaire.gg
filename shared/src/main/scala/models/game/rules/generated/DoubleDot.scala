@@ -9,7 +9,7 @@ object DoubleDot extends GameRules(
   title = "Double Dot",
   description = "An easy game where you build up by twos on the foundation, and down by twos on the tableau.",
   deckOptions = DeckOptions(
-    lowRank = None
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

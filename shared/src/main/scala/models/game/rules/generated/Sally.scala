@@ -10,7 +10,7 @@ object Sally extends GameRules(
   description = "A version of ^doubleklondike^ where the base card of the foundation depends on a card dealt in.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

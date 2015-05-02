@@ -10,7 +10,7 @@ object EmpressOfItaly extends GameRules(
   description = "A four-deck version of ^blondesandbrunettes^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 4,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

@@ -10,7 +10,7 @@ object DoubleStorehouse extends GameRules(
   description = "A two-deck version of ^storehouse^.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Two)
+    lowRank = Rank.Two
   ),
   stock = Some(
     StockRules(

@@ -10,7 +10,7 @@ object Penguin extends GameRules(
   description = "A satisfying game with seven cells developed by David Parlett where one of the cards you need to start the foundation is always bu" +
   "ried at the bottom of the first tableau pile.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   foundations = Seq(
     FoundationRules(

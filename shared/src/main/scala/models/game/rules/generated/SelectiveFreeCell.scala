@@ -9,7 +9,7 @@ object SelectiveFreeCell extends GameRules(
   title = "Selective FreeCell",
   description = "A variation of ^freecell^ where the first card played to the foudnation sets the base value for all the foundations.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   foundations = Seq(
     FoundationRules(

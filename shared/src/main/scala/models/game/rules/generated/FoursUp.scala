@@ -11,7 +11,7 @@ object FoursUp extends GameRules(
   " number of tableau piles is again reduced, but now we can build regardless of suit so the game gets a bit easier.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Four)
+    lowRank = Rank.Four
   ),
   stock = Some(
     StockRules(

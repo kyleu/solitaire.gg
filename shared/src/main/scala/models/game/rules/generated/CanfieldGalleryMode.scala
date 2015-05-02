@@ -11,7 +11,7 @@ object CanfieldGalleryMode extends GameRules(
   "ace up, with the ones that would normally be playable if you were going through the stock three at a time automatically raised up " +
   "to indicate that they are playable.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

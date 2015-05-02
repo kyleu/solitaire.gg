@@ -10,7 +10,7 @@ object AmericanToad extends GameRules(
   description = "An easy two-deck variation of ^canfield^.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

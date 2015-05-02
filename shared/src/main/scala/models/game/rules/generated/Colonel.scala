@@ -10,7 +10,7 @@ object Colonel extends GameRules(
   description = "A variation of ^signora^ invented by Thomas Warfield where we built in the same suit instead of alternating colors.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

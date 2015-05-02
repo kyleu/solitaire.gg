@@ -10,7 +10,7 @@ object Roman extends GameRules(
   description = "A variation of ^signora^ where we build regardless of suit. Invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

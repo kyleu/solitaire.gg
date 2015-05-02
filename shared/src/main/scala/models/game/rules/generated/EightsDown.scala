@@ -10,7 +10,7 @@ object EightsDown extends GameRules(
   description = "A ^busyaces^ variant invented by Thomas Warfield, where the foundations build down from eight.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Eight)
+    lowRank = Rank.Eight
   ),
   stock = Some(
     StockRules(

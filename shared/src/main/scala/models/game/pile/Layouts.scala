@@ -15,26 +15,28 @@ package models.game.pile
  *   | - New line
  */
 object Layouts {
-  private[this] val layouts = Map(
-    "accordion" -> "t",
+  val layouts = Map(
+    "accordion" -> "wf",
     "bakersdozen" -> ":.f|t|.t",
     "canfield" -> "sw:f|:r:t",
     "congress" -> "sw|f|t",
     "cruel" -> "::f|t|t",
     "flowergarden" -> ":f|t|w",
     "freecell" -> "f:c|.t|",
-    "fourteenout" -> "tf",
+    "fourteenout" -> "t|tf",
     "fortyandeight" -> "sw|f|t",
     "golf" -> "t|f:s",
     "gypsy" -> "sf|:t",
-    "klondike" -> "sw:f|t|",
-    "klondike1card" -> "sw:f|t|",
+    "klondike" -> "swf|t",
+    "klondike1card" -> "swf|t",
     "missmilligan" -> "sf|:t",
     "nestor" -> "t|::rf",
+    "penguin" -> ":.f|c|t",
     "pyramid" -> "p|::.swf",
     "sandbox" -> "s:f",
     "sandboxb" -> "s",
     "spider" -> "s:f|t",
+    "tournament" -> "sff|:c|::t",
     "trustytwelve" -> "s|t|t",
     "yukon" -> ":::f|t"
   )

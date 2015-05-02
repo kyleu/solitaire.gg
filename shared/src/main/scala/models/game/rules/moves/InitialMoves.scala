@@ -14,18 +14,16 @@ object InitialMoves {
     FoundationInitialMoves.performInitialMoves(rules, gameState)
 
     rules.reserves.foreach { rr =>
-      (1 to rr.initialCards).foreach { row =>
-        (1 to rr.numPiles).foreach { col =>
-          gameState.addCardsFromDeck(1, "reserve-" + col, reveal = true)
-        }
+      (0 until rr.initialCards).foreach { i =>
+        val col = (i % rr.numPiles) + 1
+        gameState.addCardsFromDeck(1, "reserve-" + col, reveal = true)
       }
     }
 
     rules.cells.foreach { cr =>
-      (1 to cr.initialCards).foreach { row =>
-        (1 to cr.numPiles).foreach { col =>
-          gameState.addCardsFromDeck(1, "cell-" + col, reveal = true)
-        }
+      (0 until cr.initialCards).foreach { i =>
+        val col = (i % cr.numPiles) + 1
+        gameState.addCardsFromDeck(1, "cell-" + col, reveal = true)
       }
     }
 
@@ -49,7 +47,7 @@ object InitialMoves {
     }
 
     rules.waste.foreach { w =>
-      gameState.addCards(gameState.deck.getCards(), "waste-1", reveal = true)
+      gameState.addCards(gameState.deck.getCards(turnFaceUp = true), "waste-1", reveal = true)
     }
   }
 }

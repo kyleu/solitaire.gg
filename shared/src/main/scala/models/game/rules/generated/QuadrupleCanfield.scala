@@ -10,7 +10,7 @@ object QuadrupleCanfield extends GameRules(
   description = "An easy four-deck version of ^canfield^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 4,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

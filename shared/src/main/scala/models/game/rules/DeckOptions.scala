@@ -6,7 +6,15 @@ case class DeckOptions(
     numDecks: Int = 1,
     suits: Seq[Suit] = Suit.standard,
     ranks: Seq[Rank] = Rank.all,
-    lowRank: Option[Rank] = Some(Rank.Ace)
+    lowRank: Rank = Rank.Ace
 ) {
-  val highRank: Option[Rank] = lowRank.map(lr => if (lr == Rank.Ace) { Rank.King } else { Rank.Ace })
+  val highRank: Rank = if (lowRank == Rank.Ace) {
+    Rank.King
+  } else if (lowRank == Rank.Two) {
+    Rank.Ace
+  } else if (lowRank == Rank.Unknown) {
+    Rank.Unknown
+  } else {
+    Rank.allByValue(lowRank.value - 1)
+  }
 }

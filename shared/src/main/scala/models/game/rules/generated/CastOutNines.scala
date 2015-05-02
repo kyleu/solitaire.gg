@@ -11,7 +11,7 @@ object CastOutNines extends GameRules(
   "s. Invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Nine)
+    lowRank = Rank.Nine
   ),
   stock = Some(
     StockRules(

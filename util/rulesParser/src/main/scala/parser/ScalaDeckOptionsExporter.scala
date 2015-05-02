@@ -20,7 +20,7 @@ object ScalaDeckOptionsExporter {
         props += "    ranks = Seq(" + rules.deckOptions.ranks.map(x => "Rank." + x).mkString(", ") + ")"
       }
       if(rules.deckOptions.lowRank != defaults.lowRank) {
-        props += "    lowRank = " + rules.deckOptions.lowRank.map("Rank." + _)
+        props += "    lowRank = Rank." + rules.deckOptions.lowRank
       }
 
       if(props.isEmpty) {

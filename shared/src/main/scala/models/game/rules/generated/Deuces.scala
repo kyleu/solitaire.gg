@@ -10,7 +10,7 @@ object Deuces extends GameRules(
   description = "A more difficult variation of ^busyaces^ with fewer tableau piles.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Two)
+    lowRank = Rank.Two
   ),
   stock = Some(
     StockRules(

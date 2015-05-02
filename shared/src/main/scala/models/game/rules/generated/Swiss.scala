@@ -9,7 +9,7 @@ object Swiss extends GameRules(
   title = "Swiss",
   description = "Like ^klondike^ but aces are high and the tableau is pyramidical.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Two)
+    lowRank = Rank.Two
   ),
   stock = Some(
     StockRules(

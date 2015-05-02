@@ -11,7 +11,7 @@ object NewYork extends GameRules(
   "use it's hard to rearrange things much on the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

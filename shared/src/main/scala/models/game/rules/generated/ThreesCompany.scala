@@ -11,7 +11,7 @@ object ThreesCompany extends GameRules(
   "mas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Three)
+    lowRank = Rank.Three
   ),
   stock = Some(
     StockRules(

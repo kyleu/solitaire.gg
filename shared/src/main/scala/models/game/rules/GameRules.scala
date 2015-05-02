@@ -31,17 +31,33 @@ case class GameRules(
   def newGame(gameId: UUID, seed: Int) = {
     val rng = new Random(new java.util.Random(seed))
     val maxPlayers = 1
-    val deck = newShuffledDecks(seed, rng, deckOptions.numDecks, deckOptions.ranks, deckOptions.suits)
+    val lowRank = if(deckOptions.lowRank == Rank.Unknown) {
+      Rank.all(rng.nextInt(Rank.all.length))
+    } else {
+      deckOptions.lowRank
+    }
+    val highRank = if(lowRank == Rank.Ace) {
+      Rank.King
+    } else if(lowRank == Rank.Two) {
+      Rank.Ace
+    } else {
+      Rank.allByValue(lowRank.value - 1)
+    }
+    val deck = newShuffledDecks(seed, rng, deckOptions.numDecks, deckOptions.ranks, deckOptions.suits, lowRank, highRank)
     val pileSets = newPileSets()
     val layout = Layouts.forRules(id)
     val gameState = GameState(gameId, id, maxPlayers, seed, deck, pileSets, layout)
     gameState
   }
 
-  private[this] def newShuffledDecks(seed: Int, rng: Random, numDecks: Int = 1, ranks: Seq[Rank], suits: Seq[Suit]) = if (seed == 0) {
-    Deck((0 to numDecks - 1).flatMap(i => Deck.fresh(ranks, suits).cards))
-  } else {
-    Deck.shuffled(rng, numDecks, ranks, suits)
+  private[this] def newShuffledDecks(seed: Int, rng: Random, numDecks: Int = 1, ranks: Seq[Rank], suits: Seq[Suit], lowRank: Rank, highRank: Rank) = {
+    val cards = (0 to numDecks - 1).flatMap(i => Deck.freshCards(ranks, suits))
+    if (seed == 0) {
+      Deck(cards, lowRank, highRank)
+    } else {
+      val shuffledCards = rng.shuffle(cards)
+      Deck(shuffledCards, lowRank, highRank)
+    }
   }
 
   private[this] def newPileSets() = prototypePileSets.map(ps => PileSet(ps.behavior, ps.piles.map { p =>

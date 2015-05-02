@@ -17,10 +17,14 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
     val deckOptions = DeckOptions(
       numDecks = getInt("ndecks"),
       suits = PolitaireLookup.parseBitmask("suits", getInt("stdsuits")).map(x => Suit.fromChar(x.head)).sortBy(_.value),
-      ranks = PolitaireLookup.parseBitmask("ranks", getInt("ranks")).map(x => Rank.fromChar(x.head)).sortBy(_.value),
+      ranks = PolitaireLookup.parseBitmask("ranks", getInt("ranks")).map(x => Rank.allByChar(x.head)).sortBy(_.value),
       lowRank = {
         val lowChar = getString("lowpip").headOption.getOrElse(throw new IllegalStateException())
-        if (lowChar == '.') { None } else { Some(Rank.fromChar(lowChar)) }
+        if (lowChar == '.' || lowChar == '?') {
+          Rank.Unknown
+        } else {
+          Rank.allByChar(lowChar)
+        }
       }
     )
 

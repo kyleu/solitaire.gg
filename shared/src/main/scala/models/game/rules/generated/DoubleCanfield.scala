@@ -10,7 +10,7 @@ object DoubleCanfield extends GameRules(
   description = "An two-deck version of ^canfield^, much much easier than the original game.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

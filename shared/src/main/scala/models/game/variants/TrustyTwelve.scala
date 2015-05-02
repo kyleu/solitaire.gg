@@ -1,17 +1,3 @@
-package models.game.variants
-
-import models.game.GameState
-
-object TrustyTwelve {
-  def initialMoves(gameState: GameState) = {
-    val deck = gameState.deck
-    for (i <- 1 to 12) {
-      gameState.addCards(deck.getCards(1, turnFaceUp = true), "tableau-" + i, reveal = true)
-    }
-    gameState.addCards(deck.getCards(), "stock")
-  }
-}
-
 //  private[this] val tableauOptions = PileOptionsHelper.tableau.combine(PileOptions(
 //    cardsShown = Some(2),
 //    selectCardConstraint = Some(Constraints.never),

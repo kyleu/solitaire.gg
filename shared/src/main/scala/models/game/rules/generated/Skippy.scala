@@ -10,7 +10,7 @@ object Skippy extends GameRules(
   description = "A game invented by Lillian Davies and Christa Baran.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

@@ -11,7 +11,7 @@ object Wood extends GameRules(
   "be played only to the foundation, which generally requires some advanced planning to achieve.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

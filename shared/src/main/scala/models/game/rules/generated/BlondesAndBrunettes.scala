@@ -10,7 +10,7 @@ object BlondesAndBrunettes extends GameRules(
   description = "A variation of ^signora^ where the foundation base card is determined by a card dealt in.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

@@ -9,7 +9,7 @@ object Czarina extends GameRules(
   title = "Czarina",
   description = "A variation on ^fourseasons^ where spaces are filled automatically from the stock.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

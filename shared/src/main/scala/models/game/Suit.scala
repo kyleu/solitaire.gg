@@ -24,9 +24,9 @@ object Suit {
     case 'H' => Hearts
     case 'S' => Spades
     case 'D' => Diamonds
-    case 'B' => DiamondsBlue
+    case 'B' => Diamonds
     case 'C' => Clubs
-    case 'G' => ClubsGreen
+    case 'G' => Clubs
     case 'O' => Horseshoes
     case 'R' => Stars
     case 'T' => Tridents
@@ -49,19 +49,9 @@ object Suit {
     override val toChar = 'D'
     override val value = 2
   }
-  case object DiamondsBlue extends Suit {
-    override val color = Blue
-    override val toChar = 'B'
-    override val value = 2
-  }
   case object Clubs extends Suit {
     override val color = Black
     override val toChar = 'C'
-    override val value = 3
-  }
-  case object ClubsGreen extends Suit {
-    override val color = Green
-    override val toChar = 'G'
     override val value = 3
   }
 

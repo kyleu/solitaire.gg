@@ -9,7 +9,7 @@ object Stalactites extends GameRules(
   title = "Stalactites",
   description = "This suitless game with no building requires you to clear the tableau with only two cells you help you.",
   deckOptions = DeckOptions(
-    lowRank = None
+    lowRank = Rank.Unknown
   ),
   foundations = Seq(
     FoundationRules(

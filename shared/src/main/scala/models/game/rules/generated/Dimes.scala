@@ -10,7 +10,7 @@ object Dimes extends GameRules(
   description = "A variation on ^deuces^ with fewer tableau piles.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Ten)
+    lowRank = Rank.Ten
   ),
   stock = Some(
     StockRules(

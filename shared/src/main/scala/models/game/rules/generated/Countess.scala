@@ -9,7 +9,7 @@ object Countess extends GameRules(
   title = "Countess",
   description = "A ^canfield^ variation with four reserves.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

@@ -10,7 +10,11 @@ object Accordion extends GameRules(
   description = "This deck compression game was once known as \"Idle Year\" because it was believed that you could play for a year without winning," +
   " but players have now discovered strategies that make it possible to win almost every game.",
   cardRemovalMethod = CardRemovalMethod.StackSameRankOrSuitInWaste,
-  waste = Some(WasteRules()),
+  waste = Some(
+    WasteRules(
+      cardsShown = 52
+    )
+  ),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

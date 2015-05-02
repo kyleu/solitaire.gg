@@ -7,23 +7,8 @@ sealed trait Rank {
 
 object Rank {
   val all: Seq[Rank] = Seq(Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace)
-
-  def fromChar(c: Char) = c match {
-    case '2' => Two
-    case '3' => Three
-    case '4' => Four
-    case '5' => Five
-    case '6' => Six
-    case '7' => Seven
-    case '8' => Eight
-    case '9' => Nine
-    case 'X' => Ten
-    case 'J' => Jack
-    case 'Q' => Queen
-    case 'K' => King
-    case 'A' => Ace
-    case '?' => Unknown
-  }
+  val allByChar = all.map(r => r.toChar -> r).toMap
+  val allByValue = all.map(r => r.value -> r).toMap
 
   case object Two extends Rank {
     override def value = 2

@@ -9,7 +9,7 @@ object AgnesSorel extends GameRules(
   title = "Agnes Sorel",
   description = "A variation on ^klondike^ where cards are dealt directly onto the tableau as in ^spider^.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

@@ -9,7 +9,7 @@ object Storehouse extends GameRules(
   title = "Storehouse",
   description = "A old ^canfield^ variant first described in 1939. A pleasant game, but there is scarcely any strategy required.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Two)
+    lowRank = Rank.Two
   ),
   stock = Some(
     StockRules(

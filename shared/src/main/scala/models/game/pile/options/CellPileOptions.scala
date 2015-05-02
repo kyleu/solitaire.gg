@@ -7,6 +7,6 @@ object CellPileOptions {
     if (rules.canMoveFrom.isEmpty) {
       throw new IllegalStateException()
     }
-    PileOptions()
+    PileOptions(direction = Some("d"))
   }
 }

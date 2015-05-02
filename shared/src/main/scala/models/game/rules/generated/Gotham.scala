@@ -10,7 +10,7 @@ object Gotham extends GameRules(
   description = "An easier variation of ^newyork^ where we build regardless of suit and same-suit stacks can be moved.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

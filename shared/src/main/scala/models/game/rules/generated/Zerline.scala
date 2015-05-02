@@ -10,7 +10,7 @@ object Zerline extends GameRules(
   description = "A German game where queens are high and you have a four card storage area.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.King)
+    lowRank = Rank.King
   ),
   stock = Some(
     StockRules(

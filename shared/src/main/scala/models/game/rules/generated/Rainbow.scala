@@ -9,7 +9,7 @@ object Rainbow extends GameRules(
   title = "Rainbow",
   description = "A variation of ^canfield^ in which you can build regardless of suit.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

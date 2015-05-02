@@ -9,7 +9,7 @@ object Pitchfork extends GameRules(
   title = "Pitchfork",
   description = "Thomas Warfield's variation of ^needle^ and ^haystack^ in which you cannot build on the reserve.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   foundations = Seq(
     FoundationRules(

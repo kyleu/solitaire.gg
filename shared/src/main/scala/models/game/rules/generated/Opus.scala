@@ -9,7 +9,7 @@ object Opus extends GameRules(
   title = "Opus",
   description = "Thomas Warfield's much more difficult version of ^penguin^ has two fewer cells",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   foundations = Seq(
     FoundationRules(

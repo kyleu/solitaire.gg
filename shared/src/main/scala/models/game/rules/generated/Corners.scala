@@ -9,7 +9,7 @@ object Corners extends GameRules(
   title = "Corners",
   description = "This completely mindless variation on ^czarina^ allows no building on the tableau, but allows three passes through the stock.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

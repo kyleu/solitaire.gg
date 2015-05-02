@@ -2,7 +2,7 @@ define(function () {
   "use strict";
 
   var margin = 0.7;
-  var padding = 0.1;
+  var padding = 0.2;
 
   function getDimensions(pileSet) {
     if(pileSet.dimensions !== undefined) {
@@ -10,9 +10,17 @@ define(function () {
     }
     var ret = [pileSet.piles.length * (1 + padding), 1 + padding];
     switch(pileSet.behavior) {
+      case "waste":
+        var wasteCardsShown = pileSet.piles[0].options.cardsShown;
+        if(wasteCardsShown === 3) {
+          ret = [2 * (1 + padding), ret[1]];
+        } else {
+          ret = [1 + (wasteCardsShown * padding * 1.5), ret[1]];
+        }
+        break;
       case "tableau":
         var maxCards = _.max(pileSet.piles, function(pile) { return pile.cards.length; }).cards.length;
-        ret = [ret[0], 1 + padding + padding + (maxCards * padding)];
+        ret = [ret[0], ret[1] + ((maxCards - 2) * padding)];
         break;
       case "pyramid":
         var rows = 1;
@@ -105,10 +113,12 @@ define(function () {
                 rowCounter += 1;
               });
             } else {
+              var originalXOffset = xOffset;
               _.each(pileSet.piles, function(pile) {
                 locations[pile.id] = {x: xOffset, y: yOffset};
                 xOffset = xOffset + 1 + padding;
               });
+              xOffset = originalXOffset + pileSetDimensions[0];
             }
             if(pileSetDimensions[1] > currentRowMaxHeight) {
               currentRowMaxHeight = pileSetDimensions[1];

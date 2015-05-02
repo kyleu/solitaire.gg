@@ -1,6 +1,3 @@
-package models.game.variants
-
-object Nestor
 //  private[this] val options = PileOptionsHelper.tableau.combine(PileOptions(
 //    selectCardConstraint = Some(Constraints.never),
 //    dragFromConstraint = Some(Constraints.topCardOnly),

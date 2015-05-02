@@ -10,7 +10,7 @@ object Signora extends GameRules(
   description = "Build everything in alternate colors, while trying to clear an eleven-card reserve to the foundaton.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

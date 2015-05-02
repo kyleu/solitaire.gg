@@ -11,7 +11,7 @@ object Demon extends GameRules(
   "follow Thomas Warfield in fostering confusion by using the name for this different game.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

@@ -9,7 +9,7 @@ object AgnesBernauer extends GameRules(
   title = "Agnes Bernauer",
   description = "A variation on ^klondike^ with seven reserves.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

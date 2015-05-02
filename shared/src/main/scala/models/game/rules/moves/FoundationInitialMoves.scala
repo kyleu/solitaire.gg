@@ -1,6 +1,6 @@
 package models.game.rules.moves
 
-import models.game.GameState
+import models.game.{ Rank, GameState }
 import models.game.rules.{ FoundationLowRank, GameRules }
 
 object FoundationInitialMoves {
@@ -11,14 +11,19 @@ object FoundationInitialMoves {
       } else {
         "foundation" + (fr.setNumber + 1) + "-"
       }
-      (1 to fr.initialCards).foreach { i =>
+      val randomRank = gameState.deck.cards.headOption match {
+        case Some(c) => c.r
+        case None => throw new IllegalStateException()
+      }
+      (0 until fr.initialCards).foreach { i =>
         val col = (i % fr.numPiles) + 1
         val card = fr.lowRank match {
           case FoundationLowRank.AnyCard => gameState.deck.getCards(1, turnFaceUp = true)
           case FoundationLowRank.Ascending => throw new NotImplementedError()
+          case FoundationLowRank.SpecificRank(r) if r == Rank.Unknown => gameState.deck.getCards(1, turnFaceUp = true, rank = Some(randomRank))
           case FoundationLowRank.SpecificRank(r) => gameState.deck.getCards(1, turnFaceUp = true, rank = Some(r))
-          case FoundationLowRank.DeckLowRank => gameState.deck.getCards(1, turnFaceUp = true, rank = rules.deckOptions.lowRank)
-          case FoundationLowRank.DeckHighRank => gameState.deck.getCards(1, turnFaceUp = true, rank = rules.deckOptions.highRank)
+          case FoundationLowRank.DeckLowRank => gameState.deck.getCards(1, turnFaceUp = true, rank = Some(gameState.deck.lowRank))
+          case FoundationLowRank.DeckHighRank => gameState.deck.getCards(1, turnFaceUp = true, rank = Some(gameState.deck.highRank))
         }
         gameState.addCards(card, prefix + col, reveal = true)
       }

@@ -10,7 +10,7 @@ object Quadrangle extends GameRules(
   description = "A variation of ^corona^ where the base card is determined by a card dealt into the foundation.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

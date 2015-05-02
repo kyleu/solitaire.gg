@@ -9,7 +9,7 @@ object Chessboard extends GameRules(
   title = "Chessboard",
   description = "A more interesting variation of ^fortress^ where you choose the base card.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   foundations = Seq(
     FoundationRules(

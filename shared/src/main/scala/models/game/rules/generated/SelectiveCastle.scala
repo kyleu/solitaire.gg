@@ -9,7 +9,7 @@ object SelectiveCastle extends GameRules(
   title = "Selective Castle",
   description = "A version of ^beleagueredcastle^ where the base of the foundation is determined by the first card you play to it.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   foundations = Seq(
     FoundationRules(

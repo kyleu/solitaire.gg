@@ -1,23 +1,16 @@
 package models.game
 
-import scala.util.Random
-
 object Deck {
-  def fresh(ranks: Seq[Rank], suits: Seq[Suit]) = {
+  def freshCards(ranks: Seq[Rank], suits: Seq[Suit]) = {
     val cards = for {
       suit <- suits
       rank <- ranks.reverse
     } yield Card(r = rank, s = suit, u = false)
-    Deck(cards.toList)
-  }
-
-  def shuffled(random: Random, numDecks: Int = 1, ranks: Seq[Rank], suits: Seq[Suit]) = {
-    val cards = (0 to numDecks - 1).flatMap(i => fresh(ranks, suits).cards)
-    Deck(random.shuffle(cards))
+    cards.toList
   }
 }
 
-case class Deck(var cards: Seq[Card]) {
+case class Deck(var cards: Seq[Card], lowRank: Rank, highRank: Rank) {
   def getCards(numCards: Int = this.cards.size, turnFaceUp: Boolean = false, rank: Option[Rank] = None) = {
     val ret = rank match {
       case Some(r) => (0 until numCards).map { i =>
@@ -30,7 +23,7 @@ case class Deck(var cards: Seq[Card]) {
         c.u = true
       }
     }
-    this.cards = this.cards.filterNot(ret.contains)
+    this.cards = this.cards.filterNot(card => ret.contains(card))
     ret
   }
 

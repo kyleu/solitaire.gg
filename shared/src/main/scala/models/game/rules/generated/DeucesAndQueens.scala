@@ -10,7 +10,7 @@ object DeucesAndQueens extends GameRules(
   description = "A variation on ^acesandkings^ where building is allowed on the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = None
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(

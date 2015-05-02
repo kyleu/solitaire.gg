@@ -10,7 +10,7 @@ object JacksInTheBox extends GameRules(
   description = "A variation on ^deuces^ which has fewer tableau piles but adds some cells.",
   deckOptions = DeckOptions(
     numDecks = 2,
-    lowRank = Some(Rank.Jack)
+    lowRank = Rank.Jack
   ),
   stock = Some(
     StockRules(

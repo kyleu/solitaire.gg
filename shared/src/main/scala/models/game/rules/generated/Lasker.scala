@@ -9,7 +9,7 @@ object Lasker extends GameRules(
   title = "Lasker",
   description = "A version of ^chessboard^ where sequences may be moved.",
   deckOptions = DeckOptions(
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   foundations = Seq(
     FoundationRules(

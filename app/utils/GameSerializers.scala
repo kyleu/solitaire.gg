@@ -9,7 +9,7 @@ object GameSerializers {
   implicit val rankReads = new Reads[Rank] {
     override def reads(json: JsValue): JsResult[Rank] = json match {
       case JsString(s) => if (s.length == 1) {
-        JsSuccess(Rank.fromChar(s.head))
+        JsSuccess(Rank.allByChar(s.head))
       } else {
         JsError("Invalid card suit value [" + s + "].")
       }

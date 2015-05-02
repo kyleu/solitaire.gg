@@ -11,7 +11,7 @@ object TripleCanfield extends GameRules(
   "edemons^.",
   deckOptions = DeckOptions(
     numDecks = 3,
-    lowRank = Some(Rank.Unknown)
+    lowRank = Rank.Unknown
   ),
   stock = Some(
     StockRules(
