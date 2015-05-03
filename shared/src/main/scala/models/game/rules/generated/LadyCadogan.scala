@@ -7,6 +7,7 @@ import models.game.rules._
 object LadyCadogan extends GameRules(
   id = "ladycadogan",
   title = "Lady Cadogan",
+  related = Seq("fortydevils"),
   description = "Thomas Warfield's ^rougeetnoir^ variant where we build regardless of suit instead of in alternating colors.",
   deckOptions = DeckOptions(
     numDecks = 2

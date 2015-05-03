@@ -7,6 +7,7 @@ import models.game.rules._
 object RainbowFan extends GameRules(
   id = "rainbowfan",
   title = "Rainbow Fan",
+  related = Seq("crescent"),
   description = "A bidirectional building game where you can rotate cards in the stacks three times.",
   deckOptions = DeckOptions(
     numDecks = 2

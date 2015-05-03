@@ -7,6 +7,8 @@ import models.game.rules._
 object Limited extends GameRules(
   id = "limited",
   title = "Limited",
+  like = Some("fortythieves"),
+  related = Seq("doublelimited"),
   description = "Like ^fortythieves^, but with a 12 by 3 tableau.",
   deckOptions = DeckOptions(
     numDecks = 2

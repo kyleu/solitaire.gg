@@ -7,6 +7,7 @@ import models.game.rules._
 object Shuffle extends GameRules(
   id = "shuffle",
   title = "Shuffle",
+  like = Some("neptune"),
   description = "A version of ^neptune^ where you can also pair kings with aces.",
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveRankPairsOrAK,
   stock = Some(

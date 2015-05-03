@@ -7,6 +7,7 @@ import models.game.rules._
 object Spike extends GameRules(
   id = "spike",
   title = "Spike",
+  like = Some("klondike"),
   description = "^klondike^ with three waste piles.",
   stock = Some(
     StockRules(

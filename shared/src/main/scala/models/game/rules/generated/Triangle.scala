@@ -7,6 +7,7 @@ import models.game.rules._
 object Triangle extends GameRules(
   id = "triangle",
   title = "Triangle",
+  related = Seq("eleventriangle"),
   description = "A very hard inverted version of ^pyramid^.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(

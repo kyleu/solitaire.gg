@@ -7,6 +7,7 @@ import models.game.rules._
 object SelectiveFreeCell extends GameRules(
   id = "selectivefreecell",
   title = "Selective FreeCell",
+  like = Some("freecell"),
   description = "A variation of ^freecell^ where the first card played to the foudnation sets the base value for all the foundations.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

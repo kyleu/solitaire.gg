@@ -7,6 +7,7 @@ import models.game.rules._
 object DoubletCell extends GameRules(
   id = "doubletcell",
   title = "Doublet Cell",
+  like = Some("simplepairs"),
   description = "A combination between ^doublets^ and ^freecell^.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRankAndColor,
   foundations = Seq(

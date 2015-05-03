@@ -7,6 +7,7 @@ import models.game.rules._
 object Lucas extends GameRules(
   id = "lucas",
   title = "Lucas",
+  like = Some("thirtyninesteps"),
   description = "A ^fortythieves^ variant with thirteen tableau piles and aces starting on the foundation.",
   stock = Some(
     StockRules(

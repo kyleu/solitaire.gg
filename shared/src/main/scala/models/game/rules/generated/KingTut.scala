@@ -7,6 +7,7 @@ import models.game.rules._
 object KingTut extends GameRules(
   id = "kingtut",
   title = "King Tut",
+  like = Some("pyramid"),
   description = "A pyramid variation where we deal three cards at once and have unlimited redeals.",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,

@@ -7,6 +7,8 @@ import models.game.rules._
 object DoublePyramid extends GameRules(
   id = "doublepyramid",
   title = "Double Pyramid",
+  like = Some("pyramid"),
+  related = Seq("anubis"),
   description = "Thomas Warfield's two-deck version of ^pyramid^.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   deckOptions = DeckOptions(

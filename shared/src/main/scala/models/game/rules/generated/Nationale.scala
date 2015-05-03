@@ -7,6 +7,7 @@ import models.game.rules._
 object Nationale extends GameRules(
   id = "nationale",
   title = "Nationale",
+  like = Some("caprice"),
   description = "Like ^caprice^ without a stock.",
   deckOptions = DeckOptions(
     numDecks = 2

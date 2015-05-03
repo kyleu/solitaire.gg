@@ -7,6 +7,7 @@ import models.game.rules._
 object SuperFlowerGarden extends GameRules(
   id = "superflowergarden",
   title = "Super Flower Garden",
+  like = Some("labellelucie"),
   description = "This is an easier version of ^labellelucie^ in which one may build regardless of suit. It is unrelated to ^flowergarden^.",
   foundations = Seq(
     FoundationRules(

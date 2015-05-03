@@ -7,6 +7,7 @@ import models.game.rules._
 object Nines extends GameRules(
   id = "nines",
   title = "Nines",
+  like = Some("tens"),
   description = "A variation on ^simplepairs^ pairs that add to 9 or set of ten through king. Much luck required.",
   cardRemovalMethod = CardRemovalMethod.RemoveNinesOrPairsAddingToNineOr10JQK,
   stock = Some(

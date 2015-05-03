@@ -7,6 +7,7 @@ import models.game.rules._
 object Hypotenuse extends GameRules(
   id = "hypotenuse",
   title = "Hypotenuse",
+  like = Some("eternaltriangle"),
   description = "A version of ^eternaltriangle^ with some cards face down.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -7,6 +7,7 @@ import models.game.rules._
 object QuadrupleYukon extends GameRules(
   id = "quadrupleyukon",
   title = "Quadruple Yukon",
+  like = Some("doubleyukon"),
   description = "A four-deck variation of ^yukon^",
   deckOptions = DeckOptions(
     numDecks = 4

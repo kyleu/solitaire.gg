@@ -7,6 +7,7 @@ import models.game.rules._
 object CellEleven extends GameRules(
   id = "celleleven",
   title = "Cell Eleven",
+  like = Some("triplefreecell"),
   description = "A three-deck version of ^freecell^.",
   deckOptions = DeckOptions(
     numDecks = 3

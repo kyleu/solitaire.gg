@@ -7,6 +7,7 @@ import models.game.rules._
 object McClellan extends GameRules(
   id = "mcclellan",
   title = "McClellan",
+  like = Some("littlenapoleon"),
   description = "A harder variation of ^littlenapoleon^ where you need to build in suit.",
   deckOptions = DeckOptions(
     numDecks = 2

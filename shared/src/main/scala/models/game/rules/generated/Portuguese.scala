@@ -7,6 +7,7 @@ import models.game.rules._
 object Portuguese extends GameRules(
   id = "portuguese",
   title = "Portuguese",
+  like = Some("spanish"),
   description = "A variant of ^bakersdozen^ that allows filling in spaces with kings.",
   foundations = Seq(
     FoundationRules(

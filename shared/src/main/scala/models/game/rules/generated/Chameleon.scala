@@ -7,6 +7,7 @@ import models.game.rules._
 object Chameleon extends GameRules(
   id = "chameleon",
   title = "Chameleon",
+  like = Some("canfield"),
   description = "In case ^canfield^ wasn't hard enough for you, here's a version with only three tableau piles. But you can stack cards regardless " +
   "of suit, so it'll be OK. Occasionally.",
   deckOptions = DeckOptions(

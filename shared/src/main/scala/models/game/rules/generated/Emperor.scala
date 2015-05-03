@@ -7,6 +7,7 @@ import models.game.rules._
 object Emperor extends GameRules(
   id = "emperor",
   title = "Emperor",
+  like = Some("rankandfile"),
   description = "A more difficult version of ^rankandfile^ where only single cards can be moved..",
   deckOptions = DeckOptions(
     numDecks = 2

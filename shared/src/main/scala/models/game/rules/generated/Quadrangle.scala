@@ -7,6 +7,7 @@ import models.game.rules._
 object Quadrangle extends GameRules(
   id = "quadrangle",
   title = "Quadrangle",
+  like = Some("corona"),
   description = "A variation of ^corona^ where the base card is determined by a card dealt into the foundation.",
   deckOptions = DeckOptions(
     numDecks = 2,

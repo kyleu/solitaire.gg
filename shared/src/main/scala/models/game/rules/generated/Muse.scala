@@ -7,6 +7,7 @@ import models.game.rules._
 object Muse extends GameRules(
   id = "muse",
   title = "Muse",
+  like = Some("kingalbert"),
   description = "This variation of ^kingalbert^ has cells instead of a reserve.",
   foundations = Seq(
     FoundationRules(

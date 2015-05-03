@@ -7,6 +7,7 @@ import models.game.rules._
 object BlackWidow extends GameRules(
   id = "blackwidow",
   title = "Black Widow",
+  like = Some("spider"),
   description = "An easier variation of ^spider^ where you are allowed to move sequences even if they aren't all of one suit.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

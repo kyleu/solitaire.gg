@@ -7,6 +7,7 @@ import models.game.rules._
 object EvenAndOdd extends GameRules(
   id = "evenandodd",
   title = "Even and Odd",
+  like = Some("boulevard"),
   description = "A one-deck version of ^boulevard^.",
   stock = Some(
     StockRules(

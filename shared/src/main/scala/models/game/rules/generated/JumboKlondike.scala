@@ -7,6 +7,7 @@ import models.game.rules._
 object JumboKlondike extends GameRules(
   id = "jumboklondike",
   title = "Jumbo Klondike",
+  like = Some("klondike"),
   description = "^klondike^ played with a six-suit deck.",
   stock = Some(
     StockRules(

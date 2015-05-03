@@ -7,6 +7,7 @@ import models.game.rules._
 object Lily extends GameRules(
   id = "lily",
   title = "Lily",
+  like = Some("trillium"),
   description = "A harder variation of ^trillium^ where spaces may only be filled with kings.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

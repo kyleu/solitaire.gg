@@ -7,6 +7,7 @@ import models.game.rules._
 object Astrocyte extends GameRules(
   id = "astrocyte",
   title = "Astrocyte",
+  like = Some("spider"),
   description = "A compressed game of ^spider^ with four cells.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -7,6 +7,8 @@ import models.game.rules._
 object Trigon extends GameRules(
   id = "trigon",
   title = "Trigon",
+  like = Some("klondike"),
+  related = Seq("doubletrigon", "quadrupletrigon", "trigonleft"),
   description = "A variation of ^klondike^ where we build in suit instead of with alternating colors.",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),

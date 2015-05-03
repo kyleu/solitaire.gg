@@ -7,6 +7,7 @@ import models.game.rules._
 object MidnightClover extends GameRules(
   id = "midnightclover",
   title = "Midnight Clover",
+  like = Some("fan"),
   description = "A ^fan^ variant by Thomas Warfield where a draw is allowed.",
   foundations = Seq(
     FoundationRules(

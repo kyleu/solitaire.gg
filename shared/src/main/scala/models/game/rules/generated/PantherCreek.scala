@@ -7,6 +7,7 @@ import models.game.rules._
 object PantherCreek extends GameRules(
   id = "panthercreek",
   title = "Panther Creek",
+  like = Some("golf"),
   description = "A four-deck ^golf^ variation.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   deckOptions = DeckOptions(

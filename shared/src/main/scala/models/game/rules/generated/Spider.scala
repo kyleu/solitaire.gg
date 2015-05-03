@@ -7,6 +7,7 @@ import models.game.rules._
 object Spider extends GameRules(
   id = "spider",
   title = "Spider",
+  related = Seq("astrocyte", "beetle", "bigspider", "blackwidow", "chinesespider", "fredsspider", "hugespider", "mondospider", "spiderette", "spideronesuit", "spidertwosuits", "tarantula", "trillium"),
   description = "On the 10 tableau piles you can build down regardless of suit, but you can only move single suit sequences. When you click on the " +
   "stock, one card will be dealt to each tableau pile. Single cards cannot be moved to the foundation, only complete sequences.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,

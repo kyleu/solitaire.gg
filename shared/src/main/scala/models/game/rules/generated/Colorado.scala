@@ -7,6 +7,7 @@ import models.game.rules._
 object Colorado extends GameRules(
   id = "colorado",
   title = "Colorado",
+  like = Some("twenty"),
   description = "A game where cards may be stacked arbitrarily on 20 tableau piles. Usually winnable, but requires some planning.",
   deckOptions = DeckOptions(
     numDecks = 2

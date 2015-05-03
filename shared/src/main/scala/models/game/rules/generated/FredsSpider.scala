@@ -7,6 +7,7 @@ import models.game.rules._
 object FredsSpider extends GameRules(
   id = "fredsspider",
   title = "Fred's Spider",
+  like = Some("spider"),
   description = "In this easy variation on ^spider^, designed by Fred Lunde of Livonia, Michigan, cards are dealt face up and can be moved to the f" +
   "oundation singly.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,

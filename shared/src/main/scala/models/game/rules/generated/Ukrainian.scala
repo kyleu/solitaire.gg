@@ -7,6 +7,7 @@ import models.game.rules._
 object Ukrainian extends GameRules(
   id = "ukrainian",
   title = "Ukrainian",
+  like = Some("russian"),
   description = "A rarely winnable version of ^russian^ Solitaire where only complete sequences can be taken off, as in spider.",
   foundations = Seq(
     FoundationRules(

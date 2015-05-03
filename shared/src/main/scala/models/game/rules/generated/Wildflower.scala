@@ -7,6 +7,7 @@ import models.game.rules._
 object Wildflower extends GameRules(
   id = "wildflower",
   title = "Wildflower",
+  like = Some("flowergarden"),
   description = "A variation of ^flowergarden^ in which you may move sequences of cards of the same suit together.",
   waste = Some(
     WasteRules(

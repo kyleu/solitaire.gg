@@ -7,6 +7,7 @@ import models.game.rules._
 object Josephine extends GameRules(
   id = "josephine",
   title = "Josephine",
+  like = Some("fortythieves"),
   description = "Similar to ^fortythieves^, except that you can move sequences.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -7,6 +7,7 @@ import models.game.rules._
 object SingleLeft extends GameRules(
   id = "singleleft",
   title = "Single Left",
+  like = Some("movingleft"),
   description = "Thomas Warfield's one-deck version of ^movingleft^.",
   stock = Some(
     StockRules(

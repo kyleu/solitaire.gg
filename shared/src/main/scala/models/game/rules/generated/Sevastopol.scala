@@ -7,6 +7,7 @@ import models.game.rules._
 object Sevastopol extends GameRules(
   id = "sevastopol",
   title = "Sevastopol",
+  like = Some("kiev"),
   description = "An easier version of ^kiev^ where four tableau piles start with three cards instead of four.",
   stock = Some(
     StockRules(

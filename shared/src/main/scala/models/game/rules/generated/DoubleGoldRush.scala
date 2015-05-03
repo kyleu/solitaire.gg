@@ -7,6 +7,7 @@ import models.game.rules._
 object DoubleGoldRush extends GameRules(
   id = "doublegoldrush",
   title = "Double Gold Rush",
+  like = Some("goldrush"),
   description = "A two-deck version of ^goldrush^.",
   deckOptions = DeckOptions(
     numDecks = 2

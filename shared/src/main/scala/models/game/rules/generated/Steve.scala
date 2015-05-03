@@ -7,6 +7,7 @@ import models.game.rules._
 object Steve extends GameRules(
   id = "steve",
   title = "Steve",
+  like = Some("carlton"),
   description = "A two-deck ^klondike^ variant where we build regardless of suit, but can only move same-suit sequences.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -7,6 +7,7 @@ import models.game.rules._
 object DeucesAndQueens extends GameRules(
   id = "deucesandqueens",
   title = "Deuces and Queens",
+  like = Some("acesandkings"),
   description = "A variation on ^acesandkings^ where building is allowed on the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2,

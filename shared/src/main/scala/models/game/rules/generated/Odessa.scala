@@ -7,6 +7,7 @@ import models.game.rules._
 object Odessa extends GameRules(
   id = "odessa",
   title = "Odessa",
+  like = Some("russian"),
   description = "A variant of ^russian^ with a different starting tableau.",
   foundations = Seq(
     FoundationRules(

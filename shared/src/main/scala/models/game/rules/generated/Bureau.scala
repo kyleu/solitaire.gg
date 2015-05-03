@@ -7,6 +7,7 @@ import models.game.rules._
 object Bureau extends GameRules(
   id = "bureau",
   title = "Bureau",
+  like = Some("athena"),
   description = "This game has rules similar to ^klondike^, except you build the foundation in alternate colors and cannot fill spaces in the table" +
   "au.",
   deckOptions = DeckOptions(

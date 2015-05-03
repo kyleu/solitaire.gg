@@ -7,6 +7,7 @@ import models.game.rules._
 object TreviGarden extends GameRules(
   id = "trevigarden",
   title = "Trevi Garden",
+  like = Some("stonewall"),
   description = "A variation of ^stonewall^ made easier by the addition of two cells.",
   waste = Some(
     WasteRules(

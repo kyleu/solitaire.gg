@@ -7,6 +7,7 @@ import models.game.rules._
 object SingleInterchange extends GameRules(
   id = "singleinterchange",
   title = "Single Interchange",
+  like = Some("unlimited"),
   description = "A difficult one-deck variant of ^interchange^ invented by Thomas Warfield.",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),

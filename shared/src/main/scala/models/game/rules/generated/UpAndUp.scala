@@ -7,6 +7,7 @@ import models.game.rules._
 object UpAndUp extends GameRules(
   id = "upandup",
   title = "Up and Up",
+  like = Some("trustytwelve"),
   description = "A variation of ^trustytwelve^ where you can build kings on aces.",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(

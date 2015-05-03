@@ -7,6 +7,7 @@ import models.game.rules._
 object Harp extends GameRules(
   id = "harp",
   title = "Harp",
+  related = Seq("tripleharp"),
   description = "A two-deck ^klondike^ variation.",
   deckOptions = DeckOptions(
     numDecks = 2

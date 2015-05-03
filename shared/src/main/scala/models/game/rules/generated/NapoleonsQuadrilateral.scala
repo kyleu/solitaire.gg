@@ -7,6 +7,7 @@ import models.game.rules._
 object NapoleonsQuadrilateral extends GameRules(
   id = "napoleonsquadrilateral",
   title = "Napoleon's Quadrilateral",
+  like = Some("fortythieves"),
   description = "This older, more difficult, version of ^napoleonssquare^ does not allow stack moves, but moves a lot of cards to the foundation du" +
   "ring the deal.",
   deckOptions = DeckOptions(

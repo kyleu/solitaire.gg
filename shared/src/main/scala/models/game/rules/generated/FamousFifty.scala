@@ -7,6 +7,7 @@ import models.game.rules._
 object FamousFifty extends GameRules(
   id = "famousfifty",
   title = "Famous Fifty",
+  like = Some("fortythieves"),
   description = "A difficult ^fortythieves^ variation which starts with one extra card on each tableau pile.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -7,6 +7,7 @@ import models.game.rules._
 object BusyAces extends GameRules(
   id = "busyaces",
   title = "Busy Aces",
+  related = Seq("courtyard", "deuces", "dimes", "fortunesfavor", "stages"),
   description = "A fairly easy game dating back to 1939. Twelve tableau stacks of one card each mean you can easily get lots of empty spaces to wor" +
   "k with.",
   deckOptions = DeckOptions(

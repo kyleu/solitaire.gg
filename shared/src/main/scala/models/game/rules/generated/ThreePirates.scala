@@ -7,6 +7,7 @@ import models.game.rules._
 object ThreePirates extends GameRules(
   id = "threepirates",
   title = "Three Pirates",
+  like = Some("fortythieves"),
   description = "A variation of ^fortythieves^ with three waste piles.",
   deckOptions = DeckOptions(
     numDecks = 2

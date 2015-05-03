@@ -7,6 +7,7 @@ import models.game.rules._
 object Chinaman extends GameRules(
   id = "chinaman",
   title = "Chinaman",
+  like = Some("klondike"),
   description = "A ^klondike^ variant where we build by different suits.",
   stock = Some(
     StockRules(

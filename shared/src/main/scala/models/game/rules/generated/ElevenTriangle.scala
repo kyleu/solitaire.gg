@@ -7,6 +7,7 @@ import models.game.rules._
 object ElevenTriangle extends GameRules(
   id = "eleventriangle",
   title = "Eleven Triangle",
+  like = Some("triangle"),
   description = "A somewhat easier version of ^triangle^ where we remove pairs that add to eleven.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJPairOrQPairOrKPair,
   stock = Some(

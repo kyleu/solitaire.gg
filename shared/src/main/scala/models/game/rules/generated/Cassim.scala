@@ -7,6 +7,7 @@ import models.game.rules._
 object Cassim extends GameRules(
   id = "cassim",
   title = "Cassim",
+  like = Some("alibaba"),
   description = "A version of ^alibaba^ with a smaller tableau and an infinity of redeals. In the <em>One Thousand and One Nights</em> Cassim was A" +
   "li Baba's brother and the leader of the ^fortythieves^.",
   stock = Some(StockRules()),

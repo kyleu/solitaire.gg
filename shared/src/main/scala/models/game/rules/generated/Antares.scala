@@ -7,6 +7,7 @@ import models.game.rules._
 object Antares extends GameRules(
   id = "antares",
   title = "Antares",
+  like = Some("freecell"),
   description = "Thomas Warfield's combination of ^freecell^ and ^scorpion^ divides the tableau into two halves, one where we build in alternate co" +
   "lors and move cards by FreeCell rules, one where we build in the same suit and move by Scorpion rules.",
   foundations = Seq(

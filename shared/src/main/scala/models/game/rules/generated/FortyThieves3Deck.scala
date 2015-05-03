@@ -7,6 +7,7 @@ import models.game.rules._
 object FortyThieves3Deck extends GameRules(
   id = "fortythieves3",
   title = "Forty Thieves (3 deck)",
+  like = Some("fortythieves"),
   description = "A three deck version of ^fortythieves^ with a 12 by 4 tableau.",
   deckOptions = DeckOptions(
     numDecks = 3

@@ -7,6 +7,8 @@ import models.game.rules._
 object Giza extends GameRules(
   id = "giza",
   title = "Giza",
+  like = Some("pyramid"),
+  related = Seq("pyramiddozen"),
   description = "Michael Keller's variation of ^pyramid^ has a tableau of cards instead of a stock, making it a completely open game.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   foundations = Seq(

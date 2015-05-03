@@ -7,6 +7,7 @@ import models.game.rules._
 object PenelopesWeb extends GameRules(
   id = "penelopesweb",
   title = "Penelope's Web",
+  like = Some("streetsandalleys"),
   description = "A very difficult variation of ^beleagueredcastle^ where spaces can only be filled by kings.",
   foundations = Seq(
     FoundationRules(

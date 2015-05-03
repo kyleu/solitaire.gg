@@ -7,6 +7,7 @@ import models.game.rules._
 object Bunker extends GameRules(
   id = "bunker",
   title = "Bunker",
+  like = Some("trustytwelve"),
   description = "Build up regardless of suit to try to get all cards onto the tableau.",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(

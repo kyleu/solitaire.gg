@@ -7,6 +7,7 @@ import models.game.rules._
 object Pyramid extends GameRules(
   id = "pyramid",
   title = "Pyramid",
+  related = Seq("apophis", "cheops", "darkpyramid", "doublepyramid", "giza", "kingtut"),
   description = "A classic pair-removal game with a triangular tableau.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(

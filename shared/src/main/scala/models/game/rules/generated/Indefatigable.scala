@@ -7,6 +7,8 @@ import models.game.rules._
 object Indefatigable extends GameRules(
   id = "indefatigable",
   title = "Indefatigable",
+  like = Some("cruel"),
+  related = Seq("royalfamily"),
   description = "This variation of ^royalfamily^ is basically the same, but the foundations build up from ace, and it is made even easier by a extr" +
   "a redeal.",
   foundations = Seq(

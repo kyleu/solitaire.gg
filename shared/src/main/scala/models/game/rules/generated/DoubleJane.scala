@@ -7,6 +7,7 @@ import models.game.rules._
 object DoubleJane extends GameRules(
   id = "doublejane",
   title = "Double Jane",
+  like = Some("arabella"),
   description = "An four-deck ^spider^/^klondike^, similar to ^ladyjane^.",
   deckOptions = DeckOptions(
     numDecks = 4

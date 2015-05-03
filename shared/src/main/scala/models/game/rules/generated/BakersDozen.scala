@@ -7,6 +7,7 @@ import models.game.rules._
 object BakersDozen extends GameRules(
   id = "bakersdozen",
   title = "Baker's Dozen",
+  related = Seq("goodmeasure", "spanish"),
   description = "Rearrange the thirteen tableau piles to free up cards for the foundation by moving one card at a time. Often winnable, but takes s" +
   "ome planning.",
   foundations = Seq(

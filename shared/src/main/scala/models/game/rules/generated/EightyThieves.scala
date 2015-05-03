@@ -7,6 +7,7 @@ import models.game.rules._
 object EightyThieves extends GameRules(
   id = "eightythieves",
   title = "Eighty Thieves",
+  like = Some("fortythieves"),
   description = "A very difficult four-deck version of ^fortythieves^ by Thomas Warfield. Needs a large screen.",
   deckOptions = DeckOptions(
     numDecks = 4

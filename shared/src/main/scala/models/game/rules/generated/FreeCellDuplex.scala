@@ -7,6 +7,7 @@ import models.game.rules._
 object FreeCellDuplex extends GameRules(
   id = "freecellduplex",
   title = "FreeCell Duplex",
+  like = Some("freecell"),
   description = "An easy two-deck version of ^freecell^. Requires a large screen.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -7,6 +7,7 @@ import models.game.rules._
 object InvertedFreeCell extends GameRules(
   id = "invertedfreecell",
   title = "Inverted FreeCell",
+  like = Some("freecell"),
   description = "Just like ^freecell^ but we limber up our brains by building everything in the opposite direction.",
   foundations = Seq(
     FoundationRules(

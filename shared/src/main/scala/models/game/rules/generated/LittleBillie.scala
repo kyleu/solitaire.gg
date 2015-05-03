@@ -7,6 +7,7 @@ import models.game.rules._
 object LittleBillie extends GameRules(
   id = "littlebillie",
   title = "Little Billie",
+  like = Some("buffalobill"),
   description = "In this game dating back to around 1900, no building is allowed, but you have some cells that can be used to uncover the cards you" +
   " need. Two redeals are allowed.",
   deckOptions = DeckOptions(

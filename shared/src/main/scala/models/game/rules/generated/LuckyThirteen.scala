@@ -7,6 +7,7 @@ import models.game.rules._
 object LuckyThirteen extends GameRules(
   id = "luckythirteen",
   title = "Lucky Thirteen",
+  related = Seq("luckypiles"),
   description = "A rarely-winnable game with simple \"rules\": build down regardless of suit, no stack moves.",
   foundations = Seq(
     FoundationRules(

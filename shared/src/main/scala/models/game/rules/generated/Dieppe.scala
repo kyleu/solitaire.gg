@@ -7,6 +7,7 @@ import models.game.rules._
 object Dieppe extends GameRules(
   id = "dieppe",
   title = "Dieppe",
+  like = Some("congress"),
   description = "A variation on ^congress^ where stacks may be moved, blanks can be filled by any card, and three rows of cards are dealt initially" +
   ". Almost every game seems winnable without any great difficulty.",
   deckOptions = DeckOptions(

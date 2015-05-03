@@ -7,6 +7,7 @@ import models.game.rules._
 object Needle extends GameRules(
   id = "needle",
   title = "Needle",
+  like = Some("haystack"),
   description = "A game with a U-shaped tableau and a reserve you can store cards in.",
   foundations = Seq(
     FoundationRules(

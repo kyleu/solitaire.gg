@@ -7,6 +7,7 @@ import models.game.rules._
 object LuckyPiles extends GameRules(
   id = "luckypiles",
   title = "Lucky Piles",
+  like = Some("luckythirteen"),
   description = "A vastly easier varition of ^luckythirteen^ in which you can build up or down.",
   foundations = Seq(
     FoundationRules(

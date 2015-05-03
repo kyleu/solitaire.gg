@@ -7,6 +7,7 @@ import models.game.rules._
 object CrescentFour extends GameRules(
   id = "crescentfour",
   title = "Crescent Four",
+  like = Some("crescent"),
   description = "An easier variation of ^crescent^ that allows one extra rotation.",
   deckOptions = DeckOptions(
     numDecks = 2

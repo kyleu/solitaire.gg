@@ -7,6 +7,7 @@ import models.game.rules._
 object Bavarian extends GameRules(
   id = "bavarian",
   title = "Bavarian",
+  like = Some("german"),
   description = "Thomas Warfield's easier version of ^german^ patience with a few extra tableau columns.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

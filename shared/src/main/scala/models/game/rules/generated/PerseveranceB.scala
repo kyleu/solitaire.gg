@@ -7,6 +7,7 @@ import models.game.rules._
 object PerseveranceB extends GameRules(
   id = "perseveranceb",
   title = "Perseverance B",
+  like = Some("perseverancea"),
   description = "An alternate version of ^perseverancea^ where there are only two redeals, the redeal method is different, and kings are automatica" +
   "lly moved to the bottoms of their stacks.",
   foundations = Seq(

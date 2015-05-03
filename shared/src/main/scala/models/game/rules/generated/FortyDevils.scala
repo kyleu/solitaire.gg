@@ -7,6 +7,7 @@ import models.game.rules._
 object FortyDevils extends GameRules(
   id = "fortydevils",
   title = "Forty Devils",
+  like = Some("ladycadogan"),
   description = "Thomas Warfield's difficult cross between ^rougeforty^ and ^ladycadogan^.",
   deckOptions = DeckOptions(
     numDecks = 2

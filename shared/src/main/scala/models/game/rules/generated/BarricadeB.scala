@@ -7,6 +7,7 @@ import models.game.rules._
 object BarricadeB extends GameRules(
   id = "barricadeb",
   title = "Barricade B",
+  like = Some("block"),
   description = "An easier, but still very difficult, modification of ^block^ invented by Richard Mechen and Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2

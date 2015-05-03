@@ -7,6 +7,7 @@ import models.game.rules._
 object TensOut extends GameRules(
   id = "tensout",
   title = "Tens Out",
+  like = Some("fourteenout"),
   description = "A variation of ^fourteenout^ where we remove pairs adding to 10.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOr10PairOrJPairOrQPairOrKPair,
   foundations = Seq(

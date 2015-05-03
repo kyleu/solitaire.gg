@@ -7,6 +7,7 @@ import models.game.rules._
 object TripleRussian extends GameRules(
   id = "triplerussian",
   title = "Triple Russian",
+  like = Some("russian"),
   description = "A three-deck version of ^russian^ solitaire by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3

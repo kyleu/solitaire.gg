@@ -7,6 +7,7 @@ import models.game.rules._
 object Stages extends GameRules(
   id = "stages",
   title = "Stages",
+  like = Some("busyaces"),
   description = "An easier variation of ^busyaces^ that allows stack moves.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -7,6 +7,7 @@ import models.game.rules._
 object Intelligence extends GameRules(
   id = "intelligence",
   title = "Intelligence",
+  like = Some("labellelucie"),
   description = "A two-deck version of ^labellelucie^.",
   deckOptions = DeckOptions(
     numDecks = 2

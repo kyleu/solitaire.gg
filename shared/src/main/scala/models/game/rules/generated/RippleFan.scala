@@ -7,6 +7,7 @@ import models.game.rules._
 object RippleFan extends GameRules(
   id = "ripplefan",
   title = "Ripple Fan",
+  like = Some("cruel"),
   description = "An easier variation of ^cruel^ with one more tableau pile.",
   foundations = Seq(
     FoundationRules(

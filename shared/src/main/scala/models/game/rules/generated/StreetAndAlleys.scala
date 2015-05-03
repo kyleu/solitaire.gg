@@ -7,6 +7,8 @@ import models.game.rules._
 object StreetAndAlleys extends GameRules(
   id = "streetsandalleys",
   title = "Street and Alleys",
+  like = Some("beleagueredcastle"),
+  related = Seq("penelopesweb", "privatelane", "stronghold"),
   description = "A more difficult variation of ^beleagueredcastle^ that starts with no cards dealt into the foundation.",
   foundations = Seq(
     FoundationRules(

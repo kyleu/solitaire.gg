@@ -7,6 +7,8 @@ import models.game.rules._
 object EndlessHarp extends GameRules(
   id = "endlessharp",
   title = "Endless Harp",
+  like = Some("klondike"),
+  related = Seq("bigharp"),
   description = "A variation of Big Harp which allows unlimited redeals.",
   deckOptions = DeckOptions(
     numDecks = 2

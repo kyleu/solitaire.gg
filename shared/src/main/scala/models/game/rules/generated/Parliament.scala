@@ -7,6 +7,7 @@ import models.game.rules._
 object Parliament extends GameRules(
   id = "parliament",
   title = "Parliament",
+  like = Some("congress"),
   description = "An easier version of ^congress^, where the aces start on the foundation.",
   deckOptions = DeckOptions(
     numDecks = 2

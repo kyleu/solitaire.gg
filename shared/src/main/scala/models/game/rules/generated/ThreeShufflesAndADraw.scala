@@ -7,6 +7,7 @@ import models.game.rules._
 object ThreeShufflesAndADraw extends GameRules(
   id = "threeshufflesandadraw",
   title = "Three Shuffles and a Draw",
+  like = Some("labellelucie"),
   description = "A variation of ^labellelucie^ that adds a draw.",
   foundations = Seq(
     FoundationRules(

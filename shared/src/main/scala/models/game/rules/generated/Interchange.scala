@@ -7,6 +7,7 @@ import models.game.rules._
 object Interchange extends GameRules(
   id = "interchange",
   title = "Interchange",
+  related = Seq("breakwater", "tripleinterchange", "unlimited"),
   description = "An extremely difficult ^fortythieves^ variant with alternate cards dealt face down.",
   deckOptions = DeckOptions(
     numDecks = 2

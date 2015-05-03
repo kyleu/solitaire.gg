@@ -7,6 +7,7 @@ import models.game.rules._
 object Juvenile extends GameRules(
   id = "juvenile",
   title = "Juvenile",
+  like = Some("fourteenout"),
   description = "A two-deck game where you remove pairs that add to fourteen.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(

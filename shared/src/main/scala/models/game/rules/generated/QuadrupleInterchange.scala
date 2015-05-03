@@ -7,6 +7,7 @@ import models.game.rules._
 object QuadrupleInterchange extends GameRules(
   id = "quadrupleinterchange",
   title = "Quadruple Interchange",
+  like = Some("tripleinterchange"),
   description = "A four-deck version of ^interchange^.",
   deckOptions = DeckOptions(
     numDecks = 4

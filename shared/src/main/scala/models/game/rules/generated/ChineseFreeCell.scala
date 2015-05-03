@@ -7,6 +7,7 @@ import models.game.rules._
 object ChineseFreeCell extends GameRules(
   id = "chinesefreecell",
   title = "Chinese FreeCell",
+  like = Some("freecell"),
   description = "A version of ^freecell^ played with only three suits.",
   deckOptions = DeckOptions(
     numDecks = 2

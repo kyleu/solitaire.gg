@@ -7,6 +7,7 @@ import models.game.rules._
 object Trefoil extends GameRules(
   id = "trefoil",
   title = "Trefoil",
+  like = Some("labellelucie"),
   description = "A slightly easier variation of ^labellelucie^ where the aces start on the foundation and there are fewer tableau columns.",
   foundations = Seq(
     FoundationRules(

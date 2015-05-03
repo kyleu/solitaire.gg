@@ -7,6 +7,7 @@ import models.game.rules._
 object FairMaids extends GameRules(
   id = "fairmaids",
   title = "Fair Maids",
+  like = Some("willothewisp"),
   description = "A variation of ^willothewisp^ where we build in alternate colors.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   stock = Some(

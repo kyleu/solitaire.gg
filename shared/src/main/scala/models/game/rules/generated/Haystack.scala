@@ -7,6 +7,7 @@ import models.game.rules._
 object Haystack extends GameRules(
   id = "haystack",
   title = "Haystack",
+  related = Seq("needle"),
   description = "A more difficult version of ^needle^ where only 8 cards can be stored in the reserve.",
   foundations = Seq(
     FoundationRules(

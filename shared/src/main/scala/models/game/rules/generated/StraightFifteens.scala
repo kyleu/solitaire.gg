@@ -7,6 +7,8 @@ import models.game.rules._
 object StraightFifteens extends GameRules(
   id = "straightfifteens",
   title = "Straight Fifteens",
+  like = Some("simplepairs"),
+  related = Seq("fifteens"),
   description = "An easier varition of ^fifteens^ where tens, jacks, queens and kings are removed in groups containing one of each instead of four " +
   "of a kind.",
   cardRemovalMethod = CardRemovalMethod.RemoveSetsAddingToFifteenOr10JQK,

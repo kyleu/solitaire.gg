@@ -7,6 +7,7 @@ import models.game.rules._
 object Easthaven extends GameRules(
   id = "easthaven",
   title = "Easthaven",
+  related = Seq("doubleeasthaven", "tripleeasthaven"),
   description = "A one-deck cross between ^spider^ and ^klondike^.",
   stock = Some(
     StockRules(

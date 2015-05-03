@@ -7,6 +7,7 @@ import models.game.rules._
 object Breakwater extends GameRules(
   id = "breakwater",
   title = "Breakwater",
+  like = Some("interchange"),
   description = "An easier variant of ^interchange^, in which we build regardless of suit.",
   deckOptions = DeckOptions(
     numDecks = 2

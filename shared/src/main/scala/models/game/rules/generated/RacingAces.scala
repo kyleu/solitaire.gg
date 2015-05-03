@@ -7,6 +7,7 @@ import models.game.rules._
 object RacingAces extends GameRules(
   id = "racingaces",
   title = "Racing Aces",
+  like = Some("acesandkings"),
   description = "A three-deck version of ^acesandkings^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3

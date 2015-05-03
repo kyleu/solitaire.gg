@@ -7,6 +7,7 @@ import models.game.rules._
 object Algiers extends GameRules(
   id = "algiers",
   title = "Algiers",
+  like = Some("carthage"),
   description = "A three-deck variation of ^carthage^.",
   deckOptions = DeckOptions(
     numDecks = 3

@@ -7,6 +7,7 @@ import models.game.rules._
 object AuntMary extends GameRules(
   id = "auntmary",
   title = "Aunt Mary",
+  like = Some("thoughtful"),
   description = "A difficult ^klondike^ variation where the tableau contains one fewer pile but all cards are face up.",
   stock = Some(
     StockRules(

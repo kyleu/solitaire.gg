@@ -7,6 +7,7 @@ import models.game.rules._
 object Kansas extends GameRules(
   id = "kansas",
   title = "Kansas",
+  like = Some("rainbow"),
   description = "Like ^rainbow^ this is a ^canfield^ variation where you build regardless of suit, but this is a bit more difficult because you onl" +
   "y have three tableau piles.",
   deckOptions = DeckOptions(

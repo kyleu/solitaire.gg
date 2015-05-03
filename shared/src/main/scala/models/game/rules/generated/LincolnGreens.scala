@@ -7,6 +7,7 @@ import models.game.rules._
 object LincolnGreens extends GameRules(
   id = "lincolngreens",
   title = "Lincoln Greens",
+  like = Some("puttputt"),
   description = "A four-deck variation of ^puttputt^, or a version of ^panthercreek^ that allows wrapping.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   deckOptions = DeckOptions(

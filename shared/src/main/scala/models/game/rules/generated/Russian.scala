@@ -7,6 +7,7 @@ import models.game.rules._
 object Russian extends GameRules(
   id = "russian",
   title = "Russian",
+  related = Seq("doublerussian", "odessa", "russiancell", "tenacross", "triplerussian", "ukrainian"),
   description = "A harder variation of ^yukon^ where you must build down in the same suit instead of in alternate colors.",
   foundations = Seq(
     FoundationRules(

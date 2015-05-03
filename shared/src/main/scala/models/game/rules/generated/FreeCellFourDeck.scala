@@ -7,6 +7,7 @@ import models.game.rules._
 object FreeCellFourDeck extends GameRules(
   id = "freecellfourdeck",
   title = "FreeCell Four Deck",
+  like = Some("freecellthreedeck"),
   description = "A four-deck version of ^freecell^ for those who like spending a long time solving a single deal.",
   deckOptions = DeckOptions(
     numDecks = 4

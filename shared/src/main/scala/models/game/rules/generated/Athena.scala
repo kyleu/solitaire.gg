@@ -7,6 +7,8 @@ import models.game.rules._
 object Athena extends GameRules(
   id = "athena",
   title = "Athena",
+  like = Some("klondike"),
+  related = Seq("bureau", "minerva"),
   description = "A ^klondike^ variation with a rectangular starting tableau in which cards alternate face-up and face-down.",
   stock = Some(
     StockRules(

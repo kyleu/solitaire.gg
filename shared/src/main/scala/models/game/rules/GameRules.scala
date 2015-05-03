@@ -15,6 +15,8 @@ case class GameRules(
     id: String,
     title: String,
     description: String,
+    like: Option[String] = None,
+    related: Seq[String] = Nil,
     victoryCondition: VictoryCondition = VictoryCondition.AllOnFoundation,
     cardRemovalMethod: CardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
     deckOptions: DeckOptions = DeckOptions(),

@@ -7,6 +7,7 @@ import models.game.rules._
 object ThievesRush extends GameRules(
   id = "thievesrush",
   title = "Thieves Rush",
+  like = Some("fortythieves"),
   description = "A ^fortythieves^ variant invented by Thomas Warfield where in each pass through the deck you deal in smaller chunks.",
   deckOptions = DeckOptions(
     numDecks = 2

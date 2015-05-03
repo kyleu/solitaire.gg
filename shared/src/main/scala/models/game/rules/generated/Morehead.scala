@@ -7,6 +7,7 @@ import models.game.rules._
 object Morehead extends GameRules(
   id = "morehead",
   title = "Morehead",
+  like = Some("somerset"),
   description = "A ^somerset^ variant where we build in different suits instead of alternate colors.",
   foundations = Seq(
     FoundationRules(

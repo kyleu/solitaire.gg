@@ -7,6 +7,7 @@ import models.game.rules._
 object TrigonLeft extends GameRules(
   id = "trigonleft",
   title = "Trigon Left",
+  like = Some("trigon"),
   description = "A blend of ^trigon^ and ^movingleft^.",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),

@@ -7,6 +7,7 @@ import models.game.rules._
 object Fan extends GameRules(
   id = "fan",
   title = "Fan",
+  related = Seq("boxfan", "ceilingfan", "freefan", "midnightclover"),
   description = "The original Fan game involves building in suit on eighteen tableau piles.",
   foundations = Seq(
     FoundationRules(

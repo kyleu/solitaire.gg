@@ -7,6 +7,7 @@ import models.game.rules._
 object YukonCells extends GameRules(
   id = "yukoncells",
   title = "Yukon Cells",
+  like = Some("yukon"),
   description = "A variation of ^yukon^ simplified by the addition of two cells.",
   foundations = Seq(
     FoundationRules(

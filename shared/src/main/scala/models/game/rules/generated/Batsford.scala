@@ -7,6 +7,7 @@ import models.game.rules._
 object Batsford extends GameRules(
   id = "batsford",
   title = "Batsford",
+  related = Seq("batsfordagain"),
   description = "A two-deck ^klondike^ game with a special reserve that can store up to three kings.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -7,6 +7,7 @@ import models.game.rules._
 object BigFreeCell extends GameRules(
   id = "bigfreecell",
   title = "Big FreeCell",
+  like = Some("freecell"),
   description = "A straight-forward two-deck version of ^freecell^.",
   deckOptions = DeckOptions(
     numDecks = 2

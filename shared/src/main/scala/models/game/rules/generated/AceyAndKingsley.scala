@@ -7,6 +7,7 @@ import models.game.rules._
 object AceyAndKingsley extends GameRules(
   id = "aceyandkingsley",
   title = "Acey and Kingsley",
+  like = Some("acesandkings"),
   description = "A variation of ^acesandkings^ which starts with an ace or a king dealt to each foundation.",
   deckOptions = DeckOptions(
     numDecks = 2

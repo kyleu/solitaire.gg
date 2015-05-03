@@ -7,6 +7,7 @@ import models.game.rules._
 object MondoSpider extends GameRules(
   id = "mondospider",
   title = "Mondo Spider",
+  like = Some("spider"),
   description = "A rather arduous double-size eight-suit ^spider^ variant.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

@@ -7,6 +7,7 @@ import models.game.rules._
 object Smokey extends GameRules(
   id = "smokey",
   title = "Smokey",
+  like = Some("klondike"),
   description = "A ^klondike^ variant invented by Ann Edwards where you can build sequences in color, but only move sequences of the same suit. Not" +
   " too hard. Not too easy.",
   stock = Some(

@@ -7,6 +7,7 @@ import models.game.rules._
 object Arabella extends GameRules(
   id = "arabella",
   title = "Arabella",
+  related = Seq("doublejane"),
   description = "An three-deck ^spider^/^klondike^ blend similar to ^ladyjane^ by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3

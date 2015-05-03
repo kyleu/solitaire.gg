@@ -66,10 +66,17 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
       case x => throw new IllegalArgumentException(x.toString)
     }
 
+    val like = getString("like") match {
+      case "" => None
+      case x => Some(x)
+    }
+
     GameRules(
       id = variant.id,
       title = getString("title"),
       description = getString("desc"),
+      like = like,
+      related = Nil,
       victoryCondition = victoryCondition,
       cardRemovalMethod = cardRemovalMethod,
       deckOptions = deckOptions,

@@ -7,6 +7,7 @@ import models.game.rules._
 object Stewart extends GameRules(
   id = "stewart",
   title = "Stewart",
+  like = Some("martha"),
   description = "A more difficult variation of ^martha^ in which only single cards may be moved. It is similar to ^bakersdozen^.",
   foundations = Seq(
     FoundationRules(

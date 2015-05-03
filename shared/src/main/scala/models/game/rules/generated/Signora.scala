@@ -7,6 +7,8 @@ import models.game.rules._
 object Signora extends GameRules(
   id = "signora",
   title = "Signora",
+  like = Some("colonel"),
+  related = Seq("blondesandbrunettes", "doublesignora", "fallingstar", "roman"),
   description = "Build everything in alternate colors, while trying to clear an eleven-card reserve to the foundaton.",
   deckOptions = DeckOptions(
     numDecks = 2,

@@ -7,6 +7,8 @@ import models.game.rules._
 object TripleInterchange extends GameRules(
   id = "tripleinterchange",
   title = "Triple Interchange",
+  like = Some("interchange"),
+  related = Seq("quadrupleinterchange"),
   description = "A three-deck version of ^interchange^.",
   deckOptions = DeckOptions(
     numDecks = 3

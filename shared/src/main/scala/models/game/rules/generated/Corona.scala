@@ -7,6 +7,7 @@ import models.game.rules._
 object Corona extends GameRules(
   id = "corona",
   title = "Corona",
+  related = Seq("quadrangle"),
   description = "A game similar to ^fortyandeight^ where spaces are autofilled from the waste and stock. The best way to win seems to be to get luc" +
   "ky.",
   deckOptions = DeckOptions(

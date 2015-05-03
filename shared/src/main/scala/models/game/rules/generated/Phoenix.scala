@@ -7,6 +7,7 @@ import models.game.rules._
 object Phoenix extends GameRules(
   id = "phoenix",
   title = "Phoenix",
+  like = Some("arizona"),
   description = "A more difficult variation of ^arizona^ where you build by alternate colors.",
   waste = Some(
     WasteRules(

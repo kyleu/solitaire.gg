@@ -7,6 +7,7 @@ import models.game.rules._
 object DarkPyramid extends GameRules(
   id = "darkpyramid",
   title = "Dark Pyramid",
+  like = Some("pyramid"),
   description = "A version of ^pyramid^ where the cards are dealt face down.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(

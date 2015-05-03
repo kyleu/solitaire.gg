@@ -7,6 +7,7 @@ import models.game.rules._
 object GoldMine extends GameRules(
   id = "goldmine",
   title = "Gold Mine",
+  like = Some("klondike"),
   description = "A ^klondike^ variation that starts with an empty tableau.",
   stock = Some(
     StockRules(

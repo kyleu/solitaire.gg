@@ -7,6 +7,7 @@ import models.game.rules._
 object Preference extends GameRules(
   id = "preference",
   title = "Preference",
+  like = Some("fortunesfavor"),
   description = "A slightly more challenging version of ^fortunesfavor^ with fewer tableau piles.",
   stock = Some(
     StockRules(

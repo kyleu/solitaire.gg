@@ -7,6 +7,7 @@ import models.game.rules._
 object JacksInTheBox extends GameRules(
   id = "jacksinthebox",
   title = "Jacks in the Box",
+  like = Some("deuces"),
   description = "A variation on ^deuces^ which has fewer tableau piles but adds some cells.",
   deckOptions = DeckOptions(
     numDecks = 2,

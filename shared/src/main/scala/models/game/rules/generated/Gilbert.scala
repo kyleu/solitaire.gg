@@ -7,6 +7,7 @@ import models.game.rules._
 object Gilbert extends GameRules(
   id = "gilbert",
   title = "Gilbert",
+  like = Some("klondike"),
   description = "An odd ^klondike^ variation with one set of foundations building up and one set building down. The fact that only sevens can fill " +
   "gaps in the tableau makes it nearly unplayable.",
   stock = Some(

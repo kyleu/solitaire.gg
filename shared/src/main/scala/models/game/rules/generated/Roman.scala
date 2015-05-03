@@ -7,6 +7,7 @@ import models.game.rules._
 object Roman extends GameRules(
   id = "roman",
   title = "Roman",
+  like = Some("signora"),
   description = "A variation of ^signora^ where we build regardless of suit. Invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2,

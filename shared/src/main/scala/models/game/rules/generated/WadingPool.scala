@@ -7,6 +7,7 @@ import models.game.rules._
 object WadingPool extends GameRules(
   id = "wadingpool",
   title = "Wading Pool",
+  like = Some("wavemotion"),
   description = "An easier variation of ^wavemotion^ that permits building, but not stack moves, on the reserve.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(

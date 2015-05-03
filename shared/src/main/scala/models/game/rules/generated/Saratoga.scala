@@ -7,6 +7,7 @@ import models.game.rules._
 object Saratoga extends GameRules(
   id = "saratoga",
   title = "Saratoga",
+  like = Some("klondike"),
   description = "This is just ^klondike^ with the cards dealt face up.",
   stock = Some(
     StockRules(

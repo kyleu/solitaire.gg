@@ -7,6 +7,7 @@ import models.game.rules._
 object ChineseKlondike extends GameRules(
   id = "chineseklondike",
   title = "Chinese Klondike",
+  like = Some("klondike"),
   description = "A three-suit version of ^klondike^.",
   deckOptions = DeckOptions(
     numDecks = 4

@@ -7,6 +7,7 @@ import models.game.rules._
 object MamySusan extends GameRules(
   id = "mamysusan",
   title = "Mamy Susan",
+  like = Some("fortythieves"),
   description = "A ^fortythieves^ variation from France with a five card reserve.",
   deckOptions = DeckOptions(
     numDecks = 2

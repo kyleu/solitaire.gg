@@ -7,6 +7,7 @@ import models.game.rules._
 object Robie extends GameRules(
   id = "robie",
   title = "Robie",
+  like = Some("fortythieves"),
   description = "Thomas Warfield's version of ^fortythieves^ in which the tableau starts empty.",
   deckOptions = DeckOptions(
     numDecks = 2

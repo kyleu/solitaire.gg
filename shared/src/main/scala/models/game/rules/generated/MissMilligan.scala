@@ -7,6 +7,7 @@ import models.game.rules._
 object MissMilligan extends GameRules(
   id = "missmilligan",
   title = "Miss Milligan",
+  related = Seq("imperialguards"),
   description = "Starting with one card in each column, build sequences down by alternate color. Deal new cards from the deck into all columns. Whe" +
   "n the deck is empty, gain a reserve area you can waive a stack of cards into.",
   deckOptions = DeckOptions(

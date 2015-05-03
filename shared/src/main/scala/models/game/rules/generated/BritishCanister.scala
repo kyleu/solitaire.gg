@@ -7,6 +7,7 @@ import models.game.rules._
 object BritishCanister extends GameRules(
   id = "britishcanister",
   title = "British Canister",
+  like = Some("canister"),
   description = "A difficult version of ^canister^ dating back to the 1890's. It resembles ^americancanister^ but does not allow stack moves and on" +
   "ly kings can fill spaces.",
   foundations = Seq(

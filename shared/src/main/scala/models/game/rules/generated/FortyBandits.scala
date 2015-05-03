@@ -7,6 +7,7 @@ import models.game.rules._
 object FortyBandits extends GameRules(
   id = "fortybandits",
   title = "Forty Bandits",
+  like = Some("fortythieves"),
   description = "An easier variant of ^fortythieves^ where sequences may be moved.",
   deckOptions = DeckOptions(
     numDecks = 2

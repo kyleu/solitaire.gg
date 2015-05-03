@@ -7,6 +7,7 @@ import models.game.rules._
 object BlockTen extends GameRules(
   id = "blockten",
   title = "Block Ten",
+  like = Some("simplepairs"),
   description = "A game of pure luck where you can remove pairs that add to ten, or pairs of face cards, but not tens.",
   victoryCondition = VictoryCondition.AllButFourCardsOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOrJQK,

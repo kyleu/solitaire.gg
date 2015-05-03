@@ -7,6 +7,7 @@ import models.game.rules._
 object Blockade extends GameRules(
   id = "blockade",
   title = "Blockade",
+  related = Seq("napoleonssquare"),
   description = "A simple game that starts slow and ends with a flourish.",
   deckOptions = DeckOptions(
     numDecks = 2

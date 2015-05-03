@@ -7,6 +7,7 @@ import models.game.rules._
 object Winery extends GameRules(
   id = "winery",
   title = "Winery",
+  like = Some("vineyard"),
   description = "A version of ^vineyard^ with cells added.",
   foundations = Seq(
     FoundationRules(

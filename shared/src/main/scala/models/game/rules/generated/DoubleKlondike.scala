@@ -7,6 +7,7 @@ import models.game.rules._
 object DoubleKlondike extends GameRules(
   id = "doubleklondike",
   title = "Double Klondike",
+  related = Seq("sally", "suittriangle"),
   description = "A two-deck version of ^klondike^. This game is almost always winnable.",
   deckOptions = DeckOptions(
     numDecks = 2

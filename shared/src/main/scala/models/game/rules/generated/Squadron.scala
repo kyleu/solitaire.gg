@@ -7,6 +7,7 @@ import models.game.rules._
 object Squadron extends GameRules(
   id = "squadron",
   title = "Squadron",
+  like = Some("fortythieves"),
   description = "A much easier version of ^fortytheives^ with three cells.",
   deckOptions = DeckOptions(
     numDecks = 2

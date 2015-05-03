@@ -7,6 +7,7 @@ import models.game.rules._
 object DoubleStorehouse extends GameRules(
   id = "doublestorehouse",
   title = "Double Storehouse",
+  like = Some("storehouse"),
   description = "A two-deck version of ^storehouse^.",
   deckOptions = DeckOptions(
     numDecks = 2,

@@ -7,6 +7,8 @@ import models.game.rules._
 object Citadel extends GameRules(
   id = "citadel",
   title = "Citadel",
+  like = Some("beleagueredcastle"),
+  related = Seq("exiledkings"),
   description = "An easier variation of ^beleagueredcastle^ where cards are moved to the foundation during the deal.",
   foundations = Seq(
     FoundationRules(

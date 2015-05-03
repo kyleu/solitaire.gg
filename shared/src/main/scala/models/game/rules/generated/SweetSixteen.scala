@@ -7,6 +7,7 @@ import models.game.rules._
 object SweetSixteen extends GameRules(
   id = "sweetsixteen",
   title = "Sweet Sixteen",
+  like = Some("trustytwelve"),
   description = "A variation of ^trustytwelve^ where you build by alternate color",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(

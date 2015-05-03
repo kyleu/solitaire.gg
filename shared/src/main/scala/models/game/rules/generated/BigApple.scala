@@ -7,6 +7,7 @@ import models.game.rules._
 object BigApple extends GameRules(
   id = "bigapple",
   title = "Big Apple",
+  like = Some("gotham"),
   description = "A difficult variation of ^newyork^ with three cells instead of three waste piles, but where stacks can be moved.",
   deckOptions = DeckOptions(
     numDecks = 2,

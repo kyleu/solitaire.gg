@@ -7,6 +7,7 @@ import models.game.rules._
 object Bastion extends GameRules(
   id = "bastion",
   title = "Bastion",
+  like = Some("fortress"),
   description = "^fortress^ with cells.",
   foundations = Seq(
     FoundationRules(

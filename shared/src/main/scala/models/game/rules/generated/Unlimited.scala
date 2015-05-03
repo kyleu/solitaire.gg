@@ -7,6 +7,8 @@ import models.game.rules._
 object Unlimited extends GameRules(
   id = "unlimited",
   title = "Unlimited",
+  like = Some("interchange"),
+  related = Seq("singleinterchange"),
   description = "An easier variant of ^interchange^, in which we are allowed unlimited redeals",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -7,6 +7,8 @@ import models.game.rules._
 object FortunesFavor extends GameRules(
   id = "fortunesfavor",
   title = "Fortune's Favor",
+  like = Some("busyaces"),
+  related = Seq("preference"),
   description = "An extremely easy, one-deck version of ^busyaces^.",
   stock = Some(
     StockRules(

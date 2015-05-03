@@ -7,6 +7,7 @@ import models.game.rules._
 object Boulevard extends GameRules(
   id = "boulevard",
   title = "Boulevard",
+  related = Seq("evenandodd"),
   description = "No building on the tableau, three reserve piles, and foundations that build up by twos.",
   deckOptions = DeckOptions(
     numDecks = 2

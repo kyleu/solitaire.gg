@@ -7,6 +7,8 @@ import models.game.rules._
 object BigSpider extends GameRules(
   id = "bigspider",
   title = "Big Spider",
+  like = Some("spider"),
+  related = Seq("spiderthreedeck"),
   description = "A three-deck version of ^spider^. This is a bit more challenging than ^spiderthreedeck^.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

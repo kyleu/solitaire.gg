@@ -7,6 +7,7 @@ import models.game.rules._
 object Congress extends GameRules(
   id = "congress",
   title = "Congress",
+  related = Seq("dieppe", "diplomat", "parliament"),
   description = "This has similarities to ^fortyandeight^, but spaces in the tableau may only be filled from the waste. This gives the game a very " +
   "different feel.",
   deckOptions = DeckOptions(

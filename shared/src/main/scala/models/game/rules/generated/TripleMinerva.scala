@@ -7,6 +7,7 @@ import models.game.rules._
 object TripleMinerva extends GameRules(
   id = "tripleminerva",
   title = "Triple Minerva",
+  like = Some("minerva"),
   description = "Thomas Warfield's three-deck version of ^minerva^.",
   deckOptions = DeckOptions(
     numDecks = 3

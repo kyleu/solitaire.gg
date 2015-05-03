@@ -7,6 +7,7 @@ import models.game.rules._
 object Brigade extends GameRules(
   id = "brigade",
   title = "Brigade",
+  like = Some("flowergarden"),
   description = "An easier variation of ^flowergarden^ with more tableau piles of fewer cards, and aces starting on the foundation.",
   waste = Some(
     WasteRules(

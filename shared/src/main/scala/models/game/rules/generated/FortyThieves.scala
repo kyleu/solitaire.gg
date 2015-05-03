@@ -7,6 +7,7 @@ import models.game.rules._
 object FortyThieves extends GameRules(
   id = "fortythieves",
   title = "Forty Thieves",
+  related = Seq("eightythieves", "elba", "famousfifty", "fortybandits", "fortythieves3", "fortythieves4", "josephine", "limited", "littlenapoleon", "mamysusan", "napoleonsquadrilateral", "robie", "sanjuanhill", "sixtythieves", "squadron", "thievesrush", "threepirates"),
   description = "Similar to ^fortyandeight^, but the tableau has forty cards in ten stacks of four, and we only allow one pass through the deck.",
   deckOptions = DeckOptions(
     numDecks = 2

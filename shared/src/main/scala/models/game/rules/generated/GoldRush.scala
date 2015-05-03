@@ -7,6 +7,7 @@ import models.game.rules._
 object GoldRush extends GameRules(
   id = "goldrush",
   title = "Gold Rush",
+  related = Seq("doublegoldrush"),
   description = "A ^klondike^ variation where the number of cards dealt to the waste decreases with each pass through the stock.",
   stock = Some(
     StockRules(

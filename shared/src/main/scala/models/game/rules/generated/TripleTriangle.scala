@@ -7,6 +7,7 @@ import models.game.rules._
 object TripleTriangle extends GameRules(
   id = "tripletriangle",
   title = "Triple Triangle",
+  like = Some("eternaltriangle"),
   description = "A three-deck ^eternaltriangle^ variation by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3

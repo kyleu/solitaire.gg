@@ -7,6 +7,7 @@ import models.game.rules._
 object LucasLeaps extends GameRules(
   id = "lucasleaps",
   title = "Lucas Leaps",
+  like = Some("waningmoon"),
   description = "An easy ^fortythieves^ variant similar to ^waningmoon^ except that sequences can be moved.",
   deckOptions = DeckOptions(
     numDecks = 2

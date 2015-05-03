@@ -7,6 +7,7 @@ import models.game.rules._
 object ExiledKings extends GameRules(
   id = "exiledkings",
   title = "Exiled Kings",
+  like = Some("citadel"),
   description = "A more difficult variation of ^citadel^ where spaces can only be filled by kings.",
   foundations = Seq(
     FoundationRules(

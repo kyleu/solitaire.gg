@@ -7,6 +7,7 @@ import models.game.rules._
 object TripleLeft extends GameRules(
   id = "tripleleft",
   title = "Triple Left",
+  like = Some("movingleft"),
   description = "Thomas Warfield's three-deck version of ^movingleft^.",
   deckOptions = DeckOptions(
     numDecks = 3

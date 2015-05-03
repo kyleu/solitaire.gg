@@ -7,6 +7,7 @@ import models.game.rules._
 object Dimes extends GameRules(
   id = "dimes",
   title = "Dimes",
+  like = Some("busyaces"),
   description = "A variation on ^deuces^ with fewer tableau piles.",
   deckOptions = DeckOptions(
     numDecks = 2,

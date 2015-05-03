@@ -7,6 +7,7 @@ import models.game.rules._
 object Linus extends GameRules(
   id = "linus",
   title = "Linus",
+  like = Some("labellelucie"),
   description = "An easier variation of ^labellelucie^ where you build in alternate colors.",
   foundations = Seq(
     FoundationRules(

@@ -7,6 +7,7 @@ import models.game.rules._
 object Apophis extends GameRules(
   id = "apophis",
   title = "Apophis",
+  like = Some("pyramid"),
   description = "^pyramid^ played with three waste piles.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(

@@ -7,6 +7,8 @@ import models.game.rules._
 object Fortress extends GameRules(
   id = "fortress",
   title = "Fortress",
+  like = Some("beleagueredcastle"),
+  related = Seq("bastion", "beleagueredfortress", "chessboard", "fortressofmercy"),
   description = "A classic and usually insolvable ancestor of ^beleagueredcastle^ where you can build both up and down in the tableau.",
   foundations = Seq(
     FoundationRules(

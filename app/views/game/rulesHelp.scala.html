@@ -1,21 +1,66 @@
-@(rules: models.game.rules.GameRules)
-<div class="rules-help">
+@(rules: models.game.rules.GameRules)<div class="rules-help">
+  <div class="play-link">
+    <a href="@routes.HomeController.newGame(rules.id)" title="Play Now">Play Now</a>
+  </div>
+
   <h2>@rules.title</h2>
   <div class="description">
-    <em>@Html(services.RulesHelpService.description(rules.description))</em>
+    <em>@Html(services.help.GameRulesHelpService.description(rules.description))</em>
   </div>
+
   <h3>Objective</h3>
   <div class="objective">
-    @Html(services.RulesHelpService.objective(rules.victoryCondition, rules.cardRemovalMethod))
+    @Html(services.help.GameRulesHelpService.objective(rules.victoryCondition, rules.cardRemovalMethod))
   </div>
+
   <h3>Deck</h3>
   <div class="deck">
-    @Html(services.RulesHelpService.deck(rules.deckOptions))
+    @Html(services.help.DeckOptionsHelpService.deck(rules.deckOptions))
   </div>
+
   <h3>Layout</h3>
-  <div class="layout">
-    @defining(models.game.pile.Layouts.forRules(rules.id)) { layout =>
-      @layout
+  @defining(models.game.pile.Layouts.forRules(rules.id)) { layoutString =>
+    @defining(services.help.GameRulesHelpService.layout(layoutString, rules)) { layout =>
+      <ul class="layout">
+        @for(pileSet <- layout) {
+          <li>
+            <h4>@pileSet._1</h4>
+            @if(pileSet._2.nonEmpty) {
+              <ul>
+                @for(statement <- pileSet._2) {
+                  <li>@statement</li>
+                }
+              </ul>
+            }
+          </li>
+        }
+      </ul>
     }
-  </div>
+  }
+
+  @rules.like.map { l =>
+    <h3>Original Game (@l)</h3>
+    @defining(models.game.rules.GameRulesSet.allById(l)) { like =>
+      <a href="@routes.HomeController.help(like.id)">@like.title</a>
+      <div>
+        <em>@Html(services.help.GameRulesHelpService.description(like.description, link = false))</em>
+      </div>
+    }
+  }
+
+  @if(rules.related.nonEmpty) {
+    <h3>Related Games</h3>
+    <ul>
+      @rules.related.map { r =>
+        <li>
+          @defining(models.game.rules.GameRulesSet.allById(r)) { rel =>
+            <a href="@routes.HomeController.help(rel.id)">@rel.title</a>
+            <div>
+              <em>@Html(services.help.GameRulesHelpService.description(rel.description, link = false))</em>
+            </div>
+          }
+        </li>
+      }
+    </ul>
+  }
 </div>

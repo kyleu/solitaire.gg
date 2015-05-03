@@ -7,6 +7,7 @@ import models.game.rules._
 object Opus extends GameRules(
   id = "opus",
   title = "Opus",
+  like = Some("penguin"),
   description = "Thomas Warfield's much more difficult version of ^penguin^ has two fewer cells",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

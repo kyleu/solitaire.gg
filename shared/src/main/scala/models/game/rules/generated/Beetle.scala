@@ -7,6 +7,7 @@ import models.game.rules._
 object Beetle extends GameRules(
   id = "beetle",
   title = "Beetle",
+  like = Some("spider"),
   description = "A variation of ^spider^ where all cards are dealt face up.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

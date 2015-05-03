@@ -7,6 +7,7 @@ import models.game.rules._
 object LeapYear extends GameRules(
   id = "leapyear",
   title = "Leap Year",
+  like = Some("auldlangsyne"),
   description = "A four-deck version of ^auldlangsyne^. Requires a large screen.",
   deckOptions = DeckOptions(
     numDecks = 4

@@ -7,6 +7,7 @@ import models.game.rules._
 object SuitTriangle extends GameRules(
   id = "suittriangle",
   title = "Suit Triangle",
+  like = Some("doubleklondike"),
   description = "A two-deck version of ^klondike^ where we build in the same suite.",
   deckOptions = DeckOptions(
     numDecks = 2

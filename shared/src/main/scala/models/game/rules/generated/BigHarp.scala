@@ -7,6 +7,7 @@ import models.game.rules._
 object BigHarp extends GameRules(
   id = "bigharp",
   title = "Big Harp",
+  like = Some("endlessharp"),
   description = "A two-deck ^klondike^ variation that is different than ^harp^ in several ways, without really being that much bigger.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -7,6 +7,7 @@ import models.game.rules._
 object Bakers extends GameRules(
   id = "bakers",
   title = "Baker's",
+  related = Seq("bakerstwodeck"),
   description = "A predecessor of ^freecell^ invented by C. L. Baker. The rules are the same as FreeCell, except that you build down in suit instea" +
   "d of in alternating colors.",
   foundations = Seq(

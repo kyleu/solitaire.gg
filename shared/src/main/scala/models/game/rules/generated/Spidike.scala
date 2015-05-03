@@ -7,6 +7,7 @@ import models.game.rules._
 object Spidike extends GameRules(
   id = "spidike",
   title = "Spidike",
+  like = Some("spiderette"),
   description = "Thomas Warfield's blend of ^spider^ with a ^klondike^ ends up looking a lot like ^spiderette^ except that cards can be moved singl" +
   "y to the foundation.",
   stock = Some(

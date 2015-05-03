@@ -7,6 +7,7 @@ import models.game.rules._
 object PasSeul extends GameRules(
   id = "passeul",
   title = "Pas Seul",
+  like = Some("blindalleys"),
   description = "A ^klondike^ variant with a rectangular tableau, differing from ^blindalleys^ only in the number of passes through the deck allowe" +
   "d. The name refers to a dance sequence for one person.",
   stock = Some(

@@ -7,6 +7,7 @@ import models.game.rules._
 object SpiderTwoSuits extends GameRules(
   id = "spidertwosuits",
   title = "Spider Two Suits",
+  like = Some("spider"),
   description = "The name says it \"all\": ^spider^ with only two suits.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

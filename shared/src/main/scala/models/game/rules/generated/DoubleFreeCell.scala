@@ -7,6 +7,7 @@ import models.game.rules._
 object DoubleFreeCell extends GameRules(
   id = "doublefreecell",
   title = "Double FreeCell",
+  like = Some("freecell"),
   description = "Thomas Warfield's two-deck version of ^freecell^.",
   deckOptions = DeckOptions(
     numDecks = 2

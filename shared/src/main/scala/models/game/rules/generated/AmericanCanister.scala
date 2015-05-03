@@ -7,6 +7,7 @@ import models.game.rules._
 object AmericanCanister extends GameRules(
   id = "americancanister",
   title = "American Canister",
+  like = Some("canister"),
   description = "A difficult variation of ^canister^ with building by alternate colors.",
   foundations = Seq(
     FoundationRules(

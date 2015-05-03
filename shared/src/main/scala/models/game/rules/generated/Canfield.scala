@@ -7,6 +7,7 @@ import models.game.rules._
 object Canfield extends GameRules(
   id = "canfield",
   title = "Canfield",
+  related = Seq("acme", "canfieldgallery", "canfieldrush", "chameleon", "demonsandthieves", "rainbow", "storehouse", "superiorcanfield"),
   description = "An old Casino game where the house usually wins. It's distinctive features include a reserve and foundations built up from the val" +
   "ue of one random card dealt into them.",
   deckOptions = DeckOptions(

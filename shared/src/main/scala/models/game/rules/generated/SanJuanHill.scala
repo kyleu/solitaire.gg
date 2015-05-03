@@ -7,6 +7,7 @@ import models.game.rules._
 object SanJuanHill extends GameRules(
   id = "sanjuanhill",
   title = "San Juan Hill",
+  like = Some("fortythieves"),
   description = "An easier variant of ^fortythieves^ in which aces are already on the foundation.",
   deckOptions = DeckOptions(
     numDecks = 2

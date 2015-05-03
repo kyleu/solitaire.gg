@@ -7,6 +7,7 @@ import models.game.rules._
 object Lasker extends GameRules(
   id = "lasker",
   title = "Lasker",
+  like = Some("chessboard"),
   description = "A version of ^chessboard^ where sequences may be moved.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

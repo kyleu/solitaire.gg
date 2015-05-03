@@ -7,6 +7,7 @@ import models.game.rules._
 object SuitElevens extends GameRules(
   id = "suitelevens",
   title = "Suit Elevens",
+  like = Some("elevens"),
   description = "A variation of ^elevens^ where you can only remove sets of cards if they are all of the same suit.",
   cardRemovalMethod = CardRemovalMethod.RemoveSameSuitPairsAddingToElevenOrJQK,
   stock = Some(

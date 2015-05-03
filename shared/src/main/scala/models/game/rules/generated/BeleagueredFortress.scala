@@ -7,6 +7,7 @@ import models.game.rules._
 object BeleagueredFortress extends GameRules(
   id = "beleagueredfortress",
   title = "Beleaguered Fortress",
+  like = Some("fortress"),
   description = "A variation of ^fortress^ with a twelve-card reserve from which all cards are playable.",
   waste = Some(
     WasteRules(

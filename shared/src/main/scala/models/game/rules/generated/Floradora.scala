@@ -7,6 +7,7 @@ import models.game.rules._
 object Floradora extends GameRules(
   id = "floradora",
   title = "Floradora",
+  like = Some("takingsilk"),
   description = "A two-deck variation of ^thirtysix^ with an extra foundation pile for kings, but no stack moves.",
   deckOptions = DeckOptions(
     numDecks = 2

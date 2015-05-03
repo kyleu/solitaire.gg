@@ -7,6 +7,8 @@ import models.game.rules._
 object Rainbow extends GameRules(
   id = "rainbow",
   title = "Rainbow",
+  like = Some("canfield"),
+  related = Seq("kansas"),
   description = "A variation of ^canfield^ in which you can build regardless of suit.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

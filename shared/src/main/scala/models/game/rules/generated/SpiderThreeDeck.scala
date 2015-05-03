@@ -7,6 +7,7 @@ import models.game.rules._
 object SpiderThreeDeck extends GameRules(
   id = "spiderthreedeck",
   title = "Spider Three Deck",
+  like = Some("bigspider"),
   description = "This three-deck version of ^spider^ is a bit easier than ^bigspider^.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

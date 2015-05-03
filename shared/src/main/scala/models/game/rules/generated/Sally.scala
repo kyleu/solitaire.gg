@@ -7,6 +7,7 @@ import models.game.rules._
 object Sally extends GameRules(
   id = "sally",
   title = "Sally",
+  like = Some("doubleklondike"),
   description = "A version of ^doubleklondike^ where the base card of the foundation depends on a card dealt in.",
   deckOptions = DeckOptions(
     numDecks = 2,

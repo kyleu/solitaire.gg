@@ -7,6 +7,8 @@ import models.game.rules._
 object Spiderette extends GameRules(
   id = "spiderette",
   title = "Spiderette",
+  like = Some("spider"),
+  related = Seq("spidike"),
   description = "A one-deck version of ^spider^, with a ^klondike^-style triangular tableau.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   stock = Some(

@@ -7,6 +7,8 @@ import models.game.rules._
 object Deuces extends GameRules(
   id = "deuces",
   title = "Deuces",
+  like = Some("busyaces"),
+  related = Seq("castoutnines", "jacksinthebox", "threescompany"),
   description = "A more difficult variation of ^busyaces^ with fewer tableau piles.",
   deckOptions = DeckOptions(
     numDecks = 2,

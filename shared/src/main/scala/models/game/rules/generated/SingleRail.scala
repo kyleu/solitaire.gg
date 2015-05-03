@@ -7,6 +7,7 @@ import models.game.rules._
 object SingleRail extends GameRules(
   id = "singlerail",
   title = "Single Rail",
+  related = Seq("doublerail"),
   description = "A one-deck version of ^doublerail^. A good little game for small screens.",
   stock = Some(
     StockRules(

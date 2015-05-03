@@ -7,6 +7,7 @@ import models.game.rules._
 object PyramidDozen extends GameRules(
   id = "pyramiddozen",
   title = "Pyramid Dozen",
+  like = Some("giza"),
   description = "A version of ^giza^ in which cards are removed in pairs that add to twelve.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTwelveOrQK,
   foundations = Seq(

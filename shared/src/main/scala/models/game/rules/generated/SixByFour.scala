@@ -7,6 +7,7 @@ import models.game.rules._
 object SixByFour extends GameRules(
   id = "sixbyfour",
   title = "Six by Four",
+  like = Some("freecell"),
   description = "A much harder ^freecell^ variant with two fewer tableau columns.",
   foundations = Seq(
     FoundationRules(

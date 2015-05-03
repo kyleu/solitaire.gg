@@ -7,6 +7,7 @@ import models.game.rules._
 object QueenVictoria extends GameRules(
   id = "queenvictoria",
   title = "Queen Victoria",
+  like = Some("kingalbert"),
   description = "This much easier variation of ^kingalbert^ allows stacks of cards to be moved.",
   waste = Some(
     WasteRules(

@@ -7,6 +7,7 @@ import models.game.rules._
 object Irmgard extends GameRules(
   id = "irmgard",
   title = "Irmgard",
+  like = Some("gypsy"),
   description = "A variant of ^gypsy^ where you have an extra tableau pile, but you can only fill spaces with kings.",
   deckOptions = DeckOptions(
     numDecks = 2

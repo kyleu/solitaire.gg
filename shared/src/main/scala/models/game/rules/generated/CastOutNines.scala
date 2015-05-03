@@ -7,6 +7,7 @@ import models.game.rules._
 object CastOutNines extends GameRules(
   id = "castoutnines",
   title = "Cast Out Nines",
+  like = Some("deuces"),
   description = "A difficult variation of ^deuces^ or ^busyaces^ where no cards are already on the foundation and there are only seven tableau pile" +
   "s. Invented by Thomas Warfield.",
   deckOptions = DeckOptions(

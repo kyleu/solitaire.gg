@@ -7,6 +7,7 @@ import models.game.rules._
 object MilliganYukon extends GameRules(
   id = "milliganyukon",
   title = "Milligan Yukon",
+  like = Some("milliganharp"),
   description = "A cross between ^milliganharp^ and ^yukon^.",
   deckOptions = DeckOptions(
     numDecks = 2

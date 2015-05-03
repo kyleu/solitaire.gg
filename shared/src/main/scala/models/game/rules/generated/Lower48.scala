@@ -7,6 +7,7 @@ import models.game.rules._
 object Lower48 extends GameRules(
   id = "lower48",
   title = "Lower 48",
+  like = Some("fortyandeight"),
   description = "A variation of ^fortyandeight^ where you build in alternate colors instead of in the same suit.",
   deckOptions = DeckOptions(
     numDecks = 2

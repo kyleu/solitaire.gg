@@ -7,6 +7,7 @@ import models.game.rules._
 object DoubleRussian extends GameRules(
   id = "doublerussian",
   title = "Double Russian",
+  like = Some("russian"),
   description = "A two-deck version of ^russian^ solitaire.",
   deckOptions = DeckOptions(
     numDecks = 2

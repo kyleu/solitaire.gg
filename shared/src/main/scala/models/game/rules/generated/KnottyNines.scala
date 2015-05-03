@@ -7,6 +7,7 @@ import models.game.rules._
 object KnottyNines extends GameRules(
   id = "knottynines",
   title = "Knotty Nines",
+  like = Some("trustytwelve"),
   description = "A more difficult variation of ^trustytwelve^.",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(

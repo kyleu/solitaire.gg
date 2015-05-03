@@ -7,6 +7,7 @@ import models.game.rules._
 object AlexanderTheGreat extends GameRules(
   id = "alexanderthegreat",
   title = "Alexander the Great",
+  related = Seq("cloverleaf"),
   description = "Thomas Warfield's more challenging variation of ^cloverleaf^.",
   foundations = Seq(
     FoundationRules(

@@ -7,6 +7,7 @@ import models.game.rules._
 object FourteenOut extends GameRules(
   id = "fourteenout",
   title = "Fourteen Out",
+  related = Seq("doublefourteens", "juvenile", "tensout", "triplefourteens"),
   description = "An interesting game in which you remove pairs that add the fourteen.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   foundations = Seq(

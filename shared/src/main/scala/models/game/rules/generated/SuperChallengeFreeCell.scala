@@ -7,6 +7,7 @@ import models.game.rules._
 object SuperChallengeFreeCell extends GameRules(
   id = "superchallengefreecell",
   title = "Super Challenge FreeCell",
+  like = Some("challengefreecell"),
   description = "A version of ^freecell^ invented by Thomas Warfield where the aces and twos are always at the bottoms of the eight stacks and wher" +
   "e spaces can only be filled by Kings.",
   foundations = Seq(

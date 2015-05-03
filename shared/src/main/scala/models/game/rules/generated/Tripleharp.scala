@@ -7,6 +7,7 @@ import models.game.rules._
 object Tripleharp extends GameRules(
   id = "tripleharp",
   title = "Tripleharp",
+  like = Some("harp"),
   description = "A three-deck version of ^harp^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3

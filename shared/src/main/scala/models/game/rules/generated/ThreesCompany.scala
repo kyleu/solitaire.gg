@@ -7,6 +7,8 @@ import models.game.rules._
 object ThreesCompany extends GameRules(
   id = "threescompany",
   title = "Three's Company",
+  like = Some("deuces"),
+  related = Seq("foursup"),
   description = "A rather difficult variation of ^deuces^ or ^busyaces^ with still fewer tableau piles but stack moves are allowed. Invented by Tho" +
   "mas Warfield.",
   deckOptions = DeckOptions(

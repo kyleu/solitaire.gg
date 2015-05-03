@@ -7,6 +7,7 @@ import models.game.rules._
 object HugeSpider extends GameRules(
   id = "hugespider",
   title = "Huge Spider",
+  like = Some("spider"),
   description = "A four-deck version of ^spider^.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

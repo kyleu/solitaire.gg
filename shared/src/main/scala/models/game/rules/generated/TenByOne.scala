@@ -7,6 +7,7 @@ import models.game.rules._
 object TenByOne extends GameRules(
   id = "tenbyone",
   title = "Ten By One",
+  like = Some("vineyard"),
   description = "Ten tableau piles and one cell make a game with similarities to ^freecell^ and ^vineyard^.",
   foundations = Seq(
     FoundationRules(

@@ -7,6 +7,7 @@ import models.game.rules._
 object EmpressOfItaly extends GameRules(
   id = "empressofitaly",
   title = "Empress of Italy",
+  like = Some("doublesignora"),
   description = "A four-deck version of ^blondesandbrunettes^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 4,

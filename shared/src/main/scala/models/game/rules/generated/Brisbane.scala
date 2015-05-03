@@ -7,6 +7,7 @@ import models.game.rules._
 object Brisbane extends GameRules(
   id = "brisbane",
   title = "Brisbane",
+  like = Some("yukon"),
   description = "Just like ^yukon^, but the starting layout is a bit different and you build regardless of suit.",
   foundations = Seq(
     FoundationRules(

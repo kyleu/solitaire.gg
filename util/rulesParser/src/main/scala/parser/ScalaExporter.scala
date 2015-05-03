@@ -9,7 +9,9 @@ object ScalaExporter {
     val srcDir = Paths.get(".", "shared", "src", "main", "scala", "models", "game", "rules", "generated")
     writeFile(srcDir.resolve("GeneratedGameRules.scala"), exportRulesSet(rulesSet))
 
-    for (rules <- rulesSet) {
+    val rulesSetWithRelated = rulesSet.map(r => r.copy( related = rulesSet.filter(_.like == Some(r.id)).map(_.id) ))
+
+    for (rules <- rulesSetWithRelated) {
       writeFile(srcDir.resolve(getObjectName(rules) + ".scala"), exportRules(rules))
     }
   }
@@ -47,6 +49,12 @@ object ScalaExporter {
     add("object " + getObjectName(rules) + " extends GameRules(")
     add("  id = \"" + rules.id + "\",")
     add("  title = \"" + rules.title + "\",")
+    rules.like.foreach { l =>
+      add("  like = Some(\"" + l + "\"),")
+    }
+    if(rules.related.nonEmpty) {
+      add("  related = Seq(" + rules.related.map("\"" + _ + "\"").mkString(", ") + "),")
+    }
     val desc = rules.description.replaceAllLiterally("\"", "\\\"").grouped(130)
     add("  description = \"" + desc.mkString("\" +\n  \"") + "\",")
     if(rules.victoryCondition != defaults.victoryCondition) {

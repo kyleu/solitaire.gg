@@ -7,6 +7,7 @@ import models.game.rules._
 object DoubleFourteens extends GameRules(
   id = "doublefourteens",
   title = "Double Fourteens",
+  like = Some("fourteenout"),
   description = "An two-deck version of ^fourteenout^.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(

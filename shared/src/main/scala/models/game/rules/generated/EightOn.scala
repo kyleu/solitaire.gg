@@ -7,6 +7,7 @@ import models.game.rules._
 object EightOn extends GameRules(
   id = "eighton",
   title = "Eight On",
+  like = Some("eightoff"),
   description = "A harder variation of ^eightoff^ where the aces start on the bottoms of the piles. Invented by Thomas Warfield.",
   foundations = Seq(
     FoundationRules(

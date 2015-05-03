@@ -7,6 +7,7 @@ import models.game.rules._
 object Adelaide extends GameRules(
   id = "adelaide",
   title = "Adelaide",
+  like = Some("outback"),
   description = "This two-deck solitaire allows moving unsorted stacks, as in ^yukon^. It is exactly like ^outback^, but you get to do two passes t" +
   "hrough the deck.",
   deckOptions = DeckOptions(

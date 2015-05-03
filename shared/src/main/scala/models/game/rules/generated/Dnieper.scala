@@ -7,6 +7,7 @@ import models.game.rules._
 object Dnieper extends GameRules(
   id = "dnieper",
   title = "Dnieper",
+  like = Some("kiev"),
   description = "Exactly like ^kiev^ but slightly easier because kings can be played on aces.",
   stock = Some(
     StockRules(

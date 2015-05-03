@@ -7,6 +7,8 @@ import models.game.rules._
 object RankAndFile extends GameRules(
   id = "rankandfile",
   title = "Rank and File",
+  like = Some("numberten"),
+  related = Seq("emperor"),
   description = "Like ^numberten^, but three cards in each stack are dealt face down.",
   deckOptions = DeckOptions(
     numDecks = 2

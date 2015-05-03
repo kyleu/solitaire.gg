@@ -7,6 +7,7 @@ import models.game.rules._
 object SuperiorCanfield extends GameRules(
   id = "superiorcanfield",
   title = "Superior Canfield",
+  like = Some("canfield"),
   description = "Canfield made a bit easier and a bit more strategic by dealing the reserve cards face up and not automatically filling spaces from" +
   " the reserve.",
   deckOptions = DeckOptions(

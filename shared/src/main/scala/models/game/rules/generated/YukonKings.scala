@@ -7,6 +7,7 @@ import models.game.rules._
 object YukonKings extends GameRules(
   id = "yukonkings",
   title = "Yukon Kings",
+  like = Some("yukon"),
   description = "A difficult version of ^yukon^ without foundations.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(

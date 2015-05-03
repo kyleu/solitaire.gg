@@ -7,6 +7,7 @@ import models.game.rules._
 object MarieRose extends GameRules(
   id = "marierose",
   title = "Marie Rose",
+  like = Some("sixtythieves"),
   description = "A three-deck version of ^josephine^ or a version of ^sixtythieves^ which allows sequences to be moved.",
   deckOptions = DeckOptions(
     numDecks = 3

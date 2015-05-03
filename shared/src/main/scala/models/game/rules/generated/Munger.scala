@@ -7,6 +7,7 @@ import models.game.rules._
 object Munger extends GameRules(
   id = "munger",
   title = "Munger",
+  like = Some("minerva"),
   description = "A variation of ^minerva^ with the reserve is smaller and only one pass through the stock is allowed.",
   stock = Some(
     StockRules(

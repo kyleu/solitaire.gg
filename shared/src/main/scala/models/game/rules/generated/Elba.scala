@@ -7,6 +7,7 @@ import models.game.rules._
 object Elba extends GameRules(
   id = "elba",
   title = "Elba",
+  like = Some("fortythieves"),
   description = "A variant of ^fortythieves^ with ^klondike^-like building rules.",
   deckOptions = DeckOptions(
     numDecks = 2

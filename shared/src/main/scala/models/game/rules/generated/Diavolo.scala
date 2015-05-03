@@ -7,6 +7,7 @@ import models.game.rules._
 object Diavolo extends GameRules(
   id = "diavolo",
   title = "Diavolo",
+  related = Seq("rougeetnoir"),
   description = "A ^klondike^ variant with four foundation piles that are built one card at a time, while the other four need completed sequences.",
   deckOptions = DeckOptions(
     numDecks = 2

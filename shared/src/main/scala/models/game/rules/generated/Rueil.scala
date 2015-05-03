@@ -7,6 +7,7 @@ import models.game.rules._
 object Rueil extends GameRules(
   id = "rueil",
   title = "Rueil",
+  like = Some("malmaison"),
   description = "A version of ^malmaison^ made easier by allowing a redeal.",
   deckOptions = DeckOptions(
     numDecks = 3

@@ -7,6 +7,7 @@ import models.game.rules._
 object TripleEasthaven extends GameRules(
   id = "tripleeasthaven",
   title = "Triple Easthaven",
+  like = Some("easthaven"),
   description = "A three-deck version of ^easthaven^ by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3

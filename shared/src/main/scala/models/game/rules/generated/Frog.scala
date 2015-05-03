@@ -7,6 +7,7 @@ import models.game.rules._
 object Frog extends GameRules(
   id = "frog",
   title = "Frog",
+  related = Seq("fly"),
   description = "A relation of ^sirtommy^ with a reserve.",
   deckOptions = DeckOptions(
     numDecks = 2

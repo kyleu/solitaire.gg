@@ -7,6 +7,7 @@ import models.game.rules._
 object Unusual extends GameRules(
   id = "unusual",
   title = "Unusual",
+  like = Some("cruel"),
   description = "A two-deck version of ^cruel^.",
   deckOptions = DeckOptions(
     numDecks = 2

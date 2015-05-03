@@ -7,6 +7,8 @@ import models.game.rules._
 object PuttPutt extends GameRules(
   id = "puttputt",
   title = "Putt Putt",
+  like = Some("golf"),
+  related = Seq("lincolngreens"),
   description = "An easier variation of ^golf^ where wrapping from King to Ace is allowed.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(

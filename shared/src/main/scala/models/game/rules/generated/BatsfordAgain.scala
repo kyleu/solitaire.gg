@@ -7,6 +7,7 @@ import models.game.rules._
 object BatsfordAgain extends GameRules(
   id = "batsfordagain",
   title = "Batsford Again",
+  like = Some("batsford"),
   description = "A variation of ^batsford^ with a redeal.",
   deckOptions = DeckOptions(
     numDecks = 2

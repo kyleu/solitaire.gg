@@ -7,6 +7,7 @@ import models.game.rules._
 object YukonicPlague extends GameRules(
   id = "yukonicplague",
   title = "Yukonic Plague",
+  like = Some("yukon"),
   description = "A more difficult variation of ^yukon^ where many cards are buried in a reserve.",
   foundations = Seq(
     FoundationRules(

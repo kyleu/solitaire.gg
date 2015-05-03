@@ -7,6 +7,7 @@ import models.game.rules._
 object DoubleYukon extends GameRules(
   id = "doubleyukon",
   title = "Double Yukon",
+  related = Seq("quadrupleyukon"),
   description = "A two-deck variation of ^yukon^",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -7,6 +7,7 @@ import models.game.rules._
 object BakersTwoDeck extends GameRules(
   id = "bakerstwodeck",
   title = "Baker's Two-Deck",
+  like = Some("bakers"),
   description = "A two-deck version of ^bakers^ games.",
   deckOptions = DeckOptions(
     numDecks = 2

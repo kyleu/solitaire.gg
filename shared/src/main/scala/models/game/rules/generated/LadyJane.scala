@@ -7,6 +7,7 @@ import models.game.rules._
 object LadyJane extends GameRules(
   id = "ladyjane",
   title = "Lady Jane",
+  related = Seq("inquisitor"),
   description = "An easy two-deck ^spider^/^klondike^ blend by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2

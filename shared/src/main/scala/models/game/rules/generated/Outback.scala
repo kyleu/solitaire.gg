@@ -7,6 +7,7 @@ import models.game.rules._
 object Outback extends GameRules(
   id = "outback",
   title = "Outback",
+  related = Seq("adelaide"),
   description = "A two-deck version of Australian Solitaire.",
   deckOptions = DeckOptions(
     numDecks = 2

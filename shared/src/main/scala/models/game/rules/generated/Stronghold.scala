@@ -7,6 +7,7 @@ import models.game.rules._
 object Stronghold extends GameRules(
   id = "stronghold",
   title = "Stronghold",
+  like = Some("streetsandalleys"),
   description = "A variation of ^beleagueredcastle^ with one ^freecell^ style cell added.",
   foundations = Seq(
     FoundationRules(

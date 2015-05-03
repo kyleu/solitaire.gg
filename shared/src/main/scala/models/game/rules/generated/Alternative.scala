@@ -7,6 +7,7 @@ import models.game.rules._
 object Alternative extends GameRules(
   id = "alternative",
   title = "Alternative",
+  like = Some("cloverleaf"),
   description = "This relative of ^cloverleaf^ does not allow spaces to be filled, but allows one redeal.",
   foundations = Seq(
     FoundationRules(

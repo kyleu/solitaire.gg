@@ -7,6 +7,7 @@ import models.game.rules._
 object Kiev extends GameRules(
   id = "kiev",
   title = "Kiev",
+  related = Seq("dnieper", "sevastopol"),
   description = "A version of ^ukrainian^ Solitaire where there is a stock of cards dealt to a rectangular tableau, making the whole thing rather ^" +
   "spider^ish.",
   stock = Some(

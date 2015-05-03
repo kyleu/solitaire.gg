@@ -7,6 +7,8 @@ import models.game.rules._
 object Chessboard extends GameRules(
   id = "chessboard",
   title = "Chessboard",
+  like = Some("fortress"),
+  related = Seq("castlesend", "lasker"),
   description = "A more interesting variation of ^fortress^ where you choose the base card.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

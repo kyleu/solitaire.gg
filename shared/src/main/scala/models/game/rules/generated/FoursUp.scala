@@ -7,6 +7,7 @@ import models.game.rules._
 object FoursUp extends GameRules(
   id = "foursup",
   title = "Fours Up",
+  like = Some("threescompany"),
   description = "Thomas Warfield created this game as a continuation of the series starting with the traditional games ^busyaces^ and ^deuces^. The" +
   " number of tableau piles is again reduced, but now we can build regardless of suit so the game gets a bit easier.",
   deckOptions = DeckOptions(

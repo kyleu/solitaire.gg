@@ -7,6 +7,7 @@ import models.game.rules._
 object Cheops extends GameRules(
   id = "cheops",
   title = "Cheops",
+  like = Some("pyramid"),
   description = "A variation of ^pyramid^ where you remove pairs of cards with equal or consecutive ranks",
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveOrEqualRankPairs,
   stock = Some(

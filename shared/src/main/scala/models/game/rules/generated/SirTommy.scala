@@ -7,6 +7,7 @@ import models.game.rules._
 object SirTommy extends GameRules(
   id = "sirtommy",
   title = "Sir Tommy",
+  related = Seq("alternate", "ladybetty"),
   description = "A classic old solitaire game where cards may be placed anywhere on the tableau, but cannot be rearranged.",
   stock = Some(
     StockRules(

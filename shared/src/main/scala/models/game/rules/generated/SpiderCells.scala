@@ -7,6 +7,7 @@ import models.game.rules._
 object SpiderCells extends GameRules(
   id = "spidercells",
   title = "SpiderCells",
+  like = Some("freecell"),
   description = "A ^freecell^ variant where you need to build complete alternating color sequences on the tableau.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(

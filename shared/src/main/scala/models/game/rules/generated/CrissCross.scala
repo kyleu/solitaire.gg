@@ -7,6 +7,7 @@ import models.game.rules._
 object CrissCross extends GameRules(
   id = "crisscross",
   title = "Criss Cross",
+  like = Some("simplepairs"),
   description = "A variation of ^simplepairs^ that requires a very large dose of pure luck to win.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(

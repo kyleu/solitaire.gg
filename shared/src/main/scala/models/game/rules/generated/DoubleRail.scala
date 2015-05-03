@@ -7,6 +7,7 @@ import models.game.rules._
 object DoubleRail extends GameRules(
   id = "doublerail",
   title = "Double Rail",
+  like = Some("singlerail"),
   description = "A ^fortythieves^ variation where we build regardless of suit and can move stacks.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -7,6 +7,7 @@ import models.game.rules._
 object Courtyard extends GameRules(
   id = "courtyard",
   title = "Courtyard",
+  like = Some("busyaces"),
   description = "A variation of ^busyaces^ which increases the difficulty by autofilling empty tableau spaces the waste and stock.",
   deckOptions = DeckOptions(
     numDecks = 2

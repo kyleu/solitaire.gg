@@ -7,6 +7,7 @@ import models.game.rules._
 object Dragon extends GameRules(
   id = "dragon",
   title = "Dragon",
+  like = Some("chinese"),
   description = "A variation of ^chinese^ where you build in the same suit.",
   stock = Some(
     StockRules(

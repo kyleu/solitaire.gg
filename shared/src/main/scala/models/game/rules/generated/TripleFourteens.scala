@@ -7,6 +7,7 @@ import models.game.rules._
 object TripleFourteens extends GameRules(
   id = "triplefourteens",
   title = "Triple Fourteens",
+  like = Some("fourteenout"),
   description = "An three-deck version of ^fourteenout^ which was invented by Thomas Warfield.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(

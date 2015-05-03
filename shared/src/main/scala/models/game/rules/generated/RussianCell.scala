@@ -7,6 +7,7 @@ import models.game.rules._
 object RussianCell extends GameRules(
   id = "russiancell",
   title = "Russian Cell",
+  like = Some("russian"),
   description = "Thomas Warfield's variant of ^russian^ Solitaire adds a couple cells.",
   foundations = Seq(
     FoundationRules(

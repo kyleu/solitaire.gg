@@ -7,6 +7,7 @@ import models.game.rules._
 object ChineseSpider extends GameRules(
   id = "chinesespider",
   title = "Chinese Spider",
+  like = Some("spider"),
   description = "A three-suit version of ^spider^.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

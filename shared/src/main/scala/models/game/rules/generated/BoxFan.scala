@@ -7,6 +7,7 @@ import models.game.rules._
 object BoxFan extends GameRules(
   id = "boxfan",
   title = "Box Fan",
+  like = Some("fan"),
   description = "A ^fan^ variant with building by alternate color.",
   foundations = Seq(
     FoundationRules(

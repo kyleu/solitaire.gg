@@ -7,6 +7,7 @@ import models.game.rules._
 object Quadrennial extends GameRules(
   id = "quadrennial",
   title = "Quadrennial",
+  like = Some("acquaintance"),
   description = "A version of ^leapyear^ with two redeals, or a version of ^acquaintance^ with four deck.",
   deckOptions = DeckOptions(
     numDecks = 4

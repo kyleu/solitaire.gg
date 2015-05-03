@@ -7,6 +7,7 @@ import models.game.rules._
 object YakutatBay extends GameRules(
   id = "yakutatbay",
   title = "Yakutat Bay",
+  like = Some("yukon"),
   description = "A cross between ^yukon^ and ^movingleft^.",
   foundations = Seq(
     FoundationRules(
