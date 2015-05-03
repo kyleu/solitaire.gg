@@ -31,14 +31,14 @@ case class GameRules(
   def newGame(gameId: UUID, seed: Int) = {
     val rng = new Random(new java.util.Random(seed))
     val maxPlayers = 1
-    val lowRank = if(deckOptions.lowRank == Rank.Unknown) {
+    val lowRank = if (deckOptions.lowRank == Rank.Unknown) {
       Rank.all(rng.nextInt(Rank.all.length))
     } else {
       deckOptions.lowRank
     }
-    val highRank = if(lowRank == Rank.Ace) {
+    val highRank = if (lowRank == Rank.Ace) {
       Rank.King
-    } else if(lowRank == Rank.Two) {
+    } else if (lowRank == Rank.Two) {
       Rank.Ace
     } else {
       Rank.allByValue(lowRank.value - 1)

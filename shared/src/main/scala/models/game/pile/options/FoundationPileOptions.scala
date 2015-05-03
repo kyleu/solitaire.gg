@@ -23,7 +23,7 @@ object FoundationPileOptions {
 
     val dragToConstraint = Some(Constraint("foundation", (pile: Pile, cards: Seq[Card], gameState: GameState) => {
       if (cards.length == 1) {
-        if(rules.maxCards > -1 && pile.cards.length >= rules.maxCards) {
+        if (rules.maxCards > -1 && pile.cards.length >= rules.maxCards) {
           false
         } else {
           val firstCard = cards.headOption.getOrElse(throw new IllegalStateException())

@@ -1,7 +1,7 @@
 package models.game.pile.options
 
 import models.game.Rank
-import models.game.pile.actions.SelectCardActions
+import models.game.pile.actions.KlondikeActions
 import models.game.pile.constraints.Constraints
 import models.game.rules.TableauRules
 
@@ -16,7 +16,7 @@ object TableauPileOptions {
       selectCardConstraint = Some(Constraints.klondikeSelectCard),
       dragFromConstraint = Some(Constraints.klondikeDragFrom),
       dragToConstraint = Some(Constraints.klondikeTableauDragTo(Some(Rank.King))),
-      selectCardAction = Some(SelectCardActions.klondike)
+      selectCardAction = Some(KlondikeActions.klondike)
     )
   }
 }

@@ -7,7 +7,7 @@ sealed trait RankMatchRule {
 }
 
 object RankMatchRule {
-  private[this] def upBy(i: Int, l: Rank, r: Rank, lowRank: Rank) = if(lowRank == Rank.Ace && l == Rank.Ace) {
+  private[this] def upBy(i: Int, l: Rank, r: Rank, lowRank: Rank) = if (lowRank == Rank.Ace && l == Rank.Ace) {
     i match {
       case 1 => r == Rank.Two
       case 2 => r == Rank.Three
@@ -18,7 +18,7 @@ object RankMatchRule {
     l.value == r.value - i
   }
 
-  private[this] def downBy(i: Int, l: Rank, r: Rank, lowRank: Rank) = if(lowRank == Rank.Ace && l == Rank.Ace) {
+  private[this] def downBy(i: Int, l: Rank, r: Rank, lowRank: Rank) = if (lowRank == Rank.Ace && l == Rank.Ace) {
     i match {
       case 1 => r == Rank.King
       case 2 => r == Rank.Queen

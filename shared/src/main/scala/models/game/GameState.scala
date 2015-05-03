@@ -38,7 +38,7 @@ case class GameState(
   }
 
   def addCards(cards: Seq[Card], pile: String, reveal: Boolean = false) = cards.foreach(c => addCard(c, pile, reveal))
-  def addCardsFromDeck(numCards: Int, pile: String, reveal: Boolean = false, uniqueRanks: Boolean = false) = if(uniqueRanks) {
+  def addCardsFromDeck(numCards: Int, pile: String, reveal: Boolean = false, uniqueRanks: Boolean = false) = if (uniqueRanks) {
     addCards(deck.getCardsUniqueRanks(pilesById(pile).cards.map(_.r), numCards, reveal), pile, reveal)
   } else {
     addCards(deck.getCards(numCards, reveal), pile, reveal)

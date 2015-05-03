@@ -6,15 +6,15 @@ import models.game.rules.{ StockRules, StockCardsDealt, StockDealTo }
 
 object StockPileOptions {
   def apply(rules: StockRules, pileIdsByType: Map[String, Seq[String]]) = {
-    val dragFromConstraint = if(rules.dealTo == StockDealTo.Manually) {
+    val dragFromConstraint = if (rules.dealTo == StockDealTo.Manually) {
       Some(Constraints.topCardOnly)
-    } else if(rules.dealTo == StockDealTo.WasteOrPairManually) {
+    } else if (rules.dealTo == StockDealTo.WasteOrPairManually) {
       None // TODO Some(Constraints.topCardOnly)?
     } else {
       None
     }
 
-    val selectCardConstraint = if(rules.dealTo == StockDealTo.TableauIfNoneEmpty) {
+    val selectCardConstraint = if (rules.dealTo == StockDealTo.TableauIfNoneEmpty) {
       Some(Constraints.allOf("all-non-empty-top-card", Constraints.allNonEmpty(pileIdsByType("tableaus")), Constraints.topCardOnly))
     } else {
       Some(Constraints.topCardOnly)
@@ -50,9 +50,9 @@ object StockPileOptions {
     }
 
     val selectCardAction = if (drawTo.nonEmpty) {
-      if(rules.dealTo == StockDealTo.Manually) {
+      if (rules.dealTo == StockDealTo.Manually) {
         None
-      } else if(rules.dealTo == StockDealTo.TableauNonEmpty) {
+      } else if (rules.dealTo == StockDealTo.TableauNonEmpty) {
         Some(SelectCardActions.drawToNonEmptyPiles(cardsToDraw, drawTo, Some(true)))
       } else {
         Some(SelectCardActions.drawToPiles(cardsToDraw, drawTo, Some(true)))
@@ -61,7 +61,7 @@ object StockPileOptions {
       None
     }
 
-    val selectPileAction = if(redrawFrom.isEmpty) { None } else { Some(SelectPileActions.moveAllFrom(redrawFrom)) }
+    val selectPileAction = if (redrawFrom.isEmpty) { None } else { Some(SelectPileActions.moveAllFrom(redrawFrom)) }
 
     PileOptions(
       cardsShown = Some(rules.cardsShown),

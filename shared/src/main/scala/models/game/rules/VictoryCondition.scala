@@ -11,7 +11,7 @@ object VictoryCondition {
     override def check(gs: GameState) = !gs.pileSets.exists(ps => ps.behavior != "foundation" && ps.piles.exists(_.cards.nonEmpty))
   }
   case object AllButFourCardsOnFoundation extends VictoryCondition {
-    override def check(gs: GameState) = gs.pileSets.flatMap(ps => if(ps.behavior == "foundation") {
+    override def check(gs: GameState) = gs.pileSets.flatMap(ps => if (ps.behavior == "foundation") {
       Nil
     } else {
       ps.piles.flatMap(_.cards)

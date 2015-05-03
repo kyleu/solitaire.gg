@@ -10,30 +10,6 @@ case class SelectCardAction(id: String, f: (Pile, Card, GameState) => Seq[Respon
 object SelectCardActions {
   val none = SelectCardAction("none", (pile, card, gameState) => Nil)
 
-  val klondike = SelectCardAction("klondike", (pile, card, gameState) => {
-    if (!card.u) {
-      card.u = true
-      gameState.revealCardToAll(card)
-    } else {
-      val foundations = gameState.pileSets.filter(_.behavior == "foundation").flatMap(_.piles)
-      val foundation = foundations.flatMap { f =>
-        if (f.cards.isEmpty && card.r == Rank.Ace) {
-          Some(f)
-        } else if (f.cards.lastOption.map(_.s) == Some(card.s) && f.cards.lastOption.map(_.r) == Some(Rank.Ace) && card.r == Rank.Two) {
-          Some(f)
-        } else if (f.cards.lastOption.map(_.s) == Some(card.s) && f.cards.lastOption.map(_.r.value) == Some(card.r.value - 1)) {
-          Some(f)
-        } else {
-          None
-        }
-      }.headOption
-      foundation match {
-        case Some(f) => moveCard(card, pile, f, gameState)
-        case None => Nil
-      }
-    }
-  })
-
   def drawToPile(cardsToDraw: Int, drawTo: String, turn: Option[Boolean] = None) = drawToPiles(cardsToDraw, Seq(drawTo), turn)
 
   def drawToPiles(cardsToDraw: Int, drawTo: Seq[String], turn: Option[Boolean] = None) = {
@@ -51,7 +27,7 @@ object SelectCardActions {
   def drawToNonEmptyPiles(cardsToDraw: Int, drawTo: Seq[String], turn: Option[Boolean] = None) = SelectCardAction("draw-to-piles", (pile, card, gameState) => {
     drawTo.flatMap { p =>
       val tgt = gameState.pilesById(p)
-      if(tgt.cards.nonEmpty) {
+      if (tgt.cards.nonEmpty) {
         val cards = pile.cards.takeRight(cardsToDraw).reverse
         cards.flatMap { card =>
           moveCard(card, pile, tgt, gameState, turn = turn)
@@ -93,7 +69,7 @@ object SelectCardActions {
     }
   })
 
-  private[this] def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turn: Option[Boolean] = None) = {
+  def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turn: Option[Boolean] = None) = {
     src.removeCard(card)
     tgt.addCard(card)
     val msg = CardMoved(card.id, src.id, tgt.id, turn = turn)

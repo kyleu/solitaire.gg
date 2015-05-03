@@ -1,6 +1,6 @@
 package models.game.pile.options
 
-import models.game.pile.actions.SelectCardActions
+import models.game.pile.actions.KlondikeActions
 import models.game.pile.constraints.Constraints
 import models.game.rules.WasteRules
 
@@ -11,7 +11,7 @@ object WastePileOptions {
       direction = Some("r"),
       selectCardConstraint = Some(Constraints.klondikeSelectCard),
       dragFromConstraint = Some(Constraints.topCardOnly),
-      selectCardAction = Some(SelectCardActions.klondike)
+      selectCardAction = Some(KlondikeActions.klondike)
     )
   }
 }
