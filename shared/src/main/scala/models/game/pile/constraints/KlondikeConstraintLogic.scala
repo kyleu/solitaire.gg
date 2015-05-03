@@ -20,19 +20,6 @@ object KlondikeConstraintLogic {
     valid
   }
 
-  val foundationDragTo = (pile: Pile, cards: Seq[Card], gameState: GameState) => if (cards.length == 1) {
-    val firstCard = cards.headOption.getOrElse(throw new IllegalStateException())
-    if (pile.cards.isEmpty) {
-      firstCard.r == Rank.Ace
-    } else if (pile.cards.last.s == firstCard.s && pile.cards.last.r == Rank.Ace && firstCard.r == Rank.Two) {
-      true
-    } else {
-      pile.cards.last.s == firstCard.s && pile.cards.last.r.value + 1 == firstCard.r.value
-    }
-  } else {
-    false
-  }
-
   def tableauDragTo(emptyPileRank: Option[Rank]) = (pile: Pile, cards: Seq[Card], gameState: GameState) => if (pile.cards.isEmpty) {
     emptyPileRank match {
       case Some(r) => cards.headOption.getOrElse(throw new IllegalStateException()).r == r

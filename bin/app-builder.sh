@@ -22,7 +22,7 @@ mkdir -p build/dev/web/assets
 
 cp "../target/web/rjs/build/client-opt.js" "build/dev/web"
 cp "../target/web/rjs/build/client-opt.js.map" "build/dev/web"
-cp -R "../app/assets/javascripts" "build/dev/web/assets"
+cp -R "../app/assets/javascripts/" "build/dev/web/assets/javascripts"
 mv "build/dev/web/assets/javascripts/main.js" "build/dev/web/assets/javascripts/scalataire.js"
 cp "../target/web/less/main/stylesheets/scalataire.css" "build/dev/web"
 cp "../target/web/less/main/stylesheets/scalataire.css.map" "build/dev/web"

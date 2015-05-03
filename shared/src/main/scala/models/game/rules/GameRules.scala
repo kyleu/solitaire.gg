@@ -89,7 +89,7 @@ case class GameRules(
       waste.map(w => WasteSet(w)) ++
       reserves.map(r => ReserveSet(r)) ++
       cells.map(c => CellSet(c)) ++
-      foundations.map(f => FoundationSet(f)) ++
+      foundations.map(f => FoundationSet(f, deckOptions)) ++
       tableaus.map(t => TableauSet(t)) ++
       pyramids.map(p => PyramidSet(p))
   }.toSeq

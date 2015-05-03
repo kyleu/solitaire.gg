@@ -1,16 +1,16 @@
 package models.game.pile
 
 import models.game.pile.options.FoundationPileOptions
-import models.game.rules.FoundationRules
+import models.game.rules.{ DeckOptions, FoundationRules }
 
 object FoundationSet {
-  def apply(foundationRules: FoundationRules): FoundationSet = {
+  def apply(foundationRules: FoundationRules, deckOptions: DeckOptions): FoundationSet = {
     val prefix = if (foundationRules.setNumber == 0) {
       "foundation-"
     } else {
       "foundation" + foundationRules.setNumber + "-"
     }
-    val options = FoundationPileOptions(foundationRules)
+    val options = FoundationPileOptions(foundationRules, deckOptions)
     val piles = (1 to foundationRules.numPiles).map { i =>
       Pile(prefix + i, options)
     }
