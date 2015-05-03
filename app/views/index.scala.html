@@ -22,7 +22,10 @@
           <div class="panel-body">
             <ul>
             @for(r <- models.game.rules.GameRulesSet.completed) {
-              <li><a href="@routes.HomeController.newGame(r)">@models.game.rules.GameRulesSet.allById(r).title</a></li>
+              <li>
+                <a href="@routes.HomeController.newGame(r)">@models.game.rules.GameRulesSet.allById(r).title</a>
+                <a href="@routes.HomeController.help(r)"><span class="glyphicon glyphicon-question-sign"></span></a>
+              </li>
             }
             </ul>
           </div>
@@ -36,7 +39,10 @@
             <div class="panel-body">
               <ul>
               @for(r <- models.game.rules.GameRulesSet.unfinished) {
-                <li><a href="@routes.HomeController.newGame(r.id)">@r.title</a></li>
+                <li>
+                  <a href="@routes.HomeController.newGame(r.id)">@r.title</a>
+                  <a href="@routes.HomeController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
+                </li>
               }
               </ul>
             </div>

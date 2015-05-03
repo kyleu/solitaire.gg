@@ -1,6 +1,7 @@
 package controllers
 
 import controllers.BaseController.AuthenticatedAction
+import models.game.rules.GameRulesSet
 import services.AccountService
 
 object HomeController extends BaseController {
@@ -22,6 +23,13 @@ object HomeController extends BaseController {
     Redirect(routes.HomeController.index()).withSession {
       request.session + ("name" -> name)
     }.flashing("success" -> "Name changed.")
+  }
+
+  def help(id: String) = AuthenticatedAction { implicit request =>
+    GameRulesSet.allById.get(id) match {
+      case Some(rules) => Ok(views.html.help(rules))
+      case None => Ok("We can't find and information about that game.")
+    }
   }
 
   def newDefaultGame() = AuthenticatedAction { implicit request =>
