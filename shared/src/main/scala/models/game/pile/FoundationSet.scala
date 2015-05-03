@@ -8,7 +8,7 @@ object FoundationSet {
     val prefix = if (foundationRules.setNumber == 0) {
       "foundation-"
     } else {
-      "foundation" + foundationRules.setNumber + "-"
+      "foundation" + (foundationRules.setNumber + 1) + "-"
     }
     val options = FoundationPileOptions(foundationRules, deckOptions)
     val piles = (1 to foundationRules.numPiles).map { i =>

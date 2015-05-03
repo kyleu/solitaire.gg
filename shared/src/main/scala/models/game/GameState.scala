@@ -3,13 +3,18 @@ package models.game
 import java.util.UUID
 
 import models.game.pile.PileSet
-import models.{ CardHidden, CardRevealed }
 
 case class GameState(
-    gameId: UUID, rules: String, maxPlayers: Int, seed: Int, deck: Deck, pileSets: Seq[PileSet], layout: String, var players: Seq[GamePlayer] = Nil
-) {
+    gameId: UUID,
+    rules: String,
+    maxPlayers: Int,
+    seed: Int, deck:
+    Deck, pileSets: Seq[PileSet],
+    layout: String,
+    var players: Seq[GamePlayer] = Nil
+) extends GameStateHelper {
 
-  private[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
+  protected[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
   val cardsById = collection.mutable.HashMap[UUID, Card]()
 
   val piles = pileSets.flatMap(_.piles)
@@ -27,53 +32,6 @@ case class GameState(
       }
       players = players :+ GamePlayer(accountId, name)
       playerKnownIds(accountId) = collection.mutable.HashSet.empty
-  }
-
-  def addCard(card: Card, pile: String, reveal: Boolean = false) {
-    this.cardsById(card.id) = card
-    this.pilesById(pile).addCard(card)
-    if (reveal) {
-      revealCardToAll(card)
-    }
-  }
-
-  def addCards(cards: Seq[Card], pile: String, reveal: Boolean = false) = cards.foreach(c => addCard(c, pile, reveal))
-  def addCardsFromDeck(numCards: Int, pile: String, reveal: Boolean = false, uniqueRanks: Boolean = false) = if (uniqueRanks) {
-    addCards(deck.getCardsUniqueRanks(pilesById(pile).cards.map(_.r), numCards, reveal), pile, reveal)
-  } else {
-    addCards(deck.getCards(numCards, reveal), pile, reveal)
-  }
-
-  def revealCardToAll(card: Card) = if (playerKnownIds.keys.exists(p => revealCardToPlayer(card, p))) {
-    Seq(CardRevealed(card))
-  } else {
-    Nil
-  }
-
-  def revealCardToPlayer(card: Card, player: UUID) = {
-    val existing = playerKnownIds(player)
-    if (!existing.contains(card.id)) {
-      existing += card.id
-      true
-    } else {
-      false
-    }
-  }
-
-  def hideCardFromAll(card: Card) = if (playerKnownIds.keys.exists(p => hideCardFromPlayer(card, p))) {
-    Seq(CardHidden(card.id))
-  } else {
-    Nil
-  }
-
-  def hideCardFromPlayer(card: Card, player: UUID) = {
-    val existing = playerKnownIds(player)
-    if (existing.contains(card.id)) {
-      existing -= card.id
-      true
-    } else {
-      false
-    }
   }
 
   def getCard(id: UUID) = piles.flatMap(_.cards.find(_.id == id)).headOption.getOrElse(throw new IllegalStateException("Invalid card [" + id + "]."))

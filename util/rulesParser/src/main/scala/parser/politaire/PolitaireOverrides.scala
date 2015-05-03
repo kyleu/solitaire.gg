@@ -5,6 +5,15 @@ object PolitaireOverrides {
     "accordion" -> Map(
       "W0cardsShown" -> 52
     ),
+    "alternative" -> Map(
+      "Tn" -> 2,
+      "T0n" -> 8,
+      "T1n" -> 8,
+      "T1d" -> 3,
+      "T1f" -> 5,
+      "T1s" -> 1,
+      "T1r" -> 160
+    ),
     "bakersdozen" -> Map(
       "Sn" -> 0,
       "Tn" -> 2,

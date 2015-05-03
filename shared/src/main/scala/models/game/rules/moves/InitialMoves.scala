@@ -14,9 +14,10 @@ object InitialMoves {
     FoundationInitialMoves.performInitialMoves(rules, gameState)
 
     rules.reserves.foreach { rr =>
-      (0 until rr.initialCards).foreach { i =>
-        val col = (i % rr.numPiles) + 1
-        gameState.addCardsFromDeck(1, "reserve-" + col, reveal = true)
+      (1 to rr.numPiles).foreach { p =>
+        (0 until rr.initialCards).foreach { i =>
+          gameState.addCardsFromDeck(1, "reserve-" + p, reveal = true)
+        }
       }
     }
 

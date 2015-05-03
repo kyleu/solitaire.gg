@@ -8,7 +8,7 @@ object PyramidSet {
     val prefix = if (pyramidRules.setNumber == 0) {
       "pyramid-"
     } else {
-      "pyramid" + pyramidRules.setNumber + "-"
+      "pyramid" + (pyramidRules.setNumber + 1) + "-"
     }
     val pileOptions = PyramidPileOptions(pyramidRules)
     val piles = pileOptions.map {

@@ -1,5 +1,7 @@
 package models.game.pile
 
+import models.game.rules.GameRulesSet
+
 /**
  * Layout key:
  *   s - Stock
@@ -17,6 +19,8 @@ package models.game.pile
 object Layouts {
   val layouts = Map(
     "accordion" -> "wf",
+    "acesandkings" -> "swff|::r:t",
+    "alternative" -> ":.f:f|t|t",
     "bakersdozen" -> ":.f|t|.t",
     "canfield" -> "sw:f|:r:t",
     "congress" -> "sw|f|t",
@@ -38,11 +42,49 @@ object Layouts {
     "sandboxb" -> "s",
     "spider" -> "s:f|t",
     "tournament" -> "sff|:c|::t",
+    "tripleklondike" -> "swf|:t",
     "trustytwelve" -> "s|t|t",
     "yukon" -> ":::f|t"
-  )
+  ) ++ Seq(
+    "aceofhearts"
+  ).map( id => id -> defaultLayout(id))
 
-  def forRules(v: String) = {
-    layouts.getOrElse(v, "s")
+  def forRules(id: String) = {
+    layouts.getOrElse(id, defaultLayout(id))
+  }
+
+  private[this] def defaultLayout(id: String) = {
+    var ret = ""
+    val rules = GameRulesSet.allById(id)
+
+    if(rules.stock.isDefined) {
+      ret += "s"
+    }
+    if(rules.waste.isDefined) {
+      ret += "w"
+    }
+    for(f <- rules.foundations) {
+      ret += "f"
+    }
+    if(rules.reserves.isDefined) {
+      ret += "|r"
+    }
+    if(rules.cells.isDefined) {
+      ret += "|c"
+    }
+    if(rules.tableaus.nonEmpty) {
+      ret += "|"
+    }
+    for(t <- rules.tableaus) {
+      ret += "t"
+    }
+    if(rules.pyramids.nonEmpty) {
+      ret += "|"
+    }
+    for(p <- rules.pyramids) {
+      ret += "p"
+    }
+
+    ret
   }
 }
