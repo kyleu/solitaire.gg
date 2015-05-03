@@ -19,18 +19,7 @@ object TrustyTwelve extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      numPiles = 6,
-      cardsShown = 2,
-      initialCards = InitialCards.Count(1),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.Any,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
-    ),
-    TableauRules(
-      setNumber = 1,
-      numPiles = 6,
+      numPiles = 12,
       cardsShown = 2,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),

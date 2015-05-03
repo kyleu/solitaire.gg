@@ -20,15 +20,15 @@ object Layouts {
   val layouts = Map(
     "accordion" -> "wf",
     "acesandkings" -> "swff|::r:t",
-    "alternative" -> ":.f:f|t|t",
+    "alternative" -> ":.f:f|2t",
     "bakersdozen" -> ":.f|t|.t",
     "canfield" -> "sw:f|:r:t",
     "congress" -> "sw|f|t",
-    "cruel" -> "::f|t|t",
+    "cruel" -> "::f|2t",
     "doubleklondike" -> "swf|:t",
     "flowergarden" -> ":f|t|w",
     "freecell" -> "f:c|.t|",
-    "fourteenout" -> "t|tf",
+    "fourteenout" -> "2tf",
     "fortyandeight" -> "sw|f|t",
     "golf" -> "t|f:s",
     "gypsy" -> "sf|:t",
@@ -43,7 +43,7 @@ object Layouts {
     "spider" -> "s:f|t",
     "tournament" -> "sff|:c|::t",
     "tripleklondike" -> "swf|:t",
-    "trustytwelve" -> "s|t|t",
+    "trustytwelve" -> "s|2t",
     "yukon" -> ":::f|t"
   ) ++ Seq(
     "aceofhearts"

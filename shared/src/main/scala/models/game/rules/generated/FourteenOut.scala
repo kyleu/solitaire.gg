@@ -20,23 +20,7 @@ object FourteenOut extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      numPiles = 6,
-      initialCards = InitialCards.Custom,
-      customInitialCards = Seq(
-        "UUUUU",
-        "UUUUU",
-        "UUUUU",
-        "UUUUU",
-        "UUUU",
-        "UUUU"
-      ),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.None,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None
-    ),
-    TableauRules(
-      setNumber = 1,
-      numPiles = 6,
+      numPiles = 12,
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.None,

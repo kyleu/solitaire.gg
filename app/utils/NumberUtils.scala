@@ -16,14 +16,7 @@ object NumberUtils {
       case 10 => "ten"
       case 11 => "eleven"
       case 12 => "twelve"
-      case 13 => "thirteen"
-      case 14 => "fourteen"
-      case 15 => "fifteen"
-      case 16 => "sixteen"
-      case 17 => "seventeen"
-      case 18 => "eightteen"
-      case 19 => "nineteen"
-      case i => throw new NotImplementedError(i.toString)
+      case _ => i.toString
     }
     if(properCase) {
       ret.head.toUpper + ret.tail

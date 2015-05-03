@@ -30,16 +30,7 @@ object Alternative extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      numPiles = 8,
-      initialCards = InitialCards.Count(3),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None
-    ),
-    TableauRules(
-      setNumber = 1,
-      numPiles = 8,
+      numPiles = 16,
       initialCards = InitialCards.Count(3),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,

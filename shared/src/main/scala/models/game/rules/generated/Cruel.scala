@@ -19,15 +19,7 @@ object Cruel extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      numPiles = 6,
-      initialCards = InitialCards.Count(4),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None
-    ),
-    TableauRules(
-      setNumber = 1,
-      numPiles = 6,
+      numPiles = 12,
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,

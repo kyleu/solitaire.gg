@@ -45,7 +45,7 @@ object GameRulesHelpService {
       case 'f' =>
         val fr = rules.foundations(foundationsProcessed)
         foundationsProcessed += 1
-        Some(FoundationHelpService.foundation(fr))
+        Some(FoundationHelpService.foundation(fr, rules.deckOptions))
       case 't' =>
         val tr = rules.tableaus(tableausProcessed)
         tableausProcessed += 1

@@ -4,7 +4,7 @@ define(function () {
   var margin = 0.7;
   var padding = 0.2;
 
-  function getDimensions(pileSet) {
+  function getDimensions(pileSet, divisor) {
     if(pileSet.dimensions !== undefined) {
       return pileSet.dimensions;
     }
@@ -20,7 +20,19 @@ define(function () {
         break;
       case "tableau":
         var maxCards = _.max(pileSet.piles, function(pile) { return pile.cards.length; }).cards.length;
-        ret = [ret[0], ret[1] + ((maxCards - 2) * padding)];
+        var maxCardsShown = _.max(pileSet.piles, function(pile) { if(pile.options !== undefined) {
+          return pile.options.cardsShown;
+        } else {
+          return 0;
+        } });
+        if(maxCardsShown.options !== undefined && maxCardsShown.options.cardsShown > 0) {
+          maxCards = maxCardsShown;
+        }
+        if(divisor > 1) {
+          ret = [ret[0] / divisor, 1 + ((maxCards - 1) * padding)];
+        } else {
+          ret = [ret[0], ret[1] + ((maxCards - 1) * padding)];
+        }
         break;
       case "pyramid":
         var rows = 1;
@@ -52,6 +64,7 @@ define(function () {
     var currentRowMaxHeight = 1.0;
     var maxWidth = 0;
     var lastChar = null;
+    var currentDivisor = 0;
 
     function newRow() {
       if(xOffset > maxWidth) {
@@ -84,12 +97,21 @@ define(function () {
         case '|':
           newRow();
           break;
+        case '2':
+          currentDivisor = 2;
+          break;
+        case '3':
+          currentDivisor = 3;
+          break;
+        case '4':
+          currentDivisor = 4;
+          break;
         default:
           if(pileSet === undefined) {
             throw "Unable to find set matching [" + c + "]";
           }
           remainingPileSets = _.without(remainingPileSets, pileSet);
-          var pileSetDimensions = getDimensions(pileSet);
+          var pileSetDimensions = getDimensions(pileSet, currentDivisor);
           //console.log(pileSet);
           if(pileSet.visible !== undefined && !pileSet.visible) { // Hide this pile
             _.each(pileSet.piles, function(pile, pileIndex) {
@@ -97,6 +119,9 @@ define(function () {
               locations[pile.id] = {x: (pileIndex * (1 + padding)) + 0.5, y: -0.5};
             });
           } else {
+            if(pileSetDimensions[1] > currentRowMaxHeight) {
+              currentRowMaxHeight = pileSetDimensions[1];
+            }
             if(pileSet.behavior === "pyramid") {
               var currentRow = 1;
               var rowCounter = 0;
@@ -114,16 +139,22 @@ define(function () {
               });
             } else {
               var originalXOffset = xOffset;
-              _.each(pileSet.piles, function(pile) {
+              var groupSize = pileSet.piles.length;
+              if(currentDivisor > 0) {
+                groupSize = pileSet.piles.length / currentDivisor;
+              }
+              _.each(pileSet.piles, function(pile, pileIndex) {
+                if(pileIndex == groupSize) {
+                  newRow();
+                  currentRowMaxHeight = pileSetDimensions[1];
+                }
                 locations[pile.id] = {x: xOffset, y: yOffset};
                 xOffset = xOffset + 1 + padding;
               });
               xOffset = originalXOffset + pileSetDimensions[0];
             }
-            if(pileSetDimensions[1] > currentRowMaxHeight) {
-              currentRowMaxHeight = pileSetDimensions[1];
-            }
           }
+          currentDivisor = 0;
           break;
       }
       lastChar = c;
