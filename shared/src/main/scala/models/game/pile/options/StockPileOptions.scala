@@ -9,7 +9,7 @@ object StockPileOptions {
     val dragFromConstraint = if(rules.dealTo == StockDealTo.Manually) {
       Some(Constraints.topCardOnly)
     } else if(rules.dealTo == StockDealTo.WasteOrPairManually) {
-      Some(Constraints.topCardOnly)
+      None // TODO Some(Constraints.topCardOnly)?
     } else {
       None
     }
@@ -22,7 +22,7 @@ object StockPileOptions {
 
     val selectPileConstraint = rules.maximumDeals match {
       case Some(1) => Some(Constraints.never)
-      case Some(i) => Some(Constraints.finiteTimes(i))
+      case Some(i) => Some(Constraints.empty) // TODO throw new NotImplementedError()
       case None => Some(Constraints.empty)
     }
 
@@ -46,8 +46,7 @@ object StockPileOptions {
 
     val redrawFrom = rules.maximumDeals match {
       case Some(1) => Nil
-      case None => drawTo
-      case _ => drawTo // TODO throw new NotImplementedError()
+      case _ => drawTo
     }
 
     val selectCardAction = if (drawTo.nonEmpty) {

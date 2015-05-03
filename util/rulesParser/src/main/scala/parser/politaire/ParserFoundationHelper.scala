@@ -13,6 +13,7 @@ trait ParserFoundationHelper { this: GameRulesParser =>
         case -1 => 4 * deckOptions.numDecks
         case x => x
       }
+      val visible = !getBoolean(prefix + "i")
       FoundationRules(
         name = getString(prefix + "Nm"),
         numPiles = numPiles,
@@ -32,20 +33,24 @@ trait ParserFoundationHelper { this: GameRulesParser =>
         wrapFromKingToAce = getBoolean(prefix + "w"),
         moveCompleteSequencesOnly = getBoolean(prefix + "cs"),
         maxCards = getInt(prefix + "m"),
-        canMoveFrom = try {
-          getInt(prefix + "mb") match {
-            case 0 => FoundationCanMoveFrom.Never
-            case 1 => FoundationCanMoveFrom.Always
-            case 2 => FoundationCanMoveFrom.EmptyStock
-          }
-        } catch {
-          case x: IllegalArgumentException => getBoolean(prefix + "mb") match {
-            case false => FoundationCanMoveFrom.Never
-            case true => FoundationCanMoveFrom.Always
+        canMoveFrom = if(!visible) {
+          FoundationCanMoveFrom.Never
+        } else {
+          try {
+            getInt(prefix + "mb") match {
+              case 0 => FoundationCanMoveFrom.Never
+              case 1 => FoundationCanMoveFrom.Always
+              case 2 => FoundationCanMoveFrom.EmptyStock
+            }
+          } catch {
+            case x: IllegalArgumentException => getBoolean(prefix + "mb") match {
+              case false => FoundationCanMoveFrom.Never
+              case true => FoundationCanMoveFrom.Always
+            }
           }
         },
         mayMoveToFrom = PolitaireLookup.parseBitmask("F0o", getInt(prefix + "o")),
-        visible = !getBoolean(prefix + "i"),
+        visible = visible,
         autoMoveCards = getBoolean(prefix + "a"),
         autoMoveFrom = PolitaireLookup.parseBitmask("F0ao", getInt(prefix + "ao"))
       )
