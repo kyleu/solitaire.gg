@@ -23,7 +23,6 @@ object Canfield extends GameRules(
       numPiles = 4,
       initialCards = 1,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

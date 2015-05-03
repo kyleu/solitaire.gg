@@ -17,7 +17,6 @@ object Gloucestershire extends GameRules(
       numPiles = 4,
       wrapFromKingToAce = true,
       maxCards = 26,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

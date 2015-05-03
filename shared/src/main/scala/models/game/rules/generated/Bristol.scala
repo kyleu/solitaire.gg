@@ -23,7 +23,6 @@ object Bristol extends GameRules(
       numPiles = 4,
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

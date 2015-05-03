@@ -22,8 +22,7 @@ object ChineseSpider extends GameRules(
     FoundationRules(
       numPiles = 16,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      moveCompleteSequencesOnly = true
     )
   ),
   tableaus = Seq(

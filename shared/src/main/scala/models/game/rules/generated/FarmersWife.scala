@@ -18,8 +18,7 @@ object FarmersWife extends GameRules(
       numPiles = 4,
       suitMatchRule = SuitMatchRule.DifferentSuits,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      moveCompleteSequencesOnly = true
     )
   ),
   tableaus = Seq(

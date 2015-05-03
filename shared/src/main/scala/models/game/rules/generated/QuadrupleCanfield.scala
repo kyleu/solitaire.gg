@@ -23,7 +23,6 @@ object QuadrupleCanfield extends GameRules(
       numPiles = 16,
       initialCards = 1,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

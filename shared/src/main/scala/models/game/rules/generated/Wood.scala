@@ -25,7 +25,6 @@ object Wood extends GameRules(
       initialCards = 1,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

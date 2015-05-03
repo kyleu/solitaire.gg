@@ -23,7 +23,6 @@ object Fly extends GameRules(
       initialCards = 8,
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

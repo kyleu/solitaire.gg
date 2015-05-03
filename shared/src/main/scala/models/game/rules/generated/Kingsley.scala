@@ -21,7 +21,6 @@ object Kingsley extends GameRules(
       lowRank = FoundationLowRank.DeckHighRank,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

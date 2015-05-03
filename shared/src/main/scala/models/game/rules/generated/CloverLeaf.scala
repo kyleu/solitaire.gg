@@ -15,7 +15,6 @@ object CloverLeaf extends GameRules(
       numPiles = 2,
       initialCards = 2,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -26,7 +25,6 @@ object CloverLeaf extends GameRules(
       initialCards = 2,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

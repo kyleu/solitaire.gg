@@ -20,8 +20,7 @@ object Dorothy extends GameRules(
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       rankMatchRule = RankMatchRule.DownBy2,
       wrapFromKingToAce = true,
-      maxCards = 5,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      maxCards = 5
     ),
     FoundationRules(
       setNumber = 1,
@@ -29,16 +28,14 @@ object Dorothy extends GameRules(
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       rankMatchRule = RankMatchRule.DownBy2,
       wrapFromKingToAce = true,
-      maxCards = 5,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      maxCards = 5
     ),
     FoundationRules(
       setNumber = 2,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       wrapFromKingToAce = true,
-      maxCards = 3,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      maxCards = 3
     )
   ),
   complete = false

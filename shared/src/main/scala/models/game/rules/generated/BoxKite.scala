@@ -16,7 +16,6 @@ object BoxKite extends GameRules(
       numPiles = 4,
       initialCards = 4,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -26,7 +25,6 @@ object BoxKite extends GameRules(
       initialCards = 4,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

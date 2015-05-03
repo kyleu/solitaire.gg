@@ -21,7 +21,6 @@ object Eighteens extends GameRules(
       lowRank = FoundationLowRank.AnyCard,
       wrapFromKingToAce = true,
       maxCards = 0,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

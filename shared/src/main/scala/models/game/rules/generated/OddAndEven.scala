@@ -21,16 +21,14 @@ object OddAndEven extends GameRules(
     FoundationRules(
       numPiles = 4,
       rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     ),
     FoundationRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     )
   ),
   tableaus = Seq(

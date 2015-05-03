@@ -24,7 +24,6 @@ object ThreeDemons extends GameRules(
       numPiles = 12,
       initialCards = 1,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

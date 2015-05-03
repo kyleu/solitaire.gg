@@ -20,8 +20,7 @@ object Scorpion extends GameRules(
     FoundationRules(
       numPiles = 4,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      moveCompleteSequencesOnly = true
     )
   ),
   tableaus = Seq(

@@ -25,7 +25,6 @@ object DoubleDot extends GameRules(
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
       maxCards = 13,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -36,7 +35,6 @@ object DoubleDot extends GameRules(
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
       maxCards = 13,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

@@ -17,7 +17,6 @@ object BuffaloBill extends GameRules(
       name = "Aces Foundation",
       numPiles = 4,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -27,7 +26,6 @@ object BuffaloBill extends GameRules(
       lowRank = FoundationLowRank.DeckHighRank,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

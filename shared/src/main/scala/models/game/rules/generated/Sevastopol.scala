@@ -19,7 +19,6 @@ object Sevastopol extends GameRules(
       numPiles = 4,
       wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

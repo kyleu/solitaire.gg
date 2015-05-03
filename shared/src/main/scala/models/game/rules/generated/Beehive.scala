@@ -23,7 +23,6 @@ object Beehive extends GameRules(
       wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true,
       maxCards = 4,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

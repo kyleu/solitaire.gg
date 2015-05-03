@@ -23,8 +23,7 @@ object Trillium extends GameRules(
       numPiles = 8,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      moveCompleteSequencesOnly = true
     )
   ),
   tableaus = Seq(

@@ -24,7 +24,6 @@ object Escalator extends GameRules(
       rankMatchRule = RankMatchRule.UpOrDown,
       wrapFromKingToAce = true,
       maxCards = 0,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

@@ -21,7 +21,6 @@ object SuitTriangle extends GameRules(
     FoundationRules(
       numPiles = 8,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

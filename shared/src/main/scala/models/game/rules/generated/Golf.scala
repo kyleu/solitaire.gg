@@ -23,7 +23,6 @@ object Golf extends GameRules(
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,
       maxCards = 0,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

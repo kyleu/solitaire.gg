@@ -23,7 +23,6 @@ object Caprice extends GameRules(
       numPiles = 4,
       initialCards = 4,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -34,7 +33,6 @@ object Caprice extends GameRules(
       initialCards = 4,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

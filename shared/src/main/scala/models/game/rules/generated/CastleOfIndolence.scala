@@ -17,7 +17,6 @@ object CastleOfIndolence extends GameRules(
       numPiles = 8,
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

@@ -19,7 +19,6 @@ object Bisley extends GameRules(
       numPiles = 4,
       initialCards = 4,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -28,7 +27,6 @@ object Bisley extends GameRules(
       lowRank = FoundationLowRank.DeckHighRank,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

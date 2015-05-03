@@ -13,7 +13,7 @@ object KlondikeOneCard extends GameRules(
     FoundationRules(
       numPiles = 4,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
+      canMoveFrom = FoundationCanMoveFrom.Always,
       autoMoveCards = true
     )
   ),

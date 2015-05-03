@@ -13,7 +13,6 @@ object SeaTowers extends GameRules(
     FoundationRules(
       numPiles = 4,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

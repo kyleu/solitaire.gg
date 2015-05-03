@@ -34,8 +34,7 @@ object RougeForty extends GameRules(
       numPiles = 4,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      moveCompleteSequencesOnly = true
     )
   ),
   tableaus = Seq(

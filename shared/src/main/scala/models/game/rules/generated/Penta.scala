@@ -32,8 +32,7 @@ object Penta extends GameRules(
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     )
   ),
   tableaus = Seq(

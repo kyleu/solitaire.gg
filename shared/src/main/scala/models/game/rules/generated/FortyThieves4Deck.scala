@@ -21,7 +21,6 @@ object FortyThieves4Deck extends GameRules(
     FoundationRules(
       numPiles = 16,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

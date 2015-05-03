@@ -22,7 +22,6 @@ object Calculation extends GameRules(
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpByPileIndex,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

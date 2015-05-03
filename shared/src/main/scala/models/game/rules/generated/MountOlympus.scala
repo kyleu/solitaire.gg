@@ -24,7 +24,6 @@ object MountOlympus extends GameRules(
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
       maxCards = 7,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -35,7 +34,6 @@ object MountOlympus extends GameRules(
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
       maxCards = 6,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

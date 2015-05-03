@@ -21,8 +21,7 @@ object Corners extends GameRules(
     FoundationRules(
       numPiles = 4,
       initialCards = 1,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     )
   ),
   tableaus = Seq(

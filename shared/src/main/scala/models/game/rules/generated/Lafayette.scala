@@ -18,7 +18,6 @@ object Lafayette extends GameRules(
     FoundationRules(
       numPiles = 4,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -27,7 +26,6 @@ object Lafayette extends GameRules(
       lowRank = FoundationLowRank.DeckHighRank,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

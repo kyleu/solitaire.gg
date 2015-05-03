@@ -23,7 +23,6 @@ object RedAndBlack extends GameRules(
       initialCards = 8,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

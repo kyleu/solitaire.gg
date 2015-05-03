@@ -21,7 +21,6 @@ object Alexandria extends GameRules(
     FoundationRules(
       numPiles = 12,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

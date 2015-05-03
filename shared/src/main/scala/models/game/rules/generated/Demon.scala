@@ -24,7 +24,6 @@ object Demon extends GameRules(
       numPiles = 8,
       initialCards = 1,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

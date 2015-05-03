@@ -20,8 +20,7 @@ object AuldLangSyne extends GameRules(
       numPiles = 4,
       initialCards = 4,
       suitMatchRule = SuitMatchRule.Any,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     )
   ),
   tableaus = Seq(

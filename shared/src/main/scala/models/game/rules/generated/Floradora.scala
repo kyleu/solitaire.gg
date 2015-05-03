@@ -23,7 +23,6 @@ object Floradora extends GameRules(
       numPiles = 8,
       wrapFromKingToAce = true,
       maxCards = 12,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -33,7 +32,6 @@ object Floradora extends GameRules(
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.Equal,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

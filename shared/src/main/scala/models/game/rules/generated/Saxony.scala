@@ -22,8 +22,7 @@ object Saxony extends GameRules(
     FoundationRules(
       numPiles = 8,
       initialCards = 8,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     )
   ),
   tableaus = Seq(

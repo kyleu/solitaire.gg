@@ -25,7 +25,6 @@ object SixesAndSevens extends GameRules(
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
       maxCards = 6,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -35,7 +34,6 @@ object SixesAndSevens extends GameRules(
       initialCards = 8,
       wrapFromKingToAce = true,
       maxCards = 7,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

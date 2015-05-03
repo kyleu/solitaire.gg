@@ -19,7 +19,6 @@ object Gilbert extends GameRules(
     FoundationRules(
       numPiles = 4,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -28,7 +27,6 @@ object Gilbert extends GameRules(
       lowRank = FoundationLowRank.DeckHighRank,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

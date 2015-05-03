@@ -24,7 +24,6 @@ object FoursUp extends GameRules(
       numPiles = 8,
       initialCards = 8,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

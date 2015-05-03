@@ -14,7 +14,6 @@ object HalfCell extends GameRules(
       suitMatchRule = SuitMatchRule.AlternatingColors,
       wrapFromKingToAce = true,
       maxCards = 26,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

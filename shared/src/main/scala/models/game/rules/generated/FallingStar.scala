@@ -23,8 +23,7 @@ object FallingStar extends GameRules(
       numPiles = 8,
       initialCards = 1,
       suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     )
   ),
   tableaus = Seq(

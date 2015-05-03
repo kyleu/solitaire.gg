@@ -18,7 +18,6 @@ object CastleMount extends GameRules(
       numPiles = 12,
       initialCards = 12,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

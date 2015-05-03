@@ -22,7 +22,6 @@ object QuadrupleKlondike extends GameRules(
     FoundationRules(
       numPiles = 16,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

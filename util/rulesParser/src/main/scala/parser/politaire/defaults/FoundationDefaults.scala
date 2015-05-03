@@ -10,7 +10,7 @@ object FoundationDefaults {
     "F0d" -> 0,
     "F0i" -> 0,
     "F0m" -> -1,
-    "F0mb" -> 0,
+    "F0mb" -> 1,
     "F0n" -> -1,
     "F0o" -> 255,
     "F0r" -> 128,

@@ -18,7 +18,6 @@ object Stalactites extends GameRules(
       initialCards = 4,
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

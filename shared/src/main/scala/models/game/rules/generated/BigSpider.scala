@@ -22,8 +22,7 @@ object BigSpider extends GameRules(
     FoundationRules(
       numPiles = 12,
       wrapFromKingToAce = true,
-      moveCompleteSequencesOnly = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      moveCompleteSequencesOnly = true
     )
   ),
   tableaus = Seq(

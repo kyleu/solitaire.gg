@@ -22,8 +22,7 @@ object Signora extends GameRules(
     FoundationRules(
       numPiles = 8,
       suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     )
   ),
   tableaus = Seq(

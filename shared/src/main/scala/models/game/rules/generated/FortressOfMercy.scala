@@ -13,7 +13,6 @@ object FortressOfMercy extends GameRules(
       numPiles = 4,
       initialCards = 2,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

@@ -11,8 +11,7 @@ object Shamrocks extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     )
   ),
   tableaus = Seq(

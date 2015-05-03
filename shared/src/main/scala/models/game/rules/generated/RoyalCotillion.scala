@@ -22,8 +22,7 @@ object RoyalCotillion extends GameRules(
       numPiles = 4,
       initialCards = 4,
       rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     ),
     FoundationRules(
       setNumber = 1,
@@ -31,8 +30,7 @@ object RoyalCotillion extends GameRules(
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       initialCards = 4,
       rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     )
   ),
   tableaus = Seq(

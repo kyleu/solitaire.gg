@@ -21,7 +21,6 @@ object Manx extends GameRules(
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

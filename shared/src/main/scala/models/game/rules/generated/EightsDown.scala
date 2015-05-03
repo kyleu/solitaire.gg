@@ -24,7 +24,6 @@ object EightsDown extends GameRules(
       initialCards = 8,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

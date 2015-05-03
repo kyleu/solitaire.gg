@@ -14,16 +14,14 @@ object Fifteen extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     ),
     FoundationRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
       rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     )
   ),
   tableaus = Seq(

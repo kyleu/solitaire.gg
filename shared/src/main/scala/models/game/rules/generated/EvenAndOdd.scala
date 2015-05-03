@@ -20,8 +20,7 @@ object EvenAndOdd extends GameRules(
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
-      maxCards = 7,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      maxCards = 7
     ),
     FoundationRules(
       setNumber = 1,
@@ -30,8 +29,7 @@ object EvenAndOdd extends GameRules(
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
-      maxCards = 6,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      maxCards = 6
     )
   ),
   tableaus = Seq(

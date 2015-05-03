@@ -19,7 +19,6 @@ object AceOfHearts extends GameRules(
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true,
       maxCards = 0,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

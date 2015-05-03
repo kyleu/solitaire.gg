@@ -21,7 +21,6 @@ object Alternate extends GameRules(
       initialCards = 2,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -33,7 +32,6 @@ object Alternate extends GameRules(
       suitMatchRule = SuitMatchRule.AlternatingColors,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never,
       autoMoveCards = true
     )
   ),

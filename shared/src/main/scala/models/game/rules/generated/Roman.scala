@@ -21,8 +21,7 @@ object Roman extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Never
+      wrapFromKingToAce = true
     )
   ),
   tableaus = Seq(
