@@ -2,13 +2,16 @@ define([], function() {
   "use strict";
 
   return {
-    tweenCardTo: function(card, x, y, angle) {
+    tweenCardTo: function(card, x, y, angle, emitWhenComplete) {
       if(x != card.x || y != card.y) {
         var tween = card.game.add.tween(card);
         tween.to({ x: x, y: y, angle: angle }, 500, Phaser.Easing.Cubic.Out);
         tween.onComplete.add(function() {
           card.actualX = x;
           card.tweening = false;
+          if(emitWhenComplete) {
+            card.game.playmat.emitFor(card);
+          }
         }, card);
         card.tweening = true;
         tween.start();

@@ -10,6 +10,24 @@ define(['game/helpers/Layout'], function (calculateLayout) {
 
     this.resize();
 
+    this.emitter = new Phaser.Particles.Arcade.Emitter(this.game, 0, 0, 400);
+    this.emitter.makeParticles( [ 'fire1', 'fire2', 'fire3', 'smoke' ] );
+    this.emitter.gravity = 200;
+    this.emitter.setAlpha(1, 0, 3000);
+    this.emitter.setScale(1.5, 2, 1.5, 2, 3000);
+    this.emitter.start(false, 3000, 5);
+    this.emitter.on = false;
+    this.add(this.emitter);
+
+    this.suitEmitter = new Phaser.Particles.Arcade.Emitter(this.game, 0, 0, 400);
+    this.suitEmitter.makeParticles('suits', 0);
+    this.suitEmitter.gravity = 0;
+    this.suitEmitter.minParticleSpeed.setTo(-400, -400);
+    this.suitEmitter.maxParticleSpeed.setTo(400, 400);
+    this.suitEmitter.setAlpha(1, 0, 1000);
+    this.suitEmitter.setScale(0.8, 1, 0.8, 1, 1000);
+    this.add(this.suitEmitter);
+
     this.game.add.existing(this);
   };
 
@@ -41,6 +59,28 @@ define(['game/helpers/Layout'], function (calculateLayout) {
         this.x = xOffset;
       }
     }
+  };
+
+  Playmat.prototype.emitFor = function(card) {
+    this.suitEmitter.x = card.x;
+    this.suitEmitter.y = card.y;
+    switch(card.suit.index) {
+      case 0:
+        this.suitEmitter.makeParticles('suits', 1);
+        break;
+      case 1:
+        this.suitEmitter.makeParticles('suits', 0);
+        break;
+      case 2:
+        this.suitEmitter.makeParticles('suits', 2);
+        break;
+      case 3:
+        this.suitEmitter.makeParticles('suits', 3);
+        break;
+      default:
+        throw card.suit;
+    }
+    this.suitEmitter.start(true, 1000, null, 20);
   };
 
   return Playmat;

@@ -11,11 +11,11 @@ object FoundationSet {
       "foundation" + (foundationRules.setNumber + 1) + "-"
     }
     val options = FoundationPileOptions(foundationRules, deckOptions)
-    val piles = (0 until foundationRules.numPiles).map { i =>
+    val piles = (1 to foundationRules.numPiles).map { i =>
       Pile(prefix + i, if(options.tail.isEmpty) {
         options.headOption.getOrElse(throw new IllegalStateException())
       } else {
-        options(i)
+        options(i - 1)
       })
     }
     new FoundationSet(piles, foundationRules.visible)

@@ -15,19 +15,20 @@ define(['game/helpers/Tweens'], function (Tweens) {
 
   return {
     startDrag: function(p, dragIndex, card) {
-      card.game.emitter.on = true;
       card.dragging = true;
       card.dragIndex = dragIndex;
       card.inputOriginalPosition = card.position.clone();
       card.anchorPointX = ((p.positionDown.x - card.game.playmat.x) / card.game.playmat.scale.x) - card.x;
       card.anchorPointY = ((p.positionDown.y - card.game.playmat.y) / card.game.playmat.scale.y) - card.y;
+      card.game.playmat.bringToTop(card.game.playmat.emitter);
       card.bringToTop();
     },
 
     onInputUp: function(e, p, card) {
-      card.game.emitter.on = false;
+      card.game.playmat.emitter.on = false;
       if(card.dragging) {
         card.pile.endDrag();
+        card.game.playmat.bringToTop(card.game.playmat.emitter);
       } else {
         var deltaX = Math.abs(p.positionDown.x - p.positionUp.x);
         var deltaY = Math.abs(p.positionDown.y - p.positionUp.y);
@@ -92,10 +93,18 @@ define(['game/helpers/Tweens'], function (Tweens) {
           card.angle = angle;
 
           card.actualX = newX;
-          card.x = newX - (card.dragIndex * angle * 0.9);
-          card.y = ((card.game.input.y - card.game.playmat.y) / card.game.playmat.scale.y) - card.anchorPointY;
-          card.game.emitter.emitX = (card.x * card.game.playmat.scale.x) - card.game.playmat.x;
-          card.game.emitter.emitY = (card.y * card.game.playmat.scale.y) - card.game.playmat.y;
+
+          var swayX = newX - (card.dragIndex * angle * 0.9);
+          var newY = ((card.game.input.y - card.game.playmat.y) / card.game.playmat.scale.y) - card.anchorPointY;
+
+          if(swayX !== card.x && newY !== card.y) {
+            card.x = swayX;
+            card.y = newY;
+
+            card.game.playmat.emitter.on = true;
+            card.game.playmat.emitter.emitX = (card.x);
+            card.game.playmat.emitter.emitY = (card.y);
+          }
         }
       } else if(card.animation.id === "mouse") {
         var tgtX = card.game.input.x - ((card.width / 2) * card.game.playmat.scale.x);

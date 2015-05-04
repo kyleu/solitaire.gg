@@ -24,6 +24,9 @@ object PolitaireOverrides {
     "golf" -> Map(
       "S0cardsShown" -> 16
     ),
+    "goodmeasure" -> Map(
+      "Tn" -> 1
+    ),
     "pyramid" -> Map(
       "F0n" -> 1
     ),

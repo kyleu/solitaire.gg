@@ -17,7 +17,7 @@ import models.game.rules._
  *   Empty tableau is filled with (T1f): 5 (No card)
  *   Tableau piles (T1n): 6
  *   Tableau suit match rule for building (T1s): 5 (Regardless of suit)
- *   Tableau sets (Tn): 2 (2 tableau sets)
+ *   Tableau sets (Tn): 1 (1 tableau set)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): bakersdozen
  *   Related games (related): spanish, goodmeasure
@@ -40,15 +40,6 @@ object GoodMeasure extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(5),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.Any,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      actionDuringDeal = PileAction.MoveKingsToBottom
-    ),
-    TableauRules(
-      setNumber = 1,
-      numPiles = 6,
-      initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,

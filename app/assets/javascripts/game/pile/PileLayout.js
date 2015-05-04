@@ -54,7 +54,8 @@ define(['game/helpers/Tweens'], function (Tweens) {
   return {
     cardAdded: function(pile, card) {
       if(pile.x < 0 || pile.y < 0) {
-        Tweens.tweenRemove(card);
+        Tweens.tweenRemove(card, true);
+        card.game.playmat.emitFor(card);
       } else {
         if(pile.options.cardsShown === undefined || pile.options.cardsShown === null) {
           if(pile.options.direction === "d") {
@@ -69,7 +70,7 @@ define(['game/helpers/Tweens'], function (Tweens) {
             throw "Invalid direction [" + pile.options.direction + "].";
           }
         } else if(pile.options.cardsShown == 1) {
-          Tweens.tweenCardTo(card, pile.x, pile.y, 0);
+          Tweens.tweenCardTo(card, pile.x, pile.y, 0, pile.pileSet.behavior === "foundation");
         } else {
           redraw(pile);
         }

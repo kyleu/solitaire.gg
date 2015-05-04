@@ -32,6 +32,7 @@ object Layouts {
     "fourteenout" -> "2tf",
     "fortyandeight" -> "sw|f|t",
     "golf" -> "t|f:s",
+    "goodmeasure" -> ".f|2t",
     "gypsy" -> "sf|:t",
     "klondike" -> "swf|t",
     "klondike1card" -> "swf|t",
@@ -57,35 +58,15 @@ object Layouts {
   private[this] def defaultLayout(id: String) = {
     var ret = ""
     val rules = GameRulesSet.allById.getOrElse(id, GameRules.default)
-
-    if(rules.stock.isDefined) {
-      ret += "s"
-    }
-    if(rules.waste.isDefined) {
-      ret += "w"
-    }
-    for(f <- rules.foundations) {
-      ret += "f"
-    }
-    if(rules.reserves.isDefined) {
-      ret += "|r"
-    }
-    if(rules.cells.isDefined) {
-      ret += "|c"
-    }
-    if(rules.tableaus.nonEmpty) {
-      ret += "|"
-    }
-    for(t <- rules.tableaus) {
-      ret += "t"
-    }
-    if(rules.pyramids.nonEmpty) {
-      ret += "|"
-    }
-    for(p <- rules.pyramids) {
-      ret += "p"
-    }
-
+    if(rules.stock.isDefined) { ret += "s" }
+    if(rules.waste.isDefined) { ret += "w" }
+    for(f <- rules.foundations) { ret += "f" }
+    if(rules.reserves.isDefined) { ret += "|r" }
+    if(rules.cells.isDefined) { ret += "|c" }
+    if(rules.tableaus.nonEmpty) { ret += "|" }
+    for(t <- rules.tableaus) { ret += "t" }
+    if(rules.pyramids.nonEmpty) { ret += "|" }
+    for(p <- rules.pyramids) { ret += "p" }
     ret
   }
 }
