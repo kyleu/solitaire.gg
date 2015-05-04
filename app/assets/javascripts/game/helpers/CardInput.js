@@ -15,6 +15,7 @@ define(['game/helpers/Tweens'], function (Tweens) {
 
   return {
     startDrag: function(p, dragIndex, card) {
+      card.game.emitter.on = true;
       card.dragging = true;
       card.dragIndex = dragIndex;
       card.inputOriginalPosition = card.position.clone();
@@ -24,6 +25,7 @@ define(['game/helpers/Tweens'], function (Tweens) {
     },
 
     onInputUp: function(e, p, card) {
+      card.game.emitter.on = false;
       if(card.dragging) {
         card.pile.endDrag();
       } else {
@@ -92,6 +94,8 @@ define(['game/helpers/Tweens'], function (Tweens) {
           card.actualX = newX;
           card.x = newX - (card.dragIndex * angle * 0.9);
           card.y = ((card.game.input.y - card.game.playmat.y) / card.game.playmat.scale.y) - card.anchorPointY;
+          card.game.emitter.emitX = (card.x * card.game.playmat.scale.x) - card.game.playmat.x;
+          card.game.emitter.emitY = (card.y * card.game.playmat.scale.y) - card.game.playmat.y;
         }
       } else if(card.animation.id === "mouse") {
         var tgtX = card.game.input.x - ((card.width / 2) * card.game.playmat.scale.x);

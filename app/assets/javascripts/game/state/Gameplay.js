@@ -25,11 +25,17 @@ define([
     this.game.load.spritesheet(
       'card', this.assetRoot + 'assets/images/game/cards/' + imageKey + '/ALL.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight
     );
+
+    this.game.load.image('fire1', this.assetRoot + 'assets/images/particles/fire1.png');
+    this.game.load.image('fire2', this.assetRoot + 'assets/images/particles/fire2.png');
+    this.game.load.image('fire3', this.assetRoot + 'assets/images/particles/fire3.png');
+    this.game.load.image('smoke', this.assetRoot + 'assets/images/particles/smoke-puff.png');
   };
 
   Gameplay.prototype.create = function() {
     GameState.prototype.create.apply(this, arguments);
 
+    this.game.physics.startSystem(Phaser.Physics.ARCADE);
     Display.init(this.game);
     Keyboard.init(this.game);
 
@@ -38,6 +44,17 @@ define([
     this.bg.width = this.game.width * 2;
     this.bg.scale = { x: 0.5, y: 0.5 };
     this.add.existing(this.bg);
+
+    this.game.emitter = this.game.add.emitter(this.game.world.centerX, this.game.world.centerY, 400);
+
+    this.game.emitter.makeParticles( [ 'fire1', 'fire2', 'fire3', 'smoke' ] );
+
+    this.game.emitter.gravity = 200;
+    this.game.emitter.setAlpha(1, 0, 3000);
+    this.game.emitter.setScale(0.8, 0, 0.8, 0, 3000);
+
+    this.game.emitter.start(false, 3000, 5);
+    this.game.emitter.on = false;
 
     this.game.send("Ping", { timestamp: new Date().getTime() });
     this.game.time.events.loop(Phaser.Timer.SECOND * 10, function() {
