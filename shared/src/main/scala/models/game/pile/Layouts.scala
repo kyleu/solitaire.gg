@@ -22,6 +22,7 @@ object Layouts {
     "acesandkings" -> "swff|::r:t",
     "alternative" -> ":.f:f|2t",
     "bakersdozen" -> ":.f|t|.t",
+    "beehive" -> "2f|.t|::rsw",
     "canfield" -> "sw:f|:r:t",
     "congress" -> "sw|f|t",
     "cruel" -> "::f|2t",
