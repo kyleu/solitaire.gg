@@ -21,6 +21,7 @@ object Breakwater extends GameRules(
   id = "breakwater",
   title = "Breakwater",
   like = Some("interchange"),
+  related = Seq("tripleinterchange", "breakwater", "unlimited"),
   description = "An easier variant of ^interchange^, in which we build regardless of suit.",
   deckOptions = DeckOptions(
     numDecks = 2

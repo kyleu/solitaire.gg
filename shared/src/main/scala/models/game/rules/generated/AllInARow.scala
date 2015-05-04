@@ -32,6 +32,7 @@ object AllInARow extends GameRules(
   id = "allinarow",
   title = "All in a Row",
   like = Some("golf"),
+  related = Seq("blackhole"),
   description = "A variation of ^golf^ without a stock. Most deals are winnable, but require a lot of advance planning to win.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(

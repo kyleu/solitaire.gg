@@ -22,6 +22,7 @@ object NapoleonsSquare extends GameRules(
   id = "napoleonssquare",
   title = "Napoleon's Square",
   like = Some("blockade"),
+  related = Seq("napoleonsshoulder"),
   description = "This French game, first described by Lady Adelaide Cadogen in the early 1900's, is an easy variant of ^fortythieves^.",
   deckOptions = DeckOptions(
     numDecks = 2

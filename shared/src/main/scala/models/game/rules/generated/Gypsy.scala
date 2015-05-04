@@ -20,6 +20,7 @@ import models.game.rules._
 object Gypsy extends GameRules(
   id = "gypsy",
   title = "Gypsy",
+  related = Seq("irmgard"),
   description = "A cross between ^spider^ and ^klondike^.",
   deckOptions = DeckOptions(
     numDecks = 2

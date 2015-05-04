@@ -26,6 +26,7 @@ object Storehouse extends GameRules(
   id = "storehouse",
   title = "Storehouse",
   like = Some("canfield"),
+  related = Seq("doublestorehouse"),
   description = "A old ^canfield^ variant first described in 1939. A pleasant game, but there is scarcely any strategy required.",
   deckOptions = DeckOptions(
     lowRank = Rank.Two

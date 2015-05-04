@@ -40,6 +40,7 @@ object RougeForty extends GameRules(
   id = "rougeforty",
   title = "Rouge Forty",
   like = Some("rougeetnoir"),
+  related = Seq("rougeetnoir"),
   description = "A variation of ^rougeetnoir^ with a rectangular tableau. Invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2

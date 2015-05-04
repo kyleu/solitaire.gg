@@ -23,6 +23,7 @@ object Stewart extends GameRules(
   id = "stewart",
   title = "Stewart",
   like = Some("martha"),
+  related = Seq("stewart"),
   description = "A more difficult variation of ^martha^ in which only single cards may be moved. It is similar to ^bakersdozen^.",
   foundations = Seq(
     FoundationRules(

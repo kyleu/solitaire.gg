@@ -12,12 +12,17 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Similar to (like): fortythieves
  *   Number of decks (ndecks): 4 (4 decks)
- *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepirates, squadron, fortythieves3, sixtythieves, littlenapoleon, eightythieves, mamysusan, sanjuanhill, fortythieves4, thievesrush, josephine
+ *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepi...
  */
 object FortyThieves4Deck extends GameRules(
   id = "fortythieves4",
   title = "Forty Thieves (4 deck)",
   like = Some("fortythieves"),
+  related = Seq(
+    "robie", "napoleonsquadrilateral", "famousfifty", "fortybandits", "limited", "elba", "threepirates", "squadron",
+    "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
+    "josephine"
+  ),
   description = "A four deck version of ^fortythieves^ with a 14 by 6 tableau.  You will need a large screen to play this game.",
   deckOptions = DeckOptions(
     numDecks = 4

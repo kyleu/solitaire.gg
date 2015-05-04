@@ -23,6 +23,7 @@ object Bavarian extends GameRules(
   id = "bavarian",
   title = "Bavarian",
   like = Some("german"),
+  related = Seq("bavarian"),
   description = "Thomas Warfield's easier version of ^german^ patience with a few extra tableau columns.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

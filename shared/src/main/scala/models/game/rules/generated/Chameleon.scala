@@ -19,12 +19,13 @@ import models.game.rules._
  *   Similar to (like): canfield
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 1 (1)
- *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demonsandthieves, chameleon
+ *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demo...
  */
 object Chameleon extends GameRules(
   id = "chameleon",
   title = "Chameleon",
   like = Some("canfield"),
+  related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
   description = "In case ^canfield^ wasn't hard enough for you, here's a version with only three tableau piles. But you can stack cards regardless " +
   "of suit, so it'll be OK. Occasionally.",
   deckOptions = DeckOptions(

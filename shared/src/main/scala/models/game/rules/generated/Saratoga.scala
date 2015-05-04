@@ -15,12 +15,16 @@ import models.game.rules._
  *   Deal cards from stock (dealchunk): 3 (Three at a time)
  *   Similar to (like): klondike
  *   Maximum deals from stock (maxdeals): 0
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklondike, athena, saratoga, endlessharp, smokey, spike, gilbert, jumboklondike, chinaman
+ *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  */
 object Saratoga extends GameRules(
   id = "saratoga",
   title = "Saratoga",
   like = Some("klondike"),
+  related = Seq(
+    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
+    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
+  ),
   description = "This is just ^klondike^ with the cards dealt face up.",
   stock = Some(
     StockRules(

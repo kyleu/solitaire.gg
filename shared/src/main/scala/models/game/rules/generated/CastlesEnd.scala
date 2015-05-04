@@ -25,6 +25,7 @@ object CastlesEnd extends GameRules(
   id = "castlesend",
   title = "Castle's End",
   like = Some("chessboard"),
+  related = Seq("lasker", "castlesend"),
   description = "A slightly different version of ^chessboard^ with a two-card reserve.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

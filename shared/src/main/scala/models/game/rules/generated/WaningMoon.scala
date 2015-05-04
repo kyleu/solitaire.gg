@@ -18,6 +18,7 @@ import models.game.rules._
 object WaningMoon extends GameRules(
   id = "waningmoon",
   title = "Waning Moon",
+  related = Seq("thirtyninesteps", "eclipse", "lucasleaps"),
   description = "A ^fortythieves^ variant with more tableau piles.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -31,6 +31,7 @@ object GolfRush extends GameRules(
   id = "golfrush",
   title = "Golf Rush",
   like = Some("golf"),
+  related = Seq("allinarow", "escalator", "puttputt", "panthercreek", "golfrush"),
   description = "A variant of ^golf^ played on with a ^klondike^-style tableau.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(

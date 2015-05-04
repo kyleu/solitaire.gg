@@ -21,6 +21,7 @@ object TripleTriangle extends GameRules(
   id = "tripletriangle",
   title = "Triple Triangle",
   like = Some("eternaltriangle"),
+  related = Seq("hypotenuse", "tripletriangle"),
   description = "A three-deck ^eternaltriangle^ variation by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3

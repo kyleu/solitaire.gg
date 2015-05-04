@@ -34,6 +34,7 @@ object Colorado extends GameRules(
   id = "colorado",
   title = "Colorado",
   like = Some("twenty"),
+  related = Seq("colorado"),
   description = "A game where cards may be stacked arbitrarily on 20 tableau piles. Usually winnable, but requires some planning.",
   deckOptions = DeckOptions(
     numDecks = 2

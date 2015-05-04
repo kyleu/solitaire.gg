@@ -29,6 +29,7 @@ object Father extends GameRules(
   id = "father",
   title = "Father",
   like = Some("grandfather"),
+  related = Seq("father"),
   description = "This variation of ^grandfather^ by Thomas Warfield adds difficulty by reducing the number of tableau piles, and adds strategy by e" +
   "liminating the automatic filling of empty spaces, but it's still a pretty easy game.",
   deckOptions = DeckOptions(

@@ -22,6 +22,7 @@ object Deuces extends GameRules(
   id = "deuces",
   title = "Deuces",
   like = Some("busyaces"),
+  related = Seq("jacksinthebox", "threescompany", "castoutnines"),
   description = "A more difficult variation of ^busyaces^ with fewer tableau piles.",
   deckOptions = DeckOptions(
     numDecks = 2,

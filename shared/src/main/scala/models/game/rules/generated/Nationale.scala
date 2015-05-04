@@ -35,6 +35,7 @@ object Nationale extends GameRules(
   id = "nationale",
   title = "Nationale",
   like = Some("caprice"),
+  related = Seq("chequers", "cicely", "nationale"),
   description = "Like ^caprice^ without a stock.",
   deckOptions = DeckOptions(
     numDecks = 2

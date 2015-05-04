@@ -14,11 +14,15 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
  *   Deal cards from stock (dealchunk): 3 (Three at a time)
  *   Maximum deals from stock (maxdeals): 0
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklondike, athena, saratoga, endlessharp, smokey, spike, gilbert, jumboklondike, chinaman
+ *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  */
 object Klondike extends GameRules(
   id = "klondike",
   title = "Klondike",
+  related = Seq(
+    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
+    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman", "klondike1card"
+  ),
   description = "The world's most famous solitaire game features a triangular tableau where you build down in alternating colors.",
   stock = Some(
     StockRules(

@@ -17,11 +17,12 @@ import models.game.rules._
  *   Deal cards from stock (dealchunk): 3 (Three at a time)
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 0
- *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demonsandthieves, chameleon
+ *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demo...
  */
 object Canfield extends GameRules(
   id = "canfield",
   title = "Canfield",
+  related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
   description = "An old Casino game where the house usually wins. It's distinctive features include a reserve and foundations built up from the val" +
   "ue of one random card dealt into them.",
   deckOptions = DeckOptions(

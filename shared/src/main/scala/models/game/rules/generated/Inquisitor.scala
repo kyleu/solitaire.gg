@@ -21,6 +21,7 @@ object Inquisitor extends GameRules(
   id = "inquisitor",
   title = "Inquisitor",
   like = Some("ladyjane"),
+  related = Seq("quizzie"),
   description = "This ^ladyjane^ variation by Thomas Warfield requires you to build in suit, but gives you an extra redeal.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -19,6 +19,7 @@ import models.game.rules._
 object Robert extends GameRules(
   id = "robert",
   title = "Robert",
+  related = Seq("bobby"),
   description = "An nearly unwinnable game with no tableau.",
   stock = Some(
     StockRules(

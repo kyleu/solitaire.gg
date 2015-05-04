@@ -18,6 +18,7 @@ object DoubleLimited extends GameRules(
   id = "doublelimited",
   title = "Double Limited",
   like = Some("limited"),
+  related = Seq("doublelimited"),
   description = "A four-deck version of ^limited^. A large screen will be needed.",
   deckOptions = DeckOptions(
     numDecks = 4

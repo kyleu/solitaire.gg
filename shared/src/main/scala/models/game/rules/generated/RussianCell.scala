@@ -23,6 +23,7 @@ object RussianCell extends GameRules(
   id = "russiancell",
   title = "Russian Cell",
   like = Some("russian"),
+  related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
   description = "Thomas Warfield's variant of ^russian^ Solitaire adds a couple cells.",
   foundations = Seq(
     FoundationRules(

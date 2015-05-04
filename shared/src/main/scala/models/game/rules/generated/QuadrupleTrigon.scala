@@ -23,6 +23,7 @@ object QuadrupleTrigon extends GameRules(
   id = "quadrupletrigon",
   title = "Quadruple Trigon",
   like = Some("trigon"),
+  related = Seq("doubletrigon", "quadrupletrigon", "trigonleft"),
   description = "A four-deck version of ^trigon^. Needs a large screen.",
   deckOptions = DeckOptions(
     numDecks = 4

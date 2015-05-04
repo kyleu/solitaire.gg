@@ -18,7 +18,7 @@ import models.game.rules._
  *   Left mouse interface function (leftfunc): 0x2|0x20
  *   Similar to (like): spider
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): fredsspider, chinesespider, astrocyte, mondospider, tarantula, trillium, spideronesuit, spidertwosuits, spiderette, blackwidow, hugespider, beetle, bigspider
+ *   Related games (related): fredsspider, chinesespider, astrocyte, mondospider, tarantula, trillium, spidero...
  *   Right mouse interface function (rightfunc): 0x0
  *   Victory condition (victory): 3 (All cards on tableau sorted)
  */
@@ -26,6 +26,10 @@ object BlackWidow extends GameRules(
   id = "blackwidow",
   title = "Black Widow",
   like = Some("spider"),
+  related = Seq(
+    "fredsspider", "chinesespider", "astrocyte", "mondospider", "tarantula", "trillium", "spideronesuit", "spidertwosuits",
+    "spiderette", "blackwidow", "hugespider", "beetle", "bigspider"
+  ),
   description = "An easier variation of ^spider^ where you are allowed to move sequences even if they aren't all of one suit.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

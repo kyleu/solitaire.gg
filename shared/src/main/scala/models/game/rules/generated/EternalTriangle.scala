@@ -19,6 +19,7 @@ import models.game.rules._
 object EternalTriangle extends GameRules(
   id = "eternaltriangle",
   title = "Eternal Triangle",
+  related = Seq("hypotenuse", "tripletriangle"),
   description = "A fairly hard two-deck ^klondike^ variation.",
   deckOptions = DeckOptions(
     numDecks = 2

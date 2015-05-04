@@ -39,6 +39,7 @@ object RougeEtNoir extends GameRules(
   id = "rougeetnoir",
   title = "Rouge et Noir",
   like = Some("diavolo"),
+  related = Seq("rougeforty"),
   description = "A variant of ^diavolo^ with a different tableau and no waste. Invented by Charles Jewell.",
   deckOptions = DeckOptions(
     numDecks = 2

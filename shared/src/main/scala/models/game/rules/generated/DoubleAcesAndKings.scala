@@ -34,6 +34,7 @@ object DoubleAcesAndKings extends GameRules(
   id = "doubleacesandkings",
   title = "Double Aces and Kings",
   like = Some("acesandkings"),
+  related = Seq("doubleacesandkings", "aceyandkingsley", "deucesandqueens", "racingaces"),
   description = "A four-deck version of ^acesandkings^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 4

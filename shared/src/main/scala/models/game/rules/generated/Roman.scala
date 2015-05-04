@@ -28,6 +28,7 @@ object Roman extends GameRules(
   id = "roman",
   title = "Roman",
   like = Some("signora"),
+  related = Seq("doublesignora", "fallingstar", "blondesandbrunettes", "roman"),
   description = "A variation of ^signora^ where we build regardless of suit. Invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2,

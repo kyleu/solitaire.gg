@@ -21,6 +21,7 @@ object BritishCanister extends GameRules(
   id = "britishcanister",
   title = "British Canister",
   like = Some("canister"),
+  related = Seq("britishcanister", "americancanister", "bucket"),
   description = "A difficult version of ^canister^ dating back to the 1890's. It resembles ^americancanister^ but does not allow stack moves and on" +
   "ly kings can fill spaces.",
   foundations = Seq(

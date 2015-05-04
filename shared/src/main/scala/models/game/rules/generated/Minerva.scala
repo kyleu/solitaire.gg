@@ -24,6 +24,7 @@ object Minerva extends GameRules(
   id = "minerva",
   title = "Minerva",
   like = Some("athena"),
+  related = Seq("doubleminerva", "tripleminerva", "munger", "mystique"),
   description = "^athena^ with a ^canfield^-style reserve added.",
   stock = Some(
     StockRules(

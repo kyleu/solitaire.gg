@@ -16,13 +16,17 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): freecell
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): sixbyfour, ephemeralfreecell, challengefreecell, antares, sevenbyfive, spidercells, bigfreecell, chinesefreecell, sevenbyfour, invertedfreecell, selectivefreecell, doublefreecell, freecellduplex
+ *   Related games (related): sixbyfour, ephemeralfreecell, challengefreecell, antares, sevenbyfive, spidercel...
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object FreeCellDuplex extends GameRules(
   id = "freecellduplex",
   title = "FreeCell Duplex",
   like = Some("freecell"),
+  related = Seq(
+    "sixbyfour", "ephemeralfreecell", "challengefreecell", "antares", "sevenbyfive", "spidercells", "bigfreecell", "chinesefreecell",
+    "sevenbyfour", "invertedfreecell", "selectivefreecell", "doublefreecell", "freecellduplex"
+  ),
   description = "An easy two-deck version of ^freecell^. Requires a large screen.",
   deckOptions = DeckOptions(
     numDecks = 2

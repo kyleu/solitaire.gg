@@ -17,6 +17,7 @@ import models.game.rules._
 object Bristol extends GameRules(
   id = "bristol",
   title = "Bristol",
+  related = Seq("dover"),
   description = "A game with three waste piles invented by Albert Morehead and Geoffrey Mott-Smith.",
   stock = Some(
     StockRules(

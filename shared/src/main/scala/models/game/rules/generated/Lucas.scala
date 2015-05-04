@@ -21,6 +21,7 @@ object Lucas extends GameRules(
   id = "lucas",
   title = "Lucas",
   like = Some("thirtyninesteps"),
+  related = Seq("lucas"),
   description = "A ^fortythieves^ variant with thirteen tableau piles and aces starting on the foundation.",
   stock = Some(
     StockRules(

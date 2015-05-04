@@ -25,6 +25,7 @@ object Lasker extends GameRules(
   id = "lasker",
   title = "Lasker",
   like = Some("chessboard"),
+  related = Seq("lasker", "castlesend"),
   description = "A version of ^chessboard^ where sequences may be moved.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

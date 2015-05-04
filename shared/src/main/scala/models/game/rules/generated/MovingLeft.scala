@@ -19,6 +19,7 @@ import models.game.rules._
 object MovingLeft extends GameRules(
   id = "movingleft",
   title = "Moving Left",
+  related = Seq("tripleleft", "singleleft"),
   description = "A variant of ^gargantua^ or ^doubleklondike^ where empty spaces are automatically filled from the next column.",
   deckOptions = DeckOptions(
     numDecks = 2

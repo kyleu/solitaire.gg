@@ -26,6 +26,7 @@ object PerseveranceA extends GameRules(
   id = "perseverancea",
   title = "Perseverance A",
   like = Some("cruel"),
+  related = Seq("perseveranceb"),
   description = "A variation of ^cruel^ where stacks may be moved.",
   foundations = Seq(
     FoundationRules(

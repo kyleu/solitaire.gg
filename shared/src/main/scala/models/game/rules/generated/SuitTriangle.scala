@@ -22,6 +22,7 @@ object SuitTriangle extends GameRules(
   id = "suittriangle",
   title = "Suit Triangle",
   like = Some("doubleklondike"),
+  related = Seq("sally", "suittriangle"),
   description = "A two-deck version of ^klondike^ where we build in the same suite.",
   deckOptions = DeckOptions(
     numDecks = 2

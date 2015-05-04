@@ -22,6 +22,7 @@ object DoubleGoldRush extends GameRules(
   id = "doublegoldrush",
   title = "Double Gold Rush",
   like = Some("goldrush"),
+  related = Seq("doublegoldrush"),
   description = "A two-deck version of ^goldrush^.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -30,6 +30,7 @@ import models.game.rules._
 object Caprice extends GameRules(
   id = "caprice",
   title = "Caprice",
+  related = Seq("chequers", "cicely", "nationale"),
   description = "Build up or down in suit and stock deals to the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2

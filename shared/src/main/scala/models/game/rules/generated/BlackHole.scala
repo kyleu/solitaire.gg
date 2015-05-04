@@ -33,6 +33,7 @@ object BlackHole extends GameRules(
   id = "blackhole",
   title = "Black Hole",
   like = Some("allinarow"),
+  related = Seq("binarystar"),
   description = "Like ^allinarow^, this is a variation of ^golf^ without a stock. Invented by David Parlett.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(

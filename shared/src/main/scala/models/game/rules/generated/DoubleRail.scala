@@ -18,6 +18,7 @@ object DoubleRail extends GameRules(
   id = "doublerail",
   title = "Double Rail",
   like = Some("singlerail"),
+  related = Seq("doublerail"),
   description = "A ^fortythieves^ variation where we build regardless of suit and can move stacks.",
   deckOptions = DeckOptions(
     numDecks = 2

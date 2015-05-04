@@ -15,12 +15,16 @@ import models.game.rules._
  *   Deal cards from stock (dealchunk): 1 (One by one)
  *   Similar to (like): klondike
  *   Maximum deals from stock (maxdeals): 3 (3)
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklondike, athena, saratoga, endlessharp, smokey, spike, gilbert, jumboklondike, chinaman
+ *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  */
 object Smokey extends GameRules(
   id = "smokey",
   title = "Smokey",
   like = Some("klondike"),
+  related = Seq(
+    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
+    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
+  ),
   description = "A ^klondike^ variant invented by Ann Edwards where you can build sequences in color, but only move sequences of the same suit. Not" +
   " too hard. Not too easy.",
   stock = Some(

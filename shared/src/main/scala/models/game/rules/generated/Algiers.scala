@@ -27,6 +27,7 @@ object Algiers extends GameRules(
   id = "algiers",
   title = "Algiers",
   like = Some("carthage"),
+  related = Seq("algiers"),
   description = "A three-deck variation of ^carthage^.",
   deckOptions = DeckOptions(
     numDecks = 3

@@ -20,6 +20,7 @@ import models.game.rules._
 object EightOff extends GameRules(
   id = "eightoff",
   title = "Eight Off",
+  related = Seq("eighton"),
   description = "A ^freecell^ variation with more cells, but where you can only build down in the same suit",
   foundations = Seq(
     FoundationRules(

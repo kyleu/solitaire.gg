@@ -17,6 +17,7 @@ import models.game.rules._
 object Vineyard extends GameRules(
   id = "vineyard",
   title = "Vineyard",
+  related = Seq("tenbyone", "winery"),
   description = "A difficult variation of ^bakersdozen^ invented by Peter Voke.",
   foundations = Seq(
     FoundationRules(

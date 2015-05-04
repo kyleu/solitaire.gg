@@ -24,6 +24,7 @@ object Mystique extends GameRules(
   id = "mystique",
   title = "Mystique",
   like = Some("minerva"),
+  related = Seq("bureau", "minerva"),
   description = "A variation of ^munger^ and ^minerva^ with a reserve sized half-way between the two.",
   stock = Some(
     StockRules(

@@ -22,6 +22,7 @@ object Elevens extends GameRules(
   id = "elevens",
   title = "Elevens",
   like = Some("tens"),
+  related = Seq("suitelevens"),
   description = "A set removal sets of cards adding to 15 or sets containing ten through king.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJQK,
   stock = Some(

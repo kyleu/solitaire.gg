@@ -19,6 +19,7 @@ object DoubleJane extends GameRules(
   id = "doublejane",
   title = "Double Jane",
   like = Some("arabella"),
+  related = Seq("doublejane"),
   description = "An four-deck ^spider^/^klondike^, similar to ^ladyjane^.",
   deckOptions = DeckOptions(
     numDecks = 4

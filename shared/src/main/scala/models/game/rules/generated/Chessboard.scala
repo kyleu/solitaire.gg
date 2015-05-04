@@ -23,6 +23,7 @@ object Chessboard extends GameRules(
   id = "chessboard",
   title = "Chessboard",
   like = Some("fortress"),
+  related = Seq("lasker", "castlesend"),
   description = "A more interesting variation of ^fortress^ where you choose the base card.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

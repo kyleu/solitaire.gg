@@ -18,6 +18,7 @@ object SixtyThieves extends GameRules(
   id = "sixtythieves",
   title = "Sixty Thieves",
   like = Some("fortythieves"),
+  related = Seq("marierose", "malmaison"),
   description = "A difficult three-deck version of ^fortythieves^ by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3

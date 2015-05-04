@@ -22,6 +22,7 @@ object Odessa extends GameRules(
   id = "odessa",
   title = "Odessa",
   like = Some("russian"),
+  related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
   description = "A variant of ^russian^ with a different starting tableau.",
   foundations = Seq(
     FoundationRules(

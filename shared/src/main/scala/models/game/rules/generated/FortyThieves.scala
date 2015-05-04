@@ -11,11 +11,16 @@ import models.game.rules._
  *   Tableau piles (T0n): 10
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepirates, squadron, fortythieves3, sixtythieves, littlenapoleon, eightythieves, mamysusan, sanjuanhill, fortythieves4, thievesrush, josephine
+ *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepi...
  */
 object FortyThieves extends GameRules(
   id = "fortythieves",
   title = "Forty Thieves",
+  related = Seq(
+    "robie", "napoleonsquadrilateral", "famousfifty", "fortybandits", "limited", "elba", "threepirates", "squadron",
+    "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
+    "josephine"
+  ),
   description = "Similar to ^fortyandeight^, but the tableau has forty cards in ten stacks of four, and we only allow one pass through the deck.",
   deckOptions = DeckOptions(
     numDecks = 2

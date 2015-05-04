@@ -14,12 +14,17 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
  *   Similar to (like): littlenapoleon
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepirates, squadron, fortythieves3, sixtythieves, littlenapoleon, eightythieves, mamysusan, sanjuanhill, fortythieves4, thievesrush, josephine
+ *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepi...
  */
 object McClellan extends GameRules(
   id = "mcclellan",
   title = "McClellan",
   like = Some("littlenapoleon"),
+  related = Seq(
+    "robie", "napoleonsquadrilateral", "famousfifty", "fortybandits", "limited", "elba", "threepirates", "squadron",
+    "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
+    "josephine"
+  ),
   description = "A harder variation of ^littlenapoleon^ where you need to build in suit.",
   deckOptions = DeckOptions(
     numDecks = 2

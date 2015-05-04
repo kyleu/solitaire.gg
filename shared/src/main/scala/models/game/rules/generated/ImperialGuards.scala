@@ -23,6 +23,7 @@ object ImperialGuards extends GameRules(
   id = "imperialguards",
   title = "Imperial Guards",
   like = Some("missmilligan"),
+  related = Seq("imperialguards"),
   description = "A version of ^missmilligan^ where empty tableau spaces can be filled with any card instead of Kings only. Since empty spaces are c" +
   "ommon in these games, this greatly simplifies the game.",
   deckOptions = DeckOptions(

@@ -19,6 +19,7 @@ object Morehead extends GameRules(
   id = "morehead",
   title = "Morehead",
   like = Some("somerset"),
+  related = Seq("morehead", "usk"),
   description = "A ^somerset^ variant where we build in different suits instead of alternate colors.",
   foundations = Seq(
     FoundationRules(

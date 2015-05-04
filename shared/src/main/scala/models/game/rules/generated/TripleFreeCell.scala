@@ -19,6 +19,7 @@ import models.game.rules._
 object TripleFreeCell extends GameRules(
   id = "triplefreecell",
   title = "Triple FreeCell",
+  related = Seq("celleleven", "freecellthreedeck"),
   description = "Thomas Warfield's three-deck version of ^freecell^.",
   deckOptions = DeckOptions(
     numDecks = 3

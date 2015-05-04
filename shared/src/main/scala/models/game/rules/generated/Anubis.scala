@@ -24,6 +24,7 @@ object Anubis extends GameRules(
   id = "anubis",
   title = "Anubis",
   like = Some("doublepyramid"),
+  related = Seq("anubis"),
   description = "A variation of ^doublepyramid^ with three waste piles.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   deckOptions = DeckOptions(

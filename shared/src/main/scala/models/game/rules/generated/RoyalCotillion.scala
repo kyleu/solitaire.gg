@@ -35,6 +35,7 @@ object RoyalCotillion extends GameRules(
   id = "royalcotillion",
   title = "Royal Cotillion",
   like = Some("oddandeven"),
+  related = Seq("royalcotillion"),
   description = "A variation of ^oddandeven^ with some extra tableau and reserve piles, but only one pass allowed through the deck.",
   deckOptions = DeckOptions(
     numDecks = 2

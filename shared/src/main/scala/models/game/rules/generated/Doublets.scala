@@ -19,12 +19,13 @@ import models.game.rules._
  *   Left mouse interface function (leftfunc): 0x1
  *   Similar to (like): simplepairs
  *   Card removal method (pairs): 1 (Remove pairs of same rank)
- *   Related games (related): crisscross, eighteens, straightfifteens, blockten, patientpairs, doubletcell, doublets
+ *   Related games (related): crisscross, eighteens, straightfifteens, blockten, patientpairs, doubletcell, do...
  */
 object Doublets extends GameRules(
   id = "doublets",
   title = "Doublets",
   like = Some("simplepairs"),
+  related = Seq("crisscross", "eighteens", "straightfifteens", "blockten", "patientpairs", "doubletcell", "doublets"),
   description = "A similar game to ^simplepairs^. You remove pairs of cards of the same rank. The only way to bring any strategy into the game is b" +
   "y using the undo button.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,

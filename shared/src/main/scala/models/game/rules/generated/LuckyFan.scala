@@ -23,6 +23,7 @@ object LuckyFan extends GameRules(
   id = "luckyfan",
   title = "Lucky Fan",
   like = Some("freefan"),
+  related = Seq("boxfan", "freefan", "ceilingfan", "midnightclover"),
   description = "A version of ^freefan^ in which no fan may hold more than three cards.",
   foundations = Seq(
     FoundationRules(

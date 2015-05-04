@@ -9,7 +9,7 @@ import models.game.rules._
  *   Auto-move cards to foundation (F0a): 0 (Never)
  *   Foundation add complete sequences only (F0cs): true
  *   Tableau initial cards (T0d): -2 (custom)
- *   Custom initial cards (T0ds): DDDDDDDU UUUUUUU DDDDDDDU UUUUUUU DDDDDDDU UUUUUUU DDDDDDDU UUUUUUU DDDDDDDU DDDDDDDU UUUUUUU DDDDDDDU UUUUUUU DDDDDDDU UUUUUUU DDDDDDDU UUUUUUU DDDDDDDU
+ *   Custom initial cards (T0ds): DDDDDDDU UUUUUUU DDDDDDDU UUUUUUU DDDDDDDU UUUUUUU DDDDDDDU UUUUUUU DDDDDDDU DDD...
  *   Tableau piles (T0n): 18
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)

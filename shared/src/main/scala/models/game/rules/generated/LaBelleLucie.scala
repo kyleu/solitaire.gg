@@ -21,6 +21,7 @@ import models.game.rules._
 object LaBelleLucie extends GameRules(
   id = "labellelucie",
   title = "La Belle Lucie",
+  related = Seq("threeshufflesandadraw", "intelligence", "linus", "trefoil", "superflowergarden"),
   description = "A classic solitaire where you build down in suit on the tableau and can redeal twice. Rarely winnable.",
   foundations = Seq(
     FoundationRules(

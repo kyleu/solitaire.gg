@@ -27,6 +27,7 @@ import models.game.rules._
 object Beehive extends GameRules(
   id = "beehive",
   title = "Beehive",
+  related = Seq("beehivegallery"),
   description = "In this ^storehouse^ variant, we build and remove stacks of four cards of equal rank.",
   stock = Some(
     StockRules(

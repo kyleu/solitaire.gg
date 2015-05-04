@@ -22,6 +22,7 @@ object Gotham extends GameRules(
   id = "gotham",
   title = "Gotham",
   like = Some("newyork"),
+  related = Seq("bigapple"),
   description = "An easier variation of ^newyork^ where we build regardless of suit and same-suit stacks can be moved.",
   deckOptions = DeckOptions(
     numDecks = 2,

@@ -38,6 +38,7 @@ object EvenAndOdd extends GameRules(
   id = "evenandodd",
   title = "Even and Odd",
   like = Some("boulevard"),
+  related = Seq("evenandodd"),
   description = "A one-deck version of ^boulevard^.",
   stock = Some(
     StockRules(

@@ -26,6 +26,7 @@ object GoodMeasure extends GameRules(
   id = "goodmeasure",
   title = "Good Measure",
   like = Some("bakersdozen"),
+  related = Seq("spanish", "goodmeasure"),
   description = "A much more difficult variation of ^bakersdozen^ with fewer tableau piles.",
   foundations = Seq(
     FoundationRules(

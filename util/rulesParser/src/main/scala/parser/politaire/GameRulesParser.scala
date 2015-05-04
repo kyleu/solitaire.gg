@@ -69,12 +69,17 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
       case x => Some(x)
     }
 
+    val related = getString("related") match {
+      case "" => Nil
+      case x => x.split(",").toSeq.map(_.trim)
+    }
+
     GameRules(
       id = variant.id,
       title = getString("title"),
       description = getString("desc"),
       like = like,
-      related = Nil,
+      related = related,
       victoryCondition = victoryCondition,
       cardRemovalMethod = cardRemovalMethod,
       deckOptions = deckOptions,

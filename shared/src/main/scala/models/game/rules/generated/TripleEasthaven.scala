@@ -21,6 +21,7 @@ object TripleEasthaven extends GameRules(
   id = "tripleeasthaven",
   title = "Triple Easthaven",
   like = Some("easthaven"),
+  related = Seq("tripleeasthaven", "doubleeasthaven"),
   description = "A three-deck version of ^easthaven^ by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3

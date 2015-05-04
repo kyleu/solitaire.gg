@@ -21,6 +21,7 @@ object Winery extends GameRules(
   id = "winery",
   title = "Winery",
   like = Some("vineyard"),
+  related = Seq("tenbyone", "winery"),
   description = "A version of ^vineyard^ with cells added.",
   foundations = Seq(
     FoundationRules(

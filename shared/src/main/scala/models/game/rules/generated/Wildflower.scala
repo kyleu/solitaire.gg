@@ -23,6 +23,7 @@ object Wildflower extends GameRules(
   id = "wildflower",
   title = "Wildflower",
   like = Some("flowergarden"),
+  related = Seq("wildflower", "brigade"),
   description = "A variation of ^flowergarden^ in which you may move sequences of cards of the same suit together.",
   waste = Some(
     WasteRules(

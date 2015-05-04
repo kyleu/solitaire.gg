@@ -19,6 +19,7 @@ import models.game.rules._
 object NewYork extends GameRules(
   id = "newyork",
   title = "New York",
+  related = Seq("gotham"),
   description = "In this variation of ^dover^, you can choose which of the three waste piles you play cards from the stock onto, which is good beca" +
   "use it's hard to rearrange things much on the tableau.",
   deckOptions = DeckOptions(

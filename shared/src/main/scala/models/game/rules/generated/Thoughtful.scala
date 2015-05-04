@@ -21,6 +21,7 @@ object Thoughtful extends GameRules(
   id = "thoughtful",
   title = "Thoughtful",
   like = Some("klondike"),
+  related = Seq("auntmary"),
   description = "^klondike^ with all cards in the tableau starting face up. Also known as \"Saratoga\".",
   stock = Some(
     StockRules(

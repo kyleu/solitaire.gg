@@ -27,6 +27,7 @@ object DoubleStorehouse extends GameRules(
   id = "doublestorehouse",
   title = "Double Storehouse",
   like = Some("storehouse"),
+  related = Seq("doublestorehouse"),
   description = "A two-deck version of ^storehouse^.",
   deckOptions = DeckOptions(
     numDecks = 2,

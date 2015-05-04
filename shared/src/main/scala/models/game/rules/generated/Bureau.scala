@@ -17,12 +17,16 @@ import models.game.rules._
  *   Similar to (like): athena
  *   Maximum deals from stock (maxdeals): 2 (2)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklondike, athena, saratoga, endlessharp, smokey, spike, gilbert, jumboklondike, chinaman
+ *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  */
 object Bureau extends GameRules(
   id = "bureau",
   title = "Bureau",
   like = Some("athena"),
+  related = Seq(
+    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
+    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
+  ),
   description = "This game has rules similar to ^klondike^, except you build the foundation in alternate colors and cannot fill spaces in the table" +
   "au.",
   deckOptions = DeckOptions(

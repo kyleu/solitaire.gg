@@ -19,6 +19,7 @@ object Malmaison extends GameRules(
   id = "malmaison",
   title = "Malmaison",
   like = Some("sixtythieves"),
+  related = Seq("rueil"),
   description = "A difficult four-deck version of ^josephine^, or, if you prefer, a version of ^eightythieves^ which allows sequences to be moved. " +
   "Invented by Thomas Warfield.",
   deckOptions = DeckOptions(

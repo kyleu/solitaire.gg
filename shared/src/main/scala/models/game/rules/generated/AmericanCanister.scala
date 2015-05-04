@@ -20,6 +20,7 @@ object AmericanCanister extends GameRules(
   id = "americancanister",
   title = "American Canister",
   like = Some("canister"),
+  related = Seq("britishcanister", "americancanister", "bucket"),
   description = "A difficult variation of ^canister^ with building by alternate colors.",
   foundations = Seq(
     FoundationRules(

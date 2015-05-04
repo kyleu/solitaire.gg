@@ -25,6 +25,7 @@ object Portuguese extends GameRules(
   id = "portuguese",
   title = "Portuguese",
   like = Some("spanish"),
+  related = Seq("castlesinspain", "portuguese"),
   description = "A variant of ^bakersdozen^ that allows filling in spaces with kings.",
   foundations = Seq(
     FoundationRules(

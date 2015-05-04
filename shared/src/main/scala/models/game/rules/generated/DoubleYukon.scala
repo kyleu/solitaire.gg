@@ -8,7 +8,7 @@ import models.game.rules._
  * Original Settings:
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): -2 (custom)
- *   Custom initial cards (T0ds): UUUUU DUUUUUU DDUUUUUU DDDUUUUUU DDDDUUUUUU DDDDDUUUUUU DDDDDDUUUUUU DDDDDDDUUUUUU DDDDDDDDUUUUUU DDDDDDDDDUUUUUU
+ *   Custom initial cards (T0ds): UUUUU DUUUUUU DDUUUUUU DDDUUUUUU DDDDUUUUUU DDDDDUUUUUU DDDDDDUUUUUU DDDDDDDUUUU...
  *   Empty tableau is filled with (T0f): 1 (Kings only)
  *   Tableau piles (T0n): 10
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
@@ -21,6 +21,7 @@ import models.game.rules._
 object DoubleYukon extends GameRules(
   id = "doubleyukon",
   title = "Double Yukon",
+  related = Seq("quadrupleyukon"),
   description = "A two-deck variation of ^yukon^",
   deckOptions = DeckOptions(
     numDecks = 2

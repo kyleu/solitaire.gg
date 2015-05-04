@@ -23,6 +23,7 @@ object LadyBetty extends GameRules(
   id = "ladybetty",
   title = "Lady Betty",
   like = Some("sirtommy"),
+  related = Seq("alternate", "ladybetty"),
   description = "This cousin of ^sirtommy^ requires you to build the foundation in suit, but gives you two extra tableau piles to work with.",
   stock = Some(
     StockRules(

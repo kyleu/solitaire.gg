@@ -24,6 +24,7 @@ object Trefoil extends GameRules(
   id = "trefoil",
   title = "Trefoil",
   like = Some("labellelucie"),
+  related = Seq("threeshufflesandadraw", "intelligence", "linus", "trefoil", "superflowergarden"),
   description = "A slightly easier variation of ^labellelucie^ where the aces start on the foundation and there are fewer tableau columns.",
   foundations = Seq(
     FoundationRules(

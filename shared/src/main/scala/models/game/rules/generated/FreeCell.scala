@@ -14,12 +14,16 @@ import models.game.rules._
  *   Tableau piles (T0n): 8
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
  *   Number of waste piles (W0n): 0
- *   Related games (related): sixbyfour, ephemeralfreecell, challengefreecell, antares, sevenbyfive, spidercells, bigfreecell, chinesefreecell, sevenbyfour, invertedfreecell, selectivefreecell, doublefreecell, freecellduplex
+ *   Related games (related): sixbyfour, ephemeralfreecell, challengefreecell, antares, sevenbyfive, spidercel...
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object FreeCell extends GameRules(
   id = "freecell",
   title = "FreeCell",
+  related = Seq(
+    "sixbyfour", "ephemeralfreecell", "challengefreecell", "antares", "sevenbyfive", "spidercells", "bigfreecell", "chinesefreecell",
+    "sevenbyfour", "invertedfreecell", "selectivefreecell", "doublefreecell", "freecellduplex"
+  ),
   description = "Invented by Paul Alfille, made famous by Microsoft, this game provide four temporary storage cells that can be used to move cards " +
   "around.",
   foundations = Seq(

@@ -22,6 +22,7 @@ object QueenVictoria extends GameRules(
   id = "queenvictoria",
   title = "Queen Victoria",
   like = Some("kingalbert"),
+  related = Seq("queenvictoria", "muse", "raglan"),
   description = "This much easier variation of ^kingalbert^ allows stacks of cards to be moved.",
   waste = Some(
     WasteRules(

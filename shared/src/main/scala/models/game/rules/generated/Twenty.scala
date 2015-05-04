@@ -30,6 +30,7 @@ import models.game.rules._
 object Twenty extends GameRules(
   id = "twenty",
   title = "Twenty",
+  related = Seq("colorado"),
   description = "A somewhat mindless game with twenty reserve piles and no building.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -45,6 +45,7 @@ object BinaryStar extends GameRules(
   id = "binarystar",
   title = "Binary Star",
   like = Some("blackhole"),
+  related = Seq("blackhole"),
   description = "Thomas Warfield's two-deck version of ^blackhole^ has two foundation piles.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   deckOptions = DeckOptions(

@@ -19,12 +19,13 @@ import models.game.rules._
  *   Similar to (like): canfield
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 0
- *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demonsandthieves, chameleon
+ *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demo...
  */
 object SuperiorCanfield extends GameRules(
   id = "superiorcanfield",
   title = "Superior Canfield",
   like = Some("canfield"),
+  related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
   description = "Canfield made a bit easier and a bit more strategic by dealing the reserve cards face up and not automatically filling spaces from" +
   " the reserve.",
   deckOptions = DeckOptions(

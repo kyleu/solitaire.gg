@@ -29,6 +29,7 @@ object BlondesAndBrunettes extends GameRules(
   id = "blondesandbrunettes",
   title = "Blondes and Brunettes",
   like = Some("signora"),
+  related = Seq("doublesignora", "fallingstar", "blondesandbrunettes", "roman"),
   description = "A variation of ^signora^ where the foundation base card is determined by a card dealt in.",
   deckOptions = DeckOptions(
     numDecks = 2,

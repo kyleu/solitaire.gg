@@ -18,12 +18,13 @@ import models.game.rules._
  *   Similar to (like): canfield
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 3 (3)
- *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demonsandthieves, chameleon
+ *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demo...
  */
 object CanfieldRush extends GameRules(
   id = "canfieldrush",
   title = "Canfield Rush",
   like = Some("canfield"),
+  related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
   description = "A ^canfield^ variant where cards are dealt by threes in the first pass, by twos in the second and one-at-a-time in the last. Easie" +
   "r than standard Canfield, but still a challenging game.",
   deckOptions = DeckOptions(

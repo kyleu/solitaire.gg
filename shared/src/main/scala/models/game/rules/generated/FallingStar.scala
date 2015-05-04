@@ -30,6 +30,7 @@ object FallingStar extends GameRules(
   id = "fallingstar",
   title = "Falling Star",
   like = Some("signora"),
+  related = Seq("doublesignora", "fallingstar", "blondesandbrunettes", "roman"),
   description = "A more difficult ^signora^ variation with one fewer tableau pile and a predetermined foundation base.",
   deckOptions = DeckOptions(
     numDecks = 2,

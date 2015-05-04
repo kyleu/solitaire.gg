@@ -26,6 +26,7 @@ object ThreeDemons extends GameRules(
   id = "threedemons",
   title = "Three Demons",
   like = Some("triplecanfield"),
+  related = Seq("threedemons"),
   description = "This three-deck version of ^canfield^ invented by Thomas Warfield starts with more cards in the reserve and more tableau piles tha" +
   "n ^triplecanfield^.",
   deckOptions = DeckOptions(

@@ -15,11 +15,12 @@ import models.game.rules._
  *   Tableau rank match rule for moving stacks (T0tr): 0x1fff
  *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
- *   Related games (related): yukoncells, brisbane, yukononesuit, yukonicplague, alaska, yukonkings, yakutatbay
+ *   Related games (related): yukoncells, brisbane, yukononesuit, yukonicplague, alaska, yukonkings, yakutatba...
  */
 object Yukon extends GameRules(
   id = "yukon",
   title = "Yukon",
+  related = Seq("yukoncells", "brisbane", "yukononesuit", "yukonicplague", "alaska", "yukonkings", "yakutatbay"),
   description = "A well-known game with no stock, in which stacks of cards can be moved even if they aren't in sequence.",
   foundations = Seq(
     FoundationRules(

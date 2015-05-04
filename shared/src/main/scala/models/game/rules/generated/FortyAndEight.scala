@@ -17,6 +17,7 @@ import models.game.rules._
 object FortyAndEight extends GameRules(
   id = "fortyandeight",
   title = "Forty and Eight",
+  related = Seq("lower48"),
   description = "Two decks, forty cards in the tableau, eight foundation piles, building down in the same suit. You can only move single cards. Oft" +
   "en it feels like nothing is happening for a long time, and then the game works out after all. A good game for making you feel smar" +
   "t.",

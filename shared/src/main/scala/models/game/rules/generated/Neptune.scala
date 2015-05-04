@@ -23,6 +23,7 @@ import models.game.rules._
 object Neptune extends GameRules(
   id = "neptune",
   title = "Neptune",
+  related = Seq("shuffle"),
   description = "A game where you remove pairs of consecutive cards.",
   victoryCondition = VictoryCondition.AllButFourCardsOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveRankPairs,

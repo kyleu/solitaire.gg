@@ -19,6 +19,7 @@ import models.game.rules._
 object MilliganHarp extends GameRules(
   id = "milliganharp",
   title = "Milligan Harp",
+  related = Seq("milliganyukon"),
   description = "A cross between ^missmilligan^ and the two-deck ^klondike^ variant known as Harp.",
   deckOptions = DeckOptions(
     numDecks = 2

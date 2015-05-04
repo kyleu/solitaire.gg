@@ -29,6 +29,7 @@ object Fly extends GameRules(
   id = "fly",
   title = "Fly",
   like = Some("frog"),
+  related = Seq("fly"),
   description = "A variation of ^frog^ where the aces start on the foundation.",
   deckOptions = DeckOptions(
     numDecks = 2

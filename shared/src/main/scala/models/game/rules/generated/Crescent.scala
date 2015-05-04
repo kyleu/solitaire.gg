@@ -40,6 +40,7 @@ object Crescent extends GameRules(
   id = "crescent",
   title = "Crescent",
   like = Some("rainbowfan"),
+  related = Seq("crescentfour"),
   description = "A bidirectional building game where you can rotate cards in the stacks three times.",
   deckOptions = DeckOptions(
     numDecks = 2

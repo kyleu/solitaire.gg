@@ -19,12 +19,16 @@ import models.game.rules._
  *   Similar to (like): minerva
  *   Maximum deals from stock (maxdeals): 2 (2)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklondike, athena, saratoga, endlessharp, smokey, spike, gilbert, jumboklondike, chinaman
+ *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  */
 object DoubleMinerva extends GameRules(
   id = "doubleminerva",
   title = "Double Minerva",
   like = Some("minerva"),
+  related = Seq(
+    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
+    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
+  ),
   description = "Thomas Warfield's two-deck version of ^minerva^.",
   deckOptions = DeckOptions(
     numDecks = 2

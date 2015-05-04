@@ -29,6 +29,7 @@ object Chelicera extends GameRules(
   id = "chelicera",
   title = "Chelicera",
   like = Some("scorpion"),
+  related = Seq("chelicera", "chinese"),
   description = "A variation on ^scorpion^ invented by Erik den Hollander in which we fill spaces with three cards from the stock instead of dealin" +
   "g from the stock.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,

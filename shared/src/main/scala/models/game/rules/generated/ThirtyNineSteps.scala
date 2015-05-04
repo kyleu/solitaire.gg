@@ -20,6 +20,7 @@ object ThirtyNineSteps extends GameRules(
   id = "thirtyninesteps",
   title = "Thirty Nine Steps",
   like = Some("waningmoon"),
+  related = Seq("lucas"),
   description = "^waningmoon^ with fewer cards in the initial tableau.",
   stock = Some(
     StockRules(

@@ -24,6 +24,7 @@ object NapoleonsShoulder extends GameRules(
   id = "napoleonsshoulder",
   title = "Napoleon's Shoulder",
   like = Some("napoleonssquare"),
+  related = Seq("napoleonsshoulder"),
   description = "A varient of ^napoleonssquare^ where you build regardless of suit.",
   deckOptions = DeckOptions(
     numDecks = 2

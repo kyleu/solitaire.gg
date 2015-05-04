@@ -22,6 +22,7 @@ object FortressOfMercy extends GameRules(
   id = "fortressofmercy",
   title = "Fortress of Mercy",
   like = Some("fortress"),
+  related = Seq("bastion", "chessboard", "fortressofmercy", "beleagueredfortress"),
   description = "A variation of ^fortress^ that allows you one \"merci\" move, in which any one card can be moved to the top of its stack.",
   foundations = Seq(
     FoundationRules(

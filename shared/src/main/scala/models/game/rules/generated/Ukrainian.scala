@@ -24,6 +24,7 @@ object Ukrainian extends GameRules(
   id = "ukrainian",
   title = "Ukrainian",
   like = Some("russian"),
+  related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
   description = "A rarely winnable version of ^russian^ Solitaire where only complete sequences can be taken off, as in spider.",
   foundations = Seq(
     FoundationRules(

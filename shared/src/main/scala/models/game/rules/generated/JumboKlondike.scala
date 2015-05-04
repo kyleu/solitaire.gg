@@ -15,13 +15,17 @@ import models.game.rules._
  *   Deal cards from stock (dealchunk): 3 (Three at a time)
  *   Similar to (like): klondike
  *   Maximum deals from stock (maxdeals): 0
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklondike, athena, saratoga, endlessharp, smokey, spike, gilbert, jumboklondike, chinaman
+ *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  *   Custom suits (suits): 399
  */
 object JumboKlondike extends GameRules(
   id = "jumboklondike",
   title = "Jumbo Klondike",
   like = Some("klondike"),
+  related = Seq(
+    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
+    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
+  ),
   description = "^klondike^ played with a six-suit deck.",
   stock = Some(
     StockRules(

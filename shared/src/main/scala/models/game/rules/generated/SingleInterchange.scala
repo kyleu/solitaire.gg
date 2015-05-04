@@ -22,6 +22,7 @@ object SingleInterchange extends GameRules(
   id = "singleinterchange",
   title = "Single Interchange",
   like = Some("unlimited"),
+  related = Seq("tripleinterchange", "breakwater", "unlimited"),
   description = "A difficult one-deck variant of ^interchange^ invented by Thomas Warfield.",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),

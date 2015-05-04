@@ -24,6 +24,7 @@ object Raglan extends GameRules(
   id = "raglan",
   title = "Raglan",
   like = Some("kingalbert"),
+  related = Seq("queenvictoria", "muse", "raglan"),
   description = "This is ^kingalbert^ with a different tableau and Aces already on the foundation. It is a bit easier to solve.",
   waste = Some(
     WasteRules(

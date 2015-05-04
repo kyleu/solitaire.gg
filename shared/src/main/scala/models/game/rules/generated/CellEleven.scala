@@ -10,7 +10,7 @@ import models.game.rules._
  *   Number of cells (C0n): 11
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): -2 (custom)
- *   Custom initial cards (T0ds): UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU
+ *   Custom initial cards (T0ds): UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUU...
  *   Tableau piles (T0n): 12
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
  *   Number of waste piles (W0n): 0
@@ -23,6 +23,7 @@ object CellEleven extends GameRules(
   id = "celleleven",
   title = "Cell Eleven",
   like = Some("triplefreecell"),
+  related = Seq("celleleven", "freecellthreedeck"),
   description = "A three-deck version of ^freecell^.",
   deckOptions = DeckOptions(
     numDecks = 3

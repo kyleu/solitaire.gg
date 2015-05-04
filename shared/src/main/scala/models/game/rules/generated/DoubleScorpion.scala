@@ -11,7 +11,7 @@ import models.game.rules._
  *   Keep foundation off-screen (F0i): true
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): -2 (custom)
- *   Custom initial cards (T0ds): DDDDUUUUUUU DDDDUUUUUUU DDDDUUUUUUU DDDDUUUUUUU DDDDUUUUUU UUUUUUUUUU UUUUUUUUUU UUUUUUUUUU UUUUUUUUUU UUUUUUUUUU
+ *   Custom initial cards (T0ds): DDDDUUUUUUU DDDDUUUUUUU DDDDUUUUUUU DDDDUUUUUUU DDDDUUUUUU UUUUUUUUUU UUUUUUUUUU...
  *   Empty tableau is filled with (T0f): 1 (Kings only)
  *   Tableau piles (T0n): 10
  *   Tableau suit match rule for building (T0s): 1 (In same suit)

@@ -21,6 +21,7 @@ object Titan extends GameRules(
   id = "titan",
   title = "Titan",
   like = Some("giant"),
+  related = Seq("titan"),
   description = "A version of ^giant^ that starts with more cards on the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2

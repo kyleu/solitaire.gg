@@ -26,6 +26,7 @@ object CastlesInSpain extends GameRules(
   id = "castlesinspain",
   title = "Castles in Spain",
   like = Some("spanish"),
+  related = Seq("castlesinspain", "portuguese"),
   description = "A variant of ^bakersdozen^ that allows filling in spaces with any card and where we build in alternate colors.",
   foundations = Seq(
     FoundationRules(

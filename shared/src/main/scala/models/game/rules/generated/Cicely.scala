@@ -42,6 +42,7 @@ object Cicely extends GameRules(
   id = "cicely",
   title = "Cicely",
   like = Some("caprice"),
+  related = Seq("tournament"),
   description = "A variation of ^tournament^ and ^kingsdowneights^ where you can build up and down on the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2

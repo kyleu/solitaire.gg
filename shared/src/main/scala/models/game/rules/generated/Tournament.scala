@@ -49,6 +49,7 @@ object Tournament extends GameRules(
   id = "tournament",
   title = "Tournament",
   like = Some("cicely"),
+  related = Seq("tournament"),
   description = "A two-deck game where no building is allowed on the tableau, and you must rely on eight cells to move your cards to the foundation" +
   ".",
   deckOptions = DeckOptions(

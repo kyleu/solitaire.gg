@@ -15,12 +15,16 @@ import models.game.rules._
  *   Deal cards from stock (dealchunk): 1 (One by one)
  *   Similar to (like): thoughtful
  *   Maximum deals from stock (maxdeals): 1 (1)
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklondike, athena, saratoga, endlessharp, smokey, spike, gilbert, jumboklondike, chinaman
+ *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  */
 object AuntMary extends GameRules(
   id = "auntmary",
   title = "Aunt Mary",
   like = Some("thoughtful"),
+  related = Seq(
+    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
+    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
+  ),
   description = "A difficult ^klondike^ variation where the tableau contains one fewer pile but all cards are face up.",
   stock = Some(
     StockRules(

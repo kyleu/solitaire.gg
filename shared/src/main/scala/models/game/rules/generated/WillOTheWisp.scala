@@ -22,6 +22,7 @@ import models.game.rules._
 object WillOTheWisp extends GameRules(
   id = "willothewisp",
   title = "Will o the Wisp",
+  related = Seq("fairmaids"),
   description = "A one-deck version of ^spider^, with a rectangular 7x3 tableau.",
   stock = Some(
     StockRules(

@@ -22,6 +22,7 @@ object FreeFan extends GameRules(
   id = "freefan",
   title = "FreeFan",
   like = Some("fan"),
+  related = Seq("luckyfan"),
   description = "An easy variation of ^fan^ with cells. Invented by Gregg Seelhoff.",
   foundations = Seq(
     FoundationRules(

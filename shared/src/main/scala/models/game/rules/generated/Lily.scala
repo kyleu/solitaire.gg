@@ -29,6 +29,7 @@ object Lily extends GameRules(
   id = "lily",
   title = "Lily",
   like = Some("trillium"),
+  related = Seq("lily"),
   description = "A harder variation of ^trillium^ where spaces may only be filled with kings.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

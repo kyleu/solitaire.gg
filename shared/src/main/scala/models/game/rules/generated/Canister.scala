@@ -18,6 +18,7 @@ import models.game.rules._
 object Canister extends GameRules(
   id = "canister",
   title = "Canister",
+  related = Seq("britishcanister", "americancanister", "bucket"),
   description = "Yet another generic solitaire game, with all cards dealt face up and no stock. This is quite easy when it's not impossible.",
   foundations = Seq(
     FoundationRules(

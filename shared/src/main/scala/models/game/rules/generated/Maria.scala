@@ -15,6 +15,7 @@ import models.game.rules._
 object Maria extends GameRules(
   id = "maria",
   title = "Maria",
+  related = Seq("midshipman"),
   description = "Like ^fortythieves^, but with a 9 by 4 tableau where you build in alternating colors.",
   deckOptions = DeckOptions(
     numDecks = 2

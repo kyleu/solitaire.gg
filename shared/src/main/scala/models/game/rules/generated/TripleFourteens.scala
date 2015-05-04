@@ -24,6 +24,7 @@ object TripleFourteens extends GameRules(
   id = "triplefourteens",
   title = "Triple Fourteens",
   like = Some("fourteenout"),
+  related = Seq("juvenile", "doublefourteens", "triplefourteens", "tensout"),
   description = "An three-deck version of ^fourteenout^ which was invented by Thomas Warfield.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(

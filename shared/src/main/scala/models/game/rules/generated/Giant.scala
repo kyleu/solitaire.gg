@@ -19,6 +19,7 @@ import models.game.rules._
 object Giant extends GameRules(
   id = "giant",
   title = "Giant",
+  related = Seq("titan"),
   description = "A ^missmilligan^ variant without a pocket but in which any card can be played to an empty space.",
   deckOptions = DeckOptions(
     numDecks = 2

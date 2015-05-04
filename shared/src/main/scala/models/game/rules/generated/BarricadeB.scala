@@ -20,6 +20,7 @@ object BarricadeB extends GameRules(
   id = "barricadeb",
   title = "Barricade B",
   like = Some("block"),
+  related = Seq("barricadeb"),
   description = "An easier, but still very difficult, modification of ^block^ invented by Richard Mechen and Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2

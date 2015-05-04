@@ -23,6 +23,7 @@ object TrigonLeft extends GameRules(
   id = "trigonleft",
   title = "Trigon Left",
   like = Some("trigon"),
+  related = Seq("doubletrigon", "quadrupletrigon", "trigonleft"),
   description = "A blend of ^trigon^ and ^movingleft^.",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),

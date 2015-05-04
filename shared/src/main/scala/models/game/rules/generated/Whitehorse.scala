@@ -16,12 +16,16 @@ import models.game.rules._
  *   Deal cards from stock (dealchunk): 3 (Three at a time)
  *   Similar to (like): klondike
  *   Maximum deals from stock (maxdeals): 0
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklondike, athena, saratoga, endlessharp, smokey, spike, gilbert, jumboklondike, chinaman
+ *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  */
 object Whitehorse extends GameRules(
   id = "whitehorse",
   title = "Whitehorse",
   like = Some("klondike"),
+  related = Seq(
+    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
+    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
+  ),
   description = "An easy ^klondike^ variant where instead of dealing a lot of cards to the tableau, we have spaces that autofill",
   stock = Some(
     StockRules(

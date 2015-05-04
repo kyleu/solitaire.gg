@@ -19,6 +19,7 @@ import models.game.rules._
 object Carlton extends GameRules(
   id = "carlton",
   title = "Carlton",
+  related = Seq("steve"),
   description = "A difficult two-deck ^klondike^ variation.",
   deckOptions = DeckOptions(
     numDecks = 2

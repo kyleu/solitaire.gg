@@ -3,6 +3,7 @@ package parser
 import java.nio.file.{ Files, Path, Paths }
 
 import models.game.rules._
+import models.game.rules.custom.CustomGameRules
 import parser.politaire.PolitaireParser
 import parser.politaire.lookup.PolitaireLookup
 
@@ -15,15 +16,14 @@ object ScalaExporter {
 
     for(rules <- rulesSet) {
       val v = src.find(_.id == rules.id).getOrElse(throw new IllegalArgumentException)
-      writeFile(srcDir.resolve(getObjectName(rules) + ".scala"), exportRules(rules, v))
+      val modifiedRules = rules.copy(related = rules.related ++ CustomGameRules.all.filter(_.like == Some(rules.id)).map(_.id))
+      writeFile(srcDir.resolve(getObjectName(rules) + ".scala"), exportRules(modifiedRules, v))
     }
   }
 
   def exportRules(rules: GameRules, variant: PolitaireParser.Variant) = {
     val ret = new StringBuilder()
     def add(s: String) = ret ++= s + "\n"
-
-    val defaults = GameRules("default", "default", "default")
 
     add("// Generated rules for Scalataire.")
     add("package models.game.rules.generated")
@@ -39,7 +39,8 @@ object ScalaExporter {
           case i: Int => PolitaireLookup.getTranslation(attr._2.id).flatMap(_.get(i))
           case _ => None
         }
-        add(" *   " + attr._2.title + " (" + attr._2.id + "): " + attr._2.value + translation.map(" (" + _ + ")").getOrElse(""))
+        var value = if(attr._2.value.toString.length > 80) { attr._2.value.toString.substring(0, 80) + "..." } else { attr._2.value.toString }
+        add(" *   " + attr._2.title + " (" + attr._2.id + "): " + value + translation.map(" (" + _ + ")").getOrElse(""))
       }
     }
     add(" */")
@@ -50,23 +51,23 @@ object ScalaExporter {
       add("  like = Some(\"" + l + "\"),")
     }
     if (rules.related.nonEmpty) {
-      val rel = rules.related.grouped(8)
+      val rel = rules.related.grouped(8).toSeq
       if (rel.size == 1 && rel.nonEmpty) {
-        add("  related = Seq(" + rel.map("\"" + _ + "\"").mkString(", ") + "),")
+        add("  related = Seq(" + rel.headOption.getOrElse(Nil).map("\"" + _ + "\"").mkString(", ") + "),")
       } else if (rel.size > 1) {
         add("  related = Seq(")
         for(relSet <- rel.zipWithIndex) {
-          add(relSet._1.map("\"" + _ + "\"").mkString(", ") + (if(relSet._2 < ret.size) { "," } else { "" }))
+          add("    " + relSet._1.map("\"" + _ + "\"").mkString(", ") + (if(relSet._2 < rel.size - 1) { "," } else { "" }))
         }
         add("  ),")
       }
     }
     val desc = rules.description.replaceAllLiterally("\"", "\\\"").grouped(130)
     add("  description = \"" + desc.mkString("\" +\n  \"") + "\",")
-    if (rules.victoryCondition != defaults.victoryCondition) {
+    if (rules.victoryCondition != GameRules.default.victoryCondition) {
       add("  victoryCondition = VictoryCondition." + cls(rules.victoryCondition) + ",")
     }
-    if (rules.cardRemovalMethod != defaults.cardRemovalMethod) {
+    if (rules.cardRemovalMethod != GameRules.default.cardRemovalMethod) {
       add("  cardRemovalMethod = CardRemovalMethod." + cls(rules.cardRemovalMethod) + ",")
     }
     ScalaDeckOptionsExporter.exportDeckOptions(rules, ret)
@@ -81,7 +82,6 @@ object ScalaExporter {
     add("  complete = " + rules.complete)
     add(")")
     add("")
-
     ret.toString()
   }
 
@@ -92,8 +92,6 @@ object ScalaExporter {
     case specificRank: FoundationLowRank.SpecificRank => "SpecificRank(Rank." + specificRank.r + ")"
     case cn => cn.getClass.getSimpleName.replaceAllLiterally("$", "")
   }
-
   private def getObjectName(rules: GameRules) = rules.title.replaceAll("[-'\\(\\)]", "").split(" ").map(x => x.head.toUpper + x.tail).mkString
-
   private def writeFile(p: Path, s: String) = Files.write(p, s.getBytes)
 }

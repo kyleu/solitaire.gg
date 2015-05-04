@@ -18,12 +18,16 @@ import models.game.rules._
  *   Deal cards from stock (dealchunk): 3 (Three at a time)
  *   Similar to (like): klondike
  *   Maximum deals from stock (maxdeals): 0
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklondike, athena, saratoga, endlessharp, smokey, spike, gilbert, jumboklondike, chinaman
+ *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  */
 object Gilbert extends GameRules(
   id = "gilbert",
   title = "Gilbert",
   like = Some("klondike"),
+  related = Seq(
+    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
+    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
+  ),
   description = "An odd ^klondike^ variation with one set of foundations building up and one set building down. The fact that only sevens can fill " +
   "gaps in the tableau makes it nearly unplayable.",
   stock = Some(

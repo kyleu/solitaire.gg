@@ -24,6 +24,7 @@ object TenAcross extends GameRules(
   id = "tenacross",
   title = "Ten Across",
   like = Some("russian"),
+  related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
   description = "A variation of ^russian^ with a different starting tableau and two cells, which start full.",
   foundations = Seq(
     FoundationRules(

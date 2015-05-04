@@ -17,6 +17,7 @@ import models.game.rules._
 object BlindAlleys extends GameRules(
   id = "blindalleys",
   title = "Blind Alleys",
+  related = Seq("passeul"),
   description = "A ^klondike^ variant with a square tableau, differing from ^passeul^ only in the number of passes through the deck allowed.",
   stock = Some(
     StockRules(

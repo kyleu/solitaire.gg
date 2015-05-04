@@ -21,6 +21,7 @@ object Fortress extends GameRules(
   id = "fortress",
   title = "Fortress",
   like = Some("beleagueredcastle"),
+  related = Seq("bastion", "chessboard", "fortressofmercy", "beleagueredfortress"),
   description = "A classic and usually insolvable ancestor of ^beleagueredcastle^ where you can build both up and down in the tableau.",
   foundations = Seq(
     FoundationRules(

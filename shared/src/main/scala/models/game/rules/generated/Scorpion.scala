@@ -23,6 +23,7 @@ import models.game.rules._
 object Scorpion extends GameRules(
   id = "scorpion",
   title = "Scorpion",
+  related = Seq("chelicera", "chinese"),
   description = "A game with a seven-by-seven tableau, where three cards in the first four piles start face down. Unsorted stacks of cards can be m" +
   "oved around, as in ^yukon^, but cards cannot be moved to the foundation until they form complete sequences, as in ^spider^.",
   stock = Some(

@@ -25,6 +25,7 @@ object Muse extends GameRules(
   id = "muse",
   title = "Muse",
   like = Some("kingalbert"),
+  related = Seq("queenvictoria", "muse", "raglan"),
   description = "This variation of ^kingalbert^ has cells instead of a reserve.",
   foundations = Seq(
     FoundationRules(

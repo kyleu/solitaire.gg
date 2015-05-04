@@ -17,12 +17,16 @@ import models.game.rules._
  *   *gallery (gallery): 1
  *   Similar to (like): klondike
  *   Maximum deals from stock (maxdeals): 0
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklondike, athena, saratoga, endlessharp, smokey, spike, gilbert, jumboklondike, chinaman
+ *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  */
 object KlondikeGalleryMode extends GameRules(
   id = "klondikegallery",
   title = "Klondike (Gallery Mode)",
   like = Some("klondike"),
+  related = Seq(
+    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
+    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
+  ),
   description = "The world's most famous solitaire game played in gallery mode so all stock cards are always visible and the playable ones are rais" +
   "ed",
   stock = Some(

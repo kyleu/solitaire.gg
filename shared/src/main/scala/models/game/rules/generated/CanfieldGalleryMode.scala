@@ -20,12 +20,13 @@ import models.game.rules._
  *   Similar to (like): canfield
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 0
- *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demonsandthieves, chameleon
+ *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demo...
  */
 object CanfieldGalleryMode extends GameRules(
   id = "canfieldgallery",
   title = "Canfield (Gallery Mode)",
   like = Some("canfield"),
+  related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
   description = "This is just ^canfield^ with a different user \"interface\": all the cards that would normally start in the stock are fanned out f" +
   "ace up, with the ones that would normally be playable if you were going through the stock three at a time automatically raised up " +
   "to indicate that they are playable.",

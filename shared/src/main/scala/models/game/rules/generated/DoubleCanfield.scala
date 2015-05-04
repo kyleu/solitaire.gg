@@ -23,6 +23,7 @@ import models.game.rules._
 object DoubleCanfield extends GameRules(
   id = "doublecanfield",
   title = "Double Canfield",
+  related = Seq("variegatedcanfield", "demon"),
   description = "An two-deck version of ^canfield^, much much easier than the original game.",
   deckOptions = DeckOptions(
     numDecks = 2,

@@ -25,6 +25,7 @@ object Chinese extends GameRules(
   id = "chinese",
   title = "Chinese",
   like = Some("scorpion"),
+  related = Seq("dragon"),
   description = "This ^scorpion^ variation has a different layout, a smaller stock, and allows cards to be moved to the foundation one at a time.",
   stock = Some(
     StockRules(

@@ -23,6 +23,7 @@ object Linus extends GameRules(
   id = "linus",
   title = "Linus",
   like = Some("labellelucie"),
+  related = Seq("threeshufflesandadraw", "intelligence", "linus", "trefoil", "superflowergarden"),
   description = "An easier variation of ^labellelucie^ where you build in alternate colors.",
   foundations = Seq(
     FoundationRules(

@@ -28,6 +28,7 @@ object Acquaintance extends GameRules(
   id = "acquaintance",
   title = "Acquaintance",
   like = Some("auldlangsyne"),
+  related = Seq("quadrennial"),
   description = "A variation of ^auldlangsyne^ suggested by Michael Keller that adds some interest by allowing two redeals.",
   stock = Some(
     StockRules(

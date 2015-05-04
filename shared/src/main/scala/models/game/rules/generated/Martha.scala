@@ -21,6 +21,7 @@ import models.game.rules._
 object Martha extends GameRules(
   id = "martha",
   title = "Martha",
+  related = Seq("stewart"),
   description = "An easy game with no stock where half the cards start face down. Somewhat similar to ^bakersdozen^.",
   foundations = Seq(
     FoundationRules(

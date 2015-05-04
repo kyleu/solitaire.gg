@@ -8,7 +8,7 @@ import models.game.rules._
  * Original Settings:
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): -2 (custom)
- *   Custom initial cards (T0ds): U DUUUUUU DDUUUUUU DDDUUUUUU DDDDUUUUUU DDDDDUUUUUU DDDDDDUUUUUU DDDDDDDUUUUUU DDDDDDDDUUUUUU DDDDDDDDDUUUUUU DDDDDDDDDDU DDDDDDDDDDDU DDDDDDDDDDDDU
+ *   Custom initial cards (T0ds): U DUUUUUU DDUUUUUU DDDUUUUUU DDDDUUUUUU DDDDDUUUUUU DDDDDDUUUUUU DDDDDDDUUUUUU D...
  *   Empty tableau is filled with (T0f): 1 (Kings only)
  *   Tableau piles (T0n): 13
  *   Tableau suit match rule for building (T0s): 1 (In same suit)

@@ -17,6 +17,7 @@ import models.game.rules._
 object Somerset extends GameRules(
   id = "somerset",
   title = "Somerset",
+  related = Seq("morehead", "usk"),
   description = "A ^klondike^ variant without stock or waste. Unlike ^usk^, moves of stacks are not allowed, but spaces can be filled by any card.",
   foundations = Seq(
     FoundationRules(

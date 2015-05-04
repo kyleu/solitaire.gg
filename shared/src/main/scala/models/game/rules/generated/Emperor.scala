@@ -19,6 +19,7 @@ object Emperor extends GameRules(
   id = "emperor",
   title = "Emperor",
   like = Some("rankandfile"),
+  related = Seq("emperor"),
   description = "A more difficult version of ^rankandfile^ where only single cards can be moved..",
   deckOptions = DeckOptions(
     numDecks = 2

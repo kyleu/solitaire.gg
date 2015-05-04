@@ -21,6 +21,7 @@ object DoubleEasthaven extends GameRules(
   id = "doubleeasthaven",
   title = "Double Easthaven",
   like = Some("easthaven"),
+  related = Seq("tripleeasthaven", "doubleeasthaven"),
   description = "A two-deck version of ^easthaven^.",
   deckOptions = DeckOptions(
     numDecks = 2

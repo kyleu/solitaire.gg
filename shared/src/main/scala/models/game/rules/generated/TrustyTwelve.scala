@@ -22,6 +22,7 @@ import models.game.rules._
 object TrustyTwelve extends GameRules(
   id = "trustytwelve",
   title = "Trusty Twelve",
+  related = Seq("bunker", "knottynines", "sweetsixteen", "upandup"),
   description = "More luck than skill is needed to win this game of building sequences on the tableau.",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(

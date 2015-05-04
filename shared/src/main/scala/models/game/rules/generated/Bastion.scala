@@ -23,6 +23,7 @@ object Bastion extends GameRules(
   id = "bastion",
   title = "Bastion",
   like = Some("fortress"),
+  related = Seq("bastion", "chessboard", "fortressofmercy", "beleagueredfortress"),
   description = "^fortress^ with cells.",
   foundations = Seq(
     FoundationRules(

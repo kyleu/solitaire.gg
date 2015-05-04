@@ -17,13 +17,17 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 3 (To all tableau piles if none empty)
  *   Left mouse interface function (leftfunc): 0x2|0x20
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): fredsspider, chinesespider, astrocyte, mondospider, tarantula, trillium, spideronesuit, spidertwosuits, spiderette, blackwidow, hugespider, beetle, bigspider
+ *   Related games (related): fredsspider, chinesespider, astrocyte, mondospider, tarantula, trillium, spidero...
  *   Right mouse interface function (rightfunc): 0x0
  *   Victory condition (victory): 3 (All cards on tableau sorted)
  */
 object Spider extends GameRules(
   id = "spider",
   title = "Spider",
+  related = Seq(
+    "fredsspider", "chinesespider", "astrocyte", "mondospider", "tarantula", "trillium", "spideronesuit", "spidertwosuits",
+    "spiderette", "blackwidow", "hugespider", "beetle", "bigspider"
+  ),
   description = "On the 10 tableau piles you can build down regardless of suit, but you can only move single suit sequences. When you click on the " +
   "stock, one card will be dealt to each tableau pile. Single cards cannot be moved to the foundation, only complete sequences.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,

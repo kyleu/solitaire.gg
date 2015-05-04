@@ -24,6 +24,7 @@ object DoubleFourteens extends GameRules(
   id = "doublefourteens",
   title = "Double Fourteens",
   like = Some("fourteenout"),
+  related = Seq("juvenile", "doublefourteens", "triplefourteens", "tensout"),
   description = "An two-deck version of ^fourteenout^.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(

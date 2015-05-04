@@ -21,6 +21,7 @@ object Czarina extends GameRules(
   id = "czarina",
   title = "Czarina",
   like = Some("fourseasons"),
+  related = Seq("corners"),
   description = "A variation on ^fourseasons^ where spaces are filled automatically from the stock.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

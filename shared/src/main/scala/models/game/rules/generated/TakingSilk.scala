@@ -16,6 +16,7 @@ import models.game.rules._
 object TakingSilk extends GameRules(
   id = "takingsilk",
   title = "Taking Silk",
+  related = Seq("floradora"),
   description = "A two deck version of ^thirtysix^. Having more suits than tableau piles makes this tricky.",
   deckOptions = DeckOptions(
     numDecks = 2

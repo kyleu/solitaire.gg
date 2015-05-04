@@ -28,6 +28,7 @@ object Trillium extends GameRules(
   id = "trillium",
   title = "Trillium",
   like = Some("spider"),
+  related = Seq("lily"),
   description = "A ^spider^ variant with a 13x4 tableau where you build down by alternate color.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

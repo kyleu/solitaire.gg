@@ -20,6 +20,7 @@ object Diplomat extends GameRules(
   id = "diplomat",
   title = "Diplomat",
   like = Some("congress"),
+  related = Seq("rowsoffour"),
   description = "A variation on ^congress^ or ^fortyandeight^.",
   deckOptions = DeckOptions(
     numDecks = 2

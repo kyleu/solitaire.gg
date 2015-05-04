@@ -35,6 +35,7 @@ object Alternative extends GameRules(
   id = "alternative",
   title = "Alternative",
   like = Some("cloverleaf"),
+  related = Seq("alternative"),
   description = "This relative of ^cloverleaf^ does not allow spaces to be filled, but allows one redeal.",
   foundations = Seq(
     FoundationRules(

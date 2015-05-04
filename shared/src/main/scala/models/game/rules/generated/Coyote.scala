@@ -18,12 +18,13 @@ import models.game.rules._
  *   Similar to (like): acme
  *   Low card (lowpip): 1 (A)
  *   Maximum deals from stock (maxdeals): 2 (2)
- *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demonsandthieves, chameleon
+ *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demo...
  */
 object Coyote extends GameRules(
   id = "coyote",
   title = "Coyote",
   like = Some("acme"),
+  related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
   description = "An slightly easier, but still difficult, variation of ^acme^ in which sequences can be moved. Named after Acme's best customer.",
   stock = Some(
     StockRules(

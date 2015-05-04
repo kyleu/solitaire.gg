@@ -23,6 +23,7 @@ import models.game.rules._
 object TripleCanfield extends GameRules(
   id = "triplecanfield",
   title = "Triple Canfield",
+  related = Seq("threedemons"),
   description = "An easy three-deck version of ^canfield^ invented by Thomas Warfield that has fewer tableau piles and a smaller reserve than ^thre" +
   "edemons^.",
   deckOptions = DeckOptions(

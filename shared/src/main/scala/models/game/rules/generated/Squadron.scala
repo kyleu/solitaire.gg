@@ -14,13 +14,18 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Similar to (like): fortythieves
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepirates, squadron, fortythieves3, sixtythieves, littlenapoleon, eightythieves, mamysusan, sanjuanhill, fortythieves4, thievesrush, josephine
+ *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepi...
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object Squadron extends GameRules(
   id = "squadron",
   title = "Squadron",
   like = Some("fortythieves"),
+  related = Seq(
+    "robie", "napoleonsquadrilateral", "famousfifty", "fortybandits", "limited", "elba", "threepirates", "squadron",
+    "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
+    "josephine"
+  ),
   description = "A much easier version of ^fortytheives^ with three cells.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -35,6 +35,7 @@ object Alternate extends GameRules(
   id = "alternate",
   title = "Alternate",
   like = Some("sirtommy"),
+  related = Seq("alternate", "ladybetty"),
   description = "A variation of ^sirtommy^ where the foundations are built in alternate color, half upwards, half downwards.",
   stock = Some(
     StockRules(

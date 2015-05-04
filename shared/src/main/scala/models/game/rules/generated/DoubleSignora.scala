@@ -28,6 +28,7 @@ object DoubleSignora extends GameRules(
   id = "doublesignora",
   title = "Double Signora",
   like = Some("signora"),
+  related = Seq("empressofitaly"),
   description = "A four-deck version of ^signora^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 4,

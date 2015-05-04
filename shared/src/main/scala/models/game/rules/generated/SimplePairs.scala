@@ -17,11 +17,12 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 8 (Never)
  *   Left mouse interface function (leftfunc): 0x1
  *   Card removal method (pairs): 1 (Remove pairs of same rank)
- *   Related games (related): crisscross, eighteens, straightfifteens, blockten, patientpairs, doubletcell, doublets
+ *   Related games (related): crisscross, eighteens, straightfifteens, blockten, patientpairs, doubletcell, do...
  */
 object SimplePairs extends GameRules(
   id = "simplepairs",
   title = "Simple Pairs",
+  related = Seq("crisscross", "eighteens", "straightfifteens", "blockten", "patientpairs", "doubletcell", "doublets"),
   description = "A game where you remove pairs of cards of the same rank. Bring your luck, not your brain, to this game.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(

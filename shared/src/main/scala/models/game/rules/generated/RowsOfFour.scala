@@ -21,6 +21,7 @@ object RowsOfFour extends GameRules(
   id = "rowsoffour",
   title = "Rows of Four",
   like = Some("diplomat"),
+  related = Seq("rowsoffour"),
   description = "An easier version of Diplomat, allowing some redeals.",
   deckOptions = DeckOptions(
     numDecks = 2

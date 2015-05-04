@@ -24,6 +24,7 @@ object Acme extends GameRules(
   id = "acme",
   title = "Acme",
   like = Some("canfield"),
+  related = Seq("coyote"),
   description = "A difficult variation of ^canfield^ where you build in suit, can't move sequences, and only get two passes through the stock. \"Ac" +
   "me,\" the greek word for the zenith, was a popular name for companies who wanted to be listed first in the phone book until the ^c" +
   "oyote^ and Roadrunner ruined it.",

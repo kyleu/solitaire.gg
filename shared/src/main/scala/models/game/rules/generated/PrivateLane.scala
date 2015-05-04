@@ -21,6 +21,7 @@ object PrivateLane extends GameRules(
   id = "privatelane",
   title = "Private Lane",
   like = Some("streetsandalleys"),
+  related = Seq("stronghold", "penelopesweb", "privatelane"),
   description = "A variation of ^beleagueredcastle^ with two ^freecell^-style cells added.",
   foundations = Seq(
     FoundationRules(

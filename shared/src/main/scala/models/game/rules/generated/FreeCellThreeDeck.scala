@@ -21,6 +21,7 @@ object FreeCellThreeDeck extends GameRules(
   id = "freecellthreedeck",
   title = "FreeCell Three Deck",
   like = Some("triplefreecell"),
+  related = Seq("freecellfourdeck"),
   description = "Yet another three-deck version of ^freecell^.",
   deckOptions = DeckOptions(
     numDecks = 3

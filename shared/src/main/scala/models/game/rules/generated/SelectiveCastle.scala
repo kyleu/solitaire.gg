@@ -14,13 +14,14 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): beleagueredcastle
  *   Low card (lowpip): -2 (?)
- *   Related games (related): fortress, citadel, castlemount, castleofindolence, streetsandalleys, selectivecastle
+ *   Related games (related): fortress, citadel, castlemount, castleofindolence, streetsandalleys, selectiveca...
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object SelectiveCastle extends GameRules(
   id = "selectivecastle",
   title = "Selective Castle",
   like = Some("beleagueredcastle"),
+  related = Seq("fortress", "citadel", "castlemount", "castleofindolence", "streetsandalleys", "selectivecastle"),
   description = "A version of ^beleagueredcastle^ where the base of the foundation is determined by the first card you play to it.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

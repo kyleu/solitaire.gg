@@ -20,6 +20,7 @@ import models.game.rules._
 object Stonewall extends GameRules(
   id = "stonewall",
   title = "Stonewall",
+  related = Seq("trevigarden"),
   description = "Similar to ^flowergarden^, except some cards start face down, you must build in alternate colors, and you can move sequences.  A h" +
   "ard game to win.",
   waste = Some(

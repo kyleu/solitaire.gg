@@ -25,6 +25,7 @@ object Shuffle extends GameRules(
   id = "shuffle",
   title = "Shuffle",
   like = Some("neptune"),
+  related = Seq("shuffle"),
   description = "A version of ^neptune^ where you can also pair kings with aces.",
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveRankPairsOrAK,
   stock = Some(

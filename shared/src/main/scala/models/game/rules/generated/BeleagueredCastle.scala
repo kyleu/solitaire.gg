@@ -12,12 +12,13 @@ import models.game.rules._
  *   Tableau piles (T0n): 8
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
- *   Related games (related): fortress, citadel, castlemount, castleofindolence, streetsandalleys, selectivecastle
+ *   Related games (related): fortress, citadel, castlemount, castleofindolence, streetsandalleys, selectiveca...
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object BeleagueredCastle extends GameRules(
   id = "beleagueredcastle",
   title = "Beleaguered Castle",
+  related = Seq("fortress", "citadel", "castlemount", "castleofindolence", "streetsandalleys", "selectivecastle"),
   description = "A challenging game with simple rules. All cards start dealt face up and you build down regardless of suit, moving only single card" +
   "s. Somewhat similar to ^bakersdozen^.",
   foundations = Seq(

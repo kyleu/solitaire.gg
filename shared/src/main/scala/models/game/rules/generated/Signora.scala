@@ -28,6 +28,7 @@ object Signora extends GameRules(
   id = "signora",
   title = "Signora",
   like = Some("colonel"),
+  related = Seq("doublesignora", "fallingstar", "blondesandbrunettes", "roman"),
   description = "Build everything in alternate colors, while trying to clear an eleven-card reserve to the foundaton.",
   deckOptions = DeckOptions(
     numDecks = 2,

@@ -21,6 +21,7 @@ object CeilingFan extends GameRules(
   id = "ceilingfan",
   title = "Ceiling Fan",
   like = Some("fan"),
+  related = Seq("boxfan", "freefan", "ceilingfan", "midnightclover"),
   description = "An easier variation of ^fan^ where you build in alternate colors.",
   foundations = Seq(
     FoundationRules(

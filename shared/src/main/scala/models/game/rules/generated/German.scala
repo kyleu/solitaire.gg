@@ -21,6 +21,7 @@ import models.game.rules._
 object German extends GameRules(
   id = "german",
   title = "German",
+  related = Seq("bavarian"),
   description = "A strange and difficult game where you must build sequences on the tableau, regardless of suit.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
