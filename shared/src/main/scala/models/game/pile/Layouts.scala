@@ -1,6 +1,6 @@
 package models.game.pile
 
-import models.game.rules.GameRulesSet
+import models.game.rules.{ GameRules, GameRulesSet }
 
 /**
  * Layout key:
@@ -23,7 +23,7 @@ object Layouts {
     "alternative" -> ":.f:f|2t",
     "bakersdozen" -> ":.f|t|.t",
     "beehive" -> "2f|.t|::rsw",
-    "canfield" -> "sw:f|:r:t",
+    "canfield" -> "swf|:r:t",
     "congress" -> "sw|f|t",
     "cruel" -> "::f|2t",
     "doubleklondike" -> "swf|:t",
@@ -56,7 +56,7 @@ object Layouts {
 
   private[this] def defaultLayout(id: String) = {
     var ret = ""
-    val rules = GameRulesSet.allById(id)
+    val rules = GameRulesSet.allById.getOrElse(id, GameRules.default)
 
     if(rules.stock.isDefined) {
       ret += "s"

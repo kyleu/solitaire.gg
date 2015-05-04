@@ -4,6 +4,20 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Deal order (RDd): 0|0|0
+ *   Allowed pick ups/redeals (RDn): 6 (6)
+ *   Pickup order (RDp): 1|0|0
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): -3 (Fill rows with rest of deck)
+ *   *T0db (T0db): 0
+ *   Tableau cards face down (T0df): 100
+ *   Empty tableau is filled with (T0f): 5 (No card)
+ *   Tableau piles (T0n): 18
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Number of waste piles (W0n): 0
+ */
 object DemonFan extends GameRules(
   id = "demonfan",
   title = "Demon Fan",

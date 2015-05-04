@@ -4,6 +4,20 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Pyramid name (P0Nm): Tableau
+ *   *P0ds (P0ds): ++==
+ *   Empty pyramid is filled with (P0f): 1 (Kings only)
+ *   *P0n (P0n): 9
+ *   Pyramid suit match rule for building (P0s): 4 (In alternating colors)
+ *   Pyramid rank match rule for moving stacks (P0tr): 0x1fff
+ *   Pyramid suit match rule for moving stacks (P0ts): 5 (Regardless of suit)
+ *   Number of pyramids (Pn): 1 (1 pyramid)
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau sets (Tn): 0 (0 tableau sets)
+ *   Number of waste piles (W0n): 0
+ */
 object LoveADuck extends GameRules(
   id = "loveaduck",
   title = "Love a Duck",

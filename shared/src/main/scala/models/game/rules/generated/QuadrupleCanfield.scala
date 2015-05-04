@@ -4,6 +4,21 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation initial cards (F0d): 1 (1 cards)
+ *   Reserve initial cards (R0d): 39
+ *   Number of reserve piles (R0n): 1
+ *   Auto-fill an empty tableau from (T0af): 1
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 8
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
+ *   Deal cards from stock (dealchunk): 3 (Three at a time)
+ *   Low card (lowpip): -2 (?)
+ *   Maximum deals from stock (maxdeals): 0
+ *   Number of decks (ndecks): 4 (4 decks)
+ */
 object QuadrupleCanfield extends GameRules(
   id = "quadruplecanfield",
   title = "Quadruple Canfield",

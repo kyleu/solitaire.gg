@@ -4,6 +4,24 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation initial cards (F0d): 2 (2 cards)
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): 5 (5 cards)
+ *   Tableau action during deal (T0dd): 1 (Move kings to stack bottoms)
+ *   Empty tableau is filled with (T0f): 5 (No card)
+ *   Tableau piles (T0n): 10
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau action during deal (T1dd): 1 (Move kings to stack bottoms)
+ *   Empty tableau is filled with (T1f): 5 (No card)
+ *   Tableau piles (T1n): 6
+ *   Tableau suit match rule for building (T1s): 5 (Regardless of suit)
+ *   Tableau sets (Tn): 2 (2 tableau sets)
+ *   Number of waste piles (W0n): 0
+ *   Similar to (like): bakersdozen
+ *   Related games (related): spanish, goodmeasure
+ */
 object GoodMeasure extends GameRules(
   id = "goodmeasure",
   title = "Good Measure",
@@ -21,6 +39,15 @@ object GoodMeasure extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(5),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.Any,
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      actionDuringDeal = PileAction.MoveKingsToBottom
+    ),
+    TableauRules(
+      setNumber = 1,
+      numPiles = 6,
+      initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,

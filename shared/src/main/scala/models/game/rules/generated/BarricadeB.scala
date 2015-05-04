@@ -4,6 +4,18 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-fill an empty tableau from (T0af): 4 (Stock)
+ *   Tableau initial cards (T0d): 2 (2 cards)
+ *   Tableau piles (T0n): 14
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Number of waste piles (W0n): 0
+ *   Deal cards from stock (dealto): 8 (Never)
+ *   Similar to (like): block
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Related games (related): barricadeb
+ */
 object BarricadeB extends GameRules(
   id = "barricadeb",
   title = "Barricade B",

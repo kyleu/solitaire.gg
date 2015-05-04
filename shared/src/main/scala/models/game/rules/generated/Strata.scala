@@ -4,6 +4,18 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Deal order (RDd): 0|0|0
+ *   Allowed pick ups/redeals (RDn): 2 (2)
+ *   Pickup order (RDp): 1|2|0
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): 8 (8 cards)
+ *   Tableau piles (T0n): 8
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Ranks in use (ranks): 1|64|128|256|512|1024|2048|4096
+ */
 object Strata extends GameRules(
   id = "strata",
   title = "Strata",

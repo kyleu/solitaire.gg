@@ -4,6 +4,21 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Card initially dealt into cells (C0d): 2 (2 cards)
+ *   Number of cells (C0n): 11
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): -2 (custom)
+ *   Custom initial cards (T0ds): UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU
+ *   Tableau piles (T0n): 12
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Number of waste piles (W0n): 0
+ *   Similar to (like): triplefreecell
+ *   Number of decks (ndecks): 3 (3 decks)
+ *   Related games (related): celleleven, freecellthreedeck
+ *   Enable super moves, whatever those are (supermoves): 1
+ */
 object CellEleven extends GameRules(
   id = "celleleven",
   title = "Cell Eleven",

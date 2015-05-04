@@ -4,11 +4,26 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation initial cards (F0d): -1
+ *   Reserve initial cards (R0d): 13
+ *   Number of reserve piles (R0n): 1
+ *   Auto-fill an empty tableau from (T0af): 1
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 4
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 0 (May not build)
+ *   Deal cards from stock (dealchunk): 1 (One by one)
+ *   Similar to (like): canfield
+ *   Low card (lowpip): 1 (A)
+ *   Maximum deals from stock (maxdeals): 2 (2)
+ *   Related games (related): coyote
+ */
 object Acme extends GameRules(
   id = "acme",
   title = "Acme",
   like = Some("canfield"),
-  related = Seq("coyote"),
   description = "A difficult variation of ^canfield^ where you build in suit, can't move sequences, and only get two passes through the stock. \"Ac" +
   "me,\" the greek word for the zenith, was a popular name for companies who wanted to be listed first in the phone book until the ^c" +
   "oyote^ and Roadrunner ruined it.",

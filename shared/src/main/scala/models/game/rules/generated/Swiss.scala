@@ -4,6 +4,16 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): -2 (custom)
+ *   Custom initial cards (T0ds): U DU DDU DDDU DDDDU DDDU DDU DU U
+ *   Empty tableau is filled with (T0f): 1 (Kings only)
+ *   Tableau piles (T0n): 9
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
+ *   Low card (lowpip): 2 (2)
+ */
 object Swiss extends GameRules(
   id = "swiss",
   title = "Swiss",

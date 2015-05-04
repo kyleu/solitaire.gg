@@ -4,6 +4,21 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Foundation initial cards (F0d): -1
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 6
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
+ *   Left mouse interface function (leftfunc): 0x2|0x20
+ *   Similar to (like): threescompany
+ *   Low card (lowpip): 4 (4)
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Related games (related): foursup
+ *   Enable super moves, whatever those are (supermoves): 0
+ */
 object FoursUp extends GameRules(
   id = "foursup",
   title = "Fours Up",

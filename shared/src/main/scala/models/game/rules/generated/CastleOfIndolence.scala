@@ -4,6 +4,22 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 4 (Keeping piles level)
+ *   Foundation initial cards (F0d): 0 (None)
+ *   Foundation suit match rule (F0s): 5 (Regardless of suit)
+ *   Reserve initial cards (R0d): 13
+ *   Number of reserve piles (R0n): 4
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): -3 (Fill rows with rest of deck)
+ *   Tableau piles (T0n): 8
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Number of waste piles (W0n): 0
+ *   Similar to (like): beleagueredcastle
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Enable super moves, whatever those are (supermoves): 1
+ */
 object CastleOfIndolence extends GameRules(
   id = "castleofindolence",
   title = "Castle of Indolence",

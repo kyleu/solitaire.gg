@@ -4,6 +4,18 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Number of cells (C0n): 4
+ *   Foundation initial cards (F0d): 1 (1 cards)
+ *   Tableau initial cards (T0d): 4 (4 cards)
+ *   Empty tableau is filled with (T0f): 1 (Kings only)
+ *   Tableau piles (T0n): 16
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Low card (lowpip): -2 (?)
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Enable super moves, whatever those are (supermoves): 1
+ */
 object Skippy extends GameRules(
   id = "skippy",
   title = "Skippy",

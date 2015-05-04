@@ -4,6 +4,16 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Tableau initial cards (T0d): 4 (4 cards)
+ *   Tableau piles (T0n): 7
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
+ *   Similar to (like): alibaba
+ *   Maximum deals from stock (maxdeals): 0
+ */
 object Cassim extends GameRules(
   id = "cassim",
   title = "Cassim",

@@ -4,11 +4,23 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Foundation initial cards (F0d): 1 (1 cards)
+ *   Auto-fill an empty tableau from (T0af): 4 (Stock)
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 5
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Similar to (like): fourseasons
+ *   Low card (lowpip): -2 (?)
+ *   Related games (related): corners
+ *   Enable super moves, whatever those are (supermoves): 1
+ */
 object Czarina extends GameRules(
   id = "czarina",
   title = "Czarina",
   like = Some("fourseasons"),
-  related = Seq("corners"),
   description = "A variation on ^fourseasons^ where spaces are filled automatically from the stock.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

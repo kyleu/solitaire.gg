@@ -4,6 +4,17 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): 5 (5 cards)
+ *   Tableau cards face down (T0df): 100
+ *   Tableau piles (T0n): 10
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
+ *   Number of waste piles (W0n): 0
+ *   Deal cards from stock (dealto): 4 (To all non-empty tableau piles)
+ *   Number of decks (ndecks): 2 (2 decks)
+ */
 object Incompatibility extends GameRules(
   id = "incompatibility",
   title = "Incompatibility",

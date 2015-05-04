@@ -4,6 +4,22 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Reserve initial cards (R0d): 9
+ *   Reserve cards face down (R0df): 0
+ *   Number of reserve piles (R0n): 1
+ *   Tableau initial cards (T0d): 4 (4 cards)
+ *   Tableau cards face down (T0df): 102
+ *   Empty tableau is filled with (T0f): 1 (Kings only)
+ *   Tableau piles (T0n): 7
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
+ *   Deal cards from stock (dealchunk): 1 (One by one)
+ *   Similar to (like): minerva
+ *   Maximum deals from stock (maxdeals): 1 (1)
+ *   Related games (related): bureau, minerva
+ */
 object Mystique extends GameRules(
   id = "mystique",
   title = "Mystique",

@@ -4,6 +4,16 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 5
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
+ *   Similar to (like): singlerail
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Related games (related): doublerail
+ */
 object DoubleRail extends GameRules(
   id = "doublerail",
   title = "Double Rail",

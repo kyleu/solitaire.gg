@@ -4,6 +4,23 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation Sets (Fn): 0
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): -2 (custom)
+ *   Custom initial cards (T0ds): UUUU UUUU UUUU UUUU UUUU UUUU UUUU UUUU UUUU UUUU UUUU UUUU UUUU
+ *   Maximum cards per tableau (T0m): 4 (4 cards)
+ *   Tableau piles (T0n): 15
+ *   Tableau rank match rule for building (T0r): 0x0040
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau rank match rule for moving stacks (T0tr): 0x0040
+ *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
+ *   Number of waste piles (W0n): 0
+ *   Victory condition (victory): 3 (All cards on tableau sorted)
+ *   *vrank (vrank): 0x0040
+ *   *vsuit (vsuit): 5
+ */
 object PileUp extends GameRules(
   id = "pileup",
   title = "Pile Up",

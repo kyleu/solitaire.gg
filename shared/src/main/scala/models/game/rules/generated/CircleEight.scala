@@ -4,6 +4,20 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation Sets (Fn): 0
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 8
+ *   May move to non-empty tableau from (T0o): BIT_WASTE
+ *   Tableau rank match rule for building (T0r): 0x0080
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau wraps from king to ace (T0w): true
+ *   Left mouse interface function (leftfunc): 0x2|0x20
+ *   Maximum deals from stock (maxdeals): 2 (2)
+ *   Touch interface function (touchfunc): 0x2|0x20
+ *   Victory condition (victory): 2 (No cards left in stock)
+ */
 object CircleEight extends GameRules(
   id = "circleeight",
   title = "Circle Eight",

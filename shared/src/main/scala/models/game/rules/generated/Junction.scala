@@ -4,6 +4,14 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 7
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Number of decks (ndecks): 4 (4 decks)
+ *   Ranks in use (ranks): 1|64|128|256|512|1024|2048|4096
+ */
 object Junction extends GameRules(
   id = "junction",
   title = "Junction",

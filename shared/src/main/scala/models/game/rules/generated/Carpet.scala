@@ -4,6 +4,16 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau name (T0Nm): Reserve
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Empty tableau is filled with (T0f): 0 (Any card)
+ *   Empty tableau is filled from (T0fo): BIT_WASTE
+ *   Tableau piles (T0n): 20
+ *   Tableau rank match rule for building (T0r): 0x0000
+ *   Tableau suit match rule for building (T0s): 0 (May not build)
+ */
 object Carpet extends GameRules(
   id = "carpet",
   title = "Carpet",

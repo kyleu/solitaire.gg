@@ -4,6 +4,18 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Keep foundation off-screen (F0i): true
+ *   Number of foundation piles (F0n): 1 (1 stack)
+ *   Number of pyramids (Pn): 1 (1 pyramid)
+ *   Tableau sets (Tn): 0 (0 tableau sets)
+ *   Deal cards from stock (dealto): 9
+ *   Left mouse interface function (leftfunc): 0x1
+ *   Similar to (like): pyramid
+ *   Maximum deals from stock (maxdeals): 1 (1)
+ *   Card removal method (pairs): 17 (Remove pairs with consecutive or equal ranks)
+ */
 object Cheops extends GameRules(
   id = "cheops",
   title = "Cheops",
@@ -19,7 +31,6 @@ object Cheops extends GameRules(
   waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
-      numPiles = 4,
       wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false,

@@ -4,6 +4,17 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): -2 (custom)
+ *   Custom initial cards (T0ds): U UU UUU UUUU UUUUU UUUUUU UUUUUUU UUUUUUUU UUUUUUUU UUUUUUUU
+ *   Tableau piles (T0n): 10
+ *   Tableau suit match rule for building (T0s): 2 (In different suits)
+ *   Number of waste piles (W0n): 0
+ *   Similar to (like): somerset
+ *   Related games (related): morehead, usk
+ */
 object Morehead extends GameRules(
   id = "morehead",
   title = "Morehead",

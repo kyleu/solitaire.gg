@@ -4,6 +4,22 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Foundation initial cards (F0d): -1
+ *   Foundation rank match rule (F0r): 0x0020
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 6
+ *   Tableau rank match rule for building (T0r): 0x0080
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Tableau rank match rule for moving stacks (T0tr): 0x0080
+ *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
+ *   Low card (lowpip): 8 (8)
+ *   Maximum deals from stock (maxdeals): 2 (2)
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Enable super moves, whatever those are (supermoves): 1
+ */
 object EightsDown extends GameRules(
   id = "eightsdown",
   title = "Eights Down",

@@ -4,10 +4,39 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation name (F0Nm): Aces Foundation
+ *   Foundation initial cards (F0d): 4 (4 cards)
+ *   Can move cards from foundation (F0mb): 1 (Always)
+ *   Number of foundation piles (F0n): 4 (4 stacks)
+ *   TODO (F0u): 2
+ *   Foundation name (F1Nm): Kings Foundation
+ *   Foundation low rank (F1b): 22 (Deck's high card)
+ *   Foundation initial cards (F1d): 4 (4 cards)
+ *   Can move cards from foundation (F1mb): true
+ *   Number of foundation piles (F1n): 4 (4 stacks)
+ *   Foundation rank match rule (F1r): 0x0020
+ *   TODO (F1u): 2
+ *   Foundation Sets (Fn): 2
+ *   Enable stock (Sn): 1 (1 stock)
+ *   Auto-fill an empty tableau from (T0af): 4 (Stock)
+ *   Tableau initial cards (T0d): 3 (3 cards)
+ *   Empty tableau is filled with (T0f): 5 (No card)
+ *   Tableau piles (T0n): 20
+ *   May move to non-empty tableau from (T0o): BIT_TABLEAU
+ *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Number of waste piles (W0n): 0
+ *   Deal cards from stock (dealto): 8 (Never)
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Allowed tableau rotations (nrot): 3 (3)
+ *   Related games (related): crescent
+ *   Rotation direction (toptobot): true
+ */
 object RainbowFan extends GameRules(
   id = "rainbowfan",
   title = "Rainbow Fan",
-  related = Seq("crescent"),
   description = "A bidirectional building game where you can rotate cards in the stacks three times.",
   deckOptions = DeckOptions(
     numDecks = 2

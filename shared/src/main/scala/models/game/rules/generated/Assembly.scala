@@ -4,6 +4,15 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Foundation suit match rule (F0s): 5 (Regardless of suit)
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 4
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 0 (May not build)
+ */
 object Assembly extends GameRules(
   id = "assembly",
   title = "Assembly",

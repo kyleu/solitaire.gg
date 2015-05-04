@@ -13,10 +13,8 @@ trait GameRulesParserHelper extends ParserGameHelper
     with ParserPyramidHelper
     with ParserSpecialHelper { this: GameRulesParser =>
 
-  private[this] def getValue(key: String): Any = if(overrides.isDefinedAt(key)) {
-    overrides(key)
-  } else {
-    variant.attributes.get(key).map(_.value).getOrElse(ParserDefaults.getDefault(key).getOrElse(throw new IllegalStateException()))
+  private[this] def getValue(key: String): Any = {
+    variant.attributes.get(key).map(_.value).getOrElse(ParserDefaults.getDefault(key).getOrElse(throw new IllegalStateException("Missing default.")))
   }
 
   protected[this] def getString(key: String) = getValue(key) match {

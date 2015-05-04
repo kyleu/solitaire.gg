@@ -4,10 +4,20 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Tableau initial cards (T0d): 4 (4 cards)
+ *   Tableau piles (T0n): 13
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Related games (related): thirtyninesteps, eclipse, lucasleaps
+ *   Custom suits (suits): 1|2|16|64
+ *   Enable super moves, whatever those are (supermoves): 1
+ */
 object WaningMoon extends GameRules(
   id = "waningmoon",
   title = "Waning Moon",
-  related = Seq("eclipse", "lucasleaps", "thirtyninesteps"),
   description = "A ^fortythieves^ variant with more tableau piles.",
   deckOptions = DeckOptions(
     numDecks = 2

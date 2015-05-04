@@ -4,6 +4,15 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): 7 (7 cards)
+ *   Tableau cards face down (T0df): 101
+ *   Tableau piles (T0n): 7
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
+ *   Number of decks (ndecks): 2 (2 decks)
+ */
 object Alternations extends GameRules(
   id = "alternations",
   title = "Alternations",

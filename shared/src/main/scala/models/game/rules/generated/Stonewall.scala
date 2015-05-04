@@ -4,10 +4,22 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): 6 (6 cards)
+ *   Tableau cards face down (T0df): 102
+ *   Tableau piles (T0n): 6
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
+ *   Waste name (W0Nm): Reserve
+ *   Playable waste cards (W0a): true
+ *   *W0s (W0s): true
+ *   Related games (related): trevigarden
+ */
 object Stonewall extends GameRules(
   id = "stonewall",
   title = "Stonewall",
-  related = Seq("trevigarden"),
   description = "Similar to ^flowergarden^, except some cards start face down, you must build in alternate colors, and you can move sequences.  A h" +
   "ard game to win.",
   waste = Some(

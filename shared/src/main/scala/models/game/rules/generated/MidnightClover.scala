@@ -4,6 +4,21 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Foundation initial cards (F0d): -1
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau name (T0Nm): Fan
+ *   Tableau initial cards (T0d): -3 (Fill rows with rest of deck)
+ *   Empty tableau is filled with (T0f): 1 (Kings only)
+ *   Tableau piles (T0n): 16
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Number of waste piles (W0n): 0
+ *   Similar to (like): fan
+ *   Allowed draws (ndraw): 1 (1)
+ *   Related games (related): boxfan, freefan, ceilingfan, midnightclover
+ */
 object MidnightClover extends GameRules(
   id = "midnightclover",
   title = "Midnight Clover",

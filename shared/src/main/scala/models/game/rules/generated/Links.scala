@@ -4,6 +4,17 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Keep foundation off-screen (F0i): true
+ *   Tableau initial cards (T0d): -2 (custom)
+ *   Custom initial cards (T0ds): UUUU UUUUU UUUUU UUUUU UUUUU UUUUU UUUU
+ *   Empty tableau is filled with (T0f): 5 (No card)
+ *   Tableau piles (T0n): 7
+ *   Tableau suit match rule for building (T0s): 0 (May not build)
+ *   Left mouse interface function (leftfunc): 0x1
+ *   Card removal method (pairs): 10 (Remove kings or pairs adding to 13)
+ */
 object Links extends GameRules(
   id = "links",
   title = "Links",

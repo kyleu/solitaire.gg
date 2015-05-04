@@ -4,6 +4,30 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Number of cells (C0n): 4
+ *   Auto-move cards to foundation (F0a): 4 (Keeping piles level)
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau name (T0Nm): Left Tableau
+ *   Tableau initial cards (T0d): 7 (7 cards)
+ *   *T0db (T0db): 0
+ *   Tableau piles (T0n): 4
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   *T0sc (T0sc): false
+ *   Tableau name (T1Nm): Right Tableau
+ *   Tableau initial cards (T1d): 6 (6 cards)
+ *   Empty tableau is filled with (T1f): 1 (Kings only)
+ *   Tableau piles (T1n): 4
+ *   Tableau suit match rule for building (T1s): 1 (In same suit)
+ *   *T1sc (T1sc): false
+ *   Tableau rank match rule for moving stacks (T1tr): 0x1fff
+ *   Tableau suit match rule for moving stacks (T1ts): 5 (Regardless of suit)
+ *   Tableau sets (Tn): 2 (2 tableau sets)
+ *   Number of waste piles (W0n): 0
+ *   Similar to (like): freecell
+ *   Enable super moves, whatever those are (supermoves): 1
+ */
 object Antares extends GameRules(
   id = "antares",
   title = "Antares",

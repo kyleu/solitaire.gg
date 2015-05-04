@@ -33,15 +33,16 @@ object PolitaireParser {
   private[this] def parseVariants(json: JsObject) = {
     val variants = json.value.flatMap { js =>
       try {
+        val overrides = PolitaireOverrides.overrides.getOrElse(js._1, Map.empty)
         val ret = js._2.asOpt[JsObject].map { attrsJson =>
-          val attributes = getAttributes(js._1, attrsJson)
+          val attributes = getAttributes(js._1, attrsJson, overrides)
           Variant(js._1, attributes, js._2)
         }
         ret
       } catch {
         case x: Exception => throw new IllegalArgumentException("Unable to parse json [" + js._2.toString + "].", x)
       }
-    }
+    }.toList
 
     def withParent(v: Variant, parentId: String): Variant = {
       variants.find(_.id == parentId) match {
@@ -58,6 +59,9 @@ object PolitaireParser {
     }
 
     variants.map { v =>
+      val related = variants.filter(_.attributes.get("like").map(_.value.toString) == Some(v.id)).map(_.id)
+      v.attributes("related") = Attr("related", PolitaireLookup.getTitle("related").getOrElse("related"), related.mkString(", "), None, related.isEmpty)
+
       v.attributes.get("like") match {
         case Some(like) if like.value.toString.nonEmpty => withParent(v, like.value.toString)
         case Some(_) => v
@@ -66,7 +70,7 @@ object PolitaireParser {
     }
   }
 
-  private[this] def getAttributes(id: String, data: JsObject) = {
+  private[this] def getAttributes(id: String, data: JsObject, overrides: Map[String, Int]) = {
     val ret = collection.mutable.LinkedHashMap.empty[String, Attr]
     def processAttr(attr: (String, String), default: Option[Any] = None, markDefaults: Boolean = true) {
       data \ attr._1 match {
@@ -86,10 +90,18 @@ object PolitaireParser {
     }
 
     data.value.foreach { value =>
-      val translation = PolitaireLookup.getTitle(value._1)
-      processAttr((value._1, translation.getOrElse("*" + value._1)), ParserDefaults.getDefault(value._1))
+      val title = PolitaireLookup.getTitle(value._1)
+      processAttr((value._1, title.getOrElse("*" + value._1)), ParserDefaults.getDefault(value._1))
     }
     processAttr("title" -> "Title", Some(id.head.toUpper + id.tail), markDefaults = false)
+
+    overrides.foreach { o =>
+      val translation = PolitaireLookup.getTranslation(o._1) match {
+        case Some(x) => x.get(o._2)
+        case None => None
+      }
+      ret(o._1) = PolitaireParser.Attr(o._1, PolitaireLookup.getTitle(o._1).getOrElse("*" + o._1), o._2, translation, defaultVal = false)
+    }
 
     ret
   }

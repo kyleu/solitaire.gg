@@ -4,6 +4,19 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation initial cards (F0d): -1
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): 12 (12 cards)
+ *   Tableau piles (T0n): 12
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
+ *   Number of waste piles (W0n): 0
+ *   Similar to (like): beleagueredcastle
+ *   Number of decks (ndecks): 3 (3 decks)
+ *   Enable super moves, whatever those are (supermoves): 1
+ */
 object CastleMount extends GameRules(
   id = "castlemount",
   title = "Castle Mount",

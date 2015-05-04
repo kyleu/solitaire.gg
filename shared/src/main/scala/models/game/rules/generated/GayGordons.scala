@@ -4,6 +4,21 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Reserve initial cards (R0d): 2
+ *   Reserve cards face down (R0df): 0
+ *   Number of reserve piles (R0n): 1
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): 5 (5 cards)
+ *   Empty tableau is filled with (T0f): 5 (No card)
+ *   Tableau action after deal (T0fx): 2 (limit piles to two jacks)
+ *   Tableau piles (T0n): 10
+ *   Tableau suit match rule for building (T0s): 0 (May not build)
+ *   Number of waste piles (W0n): 0
+ *   Left mouse interface function (leftfunc): 0x1
+ *   Card removal method (pairs): 23 (Remove pairs adding to 11, J-J or Q-K)
+ */
 object GayGordons extends GameRules(
   id = "gaygordons",
   title = "Gay Gordons",

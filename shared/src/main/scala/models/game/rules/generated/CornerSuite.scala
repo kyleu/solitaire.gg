@@ -4,6 +4,15 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Tableau initial cards (T0d): 0 (None)
+ *   Empty tableau is filled with (T0f): 0 (Any card)
+ *   Empty tableau is filled from (T0fo): BIT_ANY & ~BIT_TABLEAU
+ *   Tableau piles (T0n): 9
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ */
 object CornerSuite extends GameRules(
   id = "cornersuite",
   title = "Corner Suite",

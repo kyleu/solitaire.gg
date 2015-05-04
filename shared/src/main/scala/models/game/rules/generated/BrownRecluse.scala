@@ -4,6 +4,19 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation Sets (Fn): 0
+ *   Auto-fill an empty tableau from (T0af): 2|4
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Empty tableau is filled with (T0f): 1 (Kings only)
+ *   Tableau piles (T0n): 10
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
+ *   Tableau wraps from king to ace (T0w): true
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Victory condition (victory): 3 (All cards on tableau sorted)
+ */
 object BrownRecluse extends GameRules(
   id = "brownrecluse",
   title = "Brown Recluse",

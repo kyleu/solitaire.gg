@@ -4,6 +4,16 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 3 (When all stackable cards are off)
+ *   Tableau initial cards (T0d): 5 (5 cards)
+ *   Tableau piles (T0n): 8
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Similar to (like): fortyandeight
+ *   Maximum deals from stock (maxdeals): 2 (2)
+ *   Number of decks (ndecks): 2 (2 decks)
+ */
 object Lower48 extends GameRules(
   id = "lower48",
   title = "Lower 48",

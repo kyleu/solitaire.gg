@@ -16,7 +16,7 @@ object FoundationInitialMoves {
         case None => throw new IllegalStateException()
       }
       (0 until fr.initialCards).foreach { i =>
-        val col = (i % fr.numPiles) + 1
+        val col = (i % fr.numPiles)
         val card = fr.lowRank match {
           case FoundationLowRank.AnyCard => gameState.deck.getCards(1, turnFaceUp = true)
           case FoundationLowRank.Ascending => throw new NotImplementedError()

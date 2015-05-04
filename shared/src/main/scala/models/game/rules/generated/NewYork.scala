@@ -4,10 +4,21 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Empty tableau is filled from (T0fo): BIT_STOCK|BIT_WASTE
+ *   Tableau piles (T0n): 8
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Number of waste piles (W0n): 3
+ *   Deal cards from stock (dealto): 7 (Manually)
+ *   Low card (lowpip): -2 (?)
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Related games (related): gotham
+ */
 object NewYork extends GameRules(
   id = "newyork",
   title = "New York",
-  related = Seq("gotham"),
   description = "In this variation of ^dover^, you can choose which of the three waste piles you play cards from the stock onto, which is good beca" +
   "use it's hard to rearrange things much on the tableau.",
   deckOptions = DeckOptions(

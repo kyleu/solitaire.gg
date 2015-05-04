@@ -4,6 +4,17 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): -1 (1 to n cards)
+ *   Empty tableau is filled with (T0f): 1 (Kings only)
+ *   Tableau piles (T0n): 13
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
+ *   Similar to (like): arabella
+ *   Number of decks (ndecks): 4 (4 decks)
+ *   Related games (related): doublejane
+ */
 object DoubleJane extends GameRules(
   id = "doublejane",
   title = "Double Jane",

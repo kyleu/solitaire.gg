@@ -4,6 +4,16 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Tableau initial cards (T0d): 3 (3 cards)
+ *   Tableau piles (T0n): 16
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Similar to (like): limited
+ *   Number of decks (ndecks): 4 (4 decks)
+ *   Related games (related): doublelimited
+ */
 object DoubleLimited extends GameRules(
   id = "doublelimited",
   title = "Double Limited",

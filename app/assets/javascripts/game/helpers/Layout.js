@@ -18,16 +18,9 @@ define(function () {
           ret = [1 + (wasteCardsShown * padding * 1.5), ret[1]];
         }
         break;
+      case "reserve":
       case "tableau":
         var maxCards = _.max(pileSet.piles, function(pile) { return pile.cards.length; }).cards.length;
-        var maxCardsShown = _.max(pileSet.piles, function(pile) { if(pile.options !== undefined) {
-          return pile.options.cardsShown;
-        } else {
-          return 0;
-        } });
-        if(maxCardsShown.options !== undefined && maxCardsShown.options.cardsShown > 0) {
-          maxCards = maxCardsShown;
-        }
         if(divisor > 1) {
           ret = [ret[0] / divisor, 1 + ((maxCards - 1) * padding)];
         } else {

@@ -4,6 +4,19 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Keep foundation off-screen (F0i): true
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Empty tableau is filled with (T0f): 5 (No card)
+ *   Tableau piles (T0n): 4
+ *   Tableau suit match rule for building (T0s): 0 (May not build)
+ *   Number of waste piles (W0n): 0
+ *   Deal cards from stock (dealto): 2 (To all tableau piles)
+ *   Left mouse interface function (leftfunc): 0x1
+ *   Card removal method (pairs): 21 (Remove pairs of same suit)
+ *   Victory condition (victory): 1 (All but 4 cards per deck on foundation)
+ */
 object SuitsUp extends GameRules(
   id = "suitsup",
   title = "Suits Up",

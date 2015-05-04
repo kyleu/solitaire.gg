@@ -4,6 +4,17 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): 8 (8 cards)
+ *   Empty tableau is filled with (T0f): 4
+ *   Tableau piles (T0n): 8
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
+ *   Deal cards from stock (dealchunk): -1 (Fewer in each pass)
+ *   Maximum deals from stock (maxdeals): 3 (3)
+ *   Number of decks (ndecks): 2 (2 decks)
+ */
 object EightByEight extends GameRules(
   id = "eightbyeight",
   title = "Eight by Eight",

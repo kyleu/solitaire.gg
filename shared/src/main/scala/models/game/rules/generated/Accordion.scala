@@ -4,6 +4,18 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Keep foundation off-screen (F0i): true
+ *   Foundation Sets (Fn): 1
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau sets (Tn): 0 (0 tableau sets)
+ *   Playable waste cards (W0a): true
+ *   Number of cards shown (W0cardsShown): 52
+ *   Left mouse interface function (leftfunc): 0x4
+ *   Card removal method (pairs): 20 (Stack cards of same rank/suit in waste)
+ *   Touch interface function (touchfunc): 0x4
+ */
 object Accordion extends GameRules(
   id = "accordion",
   title = "Accordion",

@@ -4,6 +4,19 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Keep foundation off-screen (F0i): true
+ *   *P0ds (P0ds): ------
+ *   *P0n (P0n): 7
+ *   Number of pyramids (Pn): 1 (1 pyramid)
+ *   Tableau sets (Tn): 0 (0 tableau sets)
+ *   Number of waste piles (W0n): 3
+ *   Deal cards from stock (dealto): 9
+ *   Left mouse interface function (leftfunc): 0x1
+ *   Similar to (like): triangle
+ *   Card removal method (pairs): 7 (Remove pairs adding to 11, J-J, Q-Q, or K-K)
+ */
 object ElevenTriangle extends GameRules(
   id = "eleventriangle",
   title = "Eleven Triangle",

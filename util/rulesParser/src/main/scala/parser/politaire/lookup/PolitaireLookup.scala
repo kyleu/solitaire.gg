@@ -13,6 +13,7 @@ object PolitaireLookup {
       PyramidLookup.titles ++
       Seq(
         // Special
+        "related" -> "Related games",
         "RDn" -> "Allowed pick ups/redeals",
         "nrot" -> "Allowed tableau rotations",
         "ndraw" -> "Allowed draws"

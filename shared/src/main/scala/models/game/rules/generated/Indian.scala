@@ -4,6 +4,14 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): 3 (3 cards)
+ *   Tableau cards face down (T0df): 1
+ *   Tableau piles (T0n): 10
+ *   Tableau suit match rule for building (T0s): 2 (In different suits)
+ *   Number of decks (ndecks): 2 (2 decks)
+ */
 object Indian extends GameRules(
   id = "indian",
   title = "Indian",

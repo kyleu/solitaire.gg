@@ -4,6 +4,23 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation low rank (F0b): 22 (Deck's high card)
+ *   Foundation rank match rule (F0r): 0x0020
+ *   Tableau initial cards (T0d): -1 (1 to n cards)
+ *   Tableau cards face down (T0df): 100
+ *   Empty tableau is filled with (T0f): 7 (Aces only)
+ *   Tableau piles (T0n): 7
+ *   Tableau rank match rule for building (T0r): 0x0080
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Tableau rank match rule for moving stacks (T0tr): 0x0080
+ *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
+ *   Deal cards from stock (dealchunk): 1 (One by one)
+ *   Similar to (like): klondike
+ *   Maximum deals from stock (maxdeals): 1 (1)
+ *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklondike, athena, saratoga, endlessharp, smokey, spike, gilbert, jumboklondike, chinaman
+ */
 object Kingsley extends GameRules(
   id = "kingsley",
   title = "Kingsley",

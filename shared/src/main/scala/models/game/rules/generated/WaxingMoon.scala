@@ -4,6 +4,17 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Tableau initial cards (T0d): 4 (4 cards)
+ *   Empty tableau is filled with (T0f): 1 (Kings only)
+ *   Tableau piles (T0n): 12
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Tableau suit match rule for moving stacks (T1ts): 1 (In same suit)
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Custom suits (suits): 1|2|16|64
+ */
 object WaxingMoon extends GameRules(
   id = "waxingmoon",
   title = "Waxing Moon",

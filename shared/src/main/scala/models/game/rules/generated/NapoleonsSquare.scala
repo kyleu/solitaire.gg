@@ -4,11 +4,24 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Auto-fill an empty tableau from (T0af): 0 (Nowhere)
+ *   Tableau initial cards (T0d): 4 (4 cards)
+ *   Tableau piles (T0n): 12
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
+ *   Number of waste piles (W0n): 1
+ *   Deal cards from stock (dealto): 1 (To all waste piles)
+ *   Similar to (like): blockade
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Related games (related): napoleonsshoulder
+ */
 object NapoleonsSquare extends GameRules(
   id = "napoleonssquare",
   title = "Napoleon's Square",
   like = Some("blockade"),
-  related = Seq("napoleonsshoulder"),
   description = "This French game, first described by Lady Adelaide Cadogen in the early 1900's, is an easy variant of ^fortythieves^.",
   deckOptions = DeckOptions(
     numDecks = 2

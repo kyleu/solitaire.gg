@@ -5,8 +5,6 @@ import models.game.rules._
 import parser.politaire.lookup.PolitaireLookup
 
 class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesParserHelper {
-  protected[this] val overrides = PolitaireOverrides.overrides.getOrElse(variant.id, Map.empty)
-
   def parse() = try {
     parseInternal()
   } catch {

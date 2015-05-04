@@ -4,6 +4,15 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): 4 (4 cards)
+ *   Empty tableau is filled with (T0f): 1 (Kings only)
+ *   Tableau piles (T0n): 8
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
+ *   Number of decks (ndecks): 2 (2 decks)
+ */
 object LadyPalk extends GameRules(
   id = "ladypalk",
   title = "Lady Palk",

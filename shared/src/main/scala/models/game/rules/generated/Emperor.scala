@@ -4,6 +4,17 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): 4 (4 cards)
+ *   Tableau cards face down (T0df): 100
+ *   Tableau piles (T0n): 10
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Tableau suit match rule for moving stacks (T0ts): 0 (May not build)
+ *   Similar to (like): rankandfile
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Related games (related): emperor
+ */
 object Emperor extends GameRules(
   id = "emperor",
   title = "Emperor",

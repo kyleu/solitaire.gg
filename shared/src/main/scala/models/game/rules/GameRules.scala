@@ -8,6 +8,7 @@ import models.game.pile._
 import scala.util.Random
 
 object GameRules {
+  val default = GameRules("default", "Default Game", "")
   val allSources = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
 }
 

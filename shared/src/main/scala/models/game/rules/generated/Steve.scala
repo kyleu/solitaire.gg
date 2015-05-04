@@ -4,6 +4,20 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Tableau initial cards (T0d): -1 (1 to n cards)
+ *   Tableau cards face down (T0df): 0
+ *   Tableau piles (T0n): 8
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
+ *   Number of waste piles (W0n): 0
+ *   Deal cards from stock (dealto): 2 (To all tableau piles)
+ *   Similar to (like): carlton
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Related games (related): steve
+ */
 object Steve extends GameRules(
   id = "steve",
   title = "Steve",

@@ -4,6 +4,30 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation name (F0Nm): Left Foundation
+ *   Auto-move cards to foundation (F0a): 0 (Never)
+ *   Can move cards from foundation (F0mb): 1 (Always)
+ *   Number of foundation piles (F0n): 4 (4 stacks)
+ *   TODO (F0u): 2
+ *   Foundation name (F1Nm): Right Foundation
+ *   Auto-move cards to foundation (F1a): 0 (Never)
+ *   Foundation add complete sequences only (F1cs): true
+ *   Can move cards from foundation (F1mb): 1 (Always)
+ *   Number of foundation piles (F1n): 4 (4 stacks)
+ *   TODO (F1u): 2
+ *   Foundation Sets (Fn): 2
+ *   Tableau initial cards (T0d): 4 (4 cards)
+ *   Tableau cards face down (T0df): 0
+ *   Empty tableau is filled with (T0f): 0 (Any card)
+ *   Tableau piles (T0n): 10
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
+ *   Similar to (like): ladycadogan
+ *   Maximum deals from stock (maxdeals): 1 (1)
+ *   Number of decks (ndecks): 2 (2 decks)
+ */
 object FortyDevils extends GameRules(
   id = "fortydevils",
   title = "Forty Devils",

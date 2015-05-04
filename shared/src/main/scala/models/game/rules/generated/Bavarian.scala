@@ -4,6 +4,21 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation Sets (Fn): 0
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 10
+ *   Tableau rank match rule for building (T0r): 0x0080
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau wraps from king to ace (T0w): true
+ *   Similar to (like): german
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Related games (related): bavarian
+ *   Victory condition (victory): 3 (All cards on tableau sorted)
+ *   *vrank (vrank): 0x0080
+ *   *vsuit (vsuit): 5
+ */
 object Bavarian extends GameRules(
   id = "bavarian",
   title = "Bavarian",

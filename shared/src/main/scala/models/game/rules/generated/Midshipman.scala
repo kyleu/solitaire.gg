@@ -4,6 +4,16 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): 4 (4 cards)
+ *   Tableau cards face down (T0df): 2
+ *   Tableau piles (T0n): 9
+ *   Tableau suit match rule for building (T0s): 2 (In different suits)
+ *   Similar to (like): maria
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Related games (related): midshipman
+ */
 object Midshipman extends GameRules(
   id = "midshipman",
   title = "Midshipman",

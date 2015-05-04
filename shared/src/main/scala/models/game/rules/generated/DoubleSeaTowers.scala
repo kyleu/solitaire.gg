@@ -4,6 +4,18 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Card initially dealt into cells (C0d): 5 (5 cards)
+ *   Number of cells (C0n): 9
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): 9 (9 cards)
+ *   Tableau piles (T0n): 11
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Number of waste piles (W0n): 0
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Enable super moves, whatever those are (supermoves): 1
+ */
 object DoubleSeaTowers extends GameRules(
   id = "doubleseatowers",
   title = "Double Sea Towers",

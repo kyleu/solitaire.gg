@@ -4,6 +4,22 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation initial cards (F0d): 0 (None)
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): 5 (5 cards)
+ *   Tableau piles (T0n): 8
+ *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Waste name (W0Nm): Reserve
+ *   Playable waste cards (W0a): true
+ *   Number of waste piles (W0n): 1
+ *   *W0s (W0s): true
+ *   Similar to (like): fortress
+ *   Related games (related): bastion, chessboard, fortressofmercy, beleagueredfortress
+ *   Enable super moves, whatever those are (supermoves): 1
+ */
 object BeleagueredFortress extends GameRules(
   id = "beleagueredfortress",
   title = "Beleaguered Fortress",

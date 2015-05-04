@@ -4,6 +4,15 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Tableau initial cards (T0d): -2 (custom)
+ *   Custom initial cards (T0ds): U DU UDU DUDU UDUDU DUDUDU UDUDUDU DUDUDU UDUDU DUDU UDU DU U
+ *   Tableau piles (T0n): 13
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Number of decks (ndecks): 2 (2 decks)
+ */
 object Cleopatra extends GameRules(
   id = "cleopatra",
   title = "Cleopatra",

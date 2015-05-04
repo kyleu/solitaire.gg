@@ -4,11 +4,42 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation name (F0Nm): Aces Foundation
+ *   Foundation initial cards (F0d): 4 (4 cards)
+ *   Can move cards from foundation (F0mb): 1 (Always)
+ *   Number of foundation piles (F0n): 4 (4 stacks)
+ *   TODO (F0u): 2
+ *   Foundation name (F1Nm): Kings Foundation
+ *   Foundation low rank (F1b): 22 (Deck's high card)
+ *   Foundation initial cards (F1d): 4 (4 cards)
+ *   Can move cards from foundation (F1mb): true
+ *   Number of foundation piles (F1n): 4 (4 stacks)
+ *   Foundation rank match rule (F1r): 0x0020
+ *   TODO (F1u): 2
+ *   Foundation Sets (Fn): 2
+ *   Enable stock (Sn): 0 (No stock)
+ *   Auto-fill an empty tableau from (T0af): 0 (Nowhere)
+ *   Tableau initial cards (T0d): 6 (6 cards)
+ *   Empty tableau is filled with (T0f): 5 (No card)
+ *   Tableau piles (T0n): 16
+ *   May move to non-empty tableau from (T0o): BIT_TABLEAU
+ *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Tableau wraps from king to ace (T0w): true
+ *   Number of waste piles (W0n): 0
+ *   Deal cards from stock (dealto): 8 (Never)
+ *   Similar to (like): rainbowfan
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Allowed tableau rotations (nrot): 3 (3)
+ *   Related games (related): crescentfour
+ *   Rotation direction (toptobot): false
+ */
 object Crescent extends GameRules(
   id = "crescent",
   title = "Crescent",
   like = Some("rainbowfan"),
-  related = Seq("crescentfour"),
   description = "A bidirectional building game where you can rotate cards in the stacks three times.",
   deckOptions = DeckOptions(
     numDecks = 2

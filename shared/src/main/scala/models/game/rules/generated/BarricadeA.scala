@@ -4,6 +4,17 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation suit match rule (F0s): 5 (Regardless of suit)
+ *   Auto-fill an empty tableau from (T0af): 4 (Stock)
+ *   Tableau initial cards (T0d): 3 (3 cards)
+ *   Tableau piles (T0n): 12
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Number of waste piles (W0n): 0
+ *   Deal cards from stock (dealto): 7 (Manually)
+ *   Number of decks (ndecks): 2 (2 decks)
+ */
 object BarricadeA extends GameRules(
   id = "barricadea",
   title = "Barricade A",

@@ -33,6 +33,7 @@ object ParserDefaults {
       "nrot" -> 0,
       "pairs" -> 0,
       "ranks" -> 8191,
+      "related" -> "",
       "reproj" -> 3,
       "rightfunc" -> 2,
       "shuftype" -> 0,

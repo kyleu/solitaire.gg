@@ -4,6 +4,27 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 0 (Never)
+ *   Foundation low rank (F0b): 9 (9)
+ *   Maximum cards for foundation (F0m): 5
+ *   Number of foundation piles (F0n): 4 (4 stacks)
+ *   Foundation rank match rule (F0r): 0x0010
+ *   Auto-move cards to foundation (F1a): 0 (Never)
+ *   Foundation low rank (F1b): 10 (X)
+ *   Maximum cards for foundation (F1m): 5
+ *   Number of foundation piles (F1n): 4 (4 stacks)
+ *   Foundation rank match rule (F1r): 0x0010
+ *   Auto-move cards to foundation (F2a): 0 (Never)
+ *   Foundation low rank (F2b): 11 (J)
+ *   Maximum cards for foundation (F2m): 3
+ *   Number of foundation piles (F2n): 4 (4 stacks)
+ *   Foundation rank match rule (F2r): 0x0080
+ *   Foundation Sets (Fn): 3
+ *   Tableau sets (Tn): 0 (0 tableau sets)
+ *   Maximum deals from stock (maxdeals): 2 (2)
+ */
 object Dorothy extends GameRules(
   id = "dorothy",
   title = "Dorothy",

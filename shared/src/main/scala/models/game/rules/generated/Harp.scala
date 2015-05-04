@@ -4,10 +4,20 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Tableau initial cards (T0d): -1 (1 to n cards)
+ *   Tableau cards face down (T0df): 100
+ *   Empty tableau is filled with (T0f): 1 (Kings only)
+ *   Tableau piles (T0n): 9
+ *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
+ *   Maximum deals from stock (maxdeals): 4 (4)
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Related games (related): tripleharp
+ */
 object Harp extends GameRules(
   id = "harp",
   title = "Harp",
-  related = Seq("tripleharp"),
   description = "A two-deck ^klondike^ variation.",
   deckOptions = DeckOptions(
     numDecks = 2

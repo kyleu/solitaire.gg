@@ -4,10 +4,19 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Auto-fill an empty tableau from (T0af): 2|4
+ *   Tableau initial cards (T0d): 3 (3 cards)
+ *   Tableau piles (T0n): 12
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Related games (related): quadrangle
+ */
 object Corona extends GameRules(
   id = "corona",
   title = "Corona",
-  related = Seq("quadrangle"),
   description = "A game similar to ^fortyandeight^ where spaces are autofilled from the waste and stock. The best way to win seems to be to get luc" +
   "ky.",
   deckOptions = DeckOptions(

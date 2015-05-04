@@ -4,6 +4,18 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Reserve initial cards (R0d): 7
+ *   Reserve cards face down (R0df): 0
+ *   Number of reserve piles (R0n): 4
+ *   Enable stock (Sn): 0 (No stock)
+ *   Tableau initial cards (T0d): 3 (3 cards)
+ *   Empty tableau is filled with (T0f): 1 (Kings only)
+ *   Tableau piles (T0n): 8
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Number of waste piles (W0n): 0
+ */
 object Castile extends GameRules(
   id = "castile",
   title = "Castile",

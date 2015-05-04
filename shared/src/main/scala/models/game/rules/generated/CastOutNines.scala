@@ -4,6 +4,19 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Foundation initial cards (F0d): 0 (None)
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 7
+ *   Tableau suit match rule for building (T0s): 1 (In same suit)
+ *   Left mouse interface function (leftfunc): 0x2|0x20
+ *   Similar to (like): deuces
+ *   Low card (lowpip): 9 (9)
+ *   Number of decks (ndecks): 2 (2 decks)
+ *   Enable super moves, whatever those are (supermoves): 1
+ */
 object CastOutNines extends GameRules(
   id = "castoutnines",
   title = "Cast Out Nines",

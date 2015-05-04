@@ -4,6 +4,22 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
+ *   Foundation initial cards (F0d): 1 (1 cards)
+ *   Reserve initial cards (R0d): 13
+ *   Number of reserve piles (R0n): 1
+ *   Auto-fill an empty tableau from (T0af): 1
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 3
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
+ *   Deal cards from stock (dealchunk): 1 (One by one)
+ *   Similar to (like): rainbow
+ *   Low card (lowpip): -2 (?)
+ *   Maximum deals from stock (maxdeals): 1 (1)
+ */
 object Kansas extends GameRules(
   id = "kansas",
   title = "Kansas",

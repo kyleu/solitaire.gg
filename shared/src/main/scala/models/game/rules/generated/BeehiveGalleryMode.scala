@@ -4,6 +4,28 @@ package models.game.rules.generated
 import models.game._
 import models.game.rules._
 
+/**
+ * Original Settings:
+ *   Foundation low rank (F0b): 23 (Ace, Two, Thre...)
+ *   Foundation add complete sequences only (F0cs): true
+ *   Maximum cards for foundation (F0m): 4
+ *   Number of foundation piles (F0n): 13
+ *   Foundation rank match rule (F0r): 0x0040
+ *   Foundation suit match rule (F0s): 5 (Regardless of suit)
+ *   Reserve initial cards (R0d): 10
+ *   Number of reserve piles (R0n): 1
+ *   Tableau initial cards (T0d): 1 (1 card)
+ *   Tableau piles (T0n): 6
+ *   Tableau rank match rule for building (T0r): 0x0040
+ *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
+ *   Tableau rank match rule for moving stacks (T0tr): 0x0040
+ *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
+ *   Waste name (W0Nm): Gallery
+ *   Deal cards from stock (dealchunk): 3 (Three at a time)
+ *   *gallery (gallery): 1
+ *   Similar to (like): beehive
+ *   Maximum deals from stock (maxdeals): 0
+ */
 object BeehiveGalleryMode extends GameRules(
   id = "beehivegallery",
   title = "Beehive (Gallery Mode)",
