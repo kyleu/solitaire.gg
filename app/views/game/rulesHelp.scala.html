@@ -1,9 +1,10 @@
-@(rules: models.game.rules.GameRules)<div class="rules-help">
-  <div class="play-link">
-    <a href="@routes.HomeController.newGame(rules.id)" title="Play Now">Play Now</a>
-  </div>
-
-  <h2>@rules.title</h2>
+@(rules: models.game.rules.GameRules)
+@rulesLink(r: models.game.rules.GameRules) = {
+  <a href="@routes.HomeController.help(r.id)">@r.title</a>
+  <a href="@routes.HomeController.newGame(r.id)" class="play-link" title="Play Now">&#9654;</a>
+}
+<div class="rules-help">
+  <h2>@rules.title <a href="@routes.HomeController.newGame(rules.id)" class="play-link" title="Play Now">&#9654;</a></h2>
   <div class="description">
     <em>@Html(services.help.GameRulesHelpService.description(rules.description))</em>
   </div>
@@ -39,12 +40,16 @@
   }
 
   @rules.like.map { l =>
-    <h3>Original Game (@l)</h3>
+    <h3>Original Game</h3>
     @defining(models.game.rules.GameRulesSet.allById(l)) { like =>
-      <a href="@routes.HomeController.help(like.id)">@like.title</a>
-      <div>
-        <em>@Html(services.help.GameRulesHelpService.description(like.description, link = false))</em>
-      </div>
+      <ul>
+        <li>
+          @rulesLink(like)
+          <div>
+            <em>@Html(services.help.GameRulesHelpService.description(like.description, link = false))</em>
+          </div>
+        </li>
+      </ul>
     }
   }
 
@@ -54,7 +59,7 @@
       @rules.related.map { r =>
         <li>
           @defining(models.game.rules.GameRulesSet.allById(r)) { rel =>
-            <a href="@routes.HomeController.help(rel.id)">@rel.title</a>
+            @rulesLink(rel)
             <div>
               <em>@Html(services.help.GameRulesHelpService.description(rel.description, link = false))</em>
             </div>

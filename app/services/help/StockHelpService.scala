@@ -8,19 +8,19 @@ object StockHelpService {
     val ret = collection.mutable.ArrayBuffer.empty[String]
 
     val cardsDealt = rules.cardsDealt match {
-      case StockCardsDealt.Count(i) => NumberUtils.toWords(i) + " cards"
+      case StockCardsDealt.Count(i) => NumberUtils.toWords(i) + " card" + (if(i == 1) { "" } else { "s" })
       case StockCardsDealt.FewerEachTime => "three cards, then fewer each time"
     }
 
     ret += (rules.dealTo match {
-      case StockDealTo.Foundation => "Deals " + cardsDealt + " to the foundation piles."
+      case StockDealTo.Foundation => "Deals " + cardsDealt + " to each foundation pile."
       case StockDealTo.Manually => "Manually move cards from the stock."
       case StockDealTo.Never => "No cards may be moved."
-      case StockDealTo.Reserve => "Deals " + cardsDealt + " to the reserve piles."
-      case StockDealTo.Tableau => "Deals " + cardsDealt + " to the tableau piles."
-      case StockDealTo.TableauFirstSet => "Deals " + cardsDealt + " to the first set of tableau piles."
-      case StockDealTo.TableauIfNoneEmpty => "Deals " + cardsDealt + " to the tableau piles if none are empty."
-      case StockDealTo.TableauNonEmpty => "Deals " + cardsDealt + " to the non-empty tableau piles."
+      case StockDealTo.Reserve => "Deals " + cardsDealt + " to each reserve pile."
+      case StockDealTo.Tableau => "Deals " + cardsDealt + " to each tableau pile."
+      case StockDealTo.TableauFirstSet => "Deals " + cardsDealt + " to each tableau pile in the first set."
+      case StockDealTo.TableauIfNoneEmpty => "Deals " + cardsDealt + " to each tableau pile if none are empty."
+      case StockDealTo.TableauNonEmpty => "Deals " + cardsDealt + " to each non-empty tableau pile."
       case StockDealTo.Waste => "Deals " + cardsDealt + " to the waste."
       case StockDealTo.WasteOrPairManually => "Deals " + cardsDealt + " to the waste, or pair manually."
     })
