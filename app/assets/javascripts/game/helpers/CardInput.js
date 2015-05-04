@@ -20,15 +20,21 @@ define(['game/helpers/Tweens'], function (Tweens) {
       card.inputOriginalPosition = card.position.clone();
       card.anchorPointX = ((p.positionDown.x - card.game.playmat.x) / card.game.playmat.scale.x) - card.x;
       card.anchorPointY = ((p.positionDown.y - card.game.playmat.y) / card.game.playmat.scale.y) - card.y;
-      card.game.playmat.bringToTop(card.game.playmat.emitter);
+      if(card.game.playmat.emitter !== undefined) {
+        card.game.playmat.bringToTop(card.game.playmat.emitter);
+      }
       card.bringToTop();
     },
 
     onInputUp: function(e, p, card) {
-      card.game.playmat.emitter.on = false;
+      if(card.game.playmat.emitter !== undefined) {
+        card.game.playmat.emitter.on = false;
+      }
       if(card.dragging) {
         card.pile.endDrag();
-        card.game.playmat.bringToTop(card.game.playmat.emitter);
+        if(card.game.playmat.emitter !== undefined) {
+          card.game.playmat.bringToTop(card.game.playmat.emitter);
+        }
       } else {
         var deltaX = Math.abs(p.positionDown.x - p.positionUp.x);
         var deltaY = Math.abs(p.positionDown.y - p.positionUp.y);
@@ -101,9 +107,11 @@ define(['game/helpers/Tweens'], function (Tweens) {
             card.x = swayX;
             card.y = newY;
 
-            card.game.playmat.emitter.on = true;
-            card.game.playmat.emitter.emitX = (card.x);
-            card.game.playmat.emitter.emitY = (card.y);
+            if(card.game.playmat.emitter !== undefined) {
+              card.game.playmat.emitter.on = true;
+              card.game.playmat.emitter.emitX = (card.x);
+              card.game.playmat.emitter.emitY = (card.y);
+            }
           }
         }
       } else if(card.animation.id === "mouse") {

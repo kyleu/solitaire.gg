@@ -35,6 +35,10 @@ define([], function () {
         }
       }
 
+      function trails() {
+        game.playmat.enableTrails();
+      }
+
       function undo() {
         game.send("Undo", {});
       }
