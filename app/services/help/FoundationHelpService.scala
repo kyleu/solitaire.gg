@@ -22,7 +22,8 @@ object FoundationHelpService {
           val plural = if(rules.initialCards / rules.numPiles == 1) { "" } else { "s" }
           " foundation piles with " + NumberUtils.toWords(rules.initialCards / rules.numPiles) + " initial card" + plural + " dealt to each."
         } else {
-          " foundation piles with " + rules.initialCards + " initial cards."
+          val plural = if(rules.initialCards == 1) { "" } else { "s" }
+          " foundation piles with " + rules.initialCards + " initial card" + plural + "."
         })
     }
     ret += piles
@@ -38,7 +39,7 @@ object FoundationHelpService {
     if(lowRank == Rank.Unknown && rules.lowRank == FoundationLowRank.AnyCard) {
       ret += "Any card may be moved to any empty foundation pile."
     } else if(lowRank == Rank.Unknown && rules.lowRank == FoundationLowRank.Ascending) {
-      ret += "???"
+      ret += "There is one foundation pile for each rank from Ace to King."
     } else if(lowRank == Rank.Unknown) {
       ret += "The first card played to a foundation becomes the base card for others."
     } else {
@@ -49,6 +50,10 @@ object FoundationHelpService {
 
     if(rules.wrapFromKingToAce) {
       ret += "An Ace may be played on a King, continuing the sequence."
+    }
+
+    if(rules.cardsShown > 1) {
+      ret += NumberUtils.toWords(rules.cardsShown, properCase = true) + " cards are visible."
     }
 
     rules.name -> ret.toSeq

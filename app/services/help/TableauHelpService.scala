@@ -29,7 +29,6 @@ object TableauHelpService {
     }
     ret += piles
 
-
     rules.name -> ret.toSeq
   }
 }
