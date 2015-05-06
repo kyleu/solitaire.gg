@@ -1,52 +1,8 @@
-define(function () {
+define(['game/helpers/Dimensions'], function (getDimensions) {
   "use strict";
 
   var margin = 0.7;
   var padding = 0.2;
-
-  function getDimensions(pileSet, divisor) {
-    if(pileSet.dimensions !== undefined) {
-      return pileSet.dimensions;
-    }
-    var ret = [pileSet.piles.length * (1 + padding), 1 + padding];
-    switch(pileSet.behavior) {
-      case "waste":
-        var wasteCardsShown = pileSet.piles[0].options.cardsShown;
-        if(wasteCardsShown === 3) {
-          ret = [2 * (1 + padding), ret[1]];
-        } else {
-          ret = [1 + (wasteCardsShown * padding * 1.5), ret[1]];
-        }
-        break;
-      case "reserve":
-      case "tableau":
-        var maxCards = _.max(pileSet.piles, function(pile) { return pile.cards.length; }).cards.length;
-        if(divisor > 1) {
-          ret = [ret[0] / divisor, 1 + ((maxCards - 1) * padding)];
-        } else {
-          ret = [ret[0], ret[1] + ((maxCards - 1) * padding)];
-        }
-        break;
-      case "pyramid":
-        var rows = 1;
-        var rowCounter = 0;
-        _.each(pileSet.piles, function() {
-          if(rowCounter === rows) {
-            rows += 1;
-            rowCounter -= rowCounter;
-          }
-
-          rowCounter += 1;
-        });
-        pileSet.rows = rows;
-        ret = [rows * (1 + padding), (rows * 0.5) + 0.5 + padding];
-        break;
-      default:
-    }
-    pileSet.dimensions = ret;
-    return ret;
-  }
-
 
   function calculateLayout(pileSets, layout, aspectRatio) {
     console.log("Creating layout for [" + pileSets.length + "] pile sets using layout [" + layout + "] with aspect ratio of [" + aspectRatio + "].");
@@ -81,24 +37,12 @@ define(function () {
         default:
       }
       switch(c) {
-        case ':':
-          xOffset += 1 + padding;
-          break;
-        case '.':
-          xOffset += (1 + padding) / 2;
-          break;
-        case '|':
-          newRow();
-          break;
-        case '2':
-          currentDivisor = 2;
-          break;
-        case '3':
-          currentDivisor = 3;
-          break;
-        case '4':
-          currentDivisor = 4;
-          break;
+        case ':': xOffset += 1 + padding; break;
+        case '.': xOffset += (1 + padding) / 2; break;
+        case '|': newRow(); break;
+        case '2': currentDivisor = 2; break;
+        case '3': currentDivisor = 3; break;
+        case '4': currentDivisor = 4; break;
         default:
           if(pileSet === undefined) {
             throw "Unable to find set matching [" + c + "]";
@@ -152,14 +96,11 @@ define(function () {
       }
       lastChar = c;
     }
-
     _.each(layout.split(''), function(char) {
       processCharacter(char);
     });
     newRow();
-
     return { "width": maxWidth - (margin / 2), "height": yOffset - 0.5, "locations": locations };
   }
-
   return calculateLayout;
 });

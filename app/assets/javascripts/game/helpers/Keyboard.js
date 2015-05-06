@@ -60,6 +60,9 @@ define([], function () {
       var victoriousCheatKey = game.input.keyboard.addKey(Phaser.Keyboard.V);
       victoriousCheatKey.onDown.add(victorious);
 
+      var trailsCheatKey = game.input.keyboard.addKey(Phaser.Keyboard.T);
+      trailsCheatKey.onDown.add(trails);
+
       var helpKey = game.input.keyboard.addKey(Phaser.Keyboard.H);
       helpKey.onDown.add(logGame);
 

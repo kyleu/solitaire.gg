@@ -103,15 +103,13 @@ define(['game/helpers/Tweens'], function (Tweens) {
           var swayX = newX - (card.dragIndex * angle * 0.9);
           var newY = ((card.game.input.y - card.game.playmat.y) / card.game.playmat.scale.y) - card.anchorPointY;
 
-          if(swayX !== card.x && newY !== card.y) {
-            card.x = swayX;
-            card.y = newY;
+          card.x = swayX;
+          card.y = newY;
 
-            if(card.game.playmat.emitter !== undefined) {
-              card.game.playmat.emitter.on = true;
-              card.game.playmat.emitter.emitX = (card.x);
-              card.game.playmat.emitter.emitY = (card.y);
-            }
+          if(card.game.playmat.emitter !== undefined) {
+            card.game.playmat.emitter.on = true;
+            card.game.playmat.emitter.emitX = (card.x);
+            card.game.playmat.emitter.emitY = (card.y);
           }
         }
       } else if(card.animation.id === "mouse") {

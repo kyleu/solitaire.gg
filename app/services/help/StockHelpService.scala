@@ -13,16 +13,16 @@ object StockHelpService {
     }
 
     ret += (rules.dealTo match {
-      case StockDealTo.Foundation => "Deals " + cardsDealt + " to each foundation pile."
+      case StockDealTo.Foundation => "When selected, deals " + cardsDealt + " to each foundation pile."
       case StockDealTo.Manually => "Manually move cards from the stock."
       case StockDealTo.Never => "No cards may be moved."
-      case StockDealTo.Reserve => "Deals " + cardsDealt + " to each reserve pile."
-      case StockDealTo.Tableau => "Deals " + cardsDealt + " to each tableau pile."
-      case StockDealTo.TableauFirstSet => "Deals " + cardsDealt + " to each tableau pile in the first set."
-      case StockDealTo.TableauIfNoneEmpty => "Deals " + cardsDealt + " to each tableau pile if none are empty."
-      case StockDealTo.TableauNonEmpty => "Deals " + cardsDealt + " to each non-empty tableau pile."
-      case StockDealTo.Waste => "Deals " + cardsDealt + " to the waste."
-      case StockDealTo.WasteOrPairManually => "Deals " + cardsDealt + " to the waste, or pair manually."
+      case StockDealTo.Reserve => "When selected, deals " + cardsDealt + " to each reserve pile."
+      case StockDealTo.Tableau => "When selected, deals " + cardsDealt + " to each tableau pile."
+      case StockDealTo.TableauFirstSet => "When selected, deals " + cardsDealt + " to each tableau pile in the first set."
+      case StockDealTo.TableauIfNoneEmpty => "When selected, deals " + cardsDealt + " to each tableau pile if none are empty."
+      case StockDealTo.TableauNonEmpty => "When selected, deals " + cardsDealt + " to each non-empty tableau pile."
+      case StockDealTo.Waste => "When selected, deals " + cardsDealt + " to the waste."
+      case StockDealTo.WasteOrPairManually => "When selected, deals " + cardsDealt + " to the waste, or pair manually."
     })
 
     rules.maximumDeals match {

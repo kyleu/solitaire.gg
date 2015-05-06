@@ -10,20 +10,29 @@ define(['game/helpers/Layout'], function (calculateLayout) {
 
     this.resize();
 
-    this.suitEmitter = new Phaser.Particles.Arcade.Emitter(this.game, 0, 0, 400);
-    this.suitEmitter.makeParticles('suits', 0);
-    this.suitEmitter.gravity = 0;
-    this.suitEmitter.minParticleSpeed.setTo(-400, -400);
-    this.suitEmitter.maxParticleSpeed.setTo(400, 400);
-    this.suitEmitter.setAlpha(1, 0, 1000);
-    this.suitEmitter.setScale(0.8, 1, 0.8, 1, 1000);
-    this.add(this.suitEmitter);
+    this.suitEmitter = [];
+    this.suitEmitter[0] = this.makeEmitter(1);
+    this.suitEmitter[1] = this.makeEmitter(0);
+    this.suitEmitter[2] = this.makeEmitter(2);
+    this.suitEmitter[3] = this.makeEmitter(3);
 
     this.game.add.existing(this);
   };
 
   Playmat.prototype = Object.create(Phaser.Group.prototype);
   Playmat.prototype.constructor = Playmat;
+
+  Playmat.prototype.makeEmitter = function(frame) {
+    var ret = new Phaser.Particles.Arcade.Emitter(this.game, 0, 0, 50);
+    ret.makeParticles('suits', frame);
+    ret.gravity = 0;
+    ret.minParticleSpeed.setTo(-400, -400);
+    ret.maxParticleSpeed.setTo(400, 400);
+    ret.setAlpha(1, 0, 1000);
+    ret.setScale(0.8, 1, 0.8, 1, 1000);
+    this.add(ret);
+    return ret;
+  };
 
   Playmat.prototype.addPile = function(pile) {
     var pileLocation = this.layout.locations[pile.id];
@@ -53,7 +62,7 @@ define(['game/helpers/Layout'], function (calculateLayout) {
   };
 
   Playmat.prototype.enableTrails = function() {
-    this.emitter = new Phaser.Particles.Arcade.Emitter(this.game, 0, 0, 400);
+    this.emitter = new Phaser.Particles.Arcade.Emitter(this.game, 0, 0, 100);
     this.emitter.makeParticles( [ 'fire1', 'fire2', 'fire3', 'smoke' ] );
     this.emitter.gravity = 200;
     this.emitter.setAlpha(1, 0, 3000);
@@ -64,25 +73,10 @@ define(['game/helpers/Layout'], function (calculateLayout) {
   };
 
   Playmat.prototype.emitFor = function(card) {
-    this.suitEmitter.x = card.x;
-    this.suitEmitter.y = card.y;
-    switch(card.suit.index) {
-      case 0:
-        this.suitEmitter.makeParticles('suits', 1);
-        break;
-      case 1:
-        this.suitEmitter.makeParticles('suits', 0);
-        break;
-      case 2:
-        this.suitEmitter.makeParticles('suits', 2);
-        break;
-      case 3:
-        this.suitEmitter.makeParticles('suits', 3);
-        break;
-      default:
-        throw card.suit;
-    }
-    this.suitEmitter.start(true, 1000, null, 20);
+    var e = this.suitEmitter[card.suit.index];
+    e.emitX = card.x;
+    e.emitY = card.y;
+    e.start(true, 1000, null, 40);
   };
 
   return Playmat;

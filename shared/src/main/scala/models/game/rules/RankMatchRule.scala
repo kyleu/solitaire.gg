@@ -36,11 +36,11 @@ object RankMatchRule {
   }
   case object Up extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank) = upBy(1, l, r, lowRank)
-    override def toWords = "one higher"
+    override def toWords = "one rank higher"
   }
   case object Down extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank) = l.value == r.value + 1
-    override def toWords = "one lower"
+    override def toWords = "one rank lower"
   }
   case object Equal extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank) = l.value == r.value
@@ -48,35 +48,35 @@ object RankMatchRule {
   }
   case object UpOrDown extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank) = upBy(1, l, r, lowRank) || Down.check(l, r, lowRank)
-    override def toWords = "one lower or higher"
+    override def toWords = "one rank lower or higher"
   }
   case object UpBy2 extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank) = upBy(2, l, r, lowRank)
-    override def toWords = "two higher"
+    override def toWords = "two ranks higher"
   }
   case object DownBy2 extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank) = l.value == r.value + 2
-    override def toWords = "two lower"
+    override def toWords = "two ranks lower"
   }
   case object UpBy3 extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank) = upBy(3, l, r, lowRank)
-    override def toWords = "three higher"
+    override def toWords = "three ranks higher"
   }
   case object DownBy3 extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank) = l.value == r.value + 3
-    override def toWords = "three lower"
+    override def toWords = "three ranks lower"
   }
   case object UpBy4 extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank) = upBy(4, l, r, lowRank)
-    override def toWords = "four higher"
+    override def toWords = "four ranks higher"
   }
   case object DownBy4 extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank) = l.value == r.value + 4
-    override def toWords = "four lower"
+    override def toWords = "four ranks lower"
   }
   case object UpByPileIndex extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank) = throw new NotImplementedError("up-by-pile-index")
-    override def toWords = "???"
+    override def toWords = "one rank higher for the first pile, two higher for the second, and so on,"
   }
   case object Any extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank) = true
