@@ -13,6 +13,18 @@ define(['game/helpers/Tweens'], function (Tweens) {
     return valid;
   }
 
+  function getMoveTarget(card) {
+    var move = _.find(card.game.possibleMoves, function(move) {
+      if(move.moveType === "move-cards" && move.sourcePile === card.pile.id) {
+        if(move.cards.length === 1 && move.cards[0] === card.id) {
+          return true;
+        }
+      }
+      return false;
+    });
+    return move;
+  }
+
   return {
     startDrag: function(p, dragIndex, card) {
       card.dragging = true;
@@ -41,6 +53,11 @@ define(['game/helpers/Tweens'], function (Tweens) {
         if(deltaX < 5 && deltaY < 5) {
           if(canSelectCard(card)) {
             card.pile.cardSelected(card);
+          } else {
+            var moveTarget = getMoveTarget(card);
+            if(moveTarget !== null && moveTarget !== undefined) {
+              this.game.send("MoveCards", {cards: [card.id], src: card.pile.id, tgt: moveTarget.targetPile});
+            }
           }
         }
       }
@@ -57,15 +74,18 @@ define(['game/helpers/Tweens'], function (Tweens) {
         } else {
           if(canSelectCard(card)) {
             card.pile.cardSelected(card);
+          } else {
+            var moveTarget = getMoveTarget(card);
+            if(moveTarget !== null && moveTarget !== undefined) {
+              card.game.send("MoveCards", {cards: [card.id], src: card.pile.id, tgt: moveTarget.targetPile});
+            }
           }
         }
         card.dragIndex = null;
         card.actualX = null;
         card.inputOriginalPosition = null;
       } else {
-        if(canSelectCard(card)) {
-          card.pile.cardSelected(card);
-        }
+        throw "!1";
       }
     },
 
