@@ -16,7 +16,7 @@ object KlondikeConstraintLogic {
         lastCard.foreach { lc =>
           if (!rankMatchRule.check(lc.r, c.r, lowRank)) {
             valid = false
-          } else if(!suitMatchRule.check(lc.s, c.s)) {
+          } else if (!suitMatchRule.check(lc.s, c.s)) {
             valid = false
           }
         }
@@ -29,7 +29,7 @@ object KlondikeConstraintLogic {
   def tableauDragTo(emptyPileRanks: Seq[Rank]) = (pile: Pile, cards: Seq[Card], gameState: GameState) => if (pile.cards.isEmpty) {
     emptyPileRanks.length match {
       case 0 => cards.length == 1
-      case _ => cards.exists( c => emptyPileRanks.contains(c.r))
+      case _ => cards.exists(c => emptyPileRanks.contains(c.r))
     }
   } else {
     val topCard = pile.cards.lastOption.getOrElse(throw new IllegalStateException())
@@ -51,10 +51,8 @@ object KlondikeConstraintLogic {
     val firstCard = cards.headOption.getOrElse(throw new IllegalStateException())
     if (pile.cards.lastOption != cards.headOption) {
       false
-    } else if (!firstCard.u) {
-      true
     } else {
-      false
+      !firstCard.u
     }
   }
 }

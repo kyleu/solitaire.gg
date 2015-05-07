@@ -22,8 +22,7 @@ mkdir -p build/dev/web/assets
 
 cp "../target/web/rjs/build/client-opt.js" "build/dev/web"
 cp "../target/web/rjs/build/client-opt.js.map" "build/dev/web"
-cp -R "../app/assets/javascripts/" "build/dev/web/assets/javascripts"
-mv "build/dev/web/assets/javascripts/main.js" "build/dev/web/assets/javascripts/scalataire.js"
+cp "../target/web/rjs/build/javascripts/main.js" "build/dev/web/scalataire.js"
 cp "../target/web/less/main/stylesheets/scalataire.css" "build/dev/web"
 cp "../target/web/less/main/stylesheets/scalataire.css.map" "build/dev/web"
 cp "../app/assets/stylesheets/scalataire.less" "build/dev/web"
@@ -40,21 +39,20 @@ cp "../target/web/rjs/appdir/lib/requirejs/require.js" "build/dev/web/lib"
 
 
 # Prod
-mkdir -p build/prod/web
+mkdir -p build/prod/web/assets
 cp "../target/web/rjs/build/client-opt.js" "build/prod/web"
 cp "../target/web/rjs/build/javascripts/main.js" "build/prod/web/scalataire.js"
 cp "../target/web/less/main/stylesheets/scalataire.css" "build/prod/web"
+
+cp -R "../public/images/" "build/prod/web/assets/images"
+rm -Rf "build/prod/web/assets/images/game/cards/standard/_resized"
+rm -Rf "build/prod/web/assets/images/game/cards/standard/_unprocessed"
+rm -Rf "build/prod/web/assets/images/game/cards/standard/x-large"
 
 mkdir -p build/prod/web/lib
 cp "../public/lib/phaser/js/phaser.min.js" "build/prod/web/lib"
 cp "../public/lib/underscore/underscore.min.js" "build/prod/web/lib"
 cp "../target/web/rjs/build/lib/requirejs/require.min.js" "build/prod/web/lib"
-
-mkdir -p build/prod/web/assets
-cp -R "../public/images/" "build/prod/web/assets/images"
-rm -Rf "build/prod/web/assets/images/game/cards/standard/_resized"
-rm -Rf "build/prod/web/assets/images/game/cards/standard/_unprocessed"
-rm -Rf "build/prod/web/assets/images/game/cards/standard/x-large"
 
 echo "  Building Electron apps..."
 
