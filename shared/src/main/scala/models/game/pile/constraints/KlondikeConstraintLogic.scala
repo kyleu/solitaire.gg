@@ -1,29 +1,35 @@
 package models.game.pile.constraints
 
 import models.game.pile.Pile
+import models.game.rules.{ SuitMatchRule, RankMatchRule }
 import models.game.{ GameState, Rank, Card }
 
 object KlondikeConstraintLogic {
-  val dragFrom = (pile: Pile, cards: Seq[Card], gameState: GameState) => if (cards.exists(!_.u)) {
-    false
-  } else {
-    var valid = true
-    var lastCard: Option[Card] = None
+  def dragFrom(rankMatchRule: RankMatchRule, suitMatchRule: SuitMatchRule, lowRank: Rank) = (pile: Pile, cards: Seq[Card], gameState: GameState) => {
+    if (cards.exists(!_.u)) {
+      false
+    } else {
+      var valid = true
+      var lastCard: Option[Card] = None
 
-    for (c <- cards) {
-      lastCard.foreach { lc =>
-        if (c.s.color == lc.s.color) { valid = false }
-        if (c.r == Rank.Ace || c.r.value != (lc.r.value - 1)) { valid = false }
+      for (c <- cards) {
+        lastCard.foreach { lc =>
+          if (!rankMatchRule.check(lc.r, c.r, lowRank)) {
+            valid = false
+          } else if(!suitMatchRule.check(lc.s, c.s)) {
+            valid = false
+          }
+        }
+        lastCard = Some(c)
       }
-      lastCard = Some(c)
+      valid
     }
-    valid
   }
 
-  def tableauDragTo(emptyPileRank: Option[Rank]) = (pile: Pile, cards: Seq[Card], gameState: GameState) => if (pile.cards.isEmpty) {
-    emptyPileRank match {
-      case Some(r) => cards.headOption.getOrElse(throw new IllegalStateException()).r == r
-      case None => cards.length == 1
+  def tableauDragTo(emptyPileRanks: Seq[Rank]) = (pile: Pile, cards: Seq[Card], gameState: GameState) => if (pile.cards.isEmpty) {
+    emptyPileRanks.length match {
+      case 0 => cards.length == 1
+      case _ => cards.exists( c => emptyPileRanks.contains(c.r))
     }
   } else {
     val topCard = pile.cards.lastOption.getOrElse(throw new IllegalStateException())

@@ -20,7 +20,7 @@ define(['game/Rank'], function(Rank) {
       return valid;
     },
 
-    "klondike": function(card) {
+    "sequence": function(card) {
       if(!card.faceUp) {
         return false;
       }

@@ -1,8 +1,7 @@
 package models.game.pile.actions
 
 import models.{ ResponseMessage, CardMoved }
-import models.game.Rank._
-import models.game.{ Rank, GameState, Card }
+import models.game.{ GameState, Card }
 import models.game.pile.Pile
 
 case class SelectCardAction(id: String, f: (Pile, Card, GameState) => Seq[ResponseMessage])
@@ -38,23 +37,6 @@ object SelectCardActions {
     }
   })
 
-  val alternatingRank = SelectCardAction("alternating-rank", (pile, card, gameState) => {
-    val foundation = gameState.pilesById("foundation")
-    val topCardRank = foundation.cards.last.r
-    val selectedCardRank = card.r
-    val shouldMove = topCardRank match {
-      case King => selectedCardRank == Queen
-      case Ace => selectedCardRank == Two
-      case Two => selectedCardRank == Ace || selectedCardRank == Three
-      case _ => topCardRank.value == selectedCardRank.value + 1 || topCardRank.value == selectedCardRank.value - 1
-    }
-    if (shouldMove) {
-      moveCard(card, pile, foundation, gameState)
-    } else {
-      Nil
-    }
-  })
-
   def drawToEmptyPiles(behavior: String) = SelectCardAction("draw-to-empty", (pile, card, gameState) => {
     val piles = gameState.pileSets.filter(_.behavior == behavior).flatMap(_.piles)
     piles.flatMap { p =>
@@ -81,4 +63,13 @@ object SelectCardActions {
       Seq(msg)
     }
   }
+
+  val flip = SelectCardAction("flip", (pile, card, gameState) => {
+    if (!card.u) {
+      card.u = true
+      gameState.revealCardToAll(card)
+    } else {
+      Nil
+    }
+  })
 }
