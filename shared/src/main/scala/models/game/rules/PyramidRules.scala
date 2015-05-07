@@ -4,7 +4,6 @@ sealed trait PyramidType
 object PyramidType {
   case object Standard extends PyramidType
   case object Inverted extends PyramidType
-  case object Custom extends PyramidType
 }
 
 sealed trait PyramidFaceDownCards

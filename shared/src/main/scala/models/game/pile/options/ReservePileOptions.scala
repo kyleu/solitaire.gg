@@ -1,6 +1,5 @@
 package models.game.pile.options
 
-import models.game.pile.actions.KlondikeActions
 import models.game.pile.constraints.Constraints
 import models.game.rules.ReserveRules
 
@@ -15,9 +14,7 @@ object ReservePileOptions {
     PileOptions(
       cardsShown = Some(cardsShown),
       direction = Some("d"),
-      selectCardConstraint = Some(Constraints.klondikeSelectCard),
-      dragFromConstraint = Some(Constraints.topCardOnly),
-      selectCardAction = Some(KlondikeActions.klondike)
+      dragFromConstraint = Some(Constraints.topCardOnly)
     )
   }
 }

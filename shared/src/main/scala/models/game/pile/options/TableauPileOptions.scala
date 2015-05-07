@@ -13,10 +13,10 @@ object TableauPileOptions {
         case 0 => None
         case x => Some(x)
       },
-      selectCardConstraint = Some(Constraints.klondikeSelectCard),
       dragFromConstraint = Some(Constraints.klondikeDragFrom),
       dragToConstraint = Some(Constraints.klondikeTableauDragTo(Some(Rank.King))),
-      selectCardAction = Some(KlondikeActions.klondike)
+      selectCardConstraint = Some(Constraints.allOf("top-face-down", Constraints.topCardOnly, Constraints.faceDown)),
+      selectCardAction = Some(KlondikeActions.flip)
     )
   }
 }

@@ -13,9 +13,8 @@ object PyramidHelpService {
     }
 
     rules.pyramidType match {
-      case PyramidType.Standard => ret += "A standard pyramid with " + rows + " (the top row has only one card, two in the next, and so on)."
-      case PyramidType.Inverted => ret += "An inverted pyramid with " + rows + " (the bottom row has only one card, two in the next, and so on)."
-      case PyramidType.Custom => ret += "A pyramid with a custom layout. It's freaky."
+      case PyramidType.Standard => ret += "A standard pyramid with " + rows + " rows (the top row has only one card, two in the next, and so on)."
+      case PyramidType.Inverted => ret += "An inverted pyramid with " + rows + " rows (the bottom row has only one card, two in the next, and so on)."
     }
 
     if (rules.wrapFromKingToAce) {

@@ -17,8 +17,8 @@ object Constraints {
     !results.contains(false)
   })
 
-  val faceUp = Constraint("face-up", (pile, cards, gameState) => {
-    !cards.exists(!_.u)
+  val faceDown = Constraint("face-down", (pile, cards, gameState) => {
+    !cards.exists(_.u)
   })
 
   val topCardOnly = Constraint("top-card-only", (pile, cards, gameState) => {
@@ -77,5 +77,4 @@ object Constraints {
 
   val klondikeDragFrom = Constraint("klondike", KlondikeConstraintLogic.dragFrom)
   def klondikeTableauDragTo(emptyPileConstraint: Option[Rank]) = Constraint("klondike", KlondikeConstraintLogic.tableauDragTo(emptyPileConstraint))
-  val klondikeSelectCard = Constraint("klondike", KlondikeConstraintLogic.selectCard)
 }

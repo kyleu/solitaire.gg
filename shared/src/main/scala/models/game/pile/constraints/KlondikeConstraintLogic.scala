@@ -48,22 +48,7 @@ object KlondikeConstraintLogic {
     } else if (!firstCard.u) {
       true
     } else {
-      val foundations = gameState.pileSets.filter(_.behavior == "foundation").flatMap(_.piles)
-      val foundation = foundations.flatMap { f =>
-        if (f.cards.isEmpty && firstCard.r == Rank.Ace) {
-          Some(f)
-        } else if (f.cards.lastOption.map(_.s) == Some(firstCard.s) && f.cards.lastOption.map(_.r) == Some(Rank.Ace) && firstCard.r == Rank.Two) {
-          Some(f)
-        } else if (f.cards.lastOption.map(_.s) == Some(firstCard.s) && f.cards.lastOption.map(_.r.value) == Some(firstCard.r.value - 1)) {
-          Some(f)
-        } else {
-          None
-        }
-      }.headOption
-      foundation match {
-        case Some(f) => true
-        case None => false
-      }
+      false
     }
   }
 }
