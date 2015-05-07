@@ -25,6 +25,10 @@ object Ukrainian extends GameRules(
   title = "Ukrainian",
   like = Some("russian"),
   related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/ukrainian_solitaire.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/UkrainianSolitaire.htm")
+  ),
   description = "A rarely winnable version of ^russian^ Solitaire where only complete sequences can be taken off, as in spider.",
   foundations = Seq(
     FoundationRules(
@@ -51,7 +55,7 @@ object Ukrainian extends GameRules(
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

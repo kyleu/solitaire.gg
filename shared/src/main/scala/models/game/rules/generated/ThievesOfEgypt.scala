@@ -17,6 +17,12 @@ import models.game.rules._
 object ThievesOfEgypt extends GameRules(
   id = "thievesofegypt",
   title = "Thieves of Egypt",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/thieves_of_egypt.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/thieves_of_egypt.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/thieves_of_egypt.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/thieves-of-egypt.htm")
+  ),
   description = "A variant of ^fortythieves^ with a pyramid-shaped tableau.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -51,7 +57,7 @@ object ThievesOfEgypt extends GameRules(
         "UU"
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

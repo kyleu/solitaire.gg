@@ -22,8 +22,12 @@ object BritishCanister extends GameRules(
   title = "British Canister",
   like = Some("canister"),
   related = Seq("britishcanister", "americancanister", "bucket"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/british_canister.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/canister.htm")
+  ),
   description = "A difficult version of ^canister^ dating back to the 1890's. It resembles ^americancanister^ but does not allow stack moves and on" +
-  "ly kings can fill spaces.",
+    "ly kings can fill spaces.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -37,7 +41,7 @@ object BritishCanister extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

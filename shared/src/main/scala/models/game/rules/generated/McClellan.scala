@@ -25,6 +25,7 @@ object McClellan extends GameRules(
     "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
     "josephine"
   ),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/mcclellan.htm")),
   description = "A harder variation of ^littlenapoleon^ where you need to build in suit.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -48,7 +49,7 @@ object McClellan extends GameRules(
       initialCards = InitialCards.Count(4),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

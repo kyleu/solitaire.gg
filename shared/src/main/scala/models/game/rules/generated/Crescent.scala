@@ -41,6 +41,16 @@ object Crescent extends GameRules(
   title = "Crescent",
   like = Some("rainbowfan"),
   related = Seq("crescentfour"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Crescent_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/crescent.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/crescent.html"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/crescent.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/crescent.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Crescent.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/crescent.htm"),
+    Link("Lena Games", "www.lenagames.com/bp_files/rul/crescent.htm")
+  ),
   description = "A bidirectional building game where you can rotate cards in the stacks three times.",
   deckOptions = DeckOptions(
     numDecks = 2

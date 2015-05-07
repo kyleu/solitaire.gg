@@ -20,6 +20,11 @@ object Interchange extends GameRules(
   id = "interchange",
   title = "Interchange",
   related = Seq("tripleinterchange", "breakwater", "unlimited"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/interchange.htm"),
+    Link("The Dao of Interchange", "www.goodsol.com/games/interchange-dao.html"),
+    Link("Michael Smoker's very confusing description", "www.hobbyhub360.com/index.php/interchange-solitaire-card-game-8745/")
+  ),
   description = "An extremely difficult ^fortythieves^ variant with alternate cards dealt face down.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -43,7 +48,7 @@ object Interchange extends GameRules(
       cardsFaceDown = TableauFaceDownCards.EvenNumbered,
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

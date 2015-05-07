@@ -36,6 +36,10 @@ object Alternate extends GameRules(
   title = "Alternate",
   like = Some("sirtommy"),
   related = Seq("alternate", "ladybetty"),
+  links = Seq(
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/alternate.html"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/alternate.php")
+  ),
   description = "A variation of ^sirtommy^ where the foundations are built in alternate color, half upwards, half downwards.",
   stock = Some(
     StockRules(
@@ -73,7 +77,7 @@ object Alternate extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock"),
       mayMoveToEmptyFrom = Seq("Stock")
     )

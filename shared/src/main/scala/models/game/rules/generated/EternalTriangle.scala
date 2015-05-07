@@ -20,6 +20,7 @@ object EternalTriangle extends GameRules(
   id = "eternaltriangle",
   title = "Eternal Triangle",
   related = Seq("hypotenuse", "tripletriangle"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eternal_triangle.htm")),
   description = "A fairly hard two-deck ^klondike^ variation.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -41,7 +42,7 @@ object EternalTriangle extends GameRules(
     TableauRules(
       numPiles = 10,
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

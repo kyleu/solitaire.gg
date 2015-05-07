@@ -16,8 +16,13 @@ import models.game.rules._
 object Kingdom extends GameRules(
   id = "kingdom",
   title = "Kingdom",
+  links = Seq(
+    Link("Solsuite Solitaire", "www.solsuite.com/games/kingdom.htm"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kingdom.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/kingdom.php")
+  ),
   description = "A game where no building is allowed in the tableau and suits are ignored while building up the tableau. Our version may be slightl" +
-  "y less dreadful than the usual.",
+    "y less dreadful than the usual.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -42,7 +47,7 @@ object Kingdom extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

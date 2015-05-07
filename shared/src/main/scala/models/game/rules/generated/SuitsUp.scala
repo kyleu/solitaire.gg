@@ -20,6 +20,7 @@ import models.game.rules._
 object SuitsUp extends GameRules(
   id = "suitsup",
   title = "Suits Up",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/suits_up.htm")),
   description = "An easy game where you remove pairs of cards of the same suit, until only four cards are left.",
   victoryCondition = VictoryCondition.AllButFourCardsOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameSuit,

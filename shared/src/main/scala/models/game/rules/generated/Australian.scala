@@ -16,6 +16,13 @@ import models.game.rules._
 object Australian extends GameRules(
   id = "australian",
   title = "Australian",
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Australian_Patience_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/australian_patience.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/australian_patience.html"),
+    Link("Games for One", "mac.gamesforone.com/rules/au_patience.html"),
+    Link("dogMelon", "www.dogmelon.com.au/solhelp/Australian%20Patience.shtml")
+  ),
   description = "A variation of ^klondike^ that allows non-top cards to be moved (with the cards on top of them) as in ^yukon^.",
   stock = Some(
     StockRules(
@@ -37,7 +44,7 @@ object Australian extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

@@ -22,6 +22,13 @@ object FourteenOut extends GameRules(
   id = "fourteenout",
   title = "Fourteen Out",
   related = Seq("juvenile", "doublefourteens", "triplefourteens", "tensout"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fourteen_out.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/fourteen_out.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/block_fourteen.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/take_fourteen.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Fourteen.html.en")
+  ),
   description = "An interesting game in which you remove pairs that add the fourteen.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   foundations = Seq(

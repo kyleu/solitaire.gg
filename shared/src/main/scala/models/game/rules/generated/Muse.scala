@@ -26,6 +26,7 @@ object Muse extends GameRules(
   title = "Muse",
   like = Some("kingalbert"),
   related = Seq("queenvictoria", "muse", "raglan"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/muse.htm")),
   description = "This variation of ^kingalbert^ has cells instead of a reserve.",
   foundations = Seq(
     FoundationRules(
@@ -38,7 +39,7 @@ object Muse extends GameRules(
     TableauRules(
       numPiles = 9,
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

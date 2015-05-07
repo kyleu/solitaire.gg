@@ -27,6 +27,7 @@ object DoubletCell extends GameRules(
   title = "Doublet Cell",
   like = Some("simplepairs"),
   related = Seq("crisscross", "eighteens", "straightfifteens", "blockten", "patientpairs", "doubletcell", "doublets"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/doublet_cell.htm")),
   description = "A combination between ^doublets^ and ^freecell^.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRankAndColor,
   foundations = Seq(

@@ -15,6 +15,10 @@ import models.game.rules._
 object Junction extends GameRules(
   id = "junction",
   title = "Junction",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/junction.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/junction.htm")
+  ),
   description = "A variation of ^singlerail^ or ^doublerail^ for four piquet decks.",
   deckOptions = DeckOptions(
     numDecks = 4,
@@ -38,7 +42,7 @@ object Junction extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

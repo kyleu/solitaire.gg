@@ -22,6 +22,7 @@ object TripleTriangle extends GameRules(
   title = "Triple Triangle",
   like = Some("eternaltriangle"),
   related = Seq("hypotenuse", "tripletriangle"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_triangle.htm")),
   description = "A three-deck ^eternaltriangle^ variation by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -43,7 +44,7 @@ object TripleTriangle extends GameRules(
     TableauRules(
       numPiles = 13,
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

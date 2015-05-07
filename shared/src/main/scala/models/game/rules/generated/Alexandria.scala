@@ -17,6 +17,7 @@ import models.game.rules._
 object Alexandria extends GameRules(
   id = "alexandria",
   title = "Alexandria",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/alexandria.htm")),
   description = "A three-deck version of ^thievesofegypt^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -54,7 +55,7 @@ object Alexandria extends GameRules(
         "U"
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

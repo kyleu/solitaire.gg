@@ -54,7 +54,7 @@ object ScalaTableauExporter {
           props += "      autoFillEmptyFrom = TableauAutoFillEmptyFrom." + cls(t.autoFillEmptyFrom)
         }
         if(t.emptyFilledWith != defaults.emptyFilledWith) {
-          props += "      emptyFilledWith = TableauFillEmptyWith." + cls(t.emptyFilledWith)
+          props += "      emptyFilledWith = FillEmptyWith." + cls(t.emptyFilledWith)
         }
         if(!t.mayMoveToNonEmptyFrom.sameElements(defaults.mayMoveToNonEmptyFrom)) {
           props += "      mayMoveToNonEmptyFrom = Seq(" + t.mayMoveToNonEmptyFrom.map("\"" + _ + "\"").mkString(", ") + ")"

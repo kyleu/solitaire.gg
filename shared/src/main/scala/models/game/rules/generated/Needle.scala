@@ -28,6 +28,7 @@ object Needle extends GameRules(
   id = "needle",
   title = "Needle",
   like = Some("haystack"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/needle.htm")),
   description = "A game with a U-shaped tableau and a reserve you can store cards in.",
   foundations = Seq(
     FoundationRules(
@@ -45,7 +46,7 @@ object Needle extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       maxCards = 18
     ),
     TableauRules(
@@ -65,7 +66,7 @@ object Needle extends GameRules(
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

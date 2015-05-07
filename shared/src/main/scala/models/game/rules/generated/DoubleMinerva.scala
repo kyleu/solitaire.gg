@@ -29,6 +29,7 @@ object DoubleMinerva extends GameRules(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
     "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
   ),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_minerva.htm")),
   description = "Thomas Warfield's two-deck version of ^minerva^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -51,7 +52,7 @@ object DoubleMinerva extends GameRules(
       numPiles = 9,
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.OddNumbered,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   reserves = Some(

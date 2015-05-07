@@ -28,8 +28,12 @@ import models.game.rules._
 object BigBertha extends GameRules(
   id = "bigbertha",
   title = "Big Bertha",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/big_bertha.htm"),
+    Link("Betsy Gallup on eHow", "www.ehow.com/list_5904884_rules-big-bertha-card-game.html")
+  ),
   description = "This two-deck version of ^kingalbert^ which has 14 reserve cards that are all playable, and a separate foundation pile that you ca" +
-  "n put all the kings on.",
+    "n put all the kings on.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -61,7 +65,7 @@ object BigBertha extends GameRules(
       numPiles = 15,
       initialCards = InitialCards.Count(6),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

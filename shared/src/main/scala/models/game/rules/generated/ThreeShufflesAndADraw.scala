@@ -24,6 +24,11 @@ object ThreeShufflesAndADraw extends GameRules(
   id = "threeshufflesandadraw",
   title = "Three Shuffles and a Draw",
   like = Some("labellelucie"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_shuffles_and_a_draw.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/ThreeShufflesandaDraw.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Three_Shuffles_and_a_Draw_(solitaire)")
+  ),
   description = "A variation of ^labellelucie^ that adds a draw.",
   foundations = Seq(
     FoundationRules(

@@ -24,6 +24,14 @@ object VariegatedCanfield extends GameRules(
   id = "variegatedcanfield",
   title = "Variegated Canfield",
   like = Some("doublecanfield"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/variegated_canfield.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/variegated_canfield.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/variegated_canfield.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/variegated-canfield.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/VariegatedCanfield.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/canfield/variegated_canfield.htm")
+  ),
   description = "A difficult two-deck version of ^canfield^, with aces starting on the foundation and only three passes through the waste allowed.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -49,7 +57,7 @@ object VariegatedCanfield extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

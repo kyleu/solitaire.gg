@@ -1,6 +1,6 @@
 package parser.politaire
 
-import models.game._
+import models.game.Rank
 import models.game.rules._
 import parser.politaire.lookup.PolitaireLookup
 
@@ -22,7 +22,7 @@ trait ParserFoundationHelper { this: GameRulesParser =>
           case 21 => FoundationLowRank.DeckLowRank
           case 22 => FoundationLowRank.DeckHighRank
           case 23 => FoundationLowRank.Ascending
-          case _ => FoundationLowRank.SpecificRank(Rank.King)
+          case r => FoundationLowRank.SpecificRank(Rank.allByValue(r))
         },
         initialCards = getInt(prefix + "d") match {
           case -1 => numPiles

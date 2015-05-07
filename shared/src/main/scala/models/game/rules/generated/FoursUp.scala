@@ -24,8 +24,9 @@ object FoursUp extends GameRules(
   title = "Fours Up",
   like = Some("threescompany"),
   related = Seq("foursup"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fours_up.htm")),
   description = "Thomas Warfield created this game as a continuation of the series starting with the traditional games ^busyaces^ and ^deuces^. The" +
-  " number of tableau piles is again reduced, but now we can build regardless of suit so the game gets a bit easier.",
+    " number of tableau piles is again reduced, but now we can build regardless of suit so the game gets a bit easier.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Four
@@ -51,7 +52,7 @@ object FoursUp extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

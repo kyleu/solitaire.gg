@@ -15,6 +15,7 @@ import models.game.rules._
 object Waterloo extends GameRules(
   id = "waterloo",
   title = "Waterloo",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/waterloo.htm")),
   description = "A ^fortythieves^ variant with ^spider^-like building rules.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -39,7 +40,7 @@ object Waterloo extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

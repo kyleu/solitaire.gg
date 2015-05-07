@@ -24,6 +24,14 @@ object LadyBetty extends GameRules(
   title = "Lady Betty",
   like = Some("sirtommy"),
   related = Seq("alternate", "ladybetty"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lady_betty.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/lady_betty.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/lady_betty.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/lady_betty.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/lady-betty.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/LadyBetty.htm")
+  ),
   description = "This cousin of ^sirtommy^ requires you to build the foundation in suit, but gives you two extra tableau piles to work with.",
   stock = Some(
     StockRules(
@@ -47,7 +55,7 @@ object LadyBetty extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock"),
       mayMoveToEmptyFrom = Seq("Stock")
     )

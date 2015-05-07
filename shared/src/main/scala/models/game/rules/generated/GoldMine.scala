@@ -25,6 +25,10 @@ object GoldMine extends GameRules(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
     "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
   ),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gold_mine.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Gold_Mine.html.en")
+  ),
   description = "A ^klondike^ variation that starts with an empty tableau.",
   stock = Some(
     StockRules(
@@ -43,7 +47,7 @@ object GoldMine extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

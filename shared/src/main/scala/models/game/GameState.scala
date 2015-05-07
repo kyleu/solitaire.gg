@@ -8,8 +8,9 @@ case class GameState(
     gameId: UUID,
     rules: String,
     maxPlayers: Int,
-    seed: Int, deck:
-    Deck, pileSets: Seq[PileSet],
+    seed: Int,
+    deck: Deck,
+    pileSets: Seq[PileSet],
     layout: String,
     var players: Seq[GamePlayer] = Nil
 ) extends GameStateHelper {

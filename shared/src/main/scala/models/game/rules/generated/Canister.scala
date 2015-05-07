@@ -19,6 +19,13 @@ object Canister extends GameRules(
   id = "canister",
   title = "Canister",
   related = Seq("britishcanister", "americancanister", "bucket"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/canister.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/canister.html"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/canister.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Canister.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/canister.htm")
+  ),
   description = "Yet another generic solitaire game, with all cards dealt face up and no stock. This is quite easy when it's not impossible.",
   foundations = Seq(
     FoundationRules(
@@ -34,7 +41,7 @@ object Canister extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

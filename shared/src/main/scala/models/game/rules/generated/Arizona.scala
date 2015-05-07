@@ -21,6 +21,10 @@ object Arizona extends GameRules(
   id = "arizona",
   title = "Arizona",
   related = Seq("phoenix"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/arizona.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/arizona.htm")
+  ),
   description = "An easier varition of ^wildflower^ where you can move sequences regardless of suit.",
   waste = Some(
     WasteRules(
@@ -41,7 +45,7 @@ object Arizona extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

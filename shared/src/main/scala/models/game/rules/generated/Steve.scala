@@ -23,6 +23,10 @@ object Steve extends GameRules(
   title = "Steve",
   like = Some("carlton"),
   related = Seq("steve"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/steve.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/steve.htm")
+  ),
   description = "A two-deck ^klondike^ variant where we build regardless of suit, but can only move same-suit sequences.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -46,7 +50,7 @@ object Steve extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

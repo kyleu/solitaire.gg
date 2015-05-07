@@ -20,6 +20,15 @@ object Pyramid extends GameRules(
   id = "pyramid",
   title = "Pyramid",
   related = Seq("kingtut", "giza", "doublepyramid", "darkpyramid", "apophis", "cheops"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pyramid.htm"),
+    Link("Michael Keller's Discussion", "www.solitairelaboratory.com/pyramid.html"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Pyramid_(solitaire)"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/pyramid.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Thirteen.html.en"),
+    Link("Erik Arneson's Rules at About.com", "boardgames.about.com/od/solitaire/a/pyramid.htm"),
+    Link("Dan Fletcher's Strategy Guide at Solitaire Central", "www.solitairecentral.com/articles/PyramidSolitaireAStrategyGuideForBeginners.html")
+  ),
   description = "A classic pair-removal game with a triangular tableau.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(

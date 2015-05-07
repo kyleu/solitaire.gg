@@ -18,6 +18,7 @@ import models.game.rules._
 object Chateau extends GameRules(
   id = "chateau",
   title = "Chateau",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chateau.htm")),
   description = "A two-deck ^beleagueredcastle^ variant.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -36,7 +37,7 @@ object Chateau extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

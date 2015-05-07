@@ -26,8 +26,12 @@ object PerseveranceB extends GameRules(
   id = "perseveranceb",
   title = "Perseverance B",
   like = Some("perseverancea"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/perseverance.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/perseverance.htm")
+  ),
   description = "An alternate version of ^perseverancea^ where there are only two redeals, the redeal method is different, and kings are automatica" +
-  "lly moved to the bottoms of their stacks.",
+    "lly moved to the bottoms of their stacks.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

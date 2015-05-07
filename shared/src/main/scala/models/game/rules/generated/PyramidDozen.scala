@@ -27,6 +27,7 @@ object PyramidDozen extends GameRules(
   title = "Pyramid Dozen",
   like = Some("giza"),
   related = Seq("pyramiddozen"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pyramid_dozen.htm")),
   description = "A version of ^giza^ in which cards are removed in pairs that add to twelve.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTwelveOrQK,
   foundations = Seq(

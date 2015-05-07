@@ -23,6 +23,12 @@ object Deuces extends GameRules(
   title = "Deuces",
   like = Some("busyaces"),
   related = Seq("jacksinthebox", "threescompany", "castoutnines"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Deuces_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/deuces.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/deuces.html"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/deuces.htm")
+  ),
   description = "A more difficult variation of ^busyaces^ with fewer tableau piles.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -49,7 +55,7 @@ object Deuces extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

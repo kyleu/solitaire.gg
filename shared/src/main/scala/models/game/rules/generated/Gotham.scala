@@ -23,6 +23,7 @@ object Gotham extends GameRules(
   title = "Gotham",
   like = Some("newyork"),
   related = Seq("bigapple"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gotham.htm")),
   description = "An easier variation of ^newyork^ where we build regardless of suit and same-suit stacks can be moved.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -53,7 +54,7 @@ object Gotham extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Waste")
     )
   ),

@@ -18,8 +18,13 @@ import models.game.rules._
 object Queenie extends GameRules(
   id = "queenie",
   title = "Queenie",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/queenie.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/Queenie.html"),
+    Link("PySol", "pysolfc.sourceforge.net/doc/rules/queenie.html")
+  ),
   description = "Build stacks of cards in alternating colors as in ^klondike^, move arbitrary groups of cards as in ^yukon^, and deal waves of card" +
-  "s onto to the tableau, as in ^spider^.",
+    "s onto to the tableau, as in ^spider^.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,
@@ -38,7 +43,7 @@ object Queenie extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

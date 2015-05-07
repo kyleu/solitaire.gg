@@ -24,6 +24,7 @@ object TreviGarden extends GameRules(
   id = "trevigarden",
   title = "Trevi Garden",
   like = Some("stonewall"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trevi_garden.htm")),
   description = "A variation of ^stonewall^ made easier by the addition of two cells.",
   waste = Some(
     WasteRules(
@@ -43,7 +44,7 @@ object TreviGarden extends GameRules(
       numPiles = 6,
       initialCards = InitialCards.Count(6),
       cardsFaceDown = TableauFaceDownCards.OddNumbered,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

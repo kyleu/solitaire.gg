@@ -20,8 +20,16 @@ object KingAlbert extends GameRules(
   id = "kingalbert",
   title = "King Albert",
   related = Seq("queenvictoria", "muse", "raglan"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/King_Albert_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/king_albert.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/king_albert.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/king_albert.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/king_albert.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/King_Albert.html.en")
+  ),
   description = "This game, one of several games also known as \"Idiot's Delight,\" has a triangular tableau and seven reserve cards, all playable." +
-  " It's usually unsolvable.",
+    " It's usually unsolvable.",
   waste = Some(
     WasteRules(
       name = "Reserve"
@@ -39,7 +47,7 @@ object KingAlbert extends GameRules(
       numPiles = 9,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

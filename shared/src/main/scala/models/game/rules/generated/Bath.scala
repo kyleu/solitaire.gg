@@ -19,6 +19,10 @@ import models.game.rules._
 object Bath extends GameRules(
   id = "bath",
   title = "Bath",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bath.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/bath.html")
+  ),
   description = "A ^freecell^ variant where spaces can only be filled by kings and there are only two cells.",
   foundations = Seq(
     FoundationRules(
@@ -45,7 +49,7 @@ object Bath extends GameRules(
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(

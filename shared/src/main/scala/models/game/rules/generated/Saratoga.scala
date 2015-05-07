@@ -25,6 +25,12 @@ object Saratoga extends GameRules(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
     "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
   ),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/saratoga.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/saratoga.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Saratoga.html.en"),
+    Link("Elton Gahr on HobbyHub", "www.hobbyhub360.com/index.php/solitaire-how-to-play-saratoga-13682/")
+  ),
   description = "This is just ^klondike^ with the cards dealt face up.",
   stock = Some(
     StockRules(
@@ -42,7 +48,7 @@ object Saratoga extends GameRules(
   tableaus = Seq(
     TableauRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

@@ -50,6 +50,7 @@ object RacingAces extends GameRules(
   title = "Racing Aces",
   like = Some("acesandkings"),
   related = Seq("doubleacesandkings", "aceyandkingsley", "deucesandqueens", "racingaces"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/racing_aces.htm")),
   description = "A three-deck version of ^acesandkings^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -71,7 +72,7 @@ object RacingAces extends GameRules(
       name = "Sixes Foundation",
       setNumber = 1,
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Six),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
@@ -81,7 +82,7 @@ object RacingAces extends GameRules(
       name = "Sevens Foundation",
       setNumber = 2,
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Seven),
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true,
       maxCards = 7
@@ -104,7 +105,7 @@ object RacingAces extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

@@ -22,6 +22,7 @@ object FreeCellFourDeck extends GameRules(
   title = "FreeCell Four Deck",
   like = Some("freecellthreedeck"),
   related = Seq("freecellfourdeck"),
+  links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/freecell_four_decks.htm")),
   description = "A four-deck version of ^freecell^ for those who like spending a long time solving a single deal.",
   deckOptions = DeckOptions(
     numDecks = 4
@@ -39,7 +40,7 @@ object FreeCellFourDeck extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

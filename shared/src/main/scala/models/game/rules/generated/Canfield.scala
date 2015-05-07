@@ -23,8 +23,17 @@ object Canfield extends GameRules(
   id = "canfield",
   title = "Canfield",
   related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Canfield_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/canfield.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/Canfield.html"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/canfield.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Canfield.html.en"),
+    Link("Solitaire City", "www.solitairecity.com/Help/Demon.shtml"),
+    Link("Jan Wolter's Experiments", "/article/canfield.html")
+  ),
   description = "An old Casino game where the house usually wins. It's distinctive features include a reserve and foundations built up from the val" +
-  "ue of one random card dealt into them.",
+    "ue of one random card dealt into them.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),
@@ -48,7 +57,7 @@ object Canfield extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

@@ -23,6 +23,7 @@ import models.game.rules._
 object SimonSays extends GameRules(
   id = "simonsays",
   title = "Simon Says",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/simon_says.htm")),
   description = "A blend of ^simplesimon^ with ^freecell^ invented by Thomas Warfield.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
@@ -33,7 +34,7 @@ object SimonSays extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

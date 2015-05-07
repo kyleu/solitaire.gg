@@ -27,6 +27,7 @@ object FreeCellDuplex extends GameRules(
     "sixbyfour", "ephemeralfreecell", "challengefreecell", "antares", "sevenbyfive", "spidercells", "bigfreecell", "chinesefreecell",
     "sevenbyfour", "invertedfreecell", "selectivefreecell", "doublefreecell", "freecellduplex"
   ),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/freecell_duplex.htm")),
   description = "An easy two-deck version of ^freecell^. Requires a large screen.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -44,7 +45,7 @@ object FreeCellDuplex extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

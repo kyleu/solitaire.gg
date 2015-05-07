@@ -25,6 +25,7 @@ object YukonKings extends GameRules(
   id = "yukonkings",
   title = "Yukon Kings",
   like = Some("yukon"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukon_kings.htm")),
   description = "A difficult version of ^yukon^ without foundations.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
@@ -43,7 +44,7 @@ object YukonKings extends GameRules(
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

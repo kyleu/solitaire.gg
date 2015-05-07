@@ -19,6 +19,7 @@ object LadyJane extends GameRules(
   id = "ladyjane",
   title = "Lady Jane",
   related = Seq("inquisitor"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lady_jane.htm")),
   description = "An easy two-deck ^spider^/^klondike^ blend by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -43,7 +44,7 @@ object LadyJane extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

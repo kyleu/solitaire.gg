@@ -19,6 +19,10 @@ import models.game.rules._
 object Tuxedo extends GameRules(
   id = "tuxedo",
   title = "Tuxedo",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/tuxedo.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/tuxedo.htm")
+  ),
   description = "An easier variant of ^penguin^ where all cards start on the tableau.",
   foundations = Seq(
     FoundationRules(
@@ -42,7 +46,7 @@ object Tuxedo extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(

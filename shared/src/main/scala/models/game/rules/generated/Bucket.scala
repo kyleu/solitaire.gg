@@ -21,8 +21,9 @@ object Bucket extends GameRules(
   title = "Bucket",
   like = Some("canister"),
   related = Seq("britishcanister", "americancanister", "bucket"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bucket.htm")),
   description = "A ^canister^ variation which ends up looking rather like ^freecell^ without the cells. Naturally, it ends up being rather difficul" +
-  "t.",
+    "t.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -36,7 +37,7 @@ object Bucket extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

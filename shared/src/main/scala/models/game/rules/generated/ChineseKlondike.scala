@@ -27,9 +27,11 @@ object ChineseKlondike extends GameRules(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
     "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
   ),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinese_klondike.htm")),
   description = "A three-suit version of ^klondike^.",
   deckOptions = DeckOptions(
-    numDecks = 4
+    numDecks = 4,
+    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds)
   ),
   stock = Some(
     StockRules(
@@ -48,7 +50,7 @@ object ChineseKlondike extends GameRules(
     TableauRules(
       numPiles = 12,
       suitMatchRuleForBuilding = SuitMatchRule.DifferentSuits,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

@@ -39,8 +39,13 @@ object LittleBillie extends GameRules(
   title = "Little Billie",
   like = Some("buffalobill"),
   related = Seq("littlebillie"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/little_billie.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/little_billee.html"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/LittleBillie.htm")
+  ),
   description = "In this game dating back to around 1900, no building is allowed, but you have some cells that can be used to uncover the cards you" +
-  " need. Two redeals are allowed.",
+    " need. Two redeals are allowed.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

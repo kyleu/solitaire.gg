@@ -30,6 +30,17 @@ object Golf extends GameRules(
   id = "golf",
   title = "Golf",
   related = Seq("allinarow", "escalator", "puttputt", "panthercreek", "golfrush"),
+  links = Seq(
+    Link("Solitaire Laboratory", "www.solitairelaboratory.com/golf.html"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Golf_(patience)"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/Golf.html"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/golf.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/golf.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Golf.html.en"),
+    Link("Jan Wolter's Experiments", "/article/golf.html"),
+    Link("Dan Fletcher's Strategy Guide", "www.solitairecentral.com/articles/GolfSolitaireStrategyGuide.html"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/golf.htm")
+  ),
   description = "Build up or down on the single foundation to take cards off the tableau, where no building is allowed.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(

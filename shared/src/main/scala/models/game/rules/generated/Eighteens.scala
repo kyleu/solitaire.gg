@@ -23,6 +23,11 @@ object Eighteens extends GameRules(
   id = "eighteens",
   title = "Eighteens",
   like = Some("simplepairs"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eighteens.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/eighteens.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Eighteens.htm")
+  ),
   description = "A game where you remove singleton aces, or sets consisting of a face card with three other cards that add to eighteen.",
   cardRemovalMethod = CardRemovalMethod.RemoveSetsOfOneFaceCardAnd3ThatAddToEighteen,
   stock = Some(

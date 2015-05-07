@@ -19,6 +19,7 @@ import models.game.rules._
 object Skippy extends GameRules(
   id = "skippy",
   title = "Skippy",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/skippy.htm")),
   description = "A game invented by Lillian Davies and Christa Baran.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -45,7 +46,7 @@ object Skippy extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(CellRules()),

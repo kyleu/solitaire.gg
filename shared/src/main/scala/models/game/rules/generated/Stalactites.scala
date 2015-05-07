@@ -24,6 +24,17 @@ import models.game.rules._
 object Stalactites extends GameRules(
   id = "stalactites",
   title = "Stalactites",
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Stalactites_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/stalactites.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/stalactites.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/Stalactites.html"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/stalactites.php"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/stalactites.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Stalactites.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/stalactites.htm"),
+    Link("PySol", "pysolfc.sourceforge.net/doc/rules/stalactites.html")
+  ),
   description = "This suitless game with no building requires you to clear the tableau with only two cells you help you.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

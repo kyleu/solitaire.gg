@@ -19,6 +19,7 @@ object Rueil extends GameRules(
   id = "rueil",
   title = "Rueil",
   like = Some("malmaison"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rueil.htm")),
   description = "A version of ^malmaison^ made easier by allowing a redeal.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -43,7 +44,7 @@ object Rueil extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

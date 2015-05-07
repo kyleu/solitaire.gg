@@ -23,6 +23,7 @@ import models.game.rules._
 object HowTheyRun extends GameRules(
   id = "howtheyrun",
   title = "How They Run",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/how_they_run.htm")),
   description = "A variation of ^threeblindmice^ invented by Erik den Hollander with two cells replacing the two card reserve.",
   foundations = Seq(
     FoundationRules(
@@ -51,7 +52,7 @@ object HowTheyRun extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(

@@ -19,6 +19,10 @@ import models.game.rules._
 object Cromwell extends GameRules(
   id = "cromwell",
   title = "Cromwell",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cromwell.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/cromwell.php")
+  ),
   description = "A two-deck game with 26 tableau piles and a draw. Requires planning.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -23,8 +23,9 @@ import models.game.rules._
 object Wood extends GameRules(
   id = "wood",
   title = "Wood",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/wood.htm")),
   description = "A game where we build both the foundation and the tableau in alternate colors. The big problem is the ten-card reserve, which can " +
-  "be played only to the foundation, which generally requires some advanced planning to achieve.",
+    "be played only to the foundation, which generally requires some advanced planning to achieve.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown
@@ -50,7 +51,7 @@ object Wood extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Cell", "Foundation", "Tableau"),
       mayMoveToEmptyFrom = Seq("Waste")
     )

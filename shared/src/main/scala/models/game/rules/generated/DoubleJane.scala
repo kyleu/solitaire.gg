@@ -20,6 +20,7 @@ object DoubleJane extends GameRules(
   title = "Double Jane",
   like = Some("arabella"),
   related = Seq("doublejane"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_jane.htm")),
   description = "An four-deck ^spider^/^klondike^, similar to ^ladyjane^.",
   deckOptions = DeckOptions(
     numDecks = 4
@@ -43,7 +44,7 @@ object DoubleJane extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

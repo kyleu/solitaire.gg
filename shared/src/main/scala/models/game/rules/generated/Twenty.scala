@@ -31,6 +31,14 @@ object Twenty extends GameRules(
   id = "twenty",
   title = "Twenty",
   related = Seq("colorado"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/twenty.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/twenty.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/twenty.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Twenty.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/twenty.php"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/fox.html")
+  ),
   description = "A somewhat mindless game with twenty reserve piles and no building.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -69,7 +77,7 @@ object Twenty extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

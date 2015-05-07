@@ -19,6 +19,14 @@ object DoubleRail extends GameRules(
   title = "Double Rail",
   like = Some("singlerail"),
   related = Seq("doublerail"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_rail.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/double_rail.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/double_rail.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/double-rail.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/DoubleRail.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/double_rail.htm")
+  ),
   description = "A ^fortythieves^ variation where we build regardless of suit and can move stacks.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -43,7 +51,7 @@ object DoubleRail extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

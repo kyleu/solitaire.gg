@@ -26,6 +26,7 @@ object CastlesEnd extends GameRules(
   title = "Castle's End",
   like = Some("chessboard"),
   related = Seq("lasker", "castlesend"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/castles_end.htm")),
   description = "A slightly different version of ^chessboard^ with a two-card reserve.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -46,7 +47,7 @@ object CastlesEnd extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

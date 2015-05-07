@@ -25,6 +25,15 @@ object Fifteens extends GameRules(
   title = "Fifteens",
   like = Some("straightfifteens"),
   related = Seq("fifteens"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fifteens.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/fifteens.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/fifteens.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/Fifteens.html"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Fifteens.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/fifteens.php"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/fifteens.htm")
+  ),
   description = "A simple game where you remove sets that add to 15 or sets of four tens, four jacks, four queens, or four kings.",
   cardRemovalMethod = CardRemovalMethod.RemoveSetsAddingToFifteenOrFour10JQK,
   stock = Some(

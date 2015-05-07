@@ -24,6 +24,13 @@ object SuperFlowerGarden extends GameRules(
   title = "Super Flower Garden",
   like = Some("labellelucie"),
   related = Seq("threeshufflesandadraw", "intelligence", "linus", "trefoil", "superflowergarden"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/super_flower_gar.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/super_flower_garden.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/super-flower-garden.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/super_flower_garden.php"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SuperFlowerGarden.htm")
+  ),
   description = "This is an easier version of ^labellelucie^ in which one may build regardless of suit. It is unrelated to ^flowergarden^.",
   foundations = Seq(
     FoundationRules(

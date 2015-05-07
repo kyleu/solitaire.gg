@@ -25,6 +25,7 @@ object Mystique extends GameRules(
   title = "Mystique",
   like = Some("minerva"),
   related = Seq("bureau", "minerva"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/mystique.htm")),
   description = "A variation of ^munger^ and ^minerva^ with a reserve sized half-way between the two.",
   stock = Some(
     StockRules(
@@ -43,7 +44,7 @@ object Mystique extends GameRules(
     TableauRules(
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.OddNumbered,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   reserves = Some(

@@ -35,6 +35,7 @@ object DoubleAcesAndKings extends GameRules(
   title = "Double Aces and Kings",
   like = Some("acesandkings"),
   related = Seq("doubleacesandkings", "aceyandkingsley", "deucesandqueens", "racingaces"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_aces_and_kings.htm")),
   description = "A four-deck version of ^acesandkings^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 4
@@ -70,7 +71,7 @@ object DoubleAcesAndKings extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

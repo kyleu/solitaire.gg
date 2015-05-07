@@ -22,8 +22,9 @@ object EphemeralFreeCell extends GameRules(
   id = "ephemeralfreecell",
   title = "Ephemeral FreeCell",
   like = Some("freecell"),
+  links = Seq(Link("Michael Keller's amazing FreeCell FAQ", "solitairelaboratory.com/fcfaq.html#Ephemeral")),
   description = "Ephemeral FreeCell is like standard ^freecell^, except that one of the cells will vanish after it's first use. Michael Keller inve" +
-  "nted this idea. You can experiment with different numbers of ephemeral cells.",
+    "nted this idea. You can experiment with different numbers of ephemeral cells.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -37,7 +38,7 @@ object EphemeralFreeCell extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

@@ -22,6 +22,7 @@ object FreeCellThreeDeck extends GameRules(
   title = "FreeCell Three Deck",
   like = Some("triplefreecell"),
   related = Seq("freecellfourdeck"),
+  links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/freecell_three_decks.htm")),
   description = "Yet another three-deck version of ^freecell^.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -39,7 +40,7 @@ object FreeCellThreeDeck extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

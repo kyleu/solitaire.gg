@@ -24,6 +24,12 @@ import models.game.rules._
 object SixesAndSevens extends GameRules(
   id = "sixesandsevens",
   title = "Sixes and Sevens",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sixes_and_sevens.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/sixes_and_sevens.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SixesandSevens.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/sixes-and-sevens.htm")
+  ),
   description = "No building on tableau, some foundation build up, some build down.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -37,7 +43,7 @@ object SixesAndSevens extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Six),
       initialCards = 8,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
@@ -47,7 +53,7 @@ object SixesAndSevens extends GameRules(
     FoundationRules(
       setNumber = 1,
       numPiles = 8,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Seven),
       initialCards = 8,
       wrapFromKingToAce = true,
       maxCards = 7,
@@ -61,7 +67,7 @@ object SixesAndSevens extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       maxCards = 1
     )
   ),

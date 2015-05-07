@@ -16,6 +16,7 @@ import models.game.rules._
 object CornerSuite extends GameRules(
   id = "cornersuite",
   title = "Corner Suite",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/corner_suite.htm")),
   description = "This rather easy game resembles a one deck version of ^congress^, except that the tableau starts empty.",
   stock = Some(
     StockRules(
@@ -37,7 +38,7 @@ object CornerSuite extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation")
     )
   ),

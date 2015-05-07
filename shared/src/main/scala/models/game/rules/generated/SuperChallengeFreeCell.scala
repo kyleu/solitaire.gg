@@ -23,8 +23,12 @@ object SuperChallengeFreeCell extends GameRules(
   id = "superchallengefreecell",
   title = "Super Challenge FreeCell",
   like = Some("challengefreecell"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/super_challenge_freecell.htm"),
+    Link("Michael Keller's amazing FreeCell FAQ", "solitairelaboratory.com/fcfaq.html#AceDepth")
+  ),
   description = "A version of ^freecell^ invented by Thomas Warfield where the aces and twos are always at the bottoms of the eight stacks and wher" +
-  "e spaces can only be filled by Kings.",
+    "e spaces can only be filled by Kings.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -38,7 +42,7 @@ object SuperChallengeFreeCell extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings,
+      emptyFilledWith = FillEmptyWith.Kings,
       pilesWithLowCardsAtBottom = 8
     )
   ),

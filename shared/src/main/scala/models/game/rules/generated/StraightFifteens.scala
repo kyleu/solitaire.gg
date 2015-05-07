@@ -25,8 +25,12 @@ object StraightFifteens extends GameRules(
   title = "Straight Fifteens",
   like = Some("simplepairs"),
   related = Seq("fifteens"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fifteens.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/fifteens_v2.html")
+  ),
   description = "An easier varition of ^fifteens^ where tens, jacks, queens and kings are removed in groups containing one of each instead of four " +
-  "of a kind.",
+    "of a kind.",
   cardRemovalMethod = CardRemovalMethod.RemoveSetsAddingToFifteenOr10JQK,
   stock = Some(
     StockRules(

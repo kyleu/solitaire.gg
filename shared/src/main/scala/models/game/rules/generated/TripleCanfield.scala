@@ -24,8 +24,9 @@ object TripleCanfield extends GameRules(
   id = "triplecanfield",
   title = "Triple Canfield",
   related = Seq("threedemons"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_canfield.htm")),
   description = "An easy three-deck version of ^canfield^ invented by Thomas Warfield that has fewer tableau piles and a smaller reserve than ^thre" +
-  "edemons^.",
+    "edemons^.",
   deckOptions = DeckOptions(
     numDecks = 3,
     lowRank = Rank.Unknown
@@ -49,7 +50,7 @@ object TripleCanfield extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

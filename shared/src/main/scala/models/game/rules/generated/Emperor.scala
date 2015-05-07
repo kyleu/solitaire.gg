@@ -20,6 +20,14 @@ object Emperor extends GameRules(
   title = "Emperor",
   like = Some("rankandfile"),
   related = Seq("emperor"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Emperor_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/emperor.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/emperor.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/emperor.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/emperor.htm"),
+    Link("Bicycle", "www.bicyclecards.ca/game-rules/emperor/184.php?page_id=32")
+  ),
   description = "A more difficult version of ^rankandfile^ where only single cards can be moved..",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -42,7 +50,7 @@ object Emperor extends GameRules(
       numPiles = 10,
       initialCards = InitialCards.Count(4),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

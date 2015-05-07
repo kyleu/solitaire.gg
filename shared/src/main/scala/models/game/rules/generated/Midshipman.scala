@@ -19,8 +19,16 @@ object Midshipman extends GameRules(
   title = "Midshipman",
   like = Some("maria"),
   related = Seq("midshipman"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/midshipman.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/midshipman.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/midshipman.htm"),
+    Link("PySol", "pysolfc.sourceforge.net/doc/rules/midshipman.html"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/midshipman.php"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Midshipman.htm")
+  ),
   description = "A slightly easier variation of ^maria^ where we build by different suits instead of alternate colors and where some cards start ou" +
-  "t face down.",
+    "t face down.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -44,7 +52,7 @@ object Midshipman extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(2),
       suitMatchRuleForBuilding = SuitMatchRule.DifferentSuits,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -8,7 +8,7 @@ object StockHelpService {
     val ret = collection.mutable.ArrayBuffer.empty[String]
 
     val cardsDealt = rules.cardsDealt match {
-      case StockCardsDealt.Count(i) => NumberUtils.toWords(i) + " card" + (if(i == 1) { "" } else { "s" })
+      case StockCardsDealt.Count(i) => NumberUtils.toWords(i) + " card" + (if (i == 1) { "" } else { "s" })
       case StockCardsDealt.FewerEachTime => "three cards, then fewer each time"
     }
 
@@ -26,11 +26,14 @@ object StockHelpService {
     })
 
     rules.maximumDeals match {
-      case Some(i) => "Up to " + NumberUtils.toWords(i) + " passes through the stock."
-      case None => // no op
+      case Some(i) => i match {
+        case 1 => ret += "Only a single pass through the stock is allowed."
+        case _ => ret += "Up to " + NumberUtils.toWords(i) + " passes through the stock."
+      }
+      case None => ret += "The stock has unlimited redeals."
     }
 
-    if(rules.cardsShown > 1) {
+    if (rules.cardsShown > 1) {
       ret += NumberUtils.toWords(rules.cardsShown, properCase = true) + " cards are visible."
     }
 

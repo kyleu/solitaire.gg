@@ -19,6 +19,7 @@ import models.game.rules._
 object Strata extends GameRules(
   id = "strata",
   title = "Strata",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/strata.htm")),
   description = "An eight-by-eight square tableau, a short deck, and two redeals make this game interesting.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -38,7 +39,7 @@ object Strata extends GameRules(
       initialCards = InitialCards.Count(8),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   special = Some(

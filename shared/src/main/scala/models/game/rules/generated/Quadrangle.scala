@@ -20,6 +20,14 @@ object Quadrangle extends GameRules(
   id = "quadrangle",
   title = "Quadrangle",
   like = Some("corona"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadrangle.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/quadrangle.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/quadrangle.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/quadrangle.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/quadrangle.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Quadrangle.htm")
+  ),
   description = "A variation of ^corona^ where the base card is determined by a card dealt into the foundation.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -47,7 +55,7 @@ object Quadrangle extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -23,6 +23,7 @@ object QuadrupleInterchange extends GameRules(
   title = "Quadruple Interchange",
   like = Some("tripleinterchange"),
   related = Seq("quadrupleinterchange"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_interchange.htm")),
   description = "A four-deck version of ^interchange^.",
   deckOptions = DeckOptions(
     numDecks = 4
@@ -43,7 +44,7 @@ object QuadrupleInterchange extends GameRules(
       cardsFaceDown = TableauFaceDownCards.EvenNumbered,
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

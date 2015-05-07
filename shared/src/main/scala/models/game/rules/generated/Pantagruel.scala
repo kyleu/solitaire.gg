@@ -17,6 +17,7 @@ import models.game.rules._
 object Pantagruel extends GameRules(
   id = "pantagruel",
   title = "Pantagruel",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pantagruel.htm")),
   description = "This two-deck ^klondike^ variant is more difficult than ^gargantua^, but is still pretty easy.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -37,7 +38,7 @@ object Pantagruel extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 9,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

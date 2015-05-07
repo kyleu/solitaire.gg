@@ -19,8 +19,9 @@ import models.game.rules._
 object KingCell extends GameRules(
   id = "kingcell",
   title = "KingCell",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kingcell.htm")),
   description = "A variation of ^freecell^ where we build down regardless of suit instead of by alternate color, and only kings may be played to em" +
-  "pty tableau spaces",
+    "pty tableau spaces",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -35,7 +36,7 @@ object KingCell extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(CellRules()),

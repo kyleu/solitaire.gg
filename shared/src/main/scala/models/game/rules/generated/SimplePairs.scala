@@ -23,6 +23,13 @@ object SimplePairs extends GameRules(
   id = "simplepairs",
   title = "Simple Pairs",
   related = Seq("crisscross", "eighteens", "straightfifteens", "blockten", "patientpairs", "doubletcell", "doublets"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/simple_pairs.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Jamestown.html.en"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/simple-pairs.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SimplePairs.htm"),
+    Link("Jan Wolter's Experiments", "/article/simplepairs.html")
+  ),
   description = "A game where you remove pairs of cards of the same rank. Bring your luck, not your brain, to this game.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(

@@ -24,6 +24,7 @@ object InvertedFreeCell extends GameRules(
   id = "invertedfreecell",
   title = "Inverted FreeCell",
   like = Some("freecell"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/inverted_freecell.htm")),
   description = "Just like ^freecell^ but we limber up our brains by building everything in the opposite direction.",
   foundations = Seq(
     FoundationRules(
@@ -41,7 +42,7 @@ object InvertedFreeCell extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       rankMatchRuleForBuilding = RankMatchRule.Up,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(CellRules()),

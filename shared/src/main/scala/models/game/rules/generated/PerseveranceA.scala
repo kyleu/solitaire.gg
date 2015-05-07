@@ -27,6 +27,12 @@ object PerseveranceA extends GameRules(
   title = "Perseverance A",
   like = Some("cruel"),
   related = Seq("perseveranceb"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Perseverance_(solitaire)"),
+    Link("An 1898 Description", "howtoplaysolitaire.blogspot.com/2010/06/perseverance-single-deck-solitaire-game.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/perseverance.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Perseverance.htm")
+  ),
   description = "A variation of ^cruel^ where stacks may be moved.",
   foundations = Seq(
     FoundationRules(

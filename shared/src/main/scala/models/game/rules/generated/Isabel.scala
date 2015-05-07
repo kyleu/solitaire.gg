@@ -20,6 +20,7 @@ import models.game.rules._
 object Isabel extends GameRules(
   id = "isabel",
   title = "Isabel",
+  links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Isabel.html.en")),
   description = "Remove pairs of cards of equal rank from a 13x4 tableau.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   foundations = Seq(

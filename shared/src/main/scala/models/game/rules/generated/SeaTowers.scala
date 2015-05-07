@@ -19,8 +19,19 @@ import models.game.rules._
 object SeaTowers extends GameRules(
   id = "seatowers",
   title = "Sea Towers",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sea_towers.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Seahaven_Towers_(solitaire)"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/sea-towers.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/seahaven_towers.html"),
+    Link("dogMelon", "www.dogmelon.com.au/solhelp/SeaTowersSolitaire.shtml"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/sea_towers.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/sea_towers.htm"),
+    Link("Super Solitaire", "supersolitaire.weisswo.com/Games+Rules/Entries/2010/11/12_Seahaven_Towers.html"),
+    Link("Bicycle", "www.bicyclecards.com/card-games/rule/seahaven-towers")
+  ),
   description = "A popular ^freecell^ variation invented in 1988 by Art Cabral. The initial layout is different, and we must build down in suit ins" +
-  "tead of in alternating colors.",
+    "tead of in alternating colors.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -35,7 +46,7 @@ object SeaTowers extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(

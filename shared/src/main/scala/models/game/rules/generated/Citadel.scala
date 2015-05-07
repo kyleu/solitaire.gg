@@ -22,6 +22,13 @@ object Citadel extends GameRules(
   title = "Citadel",
   like = Some("beleagueredcastle"),
   related = Seq("exiledkings"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/citadel.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/citadel.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/citadel.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Citadel.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/citadel.php")
+  ),
   description = "An easier variation of ^beleagueredcastle^ where cards are moved to the foundation during the deal.",
   foundations = Seq(
     FoundationRules(
@@ -38,7 +45,7 @@ object Citadel extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       actionDuringDeal = PileAction.MoveToFoundation
     )
   ),

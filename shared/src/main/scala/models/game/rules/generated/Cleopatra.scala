@@ -16,6 +16,7 @@ import models.game.rules._
 object Cleopatra extends GameRules(
   id = "cleopatra",
   title = "Cleopatra",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cleopatra.htm")),
   description = "Thomas Warfield's variant of ^fortythieves^ with a pyramid-shaped tableau.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -55,7 +56,7 @@ object Cleopatra extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

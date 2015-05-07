@@ -38,6 +38,7 @@ object RainbowFan extends GameRules(
   id = "rainbowfan",
   title = "Rainbow Fan",
   related = Seq("crescent"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rainbow_fan.htm")),
   description = "A bidirectional building game where you can rotate cards in the stacks three times.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -21,8 +21,9 @@ object Kiev extends GameRules(
   id = "kiev",
   title = "Kiev",
   related = Seq("dnieper", "sevastopol"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kiev.htm")),
   description = "A version of ^ukrainian^ Solitaire where there is a stock of cards dealt to a rectangular tableau, making the whole thing rather ^" +
-  "spider^ish.",
+    "spider^ish.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,
@@ -43,7 +44,7 @@ object Kiev extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -27,6 +27,13 @@ object Frog extends GameRules(
   id = "frog",
   title = "Frog",
   related = Seq("fly"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Frog_(game)"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/frog.html"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Frog.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/frog.htm"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/frog.htm")
+  ),
   description = "A relation of ^sirtommy^ with a reserve.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -53,7 +60,7 @@ object Frog extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock"),
       mayMoveToEmptyFrom = Seq("Stock")
     )

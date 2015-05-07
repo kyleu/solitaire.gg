@@ -33,6 +33,12 @@ object AcesAndKings extends GameRules(
   id = "acesandkings",
   title = "Aces and Kings",
   related = Seq("doubleacesandkings", "aceyandkingsley", "deucesandqueens", "racingaces"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/aces_and_kings.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Aces_and_Kings_(solitaire)"),
+    Link("MyPatience", "mypatience.net/Rules.aspx?gameId=33"),
+    Link("eHow", "www.ehow.com/how_2106994_play-aces-kings-solitaire.html")
+  ),
   description = "Build up on one foundation, down on the other, but don't build at all on the tableau. Suits don't matter.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -68,7 +74,7 @@ object AcesAndKings extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

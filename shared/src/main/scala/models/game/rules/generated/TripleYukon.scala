@@ -20,6 +20,7 @@ import models.game.rules._
 object TripleYukon extends GameRules(
   id = "tripleyukon",
   title = "Triple Yukon",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_yukon.htm")),
   description = "A three-deck variation of ^yukon^",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -53,7 +54,7 @@ object TripleYukon extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

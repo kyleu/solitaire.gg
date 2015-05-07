@@ -40,6 +40,13 @@ object RougeEtNoir extends GameRules(
   title = "Rouge et Noir",
   like = Some("diavolo"),
   related = Seq("rougeforty"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Rouge_et_Noir"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rouge_et_noir.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/rouge_et_noir.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/RougeEtNoir.html"),
+    Link("An 1898 description", "howtoplaysolitaire.blogspot.com/2010/06/rouge-et-noir-double-deck-solitaire.html")
+  ),
   description = "A variant of ^diavolo^ with a different tableau and no waste. Invented by Charles Jewell.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -85,7 +92,7 @@ object RougeEtNoir extends GameRules(
         "U",
         "U"
       ),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

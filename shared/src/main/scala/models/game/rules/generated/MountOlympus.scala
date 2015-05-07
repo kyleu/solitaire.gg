@@ -28,6 +28,12 @@ import models.game.rules._
 object MountOlympus extends GameRules(
   id = "mountolympus",
   title = "Mount Olympus",
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Mount_Olympus_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/mount_olympus.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/mount_olympus.htm"),
+    Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#mount")
+  ),
   description = "Build by twos, so odds and evens are in separate sequences on the tableau and separate piles on the foundation.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -50,7 +56,7 @@ object MountOlympus extends GameRules(
     FoundationRules(
       setNumber = 1,
       numPiles = 8,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Two),
       initialCards = 8,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
@@ -68,7 +74,7 @@ object MountOlympus extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       rankMatchRuleForMovingStacks = RankMatchRule.DownBy2,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -25,6 +25,7 @@ object SweetSixteen extends GameRules(
   title = "Sweet Sixteen",
   like = Some("trustytwelve"),
   related = Seq("bunker", "knottynines", "sweetsixteen", "upandup"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sweet_sixteen.htm")),
   description = "A variation of ^trustytwelve^ where you build by alternate color",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(
@@ -42,7 +43,7 @@ object SweetSixteen extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

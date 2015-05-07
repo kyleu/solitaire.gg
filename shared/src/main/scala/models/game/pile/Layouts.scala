@@ -48,8 +48,8 @@ object Layouts {
     "trustytwelve" -> "s|2t",
     "yukon" -> ":::f|t"
   ) ++ Seq(
-    "aceofhearts"
-  ).map( id => id -> defaultLayout(id))
+      "aceofhearts"
+    ).map(id => id -> defaultLayout(id))
 
   def forRules(id: String) = {
     layouts.getOrElse(id, defaultLayout(id))
@@ -58,15 +58,15 @@ object Layouts {
   private[this] def defaultLayout(id: String) = {
     var ret = ""
     val rules = GameRulesSet.allById.getOrElse(id, GameRules.default)
-    if(rules.stock.isDefined) { ret += "s" }
-    if(rules.waste.isDefined) { ret += "w" }
-    for(f <- rules.foundations) { ret += "f" }
-    if(rules.reserves.isDefined) { ret += "|r" }
-    if(rules.cells.isDefined) { ret += "|c" }
-    if(rules.tableaus.nonEmpty) { ret += "|" }
-    for(t <- rules.tableaus) { ret += "t" }
-    if(rules.pyramids.nonEmpty) { ret += "|" }
-    for(p <- rules.pyramids) { ret += "p" }
+    if (rules.stock.isDefined) { ret += "s" }
+    if (rules.waste.isDefined) { ret += "w" }
+    for (f <- rules.foundations) { ret += "f" }
+    if (rules.reserves.isDefined) { ret += "|r" }
+    if (rules.cells.isDefined) { ret += "|c" }
+    if (rules.tableaus.nonEmpty) { ret += "|" }
+    for (t <- rules.tableaus) { ret += "t" }
+    if (rules.pyramids.nonEmpty) { ret += "|" }
+    for (p <- rules.pyramids) { ret += "p" }
     ret
   }
 }

@@ -8,7 +8,7 @@ object WasteHelpService {
     val ret = collection.mutable.ArrayBuffer.empty[String]
 
     val piles = rules.numPiles match {
-      case 1 => "A single empty waste pile."
+      case 1 => "A single waste pile."
       case x => NumberUtils.toWords(x, properCase = true) + " waste piles."
     }
     ret += piles

@@ -28,6 +28,11 @@ object Juvenile extends GameRules(
   id = "juvenile",
   title = "Juvenile",
   like = Some("fourteenout"),
+  links = Seq(
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/juvenile.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/juvenile.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/juvenile.php")
+  ),
   description = "A two-deck game where you remove pairs that add to fourteen.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(

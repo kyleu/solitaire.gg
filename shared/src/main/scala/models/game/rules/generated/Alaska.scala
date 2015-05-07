@@ -22,8 +22,14 @@ object Alaska extends GameRules(
   id = "alaska",
   title = "Alaska",
   like = Some("yukon"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/alaska.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/Alaska.html"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/alaska.html"),
+    Link("Elton Gahr on HobbyHub", "www.hobbyhub360.com/index.php/solitaire-how-to-play-alaska-13672/")
+  ),
   description = "A somewhat more difficult variation of ^yukon^ in which you can build up or down, but must build in the same suit. I think they ca" +
-  "ll it \"Alaska\" because it is so cool when things work out.",
+    "ll it \"Alaska\" because it is so cool when things work out.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -48,7 +54,7 @@ object Alaska extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

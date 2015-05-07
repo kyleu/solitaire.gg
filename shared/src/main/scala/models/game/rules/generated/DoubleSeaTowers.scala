@@ -19,6 +19,7 @@ import models.game.rules._
 object DoubleSeaTowers extends GameRules(
   id = "doubleseatowers",
   title = "Double Sea Towers",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_seatowers.htm")),
   description = "A two-deck version of the ^freecell^ variation known as ^seatowers^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -37,7 +38,7 @@ object DoubleSeaTowers extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

@@ -22,6 +22,12 @@ import models.game.rules._
 object AgnesBernauer extends GameRules(
   id = "agnesbernauer",
   title = "Agnes Bernauer",
+  links = Seq(
+    Link("Solitaire Central", "www.solitairecentral.com/rules/AgnesBernauer.html"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Agnes_(card_game)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/agnes_bernauer.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/agnes.html")
+  ),
   description = "A variation on ^klondike^ with seven reserves.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -43,7 +49,7 @@ object AgnesBernauer extends GameRules(
   tableaus = Seq(
     TableauRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   reserves = Some(

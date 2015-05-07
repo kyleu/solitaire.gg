@@ -19,6 +19,14 @@ import models.game.rules._
 object AgnesSorel extends GameRules(
   id = "agnessorel",
   title = "Agnes Sorel",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/agnes_sorel.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/AgnesSorel.html"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/agnes_sorel.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Agnes.html.en"),
+    Link("Michael Smoker on HobbyHub", "www.hobbyhub360.com/index.php/view-article/1937518/"),
+    Link("Jan Wolter's Experiments", "/article/agnessorel.html")
+  ),
   description = "A variation on ^klondike^ where cards are dealt directly onto the tableau as in ^spider^.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -42,7 +50,7 @@ object AgnesSorel extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameColor,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameColor,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

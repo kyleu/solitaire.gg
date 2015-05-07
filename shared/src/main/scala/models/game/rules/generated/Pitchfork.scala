@@ -22,6 +22,7 @@ import models.game.rules._
 object Pitchfork extends GameRules(
   id = "pitchfork",
   title = "Pitchfork",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pitchfork.htm")),
   description = "Thomas Warfield's variation of ^needle^ and ^haystack^ in which you cannot build on the reserve.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -51,7 +52,7 @@ object Pitchfork extends GameRules(
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

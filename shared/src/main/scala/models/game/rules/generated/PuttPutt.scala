@@ -32,6 +32,12 @@ object PuttPutt extends GameRules(
   title = "Putt Putt",
   like = Some("golf"),
   related = Seq("lincolngreens"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/putt_putt.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/PuttPutt.html"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Puttputt.htm"),
+    Link("Jan Wolter's Experiments", "/article/golf.html")
+  ),
   description = "An easier variation of ^golf^ where wrapping from King to Ace is allowed.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(

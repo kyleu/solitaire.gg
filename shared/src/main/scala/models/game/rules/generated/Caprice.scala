@@ -31,6 +31,7 @@ object Caprice extends GameRules(
   id = "caprice",
   title = "Caprice",
   related = Seq("chequers", "cicely", "nationale"),
+  links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/caprice.htm")),
   description = "Build up or down in suit and stock deals to the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -69,7 +70,7 @@ object Caprice extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

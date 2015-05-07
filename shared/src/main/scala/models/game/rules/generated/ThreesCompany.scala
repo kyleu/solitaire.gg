@@ -24,8 +24,9 @@ object ThreesCompany extends GameRules(
   title = "Three's Company",
   like = Some("deuces"),
   related = Seq("foursup"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/threes_company.htm")),
   description = "A rather difficult variation of ^deuces^ or ^busyaces^ with still fewer tableau piles but stack moves are allowed. Invented by Tho" +
-  "mas Warfield.",
+    "mas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Three
@@ -51,7 +52,7 @@ object ThreesCompany extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

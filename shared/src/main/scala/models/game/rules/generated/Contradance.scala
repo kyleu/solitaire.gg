@@ -19,6 +19,11 @@ import models.game.rules._
 object Contradance extends GameRules(
   id = "contradance",
   title = "Contradance",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/contradance.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Contradance_(solitaire)"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/contradance.htm")
+  ),
   description = "A variation of ^sixesandsevens^ that is just as brainless as ^captivequeens^, but requires vastly more luck to ever win.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -32,7 +37,7 @@ object Contradance extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Five),
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
       maxCards = 6,
@@ -41,7 +46,7 @@ object Contradance extends GameRules(
     FoundationRules(
       setNumber = 1,
       numPiles = 8,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Six),
       wrapFromKingToAce = true,
       maxCards = 7,
       autoMoveCards = true

@@ -24,8 +24,9 @@ object DoubleTrigon extends GameRules(
   title = "Double Trigon",
   like = Some("trigon"),
   related = Seq("doubletrigon", "quadrupletrigon", "trigonleft"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_trigon.htm")),
   description = "A two-deck version of ^trigon^ or maybe a version of ^doubleklondike^ with building in suit. I suppose it depends on how you look " +
-  "at it.",
+    "at it.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -43,7 +44,7 @@ object DoubleTrigon extends GameRules(
       numPiles = 9,
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

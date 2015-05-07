@@ -21,6 +21,7 @@ object BoxFan extends GameRules(
   id = "boxfan",
   title = "Box Fan",
   like = Some("fan"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/box_fan.htm")),
   description = "A ^fan^ variant with building by alternate color.",
   foundations = Seq(
     FoundationRules(
@@ -37,7 +38,7 @@ object BoxFan extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

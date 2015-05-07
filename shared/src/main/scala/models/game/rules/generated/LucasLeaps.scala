@@ -20,6 +20,11 @@ object LucasLeaps extends GameRules(
   id = "lucasleaps",
   title = "Lucas Leaps",
   like = Some("waningmoon"),
+  links = Seq(
+    Link("PySol", "pysolfc.sourceforge.net/doc/rules/lucas.html"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lucas.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/lucas.htm")
+  ),
   description = "An easy ^fortythieves^ variant similar to ^waningmoon^ except that sequences can be moved.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -44,7 +49,7 @@ object LucasLeaps extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

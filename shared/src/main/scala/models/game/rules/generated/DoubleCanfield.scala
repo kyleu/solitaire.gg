@@ -24,6 +24,13 @@ object DoubleCanfield extends GameRules(
   id = "doublecanfield",
   title = "Double Canfield",
   related = Seq("variegatedcanfield", "demon"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Double_Canfield_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_canfield.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/double_canfield.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/double_canfield.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/DoubleCanfield.htm")
+  ),
   description = "An two-deck version of ^canfield^, much much easier than the original game.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -49,7 +56,7 @@ object DoubleCanfield extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

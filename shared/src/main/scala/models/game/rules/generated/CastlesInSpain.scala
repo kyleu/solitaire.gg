@@ -27,6 +27,14 @@ object CastlesInSpain extends GameRules(
   title = "Castles in Spain",
   like = Some("spanish"),
   related = Seq("castlesinspain", "portuguese"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/castles_in_spain.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/castles_in_spain.html"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/castles-in-spain.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/castles_in_spain.php"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/CastlesinSpain.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/castles_in_spain.htm")
+  ),
   description = "A variant of ^bakersdozen^ that allows filling in spaces with any card and where we build in alternate colors.",
   foundations = Seq(
     FoundationRules(
@@ -40,7 +48,7 @@ object CastlesInSpain extends GameRules(
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     ),
     TableauRules(
       setNumber = 1,

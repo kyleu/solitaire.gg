@@ -19,8 +19,9 @@ import models.game.rules._
 object Cornelius extends GameRules(
   id = "cornelius",
   title = "Cornelius",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cornelius.htm")),
   description = "A version of ^fortyandeight^ that allows non-top cards to be played (moving whatever cards are on top of them along with them) as " +
-  "in ^yukon^.",
+    "in ^yukon^.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -45,7 +46,7 @@ object Cornelius extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

@@ -23,6 +23,7 @@ object SingleInterchange extends GameRules(
   title = "Single Interchange",
   like = Some("unlimited"),
   related = Seq("tripleinterchange", "breakwater", "unlimited"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/single_interchange.htm")),
   description = "A difficult one-deck variant of ^interchange^ invented by Thomas Warfield.",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
@@ -40,7 +41,7 @@ object SingleInterchange extends GameRules(
       cardsFaceDown = TableauFaceDownCards.EvenNumbered,
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

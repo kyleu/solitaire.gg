@@ -14,6 +14,11 @@ import models.game.rules._
 object Lanes extends GameRules(
   id = "lanes",
   title = "Lanes",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lanes.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Lanes.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/lanes.htm")
+  ),
   description = "A six-by-three tableau played much like ^klondike^, but you can't move stacks.",
   stock = Some(
     StockRules(
@@ -35,7 +40,7 @@ object Lanes extends GameRules(
       initialCards = InitialCards.Count(3),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

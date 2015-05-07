@@ -20,6 +20,7 @@ object MovingLeft extends GameRules(
   id = "movingleft",
   title = "Moving Left",
   related = Seq("tripleleft", "singleleft"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/moving_left.htm")),
   description = "A variant of ^gargantua^ or ^doubleklondike^ where empty spaces are automatically filled from the next column.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -41,7 +42,7 @@ object MovingLeft extends GameRules(
     TableauRules(
       numPiles = 10,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.NextPile,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

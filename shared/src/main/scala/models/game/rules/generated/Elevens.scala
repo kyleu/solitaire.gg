@@ -23,6 +23,14 @@ object Elevens extends GameRules(
   title = "Elevens",
   like = Some("tens"),
   related = Seq("suitelevens"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Elevens"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/Elevens.html"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/elevens.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Elevens.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/elevens.htm"),
+    Link("Jan Wolter's Experiments", "/article/simplepairs.html")
+  ),
   description = "A set removal sets of cards adding to 15 or sets containing ten through king.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJQK,
   stock = Some(

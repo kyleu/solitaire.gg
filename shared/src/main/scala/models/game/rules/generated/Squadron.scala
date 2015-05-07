@@ -26,6 +26,13 @@ object Squadron extends GameRules(
     "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
     "josephine"
   ),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/squadron.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/squadron.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/squadron.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Squadron.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/squadron.php")
+  ),
   description = "A much easier version of ^fortytheives^ with three cells.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -50,7 +57,7 @@ object Squadron extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

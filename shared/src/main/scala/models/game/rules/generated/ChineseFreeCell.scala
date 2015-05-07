@@ -24,9 +24,11 @@ object ChineseFreeCell extends GameRules(
   id = "chinesefreecell",
   title = "Chinese FreeCell",
   like = Some("freecell"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinese_freecell.htm")),
   description = "A version of ^freecell^ played with only three suits.",
   deckOptions = DeckOptions(
-    numDecks = 2
+    numDecks = 2,
+    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds)
   ),
   foundations = Seq(
     FoundationRules(
@@ -42,7 +44,7 @@ object ChineseFreeCell extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.DifferentSuits,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(CellRules()),

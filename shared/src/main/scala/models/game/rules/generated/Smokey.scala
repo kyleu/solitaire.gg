@@ -25,8 +25,9 @@ object Smokey extends GameRules(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
     "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
   ),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/smokey.htm")),
   description = "A ^klondike^ variant invented by Ann Edwards where you can build sequences in color, but only move sequences of the same suit. Not" +
-  " too hard. Not too easy.",
+    " too hard. Not too easy.",
   stock = Some(
     StockRules(
       maximumDeals = Some(3)
@@ -44,7 +45,7 @@ object Smokey extends GameRules(
     TableauRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameColor,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

@@ -21,6 +21,12 @@ object Nines extends GameRules(
   id = "nines",
   title = "Nines",
   like = Some("tens"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/nines.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/nines.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Nines.htm"),
+    Link("Jan Wolter's Experiments", "/article/simplepairs.html")
+  ),
   description = "A variation on ^simplepairs^ pairs that add to 9 or set of ten through king. Much luck required.",
   cardRemovalMethod = CardRemovalMethod.RemoveNinesOrPairsAddingToNineOr10JQK,
   stock = Some(

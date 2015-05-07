@@ -24,6 +24,7 @@ object Stewart extends GameRules(
   title = "Stewart",
   like = Some("martha"),
   related = Seq("stewart"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/stewart.htm")),
   description = "A more difficult variation of ^martha^ in which only single cards may be moved. It is similar to ^bakersdozen^.",
   foundations = Seq(
     FoundationRules(
@@ -39,7 +40,7 @@ object Stewart extends GameRules(
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.OddNumbered,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

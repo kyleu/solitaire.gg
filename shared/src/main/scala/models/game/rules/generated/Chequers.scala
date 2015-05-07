@@ -37,8 +37,12 @@ object Chequers extends GameRules(
   id = "chequers",
   title = "Chequers",
   like = Some("caprice"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chequers.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/chequers.htm")
+  ),
   description = "This game has twenty-five tableau piles where you can build up or down, and you build up on half the foundations, and down on the " +
-  "others. It needs a large screen.",
+    "others. It needs a large screen.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -69,7 +73,7 @@ object Chequers extends GameRules(
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

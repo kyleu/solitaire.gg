@@ -19,6 +19,7 @@ object SixtyThieves extends GameRules(
   title = "Sixty Thieves",
   like = Some("fortythieves"),
   related = Seq("marierose", "malmaison"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sixty_thieves.htm")),
   description = "A difficult three-deck version of ^fortythieves^ by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -43,7 +44,7 @@ object SixtyThieves extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -23,8 +23,9 @@ import models.game.rules._
 object Balcony extends GameRules(
   id = "balcony",
   title = "Balcony",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/balcony.htm")),
   description = "Similar to ^canfield^, but foundations are built up in alternate colors, reserve cards can only be played to the foundation, and e" +
-  "mpty spaces are autofilled from the stock.",
+    "mpty spaces are autofilled from the stock.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),
@@ -49,7 +50,7 @@ object Balcony extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.StockThenWaste,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Cell", "Foundation", "Tableau")
     )
   ),

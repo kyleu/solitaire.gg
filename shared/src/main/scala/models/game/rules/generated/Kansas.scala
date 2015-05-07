@@ -24,8 +24,9 @@ object Kansas extends GameRules(
   id = "kansas",
   title = "Kansas",
   like = Some("rainbow"),
+  links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Kansas.html.en")),
   description = "Like ^rainbow^ this is a ^canfield^ variation where you build regardless of suit, but this is a bit more difficult because you onl" +
-  "y have three tableau piles.",
+    "y have three tableau piles.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),
@@ -51,7 +52,7 @@ object Kansas extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

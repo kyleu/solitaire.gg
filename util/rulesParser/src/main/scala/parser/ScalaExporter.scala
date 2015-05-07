@@ -23,7 +23,7 @@ object ScalaExporter {
 
   def exportRules(rules: GameRules, variant: PolitaireParser.Variant) = {
     val ret = new StringBuilder()
-    def add(s: String) = ret ++= s + "\n"
+    def add(s: String): Unit = ret ++= s + "\n"
 
     add("// Generated rules for Scalataire.")
     add("package models.game.rules.generated")
@@ -39,7 +39,7 @@ object ScalaExporter {
           case i: Int => PolitaireLookup.getTranslation(attr._2.id).flatMap(_.get(i))
           case _ => None
         }
-        var value = if(attr._2.value.toString.length > 80) { attr._2.value.toString.substring(0, 80) + "..." } else { attr._2.value.toString }
+        val value = if(attr._2.value.toString.length > 80) { attr._2.value.toString.substring(0, 80) + "..." } else { attr._2.value.toString }
         add(" *   " + attr._2.title + " (" + attr._2.id + "): " + value + translation.map(" (" + _ + ")").getOrElse(""))
       }
     }
@@ -50,20 +50,10 @@ object ScalaExporter {
     rules.like.foreach { l =>
       add("  like = Some(\"" + l + "\"),")
     }
-    if (rules.related.nonEmpty) {
-      val rel = rules.related.grouped(8).toSeq
-      if (rel.size == 1 && rel.nonEmpty) {
-        add("  related = Seq(" + rel.headOption.getOrElse(Nil).map("\"" + _ + "\"").mkString(", ") + "),")
-      } else if (rel.size > 1) {
-        add("  related = Seq(")
-        for(relSet <- rel.zipWithIndex) {
-          add("    " + relSet._1.map("\"" + _ + "\"").mkString(", ") + (if(relSet._2 < rel.size - 1) { "," } else { "" }))
-        }
-        add("  ),")
-      }
-    }
+    ScalaLinkExporter.relatedGames(rules, add)
+    ScalaLinkExporter.webLinks(rules.id, add)
     val desc = rules.description.replaceAllLiterally("\"", "\\\"").grouped(130)
-    add("  description = \"" + desc.mkString("\" +\n  \"") + "\",")
+    add("  description = \"" + desc.mkString("\" +\n    \"") + "\",")
     if (rules.victoryCondition != GameRules.default.victoryCondition) {
       add("  victoryCondition = VictoryCondition." + cls(rules.victoryCondition) + ",")
     }
@@ -86,9 +76,9 @@ object ScalaExporter {
   }
 
   def cls(o: Any) = o match {
-    case count: InitialCards.Count => "Count(" + count.n + ")"
-    case count: TableauFaceDownCards.Count => "Count(" + count.n + ")"
-    case count: PyramidFaceDownCards.Count => "Count(" + count.n + ")"
+    case InitialCards.Count(i) => "Count(" + i + ")"
+    case TableauFaceDownCards.Count(i) => "Count(" + i + ")"
+    case PyramidFaceDownCards.Count(i) => "Count(" + i + ")"
     case specificRank: FoundationLowRank.SpecificRank => "SpecificRank(Rank." + specificRank.r + ")"
     case cn => cn.getClass.getSimpleName.replaceAllLiterally("$", "")
   }

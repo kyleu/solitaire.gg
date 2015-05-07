@@ -23,6 +23,7 @@ object TripleRussian extends GameRules(
   id = "triplerussian",
   title = "Triple Russian",
   like = Some("russian"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_russian.htm")),
   description = "A three-deck version of ^russian^ solitaire by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -57,7 +58,7 @@ object TripleRussian extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

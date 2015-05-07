@@ -23,6 +23,13 @@ import models.game.rules._
 object Calculation extends GameRules(
   id = "calculation",
   title = "Calculation",
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Calculation_(card_game)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/calculation.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/calculation.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/calculation.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Hopscotch.html.en")
+  ),
   description = "Basically similar to ^sirtommy^, but much more complex to play because each foundation pile advances by a different increment.",
   stock = Some(
     StockRules(
@@ -50,7 +57,7 @@ object Calculation extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock"),
       mayMoveToEmptyFrom = Seq("Stock")
     )

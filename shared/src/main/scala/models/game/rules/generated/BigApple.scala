@@ -24,6 +24,7 @@ object BigApple extends GameRules(
   title = "Big Apple",
   like = Some("gotham"),
   related = Seq("bigapple"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/big_apple.htm")),
   description = "A difficult variation of ^newyork^ with three cells instead of three waste piles, but where stacks can be moved.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -49,7 +50,7 @@ object BigApple extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Cell")
     )
   ),

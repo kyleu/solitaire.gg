@@ -26,6 +26,7 @@ object TripleMinerva extends GameRules(
   title = "Triple Minerva",
   like = Some("minerva"),
   related = Seq("bureau", "minerva"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_minerva.htm")),
   description = "Thomas Warfield's three-deck version of ^minerva^.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -48,7 +49,7 @@ object TripleMinerva extends GameRules(
       numPiles = 12,
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.OddNumbered,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   reserves = Some(

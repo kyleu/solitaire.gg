@@ -22,6 +22,12 @@ object DoubleEasthaven extends GameRules(
   title = "Double Easthaven",
   like = Some("easthaven"),
   related = Seq("tripleeasthaven", "doubleeasthaven"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_easthaven.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/double_easthaven.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/double_easthaven.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/double-easthaven.asp")
+  ),
   description = "A two-deck version of ^easthaven^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -43,7 +49,7 @@ object DoubleEasthaven extends GameRules(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(3),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

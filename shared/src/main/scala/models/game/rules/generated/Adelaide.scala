@@ -20,8 +20,9 @@ object Adelaide extends GameRules(
   id = "adelaide",
   title = "Adelaide",
   like = Some("outback"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/adelaide.htm")),
   description = "This two-deck solitaire allows moving unsorted stacks, as in ^yukon^. It is exactly like ^outback^, but you get to do two passes t" +
-  "hrough the deck.",
+    "hrough the deck.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -46,7 +47,7 @@ object Adelaide extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

@@ -16,6 +16,13 @@ import models.game.rules._
 object LadyPalk extends GameRules(
   id = "ladypalk",
   title = "Lady Palk",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lady_palk.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/lady_palk.htm"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/lady_palk.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/beleaguered_castle/lady_palk.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/avenue.htm")
+  ),
   description = "Similar to ^diplomat^, but allows stacks to be moved and spaces can only be filled by kings.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -40,7 +47,7 @@ object LadyPalk extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

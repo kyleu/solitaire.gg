@@ -18,6 +18,7 @@ object FortyBandits extends GameRules(
   id = "fortybandits",
   title = "Forty Bandits",
   like = Some("fortythieves"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/forty_thieves.htm")),
   description = "An easier variant of ^fortythieves^ where sequences may be moved.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -42,7 +43,7 @@ object FortyBandits extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -20,6 +20,7 @@ object Stages extends GameRules(
   id = "stages",
   title = "Stages",
   like = Some("busyaces"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/stages.htm")),
   description = "An easier variation of ^busyaces^ that allows stack moves.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -44,7 +45,7 @@ object Stages extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

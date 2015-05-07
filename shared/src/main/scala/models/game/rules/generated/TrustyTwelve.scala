@@ -23,6 +23,12 @@ object TrustyTwelve extends GameRules(
   id = "trustytwelve",
   title = "Trusty Twelve",
   related = Seq("bunker", "knottynines", "sweetsixteen", "upandup"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trusty_twelve.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/trusty_twelve.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/trusty-twelve.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/TrustyTwelve.htm")
+  ),
   description = "More luck than skill is needed to win this game of building sequences on the tableau.",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(
@@ -41,7 +47,7 @@ object TrustyTwelve extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

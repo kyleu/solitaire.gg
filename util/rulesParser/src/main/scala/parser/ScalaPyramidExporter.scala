@@ -51,7 +51,7 @@ object ScalaPyramidExporter {
           props += "      mayMoveToEmptyFrom = Seq(" + p.mayMoveToEmptyFrom.map(x => "\"" + x + "\"").mkString(", ") + ")"
         }
         if(p.emptyFilledWith != defaults.emptyFilledWith) {
-          props += "      emptyFilledWith = PyramidFillEmptyWith." + cls(p.emptyFilledWith)
+          props += "      emptyFilledWith = FillEmptyWith." + cls(p.emptyFilledWith)
         }
 
         if(props.isEmpty) {

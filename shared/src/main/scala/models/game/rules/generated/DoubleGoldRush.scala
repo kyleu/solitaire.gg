@@ -23,6 +23,7 @@ object DoubleGoldRush extends GameRules(
   title = "Double Gold Rush",
   like = Some("goldrush"),
   related = Seq("doublegoldrush"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_gold_rush.htm")),
   description = "A two-deck version of ^goldrush^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -44,7 +45,7 @@ object DoubleGoldRush extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

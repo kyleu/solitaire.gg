@@ -23,6 +23,7 @@ import models.game.rules._
 object ScorpionTail extends GameRules(
   id = "scorpiontail",
   title = "Scorpion Tail",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/scorpion_tail.htm")),
   description = "A variation of ^scorpion^ where we build down by alternate color instead of down in suit.",
   stock = Some(
     StockRules(
@@ -54,7 +55,7 @@ object ScorpionTail extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

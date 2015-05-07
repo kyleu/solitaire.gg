@@ -18,9 +18,17 @@ object FortyAndEight extends GameRules(
   id = "fortyandeight",
   title = "Forty and Eight",
   related = Seq("lower48"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/forty_and_eight.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/forty_and_eight.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/forty_and_eight.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/forty-and-eight.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/FortyandEight.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/forty_and_eight.htm")
+  ),
   description = "Two decks, forty cards in the tableau, eight foundation piles, building down in the same suit. You can only move single cards. Oft" +
-  "en it feels like nothing is happening for a long time, and then the game works out after all. A good game for making you feel smar" +
-  "t.",
+    "en it feels like nothing is happening for a long time, and then the game works out after all. A good game for making you feel smar" +
+    "t.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -44,7 +52,7 @@ object FortyAndEight extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -19,6 +19,7 @@ object DoubleLimited extends GameRules(
   title = "Double Limited",
   like = Some("limited"),
   related = Seq("doublelimited"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_limited.htm")),
   description = "A four-deck version of ^limited^. A large screen will be needed.",
   deckOptions = DeckOptions(
     numDecks = 4
@@ -43,7 +44,7 @@ object DoubleLimited extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

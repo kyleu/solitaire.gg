@@ -17,6 +17,15 @@ import models.game.rules._
 object Carpet extends GameRules(
   id = "carpet",
   title = "Carpet",
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Carpet_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/carpet.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/carpet.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/carpet.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Carpet.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/carpet.html"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/carpet.htm")
+  ),
   description = "An easy game with twenty reserve piles and no building.",
   stock = Some(
     StockRules(
@@ -40,7 +49,7 @@ object Carpet extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       rankMatchRuleForBuilding = RankMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Waste")
     )
   ),

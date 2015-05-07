@@ -29,6 +29,14 @@ import models.game.rules._
 object BoxKite extends GameRules(
   id = "boxkite",
   title = "Box Kite",
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Box_Kite_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/box_kite.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/box_kite.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/box_kite.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/box-kite.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/BoxKite.htm")
+  ),
   description = "Tableaus build up or down, half the foundations build up, half build down.",
   deckOptions = DeckOptions(
     numDecks = 2

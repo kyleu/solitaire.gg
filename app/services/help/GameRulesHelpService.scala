@@ -8,12 +8,12 @@ object GameRulesHelpService {
   def description(desc: String, link: Boolean = true) = {
     val links = descriptionLinkPattern.findAllIn(desc).matchData.map(_.group(1))
     val linked = links.foldLeft(desc) { (desc, id) =>
-      val rules = if(id == "fortytheives") {
+      val rules = if (id == "fortytheives") {
         GameRulesSet.allById("fortythieves")
       } else {
         GameRulesSet.allById(id)
       }
-      if(link) {
+      if (link) {
         val url = controllers.routes.HomeController.help(rules.id).url
         desc.replaceAllLiterally("^" + id + "^", "<a href=\"" + url + "\">" + rules.title + "</a>")
       } else {
@@ -21,15 +21,6 @@ object GameRulesHelpService {
       }
     }
     linked
-  }
-
-  def objective(vc: VictoryCondition, crm: CardRemovalMethod) = vc match {
-    case VictoryCondition.AllButFourCardsOnFoundation => "Place all but four cards on the foundation."
-    case VictoryCondition.AllOnFoundation => "Place all cards on the foundation."
-    case VictoryCondition.AllOnFoundationOrStock => "Place all cards on the foundation or stock."
-    case VictoryCondition.AllOnTableauSorted => "Sort all cards on the tableau."
-    case VictoryCondition.NoneInPyramid => "Remove all cards from the pyramid."
-    case VictoryCondition.NoneInStock => "Remove all cards from the stock."
   }
 
   def layout(layoutString: String, rules: GameRules) = {
@@ -45,7 +36,11 @@ object GameRulesHelpService {
       case 'f' =>
         val fr = rules.foundations(foundationsProcessed)
         foundationsProcessed += 1
-        Some(FoundationHelpService.foundation(fr, rules.deckOptions))
+        if (fr.visible) {
+          Some(FoundationHelpService.foundation(fr, rules.deckOptions))
+        } else {
+          None
+        }
       case 't' =>
         val tr = rules.tableaus(tableausProcessed)
         tableausProcessed += 1

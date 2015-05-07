@@ -24,6 +24,10 @@ object CrissCross extends GameRules(
   id = "crisscross",
   title = "Criss Cross",
   like = Some("simplepairs"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/criss_cross.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/CrissCross.htm")
+  ),
   description = "A variation of ^simplepairs^ that requires a very large dose of pure luck to win.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(

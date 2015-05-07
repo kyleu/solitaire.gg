@@ -17,6 +17,7 @@ import models.game.rules._
 object Millie extends GameRules(
   id = "millie",
   title = "Millie",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/millie.htm")),
   description = "^missmilligan^ without reserve.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -39,7 +40,7 @@ object Millie extends GameRules(
       numPiles = 8,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

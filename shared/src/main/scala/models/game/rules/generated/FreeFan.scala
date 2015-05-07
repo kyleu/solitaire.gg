@@ -23,6 +23,7 @@ object FreeFan extends GameRules(
   title = "FreeFan",
   like = Some("fan"),
   related = Seq("luckyfan"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/free_fan.htm")),
   description = "An easy variation of ^fan^ with cells. Invented by Gregg Seelhoff.",
   foundations = Seq(
     FoundationRules(
@@ -39,7 +40,7 @@ object FreeFan extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(

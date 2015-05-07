@@ -20,6 +20,7 @@ object TripleLeft extends GameRules(
   id = "tripleleft",
   title = "Triple Left",
   like = Some("movingleft"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_left.htm")),
   description = "Thomas Warfield's three-deck version of ^movingleft^.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -41,7 +42,7 @@ object TripleLeft extends GameRules(
     TableauRules(
       numPiles = 12,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.NextPile,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

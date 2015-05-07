@@ -18,6 +18,7 @@ import models.game.rules._
 object Darwin extends GameRules(
   id = "darwin",
   title = "Darwin",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/darwin.htm")),
   description = "A three-deck version of ^australian^ Solitaire, which is a cross between ^yukon^ and ^klondike^.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -43,7 +44,7 @@ object Darwin extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.KingsUntilStockEmpty
+      emptyFilledWith = FillEmptyWith.KingsUntilStockEmpty
     )
   ),
   complete = false

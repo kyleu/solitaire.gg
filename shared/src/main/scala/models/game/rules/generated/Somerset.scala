@@ -18,6 +18,14 @@ object Somerset extends GameRules(
   id = "somerset",
   title = "Somerset",
   related = Seq("morehead", "usk"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/somerset.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/somerset.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/somerset.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/somerset.php"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Somerset.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/somerset.htm")
+  ),
   description = "A ^klondike^ variant without stock or waste. Unlike ^usk^, moves of stacks are not allowed, but spaces can be filled by any card.",
   foundations = Seq(
     FoundationRules(
@@ -44,7 +52,7 @@ object Somerset extends GameRules(
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

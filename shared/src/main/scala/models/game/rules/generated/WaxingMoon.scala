@@ -18,9 +18,11 @@ import models.game.rules._
 object WaxingMoon extends GameRules(
   id = "waxingmoon",
   title = "Waxing Moon",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/waxing_moon.htm")),
   description = "A very difficult ^fortythieves^ variant by Thomas Warfield.",
   deckOptions = DeckOptions(
-    numDecks = 2
+    numDecks = 2,
+    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Clubs, Suit.Horseshoes)
   ),
   stock = Some(
     StockRules(
@@ -42,7 +44,7 @@ object WaxingMoon extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

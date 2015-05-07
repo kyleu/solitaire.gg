@@ -27,6 +27,7 @@ object UpAndUp extends GameRules(
   title = "Up and Up",
   like = Some("trustytwelve"),
   related = Seq("bunker", "knottynines", "sweetsixteen", "upandup"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/up_and_up.htm")),
   description = "A variation of ^trustytwelve^ where you can build kings on aces.",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(
@@ -47,7 +48,7 @@ object UpAndUp extends GameRules(
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

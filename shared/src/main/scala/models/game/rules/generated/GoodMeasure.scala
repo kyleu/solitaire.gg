@@ -27,6 +27,13 @@ object GoodMeasure extends GameRules(
   title = "Good Measure",
   like = Some("bakersdozen"),
   related = Seq("spanish", "goodmeasure"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/good_measure.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/good_measure.htm"),
+    Link("About.com (Erik Arneson)", "boardgames.about.com/od/solitaire/a/good_measure.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/GoodMeasure.html"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/good_measure.html")
+  ),
   description = "A much more difficult variation of ^bakersdozen^ with fewer tableau piles.",
   foundations = Seq(
     FoundationRules(

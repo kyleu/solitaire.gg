@@ -20,6 +20,10 @@ object Stronghold extends GameRules(
   id = "stronghold",
   title = "Stronghold",
   like = Some("streetsandalleys"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/stronghold.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Stronghold.htm")
+  ),
   description = "A variation of ^beleagueredcastle^ with one ^freecell^ style cell added.",
   foundations = Seq(
     FoundationRules(
@@ -35,7 +39,7 @@ object Stronghold extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

@@ -25,6 +25,7 @@ object BeleagueredFortress extends GameRules(
   title = "Beleaguered Fortress",
   like = Some("fortress"),
   related = Seq("bastion", "chessboard", "fortressofmercy", "beleagueredfortress"),
+  links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/beleaguered-castle-2.htm")),
   description = "A variation of ^fortress^ with a twelve-card reserve from which all cards are playable.",
   waste = Some(
     WasteRules(
@@ -46,7 +47,7 @@ object BeleagueredFortress extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -20,6 +20,14 @@ object Giant extends GameRules(
   id = "giant",
   title = "Giant",
   related = Seq("titan"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/giant.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/giant.htm"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/giant.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/giant.html"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/giant.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Giant.html.en")
+  ),
   description = "A ^missmilligan^ variant without a pocket but in which any card can be played to an empty space.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -43,7 +51,7 @@ object Giant extends GameRules(
       numPiles = 8,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

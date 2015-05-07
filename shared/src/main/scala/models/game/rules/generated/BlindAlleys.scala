@@ -18,6 +18,11 @@ object BlindAlleys extends GameRules(
   id = "blindalleys",
   title = "Blind Alleys",
   related = Seq("passeul"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/blind_alleys.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/blind_alleys.html"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/blind_alleys.htm")
+  ),
   description = "A ^klondike^ variant with a square tableau, differing from ^passeul^ only in the number of passes through the deck allowed.",
   stock = Some(
     StockRules(
@@ -36,7 +41,7 @@ object BlindAlleys extends GameRules(
     TableauRules(
       numPiles = 6,
       initialCards = InitialCards.Count(3),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

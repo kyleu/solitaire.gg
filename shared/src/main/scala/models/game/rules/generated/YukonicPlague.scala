@@ -24,6 +24,7 @@ object YukonicPlague extends GameRules(
   id = "yukonicplague",
   title = "Yukonic Plague",
   like = Some("yukon"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukonic_plague.htm")),
   description = "A more difficult variation of ^yukon^ where many cards are buried in a reserve.",
   foundations = Seq(
     FoundationRules(
@@ -47,7 +48,7 @@ object YukonicPlague extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   reserves = Some(

@@ -19,6 +19,7 @@ import models.game.rules._
 object Castile extends GameRules(
   id = "castile",
   title = "Castile",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/castile.htm")),
   description = "An open variant of ^bristol^ invented by Thomas Warfield.",
   foundations = Seq(
     FoundationRules(
@@ -34,7 +35,7 @@ object Castile extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   reserves = Some(

@@ -21,6 +21,16 @@ object Diplomat extends GameRules(
   title = "Diplomat",
   like = Some("congress"),
   related = Seq("rowsoffour"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Diplomat_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/diplomat.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/Diplomat.html"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/diplomat.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Diplomat.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/diplomat.php"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/diplomat.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/diplomat.html")
+  ),
   description = "A variation on ^congress^ or ^fortyandeight^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -45,7 +55,7 @@ object Diplomat extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation")
     )
   ),

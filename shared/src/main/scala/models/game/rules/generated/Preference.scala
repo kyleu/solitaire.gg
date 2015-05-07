@@ -21,6 +21,7 @@ object Preference extends GameRules(
   id = "preference",
   title = "Preference",
   like = Some("fortunesfavor"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/preference.htm")),
   description = "A slightly more challenging version of ^fortunesfavor^ with fewer tableau piles.",
   stock = Some(
     StockRules(
@@ -44,7 +45,7 @@ object Preference extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

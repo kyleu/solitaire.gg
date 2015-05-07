@@ -32,8 +32,14 @@ object Tabbycat extends GameRules(
   title = "Tabbycat",
   like = Some("manx"),
   related = Seq("tabbycat"),
+  links = Seq(
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/TabbyCat.html"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/tabby_cat.html"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Tabby_Cat_(solitaire)"),
+    Link("PySol", "pysolfc.sourceforge.net/doc/rules/tabbycat.html")
+  ),
   description = "An easier version of ^manx^ which allows a sequence to be parkted in the tail. Also invented by Rick Holzgrafe of Solitaire Til Da" +
-  "wn.",
+    "wn.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.TableauFirstSet,
@@ -57,7 +63,7 @@ object Tabbycat extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     ),
     TableauRules(
       name = "Tail",
@@ -68,7 +74,7 @@ object Tabbycat extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

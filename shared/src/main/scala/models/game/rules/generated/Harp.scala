@@ -19,6 +19,14 @@ object Harp extends GameRules(
   id = "harp",
   title = "Harp",
   related = Seq("tripleharp"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/harp.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/harp.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/harp.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Harp.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/harp.php"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/harp.html")
+  ),
   description = "A two-deck ^klondike^ variation.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -40,7 +48,7 @@ object Harp extends GameRules(
     TableauRules(
       numPiles = 9,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

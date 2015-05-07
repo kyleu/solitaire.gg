@@ -20,8 +20,15 @@ object NewYork extends GameRules(
   id = "newyork",
   title = "New York",
   related = Seq("gotham"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/new_york.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/new_york.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/new_york.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/new-york.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/NewYork.htm")
+  ),
   description = "In this variation of ^dover^, you can choose which of the three waste piles you play cards from the stock onto, which is good beca" +
-  "use it's hard to rearrange things much on the tableau.",
+    "use it's hard to rearrange things much on the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown
@@ -50,7 +57,7 @@ object NewYork extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Waste")
     )
   ),

@@ -23,6 +23,15 @@ object FortunesFavor extends GameRules(
   title = "Fortune's Favor",
   like = Some("busyaces"),
   related = Seq("preference"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Fortune's_Favor"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fortunes_favor.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/fortunes_favor.html"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/FortunesFavor.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/fortune_s_favor.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/fortunes_favor.php"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/fortunes_favor.htm")
+  ),
   description = "An extremely easy, one-deck version of ^busyaces^.",
   stock = Some(
     StockRules(
@@ -46,7 +55,7 @@ object FortunesFavor extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

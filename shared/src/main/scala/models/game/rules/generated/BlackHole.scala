@@ -34,6 +34,16 @@ object BlackHole extends GameRules(
   title = "Black Hole",
   like = Some("allinarow"),
   related = Seq("binarystar"),
+  links = Seq(
+    Link("David Parlett's page", "www.davpar.eu/patience/blackhole.html"),
+    Link("Solitaire Laboratory", "www.solitairelaboratory.com/golf.html"),
+    Link("Shlomi Fish's Blackhole Solver", "www.shlomifish.org/open-source/projects/black-hole-solitaire-solver/"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/black_hole.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/black_hole.html"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Black_Hole_(solitaire)"),
+    Link("Computer Solvability of BlackHole", "ipg.host.cs.st-andrews.ac.uk/papers/AICommsBlackhole-revised.pdf"),
+    Link("Jan Wolter's Experiments", "/article/blackhole.html")
+  ),
   description = "Like ^allinarow^, this is a variation of ^golf^ without a stock. Invented by David Parlett.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(

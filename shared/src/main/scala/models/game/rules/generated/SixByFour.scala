@@ -21,6 +21,7 @@ object SixByFour extends GameRules(
   id = "sixbyfour",
   title = "Six by Four",
   like = Some("freecell"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/six_by_four.htm")),
   description = "A much harder ^freecell^ variant with two fewer tableau columns.",
   foundations = Seq(
     FoundationRules(
@@ -35,7 +36,7 @@ object SixByFour extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(CellRules()),

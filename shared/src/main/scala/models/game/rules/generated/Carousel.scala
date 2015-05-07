@@ -33,6 +33,7 @@ import models.game.rules._
 object Carousel extends GameRules(
   id = "carousel",
   title = "Carousel",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/carousel.htm")),
   description = "A two-deck game with separate foundations for aces, evens and odds.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -47,7 +48,7 @@ object Carousel extends GameRules(
   foundations = Seq(
     FoundationRules(
       name = "Ace Foundation",
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Ace),
       suitMatchRule = SuitMatchRule.AlternatingColors,
       rankMatchRule = RankMatchRule.Equal,
       wrapFromKingToAce = true,
@@ -57,7 +58,7 @@ object Carousel extends GameRules(
       name = "Evens Foundation",
       setNumber = 1,
       numPiles = 8,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Two),
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
       maxCards = 6,
@@ -67,7 +68,7 @@ object Carousel extends GameRules(
       name = "Odds Foundation",
       setNumber = 2,
       numPiles = 8,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Three),
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
       maxCards = 5,
@@ -82,7 +83,7 @@ object Carousel extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

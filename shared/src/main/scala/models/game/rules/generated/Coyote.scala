@@ -25,6 +25,10 @@ object Coyote extends GameRules(
   title = "Coyote",
   like = Some("acme"),
   related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/coyote.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Straight_Up.html.en")
+  ),
   description = "An slightly easier, but still difficult, variation of ^acme^ in which sequences can be moved. Named after Acme's best customer.",
   stock = Some(
     StockRules(
@@ -48,7 +52,7 @@ object Coyote extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

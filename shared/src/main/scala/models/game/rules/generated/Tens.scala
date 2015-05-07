@@ -21,8 +21,17 @@ object Tens extends GameRules(
   id = "tens",
   title = "Tens",
   related = Seq("nines", "elevens"),
+  links = Seq(
+    Link("Solitaire Central", "www.solitairecentral.com/rules/Tens.html"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/tens.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/tens.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Tens.htm"),
+    Link("tiffehr on eHow.com", "www.ehow.com/how_2000644_play-tens-solitaire.html"),
+    Link("Erik Arneson on About.com", "boardgames.about.com/od/solitaire/a/tens.htm"),
+    Link("Jan Wolter's Experiments", "/article/simplepairs.html")
+  ),
   description = "A set removal game similar to ^simplepairs^ where you can take off pairs that add to 10 or a set four matching cards ten or higher" +
-  ". A game of pure luck.",
+    ". A game of pure luck.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOrFour10JQK,
   stock = Some(
     StockRules(

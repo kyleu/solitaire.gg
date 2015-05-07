@@ -50,7 +50,7 @@ object Astrocyte extends GameRules(
       initialCards = InitialCards.Count(8),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(CellRules()),

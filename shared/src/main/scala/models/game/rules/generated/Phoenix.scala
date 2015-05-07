@@ -21,6 +21,7 @@ object Phoenix extends GameRules(
   id = "phoenix",
   title = "Phoenix",
   like = Some("arizona"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/phoenix.htm")),
   description = "A more difficult variation of ^arizona^ where you build by alternate colors.",
   waste = Some(
     WasteRules(
@@ -39,7 +40,7 @@ object Phoenix extends GameRules(
       numPiles = 6,
       initialCards = InitialCards.Count(6),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

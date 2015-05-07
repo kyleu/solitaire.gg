@@ -33,8 +33,16 @@ object BuffaloBill extends GameRules(
   id = "buffalobill",
   title = "Buffalo Bill",
   related = Seq("littlebillie"),
+  links = Seq(
+    Link("David Parlett's Page", "www.davpar.eu/patience/buffbill.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/buffalo_bill.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/buffalo_bill.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/buffalo-bill.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/buffalo_bill.html"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/BuffaloBill.htm")
+  ),
   description = "In this easy variation of ^littlebillie^, by David Parlett, there are more fans and the reserve cells start empty, but there are n" +
-  "o redeals.",
+    "o redeals.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

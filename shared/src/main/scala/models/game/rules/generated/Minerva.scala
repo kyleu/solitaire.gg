@@ -25,6 +25,7 @@ object Minerva extends GameRules(
   title = "Minerva",
   like = Some("athena"),
   related = Seq("doubleminerva", "tripleminerva", "munger", "mystique"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/minerva.htm")),
   description = "^athena^ with a ^canfield^-style reserve added.",
   stock = Some(
     StockRules(
@@ -43,7 +44,7 @@ object Minerva extends GameRules(
     TableauRules(
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.OddNumbered,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   reserves = Some(

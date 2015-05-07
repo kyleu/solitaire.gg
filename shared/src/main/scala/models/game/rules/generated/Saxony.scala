@@ -24,8 +24,9 @@ import models.game.rules._
 object Saxony extends GameRules(
   id = "saxony",
   title = "Saxony",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/saxony.htm")),
   description = "You have four cells, four reserve piles where you can build down in suit, and eight tableau piles, where cards are dealt, but no b" +
-  "uilding is allowed.",
+    "uilding is allowed.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -50,7 +51,7 @@ object Saxony extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

@@ -21,6 +21,22 @@ object FortyThieves extends GameRules(
     "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
     "josephine"
   ),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Forty_Thieves_(card_game)"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/FortyThieves.html"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/forty_thieves.html"),
+    Link("LenaGames", "www.lenagames.com/bp_files/rul/forty-thieves.htm"),
+    Link("Erik Arneson on About.com", "boardgames.about.com/od/solitaire/a/Forty-Thieves.htm"),
+    Link("Forty Thieves Solitaire dot Com", "www.fortythievessolitaire.com/fortythievesrules.html"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/forty_thieves.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Forty_Thieves.html.en"),
+    Link("PySol", "pysolfc.sourceforge.net/doc/rules/fortythieves.html"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/forty_thieves.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/forty-thieves.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/FortyThieves.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/forty_thieves.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/forty_thieves.php")
+  ),
   description = "Similar to ^fortyandeight^, but the tableau has forty cards in ten stacks of four, and we only allow one pass through the deck.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -45,7 +61,7 @@ object FortyThieves extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

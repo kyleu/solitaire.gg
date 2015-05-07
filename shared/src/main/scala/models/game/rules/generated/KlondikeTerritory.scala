@@ -18,6 +18,10 @@ import models.game.rules._
 object KlondikeTerritory extends GameRules(
   id = "klondiketerritory",
   title = "Klondike Territory",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/klondike_territory.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/klondike_territory.html")
+  ),
   description = "A cross between ^flowergarden^ and ^klondike^, slightly more difficult than the similar Northwest Territory game.",
   waste = Some(
     WasteRules(
@@ -34,7 +38,7 @@ object KlondikeTerritory extends GameRules(
   tableaus = Seq(
     TableauRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -19,6 +19,7 @@ import models.game.rules._
 object TripleKlondike extends GameRules(
   id = "tripleklondike",
   title = "Triple Klondike",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_klondike.htm")),
   description = "A three deck version of ^klondike^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -39,7 +40,7 @@ object TripleKlondike extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 13,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

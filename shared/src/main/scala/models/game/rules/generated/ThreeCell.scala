@@ -18,6 +18,10 @@ import models.game.rules._
 object ThreeCell extends GameRules(
   id = "threecell",
   title = "ThreeCell",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_cells.htm"),
+    Link("Swoop Software", "www.swoopsoftware.com/solitaire_rules/threecell.html")
+  ),
   description = "A variation of ^freecell^ with only three cells.",
   foundations = Seq(
     FoundationRules(
@@ -32,7 +36,7 @@ object ThreeCell extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

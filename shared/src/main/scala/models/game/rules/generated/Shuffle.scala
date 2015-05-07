@@ -26,6 +26,7 @@ object Shuffle extends GameRules(
   title = "Shuffle",
   like = Some("neptune"),
   related = Seq("shuffle"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/shuffle.htm")),
   description = "A version of ^neptune^ where you can also pair kings with aces.",
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveRankPairsOrAK,
   stock = Some(

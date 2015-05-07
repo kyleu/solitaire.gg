@@ -14,6 +14,7 @@ import models.game.rules._
 object Streets extends GameRules(
   id = "streets",
   title = "Streets",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/streets.htm")),
   description = "Just like ^fortythieves^, except you build in alternate colors.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -37,7 +38,7 @@ object Streets extends GameRules(
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -22,6 +22,7 @@ object Inquisitor extends GameRules(
   title = "Inquisitor",
   like = Some("ladyjane"),
   related = Seq("quizzie"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/inquisitor.htm")),
   description = "This ^ladyjane^ variation by Thomas Warfield requires you to build in suit, but gives you an extra redeal.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -46,7 +47,7 @@ object Inquisitor extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

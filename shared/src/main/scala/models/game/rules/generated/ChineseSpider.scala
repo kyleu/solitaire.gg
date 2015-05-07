@@ -27,10 +27,12 @@ object ChineseSpider extends GameRules(
   id = "chinesespider",
   title = "Chinese Spider",
   like = Some("spider"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinese_spider.htm")),
   description = "A three-suit version of ^spider^.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
-    numDecks = 4
+    numDecks = 4,
+    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds)
   ),
   stock = Some(
     StockRules(
@@ -51,7 +53,7 @@ object ChineseSpider extends GameRules(
       initialCards = InitialCards.Count(6),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

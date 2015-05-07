@@ -25,8 +25,12 @@ object Tarantula extends GameRules(
   id = "tarantula",
   title = "Tarantula",
   like = Some("spider"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/tarantula.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/tarantula.php")
+  ),
   description = "An easier variation of ^spider^ where you are allowed to move sequences that are all one color even if they aren't all of one suit" +
-  ".",
+    ".",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2
@@ -63,7 +67,7 @@ object Tarantula extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameColor,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

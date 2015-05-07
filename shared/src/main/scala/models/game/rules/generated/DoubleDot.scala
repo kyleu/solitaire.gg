@@ -32,6 +32,10 @@ import models.game.rules._
 object DoubleDot extends GameRules(
   id = "doubledot",
   title = "Double Dot",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_dot.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/double_dot.htm")
+  ),
   description = "An easy game where you build up by twos on the foundation, and down by twos on the tableau.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -45,7 +49,7 @@ object DoubleDot extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 2,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Ace),
       initialCards = 2,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
@@ -55,7 +59,7 @@ object DoubleDot extends GameRules(
     FoundationRules(
       setNumber = 1,
       numPiles = 2,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Two),
       initialCards = 2,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
@@ -72,7 +76,7 @@ object DoubleDot extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.DownBy2,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.DownBy2,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

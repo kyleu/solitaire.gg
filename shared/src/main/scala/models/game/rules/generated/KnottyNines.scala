@@ -23,6 +23,12 @@ object KnottyNines extends GameRules(
   id = "knottynines",
   title = "Knotty Nines",
   like = Some("trustytwelve"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/knotty_nines.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/knotty-nines.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/KnottyNines.htm"),
+    Link("Antonia Hoyland", "www.allreadable.com/4c9d6pdH")
+  ),
   description = "A more difficult variation of ^trustytwelve^.",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(
@@ -41,7 +47,7 @@ object KnottyNines extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

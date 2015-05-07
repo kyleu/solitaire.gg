@@ -22,6 +22,7 @@ object Titan extends GameRules(
   title = "Titan",
   like = Some("giant"),
   related = Seq("titan"),
+  links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/titan.htm")),
   description = "A version of ^giant^ that starts with more cards on the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -44,7 +45,7 @@ object Titan extends GameRules(
       numPiles = 8,
       initialCards = InitialCards.Count(3),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

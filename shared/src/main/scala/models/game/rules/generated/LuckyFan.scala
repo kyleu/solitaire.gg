@@ -24,6 +24,7 @@ object LuckyFan extends GameRules(
   title = "Lucky Fan",
   like = Some("freefan"),
   related = Seq("boxfan", "freefan", "ceilingfan", "midnightclover"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lucky_fan.htm")),
   description = "A version of ^freefan^ in which no fan may hold more than three cards.",
   foundations = Seq(
     FoundationRules(
@@ -40,7 +41,7 @@ object LuckyFan extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings,
+      emptyFilledWith = FillEmptyWith.Kings,
       maxCards = 3
     )
   ),

@@ -21,6 +21,10 @@ object AmericanCanister extends GameRules(
   title = "American Canister",
   like = Some("canister"),
   related = Seq("britishcanister", "americancanister", "bucket"),
+  links = Seq(
+    Link("Zonora", "www.zonora.com/games/a/american-canister.htm"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/american_canister.htm")
+  ),
   description = "A difficult variation of ^canister^ with building by alternate colors.",
   foundations = Seq(
     FoundationRules(
@@ -34,7 +38,7 @@ object AmericanCanister extends GameRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

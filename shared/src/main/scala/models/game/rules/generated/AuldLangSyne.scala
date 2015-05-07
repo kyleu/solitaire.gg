@@ -22,8 +22,15 @@ object AuldLangSyne extends GameRules(
   id = "auldlangsyne",
   title = "Auld Lang Syne",
   related = Seq("leapyear", "acquaintance"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Auld_Lang_Syne_(solitaire)"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/auld_lang_syne.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Auld_Lang_Syne.html.en"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/auld_lang_syne.htm"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/auld_lang_syne.htm")
+  ),
   description = "An old solitaire game in which no building is allowed on the tableau. The secret to winning is to get extremely lucky before you a" +
-  "bandon the game out of shear boredom or to play a more skill-dependent variation like ^sirtommy^ instead.",
+    "bandon the game out of shear boredom or to play a more skill-dependent variation like ^sirtommy^ instead.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

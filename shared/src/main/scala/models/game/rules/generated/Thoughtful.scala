@@ -22,6 +22,10 @@ object Thoughtful extends GameRules(
   title = "Thoughtful",
   like = Some("klondike"),
   related = Seq("auntmary"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/saratoga.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Klondike_(solitaire)")
+  ),
   description = "^klondike^ with all cards in the tableau starting face up. Also known as \"Saratoga\".",
   stock = Some(
     StockRules(
@@ -39,7 +43,7 @@ object Thoughtful extends GameRules(
   tableaus = Seq(
     TableauRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

@@ -23,8 +23,16 @@ object Penguin extends GameRules(
   id = "penguin",
   title = "Penguin",
   related = Seq("opus"),
+  links = Seq(
+    Link("David Parlett's Page.", "www.davpar.eu/patience/penguin.html"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Penguin_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/penguin.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/penguin.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/penguin.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/articles/HowToPlayPenguinSolitaire.html")
+  ),
   description = "A satisfying game with seven cells developed by David Parlett where one of the cards you need to start the foundation is always bu" +
-  "ried at the bottom of the first tableau pile.",
+    "ried at the bottom of the first tableau pile.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),
@@ -42,7 +50,7 @@ object Penguin extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings,
+      emptyFilledWith = FillEmptyWith.Kings,
       pilesWithLowCardsAtBottom = 1
     )
   ),

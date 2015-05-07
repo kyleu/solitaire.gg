@@ -21,6 +21,14 @@ object Russian extends GameRules(
   id = "russian",
   title = "Russian",
   related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/russian_solitaire.htm"),
+    Link("dogMelon", "www.dogmelon.com.au/solhelp/Russian%20Solitaire.shtml"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/russian_solitaire.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/RussianSolitaire.html"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/russian-solitaire.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/russian_solitaire.htm")
+  ),
   description = "A harder variation of ^yukon^ where you must build down in the same suit instead of in alternate colors.",
   foundations = Seq(
     FoundationRules(
@@ -45,7 +53,7 @@ object Russian extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

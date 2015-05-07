@@ -23,6 +23,7 @@ object SuitTriangle extends GameRules(
   title = "Suit Triangle",
   like = Some("doubleklondike"),
   related = Seq("sally", "suittriangle"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/suit_triangle.htm")),
   description = "A two-deck version of ^klondike^ where we build in the same suite.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -45,7 +46,7 @@ object SuitTriangle extends GameRules(
       numPiles = 10,
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

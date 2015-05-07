@@ -21,8 +21,14 @@ object LittleNapolean extends GameRules(
   title = "Little Napolean",
   like = Some("fortythieves"),
   related = Seq("mcclellan"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/little_napoleon.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/LittleNapoleon.htm"),
+    Link("Super Solitaire", "supersolitaire.weisswo.com/Games+Rules/Entries/2009/2/15_Little_Napoleon_Solitaire.html"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/little_napoleon.htm")
+  ),
   description = "A ^fortythieves^ variant that shows some ^spider^ influences, because you can build regardless of suit, but only move same-suit se" +
-  "quences.",
+    "quences.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -45,7 +51,7 @@ object LittleNapolean extends GameRules(
       initialCards = InitialCards.Count(4),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

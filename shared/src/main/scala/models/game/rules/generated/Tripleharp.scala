@@ -19,6 +19,7 @@ object Tripleharp extends GameRules(
   id = "tripleharp",
   title = "Tripleharp",
   like = Some("harp"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_harp.htm")),
   description = "A three-deck version of ^harp^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -40,7 +41,7 @@ object Tripleharp extends GameRules(
     TableauRules(
       numPiles = 12,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

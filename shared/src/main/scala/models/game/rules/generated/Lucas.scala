@@ -22,6 +22,16 @@ object Lucas extends GameRules(
   title = "Lucas",
   like = Some("thirtyninesteps"),
   related = Seq("lucas"),
+  links = Seq(
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/lucas.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Forty_Thieves_(card_game)"),
+    Link("dogMelon", "www.dogmelon.com.au/solhelp/Lucas.shtml"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/lucas.php"),
+    Link("Erik Arneson on About.com", "boardgames.about.com/od/solitaire/a/Forty-Thieves.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/Lucas.html"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/lucas.html"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/lucas.htm")
+  ),
   description = "A ^fortythieves^ variant with thirteen tableau piles and aces starting on the foundation.",
   stock = Some(
     StockRules(
@@ -44,7 +54,7 @@ object Lucas extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

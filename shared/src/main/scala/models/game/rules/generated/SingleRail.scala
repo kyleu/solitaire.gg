@@ -16,6 +16,13 @@ object SingleRail extends GameRules(
   id = "singlerail",
   title = "Single Rail",
   related = Seq("doublerail"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/single_rail.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/single_rail.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/single_rail.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/single-rail.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SingleRail.htm")
+  ),
   description = "A one-deck version of ^doublerail^. A good little game for small screens.",
   stock = Some(
     StockRules(
@@ -37,7 +44,7 @@ object SingleRail extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

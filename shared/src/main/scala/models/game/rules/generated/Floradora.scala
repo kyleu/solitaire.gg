@@ -26,6 +26,10 @@ object Floradora extends GameRules(
   id = "floradora",
   title = "Floradora",
   like = Some("takingsilk"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/floradora.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/floradora.htm")
+  ),
   description = "A two-deck variation of ^thirtysix^ with an extra foundation pile for kings, but no stack moves.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -61,7 +65,7 @@ object Floradora extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -25,8 +25,12 @@ object Usk extends GameRules(
   title = "Usk",
   like = Some("somerset"),
   related = Seq("morehead", "usk"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/usk.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/usk.html")
+  ),
   description = "A ^klondike^ variant without stock or waste. Unlike ^somerset^, moves of stacks are allowed and there is a redeal, but spaces can " +
-  "only be filled by kings.",
+    "only be filled by kings.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -51,7 +55,7 @@ object Usk extends GameRules(
         "U"
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   special = Some(

@@ -18,6 +18,16 @@ object Bristol extends GameRules(
   id = "bristol",
   title = "Bristol",
   related = Seq("dover"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Bristol_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bristol.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/bristol.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/bristol.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/bristol.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Bristol.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/bristol.php"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Bristol.html.en")
+  ),
   description = "A game with three waste piles invented by Albert Morehead and Geoffrey Mott-Smith.",
   stock = Some(
     StockRules(

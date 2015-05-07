@@ -24,6 +24,10 @@ import models.game.rules._
 object PileUp extends GameRules(
   id = "pileup",
   title = "Pile Up",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fifteen_puzzle.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Pileon.html.en")
+  ),
   description = "A game where you must sort the cards by rank rather than suit.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
@@ -50,7 +54,7 @@ object PileUp extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Equal,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Equal,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       maxCards = 4
     )
   ),

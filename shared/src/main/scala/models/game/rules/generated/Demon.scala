@@ -24,8 +24,9 @@ object Demon extends GameRules(
   id = "demon",
   title = "Demon",
   like = Some("doublecanfield"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/demon.htm")),
   description = "An two-deck version of ^canfield^, not quite as easy as ^doublecanfield^. \"Demon\" is the standard English name for Canfield. We " +
-  "follow Thomas Warfield in fostering confusion by using the name for this different game.",
+    "follow Thomas Warfield in fostering confusion by using the name for this different game.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown
@@ -50,7 +51,7 @@ object Demon extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

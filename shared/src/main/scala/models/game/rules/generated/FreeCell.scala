@@ -24,8 +24,13 @@ object FreeCell extends GameRules(
     "sixbyfour", "ephemeralfreecell", "challengefreecell", "antares", "sevenbyfive", "spidercells", "bigfreecell", "chinesefreecell",
     "sevenbyfour", "invertedfreecell", "selectivefreecell", "doublefreecell", "freecellduplex"
   ),
+  links = Seq(
+    Link("Michael Keller's amazing FreeCell FAQ", "solitairelaboratory.com/fcfaq.html"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/FreeCell"),
+    Link("FreeCell Solitaire", "www.solitairecentral.com/articles/FreeCellSolitaireAWinningStrategy.html")
+  ),
   description = "Invented by Paul Alfille, made famous by Microsoft, this game provide four temporary storage cells that can be used to move cards " +
-  "around.",
+    "around.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -39,7 +44,7 @@ object FreeCell extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(CellRules()),

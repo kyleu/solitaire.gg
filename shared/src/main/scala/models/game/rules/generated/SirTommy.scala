@@ -22,6 +22,17 @@ object SirTommy extends GameRules(
   id = "sirtommy",
   title = "Sir Tommy",
   related = Seq("alternate", "ladybetty"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Sir_Tommy"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sir_tommy.htm"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/sir_tommy.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/sir_tommy.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/sir-tommy.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Sirtommy.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/sir_tommy.php"),
+    Link("PySol", "pysolfc.sourceforge.net/doc/rules/numerica.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Sir_Tommy.html.en")
+  ),
   description = "A classic old solitaire game where cards may be placed anywhere on the tableau, but cannot be rearranged.",
   stock = Some(
     StockRules(
@@ -46,7 +57,7 @@ object SirTommy extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock"),
       mayMoveToEmptyFrom = Seq("Stock")
     )

@@ -28,6 +28,7 @@ import models.game.rules._
 object Dorothy extends GameRules(
   id = "dorothy",
   title = "Dorothy",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/dorothy.htm")),
   description = "Another brainless variation of ^captivequeens^ and ^sixesandsevens^ with separate foundations for odds, evens and face cards.",
   stock = Some(
     StockRules(
@@ -38,7 +39,7 @@ object Dorothy extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Nine),
       rankMatchRule = RankMatchRule.DownBy2,
       wrapFromKingToAce = true,
       maxCards = 5
@@ -46,7 +47,7 @@ object Dorothy extends GameRules(
     FoundationRules(
       setNumber = 1,
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Ten),
       rankMatchRule = RankMatchRule.DownBy2,
       wrapFromKingToAce = true,
       maxCards = 5
@@ -54,7 +55,7 @@ object Dorothy extends GameRules(
     FoundationRules(
       setNumber = 2,
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Jack),
       wrapFromKingToAce = true,
       maxCards = 3
     )

@@ -25,6 +25,7 @@ object TenAcross extends GameRules(
   title = "Ten Across",
   like = Some("russian"),
   related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
+  links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Ten_Across.html.en")),
   description = "A variation of ^russian^ with a different starting tableau and two cells, which start full.",
   foundations = Seq(
     FoundationRules(
@@ -53,7 +54,7 @@ object TenAcross extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(

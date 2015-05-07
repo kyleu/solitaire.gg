@@ -21,6 +21,13 @@ object EightOff extends GameRules(
   id = "eightoff",
   title = "Eight Off",
   related = Seq("eighton"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eight_off.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/EightOff.html"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/eight_off.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Eight_Off.html.en"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/eight_off.htm")
+  ),
   description = "A ^freecell^ variation with more cells, but where you can only build down in the same suit",
   foundations = Seq(
     FoundationRules(
@@ -36,7 +43,7 @@ object EightOff extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(

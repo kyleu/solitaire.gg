@@ -22,6 +22,7 @@ import models.game.rules._
 object QuadrupleCanfield extends GameRules(
   id = "quadruplecanfield",
   title = "Quadruple Canfield",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_canfield.htm")),
   description = "An easy four-deck version of ^canfield^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 4,
@@ -47,7 +48,7 @@ object QuadrupleCanfield extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

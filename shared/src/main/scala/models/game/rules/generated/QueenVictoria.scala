@@ -23,6 +23,7 @@ object QueenVictoria extends GameRules(
   title = "Queen Victoria",
   like = Some("kingalbert"),
   related = Seq("queenvictoria", "muse", "raglan"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/queen_victoria.htm")),
   description = "This much easier variation of ^kingalbert^ allows stacks of cards to be moved.",
   waste = Some(
     WasteRules(
@@ -40,7 +41,7 @@ object QueenVictoria extends GameRules(
     TableauRules(
       numPiles = 9,
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -17,8 +17,15 @@ import models.game.rules._
 object LittleForty extends GameRules(
   id = "littleforty",
   title = "Little Forty",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/little_forty.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/little_forty.html"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/LittleForty.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/LittleForty.html"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/little_forty.htm")
+  ),
   description = "Like ^fortythieves^, but we build in regardless of color, can move sequences, and can make three passes through the deck, dealing " +
-  "three cards at a time.",
+    "three cards at a time.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -43,7 +50,7 @@ object LittleForty extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

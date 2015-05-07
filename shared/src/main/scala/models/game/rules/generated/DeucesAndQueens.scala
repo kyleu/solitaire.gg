@@ -39,6 +39,7 @@ object DeucesAndQueens extends GameRules(
   title = "Deuces and Queens",
   like = Some("acesandkings"),
   related = Seq("doubleacesandkings", "aceyandkingsley", "deucesandqueens", "racingaces"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/deuces_and_queens.htm")),
   description = "A variation on ^acesandkings^ where building is allowed on the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -54,7 +55,7 @@ object DeucesAndQueens extends GameRules(
     FoundationRules(
       name = "Ace Foundation",
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Two),
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true
     ),
@@ -62,7 +63,7 @@ object DeucesAndQueens extends GameRules(
       name = "King Foundation",
       setNumber = 1,
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Queen),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true

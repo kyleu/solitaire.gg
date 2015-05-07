@@ -19,8 +19,14 @@ object BeleagueredCastle extends GameRules(
   id = "beleagueredcastle",
   title = "Beleaguered Castle",
   related = Seq("fortress", "citadel", "castlemount", "castleofindolence", "streetsandalleys", "selectivecastle"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Beleaguered_Castle"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/beleaguered_castle.html"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/beleaguered_castle.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Beleaguered_Castle.html.en")
+  ),
   description = "A challenging game with simple rules. All cards start dealt face up and you build down regardless of suit, moving only single card" +
-  "s. Somewhat similar to ^bakersdozen^.",
+    "s. Somewhat similar to ^bakersdozen^.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -36,7 +42,7 @@ object BeleagueredCastle extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

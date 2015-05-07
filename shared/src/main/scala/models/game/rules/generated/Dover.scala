@@ -20,8 +20,9 @@ object Dover extends GameRules(
   id = "dover",
   title = "Dover",
   like = Some("bristol"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/dover.htm")),
   description = "This two-deck version of ^bristol^ still has three waste piles, but foundation piles must be built up in suit and empty tableau sp" +
-  "aces may be filled, though only from the waste.",
+    "aces may be filled, though only from the waste.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -49,7 +50,7 @@ object Dover extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation")
     )
   ),

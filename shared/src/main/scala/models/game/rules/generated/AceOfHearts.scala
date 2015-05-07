@@ -23,6 +23,7 @@ import models.game.rules._
 object AceOfHearts extends GameRules(
   id = "aceofhearts",
   title = "Ace of Hearts",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/ace_of_hearts.htm")),
   description = "All cards must be built onto a single foundation pile in this Thomas Warfield invention.",
   stock = Some(
     StockRules(
@@ -44,7 +45,7 @@ object AceOfHearts extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

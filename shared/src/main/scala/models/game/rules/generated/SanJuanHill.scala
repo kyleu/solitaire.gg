@@ -26,6 +26,10 @@ object SanJuanHill extends GameRules(
     "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
     "josephine"
   ),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/san_juan_hill.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SanJuanHill.htm")
+  ),
   description = "An easier variant of ^fortythieves^ in which aces are already on the foundation.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -53,7 +57,7 @@ object SanJuanHill extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

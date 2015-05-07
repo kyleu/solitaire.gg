@@ -17,6 +17,7 @@ object Robie extends GameRules(
   id = "robie",
   title = "Robie",
   like = Some("fortythieves"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/robie.htm")),
   description = "Thomas Warfield's version of ^fortythieves^ in which the tableau starts empty.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -41,7 +42,7 @@ object Robie extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

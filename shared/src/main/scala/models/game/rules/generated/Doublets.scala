@@ -26,8 +26,16 @@ object Doublets extends GameRules(
   title = "Doublets",
   like = Some("simplepairs"),
   related = Seq("crisscross", "eighteens", "straightfifteens", "blockten", "patientpairs", "doubletcell", "doublets"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/doublets.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/doublets.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/doublets.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/doublets.php"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/doublet.html"),
+    Link("Elton Gahr on HobbyHub", "www.hobbyhub360.com/index.php/solitaire-how-to-play-doublets-14100/")
+  ),
   description = "A similar game to ^simplepairs^. You remove pairs of cards of the same rank. The only way to bring any strategy into the game is b" +
-  "y using the undo button.",
+    "y using the undo button.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(
     StockRules(

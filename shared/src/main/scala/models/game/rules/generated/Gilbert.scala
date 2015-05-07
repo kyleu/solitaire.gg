@@ -28,8 +28,9 @@ object Gilbert extends GameRules(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
     "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
   ),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gilbert.htm")),
   description = "An odd ^klondike^ variation with one set of foundations building up and one set building down. The fact that only sevens can fill " +
-  "gaps in the tableau makes it nearly unplayable.",
+    "gaps in the tableau makes it nearly unplayable.",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)
@@ -53,7 +54,7 @@ object Gilbert extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      emptyFilledWith = TableauFillEmptyWith.Sevens
+      emptyFilledWith = FillEmptyWith.Sevens
     )
   ),
   complete = false

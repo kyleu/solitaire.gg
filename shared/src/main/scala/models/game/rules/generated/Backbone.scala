@@ -21,6 +21,14 @@ import models.game.rules._
 object Backbone extends GameRules(
   id = "backbone",
   title = "Backbone",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/backbone.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Backbone_(solitaire)"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/backbone.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/backbone.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Backbone.html.en"),
+    Link("L. Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-backbone-solitaire-14353/")
+  ),
   description = "A difficult game of Victorian origin with a forked reserve pile",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -45,7 +53,7 @@ object Backbone extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   pyramids = Seq(

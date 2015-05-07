@@ -21,8 +21,9 @@ import models.game.rules._
 object SimonJester extends GameRules(
   id = "simonjester",
   title = "Simon Jester",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/simon_jester.htm")),
   description = "A two-deck variant of ^simplesimon^ invented by Adam Selene. It is like ^spider^ except that all cards start face up in a triangul" +
-  "ar tableau and there are no further cards be dealt.",
+    "ar tableau and there are no further cards be dealt.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -58,7 +59,7 @@ object SimonJester extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

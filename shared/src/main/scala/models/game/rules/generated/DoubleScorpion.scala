@@ -23,6 +23,10 @@ import models.game.rules._
 object DoubleScorpion extends GameRules(
   id = "doublescorpion",
   title = "Double Scorpion",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_scorpion.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/double-scorpion.htm")
+  ),
   description = "An easy two-deck variation of ^scorpion^ where all cards are already dealt in the beginning.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -56,7 +60,7 @@ object DoubleScorpion extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

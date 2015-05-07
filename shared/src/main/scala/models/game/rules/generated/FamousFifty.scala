@@ -17,6 +17,12 @@ object FamousFifty extends GameRules(
   id = "famousfifty",
   title = "Famous Fifty",
   like = Some("fortythieves"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/famous_fifty.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/famous-fifty.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/FamousFifty.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/famous_fifty.htm")
+  ),
   description = "A difficult ^fortythieves^ variation which starts with one extra card on each tableau pile.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -41,7 +47,7 @@ object FamousFifty extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -20,6 +20,7 @@ object Quizzie extends GameRules(
   id = "quizzie",
   title = "Quizzie",
   like = Some("inquisitor"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quizzie.htm")),
   description = "A variation of ^inquisitor^ by Thomas Warfield where you deal fewer cards in each pass through the deck.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -44,7 +45,7 @@ object Quizzie extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

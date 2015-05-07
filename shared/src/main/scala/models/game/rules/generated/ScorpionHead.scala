@@ -22,6 +22,7 @@ import models.game.rules._
 object ScorpionHead extends GameRules(
   id = "scorpionhead",
   title = "Scorpion Head",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/scorpion_head.htm")),
   description = "A variation of ^scorpion^ with some cells.",
   foundations = Seq(
     FoundationRules(
@@ -46,7 +47,7 @@ object ScorpionHead extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(CellRules()),

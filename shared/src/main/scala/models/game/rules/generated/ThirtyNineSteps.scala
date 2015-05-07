@@ -21,6 +21,10 @@ object ThirtyNineSteps extends GameRules(
   title = "Thirty Nine Steps",
   like = Some("waningmoon"),
   related = Seq("lucas"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/thirty_nine_steps.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/thirty-nine-steps.htm")
+  ),
   description = "^waningmoon^ with fewer cards in the initial tableau.",
   stock = Some(
     StockRules(
@@ -42,7 +46,7 @@ object ThirtyNineSteps extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

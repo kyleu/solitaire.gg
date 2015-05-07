@@ -20,6 +20,12 @@ import models.game.rules._
 object Thirteens extends GameRules(
   id = "thirteens",
   title = "Thirteens",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/thirteens.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/thirteens.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Helsinki.html.en"),
+    Link("Jan Wolter's Experiments", "/article/simplepairs.html")
+  ),
   description = "Remove pairs that add the thirteen. Entirely a game of luck.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(

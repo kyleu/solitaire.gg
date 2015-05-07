@@ -26,6 +26,15 @@ object Rainbow extends GameRules(
   title = "Rainbow",
   like = Some("canfield"),
   related = Seq("kansas"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rainbow.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/rainbow.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/rainbow.php"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Rainbow.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/Rainbow.html"),
+    Link("PySol", "pysolfc.sourceforge.net/doc/rules/rainbow.html"),
+    Link("Swoop Solitaire", "www.swoopsoftware.com/solitaire_rules/rainbow.html")
+  ),
   description = "A variation of ^canfield^ in which you can build regardless of suit.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -52,7 +61,7 @@ object Rainbow extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

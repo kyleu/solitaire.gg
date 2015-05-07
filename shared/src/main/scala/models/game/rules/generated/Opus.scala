@@ -23,6 +23,7 @@ object Opus extends GameRules(
   id = "opus",
   title = "Opus",
   like = Some("penguin"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/opus.htm")),
   description = "Thomas Warfield's much more difficult version of ^penguin^ has two fewer cells",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -41,7 +42,7 @@ object Opus extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings,
+      emptyFilledWith = FillEmptyWith.Kings,
       pilesWithLowCardsAtBottom = 1
     )
   ),

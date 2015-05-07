@@ -17,6 +17,7 @@ import models.game.rules._
 object FourByTen extends GameRules(
   id = "fourbyten",
   title = "Four by Ten",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/four_by_ten.htm")),
   description = "A ^freecell^ variation with lots of cells and not so many tableau piles.",
   foundations = Seq(
     FoundationRules(
@@ -31,7 +32,7 @@ object FourByTen extends GameRules(
       initialCards = InitialCards.Count(13),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

@@ -22,6 +22,7 @@ object Irmgard extends GameRules(
   id = "irmgard",
   title = "Irmgard",
   like = Some("gypsy"),
+  links = Seq(Link("PySol", "pysolfc.sourceforge.net/doc/rules/irmgard.html")),
   description = "A variant of ^gypsy^ where you have an extra tableau pile, but you can only fill spaces with kings.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -43,7 +44,7 @@ object Irmgard extends GameRules(
     TableauRules(
       numPiles = 9,
       initialCards = InitialCards.Count(3),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

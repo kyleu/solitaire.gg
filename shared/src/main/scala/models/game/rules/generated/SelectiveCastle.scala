@@ -22,6 +22,10 @@ object SelectiveCastle extends GameRules(
   title = "Selective Castle",
   like = Some("beleagueredcastle"),
   related = Seq("fortress", "citadel", "castlemount", "castleofindolence", "streetsandalleys", "selectivecastle"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/selective_castle.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Beleaguered_Castle")
+  ),
   description = "A version of ^beleagueredcastle^ where the base of the foundation is determined by the first card you play to it.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -40,7 +44,7 @@ object SelectiveCastle extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

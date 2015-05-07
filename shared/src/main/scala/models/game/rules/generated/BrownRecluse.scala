@@ -20,8 +20,9 @@ import models.game.rules._
 object BrownRecluse extends GameRules(
   id = "brownrecluse",
   title = "Brown Recluse",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/brown_recluse.htm")),
   description = "This ^spider^ variant by Thomas Warfield has a stock and a waste pile. The tableau starts with just one card in each column, but s" +
-  "paces are autofilled from the waste or stock.",
+    "paces are autofilled from the waste or stock.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2
@@ -41,7 +42,7 @@ object BrownRecluse extends GameRules(
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

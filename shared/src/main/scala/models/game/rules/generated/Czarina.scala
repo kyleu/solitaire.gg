@@ -22,6 +22,12 @@ object Czarina extends GameRules(
   title = "Czarina",
   like = Some("fourseasons"),
   related = Seq("corners"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/czarina.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/czarina.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/czarina.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Czarina.htm")
+  ),
   description = "A variation on ^fourseasons^ where spaces are filled automatically from the stock.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -48,7 +54,7 @@ object Czarina extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

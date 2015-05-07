@@ -28,6 +28,7 @@ object DoubleStorehouse extends GameRules(
   title = "Double Storehouse",
   like = Some("storehouse"),
   related = Seq("doublestorehouse"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_storehouse.htm")),
   description = "A two-deck version of ^storehouse^.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -55,7 +56,7 @@ object DoubleStorehouse extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

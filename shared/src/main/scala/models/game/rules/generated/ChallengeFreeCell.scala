@@ -24,6 +24,10 @@ object ChallengeFreeCell extends GameRules(
   title = "Challenge FreeCell",
   like = Some("freecell"),
   related = Seq("superchallengefreecell"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/challenge_freecell.htm"),
+    Link("Michael Keller's amazing FreeCell FAQ", "solitairelaboratory.com/fcfaq.html#AceDepth")
+  ),
   description = "A version of ^freecell^ invented by Thomas Warfield where the aces and twos are always at the bottoms of the eight stacks.",
   foundations = Seq(
     FoundationRules(
@@ -38,7 +42,7 @@ object ChallengeFreeCell extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       pilesWithLowCardsAtBottom = 8
     )
   ),

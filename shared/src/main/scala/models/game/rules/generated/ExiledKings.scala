@@ -21,6 +21,10 @@ object ExiledKings extends GameRules(
   id = "exiledkings",
   title = "Exiled Kings",
   like = Some("citadel"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/exiled_kings.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/exiled-kings.htm")
+  ),
   description = "A more difficult variation of ^citadel^ where spaces can only be filled by kings.",
   foundations = Seq(
     FoundationRules(
@@ -37,7 +41,7 @@ object ExiledKings extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings,
+      emptyFilledWith = FillEmptyWith.Kings,
       actionDuringDeal = PileAction.MoveToFoundation
     )
   ),

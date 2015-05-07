@@ -35,6 +35,15 @@ object Colorado extends GameRules(
   title = "Colorado",
   like = Some("twenty"),
   related = Seq("colorado"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Colorado_(game)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/colorado.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/colorado.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/colorado.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/colorado.php"),
+    Link("dogMelon", "www.dogmelon.com.au/solhelp/Colorado.shtml"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/colorado.htm")
+  ),
   description = "A game where cards may be stacked arbitrarily on 20 tableau piles. Usually winnable, but requires some planning.",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -19,6 +19,7 @@ object TenByOne extends GameRules(
   id = "tenbyone",
   title = "Ten By One",
   like = Some("vineyard"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/ten_by_one.htm")),
   description = "Ten tableau piles and one cell make a game with similarities to ^freecell^ and ^vineyard^.",
   foundations = Seq(
     FoundationRules(
@@ -33,7 +34,7 @@ object TenByOne extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

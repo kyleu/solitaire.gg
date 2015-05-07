@@ -33,8 +33,9 @@ object CloverLeaf extends GameRules(
   title = "Clover Leaf",
   like = Some("alexanderthegreat"),
   related = Seq("alternative"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/clover_leaf.htm")),
   description = "An easy game invented by Thomas Warfield where you build up or down on the tableau, two foundation piles build up, and two build d" +
-  "own.",
+    "own.",
   foundations = Seq(
     FoundationRules(
       name = "Red Foundation",
@@ -63,7 +64,7 @@ object CloverLeaf extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.KingsOrAces
+      emptyFilledWith = FillEmptyWith.KingsOrAces
     )
   ),
   complete = false

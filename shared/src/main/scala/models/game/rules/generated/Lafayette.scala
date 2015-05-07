@@ -23,6 +23,7 @@ import models.game.rules._
 object Lafayette extends GameRules(
   id = "lafayette",
   title = "Lafayette",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lafayette.htm")),
   description = "A ^canfield^ variant with one foundation building up and one building down.",
   stock = Some(
     StockRules(
@@ -51,7 +52,7 @@ object Lafayette extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Sevens
+      emptyFilledWith = FillEmptyWith.Sevens
     )
   ),
   reserves = Some(

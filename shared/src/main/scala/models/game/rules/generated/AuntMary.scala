@@ -25,6 +25,13 @@ object AuntMary extends GameRules(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
     "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
   ),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/aunt_mary.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/aunt_mary.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/aunt-mary.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Aunt_Mary.html.en"),
+    Link("L.Schaffer on Hobby Hub", "www.hobbyhub360.com/index.php/how-to-play-aunt-mary-solitaire-14352/")
+  ),
   description = "A difficult ^klondike^ variation where the tableau contains one fewer pile but all cards are face up.",
   stock = Some(
     StockRules(
@@ -43,7 +50,7 @@ object AuntMary extends GameRules(
     TableauRules(
       numPiles = 6,
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

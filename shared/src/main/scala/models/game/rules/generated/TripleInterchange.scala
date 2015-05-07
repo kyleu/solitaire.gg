@@ -23,6 +23,7 @@ object TripleInterchange extends GameRules(
   title = "Triple Interchange",
   like = Some("interchange"),
   related = Seq("quadrupleinterchange"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_interchange.htm")),
   description = "A three-deck version of ^interchange^.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -43,7 +44,7 @@ object TripleInterchange extends GameRules(
       cardsFaceDown = TableauFaceDownCards.EvenNumbered,
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -18,6 +18,12 @@ import models.game.rules._
 object ShadyLanes extends GameRules(
   id = "shadylanes",
   title = "Shady Lanes",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/shady_lanes.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/shady_lanes.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/shady-lanes.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/ShadyLanes.htm")
+  ),
   description = "A difficult game with four reserve piles and four tableau piles.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -41,7 +47,7 @@ object ShadyLanes extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Reserve")
     )
   ),

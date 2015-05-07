@@ -15,6 +15,7 @@ import models.game.rules._
 object GreatTriangle extends GameRules(
   id = "greattriangle",
   title = "Great Triangle",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/great_triangle.htm")),
   description = "An difficult three-deck ^klondike^ version by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -36,7 +37,7 @@ object GreatTriangle extends GameRules(
     TableauRules(
       numPiles = 13,
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

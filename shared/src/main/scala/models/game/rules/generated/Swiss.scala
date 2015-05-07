@@ -17,6 +17,10 @@ import models.game.rules._
 object Swiss extends GameRules(
   id = "swiss",
   title = "Swiss",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/swiss_patience.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SwissPatience.htm")
+  ),
   description = "Like ^klondike^ but aces are high and the tableau is pyramidical.",
   deckOptions = DeckOptions(
     lowRank = Rank.Two
@@ -50,7 +54,7 @@ object Swiss extends GameRules(
         "U"
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

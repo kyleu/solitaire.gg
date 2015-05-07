@@ -25,8 +25,9 @@ object CanfieldRush extends GameRules(
   title = "Canfield Rush",
   like = Some("canfield"),
   related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/canfield_rush.htm")),
   description = "A ^canfield^ variant where cards are dealt by threes in the first pass, by twos in the second and one-at-a-time in the last. Easie" +
-  "r than standard Canfield, but still a challenging game.",
+    "r than standard Canfield, but still a challenging game.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),
@@ -51,7 +52,7 @@ object CanfieldRush extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

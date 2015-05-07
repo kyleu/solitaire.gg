@@ -24,6 +24,11 @@ object Brigade extends GameRules(
   title = "Brigade",
   like = Some("flowergarden"),
   related = Seq("wildflower", "brigade"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/brigade.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/brigade.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/brigade.html")
+  ),
   description = "An easier variation of ^flowergarden^ with more tableau piles of fewer cards, and aces starting on the foundation.",
   waste = Some(
     WasteRules(
@@ -45,7 +50,7 @@ object Brigade extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

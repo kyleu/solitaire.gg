@@ -40,7 +40,7 @@ object ParserDefaults {
       "smode" -> 1,
       "statusbar" -> 1,
       "stdsuits" -> 15,
-      "suits" -> 0,
+      "suits" -> 15,
       "supermoves" -> 0,
       "title" -> "Scalataire",
       "toptobot" -> true,

@@ -36,6 +36,13 @@ object Nationale extends GameRules(
   title = "Nationale",
   like = Some("caprice"),
   related = Seq("chequers", "cicely", "nationale"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/nationale.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/nationale.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/nationale.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Nationale.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/nationale.php")
+  ),
   description = "Like ^caprice^ without a stock.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -68,7 +75,7 @@ object Nationale extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       actionDuringDeal = PileAction.MoveToFoundation
     )
   ),

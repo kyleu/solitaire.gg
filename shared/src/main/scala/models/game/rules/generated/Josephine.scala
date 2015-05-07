@@ -24,6 +24,14 @@ object Josephine extends GameRules(
     "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
     "josephine"
   ),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Josephine_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/josephine.htm"),
+    Link("dogMelon", "www.dogmelon.com.au/solhelp/Josephine.shtml"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/josephine.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/josephine.php"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/josephine.htm")
+  ),
   description = "Similar to ^fortythieves^, except that you can move sequences.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -48,7 +56,7 @@ object Josephine extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

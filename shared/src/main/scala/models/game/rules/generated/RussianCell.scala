@@ -24,6 +24,7 @@ object RussianCell extends GameRules(
   title = "Russian Cell",
   like = Some("russian"),
   related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/russian_cell.htm")),
   description = "Thomas Warfield's variant of ^russian^ Solitaire adds a couple cells.",
   foundations = Seq(
     FoundationRules(
@@ -48,7 +49,7 @@ object RussianCell extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(

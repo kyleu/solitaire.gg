@@ -19,6 +19,12 @@ object LuckyThirteen extends GameRules(
   id = "luckythirteen",
   title = "Lucky Thirteen",
   related = Seq("luckypiles"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lucky_thirteen.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/lucky_thirteen.html"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/LuckyThirteen.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/lucky-thirteen.htm")
+  ),
   description = "A rarely-winnable game with simple \"rules\": build down regardless of suit, no stack moves.",
   foundations = Seq(
     FoundationRules(

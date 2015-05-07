@@ -26,6 +26,10 @@ import models.game.rules._
 object Fifteen extends GameRules(
   id = "fifteen",
   title = "Fifteen",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fifteen.htm"),
+    Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#fifteen")
+  ),
   description = "Build up on one foundation, down on the other. Build up or down on the tableau.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -51,7 +55,7 @@ object Fifteen extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

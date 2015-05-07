@@ -22,6 +22,7 @@ object PrivateLane extends GameRules(
   title = "Private Lane",
   like = Some("streetsandalleys"),
   related = Seq("stronghold", "penelopesweb", "privatelane"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/private_lane.htm")),
   description = "A variation of ^beleagueredcastle^ with two ^freecell^-style cells added.",
   foundations = Seq(
     FoundationRules(
@@ -37,7 +38,7 @@ object PrivateLane extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

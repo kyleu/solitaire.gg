@@ -18,6 +18,7 @@ object MarieRose extends GameRules(
   id = "marierose",
   title = "Marie Rose",
   like = Some("sixtythieves"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/marie_rose.htm")),
   description = "A three-deck version of ^josephine^ or a version of ^sixtythieves^ which allows sequences to be moved.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -42,7 +43,7 @@ object MarieRose extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

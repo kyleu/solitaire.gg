@@ -22,6 +22,7 @@ object YukonCells extends GameRules(
   id = "yukoncells",
   title = "Yukon Cells",
   like = Some("yukon"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukon_cells.htm")),
   description = "A variation of ^yukon^ simplified by the addition of two cells.",
   foundations = Seq(
     FoundationRules(
@@ -45,7 +46,7 @@ object YukonCells extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(

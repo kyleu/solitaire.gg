@@ -23,6 +23,7 @@ object FortressOfMercy extends GameRules(
   title = "Fortress of Mercy",
   like = Some("fortress"),
   related = Seq("bastion", "chessboard", "fortressofmercy", "beleagueredfortress"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fortress_of_mercy.htm")),
   description = "A variation of ^fortress^ that allows you one \"merci\" move, in which any one card can be moved to the top of its stack.",
   foundations = Seq(
     FoundationRules(
@@ -40,7 +41,7 @@ object FortressOfMercy extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   special = Some(

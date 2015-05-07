@@ -24,6 +24,7 @@ object MidnightClover extends GameRules(
   title = "Midnight Clover",
   like = Some("fan"),
   related = Seq("boxfan", "freefan", "ceilingfan", "midnightclover"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/midnight_clover.htm")),
   description = "A ^fan^ variant by Thomas Warfield where a draw is allowed.",
   foundations = Seq(
     FoundationRules(
@@ -41,7 +42,7 @@ object MidnightClover extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   special = Some(

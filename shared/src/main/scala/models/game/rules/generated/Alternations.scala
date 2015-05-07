@@ -16,8 +16,15 @@ import models.game.rules._
 object Alternations extends GameRules(
   id = "alternations",
   title = "Alternations",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/alternations.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Alternation_(solitaire)"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/alternation.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/alternations.htm"),
+    Link("Solitaire City", "www.solitairecity.com/Alternations.shtml")
+  ),
   description = "A variation of ^interchange^ that has the same 7 by 7 tableau with alternate cards face down, but where you build in alternate col" +
-  "ors.",
+    "ors.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -38,7 +45,7 @@ object Alternations extends GameRules(
     TableauRules(
       initialCards = InitialCards.Count(7),
       cardsFaceDown = TableauFaceDownCards.EvenNumbered,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

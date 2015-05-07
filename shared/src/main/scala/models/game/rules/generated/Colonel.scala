@@ -26,6 +26,7 @@ object Colonel extends GameRules(
   id = "colonel",
   title = "Colonel",
   related = Seq("signora"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/colonel.htm")),
   description = "A variation of ^signora^ invented by Thomas Warfield where we built in the same suit instead of alternating colors.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -51,7 +52,7 @@ object Colonel extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Cell", "Foundation", "Tableau"),
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Cell", "Foundation", "Tableau")
     )

@@ -21,8 +21,20 @@ object FlowerGarden extends GameRules(
   id = "flowergarden",
   title = "Flower Garden",
   related = Seq("wildflower", "brigade"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/flower_garden.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Flower_Garden_(solitaire)"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/bouquet.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/FlowerGarden.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/flower_garden.htm"),
+    Link("dogMelon", "www.dogmelon.com.au/solhelp/FlowerGarden.shtml"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/flower_garden.html"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/flower_garden.htm"),
+    Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#flower"),
+    Link("LenaGames", "www.lenagames.com/bp_files/rul/flower-garden.htm")
+  ),
   description = "The six stacks of six cards in the tableau are called \"flower beds\". You can build down on them in any suit.  Instead of stock a" +
-  "nd waste piles, you have a bouquet of 16 cards, any of which can be played at any time.",
+    "nd waste piles, you have a bouquet of 16 cards, any of which can be played at any time.",
   waste = Some(
     WasteRules(
       name = "Bouquet",
@@ -44,7 +56,7 @@ object FlowerGarden extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

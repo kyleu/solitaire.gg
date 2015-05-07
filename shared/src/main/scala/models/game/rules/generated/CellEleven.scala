@@ -24,6 +24,7 @@ object CellEleven extends GameRules(
   title = "Cell Eleven",
   like = Some("triplefreecell"),
   related = Seq("celleleven", "freecellthreedeck"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cell_11.htm")),
   description = "A three-deck version of ^freecell^.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -55,7 +56,7 @@ object CellEleven extends GameRules(
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

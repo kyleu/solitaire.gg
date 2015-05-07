@@ -32,6 +32,10 @@ object GolfRush extends GameRules(
   title = "Golf Rush",
   like = Some("golf"),
   related = Seq("allinarow", "escalator", "puttputt", "panthercreek", "golfrush"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/golf_rush.htm"),
+    Link("Jan Wolter's Experiments", "/article/golf.html")
+  ),
   description = "A variant of ^golf^ played on with a ^klondike^-style tableau.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(

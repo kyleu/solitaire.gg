@@ -46,6 +46,10 @@ object BinaryStar extends GameRules(
   title = "Binary Star",
   like = Some("blackhole"),
   related = Seq("blackhole"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/binary_star.htm"),
+    Link("Jan Wolter's Experiments", "/article/blackhole.html")
+  ),
   description = "Thomas Warfield's two-deck version of ^blackhole^ has two foundation piles.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   deckOptions = DeckOptions(

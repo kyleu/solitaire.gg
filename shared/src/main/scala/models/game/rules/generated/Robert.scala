@@ -20,6 +20,12 @@ object Robert extends GameRules(
   id = "robert",
   title = "Robert",
   related = Seq("bobby"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/robert.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/robert.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/robert.htm"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/robert.htm")
+  ),
   description = "An nearly unwinnable game with no tableau.",
   stock = Some(
     StockRules(

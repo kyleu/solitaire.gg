@@ -28,8 +28,14 @@ object Indefatigable extends GameRules(
   title = "Indefatigable",
   like = Some("cruel"),
   related = Seq("royalfamily"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/indefatigable.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Indefatigable.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/the_indefatigable.php"),
+    Link("Jan Wolter's Experiments", "/article/indefatigable.html")
+  ),
   description = "This variation of ^royalfamily^ is basically the same, but the foundations build up from ace, and it is made even easier by a extr" +
-  "a redeal.",
+    "a redeal.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -46,7 +52,7 @@ object Indefatigable extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   special = Some(

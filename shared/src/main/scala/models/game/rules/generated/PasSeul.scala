@@ -18,8 +18,15 @@ object PasSeul extends GameRules(
   id = "passeul",
   title = "Pas Seul",
   like = Some("blindalleys"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pas_seul.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/pas_seul.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/pas-seul.htm"),
+    Link("PySol", "pysolfc.sourceforge.net/doc/rules/passeul.html"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Passeul.htm")
+  ),
   description = "A ^klondike^ variant with a rectangular tableau, differing from ^blindalleys^ only in the number of passes through the deck allowe" +
-  "d. The name refers to a dance sequence for one person.",
+    "d. The name refers to a dance sequence for one person.",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)
@@ -37,7 +44,7 @@ object PasSeul extends GameRules(
     TableauRules(
       numPiles = 6,
       initialCards = InitialCards.Count(3),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

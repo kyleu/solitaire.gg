@@ -23,6 +23,7 @@ object BakersTwoDeck extends GameRules(
   title = "Baker's Two-Deck",
   like = Some("bakers"),
   related = Seq("bakerstwodeck"),
+  links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/bakersgame2.htm")),
   description = "A two-deck version of ^bakers^ games.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -41,7 +42,7 @@ object BakersTwoDeck extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

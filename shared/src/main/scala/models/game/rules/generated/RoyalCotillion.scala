@@ -36,6 +36,13 @@ object RoyalCotillion extends GameRules(
   title = "Royal Cotillion",
   like = Some("oddandeven"),
   related = Seq("royalcotillion"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Royal_Cotillion"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/royal_cotillion.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/royal-cotillion.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/royal_cotillion.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/RoyalCotillion.htm")
+  ),
   description = "A variation of ^oddandeven^ with some extra tableau and reserve piles, but only one pass allowed through the deck.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -56,7 +63,7 @@ object RoyalCotillion extends GameRules(
     FoundationRules(
       setNumber = 1,
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Two),
       initialCards = 4,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true

@@ -32,6 +32,7 @@ object LadyCadogan extends GameRules(
   id = "ladycadogan",
   title = "Lady Cadogan",
   related = Seq("fortydevils"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lady_cadogan.htm")),
   description = "Thomas Warfield's ^rougeetnoir^ variant where we build regardless of suit instead of in alternating colors.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -57,7 +58,7 @@ object LadyCadogan extends GameRules(
       numPiles = 10,
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

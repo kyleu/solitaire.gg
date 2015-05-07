@@ -39,6 +39,7 @@ object EvenAndOdd extends GameRules(
   title = "Even and Odd",
   like = Some("boulevard"),
   related = Seq("evenandodd"),
+  links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/even-and-odd.htm")),
   description = "A one-deck version of ^boulevard^.",
   stock = Some(
     StockRules(
@@ -57,7 +58,7 @@ object EvenAndOdd extends GameRules(
     FoundationRules(
       setNumber = 1,
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Two),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,

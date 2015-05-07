@@ -23,6 +23,7 @@ object FortyThieves3Deck extends GameRules(
     "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
     "josephine"
   ),
+  links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/forty_thieves_three_decks.htm")),
   description = "A three deck version of ^fortythieves^ with a 12 by 4 tableau.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -47,7 +48,7 @@ object FortyThieves3Deck extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

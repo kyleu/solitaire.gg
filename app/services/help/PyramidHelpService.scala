@@ -1,6 +1,6 @@
 package services.help
 
-import models.game.rules.{ PyramidType, PyramidRules }
+import models.game.rules._
 import utils.NumberUtils
 
 object PyramidHelpService {
@@ -17,6 +17,28 @@ object PyramidHelpService {
       case PyramidType.Inverted => ret += "An inverted pyramid with " + rows + " (the bottom row has only one card, two in the next, and so on)."
       case PyramidType.Custom => ret += "A pyramid with a custom layout. It's freaky."
     }
+
+    if (rules.wrapFromKingToAce) {
+      ret += "An Ace may be played on a King, continuing the sequence."
+    }
+
+    rules.suitMatchRuleForBuilding match {
+      case SuitMatchRule.None => ret += "No cards may be built on the pyramid."
+      case sb => rules.rankMatchRuleForBuilding match {
+        case RankMatchRule.None => ret += "No cards may be built on the pyramid."
+        case rb => ret += "Cards that are " + rb.toWords + " and " + sb.toWords + " may be added to these piles."
+      }
+    }
+
+    rules.suitMatchRuleForMovingStacks match {
+      case SuitMatchRule.None => ret += "No cards may be moved from the pyramid."
+      case sb => rules.rankMatchRuleForMovingStacks match {
+        case RankMatchRule.None => ret += "No cards may be moved from the pyramid."
+        case rb => ret += "Sequences of cards that are " + rb.toWords + " and " + sb.toWords + " may be moved from the pyramid."
+      }
+    }
+
+    ret += rules.emptyFilledWith.toWords
 
     rules.name -> ret
   }

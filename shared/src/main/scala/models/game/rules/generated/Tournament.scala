@@ -50,8 +50,13 @@ object Tournament extends GameRules(
   title = "Tournament",
   like = Some("cicely"),
   related = Seq("tournament"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Tournament_(solitaire)"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/tournament.html"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/tournament.htm")
+  ),
   description = "A two-deck game where no building is allowed on the tableau, and you must rely on eight cells to move your cards to the foundation" +
-  ".",
+    ".",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

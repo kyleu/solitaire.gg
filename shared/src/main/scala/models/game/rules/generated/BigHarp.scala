@@ -26,6 +26,10 @@ object BigHarp extends GameRules(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
     "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
   ),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/big_harp.htm"),
+    Link("Lena Games", "www.lenagames.com/bp_files/rul/big-harp.htm")
+  ),
   description = "A two-deck ^klondike^ variation that is different than ^harp^ in several ways, without really being that much bigger.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -47,7 +51,7 @@ object BigHarp extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

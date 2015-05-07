@@ -30,6 +30,11 @@ object Beetle extends GameRules(
     "fredsspider", "chinesespider", "astrocyte", "mondospider", "tarantula", "trillium", "spideronesuit", "spidertwosuits",
     "spiderette", "blackwidow", "hugespider", "beetle", "bigspider"
   ),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Beetle_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/beetle.htm"),
+    Link("Chet Carrie on eHow", "www.ehow.com/how_7215429_play-beetle-solitaire.html")
+  ),
   description = "A variation of ^spider^ where all cards are dealt face up.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
@@ -67,7 +72,7 @@ object Beetle extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

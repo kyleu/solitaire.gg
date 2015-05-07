@@ -24,6 +24,7 @@ import models.game.rules._
 object Applegate extends GameRules(
   id = "applegate",
   title = "Applegate",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/applegate.htm")),
   description = "This game has similarities to both ^spider^ and ^yukon^, and may be an older version of ^scorpion^",
   waste = Some(
     WasteRules(
@@ -54,7 +55,7 @@ object Applegate extends GameRules(
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

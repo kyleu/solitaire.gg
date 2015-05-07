@@ -19,8 +19,18 @@ object BusyAces extends GameRules(
   id = "busyaces",
   title = "Busy Aces",
   related = Seq("stages", "courtyard", "dimes", "fortunesfavor", "deuces"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/busy_aces.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/busy_aces.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/busy_aces.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/busy_aces.php"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/BusyAces.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/busy-aces.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/busy_aces.htm"),
+    Link("Amelia Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/view-article/1866274/")
+  ),
   description = "A fairly easy game dating back to 1939. Twelve tableau stacks of one card each mean you can easily get lots of empty spaces to wor" +
-  "k with.",
+    "k with.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -44,7 +54,7 @@ object BusyAces extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -21,6 +21,15 @@ import models.game.rules._
 object SimpleSimon extends GameRules(
   id = "simplesimon",
   title = "Simple Simon",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/simple_simon.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Simple_Simon_(solitaire)"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/simple_simon.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/simple-simon.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SimpleSimon.htm"),
+    Link("Solitaire Whizz", "www.solitairewhizz.com/how-to-play/simple-simon.shtml"),
+    Link("kPatience", "docs.kde.org/stable/en/kdegames/kpat/rules-specific.html#simple-simon")
+  ),
   description = "Like a one-deck ^spider^ where all cards start face up in a triangular tableau and there are no further cards to deal.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   foundations = Seq(
@@ -51,7 +60,7 @@ object SimpleSimon extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

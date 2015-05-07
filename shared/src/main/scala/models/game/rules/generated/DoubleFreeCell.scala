@@ -31,6 +31,10 @@ object DoubleFreeCell extends GameRules(
     "sixbyfour", "ephemeralfreecell", "challengefreecell", "antares", "sevenbyfive", "spidercells", "bigfreecell", "chinesefreecell",
     "sevenbyfour", "invertedfreecell", "selectivefreecell", "doublefreecell", "freecellduplex"
   ),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_freecell.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/double_freecell.htm")
+  ),
   description = "Thomas Warfield's two-deck version of ^freecell^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -50,7 +54,7 @@ object DoubleFreeCell extends GameRules(
       initialCards = InitialCards.Count(10),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

@@ -24,6 +24,7 @@ import models.game.rules._
 object Zerline extends GameRules(
   id = "zerline",
   title = "Zerline",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/zerline.htm")),
   description = "A German game where queens are high and you have a four card storage area.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -49,7 +50,7 @@ object Zerline extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     ),
     TableauRules(
       name = "Reserve",
@@ -60,7 +61,7 @@ object Zerline extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Tableau"),
       maxCards = 4
     )

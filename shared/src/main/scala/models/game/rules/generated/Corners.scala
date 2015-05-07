@@ -24,6 +24,10 @@ object Corners extends GameRules(
   title = "Corners",
   like = Some("czarina"),
   related = Seq("corners"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/corners.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/corners.htm")
+  ),
   description = "This completely mindless variation on ^czarina^ allows no building on the tableau, but allows three passes through the stock.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -49,7 +53,7 @@ object Corners extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

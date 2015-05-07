@@ -23,8 +23,12 @@ object Manx extends GameRules(
   id = "manx",
   title = "Manx",
   related = Seq("tabbycat"),
+  links = Seq(
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/Manx.html"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/manx.html")
+  ),
   description = "Build complete sequences by rearranging four piles regardless of suit in this game invented by Rick Holzgrafe of Solitaire Til Daw" +
-  "n.",
+    "n.",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,
@@ -48,7 +52,7 @@ object Manx extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

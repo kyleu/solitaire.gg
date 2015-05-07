@@ -24,8 +24,13 @@ object ImperialGuards extends GameRules(
   title = "Imperial Guards",
   like = Some("missmilligan"),
   related = Seq("imperialguards"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/imperial_guards.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/imperial-guards.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/ImperialGuards.htm")
+  ),
   description = "A version of ^missmilligan^ where empty tableau spaces can be filled with any card instead of Kings only. Since empty spaces are c" +
-  "ommon in these games, this greatly simplifies the game.",
+    "ommon in these games, this greatly simplifies the game.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -48,7 +53,7 @@ object ImperialGuards extends GameRules(
       numPiles = 8,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

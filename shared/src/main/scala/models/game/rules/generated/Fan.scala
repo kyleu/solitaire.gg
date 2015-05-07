@@ -20,6 +20,10 @@ object Fan extends GameRules(
   id = "fan",
   title = "Fan",
   related = Seq("boxfan", "freefan", "ceilingfan", "midnightclover"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fan.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/fan.htm")
+  ),
   description = "The original Fan game involves building in suit on eighteen tableau piles.",
   foundations = Seq(
     FoundationRules(
@@ -36,7 +40,7 @@ object Fan extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

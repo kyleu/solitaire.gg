@@ -22,6 +22,11 @@ import models.game.rules._
 object Gloucestershire extends GameRules(
   id = "gloucestershire",
   title = "Gloucestershire",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gloucestershire.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/gloucestershire.html"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Gloucestershire.htm")
+  ),
   description = "A two-deck variation of ^flowergarden^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -52,7 +57,7 @@ object Gloucestershire extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

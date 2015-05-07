@@ -18,8 +18,15 @@ import models.game.rules._
 object Gargantua extends GameRules(
   id = "gargantua",
   title = "Gargantua",
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Gargantua_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gargantua.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/gargantua.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/gargantua.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/gargantua.htm")
+  ),
   description = "A two-deck version of ^klondike^ invented by Albert Morehead and Geoffrey Mott-Smith. You get two passes through the deck, dealing" +
-  " cards one at a time.",
+    " cards one at a time.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -39,7 +46,7 @@ object Gargantua extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 9,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

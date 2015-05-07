@@ -23,6 +23,21 @@ object Klondike extends GameRules(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
     "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman", "klondike1card"
   ),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Klondike_(solitaire)"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/Klondike.html"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/klondike.htm"),
+    Link("dogMelon", "www.dogmelon.com.au/solhelp/Klondike%20Solitaire.shtml"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/klondike.html"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/klondike_by_threes.html"),
+    Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#canfield"),
+    Link("An 1897 description", "howtoplaysolitaire.blogspot.com/2010/06/canfield-or-klondike-single-deck.html"),
+    Link("Robert Abbott's Strategy Guide", "www.logicmazes.com/sol/"),
+    Link("Boris Sandberg's Strategy Tips", "www.solitairecentral.com/articles/KlondikeSolitaireWinningStrategyTips.html"),
+    Link("A Strategy for Winning Klondike Solitaire", "www.jupiterscientific.org/sciinfo/AStrategryForWinningKlondikeSolitaire.html"),
+    Link("Usman Latif's analysis of the number of Klondike cards in which no cards can be played.", "www.techuser.net/klondikeprob.html"),
+    Link("Bill's Solitaire Tester", "www.roziturnbull.com/bill/Solitaire/solitaire.htm")
+  ),
   description = "The world's most famous solitaire game features a triangular tableau where you build down in alternating colors.",
   stock = Some(
     StockRules(
@@ -39,7 +54,7 @@ object Klondike extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

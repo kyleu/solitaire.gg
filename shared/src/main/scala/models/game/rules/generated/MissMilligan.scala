@@ -22,8 +22,19 @@ object MissMilligan extends GameRules(
   id = "missmilligan",
   title = "Miss Milligan",
   related = Seq("imperialguards"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Miss_Milligan"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/miss_milligan.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/MissMilliganEasy.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/miss_milligan.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/miss_milligan.php"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/MissMilligan.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/miss_milligan.html"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/miss-milligan.htm"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/miss_milligan.htm")
+  ),
   description = "Starting with one card in each column, build sequences down by alternate color. Deal new cards from the deck into all columns. Whe" +
-  "n the deck is empty, gain a reserve area you can waive a stack of cards into.",
+    "n the deck is empty, gain a reserve area you can waive a stack of cards into.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -46,7 +57,7 @@ object MissMilligan extends GameRules(
       numPiles = 8,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

@@ -26,6 +26,7 @@ object Portuguese extends GameRules(
   title = "Portuguese",
   like = Some("spanish"),
   related = Seq("castlesinspain", "portuguese"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/portuguese_solitaire.htm")),
   description = "A variant of ^bakersdozen^ that allows filling in spaces with kings.",
   foundations = Seq(
     FoundationRules(
@@ -40,7 +41,7 @@ object Portuguese extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     ),
     TableauRules(
       setNumber = 1,

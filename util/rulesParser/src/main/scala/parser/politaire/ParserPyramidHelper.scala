@@ -1,6 +1,6 @@
 package parser.politaire
 
-import models.game.rules.{ PyramidFillEmptyWith, PyramidType, PyramidFaceDownCards, PyramidRules }
+import models.game.rules.{ FillEmptyWith, PyramidType, PyramidFaceDownCards, PyramidRules }
 import parser.politaire.lookup.PolitaireLookup
 
 trait ParserPyramidHelper { this: GameRulesParser =>
@@ -30,16 +30,7 @@ trait ParserPyramidHelper { this: GameRulesParser =>
         rankMatchRuleForMovingStacks = getRankMatchRule(getInt(prefix + "tr")),
 
         mayMoveToNonEmptyFrom = PolitaireLookup.parseBitmask("P0o", getInt(prefix + "o")),
-        emptyFilledWith = getInt(prefix + "f") match {
-          case 0 => PyramidFillEmptyWith.Aces
-          case 1 => PyramidFillEmptyWith.Kings
-          case 2 => PyramidFillEmptyWith.KingsUntilStockEmpty
-          case 4 => PyramidFillEmptyWith.None
-          case 5 => PyramidFillEmptyWith.None
-          case 7 => PyramidFillEmptyWith.Aces
-          case 9 => PyramidFillEmptyWith.KingsOrAces
-          case 8 => PyramidFillEmptyWith.Sevens
-        },
+        emptyFilledWith = FillEmptyWith.fromInt(getInt(prefix + "f")),
         mayMoveToEmptyFrom = PolitaireLookup.parseBitmask("P0o", getInt(prefix + "fo"))
 
       )

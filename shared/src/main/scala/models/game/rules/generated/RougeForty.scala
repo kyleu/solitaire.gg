@@ -41,6 +41,7 @@ object RougeForty extends GameRules(
   title = "Rouge Forty",
   like = Some("rougeetnoir"),
   related = Seq("rougeetnoir"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rouge_forty.htm")),
   description = "A variation of ^rougeetnoir^ with a rectangular tableau. Invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -75,7 +76,7 @@ object RougeForty extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(4),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

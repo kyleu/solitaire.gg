@@ -18,8 +18,17 @@ object NumberTen extends GameRules(
   id = "numberten",
   title = "Number Ten",
   related = Seq("rankandfile"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/number_ten.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/number_ten.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/NumberTen.html"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/number-ten.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/NumberTen.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/number_ten.php"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/number_ten.htm")
+  ),
   description = "Like ^fortythieves^, but two cards in each tableau stack are dealt face down, we build in alternating colors, and can move stacks " +
-  "as a whole.",
+    "as a whole.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -41,7 +50,7 @@ object NumberTen extends GameRules(
       numPiles = 10,
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(2),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

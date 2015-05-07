@@ -6,7 +6,7 @@ import models.game.rules.ReserveRules
 
 object ReservePileOptions {
   def apply(rules: ReserveRules) = {
-    val cardsShown = if(rules.initialCards > 0) {
+    val cardsShown = if (rules.initialCards > 0) {
       rules.initialCards
     } else {
       1

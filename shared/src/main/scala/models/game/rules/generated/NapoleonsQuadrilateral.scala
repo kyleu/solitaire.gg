@@ -20,8 +20,9 @@ object NapoleonsQuadrilateral extends GameRules(
   id = "napoleonsquadrilateral",
   title = "Napoleon's Quadrilateral",
   like = Some("fortythieves"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/carre_napoleon.htm")),
   description = "This older, more difficult, version of ^napoleonssquare^ does not allow stack moves, but moves a lot of cards to the foundation du" +
-  "ring the deal.",
+    "ring the deal.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -46,7 +47,7 @@ object NapoleonsQuadrilateral extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings,
+      emptyFilledWith = FillEmptyWith.Kings,
       actionDuringDeal = PileAction.MoveToFoundation
     )
   ),

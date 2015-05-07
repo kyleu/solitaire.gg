@@ -18,6 +18,7 @@ import models.game.rules._
 object TwoCell extends GameRules(
   id = "twocell",
   title = "Two Cell",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/two_cells.htm")),
   description = "A variation of ^freecell^ with only two cells.",
   foundations = Seq(
     FoundationRules(
@@ -32,7 +33,7 @@ object TwoCell extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

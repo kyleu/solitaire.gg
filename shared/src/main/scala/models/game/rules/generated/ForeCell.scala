@@ -19,8 +19,13 @@ import models.game.rules._
 object ForeCell extends GameRules(
   id = "forecell",
   title = "ForeCell",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/forecell.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Forecell.htm"),
+    Link("PySol", "pysolfc.sourceforge.net/doc/rules/forecell.html")
+  ),
   description = "A Swedish predecessor to ^freecell^, originally one of many games called \"Napolean at St. Helena\". The initial layout is a bit d" +
-  "ifferent from FreeCell, and spaces can only be filled by Kings.",
+    "ifferent from FreeCell, and spaces can only be filled by Kings.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -34,7 +39,7 @@ object ForeCell extends GameRules(
       initialCards = InitialCards.Count(6),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(

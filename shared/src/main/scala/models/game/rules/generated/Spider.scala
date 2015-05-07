@@ -28,8 +28,23 @@ object Spider extends GameRules(
     "fredsspider", "chinesespider", "astrocyte", "mondospider", "tarantula", "trillium", "spideronesuit", "spidertwosuits",
     "spiderette", "blackwidow", "hugespider", "beetle", "bigspider"
   ),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Spider_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/spider.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/spider.html"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/spider.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Spider.html.en"),
+    Link("Solitaire City", "www.solitairecity.com/Help/Spider.shtml"),
+    Link("wikiHow", "www.wikihow.com/Play-Spider-Solitaire"),
+    Link("Microsoft", "windows.microsoft.com/en-us/windows/spider-solitaire-how-to"),
+    Link("Hagai Eisenberg", "ezinearticles.com/?Spider-Solitaire---History-and-Rules&id=6806794"),
+    Link("Dan Fletcher's Strategy Guide", "www.solitairecentral.com/articles/SpiderSolitaireAStrategyGuideForBeginners.html"),
+    Link("Boris Sandberg's Strategy Guide", "www.solitairecentral.com/articles/SpiderSolitaireAWinningStrategy.html"),
+    Link("Steve Weiss", "home.comcast.net/~srweiss/spider/"),
+    Link("Alex Robinson's Spider Solver", "www.tranzoa.net/~alex/plspider.htm")
+  ),
   description = "On the 10 tableau piles you can build down regardless of suit, but you can only move single suit sequences. When you click on the " +
-  "stock, one card will be dealt to each tableau pile. Single cards cannot be moved to the foundation, only complete sequences.",
+    "stock, one card will be dealt to each tableau pile. Single cards cannot be moved to the foundation, only complete sequences.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2
@@ -66,7 +81,7 @@ object Spider extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

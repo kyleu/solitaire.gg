@@ -14,8 +14,14 @@ import models.game.rules._
 object FortyNine extends GameRules(
   id = "fortynine",
   title = "Forty-Nine",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/forty_nine.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/forty_nine.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/forty-nine.php"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/FortyNine.htm")
+  ),
   description = "This ^fortyandeight^ variation has forty-nine cards in a seven by seven tableau. You build down regardless of suit, moving cards o" +
-  "ne at a time.",
+    "ne at a time.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -38,7 +44,7 @@ object FortyNine extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

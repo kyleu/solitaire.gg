@@ -19,6 +19,7 @@ import models.game.rules._
 object Moosehide extends GameRules(
   id = "moosehide",
   title = "Moosehide",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/moosehide.htm")),
   description = "A variant of ^yukon^ where you build down in non-matching suits",
   foundations = Seq(
     FoundationRules(
@@ -43,7 +44,7 @@ object Moosehide extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.DifferentSuits,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

@@ -15,17 +15,6 @@ object PyramidFaceDownCards {
   case object OddNumbered extends PyramidFaceDownCards
 }
 
-sealed trait PyramidFillEmptyWith
-object PyramidFillEmptyWith {
-  case object Any extends PyramidFillEmptyWith
-  case object None extends PyramidFillEmptyWith
-  case object Kings extends PyramidFillEmptyWith
-  case object KingsUntilStockEmpty extends PyramidFillEmptyWith
-  case object Aces extends PyramidFillEmptyWith
-  case object KingsOrAces extends PyramidFillEmptyWith
-  case object Sevens extends PyramidFillEmptyWith
-}
-
 case class PyramidRules(
   name: String = "Pyramid",
   setNumber: Int = 0,
@@ -41,5 +30,5 @@ case class PyramidRules(
 
   mayMoveToNonEmptyFrom: Seq[String] = GameRules.allSources,
   mayMoveToEmptyFrom: Seq[String] = GameRules.allSources,
-  emptyFilledWith: PyramidFillEmptyWith = PyramidFillEmptyWith.None
+  emptyFilledWith: FillEmptyWith = FillEmptyWith.None
 )

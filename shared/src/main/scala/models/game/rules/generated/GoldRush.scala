@@ -20,6 +20,7 @@ object GoldRush extends GameRules(
   id = "goldrush",
   title = "Gold Rush",
   related = Seq("doublegoldrush"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gold_rush.htm")),
   description = "A ^klondike^ variation where the number of cards dealt to the waste decreases with each pass through the stock.",
   stock = Some(
     StockRules(
@@ -37,7 +38,7 @@ object GoldRush extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

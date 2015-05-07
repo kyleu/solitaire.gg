@@ -21,6 +21,7 @@ import models.game.rules._
 object DemonFan extends GameRules(
   id = "demonfan",
   title = "Demon Fan",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/demon_fan.htm")),
   description = "A very easy game where you build down in alternate colors, and are allowed six redeals.",
   foundations = Seq(
     FoundationRules(

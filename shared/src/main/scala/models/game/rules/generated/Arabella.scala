@@ -18,6 +18,7 @@ object Arabella extends GameRules(
   id = "arabella",
   title = "Arabella",
   related = Seq("doublejane"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/arabella.htm")),
   description = "An three-deck ^spider^/^klondike^ blend similar to ^ladyjane^ by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -41,7 +42,7 @@ object Arabella extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

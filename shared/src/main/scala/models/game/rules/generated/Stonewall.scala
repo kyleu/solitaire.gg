@@ -21,8 +21,15 @@ object Stonewall extends GameRules(
   id = "stonewall",
   title = "Stonewall",
   related = Seq("trevigarden"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Stonewall_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/stonewall.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/stonewall.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Stonewall.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/stonewall.php")
+  ),
   description = "Similar to ^flowergarden^, except some cards start face down, you must build in alternate colors, and you can move sequences.  A h" +
-  "ard game to win.",
+    "ard game to win.",
   waste = Some(
     WasteRules(
       name = "Reserve"
@@ -40,7 +47,7 @@ object Stonewall extends GameRules(
       numPiles = 6,
       initialCards = InitialCards.Count(6),
       cardsFaceDown = TableauFaceDownCards.OddNumbered,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -22,6 +22,10 @@ object RowsOfFour extends GameRules(
   title = "Rows of Four",
   like = Some("diplomat"),
   related = Seq("rowsoffour"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rows_of_four.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/rows_of_four.htm")
+  ),
   description = "An easier version of Diplomat, allowing some redeals.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -46,7 +50,7 @@ object RowsOfFour extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation")
     )
   ),

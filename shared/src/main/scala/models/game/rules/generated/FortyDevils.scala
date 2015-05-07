@@ -32,6 +32,7 @@ object FortyDevils extends GameRules(
   id = "fortydevils",
   title = "Forty Devils",
   like = Some("ladycadogan"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/forty_devils.htm")),
   description = "Thomas Warfield's difficult cross between ^rougeforty^ and ^ladycadogan^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -63,7 +64,7 @@ object FortyDevils extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

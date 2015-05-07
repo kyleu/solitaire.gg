@@ -24,6 +24,11 @@ import models.game.rules._
 object AmericanToad extends GameRules(
   id = "americantoad",
   title = "American Toad",
+  links = Seq(
+    Link("Solitaire Central", "www.solitairecentral.com/rules/AmericanToad.html"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/american_toad.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/american_toad.html")
+  ),
   description = "An easy two-deck variation of ^canfield^.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -49,7 +54,7 @@ object AmericanToad extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation")
     )
   ),

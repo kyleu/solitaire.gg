@@ -22,6 +22,12 @@ import models.game.rules._
 object Shamrocks extends GameRules(
   id = "shamrocks",
   title = "Shamrocks",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/shamrocks.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Shamrocks"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/shamrocks.htm"),
+    Link("Shamrocks Solitaire.com", "www.shamrockssolitaire.com/ShamrocksSolitaireInstructions.html")
+  ),
   description = "A variation of ^fan^ where you can build up or down regardless of suit, but are limited to three cards per stack.",
   foundations = Seq(
     FoundationRules(

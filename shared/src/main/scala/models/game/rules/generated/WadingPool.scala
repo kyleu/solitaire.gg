@@ -27,6 +27,7 @@ object WadingPool extends GameRules(
   id = "wadingpool",
   title = "Wading Pool",
   like = Some("wavemotion"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/wading_pool.htm")),
   description = "An easier variation of ^wavemotion^ that permits building, but not stack moves, on the reserve.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
@@ -45,7 +46,7 @@ object WadingPool extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -23,6 +23,7 @@ object Odessa extends GameRules(
   title = "Odessa",
   like = Some("russian"),
   related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
+  links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Odessa.html.en")),
   description = "A variant of ^russian^ with a different starting tableau.",
   foundations = Seq(
     FoundationRules(
@@ -47,7 +48,7 @@ object Odessa extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

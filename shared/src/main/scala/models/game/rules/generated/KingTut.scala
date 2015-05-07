@@ -22,6 +22,10 @@ object KingTut extends GameRules(
   id = "kingtut",
   title = "King Tut",
   like = Some("pyramid"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/king_tut.htm"),
+    Link("Michael Keller's Discussion", "www.solitairelaboratory.com/pyramid.html")
+  ),
   description = "A pyramid variation where we deal three cards at once and have unlimited redeals.",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,

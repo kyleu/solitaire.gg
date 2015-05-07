@@ -24,6 +24,7 @@ import models.game.rules._
 object FarmersWife extends GameRules(
   id = "farmerswife",
   title = "Farmer's Wife",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/farmers_wife.htm")),
   description = "A variation of ^threeblindmice^ where we build in alternate colors as in ^scorpiontail^.",
   waste = Some(
     WasteRules(
@@ -58,7 +59,7 @@ object FarmersWife extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.DifferentSuits,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

@@ -18,7 +18,7 @@ object NumberUtils {
       case 12 => "twelve"
       case _ => i.toString
     }
-    if(properCase) {
+    if (properCase) {
       ret.head.toUpper + ret.tail
     } else {
       ret

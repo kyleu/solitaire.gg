@@ -6,7 +6,7 @@ object KlondikeOneCard extends GameRules(
   id = "klondike1card",
   title = "Klondike (One Card)",
   description = "The world's most famous solitaire game features a triangular tableau where you build down in alternating colors. " +
-    "In this version, you draw one card from the stock at a time.",
+  "In this version, you draw one card from the stock at a time.",
   like = Some("klondike"),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
@@ -20,7 +20,7 @@ object KlondikeOneCard extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

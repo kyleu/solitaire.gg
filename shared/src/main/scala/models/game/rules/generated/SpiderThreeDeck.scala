@@ -26,6 +26,7 @@ object SpiderThreeDeck extends GameRules(
   id = "spiderthreedeck",
   title = "Spider Three Deck",
   like = Some("bigspider"),
+  links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Spider_Three_Decks.html.en")),
   description = "This three-deck version of ^spider^ is a bit easier than ^bigspider^.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
@@ -64,7 +65,7 @@ object SpiderThreeDeck extends GameRules(
       ),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

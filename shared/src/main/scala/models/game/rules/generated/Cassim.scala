@@ -18,8 +18,9 @@ object Cassim extends GameRules(
   id = "cassim",
   title = "Cassim",
   like = Some("alibaba"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cassim.htm")),
   description = "A version of ^alibaba^ with a smaller tableau and an infinity of redeals. In the <em>One Thousand and One Nights</em> Cassim was A" +
-  "li Baba's brother and the leader of the ^fortythieves^.",
+    "li Baba's brother and the leader of the ^fortythieves^.",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
   foundations = Seq(
@@ -35,7 +36,7 @@ object Cassim extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

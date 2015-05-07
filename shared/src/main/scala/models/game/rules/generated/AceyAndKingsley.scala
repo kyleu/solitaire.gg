@@ -37,6 +37,7 @@ object AceyAndKingsley extends GameRules(
   title = "Acey and Kingsley",
   like = Some("acesandkings"),
   related = Seq("doubleacesandkings", "aceyandkingsley", "deucesandqueens", "racingaces"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/acey_and_kingsley.htm")),
   description = "A variation of ^acesandkings^ which starts with an ace or a king dealt to each foundation.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -74,7 +75,7 @@ object AceyAndKingsley extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

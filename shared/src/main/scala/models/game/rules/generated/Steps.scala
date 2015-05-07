@@ -18,6 +18,15 @@ import models.game.rules._
 object Steps extends GameRules(
   id = "steps",
   title = "Steps",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/steps.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/steps.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/Steps.html"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/steps.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Steps.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/steps.php"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/steps.htm")
+  ),
   description = "A two-deck version of ^klondike^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -37,7 +46,7 @@ object Steps extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

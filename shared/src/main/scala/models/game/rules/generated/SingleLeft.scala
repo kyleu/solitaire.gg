@@ -20,6 +20,7 @@ object SingleLeft extends GameRules(
   id = "singleleft",
   title = "Single Left",
   like = Some("movingleft"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/single_left.htm")),
   description = "Thomas Warfield's one-deck version of ^movingleft^.",
   stock = Some(
     StockRules(
@@ -37,7 +38,7 @@ object SingleLeft extends GameRules(
   tableaus = Seq(
     TableauRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.NextPile,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

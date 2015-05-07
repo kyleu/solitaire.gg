@@ -28,6 +28,7 @@ object Elba extends GameRules(
     "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
     "josephine"
   ),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/elba.htm")),
   description = "A variant of ^fortythieves^ with ^klondike^-like building rules.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -49,7 +50,7 @@ object Elba extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(5),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

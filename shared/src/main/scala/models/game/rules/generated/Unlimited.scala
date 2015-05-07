@@ -23,6 +23,7 @@ object Unlimited extends GameRules(
   title = "Unlimited",
   like = Some("interchange"),
   related = Seq("singleinterchange"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/unlimited.htm")),
   description = "An easier variant of ^interchange^, in which we are allowed unlimited redeals",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -42,7 +43,7 @@ object Unlimited extends GameRules(
       cardsFaceDown = TableauFaceDownCards.EvenNumbered,
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

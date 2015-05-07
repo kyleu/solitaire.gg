@@ -24,6 +24,10 @@ object Wildflower extends GameRules(
   title = "Wildflower",
   like = Some("flowergarden"),
   related = Seq("wildflower", "brigade"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/wildflower.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/flower-garden.htm")
+  ),
   description = "A variation of ^flowergarden^ in which you may move sequences of cards of the same suit together.",
   waste = Some(
     WasteRules(
@@ -46,7 +50,7 @@ object Wildflower extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

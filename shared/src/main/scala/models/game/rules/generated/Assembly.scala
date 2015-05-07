@@ -16,6 +16,7 @@ import models.game.rules._
 object Assembly extends GameRules(
   id = "assembly",
   title = "Assembly",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/assembly.htm")),
   description = "Suits don't matter at all in this simple little solitaire game.",
   stock = Some(
     StockRules(
@@ -38,7 +39,7 @@ object Assembly extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -28,8 +28,14 @@ object RoyalFamily extends GameRules(
   id = "royalfamily",
   title = "Royal Family",
   like = Some("indefatigable"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/royal_family.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/royal-family.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/royal_family.php"),
+    Link("Jan Wolter's Experiments", "/article/indefatigable.html")
+  ),
   description = "This game allows you to build up and down and fill spaces with any card, which makes the game so easy that you often don't need th" +
-  "e redeal that you are allowed.",
+    "e redeal that you are allowed.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -48,7 +54,7 @@ object RoyalFamily extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   special = Some(

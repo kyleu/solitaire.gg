@@ -30,6 +30,13 @@ object BlackWidow extends GameRules(
     "fredsspider", "chinesespider", "astrocyte", "mondospider", "tarantula", "trillium", "spideronesuit", "spidertwosuits",
     "spiderette", "blackwidow", "hugespider", "beetle", "bigspider"
   ),
+  links = Seq(
+    Link("Solitaire Central", "www.solitairecentral.com/rules/BlackWidow.html"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/black-widow.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/BlackWidow.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/black_widow.php"),
+    Link("Bryan Cohen on eHow", "www.ehow.com/list_6702718_black-widow-card-game-rules.html")
+  ),
   description = "An easier variation of ^spider^ where you are allowed to move sequences even if they aren't all of one suit.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
@@ -67,7 +74,7 @@ object BlackWidow extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -33,6 +33,7 @@ object Boulevard extends GameRules(
   id = "boulevard",
   title = "Boulevard",
   related = Seq("evenandodd"),
+  links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/boulevard.htm")),
   description = "No building on the tableau, three reserve piles, and foundations that build up by twos.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -52,7 +53,7 @@ object Boulevard extends GameRules(
     FoundationRules(
       setNumber = 1,
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Two),
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true
     )

@@ -31,9 +31,19 @@ object FallingStar extends GameRules(
   title = "Falling Star",
   like = Some("signora"),
   related = Seq("doublesignora", "fallingstar", "blondesandbrunettes", "roman"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/falling_star.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/falling_star.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/falling_star.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/falling-star.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/FallingStar.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/falling_star.html"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/falling_star.htm")
+  ),
   description = "A more difficult ^signora^ variation with one fewer tableau pile and a predetermined foundation base.",
   deckOptions = DeckOptions(
     numDecks = 2,
+    suits = Seq(Suit.Horseshoes, Suit.Stars),
     lowRank = Rank.Unknown
   ),
   stock = Some(
@@ -57,7 +67,7 @@ object FallingStar extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Cell", "Foundation", "Tableau"),
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Cell", "Foundation", "Tableau")
     )

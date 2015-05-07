@@ -27,6 +27,9 @@ object JumboKlondike extends GameRules(
     "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
   ),
   description = "^klondike^ played with a six-suit deck.",
+  deckOptions = DeckOptions(
+    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs, Suit.Stars, Suit.Tridents)
+  ),
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)
@@ -42,7 +45,7 @@ object JumboKlondike extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

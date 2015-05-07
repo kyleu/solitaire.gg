@@ -22,6 +22,7 @@ object MilliganYukon extends GameRules(
   id = "milliganyukon",
   title = "Milligan Yukon",
   like = Some("milliganharp"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/milligan_yukon.htm")),
   description = "A cross between ^milliganharp^ and ^yukon^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -44,7 +45,7 @@ object MilliganYukon extends GameRules(
       numPiles = 8,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

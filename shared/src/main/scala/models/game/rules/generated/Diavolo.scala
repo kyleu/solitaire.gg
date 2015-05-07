@@ -35,6 +35,11 @@ object Diavolo extends GameRules(
   id = "diavolo",
   title = "Diavolo",
   related = Seq("rougeetnoir"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/easy_diavolo.htm"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/diavolo.htm"),
+    Link("Elton Gahr at HobbyHub", "www.hobbyhub360.com/index.php/view-article/1879401/")
+  ),
   description = "A ^klondike^ variant with four foundation piles that are built one card at a time, while the other four need completed sequences.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -68,7 +73,7 @@ object Diavolo extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 9,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

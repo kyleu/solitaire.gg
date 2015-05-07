@@ -31,6 +31,7 @@ object AlexanderTheGreat extends GameRules(
   id = "alexanderthegreat",
   title = "Alexander the Great",
   related = Seq("cloverleaf"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/alexander_the_great.htm")),
   description = "Thomas Warfield's more challenging variation of ^cloverleaf^.",
   foundations = Seq(
     FoundationRules(
@@ -60,7 +61,7 @@ object AlexanderTheGreat extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.KingsOrAces
+      emptyFilledWith = FillEmptyWith.KingsOrAces
     )
   ),
   complete = false

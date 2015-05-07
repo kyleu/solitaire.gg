@@ -23,6 +23,12 @@ import models.game.rules._
 object ThreeBlindMice extends GameRules(
   id = "threeblindmice",
   title = "Three Blind Mice",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_blind_mice.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/three_blind_mice.html"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/three-blind-mice.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Scorpion_(solitaire)")
+  ),
   description = "A variation of ^scorpion^ with a 10 by 5 tableau and a two-card reserve.",
   waste = Some(
     WasteRules(
@@ -56,7 +62,7 @@ object ThreeBlindMice extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

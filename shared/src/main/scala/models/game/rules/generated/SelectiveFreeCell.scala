@@ -27,6 +27,7 @@ object SelectiveFreeCell extends GameRules(
     "sixbyfour", "ephemeralfreecell", "challengefreecell", "antares", "sevenbyfive", "spidercells", "bigfreecell", "chinesefreecell",
     "sevenbyfour", "invertedfreecell", "selectivefreecell", "doublefreecell", "freecellduplex"
   ),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/selective_freecell.htm")),
   description = "A variation of ^freecell^ where the first card played to the foudnation sets the base value for all the foundations.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -44,7 +45,7 @@ object SelectiveFreeCell extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(CellRules()),

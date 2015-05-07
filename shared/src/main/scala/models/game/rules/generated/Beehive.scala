@@ -28,6 +28,7 @@ object Beehive extends GameRules(
   id = "beehive",
   title = "Beehive",
   related = Seq("beehivegallery"),
+  links = Seq(Link("Michael Keller's Description", "www.solitairelaboratory.com/buildingranks.html")),
   description = "In this ^storehouse^ variant, we build and remove stacks of four cards of equal rank.",
   stock = Some(
     StockRules(
@@ -56,7 +57,7 @@ object Beehive extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Equal,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Equal,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

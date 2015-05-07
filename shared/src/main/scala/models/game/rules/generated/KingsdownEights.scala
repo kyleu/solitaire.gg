@@ -21,6 +21,10 @@ import models.game.rules._
 object KingsdownEights extends GameRules(
   id = "kingsdowneights",
   title = "Kingsdown Eights",
+  links = Seq(
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/Kingsdown-Eights.htm"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kingsdown_eights.htm")
+  ),
   description = "This variation of ^tournament^ has a tableau where you can build by alternate color instead of cells.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -45,7 +49,7 @@ object KingsdownEights extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

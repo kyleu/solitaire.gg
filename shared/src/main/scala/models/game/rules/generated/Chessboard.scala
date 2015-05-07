@@ -24,6 +24,17 @@ object Chessboard extends GameRules(
   title = "Chessboard",
   like = Some("fortress"),
   related = Seq("lasker", "castlesend"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chessboard.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/chessboard.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/chessboard.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/chessboard.php"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/Chessboard.html"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Chessboard.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/chessboard.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Chessboard.html.en"),
+    Link("L. Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-chessboard-solitaire-14077/")
+  ),
   description = "A more interesting variation of ^fortress^ where you choose the base card.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -44,7 +55,7 @@ object Chessboard extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

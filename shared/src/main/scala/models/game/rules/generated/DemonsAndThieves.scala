@@ -36,8 +36,9 @@ object DemonsAndThieves extends GameRules(
   title = "Demons and Thieves",
   like = Some("canfield"),
   related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/demons_and_thieves.htm")),
   description = "In this game, the tableau is split into two halves, one half where you play by ^canfield^ rules, and one half where you play by ^f" +
-  "ortythieves^ rules.",
+    "ortythieves^ rules.",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown
@@ -62,7 +63,7 @@ object DemonsAndThieves extends GameRules(
       numPiles = 4,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     ),
     TableauRules(
       name = "Right Tableau",
@@ -72,7 +73,7 @@ object DemonsAndThieves extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

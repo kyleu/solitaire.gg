@@ -19,6 +19,10 @@ import models.game.rules._
 object Repair extends GameRules(
   id = "repair",
   title = "Repair",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/repair.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Repair.htm")
+  ),
   description = "A two-deck version of ^freecell^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -36,7 +40,7 @@ object Repair extends GameRules(
       initialCards = InitialCards.Count(10),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

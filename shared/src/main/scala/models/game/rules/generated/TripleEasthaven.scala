@@ -22,6 +22,7 @@ object TripleEasthaven extends GameRules(
   title = "Triple Easthaven",
   like = Some("easthaven"),
   related = Seq("tripleeasthaven", "doubleeasthaven"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_easthaven.htm")),
   description = "A three-deck version of ^easthaven^ by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -43,7 +44,7 @@ object TripleEasthaven extends GameRules(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(3),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

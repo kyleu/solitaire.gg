@@ -29,7 +29,8 @@ object MondoSpider extends GameRules(
   description = "A rather arduous double-size eight-suit ^spider^ variant.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
-    numDecks = 2
+    numDecks = 2,
+    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs, Suit.Horseshoes, Suit.Stars, Suit.Tridents, Suit.Moons)
   ),
   stock = Some(
     StockRules(
@@ -71,7 +72,7 @@ object MondoSpider extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

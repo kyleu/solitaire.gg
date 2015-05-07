@@ -21,6 +21,7 @@ import models.game.rules._
 object CircleEight extends GameRules(
   id = "circleeight",
   title = "Circle Eight",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/circle_eight.htm")),
   description = "Move all cards to the tableau to win this game, but you can't move a card once it is on the tableau.",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(
@@ -38,7 +39,7 @@ object CircleEight extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Up,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Waste")
     )
   ),

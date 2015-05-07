@@ -27,6 +27,15 @@ object Batsford extends GameRules(
   id = "batsford",
   title = "Batsford",
   related = Seq("batsfordagain"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/batsford.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Batsford_(solitaire)"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/batsford.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/batsford.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Batsford.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/batsford.php"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/batsford.html")
+  ),
   description = "A two-deck ^klondike^ game with a special reserve that can store up to three kings.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -47,7 +56,7 @@ object Batsford extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     ),
     TableauRules(
       name = "Reserve",
@@ -58,7 +67,7 @@ object Batsford extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Equal,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings,
+      emptyFilledWith = FillEmptyWith.Kings,
       maxCards = 3
     )
   ),

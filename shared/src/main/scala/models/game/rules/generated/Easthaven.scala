@@ -19,6 +19,13 @@ object Easthaven extends GameRules(
   id = "easthaven",
   title = "Easthaven",
   related = Seq("tripleeasthaven", "doubleeasthaven"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/easthaven.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/Easthaven.html"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/easthaven.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Easthaven.html.en"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/easthaven.htm")
+  ),
   description = "A one-deck cross between ^spider^ and ^klondike^.",
   stock = Some(
     StockRules(
@@ -36,7 +43,7 @@ object Easthaven extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Count(3),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -23,6 +23,7 @@ import models.game.rules._
 object TripleScorpion extends GameRules(
   id = "triplescorpion",
   title = "Triple Scorpion",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_scorpion.htm")),
   description = "A three-deck variation of ^scorpion^ with no reserve.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -59,7 +60,7 @@ object TripleScorpion extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

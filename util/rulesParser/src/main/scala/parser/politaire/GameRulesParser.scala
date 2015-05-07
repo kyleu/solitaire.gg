@@ -8,13 +8,17 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
   def parse() = try {
     parseInternal()
   } catch {
-    case x: Exception =>
-      throw new IllegalStateException("Exception [" + x.getClass.getSimpleName + ": " + x.getMessage + "] encountered while parsing [" + variant.id + "].", x)
+    case x: Exception => throw new IllegalStateException("Exception [" + x.getClass.getSimpleName + "] encountered while parsing [" + variant.id + "].", x)
   }
+
   private[this] def parseInternal() = {
+    val suits = getInt("stdsuits") match {
+      case i if i == 0 || i == 15 => getInt("suits")
+      case i => i
+    }
     val deckOptions = DeckOptions(
       numDecks = getInt("ndecks"),
-      suits = PolitaireLookup.parseBitmask("suits", getInt("stdsuits")).map(x => Suit.fromChar(x.head)).sortBy(_.value),
+      suits = PolitaireLookup.parseBitmask("suits", if(suits == 0) { 15 } else { suits }).map(x => Suit.fromChar(x.head)).sortBy(_.value),
       ranks = PolitaireLookup.parseBitmask("ranks", getInt("ranks")).map(x => Rank.allByChar(x.head)).sortBy(_.value),
       lowRank = {
         val lowChar = getString("lowpip").headOption.getOrElse(throw new IllegalStateException())
@@ -25,7 +29,6 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
         }
       }
     )
-
     val victoryCondition = getInt("victory") match {
       case 0 => VictoryCondition.AllOnFoundation
       case 1 => VictoryCondition.AllButFourCardsOnFoundation
@@ -35,14 +38,13 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
       case 5 => VictoryCondition.AllOnFoundationOrStock
       case x => throw new IllegalArgumentException(x.toString)
     }
-
     val cardRemovalMethod = getInt("pairs") match {
       case 0 => CardRemovalMethod.BuildSequencesOnFoundation
       case 1 => CardRemovalMethod.RemovePairsOfSameRank
       case 2 => CardRemovalMethod.RemovePairsOfSameRankAndColor
       case 3 => CardRemovalMethod.RemoveNinesOrPairsAddingToNineOr10JQK
       case 4 => CardRemovalMethod.RemovePairsAddingToTenOr10PairOrJPairOrQPairOrKPair
-      case 5 => CardRemovalMethod.RemovePairsAddingToTenOrJQK
+      case 5 => CardRemovalMethod.RemovePairsAddingToTenOr10JQK
       case 6 => CardRemovalMethod.RemovePairsAddingToTenOrFour10JQK
       case 7 => CardRemovalMethod.RemovePairsAddingToElevenOrJPairOrQPairOrKPair
       case 8 => CardRemovalMethod.RemovePairsAddingToElevenOrJQK
@@ -63,12 +65,10 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
       case 24 => CardRemovalMethod.RemoveSetsAddingToFifteenOrFour10JQK
       case x => throw new IllegalArgumentException(x.toString)
     }
-
     val like = getString("like") match {
       case "" => None
       case x => Some(x)
     }
-
     val related = getString("related") match {
       case "" => Nil
       case x => x.split(",").toSeq.map(_.trim)

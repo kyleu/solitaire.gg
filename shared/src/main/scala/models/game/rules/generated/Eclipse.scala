@@ -22,6 +22,7 @@ object Eclipse extends GameRules(
   id = "eclipse",
   title = "Eclipse",
   like = Some("waningmoon"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eclipse.htm")),
   description = "A variant of ^waningmoon^, where sequence moves are allowed and cards are dealt to the tableau instead of to a waste pile.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -46,7 +47,7 @@ object Eclipse extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

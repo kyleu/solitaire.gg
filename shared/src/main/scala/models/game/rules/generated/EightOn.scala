@@ -22,6 +22,7 @@ object EightOn extends GameRules(
   id = "eighton",
   title = "Eight On",
   like = Some("eightoff"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eight_on.htm")),
   description = "A harder variation of ^eightoff^ where the aces start on the bottoms of the piles. Invented by Thomas Warfield.",
   foundations = Seq(
     FoundationRules(
@@ -37,7 +38,7 @@ object EightOn extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings,
+      emptyFilledWith = FillEmptyWith.Kings,
       pilesWithLowCardsAtBottom = 4
     )
   ),

@@ -33,6 +33,12 @@ object AllInARow extends GameRules(
   title = "All in a Row",
   like = Some("golf"),
   related = Seq("blackhole"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/All_in_a_Row_(Solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/all_in_a_row.htm"),
+    Link("Shlomi Fish's Solver", "www.shlomifish.org/open-source/projects/black-hole-solitaire-solver/"),
+    Link("Jan Wolter's Experiments", "/article/blackhole.html")
+  ),
   description = "A variation of ^golf^ without a stock. Most deals are winnable, but require a lot of advance planning to win.",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(

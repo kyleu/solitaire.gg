@@ -29,8 +29,13 @@ object Kingsley extends GameRules(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
     "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
   ),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kingsley.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/kingsley.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Kingsley.htm")
+  ),
   description = "Reverse ^klondike^ which in theory is no more difficult, but which proves hard to wrap your head around if you are used to playing" +
-  " it the other way round.",
+    " it the other way round.",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)
@@ -50,7 +55,7 @@ object Kingsley extends GameRules(
     TableauRules(
       rankMatchRuleForBuilding = RankMatchRule.Up,
       rankMatchRuleForMovingStacks = RankMatchRule.Up,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

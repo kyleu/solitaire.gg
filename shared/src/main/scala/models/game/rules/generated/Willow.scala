@@ -23,6 +23,7 @@ import models.game.rules._
 object Willow extends GameRules(
   id = "willow",
   title = "Willow",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/willow.htm")),
   description = "A ^klondike^ variation with four fan piles where we can build with cards of equal rank. Invented by Thomas Warfield.",
   foundations = Seq(
     FoundationRules(
@@ -34,7 +35,7 @@ object Willow extends GameRules(
   tableaus = Seq(
     TableauRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     ),
     TableauRules(
       name = "Fan",

@@ -38,7 +38,7 @@ object LoveADuck extends GameRules(
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      emptyFilledWith = PyramidFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

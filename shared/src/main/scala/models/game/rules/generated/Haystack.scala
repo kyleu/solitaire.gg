@@ -28,6 +28,7 @@ object Haystack extends GameRules(
   id = "haystack",
   title = "Haystack",
   related = Seq("needle"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/haystack.htm")),
   description = "A more difficult version of ^needle^ where only 8 cards can be stored in the reserve.",
   foundations = Seq(
     FoundationRules(
@@ -45,7 +46,7 @@ object Haystack extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       maxCards = 8
     ),
     TableauRules(
@@ -65,7 +66,7 @@ object Haystack extends GameRules(
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

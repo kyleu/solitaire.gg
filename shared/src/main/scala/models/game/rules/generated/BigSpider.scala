@@ -28,6 +28,7 @@ object BigSpider extends GameRules(
   title = "Big Spider",
   like = Some("spider"),
   related = Seq("spiderthreedeck"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/big_spider.htm")),
   description = "A three-deck version of ^spider^. This is a bit more challenging than ^spiderthreedeck^.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
@@ -52,7 +53,7 @@ object BigSpider extends GameRules(
       initialCards = InitialCards.Count(6),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

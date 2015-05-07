@@ -21,6 +21,10 @@ object Brisbane extends GameRules(
   id = "brisbane",
   title = "Brisbane",
   like = Some("yukon"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/brisbane.htm"),
+    Link("dogMelon", "www.dogmelon.com.au/solhelp/Brisbane%20Solitaire.shtml")
+  ),
   description = "Just like ^yukon^, but the starting layout is a bit different and you build regardless of suit.",
   foundations = Seq(
     FoundationRules(
@@ -45,7 +49,7 @@ object Brisbane extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

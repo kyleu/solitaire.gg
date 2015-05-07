@@ -23,6 +23,7 @@ import models.game.rules._
 object SevenBySeven extends GameRules(
   id = "sevenbyseven",
   title = "Seven by Seven",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/seven_by_seven.htm")),
   description = "This danish game with a seven-by-seven tableau and three cells allows two redeals.",
   foundations = Seq(
     FoundationRules(
@@ -38,7 +39,7 @@ object SevenBySeven extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

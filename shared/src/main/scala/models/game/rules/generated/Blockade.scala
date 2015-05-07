@@ -21,6 +21,14 @@ object Blockade extends GameRules(
   id = "blockade",
   title = "Blockade",
   related = Seq("napoleonssquare"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/blockade.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/blockade.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/blockade.php"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Blockade_(solitaire)"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/blockade.html"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/blockade.htm")
+  ),
   description = "A simple game that starts slow and ends with a flourish.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -46,7 +54,7 @@ object Blockade extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

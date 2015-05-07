@@ -22,8 +22,16 @@ object Dieppe extends GameRules(
   title = "Dieppe",
   like = Some("congress"),
   related = Seq("parliament", "diplomat", "dieppe"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/dieppe.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/dieppe.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/dieppe.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/dieppe.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Dieppe.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/dieppe.htm")
+  ),
   description = "A variation on ^congress^ where stacks may be moved, blanks can be filled by any card, and three rows of cards are dealt initially" +
-  ". Almost every game seems winnable without any great difficulty.",
+    ". Almost every game seems winnable without any great difficulty.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -47,7 +55,7 @@ object Dieppe extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation")
     )
   ),

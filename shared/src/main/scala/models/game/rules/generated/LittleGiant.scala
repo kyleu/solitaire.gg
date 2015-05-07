@@ -15,6 +15,7 @@ import models.game.rules._
 object LittleGiant extends GameRules(
   id = "littlegiant",
   title = "Little Giant",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/little_giant.htm")),
   description = "A one-deck version of Giant.",
   stock = Some(
     StockRules(
@@ -35,7 +36,7 @@ object LittleGiant extends GameRules(
       numPiles = 6,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

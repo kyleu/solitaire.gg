@@ -19,8 +19,15 @@ object Congress extends GameRules(
   id = "congress",
   title = "Congress",
   related = Seq("parliament", "diplomat", "dieppe"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Congress_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/congress.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/congress.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/congress.html"),
+    Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#congress")
+  ),
   description = "This has similarities to ^fortyandeight^, but spaces in the tableau may only be filled from the waste. This gives the game a very " +
-  "different feel.",
+    "different feel.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -44,7 +51,7 @@ object Congress extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation")
     )
   ),

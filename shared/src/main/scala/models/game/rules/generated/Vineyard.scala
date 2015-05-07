@@ -18,6 +18,7 @@ object Vineyard extends GameRules(
   id = "vineyard",
   title = "Vineyard",
   related = Seq("tenbyone", "winery"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/vineyard.htm")),
   description = "A difficult variation of ^bakersdozen^ invented by Peter Voke.",
   foundations = Seq(
     FoundationRules(
@@ -32,7 +33,7 @@ object Vineyard extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

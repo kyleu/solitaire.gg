@@ -23,9 +23,11 @@ object YukonOneSuit extends GameRules(
   id = "yukononesuit",
   title = "Yukon One Suit",
   like = Some("yukon"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukon_one_suit.htm")),
   description = "A one-suit variation of ^yukon^. The game is almost always winnable, but still makes you think a bit.",
   deckOptions = DeckOptions(
-    numDecks = 4
+    numDecks = 4,
+    suits = Seq(Suit.Spades)
   ),
   foundations = Seq(
     FoundationRules(
@@ -50,7 +52,7 @@ object YukonOneSuit extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

@@ -20,6 +20,7 @@ object Parliament extends GameRules(
   id = "parliament",
   title = "Parliament",
   like = Some("congress"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/parliament.htm")),
   description = "An easier version of ^congress^, where the aces start on the foundation.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -45,7 +46,7 @@ object Parliament extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation")
     )
   ),

@@ -24,6 +24,10 @@ object Bastion extends GameRules(
   title = "Bastion",
   like = Some("fortress"),
   related = Seq("bastion", "chessboard", "fortressofmercy", "beleagueredfortress"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bastion.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/bastion.htm")
+  ),
   description = "^fortress^ with cells.",
   foundations = Seq(
     FoundationRules(
@@ -40,7 +44,7 @@ object Bastion extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

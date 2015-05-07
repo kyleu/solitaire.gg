@@ -23,6 +23,7 @@ object EndlessHarp extends GameRules(
   title = "Endless Harp",
   like = Some("klondike"),
   related = Seq("bigharp"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/endless_harp.htm")),
   description = "A variation of Big Harp which allows unlimited redeals.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -43,7 +44,7 @@ object EndlessHarp extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

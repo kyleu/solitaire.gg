@@ -17,6 +17,7 @@ import models.game.rules._
 object LittleMilligan extends GameRules(
   id = "littlemilligan",
   title = "Little Milligan",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/little_milligan.htm")),
   description = "A hard-to-win one-deck version of ^missmilligan^.",
   stock = Some(
     StockRules(
@@ -35,7 +36,7 @@ object LittleMilligan extends GameRules(
     TableauRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

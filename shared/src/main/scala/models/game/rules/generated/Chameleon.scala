@@ -26,8 +26,13 @@ object Chameleon extends GameRules(
   title = "Chameleon",
   like = Some("canfield"),
   related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chameleon.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/Chameleon.html"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Canfield_%28solitaire%29")
+  ),
   description = "In case ^canfield^ wasn't hard enough for you, here's a version with only three tableau piles. But you can stack cards regardless " +
-  "of suit, so it'll be OK. Occasionally.",
+    "of suit, so it'll be OK. Occasionally.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),
@@ -53,7 +58,7 @@ object Chameleon extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

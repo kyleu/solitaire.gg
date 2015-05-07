@@ -24,6 +24,7 @@ object QuadrupleYukon extends GameRules(
   title = "Quadruple Yukon",
   like = Some("doubleyukon"),
   related = Seq("quadrupleyukon"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_yukon.htm")),
   description = "A four-deck variation of ^yukon^",
   deckOptions = DeckOptions(
     numDecks = 4
@@ -60,7 +61,7 @@ object QuadrupleYukon extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

@@ -25,6 +25,7 @@ object NapoleonsShoulder extends GameRules(
   title = "Napoleon's Shoulder",
   like = Some("napoleonssquare"),
   related = Seq("napoleonsshoulder"),
+  links = Seq(Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/napoleons_shoulder.html")),
   description = "A varient of ^napoleonssquare^ where you build regardless of suit.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -49,7 +50,7 @@ object NapoleonsShoulder extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Waste")
     )
   ),

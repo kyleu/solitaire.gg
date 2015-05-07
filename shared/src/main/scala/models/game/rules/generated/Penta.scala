@@ -37,6 +37,7 @@ import models.game.rules._
 object Penta extends GameRules(
   id = "penta",
   title = "Penta",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/penta.htm")),
   description = "Another ^busyaces^ variation by Thomas Warfield, in this one, half the tabeau builds up, and half builds down.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -51,7 +52,7 @@ object Penta extends GameRules(
     FoundationRules(
       name = "Left Foundation",
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Five),
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true
     ),
@@ -59,7 +60,7 @@ object Penta extends GameRules(
       name = "Right Foundation",
       setNumber = 1,
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Five),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true
@@ -74,7 +75,7 @@ object Penta extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     ),
     TableauRules(
       name = "Right Tableau",
@@ -86,7 +87,7 @@ object Penta extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Up,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

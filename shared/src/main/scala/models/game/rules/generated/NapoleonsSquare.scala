@@ -23,6 +23,14 @@ object NapoleonsSquare extends GameRules(
   title = "Napoleon's Square",
   like = Some("blockade"),
   related = Seq("napoleonsshoulder"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Napoleon's_Square"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/napoleons_square.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/napoleon_s_square.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/napoleon-square.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/napoleons_square.html"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/NapoleonsSquare.htm")
+  ),
   description = "This French game, first described by Lady Adelaide Cadogen in the early 1900's, is an easy variant of ^fortythieves^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -47,7 +55,7 @@ object NapoleonsSquare extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

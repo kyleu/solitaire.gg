@@ -18,8 +18,15 @@ object Corona extends GameRules(
   id = "corona",
   title = "Corona",
   related = Seq("quadrangle"),
+  links = Seq(
+    Link("Strategy Guide by Dan Fletcher", "www.solitairecentral.com/articles/HowtoPlayCoronaSolitaire.html"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/corona.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/corona.html"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/corona.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/corona.php")
+  ),
   description = "A game similar to ^fortyandeight^ where spaces are autofilled from the waste and stock. The best way to win seems to be to get luc" +
-  "ky.",
+    "ky.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -44,7 +51,7 @@ object Corona extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

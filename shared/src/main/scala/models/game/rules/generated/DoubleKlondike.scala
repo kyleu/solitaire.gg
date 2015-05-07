@@ -21,6 +21,12 @@ object DoubleKlondike extends GameRules(
   id = "doubleklondike",
   title = "Double Klondike",
   related = Seq("sally", "suittriangle"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_klondike.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/double_klondike.htm"),
+    Link("Dan Fletcher's How To Play", "www.solitairecentral.com/articles/HowToPlayDoubleKlondike.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Jumbo.html.en")
+  ),
   description = "A two-deck version of ^klondike^. This game is almost always winnable.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -41,7 +47,7 @@ object DoubleKlondike extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 9,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

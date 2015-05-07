@@ -21,6 +21,7 @@ object SevenByFive extends GameRules(
   id = "sevenbyfive",
   title = "Seven by Five",
   like = Some("freecell"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/seven_by_five.htm")),
   description = "A ^freecell^ variant with one fewer tableau column and more more cell.",
   foundations = Seq(
     FoundationRules(
@@ -34,7 +35,7 @@ object SevenByFive extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

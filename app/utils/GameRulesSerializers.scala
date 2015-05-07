@@ -10,12 +10,15 @@ object GameRulesSerializers {
     override def writes(t: T) = JsString(t.toString)
   }
 
+  implicit val linkWrites = Json.writes[Link]
+
   implicit val victoryConditionWrites = stringWriter[VictoryCondition]
   implicit val cardRemovalMethodWrites = stringWriter[CardRemovalMethod]
 
   implicit val deckOptionsWrites = Json.writes[DeckOptions]
 
   implicit val initialCardsWrites = stringWriter[InitialCards]
+  implicit val fillEmptyWithWrites = stringWriter[FillEmptyWith]
 
   // Stock
   implicit val stockDealToWrites = stringWriter[StockDealTo]
@@ -39,7 +42,6 @@ object GameRulesSerializers {
   // Tableau
   implicit val tableauFaceDownCardsWrites = stringWriter[TableauFaceDownCards]
   implicit val tableauAutoFillEmptyFromWrites = stringWriter[TableauAutoFillEmptyFrom]
-  implicit val tableauFillEmptyWithWrites = stringWriter[TableauFillEmptyWith]
   implicit val pileActionWrites = stringWriter[PileAction]
 
   implicit val tableauSetWrites = Json.writes[TableauRules]
@@ -53,7 +55,6 @@ object GameRulesSerializers {
   // Pyramid
   implicit val pyramidTypeWrites = stringWriter[PyramidType]
   implicit val pyramidFaceDownCardsWrites = stringWriter[PyramidFaceDownCards]
-  implicit val pyramidFillEmptyWithWrites = stringWriter[PyramidFillEmptyWith]
 
   implicit val pyramidSetWrites = Json.writes[PyramidRules]
 

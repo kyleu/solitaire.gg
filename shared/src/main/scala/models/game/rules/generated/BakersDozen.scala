@@ -24,8 +24,17 @@ object BakersDozen extends GameRules(
   id = "bakersdozen",
   title = "Baker's Dozen",
   related = Seq("spanish", "goodmeasure"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/dozen.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/bakers-dozen.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Baker's_Dozen_(solitaire)"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/bakers_dozen.html"),
+    Link("About.com", "boardgames.about.com/od/solitaire/a/bakers_dozen.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/BakersDozen.html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Bakers_Dozen.html.en")
+  ),
   description = "Rearrange the thirteen tableau piles to free up cards for the foundation by moving one card at a time. Often winnable, but takes s" +
-  "ome planning.",
+    "ome planning.",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

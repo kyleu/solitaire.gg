@@ -36,6 +36,8 @@ trait GameRulesParserHelper extends ParserGameHelper
     case s: String if s == "1|0|8" => 9
     case s: String if s == "2|4" => 6
     case s: String if s == "8|2" => 10
+    case s: String if s == "128|64" => 192
+    case s: String if s == "1|2|16|64" => 83
     case s: String if s == "BIT_STOCK" => 1
     case s: String if s == "BIT_WASTE" => 2
     case s: String if s == "BIT_TABLEAU" => 4

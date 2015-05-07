@@ -24,6 +24,7 @@ object TrigonLeft extends GameRules(
   title = "Trigon Left",
   like = Some("trigon"),
   related = Seq("doubletrigon", "quadrupletrigon", "trigonleft"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trigon_left.htm")),
   description = "A blend of ^trigon^ and ^movingleft^.",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
@@ -39,7 +40,7 @@ object TrigonLeft extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.NextPile,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

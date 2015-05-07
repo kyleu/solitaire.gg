@@ -23,6 +23,7 @@ import models.game.rules._
 object HalfCell extends GameRules(
   id = "halfcell",
   title = "HalfCell",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/halfcell.htm")),
   description = "^freecell^ with only two foundation piles.",
   foundations = Seq(
     FoundationRules(
@@ -39,7 +40,7 @@ object HalfCell extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(CellRules()),

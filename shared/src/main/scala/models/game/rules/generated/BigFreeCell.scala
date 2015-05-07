@@ -22,6 +22,7 @@ object BigFreeCell extends GameRules(
   id = "bigfreecell",
   title = "Big FreeCell",
   like = Some("freecell"),
+  links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/big-freecell.htm")),
   description = "A straight-forward two-deck version of ^freecell^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -39,7 +40,7 @@ object BigFreeCell extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

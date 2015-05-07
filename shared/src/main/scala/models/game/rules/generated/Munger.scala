@@ -25,6 +25,7 @@ object Munger extends GameRules(
   title = "Munger",
   like = Some("minerva"),
   related = Seq("bureau", "minerva"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/munger.htm")),
   description = "A variation of ^minerva^ with the reserve is smaller and only one pass through the stock is allowed.",
   stock = Some(
     StockRules(
@@ -43,7 +44,7 @@ object Munger extends GameRules(
     TableauRules(
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.OddNumbered,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   reserves = Some(

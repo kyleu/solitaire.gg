@@ -22,6 +22,15 @@ object German extends GameRules(
   id = "german",
   title = "German",
   related = Seq("bavarian"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/German_Patience"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/german_patience.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/german_patience.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/german-patience.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/GermanPatience.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/german_patience.php"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/german_patience.html")
+  ),
   description = "A strange and difficult game where you must build sequences on the tableau, regardless of suit.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
@@ -42,7 +51,7 @@ object German extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Up,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

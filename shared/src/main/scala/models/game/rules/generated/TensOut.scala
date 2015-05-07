@@ -24,6 +24,7 @@ object TensOut extends GameRules(
   title = "Tens Out",
   like = Some("fourteenout"),
   related = Seq("juvenile", "doublefourteens", "triplefourteens", "tensout"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/tens_out.htm")),
   description = "A variation of ^fourteenout^ where we remove pairs adding to 10.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOr10PairOrJPairOrQPairOrKPair,
   foundations = Seq(

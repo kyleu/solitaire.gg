@@ -28,6 +28,7 @@ object EmpressOfItaly extends GameRules(
   id = "empressofitaly",
   title = "Empress of Italy",
   like = Some("doublesignora"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/empress_of_italy.htm")),
   description = "A four-deck version of ^blondesandbrunettes^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 4,
@@ -54,7 +55,7 @@ object EmpressOfItaly extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.StockThenWaste,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Cell", "Foundation", "Tableau"),
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Cell", "Foundation", "Tableau")
     )

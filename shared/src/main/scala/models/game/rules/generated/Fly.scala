@@ -30,6 +30,14 @@ object Fly extends GameRules(
   title = "Fly",
   like = Some("frog"),
   related = Seq("fly"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fly.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/fly.html"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/fly.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/fly.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/fly.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Frog_(game)")
+  ),
   description = "A variation of ^frog^ where the aces start on the foundation.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -57,7 +65,7 @@ object Fly extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock"),
       mayMoveToEmptyFrom = Seq("Stock")
     )

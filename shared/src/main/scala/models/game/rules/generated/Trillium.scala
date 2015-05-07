@@ -29,6 +29,7 @@ object Trillium extends GameRules(
   title = "Trillium",
   like = Some("spider"),
   related = Seq("lily"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trillium.htm")),
   description = "A ^spider^ variant with a 13x4 tableau where you build down by alternate color.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
@@ -53,7 +54,7 @@ object Trillium extends GameRules(
       numPiles = 13,
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.OddNumbered,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

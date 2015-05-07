@@ -20,6 +20,14 @@ object Courtyard extends GameRules(
   id = "courtyard",
   title = "Courtyard",
   like = Some("busyaces"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/courtyard.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/courtyard.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/courtyard.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/courtyard.php"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Courtyard.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/courtyard.html")
+  ),
   description = "A variation of ^busyaces^ which increases the difficulty by autofilling empty tableau spaces the waste and stock.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -45,7 +53,7 @@ object Courtyard extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

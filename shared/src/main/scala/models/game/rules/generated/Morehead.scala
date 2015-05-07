@@ -20,6 +20,7 @@ object Morehead extends GameRules(
   title = "Morehead",
   like = Some("somerset"),
   related = Seq("morehead", "usk"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/morehead.htm")),
   description = "A ^somerset^ variant where we build in different suits instead of alternate colors.",
   foundations = Seq(
     FoundationRules(
@@ -47,7 +48,7 @@ object Morehead extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.DifferentSuits,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

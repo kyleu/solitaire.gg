@@ -21,6 +21,15 @@ object Yukon extends GameRules(
   id = "yukon",
   title = "Yukon",
   related = Seq("yukoncells", "brisbane", "yukononesuit", "yukonicplague", "alaska", "yukonkings", "yakutatbay"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Yukon_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukon.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/yukon.html"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/yukon.htm"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Yukon.html.en"),
+    Link("About Dot Com", "boardgames.about.com/od/solitaire/a/yukon.htm"),
+    Link("Dan Fletcher's Strategy Guide", "www.solitairecentral.com/articles/YukonSolitaireStrategyGuide.html")
+  ),
   description = "A well-known game with no stock, in which stacks of cards can be moved even if they aren't in sequence.",
   foundations = Seq(
     FoundationRules(
@@ -44,7 +53,7 @@ object Yukon extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

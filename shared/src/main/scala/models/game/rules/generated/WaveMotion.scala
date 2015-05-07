@@ -26,8 +26,9 @@ object WaveMotion extends GameRules(
   id = "wavemotion",
   title = "Wave Motion",
   related = Seq("wadingpool", "flow"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/wave_motion.htm")),
   description = "In David Bernazzani's variation on ^freecell^ and ^scorpion^, all cards start on the reserve. They need to be arranged into sequen" +
-  "ces on the tableau.",
+    "ces on the tableau.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
     TableauRules(
@@ -45,7 +46,7 @@ object WaveMotion extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -26,8 +26,15 @@ object SuperiorCanfield extends GameRules(
   title = "Superior Canfield",
   like = Some("canfield"),
   related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/superior_canfield.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SuperiorCanfield.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/superior_canfield.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/superior-canfield.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/superior_canfield.php")
+  ),
   description = "Canfield made a bit easier and a bit more strategic by dealing the reserve cards face up and not automatically filling spaces from" +
-  " the reserve.",
+    " the reserve.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),
@@ -50,7 +57,7 @@ object SuperiorCanfield extends GameRules(
       numPiles = 4,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

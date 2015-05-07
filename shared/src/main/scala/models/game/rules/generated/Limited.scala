@@ -19,6 +19,17 @@ object Limited extends GameRules(
   title = "Limited",
   like = Some("fortythieves"),
   related = Seq("doublelimited"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/limited.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Forty_Thieves_(card_game)"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/limited.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/limited.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Limited.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/limited.html"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/limited.htm"),
+    Link("Battleline Games", "www.limitedsolitaire.com/LimitedSolitaireInstructions.html"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/Limited.html")
+  ),
   description = "Like ^fortythieves^, but with a 12 by 3 tableau.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -43,7 +54,7 @@ object Limited extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -26,6 +26,7 @@ object Lasker extends GameRules(
   title = "Lasker",
   like = Some("chessboard"),
   related = Seq("lasker", "castlesend"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lasker.htm")),
   description = "A version of ^chessboard^ where sequences may be moved.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
@@ -47,7 +48,7 @@ object Lasker extends GameRules(
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       rankMatchRuleForMovingStacks = RankMatchRule.UpOrDown,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

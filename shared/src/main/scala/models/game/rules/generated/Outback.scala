@@ -19,6 +19,7 @@ object Outback extends GameRules(
   id = "outback",
   title = "Outback",
   related = Seq("adelaide"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/outback.htm")),
   description = "A two-deck version of Australian Solitaire.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -44,7 +45,7 @@ object Outback extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

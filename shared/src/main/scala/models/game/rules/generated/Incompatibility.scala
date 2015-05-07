@@ -18,6 +18,7 @@ import models.game.rules._
 object Incompatibility extends GameRules(
   id = "incompatibility",
   title = "Incompatibility",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/incompatibility.htm")),
   description = "A ^spider^ game where cards can be moved to the foundation one at a time and where cards are not dealt to empty columns.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -41,7 +42,7 @@ object Incompatibility extends GameRules(
       initialCards = InitialCards.Count(5),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

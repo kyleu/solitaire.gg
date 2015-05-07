@@ -25,6 +25,14 @@ object Raglan extends GameRules(
   title = "Raglan",
   like = Some("kingalbert"),
   related = Seq("queenvictoria", "muse", "raglan"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/raglan.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/raglan.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/raglan.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Raglan.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/raglan.php"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/raglan.htm")
+  ),
   description = "This is ^kingalbert^ with a different tableau and Aces already on the foundation. It is a bit easier to solve.",
   waste = Some(
     WasteRules(
@@ -56,7 +64,7 @@ object Raglan extends GameRules(
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

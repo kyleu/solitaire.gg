@@ -28,8 +28,12 @@ object Grandfather extends GameRules(
   id = "grandfather",
   title = "Grandfather",
   related = Seq("father"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/grandfather.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/grandfather.htm")
+  ),
   description = "A game with twenty tableau piles, each of which can hold any two cards. You build up on half the foundations and down on the other" +
-  "s.",
+    "s.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -63,7 +67,7 @@ object Grandfather extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Waste"),
       maxCards = 2
     )

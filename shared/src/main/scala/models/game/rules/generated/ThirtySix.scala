@@ -14,6 +14,14 @@ import models.game.rules._
 object ThirtySix extends GameRules(
   id = "thirtysix",
   title = "Thirty Six",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/thirty_six.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/thirty_six.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/thirty-six.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/thirty-six.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/ThirtySix.htm"),
+    Link("Jan Wolter's Experiments", "/article/thirtysix.html")
+  ),
   description = "A six-by-six tableau where you build regardless of color.",
   stock = Some(
     StockRules(
@@ -35,7 +43,7 @@ object ThirtySix extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

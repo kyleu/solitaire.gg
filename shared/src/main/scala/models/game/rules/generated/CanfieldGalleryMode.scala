@@ -28,8 +28,8 @@ object CanfieldGalleryMode extends GameRules(
   like = Some("canfield"),
   related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
   description = "This is just ^canfield^ with a different user \"interface\": all the cards that would normally start in the stock are fanned out f" +
-  "ace up, with the ones that would normally be playable if you were going through the stock three at a time automatically raised up " +
-  "to indicate that they are playable.",
+    "ace up, with the ones that would normally be playable if you were going through the stock three at a time automatically raised up " +
+    "to indicate that they are playable.",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),
@@ -57,7 +57,7 @@ object CanfieldGalleryMode extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

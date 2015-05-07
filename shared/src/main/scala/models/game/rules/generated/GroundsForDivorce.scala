@@ -20,6 +20,7 @@ import models.game.rules._
 object GroundsForDivorce extends GameRules(
   id = "groundsfordivorce",
   title = "Grounds for Divorce",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/grounds_for_divorce.htm")),
   description = "A ^spider^ game where cards are not dealt to empty columns.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -43,7 +44,7 @@ object GroundsForDivorce extends GameRules(
       initialCards = InitialCards.Count(5),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -19,9 +19,16 @@ object WaningMoon extends GameRules(
   id = "waningmoon",
   title = "Waning Moon",
   related = Seq("thirtyninesteps", "eclipse", "lucasleaps"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/waning_moon.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/waning_moon.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/WaningMoon.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/waning_moon.htm")
+  ),
   description = "A ^fortythieves^ variant with more tableau piles.",
   deckOptions = DeckOptions(
-    numDecks = 2
+    numDecks = 2,
+    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Clubs, Suit.Horseshoes)
   ),
   stock = Some(
     StockRules(
@@ -43,7 +50,7 @@ object WaningMoon extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

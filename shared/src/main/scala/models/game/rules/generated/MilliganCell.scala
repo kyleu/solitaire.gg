@@ -19,6 +19,10 @@ import models.game.rules._
 object MilliganCell extends GameRules(
   id = "milligancell",
   title = "Milligan Cell",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/milligan_cell.htm"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/milligan_cell.htm")
+  ),
   description = "A ^freecell^ish variation of ^missmilligan^.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -41,7 +45,7 @@ object MilliganCell extends GameRules(
       numPiles = 8,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   cells = Some(CellRules()),

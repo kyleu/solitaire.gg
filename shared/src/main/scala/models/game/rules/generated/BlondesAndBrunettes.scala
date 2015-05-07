@@ -30,6 +30,10 @@ object BlondesAndBrunettes extends GameRules(
   title = "Blondes and Brunettes",
   like = Some("signora"),
   related = Seq("doublesignora", "fallingstar", "blondesandbrunettes", "roman"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/blondes_and_brunettes.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/blondes_and_brunettes.html")
+  ),
   description = "A variation of ^signora^ where the foundation base card is determined by a card dealt in.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -56,7 +60,7 @@ object BlondesAndBrunettes extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.StockThenWaste,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Cell", "Foundation", "Tableau"),
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Cell", "Foundation", "Tableau")
     )

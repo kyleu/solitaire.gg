@@ -20,6 +20,7 @@ object TripleFreeCell extends GameRules(
   id = "triplefreecell",
   title = "Triple FreeCell",
   related = Seq("celleleven", "freecellthreedeck"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_freecell.htm")),
   description = "Thomas Warfield's three-deck version of ^freecell^.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -37,7 +38,7 @@ object TripleFreeCell extends GameRules(
       initialCards = InitialCards.Count(12),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

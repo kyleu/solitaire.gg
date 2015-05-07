@@ -21,6 +21,7 @@ object Apophis extends GameRules(
   id = "apophis",
   title = "Apophis",
   like = Some("pyramid"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/apophis.htm")),
   description = "^pyramid^ played with three waste piles.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(

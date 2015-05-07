@@ -24,11 +24,13 @@ object Neptune extends GameRules(
   id = "neptune",
   title = "Neptune",
   related = Seq("shuffle"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/neptune.htm")),
   description = "A game where you remove pairs of consecutive cards.",
   victoryCondition = VictoryCondition.AllButFourCardsOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveRankPairs,
   deckOptions = DeckOptions(
-    numDecks = 4
+    numDecks = 4,
+    suits = Seq(Suit.Moons)
   ),
   stock = Some(
     StockRules(

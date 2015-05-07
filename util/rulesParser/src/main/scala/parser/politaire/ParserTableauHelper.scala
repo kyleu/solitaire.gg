@@ -52,16 +52,7 @@ trait ParserTableauHelper { this: GameRulesParser =>
           case 10 => TableauAutoFillEmptyFrom.StockThenWaste
           case -1 => TableauAutoFillEmptyFrom.NextPile
         },
-        emptyFilledWith = getInt(prefix + "f") match {
-          case 0 => TableauFillEmptyWith.Aces
-          case 1 => TableauFillEmptyWith.Kings
-          case 2 => TableauFillEmptyWith.KingsUntilStockEmpty
-          case 4 => TableauFillEmptyWith.None
-          case 5 => TableauFillEmptyWith.None
-          case 7 => TableauFillEmptyWith.Aces
-          case 9 => TableauFillEmptyWith.KingsOrAces
-          case 8 => TableauFillEmptyWith.Sevens
-        },
+        emptyFilledWith = FillEmptyWith.fromInt(getInt(prefix + "f")),
 
         mayMoveToNonEmptyFrom = PolitaireLookup.parseBitmask("T0o", getInt(prefix + "o")),
         mayMoveToEmptyFrom = PolitaireLookup.parseBitmask("T0fo", getInt(prefix + "fo")),

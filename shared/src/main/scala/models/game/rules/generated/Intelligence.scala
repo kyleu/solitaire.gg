@@ -31,6 +31,16 @@ object Intelligence extends GameRules(
   id = "intelligence",
   title = "Intelligence",
   like = Some("labellelucie"),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Intelligence_(solitaire)"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/Intelligence.html"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/intelligence.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/intelligence.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/intelligence.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/intelligence.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Intelligence.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/intelligence.html")
+  ),
   description = "A two-deck version of ^labellelucie^.",
   deckOptions = DeckOptions(
     numDecks = 2

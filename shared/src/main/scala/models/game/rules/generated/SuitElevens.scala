@@ -23,6 +23,10 @@ object SuitElevens extends GameRules(
   title = "Suit Elevens",
   like = Some("elevens"),
   related = Seq("suitelevens"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/suit_elevens.htm"),
+    Link("Jan Wolter's Experiments", "/article/simplepairs.html")
+  ),
   description = "A variation of ^elevens^ where you can only remove sets of cards if they are all of the same suit.",
   cardRemovalMethod = CardRemovalMethod.RemoveSameSuitPairsAddingToElevenOrJQK,
   stock = Some(

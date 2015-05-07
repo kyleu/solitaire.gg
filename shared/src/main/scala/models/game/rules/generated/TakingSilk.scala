@@ -17,6 +17,7 @@ object TakingSilk extends GameRules(
   id = "takingsilk",
   title = "Taking Silk",
   related = Seq("floradora"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/taking_silk.htm")),
   description = "A two deck version of ^thirtysix^. Having more suits than tableau piles makes this tricky.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -41,7 +42,7 @@ object TakingSilk extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

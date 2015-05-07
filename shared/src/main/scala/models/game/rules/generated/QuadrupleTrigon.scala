@@ -24,6 +24,7 @@ object QuadrupleTrigon extends GameRules(
   title = "Quadruple Trigon",
   like = Some("trigon"),
   related = Seq("doubletrigon", "quadrupletrigon", "trigonleft"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_trigon.htm")),
   description = "A four-deck version of ^trigon^. Needs a large screen.",
   deckOptions = DeckOptions(
     numDecks = 4
@@ -42,7 +43,7 @@ object QuadrupleTrigon extends GameRules(
       numPiles = 16,
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

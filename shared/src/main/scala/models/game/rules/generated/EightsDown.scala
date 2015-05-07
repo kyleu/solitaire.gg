@@ -23,6 +23,7 @@ import models.game.rules._
 object EightsDown extends GameRules(
   id = "eightsdown",
   title = "Eights Down",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eights_down.htm")),
   description = "A ^busyaces^ variant invented by Thomas Warfield, where the foundations build down from eight.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -52,7 +53,7 @@ object EightsDown extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Up,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       rankMatchRuleForMovingStacks = RankMatchRule.Up,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

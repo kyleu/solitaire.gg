@@ -22,6 +22,11 @@ object Breakwater extends GameRules(
   title = "Breakwater",
   like = Some("interchange"),
   related = Seq("tripleinterchange", "breakwater", "unlimited"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/breakwater.htm"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/alternations.htm"),
+    Link("Solitaire City", "www.solitairecity.com/Alternations.shtml")
+  ),
   description = "An easier variant of ^interchange^, in which we build regardless of suit.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -45,7 +50,7 @@ object Breakwater extends GameRules(
       cardsFaceDown = TableauFaceDownCards.EvenNumbered,
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

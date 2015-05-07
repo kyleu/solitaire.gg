@@ -22,6 +22,7 @@ object DoubleYukon extends GameRules(
   id = "doubleyukon",
   title = "Double Yukon",
   related = Seq("quadrupleyukon"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/doubleyukon.htm")),
   description = "A two-deck variation of ^yukon^",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -52,7 +53,7 @@ object DoubleYukon extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

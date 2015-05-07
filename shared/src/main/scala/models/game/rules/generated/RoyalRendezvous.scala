@@ -43,8 +43,17 @@ import models.game.rules._
 object RoyalRendezvous extends GameRules(
   id = "royalrendezvous",
   title = "Royal Rendezvous",
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Royal_Rendezvous"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/royal_rendezvous.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/royal_rendezvous.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/RoyalRendezvous.html"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/royal_rendezvous.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/royal-rendezvous.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/RoyalRendezvous.htm")
+  ),
   description = "An odd Austrian game with four foundation sets, one normal, one for evens, one for odds, and one for kings. No building on the tab" +
-  "leau.",
+    "leau.",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -74,7 +83,7 @@ object RoyalRendezvous extends GameRules(
       name = "Even Foundation",
       setNumber = 2,
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Two),
       initialCards = 4,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,

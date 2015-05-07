@@ -27,6 +27,14 @@ object Storehouse extends GameRules(
   title = "Storehouse",
   like = Some("canfield"),
   related = Seq("doublestorehouse"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/storehouse.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/storehouse.htm"),
+    Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/storehouse.htm"),
+    Link("Swoop Solitaire", "www.swoopsoftware.com/solitaire_rules/storehouse.html"),
+    Link("An 1898 description", "howtoplaysolitaire.blogspot.com/2010/06/storehouse-single-deck-solitaire-game.html"),
+    Link("Jan Wolter's Experiments", "/article/storehouse.html")
+  ),
   description = "A old ^canfield^ variant first described in 1939. A pleasant game, but there is scarcely any strategy required.",
   deckOptions = DeckOptions(
     lowRank = Rank.Two
@@ -53,7 +61,7 @@ object Storehouse extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   reserves = Some(

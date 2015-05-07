@@ -18,6 +18,7 @@ import models.game.rules._
 object BarricadeA extends GameRules(
   id = "barricadea",
   title = "Barricade A",
+  links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/barricade.htm")),
   description = "A simple game where we build regardless of suit on both tableau and foundation and which uses a stock but not a waste.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -44,7 +45,7 @@ object BarricadeA extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

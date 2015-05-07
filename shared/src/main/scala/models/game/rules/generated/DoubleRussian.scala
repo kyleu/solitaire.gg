@@ -23,6 +23,7 @@ object DoubleRussian extends GameRules(
   id = "doublerussian",
   title = "Double Russian",
   like = Some("russian"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_russian.htm")),
   description = "A two-deck version of ^russian^ solitaire.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -54,7 +55,7 @@ object DoubleRussian extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

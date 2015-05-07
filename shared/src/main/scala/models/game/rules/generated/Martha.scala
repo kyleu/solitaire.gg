@@ -22,6 +22,15 @@ object Martha extends GameRules(
   id = "martha",
   title = "Martha",
   related = Seq("stewart"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/martha.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Martha_(solitaire)"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/martha.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/martha.php"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/martha.htm"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Martha.htm"),
+    Link("dogMelon", "www.dogmelon.com.au/solhelp/Martha%20Solitaire.shtml")
+  ),
   description = "An easy game with no stock where half the cards start face down. Somewhat similar to ^bakersdozen^.",
   foundations = Seq(
     FoundationRules(

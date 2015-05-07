@@ -22,6 +22,7 @@ object JacksInTheBox extends GameRules(
   id = "jacksinthebox",
   title = "Jacks in the Box",
   like = Some("deuces"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/jacks_in_the_box.htm")),
   description = "A variation on ^deuces^ which has fewer tableau piles but adds some cells.",
   deckOptions = DeckOptions(
     numDecks = 2,
@@ -48,7 +49,7 @@ object JacksInTheBox extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(CellRules()),

@@ -21,6 +21,7 @@ object Hypotenuse extends GameRules(
   id = "hypotenuse",
   title = "Hypotenuse",
   like = Some("eternaltriangle"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/hypotenuse.htm")),
   description = "A version of ^eternaltriangle^ with some cards face down.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -55,7 +56,7 @@ object Hypotenuse extends GameRules(
         "U"
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

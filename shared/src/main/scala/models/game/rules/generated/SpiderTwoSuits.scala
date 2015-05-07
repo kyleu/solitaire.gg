@@ -26,10 +26,16 @@ object SpiderTwoSuits extends GameRules(
   id = "spidertwosuits",
   title = "Spider Two Suits",
   like = Some("spider"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/spider_two_suits.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/spider_(2_suits).html"),
+    Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Spider.html.en")
+  ),
   description = "The name says it \"all\": ^spider^ with only two suits.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
-    numDecks = 4
+    numDecks = 4,
+    suits = Seq(Suit.Hearts, Suit.Spades)
   ),
   stock = Some(
     StockRules(
@@ -63,7 +69,7 @@ object SpiderTwoSuits extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

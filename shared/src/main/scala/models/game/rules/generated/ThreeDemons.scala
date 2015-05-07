@@ -27,8 +27,9 @@ object ThreeDemons extends GameRules(
   title = "Three Demons",
   like = Some("triplecanfield"),
   related = Seq("threedemons"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_demons.htm")),
   description = "This three-deck version of ^canfield^ invented by Thomas Warfield starts with more cards in the reserve and more tableau piles tha" +
-  "n ^triplecanfield^.",
+    "n ^triplecanfield^.",
   deckOptions = DeckOptions(
     numDecks = 3,
     lowRank = Rank.Unknown
@@ -53,7 +54,7 @@ object ThreeDemons extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   reserves = Some(

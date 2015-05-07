@@ -19,6 +19,16 @@ import models.game.rules._
 object Bisley extends GameRules(
   id = "bisley",
   title = "Bisley",
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Bisley_(solitaire)"),
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bisley.htm"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/bisley.html"),
+    Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/bisley.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/bisley.htm"),
+    Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/Bisley.html"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/bisley.php"),
+    Link("John Welford on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-bisley-solitaire-25748/")
+  ),
   description = "A game of building up and down on the tableau.",
   stock = Some(
     StockRules(

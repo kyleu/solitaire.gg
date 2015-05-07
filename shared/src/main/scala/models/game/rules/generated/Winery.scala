@@ -22,6 +22,7 @@ object Winery extends GameRules(
   title = "Winery",
   like = Some("vineyard"),
   related = Seq("tenbyone", "winery"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/winery.htm")),
   description = "A version of ^vineyard^ with cells added.",
   foundations = Seq(
     FoundationRules(
@@ -36,7 +37,7 @@ object Winery extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   cells = Some(

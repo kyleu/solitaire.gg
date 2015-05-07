@@ -12,12 +12,15 @@ object GameRules {
   val allSources = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
 }
 
+case class Link(title: String, url: String)
+
 case class GameRules(
     id: String,
     title: String,
     description: String,
     like: Option[String] = None,
     related: Seq[String] = Nil,
+    links: Seq[Link] = Nil,
     victoryCondition: VictoryCondition = VictoryCondition.AllOnFoundation,
     cardRemovalMethod: CardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
     deckOptions: DeckOptions = DeckOptions(),
@@ -87,13 +90,11 @@ case class GameRules(
     }
   )
 
-  private[this] lazy val prototypePileSets = {
-    stock.map(s => StockSet(s, pileIdsByType)) ++
-      waste.map(w => WasteSet(w)) ++
-      reserves.map(r => ReserveSet(r)) ++
-      cells.map(c => CellSet(c)) ++
-      foundations.map(f => FoundationSet(f, deckOptions)) ++
-      tableaus.map(t => TableauSet(t)) ++
-      pyramids.map(p => PyramidSet(p))
-  }.toSeq
+  private[this] lazy val prototypePileSets = (stock.map(s => StockSet(s, pileIdsByType)) ++
+    waste.map(w => WasteSet(w)) ++
+    reserves.map(r => ReserveSet(r)) ++
+    cells.map(c => CellSet(c)) ++
+    foundations.map(f => FoundationSet(f, deckOptions)) ++
+    tableaus.map(t => TableauSet(t)) ++
+    pyramids.map(p => PyramidSet(p))).toSeq
 }

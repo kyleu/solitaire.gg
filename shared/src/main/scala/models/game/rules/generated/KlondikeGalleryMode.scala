@@ -27,8 +27,12 @@ object KlondikeGalleryMode extends GameRules(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
     "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
   ),
+  links = Seq(
+    Link("Wikipedia", "en.wikipedia.org/wiki/Klondike_(solitaire)"),
+    Link("Robert Abbott's Strategy Guide", "www.logicmazes.com/sol/")
+  ),
   description = "The world's most famous solitaire game played in gallery mode so all stock cards are always visible and the playable ones are rais" +
-  "ed",
+    "ed",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)
@@ -48,7 +52,7 @@ object KlondikeGalleryMode extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     )
   ),
   complete = false

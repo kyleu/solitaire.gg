@@ -20,6 +20,13 @@ object RankAndFile extends GameRules(
   title = "Rank and File",
   like = Some("numberten"),
   related = Seq("emperor"),
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rank_and_file.htm"),
+    Link("Solitaire Central", "www.solitairecentral.com/rules/RankAndFile.html"),
+    Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/RankandFile.htm"),
+    Link("Solavant Solitaire", "www.solavant.com/solitaire/rank_and_file.php"),
+    Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/rank_and_file.htm")
+  ),
   description = "Like ^numberten^, but three cards in each stack are dealt face down.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -41,7 +48,7 @@ object RankAndFile extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(4),
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

@@ -28,8 +28,16 @@ import models.game.rules._
 object CaptiveQueens extends GameRules(
   id = "captivequeens",
   title = "Captive Queens",
+  links = Seq(
+    Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/captive_queens.htm"),
+    Link("Solsuite Solitaire", "www.solsuite.com/games/captive_queens.htm"),
+    Link("Wikipedia", "en.wikipedia.org/wiki/Captive_Queens"),
+    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/captive_queens.html"),
+    Link("An analysis of Captive Queens", "www.somethinkodd.com/oddthinking/2013/05/30/analysis-of-captive-queens/"),
+    Link("Jan Wolter's Experiments", "/article/captivequeens.html")
+  ),
   description = "An easy and brainless variation of ^sixesandsevens^ also known as \"Quadrille\". Automoves default mostly off to give you somethin" +
-  "g to do.",
+    "g to do.",
   stock = Some(
     StockRules(
       maximumDeals = Some(3)
@@ -40,7 +48,7 @@ object CaptiveQueens extends GameRules(
     FoundationRules(
       name = "Fives Foundation",
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Five),
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
       maxCards = 6
@@ -49,7 +57,7 @@ object CaptiveQueens extends GameRules(
       name = "Sixes Foundation",
       setNumber = 1,
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Six),
       wrapFromKingToAce = true,
       maxCards = 6
     ),
@@ -57,7 +65,7 @@ object CaptiveQueens extends GameRules(
       name = "Queens Foundation",
       setNumber = 2,
       numPiles = 4,
-      lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      lowRank = FoundationLowRank.SpecificRank(Rank.Queen),
       wrapFromKingToAce = true,
       maxCards = 1,
       autoMoveCards = true

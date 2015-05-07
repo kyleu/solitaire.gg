@@ -25,6 +25,7 @@ object Bunker extends GameRules(
   id = "bunker",
   title = "Bunker",
   like = Some("trustytwelve"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bunker.htm")),
   description = "Build up regardless of suit to try to get all cards onto the tableau.",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(
@@ -43,7 +44,7 @@ object Bunker extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Up,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

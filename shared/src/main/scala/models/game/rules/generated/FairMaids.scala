@@ -26,6 +26,7 @@ object FairMaids extends GameRules(
   id = "fairmaids",
   title = "Fair Maids",
   like = Some("willothewisp"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fair_maids.htm")),
   description = "A variation of ^willothewisp^ where we build in alternate colors.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   stock = Some(
@@ -46,7 +47,7 @@ object FairMaids extends GameRules(
     TableauRules(
       initialCards = InitialCards.Count(4),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

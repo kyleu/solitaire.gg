@@ -19,17 +19,6 @@ object TableauAutoFillEmptyFrom {
   case object NextPile extends TableauAutoFillEmptyFrom
 }
 
-sealed trait TableauFillEmptyWith
-object TableauFillEmptyWith {
-  case object Any extends TableauFillEmptyWith
-  case object None extends TableauFillEmptyWith
-  case object Kings extends TableauFillEmptyWith
-  case object KingsUntilStockEmpty extends TableauFillEmptyWith
-  case object Aces extends TableauFillEmptyWith
-  case object KingsOrAces extends TableauFillEmptyWith
-  case object Sevens extends TableauFillEmptyWith
-}
-
 sealed trait PileAction
 object PileAction {
   case object None extends PileAction
@@ -57,7 +46,7 @@ case class TableauRules(
   rankMatchRuleForMovingStacks: RankMatchRule = RankMatchRule.Down,
 
   autoFillEmptyFrom: TableauAutoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
-  emptyFilledWith: TableauFillEmptyWith = TableauFillEmptyWith.None,
+  emptyFilledWith: FillEmptyWith = FillEmptyWith.None,
 
   mayMoveToNonEmptyFrom: Seq[String] = GameRules.allSources,
   mayMoveToEmptyFrom: Seq[String] = GameRules.allSources,

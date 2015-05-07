@@ -28,6 +28,7 @@ object Algiers extends GameRules(
   title = "Algiers",
   like = Some("carthage"),
   related = Seq("algiers"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/algiers.htm")),
   description = "A three-deck variation of ^carthage^.",
   deckOptions = DeckOptions(
     numDecks = 3
@@ -54,7 +55,7 @@ object Algiers extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces,
+      emptyFilledWith = FillEmptyWith.Aces,
       maxCards = 1
     ),
     TableauRules(
@@ -64,7 +65,7 @@ object Algiers extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

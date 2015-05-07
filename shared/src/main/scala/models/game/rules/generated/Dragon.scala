@@ -24,6 +24,7 @@ object Dragon extends GameRules(
   id = "dragon",
   title = "Dragon",
   like = Some("chinese"),
+  links = Seq(Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/dragon.html")),
   description = "A variation of ^chinese^ where you build in the same suit.",
   stock = Some(
     StockRules(
@@ -55,7 +56,7 @@ object Dragon extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = TableauFillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Aces
     )
   ),
   complete = false

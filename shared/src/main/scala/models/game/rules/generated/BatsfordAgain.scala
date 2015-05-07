@@ -28,6 +28,7 @@ object BatsfordAgain extends GameRules(
   id = "batsfordagain",
   title = "Batsford Again",
   like = Some("batsford"),
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/batsford_again.htm")),
   description = "A variation of ^batsford^ with a redeal.",
   deckOptions = DeckOptions(
     numDecks = 2
@@ -48,7 +49,7 @@ object BatsfordAgain extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
-      emptyFilledWith = TableauFillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.Kings
     ),
     TableauRules(
       name = "Reserve",
@@ -59,7 +60,7 @@ object BatsfordAgain extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Equal,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = TableauFillEmptyWith.Kings,
+      emptyFilledWith = FillEmptyWith.Kings,
       maxCards = 3
     )
   ),
