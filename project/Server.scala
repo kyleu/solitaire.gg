@@ -5,6 +5,7 @@ import sbt.Project.projectToRef
 import playscalajs.PlayScalaJS.autoImport._
 
 import com.typesafe.sbt.digest.Import._
+import com.typesafe.sbt.GitVersioning
 import com.typesafe.sbt.gzip.Import._
 import com.typesafe.sbt.jse.JsEngineImport.JsEngineKeys
 import com.typesafe.sbt.less.Import._
@@ -77,6 +78,7 @@ object Server {
   )
     .enablePlugins(SbtWeb)
     .enablePlugins(play.PlayScala)
+    .enablePlugins(GitVersioning)
     .settings(buildInfoSettings: _*)
     .settings(serverSettings: _*)
     .aggregate(projectToRef(Client.client))

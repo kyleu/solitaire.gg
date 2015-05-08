@@ -32,7 +32,7 @@ object BaseController extends Instrumented {
             result.withSession {
               request.session + ("account" -> accountId.toString) + ("name" -> name) + ("role" -> role)
             }.withCookies(
-              Cookie("scalataire_account", Crypto.encryptAES(accountId.toString), Some(31556000 /* 1 year */ ), "/", None, secure = false)
+              Cookie("solitaire_gg_account", Crypto.encryptAES(accountId.toString), Some(31556000 /* 1 year */ ), "/", None, secure = false)
             )
           }
         } else {

@@ -5,8 +5,8 @@ requirejs.config({
   }
 });
 
-requirejs(['game/Scalataire'], function(Scalataire) {
+requirejs(['game/Solitaire'], function(Solitaire) {
   "use strict";
 
-  window.scalataire = new Scalataire();
+  window.solitaire = new Solitaire();
 });

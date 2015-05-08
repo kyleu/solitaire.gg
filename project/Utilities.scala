@@ -1,3 +1,4 @@
+import com.typesafe.sbt.{ GitBranchPrompt, GitVersioning }
 import sbt._
 import sbt.Keys._
 
@@ -10,11 +11,20 @@ object Utilities {
     scalaVersion := Shared.Versions.scala,
     libraryDependencies ++= Seq(Dependencies.Play.playJson),
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
-  ).settings(graphSettings: _*).settings(defaultScalariformSettings: _*).dependsOn(Shared.sharedJvm)
+  )
+    .enablePlugins(GitVersioning)
+    .enablePlugins(GitBranchPrompt)
+    .settings(graphSettings: _*)
+    .settings(defaultScalariformSettings: _*)
+    .dependsOn(Shared.sharedJvm)
 
   lazy val rulesReset = (project in file("util/rulesReset")).settings(
     name := "rules-reset",
     scalaVersion := Shared.Versions.scala,
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
-  ).settings(graphSettings: _*).settings(defaultScalariformSettings: _*)
+  )
+    .enablePlugins(GitVersioning)
+    .enablePlugins(GitBranchPrompt)
+    .settings(graphSettings: _*)
+    .settings(defaultScalariformSettings: _*)
 }

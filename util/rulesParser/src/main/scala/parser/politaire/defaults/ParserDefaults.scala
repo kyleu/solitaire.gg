@@ -42,7 +42,7 @@ object ParserDefaults {
       "stdsuits" -> 15,
       "suits" -> 15,
       "supermoves" -> 0,
-      "title" -> "Scalataire",
+      "title" -> "Default Solitaire.gg Game",
       "toptobot" -> true,
       "touchfunc" -> 0,
       "victory" -> 0,

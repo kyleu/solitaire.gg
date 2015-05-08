@@ -22,6 +22,9 @@ addSbtPlugin("com.vmunier" % "sbt-play-scalajs" % "0.2.4")
 // Build Info
 addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.3.2")
 
+// Source Control
+addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.8.4")
+
 // Code Quality
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.6.0") // scalastyle
 

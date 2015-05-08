@@ -1,4 +1,5 @@
 import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
+import com.typesafe.sbt.{ GitBranchPrompt, GitVersioning }
 import com.typesafe.sbt.SbtScalariform.{ ScalariformKeys, defaultScalariformSettings }
 import net.virtualvoid.sbt.graph.Plugin.graphSettings
 import org.scalajs.sbtplugin.ScalaJSPlugin
@@ -18,5 +19,11 @@ object Client {
     scalaJSStage in Global := FastOptStage,
     scapegoatIgnoredFiles := Seq(".*/JsonUtils.scala", ".*/JsonSerializers.scala"),
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
-  ).settings(graphSettings: _*).settings(defaultScalariformSettings: _*).enablePlugins(ScalaJSPlugin, ScalaJSPlay).dependsOn(Shared.sharedJs)
+  )
+    .enablePlugins(GitVersioning)
+    .enablePlugins(GitBranchPrompt)
+    .settings(graphSettings: _*)
+    .settings(defaultScalariformSettings: _*)
+    .enablePlugins(ScalaJSPlugin, ScalaJSPlay)
+    .dependsOn(Shared.sharedJs)
 }

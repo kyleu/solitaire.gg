@@ -1,6 +1,6 @@
 @(account: java.util.UUID, name: String, rules: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None, offline: Boolean = false)(
   implicit session: Session, flash: Flash
-)@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/scalataire.css").url)) {
+)@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url)) {
   <div id="game-container"></div>
   @statusPanel()
   @defining(if(gameId.isDefined) { Seq("join", gameId.get) } else { Seq("start") } ) { initialAction =>

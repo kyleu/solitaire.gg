@@ -1,7 +1,7 @@
 define(function () {
   "use strict";
 
-  var c = document.getElementById('scalataire-config');
+  var c = document.getElementById('solitaire-gg-config');
   if(c === undefined) {
     throw "NoConfigurationException";
   }

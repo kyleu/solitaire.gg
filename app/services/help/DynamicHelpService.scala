@@ -1,10 +1,8 @@
 package services.help
 
-import models.game.rules.GameRules
-
 object DynamicHelpService {
-  def helpFor(rules: GameRules) = {
-    Map(
+  def helpFor() = {
+    Seq(
       "pre-deal" -> "The game is played with a single, standard deck of 52 playing cards. The cards are shuffled and placed face-down in the stock.",
       "post-deal" -> "Cards are then dealt to the tableau in seven piles of increasing size.",
 
@@ -19,7 +17,7 @@ object DynamicHelpService {
 
       "move-single-to-empty-tableau" -> "Kings can be moved to empty tableau piles, starting a new sequence.",
       "move-single-to-full-tableau" -> "Single face-up cards can be moved to another tableau pile if its top card is one rank lower and a different color.",
-      "move-sequence-to-full-tableau" -> "Sequences of face-up cards can be moved to another tableau pile if its contimues the sequence.",
+      "move-sequence-to-full-tableau" -> "Sequences of face-up cards can be moved to another tableau pile if it continues the sequence.",
       "select-card-tableau" -> "Touch or click a face-down card to turn it over.",
 
       "move-to-pyramid" -> "Only uncovered cards can be played from the pyramid. You can remove cards by making pairs totalling 13.",

@@ -24,10 +24,10 @@ app.on('ready', function() {
   if (process.platform == 'darwin') {
     var osxTemplate = [
       {
-        label: 'Scalataire',
+        label: 'Solitaire.gg',
         submenu: [
           {
-            label: 'About Scalataire',
+            label: 'About Solitaire.gg',
             selector: 'orderFrontStandardAboutPanel:'
           },
           {
@@ -41,7 +41,7 @@ app.on('ready', function() {
             type: 'separator'
           },
           {
-            label: 'Hide Scalataire',
+            label: 'Hide Solitaire.gg',
             accelerator: 'Command+H',
             selector: 'hide:'
           },

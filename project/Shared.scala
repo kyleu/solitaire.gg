@@ -1,3 +1,4 @@
+import com.typesafe.sbt.{ GitBranchPrompt, GitVersioning }
 import sbt._
 import sbt.Keys._
 
@@ -10,7 +11,7 @@ import playscalajs.ScalaJSPlay
 import playscalajs.ScalaJSPlay.autoImport._
 
 object Shared {
-  val projectId = "scalataire"
+  val projectId = "solitaire-gg"
 
   val compileOptions = Seq("-encoding", "UTF-8", "-feature", "-deprecation", "-unchecked", "–Xcheck-null", "-Xfatal-warnings", "-Xlint")
 
@@ -21,10 +22,19 @@ object Shared {
 
   lazy val sharedJs = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(
     scalaVersion := Versions.scala
-  ).enablePlugins(ScalaJSPlay).settings(sourceMapsBase := baseDirectory.value / "..", scalaJSStage in Global := FastOptStage).js
+  )
+    .enablePlugins(ScalaJSPlay)
+    .settings(
+      sourceMapsBase := baseDirectory.value / "..",
+      scalaJSStage in Global := FastOptStage
+    ).js
 
   lazy val sharedJvm = (project in file("shared")).settings(
     scalaVersion := Versions.scala,
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
-  ).settings(graphSettings: _*).settings(defaultScalariformSettings: _*)
+  )
+    .enablePlugins(GitVersioning)
+    .enablePlugins(GitBranchPrompt)
+    .settings(graphSettings: _*)
+    .settings(defaultScalariformSettings: _*)
 }

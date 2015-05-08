@@ -25,7 +25,7 @@ object ScalaExporter {
     val ret = new StringBuilder()
     def add(s: String): Unit = ret ++= s + "\n"
 
-    add("// Generated rules for Scalataire.")
+    add("// Generated rules for Solitaire.gg.")
     add("package models.game.rules.generated")
     add("")
     add("import models.game._")

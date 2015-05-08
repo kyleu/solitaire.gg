@@ -9,86 +9,92 @@
         <div class="jumbotron">
           <h1>Welcome to my game!</h1>
           <p>I'm trying to build the web's best card games. Thanks for checking out my progress!</p>
-          <p><a class="btn btn-primary btn-lg" href="@routes.HomeController.newGame("klondike").url" role="button">Play Now</a></p>
+          @if(request.isAdmin) {
+            <p><a class="btn btn-primary btn-lg" href="@routes.HomeController.newGame("klondike").url" role="button">Play Now</a></p>
+          } else {
+            <p>Coming soon!</p>
+          }
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">New Game</h3>
-          </div>
-          <div class="panel-body">
-            <ul>
-            @for(r <- models.game.rules.GameRulesSet.completed) {
-              <li>
-                <a href="@routes.HomeController.newGame(r)">@models.game.rules.GameRulesSet.allById(r).title</a>
-                <a href="@routes.HomeController.help(r)"><span class="glyphicon glyphicon-question-sign"></span></a>
-              </li>
-            }
-            </ul>
-          </div>
-        </div>
-
-        @if(request.isAdmin) {
+    @if(request.isAdmin) {
+      <div class="row">
+        <div class="col-md-6">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Unfinished Games</h3>
+              <h3 class="panel-title">New Game</h3>
             </div>
             <div class="panel-body">
               <ul>
-              @for(r <- models.game.rules.GameRulesSet.unfinished) {
+              @for(r <- models.game.rules.GameRulesSet.completed) {
                 <li>
-                  <a href="@routes.HomeController.newGame(r.id)">@r.title</a>
-                  <a href="@routes.HomeController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
+                  <a href="@routes.HomeController.newGame(r)">@models.game.rules.GameRulesSet.allById(r).title</a>
+                  <a href="@routes.HomeController.help(r)"><span class="glyphicon glyphicon-question-sign"></span></a>
                 </li>
               }
               </ul>
             </div>
           </div>
-        }
-      </div>
-      <div class="col-md-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Profile</h3>
-          </div>
-          <div class="panel-body">
-            <div class="name-panel">
-              You are currently known as <strong>@name</strong>.
-            </div>
-            <div class="input-group">
-              <input type="text" id="account" class="form-control" placeholder="Name" />
-              <span class="input-group-addon"><a href="" id="change-name-link">Change Name</a></span>
-            </div>
-          </div>
-        </div>
 
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Resume Game</h3>
-          </div>
-          <div class="panel-body">
-            No games to resume. Start a new game!
-          </div>
+          @if(request.isAdmin) {
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Unfinished Games</h3>
+              </div>
+              <div class="panel-body">
+                <ul>
+                @for(r <- models.game.rules.GameRulesSet.unfinished) {
+                  <li>
+                    <a href="@routes.HomeController.newGame(r.id)">@r.title</a>
+                    <a href="@routes.HomeController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
+                  </li>
+                }
+                </ul>
+              </div>
+            </div>
+          }
         </div>
-
-        @if(request.isAdmin) {
+        <div class="col-md-6">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Administration</h3>
+              <h3 class="panel-title">Profile</h3>
             </div>
             <div class="panel-body">
-              <a class="btn btn-default" href="@controllers.admin.routes.AdminController.status()">Activity</a>
-              <a class="btn btn-default" href="@controllers.admin.routes.AccountController.accountList()">Accounts</a>
-              <a class="btn btn-default" href="@controllers.admin.routes.GameHistoryController.gameList()">Games</a>
-              <a class="btn btn-default" href="@controllers.admin.routes.TestController.tests()">Tests</a>
-              <a class="btn btn-default" href="@controllers.admin.routes.RulesController.rules()">Rules</a>
+              <div class="name-panel">
+                You are currently known as <strong>@name</strong>.
+              </div>
+              <div class="input-group">
+                <input type="text" id="account" class="form-control" placeholder="Name" />
+                <span class="input-group-addon"><a href="" id="change-name-link">Change Name</a></span>
+              </div>
             </div>
           </div>
-        }
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Resume Game</h3>
+            </div>
+            <div class="panel-body">
+              No games to resume. Start a new game!
+            </div>
+          </div>
+
+          @if(request.isAdmin) {
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Administration</h3>
+              </div>
+              <div class="panel-body">
+                <a class="btn btn-default" href="@controllers.admin.routes.AdminController.status()">Activity</a>
+                <a class="btn btn-default" href="@controllers.admin.routes.AccountController.accountList()">Accounts</a>
+                <a class="btn btn-default" href="@controllers.admin.routes.GameHistoryController.gameList()">Games</a>
+                <a class="btn btn-default" href="@controllers.admin.routes.TestController.tests()">Tests</a>
+                <a class="btn btn-default" href="@controllers.admin.routes.RulesController.rules()">Rules</a>
+              </div>
+            </div>
+          }
+        </div>
       </div>
-    </div>
+    }
   </div>
 }

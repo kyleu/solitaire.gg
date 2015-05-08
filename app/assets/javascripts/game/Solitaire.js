@@ -1,7 +1,7 @@
 define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocket, Game) {
   "use strict";
 
-  function Scalataire() {
+  function Solitaire() {
     if(cfg.offline) {
       this.game = new Game();
     } else {
@@ -10,7 +10,7 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
     }
   }
 
-  Scalataire.prototype.onConnect = function() {
+  Solitaire.prototype.onConnect = function() {
     console.log(cfg.account.name + " connected.");
     if(this.game === null) {
       this.game = new Game(this.ws);
@@ -19,7 +19,7 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
     }
   };
 
-  Scalataire.prototype.onMessage = function(c, v) {
+  Solitaire.prototype.onMessage = function(c, v) {
     if(this.game === null) {
       console.log("No game available for message [" + c + "].");
     } else {
@@ -27,5 +27,5 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
     }
   };
 
-  return Scalataire;
+  return Solitaire;
 });

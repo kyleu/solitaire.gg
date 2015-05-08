@@ -9,8 +9,8 @@ import scala.scalajs.js.annotation.JSExport
 
 import scala.util.Random
 
-object Scalataire extends js.JSApp with ScalataireHelper {
-  override def main() = {}
+object Solitaire extends js.JSApp with SolitaireHelper {
+  override def main(): Unit = {}
 
   private[this] val accountId = UUID.randomUUID
   private[this] val rng = new Random()
@@ -19,10 +19,12 @@ object Scalataire extends js.JSApp with ScalataireHelper {
   private[this] var sendCallback: js.Function1[String, Unit] = _
 
   @JSExport
-  def register(callback: js.Function1[String, Unit]) = sendCallback = callback
+  def register(callback: js.Function1[String, Unit]) {
+    sendCallback = callback
+  }
 
   @JSExport
-  def receive(c: String, v: js.Dynamic) = {
+  def receive(c: String, v: js.Dynamic): Unit = {
     c match {
       case "GetVersion" => send(VersionResponse("0.0"))
       case "Ping" => send(Pong(JsonUtils.getLong(v.timestamp)))
@@ -36,7 +38,7 @@ object Scalataire extends js.JSApp with ScalataireHelper {
     }
   }
 
-  protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true) = {
+  protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit = {
     if (registerUndoResponse) {
       undoHelper.registerResponse(rm)
     }
@@ -44,7 +46,7 @@ object Scalataire extends js.JSApp with ScalataireHelper {
     sendCallback(JsonSerializers.write(json))
   }
 
-  private[this] def handleStartGame(rules: String, seed: Option[Int]) = {
+  private[this] def handleStartGame(rules: String, seed: Option[Int]): Unit = {
     gameId = UUID.randomUUID
     gameRules = GameRulesSet.allById(rules)
     gameState = gameRules.newGame(gameId, seed.getOrElse(Math.abs(rng.nextInt())))
@@ -54,7 +56,7 @@ object Scalataire extends js.JSApp with ScalataireHelper {
     send(GameJoined(gameId, gameState.view(accountId), possibleMoves()))
   }
 
-  private[this] def handleUndo() = {
+  private[this] def handleUndo(): Unit = {
     if (undoHelper.historyQueue.nonEmpty) {
       val undone = undoHelper.undo(gameState)
       send(undone, registerUndoResponse = false)
@@ -62,7 +64,7 @@ object Scalataire extends js.JSApp with ScalataireHelper {
     }
   }
 
-  private[this] def handleRedo() = {
+  private[this] def handleRedo(): Unit = {
     if (undoHelper.undoneQueue.nonEmpty) {
       val redone = undoHelper.redo(gameState)
       send(redone, registerUndoResponse = false)

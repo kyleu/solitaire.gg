@@ -7,7 +7,7 @@ object Config {
   private[this] val cnf = ConfigFactory.load()
 
   val projectId = utils.BuildInfo.name
-  val projectName = "Scalataire"
+  val projectName = "Solitaire.gg"
   val version = "0.1"
   val hostname = cnf.getString("play.host")
 

@@ -15,7 +15,7 @@ class MetricsServletActor extends InstrumentedActor with Logging {
   private[this] var graphiteReporter: Option[GraphiteReporter] = None
   private[this] var httpServer: Option[Server] = None
 
-  override def preStart() {
+  override def preStart(): Unit = {
     if (Config.jmxEnabled) {
       log.info("Reporting metrics over JMX.")
       jmxReporter = Some(JmxReporter.forRegistry(Instrumented.metricRegistry).build())
@@ -44,7 +44,7 @@ class MetricsServletActor extends InstrumentedActor with Logging {
     super.preStart()
   }
 
-  override def postStop() {
+  override def postStop(): Unit = {
     jmxReporter.foreach { r =>
       r.stop()
       r.close()

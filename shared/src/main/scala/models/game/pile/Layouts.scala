@@ -34,6 +34,7 @@ object Layouts {
     "golf" -> "t|f:s",
     "goodmeasure" -> ".f|2t",
     "gypsy" -> "sf|:t",
+    "kiev" -> "s::f|t",
     "klondike" -> "swf|t",
     "klondike1card" -> "swf|t",
     "missmilligan" -> "sf|:t",

@@ -1,11 +1,14 @@
 package services.database
 
 import com.simple.jdub.{ Statement, RawQuery, Database }
+import nl.grons.metrics.scala.Timer
 import play.api.Play
 import utils.{ Logging, Config }
 import utils.metrics.{ Instrumented, Checked }
 
 object DatabaseConnection extends Logging with Instrumented {
+  private[this] val timers = collection.mutable.HashMap.empty[String, Timer]
+
   case class DatabaseException(queryType: String, sql: String, values: Seq[Any], ex: Exception) extends Exception(ex) {
     private[this] val valStr = values.mkString(", ")
     override def getMessage = {
@@ -47,13 +50,21 @@ object DatabaseConnection extends Logging with Instrumented {
   }
 
   def query[A](query: RawQuery[A]) = try {
-    db.query(query)
+    val q = query.getClass.getSimpleName.replaceAllLiterally("$", "")
+    val t = timers.getOrElseUpdate(q, metrics.timer(q))
+    t.time {
+      db.query(query)
+    }
   } catch {
     case ex: Exception => throw new DatabaseException("query", query.sql, query.values, ex)
   }
 
   def execute(statement: Statement) = try {
-    db.execute(statement)
+    val s = statement.getClass.getSimpleName.replaceAllLiterally("$", "")
+    val t = timers.getOrElseUpdate(s, metrics.timer(s))
+    t.time {
+      db.execute(statement)
+    }
   } catch {
     case ex: Exception => throw new DatabaseException("statement", statement.sql, statement.values, ex)
   }

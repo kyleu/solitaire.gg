@@ -19,7 +19,7 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (co
         self.onMessage(ret.c, ret.v);
       };
 
-      this.offlineService = new Scalataire();
+      this.offlineService = new Solitaire();
       this.offlineService.register(callback);
     } else {
       this.ws = ws;
