@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -10,7 +10,7 @@ import models.game.rules._
  *   Foundation low rank (F0b): 6 (6)
  *   Foundation initial cards (F0d): -1
  *   Maximum cards for foundation (F0m): 6
- *   Foundation rank match rule (F0r): 0x0020
+ *   Foundation rank match rule (F0r): 32 (Build down)
  *   Auto-move cards to foundation (F1a): 1 (Whenever possible)
  *   Foundation low rank (F1b): 7 (7)
  *   Foundation initial cards (F1d): -1
@@ -70,7 +70,5 @@ object SixesAndSevens extends GameRules(
       emptyFilledWith = FillEmptyWith.Aces,
       maxCards = 1
     )
-  ),
-  complete = false
+  )
 )
-

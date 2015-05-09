@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -42,7 +42,5 @@ object Brazilian extends GameRules(
       numPiles = 10,
       emptyFilledWith = FillEmptyWith.Kings
     )
-  ),
-  complete = false
+  )
 )
-

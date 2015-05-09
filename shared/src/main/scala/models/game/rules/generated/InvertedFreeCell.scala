@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -9,12 +9,12 @@ import models.game.rules._
  *   Number of cells (C0n): 4
  *   Auto-move cards to foundation (F0a): 5 (When stackable cards are removable)
  *   Foundation low rank (F0b): 22 (Deck's high card)
- *   Foundation rank match rule (F0r): 0x0020
+ *   Foundation rank match rule (F0r): 32 (Build down)
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): -3 (Fill rows with rest of deck)
  *   *T0db (T0db): 0
  *   Tableau piles (T0n): 8
- *   Tableau rank match rule for building (T0r): 0x0080
+ *   Tableau rank match rule for building (T0r): 128 (Build up)
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): freecell
@@ -45,7 +45,5 @@ object InvertedFreeCell extends GameRules(
       emptyFilledWith = FillEmptyWith.Aces
     )
   ),
-  cells = Some(CellRules()),
-  complete = false
+  cells = Some(CellRules())
 )
-

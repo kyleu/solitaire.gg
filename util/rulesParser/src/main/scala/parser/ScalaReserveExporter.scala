@@ -3,9 +3,7 @@ package parser
 import models.game.rules._
 
 object ScalaReserveExporter {
-  def exportReserves(rules: GameRules, ret: StringBuilder): Unit = {
-    def add(s: String) = ret ++= s + "\n"
-
+  def exportReserves(rules: GameRules) = {
     rules.reserves match {
       case Some(r) =>
         val props = collection.mutable.ArrayBuffer.empty[String]
@@ -14,16 +12,17 @@ object ScalaReserveExporter {
         props += "      initialCards = " + r.initialCards
         props += "      cardsFaceDown = " + r.cardsFaceDown
 
-        if(props.isEmpty) {
-          add("  reserves = Some(ReserveRules()),")
+        Some(if(props.isEmpty) {
+          "  reserves = Some(ReserveRules())"
         } else {
-          add("  reserves = Some(")
-          add("    ReserveRules(")
-          add(props.mkString(",\n"))
-          add("    )")
-          add("  ),")
-        }
-      case None =>  // no op
+          "  reserves = Some(\n" +
+          "    ReserveRules(\n" +
+          props.mkString(",\n") +
+          "\n" +
+          "    )\n" +
+          "  )"
+        })
+      case None => None
     }
   }
 }

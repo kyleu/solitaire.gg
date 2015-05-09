@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -14,7 +14,7 @@ import models.game.rules._
  *   Foundation low rank (F1b): 22 (Deck's high card)
  *   Foundation initial cards (F1d): 0 (None)
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   TODO (F1u): 2
  *   Foundation Sets (Fn): 2
  *   Reserve initial cards (R0d): 4
@@ -24,7 +24,7 @@ import models.game.rules._
  *   Auto-fill an empty tableau from (T0af): 1
  *   Tableau initial cards (T0d): 4 (4 cards)
  *   Tableau piles (T0n): 25
- *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Tableau wraps from king to ace (T0w): true
  *   Number of waste piles (W0n): 0
@@ -83,7 +83,5 @@ object Chequers extends GameRules(
       initialCards = 4,
       cardsFaceDown = 100
     )
-  ),
-  complete = false
+  )
 )
-

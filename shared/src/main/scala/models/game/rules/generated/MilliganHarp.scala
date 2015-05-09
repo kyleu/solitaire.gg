@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -49,7 +49,5 @@ object MilliganHarp extends GameRules(
       numPiles = 8,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

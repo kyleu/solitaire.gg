@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -10,7 +10,7 @@ import models.game.rules._
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): 5 (5 cards)
  *   Tableau piles (T0n): 10
- *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): fortress
@@ -49,7 +49,5 @@ object FortressOfMercy extends GameRules(
       shuffleBeforeRedeal = false,
       drawsAllowed = 1
     )
-  ),
-  complete = false
+  )
 )
-

@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -6,7 +6,7 @@ import models.game.rules._
 
 /**
  * Original Settings:
- *   Maximum cards for foundation (F0m): 2*13
+ *   Maximum cards for foundation (F0m): 26
  *   Number of foundation piles (F0n): 4 (4 stacks)
  *   TODO (F0u): 2
  *   Enable stock (Sn): 0 (No stock)
@@ -59,7 +59,5 @@ object Gloucestershire extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

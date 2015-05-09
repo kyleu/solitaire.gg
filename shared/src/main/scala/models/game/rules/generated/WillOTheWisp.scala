@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -17,7 +17,7 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 3 (To all tableau piles if none empty)
  *   Left mouse interface function (leftfunc): 0x2|0x20
  *   Related games (related): fairmaids
- *   Right mouse interface function (rightfunc): 0x0
+ *   Right mouse interface function (rightfunc): 0
  */
 object WillOTheWisp extends GameRules(
   id = "willothewisp",
@@ -54,7 +54,5 @@ object WillOTheWisp extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

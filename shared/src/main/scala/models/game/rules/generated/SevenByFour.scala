@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -38,7 +38,5 @@ object SevenByFour extends GameRules(
       emptyFilledWith = FillEmptyWith.Aces
     )
   ),
-  cells = Some(CellRules()),
-  complete = false
+  cells = Some(CellRules())
 )
-

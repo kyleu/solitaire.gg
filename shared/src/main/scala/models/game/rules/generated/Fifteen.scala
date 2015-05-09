@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,13 +12,13 @@ import models.game.rules._
  *   Auto-move cards to foundation (F1a): 0 (Never)
  *   Foundation low rank (F1b): 22 (Deck's high card)
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   TODO (F1u): 2
  *   Foundation Sets (Fn): 2
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): -3 (Fill rows with rest of deck)
  *   Tableau piles (T0n): 15
- *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Number of waste piles (W0n): 0
  *   Number of decks (ndecks): 2 (2 decks)
@@ -57,7 +57,5 @@ object Fifteen extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

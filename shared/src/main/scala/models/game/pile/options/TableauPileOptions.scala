@@ -3,7 +3,7 @@ package models.game.pile.options
 import models.game.pile.actions.SelectCardActions
 import models.game.pile.constraints.Constraint
 import models.game.rules._
-import models.game.{Card, Rank}
+import models.game.{ Card, Rank }
 
 object TableauPileOptions {
   def apply(rules: TableauRules, deckOptions: DeckOptions) = {
@@ -40,7 +40,7 @@ object TableauPileOptions {
       } else {
         var valid = true
         var lastCard: Option[Card] = None
-        for(c <- cards) {
+        for (c <- cards) {
           lastCard.foreach { lc =>
             if (!rmr.check(lc.r, c.r, lowRank)) {
               valid = false
@@ -57,7 +57,7 @@ object TableauPileOptions {
 
   private[this] def dragTo(rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank, emptyPileRanks: Seq[Rank], maxCards: Int) = {
     Constraint("tableau", (pile, cards, gameState) => {
-      if(maxCards > 0 && pile.cards.length + cards.length > maxCards) {
+      if (maxCards > 0 && pile.cards.length + cards.length > maxCards) {
         false
       } else {
         if (pile.cards.isEmpty) {

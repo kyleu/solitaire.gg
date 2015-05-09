@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -60,7 +60,5 @@ object LadyCadogan extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       emptyFilledWith = FillEmptyWith.Kings
     )
-  ),
-  complete = false
+  )
 )
-

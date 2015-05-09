@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -15,7 +15,7 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 0 (May not build)
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealto): 8 (Never)
- *   Left mouse interface function (leftfunc): 0x1
+ *   Left mouse interface function (leftfunc): 1
  *   Similar to (like): simplepairs
  *   Card removal method (pairs): 15 (Remove sets of 1 face card and 3 that add to 18)
  */
@@ -54,7 +54,5 @@ object Eighteens extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock
     )
-  ),
-  complete = false
+  )
 )
-

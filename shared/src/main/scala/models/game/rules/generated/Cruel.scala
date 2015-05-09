@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -7,9 +7,9 @@ import models.game.rules._
 /**
  * Original Settings:
  *   Foundation initial cards (F0d): -1
- *   Deal order (RDd): 1|0|8
+ *   Deal order (RDd): 9 (Columns, left to right, top to bottom)
  *   Allowed pick ups/redeals (RDn): -1 (Unlimited)
- *   Pickup order (RDp): 1|0|8
+ *   Pickup order (RDp): 9 (Columns, left to right, top to bottom)
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): 4 (4 cards)
  *   Empty tableau is filled with (T0f): 5 (No card)
@@ -18,7 +18,7 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Left mouse interface function (leftfunc): 0x2|0x20
  *   Related games (related): indefatigable, unusual, ripplefan, perseverancea
- *   Right mouse interface function (rightfunc): 0x0
+ *   Right mouse interface function (rightfunc): 0
  */
 object Cruel extends GameRules(
   id = "cruel",
@@ -51,7 +51,5 @@ object Cruel extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
-  ),
-  complete = false
+  )
 )
-

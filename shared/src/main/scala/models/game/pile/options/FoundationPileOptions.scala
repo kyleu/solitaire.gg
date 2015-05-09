@@ -32,7 +32,7 @@ object FoundationPileOptions {
             s && r
           }
         }
-      } else if(rules.moveCompleteSequencesOnly) {
+      } else if (rules.moveCompleteSequencesOnly) {
         cards.length == 13
       } else {
         false

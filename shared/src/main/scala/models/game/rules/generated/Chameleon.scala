@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -68,7 +68,5 @@ object Chameleon extends GameRules(
       initialCards = 12,
       cardsFaceDown = 100
     )
-  ),
-  complete = false
+  )
 )
-

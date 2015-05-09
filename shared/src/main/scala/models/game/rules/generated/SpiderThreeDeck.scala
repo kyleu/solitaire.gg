@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -19,7 +19,7 @@ import models.game.rules._
  *   Left mouse interface function (leftfunc): 0x2|0x20
  *   Similar to (like): bigspider
  *   Number of decks (ndecks): 3 (3 decks)
- *   Right mouse interface function (rightfunc): 0x0
+ *   Right mouse interface function (rightfunc): 0
  *   Victory condition (victory): 3 (All cards on tableau sorted)
  */
 object SpiderThreeDeck extends GameRules(
@@ -67,7 +67,5 @@ object SpiderThreeDeck extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

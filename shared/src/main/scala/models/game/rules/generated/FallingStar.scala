@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,11 +12,11 @@ import models.game.rules._
  *   Reserve initial cards (R0d): 11
  *   Reserve cards face down (R0df): 0
  *   Number of reserve piles (R0n): 1
- *   Auto-fill an empty tableau from (T0af): 2|4
+ *   Auto-fill an empty tableau from (T0af): 6 (First waste then stock)
  *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled from (T0fo): BIT_ANY & ~BIT_RESERVE
+ *   Empty tableau is filled from (T0fo): 191
  *   Tableau piles (T0n): 8
- *   May move to non-empty tableau from (T0o): BIT_ANY & ~BIT_RESERVE
+ *   May move to non-empty tableau from (T0o): 191
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
  *   Tableau suit match rule for moving stacks (T0ts): 0 (May not build)
  *   Similar to (like): signora
@@ -24,7 +24,7 @@ import models.game.rules._
  *   Maximum deals from stock (maxdeals): 1 (1)
  *   Number of decks (ndecks): 2 (2 decks)
  *   Related games (related): doublesignora, fallingstar, blondesandbrunettes, roman
- *   Custom suits (suits): 128|64
+ *   Custom suits (suits): 192
  */
 object FallingStar extends GameRules(
   id = "fallingstar",
@@ -79,7 +79,5 @@ object FallingStar extends GameRules(
       initialCards = 11,
       cardsFaceDown = 0
     )
-  ),
-  complete = false
+  )
 )
-

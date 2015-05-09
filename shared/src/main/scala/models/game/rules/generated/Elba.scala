@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -52,7 +52,5 @@ object Elba extends GameRules(
       initialCards = InitialCards.Count(5),
       emptyFilledWith = FillEmptyWith.Kings
     )
-  ),
-  complete = false
+  )
 )
-

@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -66,7 +66,5 @@ object DoubleStorehouse extends GameRules(
       initialCards = 19,
       cardsFaceDown = 100
     )
-  ),
-  complete = false
+  )
 )
-

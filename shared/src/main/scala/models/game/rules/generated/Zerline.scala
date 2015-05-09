@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -14,8 +14,8 @@ import models.game.rules._
  *   Tableau initial cards (T1d): 0 (None)
  *   Maximum cards per tableau (T1m): 4 (4 cards)
  *   Tableau piles (T1n): 1
- *   May move to non-empty tableau from (T1o): BIT_TABLEAU
- *   Tableau rank match rule for building (T1r): 0x1fff
+ *   May move to non-empty tableau from (T1o): 4 (Tableau)
+ *   Tableau rank match rule for building (T1r): 8191 (Regardless of rank)
  *   Tableau suit match rule for building (T1s): 5 (Regardless of suit)
  *   Tableau sets (Tn): 2 (2 tableau sets)
  *   Low card (lowpip): 13 (K)
@@ -65,7 +65,5 @@ object Zerline extends GameRules(
       mayMoveToNonEmptyFrom = Seq("Tableau"),
       maxCards = 4
     )
-  ),
-  complete = false
+  )
 )
-

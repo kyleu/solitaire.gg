@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -14,14 +14,14 @@ import models.game.rules._
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Maximum cards per tableau (T0m): 3 (3 cards)
  *   Tableau piles (T0n): 15
- *   Tableau rank match rule for building (T0r): 0x0020|0x0080
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Tableau name (T1Nm): Hole
  *   Tableau initial cards (T1d): 2 (2 cards)
  *   Empty tableau is filled with (T1f): 0 (Any card)
  *   Maximum cards per tableau (T1m): 3 (3 cards)
  *   Tableau piles (T1n): 3
- *   Tableau rank match rule for building (T1r): 0x0020|0x0080
+ *   Tableau rank match rule for building (T1r): 160 (Build up or down)
  *   Tableau suit match rule for building (T1s): 1 (In same suit)
  *   Tableau sets (Tn): 2 (2 tableau sets)
  *   Number of waste piles (W0n): 0
@@ -63,7 +63,5 @@ object BearRiver extends GameRules(
       emptyFilledWith = FillEmptyWith.Aces,
       maxCards = 3
     )
-  ),
-  complete = false
+  )
 )
-

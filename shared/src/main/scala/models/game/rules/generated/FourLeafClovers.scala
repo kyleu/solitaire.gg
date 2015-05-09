@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -13,7 +13,7 @@ import models.game.rules._
  *   Tableau initial cards (T0d): 4 (4 cards)
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 13
- *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Tableau wraps from king to ace (T0w): true
  *   Number of waste piles (W0n): 0
@@ -47,7 +47,5 @@ object FourLeafClovers extends GameRules(
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
-  ),
-  complete = false
+  )
 )
-

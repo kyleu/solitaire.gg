@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -7,7 +7,7 @@ import models.game.rules._
 /**
  * Original Settings:
  *   Foundation low rank (F1b): 22 (Deck's high card)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   Foundation Sets (Fn): 2
  *   Tableau initial cards (T0d): -1 (1 to n cards)
  *   Tableau cards face down (T0df): 100
@@ -56,7 +56,5 @@ object Gilbert extends GameRules(
     TableauRules(
       emptyFilledWith = FillEmptyWith.Sevens
     )
-  ),
-  complete = false
+  )
 )
-

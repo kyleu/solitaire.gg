@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -10,20 +10,20 @@ import models.game.rules._
  *   Foundation initial cards (F0d): 2 (2 cards)
  *   Maximum cards for foundation (F0m): 13
  *   Number of foundation piles (F0n): 2 (2 stacks)
- *   Foundation rank match rule (F0r): 0x0100
+ *   Foundation rank match rule (F0r): 256 (Build up by 2)
  *   TODO (F0u): 1
  *   Foundation low rank (F1b): 2 (2)
  *   Foundation initial cards (F1d): 2 (2 cards)
  *   Maximum cards for foundation (F1m): 13
  *   Number of foundation piles (F1n): 2 (2 stacks)
- *   Foundation rank match rule (F1r): 0x0100
+ *   Foundation rank match rule (F1r): 256 (Build up by 2)
  *   TODO (F1u): 1
  *   Foundation Sets (Fn): 2
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Tableau piles (T0n): 8
- *   Tableau rank match rule for building (T0r): 0x0010
+ *   Tableau rank match rule for building (T0r): 16 (Build down by 2)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Tableau rank match rule for moving stacks (T0tr): 0x0010
+ *   Tableau rank match rule for moving stacks (T0tr): 16 (Build down by 2)
  *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealto): 2 (To all tableau piles)
@@ -78,7 +78,5 @@ object DoubleDot extends GameRules(
       rankMatchRuleForMovingStacks = RankMatchRule.DownBy2,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

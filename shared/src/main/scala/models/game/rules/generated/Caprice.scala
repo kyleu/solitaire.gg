@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -14,13 +14,13 @@ import models.game.rules._
  *   Foundation low rank (F1b): 22 (Deck's high card)
  *   Foundation initial cards (F1d): -1
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   TODO (F1u): 2
  *   Foundation Sets (Fn): 2
  *   Auto-fill an empty tableau from (T0af): 4 (Stock)
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Tableau piles (T0n): 12
- *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealto): 2 (To all tableau piles)
@@ -72,7 +72,5 @@ object Caprice extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -13,7 +13,7 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Tableau suit match rule for moving stacks (T1ts): 1 (In same suit)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Custom suits (suits): 1|2|16|64
+ *   Custom suits (suits): 83
  */
 object WaxingMoon extends GameRules(
   id = "waxingmoon",
@@ -46,7 +46,5 @@ object WaxingMoon extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.Kings
     )
-  ),
-  complete = false
+  )
 )
-

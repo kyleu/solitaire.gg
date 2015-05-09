@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -64,7 +64,5 @@ object Backbone extends GameRules(
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
     )
-  ),
-  complete = false
+  )
 )
-

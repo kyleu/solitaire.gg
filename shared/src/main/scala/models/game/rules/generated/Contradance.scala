@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -8,7 +8,7 @@ import models.game.rules._
  * Original Settings:
  *   Foundation low rank (F0b): 5 (5)
  *   Maximum cards for foundation (F0m): 6
- *   Foundation rank match rule (F0r): 0x0020
+ *   Foundation rank match rule (F0r): 32 (Build down)
  *   Foundation low rank (F1b): 6 (6)
  *   Maximum cards for foundation (F1m): 7
  *   Foundation Sets (Fn): 2
@@ -51,7 +51,5 @@ object Contradance extends GameRules(
       maxCards = 7,
       autoMoveCards = true
     )
-  ),
-  complete = false
+  )
 )
-

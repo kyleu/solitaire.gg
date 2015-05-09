@@ -5,9 +5,7 @@ import models.game.rules._
 object ScalaWasteExporter {
   private[this] val defaults = WasteRules()
 
-  def exportWaste(rules: GameRules, ret: StringBuilder): Unit = {
-    def add(s: String) = ret ++= s + "\n"
-
+  def exportWaste(rules: GameRules) = {
     rules.waste match {
       case Some(w) =>
         val props = collection.mutable.ArrayBuffer.empty[String]
@@ -24,16 +22,17 @@ object ScalaWasteExporter {
           props += "      playableCards = WastePlayableCards." + w.playableCards
         }
 
-        if(props.isEmpty) {
-          add("  waste = Some(WasteRules()),")
+        Some(if(props.isEmpty) {
+          "  waste = Some(WasteRules())"
         } else {
-          add("  waste = Some(")
-          add("    WasteRules(")
-          add(props.mkString(",\n"))
-          add("    )")
-          add("  ),")
-        }
-      case None => //no op
+          "  waste = Some(\n" +
+          "    WasteRules(\n" +
+          props.mkString(",\n") +
+          "\n" +
+          "    )\n" +
+          "  )"
+        })
+      case None => None
     }
   }
 }

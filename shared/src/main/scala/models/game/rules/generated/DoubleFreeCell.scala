@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -9,7 +9,7 @@ import models.game.rules._
  *   Number of cells (C0n): 6
  *   Auto-move cards to foundation (F0a): 5 (When stackable cards are removable)
  *   Foundation initial cards (F0d): -1
- *   Maximum cards for foundation (F0m): 2*13
+ *   Maximum cards for foundation (F0m): 26
  *   Number of foundation piles (F0n): 4 (4 stacks)
  *   TODO (F0u): 2
  *   Enable stock (Sn): 0 (No stock)
@@ -61,7 +61,5 @@ object DoubleFreeCell extends GameRules(
     CellRules(
       numPiles = 6
     )
-  ),
-  complete = false
+  )
 )
-

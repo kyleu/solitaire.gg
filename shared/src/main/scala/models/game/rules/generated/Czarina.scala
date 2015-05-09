@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -56,7 +56,5 @@ object Czarina extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

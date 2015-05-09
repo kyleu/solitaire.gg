@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -9,8 +9,8 @@ import models.game.rules._
  *   Foundation Sets (Fn): 0
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Tableau piles (T0n): 8
- *   May move to non-empty tableau from (T0o): BIT_WASTE
- *   Tableau rank match rule for building (T0r): 0x0080
+ *   May move to non-empty tableau from (T0o): 2 (Waste)
+ *   Tableau rank match rule for building (T0r): 128 (Build up)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Tableau wraps from king to ace (T0w): true
  *   Left mouse interface function (leftfunc): 0x2|0x20
@@ -42,7 +42,5 @@ object CircleEight extends GameRules(
       emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Waste")
     )
-  ),
-  complete = false
+  )
 )
-

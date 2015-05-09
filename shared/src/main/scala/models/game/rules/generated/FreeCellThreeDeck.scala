@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -47,7 +47,5 @@ object FreeCellThreeDeck extends GameRules(
     CellRules(
       numPiles = 12
     )
-  ),
-  complete = false
+  )
 )
-

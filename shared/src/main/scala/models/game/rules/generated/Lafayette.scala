@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -7,7 +7,7 @@ import models.game.rules._
 /**
  * Original Settings:
  *   Foundation low rank (F1b): 22 (Deck's high card)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   Foundation Sets (Fn): 2
  *   Reserve initial cards (R0d): 13
  *   Number of reserve piles (R0n): 1
@@ -62,7 +62,5 @@ object Lafayette extends GameRules(
       initialCards = 13,
       cardsFaceDown = 100
     )
-  ),
-  complete = false
+  )
 )
-

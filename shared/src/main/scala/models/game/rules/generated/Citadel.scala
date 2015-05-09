@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -48,7 +48,5 @@ object Citadel extends GameRules(
       emptyFilledWith = FillEmptyWith.Aces,
       actionDuringDeal = PileAction.MoveToFoundation
     )
-  ),
-  complete = false
+  )
 )
-

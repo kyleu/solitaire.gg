@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -59,7 +59,5 @@ object ThievesOfEgypt extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       emptyFilledWith = FillEmptyWith.Kings
     )
-  ),
-  complete = false
+  )
 )
-

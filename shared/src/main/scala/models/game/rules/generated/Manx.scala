@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -60,7 +60,5 @@ object Manx extends GameRules(
       pluralName = "Tail",
       numPiles = 1
     )
-  ),
-  complete = false
+  )
 )
-

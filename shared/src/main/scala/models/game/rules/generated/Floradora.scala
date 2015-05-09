@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,7 +12,7 @@ import models.game.rules._
  *   Auto-move cards to foundation (F1a): 1 (Whenever possible)
  *   Foundation low rank (F1b): 13
  *   Number of foundation piles (F1n): 1 (1 stack)
- *   Foundation rank match rule (F1r): 0x0040
+ *   Foundation rank match rule (F1r): 64 (Build equal)
  *   Foundation suit match rule (F1s): 5 (Regardless of suit)
  *   Foundation Sets (Fn): 2
  *   Tableau initial cards (T0d): 6 (6 cards)
@@ -67,7 +67,5 @@ object Floradora extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

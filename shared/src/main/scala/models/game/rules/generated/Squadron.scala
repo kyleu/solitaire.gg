@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -65,7 +65,5 @@ object Squadron extends GameRules(
       numPiles = 3,
       initialCards = 3
     )
-  ),
-  complete = false
+  )
 )
-

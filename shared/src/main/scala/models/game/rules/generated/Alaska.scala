@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -11,9 +11,9 @@ import models.game.rules._
  *   Custom initial cards (T0ds): U DUUUUU DDUUUUU DDDUUUUU DDDDUUUUU DDDDDUUUUU DDDDDDUUUUU
  *   Empty tableau is filled with (T0f): 1 (Kings only)
  *   Tableau piles (T0n): 7
- *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau rank match rule for moving stacks (T0tr): 0x1fff
+ *   Tableau rank match rule for moving stacks (T0tr): 8191 (Regardless of rank)
  *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): yukon
@@ -56,7 +56,5 @@ object Alaska extends GameRules(
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
       emptyFilledWith = FillEmptyWith.Kings
     )
-  ),
-  complete = false
+  )
 )
-

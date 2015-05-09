@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -6,9 +6,9 @@ import models.game.rules._
 
 /**
  * Original Settings:
- *   Deal order (RDd): 0|0|0
+ *   Deal order (RDd): 0 (Rows, left to right, bottom to top)
  *   Allowed pick ups/redeals (RDn): 6 (6)
- *   Pickup order (RDp): 1|0|0
+ *   Pickup order (RDp): 1 (Columns, left to right, bottom to top)
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): -3 (Fill rows with rest of deck)
  *   *T0db (T0db): 0
@@ -43,7 +43,5 @@ object DemonFan extends GameRules(
       shuffleBeforeRedeal = false,
       dealOrder = DealOrder.RowsLeftToRightTopToBottom
     )
-  ),
-  complete = false
+  )
 )
-

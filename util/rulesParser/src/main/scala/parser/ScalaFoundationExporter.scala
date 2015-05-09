@@ -5,7 +5,9 @@ import models.game.rules._
 object ScalaFoundationExporter {
   private[this] val defaults = FoundationRules()
 
-  def exportFoundations(rules: GameRules, ret: StringBuilder): Unit = {
+  def exportFoundations(rules: GameRules) = {
+    val ret = new StringBuilder
+
     def add(s: String) = ret ++= s + "\n"
     def cls(o: Any) = ScalaExporter.cls(o)
 
@@ -69,7 +71,8 @@ object ScalaFoundationExporter {
           "    FoundationRules(\n" + props.mkString(",\n") + "\n    )"
         }
       }.mkString(",\n"))
-      add("  ),")
+      ret ++= "  )"
     }
+    if(ret.nonEmpty) { Some(ret.toString()) } else { None }
   }
 }

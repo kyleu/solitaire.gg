@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -58,7 +58,5 @@ object Penguin extends GameRules(
     CellRules(
       numPiles = 7
     )
-  ),
-  complete = false
+  )
 )
-

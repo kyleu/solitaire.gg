@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -8,12 +8,12 @@ import models.game.rules._
  * Original Settings:
  *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
  *   Foundation initial cards (F0d): -1
- *   Foundation rank match rule (F0r): 0x0020
+ *   Foundation rank match rule (F0r): 32 (Build down)
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Tableau piles (T0n): 6
- *   Tableau rank match rule for building (T0r): 0x0080
+ *   Tableau rank match rule for building (T0r): 128 (Build up)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau rank match rule for moving stacks (T0tr): 0x0080
+ *   Tableau rank match rule for moving stacks (T0tr): 128 (Build up)
  *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
  *   Low card (lowpip): 8 (8)
  *   Maximum deals from stock (maxdeals): 2 (2)
@@ -55,7 +55,5 @@ object EightsDown extends GameRules(
       rankMatchRuleForMovingStacks = RankMatchRule.Up,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

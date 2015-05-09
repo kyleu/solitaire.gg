@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -8,12 +8,12 @@ import models.game.rules._
  * Original Settings:
  *   Foundation initial cards (F0d): -1
  *   Foundation low rank (F1b): 22 (Deck's high card)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   Foundation Sets (Fn): 2
  *   Tableau initial cards (T0d): 4 (4 cards)
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 12
- *   Tableau rank match rule for building (T0r): 0x0020|0x0080
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  */
 object Bisley extends GameRules(
@@ -61,7 +61,5 @@ object Bisley extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
-  ),
-  complete = false
+  )
 )
-

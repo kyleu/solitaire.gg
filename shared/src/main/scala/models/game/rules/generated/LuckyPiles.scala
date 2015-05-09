@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -11,7 +11,7 @@ import models.game.rules._
  *   Tableau initial cards (T0d): 4 (4 cards)
  *   Empty tableau is filled with (T0f): 1 (Kings only)
  *   Tableau piles (T0n): 13
- *   Tableau rank match rule for building (T0r): 0x0020|0x0080
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): luckythirteen
@@ -39,7 +39,5 @@ object LuckyPiles extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.Kings
     )
-  ),
-  complete = false
+  )
 )
-

@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -44,7 +44,5 @@ object Sarlacc extends GameRules(
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

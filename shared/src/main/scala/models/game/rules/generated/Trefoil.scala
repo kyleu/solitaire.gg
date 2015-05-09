@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -7,7 +7,7 @@ import models.game.rules._
 /**
  * Original Settings:
  *   Foundation initial cards (F0d): -1
- *   Deal order (RDd): 1|0|8
+ *   Deal order (RDd): 9 (Columns, left to right, top to bottom)
  *   Allowed pick ups/redeals (RDn): 2 (2)
  *   Shuffle before redealing (RDs): 1 (Yes)
  *   Enable stock (Sn): 0 (No stock)
@@ -57,7 +57,5 @@ object Trefoil extends GameRules(
       redealsAllowed = 2,
       dealOrder = DealOrder.ColumnsLeftToRightTopToBottom
     )
-  ),
-  complete = false
+  )
 )
-

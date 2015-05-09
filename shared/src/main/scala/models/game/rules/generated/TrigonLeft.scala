@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -42,7 +42,5 @@ object TrigonLeft extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.NextPile,
       emptyFilledWith = FillEmptyWith.Kings
     )
-  ),
-  complete = false
+  )
 )
-

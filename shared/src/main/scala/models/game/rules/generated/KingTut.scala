@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,7 +12,7 @@ import models.game.rules._
  *   Tableau sets (Tn): 0 (0 tableau sets)
  *   Deal cards from stock (dealchunk): 3 (Three at a time)
  *   Deal cards from stock (dealto): 1 (To all waste piles)
- *   Left mouse interface function (leftfunc): 0x1
+ *   Left mouse interface function (leftfunc): 1
  *   Similar to (like): pyramid
  *   Maximum deals from stock (maxdeals): 0
  *   Card removal method (pairs): 10 (Remove kings or pairs adding to 13)
@@ -50,7 +50,5 @@ object KingTut extends GameRules(
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
     )
-  ),
-  complete = false
+  )
 )
-

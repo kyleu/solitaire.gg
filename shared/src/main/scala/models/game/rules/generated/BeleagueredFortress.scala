@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -10,7 +10,7 @@ import models.game.rules._
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): 5 (5 cards)
  *   Tableau piles (T0n): 8
- *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Waste name (W0Nm): Reserve
  *   Playable waste cards (W0a): true
@@ -49,7 +49,5 @@ object BeleagueredFortress extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

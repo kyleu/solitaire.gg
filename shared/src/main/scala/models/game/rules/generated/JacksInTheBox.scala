@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,7 +12,7 @@ import models.game.rules._
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Tableau piles (T0n): 6
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Left mouse interface function (leftfunc): 0x0
+ *   Left mouse interface function (leftfunc): 0
  *   Similar to (like): deuces
  *   Low card (lowpip): 11 (J)
  *   Number of decks (ndecks): 2 (2 decks)
@@ -52,7 +52,5 @@ object JacksInTheBox extends GameRules(
       emptyFilledWith = FillEmptyWith.Aces
     )
   ),
-  cells = Some(CellRules()),
-  complete = false
+  cells = Some(CellRules())
 )
-

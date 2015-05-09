@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -16,7 +16,7 @@ import models.game.rules._
  *   Foundation initial cards (F1d): 4 (4 cards)
  *   Can move cards from foundation (F1mb): true
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   TODO (F1u): 2
  *   Foundation Sets (Fn): 2
  *   Enable stock (Sn): 0 (No stock)
@@ -24,8 +24,8 @@ import models.game.rules._
  *   Tableau initial cards (T0d): 6 (6 cards)
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 16
- *   May move to non-empty tableau from (T0o): BIT_TABLEAU
- *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   May move to non-empty tableau from (T0o): 4 (Tableau)
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Tableau wraps from king to ace (T0w): true
  *   Number of waste piles (W0n): 0
@@ -80,7 +80,5 @@ object CrescentFour extends GameRules(
       rotationsAllowed = 4,
       rotationTopToBottom = false
     )
-  ),
-  complete = false
+  )
 )
-

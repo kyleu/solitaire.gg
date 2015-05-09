@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -17,7 +17,7 @@ import models.game.rules._
  *   Foundation low rank (F1b): 12 (Q)
  *   Can move cards from foundation (F1mb): 1 (Always)
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   Foundation suit match rule (F1s): 5 (Regardless of suit)
  *   Foundation Sets (Fn): 2
  *   Reserve initial cards (R0d): 13
@@ -27,7 +27,7 @@ import models.game.rules._
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 4
- *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Similar to (like): acesandkings
  *   Low card (lowpip): -1 (.)
@@ -87,7 +87,5 @@ object DeucesAndQueens extends GameRules(
       initialCards = 13,
       cardsFaceDown = 0
     )
-  ),
-  complete = false
+  )
 )
-

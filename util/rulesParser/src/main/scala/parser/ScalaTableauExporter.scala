@@ -5,7 +5,9 @@ import models.game.rules._
 object ScalaTableauExporter {
   private[this] val defaults = TableauRules()
 
-  def exportTableaus(rules: GameRules, ret: StringBuilder): Unit = {
+  def exportTableaus(rules: GameRules) = {
+    val ret = new StringBuilder
+
     def add(s: String) = ret ++= s + "\n"
     def cls(o: Any) = ScalaExporter.cls(o)
 
@@ -78,12 +80,11 @@ object ScalaTableauExporter {
         if(props.isEmpty) {
           "    TableauRules()"
         } else {
-          "    TableauRules(\n" + {
-            props.mkString(",\n")
-          } + "\n    )"
+          "    TableauRules(\n" + props.mkString(",\n") + "\n    )"
         }
       }.mkString(",\n"))
-      add("  ),")
+      ret ++= "  )"
     }
+    if(ret.nonEmpty) { Some(ret.toString()) } else { None }
   }
 }

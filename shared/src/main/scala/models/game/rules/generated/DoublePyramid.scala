@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,7 +12,7 @@ import models.game.rules._
  *   Number of pyramids (Pn): 1 (1 pyramid)
  *   Tableau sets (Tn): 0 (0 tableau sets)
  *   Deal cards from stock (dealto): 9
- *   Left mouse interface function (leftfunc): 0x1
+ *   Left mouse interface function (leftfunc): 1
  *   Similar to (like): pyramid
  *   Maximum deals from stock (maxdeals): 3 (3)
  *   Number of decks (ndecks): 2 (2 decks)
@@ -52,7 +52,5 @@ object DoublePyramid extends GameRules(
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
     )
-  ),
-  complete = false
+  )
 )
-

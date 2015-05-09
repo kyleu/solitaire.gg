@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -9,7 +9,7 @@ import models.game.rules._
  *   Card initially dealt into cells (C0d): 8 (8 cards)
  *   *C0fx (C0fx): 1
  *   Number of cells (C0n): 8
- *   Can move cards to cell from (C0o): BIT_TABLEAU
+ *   Can move cards to cell from (C0o): 4 (Tableau)
  *   Foundation name (F0Nm): Ace Foundation
  *   Auto-move cards to foundation (F0a): 0 (Never)
  *   Foundation initial cards (F0d): 0 (None)
@@ -22,7 +22,7 @@ import models.game.rules._
  *   Foundation initial cards (F1d): 0 (None)
  *   Can move cards from foundation (F1mb): 1 (Always)
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   TODO (F1u): 2
  *   Foundation Sets (Fn): 2
  *   *RDc (RDc): 1
@@ -33,8 +33,8 @@ import models.game.rules._
  *   Tableau initial cards (T0d): 4 (4 cards)
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 6
- *   May move to non-empty tableau from (T0o): BIT_TABLEAU|BIT_CELL
- *   Tableau rank match rule for building (T0r): 0x0000
+ *   May move to non-empty tableau from (T0o): 20
+ *   Tableau rank match rule for building (T0r): 0 (May not build)
  *   Tableau suit match rule for building (T0s): 0 (May not build)
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealchunk): 4 (Four at a time)
@@ -106,7 +106,5 @@ object Tournament extends GameRules(
       redealsAllowed = 2,
       shuffleBeforeRedeal = false
     )
-  ),
-  complete = false
+  )
 )
-

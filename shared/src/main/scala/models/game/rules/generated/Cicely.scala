@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -8,7 +8,7 @@ import models.game.rules._
  * Original Settings:
  *   Card initially dealt into cells (C0d): 8 (8 cards)
  *   Number of cells (C0n): 8
- *   Can move cards to cell from (C0o): BIT_TABLEAU
+ *   Can move cards to cell from (C0o): 4 (Tableau)
  *   Foundation name (F0Nm): Ace Foundation
  *   Auto-move cards to foundation (F0a): 0 (Never)
  *   Foundation initial cards (F0d): 0 (None)
@@ -21,15 +21,15 @@ import models.game.rules._
  *   Foundation initial cards (F1d): 0 (None)
  *   Can move cards from foundation (F1mb): 1 (Always)
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   TODO (F1u): 2
  *   Foundation Sets (Fn): 2
  *   Auto-fill an empty tableau from (T0af): 0 (Nowhere)
  *   Tableau initial cards (T0d): 4 (4 cards)
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 8
- *   May move to non-empty tableau from (T0o): BIT_TABLEAU|BIT_CELL
- *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   May move to non-empty tableau from (T0o): 20
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealchunk): 4 (Four at a time)
@@ -91,7 +91,5 @@ object Cicely extends GameRules(
       canMoveFrom = Seq("Tableau"),
       initialCards = 8
     )
-  ),
-  complete = false
+  )
 )
-

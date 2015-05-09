@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,7 +12,7 @@ import models.game.rules._
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 7
  *   Tableau suit match rule for building (T0s): 0 (May not build)
- *   Left mouse interface function (leftfunc): 0x1
+ *   Left mouse interface function (leftfunc): 1
  *   Card removal method (pairs): 10 (Remove kings or pairs adding to 13)
  */
 object Links extends GameRules(
@@ -52,7 +52,5 @@ object Links extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
-  ),
-  complete = false
+  )
 )
-

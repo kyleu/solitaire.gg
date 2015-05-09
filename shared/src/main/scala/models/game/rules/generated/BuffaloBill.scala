@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -15,7 +15,7 @@ import models.game.rules._
  *   Foundation name (F1Nm): Kings Foundation
  *   Foundation low rank (F1b): 22 (Deck's high card)
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   TODO (F1u): 2
  *   Foundation Sets (Fn): 2
  *   Enable stock (Sn): 0 (No stock)
@@ -23,7 +23,7 @@ import models.game.rules._
  *   Tableau initial cards (T0d): 4 (4 cards)
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 26
- *   Tableau rank match rule for building (T0r): 0x0000
+ *   Tableau rank match rule for building (T0r): 0 (May not build)
  *   Tableau suit match rule for building (T0s): 0 (May not build)
  *   Number of waste piles (W0n): 0
  *   Number of decks (ndecks): 2 (2 decks)
@@ -80,7 +80,5 @@ object BuffaloBill extends GameRules(
       pluralName = "Reserve",
       numPiles = 8
     )
-  ),
-  complete = false
+  )
 )
-

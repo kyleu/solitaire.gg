@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -10,7 +10,7 @@ import models.game.rules._
  *   Foundation initial cards (F0d): -1
  *   Foundation suit match rule (F0s): 5 (Regardless of suit)
  *   *RDc (RDc): 1
- *   *RDdo (RDdo): BIT_STOCK
+ *   *RDdo (RDdo): 1
  *   Allowed pick ups/redeals (RDn): 2 (2)
  *   Tableau name (T0Nm): Reserve
  *   Tableau initial cards (T0d): 1 (1 card)
@@ -19,10 +19,10 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 0 (May not build)
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealto): 2 (To all tableau piles)
- *   Left mouse interface function (leftfunc): 0x2
+ *   Left mouse interface function (leftfunc): 2
  *   Similar to (like): auldlangsyne
  *   Related games (related): quadrennial
- *   Touch interface function (touchfunc): 0x2
+ *   Touch interface function (touchfunc): 2
  */
 object Acquaintance extends GameRules(
   id = "acquaintance",
@@ -63,7 +63,5 @@ object Acquaintance extends GameRules(
       redealsAllowed = 2,
       shuffleBeforeRedeal = false
     )
-  ),
-  complete = false
+  )
 )
-

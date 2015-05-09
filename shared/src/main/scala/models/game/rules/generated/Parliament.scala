@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -10,7 +10,7 @@ import models.game.rules._
  *   Foundation initial cards (F0d): -1
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Empty tableau is filled with (T0f): 0 (Any card)
- *   Empty tableau is filled from (T0fo): BIT_ANY & ~BIT_TABLEAU
+ *   Empty tableau is filled from (T0fo): 251
  *   Tableau piles (T0n): 8
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Similar to (like): congress
@@ -49,7 +49,5 @@ object Parliament extends GameRules(
       emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation")
     )
-  ),
-  complete = false
+  )
 )
-

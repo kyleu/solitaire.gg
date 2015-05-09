@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -13,7 +13,7 @@ import models.game.rules._
  *   Tableau sets (Tn): 0 (0 tableau sets)
  *   Number of waste piles (W0n): 3
  *   Deal cards from stock (dealto): 9
- *   Left mouse interface function (leftfunc): 0x1
+ *   Left mouse interface function (leftfunc): 1
  *   Similar to (like): triangle
  *   Card removal method (pairs): 7 (Remove pairs adding to 11, J-J, Q-Q, or K-K)
  */
@@ -51,7 +51,5 @@ object ElevenTriangle extends GameRules(
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
     )
-  ),
-  complete = false
+  )
 )
-

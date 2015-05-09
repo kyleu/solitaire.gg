@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,7 +12,7 @@ import models.game.rules._
  *   Cards shown (T0cardsShown): 2
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Tableau piles (T0n): 10
- *   Tableau rank match rule for building (T0r): 0x0080
+ *   Tableau rank match rule for building (T0r): 128 (Build up)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Tableau wraps from king to ace (T0w): true
  *   Number of waste piles (W0n): 0
@@ -50,7 +50,5 @@ object UpAndUp extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

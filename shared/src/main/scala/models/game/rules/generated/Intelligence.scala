@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -7,7 +7,7 @@ import models.game.rules._
 /**
  * Original Settings:
  *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Deal order (RDd): 1|0|8
+ *   Deal order (RDd): 9 (Columns, left to right, top to bottom)
  *   *RDdo (RDdo): BIT_TABLEAU|BIT_STOCK
  *   Allowed pick ups/redeals (RDn): 2 (2)
  *   *RDpo (RDpo): BIT_TABLEAU|BIT_STOCK
@@ -20,7 +20,7 @@ import models.game.rules._
  *   Custom initial cards (T0ds): UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU U
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 18
- *   Tableau rank match rule for building (T0r): 0x0080|0x0020
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealto): 8 (Never)
@@ -75,7 +75,5 @@ object Intelligence extends GameRules(
       redealsAllowed = 2,
       dealOrder = DealOrder.ColumnsLeftToRightTopToBottom
     )
-  ),
-  complete = false
+  )
 )
-

@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -11,7 +11,7 @@ import models.game.rules._
  *   Tableau cards face down (T0df): 100
  *   Tableau piles (T0n): 7
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau rank match rule for moving stacks (T0tr): 0x1fff
+ *   Tableau rank match rule for moving stacks (T0tr): 8191 (Regardless of rank)
  *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
  *   Tableau wraps from king to ace (T0w): true
  *   Number of waste piles (W0n): 0
@@ -46,7 +46,5 @@ object Dnieper extends GameRules(
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

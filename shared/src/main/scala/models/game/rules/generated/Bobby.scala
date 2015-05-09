@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -10,7 +10,7 @@ import models.game.rules._
  *   Foundation initial cards (F0d): 1 (1 cards)
  *   Maximum cards for foundation (F0m): 0
  *   Number of foundation piles (F0n): 2 (2 stacks)
- *   Foundation rank match rule (F0r): 0x0020|0x0080
+ *   Foundation rank match rule (F0r): 160 (Build up or down)
  *   Foundation suit match rule (F0s): 5 (Regardless of suit)
  *   Tableau sets (Tn): 0 (0 tableau sets)
  *   Similar to (like): robert
@@ -39,7 +39,5 @@ object Bobby extends GameRules(
       maxCards = 0,
       autoMoveCards = true
     )
-  ),
-  complete = false
+  )
 )
-

@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -16,7 +16,7 @@ import models.game.rules._
  *   Tableau sets (Tn): 1 (1 tableau set)
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealto): 9
- *   Left mouse interface function (leftfunc): 0x1
+ *   Left mouse interface function (leftfunc): 1
  *   Similar to (like): pyramid
  *   Maximum deals from stock (maxdeals): 3 (3)
  *   Card removal method (pairs): 10 (Remove kings or pairs adding to 13)
@@ -57,7 +57,5 @@ object Giza extends GameRules(
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
     )
-  ),
-  complete = false
+  )
 )
-

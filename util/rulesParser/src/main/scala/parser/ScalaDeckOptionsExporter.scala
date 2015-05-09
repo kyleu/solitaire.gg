@@ -5,9 +5,7 @@ import models.game.rules._
 object ScalaDeckOptionsExporter {
   private[this] val defaults = DeckOptions()
 
-  def exportDeckOptions(rules: GameRules, ret: StringBuilder): Unit = {
-    def add(s: String) = ret ++= s + "\n"
-
+  def exportDeckOptions(rules: GameRules) = {
     if(rules.deckOptions != defaults) {
       val props = collection.mutable.ArrayBuffer.empty[String]
       if(rules.deckOptions.numDecks != defaults.numDecks) {
@@ -23,13 +21,16 @@ object ScalaDeckOptionsExporter {
         props += "    lowRank = Rank." + rules.deckOptions.lowRank
       }
 
-      if(props.isEmpty) {
-        add("  deckOptions = DeckOptions(),")
+      Some(if(props.isEmpty) {
+        "  deckOptions = DeckOptions()"
       } else {
-        add("  deckOptions = DeckOptions(")
-        add(props.mkString(",\n"))
-        add("  ),")
-      }
+        "  deckOptions = DeckOptions(\n" +
+        props.mkString(",\n") +
+        "\n" +
+        "  )"
+      })
+    } else {
+      None
     }
   }
 }

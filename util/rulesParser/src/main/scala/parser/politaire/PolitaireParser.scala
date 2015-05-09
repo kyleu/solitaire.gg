@@ -1,6 +1,7 @@
 package parser.politaire
 
 import parser.politaire.defaults.ParserDefaults
+import parser.utils.IntUtils
 import play.api.libs.json._
 import parser.JsonUtils
 import parser.politaire.lookup.PolitaireLookup
@@ -74,7 +75,9 @@ object PolitaireParser {
     val ret = collection.mutable.LinkedHashMap.empty[String, Attr]
     def processAttr(attr: (String, String), default: Option[Any] = None, markDefaults: Boolean = true) {
       data \ attr._1 match {
-        case JsString(s) => ret(attr._1) = Attr(attr._1, attr._2, s.trim, None, defaultVal = false)
+        case JsString(s) =>
+          val value = IntUtils.parse(s.trim).getOrElse(s.trim)
+          ret(attr._1) = Attr(attr._1, attr._2, value, None, defaultVal = false)
         case JsNumber(n) => ret(attr._1) = PolitaireLookup.getTranslation(attr._1) match {
           case Some(x) => Attr(attr._1, attr._2, n.toInt, x.get(n.toInt), defaultVal = false)
           case None => Attr(attr._1, attr._2, n.toInt, None, defaultVal = false)

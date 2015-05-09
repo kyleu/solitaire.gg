@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -16,7 +16,7 @@ import models.game.rules._
  *   Foundation low rank (F1b): 22 (Deck's high card)
  *   Can move cards from foundation (F1mb): 1 (Always)
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   Foundation suit match rule (F1s): 5 (Regardless of suit)
  *   Foundation Sets (Fn): 2
  *   Reserve initial cards (R0d): 13
@@ -84,7 +84,5 @@ object AcesAndKings extends GameRules(
       initialCards = 13,
       cardsFaceDown = 0
     )
-  ),
-  complete = false
+  )
 )
-

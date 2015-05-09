@@ -5,9 +5,7 @@ import models.game.rules._
 object ScalaStockExporter {
   private[this] val defaults = StockRules()
 
-  def exportStock(rules: GameRules, ret: StringBuilder): Unit = {
-    def add(s: String) = ret ++= s + "\n"
-
+  def exportStock(rules: GameRules) = {
     rules.stock match {
       case Some(s) =>
         val props = collection.mutable.ArrayBuffer.empty[String]
@@ -36,16 +34,17 @@ object ScalaStockExporter {
           props += "      galleryMode = " + s.galleryMode
         }
 
-        if(props.isEmpty) {
-          add("  stock = Some(StockRules()),")
+        Some(if(props.isEmpty) {
+          "  stock = Some(StockRules())"
         } else {
-          add("  stock = Some(")
-          add("    StockRules(")
-          add(props.mkString(",\n"))
-          add("    )")
-          add("  ),")
-        }
-      case None => // no op
+          "  stock = Some(\n" +
+          "    StockRules(\n" +
+          props.mkString(",\n") +
+          "\n" +
+          "    )\n" +
+          "  )"
+        })
+      case None => None
     }
   }
 }

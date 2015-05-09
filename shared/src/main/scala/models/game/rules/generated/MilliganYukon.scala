@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -11,7 +11,7 @@ import models.game.rules._
  *   Empty tableau is filled with (T0f): 1 (Kings only)
  *   Tableau piles (T0n): 8
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Tableau rank match rule for moving stacks (T0tr): 0x1fff
+ *   Tableau rank match rule for moving stacks (T0tr): 8191 (Regardless of rank)
  *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealto): 2 (To all tableau piles)
@@ -47,7 +47,5 @@ object MilliganYukon extends GameRules(
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
       emptyFilledWith = FillEmptyWith.Kings
     )
-  ),
-  complete = false
+  )
 )
-

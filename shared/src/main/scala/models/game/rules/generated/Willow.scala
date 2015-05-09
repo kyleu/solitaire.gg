@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -15,7 +15,7 @@ import models.game.rules._
  *   Tableau initial cards (T1d): 6 (6 cards)
  *   Empty tableau is filled with (T1f): 5 (No card)
  *   Tableau piles (T1n): 4
- *   Tableau rank match rule for building (T1r): 0x0040
+ *   Tableau rank match rule for building (T1r): 64 (Build equal)
  *   Tableau suit match rule for building (T1s): 5 (Regardless of suit)
  *   Tableau sets (Tn): 2 (2 tableau sets)
  *   Number of waste piles (W0n): 0
@@ -47,7 +47,5 @@ object Willow extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Equal,
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
-  ),
-  complete = false
+  )
 )
-

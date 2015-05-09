@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,7 +12,7 @@ import models.game.rules._
  *   Empty tableau is filled with (T0f): 0 (Any card)
  *   Maximum cards per tableau (T0m): 8 (8 cards)
  *   Tableau piles (T0n): 1
- *   Tableau rank match rule for building (T0r): 0x1fff
+ *   Tableau rank match rule for building (T0r): 8191 (Regardless of rank)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Tableau name (T1Nm): Tableau
  *   Tableau initial cards (T1d): -2 (custom)
@@ -68,7 +68,5 @@ object Haystack extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -17,7 +17,7 @@ import models.game.rules._
  *   Empty tableau is filled with (T1f): 1 (Kings only)
  *   Maximum cards per tableau (T1m): 3 (3 cards)
  *   Tableau piles (T1n): 1
- *   Tableau rank match rule for building (T1r): 0x0040
+ *   Tableau rank match rule for building (T1r): 64 (Build equal)
  *   Tableau suit match rule for building (T1s): 5 (Regardless of suit)
  *   Tableau sets (Tn): 2 (2 tableau sets)
  *   Similar to (like): batsford
@@ -63,7 +63,5 @@ object BatsfordAgain extends GameRules(
       emptyFilledWith = FillEmptyWith.Kings,
       maxCards = 3
     )
-  ),
-  complete = false
+  )
 )
-

@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -8,7 +8,7 @@ import models.game.rules._
  * Original Settings:
  *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
  *   Foundation initial cards (F0d): -1
- *   Auto-fill an empty tableau from (T0af): 2|4
+ *   Auto-fill an empty tableau from (T0af): 6 (First waste then stock)
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Tableau piles (T0n): 8
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
@@ -47,7 +47,5 @@ object Preference extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

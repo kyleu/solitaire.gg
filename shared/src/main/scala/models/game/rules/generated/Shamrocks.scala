@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -15,7 +15,7 @@ import models.game.rules._
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Maximum cards per tableau (T0m): 3 (3 cards)
  *   Tableau piles (T0n): 18
- *   Tableau rank match rule for building (T0r): 0x0020|0x0080
+ *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
  */
@@ -67,7 +67,5 @@ object Shamrocks extends GameRules(
       maxCards = 3,
       actionDuringDeal = PileAction.MoveKingsToBottom
     )
-  ),
-  complete = false
+  )
 )
-

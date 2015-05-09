@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -16,7 +16,7 @@ import models.game.rules._
  *   Foundation initial cards (F1d): -1
  *   Maximum cards for foundation (F1m): 6
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 0x0100
+ *   Foundation rank match rule (F1r): 256 (Build up by 2)
  *   TODO (F1u): 2
  *   Foundation name (F2Nm): Even Foundation
  *   Auto-move cards to foundation (F2a): 0 (Never)
@@ -24,7 +24,7 @@ import models.game.rules._
  *   Foundation initial cards (F2d): -1
  *   Maximum cards for foundation (F2m): 6
  *   Number of foundation piles (F2n): 4 (4 stacks)
- *   Foundation rank match rule (F2r): 0x0100
+ *   Foundation rank match rule (F2r): 256 (Build up by 2)
  *   TODO (F2u): 2
  *   Foundation name (F3Nm): King Foundation
  *   Auto-move cards to foundation (F3a): 0 (Never)
@@ -33,7 +33,7 @@ import models.game.rules._
  *   Number of foundation piles (F3n): 4 (4 stacks)
  *   TODO (F3u): 2
  *   Foundation Sets (Fn): 4
- *   Auto-fill an empty tableau from (T0af): 2|4
+ *   Auto-fill an empty tableau from (T0af): 6 (First waste then stock)
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 16
@@ -107,7 +107,5 @@ object RoyalRendezvous extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock
     )
-  ),
-  complete = false
+  )
 )
-

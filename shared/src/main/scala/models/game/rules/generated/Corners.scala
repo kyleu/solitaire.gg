@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,7 +12,7 @@ import models.game.rules._
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Tableau piles (T0n): 5
  *   Tableau suit match rule for building (T0s): 0 (May not build)
- *   Left mouse interface function (leftfunc): 0x2
+ *   Left mouse interface function (leftfunc): 2
  *   Similar to (like): czarina
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 3 (3)
@@ -55,7 +55,5 @@ object Corners extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
       emptyFilledWith = FillEmptyWith.Aces
     )
-  ),
-  complete = false
+  )
 )
-

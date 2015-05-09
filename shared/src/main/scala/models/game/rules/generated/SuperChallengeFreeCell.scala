@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -46,7 +46,5 @@ object SuperChallengeFreeCell extends GameRules(
       pilesWithLowCardsAtBottom = 8
     )
   ),
-  cells = Some(CellRules()),
-  complete = false
+  cells = Some(CellRules())
 )
-

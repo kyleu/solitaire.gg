@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,9 +12,9 @@ import models.game.rules._
  *   Tableau sets (Tn): 0 (0 tableau sets)
  *   Playable waste cards (W0a): true
  *   Number of cards shown (W0cardsShown): 52
- *   Left mouse interface function (leftfunc): 0x4
+ *   Left mouse interface function (leftfunc): 4
  *   Card removal method (pairs): 20 (Stack cards of same rank/suit in waste)
- *   Touch interface function (touchfunc): 0x4
+ *   Touch interface function (touchfunc): 4
  */
 object Accordion extends GameRules(
   id = "accordion",
@@ -43,7 +43,5 @@ object Accordion extends GameRules(
       visible = false,
       autoMoveCards = true
     )
-  ),
-  complete = false
+  )
 )
-

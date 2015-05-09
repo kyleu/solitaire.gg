@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,7 +12,7 @@ import models.game.rules._
  *   Auto-fill an empty tableau from (T0af): 1
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Empty tableau is filled with (T0f): 0 (Any card)
- *   Empty tableau is filled from (T0fo): BIT_ANY & ~BIT_TABLEAU
+ *   Empty tableau is filled from (T0fo): 251
  *   Tableau piles (T0n): 8
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
  *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
@@ -65,7 +65,5 @@ object AmericanToad extends GameRules(
       initialCards = 20,
       cardsFaceDown = 100
     )
-  ),
-  complete = false
+  )
 )
-

@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -8,7 +8,7 @@ import models.game.rules._
  * Original Settings:
  *   Number of cells (C0n): 3
  *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled from (T0fo): BIT_STOCK|BIT_CELL
+ *   Empty tableau is filled from (T0fo): 17
  *   Tableau piles (T0n): 8
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
@@ -58,7 +58,5 @@ object BigApple extends GameRules(
     CellRules(
       numPiles = 3
     )
-  ),
-  complete = false
+  )
 )
-

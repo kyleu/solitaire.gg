@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -6,7 +6,7 @@ import models.game.rules._
 
 /**
  * Original Settings:
- *   Auto-fill an empty tableau from (T0af): 2|4
+ *   Auto-fill an empty tableau from (T0af): 6 (First waste then stock)
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Tableau cards face down (T0df): 100
  *   Empty tableau is filled with (T0f): 1 (Kings only)
@@ -47,7 +47,5 @@ object Whitehorse extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
       emptyFilledWith = FillEmptyWith.Kings
     )
-  ),
-  complete = false
+  )
 )
-

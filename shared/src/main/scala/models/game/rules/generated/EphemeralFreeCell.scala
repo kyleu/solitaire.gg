@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -45,7 +45,5 @@ object EphemeralFreeCell extends GameRules(
     CellRules(
       numEphemeral = 1
     )
-  ),
-  complete = false
+  )
 )
-

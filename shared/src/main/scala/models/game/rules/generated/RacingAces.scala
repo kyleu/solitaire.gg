@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -17,7 +17,7 @@ import models.game.rules._
  *   Maximum cards for foundation (F1m): 6
  *   Can move cards from foundation (F1mb): 1 (Always)
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   Foundation suit match rule (F1s): 5 (Regardless of suit)
  *   Foundation name (F2Nm): Sevens Foundation
  *   Auto-move cards to foundation (F2a): 0 (Never)
@@ -31,7 +31,7 @@ import models.game.rules._
  *   Foundation low rank (F3b): 22 (Deck's high card)
  *   Can move cards from foundation (F3mb): 1 (Always)
  *   Number of foundation piles (F3n): 4 (4 stacks)
- *   Foundation rank match rule (F3r): 0x0020
+ *   Foundation rank match rule (F3r): 32 (Build down)
  *   Foundation suit match rule (F3s): 5 (Regardless of suit)
  *   Foundation Sets (Fn): 4
  *   Reserve initial cards (R0d): 13
@@ -115,7 +115,5 @@ object RacingAces extends GameRules(
       initialCards = 13,
       cardsFaceDown = 0
     )
-  ),
-  complete = false
+  )
 )
-

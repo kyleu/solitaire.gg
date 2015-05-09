@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -14,15 +14,15 @@ import models.game.rules._
  *   Foundation low rank (F1b): 22 (Deck's high card)
  *   Foundation initial cards (F1d): 0 (None)
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 0x0020
+ *   Foundation rank match rule (F1r): 32 (Build down)
  *   TODO (F1u): 2
  *   Foundation Sets (Fn): 2
  *   Auto-fill an empty tableau from (T0af): 4 (Stock)
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 20
- *   May move to non-empty tableau from (T0o): BIT_STOCK
- *   Tableau rank match rule for building (T0r): 0x1fff
+ *   May move to non-empty tableau from (T0o): 1 (Stock)
+ *   Tableau rank match rule for building (T0r): 8191 (Regardless of rank)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealto): 7 (Manually)
@@ -82,7 +82,5 @@ object Colorado extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
       mayMoveToNonEmptyFrom = Seq("Stock")
     )
-  ),
-  complete = false
+  )
 )
-

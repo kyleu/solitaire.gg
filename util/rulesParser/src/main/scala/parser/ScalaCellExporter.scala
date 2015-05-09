@@ -5,9 +5,7 @@ import models.game.rules._
 object ScalaCellExporter {
   private[this] val defaults = CellRules()
 
-  def exportCells(rules: GameRules, ret: StringBuilder): Unit = {
-    def add(s: String) = ret ++= s + "\n"
-
+  def exportCells(rules: GameRules) = {
     rules.cells match {
       case Some(c) =>
         val props = collection.mutable.ArrayBuffer.empty[String]
@@ -30,16 +28,17 @@ object ScalaCellExporter {
           props += "      numEphemeral = " + c.numEphemeral
         }
 
-        if(props.isEmpty) {
-          add("  cells = Some(CellRules()),")
+        Some(if(props.isEmpty) {
+          "  cells = Some(CellRules())"
         } else {
-          add("  cells = Some(")
-          add("    CellRules(")
-          add(props.mkString(",\n"))
-          add("    )")
-          add("  ),")
-        }
-      case None =>  // no op
+          "  cells = Some(\n" +
+          "    CellRules(\n" +
+          props.mkString(",\n") +
+          "\n" +
+          "    )\n" +
+          "  )"
+        })
+      case None => None
     }
   }
 }

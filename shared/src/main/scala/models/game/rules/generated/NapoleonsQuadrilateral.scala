@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -50,7 +50,5 @@ object NapoleonsQuadrilateral extends GameRules(
       emptyFilledWith = FillEmptyWith.Kings,
       actionDuringDeal = PileAction.MoveToFoundation
     )
-  ),
-  complete = false
+  )
 )
-

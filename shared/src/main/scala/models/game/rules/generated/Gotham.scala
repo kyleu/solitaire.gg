@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -7,7 +7,7 @@ import models.game.rules._
 /**
  * Original Settings:
  *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled from (T0fo): BIT_STOCK|BIT_WASTE
+ *   Empty tableau is filled from (T0fo): 3
  *   Tableau piles (T0n): 8
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
@@ -57,7 +57,5 @@ object Gotham extends GameRules(
       emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Waste")
     )
-  ),
-  complete = false
+  )
 )
-

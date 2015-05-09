@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -13,7 +13,7 @@ import models.game.rules._
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau sets (Tn): 0 (0 tableau sets)
  *   Number of waste piles (W0n): 0
- *   Left mouse interface function (leftfunc): 0x1
+ *   Left mouse interface function (leftfunc): 1
  *   Card removal method (pairs): 10 (Remove kings or pairs adding to 13)
  */
 object Pharaohs extends GameRules(
@@ -55,7 +55,5 @@ object Pharaohs extends GameRules(
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
     )
-  ),
-  complete = false
+  )
 )
-

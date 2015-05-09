@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -9,7 +9,7 @@ import models.game.rules._
  *   Foundation suit match rule (F0s): 1 (In same suit)
  *   Tableau initial cards (T0d): 3 (3 cards)
  *   Empty tableau is filled with (T0f): 0 (Any card)
- *   Empty tableau is filled from (T0fo): BIT_ANY & ~BIT_TABLEAU
+ *   Empty tableau is filled from (T0fo): 251
  *   Tableau piles (T0n): 8
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 3
@@ -53,7 +53,5 @@ object Dover extends GameRules(
       emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation")
     )
-  ),
-  complete = false
+  )
 )
-

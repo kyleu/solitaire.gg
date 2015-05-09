@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -11,7 +11,7 @@ import models.game.rules._
  *   Foundation low rank (F0b): 5 (5)
  *   Maximum cards for foundation (F0m): 6
  *   Number of foundation piles (F0n): 4 (4 stacks)
- *   Foundation rank match rule (F0r): 0x0020
+ *   Foundation rank match rule (F0r): 32 (Build down)
  *   Foundation name (F1Nm): "Sixes Foundation"
  *   Auto-move cards to foundation (F1a): 0 (Never)
  *   Foundation low rank (F1b): 6 (6)
@@ -70,7 +70,5 @@ object CaptiveQueens extends GameRules(
       maxCards = 1,
       autoMoveCards = true
     )
-  ),
-  complete = false
+  )
 )
-

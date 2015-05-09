@@ -22,7 +22,6 @@ object KlondikeOneCard extends GameRules(
     TableauRules(
       emptyFilledWith = FillEmptyWith.Kings
     )
-  ),
-  complete = true
+  )
 )
 

@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -64,7 +64,5 @@ object ThreeDemons extends GameRules(
       initialCards = 48,
       cardsFaceDown = 100
     )
-  ),
-  complete = false
+  )
 )
-

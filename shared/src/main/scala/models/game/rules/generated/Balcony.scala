@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -12,11 +12,11 @@ import models.game.rules._
  *   Reserve initial cards (R0d): 7
  *   Reserve cards face down (R0df): 0
  *   Number of reserve piles (R0n): 1
- *   Auto-fill an empty tableau from (T0af): 8|2
+ *   Auto-fill an empty tableau from (T0af): 10 (First stock then waste)
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Empty tableau is filled with (T0f): 0 (Any card)
  *   Tableau piles (T0n): 7
- *   May move to non-empty tableau from (T0o): BIT_ANY & ~BIT_RESERVE
+ *   May move to non-empty tableau from (T0o): 191
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
  *   Low card (lowpip): -2 (?)
  */
@@ -61,7 +61,5 @@ object Balcony extends GameRules(
       initialCards = 7,
       cardsFaceDown = 0
     )
-  ),
-  complete = false
+  )
 )
-

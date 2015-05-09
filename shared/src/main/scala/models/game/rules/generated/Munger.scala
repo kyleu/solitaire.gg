@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -54,7 +54,5 @@ object Munger extends GameRules(
       initialCards = 7,
       cardsFaceDown = 0
     )
-  ),
-  complete = false
+  )
 )
-

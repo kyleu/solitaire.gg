@@ -5,7 +5,9 @@ import models.game.rules._
 object ScalaPyramidExporter {
   private[this] val defaults = PyramidRules()
 
-  def exportPyramids(rules: GameRules, ret: StringBuilder): Unit = {
+  def exportPyramids(rules: GameRules) = {
+    val ret = new StringBuilder
+
     def add(s: String) = ret ++= s + "\n"
     def cls(o: Any) = ScalaExporter.cls(o)
 
@@ -60,7 +62,8 @@ object ScalaPyramidExporter {
           "    PyramidRules(\n" + props.mkString(",\n") + "\n    )"
         }
       }.mkString(",\n"))
-      add("  ),")
+      ret ++= "  )"
     }
+    if(ret.nonEmpty) { Some(ret.toString()) } else { None }
   }
 }

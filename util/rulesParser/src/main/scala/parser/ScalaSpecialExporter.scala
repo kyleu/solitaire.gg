@@ -5,9 +5,7 @@ import models.game.rules._
 object ScalaSpecialExporter {
   private[this] val defaults = SpecialRules()
 
-  def exportSpecial(rules: GameRules, ret: StringBuilder): Unit = {
-    def add(s: String) = ret ++= s + "\n"
-
+  def exportSpecial(rules: GameRules) = {
     rules.special match {
       case Some(s) =>
         val props = collection.mutable.ArrayBuffer.empty[String]
@@ -36,16 +34,17 @@ object ScalaSpecialExporter {
           props += "      drawsAfterRedeals = " + s.drawsAfterRedeals
         }
 
-        if(props.isEmpty) {
-          add("  special = Some(SpecialRules()),")
+        Some(if(props.isEmpty) {
+          "  special = Some(SpecialRules())"
         } else {
-          add("  special = Some(")
-          add("    SpecialRules(")
-          add(props.mkString(",\n"))
-          add("    )")
-          add("  ),")
-        }
-      case None =>  // no op
+          "  special = Some(\n" +
+          "    SpecialRules(\n" +
+          props.mkString(",\n") +
+          "\n" +
+          "    )\n" +
+          "  )"
+        })
+      case None => None
     }
   }
 }

@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -67,7 +67,5 @@ object SuperiorCanfield extends GameRules(
       initialCards = 13,
       cardsFaceDown = 0
     )
-  ),
-  complete = false
+  )
 )
-

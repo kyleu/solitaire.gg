@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -21,7 +21,7 @@ import models.game.rules._
  *   Tableau piles (T1n): 4
  *   Tableau suit match rule for building (T1s): 1 (In same suit)
  *   *T1sc (T1sc): false
- *   Tableau rank match rule for moving stacks (T1tr): 0x1fff
+ *   Tableau rank match rule for moving stacks (T1tr): 8191 (Regardless of rank)
  *   Tableau suit match rule for moving stacks (T1ts): 5 (Regardless of suit)
  *   Tableau sets (Tn): 2 (2 tableau sets)
  *   Number of waste piles (W0n): 0
@@ -63,7 +63,5 @@ object Antares extends GameRules(
       emptyFilledWith = FillEmptyWith.Kings
     )
   ),
-  cells = Some(CellRules()),
-  complete = false
+  cells = Some(CellRules())
 )
-

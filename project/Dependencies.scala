@@ -4,7 +4,7 @@ import play.Play.autoImport._
 
 object Dependencies {
   object Database {
-    val jdub = "com.simple" %% "jdub" % "1.1.0" exclude("nl.grons", "metrics-scala_2.11")
+    val jdub = "com.simple" %% "jdub" % "1.1.1" exclude("nl.grons", "metrics-scala_2.11")
     val postgresJdbc = "org.postgresql" % "postgresql" % "9.4-1201-jdbc41" intransitive()
   }
 

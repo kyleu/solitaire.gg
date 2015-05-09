@@ -17,7 +17,8 @@ object ScalaExporter {
     for(rules <- rulesSet) {
       val v = src.find(_.id == rules.id).getOrElse(throw new IllegalArgumentException)
       val modifiedRules = rules.copy(related = rules.related ++ CustomGameRules.all.filter(_.like == Some(rules.id)).map(_.id))
-      writeFile(srcDir.resolve(getObjectName(rules) + ".scala"), exportRules(modifiedRules, v))
+      val exported = exportRules(modifiedRules, v)
+      writeFile(srcDir.resolve(getObjectName(rules) + ".scala"), exported)
     }
   }
 
@@ -60,18 +61,19 @@ object ScalaExporter {
     if (rules.cardRemovalMethod != GameRules.default.cardRemovalMethod) {
       add("  cardRemovalMethod = CardRemovalMethod." + cls(rules.cardRemovalMethod) + ",")
     }
-    ScalaDeckOptionsExporter.exportDeckOptions(rules, ret)
-    ScalaStockExporter.exportStock(rules, ret)
-    ScalaWasteExporter.exportWaste(rules, ret)
-    ScalaFoundationExporter.exportFoundations(rules, ret)
-    ScalaTableauExporter.exportTableaus(rules, ret)
-    ScalaCellExporter.exportCells(rules, ret)
-    ScalaReserveExporter.exportReserves(rules, ret)
-    ScalaPyramidExporter.exportPyramids(rules, ret)
-    ScalaSpecialExporter.exportSpecial(rules, ret)
-    add("  complete = " + rules.complete)
+    val opts = Seq(
+      ScalaDeckOptionsExporter.exportDeckOptions(rules),
+      ScalaStockExporter.exportStock(rules),
+      ScalaWasteExporter.exportWaste(rules),
+      ScalaFoundationExporter.exportFoundations(rules),
+      ScalaTableauExporter.exportTableaus(rules),
+      ScalaCellExporter.exportCells(rules),
+      ScalaReserveExporter.exportReserves(rules),
+      ScalaPyramidExporter.exportPyramids(rules),
+      ScalaSpecialExporter.exportSpecial(rules)
+    ).flatten
+    add(opts.mkString(",\n"))
     add(")")
-    add("")
     ret.toString()
   }
 

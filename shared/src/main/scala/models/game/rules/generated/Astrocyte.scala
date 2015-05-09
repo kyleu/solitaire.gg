@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -17,7 +17,7 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealto): 3 (To all tableau piles if none empty)
- *   Left mouse interface function (leftfunc): 0x0
+ *   Left mouse interface function (leftfunc): 0
  *   Similar to (like): spider
  *   Number of decks (ndecks): 2 (2 decks)
  *   Right mouse interface function (rightfunc): 0x2|0x20
@@ -53,7 +53,5 @@ object Astrocyte extends GameRules(
       emptyFilledWith = FillEmptyWith.Aces
     )
   ),
-  cells = Some(CellRules()),
-  complete = false
+  cells = Some(CellRules())
 )
-

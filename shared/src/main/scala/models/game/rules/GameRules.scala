@@ -31,8 +31,7 @@ case class GameRules(
     foundations: Seq[FoundationRules] = Nil,
     tableaus: Seq[TableauRules] = Nil,
     pyramids: Seq[PyramidRules] = Nil,
-    special: Option[SpecialRules] = None,
-    complete: Boolean = false
+    special: Option[SpecialRules] = None
 ) {
   def newGame(gameId: UUID, seed: Int) = {
     val rng = new Random(new java.util.Random(seed))

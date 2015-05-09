@@ -1,4 +1,4 @@
-// Generated rules for Scalataire.
+// Generated rules for Solitaire.gg.
 package models.game.rules.generated
 
 import models.game._
@@ -56,7 +56,5 @@ object Countess extends GameRules(
       initialCards = 3,
       cardsFaceDown = 0
     )
-  ),
-  complete = false
+  )
 )
-
