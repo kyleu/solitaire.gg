@@ -10,19 +10,19 @@ import play.twirl.api.Html
 object RulesController extends BaseController {
   def politaire = AuthenticatedAction { implicit request =>
     requireAdmin {
-      Ok(views.html.admin.politaireList(PolitaireParser.politaireList))
+      Ok(views.html.admin.rules.politaireList(PolitaireParser.politaireList))
     }
   }
 
   def rules = AuthenticatedAction { implicit request =>
     requireAdmin {
-      Ok(views.html.admin.rulesList(GameRulesSet.all))
+      Ok(views.html.admin.rules.rulesList(GameRulesSet.all))
     }
   }
 
   def importRules = AuthenticatedAction { implicit request =>
     requireAdmin {
-      Ok(views.html.admin.rulesList(PolitaireParser.gameRules))
+      Ok(views.html.admin.rules.rulesList(PolitaireParser.gameRules))
     }
   }
 

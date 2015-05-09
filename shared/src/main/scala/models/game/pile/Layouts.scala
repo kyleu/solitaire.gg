@@ -20,6 +20,7 @@ object Layouts {
   val layouts = Map(
     "accordion" -> "wf",
     "acesandkings" -> "swff|::r:t",
+    "alexanderthegreat" -> "f::f|2t",
     "alternative" -> ":.f:f|2t",
     "bakersdozen" -> ":.f|t|.t",
     "beehive" -> "2f|.t|::rsw",

@@ -52,7 +52,7 @@
               <th class="th-attribute-value">Value</th>
               <th>Meaning</th>
             </tr>
-            @for(attr <- game.attributes.filterNot(x => x._2.defaultVal || x._2.id == "title" || x._2.id == "desc")) {
+            @for(attr <- game.attributes.filterNot(x => x._2.defaultVal || x._2.id == "title" || x._2.id == "desc").toList.sortBy(_._1)) {
               <tr>
                 <td>@attr._2.id</td>
                 <td>@attr._2.title</td>

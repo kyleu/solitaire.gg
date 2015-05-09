@@ -22,14 +22,14 @@
         <div class="col-md-6">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">New Game</h3>
+              <h3 class="panel-title">Completed Games</h3>
             </div>
             <div class="panel-body">
               <ul>
               @for(r <- models.game.rules.GameRulesSet.completed) {
                 <li>
-                  <a href="@routes.HomeController.newGame(r)">@models.game.rules.GameRulesSet.allById(r).title</a>
-                  <a href="@routes.HomeController.help(r)"><span class="glyphicon glyphicon-question-sign"></span></a>
+                  <a href="@routes.HomeController.newGame(r.id)">@r.title</a>
+                  <a href="@routes.HomeController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
                 </li>
               }
               </ul>
@@ -39,7 +39,23 @@
           @if(request.isAdmin) {
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title">Unfinished Games</h3>
+                <h3 class="panel-title">Works in Progress</h3>
+              </div>
+              <div class="panel-body">
+                <ul>
+                @for(r <- models.game.rules.GameRulesSet.inProgress) {
+                  <li>
+                    <a href="@routes.HomeController.newGame(r.id)">@r.title</a>
+                    <a href="@routes.HomeController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
+                  </li>
+                }
+                </ul>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Unstarted Games</h3>
               </div>
               <div class="panel-body">
                 <ul>

@@ -80,11 +80,10 @@ object PolitaireParser {
           case None => Attr(attr._1, attr._2, n.toInt, None, defaultVal = false)
         }
         case b: JsBoolean => ret(attr._1) = Attr(attr._1, attr._2, b.value, None, defaultVal = false)
-        case _: JsUndefined =>
-          default.foreach(x => ret(attr._1) = Attr(attr._1, attr._2, x, PolitaireLookup.getTranslation(attr._1) match {
-            case Some(a) => try { a.get(x.toString.toInt) } catch { case x: Exception => Some(x.toString) }
-            case None => None
-          }, defaultVal = markDefaults))
+        case _: JsUndefined => default.foreach(x => ret(attr._1) = Attr(attr._1, attr._2, x, PolitaireLookup.getTranslation(attr._1) match {
+          case Some(a) => try { a.get(x.toString.toInt) } catch { case x: Exception => Some(x.toString) }
+          case None => None
+        }, defaultVal = markDefaults))
         case x => throw new IllegalArgumentException("Invalid type [" + x.getClass.getSimpleName + ": " + x + "].")
       }
     }

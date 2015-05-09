@@ -2,6 +2,7 @@ package parser.politaire
 
 import parser.politaire.defaults.ParserDefaults
 import parser.politaire.lookup.PolitaireLookup
+import parser.utils.IntUtils
 
 trait GameRulesParserHelper extends ParserGameHelper
     with ParserStockHelper
@@ -27,33 +28,7 @@ trait GameRulesParserHelper extends ParserGameHelper
 
   protected[this] def getInt(key: String) = getValue(key) match {
     case i: Int => i
-    case s: String if s == "0x0020|0x0080" || s == "0x0080|0x0020" => 160
-    case s: String if s == "0x0020|0x0080" || s == "0x0080|0x0020" => 160
-    case s: String if s == "2*13" || s == "13*2" => 26
-    case s: String if s == "0|0|0" => 0
-    case s: String if s == "1|0|0" => 1
-    case s: String if s == "1|2|0" => 3
-    case s: String if s == "1|0|8" => 9
-    case s: String if s == "2|4" => 6
-    case s: String if s == "8|2" => 10
-    case s: String if s == "128|64" => 192
-    case s: String if s == "1|2|16|64" => 83
-    case s: String if s == "BIT_STOCK" => 1
-    case s: String if s == "BIT_WASTE" => 2
-    case s: String if s == "BIT_TABLEAU" => 4
-    case s: String if s == "BIT_RESERVE" => 64
-    case s: String if s == "BIT_ANY & ~BIT_TABLEAU" => 251
-    case s: String if s == "BIT_ANY & ~BIT_RESERVE" => 191
-    case s: String if s == "BIT_STOCK|BIT_CELL" => 17
-    case s: String if s == "BIT_TABLEAU|BIT_CELL" => 20
-    case s: String if s == "BIT_STOCK|BIT_WASTE" => 3
-    case s: String if s == "8191&(~4096)" => 4095
-    case s: String if s == "1|64|128|256|512|1024|2048|4096" => 8129
-    case s: String if s.startsWith("0x") => if (s.contains("|")) {
-      throw new IllegalArgumentException("Invalid integer string [" + s + "].")
-    } else {
-      Integer.parseInt(s.trim().substring(2), 16)
-    }
+    case s: String => IntUtils.parse(s).getOrElse(throw new IllegalArgumentException("Invalid integer [" + s + "]."))
     case x => throw new IllegalArgumentException("Invalid integer [" + x + "].")
   }
 

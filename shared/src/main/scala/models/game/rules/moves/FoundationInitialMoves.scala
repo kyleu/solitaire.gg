@@ -25,7 +25,7 @@ object FoundationInitialMoves {
           case FoundationLowRank.DeckLowRank => gameState.deck.getCards(1, turnFaceUp = true, rank = Some(gameState.deck.lowRank))
           case FoundationLowRank.DeckHighRank => gameState.deck.getCards(1, turnFaceUp = true, rank = Some(gameState.deck.highRank))
         }
-        gameState.addCards(card, prefix + col, reveal = true)
+        gameState.addCards(card, prefix + (col + 1), reveal = true)
       }
     }
   }

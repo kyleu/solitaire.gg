@@ -23,6 +23,6 @@ object KlondikeOneCard extends GameRules(
       emptyFilledWith = FillEmptyWith.Kings
     )
   ),
-  complete = false
+  complete = true
 )
 
