@@ -26,33 +26,36 @@ object HomeController extends BaseController {
   }
 
   def help(id: String) = AuthenticatedAction { implicit request =>
-    GameRulesSet.allById.get(id) match {
-      case Some(rules) => Ok(views.html.help(rules))
-      case None => Ok("We can't find and information about that game.")
+    id match {
+      case "undefined" => Ok("Join a game before you request help!")
+      case _ => GameRulesSet.allById.get(id) match {
+        case Some(rules) => Ok(views.html.help(rules))
+        case None => Ok("We can't find any information about [" + id + "].")
+      }
     }
   }
 
   def newDefaultGame() = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.gameplay(request.accountId, request.name, "klondike"))
+    Ok(views.html.game.gameplay(request.accountId, request.name, "klondike", Seq("start")))
   }
 
   def newGame(rules: String) = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.gameplay(request.accountId, request.name, rules))
+    Ok(views.html.game.gameplay(request.accountId, request.name, rules, Seq("start")))
   }
 
   def newGameWithSeed(rules: String, seed: Int) = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.gameplay(request.accountId, request.name, rules, None, Some(seed)))
+    Ok(views.html.game.gameplay(request.accountId, request.name, rules, Seq("start"), Some(seed)))
   }
 
   def newDefaultOfflineGame() = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.gameplay(request.accountId, request.name, "klondike", offline = true))
+    Ok(views.html.game.gameplay(request.accountId, request.name, "klondike", Seq("start"), offline = true))
   }
 
   def newOfflineGame(rules: String) = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.gameplay(request.accountId, request.name, rules, offline = true))
+    Ok(views.html.game.gameplay(request.accountId, request.name, rules, Seq("start"), offline = true))
   }
 
   def newOfflineGameWithSeed(rules: String, seed: Int) = AuthenticatedAction { implicit request =>
-    Ok(views.html.game.gameplay(request.accountId, request.name, rules, seed = Some(seed), offline = true))
+    Ok(views.html.game.gameplay(request.accountId, request.name, rules, Seq("start"), seed = Some(seed), offline = true))
   }
 }

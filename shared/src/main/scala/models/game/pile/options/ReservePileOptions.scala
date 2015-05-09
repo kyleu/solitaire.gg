@@ -1,6 +1,6 @@
 package models.game.pile.options
 
-import models.game.pile.constraints.Constraints
+import models.game.pile.constraints.Constraint
 import models.game.rules.ReserveRules
 
 object ReservePileOptions {
@@ -14,7 +14,7 @@ object ReservePileOptions {
     PileOptions(
       cardsShown = Some(cardsShown),
       direction = Some("d"),
-      dragFromConstraint = Some(Constraints.topCardOnly)
+      dragFromConstraint = Some(Constraint.topCardOnly)
     )
   }
 }

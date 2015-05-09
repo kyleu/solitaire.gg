@@ -1,27 +1,37 @@
-@(account: java.util.UUID, name: String, rules: String, gameId: Option[java.util.UUID] = None, seed: Option[Int] = None, offline: Boolean = false)(
-  implicit session: Session, flash: Flash
+@(account: java.util.UUID, name: String, rules: String, initialAction: Seq[String], seed: Option[Int] = None, offline: Boolean = false)(
+    implicit session: Session, flash: Flash
 )@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url)) {
   <div id="game-container"></div>
-  @statusPanel()
-  @defining(if(gameId.isDefined) { Seq("join", gameId.get) } else { Seq("start") } ) { initialAction =>
+
+  <div id="status-panel">
+    <span id="status-username"></span>
+    (<span id="status-connection">Not Connected</span>,
+    <span id="status-latency">0</span>ms,
+    <span id="status-fps">0</span> fps,
+    v<span id="status-version">0</span>)
+  </div>
+
+  <div id="gameplay-modal">
+    <div id="gameplay-modal-backdrop"></div>
+    <div id="gameplay-modal-content" class="off">
+      <iframe id="gameplay-modal-iframe" src=""></iframe>
+    </div>
+  </div>
+
   <pre id="@utils.Config.projectId-config">
   {
     "account": {
       "id": "@account",
       "name": "@name"
     },
-    "gameId": "@utils.Config.projectId",
-    "gameName": "@utils.Config.projectName",
     "debug": "@utils.Config.debug",
     "cardSet": "@utils.Config.defaultCardSet",
-    "cardSize": "@utils.Config.defaultCardSize",
     "rules": "@rules",
     @if(seed.isDefined) {"seed": @seed.get, }
     @if(offline) {"offline": true, }
     "initialAction": [ @Html(initialAction.map("\"" + _ + "\"").mkString(", ")) ]
   }
   </pre>
-  }
 
   @if(offline) {
   @if(play.api.Play.isProd(play.api.Play.current)) {

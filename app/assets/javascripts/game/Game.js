@@ -1,14 +1,17 @@
-define(['utils/Config', 'game/state/InitialState', 'game/CardSet'], function (config, InitialState, CardSet) {
+define(['utils/Config', 'game/state/InitialState', 'game/CardSet', 'game/Help'], function (config, InitialState, CardSet, Help) {
   "use strict";
 
   function Game(ws) {
     this.id = null;
-    this.cardSet = CardSet[config.cardSet][config.cardSize];
+    var cardSize = "medium";
+    this.cardSet = CardSet[config.cardSet][cardSize];
     var initialState = new InitialState(this);
     Phaser.Game.call(this, '100%', '100%', Phaser.AUTO, 'game-container', initialState);
 
     this.piles = {};
     this.cards = {};
+
+    this.help = new Help(this);
 
     document.getElementById("status-username").innerText = config.account.name;
 

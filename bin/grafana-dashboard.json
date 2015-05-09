@@ -1,7 +1,7 @@
 {
   "id": 1,
-  "title": "Scalataire Dashboard",
-  "originalTitle": "Scalataire Dashboard",
+  "title": "Solitaire.gg",
+  "originalTitle": "Solitaire.gg",
   "tags": [],
   "style": "dark",
   "timezone": "browser",
@@ -11,17 +11,17 @@
   "rows": [
     {
       "title": "New row",
-      "height": "250px",
+      "height": "200px",
       "editable": true,
       "collapse": false,
       "panels": [
         {
-          "title": "CPU Usage",
+          "title": "Connected Users",
           "error": false,
-          "span": 6,
+          "span": 12,
           "editable": true,
           "type": "graph",
-          "id": 4,
+          "id": 7,
           "datasource": null,
           "renderer": "flot",
           "x-axis": true,
@@ -43,8 +43,8 @@
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
           "lines": true,
-          "fill": 0,
-          "linewidth": 1,
+          "fill": 1,
+          "linewidth": 2,
           "points": false,
           "pointradius": 5,
           "bars": false,
@@ -69,77 +69,10 @@
           "timeShift": null,
           "targets": [
             {
-              "target": "aliasByNode(collectd.kyleu.cpu-*.cpu-system, 3)"
+              "target": "alias(solitaire-gg.ActorSupervisor.active-connections.count, 'Active Connections')"
             },
             {
-              "target": "aliasByNode(collectd.kyleu.cpu-*.cpu-user, 3)"
-            },
-            {
-              "target": "aliasByNode(collectd.kyleu.cpu-*.cpu-wait, 3)"
-            }
-          ],
-          "aliasColors": {},
-          "seriesOverrides": [],
-          "links": []
-        },
-        {
-          "title": "Memory Usage",
-          "error": false,
-          "span": 6,
-          "editable": true,
-          "type": "graph",
-          "id": 5,
-          "datasource": null,
-          "renderer": "flot",
-          "x-axis": true,
-          "y-axis": true,
-          "y_formats": [
-            "short",
-            "short"
-          ],
-          "grid": {
-            "leftLogBase": 1,
-            "leftMax": null,
-            "rightMax": null,
-            "leftMin": null,
-            "rightMin": null,
-            "rightLogBase": 1,
-            "threshold1": null,
-            "threshold2": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "lines": true,
-          "fill": 0,
-          "linewidth": 1,
-          "points": false,
-          "pointradius": 5,
-          "bars": false,
-          "stack": false,
-          "percentage": false,
-          "legend": {
-            "show": true,
-            "values": false,
-            "min": false,
-            "max": false,
-            "current": false,
-            "total": false,
-            "avg": false
-          },
-          "nullPointMode": "connected",
-          "steppedLine": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "shared": true
-          },
-          "timeFrom": null,
-          "timeShift": null,
-          "targets": [
-            {
-              "target": "aliasByNode(collectd.kyleu.memory.memory-used, 3)"
-            },
-            {
-              "target": "aliasByNode(collectd.kyleu.memory.memory-free, 3)"
+              "target": "alias(solitaire-gg.ActorSupervisor.active-games.count, 'Active Games')"
             }
           ],
           "aliasColors": {},
@@ -151,7 +84,143 @@
     {
       "collapse": false,
       "editable": true,
-      "height": "250px",
+      "height": "200px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 4,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "target": "aliasByNode(collectd.solitaire_gg.cpu-*.cpu-wait, 3)"
+            },
+            {
+              "target": "aliasByNode(collectd.solitaire_gg.cpu-*.cpu-user, 3)"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 5,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "target": "aliasByNode(collectd.solitaire_gg.memory.memory-free, 3)"
+            },
+            {
+              "target": "aliasByNode(collectd.solitaire_gg.memory.memory-used, 3)"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "200px",
       "panels": [
         {
           "aliasColors": {},
@@ -197,7 +266,7 @@
           "targets": [
             {
               "hide": false,
-              "target": "alias(scalataire.GameService.receiveTimer.count, 'messages received')"
+              "target": "alias(solitaire-gg.GameService.receiveTimer.count, 'messages received')"
             }
           ],
           "timeFrom": null,
@@ -216,204 +285,204 @@
           ]
         },
         {
-          "title": "Web Request Counts",
-          "error": false,
-          "span": 6,
-          "editable": true,
-          "type": "graph",
-          "id": 2,
+          "aliasColors": {},
+          "bars": false,
           "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
           "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "target": "alias(solitaire-gg.BaseController.request.count, 'home')"
+            },
+            {
+              "target": "aliasByNode(solitaire-gg.BaseController.request.admin.*.count, 4, -3)"
+            },
+            {
+              "target": "aliasByNode(solitaire-gg.BaseController.request.play.*.count, 4, -3)"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Web Request Counts",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
           "x-axis": true,
           "y-axis": true,
           "y_formats": [
             "short",
             "short"
-          ],
-          "grid": {
-            "leftLogBase": 1,
-            "leftMax": null,
-            "rightMax": null,
-            "leftMin": null,
-            "rightMin": null,
-            "rightLogBase": 1,
-            "threshold1": null,
-            "threshold2": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "lines": true,
-          "fill": 0,
-          "linewidth": 1,
-          "points": false,
-          "pointradius": 5,
-          "bars": false,
-          "stack": false,
-          "percentage": false,
-          "legend": {
-            "show": true,
-            "values": false,
-            "min": false,
-            "max": false,
-            "current": false,
-            "total": false,
-            "avg": false
-          },
-          "nullPointMode": "connected",
-          "steppedLine": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "shared": true
-          },
-          "timeFrom": null,
-          "timeShift": null,
-          "targets": [
-            {
-              "target": "alias(scalataire.BaseController.request.count, 'home')"
-            },
-            {
-              "target": "aliasByNode(scalataire.BaseController.request.admin.*.count, 4, -3)"
-            },
-            {
-              "target": "aliasByNode(scalataire.BaseController.request.play.*.count, 4, -3)"
-            }
-          ],
-          "aliasColors": {},
-          "seriesOverrides": [],
-          "links": []
+          ]
         }
       ],
       "title": "Row"
     },
     {
-      "title": "New row",
-      "height": "250px",
-      "editable": true,
       "collapse": false,
+      "editable": true,
+      "height": "200px",
       "panels": [
         {
-          "title": "SQL Execution Counts",
-          "error": false,
-          "span": 6,
-          "editable": true,
-          "type": "graph",
-          "id": 3,
+          "aliasColors": {},
+          "bars": false,
           "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 3,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
           "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "target": "aliasByNode(solitaire-gg.DatabaseConnection.*.count, 2)"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "SQL Execution Counts",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
           "x-axis": true,
           "y-axis": true,
           "y_formats": [
             "short",
             "short"
-          ],
-          "grid": {
-            "leftLogBase": 1,
-            "leftMax": null,
-            "rightMax": null,
-            "leftMin": null,
-            "rightMin": null,
-            "rightLogBase": 1,
-            "threshold1": null,
-            "threshold2": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "lines": true,
-          "fill": 0,
-          "linewidth": 1,
-          "points": false,
-          "pointradius": 5,
-          "bars": false,
-          "stack": false,
-          "percentage": false,
-          "legend": {
-            "show": true,
-            "values": false,
-            "min": false,
-            "max": false,
-            "current": false,
-            "total": false,
-            "avg": false
-          },
-          "nullPointMode": "connected",
-          "steppedLine": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "shared": true
-          },
-          "timeFrom": null,
-          "timeShift": null,
-          "targets": [
-            {
-              "target": "aliasByNode(models.queries.*.*.*.count, 3)"
-            }
-          ],
-          "aliasColors": {},
-          "seriesOverrides": [],
-          "links": []
+          ]
         },
         {
-          "title": "SQL Execution Times",
-          "error": false,
-          "span": 6,
-          "editable": true,
-          "type": "graph",
-          "id": 6,
+          "aliasColors": {},
+          "bars": false,
           "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 6,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
           "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "target": "aliasByNode(solitaire-gg.DatabaseConnection.*.p75, 2)"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "SQL Execution Times",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
           "x-axis": true,
           "y-axis": true,
           "y_formats": [
             "short",
             "short"
-          ],
-          "grid": {
-            "leftLogBase": 1,
-            "leftMax": null,
-            "rightMax": null,
-            "leftMin": null,
-            "rightMin": null,
-            "rightLogBase": 1,
-            "threshold1": null,
-            "threshold2": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "lines": true,
-          "fill": 0,
-          "linewidth": 1,
-          "points": false,
-          "pointradius": 5,
-          "bars": false,
-          "stack": false,
-          "percentage": false,
-          "legend": {
-            "show": true,
-            "values": false,
-            "min": false,
-            "max": false,
-            "current": false,
-            "total": false,
-            "avg": false
-          },
-          "nullPointMode": "connected",
-          "steppedLine": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "shared": true
-          },
-          "timeFrom": null,
-          "timeShift": null,
-          "targets": [
-            {
-              "target": "aliasByNode(models.queries.*.*.*.p95, 3)"
-            }
-          ],
-          "aliasColors": {},
-          "seriesOverrides": [],
-          "links": []
+          ]
         }
-      ]
+      ],
+      "title": "New row"
     }
   ],
   "nav": [

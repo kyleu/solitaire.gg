@@ -1,29 +1,29 @@
 package models.game.pile.options
 
 import models.game.pile.actions.{ SelectCardActions, SelectPileActions }
-import models.game.pile.constraints.Constraints
+import models.game.pile.constraints.Constraint
 import models.game.rules.{ StockRules, StockCardsDealt, StockDealTo }
 
 object StockPileOptions {
   def apply(rules: StockRules, pileIdsByType: Map[String, Seq[String]]) = {
     val dragFromConstraint = if (rules.dealTo == StockDealTo.Manually) {
-      Some(Constraints.topCardOnly)
+      Some(Constraint.topCardOnly)
     } else if (rules.dealTo == StockDealTo.WasteOrPairManually) {
-      None // TODO Some(Constraints.topCardOnly)?
+      None // TODO Some(Constraint.topCardOnly)?
     } else {
       None
     }
 
     val selectCardConstraint = if (rules.dealTo == StockDealTo.TableauIfNoneEmpty) {
-      Some(Constraints.allOf("all-non-empty-top-card", Constraints.allNonEmpty(pileIdsByType("tableaus")), Constraints.topCardOnly))
+      Some(Constraint.allOf("all-non-empty-top-card", Constraint.allNonEmpty(pileIdsByType("tableaus")), Constraint.topCardOnly))
     } else {
-      Some(Constraints.topCardOnly)
+      Some(Constraint.topCardOnly)
     }
 
     val selectPileConstraint = rules.maximumDeals match {
-      case Some(1) => Some(Constraints.never)
-      case Some(i) => Some(Constraints.empty) // TODO throw new NotImplementedError()
-      case None => Some(Constraints.empty)
+      case Some(1) => Some(Constraint.never)
+      case Some(i) => Some(Constraint.empty) // TODO throw new NotImplementedError()
+      case None => Some(Constraint.empty)
     }
 
     val cardsToDraw = rules.cardsDealt match {

@@ -16,6 +16,16 @@ define([], function () {
   return {
     "init": function(game) {
       function logGame() {
+        console.log("Hotkeys:");
+        console.log("  L: Show this message and log game to console.");
+        console.log("  U: Undo move.");
+        console.log("  R: Redo move.");
+        console.log("  G: Show game rules.");
+        console.log("  H: Dynamic help.");
+        console.log("  V: Victory animation.");
+        console.log("  T: Fire trails because why not.");
+        console.log("  C: Force connection close.");
+        console.log("  Space: Toggle debug view.");
         console.log("Game [" + game.id + "] (" + game.rules + "):");
         console.log(game);
         console.log("Piles:");
@@ -51,6 +61,25 @@ define([], function () {
         game.ws.close();
       }
 
+      var rulesKey = game.input.keyboard.addKey(Phaser.Keyboard.G);
+      rulesKey.onDown.add(function() {
+        game.help.toggleRules();
+      });
+
+      var helpKey = game.input.keyboard.addKey(Phaser.Keyboard.H);
+      helpKey.onDown.add(function () {
+        game.help.toggleHelp();
+      });
+
+      var logKey = game.input.keyboard.addKey(Phaser.Keyboard.L);
+      logKey.onDown.add(logGame);
+
+      var quietKey = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+      quietKey.onDown.add(function() {
+        var gp = document.getElementById("game-container");
+        if(gp.style.display === "none") { gp.style.display = "block"; } else { gp.style.display = "none"; }
+      });
+
       var undoKey = game.input.keyboard.addKey(Phaser.Keyboard.Z);
       undoKey.onDown.add(undo);
 
@@ -62,9 +91,6 @@ define([], function () {
 
       var trailsCheatKey = game.input.keyboard.addKey(Phaser.Keyboard.T);
       trailsCheatKey.onDown.add(trails);
-
-      var helpKey = game.input.keyboard.addKey(Phaser.Keyboard.H);
-      helpKey.onDown.add(logGame);
 
       var closeKey = game.input.keyboard.addKey(Phaser.Keyboard.C);
       closeKey.onDown.add(closeConnection);

@@ -2,15 +2,15 @@ package models.game.pile.options
 
 import models.game.{ GameState, Card, Rank }
 import models.game.pile.Pile
-import models.game.pile.constraints.{ Constraint, Constraints }
+import models.game.pile.constraints.Constraint
 import models.game.rules.{ FoundationLowRank, DeckOptions, FoundationCanMoveFrom, FoundationRules }
 
 object FoundationPileOptions {
   private[this] def getConstraints(lowRank: Rank, rules: FoundationRules) = {
     val dragFromConstraint = rules.canMoveFrom match {
-      case FoundationCanMoveFrom.Always => Some(Constraints.topCardOnly)
-      case FoundationCanMoveFrom.EmptyStock => Some(Constraints.pilesEmpty("stock"))
-      case FoundationCanMoveFrom.Never => Some(Constraints.never)
+      case FoundationCanMoveFrom.Always => Some(Constraint.topCardOnly)
+      case FoundationCanMoveFrom.EmptyStock => Some(Constraint.pilesEmpty("stock"))
+      case FoundationCanMoveFrom.Never => Some(Constraint.never)
     }
 
     val dragToConstraint = Some(Constraint("foundation", (pile: Pile, cards: Seq[Card], gameState: GameState) => {

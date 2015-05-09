@@ -14,7 +14,6 @@ object Config {
   val debug = !Play.isProd(Play.current)
 
   val defaultCardSet = cnf.getString("game.default.cardSet")
-  val defaultCardSize = cnf.getString("game.default.cardSize")
 
   // Metrics
   val jmxEnabled = cnf.getBoolean("metrics.jmx.enabled")
