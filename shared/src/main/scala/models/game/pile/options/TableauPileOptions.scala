@@ -1,10 +1,10 @@
 package models.game.pile.options
 
-import models.game.{GameState, Card, Rank}
-import models.game.pile.Pile
 import models.game.pile.actions.SelectCardActions
 import models.game.pile.constraints.Constraint
+import models.game.pile.constraints.Constraint.Check
 import models.game.rules._
+import models.game.{Card, Rank}
 
 object TableauPileOptions {
   def apply(rules: TableauRules, deckOptions: DeckOptions) = {
@@ -23,7 +23,7 @@ object TableauPileOptions {
     )
 
     val dragToConstraint = Constraint("tableau",
-      dragTo(rules.rankMatchRuleForBuilding, rules.suitMatchRuleForBuilding, emptyRanks)
+      dragTo(rules.rankMatchRuleForBuilding, rules.suitMatchRuleForBuilding, deckOptions.lowRank, emptyRanks)
     )
 
     PileOptions(
@@ -39,7 +39,7 @@ object TableauPileOptions {
     )
   }
 
-  private[this] def dragFrom(rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank) = (pile: Pile, cards: Seq[Card], gameState: GameState) => {
+  private[this] def dragFrom(rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank): Check = (pile, cards, gameState) => {
     if (cards.exists(!_.u)) {
       false
     } else {
@@ -60,7 +60,7 @@ object TableauPileOptions {
     }
   }
 
-  private[this] def dragTo(rrm: RankMatchRule, smr: SuitMatchRule, emptyPileRanks: Seq[Rank]) = { (pile: Pile, cards: Seq[Card], gameState: GameState) =>
+  private[this] def dragTo(rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank, emptyPileRanks: Seq[Rank]): Check = (pile, cards, gameState) => {
     if (pile.cards.isEmpty) {
       emptyPileRanks.length match {
         case 0 => cards.length == 1
@@ -72,12 +72,10 @@ object TableauPileOptions {
       if (!topCard.u) {
         false
       } else {
-        if (topCard.s.color == firstDraggedCard.s.color) {
-          false
-        } else if (topCard.r == Rank.Ace || firstDraggedCard.r == Rank.King) {
-          false
+        if (smr.check(topCard.s, firstDraggedCard.s)) {
+          rmr.check(topCard.r, firstDraggedCard.r, lowRank)
         } else {
-          topCard.r.value == firstDraggedCard.r.value + 1
+          false
         }
       }
     }

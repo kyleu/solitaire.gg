@@ -7,7 +7,9 @@ define(['ui/Modal'], function(Modal) {
     if(Modal.isVisible()) {
       Modal.hide();
     } else {
-      Modal.show("/help/" + this.game.rules);
+      var height = this.game.height * 0.9;
+      var margin = this.game.height * 0.05;
+      Modal.show(height, margin, "/help/" + this.game.rules);
     }
   };
 

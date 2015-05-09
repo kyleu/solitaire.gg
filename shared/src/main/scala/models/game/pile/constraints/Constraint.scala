@@ -3,9 +3,11 @@ package models.game.pile.constraints
 import models.game.pile.Pile
 import models.game.{ Card, GameState }
 
-case class Constraint(id: String, f: (Pile, Seq[Card], GameState) => Boolean, clientOptions: Option[Map[String, String]] = None)
+case class Constraint(id: String, f: Constraint.Check, clientOptions: Option[Map[String, String]] = None)
 
 object Constraint {
+  type Check = (Pile, Seq[Card], GameState) => Boolean
+
   val always = Constraint("always", (pile, cards, gameState) => true)
   val never = Constraint("never", (pile, cards, gameState) => false)
   val empty = Constraint("empty", (pile, cards, gameState) => pile.cards.isEmpty)
