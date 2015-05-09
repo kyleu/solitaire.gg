@@ -1,4 +1,4 @@
-define(['game/Rank', 'game/Suit', 'game/helpers/CardInput', 'game/helpers/Tweens'], function (Rank, Suit, CardInput, Tweens) {
+define(['utils/Config', 'game/Rank', 'game/Suit', 'game/helpers/CardInput', 'game/helpers/Tweens'], function (cfg, Rank, Suit, CardInput, Tweens) {
   "use strict";
 
   function Card(game, id, rank, suit, faceUp) {
@@ -12,11 +12,15 @@ define(['game/Rank', 'game/Suit', 'game/helpers/CardInput', 'game/helpers/Tweens
     this.animation = null;
     this.tweening = false;
 
+    var initialX = (game.width / 2) / game.playmat.scale.x;
+    var initialY = game.height / game.playmat.scale.y;
+    console.log(initialX, initialY);
+
     this.spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
     if(this.faceUp) {
-      Phaser.Sprite.call(this, game, 0, 0, 'card', this.spriteIndex);
+      Phaser.Sprite.call(this, game, initialX, initialY, 'card', this.spriteIndex);
     } else {
-      Phaser.Sprite.call(this, game, 0, 0, 'card-back', 0);
+      Phaser.Sprite.call(this, game, initialX, initialY, 'card-back', 0);
     }
 
     this.anchor.setTo(0.5, 0.5);

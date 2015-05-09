@@ -3,18 +3,26 @@ define([], function() {
 
   return {
     tweenCardTo: function(card, x, y, angle, emitWhenComplete) {
+      var time = 500;
       if(x != card.x || y != card.y) {
-        var tween = card.game.add.tween(card);
-        tween.to({ x: x, y: y, angle: angle }, 500, Phaser.Easing.Cubic.Out);
-        tween.onComplete.add(function() {
+        var xTween = card.game.add.tween(card);
+        xTween.to({ x: x, angle: angle }, time, Phaser.Easing.Cubic.Out);
+        xTween.onComplete.add(function() {
           card.actualX = x;
           card.tweening = false;
           if(emitWhenComplete) {
             card.game.playmat.emitFor(card);
           }
         }, card);
+        xTween.start();
+
+        var targetY = Math.min(y, card.y) - 25;
+        var yTween = card.game.add.tween(card);
+        yTween.to({y: targetY}, time * 0.5, Phaser.Easing.Cubic.Out);
+        yTween.to({y: y}, time * 0.5, Phaser.Easing.Cubic.In);
+        yTween.start();
+
         card.tweening = true;
-        tween.start();
       }
     },
 
