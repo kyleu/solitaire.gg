@@ -40,18 +40,18 @@ class ActorSupervisor extends ActorSupervisorHelper with Logging {
   }
 
   override def receiveRequest = {
-    case cs: ConnectionStarted => handleConnectionStarted(cs.accountId, cs.username, cs.connectionId, cs.conn)
-    case cs: ConnectionStopped => handleConnectionStopped(cs.connectionId)
+    case cs: ConnectionStarted => timeReceive(cs) { handleConnectionStarted(cs.accountId, cs.username, cs.connectionId, cs.conn) }
+    case cs: ConnectionStopped => timeReceive(cs) { handleConnectionStopped(cs.connectionId) }
 
-    case cg: CreateGame => handleCreateGame(cg.rules, cg.connectionId, cg.seed)
-    case cgj: ConnectionGameJoin => handleConnectionGameJoin(cgj.id, cgj.connectionId)
-    case cgo: ConnectionGameObserve => handleConnectionGameObserve(cgo.id, cgo.connectionId, cgo.as)
-    case gs: GameStopped => handleGameStopped(gs.id)
+    case cg: CreateGame => timeReceive(cg) { handleCreateGame(cg.rules, cg.connectionId, cg.seed) }
+    case cgj: ConnectionGameJoin => timeReceive(cgj) { handleConnectionGameJoin(cgj.id, cgj.connectionId) }
+    case cgo: ConnectionGameObserve => timeReceive(cgo) { handleConnectionGameObserve(cgo.id, cgo.connectionId, cgo.as) }
+    case gs: GameStopped => timeReceive(gs) { handleGameStopped(gs.id) }
 
-    case GetSystemStatus => handleGetSystemStatus()
-    case ct: ConnectionTrace => handleConnectionTrace(ct)
-    case ct: ClientTrace => handleClientTrace(ct)
-    case gt: GameTrace => handleGameTrace(gt)
+    case GetSystemStatus => timeReceive(GetSystemStatus) { handleGetSystemStatus() }
+    case ct: ConnectionTrace => timeReceive(ct) { handleConnectionTrace(ct) }
+    case ct: ClientTrace => timeReceive(ct) { handleClientTrace(ct) }
+    case gt: GameTrace => timeReceive(gt) { handleGameTrace(gt) }
 
     case sm: InternalMessage => log.warn("Unhandled internal message [" + sm.getClass.getSimpleName + "] received.")
     case x => log.warn("ActorSupervisor encountered unknown message: " + x.toString)

@@ -24,17 +24,17 @@ class ConnectionService(val supervisor: ActorRef, val accountId: UUID, val name:
 
   override def receiveRequest = {
     // Incoming basic messages
-    case mr: MalformedRequest => log.error("MalformedRequest:  [" + mr.reason + "]: [" + mr.content + "].")
-    case p: Ping => out ! Pong(p.timestamp)
-    case GetVersion => out ! VersionResponse(Config.version)
-    case di: DebugInfo => handleDebugInfo(di.data)
+    case mr: MalformedRequest => timeReceive(mr) { log.error("MalformedRequest:  [" + mr.reason + "]: [" + mr.content + "].") }
+    case p: Ping => timeReceive(p) { out ! Pong(p.timestamp) }
+    case GetVersion => timeReceive(GetVersion) { out ! VersionResponse(Config.version) }
+    case di: DebugInfo => timeReceive(di) { handleDebugInfo(di.data) }
 
     // Incoming game messages
-    case sg: StartGame => handleStartGame(sg.rules, sg.seed)
-    case jg: JoinGame => handleJoinGame(jg.id)
-    case og: ObserveGame => handleObserveGame(og.id, og.as)
-    case gm: GameMessage => handleGameMessage(gm)
+    case sg: StartGame => timeReceive(sg) { handleStartGame(sg.rules, sg.seed) }
+    case jg: JoinGame => timeReceive(jg) { handleJoinGame(jg.id) }
+    case og: ObserveGame => timeReceive(og) { handleObserveGame(og.id, og.as) }
 
+    case gm: GameMessage => handleGameMessage(gm)
     case im: InternalMessage => handleInternalMessage(im)
 
     // Outgoing messages
@@ -49,10 +49,10 @@ class ConnectionService(val supervisor: ActorRef, val accountId: UUID, val name:
   }
 
   private[this] def handleInternalMessage(im: InternalMessage) = im match {
-    case gs: GameStarted => handleGameStarted(gs.id, gs.gameService, gs.started)
-    case gs: GameStopped => handleGameStopped(gs.id)
-    case ct: ConnectionTrace => handleConnectionTrace()
-    case ct: ClientTrace => handleClientTrace()
+    case gs: GameStarted => timeReceive(gs) { handleGameStarted(gs.id, gs.gameService, gs.started) }
+    case gs: GameStopped => timeReceive(gs) { handleGameStopped(gs.id) }
+    case ct: ConnectionTrace => timeReceive(ct) { handleConnectionTrace() }
+    case ct: ClientTrace => timeReceive(ct) { handleClientTrace() }
     case x => throw new IllegalArgumentException("Unhandled internal message [" + x.getClass.getSimpleName + "].")
   }
 }

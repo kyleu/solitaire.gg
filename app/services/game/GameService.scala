@@ -56,12 +56,12 @@ class GameService(
       moveCount += 1
       lastMoveMade = Some(new LocalDateTime())
       gr.message match {
-        case GetPossibleMoves => handleGetPossibleMoves(gr.accountId)
-        case sc: SelectCard => handleSelectCard(gr.accountId, sc.card, sc.pile)
-        case sp: SelectPile => handleSelectPile(gr.accountId, sp.pile)
-        case mc: MoveCards => handleMoveCards(gr.accountId, mc.cards, mc.src, mc.tgt)
-        case Undo => handleUndo(gr.accountId)
-        case Redo => handleRedo(gr.accountId)
+        case GetPossibleMoves => timeReceive(GetPossibleMoves) { handleGetPossibleMoves(gr.accountId) }
+        case sc: SelectCard => timeReceive(sc) { handleSelectCard(gr.accountId, sc.card, sc.pile) }
+        case sp: SelectPile => timeReceive(sp) { handleSelectPile(gr.accountId, sp.pile) }
+        case mc: MoveCards => timeReceive(mc) { handleMoveCards(gr.accountId, mc.cards, mc.src, mc.tgt) }
+        case Undo => timeReceive(Undo) { handleUndo(gr.accountId) }
+        case Redo => timeReceive(Redo) { handleRedo(gr.accountId) }
         case r => log.warn("GameService received unknown game message [" + r.getClass.getSimpleName.replace("$", "") + "].")
       }
     } catch {
@@ -75,12 +75,12 @@ class GameService(
     //log.debug("Handling [" + im.getClass.getSimpleName.replace("$", "") + "] internal message for game [" + id + "].")
     try {
       im match {
-        case ap: AddPlayer => handleAddPlayer(ap.accountId, ap.name, ap.connectionId, ap.connectionActor)
-        case ao: AddObserver => handleAddObserver(ao.accountId, ao.name, ao.connectionId, ao.connectionActor, ao.as)
-        case cs: ConnectionStopped => handleConnectionStopped(cs.connectionId)
-        case sg: StopGame => handleStopGame(sg.reason)
-        case StopGameIfEmpty => handleStopGameIfEmpty()
-        case gt: GameTrace => handleGameTrace()
+        case ap: AddPlayer => timeReceive(ap) { handleAddPlayer(ap.accountId, ap.name, ap.connectionId, ap.connectionActor) }
+        case ao: AddObserver => timeReceive(ao) { handleAddObserver(ao.accountId, ao.name, ao.connectionId, ao.connectionActor, ao.as) }
+        case cs: ConnectionStopped => timeReceive(cs) { handleConnectionStopped(cs.connectionId) }
+        case sg: StopGame => timeReceive(sg) { handleStopGame(sg.reason) }
+        case StopGameIfEmpty => timeReceive(StopGameIfEmpty) { handleStopGameIfEmpty() }
+        case gt: GameTrace => timeReceive(gt) { handleGameTrace() }
         case _ => log.warn("GameService received unhandled internal message [" + im.getClass.getSimpleName + "].")
       }
     } catch {
