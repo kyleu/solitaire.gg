@@ -15,13 +15,11 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
  *   Similar to (like): congress
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): parliament, diplomat, dieppe
  */
 object Dieppe extends GameRules(
   id = "dieppe",
   title = "Dieppe",
   like = Some("congress"),
-  related = Seq("parliament", "diplomat", "dieppe"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/dieppe.htm"),
     Link("Solavant Solitaire", "www.solavant.com/solitaire/dieppe.php"),

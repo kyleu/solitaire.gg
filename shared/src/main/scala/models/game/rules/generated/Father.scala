@@ -23,13 +23,11 @@ import models.game.rules._
  *   Similar to (like): grandfather
  *   Maximum deals from stock (maxdeals): 2 (2)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): father
  */
 object Father extends GameRules(
   id = "father",
   title = "Father",
   like = Some("grandfather"),
-  related = Seq("father"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/father.htm")),
   description = "This variation of ^grandfather^ by Thomas Warfield adds difficulty by reducing the number of tableau piles, and adds strategy by e" +
     "liminating the automatic filling of empty spaces, but it's still a pretty easy game.",

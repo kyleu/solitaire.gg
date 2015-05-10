@@ -16,14 +16,12 @@ import models.game.rules._
  *   Similar to (like): threescompany
  *   Low card (lowpip): 4 (4)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): foursup
  *   Enable super moves, whatever those are (supermoves): 0
  */
 object FoursUp extends GameRules(
   id = "foursup",
   title = "Fours Up",
   like = Some("threescompany"),
-  related = Seq("foursup"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fours_up.htm")),
   description = "Thomas Warfield created this game as a continuation of the series starting with the traditional games ^busyaces^ and ^deuces^. The" +
     " number of tableau piles is again reduced, but now we can build regardless of suit so the game gets a bit easier.",

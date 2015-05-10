@@ -34,10 +34,10 @@ case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None
     case rm: ResponseMessage =>
       rm match {
         case cr: CardRevealed =>
-          //log.info("Received [" + rm + "].")
+          //log.info("Received [" + cr + "].")
           true
         case ch: CardHidden =>
-          //log.info("Received [" + rm + "].")
+          //log.info("Received [" + ch + "].")
           true
         case cm: CardMoved =>
           //log.info("Received [" + cm + "].")

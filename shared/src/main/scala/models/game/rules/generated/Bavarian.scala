@@ -14,7 +14,6 @@ import models.game.rules._
  *   Tableau wraps from king to ace (T0w): true
  *   Similar to (like): german
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): bavarian
  *   Victory condition (victory): 3 (All cards on tableau sorted)
  *   *vrank (vrank): 128
  *   *vsuit (vsuit): 5
@@ -23,7 +22,6 @@ object Bavarian extends GameRules(
   id = "bavarian",
   title = "Bavarian",
   like = Some("german"),
-  related = Seq("bavarian"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bavarian_patience.htm")),
   description = "Thomas Warfield's easier version of ^german^ patience with a few extra tableau columns.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,

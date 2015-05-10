@@ -16,17 +16,12 @@ import models.game.rules._
  *   Similar to (like): klondike
  *   Maximum deals from stock (maxdeals): 0
  *   Number of decks (ndecks): 4 (4 decks)
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  *   Custom suits (suits): 35
  */
 object ChineseKlondike extends GameRules(
   id = "chineseklondike",
   title = "Chinese Klondike",
   like = Some("klondike"),
-  related = Seq(
-    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
-    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
-  ),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinese_klondike.htm")),
   description = "A three-suit version of ^klondike^.",
   deckOptions = DeckOptions(

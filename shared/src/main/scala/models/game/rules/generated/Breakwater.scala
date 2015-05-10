@@ -15,13 +15,11 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
  *   Similar to (like): interchange
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): tripleinterchange, breakwater, unlimited
  */
 object Breakwater extends GameRules(
   id = "breakwater",
   title = "Breakwater",
   like = Some("interchange"),
-  related = Seq("tripleinterchange", "breakwater", "unlimited"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/breakwater.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/alternations.htm"),

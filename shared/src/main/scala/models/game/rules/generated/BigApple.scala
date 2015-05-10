@@ -17,13 +17,11 @@ import models.game.rules._
  *   Similar to (like): gotham
  *   Low card (lowpip): -2 (?)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): bigapple
  */
 object BigApple extends GameRules(
   id = "bigapple",
   title = "Big Apple",
   like = Some("gotham"),
-  related = Seq("bigapple"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/big_apple.htm")),
   description = "A difficult variation of ^newyork^ with three cells instead of three waste piles, but where stacks can be moved.",
   deckOptions = DeckOptions(

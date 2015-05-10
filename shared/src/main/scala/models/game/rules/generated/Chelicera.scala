@@ -22,14 +22,12 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealto): 8 (Never)
  *   Similar to (like): scorpion
- *   Related games (related): chelicera, chinese
  *   Victory condition (victory): 3 (All cards on tableau sorted)
  */
 object Chelicera extends GameRules(
   id = "chelicera",
   title = "Chelicera",
   like = Some("scorpion"),
-  related = Seq("chelicera", "chinese"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chelicera.htm")),
   description = "A variation on ^scorpion^ invented by Erik den Hollander in which we fill spaces with three cards from the stock instead of dealin" +
     "g from the stock.",

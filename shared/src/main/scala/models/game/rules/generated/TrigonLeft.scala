@@ -17,13 +17,11 @@ import models.game.rules._
  *   Deal cards from stock (dealchunk): 1 (One by one)
  *   Similar to (like): trigon
  *   Maximum deals from stock (maxdeals): 0
- *   Related games (related): doubletrigon, quadrupletrigon, trigonleft
  */
 object TrigonLeft extends GameRules(
   id = "trigonleft",
   title = "Trigon Left",
   like = Some("trigon"),
-  related = Seq("doubletrigon", "quadrupletrigon", "trigonleft"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trigon_left.htm")),
   description = "A blend of ^trigon^ and ^movingleft^.",
   stock = Some(StockRules()),

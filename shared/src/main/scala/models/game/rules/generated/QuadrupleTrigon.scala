@@ -17,13 +17,11 @@ import models.game.rules._
  *   Similar to (like): trigon
  *   Maximum deals from stock (maxdeals): 0
  *   Number of decks (ndecks): 4 (4 decks)
- *   Related games (related): doubletrigon, quadrupletrigon, trigonleft
  */
 object QuadrupleTrigon extends GameRules(
   id = "quadrupletrigon",
   title = "Quadruple Trigon",
   like = Some("trigon"),
-  related = Seq("doubletrigon", "quadrupletrigon", "trigonleft"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_trigon.htm")),
   description = "A four-deck version of ^trigon^. Needs a large screen.",
   deckOptions = DeckOptions(

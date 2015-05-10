@@ -20,13 +20,11 @@ import models.game.rules._
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 0
  *   Number of decks (ndecks): 3 (3 decks)
- *   Related games (related): threedemons
  */
 object ThreeDemons extends GameRules(
   id = "threedemons",
   title = "Three Demons",
   like = Some("triplecanfield"),
-  related = Seq("threedemons"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_demons.htm")),
   description = "This three-deck version of ^canfield^ invented by Thomas Warfield starts with more cards in the reserve and more tableau piles tha" +
     "n ^triplecanfield^.",

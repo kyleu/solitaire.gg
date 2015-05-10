@@ -21,7 +21,6 @@ import models.game.rules._
  *   Left mouse interface function (leftfunc): 0x2|0x20
  *   Similar to (like): trillium
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): lily
  *   Right mouse interface function (rightfunc): 0
  *   Victory condition (victory): 3 (All cards on tableau sorted)
  */
@@ -29,7 +28,6 @@ object Lily extends GameRules(
   id = "lily",
   title = "Lily",
   like = Some("trillium"),
-  related = Seq("lily"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lily.htm")),
   description = "A harder variation of ^trillium^ where spaces may only be filled with kings.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,

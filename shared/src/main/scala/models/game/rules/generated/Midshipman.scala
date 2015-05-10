@@ -12,13 +12,11 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 2 (In different suits)
  *   Similar to (like): maria
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): midshipman
  */
 object Midshipman extends GameRules(
   id = "midshipman",
   title = "Midshipman",
   like = Some("maria"),
-  related = Seq("midshipman"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/midshipman.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/midshipman.htm"),

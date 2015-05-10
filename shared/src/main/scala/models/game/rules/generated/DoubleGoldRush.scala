@@ -16,13 +16,11 @@ import models.game.rules._
  *   Similar to (like): goldrush
  *   Maximum deals from stock (maxdeals): 3 (3)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): doublegoldrush
  */
 object DoubleGoldRush extends GameRules(
   id = "doublegoldrush",
   title = "Double Gold Rush",
   like = Some("goldrush"),
-  related = Seq("doublegoldrush"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_gold_rush.htm")),
   description = "A two-deck version of ^goldrush^.",
   deckOptions = DeckOptions(

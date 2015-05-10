@@ -18,13 +18,11 @@ import models.game.rules._
  *   Left mouse interface function (leftfunc): 1
  *   Similar to (like): straightfifteens
  *   Card removal method (pairs): 24 (Remove sets adding to 15 or four 10s, Js, Qs, or Ks)
- *   Related games (related): fifteens
  */
 object Fifteens extends GameRules(
   id = "fifteens",
   title = "Fifteens",
   like = Some("straightfifteens"),
-  related = Seq("fifteens"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fifteens.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/fifteens.html"),

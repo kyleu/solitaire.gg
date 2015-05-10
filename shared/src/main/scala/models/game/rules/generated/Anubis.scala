@@ -18,13 +18,11 @@ import models.game.rules._
  *   Maximum deals from stock (maxdeals): 2 (2)
  *   Number of decks (ndecks): 2 (2 decks)
  *   Card removal method (pairs): 10 (Remove kings or pairs adding to 13)
- *   Related games (related): anubis
  */
 object Anubis extends GameRules(
   id = "anubis",
   title = "Anubis",
   like = Some("doublepyramid"),
-  related = Seq("anubis"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/anubis.htm")),
   description = "A variation of ^doublepyramid^ with three waste piles.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,

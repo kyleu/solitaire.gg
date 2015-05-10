@@ -15,13 +15,11 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 2 (To all tableau piles)
  *   Similar to (like): easthaven
  *   Number of decks (ndecks): 3 (3 decks)
- *   Related games (related): tripleeasthaven, doubleeasthaven
  */
 object TripleEasthaven extends GameRules(
   id = "tripleeasthaven",
   title = "Triple Easthaven",
   like = Some("easthaven"),
-  related = Seq("tripleeasthaven", "doubleeasthaven"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_easthaven.htm")),
   description = "A three-deck version of ^easthaven^ by Thomas Warfield.",
   deckOptions = DeckOptions(

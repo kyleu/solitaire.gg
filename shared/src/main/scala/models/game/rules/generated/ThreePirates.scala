@@ -13,17 +13,11 @@ import models.game.rules._
  *   Number of waste piles (W0n): 3
  *   Similar to (like): fortythieves
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepi...
  */
 object ThreePirates extends GameRules(
   id = "threepirates",
   title = "Three Pirates",
   like = Some("fortythieves"),
-  related = Seq(
-    "robie", "napoleonsquadrilateral", "famousfifty", "fortybandits", "limited", "elba", "threepirates", "squadron",
-    "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
-    "josephine"
-  ),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_pirates.htm")),
   description = "A variation of ^fortythieves^ with three waste piles.",
   deckOptions = DeckOptions(

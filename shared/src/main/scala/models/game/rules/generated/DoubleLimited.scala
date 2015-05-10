@@ -12,13 +12,11 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Similar to (like): limited
  *   Number of decks (ndecks): 4 (4 decks)
- *   Related games (related): doublelimited
  */
 object DoubleLimited extends GameRules(
   id = "doublelimited",
   title = "Double Limited",
   like = Some("limited"),
-  related = Seq("doublelimited"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_limited.htm")),
   description = "A four-deck version of ^limited^. A large screen will be needed.",
   deckOptions = DeckOptions(

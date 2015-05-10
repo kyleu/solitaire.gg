@@ -29,13 +29,11 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): cloverleaf
- *   Related games (related): alternative
  */
 object Alternative extends GameRules(
   id = "alternative",
   title = "Alternative",
   like = Some("cloverleaf"),
-  related = Seq("alternative"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/alternative.htm")),
   description = "This relative of ^cloverleaf^ does not allow spaces to be filled, but allows one redeal.",
   foundations = Seq(

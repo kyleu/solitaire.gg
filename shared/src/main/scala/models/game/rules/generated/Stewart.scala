@@ -16,14 +16,12 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 0 (May not build)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): martha
- *   Related games (related): stewart
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object Stewart extends GameRules(
   id = "stewart",
   title = "Stewart",
   like = Some("martha"),
-  related = Seq("stewart"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/stewart.htm")),
   description = "A more difficult variation of ^martha^ in which only single cards may be moved. It is similar to ^bakersdozen^.",
   foundations = Seq(

@@ -16,13 +16,11 @@ import models.game.rules._
  *   Similar to (like): unlimited
  *   Maximum deals from stock (maxdeals): 0
  *   Number of decks (ndecks): 1 (1 deck)
- *   Related games (related): tripleinterchange, breakwater, unlimited
  */
 object SingleInterchange extends GameRules(
   id = "singleinterchange",
   title = "Single Interchange",
   like = Some("unlimited"),
-  related = Seq("tripleinterchange", "breakwater", "unlimited"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/single_interchange.htm")),
   description = "A difficult one-deck variant of ^interchange^ invented by Thomas Warfield.",
   stock = Some(StockRules()),

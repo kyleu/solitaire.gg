@@ -23,13 +23,11 @@ import models.game.rules._
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 1 (1)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): doublesignora, fallingstar, blondesandbrunettes, roman
  */
 object BlondesAndBrunettes extends GameRules(
   id = "blondesandbrunettes",
   title = "Blondes and Brunettes",
   like = Some("signora"),
-  related = Seq("doublesignora", "fallingstar", "blondesandbrunettes", "roman"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/blondes_and_brunettes.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/blondes_and_brunettes.html")

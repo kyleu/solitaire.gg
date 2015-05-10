@@ -37,7 +37,6 @@ import models.game.rules._
  *   Left mouse interface function (leftfunc): 2
  *   Similar to (like): blackhole
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): blackhole
  *   Touch interface function (touchfunc): 2
  *   Victory condition (victory): 5 (All cards on foundation or stock)
  */
@@ -45,7 +44,6 @@ object BinaryStar extends GameRules(
   id = "binarystar",
   title = "Binary Star",
   like = Some("blackhole"),
-  related = Seq("blackhole"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/binary_star.htm"),
     Link("Jan Wolter's Experiments", "/article/blackhole.html")

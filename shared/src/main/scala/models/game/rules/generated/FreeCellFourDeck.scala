@@ -14,14 +14,12 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): freecellthreedeck
  *   Number of decks (ndecks): 4 (4 decks)
- *   Related games (related): freecellfourdeck
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object FreeCellFourDeck extends GameRules(
   id = "freecellfourdeck",
   title = "FreeCell Four Deck",
   like = Some("freecellthreedeck"),
-  related = Seq("freecellfourdeck"),
   links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/freecell_four_decks.htm")),
   description = "A four-deck version of ^freecell^ for those who like spending a long time solving a single deal.",
   deckOptions = DeckOptions(

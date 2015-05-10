@@ -23,14 +23,12 @@ import models.game.rules._
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 1 (1)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): doublesignora, fallingstar, blondesandbrunettes, roman
  *   Custom suits (suits): 192
  */
 object FallingStar extends GameRules(
   id = "fallingstar",
   title = "Falling Star",
   like = Some("signora"),
-  related = Seq("doublesignora", "fallingstar", "blondesandbrunettes", "roman"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/falling_star.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/falling_star.htm"),

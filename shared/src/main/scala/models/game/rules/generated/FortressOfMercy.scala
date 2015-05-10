@@ -15,14 +15,12 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): fortress
  *   Allowed draws (ndraw): 1 (1)
- *   Related games (related): bastion, chessboard, fortressofmercy, beleagueredfortress
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object FortressOfMercy extends GameRules(
   id = "fortressofmercy",
   title = "Fortress of Mercy",
   like = Some("fortress"),
-  related = Seq("bastion", "chessboard", "fortressofmercy", "beleagueredfortress"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fortress_of_mercy.htm")),
   description = "A variation of ^fortress^ that allows you one \"merci\" move, in which any one card can be moved to the top of its stack.",
   foundations = Seq(

@@ -36,12 +36,14 @@ object ScalaExporter {
     add(" * Original Settings:")
     for(attr <- variant.attributes.toList.sortBy(_._1)) {
       if (!attr._2.defaultVal && attr._2.id != "title" && attr._2.id != "desc") {
-        val translation = attr._2.value match {
-          case i: Int => PolitaireLookup.getTranslation(attr._2.id).flatMap(_.get(i))
-          case _ => None
+        if(attr._2.value.toString.nonEmpty) {
+          val translation = attr._2.value match {
+            case i: Int => PolitaireLookup.getTranslation(attr._2.id).flatMap(_.get(i))
+            case _ => None
+          }
+          val value = if(attr._2.value.toString.length > 80) { attr._2.value.toString.substring(0, 80) + "..." } else { attr._2.value.toString }
+          add(" *   " + attr._2.title + " (" + attr._2.id + "): " + value + translation.map(" (" + _ + ")").getOrElse(""))
         }
-        val value = if(attr._2.value.toString.length > 80) { attr._2.value.toString.substring(0, 80) + "..." } else { attr._2.value.toString }
-        add(" *   " + attr._2.title + " (" + attr._2.id + "): " + value + translation.map(" (" + _ + ")").getOrElse(""))
       }
     }
     add(" */")

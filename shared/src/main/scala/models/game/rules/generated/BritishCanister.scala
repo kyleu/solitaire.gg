@@ -15,13 +15,11 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): canister
  *   Number of decks (ndecks): 1 (1 deck)
- *   Related games (related): britishcanister, americancanister, bucket
  */
 object BritishCanister extends GameRules(
   id = "britishcanister",
   title = "British Canister",
   like = Some("canister"),
-  related = Seq("britishcanister", "americancanister", "bucket"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/british_canister.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/canister.htm")

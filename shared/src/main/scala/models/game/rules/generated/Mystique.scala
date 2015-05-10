@@ -18,13 +18,11 @@ import models.game.rules._
  *   Deal cards from stock (dealchunk): 1 (One by one)
  *   Similar to (like): minerva
  *   Maximum deals from stock (maxdeals): 1 (1)
- *   Related games (related): bureau, minerva
  */
 object Mystique extends GameRules(
   id = "mystique",
   title = "Mystique",
   like = Some("minerva"),
-  related = Seq("bureau", "minerva"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/mystique.htm")),
   description = "A variation of ^munger^ and ^minerva^ with a reserve sized half-way between the two.",
   stock = Some(

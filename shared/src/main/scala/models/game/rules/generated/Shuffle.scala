@@ -17,7 +17,6 @@ import models.game.rules._
  *   Similar to (like): neptune
  *   Number of decks (ndecks): 1 (1 deck)
  *   Card removal method (pairs): 22 (Remove pairs with consecutive ranks or A-K)
- *   Related games (related): shuffle
  *   Custom suits (suits): 0
  *   Victory condition (victory): 0 (All cards on foundation)
  */
@@ -25,7 +24,6 @@ object Shuffle extends GameRules(
   id = "shuffle",
   title = "Shuffle",
   like = Some("neptune"),
-  related = Seq("shuffle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/shuffle.htm")),
   description = "A version of ^neptune^ where you can also pair kings with aces.",
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveRankPairsOrAK,

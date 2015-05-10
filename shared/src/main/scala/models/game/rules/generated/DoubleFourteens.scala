@@ -18,13 +18,11 @@ import models.game.rules._
  *   Similar to (like): fourteenout
  *   Number of decks (ndecks): 2 (2 decks)
  *   Card removal method (pairs): 11 (Remove pairs adding to 14)
- *   Related games (related): juvenile, doublefourteens, triplefourteens, tensout
  */
 object DoubleFourteens extends GameRules(
   id = "doublefourteens",
   title = "Double Fourteens",
   like = Some("fourteenout"),
-  related = Seq("juvenile", "doublefourteens", "triplefourteens", "tensout"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_fourteens.htm")),
   description = "An two-deck version of ^fourteenout^.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,

@@ -29,13 +29,11 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 2 (To all tableau piles)
  *   Similar to (like): caprice
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): chequers, cicely, nationale
  */
 object Nationale extends GameRules(
   id = "nationale",
   title = "Nationale",
   like = Some("caprice"),
-  related = Seq("chequers", "cicely", "nationale"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/nationale.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/nationale.htm"),

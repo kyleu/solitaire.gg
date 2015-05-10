@@ -18,7 +18,6 @@ import models.game.rules._
  *   Left mouse interface function (leftfunc): 0x2|0x20
  *   Similar to (like): spider
  *   Number of decks (ndecks): 4 (4 decks)
- *   Related games (related): fredsspider, chinesespider, astrocyte, mondospider, tarantula, trillium, spidero...
  *   Right mouse interface function (rightfunc): 0
  *   Victory condition (victory): 3 (All cards on tableau sorted)
  */
@@ -26,10 +25,6 @@ object HugeSpider extends GameRules(
   id = "hugespider",
   title = "Huge Spider",
   like = Some("spider"),
-  related = Seq(
-    "fredsspider", "chinesespider", "astrocyte", "mondospider", "tarantula", "trillium", "spideronesuit", "spidertwosuits",
-    "spiderette", "blackwidow", "hugespider", "beetle", "bigspider"
-  ),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/huge_spider.htm")),
   description = "A four-deck version of ^spider^.",
   victoryCondition = VictoryCondition.AllOnTableauSorted,

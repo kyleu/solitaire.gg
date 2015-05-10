@@ -13,13 +13,11 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 0 (May not build)
  *   Similar to (like): rankandfile
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): emperor
  */
 object Emperor extends GameRules(
   id = "emperor",
   title = "Emperor",
   like = Some("rankandfile"),
-  related = Seq("emperor"),
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Emperor_(solitaire)"),
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/emperor.htm"),

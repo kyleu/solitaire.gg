@@ -19,13 +19,11 @@ import models.game.rules._
  *   Similar to (like): canfield
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 1 (1)
- *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demo...
  */
 object Chameleon extends GameRules(
   id = "chameleon",
   title = "Chameleon",
   like = Some("canfield"),
-  related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chameleon.htm"),
     Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/Chameleon.html"),

@@ -2,7 +2,7 @@ define([], function() {
   "use strict";
 
   return {
-    tweenCardTo: function(card, x, y, angle, emitWhenComplete) {
+    tweenCardTo: function(card, x, y, angle, emitWhenComplete, bounce) {
       var time = 500;
       if(x != card.x || y != card.y) {
         var xTween = card.game.add.tween(card);
@@ -16,11 +16,15 @@ define([], function() {
         }, card);
         xTween.start();
 
-        var targetY = Math.min(y, card.y) - 25;
-        var yTween = card.game.add.tween(card);
-        yTween.to({y: targetY}, time * 0.5, Phaser.Easing.Cubic.Out);
-        yTween.to({y: y}, time * 0.5, Phaser.Easing.Cubic.In);
-        yTween.start();
+        if(bounce) {
+          var targetY = y - 25;
+          var yTween = card.game.add.tween(card);
+          yTween.to({y: targetY}, time * 0.75, Phaser.Easing.Cubic.Out);
+          yTween.to({y: y}, time * 0.25, Phaser.Easing.Cubic.In);
+          yTween.start();
+        } else {
+          card.game.add.tween(card).to({y: y}, time, Phaser.Easing.Cubic.Out).start();
+        }
 
         card.tweening = true;
       }

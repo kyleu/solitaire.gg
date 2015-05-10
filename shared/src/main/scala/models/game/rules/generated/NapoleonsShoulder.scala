@@ -17,14 +17,12 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 1 (To all waste piles)
  *   Similar to (like): napoleonssquare
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): napoleonsshoulder
  *   *unused (unused): temp_hack
  */
 object NapoleonsShoulder extends GameRules(
   id = "napoleonsshoulder",
   title = "Napoleon's Shoulder",
   like = Some("napoleonssquare"),
-  related = Seq("napoleonsshoulder"),
   links = Seq(Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/napoleons_shoulder.html")),
   description = "A varient of ^napoleonssquare^ where you build regardless of suit.",
   deckOptions = DeckOptions(

@@ -19,13 +19,11 @@ import models.game.rules._
  *   Similar to (like): minerva
  *   Maximum deals from stock (maxdeals): 2 (2)
  *   Number of decks (ndecks): 3 (3 decks)
- *   Related games (related): bureau, minerva
  */
 object TripleMinerva extends GameRules(
   id = "tripleminerva",
   title = "Triple Minerva",
   like = Some("minerva"),
-  related = Seq("bureau", "minerva"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_minerva.htm")),
   description = "Thomas Warfield's three-deck version of ^minerva^.",
   deckOptions = DeckOptions(

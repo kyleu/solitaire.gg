@@ -23,13 +23,11 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 7 (Manually)
  *   Similar to (like): frog
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): fly
  */
 object Fly extends GameRules(
   id = "fly",
   title = "Fly",
   like = Some("frog"),
-  related = Seq("fly"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fly.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/fly.html"),

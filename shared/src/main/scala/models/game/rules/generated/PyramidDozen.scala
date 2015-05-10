@@ -20,13 +20,11 @@ import models.game.rules._
  *   Similar to (like): giza
  *   Maximum deals from stock (maxdeals): 3 (3)
  *   Card removal method (pairs): 18 (Remove pairs adding to 12 or Q-K)
- *   Related games (related): pyramiddozen
  */
 object PyramidDozen extends GameRules(
   id = "pyramiddozen",
   title = "Pyramid Dozen",
   like = Some("giza"),
-  related = Seq("pyramiddozen"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pyramid_dozen.htm")),
   description = "A version of ^giza^ in which cards are removed in pairs that add to twelve.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTwelveOrQK,

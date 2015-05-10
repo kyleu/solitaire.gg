@@ -14,17 +14,11 @@ import models.game.rules._
  *   Similar to (like): fortythieves
  *   Maximum deals from stock (maxdeals): 3 (3)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepi...
  */
 object ThievesRush extends GameRules(
   id = "thievesrush",
   title = "Thieves Rush",
   like = Some("fortythieves"),
-  related = Seq(
-    "robie", "napoleonsquadrilateral", "famousfifty", "fortybandits", "limited", "elba", "threepirates", "squadron",
-    "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
-    "josephine"
-  ),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/thieves_rush.htm")),
   description = "A ^fortythieves^ variant invented by Thomas Warfield where in each pass through the deck you deal in smaller chunks.",
   deckOptions = DeckOptions(

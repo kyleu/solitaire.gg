@@ -1,10 +1,10 @@
 @(rules: models.game.rules.GameRules)
 @rulesLink(r: models.game.rules.GameRules) = {
   <a href="@routes.HomeController.help(r.id)">@r.title</a>
-  <a href="@routes.HomeController.newGame(r.id)" class="play-link" title="Play Now">&#9654;</a>
+  <a href="@routes.HomeController.newGame(r.id)" class="play-link" target="_parent" title="Play Now">&#9654;</a>
 }
 <div class="rules-help">
-  <h2>@rules.title <a href="@routes.HomeController.newGame(rules.id)" class="play-link" title="Play Now">&#9654;</a></h2>
+  <h2>@rules.title <a href="@routes.HomeController.newGame(rules.id)" target="_parent" class="play-link" title="Play Now">&#9654;</a></h2>
   <div class="description"><em>@Html(services.help.GameRulesHelpService.description(rules.description))</em></div>
 
   <h3>Objective</h3>

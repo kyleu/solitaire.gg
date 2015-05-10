@@ -19,16 +19,11 @@ import models.game.rules._
  *   Deal cards from stock (dealchunk): 1 (One by one)
  *   Similar to (like): klondike
  *   Maximum deals from stock (maxdeals): 1 (1)
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  */
 object Kingsley extends GameRules(
   id = "kingsley",
   title = "Kingsley",
   like = Some("klondike"),
-  related = Seq(
-    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
-    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
-  ),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kingsley.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/kingsley.htm"),

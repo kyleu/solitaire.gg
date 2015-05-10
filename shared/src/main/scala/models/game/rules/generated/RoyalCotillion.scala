@@ -29,13 +29,11 @@ import models.game.rules._
  *   Similar to (like): oddandeven
  *   Maximum deals from stock (maxdeals): 1 (1)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): royalcotillion
  */
 object RoyalCotillion extends GameRules(
   id = "royalcotillion",
   title = "Royal Cotillion",
   like = Some("oddandeven"),
-  related = Seq("royalcotillion"),
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Royal_Cotillion"),
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/royal_cotillion.htm"),

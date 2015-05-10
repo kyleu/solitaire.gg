@@ -13,7 +13,6 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Similar to (like): thirtyninesteps
  *   Number of decks (ndecks): 1 (1 deck)
- *   Related games (related): lucas
  *   Custom suits (suits): 0
  *   Enable super moves, whatever those are (supermoves): 1
  */
@@ -21,7 +20,6 @@ object Lucas extends GameRules(
   id = "lucas",
   title = "Lucas",
   like = Some("thirtyninesteps"),
-  related = Seq("lucas"),
   links = Seq(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/lucas.htm"),
     Link("Wikipedia", "en.wikipedia.org/wiki/Forty_Thieves_(card_game)"),

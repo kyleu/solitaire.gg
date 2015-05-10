@@ -21,13 +21,11 @@ import models.game.rules._
  *   Low card (lowpip): 2 (2)
  *   Maximum deals from stock (maxdeals): 3 (3)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): doublestorehouse
  */
 object DoubleStorehouse extends GameRules(
   id = "doublestorehouse",
   title = "Double Storehouse",
   like = Some("storehouse"),
-  related = Seq("doublestorehouse"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_storehouse.htm")),
   description = "A two-deck version of ^storehouse^.",
   deckOptions = DeckOptions(

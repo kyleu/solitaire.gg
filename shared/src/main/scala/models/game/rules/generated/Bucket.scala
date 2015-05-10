@@ -14,13 +14,11 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): canister
  *   Number of decks (ndecks): 1 (1 deck)
- *   Related games (related): britishcanister, americancanister, bucket
  */
 object Bucket extends GameRules(
   id = "bucket",
   title = "Bucket",
   like = Some("canister"),
-  related = Seq("britishcanister", "americancanister", "bucket"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bucket.htm")),
   description = "A ^canister^ variation which ends up looking rather like ^freecell^ without the cells. Naturally, it ends up being rather difficul" +
     "t.",

@@ -32,13 +32,11 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): buffalobill
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): littlebillie
  */
 object LittleBillie extends GameRules(
   id = "littlebillie",
   title = "Little Billie",
   like = Some("buffalobill"),
-  related = Seq("littlebillie"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/little_billie.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/little_billee.html"),

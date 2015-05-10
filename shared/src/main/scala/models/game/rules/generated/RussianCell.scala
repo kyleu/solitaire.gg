@@ -17,13 +17,11 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): russian
- *   Related games (related): doublerussian, triplerussian, ukrainian, russiancell, odessa, tenacross
  */
 object RussianCell extends GameRules(
   id = "russiancell",
   title = "Russian Cell",
   like = Some("russian"),
-  related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/russian_cell.htm")),
   description = "Thomas Warfield's variant of ^russian^ Solitaire adds a couple cells.",
   foundations = Seq(

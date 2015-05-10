@@ -18,13 +18,11 @@ import models.game.rules._
  *   Similar to (like): acme
  *   Low card (lowpip): 1 (A)
  *   Maximum deals from stock (maxdeals): 2 (2)
- *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demo...
  */
 object Coyote extends GameRules(
   id = "coyote",
   title = "Coyote",
   like = Some("acme"),
-  related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/coyote.htm"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Straight_Up.html.en")

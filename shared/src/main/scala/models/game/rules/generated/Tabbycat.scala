@@ -25,13 +25,11 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealto): 11
  *   Similar to (like): manx
- *   Related games (related): tabbycat
  */
 object Tabbycat extends GameRules(
   id = "tabbycat",
   title = "Tabbycat",
   like = Some("manx"),
-  related = Seq("tabbycat"),
   links = Seq(
     Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/TabbyCat.html"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/tabby_cat.html"),

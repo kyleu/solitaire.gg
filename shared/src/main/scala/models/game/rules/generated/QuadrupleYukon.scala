@@ -17,13 +17,11 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): doubleyukon
  *   Number of decks (ndecks): 4 (4 decks)
- *   Related games (related): quadrupleyukon
  */
 object QuadrupleYukon extends GameRules(
   id = "quadrupleyukon",
   title = "Quadruple Yukon",
   like = Some("doubleyukon"),
-  related = Seq("quadrupleyukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_yukon.htm")),
   description = "A four-deck variation of ^yukon^",
   deckOptions = DeckOptions(

@@ -15,13 +15,11 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 2 (To all tableau piles)
  *   Similar to (like): eternaltriangle
  *   Number of decks (ndecks): 3 (3 decks)
- *   Related games (related): hypotenuse, tripletriangle
  */
 object TripleTriangle extends GameRules(
   id = "tripletriangle",
   title = "Triple Triangle",
   like = Some("eternaltriangle"),
-  related = Seq("hypotenuse", "tripletriangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_triangle.htm")),
   description = "A three-deck ^eternaltriangle^ variation by Thomas Warfield.",
   deckOptions = DeckOptions(

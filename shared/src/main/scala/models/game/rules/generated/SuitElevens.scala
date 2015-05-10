@@ -16,13 +16,11 @@ import models.game.rules._
  *   Left mouse interface function (leftfunc): 1
  *   Similar to (like): elevens
  *   Card removal method (pairs): 9 (Remove same suit pairs adding to 11 or J-Q-K)
- *   Related games (related): suitelevens
  */
 object SuitElevens extends GameRules(
   id = "suitelevens",
   title = "Suit Elevens",
   like = Some("elevens"),
-  related = Seq("suitelevens"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/suit_elevens.htm"),
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")

@@ -16,17 +16,12 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): freecell
  *   Low card (lowpip): -2 (?)
- *   Related games (related): sixbyfour, ephemeralfreecell, challengefreecell, antares, sevenbyfive, spidercel...
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object SelectiveFreeCell extends GameRules(
   id = "selectivefreecell",
   title = "Selective FreeCell",
   like = Some("freecell"),
-  related = Seq(
-    "sixbyfour", "ephemeralfreecell", "challengefreecell", "antares", "sevenbyfive", "spidercells", "bigfreecell", "chinesefreecell",
-    "sevenbyfour", "invertedfreecell", "selectivefreecell", "doublefreecell", "freecellduplex"
-  ),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/selective_freecell.htm")),
   description = "A variation of ^freecell^ where the first card played to the foudnation sets the base value for all the foundations.",
   deckOptions = DeckOptions(

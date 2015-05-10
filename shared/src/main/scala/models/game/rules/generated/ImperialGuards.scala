@@ -17,13 +17,11 @@ import models.game.rules._
  *   Similar to (like): missmilligan
  *   Create pocket when stock runs out (millres): 2 (For one stack of cards)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): imperialguards
  */
 object ImperialGuards extends GameRules(
   id = "imperialguards",
   title = "Imperial Guards",
   like = Some("missmilligan"),
-  related = Seq("imperialguards"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/imperial_guards.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/imperial-guards.htm"),

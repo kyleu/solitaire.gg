@@ -16,13 +16,11 @@ import models.game.rules._
  *   Similar to (like): tripleinterchange
  *   Maximum deals from stock (maxdeals): 0
  *   Number of decks (ndecks): 4 (4 decks)
- *   Related games (related): quadrupleinterchange
  */
 object QuadrupleInterchange extends GameRules(
   id = "quadrupleinterchange",
   title = "Quadruple Interchange",
   like = Some("tripleinterchange"),
-  related = Seq("quadrupleinterchange"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_interchange.htm")),
   description = "A four-deck version of ^interchange^.",
   deckOptions = DeckOptions(

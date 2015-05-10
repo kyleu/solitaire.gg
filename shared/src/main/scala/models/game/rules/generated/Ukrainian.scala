@@ -18,13 +18,11 @@ import models.game.rules._
  *   Tableau wraps from king to ace (T0w): true
  *   Number of waste piles (W0n): 0
  *   Similar to (like): russian
- *   Related games (related): doublerussian, triplerussian, ukrainian, russiancell, odessa, tenacross
  */
 object Ukrainian extends GameRules(
   id = "ukrainian",
   title = "Ukrainian",
   like = Some("russian"),
-  related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/ukrainian_solitaire.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/UkrainianSolitaire.htm")

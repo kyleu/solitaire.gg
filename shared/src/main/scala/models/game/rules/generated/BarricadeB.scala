@@ -14,13 +14,11 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 8 (Never)
  *   Similar to (like): block
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): barricadeb
  */
 object BarricadeB extends GameRules(
   id = "barricadeb",
   title = "Barricade B",
   like = Some("block"),
-  related = Seq("barricadeb"),
   description = "An easier, but still very difficult, modification of ^block^ invented by Richard Mechen and Thomas Warfield.",
   deckOptions = DeckOptions(
     numDecks = 2

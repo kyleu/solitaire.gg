@@ -17,13 +17,11 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): labellelucie
- *   Related games (related): threeshufflesandadraw, intelligence, linus, trefoil, superflowergarden
  */
 object Linus extends GameRules(
   id = "linus",
   title = "Linus",
   like = Some("labellelucie"),
-  related = Seq("threeshufflesandadraw", "intelligence", "linus", "trefoil", "superflowergarden"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/linus.htm")),
   description = "An easier variation of ^labellelucie^ where you build in alternate colors.",
   foundations = Seq(

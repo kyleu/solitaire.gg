@@ -12,17 +12,11 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Similar to (like): fortythieves
  *   Number of decks (ndecks): 3 (3 decks)
- *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepi...
  */
 object FortyThieves3Deck extends GameRules(
   id = "fortythieves3",
   title = "Forty Thieves (3 deck)",
   like = Some("fortythieves"),
-  related = Seq(
-    "robie", "napoleonsquadrilateral", "famousfifty", "fortybandits", "limited", "elba", "threepirates", "squadron",
-    "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
-    "josephine"
-  ),
   links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/forty_thieves_three_decks.htm")),
   description = "A three deck version of ^fortythieves^ with a 12 by 4 tableau.",
   deckOptions = DeckOptions(

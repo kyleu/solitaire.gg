@@ -13,17 +13,11 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
  *   Similar to (like): fortythieves
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepi...
  */
 object Josephine extends GameRules(
   id = "josephine",
   title = "Josephine",
   like = Some("fortythieves"),
-  related = Seq(
-    "robie", "napoleonsquadrilateral", "famousfifty", "fortybandits", "limited", "elba", "threepirates", "squadron",
-    "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
-    "josephine"
-  ),
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Josephine_(solitaire)"),
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/josephine.htm"),

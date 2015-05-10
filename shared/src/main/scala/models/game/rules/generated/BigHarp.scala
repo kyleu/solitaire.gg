@@ -16,16 +16,11 @@ import models.game.rules._
  *   Similar to (like): endlessharp
  *   Maximum deals from stock (maxdeals): 3 (3)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  */
 object BigHarp extends GameRules(
   id = "bigharp",
   title = "Big Harp",
   like = Some("endlessharp"),
-  related = Seq(
-    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
-    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
-  ),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/big_harp.htm"),
     Link("Lena Games", "www.lenagames.com/bp_files/rul/big-harp.htm")

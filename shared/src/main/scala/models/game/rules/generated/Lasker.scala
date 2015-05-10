@@ -18,14 +18,12 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): chessboard
  *   Low card (lowpip): -2 (?)
- *   Related games (related): lasker, castlesend
  *   Enable super moves, whatever those are (supermoves): 0
  */
 object Lasker extends GameRules(
   id = "lasker",
   title = "Lasker",
   like = Some("chessboard"),
-  related = Seq("lasker", "castlesend"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lasker.htm")),
   description = "A version of ^chessboard^ where sequences may be moved.",
   deckOptions = DeckOptions(

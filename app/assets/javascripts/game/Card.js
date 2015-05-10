@@ -14,7 +14,6 @@ define(['utils/Config', 'game/Rank', 'game/Suit', 'game/helpers/CardInput', 'gam
 
     var initialX = (game.width / 2) / game.playmat.scale.x;
     var initialY = game.height / game.playmat.scale.y;
-    console.log(initialX, initialY);
 
     this.spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
     if(this.faceUp) {

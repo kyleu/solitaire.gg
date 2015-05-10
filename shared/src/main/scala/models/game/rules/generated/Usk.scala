@@ -18,13 +18,11 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): somerset
- *   Related games (related): morehead, usk
  */
 object Usk extends GameRules(
   id = "usk",
   title = "Usk",
   like = Some("somerset"),
-  related = Seq("morehead", "usk"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/usk.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/usk.html")

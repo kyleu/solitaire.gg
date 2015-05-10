@@ -9,11 +9,7 @@ import org.joda.time.LocalDateTime
 import services.GameHistoryService
 
 class GameService(
-    val id: UUID,
-    val rules: String,
-    val seed: Int,
-    val started: LocalDateTime,
-    private[this] val initialPlayers: List[PlayerRecord]
+  val id: UUID, val rules: String, val seed: Int, val started: LocalDateTime, private[this] val initialPlayers: List[PlayerRecord]
 ) extends GameServiceHelper {
 
   log.info("Started game [" + rules + "] for players [" + initialPlayers.map(_.name).mkString(", ") + "] with seed [" + seed + "].")
@@ -31,6 +27,7 @@ class GameService(
   protected[this] val gameMessages = collection.mutable.ArrayBuffer.empty[GameMessage]
   protected[this] var moveCount = 0
   protected[this] var lastMoveMade: Option[LocalDateTime] = None
+  protected[this] var gameWon = false
 
   override def preStart() {
     InitialMoves.performInitialMoves(gameRules, gameState)

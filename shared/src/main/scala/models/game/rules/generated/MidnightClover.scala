@@ -17,13 +17,11 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): fan
  *   Allowed draws (ndraw): 1 (1)
- *   Related games (related): boxfan, freefan, ceilingfan, midnightclover
  */
 object MidnightClover extends GameRules(
   id = "midnightclover",
   title = "Midnight Clover",
   like = Some("fan"),
-  related = Seq("boxfan", "freefan", "ceilingfan", "midnightclover"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/midnight_clover.htm")),
   description = "A ^fan^ variant by Thomas Warfield where a draw is allowed.",
   foundations = Seq(

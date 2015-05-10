@@ -16,7 +16,6 @@ import models.game.rules._
  *   Playable waste cards (W0a): true
  *   *W0s (W0s): true
  *   Similar to (like): kingalbert
- *   Related games (related): queenvictoria, muse, raglan
  *   Enable super moves, whatever those are (supermoves): 1
  *   *unused (unused): temp_hack
  */
@@ -24,7 +23,6 @@ object Raglan extends GameRules(
   id = "raglan",
   title = "Raglan",
   like = Some("kingalbert"),
-  related = Seq("queenvictoria", "muse", "raglan"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/raglan.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/raglan.htm"),

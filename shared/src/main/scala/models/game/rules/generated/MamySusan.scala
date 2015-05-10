@@ -14,17 +14,11 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
  *   Similar to (like): fortythieves
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepi...
  */
 object MamySusan extends GameRules(
   id = "mamysusan",
   title = "Mamy Susan",
   like = Some("fortythieves"),
-  related = Seq(
-    "robie", "napoleonsquadrilateral", "famousfifty", "fortybandits", "limited", "elba", "threepirates", "squadron",
-    "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
-    "josephine"
-  ),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/mamy_susan.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/MamySusan.htm")

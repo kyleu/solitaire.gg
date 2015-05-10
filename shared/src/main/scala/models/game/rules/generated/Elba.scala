@@ -17,17 +17,11 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 2 (To all tableau piles)
  *   Similar to (like): fortythieves
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepi...
  */
 object Elba extends GameRules(
   id = "elba",
   title = "Elba",
   like = Some("fortythieves"),
-  related = Seq(
-    "robie", "napoleonsquadrilateral", "famousfifty", "fortybandits", "limited", "elba", "threepirates", "squadron",
-    "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
-    "josephine"
-  ),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/elba.htm")),
   description = "A variant of ^fortythieves^ with ^klondike^-like building rules.",
   deckOptions = DeckOptions(

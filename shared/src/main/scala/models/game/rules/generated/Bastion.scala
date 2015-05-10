@@ -16,14 +16,12 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): fortress
- *   Related games (related): bastion, chessboard, fortressofmercy, beleagueredfortress
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object Bastion extends GameRules(
   id = "bastion",
   title = "Bastion",
   like = Some("fortress"),
-  related = Seq("bastion", "chessboard", "fortressofmercy", "beleagueredfortress"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bastion.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/bastion.htm")

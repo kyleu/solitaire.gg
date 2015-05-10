@@ -14,14 +14,12 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): beleagueredcastle
  *   Low card (lowpip): -2 (?)
- *   Related games (related): fortress, citadel, castlemount, castleofindolence, streetsandalleys, selectiveca...
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object SelectiveCastle extends GameRules(
   id = "selectivecastle",
   title = "Selective Castle",
   like = Some("beleagueredcastle"),
-  related = Seq("fortress", "citadel", "castlemount", "castleofindolence", "streetsandalleys", "selectivecastle"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/selective_castle.htm"),
     Link("Wikipedia", "en.wikipedia.org/wiki/Beleaguered_Castle")

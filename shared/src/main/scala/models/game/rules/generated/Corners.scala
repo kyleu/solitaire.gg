@@ -16,14 +16,12 @@ import models.game.rules._
  *   Similar to (like): czarina
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 3 (3)
- *   Related games (related): corners
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object Corners extends GameRules(
   id = "corners",
   title = "Corners",
   like = Some("czarina"),
-  related = Seq("corners"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/corners.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/corners.htm")

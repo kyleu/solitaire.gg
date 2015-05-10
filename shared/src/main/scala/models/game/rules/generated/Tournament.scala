@@ -42,14 +42,12 @@ import models.game.rules._
  *   Left mouse interface function (leftfunc): 0x2|0x20
  *   Similar to (like): cicely
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): tournament
  *   Touch interface function (touchfunc): 0x2|0x20
  */
 object Tournament extends GameRules(
   id = "tournament",
   title = "Tournament",
   like = Some("cicely"),
-  related = Seq("tournament"),
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Tournament_(solitaire)"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/tournament.html"),

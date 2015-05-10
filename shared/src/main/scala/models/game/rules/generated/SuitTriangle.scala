@@ -16,13 +16,11 @@ import models.game.rules._
  *   Similar to (like): doubleklondike
  *   Maximum deals from stock (maxdeals): 0
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): sally, suittriangle
  */
 object SuitTriangle extends GameRules(
   id = "suittriangle",
   title = "Suit Triangle",
   like = Some("doubleklondike"),
-  related = Seq("sally", "suittriangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/suit_triangle.htm")),
   description = "A two-deck version of ^klondike^ where we build in the same suite.",
   deckOptions = DeckOptions(

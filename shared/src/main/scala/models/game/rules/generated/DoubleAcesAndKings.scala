@@ -28,13 +28,11 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 0 (May not build)
  *   Similar to (like): acesandkings
  *   Number of decks (ndecks): 4 (4 decks)
- *   Related games (related): doubleacesandkings, aceyandkingsley, deucesandqueens, racingaces
  */
 object DoubleAcesAndKings extends GameRules(
   id = "doubleacesandkings",
   title = "Double Aces and Kings",
   like = Some("acesandkings"),
-  related = Seq("doubleacesandkings", "aceyandkingsley", "deucesandqueens", "racingaces"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_aces_and_kings.htm")),
   description = "A four-deck version of ^acesandkings^ invented by Thomas Warfield.",
   deckOptions = DeckOptions(

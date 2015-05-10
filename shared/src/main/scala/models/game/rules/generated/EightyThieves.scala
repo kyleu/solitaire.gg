@@ -12,17 +12,11 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Similar to (like): fortythieves
  *   Number of decks (ndecks): 4 (4 decks)
- *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepi...
  */
 object EightyThieves extends GameRules(
   id = "eightythieves",
   title = "Eighty Thieves",
   like = Some("fortythieves"),
-  related = Seq(
-    "robie", "napoleonsquadrilateral", "famousfifty", "fortybandits", "limited", "elba", "threepirates", "squadron",
-    "fortythieves3", "sixtythieves", "littlenapoleon", "eightythieves", "mamysusan", "sanjuanhill", "fortythieves4", "thievesrush",
-    "josephine"
-  ),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eighty_thieves.htm")),
   description = "A very difficult four-deck version of ^fortythieves^ by Thomas Warfield. Needs a large screen.",
   deckOptions = DeckOptions(

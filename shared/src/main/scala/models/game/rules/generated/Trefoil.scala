@@ -18,13 +18,11 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): labellelucie
- *   Related games (related): threeshufflesandadraw, intelligence, linus, trefoil, superflowergarden
  */
 object Trefoil extends GameRules(
   id = "trefoil",
   title = "Trefoil",
   like = Some("labellelucie"),
-  related = Seq("threeshufflesandadraw", "intelligence", "linus", "trefoil", "superflowergarden"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trefoil.htm"),
     Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/Trefoil.html"),

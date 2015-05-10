@@ -19,14 +19,12 @@ import models.game.rules._
  *   Tableau sets (Tn): 2 (2 tableau sets)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): spanish
- *   Related games (related): castlesinspain, portuguese
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object CastlesInSpain extends GameRules(
   id = "castlesinspain",
   title = "Castles in Spain",
   like = Some("spanish"),
-  related = Seq("castlesinspain", "portuguese"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/castles_in_spain.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/castles_in_spain.html"),

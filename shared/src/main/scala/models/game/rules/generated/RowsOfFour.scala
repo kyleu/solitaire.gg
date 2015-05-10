@@ -15,13 +15,11 @@ import models.game.rules._
  *   Similar to (like): diplomat
  *   Maximum deals from stock (maxdeals): 3 (3)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): rowsoffour
  */
 object RowsOfFour extends GameRules(
   id = "rowsoffour",
   title = "Rows of Four",
   like = Some("diplomat"),
-  related = Seq("rowsoffour"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rows_of_four.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/rows_of_four.htm")

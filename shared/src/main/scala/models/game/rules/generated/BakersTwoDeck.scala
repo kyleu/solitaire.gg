@@ -15,14 +15,12 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): bakers
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): bakerstwodeck
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object BakersTwoDeck extends GameRules(
   id = "bakerstwodeck",
   title = "Baker's Two-Deck",
   like = Some("bakers"),
-  related = Seq("bakerstwodeck"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/bakersgame2.htm")),
   description = "A two-deck version of ^bakers^ games.",
   deckOptions = DeckOptions(

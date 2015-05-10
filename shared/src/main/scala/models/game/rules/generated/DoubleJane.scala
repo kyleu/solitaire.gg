@@ -13,13 +13,11 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
  *   Similar to (like): arabella
  *   Number of decks (ndecks): 4 (4 decks)
- *   Related games (related): doublejane
  */
 object DoubleJane extends GameRules(
   id = "doublejane",
   title = "Double Jane",
   like = Some("arabella"),
-  related = Seq("doublejane"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_jane.htm")),
   description = "An four-deck ^spider^/^klondike^, similar to ^ladyjane^.",
   deckOptions = DeckOptions(

@@ -21,13 +21,11 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 11
  *   Similar to (like): carthage
  *   Number of decks (ndecks): 3 (3 decks)
- *   Related games (related): algiers
  */
 object Algiers extends GameRules(
   id = "algiers",
   title = "Algiers",
   like = Some("carthage"),
-  related = Seq("algiers"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/algiers.htm")),
   description = "A three-deck variation of ^carthage^.",
   deckOptions = DeckOptions(

@@ -33,14 +33,12 @@ import models.game.rules._
  *   Similar to (like): rougeetnoir
  *   Maximum deals from stock (maxdeals): 1 (1)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): rougeetnoir
  *   *unused (unused): temp_hack
  */
 object RougeForty extends GameRules(
   id = "rougeforty",
   title = "Rouge Forty",
   like = Some("rougeetnoir"),
-  related = Seq("rougeetnoir"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rouge_forty.htm")),
   description = "A variation of ^rougeetnoir^ with a rectangular tableau. Invented by Thomas Warfield.",
   deckOptions = DeckOptions(

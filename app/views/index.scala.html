@@ -10,7 +10,7 @@
           <h1>Solitare.gg</h1>
           <p>I'm trying to build the web's best card games. Thanks for checking out my progress!</p>
           @if(request.isAdmin) {
-            <p><a class="btn btn-primary btn-lg" href="@routes.HomeController.newGame("klondike").url" role="button">Play Now</a></p>
+            <p><a class="btn btn-primary btn-lg" href="@routes.HomeController.newDefaultGame().url" role="button">Play Now</a></p>
           } else {
             <p>Coming soon!</p>
           }

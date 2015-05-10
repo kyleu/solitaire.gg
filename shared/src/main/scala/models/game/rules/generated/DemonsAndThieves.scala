@@ -29,13 +29,11 @@ import models.game.rules._
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 3 (3)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demo...
  */
 object DemonsAndThieves extends GameRules(
   id = "demonsandthieves",
   title = "Demons and Thieves",
   like = Some("canfield"),
-  related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/demons_and_thieves.htm")),
   description = "In this game, the tableau is split into two halves, one half where you play by ^canfield^ rules, and one half where you play by ^f" +
     "ortythieves^ rules.",

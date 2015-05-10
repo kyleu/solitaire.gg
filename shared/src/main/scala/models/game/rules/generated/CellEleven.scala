@@ -16,14 +16,12 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): triplefreecell
  *   Number of decks (ndecks): 3 (3 decks)
- *   Related games (related): celleleven, freecellthreedeck
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object CellEleven extends GameRules(
   id = "celleleven",
   title = "Cell Eleven",
   like = Some("triplefreecell"),
-  related = Seq("celleleven", "freecellthreedeck"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cell_11.htm")),
   description = "A three-deck version of ^freecell^.",
   deckOptions = DeckOptions(

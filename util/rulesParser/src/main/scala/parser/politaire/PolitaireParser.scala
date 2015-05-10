@@ -31,6 +31,8 @@ object PolitaireParser {
 
   lazy val gameRules = politaireList.map(p => new GameRulesParser(p).parse())
 
+  private[this] val doNotInheritFrom = Seq("related", "like")
+
   private[this] def parseVariants(json: JsObject) = {
     val variants = json.value.flatMap { js =>
       try {
@@ -52,7 +54,7 @@ object PolitaireParser {
             if (x.value.toString.nonEmpty) { withParent(parent, x.value.toString) } else { parent }
           }.getOrElse(parent)
           val newAttributes = new collection.mutable.LinkedHashMap[String, Attr]()
-          newAttributes ++= mergedParent.attributes
+          newAttributes ++= mergedParent.attributes.filterNot(doNotInheritFrom.contains)
           newAttributes ++= v.attributes.filterNot(_._2.defaultVal)
           v.copy(attributes = newAttributes)
         case None => throw new IllegalStateException("Invalid parent [" + parentId + "].")
@@ -61,7 +63,7 @@ object PolitaireParser {
 
     variants.map { v =>
       val related = variants.filter(_.attributes.get("like").map(_.value.toString) == Some(v.id)).map(_.id)
-      v.attributes("related") = Attr("related", PolitaireLookup.getTitle("related").getOrElse("related"), related.mkString(", "), None, related.isEmpty)
+      v.attributes("related") = Attr("related", PolitaireLookup.getTitle("related").getOrElse("related"), related.mkString(", "), None, false)
 
       v.attributes.get("like") match {
         case Some(like) if like.value.toString.nonEmpty => withParent(v, like.value.toString)

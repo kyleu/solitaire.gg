@@ -17,7 +17,8 @@ trait GameServiceCardHelper { this: GameService =>
     } else {
       log.warn("SelectCard called on [" + card + "], which cannot be selected.")
     }
-    if (!checkWinCondition()) {
+    checkWinCondition()
+    if (!gameWon) {
       handleGetPossibleMoves(accountId)
     }
   }
@@ -34,7 +35,9 @@ trait GameServiceCardHelper { this: GameService =>
       Nil
     }
     sendToAll(messages)
-    if (!checkWinCondition()) {
+
+    checkWinCondition()
+    if (!gameWon) {
       handleGetPossibleMoves(accountId)
     }
   }
@@ -55,7 +58,8 @@ trait GameServiceCardHelper { this: GameService =>
         val messages = targetPile.onDragTo(sourcePile, cards, gameState)
 
         sendToAll(messages)
-        if (!checkWinCondition()) {
+        checkWinCondition()
+        if (!gameWon) {
           handleGetPossibleMoves(accountId)
         }
       } else {
@@ -68,12 +72,8 @@ trait GameServiceCardHelper { this: GameService =>
     }
   }
 
-  private[this] def checkWinCondition() = {
-    if (gameRules.victoryCondition.check(gameState)) {
-      sendToAll(GameWon(id))
-      true
-    } else {
-      false
-    }
+  private[this] def checkWinCondition() = if (!gameWon && gameRules.victoryCondition.check(gameState)) {
+    gameWon = true
+    sendToAll(GameWon(id))
   }
 }

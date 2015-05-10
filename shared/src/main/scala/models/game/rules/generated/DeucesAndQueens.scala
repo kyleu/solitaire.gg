@@ -32,13 +32,11 @@ import models.game.rules._
  *   Similar to (like): acesandkings
  *   Low card (lowpip): -1 (.)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): doubleacesandkings, aceyandkingsley, deucesandqueens, racingaces
  */
 object DeucesAndQueens extends GameRules(
   id = "deucesandqueens",
   title = "Deuces and Queens",
   like = Some("acesandkings"),
-  related = Seq("doubleacesandkings", "aceyandkingsley", "deucesandqueens", "racingaces"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/deuces_and_queens.htm")),
   description = "A variation on ^acesandkings^ where building is allowed on the tableau.",
   deckOptions = DeckOptions(

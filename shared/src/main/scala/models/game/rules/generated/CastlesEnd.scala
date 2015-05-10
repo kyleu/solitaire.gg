@@ -18,14 +18,12 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Similar to (like): chessboard
  *   Low card (lowpip): -2 (?)
- *   Related games (related): lasker, castlesend
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object CastlesEnd extends GameRules(
   id = "castlesend",
   title = "Castle's End",
   like = Some("chessboard"),
-  related = Seq("lasker", "castlesend"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/castles_end.htm")),
   description = "A slightly different version of ^chessboard^ with a two-card reserve.",
   deckOptions = DeckOptions(

@@ -15,16 +15,11 @@ import models.game.rules._
  *   Deal cards from stock (dealchunk): 1 (One by one)
  *   Similar to (like): thoughtful
  *   Maximum deals from stock (maxdeals): 1 (1)
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
  */
 object AuntMary extends GameRules(
   id = "auntmary",
   title = "Aunt Mary",
   like = Some("thoughtful"),
-  related = Seq(
-    "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
-    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman"
-  ),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/aunt_mary.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/aunt_mary.htm"),

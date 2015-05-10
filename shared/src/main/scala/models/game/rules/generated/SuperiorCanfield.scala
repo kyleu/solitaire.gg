@@ -19,13 +19,11 @@ import models.game.rules._
  *   Similar to (like): canfield
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 0
- *   Related games (related): rainbow, storehouse, acme, canfieldgallery, superiorcanfield, canfieldrush, demo...
  */
 object SuperiorCanfield extends GameRules(
   id = "superiorcanfield",
   title = "Superior Canfield",
   like = Some("canfield"),
-  related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/superior_canfield.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SuperiorCanfield.htm"),

@@ -14,14 +14,12 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): streetsandalleys
- *   Related games (related): stronghold, penelopesweb, privatelane
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object PrivateLane extends GameRules(
   id = "privatelane",
   title = "Private Lane",
   like = Some("streetsandalleys"),
-  related = Seq("stronghold", "penelopesweb", "privatelane"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/private_lane.htm")),
   description = "A variation of ^beleagueredcastle^ with two ^freecell^-style cells added.",
   foundations = Seq(

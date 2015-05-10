@@ -12,13 +12,11 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
  *   Similar to (like): singlerail
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): doublerail
  */
 object DoubleRail extends GameRules(
   id = "doublerail",
   title = "Double Rail",
   like = Some("singlerail"),
-  related = Seq("doublerail"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_rail.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/double_rail.htm"),

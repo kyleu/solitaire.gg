@@ -18,13 +18,11 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): russian
- *   Related games (related): doublerussian, triplerussian, ukrainian, russiancell, odessa, tenacross
  */
 object TenAcross extends GameRules(
   id = "tenacross",
   title = "Ten Across",
   like = Some("russian"),
-  related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Ten_Across.html.en")),
   description = "A variation of ^russian^ with a different starting tableau and two cells, which start full.",
   foundations = Seq(

@@ -16,13 +16,11 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 2 (To all tableau piles)
  *   Similar to (like): carlton
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): steve
  */
 object Steve extends GameRules(
   id = "steve",
   title = "Steve",
   like = Some("carlton"),
-  related = Seq("steve"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/steve.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/steve.htm")

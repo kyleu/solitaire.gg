@@ -17,13 +17,11 @@ import models.game.rules._
  *   Left mouse interface function (leftfunc): 1
  *   Similar to (like): fourteenout
  *   Card removal method (pairs): 4 (Remove pairs adding to 10, 10-10, J-J, Q-Q, or K-K)
- *   Related games (related): juvenile, doublefourteens, triplefourteens, tensout
  */
 object TensOut extends GameRules(
   id = "tensout",
   title = "Tens Out",
   like = Some("fourteenout"),
-  related = Seq("juvenile", "doublefourteens", "triplefourteens", "tensout"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/tens_out.htm")),
   description = "A variation of ^fourteenout^ where we remove pairs adding to 10.",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOr10PairOrJPairOrQPairOrKPair,

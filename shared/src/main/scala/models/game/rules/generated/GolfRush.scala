@@ -23,7 +23,6 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 6 (To all foundation piles)
  *   Left mouse interface function (leftfunc): 2
  *   Similar to (like): golf
- *   Related games (related): allinarow, escalator, puttputt, panthercreek, golfrush
  *   Touch interface function (touchfunc): 2
  *   Victory condition (victory): 5 (All cards on foundation or stock)
  */
@@ -31,7 +30,6 @@ object GolfRush extends GameRules(
   id = "golfrush",
   title = "Golf Rush",
   like = Some("golf"),
-  related = Seq("allinarow", "escalator", "puttputt", "panthercreek", "golfrush"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/golf_rush.htm"),
     Link("Jan Wolter's Experiments", "/article/golf.html")

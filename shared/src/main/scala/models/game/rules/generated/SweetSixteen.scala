@@ -17,14 +17,12 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 8 (Never)
  *   Similar to (like): trustytwelve
  *   Number of decks (ndecks): 1 (1 deck)
- *   Related games (related): bunker, knottynines, sweetsixteen, upandup
  *   Victory condition (victory): 2 (No cards left in stock)
  */
 object SweetSixteen extends GameRules(
   id = "sweetsixteen",
   title = "Sweet Sixteen",
   like = Some("trustytwelve"),
-  related = Seq("bunker", "knottynines", "sweetsixteen", "upandup"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sweet_sixteen.htm")),
   description = "A variation of ^trustytwelve^ where you build by alternate color",
   victoryCondition = VictoryCondition.NoneInStock,

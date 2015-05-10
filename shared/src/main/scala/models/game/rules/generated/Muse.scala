@@ -18,14 +18,12 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   *W0s (W0s): true
  *   Similar to (like): kingalbert
- *   Related games (related): queenvictoria, muse, raglan
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object Muse extends GameRules(
   id = "muse",
   title = "Muse",
   like = Some("kingalbert"),
-  related = Seq("queenvictoria", "muse", "raglan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/muse.htm")),
   description = "This variation of ^kingalbert^ has cells instead of a reserve.",
   foundations = Seq(

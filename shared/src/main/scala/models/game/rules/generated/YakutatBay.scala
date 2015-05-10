@@ -17,13 +17,11 @@ import models.game.rules._
  *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): yukon
- *   Related games (related): yukoncells, brisbane, yukononesuit, yukonicplague, alaska, yukonkings, yakutatba...
  */
 object YakutatBay extends GameRules(
   id = "yakutatbay",
   title = "Yakutat Bay",
   like = Some("yukon"),
-  related = Seq("yukoncells", "brisbane", "yukononesuit", "yukonicplague", "alaska", "yukonkings", "yakutatbay"),
   description = "A cross between ^yukon^ and ^movingleft^.",
   foundations = Seq(
     FoundationRules(

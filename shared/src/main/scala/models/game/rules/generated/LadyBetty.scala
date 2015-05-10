@@ -17,13 +17,11 @@ import models.game.rules._
  *   Number of waste piles (W0n): 0
  *   Deal cards from stock (dealto): 7 (Manually)
  *   Similar to (like): sirtommy
- *   Related games (related): alternate, ladybetty
  */
 object LadyBetty extends GameRules(
   id = "ladybetty",
   title = "Lady Betty",
   like = Some("sirtommy"),
-  related = Seq("alternate", "ladybetty"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lady_betty.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/lady_betty.html"),

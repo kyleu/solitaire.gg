@@ -31,14 +31,12 @@ import models.game.rules._
  *   Similar to (like): boulevard
  *   Maximum deals from stock (maxdeals): 1 (1)
  *   Number of decks (ndecks): 1 (1 deck)
- *   Related games (related): evenandodd
  *   Touch interface function (touchfunc): 2
  */
 object EvenAndOdd extends GameRules(
   id = "evenandodd",
   title = "Even and Odd",
   like = Some("boulevard"),
-  related = Seq("evenandodd"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/even-and-odd.htm")),
   description = "A one-deck version of ^boulevard^.",
   stock = Some(

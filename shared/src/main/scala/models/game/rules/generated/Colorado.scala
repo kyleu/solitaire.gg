@@ -28,13 +28,11 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 7 (Manually)
  *   Similar to (like): twenty
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): colorado
  */
 object Colorado extends GameRules(
   id = "colorado",
   title = "Colorado",
   like = Some("twenty"),
-  related = Seq("colorado"),
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Colorado_(game)"),
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/colorado.htm"),

@@ -19,13 +19,11 @@ import models.game.rules._
  *   Tableau sets (Tn): 2 (2 tableau sets)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): spanish
- *   Related games (related): castlesinspain, portuguese
  */
 object Portuguese extends GameRules(
   id = "portuguese",
   title = "Portuguese",
   like = Some("spanish"),
-  related = Seq("castlesinspain", "portuguese"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/portuguese_solitaire.htm")),
   description = "A variant of ^bakersdozen^ that allows filling in spaces with kings.",
   foundations = Seq(

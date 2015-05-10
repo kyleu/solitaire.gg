@@ -17,14 +17,12 @@ import models.game.rules._
  *   Number of waste piles (W0n): 1
  *   *W0s (W0s): true
  *   Similar to (like): fortress
- *   Related games (related): bastion, chessboard, fortressofmercy, beleagueredfortress
  *   Enable super moves, whatever those are (supermoves): 1
  */
 object BeleagueredFortress extends GameRules(
   id = "beleagueredfortress",
   title = "Beleaguered Fortress",
   like = Some("fortress"),
-  related = Seq("bastion", "chessboard", "fortressofmercy", "beleagueredfortress"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/beleaguered-castle-2.htm")),
   description = "A variation of ^fortress^ with a twelve-card reserve from which all cards are playable.",
   waste = Some(

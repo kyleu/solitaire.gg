@@ -22,13 +22,11 @@ import models.game.rules._
  *   Low card (lowpip): -2 (?)
  *   Maximum deals from stock (maxdeals): 1 (1)
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): doublesignora, fallingstar, blondesandbrunettes, roman
  */
 object Roman extends GameRules(
   id = "roman",
   title = "Roman",
   like = Some("signora"),
-  related = Seq("doublesignora", "fallingstar", "blondesandbrunettes", "roman"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/roman_patience.htm")),
   description = "A variation of ^signora^ where we build regardless of suit. Invented by Thomas Warfield.",
   deckOptions = DeckOptions(

@@ -19,14 +19,12 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 7 (Manually)
  *   Similar to (like): trustytwelve
  *   Number of decks (ndecks): 1 (1 deck)
- *   Related games (related): bunker, knottynines, sweetsixteen, upandup
  *   Victory condition (victory): 2 (No cards left in stock)
  */
 object UpAndUp extends GameRules(
   id = "upandup",
   title = "Up and Up",
   like = Some("trustytwelve"),
-  related = Seq("bunker", "knottynines", "sweetsixteen", "upandup"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/up_and_up.htm")),
   description = "A variation of ^trustytwelve^ where you can build kings on aces.",
   victoryCondition = VictoryCondition.NoneInStock,

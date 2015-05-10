@@ -56,7 +56,7 @@ define(['game/helpers/Tweens'], function (Tweens) {
           } else {
             var moveTarget = getMoveTarget(card);
             if(moveTarget !== null && moveTarget !== undefined) {
-              this.game.send("MoveCards", {cards: [card.id], src: card.pile.id, tgt: moveTarget.targetPile});
+              card.game.send("MoveCards", {cards: [card.id], src: card.pile.id, tgt: moveTarget.targetPile});
             }
           }
         }

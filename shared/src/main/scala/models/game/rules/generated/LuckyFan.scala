@@ -17,13 +17,11 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): freefan
- *   Related games (related): boxfan, freefan, ceilingfan, midnightclover
  */
 object LuckyFan extends GameRules(
   id = "luckyfan",
   title = "Lucky Fan",
   like = Some("freefan"),
-  related = Seq("boxfan", "freefan", "ceilingfan", "midnightclover"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lucky_fan.htm")),
   description = "A version of ^freefan^ in which no fan may hold more than three cards.",
   foundations = Seq(

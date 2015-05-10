@@ -19,13 +19,11 @@ import models.game.rules._
  *   Left mouse interface function (leftfunc): 1
  *   Similar to (like): simplepairs
  *   Card removal method (pairs): 1 (Remove pairs of same rank)
- *   Related games (related): crisscross, eighteens, straightfifteens, blockten, patientpairs, doubletcell, do...
  */
 object Doublets extends GameRules(
   id = "doublets",
   title = "Doublets",
   like = Some("simplepairs"),
-  related = Seq("crisscross", "eighteens", "straightfifteens", "blockten", "patientpairs", "doubletcell", "doublets"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/doublets.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/doublets.htm"),

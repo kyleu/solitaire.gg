@@ -17,13 +17,11 @@ import models.game.rules._
  *   Number of cards shown (W0cardsShown): 20
  *   *W0s (W0s): true
  *   Similar to (like): flowergarden
- *   Related games (related): wildflower, brigade
  */
 object Wildflower extends GameRules(
   id = "wildflower",
   title = "Wildflower",
   like = Some("flowergarden"),
-  related = Seq("wildflower", "brigade"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/wildflower.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/flower-garden.htm")

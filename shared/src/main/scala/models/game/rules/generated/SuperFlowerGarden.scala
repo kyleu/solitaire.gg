@@ -17,13 +17,11 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): labellelucie
- *   Related games (related): threeshufflesandadraw, intelligence, linus, trefoil, superflowergarden
  */
 object SuperFlowerGarden extends GameRules(
   id = "superflowergarden",
   title = "Super Flower Garden",
   like = Some("labellelucie"),
-  related = Seq("threeshufflesandadraw", "intelligence", "linus", "trefoil", "superflowergarden"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/super_flower_gar.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/super_flower_garden.htm"),

@@ -15,13 +15,11 @@ import models.game.rules._
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): fan
- *   Related games (related): boxfan, freefan, ceilingfan, midnightclover
  */
 object CeilingFan extends GameRules(
   id = "ceilingfan",
   title = "Ceiling Fan",
   like = Some("fan"),
-  related = Seq("boxfan", "freefan", "ceilingfan", "midnightclover"),
   description = "An easier variation of ^fan^ where you build in alternate colors.",
   foundations = Seq(
     FoundationRules(

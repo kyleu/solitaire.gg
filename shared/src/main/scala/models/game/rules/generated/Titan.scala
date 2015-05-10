@@ -15,13 +15,11 @@ import models.game.rules._
  *   Deal cards from stock (dealto): 2 (To all tableau piles)
  *   Similar to (like): giant
  *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): titan
  */
 object Titan extends GameRules(
   id = "titan",
   title = "Titan",
   like = Some("giant"),
-  related = Seq("titan"),
   links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/titan.htm")),
   description = "A version of ^giant^ that starts with more cards on the tableau.",
   deckOptions = DeckOptions(

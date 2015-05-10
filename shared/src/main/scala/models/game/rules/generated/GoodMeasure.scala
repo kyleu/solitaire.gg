@@ -20,13 +20,11 @@ import models.game.rules._
  *   Tableau sets (Tn): 1 (1 tableau set)
  *   Number of waste piles (W0n): 0
  *   Similar to (like): bakersdozen
- *   Related games (related): spanish, goodmeasure
  */
 object GoodMeasure extends GameRules(
   id = "goodmeasure",
   title = "Good Measure",
   like = Some("bakersdozen"),
-  related = Seq("spanish", "goodmeasure"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/good_measure.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/good_measure.htm"),
