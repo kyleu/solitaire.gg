@@ -48,6 +48,7 @@ object BlackHole extends GameRules(
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(
     FoundationRules(
+      initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificSuit(Suit.Hearts)),
       initialCards = 1,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,

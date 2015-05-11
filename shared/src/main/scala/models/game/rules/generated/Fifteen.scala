@@ -37,12 +37,14 @@ object Fifteen extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       wrapFromKingToAce = true
     ),
     FoundationRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true
     )

@@ -47,6 +47,7 @@ object CrescentFour extends GameRules(
     FoundationRules(
       name = "Aces Foundation",
       numPiles = 4,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       initialCards = 4,
       wrapFromKingToAce = true,
       autoMoveCards = true
@@ -56,6 +57,7 @@ object CrescentFour extends GameRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       initialCards = 4,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,

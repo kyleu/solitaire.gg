@@ -37,6 +37,7 @@ object DoubleFreeCell extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       initialCards = 4,
       wrapFromKingToAce = true,
       maxCards = 26,

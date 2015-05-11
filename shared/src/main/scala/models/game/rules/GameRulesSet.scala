@@ -9,7 +9,8 @@ object GameRulesSet {
     "doubleklondike",
     "klondike",
     "pyramid",
-    "tripleklondike"
+    "tripleklondike",
+    "whitehorse"
   )
 
   val all = (GeneratedGameRules.all ++ CustomGameRules.all).sortBy(_.id)

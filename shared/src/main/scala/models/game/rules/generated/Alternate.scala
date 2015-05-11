@@ -49,6 +49,7 @@ object Alternate extends GameRules(
     FoundationRules(
       name = "Red Foundation",
       numPiles = 2,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(Red)),
       initialCards = 2,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       wrapFromKingToAce = true,
@@ -59,6 +60,7 @@ object Alternate extends GameRules(
       setNumber = 1,
       numPiles = 2,
       lowRank = FoundationLowRank.DeckHighRank,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(Black)),
       initialCards = 2,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       rankMatchRule = RankMatchRule.Down,

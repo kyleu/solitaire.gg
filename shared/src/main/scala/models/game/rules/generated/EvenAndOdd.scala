@@ -48,6 +48,7 @@ object EvenAndOdd extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
@@ -57,6 +58,7 @@ object EvenAndOdd extends GameRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Two),
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,

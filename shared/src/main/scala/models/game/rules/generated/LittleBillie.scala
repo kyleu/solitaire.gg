@@ -51,6 +51,7 @@ object LittleBillie extends GameRules(
     FoundationRules(
       name = "Aces Foundation",
       numPiles = 4,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       wrapFromKingToAce = true,
       autoMoveCards = true
     ),
@@ -59,6 +60,7 @@ object LittleBillie extends GameRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
       autoMoveCards = true

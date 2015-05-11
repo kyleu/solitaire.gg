@@ -67,6 +67,7 @@ object RoyalRendezvous extends GameRules(
     FoundationRules(
       name = "Straight Foundation",
       numPiles = 4,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       initialCards = 4,
       wrapFromKingToAce = true
     ),
@@ -74,6 +75,7 @@ object RoyalRendezvous extends GameRules(
       name = "Odd Foundation",
       setNumber = 1,
       numPiles = 4,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       initialCards = 4,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
@@ -84,6 +86,7 @@ object RoyalRendezvous extends GameRules(
       setNumber = 2,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Two),
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       initialCards = 4,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
@@ -94,6 +97,7 @@ object RoyalRendezvous extends GameRules(
       setNumber = 3,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       wrapFromKingToAce = true,
       maxCards = 1
     )

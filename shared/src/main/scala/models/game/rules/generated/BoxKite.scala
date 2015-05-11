@@ -44,6 +44,7 @@ object BoxKite extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       initialCards = 4,
       wrapFromKingToAce = true,
       autoMoveCards = true
@@ -52,6 +53,7 @@ object BoxKite extends GameRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       initialCards = 4,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,

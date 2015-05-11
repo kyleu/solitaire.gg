@@ -31,6 +31,14 @@ object ScalaFoundationExporter {
         if(f.lowRank != defaults.lowRank) {
           props += "      lowRank = FoundationLowRank." + cls(f.lowRank)
         }
+        if(f.initialCardRestriction != defaults.initialCardRestriction) {
+          val r = f.initialCardRestriction match {
+            case Some(FoundationInitialCardRestriction.SpecificSuit(s)) => "SpecificSuit(Suit." + s + ")"
+            case Some(x) => x.toString
+            case None => throw new IllegalArgumentException()
+          }
+          props += "      initialCardRestriction = Some(FoundationInitialCardRestriction." + r + ")"
+        }
         if(f.initialCards != defaults.initialCards) {
           props += "      initialCards = " + f.initialCards
         }

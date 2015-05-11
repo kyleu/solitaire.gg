@@ -1,10 +1,12 @@
 package services.help
 
 import models.game.Rank
-import models.game.rules.{ DeckOptions, FoundationLowRank, FoundationRules }
+import models.game.rules.{FoundationInitialCardRestriction, DeckOptions, FoundationLowRank, FoundationRules}
 import utils.NumberUtils
 
 object FoundationHelpService {
+  private[this] val defaults = FoundationRules()
+
   def foundation(rules: FoundationRules, deckOptions: DeckOptions) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
 
@@ -23,7 +25,7 @@ object FoundationHelpService {
           " foundation piles with " + NumberUtils.toWords(rules.initialCards / rules.numPiles) + " initial card" + plural + " dealt to each."
         } else {
           val plural = if (rules.initialCards == 1) { "" } else { "s" }
-          " foundation piles with " + rules.initialCards + " initial card" + plural + "."
+          " foundation piles with " + NumberUtils.toWords(rules.initialCards) + " initial card" + plural + " dealt to them."
         })
     }
     ret += piles
@@ -46,6 +48,14 @@ object FoundationHelpService {
       ret += "Any " + lowRank + " may be played to any empty foundation pile."
     }
 
+    rules.initialCardRestriction match {
+      case Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(c)) => ret += "Each pile must be started with a " + c.toString.toLowerCase + " card."
+      case Some(FoundationInitialCardRestriction.SpecificSuit(s)) => ret += "Each pile must be started with a " + s.toString + " card."
+      case Some(FoundationInitialCardRestriction.UniqueColors) => ret += "Each pile must be started with a unique color."
+      case Some(FoundationInitialCardRestriction.UniqueSuits) => ret += "Each pile must be started with a unique suit."
+      case None => // no op
+    }
+
     ret += "A card may be played to a foundation pile if it is " + rules.rankMatchRule.toWords + " and " + rules.suitMatchRule.toWords + "."
 
     if (rules.wrapFromKingToAce) {
@@ -56,6 +66,16 @@ object FoundationHelpService {
       ret += NumberUtils.toWords(rules.cardsShown, properCase = true) + " cards are visible."
     }
 
-    rules.name -> ret.toSeq
+    val name = if(rules.setNumber == 0) {
+      rules.name
+    } else {
+      if(rules.name == defaults.name) {
+        rules.name + " " + NumberUtils.toWords(rules.setNumber + 1, properCase = true)
+      } else {
+        rules.name
+      }
+    }
+
+    name -> ret.toSeq
   }
 }

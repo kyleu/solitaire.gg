@@ -55,6 +55,7 @@ object BinaryStar extends GameRules(
   ),
   foundations = Seq(
     FoundationRules(
+      initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificSuit(Suit.Hearts)),
       initialCards = 1,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,
@@ -65,6 +66,7 @@ object BinaryStar extends GameRules(
     FoundationRules(
       setNumber = 1,
       lowRank = FoundationLowRank.DeckHighRank,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificSuit(Suit.Spades)),
       initialCards = 1,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,

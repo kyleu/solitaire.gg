@@ -35,6 +35,7 @@ object Gloucestershire extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       wrapFromKingToAce = true,
       maxCards = 26,
       autoMoveCards = true

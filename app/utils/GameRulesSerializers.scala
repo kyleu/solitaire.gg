@@ -32,12 +32,13 @@ object GameRulesSerializers {
   implicit val wasteWrites = Json.writes[WasteRules]
 
   // Foundation
+  implicit val foundationCardRestrictionWrites = stringWriter[FoundationInitialCardRestriction]
   implicit val foundationCanMoveFromWrites = stringWriter[FoundationCanMoveFrom]
   implicit val foundationLowRankWrites = stringWriter[FoundationLowRank]
   implicit val suitMatchRuleWrites = stringWriter[SuitMatchRule]
   implicit val rankMatchRuleWrites = stringWriter[RankMatchRule]
 
-  implicit val foundationSetWrites = Json.writes[FoundationRules]
+  implicit val foundationRulesWrites = Json.writes[FoundationRules]
 
   // Tableau
   implicit val tableauFaceDownCardsWrites = stringWriter[TableauFaceDownCards]

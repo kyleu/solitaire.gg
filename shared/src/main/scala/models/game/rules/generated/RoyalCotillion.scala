@@ -54,6 +54,7 @@ object RoyalCotillion extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       initialCards = 4,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true
@@ -62,6 +63,7 @@ object RoyalCotillion extends GameRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Two),
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       initialCards = 4,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true

@@ -2,6 +2,14 @@ package models.game.rules
 
 import models.game._
 
+sealed trait FoundationInitialCardRestriction
+object FoundationInitialCardRestriction {
+  case object UniqueColors extends FoundationInitialCardRestriction
+  case object UniqueSuits extends FoundationInitialCardRestriction
+  case class SpecificColorUniqueSuits(c: Color) extends FoundationInitialCardRestriction
+  case class SpecificSuit(s: Suit) extends FoundationInitialCardRestriction
+}
+
 sealed trait FoundationLowRank
 object FoundationLowRank {
   case object AnyCard extends FoundationLowRank
@@ -24,6 +32,7 @@ case class FoundationRules(
   numPiles: Int = 1,
   cardsShown: Int = 1,
   lowRank: FoundationLowRank = FoundationLowRank.DeckLowRank,
+  initialCardRestriction: Option[FoundationInitialCardRestriction] = None,
   initialCards: Int = 0,
   suitMatchRule: SuitMatchRule = SuitMatchRule.SameSuit,
   rankMatchRule: RankMatchRule = RankMatchRule.Up,

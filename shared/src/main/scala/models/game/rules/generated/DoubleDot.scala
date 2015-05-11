@@ -50,6 +50,7 @@ object DoubleDot extends GameRules(
     FoundationRules(
       numPiles = 2,
       lowRank = FoundationLowRank.SpecificRank(Rank.Ace),
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueColors),
       initialCards = 2,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,
@@ -60,6 +61,7 @@ object DoubleDot extends GameRules(
       setNumber = 1,
       numPiles = 2,
       lowRank = FoundationLowRank.SpecificRank(Rank.Two),
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueColors),
       initialCards = 2,
       rankMatchRule = RankMatchRule.UpBy2,
       wrapFromKingToAce = true,

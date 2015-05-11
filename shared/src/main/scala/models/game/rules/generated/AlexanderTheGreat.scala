@@ -37,6 +37,7 @@ object AlexanderTheGreat extends GameRules(
     FoundationRules(
       name = "Red Foundation",
       numPiles = 2,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(Red)),
       initialCards = 2,
       wrapFromKingToAce = true,
       autoMoveCards = true
@@ -46,6 +47,7 @@ object AlexanderTheGreat extends GameRules(
       setNumber = 1,
       numPiles = 2,
       lowRank = FoundationLowRank.DeckHighRank,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(Black)),
       initialCards = 2,
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,

@@ -1,6 +1,7 @@
 package parser.politaire
 
-import models.game.Rank
+import models.game.{Black, Red, Rank}
+import models.game.Suit.{Hearts, Spades}
 import models.game.rules._
 import parser.politaire.lookup.PolitaireLookup
 
@@ -23,6 +24,15 @@ trait ParserFoundationHelper { this: GameRulesParser =>
           case 22 => FoundationLowRank.DeckHighRank
           case 23 => FoundationLowRank.Ascending
           case r => FoundationLowRank.SpecificRank(Rank.allByValue(r))
+        },
+        initialCardRestriction = getInt(prefix + "u") match {
+          case 1 => Some(FoundationInitialCardRestriction.UniqueColors)
+          case 2 => Some(FoundationInitialCardRestriction.UniqueSuits)
+          case 3 => Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(Red))
+          case 4 => Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(Black))
+          case 7 => Some(FoundationInitialCardRestriction.SpecificSuit(Hearts))
+          case 8 => Some(FoundationInitialCardRestriction.SpecificSuit(Spades))
+          case 0 => None
         },
         initialCards = getInt(prefix + "d") match {
           case -1 => numPiles

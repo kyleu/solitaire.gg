@@ -4,6 +4,8 @@ import models.game.rules._
 import utils.NumberUtils
 
 object PyramidHelpService {
+  private[this] val defaults = PyramidRules()
+
   def pyramid(rules: PyramidRules) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
 
@@ -39,6 +41,17 @@ object PyramidHelpService {
 
     ret += rules.emptyFilledWith.toWords
 
-    rules.name -> ret
+    val name = if(rules.setNumber == 0) {
+      rules.name
+    } else {
+      if(rules.name == defaults.name) {
+        rules.name + " " + NumberUtils.toWords(rules.setNumber + 1, properCase = true)
+      } else {
+        rules.name
+      }
+    }
+
+    name -> ret.toSeq
+
   }
 }

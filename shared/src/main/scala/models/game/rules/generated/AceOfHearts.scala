@@ -33,6 +33,7 @@ object AceOfHearts extends GameRules(
   ),
   foundations = Seq(
     FoundationRules(
+      initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificSuit(Suit.Spades)),
       suitMatchRule = SuitMatchRule.Any,
       wrapFromKingToAce = true,
       maxCards = 0,

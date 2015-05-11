@@ -50,6 +50,7 @@ object Chequers extends GameRules(
     FoundationRules(
       name = "Ace Foundation",
       numPiles = 4,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       wrapFromKingToAce = true,
       autoMoveCards = true
     ),
@@ -58,6 +59,7 @@ object Chequers extends GameRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       rankMatchRule = RankMatchRule.Down,
       wrapFromKingToAce = true,
       autoMoveCards = true
