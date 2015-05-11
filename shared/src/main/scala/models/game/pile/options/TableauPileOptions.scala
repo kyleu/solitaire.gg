@@ -41,18 +41,20 @@ object TableauPileOptions {
         var valid = true
         var lastCard: Option[Card] = None
         for (c <- cards) {
-          lastCard.foreach { lc =>
-            if (!rmr.check(lc.r, c.r, lowRank)) {
-              valid = false
-            } else if (!smr.check(lc.s, c.s)) {
-              valid = false
+          if(valid) {
+            lastCard.foreach { lc =>
+              if (!rmr.check(lc.r, c.r, lowRank)) {
+                valid = false
+              } else if (!smr.check(lc.s, c.s)) {
+                valid = false
+              }
             }
           }
           lastCard = Some(c)
         }
         valid
       }
-    })
+    }, Some(Map("r" -> rmr.toString, "s" -> smr.toString, "lr" -> lowRank.value.toString)))
   }
 
   private[this] def dragTo(rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank, emptyPileRanks: Seq[Rank], maxCards: Int) = {

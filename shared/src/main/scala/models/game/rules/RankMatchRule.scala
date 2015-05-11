@@ -39,7 +39,7 @@ object RankMatchRule {
     override def toWords = "one rank higher"
   }
   case object Down extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank) = l.value == r.value + 1
+    override def check(l: Rank, r: Rank, lowRank: Rank) = downBy(1, l, r, lowRank)
     override def toWords = "one rank lower"
   }
   case object Equal extends RankMatchRule {
@@ -47,7 +47,7 @@ object RankMatchRule {
     override def toWords = "the same rank"
   }
   case object UpOrDown extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank) = upBy(1, l, r, lowRank) || Down.check(l, r, lowRank)
+    override def check(l: Rank, r: Rank, lowRank: Rank) = Up.check(l, r, lowRank) || Down.check(l, r, lowRank)
     override def toWords = "one rank lower or higher"
   }
   case object UpBy2 extends RankMatchRule {
@@ -55,7 +55,7 @@ object RankMatchRule {
     override def toWords = "two ranks higher"
   }
   case object DownBy2 extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank) = l.value == r.value + 2
+    override def check(l: Rank, r: Rank, lowRank: Rank) = downBy(2, l, r, lowRank)
     override def toWords = "two ranks lower"
   }
   case object UpBy3 extends RankMatchRule {
@@ -63,7 +63,7 @@ object RankMatchRule {
     override def toWords = "three ranks higher"
   }
   case object DownBy3 extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank) = l.value == r.value + 3
+    override def check(l: Rank, r: Rank, lowRank: Rank) = downBy(3, l, r, lowRank)
     override def toWords = "three ranks lower"
   }
   case object UpBy4 extends RankMatchRule {
@@ -71,7 +71,7 @@ object RankMatchRule {
     override def toWords = "four ranks higher"
   }
   case object DownBy4 extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank) = l.value == r.value + 4
+    override def check(l: Rank, r: Rank, lowRank: Rank) = downBy(4, l, r, lowRank)
     override def toWords = "four ranks lower"
   }
   case object UpByPileIndex extends RankMatchRule {

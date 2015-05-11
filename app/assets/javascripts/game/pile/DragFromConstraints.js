@@ -1,4 +1,4 @@
-define(['game/Rank'], function(Rank) {
+define(['game/Rank', 'game/pile/PileLogic'], function(Rank, PileLogic) {
   "use strict";
 
   return {
@@ -21,6 +21,7 @@ define(['game/Rank'], function(Rank) {
     },
 
     "sequence": function(card) {
+      var opts = card.pile.options.dragFromOptions;
       if(!card.faceUp) {
         return false;
       }
@@ -30,16 +31,22 @@ define(['game/Rank'], function(Rank) {
       }
       var valid = true;
       var lastCard = null;
+
+      var rankRule = opts.r;
+      var suitRule = opts.s;
+      var lowRank = opts.lr;
+
       for(var c in cards) {
-        if(lastCard !== null) {
-          if(cards[c].suit.color == lastCard.suit.color) {
+        var testCard = cards[c];
+        if(lastCard !== null && valid) {
+          console.log(card);
+          if (!PileLogic.rank(rankRule, lastCard.rank, testCard.rank, lowRank)) {
             valid = false;
-          }
-          if(cards[c].rank === Rank.ace || cards[c].rank.value != (lastCard.rank.value - 1)) {
+          } else if (!PileLogic.suit(suitRule, lastCard.suit, testCard.suit)) {
             valid = false;
           }
         }
-        lastCard = cards[c];
+        lastCard = testCard;
       }
       return valid;
     },
