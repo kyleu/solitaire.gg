@@ -44,8 +44,7 @@ object Alternations extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Count(7),
-      cardsFaceDown = TableauFaceDownCards.EvenNumbered,
-      emptyFilledWith = FillEmptyWith.Aces
+      cardsFaceDown = TableauFaceDownCards.EvenNumbered
     )
   )
 )

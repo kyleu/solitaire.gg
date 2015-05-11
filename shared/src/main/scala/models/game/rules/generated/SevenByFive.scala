@@ -34,8 +34,7 @@ object SevenByFive extends GameRules(
     TableauRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
   cells = Some(

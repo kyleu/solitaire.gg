@@ -43,8 +43,7 @@ object PasSeul extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 6,
-      initialCards = InitialCards.Count(3),
-      emptyFilledWith = FillEmptyWith.Aces
+      initialCards = InitialCards.Count(3)
     )
   )
 )

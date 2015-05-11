@@ -76,7 +76,8 @@ object DeucesAndQueens extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
+      emptyFilledWith = FillEmptyWith.None
     )
   ),
   reserves = Some(

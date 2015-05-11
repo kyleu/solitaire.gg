@@ -68,8 +68,7 @@ object BlackWidow extends GameRules(
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
-      suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.Any
     )
   )
 )

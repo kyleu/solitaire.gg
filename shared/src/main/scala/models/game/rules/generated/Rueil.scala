@@ -43,8 +43,7 @@ object Rueil extends GameRules(
       initialCards = InitialCards.Count(5),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
     )
   )
 )

@@ -71,8 +71,7 @@ object Caprice extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = FillEmptyWith.Aces
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock
     )
   )
 )

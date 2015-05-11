@@ -37,8 +37,7 @@ object Streets extends GameRules(
       numPiles = 10,
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   )
 )

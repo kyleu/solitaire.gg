@@ -77,8 +77,7 @@ object DoubleDot extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.DownBy2,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      rankMatchRuleForMovingStacks = RankMatchRule.DownBy2,
-      emptyFilledWith = FillEmptyWith.Aces
+      rankMatchRuleForMovingStacks = RankMatchRule.DownBy2
     )
   )
 )

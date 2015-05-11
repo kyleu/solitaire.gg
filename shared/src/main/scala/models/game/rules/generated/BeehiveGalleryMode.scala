@@ -63,8 +63,7 @@ object BeehiveGalleryMode extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Equal,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      rankMatchRuleForMovingStacks = RankMatchRule.Equal,
-      emptyFilledWith = FillEmptyWith.Aces
+      rankMatchRuleForMovingStacks = RankMatchRule.Equal
     )
   ),
   reserves = Some(

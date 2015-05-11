@@ -36,8 +36,7 @@ object Muse extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 9,
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Aces
+      cardsFaceDown = TableauFaceDownCards.Count(0)
     )
   ),
   cells = Some(

@@ -46,8 +46,7 @@ object FamousFifty extends GameRules(
       initialCards = InitialCards.Count(5),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   )
 )

@@ -67,7 +67,8 @@ object BoxKite extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       wrapFromKingToAce = true,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None
     )
   )
 )

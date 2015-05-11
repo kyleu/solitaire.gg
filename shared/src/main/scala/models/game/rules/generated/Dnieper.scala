@@ -43,8 +43,7 @@ object Dnieper extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = FillEmptyWith.Aces
+      rankMatchRuleForMovingStacks = RankMatchRule.Any
     )
   )
 )

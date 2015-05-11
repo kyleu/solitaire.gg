@@ -47,6 +47,7 @@ object GayGordons extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None,
       actionAfterDeal = PileAction.LimitToTwoJacks
     )
   ),

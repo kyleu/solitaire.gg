@@ -14,6 +14,10 @@ object Dependencies {
     val playJson = json
   }
 
+  object Authentication {
+    val secureSocial = "ws.securesocial" %% "securesocial" % "3.0-M3"
+  }
+
   object WebJars {
     val requireJs = "org.webjars" % "requirejs" % "2.1.17"
     val bootstrap = "org.webjars" % "bootstrap" % "3.3.4"

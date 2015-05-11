@@ -38,7 +38,7 @@ object Layouts {
     "gypsy" -> "sf|:t",
     "kiev" -> "s::f|t",
     "missmilligan" -> "sf|:t",
-    "nestor" -> "t|::rf",
+    "nestor" -> "t|::tf",
     "penguin" -> ":.f|c|t",
     "pyramid" -> "p|::.swf",
     "sandbox" -> "s:f",

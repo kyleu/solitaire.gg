@@ -36,7 +36,8 @@ object Flow extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None
     ),
     TableauRules(
       setNumber = 1,
@@ -44,8 +45,7 @@ object Flow extends GameRules(
       initialCards = InitialCards.Count(0),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
     )
   )
 )

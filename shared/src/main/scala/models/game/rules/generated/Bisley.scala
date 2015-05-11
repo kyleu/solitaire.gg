@@ -59,7 +59,8 @@ object Bisley extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None
     )
   )
 )

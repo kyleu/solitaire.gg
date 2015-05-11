@@ -52,8 +52,7 @@ object Courtyard extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
-      emptyFilledWith = FillEmptyWith.Aces
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock
     )
   )
 )

@@ -46,7 +46,8 @@ object Bureau extends GameRules(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Count(4),
-      cardsFaceDown = TableauFaceDownCards.OddNumbered
+      cardsFaceDown = TableauFaceDownCards.OddNumbered,
+      emptyFilledWith = FillEmptyWith.None
     )
   )
 )

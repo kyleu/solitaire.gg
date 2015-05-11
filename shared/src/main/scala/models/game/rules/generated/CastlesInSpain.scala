@@ -45,8 +45,7 @@ object CastlesInSpain extends GameRules(
     TableauRules(
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.None
     ),
     TableauRules(
       setNumber = 1,
@@ -55,6 +54,7 @@ object CastlesInSpain extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None,
       actionDuringDeal = PileAction.MoveKingsToBottom
     )
   )

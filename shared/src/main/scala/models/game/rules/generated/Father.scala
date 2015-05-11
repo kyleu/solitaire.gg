@@ -65,7 +65,6 @@ object Father extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Waste"),
       maxCards = 2
     )

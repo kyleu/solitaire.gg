@@ -43,8 +43,7 @@ object Kiev extends GameRules(
       initialCards = InitialCards.Count(4),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = FillEmptyWith.Aces
+      rankMatchRuleForMovingStacks = RankMatchRule.Any
     )
   )
 )

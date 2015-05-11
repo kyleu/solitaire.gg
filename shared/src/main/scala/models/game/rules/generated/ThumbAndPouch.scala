@@ -45,8 +45,7 @@ object ThumbAndPouch extends GameRules(
   tableaus = Seq(
     TableauRules(
       suitMatchRuleForBuilding = SuitMatchRule.DifferentSuits,
-      suitMatchRuleForMovingStacks = SuitMatchRule.DifferentSuits,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.DifferentSuits
     )
   )
 )

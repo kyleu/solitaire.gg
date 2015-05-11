@@ -37,8 +37,7 @@ object TripleFreeCell extends GameRules(
       numPiles = 13,
       initialCards = InitialCards.Count(12),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
   cells = Some(

@@ -46,8 +46,7 @@ object Westcliff extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
-      initialCards = InitialCards.Count(3),
-      emptyFilledWith = FillEmptyWith.Aces
+      initialCards = InitialCards.Count(3)
     )
   )
 )

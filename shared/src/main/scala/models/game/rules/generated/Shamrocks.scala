@@ -64,6 +64,7 @@ object Shamrocks extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None,
       maxCards = 3,
       actionDuringDeal = PileAction.MoveKingsToBottom
     )

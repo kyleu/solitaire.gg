@@ -102,8 +102,7 @@ object RacingAces extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = FillEmptyWith.Aces
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock
     )
   ),
   reserves = Some(

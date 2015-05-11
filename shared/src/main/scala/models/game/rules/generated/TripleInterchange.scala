@@ -43,8 +43,7 @@ object TripleInterchange extends GameRules(
       initialCards = InitialCards.Count(9),
       cardsFaceDown = TableauFaceDownCards.EvenNumbered,
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
     )
   )
 )

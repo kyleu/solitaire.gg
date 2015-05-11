@@ -56,7 +56,8 @@ object Doublets extends GameRules(
       initialCards = InitialCards.Count(4),
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
+      emptyFilledWith = FillEmptyWith.None
     )
   )
 )

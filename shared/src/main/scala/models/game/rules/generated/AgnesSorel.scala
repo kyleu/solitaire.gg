@@ -49,8 +49,7 @@ object AgnesSorel extends GameRules(
     TableauRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameColor,
-      suitMatchRuleForMovingStacks = SuitMatchRule.SameColor,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.SameColor
     )
   )
 )

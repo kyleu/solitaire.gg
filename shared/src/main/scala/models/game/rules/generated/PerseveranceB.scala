@@ -47,6 +47,7 @@ object PerseveranceB extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
+      emptyFilledWith = FillEmptyWith.None,
       actionDuringDeal = PileAction.MoveKingsToBottom
     )
   ),

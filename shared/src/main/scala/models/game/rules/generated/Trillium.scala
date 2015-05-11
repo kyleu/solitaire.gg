@@ -53,8 +53,7 @@ object Trillium extends GameRules(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Count(4),
-      cardsFaceDown = TableauFaceDownCards.OddNumbered,
-      emptyFilledWith = FillEmptyWith.Aces
+      cardsFaceDown = TableauFaceDownCards.OddNumbered
     )
   )
 )

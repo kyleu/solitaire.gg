@@ -49,7 +49,6 @@ object Carpet extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       rankMatchRuleForBuilding = RankMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToEmptyFrom = Seq("Waste")
     )
   )

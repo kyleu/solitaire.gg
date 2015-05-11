@@ -51,8 +51,7 @@ object Indian extends GameRules(
       initialCards = InitialCards.Count(3),
       cardsFaceDown = TableauFaceDownCards.Count(1),
       suitMatchRuleForBuilding = SuitMatchRule.DifferentSuits,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   )
 )

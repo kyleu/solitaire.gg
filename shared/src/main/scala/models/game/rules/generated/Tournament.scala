@@ -91,6 +91,7 @@ object Tournament extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
+      emptyFilledWith = FillEmptyWith.None,
       mayMoveToNonEmptyFrom = Seq("Cell", "Tableau")
     )
   ),

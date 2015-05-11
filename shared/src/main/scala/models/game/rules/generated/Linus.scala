@@ -56,7 +56,8 @@ object Linus extends GameRules(
         "U"
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForMovingStacks = SuitMatchRule.None
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None
     )
   ),
   special = Some(

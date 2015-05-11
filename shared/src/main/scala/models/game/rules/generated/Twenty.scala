@@ -78,8 +78,7 @@ object Twenty extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       rankMatchRuleForBuilding = RankMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = FillEmptyWith.Aces
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock
     )
   )
 )

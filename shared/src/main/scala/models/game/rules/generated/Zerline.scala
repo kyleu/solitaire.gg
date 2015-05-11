@@ -61,7 +61,6 @@ object Zerline extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Tableau"),
       maxCards = 4
     )

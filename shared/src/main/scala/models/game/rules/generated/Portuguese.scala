@@ -48,6 +48,7 @@ object Portuguese extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None,
       actionDuringDeal = PileAction.MoveKingsToBottom
     )
   )

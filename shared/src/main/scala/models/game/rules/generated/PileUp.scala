@@ -54,7 +54,6 @@ object PileUp extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Equal,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Equal,
-      emptyFilledWith = FillEmptyWith.Aces,
       maxCards = 4
     )
   )

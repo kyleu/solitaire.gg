@@ -1,14 +1,14 @@
 package models.game.pile.options
 
-import models.game.pile.actions.SelectCardActions
+import models.game.pile.actions.{DragToActions, SelectCardActions}
 import models.game.pile.constraints.Constraint
 import models.game.rules._
-import models.game.{ Card, Rank }
+import models.game.Rank
 
-object TableauPileOptions {
-  def apply(rules: TableauRules, deckOptions: DeckOptions) = {
+object TableauPileOptions extends TableauPileOptionHelper {
+  def apply(rules: TableauRules, deckOptions: DeckOptions, cardRemovalMethod: CardRemovalMethod) = {
     val emptyRanks = rules.emptyFilledWith match {
-      case FillEmptyWith.Any => Seq(Rank.Unknown)
+      case FillEmptyWith.Any => deckOptions.ranks
       case FillEmptyWith.None => Nil
       case FillEmptyWith.Aces => Seq(Rank.Ace)
       case FillEmptyWith.Kings => Seq(Rank.King)
@@ -18,7 +18,19 @@ object TableauPileOptions {
     }
 
     val dragFromConstraint = dragFrom(rules.rankMatchRuleForMovingStacks, rules.suitMatchRuleForMovingStacks, deckOptions.lowRank)
-    val dragToConstraint = dragTo(rules.rankMatchRuleForBuilding, rules.suitMatchRuleForBuilding, deckOptions.lowRank, emptyRanks, rules.maxCards)
+    val dragToConstraint = dragTo(cardRemovalMethod, rules.rankMatchRuleForBuilding, rules.suitMatchRuleForBuilding, deckOptions.lowRank, emptyRanks, rules.maxCards)
+
+    val (selectCardConstraint, selectCardAction) = {
+      cardRemovalMethod match {
+        case CardRemovalMethod.RemoveNinesOrPairsAddingToNineOr10JQK =>
+          Some(Constraint.specificRanks(Seq(Rank.Nine))) -> Some(SelectCardActions.drawToPiles(1, Seq("foundation-1")))
+        case CardRemovalMethod.RemovePairsAddingToThirteenOrK =>
+          Some(Constraint.specificRanks(Seq(Rank.King))) -> Some(SelectCardActions.drawToPiles(1, Seq("foundation-1")))
+        case CardRemovalMethod.BuildSequencesOnFoundation =>
+          Some(Constraint.allOf("top-face-down", Constraint.topCardOnly, Constraint.faceDown)) -> Some(SelectCardActions.flip)
+        case _ => None -> None
+      }
+    }
 
     PileOptions(
       direction = Some("d"),
@@ -28,59 +40,12 @@ object TableauPileOptions {
       },
       dragFromConstraint = Some(dragFromConstraint),
       dragToConstraint = Some(dragToConstraint),
-      selectCardConstraint = Some(Constraint.allOf("top-face-down", Constraint.topCardOnly, Constraint.faceDown)),
-      selectCardAction = Some(SelectCardActions.flip)
+      dragToAction = cardRemovalMethod match {
+        case CardRemovalMethod.BuildSequencesOnFoundation => None
+        case _ => Some(DragToActions.remove())
+      },
+      selectCardConstraint = selectCardConstraint,
+      selectCardAction = selectCardAction
     )
-  }
-
-  private[this] def dragFrom(rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank) = {
-    Constraint("sequence", (pile, cards, gameState) => {
-      if (cards.exists(!_.u)) {
-        false
-      } else {
-        var valid = true
-        var lastCard: Option[Card] = None
-        for (c <- cards) {
-          if(valid) {
-            lastCard.foreach { lc =>
-              if (!rmr.check(lc.r, c.r, lowRank)) {
-                valid = false
-              } else if (!smr.check(lc.s, c.s)) {
-                valid = false
-              }
-            }
-          }
-          lastCard = Some(c)
-        }
-        valid
-      }
-    }, Some(Map("r" -> rmr.toString, "s" -> smr.toString, "lr" -> lowRank.value.toString)))
-  }
-
-  private[this] def dragTo(rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank, emptyPileRanks: Seq[Rank], maxCards: Int) = {
-    Constraint("tableau", (pile, cards, gameState) => {
-      if (maxCards > 0 && pile.cards.length + cards.length > maxCards) {
-        false
-      } else {
-        if (pile.cards.isEmpty) {
-          emptyPileRanks.length match {
-            case 0 => cards.length == 1
-            case _ => cards.exists(c => emptyPileRanks.contains(c.r))
-          }
-        } else {
-          val topCard = pile.cards.lastOption.getOrElse(throw new IllegalStateException())
-          val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
-          if (!topCard.u) {
-            false
-          } else {
-            if (smr.check(topCard.s, firstDraggedCard.s)) {
-              rmr.check(topCard.r, firstDraggedCard.r, lowRank)
-            } else {
-              false
-            }
-          }
-        }
-      }
-    })
   }
 }

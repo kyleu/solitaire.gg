@@ -1,7 +1,7 @@
 package models.game.pile.constraints
 
 import models.game.pile.Pile
-import models.game.{ Card, GameState }
+import models.game.{Rank, Card, GameState}
 
 case class Constraint(id: String, f: Constraint.Check, clientOptions: Option[Map[String, String]] = None)
 
@@ -23,6 +23,10 @@ object Constraint {
 
   val topCardOnly = Constraint("top-card-only", (pile, cards, gameState) => {
     pile.cards.lastOption == cards.headOption
+  })
+
+  def specificRanks(ranks: Seq[Rank]) = Constraint("any-" + ranks.map(_.toChar).mkString, (pile, cards, gameState) => {
+    !cards.exists(c => !ranks.contains(c.r))
   })
 
   def allNonEmpty(piles: Seq[String]) = Constraint("all-non-empty", (pile, cards, gameState) => {

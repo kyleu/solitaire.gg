@@ -75,7 +75,6 @@ object Nationale extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces,
       actionDuringDeal = PileAction.MoveToFoundation
     )
   )

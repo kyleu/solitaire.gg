@@ -43,8 +43,7 @@ object GroundsForDivorce extends GameRules(
       numPiles = 10,
       initialCards = InitialCards.Count(5),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
-      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
     )
   )
 )

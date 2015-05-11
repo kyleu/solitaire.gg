@@ -56,8 +56,7 @@ object Canfield extends GameRules(
       numPiles = 4,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = FillEmptyWith.Aces
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve
     )
   ),
   reserves = Some(

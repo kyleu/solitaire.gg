@@ -51,8 +51,7 @@ object WillOTheWisp extends GameRules(
     TableauRules(
       initialCards = InitialCards.Count(3),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
-      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
     )
   )
 )

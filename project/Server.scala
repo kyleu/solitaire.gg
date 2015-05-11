@@ -23,7 +23,7 @@ object Server {
     import Dependencies._
     Seq(
       Database.jdub, Database.postgresJdbc,
-      Play.playFilters, Play.playWs, Testing.akkaTestkit,
+      Play.playFilters, Play.playWs, Authentication.secureSocial, Testing.akkaTestkit,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap
     )

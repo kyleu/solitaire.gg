@@ -72,7 +72,8 @@ object OddAndEven extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
+      emptyFilledWith = FillEmptyWith.None
     )
   )
 )

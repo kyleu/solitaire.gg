@@ -52,8 +52,7 @@ object EightsDown extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.Up,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      rankMatchRuleForMovingStacks = RankMatchRule.Up,
-      emptyFilledWith = FillEmptyWith.Aces
+      rankMatchRuleForMovingStacks = RankMatchRule.Up
     )
   )
 )

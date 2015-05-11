@@ -42,8 +42,7 @@ object Easthaven extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      initialCards = InitialCards.Count(3),
-      emptyFilledWith = FillEmptyWith.Aces
+      initialCards = InitialCards.Count(3)
     )
   )
 )

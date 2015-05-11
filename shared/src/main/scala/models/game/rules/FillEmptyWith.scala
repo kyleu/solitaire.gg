@@ -5,7 +5,7 @@ sealed trait FillEmptyWith {
 }
 object FillEmptyWith {
   def fromInt(i: Int) = i match {
-    case 0 => Aces
+    case 0 => Any
     case 1 => Kings
     case 2 => KingsUntilStockEmpty
     case 4 => None

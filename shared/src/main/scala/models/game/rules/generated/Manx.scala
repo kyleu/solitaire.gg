@@ -51,8 +51,7 @@ object Manx extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       wrapFromKingToAce = true,
-      suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.Any
     )
   ),
   cells = Some(

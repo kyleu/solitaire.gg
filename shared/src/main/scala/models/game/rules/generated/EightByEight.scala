@@ -43,7 +43,8 @@ object EightByEight extends GameRules(
       initialCards = InitialCards.Count(8),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
-      suitMatchRuleForMovingStacks = SuitMatchRule.Any
+      suitMatchRuleForMovingStacks = SuitMatchRule.Any,
+      emptyFilledWith = FillEmptyWith.None
     )
   )
 )

@@ -50,8 +50,7 @@ object LittleNapolean extends GameRules(
       numPiles = 8,
       initialCards = InitialCards.Count(4),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
-      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
     )
   )
 )

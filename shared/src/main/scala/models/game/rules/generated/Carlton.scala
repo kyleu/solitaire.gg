@@ -48,8 +48,7 @@ object Carlton extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      numPiles = 8,
-      emptyFilledWith = FillEmptyWith.Aces
+      numPiles = 8
     )
   )
 )

@@ -37,8 +37,7 @@ object KlondikeTerritory extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Aces
+      cardsFaceDown = TableauFaceDownCards.Count(0)
     )
   )
 )

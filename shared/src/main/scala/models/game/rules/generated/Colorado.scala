@@ -80,6 +80,7 @@ object Colorado extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
+      emptyFilledWith = FillEmptyWith.None,
       mayMoveToNonEmptyFrom = Seq("Stock")
     )
   )

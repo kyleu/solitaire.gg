@@ -74,8 +74,7 @@ object Chequers extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = FillEmptyWith.Aces
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve
     )
   ),
   reserves = Some(

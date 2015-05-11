@@ -79,6 +79,7 @@ object RainbowFan extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
+      emptyFilledWith = FillEmptyWith.None,
       mayMoveToNonEmptyFrom = Seq("Tableau")
     )
   ),

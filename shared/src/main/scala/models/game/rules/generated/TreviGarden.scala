@@ -43,8 +43,7 @@ object TreviGarden extends GameRules(
       name = "Garden",
       numPiles = 6,
       initialCards = InitialCards.Count(6),
-      cardsFaceDown = TableauFaceDownCards.OddNumbered,
-      emptyFilledWith = FillEmptyWith.Aces
+      cardsFaceDown = TableauFaceDownCards.OddNumbered
     )
   ),
   cells = Some(

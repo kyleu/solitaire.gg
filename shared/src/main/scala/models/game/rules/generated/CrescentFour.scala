@@ -73,6 +73,7 @@ object CrescentFour extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None,
       mayMoveToNonEmptyFrom = Seq("Tableau")
     )
   ),

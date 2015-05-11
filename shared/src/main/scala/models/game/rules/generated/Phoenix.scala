@@ -39,8 +39,7 @@ object Phoenix extends GameRules(
     TableauRules(
       numPiles = 6,
       initialCards = InitialCards.Count(6),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Aces
+      cardsFaceDown = TableauFaceDownCards.Count(0)
     )
   )
 )

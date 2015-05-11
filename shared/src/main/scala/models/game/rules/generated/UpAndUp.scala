@@ -45,8 +45,7 @@ object UpAndUp extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Up,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = FillEmptyWith.Aces
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock
     )
   )
 )

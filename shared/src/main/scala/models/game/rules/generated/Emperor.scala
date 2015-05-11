@@ -47,8 +47,7 @@ object Emperor extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(4),
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   )
 )

@@ -34,7 +34,8 @@ object DemonFan extends GameRules(
     TableauRules(
       numPiles = 18,
       initialCards = InitialCards.RestOfDeck,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None
     )
   ),
   special = Some(

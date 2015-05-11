@@ -67,6 +67,7 @@ object Intelligence extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
+      emptyFilledWith = FillEmptyWith.None,
       actionDuringDeal = PileAction.MoveToEmptyFoundationAndReplace
     )
   ),

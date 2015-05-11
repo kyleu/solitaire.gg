@@ -41,8 +41,7 @@ object GoldMine extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      initialCards = InitialCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Aces
+      initialCards = InitialCards.Count(0)
     )
   )
 )

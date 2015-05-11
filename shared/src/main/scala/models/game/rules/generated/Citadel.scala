@@ -45,7 +45,6 @@ object Citadel extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces,
       actionDuringDeal = PileAction.MoveToFoundation
     )
   )

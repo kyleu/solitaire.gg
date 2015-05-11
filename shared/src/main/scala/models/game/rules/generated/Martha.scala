@@ -44,7 +44,8 @@ object Martha extends GameRules(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(4),
-      cardsFaceDown = TableauFaceDownCards.OddNumbered
+      cardsFaceDown = TableauFaceDownCards.OddNumbered,
+      emptyFilledWith = FillEmptyWith.None
     )
   )
 )

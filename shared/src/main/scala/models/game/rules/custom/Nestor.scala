@@ -26,12 +26,19 @@ object Nestor extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       rankMatchRuleForBuilding = RankMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      rankMatchRuleForMovingStacks = RankMatchRule.None
-    )
-  ),
-  reserves = Some(
-    ReserveRules(
-      numPiles = 4
+      rankMatchRuleForMovingStacks = RankMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None
+    ),
+    TableauRules(
+      setNumber = 1,
+      numPiles = 4,
+      initialCards = InitialCards.Count(1),
+      cardsFaceDown = TableauFaceDownCards.Count(0),
+      suitMatchRuleForBuilding = SuitMatchRule.None,
+      rankMatchRuleForBuilding = RankMatchRule.None,
+      suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      rankMatchRuleForMovingStacks = RankMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None
     )
   )
 )

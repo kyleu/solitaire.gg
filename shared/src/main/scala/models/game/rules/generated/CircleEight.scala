@@ -39,7 +39,6 @@ object CircleEight extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Up,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces,
       mayMoveToNonEmptyFrom = Seq("Waste")
     )
   )

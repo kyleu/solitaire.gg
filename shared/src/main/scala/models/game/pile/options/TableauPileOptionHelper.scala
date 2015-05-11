@@ -1,0 +1,66 @@
+package models.game.pile.options
+
+import models.game.pile.constraints.Constraint
+import models.game.rules._
+import models.game.{Card, Rank}
+
+trait TableauPileOptionHelper {
+  protected[this] def dragFrom(rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank) = {
+    if(rmr == RankMatchRule.None || smr == SuitMatchRule.None) {
+      Constraint.topCardOnly
+    } else {
+      Constraint("sequence", (pile, cards, gameState) => {
+        if (cards.exists(!_.u)) {
+          false
+        } else {
+          var valid = true
+          var lastCard: Option[Card] = None
+          for(c <- cards) {
+            if (valid) {
+              lastCard.foreach { lc =>
+                if (!rmr.check(lc.r, c.r, lowRank)) {
+                  valid = false
+                } else if (!smr.check(lc.s, c.s)) {
+                  valid = false
+                }
+              }
+            }
+            lastCard = Some(c)
+          }
+          valid
+        }
+      }, Some(Map("r" -> rmr.toString, "s" -> smr.toString, "lr" -> lowRank.value.toString)))
+    }
+  }
+
+  protected[this] def dragTo(crm: CardRemovalMethod, rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank, emptyPileRanks: Seq[Rank], maxCards: Int) = {
+    Constraint("tableau", (pile, cards, gameState) => {
+      if (maxCards > 0 && pile.cards.length + cards.length > maxCards) {
+        false
+      } else {
+        if (pile.cards.isEmpty) {
+          emptyPileRanks.length match {
+            case 0 => false
+            case _ => cards.exists(c => emptyPileRanks.contains(c.r))
+          }
+        } else {
+          val topCard = pile.cards.lastOption.getOrElse(throw new IllegalStateException())
+          val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
+          if (!topCard.u) {
+            false
+          } else {
+            crm match {
+              case CardRemovalMethod.BuildSequencesOnFoundation => if (smr.check(topCard.s, firstDraggedCard.s)) {
+                rmr.check(topCard.r, firstDraggedCard.r, lowRank)
+              } else {
+                false
+              }
+              case CardRemovalMethod.StackSameRankOrSuitInWaste => throw new NotImplementedError()
+              case _ => crm.canRemove(topCard, firstDraggedCard)
+            }
+          }
+        }
+      }
+    })
+  }
+}

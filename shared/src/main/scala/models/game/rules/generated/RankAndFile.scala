@@ -47,8 +47,7 @@ object RankAndFile extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
-      initialCards = InitialCards.Count(4),
-      emptyFilledWith = FillEmptyWith.Aces
+      initialCards = InitialCards.Count(4)
     )
   )
 )

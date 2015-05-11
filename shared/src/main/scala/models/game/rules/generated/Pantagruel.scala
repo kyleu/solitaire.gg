@@ -37,8 +37,7 @@ object Pantagruel extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      numPiles = 9,
-      emptyFilledWith = FillEmptyWith.Aces
+      numPiles = 9
     )
   )
 )

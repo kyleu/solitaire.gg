@@ -62,4 +62,15 @@
       }
     </ul>
   }
+
+  @if(rules.links.nonEmpty) {
+    <h3>Web Resources</h3>
+    <ul>
+      @rules.links.map { l =>
+        <li>
+          <a href="http://@l.url">@l.title</a>
+        </li>
+      }
+    </ul>
+  }
 </div>

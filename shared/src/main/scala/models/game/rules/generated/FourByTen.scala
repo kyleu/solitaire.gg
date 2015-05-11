@@ -31,8 +31,7 @@ object FourByTen extends GameRules(
       numPiles = 4,
       initialCards = InitialCards.Count(13),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
   cells = Some(

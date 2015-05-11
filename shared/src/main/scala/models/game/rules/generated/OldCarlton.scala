@@ -44,8 +44,7 @@ object OldCarlton extends GameRules(
     TableauRules(
       numPiles = 8,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
-      rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = FillEmptyWith.Aces
+      rankMatchRuleForMovingStacks = RankMatchRule.Any
     )
   )
 )

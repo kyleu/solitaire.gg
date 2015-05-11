@@ -45,8 +45,7 @@ object Countess extends GameRules(
     TableauRules(
       numPiles = 4,
       initialCards = InitialCards.Count(1),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Aces
+      cardsFaceDown = TableauFaceDownCards.Count(0)
     )
   ),
   reserves = Some(

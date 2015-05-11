@@ -46,8 +46,7 @@ object FairMaids extends GameRules(
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Count(4),
-      suitMatchRuleForBuilding = SuitMatchRule.Any,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForBuilding = SuitMatchRule.Any
     )
   )
 )

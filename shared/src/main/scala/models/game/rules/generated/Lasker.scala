@@ -45,8 +45,7 @@ object Lasker extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      rankMatchRuleForMovingStacks = RankMatchRule.UpOrDown,
-      emptyFilledWith = FillEmptyWith.Aces
+      rankMatchRuleForMovingStacks = RankMatchRule.UpOrDown
     )
   )
 )

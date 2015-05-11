@@ -49,8 +49,7 @@ object Astrocyte extends GameRules(
       numPiles = 8,
       initialCards = InitialCards.Count(8),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
-      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
     )
   ),
   cells = Some(CellRules())

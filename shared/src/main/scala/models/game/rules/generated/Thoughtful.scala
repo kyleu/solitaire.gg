@@ -6,7 +6,7 @@ import models.game.rules._
 
 /**
  * Original Settings:
- *   Tableau initial cards (T0d): -1 (1 to n cards)
+ *   Tableau initial cards (T0d): -3 (Fill rows with rest of deck)
  *   Tableau cards face down (T0df): 0
  *   Empty tableau is filled with (T0f): 1 (Kings only)
  *   Tableau piles (T0n): 7
@@ -42,6 +42,7 @@ object Thoughtful extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
+      initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       emptyFilledWith = FillEmptyWith.Kings
     )

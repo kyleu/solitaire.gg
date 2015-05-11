@@ -39,7 +39,7 @@ object TableauHelpService {
     rules.cardsFaceDown match {
       case TableauFaceDownCards.AllButOne => ret += "The top card of each pile is turned face-up."
       case TableauFaceDownCards.Count(i) => i match {
-        case 0 => ret += "All cards are face-down."
+        case 0 => ret += "All cards are face-up."
         case 1 => ret += "The first card in each pile is turned face-up."
         case _ => ret += "The first " + NumberUtils.toWords(i) + " cards in each pile are turned face-up."
       }
@@ -63,6 +63,10 @@ object TableauHelpService {
         case RankMatchRule.None => ret += "No cards may be moved from the tableau."
         case rb => ret += "Sequences of cards that are each " + rb.toWords + " and " + sb.toWords + " may be moved from the tableau."
       }
+    }
+
+    if(rules.uniqueRanks) {
+      ret += "The piles are dealt in such a way that no two cards in the same pile have the same rank."
     }
 
     val name = if(rules.setNumber == 0) {

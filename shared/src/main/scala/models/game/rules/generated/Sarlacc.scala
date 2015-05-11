@@ -42,7 +42,7 @@ object Sarlacc extends GameRules(
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
       mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      emptyFilledWith = FillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.Any
     )
   )
 )

@@ -73,8 +73,7 @@ object MountOlympus extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.DownBy2,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       rankMatchRuleForMovingStacks = RankMatchRule.DownBy2,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = FillEmptyWith.Aces
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock
     )
   )
 )

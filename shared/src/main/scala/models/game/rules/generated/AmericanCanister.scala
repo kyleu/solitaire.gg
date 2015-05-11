@@ -35,8 +35,7 @@ object AmericanCanister extends GameRules(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Aces
+      cardsFaceDown = TableauFaceDownCards.Count(0)
     )
   )
 )

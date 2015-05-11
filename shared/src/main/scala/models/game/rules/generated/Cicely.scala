@@ -84,6 +84,7 @@ object Cicely extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
+      emptyFilledWith = FillEmptyWith.None,
       mayMoveToNonEmptyFrom = Seq("Cell", "Tableau")
     )
   ),

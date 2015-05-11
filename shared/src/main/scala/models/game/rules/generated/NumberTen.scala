@@ -49,8 +49,7 @@ object NumberTen extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(4),
-      cardsFaceDown = TableauFaceDownCards.Count(2),
-      emptyFilledWith = FillEmptyWith.Aces
+      cardsFaceDown = TableauFaceDownCards.Count(2)
     )
   )
 )

@@ -41,8 +41,7 @@ object TripleEasthaven extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 12,
-      initialCards = InitialCards.Count(3),
-      emptyFilledWith = FillEmptyWith.Aces
+      initialCards = InitialCards.Count(3)
     )
   )
 )

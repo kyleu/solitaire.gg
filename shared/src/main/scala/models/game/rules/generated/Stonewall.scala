@@ -46,8 +46,7 @@ object Stonewall extends GameRules(
     TableauRules(
       numPiles = 6,
       initialCards = InitialCards.Count(6),
-      cardsFaceDown = TableauFaceDownCards.OddNumbered,
-      emptyFilledWith = FillEmptyWith.Aces
+      cardsFaceDown = TableauFaceDownCards.OddNumbered
     )
   )
 )

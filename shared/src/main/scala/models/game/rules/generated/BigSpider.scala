@@ -52,8 +52,7 @@ object BigSpider extends GameRules(
       numPiles = 13,
       initialCards = InitialCards.Count(6),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
-      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
     )
   )
 )

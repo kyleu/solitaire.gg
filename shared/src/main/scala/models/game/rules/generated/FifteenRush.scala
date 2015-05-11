@@ -40,7 +40,8 @@ object FifteenRush extends GameRules(
     TableauRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.StockThenWaste
+      autoFillEmptyFrom = TableauAutoFillEmptyFrom.StockThenWaste,
+      emptyFilledWith = FillEmptyWith.None
     )
   )
 )

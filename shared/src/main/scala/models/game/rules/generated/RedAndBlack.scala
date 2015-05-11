@@ -49,8 +49,7 @@ object RedAndBlack extends GameRules(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(1),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Aces
+      cardsFaceDown = TableauFaceDownCards.Count(0)
     )
   )
 )

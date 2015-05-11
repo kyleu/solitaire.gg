@@ -60,8 +60,7 @@ object DemonsAndThieves extends GameRules(
       name = "Left Tableau",
       numPiles = 4,
       initialCards = InitialCards.Count(1),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Aces
+      cardsFaceDown = TableauFaceDownCards.Count(0)
     ),
     TableauRules(
       name = "Right Tableau",
@@ -70,8 +69,7 @@ object DemonsAndThieves extends GameRules(
       initialCards = InitialCards.Count(8),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.Aces
+      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
     )
   ),
   reserves = Some(

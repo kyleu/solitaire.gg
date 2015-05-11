@@ -46,7 +46,7 @@ case class TableauRules(
   rankMatchRuleForMovingStacks: RankMatchRule = RankMatchRule.Down,
 
   autoFillEmptyFrom: TableauAutoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
-  emptyFilledWith: FillEmptyWith = FillEmptyWith.None,
+  emptyFilledWith: FillEmptyWith = FillEmptyWith.Any,
 
   mayMoveToNonEmptyFrom: Seq[String] = GameRules.allSources,
   mayMoveToEmptyFrom: Seq[String] = GameRules.allSources,
