@@ -1,4 +1,4 @@
-package models.queries
+package models.database.queries
 
 trait BaseQueries {
   protected def tableName: String

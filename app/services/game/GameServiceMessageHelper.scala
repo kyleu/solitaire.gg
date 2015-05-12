@@ -3,7 +3,6 @@ package services.game
 import akka.actor.PoisonPill
 import models._
 import org.joda.time.LocalDateTime
-import services.GameHistoryService
 
 trait GameServiceMessageHelper { this: GameService =>
   protected[this] def handleStopGameIfEmpty() {

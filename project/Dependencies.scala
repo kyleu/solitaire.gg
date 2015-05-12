@@ -14,13 +14,17 @@ object Dependencies {
     val playJson = json
   }
 
-  object Authentication {
-    val secureSocial = "ws.securesocial" %% "securesocial" % "3.0-M3"
-  }
-
   object WebJars {
     val requireJs = "org.webjars" % "requirejs" % "2.1.17"
     val bootstrap = "org.webjars" % "bootstrap" % "3.3.4"
+  }
+
+  object Mail {
+    val mailer = "com.typesafe.play" %% "play-mailer" % "2.4.1"
+  }
+
+  object Authentication {
+    val silhouette = "com.mohiva" %% "play-silhouette" % "2.0"
   }
 
   object Metrics {

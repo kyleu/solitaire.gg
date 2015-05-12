@@ -6,7 +6,6 @@ import akka.actor.{ PoisonPill, ActorRef }
 import models._
 import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Akka
-import services.GameHistoryService
 
 trait GameServiceConnectionHelper { this: GameService =>
   protected[this] def handleAddPlayer(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef) {

@@ -2,7 +2,7 @@ package controllers.admin
 
 import controllers.BaseController
 import controllers.BaseController.AuthenticatedAction
-import services.GameHistoryService
+import services.game.GameHistoryService
 
 object GameHistoryController extends BaseController {
   def gameList(q: String, sortBy: String) = AuthenticatedAction { implicit request =>

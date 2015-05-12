@@ -4,7 +4,8 @@ import java.util.UUID
 
 import controllers.BaseController
 import controllers.BaseController.AuthenticatedAction
-import services.{ GameHistoryService, AccountService }
+import services.account.AccountService
+import services.game.GameHistoryService
 
 object AccountController extends BaseController {
   def accountList(q: String, sortBy: String) = AuthenticatedAction { implicit request =>

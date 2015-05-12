@@ -6,7 +6,6 @@ import models._
 import models.game.rules.GameRulesSet
 import models.game.rules.moves.InitialMoves
 import org.joda.time.LocalDateTime
-import services.GameHistoryService
 
 class GameService(
   val id: UUID, val rules: String, val seed: Int, val started: LocalDateTime, private[this] val initialPlayers: List[PlayerRecord]

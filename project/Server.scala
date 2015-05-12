@@ -22,8 +22,7 @@ object Server {
   private[this] val dependencies = {
     import Dependencies._
     Seq(
-      Database.jdub, Database.postgresJdbc,
-      Play.playFilters, Play.playWs, Authentication.secureSocial, Testing.akkaTestkit,
+      Database.jdub, Database.postgresJdbc, Play.playFilters, Play.playWs, Testing.akkaTestkit, Mail.mailer, Authentication.silhouette,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap
     )

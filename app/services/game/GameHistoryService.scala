@@ -1,4 +1,4 @@
-package services
+package services.game
 
 import java.util.UUID
 

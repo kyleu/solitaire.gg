@@ -6,6 +6,7 @@ import akka.actor.ActorRef
 import models._
 import org.joda.time.LocalDateTime
 import play.api.libs.json.{ Json, JsObject }
+import services.account.AccountService
 import utils.metrics.InstrumentedActor
 
 trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionService =>

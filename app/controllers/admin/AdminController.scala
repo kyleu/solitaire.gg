@@ -8,7 +8,8 @@ import controllers.BaseController
 import controllers.BaseController.AuthenticatedAction
 import models._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.{ Testbed, AccountService, ActorSupervisor }
+import services.account.AccountService
+import services.{ Testbed, ActorSupervisor }
 
 import scala.concurrent.duration._
 import scala.util.Random

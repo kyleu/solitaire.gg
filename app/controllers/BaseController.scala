@@ -6,7 +6,7 @@ import controllers.BaseController.AuthenticatedRequest
 import nl.grons.metrics.scala.Timer
 import play.api.libs.Crypto
 import play.api.mvc._
-import services.AccountService
+import services.account.AccountService
 import utils.metrics.Instrumented
 import utils.{ Config, Logging }
 

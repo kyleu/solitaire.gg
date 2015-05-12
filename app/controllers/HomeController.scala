@@ -2,7 +2,7 @@ package controllers
 
 import controllers.BaseController.AuthenticatedAction
 import models.game.rules.GameRulesSet
-import services.AccountService
+import services.account.AccountService
 
 object HomeController extends BaseController {
   def index() = AuthenticatedAction { implicit request =>
@@ -10,7 +10,7 @@ object HomeController extends BaseController {
   }
 
   def sandbox() = AuthenticatedAction { implicit request =>
-    Ok(views.html.sandbox())
+    Ok("OK")
   }
 
   def untrail(path: String) = AuthenticatedAction {
