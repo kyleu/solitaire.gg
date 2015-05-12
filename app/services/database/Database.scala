@@ -4,13 +4,15 @@ import com.github.mauricio.async.db.{ QueryResult, Connection, Configuration }
 import com.github.mauricio.async.db.pool.{ PoolConfiguration, ConnectionPool }
 import com.github.mauricio.async.db.postgresql.pool.PostgreSQLConnectionFactory
 import models.database.{ Statement, RawQuery }
+import nl.grons.metrics.scala.FutureMetrics
 import utils.Logging
+import utils.metrics.Instrumented
 
 import scala.concurrent.duration._
 import scala.concurrent.{ Future, Await }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-object Database extends Logging {
+object Database extends Logging with Instrumented with FutureMetrics {
   private val configuration = new Configuration(
     host = play.api.Play.current.configuration.getString("db.host").getOrElse(throw new IllegalStateException()),
     username = play.api.Play.current.configuration.getString("db.username").getOrElse(throw new IllegalStateException()),
@@ -30,20 +32,40 @@ object Database extends Logging {
   def transaction[A](f: (Connection) => Future[A], conn: Connection = pool): Future[A] = conn.inTransaction(c => f(c))
 
   def execute(statement: Statement, conn: Connection = pool): Future[Int] = {
-    log.debug(s"Executing statement [${statement.sql}] with values [${statement.values.mkString("(", ", ", ")")}].")
-    conn.sendPreparedStatement(prependComment(statement, statement.sql), statement.values).map(_.rowsAffected.toInt)
+    val name = statement.getClass.getSimpleName.replaceAllLiterally("$", "")
+    log.debug(s"Executing statement [$name] with SQL [${statement.sql}] with values [${statement.values.mkString("(", ", ", ")")}].")
+    val ret = timing("execute." + name) {
+      conn.sendPreparedStatement(prependComment(statement, statement.sql), statement.values).map(_.rowsAffected.toInt)
+    }
+    ret.onFailure {
+      case x: Throwable => log.error("Error [" + x.getClass.getSimpleName + "] encountered while executing statement [" + name + "].", x)
+    }
+    ret
   }
 
   def query[A](query: RawQuery[A], conn: Connection = pool): Future[A] = {
-    log.debug(s"Executing query [${query.sql}] with values [${query.values.mkString("(", ", ", ")")}].")
-    conn.sendPreparedStatement(prependComment(query, query.sql), query.values).map { r =>
-      query.handle(r.rows.getOrElse(throw new IllegalStateException()))
+    val name = query.getClass.getSimpleName.replaceAllLiterally("$", "")
+    log.debug(s"Executing query [$name] with SQL [${query.sql}] with values [" + query.values.mkString("(", ", ", ")") + "].")
+    val ret = timing("query." + name) {
+      conn.sendPreparedStatement(prependComment(query, query.sql), query.values).map { r =>
+        query.handle(r.rows.getOrElse(throw new IllegalStateException()))
+      }
     }
+    ret.onFailure {
+      case x: Throwable => log.error("Error [" + x.getClass.getSimpleName + "] encountered while executing query [" + name + "].", x)
+    }
+    ret
   }
 
   def raw(name: String, sql: String, conn: Connection = pool): Future[QueryResult] = {
-    log.debug(s"Executing raw query [$sql].")
-    conn.sendQuery(prependComment(name, sql))
+    log.debug(s"Executing raw query [$name] with SQL [$sql].")
+    val ret = timing("rawquery." + name.getClass.getSimpleName.replaceAllLiterally("$", "")) {
+      conn.sendQuery(prependComment(name, sql))
+    }
+    ret.onFailure {
+      case x: Throwable => log.error("Error [" + x.getClass.getSimpleName + "] encountered while executing raw query [" + name + "].", x)
+    }
+    ret
   }
 
   def close() = {

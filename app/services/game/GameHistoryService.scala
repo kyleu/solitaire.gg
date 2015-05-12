@@ -9,8 +9,8 @@ import services.database.Database
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 object GameHistoryService {
-  def startGame(id: UUID, seed: Int, rules: String, status: String, accounts: Seq[UUID], created: LocalDateTime) = {
-    Database.execute(CreateGameHistory(id, seed, rules, status, accounts, created)).map(_ == 1)
+  def startGame(id: UUID, seed: Int, rules: String, status: String, account: UUID, created: LocalDateTime) = {
+    Database.execute(CreateGameHistory(id, seed, rules, status, account, created)).map(_ == 1)
   }
 
   def searchGames(q: String, orderBy: String) = Database.query(SearchGameHistories(q, orderBy))

@@ -31,9 +31,9 @@
       <td>@g.rules</td>
       <td>@g.status</td>
       @if(link) {
-        <td>@Html(g.accounts.map(a => "<a href=\"" + controllers.admin.routes.AccountController.accountDetail(a) + "\"><div title=\"" + a.toString + "\">" + a.toString.substring(0, 8) + "</div></a>").mkString(", "))</td>
+        <td>@Html("<a href=\"" + controllers.admin.routes.AccountController.accountDetail(g.player) + "\"><div title=\"" + g.player.toString + "\">" + g.player.toString.substring(0, 8) + "</div></a>")</td>
       } else {
-        <td>@Html(g.accounts.map(a => "<div title=\"" + a.toString + "\">" + a.toString.substring(0, 8) + "</div>").mkString(", "))</td>
+        <td>@Html("<div title=\"" + g.player.toString + "\">" + g.player.toString.substring(0, 8) + "</div>")</td>
       }
       <td>@g.moves</td>
       <td>@g.undos</td>

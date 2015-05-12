@@ -7,21 +7,15 @@ import models.game.rules.GameRulesSet
 import models.game.rules.moves.InitialMoves
 import org.joda.time.LocalDateTime
 
-class GameService(
-    val id: UUID, val rules: String, val seed: Int, val started: LocalDateTime, private[this] val initialPlayers: List[PlayerRecord]
-) extends GameServiceHelper {
+class GameService(val id: UUID, val rules: String, val seed: Int, val started: LocalDateTime, protected val player: PlayerRecord) extends GameServiceHelper {
+  log.info("Started game [" + rules + "] for account [" + player.accountId + ": " + player.name + "] with seed [" + seed + "].")
 
-  log.info("Started game [" + rules + "] for players [" + initialPlayers.map(_.name).mkString(", ") + "] with seed [" + seed + "].")
-
-  protected[this] val playerConnections = collection.mutable.ArrayBuffer[PlayerRecord](initialPlayers: _*)
   protected[this] val observerConnections = collection.mutable.ArrayBuffer.empty[(PlayerRecord, Option[UUID])]
 
   protected[this] val gameRules = GameRulesSet.allById(rules)
   protected[this] val gameState = gameRules.newGame(id, seed)
 
-  initialPlayers.foreach { p =>
-    gameState.addPlayer(p.accountId, p.name)
-  }
+  gameState.addPlayer(player.accountId, player.name)
 
   protected[this] val gameMessages = collection.mutable.ArrayBuffer.empty[GameMessage]
   protected[this] var moveCount = 0
@@ -31,12 +25,10 @@ class GameService(
   override def preStart() {
     InitialMoves.performInitialMoves(gameRules, gameState)
 
-    GameHistoryService.startGame(id, seed, rules, "started", initialPlayers.map(_.accountId), started)
+    GameHistoryService.startGame(id, seed, rules, "started", player.accountId, started)
 
-    playerConnections.foreach { c =>
-      c.connectionActor.foreach(_ ! GameStarted(id, self, started))
-      c.connectionActor.foreach(_ ! GameJoined(id, gameState.view(c.accountId), possibleMoves(Some(c.accountId))))
-    }
+    player.connectionActor.foreach(_ ! GameStarted(id, self, started))
+    player.connectionActor.foreach(_ ! GameJoined(id, gameState.view(player.accountId), possibleMoves(Some(player.accountId))))
   }
 
   override def receiveRequest = {

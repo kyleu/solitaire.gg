@@ -6,7 +6,7 @@ import org.joda.time.LocalDateTime
 
 trait GameServiceMessageHelper { this: GameService =>
   protected[this] def handleStopGameIfEmpty() {
-    val hasPlayer = playerConnections.exists(_.connectionId.isDefined) || observerConnections.exists(_._1.connectionId.isDefined)
+    val hasPlayer = player.connectionId.isDefined || observerConnections.exists(_._1.connectionId.isDefined)
     if (!hasPlayer) {
       val status = if (gameRules.victoryCondition.check(gameState)) {
         "won"
@@ -38,9 +38,7 @@ trait GameServiceMessageHelper { this: GameService =>
     if (registerUndoResponse) {
       undoHelper.registerResponse(message)
     }
-    playerConnections.foreach { c =>
-      c.connectionActor.foreach(_ ! message)
-    }
+    player.connectionActor.foreach(_ ! message)
     observerConnections.foreach { c =>
       c._1.connectionActor.foreach(_ ! message)
     }

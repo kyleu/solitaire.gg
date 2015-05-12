@@ -10,22 +10,22 @@ trait GameServiceTraceHelper { this: GameService =>
 
   protected[this] def handleGameTrace() {
     def connUrl(id: UUID) = controllers.admin.routes.TraceController.traceConnection(id).url
+
+    val playerString = player.connectionId match {
+      case Some(cId) =>
+        val observeUrl = controllers.admin.routes.AdminController.observeGameAs(id, player.accountId).url
+        "Account ID:" + player.accountId + "<br />" +
+          "Connection ID: " + cId + "<br />" +
+          " <a class=\"btn btn-default\" href=\"" + connUrl(cId) + "\" class=\"trace-link\">Trace Connection</a>" +
+          " <a class=\"btn btn-default\" href=\"" + observeUrl + "\" target=\"_blank\">Observe game as [" + player.name + "]</a>"
+      case None => player.accountId.toString + " (Disconnected)"
+    }
+
     val ret = TraceResponse(this.id, List(
       "rules" -> gameRules.id,
       "seed" -> gameState.seed,
       "started" -> started,
-      "connections" -> playerConnections.map { x =>
-        x.connectionId match {
-          case Some(connId) =>
-            "Connection ID: " + connId + "<br>" +
-              "Account ID:" + x.accountId + "<br />" +
-              " <a class=\"btn btn-default\" href=\"" + connUrl(connId) + "\" class=\"trace-link\">Trace Connection</a>" +
-              " <a class=\"btn btn-default\" href=\"" + controllers.admin.routes.AdminController.observeGameAs(id, x.accountId).url + "\" target=\"_blank\">" +
-              "Observe game as [" + x.name + "]" +
-              "</a>"
-          case None => x.accountId.toString + " (Disconnected)"
-        }
-      }.mkString("<br/>\n"),
+      "player" -> playerString,
       "observers" -> observerConnections.map { x =>
         x._1.connectionId match {
           case Some(connId) =>

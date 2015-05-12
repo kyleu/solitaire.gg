@@ -9,7 +9,7 @@ case class GameHistory(
   seed: Int,
   rules: String,
   status: String,
-  accounts: Seq[UUID],
+  player: UUID,
   moves: Int,
   undos: Int,
   redos: Int,
