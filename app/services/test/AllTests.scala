@@ -5,7 +5,6 @@ import models.test.{ Test, Tree }
 class AllTests {
   val all = Tree(Test("all"), Seq(
     new CardTests().all,
-    new AccountTests().all,
     new KnownGameTests().all,
     new VariantTests().all,
     new SolverTests().all,

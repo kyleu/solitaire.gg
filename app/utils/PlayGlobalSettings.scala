@@ -9,7 +9,7 @@ import play.api.{ Mode, Application, GlobalSettings, Logger }
 import play.filters.gzip.GzipFilter
 import play.filters.headers.SecurityHeadersFilter
 import services.ActorSupervisor
-import services.database.{ DatabaseConnection, DatabaseSchema }
+import services.database.{Schema, Database}
 import utils.metrics.Instrumented
 
 import scala.concurrent.Future
@@ -24,15 +24,15 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeaders
     DateTimeZone.setDefault(DateTimeZone.UTC)
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
 
-    DatabaseConnection.open()
-    DatabaseSchema.update()
-
+    Database.open()
+    Schema.update()
     ActorSupervisor.instance
 
     super.onStart(app)
   }
   override def onStop(app: Application) {
-    DatabaseConnection.close()
+    Database.close()
+
     super.onStop(app)
   }
 

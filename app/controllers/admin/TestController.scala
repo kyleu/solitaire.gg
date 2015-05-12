@@ -15,7 +15,6 @@ object TestController extends BaseController {
     requireAdmin {
       val testTree = test match {
         case "all" => new AllTests().all
-        case "account" => new AccountTests().all
         case "known" => new KnownGameTests().all
 
         case "solver" => new SolverTests().all
