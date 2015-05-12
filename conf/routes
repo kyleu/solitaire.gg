@@ -1,7 +1,4 @@
 GET        /                                  controllers.HomeController.index
-
-GET        /sandbox                           controllers.HomeController.sandbox
-
 GET        /*path/                            controllers.HomeController.untrail(path: String)
 
 GET        /changeName                        controllers.HomeController.changeName(name)
@@ -18,9 +15,13 @@ GET        /offline/:rules/:seed              controllers.HomeController.newOffl
 
 GET        /websocket                         controllers.WebsocketController.connect()
 
+GET        /sandbox                           controllers.SandboxController.sandbox
+
+# Admin
+GET        /admin/sandbox                     controllers.SandboxController.adminSandbox()
+
 GET        /admin/enable                      controllers.admin.AdminController.enable
 GET        /admin/status                      controllers.admin.AdminController.status
-GET        /admin/testbed                     controllers.admin.AdminController.testbed
 
 GET        /admin/rules                       controllers.admin.RulesController.rules
 GET        /admin/rules/politaire             controllers.admin.RulesController.politaire
@@ -46,4 +47,5 @@ GET        /admin/accounts/:id/remove         controllers.admin.AccountControlle
 
 GET        /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created")
 
+# Assets
 GET        /assets/*file                      controllers.Assets.at(path="/public", file)

@@ -3,7 +3,7 @@ package services.user
 import java.util.UUID
 import models.user.{BaseInfo, User}
 import play.api.libs.json._
-import play.api.libs.concurrent.Execution.Implicits._
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.api.services.{IdentityService, AuthInfo}
 import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile

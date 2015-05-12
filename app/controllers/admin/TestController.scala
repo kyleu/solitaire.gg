@@ -1,18 +1,19 @@
 package controllers.admin
 
 import controllers.BaseController
-import controllers.BaseController.AuthenticatedAction
+import controllers.BaseController.AdminAction
 import services.test._
 
+import scala.concurrent.Future
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+
 object TestController extends BaseController {
-  def tests = AuthenticatedAction { implicit request =>
-    requireAdmin {
-      Ok(views.html.admin.tests())
-    }
+  def tests = AdminAction.async { implicit request =>
+    Future.successful(Ok(views.html.admin.tests()))
   }
 
-  def runTest(test: String) = AuthenticatedAction { implicit request =>
-    requireAdmin {
+  def runTest(test: String) = AdminAction.async { implicit request =>
+    Future {
       val testTree = test match {
         case "all" => new AllTests().all
         case "known" => new KnownGameTests().all

@@ -6,6 +6,10 @@ define(function () {
     throw "NoConfigurationException";
   }
   var json = JSON.parse(c.innerHTML);
-  json.wsUrl = "ws://" + document.location.host + "/websocket";
+  if(document.location.href.indexOf("https") === 0) {
+    json.wsUrl = "wss://" + document.location.host + "/websocket";
+  } else {
+    json.wsUrl = "ws://" + document.location.host + "/websocket";
+  }
   return json;
 });

@@ -1,45 +1,48 @@
 package controllers.admin
 
 import controllers.BaseController
-import controllers.BaseController.AuthenticatedAction
+import controllers.BaseController.AdminAction
 import models.game.rules.GameRulesSet
 import parser.{ ScalaExporter, RulesReset }
 import parser.politaire.{ LinkParser, PolitaireParser }
 import play.twirl.api.Html
 
+import scala.concurrent.Future
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+
 object RulesController extends BaseController {
-  def politaire = AuthenticatedAction { implicit request =>
-    requireAdmin {
-      Ok(views.html.admin.rules.politaireList(PolitaireParser.politaireList))
+  def politaire = AdminAction.async { implicit request =>
+    Future.successful(Ok(views.html.admin.rules.politaireList(PolitaireParser.politaireList)))
+  }
+
+  def rules = AdminAction.async { implicit request =>
+    Future.successful(Ok(views.html.admin.rules.rulesList(GameRulesSet.all)))
+  }
+
+  def importRules = AdminAction.async { implicit request =>
+    Future.successful(Ok(views.html.admin.rules.rulesList(PolitaireParser.gameRules)))
+  }
+
+  def exportRules = AdminAction.async { implicit request =>
+    Future {
+      val rulesSet = PolitaireParser.gameRules
+      ScalaExporter.export(rulesSet)
+      Redirect(routes.RulesController.rules())
     }
   }
 
-  def rules = AuthenticatedAction { implicit request =>
-    requireAdmin {
-      Ok(views.html.admin.rules.rulesList(GameRulesSet.all))
+  def links = AdminAction.async { implicit request =>
+    Future {
+      val links = LinkParser.parse()
+      val ret = "<ul>\n" + links.map(l => "\n  <li>" + l._1 + ": [" + l._2.mkString(" :: ") + "]</li>").mkString("\n") + "\n</ul>"
+      Ok(Html(ret))
     }
   }
 
-  def importRules = AuthenticatedAction { implicit request =>
-    requireAdmin {
-      Ok(views.html.admin.rules.rulesList(PolitaireParser.gameRules))
+  def wipeRules = AdminAction.async { implicit request =>
+    Future {
+      RulesReset.go()
+      Redirect(routes.RulesController.rules())
     }
-  }
-
-  def exportRules = AuthenticatedAction { implicit request =>
-    val rulesSet = PolitaireParser.gameRules
-    ScalaExporter.export(rulesSet)
-    Redirect(routes.RulesController.rules())
-  }
-
-  def links = AuthenticatedAction { implicit request =>
-    val links = LinkParser.parse()
-    val ret = "<ul>\n" + links.map(l => "\n  <li>" + l._1 + ": [" + l._2.mkString(" :: ") + "]</li>").mkString("\n") + "\n</ul>"
-    Ok(Html(ret))
-  }
-
-  def wipeRules = AuthenticatedAction { implicit request =>
-    RulesReset.go()
-    Redirect(routes.RulesController.rules())
   }
 }
