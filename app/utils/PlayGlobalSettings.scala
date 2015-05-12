@@ -9,7 +9,7 @@ import play.api.{ Mode, Application, GlobalSettings, Logger }
 import play.filters.gzip.GzipFilter
 import play.filters.headers.SecurityHeadersFilter
 import services.ActorSupervisor
-import services.database.{Schema, Database}
+import services.database.{ Schema, Database }
 import utils.metrics.Instrumented
 
 import scala.concurrent.Future

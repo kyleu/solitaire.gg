@@ -4,7 +4,7 @@ import java.util.UUID
 
 import com.github.mauricio.async.db.RowData
 import models.Account
-import models.database.{Query, FlatSingleRowQuery, Statement}
+import models.database.{ Query, FlatSingleRowQuery, Statement }
 import org.joda.time.LocalDateTime
 import utils.DateUtils
 
@@ -60,7 +60,7 @@ object AccountQueries extends BaseQueries {
     val name = row("name").asInstanceOf[String]
     val role = row("role").asInstanceOf[String]
     val gamesPlayed = row("games_played").asInstanceOf[Int]
-    val lastGameStarted = row("last_game_started").asInstanceOf[Option[LocalDateTime]]
+    val lastGameStarted = Option(row("last_game_started").asInstanceOf[LocalDateTime])
     val created = row("created").asInstanceOf[LocalDateTime]
     Account(id, name, role, gamesPlayed, lastGameStarted, created)
   }

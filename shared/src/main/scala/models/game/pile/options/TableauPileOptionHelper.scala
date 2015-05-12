@@ -2,11 +2,11 @@ package models.game.pile.options
 
 import models.game.pile.constraints.Constraint
 import models.game.rules._
-import models.game.{Card, Rank}
+import models.game.{ Card, Rank }
 
 trait TableauPileOptionHelper {
   protected[this] def dragFrom(rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank) = {
-    if(rmr == RankMatchRule.None || smr == SuitMatchRule.None) {
+    if (rmr == RankMatchRule.None || smr == SuitMatchRule.None) {
       Constraint.topCardOnly
     } else {
       Constraint("sequence", (pile, cards, gameState) => {
@@ -15,7 +15,7 @@ trait TableauPileOptionHelper {
         } else {
           var valid = true
           var lastCard: Option[Card] = None
-          for(c <- cards) {
+          for (c <- cards) {
             if (valid) {
               lastCard.foreach { lc =>
                 if (!rmr.check(lc.r, c.r, lowRank)) {

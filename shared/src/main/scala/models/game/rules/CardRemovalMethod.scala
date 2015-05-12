@@ -1,6 +1,6 @@
 package models.game.rules
 
-import models.game.{Rank, Card}
+import models.game.{ Rank, Card }
 
 sealed trait CardRemovalMethod {
   def canRemove(l: Card, r: Card): Boolean = false

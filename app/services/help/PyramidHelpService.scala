@@ -41,10 +41,10 @@ object PyramidHelpService {
 
     ret += rules.emptyFilledWith.toWords
 
-    val name = if(rules.setNumber == 0) {
+    val name = if (rules.setNumber == 0) {
       rules.name
     } else {
-      if(rules.name == defaults.name) {
+      if (rules.name == defaults.name) {
         rules.name + " " + NumberUtils.toWords(rules.setNumber + 1, properCase = true)
       } else {
         rules.name

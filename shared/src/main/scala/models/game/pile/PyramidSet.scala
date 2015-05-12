@@ -2,7 +2,7 @@ package models.game.pile
 
 import models.game.Rank
 import models.game.pile.options.PyramidPileOptions
-import models.game.rules.{CardRemovalMethod, PyramidRules}
+import models.game.rules.{ CardRemovalMethod, PyramidRules }
 
 object PyramidSet {
   def apply(pyramidRules: PyramidRules, crm: CardRemovalMethod, lowRank: Rank): PyramidSet = {

@@ -1,6 +1,6 @@
 package models.database
 
-import com.github.mauricio.async.db.{ResultSet, RowData}
+import com.github.mauricio.async.db.{ ResultSet, RowData }
 import services.database.Database
 
 import scala.concurrent.Future
@@ -24,8 +24,5 @@ trait SingleRowQuery[A] extends Query[A] {
 
 trait FlatSingleRowQuery[A] extends Query[Option[A]] {
   def flatMap(row: RowData): Option[A]
-
-  override final def reduce(rows: Iterator[RowData]) = if (rows.hasNext) {
-    flatMap(rows.next())
-  } else None
+  override final def reduce(rows: Iterator[RowData]) = if (rows.hasNext) { flatMap(rows.next()) } else { None }
 }

@@ -65,14 +65,14 @@ object TableauHelpService {
       }
     }
 
-    if(rules.uniqueRanks) {
+    if (rules.uniqueRanks) {
       ret += "The piles are dealt in such a way that no two cards in the same pile have the same rank."
     }
 
-    val name = if(rules.setNumber == 0) {
+    val name = if (rules.setNumber == 0) {
       rules.name
     } else {
-      if(rules.name == defaults.name) {
+      if (rules.name == defaults.name) {
         rules.name + " " + NumberUtils.toWords(rules.setNumber + 1, properCase = true)
       } else {
         rules.name

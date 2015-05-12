@@ -1,7 +1,7 @@
 package services.help
 
 import models.game.Rank
-import models.game.rules.{FoundationInitialCardRestriction, DeckOptions, FoundationLowRank, FoundationRules}
+import models.game.rules.{ FoundationInitialCardRestriction, DeckOptions, FoundationLowRank, FoundationRules }
 import utils.NumberUtils
 
 object FoundationHelpService {
@@ -66,10 +66,10 @@ object FoundationHelpService {
       ret += NumberUtils.toWords(rules.cardsShown, properCase = true) + " cards are visible."
     }
 
-    val name = if(rules.setNumber == 0) {
+    val name = if (rules.setNumber == 0) {
       rules.name
     } else {
-      if(rules.name == defaults.name) {
+      if (rules.name == defaults.name) {
         rules.name + " " + NumberUtils.toWords(rules.setNumber + 1, properCase = true)
       } else {
         rules.name

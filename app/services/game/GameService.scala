@@ -8,7 +8,7 @@ import models.game.rules.moves.InitialMoves
 import org.joda.time.LocalDateTime
 
 class GameService(
-  val id: UUID, val rules: String, val seed: Int, val started: LocalDateTime, private[this] val initialPlayers: List[PlayerRecord]
+    val id: UUID, val rules: String, val seed: Int, val started: LocalDateTime, private[this] val initialPlayers: List[PlayerRecord]
 ) extends GameServiceHelper {
 
   log.info("Started game [" + rules + "] for players [" + initialPlayers.map(_.name).mkString(", ") + "] with seed [" + seed + "].")

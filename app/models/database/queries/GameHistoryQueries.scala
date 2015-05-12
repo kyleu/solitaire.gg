@@ -4,9 +4,11 @@ import java.util.UUID
 
 import com.github.mauricio.async.db.RowData
 import models.GameHistory
-import models.database.{Query, FlatSingleRowQuery, Statement}
+import models.database.{ Query, FlatSingleRowQuery, Statement }
 import org.joda.time.LocalDateTime
 import utils.DateUtils
+
+import scala.collection.mutable.ArrayBuffer
 
 object GameHistoryQueries extends BaseQueries {
   override protected val tableName = "games"
@@ -48,16 +50,16 @@ object GameHistoryQueries extends BaseQueries {
   }
 
   private[this] def fromRow(row: RowData) = {
-    val id = row("id").asInstanceOf[UUID]
+    val id = UUID.fromString(row("id").asInstanceOf[String])
     val seed = row("seed").asInstanceOf[Int]
     val rules = row("rules").asInstanceOf[String]
     val status = row("status").asInstanceOf[String]
-    val accts = row("accounts").asInstanceOf[Array[UUID]]
+    val accts = row("accounts").asInstanceOf[ArrayBuffer[String]].map(UUID.fromString)
     val moves = row("moves").asInstanceOf[Int]
     val undos = row("undos").asInstanceOf[Int]
     val redos = row("redos").asInstanceOf[Int]
     val created = row("created").asInstanceOf[LocalDateTime]
-    val complete = row("completed").asInstanceOf[Option[LocalDateTime]]
+    val complete = Option(row("completed").asInstanceOf[LocalDateTime])
     GameHistory(id, seed, rules, status, accts, moves, undos, redos, created, complete)
   }
 }

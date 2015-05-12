@@ -1,7 +1,7 @@
 package models.game.rules.moves
 
-import models.game.{Color, Suit, Rank, GameState}
-import models.game.rules.{FoundationInitialCardRestriction, FoundationLowRank, GameRules}
+import models.game.{ Color, Suit, Rank, GameState }
+import models.game.rules.{ FoundationInitialCardRestriction, FoundationLowRank, GameRules }
 
 object FoundationInitialMoves {
   def performInitialMoves(rules: GameRules, gameState: GameState) = {
@@ -39,10 +39,10 @@ object FoundationInitialMoves {
       (0 until fr.initialCards).foreach { i =>
         val col = i % fr.numPiles
         val cards = gameState.deck.getCards(1, turnFaceUp = true, requiredRank, Set.empty, requiredSuit, encounteredSuits, requiredColor, encounteredColors)
-        if(uniqueSuits) {
+        if (uniqueSuits) {
           encounteredSuits = encounteredSuits ++ cards.map(_.s)
         }
-        if(uniqueColors) {
+        if (uniqueColors) {
           encounteredColors = encounteredColors ++ cards.map(_.s.color)
         }
         gameState.addCards(cards, prefix + (col + 1), reveal = true)

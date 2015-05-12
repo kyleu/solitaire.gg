@@ -1,7 +1,7 @@
 package models.game.pile.constraints
 
 import models.game.pile.Pile
-import models.game.{Rank, Card, GameState}
+import models.game.{ Rank, Card, GameState }
 
 case class Constraint(id: String, f: Constraint.Check, clientOptions: Option[Map[String, String]] = None)
 

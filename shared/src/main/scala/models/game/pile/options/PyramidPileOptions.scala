@@ -3,7 +3,7 @@ package models.game.pile.options
 import models.game.Rank
 import models.game.pile.actions.{ DragToActions, SelectCardActions }
 import models.game.pile.constraints.Constraint
-import models.game.rules.{CardRemovalMethod, PyramidRules}
+import models.game.rules.{ CardRemovalMethod, PyramidRules }
 
 object PyramidPileOptions {
   def apply(rules: PyramidRules, crm: CardRemovalMethod, lowRank: Rank) = {

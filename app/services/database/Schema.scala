@@ -1,7 +1,7 @@
 package services.database
 
 import models.database.queries.DdlQueries
-import models.database.queries.DdlQueries.{UuidIndexEnabled, EnableUuidIndex, CreateGameTable, CreateAccountTable}
+import models.database.queries.DdlQueries.{ UuidIndexEnabled, EnableUuidIndex, CreateGameTable, CreateAccountTable }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import utils.Logging
 

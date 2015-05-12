@@ -1,7 +1,7 @@
 package models.database.queries
 
 import com.github.mauricio.async.db.RowData
-import models.database.{SingleRowQuery, Statement}
+import models.database.{ SingleRowQuery, Statement }
 
 object DdlQueries {
   case class DoesTableExist(tableName: String) extends SingleRowQuery[Boolean] {

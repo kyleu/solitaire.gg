@@ -1,6 +1,6 @@
 package models.game.pile.options
 
-import models.game.pile.actions.{DragToActions, SelectCardActions}
+import models.game.pile.actions.{ DragToActions, SelectCardActions }
 import models.game.pile.constraints.Constraint
 import models.game.rules._
 import models.game.Rank
@@ -18,7 +18,9 @@ object TableauPileOptions extends TableauPileOptionHelper {
     }
 
     val dragFromConstraint = dragFrom(rules.rankMatchRuleForMovingStacks, rules.suitMatchRuleForMovingStacks, deckOptions.lowRank)
-    val dragToConstraint = dragTo(cardRemovalMethod, rules.rankMatchRuleForBuilding, rules.suitMatchRuleForBuilding, deckOptions.lowRank, emptyRanks, rules.maxCards)
+    val dragToConstraint = {
+      dragTo(cardRemovalMethod, rules.rankMatchRuleForBuilding, rules.suitMatchRuleForBuilding, deckOptions.lowRank, emptyRanks, rules.maxCards)
+    }
 
     val (selectCardConstraint, selectCardAction) = {
       cardRemovalMethod match {

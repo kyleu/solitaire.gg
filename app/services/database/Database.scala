@@ -1,13 +1,13 @@
 package services.database
 
-import com.github.mauricio.async.db.{QueryResult, Connection, Configuration}
-import com.github.mauricio.async.db.pool.{PoolConfiguration, ConnectionPool}
+import com.github.mauricio.async.db.{ QueryResult, Connection, Configuration }
+import com.github.mauricio.async.db.pool.{ PoolConfiguration, ConnectionPool }
 import com.github.mauricio.async.db.postgresql.pool.PostgreSQLConnectionFactory
-import models.database.{Statement, RawQuery}
+import models.database.{ Statement, RawQuery }
 import utils.Logging
 
 import scala.concurrent.duration._
-import scala.concurrent.{Future, Await}
+import scala.concurrent.{ Future, Await }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 object Database extends Logging {
@@ -51,7 +51,7 @@ object Database extends Logging {
     true
   }
 
-  private[this] val factory = new PostgreSQLConnectionFactory( configuration )
+  private[this] val factory = new PostgreSQLConnectionFactory(configuration)
   private[this] val pool = new ConnectionPool(factory, PoolConfiguration.Default)
 
   private[this] def prependComment(obj: Object, sql: String) = s"/* ${obj.getClass.getSimpleName.replace("$", "")} */ $sql"

@@ -1,7 +1,7 @@
 package models.game.pile
 
 import models.game.pile.options.TableauPileOptions
-import models.game.rules.{CardRemovalMethod, DeckOptions, TableauRules}
+import models.game.rules.{ CardRemovalMethod, DeckOptions, TableauRules }
 
 object TableauSet {
   def apply(tableauRules: TableauRules, deckOptions: DeckOptions, cardRemovalMethod: CardRemovalMethod): TableauSet = {
