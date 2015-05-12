@@ -19,9 +19,7 @@ GET        /offline/:rules/:seed              controllers.HomeController.newOffl
 GET        /websocket                         controllers.WebsocketController.connect()
 
 GET        /admin/enable                      controllers.admin.AdminController.enable
-
 GET        /admin/status                      controllers.admin.AdminController.status
-
 GET        /admin/testbed                     controllers.admin.AdminController.testbed
 
 GET        /admin/rules                       controllers.admin.RulesController.rules
