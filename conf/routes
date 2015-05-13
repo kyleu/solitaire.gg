@@ -1,8 +1,17 @@
 GET        /                                  controllers.HomeController.index
 GET        /*path/                            controllers.HomeController.untrail(path: String)
+GET        /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/favicon.ico")
 
+# Auth
+GET        /sign-in                           controllers.auth.AuthorizationController.signInForm
+POST       /sign-in                           controllers.auth.AuthorizationController.authenticateCredentials
+GET        /sign-in/:provider                 controllers.auth.AuthorizationController.authenticateSocial(provider)
+GET        /sign-out                          controllers.auth.AuthorizationController.signOut
+GET        /register                          controllers.auth.RegistrationController.registrationForm
+POST       /register                          controllers.auth.RegistrationController.register
 GET        /changeName                        controllers.HomeController.changeName(name)
 
+# Game
 GET        /help/:id                          controllers.HomeController.help(id)
 
 GET        /play                              controllers.HomeController.newDefaultGame()

@@ -8,8 +8,8 @@ case class User(
   id: UUID,
   loginInfo: LoginInfo,
   socials: Option[Seq[LoginInfo]] = None,
-  email: Option[String],
   username: Option[String],
+  email: Option[String],
   avatarUrl: Option[String],
   info: BaseInfo,
   roles: Set[Role] = Set(Role.User)

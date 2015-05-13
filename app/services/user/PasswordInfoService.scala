@@ -3,18 +3,11 @@ package services.user
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.api.util.PasswordInfo
 import com.mohiva.play.silhouette.impl.daos.DelegableAuthInfoDAO
-import scala.collection.mutable
-import scala.concurrent.Future
+import models.database.queries.auth.PasswordInfoQueries
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import services.database.Database
 
 object PasswordInfoService extends DelegableAuthInfoDAO[PasswordInfo] {
-  def save(loginInfo: LoginInfo, authInfo: PasswordInfo): Future[PasswordInfo] = {
-    data += (loginInfo -> authInfo)
-    Future.successful(authInfo)
-  }
-
-  def find(loginInfo: LoginInfo): Future[Option[PasswordInfo]] = {
-    Future.successful(data.get(loginInfo))
-  }
-
-  var data: mutable.HashMap[LoginInfo, PasswordInfo] = mutable.HashMap()
+  override def save(loginInfo: LoginInfo, authInfo: PasswordInfo) = Database.execute(PasswordInfoQueries.Create(loginInfo, authInfo)).map(x => authInfo)
+  override def find(loginInfo: LoginInfo) = Database.query(PasswordInfoQueries.Find(loginInfo))
 }

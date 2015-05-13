@@ -1,0 +1,30 @@
+@(form: Form[com.mohiva.play.silhouette.api.util.Credentials])(implicit session: Session, flash: Flash)@layout.basic(
+  "Sign in to Solitaire.gg",
+  stylesheets = Seq(routes.Assets.at("stylesheets/auth.css").url)
+) {
+  <div class="sign-in">
+    <h4>Sign in to Solitaire.gg</h4>
+    <form method="post" action="@controllers.auth.routes.AuthorizationController.authenticateCredentials()">
+      <input type="text" class="form-control" name="identifier" value="" placeholder="Email or Username" /><br />
+      <input type="password" class="form-control" name="password" value="" placeholder="Password" /><br />
+      <input type="submit" class="submit" value="Sign In" />
+    </form>
+
+    <div>
+      <p>Not a member? <a href="@controllers.auth.routes.RegistrationController.registrationForm()">Sign up now</a></p>
+    </div>
+
+    @defining(services.user.AuthenticationEnvironment.providersSeq) { providers =>
+      @if(providers.nonEmpty) {
+        <div>
+          <p>Or sign in using these providers</p>
+          <div>
+          @for(p <- providers if p._2.id != "credentials") {
+            <a href="@controllers.auth.routes.AuthorizationController.authenticateSocial(p._2.id)" class="provider @p._2.id"><img src="@routes.Assets.at("images/providers/" + p._2.id + ".png")"></a>
+          }
+          </div>
+        </div>
+      }
+    }
+  </div>
+}

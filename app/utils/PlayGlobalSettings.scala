@@ -5,7 +5,7 @@ import java.util.TimeZone
 import com.codahale.metrics.SharedMetricRegistries
 import org.joda.time.DateTimeZone
 import play.api.mvc.{ RequestHeader, Results, WithFilters }
-import play.api.{ Mode, Application, GlobalSettings, Logger }
+import play.api.{ Mode, Application, GlobalSettings }
 import play.filters.gzip.GzipFilter
 import play.filters.headers.SecurityHeadersFilter
 import services.ActorSupervisor
@@ -16,7 +16,7 @@ import scala.concurrent.Future
 
 object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeadersFilter(), new GzipFilter()) with GlobalSettings with Logging {
   override def onStart(app: Application) {
-    Logger.info(utils.Config.projectName + " build [" + BuildInfo.buildinfoBuildnumber + "] is starting on [" + utils.Config.hostname + "].")
+    log.info(utils.Config.projectName + " build [" + BuildInfo.buildinfoBuildnumber + "] is starting on [" + utils.Config.hostname + "].")
 
     SharedMetricRegistries.remove("default")
     SharedMetricRegistries.add("default", Instrumented.metricRegistry)

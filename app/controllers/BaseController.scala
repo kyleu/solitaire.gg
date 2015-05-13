@@ -2,7 +2,6 @@ package controllers
 
 import java.util.UUID
 
-import controllers.BaseController.AuthenticatedRequest
 import nl.grons.metrics.scala.Timer
 import play.api.libs.Crypto
 import play.api.mvc._

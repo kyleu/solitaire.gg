@@ -1,0 +1,16 @@
+@(form: Form[user.RegistrationData])(implicit session: Session, flash: Flash) @layout.basic(
+  "Register with Solitaire.gg",
+  stylesheets = Seq(routes.Assets.at("stylesheets/auth.css").url)
+) {
+  <div class="sign-up">
+    <h4>Welcome! Go ahead and sign up.</h4>
+    <form method="post" action="@controllers.auth.routes.RegistrationController.register()">
+      <input type="text" class="form-control" name="username" value="" placeholder="Username" /><br />
+      <input type="email" class="form-control" name="email" value="" placeholder="Email" /><br />
+      <input type="text" class="form-control" name="firstName" value="" placeholder="First Name" /><br />
+      <input type="text" class="form-control" name="lastName" value="" placeholder="Last Name" /><br />
+      <input type="password" class="form-control" name="password" value="" placeholder="Password" /><br />
+      <input type="submit" class="submit" value="Register" />
+    </form>
+  </div>
+}
