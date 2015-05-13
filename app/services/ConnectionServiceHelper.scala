@@ -6,7 +6,6 @@ import akka.actor.ActorRef
 import models._
 import org.joda.time.LocalDateTime
 import play.api.libs.json.{ Json, JsObject }
-import services.account.AccountService
 import utils.metrics.InstrumentedActor
 
 trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionService =>
@@ -28,7 +27,6 @@ trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionServic
   }
 
   protected[this] def handleGameStarted(id: UUID, gameService: ActorRef, started: LocalDateTime) {
-    AccountService.incrementAccountGamesPlayed(accountId, started)
     activeGameId = Some(id)
     activeGame = Some(gameService)
   }

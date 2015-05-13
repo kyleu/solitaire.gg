@@ -24,6 +24,11 @@ object UserQueries extends BaseQueries {
     }
   }
 
+  case class AddRole(id: UUID, role: Role) extends Statement {
+    override val sql = s"update $tableName set roles = array_append(roles, ?) where id = ?"
+    override val values = Seq(role.name, id)
+  }
+
   case class Find(id: UUID) extends FlatSingleRowQuery[User] {
     override val sql = getSql("id = ?")
     override val values = Seq(id): Seq[Any]
@@ -43,13 +48,13 @@ object UserQueries extends BaseQueries {
       val key = l.substring(l.indexOf(':') + 1)
       LoginInfo(provider, key)
     }
-    val username = Option(row("username") match { case s: String => s })
-    val email = Option(row("email") match { case s: String => s })
-    val avatarUrl = Option(row("avatar_url") match { case s: String => s })
-    val firstName = Option(row("first_name") match { case s: String => s })
-    val lastName = Option(row("last_name") match { case s: String => s })
-    val fullName = Option(row("full_name") match { case s: String => s })
-    val gender = Option(row("gender") match { case s: String => s })
+    val username = Option(row("username") match { case s: String => s; case null => null })
+    val email = Option(row("email") match { case s: String => s; case null => null })
+    val avatarUrl = Option(row("avatar_url") match { case s: String => s; case null => null })
+    val firstName = Option(row("first_name") match { case s: String => s; case null => null })
+    val lastName = Option(row("last_name") match { case s: String => s; case null => null })
+    val fullName = Option(row("full_name") match { case s: String => s; case null => null })
+    val gender = Option(row("gender") match { case s: String => s; case null => null })
     val roles = (row("roles") match { case ab: collection.mutable.ArrayBuffer[_] => ab }).map(x => Role(x.toString)).toSet
     User(id, loginInfos, username, email, avatarUrl, firstName, lastName, fullName, gender, roles)
   }

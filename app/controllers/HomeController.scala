@@ -1,19 +1,13 @@
 package controllers
 
-import java.util.UUID
-
-import controllers.BaseController.AuthenticatedAction
 import models.game.rules.GameRulesSet
 import play.api.mvc.Action
-import services.account.AccountService
-import services.user.UserService
 
 import scala.concurrent.Future
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 object HomeController extends BaseController {
-  def index() = AuthenticatedAction { implicit request =>
-    Ok(views.html.index(request.accountId, request.name))
+  def index() = UserAwareAction.async { implicit request =>
+    Future.successful(Ok(views.html.index(request.identity)))
   }
 
   def untrail(path: String) = Action.async {
@@ -21,22 +15,14 @@ object HomeController extends BaseController {
   }
 
   def profile = UserAwareAction.async { implicit request =>
-    UserService.retrieve(UUID.randomUUID).map {
-      case Some(user) => Ok("OK")
-      case None => Ok("Nope")
-    }
+    Future.successful(request.identity match {
+      case Some(u) => Ok(u.fullName.getOrElse("!!"))
+      case None => Ok("Nope!")
+    })
   }
 
-  def changeName(name: String) = AuthenticatedAction.async { implicit request =>
-    AccountService.updateAccountName(request.accountId, name).map { ok =>
-      Redirect(routes.HomeController.index()).withSession {
-        request.session + ("name" -> name)
-      }.flashing("success" -> "Name changed.")
-    }
-  }
-
-  def help(id: String) = AuthenticatedAction.async { implicit request =>
-    Future {
+  def help(id: String) = UserAwareAction.async { implicit request =>
+    Future.successful {
       id match {
         case "undefined" => Ok("Join a game before you request help!")
         case _ => GameRulesSet.allById.get(id) match {
@@ -47,27 +33,27 @@ object HomeController extends BaseController {
     }
   }
 
-  def newDefaultGame() = AuthenticatedAction.async { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.accountId, request.name, "klondike", Seq("start"))))
+  def newDefaultGame() = UserAwareAction.async { implicit request =>
+    Future.successful(Ok(views.html.game.gameplay(request.identity, "klondike", Seq("start"))))
   }
 
-  def newGame(rules: String) = AuthenticatedAction.async { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.accountId, request.name, rules, Seq("start"))))
+  def newGame(rules: String) = UserAwareAction.async { implicit request =>
+    Future.successful(Ok(views.html.game.gameplay(request.identity, rules, Seq("start"))))
   }
 
-  def newGameWithSeed(rules: String, seed: Int) = AuthenticatedAction.async { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.accountId, request.name, rules, Seq("start"), Some(seed))))
+  def newGameWithSeed(rules: String, seed: Int) = UserAwareAction.async { implicit request =>
+    Future.successful(Ok(views.html.game.gameplay(request.identity, rules, Seq("start"), Some(seed))))
   }
 
-  def newDefaultOfflineGame() = AuthenticatedAction.async { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.accountId, request.name, "klondike", Seq("start"), offline = true)))
+  def newDefaultOfflineGame() = UserAwareAction.async { implicit request =>
+    Future.successful(Ok(views.html.game.gameplay(request.identity, "klondike", Seq("start"), offline = true)))
   }
 
-  def newOfflineGame(rules: String) = AuthenticatedAction.async { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.accountId, request.name, rules, Seq("start"), offline = true)))
+  def newOfflineGame(rules: String) = UserAwareAction.async { implicit request =>
+    Future.successful(Ok(views.html.game.gameplay(request.identity, rules, Seq("start"), offline = true)))
   }
 
-  def newOfflineGameWithSeed(rules: String, seed: Int) = AuthenticatedAction.async { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.accountId, request.name, rules, Seq("start"), seed = Some(seed), offline = true)))
+  def newOfflineGameWithSeed(rules: String, seed: Int) = UserAwareAction.async { implicit request =>
+    Future.successful(Ok(views.html.game.gameplay(request.identity, rules, Seq("start"), seed = Some(seed), offline = true)))
   }
 }

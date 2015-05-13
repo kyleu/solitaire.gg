@@ -1,6 +1,6 @@
 package controllers
 
-import controllers.BaseController.AdminAction
+import models.user.{Role, WithRole}
 import play.api.mvc.Action
 import services.Testbed
 
@@ -11,7 +11,7 @@ object SandboxController extends BaseController {
     Future.successful(Ok("OK!"))
   }
 
-  def adminSandbox = AdminAction.async { implicit request =>
+  def adminSandbox = SecuredAction(WithRole(Role.Admin)).async { implicit request =>
     Future.successful(Ok(Testbed.go()))
   }
 }

@@ -10,7 +10,6 @@ GET        /sign-in/:provider                 controllers.auth.AuthorizationCont
 GET        /sign-out                          controllers.auth.AuthorizationController.signOut
 GET        /register                          controllers.auth.RegistrationController.registrationForm
 POST       /register                          controllers.auth.RegistrationController.register
-GET        /changeName                        controllers.HomeController.changeName(name)
 
 # Game
 GET        /help/:id                          controllers.HomeController.help(id)

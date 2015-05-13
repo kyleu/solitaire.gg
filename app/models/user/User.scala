@@ -15,4 +15,6 @@ case class User(
   fullName: Option[String],
   gender: Option[String],
   roles: Set[Role] = Set(Role.User)
-) extends Identity
+) extends Identity {
+  def isAdmin = roles.contains(models.user.Role.Admin)
+}

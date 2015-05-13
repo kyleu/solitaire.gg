@@ -35,16 +35,6 @@ object AccountQueries extends BaseQueries {
     override def flatMap(row: RowData) = Some(fromRow(row))
   }
 
-  case class UpdateAccountName(id: UUID, name: String) extends Statement {
-    override val sql = updateSql(Seq("name"))
-    override val values = Seq(name, id)
-  }
-
-  case class UpdateAccountRole(id: UUID, role: String) extends Statement {
-    override val sql = updateSql(Seq("role"))
-    override val values = Seq(role, id)
-  }
-
   case class IncrementAccountGamesPlayed(accountId: UUID, started: LocalDateTime) extends Statement {
     override val sql = s"update $tableName set last_game_started = ?, games_played = games_played + 1 where id = ?"
     override val values = Seq(DateUtils.toSqlTimestamp(started), accountId)
@@ -60,7 +50,7 @@ object AccountQueries extends BaseQueries {
     val name = row("name") match { case s: String => s }
     val role = row("role") match { case s: String => s }
     val gamesPlayed = row("games_played") match { case i: Int => i }
-    val lastGameStarted = Option(row("last_game_started") match { case ldt: LocalDateTime => ldt })
+    val lastGameStarted = Option(row("last_game_started") match { case ldt: LocalDateTime => ldt; case null => null })
     val created = row("created") match { case ldt: LocalDateTime => ldt }
     Account(id, name, role, gamesPlayed, lastGameStarted, created)
   }

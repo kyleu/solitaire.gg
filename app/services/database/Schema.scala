@@ -9,6 +9,7 @@ object Schema extends Logging {
   val tables = Map(
     "accounts" -> CreateAccountTable,
     "users" -> CreateUserTable,
+    "password_info" -> CreatePasswordInfoTable,
     "games" -> CreateGameTable
   )
 
@@ -17,7 +18,7 @@ object Schema extends Logging {
       Database.query(DdlQueries.DoesTableExist(t._1)).foreach {
         case false =>
           log.info("Creating missing table [" + t._1 + "].")
-          val name = "CreateTable" + t._1.head.toUpper + t._1.tail
+          val name = "CreateTable-" + t._1
           Database.raw(name, t._2.sql)
         case true => // no op
       }

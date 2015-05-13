@@ -1,4 +1,4 @@
-@(account: java.util.UUID, name: String, rules: String, initialAction: Seq[String], seed: Option[Int] = None, offline: Boolean = false)(
+@(user: Option[models.user.User], rules: String, initialAction: Seq[String], seed: Option[Int] = None, offline: Boolean = false)(
     implicit session: Session, flash: Flash
 )@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url)) {
   <div id="game-container"></div>
@@ -20,10 +20,10 @@
 
   <pre id="@utils.Config.projectId-config">
   {
-    "account": {
-      "id": "@account",
-      "name": "@name"
-    },
+    @if(user.isDefined) {"account": {
+      "id": "@user.get.id",
+      "name": "@user.get.fullName.getOrElse("Guest")"
+    },}
     "debug": "@utils.Config.debug",
     "cardSet": "@utils.Config.defaultCardSet",
     "rules": "@rules",

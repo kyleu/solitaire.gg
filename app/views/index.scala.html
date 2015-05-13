@@ -1,6 +1,4 @@
-@(account: java.util.UUID, name: String)(
-  implicit request: controllers.BaseController.AuthenticatedRequest[AnyContent], session: Session, flash: Flash
-)@layout.bootstrap(
+@(user: Option[models.user.User])(implicit request: Request[AnyContent], session: Session, flash: Flash)@layout.bootstrap(
   utils.Config.projectName, scripts = Seq(routes.Assets.at("javascripts/common.js").url)
 ) {
   <div class="container">
@@ -9,7 +7,7 @@
         <div class="jumbotron">
           <h1>Solitare.gg</h1>
           <p>I'm trying to build the web's best card games. Thanks for checking out my progress!</p>
-          @if(request.isAdmin) {
+          @if(user.isDefined) {
             <p><a class="btn btn-primary btn-lg" href="@routes.HomeController.newDefaultGame().url" role="button">Play Now</a></p>
           } else {
             <p>Coming soon!</p>
@@ -17,7 +15,7 @@
         </div>
       </div>
     </div>
-    @if(request.isAdmin) {
+    @if(user.isDefined) {
       <div class="row">
         <div class="col-md-6">
           <div class="panel panel-default">
@@ -36,7 +34,7 @@
             </div>
           </div>
 
-          @if(request.isAdmin) {
+          @if(user.get.isAdmin) {
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">Works in Progress</h3>
@@ -77,7 +75,7 @@
             </div>
             <div class="panel-body">
               <div class="name-panel">
-                You are currently known as <strong>@name</strong>.
+                You are currently known as <strong>@user.get.fullName</strong>.
               </div>
               <div class="input-group">
                 <input type="text" id="account" class="form-control" placeholder="Name" />
@@ -95,7 +93,7 @@
             </div>
           </div>
 
-          @if(request.isAdmin) {
+          @if(user.get.isAdmin) {
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">Administration</h3>

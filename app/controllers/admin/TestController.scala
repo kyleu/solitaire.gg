@@ -1,18 +1,18 @@
 package controllers.admin
 
 import controllers.BaseController
-import controllers.BaseController.AdminAction
+import models.user.{Role, WithRole}
 import services.test._
 
 import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 object TestController extends BaseController {
-  def tests = AdminAction.async { implicit request =>
+  def tests = SecuredAction(WithRole(Role.Admin)).async { implicit request =>
     Future.successful(Ok(views.html.admin.tests()))
   }
 
-  def runTest(test: String) = AdminAction.async { implicit request =>
+  def runTest(test: String) = SecuredAction(WithRole(Role.Admin)).async { implicit request =>
     Future {
       val testTree = test match {
         case "all" => new AllTests().all
