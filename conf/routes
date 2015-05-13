@@ -1,8 +1,9 @@
 GET        /                                  controllers.HomeController.index
 GET        /*path/                            controllers.HomeController.untrail(path: String)
 GET        /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/favicon.ico")
+GET        /profile                           controllers.HomeController.profile
 
-# Auth
+# Authentication
 GET        /sign-in                           controllers.auth.AuthorizationController.signInForm
 POST       /sign-in                           controllers.auth.AuthorizationController.authenticateCredentials
 GET        /sign-in/:provider                 controllers.auth.AuthorizationController.authenticateSocial(provider)

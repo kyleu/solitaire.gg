@@ -3,10 +3,19 @@
   stylesheets = Seq(routes.Assets.at("stylesheets/auth.css").url)
 ) {
   <div class="sign-in">
+    @if(flash.get("error").isDefined) {
+      <div class="flash-error">@flash("error")</div>
+    }
     <h4>Sign in to Solitaire.gg</h4>
     <form method="post" action="@controllers.auth.routes.AuthorizationController.authenticateCredentials()">
-      <input type="text" class="form-control" name="identifier" value="" placeholder="Email or Username" /><br />
-      <input type="password" class="form-control" name="password" value="" placeholder="Password" /><br />
+      <input type="text" class="form-control" name="identifier" value="@form("identifier").value" placeholder="Email or Username" />
+      @if(form.error("identifier").isDefined) {
+        <em>@Messages(form.error("identifier").get.message)</em>
+      }
+      <input type="password" class="form-control" name="password" placeholder="Password" />
+      @if(form.error("password").isDefined) {
+        <em>@Messages(form.error("password").get.message)</em>
+      }
       <input type="submit" class="submit" value="Sign In" />
     </form>
 

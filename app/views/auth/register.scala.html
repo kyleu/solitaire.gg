@@ -5,11 +5,27 @@
   <div class="sign-up">
     <h4>Welcome! Go ahead and sign up.</h4>
     <form method="post" action="@controllers.auth.routes.RegistrationController.register()">
-      <input type="text" class="form-control" name="username" value="" placeholder="Username" /><br />
-      <input type="email" class="form-control" name="email" value="" placeholder="Email" /><br />
-      <input type="text" class="form-control" name="firstName" value="" placeholder="First Name" /><br />
-      <input type="text" class="form-control" name="lastName" value="" placeholder="Last Name" /><br />
-      <input type="password" class="form-control" name="password" value="" placeholder="Password" /><br />
+      <input type="text" class="form-control" name="username" value="" placeholder="Username" />
+      @if(form.error("username").isDefined) {
+        <em>@Messages(form.error("username").get.message)</em>
+      }
+      <input type="email" class="form-control" name="email" value="" placeholder="Email" />
+      @if(form.error("email").isDefined) {
+        <em>@Messages(form.error("email").get.message)</em>
+      }
+      <input type="text" class="form-control" name="firstName" value="" placeholder="First Name" />
+      @if(form.error("firstName").isDefined) {
+        <em>@Messages(form.error("firstName").get.message)</em>
+      }
+      <input type="text" class="form-control" name="lastName" value="" placeholder="Last Name" />
+      @if(form.error("lastName").isDefined) {
+        <em>@Messages(form.error("lastName").get.message)</em>
+      }
+      <input type="password" class="form-control" name="password" value="" placeholder="Password" />
+      @if(form.error("password").isDefined) {
+        <em>@Messages(form.error("password").get.message)</em>
+      }
+      <br/>
       <input type="submit" class="submit" value="Register" />
     </form>
   </div>

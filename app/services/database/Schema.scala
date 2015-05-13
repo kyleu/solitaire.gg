@@ -1,12 +1,16 @@
 package services.database
 
-import models.database.queries.DdlQueries
-import models.database.queries.DdlQueries.{ CreateGameTable, CreateAccountTable }
+import models.database.queries.ddl.DdlQueries
+import models.database.queries.ddl._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import utils.Logging
 
 object Schema extends Logging {
-  val tables = Map("accounts" -> CreateAccountTable, "games" -> CreateGameTable)
+  val tables = Map(
+    "accounts" -> CreateAccountTable,
+    "users" -> CreateUserTable,
+    "games" -> CreateGameTable
+  )
 
   def update() = {
     tables.foreach { t =>

@@ -1,8 +1,12 @@
 package controllers
 
+import java.util.UUID
+
 import controllers.BaseController.AuthenticatedAction
 import models.game.rules.GameRulesSet
+import play.api.mvc.Action
 import services.account.AccountService
+import services.user.UserService
 
 import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -12,8 +16,15 @@ object HomeController extends BaseController {
     Ok(views.html.index(request.accountId, request.name))
   }
 
-  def untrail(path: String) = AuthenticatedAction.async {
+  def untrail(path: String) = Action.async {
     Future.successful(MovedPermanently("/" + path))
+  }
+
+  def profile = UserAwareAction.async { implicit request =>
+    UserService.retrieve(UUID.randomUUID).map {
+      case Some(user) => Ok("OK")
+      case None => Ok("Nope")
+    }
   }
 
   def changeName(name: String) = AuthenticatedAction.async { implicit request =>

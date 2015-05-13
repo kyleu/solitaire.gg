@@ -5,7 +5,7 @@ import java.util.UUID
 import com.mohiva.play.silhouette.api.{LoginEvent, LoginInfo, SignUpEvent}
 import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
 import controllers.BaseController
-import models.user.{BaseInfo, User, UserForms}
+import models.user.{User, UserForms}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.Action
 import services.user.AuthenticationEnvironment
@@ -31,16 +31,14 @@ object RegistrationController extends BaseController {
             val authInfo = env.hasher.hash(data.password)
             val user = User(
               id = UUID.randomUUID(),
-              loginInfo = loginInfo,
+              loginInfos = Seq(loginInfo),
               username = Some(data.username),
               email = Some(data.email),
               avatarUrl = None,
-              info = BaseInfo(
-                firstName = Some(data.firstName),
-                lastName = Some(data.lastName),
-                fullName = Some(data.firstName + " " + data.lastName),
-                gender = None
-              )
+              firstName = Some(data.firstName),
+              lastName = Some(data.lastName),
+              fullName = Some(data.firstName + " " + data.lastName),
+              gender = None
             )
             val r = Future.successful(Redirect(controllers.routes.HomeController.index()))
             for {

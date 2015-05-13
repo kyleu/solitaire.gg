@@ -1,18 +1,18 @@
 package controllers.auth
 
 import com.mohiva.play.silhouette.api.exceptions.ProviderException
-import com.mohiva.play.silhouette.api.{LoginEvent, LogoutEvent, Silhouette}
-import com.mohiva.play.silhouette.impl.authenticators.SessionAuthenticator
+import com.mohiva.play.silhouette.api.{LoginEvent, LogoutEvent}
 import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
 import com.mohiva.play.silhouette.impl.providers.{SocialProvider, CommonSocialProfileBuilder}
-import models.user.{User, UserForms}
+import controllers.BaseController
+import models.user.UserForms
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.Action
 import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 
-object AuthorizationController extends Silhouette[User, SessionAuthenticator] {
+object AuthorizationController extends BaseController {
   override val env = AuthenticationEnvironment
 
   def signInForm = UserAwareAction.async { implicit request =>

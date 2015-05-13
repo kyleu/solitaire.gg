@@ -56,12 +56,12 @@ object AccountQueries extends BaseQueries {
   }
 
   private[this] def fromRow(row: RowData) = {
-    val id = UUID.fromString(row("id").asInstanceOf[String])
-    val name = row("name").asInstanceOf[String]
-    val role = row("role").asInstanceOf[String]
-    val gamesPlayed = row("games_played").asInstanceOf[Int]
-    val lastGameStarted = Option(row("last_game_started").asInstanceOf[LocalDateTime])
-    val created = row("created").asInstanceOf[LocalDateTime]
+    val id = UUID.fromString(row("id") match { case s: String => s })
+    val name = row("name") match { case s: String => s }
+    val role = row("role") match { case s: String => s }
+    val gamesPlayed = row("games_played") match { case i: Int => i }
+    val lastGameStarted = Option(row("last_game_started") match { case ldt: LocalDateTime => ldt })
+    val created = row("created") match { case ldt: LocalDateTime => ldt }
     Account(id, name, role, gamesPlayed, lastGameStarted, created)
   }
 }

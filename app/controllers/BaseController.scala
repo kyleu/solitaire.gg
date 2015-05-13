@@ -2,10 +2,14 @@ package controllers
 
 import java.util.UUID
 
+import com.mohiva.play.silhouette.api.{Environment, Silhouette}
+import com.mohiva.play.silhouette.impl.authenticators.SessionAuthenticator
+import models.user.User
 import nl.grons.metrics.scala.Timer
 import play.api.libs.Crypto
 import play.api.mvc._
 import services.account.AccountService
+import services.user.AuthenticationEnvironment
 import utils.metrics.Instrumented
 import utils.Logging
 
@@ -59,4 +63,6 @@ object BaseController extends Instrumented {
   }
 }
 
-abstract class BaseController extends Controller with Logging
+abstract class BaseController extends Silhouette[User, SessionAuthenticator] with Logging {
+  override protected def env = AuthenticationEnvironment
+}
