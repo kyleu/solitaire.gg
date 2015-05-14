@@ -1,10 +1,10 @@
 package controllers
 
 import akka.actor.ActorRef
-import models.{RequestMessage, ResponseMessage}
+import models.{ RequestMessage, ResponseMessage }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.mvc.{AnyContentAsEmpty, Request, WebSocket}
-import services.{ActorSupervisor, ConnectionService}
+import play.api.mvc.{ AnyContentAsEmpty, Request, WebSocket }
+import services.{ ActorSupervisor, ConnectionService }
 
 import scala.concurrent.Future
 
@@ -20,9 +20,8 @@ object WebsocketController extends BaseController {
       Future.successful(HandlerResult(Ok, Some(securedRequest.identity)))
     }.map {
       case HandlerResult(r, Some(user)) =>
-        val accountId = user.id
         val username = user.fullName.getOrElse("Guest")
-        Right(ConnectionService.props(supervisor, accountId, username, _: ActorRef))
+        Right(ConnectionService.props(supervisor, user.id, username, _: ActorRef))
       case HandlerResult(r, None) => Left(r)
     }
   }

@@ -1,27 +1,27 @@
 package services.user
 
 import com.mohiva.play.silhouette.api.services.AuthInfoService
-import com.mohiva.play.silhouette.api.util.{PasswordHasher, HTTPLayer, Clock}
+import com.mohiva.play.silhouette.api.util.{ IDGenerator, PasswordHasher, HTTPLayer, Clock }
 import com.mohiva.play.silhouette.impl.providers.oauth1.TwitterProvider
 import com.mohiva.play.silhouette.impl.providers.oauth1.services.PlayOAuth1Service
 import com.mohiva.play.silhouette.impl.providers.openid.SteamProvider
 import com.mohiva.play.silhouette.impl.providers._
-import com.mohiva.play.silhouette.impl.providers.oauth1.secrets.{CookieSecretSettings, CookieSecretProvider}
-import com.mohiva.play.silhouette.impl.providers.oauth2.{GoogleProvider, FacebookProvider}
-import com.mohiva.play.silhouette.impl.providers.oauth2.state.{CookieStateSettings, CookieStateProvider}
+import com.mohiva.play.silhouette.impl.providers.oauth1.secrets.{ CookieSecretSettings, CookieSecretProvider }
+import com.mohiva.play.silhouette.impl.providers.oauth2.{ GoogleProvider, FacebookProvider }
+import com.mohiva.play.silhouette.impl.providers.oauth2.state.{ CookieStateSettings, CookieStateProvider }
 import com.mohiva.play.silhouette.impl.providers.openid.services.PlayOpenIDService
 import com.mohiva.play.silhouette.impl.util.SecureRandomIDGenerator
 import play.api.Configuration
 
 class SocialAuthProviders(
-  config: Configuration,
-  httpLayer: HTTPLayer,
-  hasher: PasswordHasher,
-  authInfoService: AuthInfoService,
-  credentials: CredentialsProvider
+    config: Configuration,
+    httpLayer: HTTPLayer,
+    hasher: PasswordHasher,
+    authInfoService: AuthInfoService,
+    credentials: CredentialsProvider,
+    idGenerator: IDGenerator,
+    clock: Clock
 ) {
-  private[this] val idGenerator = new SecureRandomIDGenerator()
-
   private[this] val oAuth1TokenSecretProvider = new CookieSecretProvider(CookieSecretSettings(
     cookieName = config.getString("silhouette.oauth1TokenSecretProvider.cookieName").getOrElse(throw new IllegalArgumentException()),
     cookiePath = config.getString("silhouette.oauth1TokenSecretProvider.cookiePath").getOrElse(throw new IllegalArgumentException()),
@@ -29,7 +29,7 @@ class SocialAuthProviders(
     secureCookie = config.getBoolean("silhouette.oauth1TokenSecretProvider.secureCookie").getOrElse(throw new IllegalArgumentException()),
     httpOnlyCookie = config.getBoolean("silhouette.oauth1TokenSecretProvider.httpOnlyCookie").getOrElse(throw new IllegalArgumentException()),
     expirationTime = config.getInt("silhouette.oauth1TokenSecretProvider.expirationTime").getOrElse(throw new IllegalArgumentException())
-  ), Clock())
+  ), clock)
 
   private[this] val oAuth2StateProvider = new CookieStateProvider(CookieStateSettings(
     cookieName = config.getString("silhouette.oauth2StateProvider.cookieName").getOrElse(throw new IllegalArgumentException()),
@@ -38,8 +38,7 @@ class SocialAuthProviders(
     secureCookie = config.getBoolean("silhouette.oauth2StateProvider.secureCookie").getOrElse(throw new IllegalArgumentException()),
     httpOnlyCookie = config.getBoolean("silhouette.oauth2StateProvider.httpOnlyCookie").getOrElse(throw new IllegalArgumentException()),
     expirationTime = config.getInt("silhouette.oauth2StateProvider.expirationTime").getOrElse(throw new IllegalArgumentException())
-  ), idGenerator, Clock())
-
+  ), idGenerator, clock)
 
   private[this] val facebookSettings = OAuth2Settings(
     authorizationURL = config.getString("silhouette.facebook.authorizationUrl"),

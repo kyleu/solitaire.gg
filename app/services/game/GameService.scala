@@ -8,14 +8,14 @@ import models.game.rules.moves.InitialMoves
 import org.joda.time.LocalDateTime
 
 class GameService(val id: UUID, val rules: String, val seed: Int, val started: LocalDateTime, protected val player: PlayerRecord) extends GameServiceHelper {
-  log.info("Started game [" + rules + "] for account [" + player.accountId + ": " + player.name + "] with seed [" + seed + "].")
+  log.info("Started game [" + rules + "] for user [" + player.userId + ": " + player.name + "] with seed [" + seed + "].")
 
   protected[this] val observerConnections = collection.mutable.ArrayBuffer.empty[(PlayerRecord, Option[UUID])]
 
   protected[this] val gameRules = GameRulesSet.allById(rules)
   protected[this] val gameState = gameRules.newGame(id, seed)
 
-  gameState.addPlayer(player.accountId, player.name)
+  gameState.addPlayer(player.userId, player.name)
 
   protected[this] val gameMessages = collection.mutable.ArrayBuffer.empty[GameMessage]
   protected[this] var moveCount = 0
@@ -25,10 +25,10 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
   override def preStart() {
     InitialMoves.performInitialMoves(gameRules, gameState)
 
-    GameHistoryService.startGame(id, seed, rules, "started", player.accountId, started)
+    GameHistoryService.startGame(id, seed, rules, "started", player.userId, started)
 
     player.connectionActor.foreach(_ ! GameStarted(id, self, started))
-    player.connectionActor.foreach(_ ! GameJoined(id, gameState.view(player.accountId), possibleMoves(Some(player.accountId))))
+    player.connectionActor.foreach(_ ! GameJoined(id, gameState.view(player.userId), possibleMoves(Some(player.userId))))
   }
 
   override def receiveRequest = {
@@ -38,18 +38,18 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
   }
 
   private[this] def handleGameRequest(gr: GameRequest) = {
-    //log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.accountId + "] for game [" + id + "].")
+    //log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.userId + "] for game [" + id + "].")
     try {
       gameMessages += gr.message
       moveCount += 1
       lastMoveMade = Some(new LocalDateTime())
       gr.message match {
-        case GetPossibleMoves => timeReceive(GetPossibleMoves) { handleGetPossibleMoves(gr.accountId) }
-        case sc: SelectCard => timeReceive(sc) { handleSelectCard(gr.accountId, sc.card, sc.pile) }
-        case sp: SelectPile => timeReceive(sp) { handleSelectPile(gr.accountId, sp.pile) }
-        case mc: MoveCards => timeReceive(mc) { handleMoveCards(gr.accountId, mc.cards, mc.src, mc.tgt) }
-        case Undo => timeReceive(Undo) { handleUndo(gr.accountId) }
-        case Redo => timeReceive(Redo) { handleRedo(gr.accountId) }
+        case GetPossibleMoves => timeReceive(GetPossibleMoves) { handleGetPossibleMoves(gr.userId) }
+        case sc: SelectCard => timeReceive(sc) { handleSelectCard(gr.userId, sc.card, sc.pile) }
+        case sp: SelectPile => timeReceive(sp) { handleSelectPile(gr.userId, sp.pile) }
+        case mc: MoveCards => timeReceive(mc) { handleMoveCards(gr.userId, mc.cards, mc.src, mc.tgt) }
+        case Undo => timeReceive(Undo) { handleUndo(gr.userId) }
+        case Redo => timeReceive(Redo) { handleRedo(gr.userId) }
         case r => log.warn("GameService received unknown game message [" + r.getClass.getSimpleName.replace("$", "") + "].")
       }
     } catch {
@@ -63,8 +63,8 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
     //log.debug("Handling [" + im.getClass.getSimpleName.replace("$", "") + "] internal message for game [" + id + "].")
     try {
       im match {
-        case ap: AddPlayer => timeReceive(ap) { handleAddPlayer(ap.accountId, ap.name, ap.connectionId, ap.connectionActor) }
-        case ao: AddObserver => timeReceive(ao) { handleAddObserver(ao.accountId, ao.name, ao.connectionId, ao.connectionActor, ao.as) }
+        case ap: AddPlayer => timeReceive(ap) { handleAddPlayer(ap.userId, ap.name, ap.connectionId, ap.connectionActor) }
+        case ao: AddObserver => timeReceive(ao) { handleAddObserver(ao.userId, ao.name, ao.connectionId, ao.connectionActor, ao.as) }
         case cs: ConnectionStopped => timeReceive(cs) { handleConnectionStopped(cs.connectionId) }
         case sg: StopGame => timeReceive(sg) { handleStopGame(sg.reason) }
         case StopGameIfEmpty => timeReceive(StopGameIfEmpty) { handleStopGameIfEmpty() }

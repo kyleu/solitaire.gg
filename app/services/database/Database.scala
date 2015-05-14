@@ -1,16 +1,16 @@
 package services.database
 
-import com.github.mauricio.async.db.pool.{ConnectionPool, PoolConfiguration}
+import com.github.mauricio.async.db.pool.{ ConnectionPool, PoolConfiguration }
 import com.github.mauricio.async.db.postgresql.pool.PostgreSQLConnectionFactory
-import com.github.mauricio.async.db.{Configuration, Connection, QueryResult}
-import models.database.{RawQuery, Statement}
+import com.github.mauricio.async.db.{ Configuration, Connection, QueryResult }
+import models.database.{ RawQuery, Statement }
 import nl.grons.metrics.scala.FutureMetrics
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import utils.Logging
 import utils.metrics.Instrumented
 
 import scala.concurrent.duration._
-import scala.concurrent.{Await, Future}
+import scala.concurrent.{ Await, Future }
 
 object Database extends Logging with Instrumented with FutureMetrics {
   private val configuration = new Configuration(
@@ -26,7 +26,7 @@ object Database extends Logging with Instrumented with FutureMetrics {
     healthCheck.onFailure {
       case x => throw new IllegalStateException("Cannot connect to database.", x)
     }
-    Await.result(healthCheck.map(r => r.rowsAffected == 1), 5.seconds)
+    Await.result(healthCheck.map(r => r.rowsAffected == 1.toLong), 5.seconds)
   }
 
   def transaction[A](f: (Connection) => Future[A], conn: Connection = pool): Future[A] = conn.inTransaction(c => f(c))

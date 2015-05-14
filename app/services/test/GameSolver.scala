@@ -19,8 +19,8 @@ case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None
 
   implicit val system = Akka.system
   val testProbe = TestProbe()
-  val accountId = UUID.randomUUID
-  val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, accountId, "test-user", testProbe.ref))
+  val userId = UUID.randomUUID
+  val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, userId, "test-user", testProbe.ref))
 
   conn ! StartGame(rules, gameSeed)
   val gameJoined = testProbe.expectMsgClass(classOf[GameJoined])

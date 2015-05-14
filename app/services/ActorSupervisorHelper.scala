@@ -14,9 +14,9 @@ import scala.util.Random
 trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
   private[this] def masterRng = new Random()
 
-  protected[this] def handleConnectionStarted(accountId: UUID, username: String, connectionId: UUID, conn: ActorRef) {
+  protected[this] def handleConnectionStarted(userId: UUID, username: String, connectionId: UUID, conn: ActorRef) {
     log.debug("Connection [" + connectionId + "] registered to [" + username + "] with path [" + conn.path + "].")
-    connections(connectionId) = ConnectionRecord(accountId, username, conn, None, new LocalDateTime())
+    connections(connectionId) = ConnectionRecord(userId, username, conn, None, new LocalDateTime())
     connectionsCounter.inc()
   }
 
@@ -35,7 +35,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
     val c = connections(connectionId)
 
     val started = new LocalDateTime()
-    val pr = PlayerRecord(c.accountId, c.name, Some(connectionId), Some(c.actorRef))
+    val pr = PlayerRecord(c.userId, c.name, Some(connectionId), Some(c.actorRef))
     val actor = context.actorOf(Props(new GameService(id, rules, s, started, pr)), "game:" + id)
 
     c.activeGame = Some(id)
@@ -48,7 +48,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
       log.info("Joining game [" + id + "].")
       val c = connections(connectionId)
       c.activeGame = Some(id)
-      g.actorRef ! AddPlayer(c.accountId, c.name, connectionId, c.actorRef)
+      g.actorRef ! AddPlayer(c.userId, c.name, connectionId, c.actorRef)
     case None =>
       log.warn("Attempted to observe invalid game [" + id + "].")
       sender() ! ServerError("Invalid Game", id.toString)
@@ -66,7 +66,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
         val c = connections(connectionId)
         c.activeGame = Some(gameId)
         c.actorRef ! GameStarted(gameId, g.actorRef, g.started)
-        g.actorRef ! AddObserver(c.accountId, c.name, connectionId, c.actorRef, as)
+        g.actorRef ! AddObserver(c.userId, c.name, connectionId, c.actorRef, as)
       case None =>
         log.warn("Attempted to observe invalid game [" + gameId + "].")
         sender() ! ServerError("Invalid Game", gameId.toString)

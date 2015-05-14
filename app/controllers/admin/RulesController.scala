@@ -2,7 +2,6 @@ package controllers.admin
 
 import controllers.BaseController
 import models.game.rules.GameRulesSet
-import models.user.{Role, WithRole}
 import parser.{ ScalaExporter, RulesReset }
 import parser.politaire.{ LinkParser, PolitaireParser }
 import play.twirl.api.Html
@@ -11,19 +10,19 @@ import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 object RulesController extends BaseController {
-  def politaire = SecuredAction(WithRole(Role.Admin)).async { implicit request =>
+  def politaire = AdminAction.async { implicit request =>
     Future.successful(Ok(views.html.admin.rules.politaireList(PolitaireParser.politaireList)))
   }
 
-  def rules = SecuredAction(WithRole(Role.Admin)).async { implicit request =>
+  def rules = AdminAction.async { implicit request =>
     Future.successful(Ok(views.html.admin.rules.rulesList(GameRulesSet.all)))
   }
 
-  def importRules = SecuredAction(WithRole(Role.Admin)).async { implicit request =>
+  def importRules = AdminAction.async { implicit request =>
     Future.successful(Ok(views.html.admin.rules.rulesList(PolitaireParser.gameRules)))
   }
 
-  def exportRules = SecuredAction(WithRole(Role.Admin)).async { implicit request =>
+  def exportRules = AdminAction.async { implicit request =>
     Future {
       val rulesSet = PolitaireParser.gameRules
       ScalaExporter.export(rulesSet)
@@ -31,7 +30,7 @@ object RulesController extends BaseController {
     }
   }
 
-  def links = SecuredAction(WithRole(Role.Admin)).async { implicit request =>
+  def links = AdminAction.async { implicit request =>
     Future {
       val links = LinkParser.parse()
       val ret = "<ul>\n" + links.map(l => "\n  <li>" + l._1 + ": [" + l._2.mkString(" :: ") + "]</li>").mkString("\n") + "\n</ul>"
@@ -39,7 +38,7 @@ object RulesController extends BaseController {
     }
   }
 
-  def wipeRules = SecuredAction(WithRole(Role.Admin)).async { implicit request =>
+  def wipeRules = AdminAction.async { implicit request =>
     Future {
       RulesReset.go()
       Redirect(routes.RulesController.rules())

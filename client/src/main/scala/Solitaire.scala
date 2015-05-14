@@ -12,7 +12,7 @@ import scala.util.Random
 object Solitaire extends js.JSApp with SolitaireHelper {
   override def main(): Unit = {}
 
-  private[this] val accountId = UUID.randomUUID
+  private[this] val userId = UUID.randomUUID
   private[this] val rng = new Random()
 
   protected[this] var undoHelper = new UndoHelper()
@@ -29,9 +29,9 @@ object Solitaire extends js.JSApp with SolitaireHelper {
       case "GetVersion" => send(VersionResponse("0.0"))
       case "Ping" => send(Pong(JsonUtils.getLong(v.timestamp)))
       case "StartGame" => handleStartGame(v.rules.toString, JsonUtils.getIntOption(v.seed))
-      case "SelectCard" => handleSelectCard(accountId, UUID.fromString(v.card.toString), v.pile.toString)
-      case "SelectPile" => handleSelectPile(accountId, v.pile.toString)
-      case "MoveCards" => handleMoveCards(accountId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString)
+      case "SelectCard" => handleSelectCard(userId, UUID.fromString(v.card.toString), v.pile.toString)
+      case "SelectPile" => handleSelectPile(userId, v.pile.toString)
+      case "MoveCards" => handleMoveCards(userId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString)
       case "Undo" => handleUndo()
       case "Redo" => handleRedo()
       case _ => throw new IllegalStateException("Invalid message [" + c + "].")
@@ -50,10 +50,10 @@ object Solitaire extends js.JSApp with SolitaireHelper {
     gameId = UUID.randomUUID
     gameRules = GameRulesSet.allById(rules)
     gameState = gameRules.newGame(gameId, seed.getOrElse(Math.abs(rng.nextInt())))
-    gameState.addPlayer(accountId, "Offline Player")
+    gameState.addPlayer(userId, "Offline Player")
     InitialMoves.performInitialMoves(gameRules, gameState)
 
-    send(GameJoined(gameId, gameState.view(accountId), possibleMoves()))
+    send(GameJoined(gameId, gameState.view(userId), possibleMoves()))
   }
 
   private[this] def handleUndo(): Unit = {

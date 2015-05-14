@@ -3,7 +3,7 @@ package models.database.queries.ddl
 import models.database.Statement
 
 case object CreatePasswordInfoTable extends Statement {
-  override val sql = DdlQueries.trim("""
+  override val sql = """
     create table password_info
     (
        provider character varying(64),
@@ -17,5 +17,5 @@ case object CreatePasswordInfoTable extends Statement {
     with (
       oids = false
     )
-  """)
+  """
 }

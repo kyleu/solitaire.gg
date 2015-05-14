@@ -1,9 +1,9 @@
 package controllers.auth
 
 import com.mohiva.play.silhouette.api.exceptions.ProviderException
-import com.mohiva.play.silhouette.api.{LoginEvent, LogoutEvent}
+import com.mohiva.play.silhouette.api.{ LoginEvent, LogoutEvent }
 import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
-import com.mohiva.play.silhouette.impl.providers.{SocialProvider, CommonSocialProfileBuilder}
+import com.mohiva.play.silhouette.impl.providers.{ SocialProvider, CommonSocialProfileBuilder }
 import controllers.BaseController
 import models.user.UserForms
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -16,10 +16,7 @@ object AuthorizationController extends BaseController {
   override val env = AuthenticationEnvironment
 
   def signInForm = UserAwareAction.async { implicit request =>
-    request.identity match {
-      case Some(user) => Future.successful(Redirect(controllers.routes.HomeController.index()))
-      case None => Future.successful(Ok(views.html.auth.signin(UserForms.signInForm)))
-    }
+    Future.successful(Ok(views.html.auth.signin(UserForms.signInForm)))
   }
 
   def authenticateCredentials = Action.async { implicit request =>
@@ -54,9 +51,9 @@ object AuthorizationController extends BaseController {
             value <- env.authenticatorService.init(authenticator)
             result <- env.authenticatorService.embed(value, Future.successful(Redirect(controllers.routes.HomeController.index())))
           } yield {
-              env.eventBus.publish(LoginEvent(user, request, request2lang))
-              result
-            }
+            env.eventBus.publish(LoginEvent(user, request, request2lang))
+            result
+          }
         }
       case _ => Future.failed(new ProviderException(s"Cannot authenticate with unexpected social provider $provider"))
     }).recover {

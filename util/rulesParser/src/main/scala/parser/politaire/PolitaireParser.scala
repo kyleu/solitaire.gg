@@ -54,7 +54,7 @@ object PolitaireParser {
             if (x.value.toString.nonEmpty) { withParent(parent, x.value.toString) } else { parent }
           }.getOrElse(parent)
           val newAttributes = new collection.mutable.LinkedHashMap[String, Attr]()
-          newAttributes ++= mergedParent.attributes.filterNot(doNotInheritFrom.contains)
+          newAttributes ++= mergedParent.attributes.filterNot( x => doNotInheritFrom.contains(x._1))
           newAttributes ++= v.attributes.filterNot(_._2.defaultVal)
           v.copy(attributes = newAttributes)
         case None => throw new IllegalStateException("Invalid parent [" + parentId + "].")

@@ -8,7 +8,7 @@ object PlayLoggingFilter extends Filter with Logging {
   def apply(nextFilter: (RequestHeader) => Future[Result])(requestHeader: RequestHeader): Future[Result] = {
     val startTime = System.currentTimeMillis
     nextFilter(requestHeader).map { result =>
-      if(requestHeader.path.startsWith("/assets")) {
+      if (requestHeader.path.startsWith("/assets")) {
         result
       } else {
         val endTime = System.currentTimeMillis

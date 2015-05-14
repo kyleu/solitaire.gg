@@ -13,7 +13,7 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet', 'game/Help'],
 
     this.help = new Help(this);
 
-    document.getElementById("status-username").innerText = config.account.name;
+    document.getElementById("status-username").innerText = config.user.name;
 
     if(config.offline) {
       var self = this;

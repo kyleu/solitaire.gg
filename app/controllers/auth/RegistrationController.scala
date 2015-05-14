@@ -2,10 +2,11 @@ package controllers.auth
 
 import java.util.UUID
 
-import com.mohiva.play.silhouette.api.{LoginEvent, LoginInfo, SignUpEvent}
+import com.mohiva.play.silhouette.api.{ LoginEvent, LoginInfo, SignUpEvent }
 import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
 import controllers.BaseController
-import models.user.{User, UserForms}
+import models.user.{ User, UserForms }
+import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.Action
 import services.user.AuthenticationEnvironment
@@ -38,7 +39,8 @@ object RegistrationController extends BaseController {
               firstName = Some(data.firstName),
               lastName = Some(data.lastName),
               fullName = Some(data.firstName + " " + data.lastName),
-              gender = None
+              gender = None,
+              created = new LocalDateTime()
             )
             val r = Future.successful(Redirect(controllers.routes.HomeController.index()))
             for {

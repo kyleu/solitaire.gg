@@ -15,7 +15,7 @@
       @th("seed", "Seed")
       @th("rules", "Rules")
       @th("status", "Status")
-      @th("accounts", "Accounts")
+      @th("player", "Player")
       @th("moves", "Moves")
       @th("undos", "Undos")
       @th("redos", "Redos")
@@ -31,7 +31,7 @@
       <td>@g.rules</td>
       <td>@g.status</td>
       @if(link) {
-        <td>@Html("<a href=\"" + controllers.admin.routes.AccountController.accountDetail(g.player) + "\"><div title=\"" + g.player.toString + "\">" + g.player.toString.substring(0, 8) + "</div></a>")</td>
+        <td>@Html("<a href=\"" + controllers.admin.routes.UserController.userDetail(g.player) + "\"><div title=\"" + g.player.toString + "\">" + g.player.toString.substring(0, 8) + "</div></a>")</td>
       } else {
         <td>@Html("<div title=\"" + g.player.toString + "\">" + g.player.toString.substring(0, 8) + "</div>")</td>
       }

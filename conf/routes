@@ -1,60 +1,60 @@
-GET        /                                  controllers.HomeController.index
-GET        /*path/                            controllers.HomeController.untrail(path: String)
-GET        /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/favicon.ico")
-GET        /profile                           controllers.HomeController.profile
+GET         /                                  controllers.HomeController.index
+GET         /*path/                            controllers.HomeController.untrail(path: String)
+GET         /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/favicon.ico")
+GET         /profile                           controllers.HomeController.profile
 
 # Authentication
-GET        /sign-in                           controllers.auth.AuthorizationController.signInForm
-POST       /sign-in                           controllers.auth.AuthorizationController.authenticateCredentials
-GET        /sign-in/:provider                 controllers.auth.AuthorizationController.authenticateSocial(provider)
-GET        /sign-out                          controllers.auth.AuthorizationController.signOut
-GET        /register                          controllers.auth.RegistrationController.registrationForm
-POST       /register                          controllers.auth.RegistrationController.register
+GET         /sign-in                           controllers.auth.AuthorizationController.signInForm
+POST        /sign-in                           controllers.auth.AuthorizationController.authenticateCredentials
+GET         /sign-in/:provider                 controllers.auth.AuthorizationController.authenticateSocial(provider)
+GET         /sign-out                          controllers.auth.AuthorizationController.signOut
+GET         /register                          controllers.auth.RegistrationController.registrationForm
+POST        /register                          controllers.auth.RegistrationController.register
 
 # Game
-GET        /help/:id                          controllers.HomeController.help(id)
+GET         /help/:id                          controllers.HomeController.help(id)
 
-GET        /play                              controllers.HomeController.newDefaultGame()
-GET        /play/:rules                       controllers.HomeController.newGame(rules)
-GET        /play/:rules/:seed                 controllers.HomeController.newGameWithSeed(rules, seed: Int)
+GET         /play                              controllers.HomeController.newDefaultGame()
+GET         /play/:rules                       controllers.HomeController.newGame(rules)
+GET         /play/:rules/:seed                 controllers.HomeController.newGameWithSeed(rules, seed: Int)
 
-GET        /offline                           controllers.HomeController.newDefaultOfflineGame()
-GET        /offline/:rules                    controllers.HomeController.newOfflineGame(rules)
-GET        /offline/:rules/:seed              controllers.HomeController.newOfflineGameWithSeed(rules, seed: Int)
+GET         /offline                           controllers.HomeController.newDefaultOfflineGame()
+GET         /offline/:rules                    controllers.HomeController.newOfflineGame(rules)
+GET         /offline/:rules/:seed              controllers.HomeController.newOfflineGameWithSeed(rules, seed: Int)
 
-GET        /websocket                         controllers.WebsocketController.connect()
+GET         /websocket                         controllers.WebsocketController.connect()
 
-GET        /sandbox                           controllers.SandboxController.sandbox
+GET         /sandbox                           controllers.SandboxController.sandbox
 
 # Admin
-GET        /admin/sandbox                     controllers.SandboxController.adminSandbox()
+GET         /admin/sandbox                     controllers.SandboxController.adminSandbox()
 
-GET        /admin/enable                      controllers.admin.AdminController.enable
-GET        /admin/status                      controllers.admin.AdminController.status
+GET         /admin/enable                      controllers.admin.AdminController.enable
+GET         /admin/status                      controllers.admin.AdminController.status
 
-GET        /admin/rules                       controllers.admin.RulesController.rules
-GET        /admin/rules/politaire             controllers.admin.RulesController.politaire
-GET        /admin/rules/import                controllers.admin.RulesController.importRules
-GET        /admin/rules/export                controllers.admin.RulesController.exportRules
-GET        /admin/rules/links                 controllers.admin.RulesController.links
-GET        /admin/rules/wipe                  controllers.admin.RulesController.wipeRules
+GET         /admin/rules                       controllers.admin.RulesController.rules
+GET         /admin/rules/politaire             controllers.admin.RulesController.politaire
+GET         /admin/rules/import                controllers.admin.RulesController.importRules
+GET         /admin/rules/export                controllers.admin.RulesController.exportRules
+GET         /admin/rules/links                 controllers.admin.RulesController.links
+GET         /admin/rules/wipe                  controllers.admin.RulesController.wipeRules
 
-GET        /admin/trace/connection/:id        controllers.admin.TraceController.traceConnection(id: java.util.UUID)
-GET        /admin/trace/client/:id            controllers.admin.TraceController.traceClient(id: java.util.UUID)
-GET        /admin/trace/game/:id              controllers.admin.TraceController.traceGame(id: java.util.UUID)
+GET         /admin/trace/connection/:id        controllers.admin.TraceController.traceConnection(id: java.util.UUID)
+GET         /admin/trace/client/:id            controllers.admin.TraceController.traceClient(id: java.util.UUID)
+GET         /admin/trace/game/:id              controllers.admin.TraceController.traceGame(id: java.util.UUID)
 
-GET        /admin/observe/random              controllers.admin.AdminController.observeRandomGame()
-GET        /admin/observe/:id                 controllers.admin.AdminController.observeGameAsAdmin(id: java.util.UUID)
-GET        /admin/observe/:id/:as             controllers.admin.AdminController.observeGameAs(id: java.util.UUID, as: java.util.UUID)
+GET         /admin/observe/random              controllers.admin.AdminController.observeRandomGame()
+GET         /admin/observe/:id                 controllers.admin.AdminController.observeGameAsAdmin(id: java.util.UUID)
+GET         /admin/observe/:id/:as             controllers.admin.AdminController.observeGameAs(id: java.util.UUID, as: java.util.UUID)
 
-GET        /admin/test                        controllers.admin.TestController.tests
-GET        /admin/test/:test                  controllers.admin.TestController.runTest(test)
+GET         /admin/test                        controllers.admin.TestController.tests
+GET         /admin/test/:test                  controllers.admin.TestController.runTest(test)
 
-GET        /admin/accounts                    controllers.admin.AccountController.accountList(q ?= "", sortBy ?= "created")
-GET        /admin/accounts/:id                controllers.admin.AccountController.accountDetail(id: java.util.UUID, sortBy ?= "created")
-GET        /admin/accounts/:id/remove         controllers.admin.AccountController.removeAccount(id: java.util.UUID)
+GET         /admin/users                       controllers.admin.UserController.userList(q ?= "", sortBy ?= "created")
+GET         /admin/users/:id                   controllers.admin.UserController.userDetail(id: java.util.UUID, sortBy ?= "created")
+GET         /admin/users/:id/remove            controllers.admin.UserController.removeUser(id: java.util.UUID)
 
-GET        /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created")
+GET         /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created")
 
 # Assets
-GET        /assets/*file                      controllers.Assets.at(path="/public", file)
+GET         /assets/*file                      controllers.Assets.at(path="/public", file)

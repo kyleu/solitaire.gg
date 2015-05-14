@@ -3,7 +3,7 @@ package models.database.queries.ddl
 import models.database.Statement
 
 case object CreateUserTable extends Statement {
-  override val sql = DdlQueries.trim("""
+  override val sql = """
     create table users (
       id uuid primary key,
       login_infos text[] not null,
@@ -21,8 +21,8 @@ case object CreateUserTable extends Statement {
     );
 
     create index users_login_infos_idx on users using gin (login_infos);
-    create index users_username_idx on users using btree (username collate pg_catalog."default");
-    create index users_email_idx on users using btree (email collate pg_catalog."default");
+    create unique index users_username_idx on users using btree (username collate pg_catalog."default");
+    create unique index users_email_idx on users using btree (email collate pg_catalog."default");
     create index users_roles_idx on users using gin (roles);
-  """)
+  """
 }

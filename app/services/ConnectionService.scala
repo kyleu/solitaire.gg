@@ -7,10 +7,10 @@ import models._
 import utils.{ Logging, Config }
 
 object ConnectionService {
-  def props(supervisor: ActorRef, accountId: UUID, name: String, out: ActorRef) = Props(new ConnectionService(supervisor, accountId, name, out))
+  def props(supervisor: ActorRef, userId: UUID, name: String, out: ActorRef) = Props(new ConnectionService(supervisor, userId, name, out))
 }
 
-class ConnectionService(val supervisor: ActorRef, val accountId: UUID, val name: String, val out: ActorRef) extends ConnectionServiceHelper with Logging {
+class ConnectionService(val supervisor: ActorRef, val userId: UUID, val name: String, val out: ActorRef) extends ConnectionServiceHelper with Logging {
   protected[this] val id = UUID.randomUUID
 
   protected[this] var activeGameId: Option[UUID] = None
@@ -19,7 +19,7 @@ class ConnectionService(val supervisor: ActorRef, val accountId: UUID, val name:
   protected[this] var pendingDebugChannel: Option[ActorRef] = None
 
   override def preStart() = {
-    supervisor ! ConnectionStarted(accountId, name, id, self)
+    supervisor ! ConnectionStarted(userId, name, id, self)
   }
 
   override def receiveRequest = {

@@ -13,12 +13,12 @@ trait GameServiceTraceHelper { this: GameService =>
 
     val playerString = player.connectionId match {
       case Some(cId) =>
-        val observeUrl = controllers.admin.routes.AdminController.observeGameAs(id, player.accountId).url
-        "Account ID:" + player.accountId + "<br />" +
+        val observeUrl = controllers.admin.routes.AdminController.observeGameAs(id, player.userId).url
+        "User ID:" + player.userId + "<br />" +
           "Connection ID: " + cId + "<br />" +
           " <a class=\"btn btn-default\" href=\"" + connUrl(cId) + "\" class=\"trace-link\">Trace Connection</a>" +
           " <a class=\"btn btn-default\" href=\"" + observeUrl + "\" target=\"_blank\">Observe game as [" + player.name + "]</a>"
-      case None => player.accountId.toString + " (Disconnected)"
+      case None => player.userId.toString + " (Disconnected)"
     }
 
     val ret = TraceResponse(this.id, List(

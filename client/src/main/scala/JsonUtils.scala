@@ -11,7 +11,7 @@ object JsonUtils {
   def getLong(o: js.Dynamic) = o.toString.toLong
 
   def getUuidSeq(o: js.Dynamic) = {
-    val a = o.asInstanceOf[js.Array[String]]
+    val a = o.asInstanceOf[js.Array[String]] // Unavoidable
     var idx = 0
     val ret = collection.mutable.ArrayBuffer.empty[UUID]
     while (idx < a.length) {

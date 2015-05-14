@@ -21,24 +21,24 @@ case class GameState(
   val piles = pileSets.flatMap(_.piles)
   val pilesById = piles.map(p => p.id -> p).toMap
 
-  def addPlayer(accountId: UUID, name: String) = players.find(_.account == accountId) match {
+  def addPlayer(userId: UUID, name: String) = players.find(_.userId == userId) match {
     case Some(p) =>
-    //log.info("Reconnecting to game [" + gameId + "] from account [" + name + ": " + accountId + "]")
+    //log.info("Reconnecting to game [" + gameId + "] from user [" + name + ": " + userId + "]")
     // TODO Reconnect
     case None =>
-      //log.info("Adding player [" + name + ": " + accountId + "] to game [" + gameId + "].")
+      //log.info("Adding player [" + userId + ": " + name + "] to game [" + gameId + "].")
       val playerIndex = playerKnownIds.size
       if (playerIndex == maxPlayers) {
         throw new IllegalArgumentException("Too many players.")
       }
-      players = players :+ GamePlayer(accountId, name)
-      playerKnownIds(accountId) = collection.mutable.HashSet.empty
+      players = players :+ GamePlayer(userId, name)
+      playerKnownIds(userId) = collection.mutable.HashSet.empty
   }
 
   def getCard(id: UUID) = piles.flatMap(_.cards.find(_.id == id)).headOption.getOrElse(throw new IllegalStateException("Invalid card [" + id + "]."))
 
-  def view(accountId: UUID) = {
-    val knownCards = playerKnownIds(accountId)
+  def view(userId: UUID) = {
+    val knownCards = playerKnownIds(userId)
     this.copy(
       deck = deck.copy(cards = deck.cards.map(c => if (knownCards.contains(c.id)) { c } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) })),
       pileSets = pileSets.map { ps =>
@@ -51,7 +51,7 @@ case class GameState(
 
   def toStrings = Seq(
     "Game ID: " + gameId, "Rules: " + rules, "Seed: " + seed,
-    "Players: " + players.map(x => x.account.toString + " (" + x.name + ")").mkString(", "),
+    "Players: " + players.map(x => x.userId.toString + " (" + x.name + ")").mkString(", "),
     "Deck: " + deck.cards.toString, piles.size + " Piles: "
   ) ++ piles.map(p => p.toString)
 }

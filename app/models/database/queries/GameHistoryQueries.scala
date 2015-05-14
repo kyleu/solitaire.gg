@@ -15,12 +15,12 @@ object GameHistoryQueries extends BaseQueries {
 
   case class CreateGameHistory(id: UUID, seed: Int, rules: String, status: String, player: UUID, created: LocalDateTime) extends Statement {
     override val sql = insertSql
-    override val values = Seq(id, seed, rules, status, player, DateUtils.toSqlTimestamp(created)): Seq[Any]
+    override val values = Seq[Any](id, seed, rules, status, player, DateUtils.toSqlTimestamp(created))
   }
 
   case class UpdateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int, completed: Option[LocalDateTime]) extends Statement {
     override val sql = updateSql(Seq("status", "moves", "undos", "redos", "completed"))
-    override val values = Seq(status, moves, undos, redos, completed.map(DateUtils.toSqlTimestamp), id): Seq[Any]
+    override val values = Seq[Any](status, moves, undos, redos, completed.map(DateUtils.toSqlTimestamp), id)
   }
 
   case class SearchGameHistories(q: String, orderBy: String) extends Query[List[GameHistory]] {
@@ -29,7 +29,7 @@ object GameHistoryQueries extends BaseQueries {
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }
 
-  case class GetGameHistoriesByAccount(id: UUID, sortBy: String) extends Query[List[GameHistory]] {
+  case class GetGameHistoriesByUser(id: UUID, sortBy: String) extends Query[List[GameHistory]] {
     override val sql = getSql("player = ?", Some("?"))
     override val values = Seq(id, sortBy)
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
@@ -47,16 +47,16 @@ object GameHistoryQueries extends BaseQueries {
   }
 
   private[this] def fromRow(row: RowData) = {
-    val id = UUID.fromString(row("id").asInstanceOf[String])
-    val seed = row("seed").asInstanceOf[Int]
-    val rules = row("rules").asInstanceOf[String]
-    val status = row("status").asInstanceOf[String]
-    val player = UUID.fromString(row("player").asInstanceOf[String])
-    val moves = row("moves").asInstanceOf[Int]
-    val undos = row("undos").asInstanceOf[Int]
-    val redos = row("redos").asInstanceOf[Int]
-    val created = row("created").asInstanceOf[LocalDateTime]
-    val complete = Option(row("completed").asInstanceOf[LocalDateTime])
+    val id = row("id") match { case s: String => UUID.fromString(s) }
+    val seed = row("seed") match { case i: Int => i }
+    val rules = row("rules") match { case s: String => s }
+    val status = row("status") match { case s: String => s }
+    val player = row("player") match { case s: String => UUID.fromString(s) }
+    val moves = row("moves") match { case i: Int => i }
+    val undos = row("undos") match { case i: Int => i }
+    val redos = row("redos") match { case i: Int => i }
+    val created = row("created") match { case ldt: LocalDateTime => ldt }
+    val complete = row("completed") match { case ldt: LocalDateTime => Some(ldt); case _ => None }
     GameHistory(id, seed, rules, status, player, moves, undos, redos, created, complete)
   }
 }

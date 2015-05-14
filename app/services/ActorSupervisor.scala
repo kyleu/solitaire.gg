@@ -19,7 +19,7 @@ object ActorSupervisor extends Logging {
   }
 
   case class GameRecord(connections: Seq[(UUID, String)], actorRef: ActorRef, started: LocalDateTime)
-  case class ConnectionRecord(accountId: UUID, name: String, actorRef: ActorRef, var activeGame: Option[UUID], started: LocalDateTime)
+  case class ConnectionRecord(userId: UUID, name: String, actorRef: ActorRef, var activeGame: Option[UUID], started: LocalDateTime)
 }
 
 class ActorSupervisor extends ActorSupervisorHelper with Logging {
@@ -40,7 +40,7 @@ class ActorSupervisor extends ActorSupervisorHelper with Logging {
   }
 
   override def receiveRequest = {
-    case cs: ConnectionStarted => timeReceive(cs) { handleConnectionStarted(cs.accountId, cs.username, cs.connectionId, cs.conn) }
+    case cs: ConnectionStarted => timeReceive(cs) { handleConnectionStarted(cs.userId, cs.username, cs.connectionId, cs.conn) }
     case cs: ConnectionStopped => timeReceive(cs) { handleConnectionStopped(cs.connectionId) }
 
     case cg: CreateGame => timeReceive(cg) { handleCreateGame(cg.rules, cg.connectionId, cg.seed) }

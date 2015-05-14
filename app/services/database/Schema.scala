@@ -7,9 +7,9 @@ import utils.Logging
 
 object Schema extends Logging {
   val tables = Map(
-    "accounts" -> CreateAccountTable,
     "users" -> CreateUserTable,
     "password_info" -> CreatePasswordInfoTable,
+    "session_info" -> CreateSessionInfoTable,
     "games" -> CreateGameTable
   )
 

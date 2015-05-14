@@ -7,23 +7,23 @@ import models._
 import play.api.libs.concurrent.Akka
 
 trait GameServiceConnectionHelper { this: GameService =>
-  protected[this] def handleAddPlayer(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef) {
-    if(player.accountId == accountId) {
+  protected[this] def handleAddPlayer(userId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef) {
+    if (player.userId == userId) {
       player.connectionActor.foreach(_ ! Disconnected("Joined from another connection."))
       player.connectionId = Some(connectionId)
       player.connectionActor = Some(connectionActor)
     } else {
-      // playerConnections += PlayerRecord(accountId, name, Some(connectionId), Some(connectionActor))
-      gameState.addPlayer(accountId, name)
+      // playerConnections += PlayerRecord(userId, name, Some(connectionId), Some(connectionActor))
+      gameState.addPlayer(userId, name)
       throw new NotImplementedError()
     }
 
     connectionActor ! GameStarted(id, self, started)
-    connectionActor ! GameJoined(id, gameState.view(accountId), possibleMoves(Some(accountId)))
+    connectionActor ! GameJoined(id, gameState.view(userId), possibleMoves(Some(userId)))
   }
 
-  protected[this] def handleAddObserver(accountId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef, as: Option[UUID]) {
-    observerConnections += (PlayerRecord(accountId, name, Some(connectionId), Some(connectionActor)) -> as)
+  protected[this] def handleAddObserver(userId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef, as: Option[UUID]) {
+    observerConnections += (PlayerRecord(userId, name, Some(connectionId), Some(connectionActor)) -> as)
     val gs = as match {
       case Some(p) => gameState.view(p)
       case None => gameState
@@ -37,7 +37,7 @@ trait GameServiceConnectionHelper { this: GameService =>
 
     import scala.concurrent.duration._
 
-    if(player.connectionId == Some(connectionId)) {
+    if (player.connectionId == Some(connectionId)) {
       log.info("Player connection [" + connectionId + "] stopped.")
       player.connectionId = None
       player.connectionActor = None

@@ -1,0 +1,19 @@
+@(user: models.user.User, games: Seq[GameHistory], sortBy: String)(implicit session: Session, flash: Flash)@layout.admin(utils.Config.projectName + " Users", "users") {
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h4>@user.username</h4>
+      <h5>@user.id</h5>
+    </div>
+  </div>
+
+  @if(games.isEmpty) {
+    <div class="panel panel-default">
+      <div class="panel-body">
+        No games found for this user.
+      </div>
+    </div>
+  } else {
+    <h4>@utils.Formatter.withCommas(games.size) games</h4>
+    @gameListTable(sortBy, games)
+  }
+}

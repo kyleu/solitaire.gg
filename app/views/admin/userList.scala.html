@@ -1,0 +1,73 @@
+@(q: String, sortBy: String, users: Seq[models.user.User])(implicit session: Session, flash: Flash)
+
+@th(key: String, label: String) = {
+  @if(sortBy == key) {
+    <th nowrap="nowrap" class="th-@key">@label <span class="caret"></span></th>
+  } else {
+    <th nowrap="nowrap" class="th-@key"><a href="?sortBy=@key">@label</a></th>
+  }
+}
+
+@layout.admin(utils.Config.projectName + " Users", "users") {
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="pull-right">
+          <form id="search-form" action="@controllers.admin.routes.UserController.userList()" class="form-inline">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" class="form-control" name="q" id="searchInput" placeholder="Search Users" value="@q">
+                <div class="input-group-addon" id="search-button"><span class="glyphicon glyphicon-search"></span></div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="text-large">
+          @if(q.isEmpty) {
+            @users.size user@if(users.size != 1){s}.
+          } else {
+            @users.size user@if(users.size != 1){s} for query [@q].
+          }
+        </div>
+      </div>
+    </div>
+
+    @if(users.isEmpty) {
+      <div class="panel panel-default">
+        <div class="panel-body">
+          No users found.
+        </div>
+      </div>
+    } else {
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            @th("id", "User ID")
+            @th("username", "Username")
+            @th("first_name", "First Name")
+            @th("last_name", "Last Name")
+            @th("email", "Email")
+            @th("roles", "Roles")
+            @th("created", "Created")
+            <th class="th-actions"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(u <- users) {
+            <tr>
+              <td><a href="@controllers.admin.routes.UserController.userDetail(u.id)">@u.id</a></td>
+              <td>@u.username</td>
+              <td>@u.firstName</td>
+              <td>@u.lastName</td>
+              <td>@u.email</td>
+              <td>@u.created.toString("yyyy-MM-dd HH:mm:ss")</td>
+              <td>
+                <a href="@controllers.admin.routes.UserController.removeUser(u.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+}

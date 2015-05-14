@@ -1,11 +1,7 @@
-@(user: models.user.User)(implicit session: Session, flash: Flash)@layout.bootstrap(
-  utils.Config.projectName, scripts = Seq(routes.Assets.at("javascripts/common.js").url)
+@(user: models.user.User)(implicit session: Session, flash: Flash)@layout.basic(
+  utils.Config.projectName + " Profile", stylesheets = Seq(routes.Assets.at("stylesheets/profile.css").url)
 ) {
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        Profile!
-      </div>
-    </div>
+  <div class="profile">
+    <h3>@user.username</h3>
   </div>
 }

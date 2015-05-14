@@ -60,7 +60,7 @@ object JsonSerializers {
         case ms: MessageSet => writeJs(ms)
         case _ => throw new IllegalStateException("Invalid Message [" + rm.getClass.getName + "].")
       }
-      val jsArray = jsVal.asInstanceOf[Js.Arr]
+      val jsArray = jsVal match { case arr: Js.Arr => arr; case _ => throw new IllegalArgumentException(jsVal.toString) }
       jsArray.value.toList match {
         case one :: two :: Nil =>
           val oneStr = Js.Str(one match {

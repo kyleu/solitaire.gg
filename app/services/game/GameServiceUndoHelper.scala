@@ -7,23 +7,23 @@ import models._
 trait GameServiceUndoHelper { this: GameService =>
   protected[this] val undoHelper = new UndoHelper()
 
-  protected[this] def handleUndo(accountId: UUID) = {
+  protected[this] def handleUndo(userId: UUID) = {
     if (undoHelper.historyQueue.isEmpty) {
       log.info("Attempt to undo with no actions available.")
     } else {
       val undone = undoHelper.undo(gameState)
       sendToAll(undone, registerUndoResponse = false)
-      handleGetPossibleMoves(accountId)
+      handleGetPossibleMoves(userId)
     }
   }
 
-  protected[this] def handleRedo(accountId: UUID) = {
+  protected[this] def handleRedo(userId: UUID) = {
     if (undoHelper.undoneQueue.isEmpty) {
       log.info("Attempt to redo from empty undo stack.")
     } else {
       val redone = undoHelper.redo(gameState)
       sendToAll(redone, registerUndoResponse = false)
-      handleGetPossibleMoves(accountId)
+      handleGetPossibleMoves(userId)
     }
   }
 

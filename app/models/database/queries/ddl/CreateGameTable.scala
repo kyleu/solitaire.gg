@@ -3,7 +3,7 @@ package models.database.queries.ddl
 import models.database.Statement
 
 case object CreateGameTable extends Statement {
-  override val sql = DdlQueries.trim("""
+  override val sql = """
     create table games (
       id uuid primary key,
       seed int not null,
@@ -20,5 +20,5 @@ case object CreateGameTable extends Statement {
     );
 
     create index games_player_idx on games using btree (player);
-  """)
+  """
 }
