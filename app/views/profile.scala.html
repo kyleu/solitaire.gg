@@ -2,6 +2,10 @@
   utils.Config.projectName + " Profile", stylesheets = Seq(routes.Assets.at("stylesheets/profile.css").url)
 ) {
   <div class="profile">
-    <h3>@user.username</h3>
+    @if(user.isGuest) {
+      <p>You're playing as a guest. Why not <a href="@controllers.auth.routes.RegistrationController.registrationForm()">register</a>?</p>
+    } else {
+      <h3>@user.username</h3>
+    }
   </div>
 }

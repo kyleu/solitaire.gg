@@ -1,14 +1,10 @@
 package controllers.auth
 
-import java.util.UUID
-
 import com.mohiva.play.silhouette.api.{ LoginEvent, LoginInfo, SignUpEvent }
 import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
 import controllers.BaseController
-import models.user.{ User, UserForms }
-import org.joda.time.LocalDateTime
+import models.user.UserForms
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.mvc.Action
 import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
@@ -16,36 +12,33 @@ import scala.concurrent.Future
 object RegistrationController extends BaseController {
   private[this] val env = AuthenticationEnvironment
 
-  def registrationForm = Action.async { implicit request =>
+  def registrationForm = withSession { implicit request =>
     Future.successful(Ok(views.html.auth.register(UserForms.registrationForm)))
   }
 
-  def register = Action.async { implicit request =>
+  def register = withSession { implicit request =>
     UserForms.registrationForm.bindFromRequest.fold(
       form => Future.successful(BadRequest(views.html.auth.register(form))),
       data => {
         val loginInfo = LoginInfo(CredentialsProvider.ID, data.email)
         env.identityService.retrieve(loginInfo).flatMap {
-          case Some(user) =>
-            Future.successful(Redirect(controllers.auth.routes.RegistrationController.registrationForm()).flashing("error" -> "User already exists."))
+          case Some(user) => Future.successful {
+            Redirect(controllers.auth.routes.RegistrationController.registrationForm()).flashing("error" -> "The email address is already in use.")
+          }
           case None =>
             val authInfo = env.hasher.hash(data.password)
-            val user = User(
-              id = UUID.randomUUID(),
-              loginInfos = Seq(loginInfo),
+            val user = request.identity.copy(
+              loginInfos = request.identity.loginInfos :+ loginInfo,
               username = Some(data.username),
               email = Some(data.email),
-              avatarUrl = None,
               firstName = Some(data.firstName),
               lastName = Some(data.lastName),
-              fullName = Some(data.firstName + " " + data.lastName),
-              gender = None,
-              created = new LocalDateTime()
+              fullName = Some(data.firstName + " " + data.lastName)
             )
             val r = Future.successful(Redirect(controllers.routes.HomeController.index()))
             for {
               avatar <- env.avatarService.retrieveURL(data.email)
-              user <- env.identityService.save(user.copy(avatarUrl = avatar))
+              user <- env.identityService.save(user.copy(avatarUrl = avatar), update = true)
               authInfo <- env.authInfoService.save(loginInfo, authInfo)
               authenticator <- env.authenticatorService.create(loginInfo)
               value <- env.authenticatorService.init(authenticator)

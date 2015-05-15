@@ -5,11 +5,11 @@ import java.util.UUID
 import _root_.services.user.AuthenticationEnvironment
 import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
-import models.user.{Role, User, WithRole}
+import models.user.{ Role, User, WithRole }
 import nl.grons.metrics.scala.Timer
 import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.mvc.{AnyContent, Result}
+import play.api.mvc.{ AnyContent, Result }
 import utils.Logging
 import utils.metrics.Instrumented
 

@@ -1,17 +1,18 @@
 package services.user
 
 import java.util.UUID
+
+import com.mohiva.play.silhouette.api.LoginInfo
+import com.mohiva.play.silhouette.api.services.{ AuthInfo, IdentityService }
+import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile
 import models.database.queries.auth.UserQueries
 import models.user.User
-import org.joda.time.LocalDateTime
 import play.api.Play.current
 import play.api.cache.Cache
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import com.mohiva.play.silhouette.api.LoginInfo
-import com.mohiva.play.silhouette.api.services.{ IdentityService, AuthInfo }
-import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile
 import services.database.Database
 import utils.Logging
+
 import scala.concurrent.Future
 import scala.concurrent.duration._
 
@@ -28,7 +29,7 @@ object UserService extends IdentityService[User] with Logging {
 
   override def retrieve(loginInfo: LoginInfo): Future[Option[User]] = Cache.getAs[User]("user-" + loginInfo.providerID + ":" + loginInfo.providerKey) match {
     case Some(u) => Future.successful(Some(u))
-    case None => if(loginInfo.providerID == "anonymous") {
+    case None => if (loginInfo.providerID == "anonymous") {
       Database.query(UserQueries.FindUser(UUID.fromString(loginInfo.providerKey))).map {
         case Some(dbUser) =>
           Cache.set("user-" + loginInfo.providerID + ":" + loginInfo.providerKey, dbUser, 4.hours)
@@ -45,48 +46,43 @@ object UserService extends IdentityService[User] with Logging {
     }
   }
 
-  def save(user: User): Future[User] = {
-    log.info("Creating new user [" + user + "].")
-    Database.execute(UserQueries.CreateUser(user)).map { i =>
+  def save(user: User, update: Boolean = false): Future[User] = {
+    val statement = if (update) {
+      log.info("Updating user [" + user + "].")
+      UserQueries.UpdateUser(user)
+    } else {
+      log.info("Creating new user [" + user + "].")
+      UserQueries.CreateUser(user)
+    }
+    Database.execute(statement).map { i =>
       Cache.set("user-" + user.id, user, 4.hours)
       user
     }
   }
 
-  def save[A <: AuthInfo](profile: CommonSocialProfile): Future[User] = {
+  def link[A <: AuthInfo](currentUser: User, profile: CommonSocialProfile): Future[User] = {
     log.info("Saving profile [" + profile + "].")
     retrieve(profile.loginInfo).flatMap {
-      case Some(user) =>
-        val u = user.copy(
-          email = profile.email,
-          avatarUrl = profile.avatarURL,
-          firstName = profile.firstName.orElse(user.firstName),
-          lastName = profile.lastName.orElse(user.lastName),
-          fullName = profile.fullName.orElse(user.fullName),
-          gender = user.gender
+      case Some(existingUser) =>
+        val u = existingUser.copy(
+          email = profile.email.orElse(existingUser.email),
+          avatarUrl = profile.avatarURL.orElse(existingUser.avatarUrl),
+          firstName = profile.firstName.orElse(existingUser.firstName),
+          lastName = profile.lastName.orElse(existingUser.lastName),
+          fullName = profile.fullName.orElse(existingUser.fullName),
+          gender = existingUser.gender
         )
-        save(u)
-      case None => // Insert a new user
-        val u = User(
-          id = UUID.randomUUID,
-          loginInfos = Seq(profile.loginInfo),
-          username = None,
-          email = profile.email,
-          avatarUrl = profile.avatarURL,
-          firstName = profile.firstName,
-          lastName = profile.lastName,
-          fullName = profile.fullName,
-          gender = None,
-          created = new LocalDateTime()
+        save(u, update = true)
+      case None => // Link to currentUser
+        val u = currentUser.copy(
+          email = profile.email.orElse(currentUser.email),
+          avatarUrl = profile.avatarURL.orElse(currentUser.avatarUrl),
+          firstName = profile.firstName.orElse(currentUser.firstName),
+          lastName = profile.lastName.orElse(currentUser.lastName),
+          fullName = profile.fullName.orElse(currentUser.fullName),
+          gender = currentUser.gender
         )
-        save(u)
+        save(u, update = true)
     }
-  }
-
-  def link[A <: AuthInfo](user: User, profile: CommonSocialProfile): Future[User] = {
-    log.info("Linking profile [" + profile + "] to user [" + user + "].")
-    val s = user.loginInfos
-    val u = user.copy(loginInfos = s :+ profile.loginInfo)
-    save(u)
   }
 }

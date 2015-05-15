@@ -24,6 +24,15 @@ object UserQueries extends BaseQueries {
     }
   }
 
+  case class UpdateUser(u: User) extends Statement {
+    override val sql = updateSql(Seq("login_infos", "username", "email", "avatar_url", "first_name", "last_name", "full_name", "gender", "roles"))
+    override val values = {
+      val loginInfos = u.loginInfos.map(l => l.providerID + ":" + l.providerKey).toArray
+      val roles = u.roles.map(_.name).toArray
+      Seq(loginInfos, u.username, u.email, u.avatarUrl, u.firstName, u.lastName, u.fullName, u.gender, roles, u.id)
+    }
+  }
+
   case class AddRole(id: UUID, role: Role) extends Statement {
     override val sql = s"update $tableName set roles = array_append(roles, ?) where id = ?"
     override val values = Seq(role.name, id)

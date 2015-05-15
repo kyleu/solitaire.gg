@@ -18,5 +18,6 @@ case class User(
     roles: Set[Role] = Set(Role.User),
     created: LocalDateTime
 ) extends Identity {
+  def isGuest = username.isEmpty
   def isAdmin = roles.contains(models.user.Role.Admin)
 }

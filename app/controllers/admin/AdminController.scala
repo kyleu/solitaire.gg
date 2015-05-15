@@ -23,7 +23,10 @@ object AdminController extends BaseController {
 
   def enable = SecuredAction.async { implicit request =>
     Database.execute(UserQueries.AddRole(request.identity.id, Role.Admin)).map { x =>
-      Cache.set("user-" + request.identity.id, request.identity)
+      Cache.set("user-" + request.identity.id, request.identity, 4.hours)
+      for (loginInfo <- request.identity.loginInfos) {
+        Cache.set("user-" + loginInfo.providerID + ":" + loginInfo.providerKey, request.identity, 4.hours)
+      }
       Ok("OK")
     }
   }

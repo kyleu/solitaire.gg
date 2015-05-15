@@ -8,6 +8,11 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 
 object PasswordInfoService extends DelegableAuthInfoDAO[PasswordInfo] {
-  override def save(loginInfo: LoginInfo, authInfo: PasswordInfo) = Database.execute(PasswordInfoQueries.CreatePasswordInfo(loginInfo, authInfo)).map(x => authInfo)
-  override def find(loginInfo: LoginInfo) = Database.query(PasswordInfoQueries.FindPasswordInfo(loginInfo))
+  override def save(loginInfo: LoginInfo, authInfo: PasswordInfo) = {
+    Database.execute(PasswordInfoQueries.CreatePasswordInfo(loginInfo, authInfo)).map(x => authInfo)
+  }
+
+  override def find(loginInfo: LoginInfo) = {
+    Database.query(PasswordInfoQueries.FindPasswordInfo(loginInfo))
+  }
 }

@@ -60,6 +60,7 @@
               <td>@u.firstName</td>
               <td>@u.lastName</td>
               <td>@u.email</td>
+              <td>@u.roles.map(_.name).mkString(", ")</td>
               <td>@u.created.toString("yyyy-MM-dd HH:mm:ss")</td>
               <td>
                 <a href="@controllers.admin.routes.UserController.removeUser(u.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>

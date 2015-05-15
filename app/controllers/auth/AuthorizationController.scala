@@ -21,8 +21,7 @@ object AuthorizationController extends BaseController {
 
   def authenticateCredentials = Action.async { implicit request =>
     UserForms.signInForm.bindFromRequest.fold(
-      form =>
-        Future.successful(BadRequest(views.html.auth.signin(form))),
+      form => Future.successful(BadRequest(views.html.auth.signin(form))),
       credentials => env.credentials.authenticate(credentials).flatMap { loginInfo =>
         val result = Future.successful(Redirect(controllers.routes.HomeController.index()))
         env.identityService.retrieve(loginInfo).flatMap {
@@ -30,7 +29,7 @@ object AuthorizationController extends BaseController {
             env.eventBus.publish(LoginEvent(user, request, request2lang))
             env.authenticatorService.init(authenticator).flatMap(v => env.authenticatorService.embed(v, result))
           }
-          case None => Future.failed(new IdentityNotFoundException("Couldn't find user"))
+          case None => Future.failed(new IdentityNotFoundException("Couldn't find user."))
         }
       }.recover {
         case e: ProviderException => Redirect(controllers.auth.routes.AuthorizationController.signInForm()).flashing("error" -> "Invalid Credentials.")
@@ -38,14 +37,14 @@ object AuthorizationController extends BaseController {
     )
   }
 
-  def authenticateSocial(provider: String) = Action.async { implicit request =>
+  def authenticateSocial(provider: String) = withSession { implicit request =>
     (env.providers.get(provider) match {
       case Some(p: SocialProvider with CommonSocialProfileBuilder) =>
         p.authenticate().flatMap {
           case Left(result) => Future.successful(result)
           case Right(authInfo) => for {
             profile <- p.retrieveProfile(authInfo)
-            user <- env.identityService.save(profile)
+            user <- env.identityService.link(request.identity, profile)
             authInfo <- env.authInfoService.save(profile.loginInfo, authInfo)
             authenticator <- env.authenticatorService.create(profile.loginInfo)
             value <- env.authenticatorService.init(authenticator)
