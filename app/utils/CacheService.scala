@@ -7,6 +7,7 @@ import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
 import models.user.User
 import play.api.Play.current
 import play.api.cache.Cache
+import utils.metrics.Instrumented
 
 import scala.concurrent.duration._
 

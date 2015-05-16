@@ -13,8 +13,9 @@ trait BaseQueries {
 
   protected lazy val getByIdSql = s"select ${columns.mkString(", ")} from $tableName where $idColumn = ?"
 
-  protected def getSql(whereClause: String, orderBy: Option[String] = None) = trim(s"""
-    select ${columns.mkString(", ")} from $tableName where $whereClause${orderBy.map(x => " order by " + x).getOrElse("")}
+  protected def getSql(whereClause: String, orderBy: Option[String] = None, limit: Option[Int] = None) = trim(s"""
+    select ${columns.mkString(", ")} from $tableName
+    where $whereClause${orderBy.map(x => " order by " + x).getOrElse("")}${limit.map(x => " limit " + x).getOrElse("")}
   """)
 
   protected lazy val removeByIdSql = s"delete from $tableName where $idColumn = ?"

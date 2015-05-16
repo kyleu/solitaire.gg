@@ -14,7 +14,7 @@ object Schema extends Logging {
     "oauth2_info" -> CreateOAuth2InfoTable,
     "openid_info" -> CreateOpenIdInfoTable,
     "session_info" -> CreateSessionInfoTable,
-    "requests" -> CreateRequestTable,
+    "requests" -> CreateRequestLogTable,
     "games" -> CreateGameTable
   )
 

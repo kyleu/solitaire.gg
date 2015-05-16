@@ -23,7 +23,7 @@ object Server {
     import Dependencies._
     Seq(
       Database.postgresAsync, Play.playFilters, Play.playWs, Testing.akkaTestkit, Mail.mailer, Authentication.silhouette,
-      Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
+      Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap
     )
   }

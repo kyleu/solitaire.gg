@@ -29,6 +29,7 @@ object Dependencies {
   object Metrics {
     val metrics = "nl.grons" %% "metrics-scala" % "3.5.0" withSources()
     val jvm = "io.dropwizard.metrics" % "metrics-jvm" % "3.1.2" withSources()
+    val ehcache = "io.dropwizard.metrics" % "metrics-ehcache" % "3.1.2" withSources() intransitive()
     val healthChecks = "io.dropwizard.metrics" % "metrics-healthchecks" % "3.1.2" withSources() intransitive()
 
     val json = "io.dropwizard.metrics" % "metrics-json" % "3.1.2" withSources()
