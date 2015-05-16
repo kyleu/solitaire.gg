@@ -1,17 +1,23 @@
 package services.user
 
+import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.api.services.AuthInfoService
-import com.mohiva.play.silhouette.api.util.{ IDGenerator, PasswordHasher, HTTPLayer, Clock }
-import com.mohiva.play.silhouette.impl.providers.oauth1.TwitterProvider
-import com.mohiva.play.silhouette.impl.providers.oauth1.services.PlayOAuth1Service
-import com.mohiva.play.silhouette.impl.providers.openid.SteamProvider
+import com.mohiva.play.silhouette.api.util.{Clock, HTTPLayer, IDGenerator, PasswordHasher}
 import com.mohiva.play.silhouette.impl.providers._
-import com.mohiva.play.silhouette.impl.providers.oauth1.secrets.{ CookieSecretSettings, CookieSecretProvider }
-import com.mohiva.play.silhouette.impl.providers.oauth2.{ GoogleProvider, FacebookProvider }
-import com.mohiva.play.silhouette.impl.providers.oauth2.state.{ CookieStateSettings, CookieStateProvider }
+import com.mohiva.play.silhouette.impl.providers.oauth1.TwitterProvider
+import com.mohiva.play.silhouette.impl.providers.oauth1.secrets.{CookieSecretProvider, CookieSecretSettings}
+import com.mohiva.play.silhouette.impl.providers.oauth1.services.PlayOAuth1Service
+import com.mohiva.play.silhouette.impl.providers.oauth2.state.{CookieStateProvider, CookieStateSettings}
+import com.mohiva.play.silhouette.impl.providers.oauth2.{FacebookProvider, GoogleProvider}
+import com.mohiva.play.silhouette.impl.providers.openid.SteamProvider
 import com.mohiva.play.silhouette.impl.providers.openid.services.PlayOpenIDService
-import com.mohiva.play.silhouette.impl.util.SecureRandomIDGenerator
 import play.api.Configuration
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.mvc.Request
+import utils.SteamUtils
+import utils.SteamUtils.SteamProfileBuilder
+
+import scala.concurrent.Future
 
 class SocialAuthProviders(
     config: Configuration,
@@ -79,8 +85,7 @@ class SocialAuthProviders(
     realm = config.getString("silhouette.steam.realm")
   )
 
-  private[this] val openIdService = new PlayOpenIDService(steamSettings)
-  private[this] val steam = SteamProvider(httpLayer, openIdService, steamSettings)
+  private[this] val steam = new SteamProvider(httpLayer, SteamUtils.steamService(steamSettings), steamSettings) with SteamProfileBuilder
 
   val providers = Seq("local" -> credentials, "facebook" -> facebook, "google" -> google, "twitter" -> twitter, "steam" -> steam)
 }

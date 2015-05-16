@@ -21,13 +21,13 @@ object AuthenticationEnvironment extends Environment[User, CookieAuthenticator] 
 
   val clock = Clock()
 
-  val authInfoService = new DelegableAuthInfoService(PasswordInfoService, OAuth1InfoService, OAuth2InfoService)
+  val authInfoService = new DelegableAuthInfoService(PasswordInfoService, OAuth1InfoService, OAuth2InfoService, OpenIdInfoService)
 
   val credentials = new CredentialsProvider(authInfoService, hasher, Seq(hasher))
 
-  private val sap = new SocialAuthProviders(play.api.Play.current.configuration, httpLayer, hasher, authInfoService, credentials, idGenerator, clock)
-  val providersSeq = sap.providers
+  private[this] val sap = new SocialAuthProviders(play.api.Play.current.configuration, httpLayer, hasher, authInfoService, credentials, idGenerator, clock)
   override val providers = sap.providers.toMap
+  val providersSeq = sap.providers
 
   val avatarService = new GravatarService(httpLayer)
 
@@ -42,7 +42,7 @@ object AuthenticationEnvironment extends Environment[User, CookieAuthenticator] 
     new CookieAuthenticatorService(CookieAuthenticatorSettings(
       cookieName = cfg.getString("name").getOrElse(throw new IllegalArgumentException()),
       cookiePath = cfg.getString("path").getOrElse(throw new IllegalArgumentException()),
-      cookieDomain = None,
+      cookieDomain = cfg.getString("domain"),
       secureCookie = cfg.getBoolean("secure").getOrElse(throw new IllegalArgumentException()),
       httpOnlyCookie = true,
       useFingerprinting = true,

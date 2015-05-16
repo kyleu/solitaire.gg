@@ -44,9 +44,6 @@
           <tr>
             @th("id", "User ID")
             @th("username", "Username")
-            @th("first_name", "First Name")
-            @th("last_name", "Last Name")
-            @th("email", "Email")
             @th("roles", "Roles")
             @th("created", "Created")
             <th class="th-actions"></th>
@@ -57,9 +54,6 @@
             <tr>
               <td><a href="@controllers.admin.routes.UserController.userDetail(u.id)">@u.id</a></td>
               <td>@u.username</td>
-              <td>@u.firstName</td>
-              <td>@u.lastName</td>
-              <td>@u.email</td>
               <td>@u.roles.map(_.name).mkString(", ")</td>
               <td>@u.created.toString("yyyy-MM-dd HH:mm:ss")</td>
               <td>

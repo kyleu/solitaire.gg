@@ -13,14 +13,6 @@
       @if(form.error("email").isDefined) {
         <em>@Messages(form.error("email").get.message)</em>
       }
-      <input type="text" class="form-control" name="firstName" value="" placeholder="First Name" />
-      @if(form.error("firstName").isDefined) {
-        <em>@Messages(form.error("firstName").get.message)</em>
-      }
-      <input type="text" class="form-control" name="lastName" value="" placeholder="Last Name" />
-      @if(form.error("lastName").isDefined) {
-        <em>@Messages(form.error("lastName").get.message)</em>
-      }
       <input type="password" class="form-control" name="password" value="" placeholder="Password" />
       @if(form.error("password").isDefined) {
         <em>@Messages(form.error("password").get.message)</em>

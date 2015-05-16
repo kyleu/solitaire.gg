@@ -20,7 +20,7 @@ object WebsocketController extends BaseController {
       Future.successful(HandlerResult(Ok, Some(securedRequest.identity)))
     }.map {
       case HandlerResult(r, Some(user)) =>
-        val username = user.fullName.getOrElse("Guest")
+        val username = user.username.getOrElse("Guest")
         Right(ConnectionService.props(supervisor, user.id, username, _: ActorRef))
       case HandlerResult(r, None) => Left(r)
     }

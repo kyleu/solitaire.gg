@@ -1,7 +1,7 @@
 package controllers.auth
 
 import com.mohiva.play.silhouette.api.{ LoginEvent, LoginInfo, SignUpEvent }
-import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
+import com.mohiva.play.silhouette.impl.providers.{CommonSocialProfile, CredentialsProvider}
 import controllers.BaseController
 import models.user.UserForms
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -28,17 +28,18 @@ object RegistrationController extends BaseController {
           case None =>
             val authInfo = env.hasher.hash(data.password)
             val user = request.identity.copy(
-              loginInfos = request.identity.loginInfos :+ loginInfo,
               username = Some(data.username),
-              email = Some(data.email),
-              firstName = Some(data.firstName),
-              lastName = Some(data.lastName),
-              fullName = Some(data.firstName + " " + data.lastName)
+              profiles = request.identity.profiles :+ loginInfo
+            )
+            val profile = CommonSocialProfile(
+              loginInfo = loginInfo,
+              email = Some(data.email)
             )
             val r = Future.successful(Redirect(controllers.routes.HomeController.index()))
             for {
               avatar <- env.avatarService.retrieveURL(data.email)
-              user <- env.identityService.save(user.copy(avatarUrl = avatar), update = true)
+              profile <- env.identityService.create(user, profile)
+              user <- env.identityService.save(user.copy(avatar = avatar.getOrElse("default")), update = true)
               authInfo <- env.authInfoService.save(loginInfo, authInfo)
               authenticator <- env.authenticatorService.create(loginInfo)
               value <- env.authenticatorService.init(authenticator)

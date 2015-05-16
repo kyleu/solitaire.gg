@@ -8,11 +8,10 @@ import controllers.BaseController
 import models._
 import models.database.queries.auth.UserQueries
 import models.user.Role
-import play.api.Play.current
-import play.api.cache.Cache
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.ActorSupervisor
 import services.database.Database
+import utils.CacheService
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -23,10 +22,7 @@ object AdminController extends BaseController {
 
   def enable = SecuredAction.async { implicit request =>
     Database.execute(UserQueries.AddRole(request.identity.id, Role.Admin)).map { x =>
-      Cache.set("user-" + request.identity.id, request.identity, 4.hours)
-      for (loginInfo <- request.identity.loginInfos) {
-        Cache.set("user-" + loginInfo.providerID + ":" + loginInfo.providerKey, request.identity, 4.hours)
-      }
+      CacheService.removeUser(request.identity.id)
       Ok("OK")
     }
   }

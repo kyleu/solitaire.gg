@@ -3,11 +3,10 @@ package controllers.auth
 import com.mohiva.play.silhouette.api.exceptions.ProviderException
 import com.mohiva.play.silhouette.api.{ LoginEvent, LogoutEvent }
 import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
-import com.mohiva.play.silhouette.impl.providers.{ SocialProvider, CommonSocialProfileBuilder }
+import com.mohiva.play.silhouette.impl.providers.{CommonSocialProfile, SocialProvider, CommonSocialProfileBuilder}
 import controllers.BaseController
-import models.user.UserForms
+import models.user.{User, UserForms}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.mvc.Action
 import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
@@ -15,11 +14,11 @@ import scala.concurrent.Future
 object AuthorizationController extends BaseController {
   override val env = AuthenticationEnvironment
 
-  def signInForm = UserAwareAction.async { implicit request =>
+  def signInForm = withSession { implicit request =>
     Future.successful(Ok(views.html.auth.signin(UserForms.signInForm)))
   }
 
-  def authenticateCredentials = Action.async { implicit request =>
+  def authenticateCredentials = withSession { implicit request =>
     UserForms.signInForm.bindFromRequest.fold(
       form => Future.successful(BadRequest(views.html.auth.signin(form))),
       credentials => env.credentials.authenticate(credentials).flatMap { loginInfo =>
@@ -44,7 +43,7 @@ object AuthorizationController extends BaseController {
           case Left(result) => Future.successful(result)
           case Right(authInfo) => for {
             profile <- p.retrieveProfile(authInfo)
-            user <- env.identityService.link(request.identity, profile)
+            user <- env.identityService.create(mergeUser(request.identity, profile), profile)
             authInfo <- env.authInfoService.save(profile.loginInfo, authInfo)
             authenticator <- env.authenticatorService.create(profile.loginInfo)
             value <- env.authenticatorService.init(authenticator)
@@ -66,5 +65,12 @@ object AuthorizationController extends BaseController {
     val result = Future.successful(Redirect(controllers.routes.HomeController.index()))
     env.eventBus.publish(LogoutEvent(request.identity, request, request2lang))
     request.authenticator.discard(result)
+  }
+
+  private[this] def mergeUser(user: User, profile: CommonSocialProfile) = {
+    user.copy(
+      username = if(profile.firstName.isDefined && user.username.isEmpty) { profile.firstName } else { user.username },
+      avatar = profile.avatarURL.getOrElse(user.avatar)
+    )
   }
 }

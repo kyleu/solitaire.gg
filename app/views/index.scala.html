@@ -67,11 +67,14 @@
             <h3 class="panel-title">Profile</h3>
           </div>
           <div class="panel-body">
-            <a class="btn btn-default" href="@routes.HomeController.profile()">Profile</a>
             @if(user.username.nonEmpty) {
-              You are currently known as <strong>@user.username</strong>.
+              You are currently known as <strong>@user.username</strong>.<br/>
+              <a class="btn btn-default" href="@routes.HomeController.profile()">Profile</a>
+              <a class="btn btn-default" href="@controllers.auth.routes.AuthorizationController.signOut()">Sign Out</a>
             } else {
-              You haven't picked a username yet. Why not <a href="@controllers.auth.routes.RegistrationController.registrationForm()">register</a>?
+              You haven't picked a username yet. Why not
+              <a href="@controllers.auth.routes.RegistrationController.registrationForm()">register</a> or
+              <a href="@controllers.auth.routes.AuthorizationController.signInForm()">sign in</a>?
             }
           </div>
         </div>

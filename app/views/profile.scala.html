@@ -3,9 +3,22 @@
 ) {
   <div class="profile">
     @if(user.isGuest) {
-      <p>You're playing as a guest. Why not <a href="@controllers.auth.routes.RegistrationController.registrationForm()">register</a>?</p>
+      <p>
+        You're playing as a guest. Why not
+        <a href="@controllers.auth.routes.RegistrationController.registrationForm()">register</a> or
+        <a href="@controllers.auth.routes.AuthorizationController.signInForm()">sign in</a>
+        ?
+      </p>
     } else {
-      <h3>@user.username</h3>
+      <div  class="avatar-image">
+        @user.avatar
+      </div>
+
+      @user.profiles.map { p =>
+        <div class="provider-profile">
+          @p.toString
+        </div>
+      }
     }
   </div>
 }

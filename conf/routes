@@ -4,12 +4,12 @@ GET         /favicon.ico                       controllers.Assets.at(path = "/pu
 GET         /profile                           controllers.HomeController.profile
 
 # Authentication
-GET         /sign-in                           controllers.auth.AuthorizationController.signInForm
-POST        /sign-in                           controllers.auth.AuthorizationController.authenticateCredentials
-GET         /sign-in/:provider                 controllers.auth.AuthorizationController.authenticateSocial(provider)
-GET         /sign-out                          controllers.auth.AuthorizationController.signOut
 GET         /register                          controllers.auth.RegistrationController.registrationForm
 POST        /register                          controllers.auth.RegistrationController.register
+GET         /sign-in                           controllers.auth.AuthorizationController.signInForm
+POST        /authenticate                      controllers.auth.AuthorizationController.authenticateCredentials
+GET         /authenticate/:provider            controllers.auth.AuthorizationController.authenticateSocial(provider)
+GET         /sign-out                          controllers.auth.AuthorizationController.signOut
 
 # Game
 GET         /help/:id                          controllers.HomeController.help(id)

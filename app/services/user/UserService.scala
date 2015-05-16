@@ -5,41 +5,65 @@ import java.util.UUID
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.api.services.{ AuthInfo, IdentityService }
 import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile
-import models.database.queries.auth.UserQueries
+import models.database.queries.auth.{ProfileQueries, UserQueries}
 import models.user.User
-import play.api.Play.current
-import play.api.cache.Cache
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import utils.Logging
+import utils.{CacheService, Logging}
 
 import scala.concurrent.Future
-import scala.concurrent.duration._
 
 object UserService extends IdentityService[User] with Logging {
-  def retrieve(id: UUID): Future[Option[User]] = Cache.getAs[User]("user-" + id.toString) match {
+  def create[A <: AuthInfo](currentUser: User, profile: CommonSocialProfile): Future[User] = {
+    log.info("Saving profile [" + profile + "].")
+    retrieve(profile.loginInfo).flatMap {
+      case Some(existingUser) =>
+        if(existingUser.id == currentUser.id) {
+          val u = existingUser.copy(
+            profiles = existingUser.profiles.filterNot(_.providerID == profile.loginInfo.providerID) :+ profile.loginInfo
+          )
+          save(u, update = true)
+        } else {
+          throw new IllegalStateException("Linking to existing user. What to do?")// TODO
+        }
+      case None => // Link to currentUser
+        Database.execute(ProfileQueries.CreateProfile(profile)).flatMap { x =>
+          val u = currentUser.copy(
+            profiles = currentUser.profiles.filterNot(_.providerID == profile.loginInfo.providerID) :+ profile.loginInfo
+          )
+          save(u, update = true)
+        }
+    }
+  }
+
+  def retrieve(id: UUID): Future[Option[User]] = CacheService.getUser(id) match {
     case Some(u) => Future.successful(Some(u))
     case None => Database.query(UserQueries.FindUser(id)).map {
       case Some(dbUser) =>
-        Cache.set("user-" + dbUser.id, dbUser, 4.hours)
+        CacheService.cacheUser(dbUser)
         Some(dbUser)
       case None => None
     }
   }
 
-  override def retrieve(loginInfo: LoginInfo): Future[Option[User]] = Cache.getAs[User]("user-" + loginInfo.providerID + ":" + loginInfo.providerKey) match {
+  override def retrieve(loginInfo: LoginInfo): Future[Option[User]] = CacheService.getUserByLoginInfo(loginInfo) match {
     case Some(u) => Future.successful(Some(u))
     case None => if (loginInfo.providerID == "anonymous") {
       Database.query(UserQueries.FindUser(UUID.fromString(loginInfo.providerKey))).map {
         case Some(dbUser) =>
-          Cache.set("user-" + loginInfo.providerID + ":" + loginInfo.providerKey, dbUser, 4.hours)
-          Some(dbUser)
+          if(dbUser.profiles.nonEmpty) {
+            log.warn("Attempt to authenticate as anonymous for user with profiles [" + dbUser.profiles + "].")
+            None
+          } else {
+            CacheService.cacheUserForLoginInfo(dbUser, loginInfo)
+            Some(dbUser)
+          }
         case None => None
       }
     } else {
-      Database.query(UserQueries.FindUserByLoginInfo(loginInfo)).map {
+      Database.query(UserQueries.FindUserByProfile(loginInfo)).map {
         case Some(dbUser) =>
-          Cache.set("user-" + loginInfo.providerID + ":" + loginInfo.providerKey, dbUser, 4.hours)
+          CacheService.cacheUserForLoginInfo(dbUser, loginInfo)
           Some(dbUser)
         case None => None
       }
@@ -55,34 +79,8 @@ object UserService extends IdentityService[User] with Logging {
       UserQueries.CreateUser(user)
     }
     Database.execute(statement).map { i =>
-      Cache.set("user-" + user.id, user, 4.hours)
+      CacheService.cacheUser(user)
       user
-    }
-  }
-
-  def link[A <: AuthInfo](currentUser: User, profile: CommonSocialProfile): Future[User] = {
-    log.info("Saving profile [" + profile + "].")
-    retrieve(profile.loginInfo).flatMap {
-      case Some(existingUser) =>
-        val u = existingUser.copy(
-          email = profile.email.orElse(existingUser.email),
-          avatarUrl = profile.avatarURL.orElse(existingUser.avatarUrl),
-          firstName = profile.firstName.orElse(existingUser.firstName),
-          lastName = profile.lastName.orElse(existingUser.lastName),
-          fullName = profile.fullName.orElse(existingUser.fullName),
-          gender = existingUser.gender
-        )
-        save(u, update = true)
-      case None => // Link to currentUser
-        val u = currentUser.copy(
-          email = profile.email.orElse(currentUser.email),
-          avatarUrl = profile.avatarURL.orElse(currentUser.avatarUrl),
-          firstName = profile.firstName.orElse(currentUser.firstName),
-          lastName = profile.lastName.orElse(currentUser.lastName),
-          fullName = profile.fullName.orElse(currentUser.fullName),
-          gender = currentUser.gender
-        )
-        save(u, update = true)
     }
   }
 }

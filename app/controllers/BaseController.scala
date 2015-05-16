@@ -30,14 +30,9 @@ abstract class BaseController extends Silhouette[User, CookieAuthenticator] with
       case None =>
         val user = User(
           id = UUID.randomUUID(),
-          loginInfos = Nil,
           username = None,
-          email = None,
-          avatarUrl = None,
-          firstName = None,
-          lastName = None,
-          fullName = None,
-          gender = None,
+          avatar = "guest",
+          profiles = Nil,
           created = new LocalDateTime()
         )
 

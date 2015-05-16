@@ -7,7 +7,7 @@ import play.api.data.Forms._
 object UserForms {
   val signInForm = Form(
     mapping(
-      "identifier" -> email,
+      "email" -> email,
       "password" -> nonEmptyText
     )(Credentials.apply)(Credentials.unapply)
   )
@@ -15,9 +15,7 @@ object UserForms {
   val registrationForm = Form(
     mapping(
       "username" -> nonEmptyText,
-      "email" -> email,
-      "firstName" -> nonEmptyText,
-      "lastName" -> nonEmptyText,
+      "email" -> nonEmptyText,
       "password" -> nonEmptyText
     )(RegistrationData.apply)(RegistrationData.unapply)
   )
