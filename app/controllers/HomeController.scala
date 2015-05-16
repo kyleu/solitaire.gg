@@ -1,7 +1,10 @@
 package controllers
 
+import models.database.queries.auth.ProfileQueries
 import models.game.rules.GameRulesSet
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.Action
+import services.database.Database
 
 import scala.concurrent.Future
 
@@ -15,7 +18,9 @@ object HomeController extends BaseController {
   }
 
   def profile = withSession { implicit request =>
-    Future.successful(Ok(views.html.profile(request.identity)))
+    Database.query(ProfileQueries.FindProfilesByUser(request.identity.id)).map { profiles =>
+      Ok(views.html.profile(request.identity, profiles))
+    }
   }
 
   def help(id: String) = withSession { implicit request =>

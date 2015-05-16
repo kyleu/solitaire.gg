@@ -87,5 +87,5 @@ class SocialAuthProviders(
 
   private[this] val steam = new SteamProvider(httpLayer, SteamUtils.steamService(steamSettings), steamSettings) with SteamProfileBuilder
 
-  val providers = Seq("local" -> credentials, "facebook" -> facebook, "google" -> google, "twitter" -> twitter, "steam" -> steam)
+  val providers = Seq("credentials" -> credentials, "facebook" -> facebook, "google" -> google, "twitter" -> twitter, "steam" -> steam)
 }

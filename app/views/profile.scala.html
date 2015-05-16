@@ -1,6 +1,8 @@
-@(user: models.user.User)(implicit session: Session, flash: Flash)@layout.basic(
-  utils.Config.projectName + " Profile", stylesheets = Seq(routes.Assets.at("stylesheets/profile.css").url)
-) {
+@(user: models.user.User, profiles: Seq[com.mohiva.play.silhouette.impl.providers.CommonSocialProfile])(implicit session: Session, flash: Flash)
+@import utils.AuthenticationSerializers._
+@import play.api.libs.json.Json
+
+@layout.basic(utils.Config.projectName + " Profile", stylesheets = Seq(routes.Assets.at("stylesheets/profile.css").url)) {
   <div class="profile">
     @if(user.isGuest) {
       <p>
@@ -10,15 +12,25 @@
         ?
       </p>
     } else {
-      <div  class="avatar-image">
-        @user.avatar
-      </div>
+      @if(user.avatar.startsWith("http")) {
+        <div class="avatar-image">
+          <img src="@user.avatar" />
+        </div>
+      }
 
-      @user.profiles.map { p =>
-        <div class="provider-profile">
-          @p.toString
+      <div class="username">@user.username.getOrElse("Guest")</div>
+
+      <hr class="clear">
+      @services.user.AuthenticationEnvironment.providersSeq.map { p =>
+        <div>
+          <h5>@p._1</h5>
+          <pre>@profiles.find(_.loginInfo.providerID == p._1).map(x => Json.prettyPrint(Json.toJson(x))).getOrElse("Not found")</pre>
         </div>
       }
     }
   </div>
+}
+
+@foo() = {
+
 }

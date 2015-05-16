@@ -7,7 +7,7 @@ import models.database.queries.BaseQueries
 import models.database.{ FlatSingleRowQuery, Statement }
 import org.joda.time.LocalDateTime
 
-object SessionInfoQueries extends BaseQueries {
+object AuthenticatorQueries extends BaseQueries {
   override protected val tableName = "session_info"
   override protected val columns = Seq("id", "provider", "key", "last_used", "expiration", "fingerprint", "created")
 
