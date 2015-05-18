@@ -4,9 +4,9 @@ import com.github.mauricio.async.db.RowData
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.providers.OpenIDInfo
 import models.database.queries.BaseQueries
-import models.database.{FlatSingleRowQuery, Statement}
+import models.database.{ FlatSingleRowQuery, Statement }
 import org.joda.time.LocalDateTime
-import play.api.libs.json.{JsValue, Json}
+import play.api.libs.json.{ JsValue, Json }
 
 object OpenIdInfoQueries extends BaseQueries {
   override protected val tableName = "openid_info"

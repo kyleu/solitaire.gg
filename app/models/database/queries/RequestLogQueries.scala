@@ -4,7 +4,7 @@ import java.util.UUID
 
 import com.github.mauricio.async.db.RowData
 import models.audit.RequestLog
-import models.database.{Query, Statement}
+import models.database.{ Query, Statement }
 import org.joda.time.LocalDateTime
 
 object RequestLogQueries extends BaseQueries {

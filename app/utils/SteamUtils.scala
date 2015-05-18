@@ -6,7 +6,7 @@ import com.mohiva.play.silhouette.impl.providers._
 import com.mohiva.play.silhouette.impl.providers.openid.services.PlayOpenIDService
 import play.api.Play.current
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.libs.json.{JsArray, JsObject, Json}
+import play.api.libs.json.{ JsArray, JsObject, Json }
 import play.api.libs.ws.WS
 import play.api.mvc.Request
 

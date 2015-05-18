@@ -19,12 +19,7 @@ object RequestLog {
     secure = r.secure,
     path = r.path,
     queryString = r.rawQueryString,
-
-    cookie = if(r.cookies.isEmpty) {
-      None
-    } else {
-      Some(r.cookies.toSeq.map(c => c.name + "=" + c.value).mkString(", "))
-    },
+    cookie = if (r.cookies.isEmpty) { None } else { Some(r.cookies.toSeq.map(c => c.name + "=" + c.value).mkString(", ")) },
     referrer = r.headers.get("HTTP_REFERER"),
     userAgent = r.headers.get("USER_AGENT"),
     started = new LocalDateTime(),

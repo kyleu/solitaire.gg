@@ -12,7 +12,7 @@ import models.user.{ Role, User, WithRole }
 import nl.grons.metrics.scala.Timer
 import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.mvc.{RequestHeader, AnyContent, Result}
+import play.api.mvc.{ RequestHeader, AnyContent, Result }
 import utils.Logging
 import utils.metrics.Instrumented
 

@@ -3,7 +3,7 @@ package controllers
 import models.database.queries.auth.ProfileQueries
 import models.game.rules.GameRulesSet
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.mvc.{AnyContent, Action}
+import play.api.mvc.{ AnyContent, Action }
 import services.database.Database
 
 import scala.concurrent.Future

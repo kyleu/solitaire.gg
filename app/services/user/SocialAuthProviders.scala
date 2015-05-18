@@ -2,13 +2,13 @@ package services.user
 
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.api.services.AuthInfoService
-import com.mohiva.play.silhouette.api.util.{Clock, HTTPLayer, IDGenerator, PasswordHasher}
+import com.mohiva.play.silhouette.api.util.{ Clock, HTTPLayer, IDGenerator, PasswordHasher }
 import com.mohiva.play.silhouette.impl.providers._
 import com.mohiva.play.silhouette.impl.providers.oauth1.TwitterProvider
-import com.mohiva.play.silhouette.impl.providers.oauth1.secrets.{CookieSecretProvider, CookieSecretSettings}
+import com.mohiva.play.silhouette.impl.providers.oauth1.secrets.{ CookieSecretProvider, CookieSecretSettings }
 import com.mohiva.play.silhouette.impl.providers.oauth1.services.PlayOAuth1Service
-import com.mohiva.play.silhouette.impl.providers.oauth2.state.{CookieStateProvider, CookieStateSettings}
-import com.mohiva.play.silhouette.impl.providers.oauth2.{FacebookProvider, GoogleProvider}
+import com.mohiva.play.silhouette.impl.providers.oauth2.state.{ CookieStateProvider, CookieStateSettings }
+import com.mohiva.play.silhouette.impl.providers.oauth2.{ FacebookProvider, GoogleProvider }
 import com.mohiva.play.silhouette.impl.providers.openid.SteamProvider
 import com.mohiva.play.silhouette.impl.providers.openid.services.PlayOpenIDService
 import play.api.Configuration

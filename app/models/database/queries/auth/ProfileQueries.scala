@@ -6,7 +6,7 @@ import com.github.mauricio.async.db.RowData
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile
 import models.database.queries.BaseQueries
-import models.database.{Query, FlatSingleRowQuery, Statement}
+import models.database.{ Query, FlatSingleRowQuery, Statement }
 import org.joda.time.LocalDateTime
 
 object ProfileQueries extends BaseQueries {
@@ -27,7 +27,8 @@ object ProfileQueries extends BaseQueries {
   }
 
   case class FindProfilesByUser(id: UUID) extends Query[List[CommonSocialProfile]] {
-    override val sql = s"select ${columns.mkString(", ")} from $tableName p where (p.provider || ':' || p.key) in (select unnest(profiles) from users where users.id = ?)"
+    override val sql = s"select ${columns.mkString(", ")} from $tableName p " +
+      "where (p.provider || ':' || p.key) in (select unnest(profiles) from users where users.id = ?)"
     override val values = Seq(id)
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }

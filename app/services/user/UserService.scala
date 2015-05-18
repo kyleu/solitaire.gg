@@ -5,11 +5,11 @@ import java.util.UUID
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.api.services.{ AuthInfo, IdentityService }
 import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile
-import models.database.queries.auth.{ProfileQueries, UserQueries}
+import models.database.queries.auth.{ ProfileQueries, UserQueries }
 import models.user.User
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import utils.{CacheService, Logging}
+import utils.{ CacheService, Logging }
 
 import scala.concurrent.Future
 
@@ -18,13 +18,13 @@ object UserService extends IdentityService[User] with Logging {
     log.info("Saving profile [" + profile + "].")
     retrieve(profile.loginInfo).flatMap {
       case Some(existingUser) =>
-        if(existingUser.id == currentUser.id) {
+        if (existingUser.id == currentUser.id) {
           val u = existingUser.copy(
             profiles = existingUser.profiles.filterNot(_.providerID == profile.loginInfo.providerID) :+ profile.loginInfo
           )
           save(u, update = true)
         } else {
-          throw new IllegalStateException("Linking to existing user. What to do?")// TODO
+          throw new IllegalStateException("Linking to existing user. What to do?") // TODO
         }
       case None => // Link to currentUser
         Database.execute(ProfileQueries.CreateProfile(profile)).flatMap { x =>
@@ -51,7 +51,7 @@ object UserService extends IdentityService[User] with Logging {
     case None => if (loginInfo.providerID == "anonymous") {
       Database.query(UserQueries.FindUser(UUID.fromString(loginInfo.providerKey))).map {
         case Some(dbUser) =>
-          if(dbUser.profiles.nonEmpty) {
+          if (dbUser.profiles.nonEmpty) {
             log.warn("Attempt to authenticate as anonymous for user with profiles [" + dbUser.profiles + "].")
             None
           } else {

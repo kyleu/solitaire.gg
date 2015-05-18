@@ -3,9 +3,9 @@ package controllers.auth
 import com.mohiva.play.silhouette.api.exceptions.ProviderException
 import com.mohiva.play.silhouette.api.{ LoginEvent, LogoutEvent }
 import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
-import com.mohiva.play.silhouette.impl.providers.{CommonSocialProfile, SocialProvider, CommonSocialProfileBuilder}
+import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, SocialProvider, CommonSocialProfileBuilder }
 import controllers.BaseController
-import models.user.{User, UserForms}
+import models.user.{ User, UserForms }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.user.AuthenticationEnvironment
 
@@ -69,7 +69,7 @@ object AuthorizationController extends BaseController {
 
   private[this] def mergeUser(user: User, profile: CommonSocialProfile) = {
     user.copy(
-      username = if(profile.firstName.isDefined && user.username.isEmpty) { profile.firstName } else { user.username },
+      username = if (profile.firstName.isDefined && user.username.isEmpty) { profile.firstName } else { user.username },
       avatar = profile.avatarURL.getOrElse(user.avatar)
     )
   }
