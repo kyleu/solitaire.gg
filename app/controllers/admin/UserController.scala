@@ -3,6 +3,7 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
+import models.database.queries.RequestLogQueries
 import models.database.queries.auth.UserQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
@@ -20,8 +21,10 @@ object UserController extends BaseController {
 
   def userDetail(id: UUID, sortGamesBy: String) = AdminAction.async { implicit request =>
     UserService.retrieve(id).flatMap {
-      case Some(user) => GameHistoryService.getByUser(id, sortGamesBy).map { games =>
-        Ok(views.html.admin.userDetail(user, games, sortGamesBy))
+      case Some(user) => GameHistoryService.getByUser(id, sortGamesBy).flatMap { games =>
+        Database.query(RequestLogQueries.FindRequestsByUser(id)).map { requests =>
+          Ok(views.html.admin.userDetail(user, games, requests, ""))
+        }
       }
       case None => Future.successful(NotFound("User [" + id + "] not found."))
     }

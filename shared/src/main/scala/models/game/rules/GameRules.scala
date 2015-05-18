@@ -72,8 +72,6 @@ case class GameRules(
   private[this] lazy val pileIdsByType = Map(
     "stock" -> stock.map(s => Seq("stock")).getOrElse(Nil),
     "waste" -> waste.map(w => (1 to w.numPiles).map(i => "waste-" + i)).getOrElse(Nil),
-    "reserves" -> reserves.map(r => (1 to r.numPiles).map(i => "reserve-" + i)).getOrElse(Nil),
-    "cells" -> cells.map(c => (1 to c.numPiles).map(i => "cells-" + i)).getOrElse(Nil),
     "foundations" -> foundations.flatMap(fs => (1 to fs.numPiles).map { i =>
       if (fs.setNumber == 0) { "foundation-" + i } else { "foundation" + fs.setNumber + "-" + i }
     }),
@@ -86,14 +84,17 @@ case class GameRules(
           if (ps.setNumber == 0) { "pyramid-" + i + "-" + j } else { "pyramid" + ps.setNumber + "-" + i + "-" + j }
         }
       }
-    }
+    },
+    "reserves" -> reserves.map(r => (1 to r.numPiles).map(i => "reserve-" + i)).getOrElse(Nil),
+    "cells" -> cells.map(c => (1 to c.numPiles).map(i => "cells-" + i)).getOrElse(Nil)
   )
 
-  private[this] lazy val prototypePileSets = (stock.map(s => StockSet(s, pileIdsByType)) ++
+  private[this] lazy val prototypePileSets = (
+    stock.map(s => StockSet(s, pileIdsByType)) ++
     waste.map(w => WasteSet(w)) ++
-    reserves.map(r => ReserveSet(r)) ++
-    cells.map(c => CellSet(c)) ++
     foundations.map(f => FoundationSet(f, deckOptions)) ++
     tableaus.map(t => TableauSet(t, deckOptions, cardRemovalMethod)) ++
-    pyramids.map(p => PyramidSet(p, cardRemovalMethod, deckOptions.lowRank))).toSeq
+    pyramids.map(p => PyramidSet(p, cardRemovalMethod, deckOptions.lowRank))).toSeq ++
+    reserves.map(r => ReserveSet(r)) ++
+    cells.map(c => CellSet(c))
 }

@@ -1,6 +1,6 @@
-@(user: models.user.User, rules: String, initialAction: Seq[String], seed: Option[Int] = None, offline: Boolean = false)(
+@(title: String, user: models.user.User, rulesId: String, initialAction: Seq[String], seed: Option[Int] = None, offline: Boolean = false)(
     implicit session: Session, flash: Flash
-)@layout.basic(utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url)) {
+)@layout.basic(title + " - " + utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url)) {
   <div id="game-container"></div>
 
   <div id="status-panel">
@@ -26,7 +26,7 @@
     },
     "debug": "@utils.Config.debug",
     "cardSet": "@utils.Config.defaultCardSet",
-    "rules": "@rules",
+    "rules": "@rulesId",
     @if(seed.isDefined) {"seed": @seed.get, }
     @if(offline) {"offline": true, }
     "initialAction": [ @Html(initialAction.map("\"" + _ + "\"").mkString(", ")) ]

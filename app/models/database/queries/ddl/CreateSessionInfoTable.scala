@@ -11,7 +11,7 @@ case object CreateSessionInfoTable extends Statement {
        key text not null,
        last_used timestamp without time zone not null,
        expiration timestamp without time zone not null,
-       fingerprint character varying(64) not null,
+       fingerprint text not null,
        created timestamp without time zone not null,
        constraint pk_session_info primary key (id)
     )

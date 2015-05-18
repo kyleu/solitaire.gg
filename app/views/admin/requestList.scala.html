@@ -1,0 +1,15 @@
+@(sortBy: String, requests: Seq[models.audit.RequestLog])(implicit session: Session, flash: Flash)
+
+@layout.admin(utils.Config.projectName + " Requests", "requests") {
+  <div class="container">
+    @if(requests.isEmpty) {
+      <div class="panel panel-default">
+        <div class="panel-body">
+          No requests found.
+        </div>
+      </div>
+    } else {
+      @requestListTable(sortBy, requests)
+    }
+  </div>
+}

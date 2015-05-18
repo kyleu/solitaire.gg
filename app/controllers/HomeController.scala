@@ -3,7 +3,7 @@ package controllers
 import models.database.queries.auth.ProfileQueries
 import models.game.rules.GameRulesSet
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.mvc.Action
+import play.api.mvc.{AnyContent, Action}
 import services.database.Database
 
 import scala.concurrent.Future
@@ -36,26 +36,38 @@ object HomeController extends BaseController {
   }
 
   def newDefaultGame() = withSession { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.identity, "klondike", Seq("start"))))
+    startGame()
   }
 
   def newGame(rules: String) = withSession { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.identity, rules, Seq("start"))))
+    startGame(rules)
   }
 
   def newGameWithSeed(rules: String, seed: Int) = withSession { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.identity, rules, Seq("start"), Some(seed))))
+    startGame(rules, seed = Some(seed))
   }
 
   def newDefaultOfflineGame() = withSession { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.identity, "klondike", Seq("start"), offline = true)))
+    startGame(offline = true)
   }
 
   def newOfflineGame(rules: String) = withSession { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.identity, rules, Seq("start"), offline = true)))
+    startGame(rules, offline = true)
   }
 
   def newOfflineGameWithSeed(rules: String, seed: Int) = withSession { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.identity, rules, Seq("start"), seed = Some(seed), offline = true)))
+    startGame(rules, seed = Some(seed), offline = true)
+  }
+
+  private[this] def startGame(
+    rulesId: String = "klondike",
+    initialAction: Seq[String] = Seq("start"),
+    seed: Option[Int] = None,
+    offline: Boolean = false
+  )(implicit request: SecuredRequest[AnyContent]) = {
+    Future.successful(GameRulesSet.allById.get(rulesId) match {
+      case Some(rules) => Ok(views.html.game.gameplay(rules.title, request.identity, rulesId, initialAction))
+      case None => NotFound("Unknown game [" + rulesId + "].")
+    })
   }
 }

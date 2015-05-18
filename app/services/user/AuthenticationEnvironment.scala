@@ -45,7 +45,7 @@ object AuthenticationEnvironment extends Environment[User, CookieAuthenticator] 
       cookieDomain = cfg.getString("domain"),
       secureCookie = cfg.getBoolean("secure").getOrElse(throw new IllegalArgumentException()),
       httpOnlyCookie = true,
-      useFingerprinting = true,
+      useFingerprinting = cfg.getBoolean("useFingerprinting").getOrElse(throw new IllegalArgumentException()),
       cookieMaxAge = cfg.getInt("maxAge"),
       authenticatorIdleTimeout = cfg.getInt("idleTimeout"),
       authenticatorExpiry = cfg.getInt("expiry").getOrElse(throw new IllegalArgumentException())

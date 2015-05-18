@@ -25,7 +25,7 @@ object RequestLogQueries extends BaseQueries {
   }
 
   case class GetRecentRequests() extends Query[List[RequestLog]] {
-    override val sql = getSql("", orderBy = Some("started desc"), limit = Some(100))
+    override val sql = getSql("1 = 1", orderBy = Some("started desc"), limit = Some(100))
     override val values = Nil
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }
@@ -51,9 +51,9 @@ object RequestLogQueries extends BaseQueries {
 
     val cookie = row("cookie") match { case s: String => Some(s); case _ => None }
     val referrer = row("referrer") match { case s: String => Some(s); case _ => None }
-    val userAgent = row("userAgent") match { case s: String => Some(s); case _ => None }
+    val userAgent = row("user_agent") match { case s: String => Some(s); case _ => None }
     val started = row("started") match { case ldt: LocalDateTime => ldt }
-    val duration = row("duration") match { case l: Long => l }
+    val duration = row("duration") match { case i: Int => i }
     val status = row("status") match { case i: Int => i }
 
     RequestLog(

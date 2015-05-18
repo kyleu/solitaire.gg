@@ -39,17 +39,17 @@ object AdminController extends BaseController {
         Ok("No games available.")
       } else {
         val gameId = ss.games(new Random().nextInt(ss.games.length))._1
-        Ok(views.html.game.gameplay(request.identity, "", Seq("observe", gameId.toString)))
+        Ok(views.html.game.gameplay("Observing [" + gameId + "]", request.identity, "", Seq("observe", gameId.toString)))
       }
       case se: ServerError => Ok(se.reason + ": " + se.content)
     }
   }
 
   def observeGameAsAdmin(gameId: UUID) = AdminAction.async { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.identity, "", Seq("observe", gameId.toString))))
+    Future.successful(Ok(views.html.game.gameplay("Observing [" + gameId + "]", request.identity, "", Seq("observe", gameId.toString))))
   }
 
   def observeGameAs(gameId: UUID, as: UUID) = AdminAction.async { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(request.identity, "", Seq("observe", gameId.toString, as.toString))))
+    Future.successful(Ok(views.html.game.gameplay("Observing [" + gameId + "]", request.identity, "", Seq("observe", gameId.toString, as.toString))))
   }
 }

@@ -45,6 +45,7 @@
             @th("id", "User ID")
             @th("username", "Username")
             @th("roles", "Roles")
+            @th("accounts", "Accounts")
             @th("created", "Created")
             <th class="th-actions"></th>
           </tr>
@@ -54,7 +55,8 @@
             <tr>
               <td><a href="@controllers.admin.routes.UserController.userDetail(u.id)">@u.id</a></td>
               <td>@u.username</td>
-              <td>@u.roles.map(_.name).mkString(", ")</td>
+              <td>@Html(u.roles.map(_.name).mkString(",<br/>"))</td>
+              <td>@Html(u.profiles.map(x => x.providerID + ":" + x.providerKey).mkString(",<br/>"))</td>
               <td>@u.created.toString("yyyy-MM-dd HH:mm:ss")</td>
               <td>
                 <a href="@controllers.admin.routes.UserController.removeUser(u.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>

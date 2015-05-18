@@ -1,0 +1,34 @@
+@(sortBy: String, requests: Seq[models.audit.RequestLog])
+
+@th(key: String, label: String) = {
+  @if(sortBy == key) {
+    <th nowrap="nowrap" class="th-@key">@label <span class="caret"></span></th>
+  } else {
+    <th nowrap="nowrap" class="th-@key"><a href="?sortBy=@key">@label</a></th>
+  }
+}
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      @th("request-id", "Request ID")
+      @th("request-user", "User")
+      @th("request-method", "Method")
+      @th("request-host", "Host")
+      @th("request-path", "Path")
+      @th("request-started", "Started")
+    </tr>
+  </thead>
+  <tbody>
+  @for(r <- requests) {
+    <tr>
+      <td title="@r.id">@r.id.toString.substring(0, 8)</td>
+      <td><a href="@controllers.admin.routes.UserController.userDetail(r.userId)">@r.userId</a></td>
+      <td>@r.method</td>
+      <td>@r.host</td>
+      <td>@r.path</td>
+      <td>@r.started.toString("yyyy-MM-dd HH:mm:ss")</td>
+    </tr>
+  }
+  </tbody>
+</table>

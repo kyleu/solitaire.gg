@@ -7,7 +7,7 @@ import org.joda.time.LocalDateTime
 import play.api.mvc.RequestHeader
 
 object RequestLog {
-  def apply(r: RequestHeader, userId: UUID, loginInfo: LoginInfo, duration: Long, status: Int): RequestLog = RequestLog(
+  def apply(r: RequestHeader, userId: UUID, loginInfo: LoginInfo, duration: Int, status: Int): RequestLog = RequestLog(
     id = UUID.randomUUID,
     userId = userId,
     authProvider = loginInfo.providerID,
@@ -50,6 +50,6 @@ case class RequestLog(
   referrer: Option[String],
   userAgent: Option[String],
   started: LocalDateTime,
-  duration: Long,
+  duration: Int,
   status: Int
 )

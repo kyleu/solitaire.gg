@@ -33,7 +33,8 @@ abstract class BaseController extends Silhouette[User, CookieAuthenticator] with
       case Some(user) =>
         val secured = SecuredRequest(user, request.authenticator.getOrElse(throw new IllegalStateException()), request)
         block(secured).map { r =>
-          logRequest(secured, secured.identity.id, secured.authenticator.loginInfo, System.currentTimeMillis - startTime, r.header.status)
+          val duration = (System.currentTimeMillis - startTime).toInt
+          logRequest(secured, secured.identity.id, secured.authenticator.loginInfo, duration, r.header.status)
           r
         }
       case None =>
@@ -53,14 +54,15 @@ abstract class BaseController extends Silhouette[User, CookieAuthenticator] with
         } yield {
           env.eventBus.publish(SignUpEvent(user, request, request2lang))
           env.eventBus.publish(LoginEvent(user, request, request2lang))
-          logRequest(request, user.id, authenticator.loginInfo, System.currentTimeMillis - startTime, authedResponse.header.status)
+          val duration = (System.currentTimeMillis - startTime).toInt
+          logRequest(request, user.id, authenticator.loginInfo, duration, authedResponse.header.status)
           authedResponse
         }
     }
     response
   }
 
-  private[this] def logRequest(request: RequestHeader, userId: UUID, loginInfo: LoginInfo, duration: Long, status: Int) = {
+  private[this] def logRequest(request: RequestHeader, userId: UUID, loginInfo: LoginInfo, duration: Int, status: Int) = {
     val log = RequestLog(request, userId, loginInfo, duration, status)
     Database.execute(RequestLogQueries.CreateRequest(log))
   }

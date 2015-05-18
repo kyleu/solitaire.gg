@@ -1,10 +1,22 @@
-@(user: models.user.User, games: Seq[GameHistory], sortBy: String)(implicit session: Session, flash: Flash)@layout.admin(utils.Config.projectName + " Users", "users") {
+@(user: models.user.User, games: Seq[GameHistory], requests: Seq[models.audit.RequestLog], sortBy: String)(implicit session: Session, flash: Flash)
+@layout.admin(utils.Config.projectName + " Users", "users") {
   <div class="panel panel-default">
     <div class="panel-body">
       <h4>@user.username</h4>
       <h5>@user.id</h5>
     </div>
   </div>
+
+  @if(requests.isEmpty) {
+    <div class="panel panel-default">
+      <div class="panel-body">
+        No requests found for this user.
+      </div>
+    </div>
+  } else {
+    <h4>@utils.Formatter.withCommas(requests.size) requests</h4>
+    @requestListTable(sortBy, requests)
+  }
 
   @if(games.isEmpty) {
     <div class="panel panel-default">

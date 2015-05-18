@@ -32,6 +32,8 @@ GET         /admin/sandbox                     controllers.SandboxController.adm
 GET         /admin/enable                      controllers.admin.AdminController.enable
 GET         /admin/status                      controllers.admin.AdminController.status
 
+GET         /admin/requests                    controllers.admin.RequestLogController.requestList(sortBy ?= "started")
+
 GET         /admin/rules                       controllers.admin.RulesController.rules
 GET         /admin/rules/politaire             controllers.admin.RulesController.politaire
 GET         /admin/rules/import                controllers.admin.RulesController.importRules

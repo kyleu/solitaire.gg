@@ -50,7 +50,7 @@ object UserQueries extends BaseQueries {
 
   case class SearchUsers(q: String) extends Query[List[User]] {
     override val sql = getSql("id::character varying like lower(?) or lower(username) like lower(?)", Some("created desc"))
-    override val values = Seq("%" + q + "%", "%" + q + "%", "%" + q + "%")
+    override val values = Seq("%" + q + "%", "%" + q + "%")
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }
 

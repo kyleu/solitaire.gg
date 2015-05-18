@@ -10,7 +10,7 @@
     <form method="post" action="@controllers.auth.routes.AuthorizationController.authenticateCredentials()">
       <input type="text" class="form-control" name="email" value="@form("email").value" placeholder="Email or Username" />
       @if(form.error("email").isDefined) {
-        <em>@Messages(form.error("identifier").get.message)</em>
+        <em>@Messages(form.error("email").get.message)</em>
       }
       <input type="password" class="form-control" name="password" placeholder="Password" />
       @if(form.error("password").isDefined) {
