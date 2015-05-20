@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-../offline/resources/osx/Solitaire.GG.app/Contents/MacOS/Solitaire.GG ../offline/build/dev/electron
+../offline/resources/osx/Solitaire.app/Contents/MacOS/Solitaire ../offline/build/dev/electron

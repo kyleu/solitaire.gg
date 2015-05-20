@@ -19,12 +19,99 @@
       }
 
       <div class="username">@user.username.getOrElse("Guest")</div>
+      @defining(profiles.find(_.loginInfo.providerID == "credentials")) { credentials =>
+        @if(credentials.isDefined) {
+          <em>@credentials.get.email</em>
+        } else {
+          <a href="@controllers.auth.routes.RegistrationController.registrationForm()">Create a local account</a>
+        }
+      }
 
-      <hr class="clear">
-      @services.user.AuthenticationEnvironment.providersSeq.map { p =>
-        <div>
-          <h5>@p._1</h5>
-          <pre>@profiles.find(_.loginInfo.providerID == p._1).map(x => Json.prettyPrint(Json.toJson(x))).getOrElse("Not found")</pre>
+      @defining(profiles.find(_.loginInfo.providerID == "facebook")) { facebook =>
+        <div class="profile-detail">
+          @if(facebook.isDefined) {
+            <div class="provider facebook">
+              <img src="@routes.Assets.at("images/providers/facebook.png")">
+            </div>
+            <strong>@facebook.get.fullName</strong><br/>
+            @facebook.get.email<br/>
+            <a href="@routes.HomeController.updateAvatar("facebook")">Use your Facebook profile image as your avatar.</a>
+          } else {
+            @defining(controllers.auth.routes.AuthorizationController.authenticateSocial("facebook")) { url =>
+              <a href="@url" class="provider facebook">
+                <img src="@routes.Assets.at("images/providers/facebook.png")">
+              </a>
+              <br/>
+              <a href="@url">Connect your Facebook account</a>
+            }
+          }
+          <div class="clear"></div>
+        </div>
+      }
+
+      @defining(profiles.find(_.loginInfo.providerID == "google")) { google =>
+        <div class="profile-detail">
+          @if(google.isDefined) {
+            <div class="provider google">
+              <img src="@routes.Assets.at("images/providers/google.png")">
+            </div>
+            <strong>@google.get.fullName</strong><br/>
+            @google.get.email<br/>
+            <a href="@routes.HomeController.updateAvatar("google")">Use your Google+ profile image as your avatar.</a>
+          } else {
+            @defining(controllers.auth.routes.AuthorizationController.authenticateSocial("google")) { url =>
+              <a href="@url" class="provider google">
+                <img src="@routes.Assets.at("images/providers/google.png")">
+              </a>
+              <br/>
+              <a href="@url">Connect your Google account</a>
+            }
+          }
+          <div class="clear"></div>
+        </div>
+      }
+
+      @defining(profiles.find(_.loginInfo.providerID == "twitter")) { twitter =>
+        <div class="profile-detail">
+          @if(twitter.isDefined) {
+            <div class="provider twitter">
+              <img src="@routes.Assets.at("images/providers/twitter.png")">
+            </div>
+            <strong>@twitter.get.fullName.map(n => "@" + n)</strong><br/>
+            @twitter.get.email<br/>
+            <a href="@routes.HomeController.updateAvatar("twitter")">Use your Twitter profile image as your avatar.</a>
+          } else {
+            @defining(controllers.auth.routes.AuthorizationController.authenticateSocial("twitter")) { url =>
+              <a href="@url" class="provider twitter">
+                <img src="@routes.Assets.at("images/providers/twitter.png")">
+              </a>
+              <br/>
+              <a href="@url">Connect your Twitter account</a>
+            }
+          }
+            <div class="clear"></div>
+        </div>
+      }
+
+      @defining(profiles.find(_.loginInfo.providerID == "steam")) { steam =>
+        <div class="profile-detail">
+          @if(steam.isDefined) {
+            <div class="provider steam">
+              <img src="@routes.Assets.at("images/providers/steam.png")">
+            </div>
+            <strong>@steam.get.fullName</strong><br/>
+            @steam.get.email<br/>
+            <a href="@routes.HomeController.updateAvatar("steam")">Use your Steam profile image as your avatar.</a>
+          } else {
+            @defining(controllers.auth.routes.AuthorizationController.authenticateSocial("steam")) { url =>
+              <a href="@url" class="provider steam">
+                <img src="@routes.Assets.at("images/providers/steam.png")">
+              </a>
+              <br/>
+              <a href="@url">Connect your Steam account</a>
+            }
+          }
+          <div class="clear"></div>
         </div>
       }
     }

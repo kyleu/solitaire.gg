@@ -36,7 +36,6 @@ object PlayLoggingFilter extends Filter with Logging with Instrumented {
     def logCompleted(request: RequestHeader, result: Result): Unit = {
       activeRequests.dec()
       context.stop()
-      //Database.execute(RequestLogQueries.CreateRequest(toLog(request)))
       statusCodes.getOrElse(result.header.status, otherStatuses).mark()
     }
 

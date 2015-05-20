@@ -9,7 +9,7 @@ object StockPileOptions {
     val dragFromConstraint = if (rules.dealTo == StockDealTo.Manually) {
       Some(Constraint.topCardOnly)
     } else if (rules.dealTo == StockDealTo.WasteOrPairManually) {
-      None // TODO Some(Constraint.topCardOnly)?
+      Some(Constraint.topCardOnly)
     } else {
       None
     }
@@ -20,10 +20,10 @@ object StockPileOptions {
       Some(Constraint.topCardOnly)
     }
 
-    val selectPileConstraint = rules.maximumDeals match {
-      case Some(1) => Some(Constraint.never)
-      case Some(i) => Some(Constraint.empty) // TODO throw new NotImplementedError()
-      case None => Some(Constraint.empty)
+    val selectPileConstraint: (Constraint, () => Unit) = rules.maximumDeals match {
+      case Some(1) => Constraint.never -> (() => Unit)
+      case Some(i) => Constraint.finiteTimes(i)
+      case None => Constraint.empty -> (() => Unit)
     }
 
     val cardsToDraw = rules.cardsDealt match {
@@ -61,14 +61,18 @@ object StockPileOptions {
       None
     }
 
-    val selectPileAction = if (redrawFrom.isEmpty) { None } else { Some(SelectPileActions.moveAllFrom(redrawFrom)) }
+    val selectPileAction = if (redrawFrom.isEmpty) {
+      None
+    } else {
+      Some(SelectPileActions.moveAllFrom(redrawFrom, selectPileConstraint._2))
+    }
 
     PileOptions(
       cardsShown = Some(rules.cardsShown),
       direction = Some("r"),
       dragFromConstraint = dragFromConstraint,
       selectCardConstraint = selectCardConstraint,
-      selectPileConstraint = selectPileConstraint,
+      selectPileConstraint = Some(selectPileConstraint._1),
       selectCardAction = selectCardAction,
       selectPileAction = selectPileAction
     )

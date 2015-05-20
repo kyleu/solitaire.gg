@@ -4,19 +4,9 @@
     <div class="panel-body">
       <h4>@user.username</h4>
       <h5>@user.id</h5>
+      <em>@games.size games, @requests.size requests</em>
     </div>
   </div>
-
-  @if(requests.isEmpty) {
-    <div class="panel panel-default">
-      <div class="panel-body">
-        No requests found for this user.
-      </div>
-    </div>
-  } else {
-    <h4>@utils.Formatter.withCommas(requests.size) requests</h4>
-    @requestListTable(sortBy, requests)
-  }
 
   @if(games.isEmpty) {
     <div class="panel panel-default">
@@ -27,5 +17,16 @@
   } else {
     <h4>@utils.Formatter.withCommas(games.size) games</h4>
     @gameListTable(sortBy, games)
+  }
+
+  @if(requests.isEmpty) {
+    <div class="panel panel-default">
+      <div class="panel-body">
+        No requests found for this user.
+      </div>
+    </div>
+  } else {
+    <h4>@utils.Formatter.withCommas(requests.size) requests</h4>
+    @requestListTable(sortBy, requests)
   }
 }

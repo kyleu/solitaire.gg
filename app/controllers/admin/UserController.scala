@@ -9,6 +9,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.game.GameHistoryService
 import services.user.UserService
+import utils.CacheService
 
 import scala.concurrent.Future
 
@@ -32,6 +33,7 @@ object UserController extends BaseController {
 
   def removeUser(id: UUID) = AdminAction.async { implicit request =>
     Database.execute(UserQueries.RemoveUser(id)).map { i =>
+      CacheService.removeUser(id)
       Redirect(controllers.admin.routes.UserController.userList(""))
     }
   }

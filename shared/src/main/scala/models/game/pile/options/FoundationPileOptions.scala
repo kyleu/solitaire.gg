@@ -3,7 +3,7 @@ package models.game.pile.options
 import models.game.{ GameState, Card, Rank }
 import models.game.pile.Pile
 import models.game.pile.constraints.Constraint
-import models.game.rules.{ FoundationLowRank, DeckOptions, FoundationCanMoveFrom, FoundationRules }
+import models.game.rules._
 
 object FoundationPileOptions {
   private[this] def getConstraints(lowRank: Rank, rules: FoundationRules) = {
@@ -20,15 +20,38 @@ object FoundationPileOptions {
         } else {
           val firstCard = cards.headOption.getOrElse(throw new IllegalStateException())
           if (pile.cards.isEmpty) {
-            if (lowRank == Rank.Unknown) {
-              true
+            val siblings = gameState.pileSets.find(ps => ps.piles.exists(p => p.id == pile.id)).map(_.piles.filterNot(_.id == pile.id)).getOrElse {
+              throw new IllegalStateException("Can't find pileset for [" + pile.id + "].")
+            }
+            val rankOk = if (lowRank == Rank.Unknown) {
+              siblings.flatMap(_.cards.headOption).headOption match {
+                case Some(card) =>
+                  firstCard.r == card.r
+                case None =>
+                  true
+              }
             } else {
               firstCard.r == lowRank
+            }
+            rules.initialCardRestriction match {
+              case Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(c)) =>
+                val suits = siblings.flatMap(_.cards.headOption.map(_.s))
+                rankOk && firstCard.s.color == c && !suits.contains(firstCard.s)
+              case Some(FoundationInitialCardRestriction.SpecificSuit(s)) =>
+                rankOk && firstCard.s == s
+              case Some(FoundationInitialCardRestriction.UniqueColors) =>
+                val colors = siblings.flatMap(_.cards.headOption.map(_.s.color))
+                rankOk && !colors.contains(firstCard.s.color)
+              case Some(FoundationInitialCardRestriction.UniqueSuits) =>
+                val suits = siblings.flatMap(_.cards.headOption.map(_.s))
+                rankOk && !suits.contains(firstCard.s)
+              case None =>
+                rankOk
             }
           } else {
             val target = pile.cards.last
             val s = rules.suitMatchRule.check(target.s, firstCard.s)
-            val r = rules.rankMatchRule.check(target.r, firstCard.r, lowRank)
+            val r = rules.rankMatchRule.check(target.r, firstCard.r, lowRank, rules.wrapFromKingToAce)
             s && r
           }
         }

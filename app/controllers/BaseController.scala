@@ -2,6 +2,7 @@ package controllers
 
 import java.util.UUID
 
+import _root_.services.audit.RequestLogService
 import _root_.services.database.Database
 import _root_.services.user.AuthenticationEnvironment
 import com.mohiva.play.silhouette.api._
@@ -64,6 +65,6 @@ abstract class BaseController extends Silhouette[User, CookieAuthenticator] with
 
   private[this] def logRequest(request: RequestHeader, userId: UUID, loginInfo: LoginInfo, duration: Int, status: Int) = {
     val log = RequestLog(request, userId, loginInfo, duration, status)
-    Database.execute(RequestLogQueries.CreateRequest(log))
+    RequestLogService.save(log)
   }
 }

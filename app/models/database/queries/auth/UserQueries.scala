@@ -31,6 +31,13 @@ object UserQueries extends BaseQueries {
     }
   }
 
+  case class SetAvatarUrl(userId: UUID, url: String) extends Statement {
+    override val sql = updateSql(Seq("avatar"))
+    override val values = {
+      Seq(url, userId)
+    }
+  }
+
   case class AddRole(id: UUID, role: Role) extends Statement {
     override val sql = s"update $tableName set roles = array_append(roles, ?) where id = ?"
     override val values = Seq(role.name, id)
@@ -39,6 +46,12 @@ object UserQueries extends BaseQueries {
   case class FindUser(id: UUID) extends FlatSingleRowQuery[User] {
     override val sql = getSql("id = ?")
     override val values = Seq(id)
+    override def flatMap(row: RowData) = Some(fromRow(row))
+  }
+
+  case class FindUserByUsername(username: String) extends FlatSingleRowQuery[User] {
+    override val sql = getSql("username = ?")
+    override val values = Seq(username)
     override def flatMap(row: RowData) = Some(fromRow(row))
   }
 

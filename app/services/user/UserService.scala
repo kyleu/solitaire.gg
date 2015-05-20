@@ -24,7 +24,7 @@ object UserService extends IdentityService[User] with Logging {
           )
           save(u, update = true)
         } else {
-          throw new IllegalStateException("Linking to existing user. What to do?") // TODO
+          Future.successful(existingUser)
         }
       case None => // Link to currentUser
         Database.execute(ProfileQueries.CreateProfile(profile)).flatMap { x =>
@@ -45,6 +45,8 @@ object UserService extends IdentityService[User] with Logging {
       case None => None
     }
   }
+
+  def retrieve(username: String): Future[Option[User]] = Database.query(UserQueries.FindUserByUsername(username))
 
   override def retrieve(loginInfo: LoginInfo): Future[Option[User]] = CacheService.getUserByLoginInfo(loginInfo) match {
     case Some(u) => Future.successful(Some(u))
@@ -79,7 +81,7 @@ object UserService extends IdentityService[User] with Logging {
       UserQueries.CreateUser(user)
     }
     Database.execute(statement).map { i =>
-      CacheService.cacheUser(user)
+      CacheService.removeUser(user.id)
       user
     }
   }

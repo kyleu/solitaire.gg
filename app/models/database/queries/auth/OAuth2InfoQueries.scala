@@ -20,6 +20,15 @@ object OAuth2InfoQueries extends BaseQueries {
     }
   }
 
+  case class UpdateOAuth2Info(l: LoginInfo, o: OAuth2Info) extends Statement {
+    override val sql = s"update $tableName set access_token = ?, token_type = ?, expires_in = ?, refresh_token = ?, params = ?, created = ?" +
+      "where provider = ? and key = ?"
+    override val values = {
+      val params = o.params.map(p => Json.prettyPrint(Json.toJson(p)))
+      Seq(o.accessToken, o.tokenType, o.expiresIn, o.refreshToken, params, new LocalDateTime(), l.providerID, l.providerKey)
+    }
+  }
+
   case class FindOAuth2Info(l: LoginInfo) extends FlatSingleRowQuery[OAuth2Info] {
     override val sql = getSql("provider = ? and key = ?")
     override val values = Seq(l.providerID, l.providerKey)

@@ -5,7 +5,7 @@ import models.game.rules._
 import models.game.{ Card, Rank }
 
 trait TableauPileOptionHelper {
-  protected[this] def dragFrom(rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank) = {
+  protected[this] def dragFrom(rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank, wrapFromKingToAce: Boolean) = {
     if (rmr == RankMatchRule.None || smr == SuitMatchRule.None) {
       Constraint.topCardOnly
     } else {
@@ -18,7 +18,7 @@ trait TableauPileOptionHelper {
           for (c <- cards) {
             if (valid) {
               lastCard.foreach { lc =>
-                if (!rmr.check(lc.r, c.r, lowRank)) {
+                if (!rmr.check(lc.r, c.r, lowRank, wrapFromKingToAce)) {
                   valid = false
                 } else if (!smr.check(lc.s, c.s)) {
                   valid = false
@@ -33,7 +33,15 @@ trait TableauPileOptionHelper {
     }
   }
 
-  protected[this] def dragTo(crm: CardRemovalMethod, rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank, emptyPileRanks: Seq[Rank], maxCards: Int) = {
+  protected[this] def dragTo(
+    crm: CardRemovalMethod,
+    rmr: RankMatchRule,
+    smr: SuitMatchRule,
+    lowRank: Rank,
+    emptyPileRanks: Seq[Rank],
+    maxCards: Int,
+    wrapFromKingToAce: Boolean
+  ) = {
     Constraint("tableau", (pile, cards, gameState) => {
       if (maxCards > 0 && pile.cards.length + cards.length > maxCards) {
         false
@@ -51,7 +59,7 @@ trait TableauPileOptionHelper {
           } else {
             crm match {
               case CardRemovalMethod.BuildSequencesOnFoundation => if (smr.check(topCard.s, firstDraggedCard.s)) {
-                rmr.check(topCard.r, firstDraggedCard.r, lowRank)
+                rmr.check(topCard.r, firstDraggedCard.r, lowRank, wrapFromKingToAce)
               } else {
                 false
               }

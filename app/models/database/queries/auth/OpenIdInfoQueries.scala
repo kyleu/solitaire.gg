@@ -18,6 +18,12 @@ object OpenIdInfoQueries extends BaseQueries {
     override val values = Seq(l.providerID, l.providerKey, o.id, attributes, new LocalDateTime())
   }
 
+  case class UpdateOpenIdInfo(l: LoginInfo, o: OpenIDInfo) extends Statement {
+    override val sql = s"update $tableName set id = ?, attributes = ?, created = ? where provider = ? and key = ?"
+    val attributes = Json.prettyPrint(Json.toJson(o.attributes))
+    override val values = Seq(o.id, attributes, new LocalDateTime(), l.providerID, l.providerKey)
+  }
+
   case class FindOpenIdInfo(l: LoginInfo) extends FlatSingleRowQuery[OpenIDInfo] {
     override val sql = getSql("provider = ? and key = ?")
     override val values = Seq(l.providerID, l.providerKey)

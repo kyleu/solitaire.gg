@@ -19,7 +19,7 @@ object FoundationLookup {
     "F0i" -> "Keep foundation off-screen",
     "F0a" -> "Auto-move cards to foundation",
     "F0ao" -> "Perform auto-moves for foundation from",
-    "F0u" -> "TODO" // TODO
+    "F0u" -> "Initial card restriction"
   )
   val translations = Map(
     "F0n" -> Map(-1 -> "4 per deck", 1 -> "1 stack", 2 -> "2 stacks", 4 -> "4 stacks", 8 -> "8 stacks", 12 -> "12 stacks", 16 -> "16 stacks"),
@@ -43,6 +43,9 @@ object FoundationLookup {
     "F0a" -> Map(
       0 -> "Never", 4 -> "Keeping piles level", 3 -> "When all stackable cards are off", 2 -> "When one stackable card is off",
       5 -> "When stackable cards are removable", 1 -> "Whenever possible"
+    ),
+    "F0u" -> Map(
+      0 -> "None", 1 -> "Unique colors", 2 -> "Unique suits", 3 -> "Unique red suits", 4 -> "Unique black suits", 7 -> "Hearts", 8 -> "Spades"
     ),
     "F0ao" -> PolitaireParserHelper.pileTypes
   )

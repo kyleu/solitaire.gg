@@ -20,8 +20,8 @@ object RequestLog {
     path = r.path,
     queryString = r.rawQueryString,
     cookie = if (r.cookies.isEmpty) { None } else { Some(r.cookies.toSeq.map(c => c.name + "=" + c.value).mkString(", ")) },
-    referrer = r.headers.get("HTTP_REFERER"),
-    userAgent = r.headers.get("USER_AGENT"),
+    referrer = r.headers.get("Referer"),
+    userAgent = r.headers.get("User-Agent"),
     started = new LocalDateTime(),
     duration = duration,
     status = status

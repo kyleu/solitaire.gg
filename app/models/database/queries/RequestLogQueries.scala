@@ -24,8 +24,8 @@ object RequestLogQueries extends BaseQueries {
     )
   }
 
-  case class GetRecentRequests() extends Query[List[RequestLog]] {
-    override val sql = getSql("1 = 1", orderBy = Some("started desc"), limit = Some(100))
+  case class GetRecentRequests(limit: Int = 100) extends Query[List[RequestLog]] {
+    override val sql = getSql("1 = 1", orderBy = Some("started desc"), limit = Some(limit))
     override val values = Nil
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }

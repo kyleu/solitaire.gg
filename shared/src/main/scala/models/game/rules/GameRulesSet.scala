@@ -13,6 +13,7 @@ object GameRulesSet {
     "goldmine",
     "kingsly",
     "klondike",
+    "klondike1card",
     "nestor",
     "pyramid",
     "trigon",

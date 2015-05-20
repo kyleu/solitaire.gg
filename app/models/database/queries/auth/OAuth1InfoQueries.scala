@@ -16,6 +16,11 @@ object OAuth1InfoQueries extends BaseQueries {
     override val values = Seq(l.providerID, l.providerKey, o.token, o.secret, new LocalDateTime())
   }
 
+  case class UpdateOAuth1Info(l: LoginInfo, o: OAuth1Info) extends Statement {
+    override val sql = s"update $tableName set token = ?, secret = ?, created = ? where provider = ? and key = ?"
+    override val values = Seq(o.token, o.secret, new LocalDateTime(), l.providerID, l.providerKey)
+  }
+
   case class FindOAuth1Info(l: LoginInfo) extends FlatSingleRowQuery[OAuth1Info] {
     override val sql = getSql("provider = ? and key = ?")
     override val values = Seq(l.providerID, l.providerKey)

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo "Building Solitaire.GG..."
+echo "Building Solitaire.gg"
 
 if [ ! -d ../offline ]; then
   echo "Missing ../offline"
@@ -65,7 +65,7 @@ cp -R "build/dev/web/" "build/dev/electron"
 cp -R "electron/dev/" "build/dev/electron"
 asar pack build/dev/electron bin/dev/solitaire.gg.asar
 
-cp bin/dev/solitaire.gg.asar bin/dev/osx/Solitaire.GG.app/Contents/Resources/app.asar
+cp bin/dev/solitaire.gg.asar bin/dev/osx/Solitaire.gg.app/Contents/Resources/app.asar
 cp bin/dev/solitaire.gg.asar bin/dev/linux/resources/app.asar
 cp bin/dev/solitaire.gg.asar bin/dev/win32/resources/app.asar
 cp bin/dev/solitaire.gg.asar bin/dev/win64/resources/app.asar
@@ -79,7 +79,7 @@ cp -R "build/prod/web/" "build/prod/electron"
 cp -R "electron/prod/" "build/prod/electron"
 asar pack build/prod/electron bin/prod/solitaire.gg.asar
 
-cp bin/prod/solitaire.gg.asar bin/prod/osx/Solitaire.GG.app/Contents/Resources/app.asar
+cp bin/prod/solitaire.gg.asar bin/prod/osx/Solitaire.gg.app/Contents/Resources/app.asar
 cp bin/prod/solitaire.gg.asar bin/prod/linux/resources/app.asar
 cp bin/prod/solitaire.gg.asar bin/prod/win32/resources/app.asar
 cp bin/prod/solitaire.gg.asar bin/prod/win64/resources/app.asar

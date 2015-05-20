@@ -12,14 +12,22 @@ object TableauPileOptions extends TableauPileOptionHelper {
       case FillEmptyWith.None => Nil
       case FillEmptyWith.Aces => Seq(Rank.Ace)
       case FillEmptyWith.Kings => Seq(Rank.King)
-      case FillEmptyWith.KingsUntilStockEmpty => throw new NotImplementedError()
+      case FillEmptyWith.KingsUntilStockEmpty => throw new NotImplementedError() // TODO
       case FillEmptyWith.KingsOrAces => Seq(Rank.King, Rank.Ace)
       case FillEmptyWith.Sevens => Seq(Rank.Seven)
     }
 
-    val dragFromConstraint = dragFrom(rules.rankMatchRuleForMovingStacks, rules.suitMatchRuleForMovingStacks, deckOptions.lowRank)
+    val dragFromConstraint = dragFrom(rules.rankMatchRuleForMovingStacks, rules.suitMatchRuleForMovingStacks, deckOptions.lowRank, rules.wrapFromKingToAce)
     val dragToConstraint = {
-      dragTo(cardRemovalMethod, rules.rankMatchRuleForBuilding, rules.suitMatchRuleForBuilding, deckOptions.lowRank, emptyRanks, rules.maxCards)
+      dragTo(
+        crm = cardRemovalMethod,
+        rmr = rules.rankMatchRuleForBuilding,
+        smr = rules.suitMatchRuleForBuilding,
+        lowRank = deckOptions.lowRank,
+        emptyPileRanks = emptyRanks,
+        maxCards = rules.maxCards,
+        wrapFromKingToAce = rules.wrapFromKingToAce
+      )
     }
 
     val (selectCardConstraint, selectCardAction) = {

@@ -16,6 +16,11 @@ object PasswordInfoQueries extends BaseQueries {
     override val values = Seq(l.providerID, l.providerKey, p.hasher, p.password, p.salt, new LocalDateTime())
   }
 
+  case class UpdatePasswordInfo(l: LoginInfo, o: PasswordInfo) extends Statement {
+    override val sql = s"update $tableName set hasher = ?, password = ?, salt = ?, created = ? where provider = ? and key = ?"
+    override val values = Seq(o.hasher, o.password, o.salt, new LocalDateTime(), l.providerID, l.providerKey)
+  }
+
   case class FindPasswordInfo(l: LoginInfo) extends FlatSingleRowQuery[PasswordInfo] {
     override val sql = getSql("provider = ? and key = ?")
     override val values = Seq(l.providerID, l.providerKey)
