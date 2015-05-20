@@ -12,12 +12,12 @@ import models.game.rules._
  *   Number of cells (C0n): 8
  *   Foundation name (F0Nm): Aces Foundation
  *   Number of foundation piles (F0n): 4 (4 stacks)
- *   TODO (F0u): 2
+ *   Initial card restriction (F0u): 2 (Unique suits)
  *   Foundation name (F1Nm): Kings Foundation
  *   Foundation low rank (F1b): 22 (Deck's high card)
  *   Number of foundation piles (F1n): 4 (4 stacks)
  *   Foundation rank match rule (F1r): 32 (Build down)
- *   TODO (F1u): 2
+ *   Initial card restriction (F1u): 2 (Unique suits)
  *   Foundation Sets (Fn): 2
  *   Deal order (RDd): 9 (Columns, left to right, top to bottom)
  *   Allowed pick ups/redeals (RDn): 2 (2)

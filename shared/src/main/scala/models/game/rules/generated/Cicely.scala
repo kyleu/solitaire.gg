@@ -14,7 +14,7 @@ import models.game.rules._
  *   Foundation initial cards (F0d): 0 (None)
  *   Can move cards from foundation (F0mb): 1 (Always)
  *   Number of foundation piles (F0n): 4 (4 stacks)
- *   TODO (F0u): 2
+ *   Initial card restriction (F0u): 2 (Unique suits)
  *   Foundation name (F1Nm): King Foundation
  *   Auto-move cards to foundation (F1a): 0 (Never)
  *   Foundation low rank (F1b): 22 (Deck's high card)
@@ -22,7 +22,7 @@ import models.game.rules._
  *   Can move cards from foundation (F1mb): 1 (Always)
  *   Number of foundation piles (F1n): 4 (4 stacks)
  *   Foundation rank match rule (F1r): 32 (Build down)
- *   TODO (F1u): 2
+ *   Initial card restriction (F1u): 2 (Unique suits)
  *   Foundation Sets (Fn): 2
  *   Auto-fill an empty tableau from (T0af): 0 (Nowhere)
  *   Tableau initial cards (T0d): 4 (4 cards)

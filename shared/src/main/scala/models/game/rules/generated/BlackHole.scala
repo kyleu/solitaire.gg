@@ -12,7 +12,7 @@ import models.game.rules._
  *   Number of foundation piles (F0n): 1 (1 stack)
  *   Foundation rank match rule (F0r): 160 (Build up or down)
  *   Foundation suit match rule (F0s): 5 (Regardless of suit)
- *   TODO (F0u): 7
+ *   Initial card restriction (F0u): 7 (Hearts)
  *   Foundation wraps from king to ace (F0w): true
  *   *S0cardsShown (S0cardsShown): 16
  *   Enable stock (Sn): 0 (No stock)

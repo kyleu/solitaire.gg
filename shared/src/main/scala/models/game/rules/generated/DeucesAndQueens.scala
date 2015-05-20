@@ -12,7 +12,7 @@ import models.game.rules._
  *   Can move cards from foundation (F0mb): 1 (Always)
  *   Number of foundation piles (F0n): 4 (4 stacks)
  *   Foundation suit match rule (F0s): 5 (Regardless of suit)
- *   TODO (F0u): 0
+ *   Initial card restriction (F0u): 0 (None)
  *   Foundation name (F1Nm): King Foundation
  *   Auto-move cards to foundation (F1a): 0 (Never)
  *   Foundation low rank (F1b): 12 (Q)

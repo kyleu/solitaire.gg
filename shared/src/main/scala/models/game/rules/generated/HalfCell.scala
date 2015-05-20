@@ -11,7 +11,7 @@ import models.game.rules._
  *   Maximum cards for foundation (F0m): 26
  *   Number of foundation piles (F0n): 2 (2 stacks)
  *   Foundation suit match rule (F0s): 4 (In alternating colors)
- *   TODO (F0u): 1
+ *   Initial card restriction (F0u): 1 (Unique colors)
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): -3 (Fill rows with rest of deck)
  *   *T0db (T0db): 0

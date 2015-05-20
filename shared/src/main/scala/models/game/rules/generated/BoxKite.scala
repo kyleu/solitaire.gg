@@ -8,12 +8,12 @@ import models.game.rules._
  * Original Settings:
  *   Foundation initial cards (F0d): -1
  *   Number of foundation piles (F0n): 4 (4 stacks)
- *   TODO (F0u): 2
+ *   Initial card restriction (F0u): 2 (Unique suits)
  *   Foundation low rank (F1b): 22 (Deck's high card)
  *   Foundation initial cards (F1d): -1
  *   Number of foundation piles (F1n): 4 (4 stacks)
  *   Foundation rank match rule (F1r): 32 (Build down)
- *   TODO (F1u): 2
+ *   Initial card restriction (F1u): 2 (Unique suits)
  *   Foundation Sets (Fn): 2
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): 8 (8 cards)

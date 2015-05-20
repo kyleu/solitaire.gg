@@ -13,7 +13,7 @@ import models.game.rules._
  *   Number of foundation piles (F0n): 1 (1 stack)
  *   Foundation rank match rule (F0r): 160 (Build up or down)
  *   Foundation suit match rule (F0s): 5 (Regardless of suit)
- *   TODO (F0u): 7
+ *   Initial card restriction (F0u): 7 (Hearts)
  *   Foundation wraps from king to ace (F0w): true
  *   Foundation low rank (F1b): 22 (Deck's high card)
  *   Foundation initial cards (F1d): 1 (1 cards)
@@ -22,7 +22,7 @@ import models.game.rules._
  *   Number of foundation piles (F1n): 1 (1 stack)
  *   Foundation rank match rule (F1r): 160 (Build up or down)
  *   Foundation suit match rule (F1s): 5 (Regardless of suit)
- *   TODO (F1u): 8
+ *   Initial card restriction (F1u): 8 (Spades)
  *   Foundation wraps from king to ace (F1w): true
  *   Foundation Sets (Fn): 2
  *   *S0cardsShown (S0cardsShown): 16

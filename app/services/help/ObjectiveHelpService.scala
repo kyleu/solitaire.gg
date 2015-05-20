@@ -33,7 +33,7 @@ object ObjectiveHelpService {
       case CardRemovalMethod.StackSameRankOrSuitInWaste => "Stack cards of same rank and suit in the waste."
     }
     case VictoryCondition.AllOnFoundationOrStock => "Place all cards on the foundation or stock."
-    case VictoryCondition.AllOnTableauSorted => "Sort all cards on the tableau."
+    case VictoryCondition.AllOnTableauSorted => "Sort all cards on the tableau or move them to the foundation."
     case VictoryCondition.NoneInPyramid => "Remove all cards from the pyramid."
     case VictoryCondition.NoneInStock => "Remove all cards from the stock."
   }

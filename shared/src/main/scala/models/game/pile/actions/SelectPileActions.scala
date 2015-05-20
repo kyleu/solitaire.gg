@@ -13,7 +13,7 @@ object SelectPileActions {
     targets.flatMap { target =>
       val targetPile = gameState.pilesById(target)
       val cards = Seq(targetPile.cards.reverse: _*)
-      trigger
+      trigger()
       cards.map { card =>
         targetPile.removeCard(card)
         pile.addCard(card)

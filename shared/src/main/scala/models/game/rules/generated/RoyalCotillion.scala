@@ -10,13 +10,13 @@ import models.game.rules._
  *   Foundation initial cards (F0d): -1
  *   Number of foundation piles (F0n): 4 (4 stacks)
  *   Foundation rank match rule (F0r): 256 (Build up by 2)
- *   TODO (F0u): 2
+ *   Initial card restriction (F0u): 2 (Unique suits)
  *   Auto-move cards to foundation (F1a): 0 (Never)
  *   Foundation low rank (F1b): 2 (2)
  *   Foundation initial cards (F1d): -1
  *   Number of foundation piles (F1n): 4 (4 stacks)
  *   Foundation rank match rule (F1r): 256 (Build up by 2)
- *   TODO (F1u): 2
+ *   Initial card restriction (F1u): 2 (Unique suits)
  *   Foundation Sets (Fn): 2
  *   Reserve initial cards (R0d): 3
  *   Reserve cards face down (R0df): 0

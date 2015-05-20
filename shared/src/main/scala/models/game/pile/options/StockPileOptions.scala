@@ -22,7 +22,7 @@ object StockPileOptions {
 
     val selectPileConstraint: (Constraint, () => Unit) = rules.maximumDeals match {
       case Some(1) => Constraint.never -> (() => Unit)
-      case Some(i) => Constraint.finiteTimes(i)
+      case Some(i) => Constraint.finiteTimes(i - 1)
       case None => Constraint.empty -> (() => Unit)
     }
 

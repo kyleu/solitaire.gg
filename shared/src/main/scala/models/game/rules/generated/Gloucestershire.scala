@@ -8,7 +8,7 @@ import models.game.rules._
  * Original Settings:
  *   Maximum cards for foundation (F0m): 26
  *   Number of foundation piles (F0n): 4 (4 stacks)
- *   TODO (F0u): 2
+ *   Initial card restriction (F0u): 2 (Unique suits)
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau initial cards (T0d): -2 (custom)
  *   Custom initial cards (T0ds): UUU UUUU UUUUU UUUUUU UUUUUUU UUUUUUUU UUUUUUUUU UUUUUUUUUU

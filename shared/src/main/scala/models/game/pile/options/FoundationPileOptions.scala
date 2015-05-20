@@ -25,10 +25,8 @@ object FoundationPileOptions {
             }
             val rankOk = if (lowRank == Rank.Unknown) {
               siblings.flatMap(_.cards.headOption).headOption match {
-                case Some(card) =>
-                  firstCard.r == card.r
-                case None =>
-                  true
+                case Some(card) => firstCard.r == card.r
+                case None => true
               }
             } else {
               firstCard.r == lowRank

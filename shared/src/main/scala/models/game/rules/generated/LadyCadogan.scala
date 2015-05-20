@@ -10,13 +10,13 @@ import models.game.rules._
  *   Auto-move cards to foundation (F0a): 0 (Never)
  *   Can move cards from foundation (F0mb): 1 (Always)
  *   Number of foundation piles (F0n): 4 (4 stacks)
- *   TODO (F0u): 2
+ *   Initial card restriction (F0u): 2 (Unique suits)
  *   Foundation name (F1Nm): Right Foundation
  *   Auto-move cards to foundation (F1a): 0 (Never)
  *   Foundation add complete sequences only (F1cs): true
  *   Can move cards from foundation (F1mb): 1 (Always)
  *   Number of foundation piles (F1n): 4 (4 stacks)
- *   TODO (F1u): 2
+ *   Initial card restriction (F1u): 2 (Unique suits)
  *   Foundation Sets (Fn): 2
  *   Tableau initial cards (T0d): -1 (1 to n cards)
  *   Tableau cards face down (T0df): 100

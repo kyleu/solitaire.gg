@@ -10,12 +10,12 @@ import models.game.rules._
  *   Can move cards from foundation (F0mb): 1 (Always)
  *   Number of foundation piles (F0n): 2 (2 stacks)
  *   Foundation suit match rule (F0s): 3 (In same color)
- *   TODO (F0u): 1
+ *   Initial card restriction (F0u): 1 (Unique colors)
  *   Auto-move cards to foundation (F1a): 0 (Never)
  *   Can move cards from foundation (F1mb): 1 (Always)
  *   Number of foundation piles (F1n): 2 (2 stacks)
  *   Foundation suit match rule (F1s): 3 (In same color)
- *   TODO (F1u): 1
+ *   Initial card restriction (F1u): 1 (Unique colors)
  *   Auto-move cards to foundation (F2a): 0 (Never)
  *   Foundation add complete sequences only (F2cs): true
  *   Number of foundation piles (F2n): 4 (4 stacks)

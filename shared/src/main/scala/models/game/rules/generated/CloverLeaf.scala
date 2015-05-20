@@ -9,13 +9,13 @@ import models.game.rules._
  *   Foundation name (F0Nm): Red Foundation
  *   Foundation initial cards (F0d): 2 (2 cards)
  *   Number of foundation piles (F0n): 2 (2 stacks)
- *   TODO (F0u): 3
+ *   Initial card restriction (F0u): 3 (Unique red suits)
  *   Foundation name (F1Nm): Black Foundation
  *   Foundation low rank (F1b): 22 (Deck's high card)
  *   Foundation initial cards (F1d): 2 (2 cards)
  *   Number of foundation piles (F1n): 2 (2 stacks)
  *   Foundation rank match rule (F1r): 32 (Build down)
- *   TODO (F1u): 4
+ *   Initial card restriction (F1u): 4 (Unique black suits)
  *   Foundation Sets (Fn): 2
  *   Enable stock (Sn): 0 (No stock)
  *   Tableau name (T0Nm): Fan

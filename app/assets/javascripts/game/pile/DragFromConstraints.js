@@ -39,7 +39,6 @@ define(['game/Rank', 'game/pile/PileLogic'], function(Rank, PileLogic) {
       for(var c in cards) {
         var testCard = cards[c];
         if(lastCard !== null && valid) {
-          console.log(card);
           if (!PileLogic.rank(rankRule, lastCard.rank, testCard.rank, lowRank)) {
             valid = false;
           } else if (!PileLogic.suit(suitRule, lastCard.suit, testCard.suit)) {

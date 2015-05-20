@@ -11,13 +11,13 @@ import models.game.rules._
  *   Maximum cards for foundation (F0m): 13
  *   Number of foundation piles (F0n): 2 (2 stacks)
  *   Foundation rank match rule (F0r): 256 (Build up by 2)
- *   TODO (F0u): 1
+ *   Initial card restriction (F0u): 1 (Unique colors)
  *   Foundation low rank (F1b): 2 (2)
  *   Foundation initial cards (F1d): 2 (2 cards)
  *   Maximum cards for foundation (F1m): 13
  *   Number of foundation piles (F1n): 2 (2 stacks)
  *   Foundation rank match rule (F1r): 256 (Build up by 2)
- *   TODO (F1u): 1
+ *   Initial card restriction (F1u): 1 (Unique colors)
  *   Foundation Sets (Fn): 2
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Tableau piles (T0n): 8

@@ -9,7 +9,7 @@ import models.game.rules._
  *   Maximum cards for foundation (F0m): 0
  *   Number of foundation piles (F0n): 1 (1 stack)
  *   Foundation suit match rule (F0s): 5 (Regardless of suit)
- *   TODO (F0u): 8
+ *   Initial card restriction (F0u): 8 (Spades)
  *   Foundation Sets (Fn): 1
  *   Tableau initial cards (T0d): -1 (1 to n cards)
  *   Empty tableau is filled with (T0f): 1 (Kings only)
