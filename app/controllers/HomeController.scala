@@ -12,7 +12,15 @@ import scala.concurrent.Future
 
 object HomeController extends BaseController {
   def index() = withSession { implicit request =>
-    Future.successful(Ok(views.html.index(request.identity)))
+    val game = getGame(request.host)
+    if(game == "solitaire" || game == "www") {
+      Future.successful(Ok(views.html.index(request.identity)))
+    } else {
+      GameRulesSet.allById.get(game) match {
+        case Some(g) => Future.successful(Ok(views.html.help(g)))
+        case None => Future.successful(Ok(views.html.index(request.identity)))
+      }
+    }
   }
 
   def untrail(path: String) = Action.async {
@@ -62,6 +70,14 @@ object HomeController extends BaseController {
   }
 
   def newDefaultGame() = withSession { implicit request =>
+    val game = getGame(request.host)
+    GameRulesSet.allById.get(game) match {
+      case Some(_) => startGame(game)
+      case None => startGame()
+    }
+  }
+
+  def newFacebookGame() = withSession { implicit request =>
     startGame()
   }
 
@@ -95,5 +111,10 @@ object HomeController extends BaseController {
       case Some(rules) => Ok(views.html.game.gameplay(rules.title, request.identity, rulesId, initialAction, seed, offline))
       case None => NotFound("Unknown game [" + rulesId + "].")
     })
+  }
+
+  private[this] def getGame(host: String) = {
+    val idx = host.indexOf('.')
+    if(idx == -1) { "solitaire" } else { host.substring(0, idx) }
   }
 }

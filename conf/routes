@@ -15,6 +15,7 @@ GET         /signout                           controllers.auth.AuthorizationCon
 GET         /help/:id                          controllers.HomeController.help(id)
 
 GET         /play                              controllers.HomeController.newDefaultGame()
+POST        /play/facebook                     controllers.HomeController.newFacebookGame()
 GET         /play/:rules                       controllers.HomeController.newGame(rules)
 GET         /play/:rules/:seed                 controllers.HomeController.newGameWithSeed(rules, seed: Int)
 

@@ -37,7 +37,7 @@ define(["utils/Config"], function (cfg) {
       me.connected = false;
       document.getElementById('status-connection').innerText = 'Disconnected';
       console.info("Websocket connection closed. Attempting to reconnect.");
-      me.connect(context);
+      setTimeout(function() { me.connect(context); }, 5000);
     };
     ws.onerror = function(err) {
       me.connected = false;

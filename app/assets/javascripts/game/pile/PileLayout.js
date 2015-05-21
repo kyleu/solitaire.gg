@@ -58,21 +58,20 @@ define(['game/helpers/Tweens'], function (Tweens) {
         card.game.playmat.emitFor(card);
       } else {
         var emitFor = pile.pileSet.behavior === "foundation";
-        var bounce = false;
         if(pile.options.cardsShown === undefined || pile.options.cardsShown === null) {
           if(pile.options.direction === "d") {
             var newY = pile.y + ((pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset);
-            Tweens.tweenCardTo(card, pile.x, newY, 0, emitFor, bounce);
+            Tweens.tweenCardTo(card, pile.x, newY, 0, emitFor);
             pile.intersectHeight = pile.game.cardSet.cardHeight + (pile.cards.length === 0 ? 0 : (pile.cards.length - 1) * pile.game.cardSet.cardVerticalOffset);
           } else if(pile.options.direction === "r") {
             var newX = pile.y + ((pile.cards.length - 1) * pile.game.cardSet.cardHorizontalOffset);
-            Tweens.tweenCardTo(card, newX, pile.y, 0, emitFor, bounce);
+            Tweens.tweenCardTo(card, newX, pile.y, 0, emitFor);
             pile.intersectWidth = pile.game.cardSet.cardWidth + (pile.cards.length === 0 ? 0 : (pile.cards.length - 1) * pile.game.cardSet.cardHorizontalOffset);
           } else {
             throw "Invalid direction [" + pile.options.direction + "].";
           }
         } else if(pile.options.cardsShown == 1) {
-          Tweens.tweenCardTo(card, pile.x, pile.y, 0, emitFor, bounce);
+          Tweens.tweenCardTo(card, pile.x, pile.y, 0, emitFor);
         } else {
           redraw(pile);
         }

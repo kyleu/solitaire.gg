@@ -57,7 +57,10 @@ object CacheService {
   }
 
   def keys() = {
-    import collection.JavaConversions._
-    ehCache.getKeys.toList.map(_.asInstanceOf[String])
+    import collection.JavaConverters._
+    ehCache.getKeys.asScala.map({
+      case s: String => s
+      case x => x.toString
+    })
   }
 }

@@ -7,9 +7,9 @@ define(function () {
   }
   var json = JSON.parse(c.innerHTML);
   if(document.location.href.indexOf("https") === 0) {
-    json.wsUrl = "wss://" + document.location.host + "/websocket";
+    json.wsUrl = "wss://" + json.host + "/websocket";
   } else {
-    json.wsUrl = "ws://" + document.location.host + "/websocket";
+    json.wsUrl = "ws://" + json.host + "/websocket";
   }
   return json;
 });

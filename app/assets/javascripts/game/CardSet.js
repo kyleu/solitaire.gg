@@ -7,36 +7,36 @@ define([], function() {
         key: "standard/x-small",
         cardWidth: 50,
         cardHeight: 75,
-        cardVerticalOffset: 10,
-        cardHorizontalOffset: 15
+        cardHorizontalOffset: 10,
+        cardVerticalOffset: 15
       },
       "small": {
         key: "standard/small",
         cardWidth: 100,
         cardHeight: 150,
-        cardVerticalOffset: 20,
-        cardHorizontalOffset: 30
+        cardHorizontalOffset: 20,
+        cardVerticalOffset: 30
       },
       "medium": {
         key: "standard/medium",
         cardWidth: 200,
         cardHeight: 300,
-        cardVerticalOffset: 40,
-        cardHorizontalOffset: 60
+        cardHorizontalOffset: 40,
+        cardVerticalOffset: 60
       },
       "large": {
         key: "standard/large",
         cardWidth: 400,
         cardHeight: 600,
-        cardVerticalOffset: 80,
-        cardHorizontalOffset: 120
+        cardHorizontalOffset: 80,
+        cardVerticalOffset: 120
       },
       "x-large": {
         key: "standard/x-large",
         cardWidth: 800,
         cardHeight: 1200,
-        cardVerticalOffset: 160,
-        cardHorizontalOffset: 240
+        cardHorizontalOffset: 160,
+        cardVerticalOffset: 240
       }
     }
   };

@@ -48,6 +48,7 @@ define(['game/helpers/Dimensions'], function (getDimensions) {
             throw "Unable to find set matching [" + c + "]";
           }
           remainingPileSets = _.without(remainingPileSets, pileSet);
+          pileSet.position = [xOffset - 0.5, yOffset - 0.5];
           var pileSetDimensions = getDimensions(pileSet, currentDivisor);
           //console.log(pileSet);
           if(pileSet.visible !== undefined && !pileSet.visible) { // Hide this pile
