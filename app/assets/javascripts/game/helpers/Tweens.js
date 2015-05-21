@@ -22,7 +22,7 @@ define([], function() {
           var targetY = y - (card.height * 0.05);
           var yTween = card.game.add.tween(card);
           yTween.to({y: targetY}, time * 0.5, Phaser.Easing.Cubic.Out);
-          yTween.to({y: y}, time * 0.5, Phaser.Easing.Cubic.Out);
+          yTween.to({y: y}, time * 0.5, Phaser.Easing.Cubic.In);
           yTween.start();
         } else {
           card.game.add.tween(card).to({y: y}, time, Phaser.Easing.Cubic.Out).start();
@@ -56,20 +56,20 @@ define([], function() {
 
     tweenFlip: function(card, faceUp) {
       var origWidth = card.width;
-      var origY = card.y;
       var hideTween = card.game.add.tween(card);
-      hideTween.to({ width: origWidth / 5, y: origY - (card.height * 0.1) }, 100, Phaser.Easing.Cubic.Out);
+      hideTween.to({ width: origWidth / 5 }, 100, Phaser.Easing.Cubic.Out);
       hideTween.onComplete.add(function() {
         card.updateSprite(faceUp);
         var showTween = card.game.add.tween(card);
-        showTween.to({ width: origWidth, y: origY }, 100, Phaser.Easing.Cubic.Out);
+        showTween.to({ width: origWidth }, 100, Phaser.Easing.Cubic.In);
         showTween.onComplete.add(function() {
           card.tweening = false;
         }, card);
         showTween.start();
       }, card);
-      card.tweening = true;
       hideTween.start();
+
+      card.tweening = true;
     }
   };
 });

@@ -19,7 +19,7 @@ case class ConnectionGameJoin(id: UUID, connectionId: UUID) extends InternalMess
 case class ConnectionGameObserve(id: UUID, connectionId: UUID, as: Option[UUID]) extends InternalMessage
 case class GameStopped(id: UUID) extends InternalMessage
 
-case class StopGame(reason: String) extends InternalMessage
+case object StopGame extends InternalMessage
 case object StopGameIfEmpty extends InternalMessage
 
 case class GameRequest(userId: UUID, message: GameMessage) extends InternalMessage

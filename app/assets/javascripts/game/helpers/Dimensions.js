@@ -24,7 +24,6 @@ define(function () {
           ret = [ret[0] / divisor, 1 + ((overlappedCards) * padding)];
         } else {
           ret = [ret[0], 1 + ((overlappedCards) * padding)];
-          console.log(ret, overlappedCards, padding);
         }
         break;
       case "pyramid":
@@ -44,6 +43,7 @@ define(function () {
       default:
     }
     pileSet.dimensions = ret;
+    pileSet.divisor = divisor;
     return ret;
   }
 

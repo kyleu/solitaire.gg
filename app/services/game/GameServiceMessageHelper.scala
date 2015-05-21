@@ -8,18 +8,16 @@ trait GameServiceMessageHelper { this: GameService =>
   protected[this] def handleStopGameIfEmpty() {
     val hasPlayer = player.connectionId.isDefined || observerConnections.exists(_._1.connectionId.isDefined)
     if (!hasPlayer) {
-      val status = if (gameRules.victoryCondition.check(gameState)) {
-        "won"
-      } else {
-        "timeout"
-      }
-      self ! StopGame(status)
+      self ! StopGame
     }
   }
 
-  protected[this] def handleStopGame(reason: String) {
-    log.info("Stopping empty game [" + id + "] for reason [" + reason + "].")
-    GameHistoryService.updateGameHistory(id, reason, moveCount, undoHelper.undoCount, undoHelper.redoCount, Some(new LocalDateTime))
+  protected[this] def handleStopGame() {
+    log.info("Stopping game [" + id + "].")
+    if(status == "started") {
+      status = "abandoned"
+    }
+
     context.parent ! GameStopped(id)
     self ! PoisonPill
   }

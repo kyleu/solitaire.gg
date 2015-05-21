@@ -1,14 +1,11 @@
 define(['game/helpers/Layout'], function (calculateLayout) {
   "use strict";
 
-  var Playmat = function(game, pileSets, layout) {
+  var Playmat = function(game, pileSets, layoutString) {
     Phaser.Group.call(this, game, null, 'playmat');
-    this.layout = calculateLayout(pileSets, layout, this.game.world.width / this.game.world.height);
-
-    this.w = this.layout.width * this.game.cardSet.cardWidth;
-    this.h = this.layout.height * this.game.cardSet.cardHeight;
-
-    this.resize();
+    this.pileSets = pileSets;
+    this.layoutString = layoutString;
+    this.refreshLayout();
 
     this.suitEmitter = [];
     this.suitEmitter[0] = this.makeEmitter(1);
@@ -21,6 +18,19 @@ define(['game/helpers/Layout'], function (calculateLayout) {
 
   Playmat.prototype = Object.create(Phaser.Group.prototype);
   Playmat.prototype.constructor = Playmat;
+
+  Playmat.prototype.refreshLayout = function() {
+    var originalSize = [this.w, this.h];
+
+    this.layout = calculateLayout(this.pileSets, this.layoutString, this.game.world.width / this.game.world.height);
+
+    this.w = this.layout.width * this.game.cardSet.cardWidth;
+    this.h = this.layout.height * this.game.cardSet.cardHeight;
+
+    if(this.w !== originalSize[0] || this.h !== originalSize[1]) {
+      this.resize();
+    }
+  };
 
   Playmat.prototype.makeEmitter = function(frame) {
     var ret = new Phaser.Particles.Arcade.Emitter(this.game, 0, 0, 50);

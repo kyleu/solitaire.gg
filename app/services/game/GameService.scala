@@ -22,6 +22,13 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
   protected[this] var lastMoveMade: Option[LocalDateTime] = None
   protected[this] var gameWon = false
 
+  private[this] var _status = "started"
+  protected[this] def status = _status
+  protected[this] def status_=(s: String) {
+    _status = s
+    GameHistoryService.updateGameHistory(id, s, moveCount, undoHelper.undoCount, undoHelper.redoCount, Some(new LocalDateTime))
+  }
+
   override def preStart() {
     InitialMoves.performInitialMoves(gameRules, gameState)
 
@@ -66,7 +73,7 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
         case ap: AddPlayer => timeReceive(ap) { handleAddPlayer(ap.userId, ap.name, ap.connectionId, ap.connectionActor) }
         case ao: AddObserver => timeReceive(ao) { handleAddObserver(ao.userId, ao.name, ao.connectionId, ao.connectionActor, ao.as) }
         case cs: ConnectionStopped => timeReceive(cs) { handleConnectionStopped(cs.connectionId) }
-        case sg: StopGame => timeReceive(sg) { handleStopGame(sg.reason) }
+        case StopGame => timeReceive(StopGame) { handleStopGame() }
         case StopGameIfEmpty => timeReceive(StopGameIfEmpty) { handleStopGameIfEmpty() }
         case gt: GameTrace => timeReceive(gt) { handleGameTrace() }
         case _ => log.warn("GameService received unhandled internal message [" + im.getClass.getSimpleName + "].")
