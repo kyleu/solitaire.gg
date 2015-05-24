@@ -16,10 +16,11 @@ define(['utils/Config', 'game/Rank', 'game/Suit', 'game/helpers/CardInput', 'gam
     var initialY = game.height / game.playmat.scale.y;
 
     this.spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
+    this.cardBackIndex = (4 * 13) + 0;
     if(this.faceUp) {
       Phaser.Sprite.call(this, game, initialX, initialY, 'card', this.spriteIndex);
     } else {
-      Phaser.Sprite.call(this, game, initialX, initialY, 'card-back', 0);
+      Phaser.Sprite.call(this, game, initialX, initialY, 'card', this.cardBackIndex);
     }
 
     this.anchor.setTo(0.5, 0.5);
@@ -40,10 +41,11 @@ define(['utils/Config', 'game/Rank', 'game/Suit', 'game/helpers/CardInput', 'gam
   Card.prototype.updateSprite = function(faceUp) {
     this.faceUp = faceUp;
     this.spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
+    this.cardBackIndex = (4 * 13) + 0;
     if(this.faceUp) {
       this.loadTexture('card', this.spriteIndex);
     } else {
-      this.loadTexture('card-back', 0);
+      this.loadTexture('card', this.cardBackIndex);
     }
   };
 

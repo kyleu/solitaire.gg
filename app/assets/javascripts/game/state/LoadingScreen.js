@@ -28,10 +28,11 @@ define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState'], function
     this.game.load.setPreloadSprite(this.loadBar);
 
     var imageKey = this.game.cardSet.key;
-    this.game.load.image('card-back', this.assetRoot + 'assets/images/game/cards/' + imageKey + '/BACK.png');
-    this.game.load.image('empty-pile', this.assetRoot + 'assets/images/game/cards/' + imageKey + '/EMPTY.png');
     this.game.load.spritesheet(
-      'card', this.assetRoot + 'assets/images/game/cards/' + imageKey + '/ALL.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight
+      'empty-piles', this.assetRoot + 'assets/images/game/cards/' + imageKey + '/empty.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight
+    );
+    this.game.load.spritesheet(
+      'card', this.assetRoot + 'assets/images/game/cards/' + imageKey + '/all.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight
     );
 
     this.game.load.spritesheet('suits', this.assetRoot + 'assets/images/particles/suits.png', 100, 100);

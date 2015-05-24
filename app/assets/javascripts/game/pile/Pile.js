@@ -29,7 +29,7 @@ define(['game/pile/PileLayout', 'game/pile/PileHelpers', 'game/pile/DragFromCons
     this.cards = [];
     this.game.addPile(this);
 
-    this.empty = new Phaser.Sprite(game, 0, 0, 'empty-pile');
+    this.empty = new Phaser.Sprite(game, 0, 0, 'empty-piles', 0);
     this.empty.inputEnabled = true;
     this.empty.events.onInputUp.add(function() {
       if(canSelectPile(this)) {
