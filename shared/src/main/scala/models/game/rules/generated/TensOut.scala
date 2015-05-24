@@ -27,7 +27,6 @@ object TensOut extends GameRules(
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOr10PairOrJPairOrQPairOrKPair,
   foundations = Seq(
     FoundationRules(
-      wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false,
       autoMoveCards = true

@@ -5,6 +5,7 @@ object CustomGameRules {
     KlondikeOneCard,
     Nestor,
     Sandbox,
-    SandboxB
+    SandboxB,
+    SevenDevils
   )
 }

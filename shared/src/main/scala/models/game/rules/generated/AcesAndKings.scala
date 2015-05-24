@@ -53,8 +53,7 @@ object AcesAndKings extends GameRules(
     FoundationRules(
       name = "Ace Foundation",
       numPiles = 4,
-      suitMatchRule = SuitMatchRule.Any,
-      wrapFromKingToAce = true
+      suitMatchRule = SuitMatchRule.Any
     ),
     FoundationRules(
       name = "King Foundation",
@@ -62,8 +61,7 @@ object AcesAndKings extends GameRules(
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
       suitMatchRule = SuitMatchRule.Any,
-      rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true
+      rankMatchRule = RankMatchRule.Down
     )
   ),
   tableaus = Seq(

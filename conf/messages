@@ -149,26 +149,22 @@ help.stock.max.deals.multiple = Up to {0} passes through the stock.
 help.stock.max.deals.unlimited = The stock has unlimited redeals.
 
 # Waste Help
-help.waste.playable.cards.all = Any card may be moved from the waste.
-help.waste.playable.cards.top = The top card may be moved from the waste.
-
-# Reserve Help
-
-# Cell Help
+help.waste.playable.cards.all = Any card may be moved from the {0}.
+help.waste.playable.cards.top = The top card may be moved from the {0}.
 
 # Foundation Help
-help.foundation.lowrank.any = Any card may be moved to any empty foundation pile.
-help.foundation.lowrank.ascending = There is one foundation pile for each rank from Ace to King.
-help.foundation.lowrank.first.becomes.base = The first card played to a foundation becomes the base card for others.
-help.foundation.lowrank.specific = Any {0} may be played to any empty foundation pile.
+help.foundation.lowrank.any = Any card may be moved to any empty {0} pile.
+help.foundation.lowrank.ascending = There is one {0} pile for each rank from Ace to King.
+help.foundation.lowrank.first.becomes.base = The first card played to a {0} becomes the base card for others.
+help.foundation.lowrank.specific = Any {1} may be played to any empty {0} pile.
 
 help.foundation.initial.restriction.specific.color.unique.suits = Each pile must be started with a {0} card and be a unique suit.
 help.foundation.initial.restriction.specific.suit = Each pile must be started with a {0} card.
 help.foundation.initial.restriction.unique.colors = Each pile must be started with a unique color.
 help.foundation.initial.restriction.unique.suits = Each pile must be started with a unique suit.
 
-help.foundation.build.none = No cards may be played to a foundation pile.
-help.foundation.build.rank.and.suit.match.rules = A card may be played to a foundation pile if it is {0} and {1}.
+help.foundation.build.none = No cards may be built on a card in a {0} pile.
+help.foundation.build.rank.and.suit.match.rules = A card may be built on a card in a {0} pile if it is {1} and {2}.
 
 help.foundation.wrap.ranks = An Ace may be played on a King, continuing the sequence.
 help.foundation.cards.shown = {0} cards are visible.
@@ -183,23 +179,23 @@ help.tableau.cards.face.down.multiple = All but the first {0} cards in each pile
 help.tableau.cards.face.down.even.numbered = Each odd numbered card is turned face-up.
 help.tableau.cards.face.down.odd.numbered = Each even numbered card is turned face-up.
 
-help.tableau.build.none = No cards may be played to a tableau pile.
-help.tableau.build.rank.and.suit.match.rules = A card may be played to a tableau pile if it is {0} and {1}.
+help.tableau.build.none = No cards may be built on a card in a {0} pile.
+help.tableau.build.rank.and.suit.match.rules = A card may be built on a card in a {0} pile if it is {1} and {2}.
 
-help.tableau.move.stacks.none = No cards may be moved from a tableau pile.
-help.tableau.move.stacks.rank.and.suit.match.rules = Cards may be moved from a tableau pile if they are {0} and {1}.
+help.tableau.move.stacks.none = No cards may be moved from a {0} pile.
+help.tableau.move.stacks.rank.and.suit.match.rules = Cards may be moved from a {0} pile if they are {1} and {2}.
 
 # Pyramid Help
 help.pyramid.rows.single = a single row
 help.pyramid.rows.multiple = {0} rows
 
-help.pyramid.type.standard = A standard pyramid with {0} rows (the top row has only one card, two in the next, and so on).
-help.pyramid.type.inverted = An inverted pyramid with {0} rows (the bottom row has only one card, two in the next, and so on).
+help.pyramid.type.standard = A standard {0} with {1} (the top row has only one card, two in the next, and so on).
+help.pyramid.type.inverted = An inverted {0} with {1} (the bottom row has only one card, two in the next, and so on).
 
 help.pyramid.wrap.ranks = An Ace may be played on a King, continuing the sequence.
 
-help.pyramid.build.none = No cards may be built on this pyramid.
-help.pyramid.build.rank.and.suit.match.rules = A card may be built on this pyramid if it is {0} and {1}.
+help.pyramid.build.none = No cards may be built on this {0}.
+help.pyramid.build.rank.and.suit.match.rules = A card may be built on this {0} if it is {1} and {2}.
 
-help.pyramid.move.stacks.none = No cards may be moved from this pyramid.
-help.pyramid.move.stacks.rank.and.suit.match.rules = Cards may be moved from this pyramid if they are {0} and {1}.
+help.pyramid.move.stacks.none = No cards may be moved from this {0}.
+help.pyramid.move.stacks.rank.and.suit.match.rules = Cards may be moved from this {0} if they are {1} and {2}.

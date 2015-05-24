@@ -43,7 +43,6 @@ object ChineseSpider extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 16,
-      wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true
     )
   ),

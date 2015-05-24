@@ -10,33 +10,34 @@ object FoundationHelpService {
 
   def foundation(rules: FoundationRules, deckOptions: DeckOptions)(implicit lang: Lang) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
+    val loweredName = rules.name.toLowerCase
 
     val piles = rules.numPiles match {
       case 1 => if (rules.initialCards == 0) {
-        Messages("help.piles.single.cards.empty", rules.name.toLowerCase)
+        Messages("help.piles.single.cards.empty", loweredName)
       } else if (rules.initialCards == 1) {
-        Messages("help.piles.single.cards.single", rules.name.toLowerCase)
+        Messages("help.piles.single.cards.single", loweredName)
       } else {
-        Messages("help.piles.single.cards.multiple", rules.name.toLowerCase, rules.initialCards)
+        Messages("help.piles.single.cards.multiple", loweredName, rules.initialCards)
       }
       case x =>
         if (rules.initialCards == 0) {
-          Messages("help.piles.multiple.cards.empty", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase)
+          Messages("help.piles.multiple.cards.empty", NumberUtils.toWords(x, properCase = true), loweredName)
         } else if (rules.initialCards % rules.numPiles == 0) {
           if (rules.initialCards / rules.numPiles == 1) {
-            Messages("help.piles.multiple.cards.single.each", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase)
+            Messages("help.piles.multiple.cards.single.each", NumberUtils.toWords(x, properCase = true), loweredName)
           } else {
             val init = NumberUtils.toWords(rules.initialCards / rules.numPiles)
-            Messages("help.piles.multiple.cards.multiple.each", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase, init)
+            Messages("help.piles.multiple.cards.multiple.each", NumberUtils.toWords(x, properCase = true), loweredName, init)
           }
         } else {
           if (rules.initialCards == 1) {
-            Messages("help.piles.multiple.cards.single", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase)
+            Messages("help.piles.multiple.cards.single", NumberUtils.toWords(x, properCase = true), loweredName)
           } else {
             Messages(
               "help.piles.multiple.cards.multiple",
               NumberUtils.toWords(x, properCase = true),
-              rules.name.toLowerCase,
+              loweredName,
               NumberUtils.toWords(rules.initialCards)
             )
           }
@@ -53,13 +54,13 @@ object FoundationHelpService {
     }
 
     if (lowRank == Rank.Unknown && rules.lowRank == FoundationLowRank.AnyCard) {
-      ret += Messages("help.foundation.lowrank.any")
+      ret += Messages("help.foundation.lowrank.any", loweredName)
     } else if (lowRank == Rank.Unknown && rules.lowRank == FoundationLowRank.Ascending) {
-      ret += Messages("help.foundation.lowrank.ascending")
+      ret += Messages("help.foundation.lowrank.ascending", loweredName)
     } else if (lowRank == Rank.Unknown) {
-      ret += Messages("help.foundation.lowrank.first.becomes.base")
+      ret += Messages("help.foundation.lowrank.first.becomes.base", loweredName)
     } else {
-      ret += Messages("help.foundation.lowrank.specific", lowRank)
+      ret += Messages("help.foundation.lowrank.specific", loweredName, lowRank)
     }
 
     rules.initialCardRestriction match {
@@ -73,10 +74,11 @@ object FoundationHelpService {
     }
 
     if(rules.rankMatchRule != RankMatchRule.None && rules.suitMatchRule != SuitMatchRule.None) {
-      ret += Messages("help.foundation.build.none")
+      ret += Messages("help.foundation.build.none", loweredName)
     } else {
       ret += Messages(
         "help.foundation.build.rank.and.suit.match.rules",
+        loweredName,
         MatchRuleHelpService.toWords(rules.rankMatchRule),
         MatchRuleHelpService.toWords(rules.suitMatchRule)
       )

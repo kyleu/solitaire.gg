@@ -41,8 +41,7 @@ object Roman extends GameRules(
   waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
-      numPiles = 8,
-      wrapFromKingToAce = true
+      numPiles = 8
     )
   ),
   tableaus = Seq(

@@ -44,7 +44,6 @@ object Chameleon extends GameRules(
     FoundationRules(
       numPiles = 4,
       initialCards = 1,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

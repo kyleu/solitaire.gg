@@ -41,7 +41,6 @@ object Giant extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
-      wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.EmptyStock,
       autoMoveCards = true
     )

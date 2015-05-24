@@ -41,7 +41,6 @@ object RedAndBlack extends GameRules(
       numPiles = 8,
       initialCards = 8,
       suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

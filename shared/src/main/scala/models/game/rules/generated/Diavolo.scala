@@ -54,21 +54,18 @@ object Diavolo extends GameRules(
     FoundationRules(
       numPiles = 2,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueColors),
-      suitMatchRule = SuitMatchRule.SameColor,
-      wrapFromKingToAce = true
+      suitMatchRule = SuitMatchRule.SameColor
     ),
     FoundationRules(
       setNumber = 1,
       numPiles = 2,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueColors),
-      suitMatchRule = SuitMatchRule.SameColor,
-      wrapFromKingToAce = true
+      suitMatchRule = SuitMatchRule.SameColor
     ),
     FoundationRules(
       setNumber = 2,
       numPiles = 4,
       suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true
     )
   ),

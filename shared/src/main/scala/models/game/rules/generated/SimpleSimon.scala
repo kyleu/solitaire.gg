@@ -35,7 +35,6 @@ object SimpleSimon extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
-      wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false

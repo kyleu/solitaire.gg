@@ -49,7 +49,6 @@ object MountOlympus extends GameRules(
       numPiles = 8,
       initialCards = 8,
       rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true,
       maxCards = 7,
       autoMoveCards = true
     ),
@@ -59,7 +58,6 @@ object MountOlympus extends GameRules(
       lowRank = FoundationLowRank.SpecificRank(Rank.Two),
       initialCards = 8,
       rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true,
       maxCards = 6,
       autoMoveCards = true
     )

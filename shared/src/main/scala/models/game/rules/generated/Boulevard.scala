@@ -48,16 +48,14 @@ object Boulevard extends GameRules(
     FoundationRules(
       numPiles = 4,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
-      rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true
+      rankMatchRule = RankMatchRule.UpBy2
     ),
     FoundationRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Two),
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
-      rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true
+      rankMatchRule = RankMatchRule.UpBy2
     )
   ),
   tableaus = Seq(

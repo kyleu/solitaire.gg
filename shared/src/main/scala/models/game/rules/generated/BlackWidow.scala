@@ -46,7 +46,6 @@ object BlackWidow extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
-      wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true
     )
   ),

@@ -31,7 +31,6 @@ object DoubleFourteens extends GameRules(
   ),
   foundations = Seq(
     FoundationRules(
-      wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false,
       autoMoveCards = true

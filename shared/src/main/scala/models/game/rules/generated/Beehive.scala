@@ -42,7 +42,6 @@ object Beehive extends GameRules(
       lowRank = FoundationLowRank.Ascending,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.Equal,
-      wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true,
       maxCards = 4,
       autoMoveCards = true

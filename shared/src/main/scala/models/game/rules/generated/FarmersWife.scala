@@ -35,7 +35,6 @@ object FarmersWife extends GameRules(
     FoundationRules(
       numPiles = 4,
       suitMatchRule = SuitMatchRule.DifferentSuits,
-      wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true
     )
   ),

@@ -31,7 +31,6 @@ object FortyThieves4Deck extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 16,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

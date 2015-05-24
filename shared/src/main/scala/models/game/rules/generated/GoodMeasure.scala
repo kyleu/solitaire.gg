@@ -37,7 +37,6 @@ object GoodMeasure extends GameRules(
     FoundationRules(
       numPiles = 4,
       initialCards = 2,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

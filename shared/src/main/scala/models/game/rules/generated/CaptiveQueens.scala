@@ -50,7 +50,6 @@ object CaptiveQueens extends GameRules(
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Five),
       rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true,
       maxCards = 6
     ),
     FoundationRules(
@@ -58,7 +57,6 @@ object CaptiveQueens extends GameRules(
       setNumber = 1,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Six),
-      wrapFromKingToAce = true,
       maxCards = 6
     ),
     FoundationRules(
@@ -66,7 +64,6 @@ object CaptiveQueens extends GameRules(
       setNumber = 2,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Queen),
-      wrapFromKingToAce = true,
       maxCards = 1,
       autoMoveCards = true
     )

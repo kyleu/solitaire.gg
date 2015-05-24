@@ -35,7 +35,6 @@ object AceOfHearts extends GameRules(
     FoundationRules(
       initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificSuit(Suit.Spades)),
       suitMatchRule = SuitMatchRule.Any,
-      wrapFromKingToAce = true,
       maxCards = 0,
       autoMoveCards = true
     )

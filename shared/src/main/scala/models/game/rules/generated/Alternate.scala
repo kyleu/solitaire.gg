@@ -52,7 +52,6 @@ object Alternate extends GameRules(
       initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(Red)),
       initialCards = 2,
       suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -64,7 +63,6 @@ object Alternate extends GameRules(
       initialCards = 2,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

@@ -44,8 +44,7 @@ object Acquaintance extends GameRules(
     FoundationRules(
       numPiles = 4,
       initialCards = 4,
-      suitMatchRule = SuitMatchRule.Any,
-      wrapFromKingToAce = true
+      suitMatchRule = SuitMatchRule.Any
     )
   ),
   tableaus = Seq(

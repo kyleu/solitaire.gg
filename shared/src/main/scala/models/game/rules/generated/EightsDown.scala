@@ -40,7 +40,6 @@ object EightsDown extends GameRules(
       numPiles = 8,
       initialCards = 8,
       rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

@@ -59,7 +59,6 @@ object BinaryStar extends GameRules(
       initialCards = 1,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,
-      wrapFromKingToAce = true,
       maxCards = 0,
       autoMoveCards = true
     ),
@@ -70,7 +69,6 @@ object BinaryStar extends GameRules(
       initialCards = 1,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,
-      wrapFromKingToAce = true,
       maxCards = 0,
       autoMoveCards = true
     )

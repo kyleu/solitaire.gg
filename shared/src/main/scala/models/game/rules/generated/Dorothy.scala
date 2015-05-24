@@ -41,7 +41,6 @@ object Dorothy extends GameRules(
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Nine),
       rankMatchRule = RankMatchRule.DownBy2,
-      wrapFromKingToAce = true,
       maxCards = 5
     ),
     FoundationRules(
@@ -49,14 +48,12 @@ object Dorothy extends GameRules(
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Ten),
       rankMatchRule = RankMatchRule.DownBy2,
-      wrapFromKingToAce = true,
       maxCards = 5
     ),
     FoundationRules(
       setNumber = 2,
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Jack),
-      wrapFromKingToAce = true,
       maxCards = 3
     )
   )

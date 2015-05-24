@@ -43,15 +43,13 @@ object LadyCadogan extends GameRules(
     FoundationRules(
       name = "Left Foundation",
       numPiles = 4,
-      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
-      wrapFromKingToAce = true
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits)
     ),
     FoundationRules(
       name = "Right Foundation",
       setNumber = 1,
       numPiles = 4,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
-      wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true
     )
   ),

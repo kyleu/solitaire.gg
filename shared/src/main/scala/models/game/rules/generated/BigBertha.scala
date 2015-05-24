@@ -46,7 +46,6 @@ object BigBertha extends GameRules(
     FoundationRules(
       name = "Main Foundation",
       numPiles = 8,
-      wrapFromKingToAce = true,
       maxCards = 12,
       autoMoveCards = true
     ),
@@ -56,7 +55,6 @@ object BigBertha extends GameRules(
       lowRank = FoundationLowRank.SpecificRank(Rank.King),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.Equal,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

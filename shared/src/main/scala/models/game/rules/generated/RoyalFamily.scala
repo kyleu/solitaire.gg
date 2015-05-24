@@ -42,7 +42,6 @@ object RoyalFamily extends GameRules(
       lowRank = FoundationLowRank.DeckHighRank,
       initialCards = 4,
       rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

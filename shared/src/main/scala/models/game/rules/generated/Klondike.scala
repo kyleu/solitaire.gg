@@ -21,7 +21,8 @@ object Klondike extends GameRules(
   title = "Klondike",
   related = Seq(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",
-    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman", "klondike1card"
+    "saratoga", "endlessharp", "smokey", "spike", "gilbert", "jumboklondike", "chinaman", "klondike1card",
+    "sevendevils"
   ),
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Klondike_(solitaire)"),
@@ -48,7 +49,6 @@ object Klondike extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

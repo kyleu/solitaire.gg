@@ -31,8 +31,7 @@ object Shamrocks extends GameRules(
   description = "A variation of ^fan^ where you can build up or down regardless of suit, but are limited to three cards per stack.",
   foundations = Seq(
     FoundationRules(
-      numPiles = 4,
-      wrapFromKingToAce = true
+      numPiles = 4
     )
   ),
   tableaus = Seq(

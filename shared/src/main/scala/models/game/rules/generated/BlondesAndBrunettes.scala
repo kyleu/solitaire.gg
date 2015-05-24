@@ -47,8 +47,7 @@ object BlondesAndBrunettes extends GameRules(
     FoundationRules(
       numPiles = 8,
       initialCards = 1,
-      suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true
+      suitMatchRule = SuitMatchRule.AlternatingColors
     )
   ),
   tableaus = Seq(

@@ -39,7 +39,6 @@ object SanJuanHill extends GameRules(
       name = "Hill",
       numPiles = 8,
       initialCards = 8,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

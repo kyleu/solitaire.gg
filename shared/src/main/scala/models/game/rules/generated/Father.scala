@@ -44,7 +44,6 @@ object Father extends GameRules(
     FoundationRules(
       numPiles = 4,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
-      wrapFromKingToAce = true,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -53,7 +52,6 @@ object Father extends GameRules(
       lowRank = FoundationLowRank.DeckHighRank,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

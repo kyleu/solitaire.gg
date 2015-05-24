@@ -44,7 +44,6 @@ object Calculation extends GameRules(
       initialCards = 4,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpByPileIndex,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

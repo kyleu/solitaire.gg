@@ -38,7 +38,6 @@ object JacksInTheBox extends GameRules(
     FoundationRules(
       numPiles = 8,
       initialCards = 8,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

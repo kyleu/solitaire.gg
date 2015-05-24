@@ -39,7 +39,6 @@ object Contradance extends GameRules(
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.Five),
       rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true,
       maxCards = 6,
       autoMoveCards = true
     ),
@@ -47,7 +46,6 @@ object Contradance extends GameRules(
       setNumber = 1,
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.Six),
-      wrapFromKingToAce = true,
       maxCards = 7,
       autoMoveCards = true
     )

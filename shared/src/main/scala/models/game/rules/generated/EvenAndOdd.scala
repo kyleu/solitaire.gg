@@ -51,7 +51,6 @@ object EvenAndOdd extends GameRules(
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true,
       maxCards = 7
     ),
     FoundationRules(
@@ -61,7 +60,6 @@ object EvenAndOdd extends GameRules(
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true,
       maxCards = 6
     )
   ),

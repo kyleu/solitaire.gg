@@ -32,7 +32,6 @@ object Opus extends GameRules(
     FoundationRules(
       numPiles = 4,
       initialCards = 3,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

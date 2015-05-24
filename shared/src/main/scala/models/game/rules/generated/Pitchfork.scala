@@ -31,7 +31,6 @@ object Pitchfork extends GameRules(
     FoundationRules(
       numPiles = 4,
       initialCards = 4,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

@@ -7,26 +7,27 @@ import utils.NumberUtils
 object CellHelpService {
   def cell(rules: CellRules)(implicit lang: Lang) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
+    val loweredName = rules.name.toLowerCase
 
     val piles = rules.numPiles match {
       case 1 => if (rules.initialCards == 0) {
-        Messages("help.piles.single.cards.empty", rules.name.toLowerCase)
+        Messages("help.piles.single.cards.empty", loweredName)
       } else if (rules.initialCards == 1) {
-        Messages("help.piles.single.cards.single", rules.name.toLowerCase)
+        Messages("help.piles.single.cards.single", loweredName)
       } else {
-        Messages("help.piles.single.cards.multiple", rules.name.toLowerCase, NumberUtils.toWords(rules.initialCards))
+        Messages("help.piles.single.cards.multiple", loweredName, NumberUtils.toWords(rules.initialCards))
       }
       case x =>
         if (rules.initialCards == 0) {
-          Messages("help.piles.multiple.cards.empty", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase)
+          Messages("help.piles.multiple.cards.empty", NumberUtils.toWords(x, properCase = true), loweredName)
         } else {
           if (rules.initialCards == 1) {
-            Messages("help.piles.multiple.cards.single.each", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase)
+            Messages("help.piles.multiple.cards.single.each", NumberUtils.toWords(x, properCase = true), loweredName)
           } else {
             Messages(
               "help.piles.multiple.cards.multiple.each",
               NumberUtils.toWords(x, properCase = true),
-              rules.name.toLowerCase,
+              loweredName,
               NumberUtils.toWords(rules.initialCards)
             )
           }

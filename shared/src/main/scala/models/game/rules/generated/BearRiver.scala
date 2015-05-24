@@ -37,8 +37,7 @@ object BearRiver extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
-      initialCards = 1,
-      wrapFromKingToAce = true
+      initialCards = 1
     )
   ),
   tableaus = Seq(

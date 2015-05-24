@@ -63,8 +63,7 @@ object RacingAces extends GameRules(
     FoundationRules(
       name = "Aces Foundation",
       numPiles = 4,
-      suitMatchRule = SuitMatchRule.Any,
-      wrapFromKingToAce = true
+      suitMatchRule = SuitMatchRule.Any
     ),
     FoundationRules(
       name = "Sixes Foundation",
@@ -73,7 +72,6 @@ object RacingAces extends GameRules(
       lowRank = FoundationLowRank.SpecificRank(Rank.Six),
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true,
       maxCards = 6
     ),
     FoundationRules(
@@ -82,7 +80,6 @@ object RacingAces extends GameRules(
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Seven),
       suitMatchRule = SuitMatchRule.Any,
-      wrapFromKingToAce = true,
       maxCards = 7
     ),
     FoundationRules(
@@ -91,8 +88,7 @@ object RacingAces extends GameRules(
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
       suitMatchRule = SuitMatchRule.Any,
-      rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true
+      rankMatchRule = RankMatchRule.Down
     )
   ),
   tableaus = Seq(

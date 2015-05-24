@@ -9,29 +9,30 @@ object TableauHelpService {
 
   def tableau(rules: TableauRules, deckOptions: DeckOptions)(implicit lang: Lang) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
+    val loweredName = rules.name.toLowerCase
 
     val piles = rules.numPiles match {
       case 1 => rules.initialCards match {
         case InitialCards.Count(i) => if (i == 0) {
-          Messages("help.piles.single.cards.empty", rules.name.toLowerCase)
+          Messages("help.piles.single.cards.empty", loweredName)
         } else if(i == 1) {
-          Messages("help.piles.single.cards.single", rules.name.toLowerCase)
+          Messages("help.piles.single.cards.single", loweredName)
         } else {
-          Messages("help.piles.single.cards.multiple", rules.name.toLowerCase, NumberUtils.toWords(i))
+          Messages("help.piles.single.cards.multiple", loweredName, NumberUtils.toWords(i))
         }
         case ic => throw new NotImplementedError(ic.toString)
       }
       case x => rules.initialCards match {
         case InitialCards.Count(i) => if (i == 0) {
-          Messages("help.piles.multiple.cards.empty", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase)
+          Messages("help.piles.multiple.cards.empty", NumberUtils.toWords(x, properCase = true), loweredName)
         } else if(i == 1) {
-          Messages("help.piles.multiple.cards.single.each", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase)
+          Messages("help.piles.multiple.cards.single.each", NumberUtils.toWords(x, properCase = true), loweredName)
         } else {
-          Messages("help.piles.multiple.cards.multiple.each", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase, NumberUtils.toWords(i))
+          Messages("help.piles.multiple.cards.multiple.each", NumberUtils.toWords(x, properCase = true), loweredName, NumberUtils.toWords(i))
         }
-        case InitialCards.PileIndex => Messages("help.piles.multiple.cards.pile.index", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase)
-        case InitialCards.RestOfDeck => Messages("help.piles.multiple.cards.rest.of.deck", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase)
-        case InitialCards.Custom => Messages("help.piles.multiple.cards.custom", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase)
+        case InitialCards.PileIndex => Messages("help.piles.multiple.cards.pile.index", NumberUtils.toWords(x, properCase = true), loweredName)
+        case InitialCards.RestOfDeck => Messages("help.piles.multiple.cards.rest.of.deck", NumberUtils.toWords(x, properCase = true), loweredName)
+        case InitialCards.Custom => Messages("help.piles.multiple.cards.custom", NumberUtils.toWords(x, properCase = true), loweredName)
       }
     }
     ret += piles
@@ -54,20 +55,22 @@ object TableauHelpService {
     ret += MatchRuleHelpService.toWords(rules.emptyFilledWith, deckOptions.lowRank, deckOptions.highRank)
 
     if(rules.rankMatchRuleForBuilding != RankMatchRule.None && rules.suitMatchRuleForBuilding != SuitMatchRule.None) {
-      ret += Messages("help.tableau.build.none")
+      ret += Messages("help.tableau.build.none", loweredName)
     } else {
       ret += Messages(
         "help.tableau.build.rank.and.suit.match.rules",
+        loweredName,
         MatchRuleHelpService.toWords(rules.rankMatchRuleForBuilding),
         MatchRuleHelpService.toWords(rules.suitMatchRuleForBuilding)
       )
     }
 
     if(rules.rankMatchRuleForMovingStacks != RankMatchRule.None && rules.suitMatchRuleForMovingStacks != SuitMatchRule.None) {
-      ret += Messages("help.tableau.move.stacks.none")
+      ret += Messages("help.tableau.move.stacks.none", loweredName)
     } else {
       ret += Messages(
         "help.tableau.move.stacks.rank.and.suit.match.rules",
+        loweredName,
         MatchRuleHelpService.toWords(rules.rankMatchRuleForBuilding),
         MatchRuleHelpService.toWords(rules.suitMatchRuleForBuilding)
       )

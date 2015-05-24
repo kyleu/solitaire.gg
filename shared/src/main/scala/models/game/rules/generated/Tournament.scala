@@ -69,8 +69,7 @@ object Tournament extends GameRules(
     FoundationRules(
       name = "Ace Foundation",
       numPiles = 4,
-      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
-      wrapFromKingToAce = true
+      initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits)
     ),
     FoundationRules(
       name = "King Foundation",
@@ -78,8 +77,7 @@ object Tournament extends GameRules(
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
-      rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true
+      rankMatchRule = RankMatchRule.Down
     )
   ),
   tableaus = Seq(

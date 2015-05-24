@@ -42,7 +42,6 @@ object Blockade extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

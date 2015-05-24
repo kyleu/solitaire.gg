@@ -30,7 +30,6 @@ object SimonJester extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
-      wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false

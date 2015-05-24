@@ -33,7 +33,6 @@ object SuitsUp extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
-      wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false,
       autoMoveCards = true

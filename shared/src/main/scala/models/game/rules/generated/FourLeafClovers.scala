@@ -32,7 +32,6 @@ object FourLeafClovers extends GameRules(
   foundations = Seq(
     FoundationRules(
       suitMatchRule = SuitMatchRule.Any,
-      wrapFromKingToAce = true,
       maxCards = 0,
       autoMoveCards = true
     )

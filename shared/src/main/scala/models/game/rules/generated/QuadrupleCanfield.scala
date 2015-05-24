@@ -38,7 +38,6 @@ object QuadrupleCanfield extends GameRules(
     FoundationRules(
       numPiles = 16,
       initialCards = 1,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

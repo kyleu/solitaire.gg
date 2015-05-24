@@ -43,8 +43,7 @@ object Quadrennial extends GameRules(
     FoundationRules(
       numPiles = 16,
       initialCards = 16,
-      suitMatchRule = SuitMatchRule.Any,
-      wrapFromKingToAce = true
+      suitMatchRule = SuitMatchRule.Any
     )
   ),
   tableaus = Seq(

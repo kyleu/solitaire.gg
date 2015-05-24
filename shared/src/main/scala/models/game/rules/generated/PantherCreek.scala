@@ -50,6 +50,7 @@ object PantherCreek extends GameRules(
       initialCards = 1,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,
+      wrapFromKingToAce = false,
       maxCards = 0,
       autoMoveCards = true
     )

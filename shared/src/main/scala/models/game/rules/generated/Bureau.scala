@@ -38,7 +38,6 @@ object Bureau extends GameRules(
     FoundationRules(
       numPiles = 8,
       suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

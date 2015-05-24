@@ -51,7 +51,6 @@ object DemonsAndThieves extends GameRules(
     FoundationRules(
       numPiles = 8,
       initialCards = 1,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

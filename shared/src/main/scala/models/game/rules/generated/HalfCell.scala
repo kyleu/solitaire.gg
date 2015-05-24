@@ -30,7 +30,6 @@ object HalfCell extends GameRules(
       numPiles = 2,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueColors),
       suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true,
       maxCards = 26,
       autoMoveCards = true
     )

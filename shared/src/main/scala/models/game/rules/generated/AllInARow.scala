@@ -46,7 +46,6 @@ object AllInARow extends GameRules(
       lowRank = FoundationLowRank.AnyCard,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,
-      wrapFromKingToAce = true,
       maxCards = 0,
       autoMoveCards = true
     )

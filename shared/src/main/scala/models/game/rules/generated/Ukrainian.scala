@@ -31,7 +31,6 @@ object Ukrainian extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
-      wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true,
       autoMoveCards = true
     )

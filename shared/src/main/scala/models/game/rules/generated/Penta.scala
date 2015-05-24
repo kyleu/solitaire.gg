@@ -53,8 +53,7 @@ object Penta extends GameRules(
       name = "Left Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Five),
-      suitMatchRule = SuitMatchRule.Any,
-      wrapFromKingToAce = true
+      suitMatchRule = SuitMatchRule.Any
     ),
     FoundationRules(
       name = "Right Foundation",
@@ -62,8 +61,7 @@ object Penta extends GameRules(
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Five),
       suitMatchRule = SuitMatchRule.Any,
-      rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true
+      rankMatchRule = RankMatchRule.Down
     )
   ),
   tableaus = Seq(

@@ -38,7 +38,6 @@ object TripleMinerva extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 12,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

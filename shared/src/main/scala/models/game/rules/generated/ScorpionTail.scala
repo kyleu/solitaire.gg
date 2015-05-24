@@ -36,7 +36,6 @@ object ScorpionTail extends GameRules(
     FoundationRules(
       numPiles = 4,
       suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true
     )
   ),

@@ -48,7 +48,6 @@ object Tabbycat extends GameRules(
     FoundationRules(
       numPiles = 4,
       suitMatchRule = SuitMatchRule.Any,
-      wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true,
       autoMoveCards = true
     )

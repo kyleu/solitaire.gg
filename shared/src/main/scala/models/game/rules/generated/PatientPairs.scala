@@ -33,7 +33,6 @@ object PatientPairs extends GameRules(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.AnyCard,
-      wrapFromKingToAce = true,
       maxCards = 0,
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false,

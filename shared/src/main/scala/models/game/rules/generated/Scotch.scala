@@ -30,7 +30,6 @@ object Scotch extends GameRules(
     FoundationRules(
       numPiles = 4,
       suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

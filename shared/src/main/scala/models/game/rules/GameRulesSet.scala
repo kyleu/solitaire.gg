@@ -7,23 +7,28 @@ import models.game.rules.custom.CustomGameRules
 object GameRulesSet {
   private[this] val completedIds = Seq(
     "alexanderthegreat",
+    "batsford",
     "canfield",
     "doubleklondike",
     "fourteenout",
     "freecell",
+    "gargantua",
     "goldmine",
     "golf",
     "gypsy",
+    "kingalbert",
     "kingsly",
     "klondike",
     "klondike1card",
     "nestor",
     "pyramid",
     "royalrendezvous",
+    "sevendevils",
     "spider",
     "tarantula",
     "trigon",
     "tripleklondike",
+    "westcliff",
     "whitehorse",
     "zerline"
   )

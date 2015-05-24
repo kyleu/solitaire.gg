@@ -44,7 +44,6 @@ object Fifteens extends GameRules(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.AnyCard,
-      wrapFromKingToAce = true,
       maxCards = 0,
       autoMoveCards = true
     )

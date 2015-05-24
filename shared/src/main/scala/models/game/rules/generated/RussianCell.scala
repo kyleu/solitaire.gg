@@ -27,7 +27,6 @@ object RussianCell extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

@@ -33,7 +33,6 @@ object TheWish extends GameRules(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.AnyCard,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

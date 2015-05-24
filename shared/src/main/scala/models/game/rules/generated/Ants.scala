@@ -37,7 +37,6 @@ object Ants extends GameRules(
       initialCards = 4,
       suitMatchRule = SuitMatchRule.Any,
       rankMatchRule = RankMatchRule.UpOrDown,
-      wrapFromKingToAce = true,
       maxCards = 0,
       autoMoveCards = true
     )

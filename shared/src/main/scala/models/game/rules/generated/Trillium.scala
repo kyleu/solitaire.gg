@@ -45,7 +45,6 @@ object Trillium extends GameRules(
     FoundationRules(
       numPiles = 8,
       suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true,
       moveCompleteSequencesOnly = true
     )
   ),

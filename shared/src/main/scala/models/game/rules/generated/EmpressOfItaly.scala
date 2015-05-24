@@ -44,8 +44,7 @@ object EmpressOfItaly extends GameRules(
     FoundationRules(
       numPiles = 16,
       initialCards = 1,
-      suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true
+      suitMatchRule = SuitMatchRule.AlternatingColors
     )
   ),
   tableaus = Seq(

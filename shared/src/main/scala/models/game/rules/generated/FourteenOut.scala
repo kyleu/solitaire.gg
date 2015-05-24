@@ -33,7 +33,6 @@ object FourteenOut extends GameRules(
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   foundations = Seq(
     FoundationRules(
-      wrapFromKingToAce = true,
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false,
       autoMoveCards = true

@@ -9,6 +9,7 @@ object PyramidHelpService {
 
   def pyramid(rules: PyramidRules, deckOptions: DeckOptions)(implicit lang: Lang) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
+    val loweredName = rules.name.toLowerCase
 
     val rows = rules.height match {
       case 1 => Messages("help.pyramid.rows.single")
@@ -16,8 +17,8 @@ object PyramidHelpService {
     }
 
     rules.pyramidType match {
-      case PyramidType.Standard => ret += Messages("help.pyramid.type.standard", rows)
-      case PyramidType.Inverted => ret += Messages("help.pyramid.type.inverted", rows)
+      case PyramidType.Standard => ret += Messages("help.pyramid.type.standard", loweredName, rows)
+      case PyramidType.Inverted => ret += Messages("help.pyramid.type.inverted", loweredName, rows)
     }
 
     if (rules.wrapFromKingToAce) {
@@ -25,20 +26,22 @@ object PyramidHelpService {
     }
 
     if(rules.rankMatchRuleForBuilding != RankMatchRule.None && rules.suitMatchRuleForBuilding != SuitMatchRule.None) {
-      ret += Messages("help.pyramid.build.none")
+      ret += Messages("help.pyramid.build.none", loweredName)
     } else {
       ret += Messages(
         "help.pyramid.build.rank.and.suit.match.rules",
+        loweredName,
         MatchRuleHelpService.toWords(rules.rankMatchRuleForBuilding),
         MatchRuleHelpService.toWords(rules.suitMatchRuleForBuilding)
       )
     }
 
     if(rules.rankMatchRuleForMovingStacks != RankMatchRule.None && rules.suitMatchRuleForMovingStacks != SuitMatchRule.None) {
-      ret += Messages("help.pyramid.move.stacks.none")
+      ret += Messages("help.pyramid.move.stacks.none", loweredName)
     } else {
       ret += Messages(
         "help.pyramid.move.stacks.rank.and.suit.match.rules",
+        loweredName,
         MatchRuleHelpService.toWords(rules.rankMatchRuleForBuilding),
         MatchRuleHelpService.toWords(rules.suitMatchRuleForBuilding)
       )

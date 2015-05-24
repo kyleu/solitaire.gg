@@ -10,18 +10,7 @@ object KlondikeOneCard extends GameRules(
   like = Some("klondike"),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      wrapFromKingToAce = true,
-      canMoveFrom = FoundationCanMoveFrom.Always,
-      autoMoveCards = true
-    )
-  ),
-  tableaus = Seq(
-    TableauRules(
-      emptyFilledWith = FillEmptyWith.HighRank
-    )
-  )
+  foundations = Seq(FoundationRules(numPiles = 4)),
+  tableaus = Seq(TableauRules(emptyFilledWith = FillEmptyWith.HighRank))
 )
 

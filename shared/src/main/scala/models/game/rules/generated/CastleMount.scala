@@ -32,7 +32,6 @@ object CastleMount extends GameRules(
     FoundationRules(
       numPiles = 12,
       initialCards = 12,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

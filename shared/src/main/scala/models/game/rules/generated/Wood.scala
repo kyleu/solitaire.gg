@@ -41,7 +41,6 @@ object Wood extends GameRules(
       numPiles = 8,
       initialCards = 1,
       suitMatchRule = SuitMatchRule.AlternatingColors,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

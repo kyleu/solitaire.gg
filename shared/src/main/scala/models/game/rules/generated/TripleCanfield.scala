@@ -41,7 +41,6 @@ object TripleCanfield extends GameRules(
     FoundationRules(
       numPiles = 12,
       initialCards = 1,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     )
   ),

@@ -39,8 +39,7 @@ object Saxony extends GameRules(
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
-      initialCards = 8,
-      wrapFromKingToAce = true
+      initialCards = 8
     )
   ),
   tableaus = Seq(

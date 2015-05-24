@@ -55,8 +55,7 @@ object DeucesAndQueens extends GameRules(
       name = "Ace Foundation",
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Two),
-      suitMatchRule = SuitMatchRule.Any,
-      wrapFromKingToAce = true
+      suitMatchRule = SuitMatchRule.Any
     ),
     FoundationRules(
       name = "King Foundation",
@@ -64,8 +63,7 @@ object DeucesAndQueens extends GameRules(
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Queen),
       suitMatchRule = SuitMatchRule.Any,
-      rankMatchRule = RankMatchRule.Down,
-      wrapFromKingToAce = true
+      rankMatchRule = RankMatchRule.Down
     )
   ),
   tableaus = Seq(

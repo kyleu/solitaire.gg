@@ -51,7 +51,6 @@ object Carousel extends GameRules(
       lowRank = FoundationLowRank.SpecificRank(Rank.Ace),
       suitMatchRule = SuitMatchRule.AlternatingColors,
       rankMatchRule = RankMatchRule.Equal,
-      wrapFromKingToAce = true,
       autoMoveCards = true
     ),
     FoundationRules(
@@ -60,7 +59,6 @@ object Carousel extends GameRules(
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.Two),
       rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true,
       maxCards = 6,
       autoMoveCards = true
     ),
@@ -70,7 +68,6 @@ object Carousel extends GameRules(
       numPiles = 8,
       lowRank = FoundationLowRank.SpecificRank(Rank.Three),
       rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true,
       maxCards = 5,
       autoMoveCards = true
     )

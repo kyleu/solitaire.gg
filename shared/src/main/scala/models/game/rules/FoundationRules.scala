@@ -36,7 +36,7 @@ case class FoundationRules(
   initialCards: Int = 0,
   suitMatchRule: SuitMatchRule = SuitMatchRule.SameSuit,
   rankMatchRule: RankMatchRule = RankMatchRule.Up,
-  wrapFromKingToAce: Boolean = false,
+  wrapFromKingToAce: Boolean = true,
   moveCompleteSequencesOnly: Boolean = false,
   maxCards: Int = -1,
   canMoveFrom: FoundationCanMoveFrom = FoundationCanMoveFrom.Always,

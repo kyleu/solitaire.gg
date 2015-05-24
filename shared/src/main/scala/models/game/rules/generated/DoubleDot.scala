@@ -53,7 +53,6 @@ object DoubleDot extends GameRules(
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueColors),
       initialCards = 2,
       rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true,
       maxCards = 13,
       autoMoveCards = true
     ),
@@ -64,7 +63,6 @@ object DoubleDot extends GameRules(
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueColors),
       initialCards = 2,
       rankMatchRule = RankMatchRule.UpBy2,
-      wrapFromKingToAce = true,
       maxCards = 13,
       autoMoveCards = true
     )
