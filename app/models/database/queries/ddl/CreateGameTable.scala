@@ -5,7 +5,7 @@ import models.database.Statement
 case object CreateGameTable extends Statement {
   override val sql = """
     create table games (
-      id uuid primary key,
+      id uuid not null primary key,
       seed int not null,
       rules character varying(128) not null,
       status character varying(128) not null,
@@ -15,9 +15,7 @@ case object CreateGameTable extends Statement {
       redos integer not null default 0,
       created timestamp not null default now(),
       completed timestamp
-    ) with (
-      oids=false
-    );
+    ) with (oids=false)
 
     create index games_player_idx on games using btree (player);
   """

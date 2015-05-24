@@ -7,6 +7,7 @@ import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, Credenti
 import controllers.BaseController
 import models.user.{ RegistrationData, User, UserForms }
 import org.joda.time.LocalDateTime
+import play.api.i18n.Messages
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.AnyContent
 import services.user.AuthenticationEnvironment
@@ -27,12 +28,12 @@ object RegistrationController extends BaseController {
         env.identityService.retrieve(LoginInfo(CredentialsProvider.ID, data.email)).flatMap {
           case Some(user) => Future.successful {
             Ok(views.html.auth.register(UserForms.registrationForm.fill(data)))
-            Redirect(controllers.auth.routes.RegistrationController.registrationForm()).flashing("error" -> "That email address is already in use.")
+            Redirect(controllers.auth.routes.RegistrationController.registrationForm()).flashing("error" -> Messages("registration.email.taken"))
           }
           case None => env.identityService.retrieve(data.username) flatMap {
             case Some(user) => Future.successful {
               Ok(views.html.auth.register(UserForms.registrationForm.fill(data)))
-              Redirect(controllers.auth.routes.RegistrationController.registrationForm()).flashing("error" -> "That username is already in use.")
+              Redirect(controllers.auth.routes.RegistrationController.registrationForm()).flashing("error" -> Messages("registration.username.taken"))
             }
             case None => saveProfile(data)
           }
@@ -48,7 +49,7 @@ object RegistrationController extends BaseController {
       User(UUID.randomUUID, Some(data.username), profiles = Seq(loginInfo), created = new LocalDateTime(), avatar = "default")
     } else {
       request.identity.copy(
-        username = Some(data.username),
+        username = if(data.username.isEmpty) { request.identity.username } else { Some(data.username) },
         profiles = request.identity.profiles :+ loginInfo
       )
     }

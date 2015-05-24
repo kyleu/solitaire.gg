@@ -1,0 +1,229 @@
+guest.name = Guest
+invalid.game.rules = We can''t find any information about the game [{0}].
+
+# Authentication
+authentication.invalid.credentials = Invalid credentials.
+authentication.invalid.provider = Cannot authenticate with unknown social provider [{0}].
+authentication.service.error = Could''nt authenticate with provider [{0}].
+
+# Registration
+registration.username.taken = That username is already in use.
+registration.email.taken = That email address is already in use.
+
+# Index Page
+index.tagline = I''m trying to build the web''s best card games. Thanks for checking out my progress!
+index.play.now = Play Now
+index.coming.soon = Coming Soon!
+
+index.known.as = You are currently known as {0}.
+index.anonymous = You haven't picked a username yet.
+
+index.buttons.profile = Profile
+index.buttons.sign.up = Register
+index.buttons.sign.in = Sign In
+index.buttons.sign.out = Sign Out
+
+index.games.completed= Completed Games
+index.games.in.progress = Works in Progress
+index.games.unstarted = Unstarted Games
+index.administration = Administration
+
+# Email
+email.from = Solitaire.gg <solitaire@solitaire.gg>
+email.welcome.subject = Welcome to Solitaire.gg!
+email.welcome.body.html = <em>Welcome to <strong>Solitaire.gg</strong>!</em><br>We're so glad you're here.
+email.welcome.body.text = Welcome to Solitaire.gg! We're so glad you're here.
+
+# Help
+help.general = Help for Solitaire.gg.
+
+# Objective Help
+help.victory.condition.all.but.four.on.foundation = Place all but four cards on the foundation.
+help.victory.condition.all.on.foundation = Place all cards on the foundation in sequence.
+help.victory.condition.all.on.foundation.or.stock = Place all cards on the foundation or stock.
+help.victory.condition.all.on.tableau.sorted = Sort all cards on the tableau or move them to the foundation.
+help.victory.condition.none.in.pyramid = Remove all cards from the pyramid.
+help.victory.condition.none.in.stock = Remove all cards from the stock.
+help.victory.condition.pairs.sr = Remove all pairs with equal ranks.
+help.victory.condition.pairs.srsc = Remove all pairs with equal ranks and the same color.
+help.victory.condition.pairs.ss = Remove all pairs with the same suit.
+help.victory.condition.pairs.9-or-10jqk = Remove all pairs adding to nine and all Nines, Tens, Jacks, Queens, and Kings.
+help.victory.condition.pairs.10-or-10JQK-pairs = Remove all pairs adding to ten, pairs of Jacks, pairs of Queens, and pairs of Kings.
+help.victory.condition.pairs.10-or-10JQK = Remove all pairs adding to ten, and all Tens, Jacks, Queens, and Kings.
+help.victory.condition.pairs.10-or-four-10JQK = Remove all pairs adding to ten, and all sets of Ten, Jacks Queen, and King.
+help.victory.condition.pairs.11-or-JQK-pairs = Remove all pairs adding to eleven, and all pairs of Jacks, Queens, and Kings.
+help.victory.condition.pairs.11-or-Jpair-or-QK = Remove all pairs adding to eleven, all pairs of Jacks, and all Queen/King pairs.
+help.victory.condition.pairs.11-or-JQK = Remove all pairs adding to eleven, and all Jacks, Queens, and Kings.
+help.victory.condition.pairs.ss-11-or-JQK = Remove all same-suit pairs adding to eleven, and all Jacks, Queens, and Kings.
+help.victory.condition.pairs.12-or-QK = Remove all pairs adding to twelve, and all Queens and Kings.
+help.victory.condition.pairs.13-or-K = Remove all pairs adding to 13, and all Kings.
+help.victory.condition.pairs.14 = Remove all pairs adding to 14.
+help.victory.condition.pairs.15-or-10JQK = Remove all pairs adding to 15, and all sets of Ten/Jack/Queen/King.
+help.victory.condition.pairs.15-or-A-pair = Remove all pairs adding to 15, and all Ace pairs.
+help.victory.condition.pairs.15-or-four-10JQK = Remove sets adding to fifteen, and sets of all four Tens, Jacks, Queens, and Kings.
+help.victory.condition.pairs.17-or-A23 = Remove all pairs adding to 17, and all sets of Ace/Two/Three.
+help.victory.condition.pairs.face-and-three-that-add-to-18 = Remove all sets of one face card and three others that add to 18.
+help.victory.condition.pairs.cr = Remove all pairs with consecutive ranks.
+help.victory.condition.pairs.cr-or-AK = Remove all pairs with consecutive ranks or Ace/King.
+help.victory.condition.pairs.cr-or-sr = Remove all pairs with consecutive or equal ranks.
+help.victory.condition.stack.same.suit.or.rank.in.waste = Stack cards of same rank and suit in the waste.
+
+# Rank Match Rule Help
+help.rank.match.rule.none = none
+help.rank.match.rule.up = one rank higher
+help.rank.match.rule.down = one rank lower
+help.rank.match.rule.equal = the same rank
+help.rank.match.rule.up.or.down = one rank lower or higher
+help.rank.match.rule.up.by.2 = two ranks higher
+help.rank.match.rule.down.by.2 = two ranks lower
+help.rank.match.rule.up.by.3 = three ranks higher
+help.rank.match.rule.down.by.3 = three ranks lower
+help.rank.match.rule.up.by.4 = four ranks higher
+help.rank.match.rule.down.by.4 = four ranks lower
+help.rank.match.rule.up.by.pile.index = one rank higher for the first pile, two higher for the second, and so on,
+help.rank.match.rule.any = any rank
+
+# Suit Match Rule Help
+help.suit.match.rule.none = none
+help.suit.match.rule.same.suit = the same suit
+help.suit.match.rule.different.suit = a different suit
+help.suit.match.rule.same.color = the same color
+help.suit.match.rule.alternating.color = a different color
+help.suit.match.rule.any = any suit
+
+# Fill Empty From Help
+help.fill.empty.with.any = An empty pile may be filled with any card.
+help.fill.empty.with.none = An empty pile may not be filled.
+help.fill.empty.with.aces = An empty pile may be filled with any Ace.
+help.fill.empty.with.kings = An empty pile may be filled with any King.
+help.fill.empty.with.kings.until.stock.empty = An empty pile may be filled with any King until the stock is empty.
+help.fill.empty.with.kings.or.aces = An empty pile may be filled with any King or Ace.
+help.fill.empty.with.sevens = An empty pile may be filled with any Seven.
+
+# Deck Options Help
+help.deck.single.standard = One standard deck of {0} cards.
+help.deck.single.oddranks = One deck of {0} cards using ranks {1}.
+help.deck.single.oddsuits = One deck of {0} cards using suits {1}.
+help.deck.single.oddranksandsuits = One deck of {0} cards using ranks {1} and suits {2}.
+
+help.deck.multiple.standard = {0} standard decks totalling {1} cards.
+help.deck.multiple.oddranks = {0} decks totalling {1} cards using ranks {2}.
+help.deck.multiple.oddsuits = {0} decks totalling {1} cards using suits {2}.
+help.deck.multiple.oddranksandsuits = {0} decks totalling {1} cards using ranks {2} and suits {3}.
+
+# Stock Help
+help.stock.cards.shown = {0} cards are visible.
+
+help.stock.cards.dealt.single = one card
+help.stock.cards.dealt.multiple = {0} cards
+help.stock.cards.dealt.fewer.each.time = three cards, then fewer each time,
+
+help.stock.deal.to.foundation = When selected, deals {0} to each foundation pile.
+help.stock.deal.to.manually = Manually move cards from the stock.
+help.stock.deal.to.never = No cards may be moved.
+help.stock.deal.to.reserve = When selected, deals {0} to each reserve pile.
+help.stock.deal.to.tableau = When selected, deals {0} to each tableau pile.
+help.stock.deal.to.tableau.first.set = When selected, deals {0} to each tableau pile in the first set.
+help.stock.deal.to.tableau.if.none.empty = When selected, deals {0} to each tableau pile if none are empty.
+help.stock.deal.to.tableau.non.empty = When selected, deals {0} to each non-empty tableau pile.
+help.stock.deal.to.waste = When selected, deals {0} to the waste.
+help.stock.deal.to.waste.or.pair.manually = When selected, deals {0} to the waste, or pair manually.
+
+help.stock.max.deals.single = Only a single pass through the stock is allowed.
+help.stock.max.deals.multiple = Up to {0} passes through the stock.
+help.stock.max.deals.unlimited = The stock has unlimited redeals.
+
+# Waste Help
+help.waste.piles.single = A single waste pile.
+help.waste.piles.multiple = {0} waste piles.
+
+help.waste.playable.cards.all = Any card may be moved from the waste.
+help.waste.playable.cards.top = The top card may be moved from the waste.
+
+# Reserve Help
+help.reserve.single.cards.empty = A single empty reserve pile.
+help.reserve.single.cards.single = A single reserve pile with one initial card.
+help.reserve.single.cards.multiple = A single reserve pile with {0} initial cards.
+
+help.reserve.multiple.cards.empty = {0} empty reserve piles.
+help.reserve.multiple.cards.single = {0} reserve piles with one initial card dealt to each.
+help.reserve.multiple.cards.multiple = {0} reserve piles with {1} initial cards dealt to each.
+
+# Cell Help
+help.cell.single.cards.empty = A single empty cell.
+help.cell.single.cards.single = A single cell with one initial card.
+help.cell.single.cards.multiple = A single cell with {0} initial cards.
+
+help.cell.multiple.cards.empty = {0} empty cells.
+help.cell.multiple.cards.single = {0} cells with one initial card dealt to each.
+help.cell.multiple.cards.multiple = {0} cells with {1} initial cards dealt to each.
+
+# Foundation Help
+help.foundation.single.cards.empty = A single empty foundation pile.
+help.foundation.single.cards.single = A single foundation pile with one initial card.
+help.foundation.single.cards.multiple = A single foundation pile with {0} initial cards.
+
+help.foundation.multiple.cards.empty = {0} empty foundation piles.
+help.foundation.multiple.cards.single = {0} foundation piles with initial card dealt to them.
+help.foundation.multiple.cards.single.each = {0} foundation piles with one initial card dealt to each.
+help.foundation.multiple.cards.multiple = {0} foundation piles with {1} initial cards dealt to them.
+help.foundation.multiple.cards.multiple.each = {0} foundation piles with {1} initial cards dealt to each.
+
+help.foundation.lowrank.any = Any card may be moved to any empty foundation pile.
+help.foundation.lowrank.ascending = There is one foundation pile for each rank from Ace to King.
+help.foundation.lowrank.first.becomes.base = The first card played to a foundation becomes the base card for others.
+help.foundation.lowrank.specific = Any {0} may be played to any empty foundation pile.
+
+help.foundation.initial.restriction.specific.color.unique.suits = Each pile must be started with a {0} card and be a unique suit.
+help.foundation.initial.restriction.specific.suit = Each pile must be started with a {0} card.
+help.foundation.initial.restriction.unique.colors = Each pile must be started with a unique color.
+help.foundation.initial.restriction.unique.suits = Each pile must be started with a unique suit.
+
+help.foundation.build.none = No cards may be played to a foundation pile.
+help.foundation.build.rank.and.suit.match.rules = A card may be played to a foundation pile if it is {0} and {1}.
+
+help.foundation.wrap.ranks = An Ace may be played on a King, continuing the sequence.
+help.foundation.cards.shown = {0} cards are visible.
+
+# Tableau Help
+help.tableau.single.cards.empty = A single empty tableau pile.
+help.tableau.single.cards.single = A single tableau pile with one initial card.
+help.tableau.single.cards.multiple = A single tableau pile with {0} initial cards.
+
+help.tableau.multiple.cards.empty = {0} empty tableau piles.
+help.tableau.multiple.cards.single = {0} tableau piles with one initial card dealt to each.
+help.tableau.multiple.cards.multiple = {0} tableau piles with {1} initial cards dealt to each.
+help.tableau.multiple.cards.pile.index = {0} tableau piles with one card dealt to the first pile, two to the second, and so on.
+help.tableau.multiple.cards.rest.of.deck = {0} tableau piles with the rest of the cards in the deck dealt to them.
+help.tableau.multiple.cards.custom = {0} tableau piles tableau piles with a custom number of cards dealt to them.
+
+help.tableau.unique.ranks = The piles are dealt in such a way that no two cards in the same pile have the same rank.
+
+help.tableau.cards.face.down.all.but.one = The top card of each pile is turned face-up.
+help.tableau.cards.face.down.none = All cards are face-up.
+help.tableau.cards.face.down.single = All but the first card in each pile is turned face-up.
+help.tableau.cards.face.down.multiple = All but the first {0} cards in each pile are turned face-up.
+help.tableau.cards.face.down.even.numbered = Each odd numbered card is turned face-up.
+help.tableau.cards.face.down.odd.numbered = Each even numbered card is turned face-up.
+
+help.tableau.build.none = No cards may be played to a tableau pile.
+help.tableau.build.rank.and.suit.match.rules = A card may be played to a tableau pile if it is {0} and {1}.
+
+help.tableau.move.stacks.none = No cards may be moved from a tableau pile.
+help.tableau.move.stacks.rank.and.suit.match.rules = Cards may be moved from a tableau pile if they are {0} and {1}.
+
+# Pyramid Help
+help.pyramid.rows.single = a single row
+help.pyramid.rows.multiple = {0} rows
+
+help.pyramid.type.standard = A standard pyramid with {0} rows (the top row has only one card, two in the next, and so on).
+help.pyramid.type.inverted = An inverted pyramid with {0} rows (the bottom row has only one card, two in the next, and so on).
+
+help.pyramid.wrap.ranks = An Ace may be played on a King, continuing the sequence.
+
+help.pyramid.build.none = No cards may be built on this pyramid.
+help.pyramid.build.rank.and.suit.match.rules = A card may be built on this pyramid if it is {0} and {1}.
+
+help.pyramid.move.stacks.none = No cards may be moved from this pyramid.
+help.pyramid.move.stacks.rank.and.suit.match.rules = Cards may be moved from this pyramid if they are {0} and {1}.
+

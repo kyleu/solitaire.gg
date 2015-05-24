@@ -1,21 +1,22 @@
 package services.help
 
 import models.game.rules.{ WastePlayableCards, WasteRules }
+import play.api.i18n.{Messages, Lang}
 import utils.NumberUtils
 
 object WasteHelpService {
-  def waste(rules: WasteRules) = {
+  def waste(rules: WasteRules)(implicit lang: Lang) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
 
     val piles = rules.numPiles match {
-      case 1 => "A single waste pile."
-      case x => NumberUtils.toWords(x, properCase = true) + " waste piles."
+      case 1 => Messages("help.waste.piles.single")
+      case x => Messages("help.waste.piles.multiple", NumberUtils.toWords(x, properCase = true))
     }
     ret += piles
 
     rules.playableCards match {
-      case WastePlayableCards.All => ret += "Any card may be moved from the waste."
-      case WastePlayableCards.TopCardOnly => ret += "The top card may be moved from the waste."
+      case WastePlayableCards.All => ret += Messages("help.waste.playable.cards.all")
+      case WastePlayableCards.TopCardOnly => ret += Messages("help.waste.playable.cards.top")
     }
 
     rules.name -> ret

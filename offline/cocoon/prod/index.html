@@ -10,12 +10,20 @@
   </head>
   <body>
     <div id="game-container"></div>
+
     <div id="status-panel">
       <span id="status-username"></span>
       (<span id="status-connection">Not Connected</span>,
       <span id="status-latency">0</span>ms,
       <span id="status-fps">0</span> fps,
       v<span id="status-version">0</span>)
+    </div>
+
+    <div id="gameplay-modal">
+      <div id="gameplay-modal-backdrop"></div>
+      <div id="gameplay-modal-content" class="off">
+        <iframe id="gameplay-modal-iframe" src=""></iframe>
+      </div>
     </div>
 
     <pre id="solitaire-gg-config">

@@ -3,6 +3,7 @@ package controllers
 import models.database.queries.auth.{ UserQueries, ProfileQueries }
 import models.game.rules.GameRulesSet
 import models.user.Avatars
+import play.api.i18n.Messages
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.{ AnyContent, Action }
 import services.database.Database
@@ -12,15 +13,7 @@ import scala.concurrent.Future
 
 object HomeController extends BaseController {
   def index() = withSession { implicit request =>
-    val game = getGame(request.host)
-    if(game == "solitaire" || game == "www") {
-      Future.successful(Ok(views.html.index(request.identity)))
-    } else {
-      GameRulesSet.allById.get(game) match {
-        case Some(g) => Future.successful(Ok(views.html.help(g)))
-        case None => Future.successful(Ok(views.html.index(request.identity)))
-      }
-    }
+    Future.successful(Ok(views.html.index(request.identity)))
   }
 
   def untrail(path: String) = Action.async {
@@ -60,21 +53,17 @@ object HomeController extends BaseController {
   def help(id: String) = withSession { implicit request =>
     Future.successful {
       id match {
-        case "undefined" => Ok("Join a game before you request help!")
+        case "undefined" => Ok(Messages("help.general"))
         case _ => GameRulesSet.allById.get(id) match {
           case Some(rules) => Ok(views.html.help(rules))
-          case None => Ok("We can't find any information about [" + id + "].")
+          case None => Ok(Messages("invalid.game.rules", id))
         }
       }
     }
   }
 
   def newDefaultGame() = withSession { implicit request =>
-    val game = getGame(request.host)
-    GameRulesSet.allById.get(game) match {
-      case Some(_) => startGame(game)
-      case None => startGame()
-    }
+    startGame()
   }
 
   def newFacebookGame() = withSession { implicit request =>
@@ -109,12 +98,7 @@ object HomeController extends BaseController {
   )(implicit request: SecuredRequest[AnyContent]) = {
     Future.successful(GameRulesSet.allById.get(rulesId) match {
       case Some(rules) => Ok(views.html.game.gameplay(rules.title, request.identity, rulesId, initialAction, seed, offline))
-      case None => NotFound("Unknown game [" + rulesId + "].")
+      case None => NotFound(Messages("invalid.game.rules", rulesId))
     })
-  }
-
-  private[this] def getGame(host: String) = {
-    val idx = host.indexOf('.')
-    if(idx == -1) { "solitaire" } else { host.substring(0, idx) }
   }
 }

@@ -90,12 +90,16 @@ echo "  Building Cocoon.js distribution..."
 mkdir -p build/dev/cocoon
 cp -R "build/dev/web/" "build/dev/cocoon"
 cp -R "cocoon/dev/" "build/dev/cocoon"
-zip -r -q bin/dev/solitaire.gg.zip build/dev/web/*
+pushd build/dev/cocoon/
+zip -r -q ../../../bin/dev/solitaire.gg.zip ./*
+popd
 
 # Prod
 mkdir -p build/prod/cocoon
 cp -R "build/prod/web/" "build/prod/cocoon"
 cp -R "cocoon/prod/" "build/prod/cocoon"
-zip -r -q bin/prod/solitaire.gg.zip build/prod/web/*
+pushd build/prod/cocoon/
+zip -r -q ../../../bin/prod/solitaire.gg.zip ./*
+popd
 
 echo "  Build complete!"

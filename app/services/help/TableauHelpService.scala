@@ -1,72 +1,76 @@
 package services.help
 
 import models.game.rules._
+import play.api.i18n.{Messages, Lang}
 import utils.NumberUtils
 
 object TableauHelpService {
   private[this] val defaults = TableauRules()
 
-  def tableau(rules: TableauRules) = {
+  def tableau(rules: TableauRules)(implicit lang: Lang) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
 
     val piles = rules.numPiles match {
-      case 1 => if (rules.initialCards == InitialCards.Count(0)) {
-        "A single empty tableau pile."
-      } else {
-        "A single tableau pile with " + rules.initialCards + " initial cards."
-      }
-      case x =>
-        NumberUtils.toWords(x, properCase = true) + (if (rules.initialCards == InitialCards.Count(0)) {
-          " empty tableau piles."
+      case 1 => rules.initialCards match {
+        case InitialCards.Count(i) => if (i == 0) {
+          Messages("help.tableau.single.cards.empty")
+        } else if(i == 1) {
+          Messages("help.tableau.single.cards.single")
         } else {
-          rules.initialCards match {
-            case InitialCards.Count(i) =>
-              val plural = if (i == 1) { "" } else { "s" }
-              " tableau piles with " + NumberUtils.toWords(i) + " initial card" + plural + " dealt to each."
-            case InitialCards.PileIndex => " tableau piles with one card dealt to the first pile, two to the second, and so on."
-            case InitialCards.RestOfDeck => " tableau piles with the rest of the cards in the deck dealt to them."
-            case InitialCards.Custom => " tableau piles with a custom number of cards dealt to them."
-            case ic => " Not Implemented [" + ic.toString + "]"
-          }
-        })
+          Messages("help.tableau.single.cards.multiple", NumberUtils.toWords(i))
+        }
+        case ic => throw new NotImplementedError(ic.toString)
+      }
+      case x => rules.initialCards match {
+        case InitialCards.Count(i) => if (i == 0) {
+          Messages("help.tableau.multiple.cards.empty", NumberUtils.toWords(x, properCase = true))
+        } else if(i == 1) {
+          Messages("help.tableau.multiple.cards.single", NumberUtils.toWords(x, properCase = true))
+        } else {
+          Messages("help.tableau.multiple.cards.multiple", NumberUtils.toWords(x, properCase = true), NumberUtils.toWords(i))
+        }
+        case InitialCards.PileIndex => Messages("help.tableau.multiple.cards.pile.index", NumberUtils.toWords(x, properCase = true))
+        case InitialCards.RestOfDeck => Messages("help.tableau.multiple.cards.rest.of.deck", NumberUtils.toWords(x, properCase = true))
+        case InitialCards.Custom => Messages("help.tableau.multiple.cards.custom", NumberUtils.toWords(x, properCase = true))
+      }
     }
     ret += piles
 
     if (rules.uniqueRanks) {
-      ret += "Each pile will not contain any duplicate ranks."
+      ret += Messages("help.tableau.unique.ranks")
     }
 
     rules.cardsFaceDown match {
-      case TableauFaceDownCards.AllButOne => ret += "The top card of each pile is turned face-up."
+      case TableauFaceDownCards.AllButOne => ret += "help.tableau.cards.face.down.all.but.one"
       case TableauFaceDownCards.Count(i) => i match {
-        case 0 => ret += "All cards are face-up."
-        case 1 => ret += "The first card in each pile is turned face-up."
-        case _ => ret += "The first " + NumberUtils.toWords(i) + " cards in each pile are turned face-up."
+        case 0 => ret += Messages("help.tableau.cards.face.down.none")
+        case 1 => ret += Messages("help.tableau.cards.face.down.single")
+        case _ => ret += Messages("help.tableau.cards.face.down.multiple", NumberUtils.toWords(i))
       }
-      case TableauFaceDownCards.EvenNumbered => ret += "Each even-numbered card is face-up."
-      case TableauFaceDownCards.OddNumbered => ret += "Each odd-numbered card is face-up."
+      case TableauFaceDownCards.EvenNumbered => ret += Messages("help.tableau.cards.face.down.even.numbered")
+      case TableauFaceDownCards.OddNumbered => ret += Messages("help.tableau.cards.face.down.odd.numbered")
     }
 
-    ret += rules.emptyFilledWith.toWords
+    ret += MatchRuleHelpService.toWords(rules.emptyFilledWith)
 
-    rules.suitMatchRuleForBuilding match {
-      case SuitMatchRule.None => ret += "No cards may be built on the tableau."
-      case sb => rules.rankMatchRuleForBuilding match {
-        case RankMatchRule.None => ret += "No cards may be built on the tableau."
-        case rb => ret += "Cards that are " + rb.toWords + " and " + sb.toWords + " may be added to these piles."
-      }
+    if(rules.rankMatchRuleForBuilding != RankMatchRule.None && rules.suitMatchRuleForBuilding != SuitMatchRule.None) {
+      ret += Messages("help.tableau.build.none")
+    } else {
+      ret += Messages(
+        "help.tableau.build.rank.and.suit.match.rules",
+        MatchRuleHelpService.toWords(rules.rankMatchRuleForBuilding),
+        MatchRuleHelpService.toWords(rules.suitMatchRuleForBuilding)
+      )
     }
 
-    rules.suitMatchRuleForMovingStacks match {
-      case SuitMatchRule.None => ret += "No cards may be moved from the tableau."
-      case sb => rules.rankMatchRuleForMovingStacks match {
-        case RankMatchRule.None => ret += "No cards may be moved from the tableau."
-        case rb => ret += "Sequences of cards that are each " + rb.toWords + " and " + sb.toWords + " may be moved from the tableau."
-      }
-    }
-
-    if (rules.uniqueRanks) {
-      ret += "The piles are dealt in such a way that no two cards in the same pile have the same rank."
+    if(rules.rankMatchRuleForMovingStacks != RankMatchRule.None && rules.suitMatchRuleForMovingStacks != SuitMatchRule.None) {
+      ret += Messages("help.tableau.move.stacks.none")
+    } else {
+      ret += Messages(
+        "help.tableau.move.stacks.rank.and.suit.match.rules",
+        MatchRuleHelpService.toWords(rules.rankMatchRuleForBuilding),
+        MatchRuleHelpService.toWords(rules.suitMatchRuleForBuilding)
+      )
     }
 
     val name = if (rules.setNumber == 0) {

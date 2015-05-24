@@ -22,3 +22,5 @@ case class MoveCards(cards: Seq[UUID], src: String, tgt: String) extends GameMes
 
 case object Undo extends GameMessage
 case object Redo extends GameMessage
+
+case object ResignGame extends GameMessage

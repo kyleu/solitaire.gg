@@ -6,12 +6,13 @@ import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
 import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, SocialProvider, CommonSocialProfileBuilder }
 import controllers.BaseController
 import models.user.{ User, UserForms }
+import play.api.i18n.Messages
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 
-object AuthorizationController extends BaseController {
+object AuthenticationController extends BaseController {
   override val env = AuthenticationEnvironment
 
   def signInForm = withSession { implicit request =>
@@ -31,7 +32,8 @@ object AuthorizationController extends BaseController {
           case None => Future.failed(new IdentityNotFoundException("Couldn't find user."))
         }
       }.recover {
-        case e: ProviderException => Redirect(controllers.auth.routes.AuthorizationController.signInForm()).flashing("error" -> "Invalid Credentials.")
+        case e: ProviderException =>
+          Redirect(controllers.auth.routes.AuthenticationController.signInForm()).flashing("error" -> Messages("authentication.invalid.credentials"))
       }
     )
   }
@@ -53,11 +55,11 @@ object AuthorizationController extends BaseController {
             result
           }
         }
-      case _ => Future.failed(new ProviderException(s"Cannot authenticate with unexpected social provider $provider"))
+      case _ => Future.failed(new ProviderException(Messages("authentication.invalid.provider", provider)))
     }).recover {
       case e: ProviderException =>
         logger.error("Unexpected provider error", e)
-        Redirect(routes.AuthorizationController.signInForm()).flashing("error" -> "Could Not Authenticate.")
+        Redirect(routes.AuthenticationController.signInForm()).flashing("error" -> Messages("authentication.service.error", provider))
     }
   }
 

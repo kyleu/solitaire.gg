@@ -7,7 +7,7 @@
       <div class="flash-error">@flash("error")</div>
     }
     <h4>Sign in to Solitaire.gg</h4>
-    <form method="post" action="@controllers.auth.routes.AuthorizationController.authenticateCredentials()">
+    <form method="post" action="@controllers.auth.routes.AuthenticationController.authenticateCredentials()">
       <input type="text" class="form-control" name="email" value="@form("email").value" placeholder="Email or Username" />
       @if(form.error("email").isDefined) {
         <em>@Messages(form.error("email").get.message)</em>
@@ -29,7 +29,7 @@
           <p>Or sign in using these providers</p>
           <div>
           @for(p <- providers if p._2.id != "credentials") {
-            <a href="@controllers.auth.routes.AuthorizationController.authenticateSocial(p._2.id)" class="provider @p._2.id"><img src="@routes.Assets.at("images/providers/" + p._2.id + ".png")"></a>
+            <a href="@controllers.auth.routes.AuthenticationController.authenticateSocial(p._2.id)" class="provider @p._2.id"><img src="@routes.Assets.at("images/providers/" + p._2.id + ".png")"></a>
           }
           </div>
         </div>

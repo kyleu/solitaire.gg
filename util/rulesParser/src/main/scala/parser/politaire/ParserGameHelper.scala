@@ -1,6 +1,6 @@
 package parser.politaire
 
-import models.game.rules.{ RankMatchRule, SuitMatchRule, InitialCards }
+import models.game.rules.{FillEmptyWith, RankMatchRule, SuitMatchRule, InitialCards}
 
 trait ParserGameHelper { this: GameRulesParser =>
   protected[this] def getInitialCards(i: Int) = i match {
@@ -36,5 +36,16 @@ trait ParserGameHelper { this: GameRulesParser =>
     case 8192 => RankMatchRule.UpByPileIndex
     case 8191 => RankMatchRule.Any
     case x => throw new IllegalArgumentException(x.toString)
+  }
+
+  protected[this] def getFillEmptyWith(i: Int) = i match {
+    case 0 => FillEmptyWith.Any
+    case 1 => FillEmptyWith.Kings
+    case 2 => FillEmptyWith.KingsUntilStockEmpty
+    case 4 => FillEmptyWith.None
+    case 5 => FillEmptyWith.None
+    case 7 => FillEmptyWith.Aces
+    case 8 => FillEmptyWith.Sevens
+    case 9 => FillEmptyWith.KingsOrAces
   }
 }

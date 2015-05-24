@@ -8,7 +8,7 @@
       <p>
         You're playing as a guest. Why not
         <a href="@controllers.auth.routes.RegistrationController.registrationForm()">register</a> or
-        <a href="@controllers.auth.routes.AuthorizationController.signInForm()">sign in</a>
+        <a href="@controllers.auth.routes.AuthenticationController.signInForm()">sign in</a>
         ?
       </p>
     } else {
@@ -37,7 +37,7 @@
             @facebook.get.email<br/>
             <a href="@routes.HomeController.updateAvatar("facebook")">Use your Facebook profile image as your avatar.</a>
           } else {
-            @defining(controllers.auth.routes.AuthorizationController.authenticateSocial("facebook")) { url =>
+            @defining(controllers.auth.routes.AuthenticationController.authenticateSocial("facebook")) { url =>
               <a href="@url" class="provider facebook">
                 <img src="@routes.Assets.at("images/providers/facebook.png")">
               </a>
@@ -59,7 +59,7 @@
             @google.get.email<br/>
             <a href="@routes.HomeController.updateAvatar("google")">Use your Google+ profile image as your avatar.</a>
           } else {
-            @defining(controllers.auth.routes.AuthorizationController.authenticateSocial("google")) { url =>
+            @defining(controllers.auth.routes.AuthenticationController.authenticateSocial("google")) { url =>
               <a href="@url" class="provider google">
                 <img src="@routes.Assets.at("images/providers/google.png")">
               </a>
@@ -81,7 +81,7 @@
             @twitter.get.email<br/>
             <a href="@routes.HomeController.updateAvatar("twitter")">Use your Twitter profile image as your avatar.</a>
           } else {
-            @defining(controllers.auth.routes.AuthorizationController.authenticateSocial("twitter")) { url =>
+            @defining(controllers.auth.routes.AuthenticationController.authenticateSocial("twitter")) { url =>
               <a href="@url" class="provider twitter">
                 <img src="@routes.Assets.at("images/providers/twitter.png")">
               </a>
@@ -103,7 +103,7 @@
             @steam.get.email<br/>
             <a href="@routes.HomeController.updateAvatar("steam")">Use your Steam profile image as your avatar.</a>
           } else {
-            @defining(controllers.auth.routes.AuthorizationController.authenticateSocial("steam")) { url =>
+            @defining(controllers.auth.routes.AuthenticationController.authenticateSocial("steam")) { url =>
               <a href="@url" class="provider steam">
                 <img src="@routes.Assets.at("images/providers/steam.png")">
               </a>

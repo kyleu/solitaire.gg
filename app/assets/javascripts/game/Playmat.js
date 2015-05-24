@@ -74,7 +74,7 @@ define(['game/helpers/Layout'], function (calculateLayout) {
   Playmat.prototype.enableTrails = function() {
     this.emitter = new Phaser.Particles.Arcade.Emitter(this.game, 0, 0, 300);
     this.emitter.makeParticles( [ 'fire1', 'fire2', 'fire3', 'smoke' ] );
-    this.emitter.gravity = 200;
+    this.emitter.gravity = -200;
     this.emitter.setAlpha(1, 0, 3000);
     this.emitter.setScale(1.5, 2, 1.5, 2, 3000);
     this.emitter.start(false, 3000, 5);

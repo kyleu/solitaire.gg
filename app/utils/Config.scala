@@ -9,7 +9,7 @@ object Config {
   val projectId = utils.BuildInfo.name
   val projectName = "Solitaire.gg"
   val version = "0.1"
-  val hostname = cnf.getString("play.host")
+  val hostname = cnf.getString("host")
 
   val debug = !Play.isProd(Play.current)
 

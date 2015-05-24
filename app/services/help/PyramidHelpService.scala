@@ -1,45 +1,50 @@
 package services.help
 
 import models.game.rules._
+import play.api.i18n.{Messages, Lang}
 import utils.NumberUtils
 
 object PyramidHelpService {
   private[this] val defaults = PyramidRules()
 
-  def pyramid(rules: PyramidRules) = {
+  def pyramid(rules: PyramidRules)(implicit lang: Lang) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
 
     val rows = rules.height match {
-      case 1 => "a single row"
-      case x => NumberUtils.toWords(rules.height) + " rows"
+      case 1 => Messages("help.pyramid.rows.single")
+      case x => Messages("help.pyramid.rows.multiple", x)
     }
 
     rules.pyramidType match {
-      case PyramidType.Standard => ret += "A standard pyramid with " + rows + " rows (the top row has only one card, two in the next, and so on)."
-      case PyramidType.Inverted => ret += "An inverted pyramid with " + rows + " rows (the bottom row has only one card, two in the next, and so on)."
+      case PyramidType.Standard => ret += Messages("help.pyramid.type.standard", rows)
+      case PyramidType.Inverted => ret += Messages("help.pyramid.type.inverted", rows)
     }
 
     if (rules.wrapFromKingToAce) {
-      ret += "An Ace may be played on a King, continuing the sequence."
+      ret += Messages("help.pyramid.wrap.ranks")
     }
 
-    rules.suitMatchRuleForBuilding match {
-      case SuitMatchRule.None => ret += "No cards may be built on the pyramid."
-      case sb => rules.rankMatchRuleForBuilding match {
-        case RankMatchRule.None => ret += "No cards may be built on the pyramid."
-        case rb => ret += "Cards that are " + rb.toWords + " and " + sb.toWords + " may be added to these piles."
-      }
+    if(rules.rankMatchRuleForBuilding != RankMatchRule.None && rules.suitMatchRuleForBuilding != SuitMatchRule.None) {
+      ret += Messages("help.pyramid.build.none")
+    } else {
+      ret += Messages(
+        "help.pyramid.build.rank.and.suit.match.rules",
+        MatchRuleHelpService.toWords(rules.rankMatchRuleForBuilding),
+        MatchRuleHelpService.toWords(rules.suitMatchRuleForBuilding)
+      )
     }
 
-    rules.suitMatchRuleForMovingStacks match {
-      case SuitMatchRule.None => ret += "No cards may be moved from the pyramid."
-      case sb => rules.rankMatchRuleForMovingStacks match {
-        case RankMatchRule.None => ret += "No cards may be moved from the pyramid."
-        case rb => ret += "Sequences of cards that are " + rb.toWords + " and " + sb.toWords + " may be moved from the pyramid."
-      }
+    if(rules.rankMatchRuleForMovingStacks != RankMatchRule.None && rules.suitMatchRuleForMovingStacks != SuitMatchRule.None) {
+      ret += Messages("help.pyramid.move.stacks.none")
+    } else {
+      ret += Messages(
+        "help.pyramid.move.stacks.rank.and.suit.match.rules",
+        MatchRuleHelpService.toWords(rules.rankMatchRuleForBuilding),
+        MatchRuleHelpService.toWords(rules.suitMatchRuleForBuilding)
+      )
     }
 
-    ret += rules.emptyFilledWith.toWords
+    ret += MatchRuleHelpService.toWords(rules.emptyFilledWith)
 
     val name = if (rules.setNumber == 0) {
       rules.name
@@ -52,6 +57,5 @@ object PyramidHelpService {
     }
 
     name -> ret.toSeq
-
   }
 }

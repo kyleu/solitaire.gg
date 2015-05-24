@@ -1,28 +1,10 @@
 define(['utils/Config', 'game/Card', 'game/pile/Pile'], function(cfg, Card, Pile) {
   var GameplayHelper = function(game) {
     this.game = game;
-    this.assetRoot = "/";
-    if(cfg.assetRoot !== undefined) {
-      this.assetRoot = cfg.assetRoot;
-    }
   };
 
   GameplayHelper.prototype.load = function() {
     this.game.stage.disableVisibilityChange = true;
-    var imageKey = this.game.cardSet.key;
-    this.game.load.image('bg-texture', this.assetRoot + 'assets/images/game/bg.jpg');
-    this.game.load.image('card-back', this.assetRoot + 'assets/images/game/cards/' + imageKey + '/BACK.png');
-    this.game.load.image('empty-pile', this.assetRoot + 'assets/images/game/cards/' + imageKey + '/EMPTY.png');
-    this.game.load.spritesheet(
-      'card', this.assetRoot + 'assets/images/game/cards/' + imageKey + '/ALL.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight
-    );
-
-    this.game.load.spritesheet('suits', this.assetRoot + 'assets/images/particles/suits.png', 100, 100);
-
-    this.game.load.image('fire1', this.assetRoot + 'assets/images/particles/fire1.png');
-    this.game.load.image('fire2', this.assetRoot + 'assets/images/particles/fire2.png');
-    this.game.load.image('fire3', this.assetRoot + 'assets/images/particles/fire3.png');
-    this.game.load.image('smoke', this.assetRoot + 'assets/images/particles/smoke-puff.png');
   };
 
   GameplayHelper.prototype.sendInitialMessage = function() {
@@ -64,6 +46,7 @@ define(['utils/Config', 'game/Card', 'game/pile/Pile'], function(cfg, Card, Pile
       }
     }
   };
+
   GameplayHelper.prototype.loadCards = function(pileSets) {
     for(var pileSetIndex in pileSets) {
       var pileSet = pileSets[pileSetIndex];

@@ -1,11 +1,12 @@
 package services.help
 
 import models.game.rules._
+import play.api.i18n.Lang
 
 object GameRulesHelpService {
   private[this] val descriptionLinkPattern = """\^([a-z0-9]+)\^""".r
 
-  def description(desc: String, link: Boolean = true) = {
+  def description(desc: String, link: Boolean = true)(implicit lang: Lang) = {
     val links = descriptionLinkPattern.findAllIn(desc).matchData.map(_.group(1))
     val linked = links.foldLeft(desc) { (desc, id) =>
       val rules = if (id == "fortytheives") {
@@ -23,7 +24,7 @@ object GameRulesHelpService {
     linked
   }
 
-  def layout(layoutString: String, rules: GameRules) = {
+  def layout(layoutString: String, rules: GameRules)(implicit lang: Lang) = {
     var foundationsProcessed = 0
     var tableausProcessed = 0
     var pyramidsProcessed = 0

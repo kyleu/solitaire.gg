@@ -1,14 +1,8 @@
 package utils
 
-import java.util.UUID
-
 import com.codahale.metrics.Meter
-import models.audit.RequestLog
-import models.database.queries.RequestLogQueries
-import org.joda.time.LocalDateTime
 import play.api.http.Status
 import play.api.mvc._
-import services.database.Database
 import utils.metrics.Instrumented
 import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext

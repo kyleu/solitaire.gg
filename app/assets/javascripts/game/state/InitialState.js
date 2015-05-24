@@ -3,10 +3,20 @@ define(["utils/Config", "game/state/GameState", "game/state/LoadingScreen"], fun
 
   function InitialState(game) {
     GameState.call(this, 'initial', game);
+
+    this.assetRoot = "/";
+    if(cfg.assetRoot !== undefined) {
+      this.assetRoot = cfg.assetRoot;
+    }
   }
 
   InitialState.prototype = Object.create(GameState.prototype);
   InitialState.prototype.constructor = InitialState;
+
+  InitialState.prototype.preload = function() {
+    this.game.load.image('bg-texture', this.assetRoot + 'assets/images/game/bg.jpg');
+    this.game.load.image('load-bar', this.assetRoot + 'assets/images/load/bar.png');
+  };
 
   InitialState.prototype.create = function() {
     GameState.prototype.create.apply(this, arguments);

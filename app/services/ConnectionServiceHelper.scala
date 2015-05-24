@@ -32,7 +32,7 @@ trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionServic
   }
 
   protected[this] def handleGameStopped(id: UUID) {
-    if (activeGameId != Some(id)) {
+    if (!activeGameId.contains(id)) {
       throw new IllegalStateException("Provided game [" + id + "] is not the active game.")
     }
     activeGameId = None

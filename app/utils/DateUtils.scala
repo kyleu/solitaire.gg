@@ -11,9 +11,9 @@ object DateUtils {
   def now = DateTime.now(DateTimeZone.UTC).toLocalDateTime
   def nowMillis = toMillis(now)
 
-  def toMillis(dt: LocalDateTime) = dt.toDateTime(DateTimeZone.UTC).getMillis
+  def toMillis(ldt: LocalDateTime) = ldt.toDateTime(DateTimeZone.UTC).getMillis
   def fromMillis(millis: Long) = new LocalDateTime(millis, DateTimeZone.UTC)
 
-  def toSqlTimestamp(dt: LocalDateTime) = new java.sql.Timestamp(dt.toDateTime(DateTimeZone.UTC).getMillis)
+  def toSqlTimestamp(ldt: LocalDateTime) = new java.sql.Timestamp(ldt.toDateTime(DateTimeZone.UTC).getMillis)
   def toSqlDate(day: LocalDate) = new java.sql.Date(day.toDateTimeAtStartOfDay(DateTimeZone.UTC).getMillis)
 }

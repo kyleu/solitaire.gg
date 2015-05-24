@@ -1,6 +1,6 @@
 package controllers
 
-import services.Testbed
+import models.game.rules.GameRulesSet
 import utils.CacheService
 
 import scala.concurrent.Future
@@ -11,6 +11,7 @@ object SandboxController extends BaseController {
   }
 
   def adminSandbox = AdminAction.async { implicit request =>
-    Future.successful(Ok(Testbed.go()))
+    val ret = views.html.admin.helpTest(GameRulesSet.all)
+    Future.successful(Ok(ret))
   }
 }

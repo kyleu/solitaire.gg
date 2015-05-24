@@ -30,7 +30,7 @@ trait ParserPyramidHelper { this: GameRulesParser =>
         rankMatchRuleForMovingStacks = getRankMatchRule(getInt(prefix + "tr")),
 
         mayMoveToNonEmptyFrom = PolitaireLookup.parseBitmask("P0o", getInt(prefix + "o")),
-        emptyFilledWith = FillEmptyWith.fromInt(getInt(prefix + "f")),
+        emptyFilledWith = getFillEmptyWith(getInt(prefix + "f")),
         mayMoveToEmptyFrom = PolitaireLookup.parseBitmask("P0o", getInt(prefix + "fo"))
 
       )

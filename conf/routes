@@ -6,10 +6,10 @@ GET         /profile/avatar/:key               controllers.HomeController.update
 # Authentication
 GET         /signup                            controllers.auth.RegistrationController.registrationForm
 POST        /signup                            controllers.auth.RegistrationController.register
-GET         /signin                            controllers.auth.AuthorizationController.signInForm
-POST        /signin                            controllers.auth.AuthorizationController.authenticateCredentials
-GET         /signin/:provider                  controllers.auth.AuthorizationController.authenticateSocial(provider)
-GET         /signout                           controllers.auth.AuthorizationController.signOut
+GET         /signin                            controllers.auth.AuthenticationController.signInForm
+POST        /signin                            controllers.auth.AuthenticationController.authenticateCredentials
+GET         /signin/:provider                  controllers.auth.AuthenticationController.authenticateSocial(provider)
+GET         /signout                           controllers.auth.AuthenticationController.signOut
 
 # Game
 GET         /help/:id                          controllers.HomeController.help(id)

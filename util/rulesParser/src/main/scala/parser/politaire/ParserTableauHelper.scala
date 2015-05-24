@@ -52,7 +52,7 @@ trait ParserTableauHelper { this: GameRulesParser =>
           case 10 => TableauAutoFillEmptyFrom.StockThenWaste
           case -1 => TableauAutoFillEmptyFrom.NextPile
         },
-        emptyFilledWith = FillEmptyWith.fromInt(getInt(prefix + "f")),
+        emptyFilledWith = getFillEmptyWith(getInt(prefix + "f")),
 
         mayMoveToNonEmptyFrom = PolitaireLookup.parseBitmask("T0o", getInt(prefix + "o")),
         mayMoveToEmptyFrom = PolitaireLookup.parseBitmask("T0fo", getInt(prefix + "fo")),

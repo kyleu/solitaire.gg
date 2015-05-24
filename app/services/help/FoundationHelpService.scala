@@ -1,32 +1,41 @@
 package services.help
 
 import models.game.Rank
-import models.game.rules.{ FoundationInitialCardRestriction, DeckOptions, FoundationLowRank, FoundationRules }
+import models.game.rules._
+import play.api.i18n.{Lang, Messages}
 import utils.NumberUtils
 
 object FoundationHelpService {
   private[this] val defaults = FoundationRules()
 
-  def foundation(rules: FoundationRules, deckOptions: DeckOptions) = {
+  def foundation(rules: FoundationRules, deckOptions: DeckOptions)(implicit lang: Lang) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
 
     val piles = rules.numPiles match {
       case 1 => if (rules.initialCards == 0) {
-        "A single empty foundation pile."
+        Messages("help.foundation.single.cards.empty")
+      } else if (rules.initialCards == 1) {
+        Messages("help.foundation.single.cards.single")
       } else {
-        val plural = if (rules.initialCards == 1) { "" } else { "s" }
-        "A single foundation pile with " + rules.initialCards + " initial card" + plural + "."
+        Messages("help.foundation.single.cards.multiple", rules.initialCards)
       }
       case x =>
-        NumberUtils.toWords(x, properCase = true) + (if (rules.initialCards == 0) {
-          " empty foundation piles."
+        if (rules.initialCards == 0) {
+          Messages("help.foundation.multiple.cards.empty", NumberUtils.toWords(x, properCase = true))
         } else if (rules.initialCards % rules.numPiles == 0) {
-          val plural = if (rules.initialCards / rules.numPiles == 1) { "" } else { "s" }
-          " foundation piles with " + NumberUtils.toWords(rules.initialCards / rules.numPiles) + " initial card" + plural + " dealt to each."
+          if (rules.initialCards / rules.numPiles == 1) {
+            Messages("help.foundation.multiple.cards.single.each", NumberUtils.toWords(x, properCase = true))
+          } else {
+            val init = NumberUtils.toWords(rules.initialCards / rules.numPiles)
+            Messages("help.foundation.multiple.cards.multiple.each", NumberUtils.toWords(x, properCase = true), init)
+          }
         } else {
-          val plural = if (rules.initialCards == 1) { "" } else { "s" }
-          " foundation piles with " + NumberUtils.toWords(rules.initialCards) + " initial card" + plural + " dealt to them."
-        })
+          if (rules.initialCards == 1) {
+            Messages("help.foundation.multiple.cards.single", NumberUtils.toWords(x, properCase = true))
+          } else {
+            Messages("help.foundation.multiple.cards.multiple", NumberUtils.toWords(x, properCase = true), NumberUtils.toWords(rules.initialCards))
+          }
+        }
     }
     ret += piles
 
@@ -39,31 +48,41 @@ object FoundationHelpService {
     }
 
     if (lowRank == Rank.Unknown && rules.lowRank == FoundationLowRank.AnyCard) {
-      ret += "Any card may be moved to any empty foundation pile."
+      ret += Messages("help.foundation.lowrank.any")
     } else if (lowRank == Rank.Unknown && rules.lowRank == FoundationLowRank.Ascending) {
-      ret += "There is one foundation pile for each rank from Ace to King."
+      ret += Messages("help.foundation.lowrank.ascending")
     } else if (lowRank == Rank.Unknown) {
-      ret += "The first card played to a foundation becomes the base card for others."
+      ret += Messages("help.foundation.lowrank.first.becomes.base")
     } else {
-      ret += "Any " + lowRank + " may be played to any empty foundation pile."
+      ret += Messages("help.foundation.lowrank.specific", lowRank)
     }
 
     rules.initialCardRestriction match {
-      case Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(c)) => ret += "Each pile must be started with a " + c.toString.toLowerCase + " card."
-      case Some(FoundationInitialCardRestriction.SpecificSuit(s)) => ret += "Each pile must be started with a " + s.toString + " card."
-      case Some(FoundationInitialCardRestriction.UniqueColors) => ret += "Each pile must be started with a unique color."
-      case Some(FoundationInitialCardRestriction.UniqueSuits) => ret += "Each pile must be started with a unique suit."
+      case Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(c)) => ret += Messages(
+        "help.foundation.initial.restriction.specific.color.unique.suits", c.toString.toLowerCase
+      )
+      case Some(FoundationInitialCardRestriction.SpecificSuit(s)) => ret += Messages("help.foundation.initial.restriction.specific.suit", s.toString)
+      case Some(FoundationInitialCardRestriction.UniqueColors) => ret += Messages("help.foundation.initial.restriction.unique.colors")
+      case Some(FoundationInitialCardRestriction.UniqueSuits) => ret += Messages("help.foundation.initial.restriction.unique.suits")
       case None => // no op
     }
 
-    ret += "A card may be played to a foundation pile if it is " + rules.rankMatchRule.toWords + " and " + rules.suitMatchRule.toWords + "."
+    if(rules.rankMatchRule != RankMatchRule.None && rules.suitMatchRule != SuitMatchRule.None) {
+      ret += Messages("help.foundation.build.none")
+    } else {
+      ret += Messages(
+        "help.foundation.build.rank.and.suit.match.rules",
+        MatchRuleHelpService.toWords(rules.rankMatchRule),
+        MatchRuleHelpService.toWords(rules.suitMatchRule)
+      )
+    }
 
     if (rules.wrapFromKingToAce) {
-      ret += "An Ace may be played on a King, continuing the sequence."
+      ret += Messages("help.foundation.wrap.ranks")
     }
 
     if (rules.cardsShown > 1) {
-      ret += NumberUtils.toWords(rules.cardsShown, properCase = true) + " cards are visible."
+      ret += Messages("help.foundation.cards.shown", NumberUtils.toWords(rules.cardsShown, properCase = true))
     }
 
     val name = if (rules.setNumber == 0) {

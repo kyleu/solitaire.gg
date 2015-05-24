@@ -1,5 +1,5 @@
 @(rulesSet: Seq[models.game.rules.GameRules])(
-  implicit session: Session, flash: Flash
+  implicit request: Request[AnyContent], session: Session, flash: Flash
 )@layout.basic("Help Test", stylesheets = Seq(routes.Assets.at("stylesheets/help.css").url)) {
   @for(rules <- rulesSet) {
     <div class="rules-container">

@@ -8,6 +8,7 @@ import utils.Logging
 object Schema extends Logging {
   val tables = Map(
     "users" -> CreateUserTable,
+    "user_feedback" -> CreateUserFeedbackTable,
     "user_profiles" -> CreateProfileTable,
     "password_info" -> CreatePasswordInfoTable,
     "oauth1_info" -> CreateOAuth1InfoTable,
@@ -15,7 +16,9 @@ object Schema extends Logging {
     "openid_info" -> CreateOpenIdInfoTable,
     "session_info" -> CreateSessionInfoTable,
     "requests" -> CreateRequestLogTable,
-    "games" -> CreateGameTable
+    "games" -> CreateGameTable,
+    "game_cards" -> CreateGameCardsTable,
+    "game_moves" -> CreateGameMovesTable
   )
 
   def update() = {
