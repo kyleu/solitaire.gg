@@ -49,7 +49,7 @@ object Brisbane extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

@@ -1,5 +1,6 @@
 package services.help
 
+import models.game.Rank
 import models.game.rules.{FillEmptyWith, SuitMatchRule, RankMatchRule}
 import play.api.i18n.{Messages, Lang}
 
@@ -29,13 +30,13 @@ object MatchRuleHelpService {
     case SuitMatchRule.Any => Messages("help.suit.match.rule.any")
   }
 
-  def toWords(few: FillEmptyWith) = few match {
+  def toWords(few: FillEmptyWith, lowRank: Rank, highRank: Rank) = few match {
     case FillEmptyWith.Any => Messages("help.fill.empty.with.any")
     case FillEmptyWith.None => Messages("help.fill.empty.with.none")
-    case FillEmptyWith.Aces => Messages("help.fill.empty.with.aces")
-    case FillEmptyWith.Kings => Messages("help.fill.empty.with.kings")
-    case FillEmptyWith.KingsUntilStockEmpty => Messages("help.fill.empty.with.kings.until.stock.empty")
-    case FillEmptyWith.KingsOrAces => Messages("help.fill.empty.with.kings.or.aces")
+    case FillEmptyWith.LowRank => Messages("help.fill.empty.with.rank", lowRank)
+    case FillEmptyWith.HighRank => Messages("help.fill.empty.with.rank", highRank)
+    case FillEmptyWith.HighRankUntilStockEmpty => Messages("help.fill.empty.with.rank.until.stock.empty", highRank)
+    case FillEmptyWith.HighRankOrLowRank => Messages("help.fill.empty.with.high.rank.or.low.rank", lowRank, highRank)
     case FillEmptyWith.Sevens => Messages("help.fill.empty.with.sevens")
   }
 }

@@ -10,10 +10,10 @@ object TableauPileOptions extends TableauPileOptionHelper {
     val emptyRanks = rules.emptyFilledWith match {
       case FillEmptyWith.Any => deckOptions.ranks
       case FillEmptyWith.None => Nil
-      case FillEmptyWith.Aces => Seq(Rank.Ace)
-      case FillEmptyWith.Kings => Seq(Rank.King)
-      case FillEmptyWith.KingsUntilStockEmpty => throw new NotImplementedError() // TODO
-      case FillEmptyWith.KingsOrAces => Seq(Rank.King, Rank.Ace)
+      case FillEmptyWith.LowRank => Seq(deckOptions.lowRank)
+      case FillEmptyWith.HighRank => Seq(deckOptions.highRank)
+      case FillEmptyWith.HighRankUntilStockEmpty => throw new NotImplementedError() // TODO
+      case FillEmptyWith.HighRankOrLowRank => Seq(deckOptions.lowRank, deckOptions.highRank)
       case FillEmptyWith.Sevens => Seq(Rank.Seven)
     }
 

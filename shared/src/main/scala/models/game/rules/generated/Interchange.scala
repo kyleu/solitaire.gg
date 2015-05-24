@@ -48,7 +48,7 @@ object Interchange extends GameRules(
       cardsFaceDown = TableauFaceDownCards.EvenNumbered,
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

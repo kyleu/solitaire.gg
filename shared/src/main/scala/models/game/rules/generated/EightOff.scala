@@ -43,7 +43,7 @@ object EightOff extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   ),
   cells = Some(

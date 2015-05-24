@@ -57,7 +57,7 @@ object MissMilligan extends GameRules(
       numPiles = 8,
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

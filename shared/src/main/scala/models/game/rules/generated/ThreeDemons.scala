@@ -52,7 +52,7 @@ object ThreeDemons extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   ),
   reserves = Some(

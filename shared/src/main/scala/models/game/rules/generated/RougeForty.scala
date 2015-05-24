@@ -76,7 +76,7 @@ object RougeForty extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(4),
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

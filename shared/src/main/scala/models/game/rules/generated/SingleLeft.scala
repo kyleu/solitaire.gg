@@ -38,7 +38,7 @@ object SingleLeft extends GameRules(
   tableaus = Seq(
     TableauRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.NextPile,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

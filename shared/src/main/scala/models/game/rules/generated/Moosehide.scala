@@ -44,7 +44,7 @@ object Moosehide extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.DifferentSuits,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

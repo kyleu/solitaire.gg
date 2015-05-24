@@ -14,7 +14,7 @@ object FoundationPileOptions {
     }
 
     val dragToConstraint = Some(Constraint("foundation", (pile: Pile, cards: Seq[Card], gameState: GameState) => {
-      if (cards.length == 1) {
+      if (cards.length == 1 && !rules.moveCompleteSequencesOnly) {
         if (rules.maxCards > 0 && pile.cards.length >= rules.maxCards) {
           false
         } else {

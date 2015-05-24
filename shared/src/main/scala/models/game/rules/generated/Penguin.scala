@@ -50,7 +50,7 @@ object Penguin extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.Kings,
+      emptyFilledWith = FillEmptyWith.HighRank,
       pilesWithLowCardsAtBottom = 1
     )
   ),

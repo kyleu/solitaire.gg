@@ -41,7 +41,7 @@ object Tripleharp extends GameRules(
     TableauRules(
       numPiles = 12,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

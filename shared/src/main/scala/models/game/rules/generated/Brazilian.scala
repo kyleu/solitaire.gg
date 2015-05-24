@@ -40,7 +40,7 @@ object Brazilian extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

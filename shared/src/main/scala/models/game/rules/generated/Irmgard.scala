@@ -44,7 +44,7 @@ object Irmgard extends GameRules(
     TableauRules(
       numPiles = 9,
       initialCards = InitialCards.Count(3),
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

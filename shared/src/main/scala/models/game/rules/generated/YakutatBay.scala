@@ -46,7 +46,7 @@ object YakutatBay extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.NextPile,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

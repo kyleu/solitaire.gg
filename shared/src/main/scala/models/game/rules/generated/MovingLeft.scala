@@ -42,7 +42,7 @@ object MovingLeft extends GameRules(
     TableauRules(
       numPiles = 10,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.NextPile,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

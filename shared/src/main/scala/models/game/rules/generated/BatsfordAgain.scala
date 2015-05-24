@@ -49,7 +49,7 @@ object BatsfordAgain extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     ),
     TableauRules(
       name = "Reserve",
@@ -60,7 +60,7 @@ object BatsfordAgain extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Equal,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Kings,
+      emptyFilledWith = FillEmptyWith.HighRank,
       maxCards = 3
     )
   )

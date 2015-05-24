@@ -42,7 +42,7 @@ object BrownRecluse extends GameRules(
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

@@ -48,7 +48,7 @@ object Harp extends GameRules(
     TableauRules(
       numPiles = 9,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

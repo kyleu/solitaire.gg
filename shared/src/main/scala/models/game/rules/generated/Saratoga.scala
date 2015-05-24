@@ -43,7 +43,7 @@ object Saratoga extends GameRules(
   tableaus = Seq(
     TableauRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

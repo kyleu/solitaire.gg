@@ -38,7 +38,7 @@ object TrigonLeft extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.NextPile,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

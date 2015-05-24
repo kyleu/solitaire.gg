@@ -94,7 +94,7 @@ object RougeEtNoir extends GameRules(
         "U",
         "U"
       ),
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

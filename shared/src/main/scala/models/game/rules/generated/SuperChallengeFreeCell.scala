@@ -42,7 +42,7 @@ object SuperChallengeFreeCell extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Kings,
+      emptyFilledWith = FillEmptyWith.HighRank,
       pilesWithLowCardsAtBottom = 8
     )
   ),

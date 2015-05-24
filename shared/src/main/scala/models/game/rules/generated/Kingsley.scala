@@ -50,7 +50,7 @@ object Kingsley extends GameRules(
     TableauRules(
       rankMatchRuleForBuilding = RankMatchRule.Up,
       rankMatchRuleForMovingStacks = RankMatchRule.Up,
-      emptyFilledWith = FillEmptyWith.Aces
+      emptyFilledWith = FillEmptyWith.LowRank
     )
   )
 )

@@ -55,7 +55,7 @@ object Alexandria extends GameRules(
         "U"
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

@@ -24,7 +24,8 @@ object GameRulesSet {
     "tarantula",
     "trigon",
     "tripleklondike",
-    "whitehorse"
+    "whitehorse",
+    "zerline"
   )
 
   val all = (GeneratedGameRules.all ++ CustomGameRules.all).sortBy(_.id)

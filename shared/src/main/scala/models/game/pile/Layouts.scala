@@ -49,7 +49,8 @@ object Layouts {
     "tournament" -> "sff|:c|::t",
     "tripleklondike" -> "swf|:t",
     "trustytwelve" -> "s|2t",
-    "yukon" -> ":::f|t"
+    "yukon" -> ":::f|t",
+    "zerline" -> "swf|.t:t"
   ) ++ Seq(
       "aceofhearts"
     ).map(id => id -> defaultLayout(id))

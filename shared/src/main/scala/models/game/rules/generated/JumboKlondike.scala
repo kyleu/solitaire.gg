@@ -40,7 +40,7 @@ object JumboKlondike extends GameRules(
   ),
   tableaus = Seq(
     TableauRules(
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

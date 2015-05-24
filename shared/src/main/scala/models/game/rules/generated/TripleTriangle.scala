@@ -42,7 +42,7 @@ object TripleTriangle extends GameRules(
     TableauRules(
       numPiles = 13,
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

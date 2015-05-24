@@ -39,7 +39,7 @@ object ForeCell extends GameRules(
       initialCards = InitialCards.Count(6),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   ),
   cells = Some(

@@ -40,7 +40,7 @@ object Whitehorse extends GameRules(
     TableauRules(
       initialCards = InitialCards.Count(1),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

@@ -45,11 +45,11 @@ object GameRulesHelpService {
       case 't' =>
         val tr = rules.tableaus(tableausProcessed)
         tableausProcessed += 1
-        Some(TableauHelpService.tableau(tr))
+        Some(TableauHelpService.tableau(tr, rules.deckOptions))
       case 'p' =>
         val pr = rules.pyramids(pyramidsProcessed)
         pyramidsProcessed += 1
-        Some(PyramidHelpService.pyramid(pr))
+        Some(PyramidHelpService.pyramid(pr, rules.deckOptions))
       case x if x == '2' || x == '3' || x == '4' =>
         None
       case x if x == '|' || x == ':' || x == '.' =>

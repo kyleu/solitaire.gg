@@ -7,36 +7,26 @@ sealed trait RankMatchRule {
 }
 
 object RankMatchRule {
-  private[this] def upBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = if (lowRank == Rank.Ace && l == Rank.Ace) {
-    i match {
-      case 1 => r == Rank.Two
-      case 2 => r == Rank.Three
-      case 3 => r == Rank.Four
-      case 4 => r == Rank.Five
-    }
-  } else {
-    val rVal = if (r.value - i < 2 && wrap) {
-      (r.value - i) + 14
+  private[this] def upBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
+    val target = if(wrap && (l.value + i > 14)) {
+      (l.value + i + 1) % 14
+    } else if(lowRank == Rank.Ace && l == Rank.Ace) {
+      i + 1
     } else {
-      r.value - i
+      l.value + i
     }
-    l.value == rVal
+    target == r.value
   }
 
-  private[this] def downBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = if (lowRank == Rank.Ace && l == Rank.Ace) {
-    i match {
-      case 1 => r == Rank.King
-      case 2 => r == Rank.Queen
-      case 3 => r == Rank.Jack
-      case 4 => r == Rank.Ten
-    }
-  } else {
-    val rVal = if (r.value + i > 14 && wrap) {
-      (r.value + i) - 14
+  private[this] def downBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
+    val target = if(wrap && (l.value - i < 2)) {
+      l.value - i + 14
+    } else if(lowRank == Rank.Ace && l == Rank.Ace) {
+      Rank.Ace.value - i
     } else {
-      r.value + i
+      l.value - i
     }
-    l.value == rVal
+    target == r.value
   }
 
   case object None extends RankMatchRule {

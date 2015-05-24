@@ -40,7 +40,7 @@ object Smokey extends GameRules(
     TableauRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameColor,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

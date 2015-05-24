@@ -66,7 +66,7 @@ object CloverLeaf extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      emptyFilledWith = FillEmptyWith.KingsOrAces
+      emptyFilledWith = FillEmptyWith.HighRankOrLowRank
     )
   )
 )

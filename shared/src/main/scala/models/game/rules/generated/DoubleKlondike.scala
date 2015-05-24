@@ -47,7 +47,7 @@ object DoubleKlondike extends GameRules(
   tableaus = Seq(
     TableauRules(
       numPiles = 9,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

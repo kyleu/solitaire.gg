@@ -42,7 +42,7 @@ object TripleLeft extends GameRules(
     TableauRules(
       numPiles = 12,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.NextPile,
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

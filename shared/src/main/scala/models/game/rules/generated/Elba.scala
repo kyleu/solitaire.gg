@@ -44,7 +44,7 @@ object Elba extends GameRules(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(5),
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

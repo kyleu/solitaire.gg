@@ -40,12 +40,12 @@ trait ParserGameHelper { this: GameRulesParser =>
 
   protected[this] def getFillEmptyWith(i: Int) = i match {
     case 0 => FillEmptyWith.Any
-    case 1 => FillEmptyWith.Kings
-    case 2 => FillEmptyWith.KingsUntilStockEmpty
+    case 1 => FillEmptyWith.HighRank
+    case 2 => FillEmptyWith.HighRankUntilStockEmpty
     case 4 => FillEmptyWith.None
     case 5 => FillEmptyWith.None
-    case 7 => FillEmptyWith.Aces
+    case 7 => FillEmptyWith.LowRank
     case 8 => FillEmptyWith.Sevens
-    case 9 => FillEmptyWith.KingsOrAces
+    case 9 => FillEmptyWith.HighRankOrLowRank
   }
 }

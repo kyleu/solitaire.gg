@@ -7,7 +7,7 @@ import utils.NumberUtils
 object PyramidHelpService {
   private[this] val defaults = PyramidRules()
 
-  def pyramid(rules: PyramidRules)(implicit lang: Lang) = {
+  def pyramid(rules: PyramidRules, deckOptions: DeckOptions)(implicit lang: Lang) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
 
     val rows = rules.height match {
@@ -44,7 +44,7 @@ object PyramidHelpService {
       )
     }
 
-    ret += MatchRuleHelpService.toWords(rules.emptyFilledWith)
+    ret += MatchRuleHelpService.toWords(rules.emptyFilledWith, deckOptions.lowRank, deckOptions.highRank)
 
     val name = if (rules.setNumber == 0) {
       rules.name

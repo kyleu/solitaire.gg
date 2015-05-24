@@ -42,7 +42,7 @@ object EternalTriangle extends GameRules(
     TableauRules(
       numPiles = 10,
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      emptyFilledWith = FillEmptyWith.Kings
+      emptyFilledWith = FillEmptyWith.HighRank
     )
   )
 )

@@ -9,8 +9,8 @@ object WasteHelpService {
     val ret = collection.mutable.ArrayBuffer.empty[String]
 
     val piles = rules.numPiles match {
-      case 1 => Messages("help.waste.piles.single")
-      case x => Messages("help.waste.piles.multiple", NumberUtils.toWords(x, properCase = true))
+      case 1 => Messages("help.piles.single", rules.name.toLowerCase)
+      case x => Messages("help.piles.multiple", NumberUtils.toWords(x, properCase = true), rules.name.toLowerCase)
     }
     ret += piles
 
