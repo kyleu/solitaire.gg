@@ -1,15 +1,15 @@
-@(sortBy: String, requests: Seq[models.audit.RequestLog])(implicit session: Session, flash: Flash)
+@(sortBy: String, feedbacks: Seq[models.user.UserFeedback])(implicit session: Session, flash: Flash)
 
 @layout.admin(utils.Config.projectName + " Requests", "requests") {
   <div class="container">
-    @if(requests.isEmpty) {
+    @if(feedbacks.isEmpty) {
       <div class="panel panel-default">
         <div class="panel-body">
-          No requests found.
+          No feedback found... so sad.
         </div>
       </div>
     } else {
-      @requestListTable(sortBy, requests)
+      @feedbackListTable(sortBy, feedbacks)
     }
   </div>
 }

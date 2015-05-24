@@ -10,19 +10,19 @@ import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 object RulesController extends BaseController {
-  def politaire = AdminAction.async { implicit request =>
+  def politaire = withAdminSession { implicit request =>
     Future.successful(Ok(views.html.admin.rules.politaireList(PolitaireParser.politaireList)))
   }
 
-  def rules = AdminAction.async { implicit request =>
+  def rules = withAdminSession { implicit request =>
     Future.successful(Ok(views.html.admin.rules.rulesList(GameRulesSet.all)))
   }
 
-  def importRules = AdminAction.async { implicit request =>
+  def importRules = withAdminSession { implicit request =>
     Future.successful(Ok(views.html.admin.rules.rulesList(PolitaireParser.gameRules)))
   }
 
-  def exportRules = AdminAction.async { implicit request =>
+  def exportRules = withAdminSession { implicit request =>
     Future {
       val rulesSet = PolitaireParser.gameRules
       ScalaExporter.export(rulesSet)
@@ -30,7 +30,7 @@ object RulesController extends BaseController {
     }
   }
 
-  def links = AdminAction.async { implicit request =>
+  def links = withAdminSession { implicit request =>
     Future {
       val links = LinkParser.parse()
       val ret = "<ul>\n" + links.map(l => "\n  <li>" + l._1 + ": [" + l._2.mkString(" :: ") + "]</li>").mkString("\n") + "\n</ul>"
@@ -38,7 +38,7 @@ object RulesController extends BaseController {
     }
   }
 
-  def wipeRules = AdminAction.async { implicit request =>
+  def wipeRules = withAdminSession { implicit request =>
     Future {
       RulesReset.go()
       Redirect(routes.RulesController.rules())

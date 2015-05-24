@@ -12,7 +12,7 @@ object RequestLogQueries extends BaseQueries {
   override protected val columns = Seq(
     "id", "user_id", "auth_provider", "auth_key", "remote_address",
     "method", "host", "secure", "path", "query_string",
-    "cookie", "referrer", "user_agent", "started", "duration", "status"
+    "lang", "cookie", "referrer", "user_agent", "started", "duration", "status"
   )
 
   case class CreateRequest(r: RequestLog) extends Statement {
@@ -20,7 +20,7 @@ object RequestLogQueries extends BaseQueries {
     override val values = Seq[Any](
       r.id, r.userId, r.authProvider, r.authKey, r.remoteAddress,
       r.method, r.host, r.secure, r.path, r.queryString,
-      r.cookie, r.referrer, r.userAgent, r.started, r.duration, r.status
+      r.lang, r.cookie, r.referrer, r.userAgent, r.started, r.duration, r.status
     )
   }
 
@@ -49,6 +49,7 @@ object RequestLogQueries extends BaseQueries {
     val path = row("path") match { case s: String => s }
     val queryString = row("query_string") match { case s: String => s }
 
+    val lang = row("lang") match { case s: String => Some(s); case _ => None }
     val cookie = row("cookie") match { case s: String => Some(s); case _ => None }
     val referrer = row("referrer") match { case s: String => Some(s); case _ => None }
     val userAgent = row("user_agent") match { case s: String => Some(s); case _ => None }
@@ -59,7 +60,7 @@ object RequestLogQueries extends BaseQueries {
     RequestLog(
       id, userId, authProvider, authKey, remoteAddress,
       method, host, secure, path, queryString,
-      cookie, referrer, userAgent, started, duration, status
+      lang, cookie, referrer, userAgent, started, duration, status
     )
   }
 }

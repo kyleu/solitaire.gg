@@ -16,7 +16,7 @@
     </div>
   } else {
     <h4>@utils.Formatter.withCommas(games.size) games</h4>
-    @gameListTable(sortBy, games)
+    @views.html.admin.game.gameListTable(sortBy, games, true)
   }
 
   @if(requests.isEmpty) {
@@ -27,6 +27,6 @@
     </div>
   } else {
     <h4>@utils.Formatter.withCommas(requests.size) requests</h4>
-    @requestListTable(sortBy, requests)
+    @views.html.admin.request.requestListTable(sortBy, requests)
   }
 }

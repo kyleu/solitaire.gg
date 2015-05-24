@@ -10,8 +10,8 @@ object SandboxController extends BaseController {
     Future.successful(Ok(CacheService.keys().mkString("\n")))
   }
 
-  def adminSandbox = AdminAction.async { implicit request =>
-    val ret = views.html.admin.helpTest(GameRulesSet.all)
+  def adminSandbox = withAdminSession { implicit request =>
+    val ret = views.html.admin.sandbox(GameRulesSet.all)
     Future.successful(Ok(ret))
   }
 }

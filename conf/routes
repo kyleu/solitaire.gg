@@ -1,8 +1,16 @@
 GET         /                                  controllers.HomeController.index
+
 GET         /*path/                            controllers.HomeController.untrail(path: String)
 GET         /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/favicon.ico")
-GET         /profile                           controllers.HomeController.profile
-GET         /profile/avatar/:key               controllers.HomeController.updateAvatar(key)
+
+# Feedback
+GET         /feedback                          controllers.HomeController.feedbackForm
+POST        /feedback                          controllers.HomeController.submitFeedback
+
+# Profile
+GET         /profile                           controllers.ProfileController.profile
+GET         /profile/avatar/:key               controllers.ProfileController.updateAvatar(key)
+
 # Authentication
 GET         /signup                            controllers.auth.RegistrationController.registrationForm
 POST        /signup                            controllers.auth.RegistrationController.register
@@ -12,16 +20,16 @@ GET         /signin/:provider                  controllers.auth.AuthenticationCo
 GET         /signout                           controllers.auth.AuthenticationController.signOut
 
 # Game
-GET         /help/:id                          controllers.HomeController.help(id)
+GET         /help/:id                          controllers.GameController.help(id)
 
-GET         /play                              controllers.HomeController.newDefaultGame()
-POST        /play/facebook                     controllers.HomeController.newFacebookGame()
-GET         /play/:rules                       controllers.HomeController.newGame(rules)
-GET         /play/:rules/:seed                 controllers.HomeController.newGameWithSeed(rules, seed: Int)
+GET         /play                              controllers.GameController.newDefaultGame()
+POST        /play/facebook                     controllers.GameController.newFacebookGame()
+GET         /play/:rules                       controllers.GameController.newGame(rules)
+GET         /play/:rules/:seed                 controllers.GameController.newGameWithSeed(rules, seed: Int)
 
-GET         /offline                           controllers.HomeController.newDefaultOfflineGame()
-GET         /offline/:rules                    controllers.HomeController.newOfflineGame(rules)
-GET         /offline/:rules/:seed              controllers.HomeController.newOfflineGameWithSeed(rules, seed: Int)
+GET         /offline                           controllers.GameController.newDefaultOfflineGame()
+GET         /offline/:rules                    controllers.GameController.newOfflineGame(rules)
+GET         /offline/:rules/:seed              controllers.GameController.newOfflineGameWithSeed(rules, seed: Int)
 
 GET         /websocket                         controllers.WebsocketController.connect()
 
@@ -32,8 +40,6 @@ GET         /admin/sandbox                     controllers.SandboxController.adm
 
 GET         /admin/enable                      controllers.admin.AdminController.enable
 GET         /admin/status                      controllers.admin.AdminController.status
-
-GET         /admin/requests                    controllers.admin.RequestLogController.requestList(sortBy ?= "started")
 
 GET         /admin/rules                       controllers.admin.RulesController.rules
 GET         /admin/rules/politaire             controllers.admin.RulesController.politaire
@@ -58,6 +64,8 @@ GET         /admin/users/:id                   controllers.admin.UserController.
 GET         /admin/users/:id/remove            controllers.admin.UserController.removeUser(id: java.util.UUID)
 
 GET         /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created")
+GET         /admin/requests                    controllers.admin.RequestLogController.requestList(q ?= "", sortBy ?= "started")
+GET         /admin/feedback                    controllers.admin.FeedbackController.feedbackList(q ?= "", sortBy ?= "occurred")
 
 # Assets
 GET         /assets/*file                      controllers.Assets.at(path="/public", file)

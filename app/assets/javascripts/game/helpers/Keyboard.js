@@ -38,29 +38,6 @@ define([], function () {
         }
       }
 
-      function victorious() {
-        console.log("Victorious!");
-        for(var cardIndex in game.cards) {
-          game.cards[cardIndex].animation = {id: "mouse", speed: 200 + Math.floor(Math.random() * 200)};
-        }
-      }
-
-      function trails() {
-        game.playmat.enableTrails();
-      }
-
-      function undo() {
-        game.send("Undo", {});
-      }
-
-      function redo() {
-        game.send("Redo", {});
-      }
-
-      function closeConnection() {
-        game.ws.close();
-      }
-
       var rulesKey = game.input.keyboard.addKey(Phaser.Keyboard.G);
       rulesKey.onDown.add(function() {
         game.help.toggleRules();
@@ -74,6 +51,11 @@ define([], function () {
       var logKey = game.input.keyboard.addKey(Phaser.Keyboard.L);
       logKey.onDown.add(logGame);
 
+      var feedbackKey = game.input.keyboard.addKey(Phaser.Keyboard.F);
+      feedbackKey.onDown.add(function() {
+        game.help.toggleFeedback();
+      });
+
       var quietKey = game.input.keyboard.addKey(Phaser.Keyboard.Q);
       quietKey.onDown.add(function() {
         var gp = document.getElementById("game-container");
@@ -81,19 +63,32 @@ define([], function () {
       });
 
       var undoKey = game.input.keyboard.addKey(Phaser.Keyboard.Z);
-      undoKey.onDown.add(undo);
+      undoKey.onDown.add(function() {
+        game.send("Undo", {});
+      });
 
       var redoKey = game.input.keyboard.addKey(Phaser.Keyboard.Y);
-      redoKey.onDown.add(redo);
+      redoKey.onDown.add(function() {
+        game.send("Redo", {});
+      });
 
       var victoriousCheatKey = game.input.keyboard.addKey(Phaser.Keyboard.V);
-      victoriousCheatKey.onDown.add(victorious);
+      victoriousCheatKey.onDown.add(function() {
+        console.log("Victorious!");
+        for(var cardIndex in game.cards) {
+          game.cards[cardIndex].animation = {id: "mouse", speed: 200 + Math.floor(Math.random() * 200)};
+        }
+      });
 
       var trailsCheatKey = game.input.keyboard.addKey(Phaser.Keyboard.T);
-      trailsCheatKey.onDown.add(trails);
+      trailsCheatKey.onDown.add(function() {
+        game.playmat.enableTrails();
+      });
 
-      var closeKey = game.input.keyboard.addKey(Phaser.Keyboard.C);
-      closeKey.onDown.add(closeConnection);
+      var closeConnectionKey = game.input.keyboard.addKey(Phaser.Keyboard.C);
+      closeConnectionKey.onDown.add(function() {
+        game.ws.close();
+      });
 
       var debugKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
       debugKey.onDown.add(toggleDebug);

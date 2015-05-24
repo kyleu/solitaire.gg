@@ -7,11 +7,11 @@ import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 object TestController extends BaseController {
-  def tests = AdminAction.async { implicit request =>
-    Future.successful(Ok(views.html.admin.tests()))
+  def tests = withAdminSession { implicit request =>
+    Future.successful(Ok(views.html.admin.test.tests()))
   }
 
-  def runTest(test: String) = AdminAction.async { implicit request =>
+  def runTest(test: String) = withAdminSession { implicit request =>
     Future {
       val testTree = test match {
         case "all" => new AllTests().all
@@ -31,7 +31,7 @@ object TestController extends BaseController {
 
       val resultTree = TestService.run(testTree)
 
-      Ok(views.html.admin.testResults(resultTree.toSeq()))
+      Ok(views.html.admin.test.testResults(resultTree.toSeq()))
     }
   }
 }

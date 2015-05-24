@@ -6,7 +6,7 @@
           <h1>@utils.Config.projectName</h1>
           <p>@Messages("index.tagline")</p>
           @if(!user.isGuest) {
-            <p><a class="btn btn-primary btn-lg" href="@routes.HomeController.newDefaultGame().url" role="button">@Messages("index.play.now")</a></p>
+            <p><a class="btn btn-primary btn-lg" href="@routes.GameController.newDefaultGame().url" role="button">@Messages("index.play.now")</a></p>
           } else {
             <p>@Messages("index.coming.soon")</p>
           }
@@ -24,8 +24,8 @@
               <ul>
               @for(r <- models.game.rules.GameRulesSet.completed) {
                 <li>
-                  <a href="@routes.HomeController.newGame(r.id)">@r.title</a>
-                  <a href="@routes.HomeController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
+                  <a href="@routes.GameController.newGame(r.id)">@r.title</a>
+                  <a href="@routes.GameController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
                 </li>
               }
               </ul>
@@ -41,8 +41,8 @@
                 <ul>
                 @for(r <- models.game.rules.GameRulesSet.inProgress) {
                   <li>
-                    <a href="@routes.HomeController.newGame(r.id)">@r.title</a>
-                    <a href="@routes.HomeController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
+                    <a href="@routes.GameController.newGame(r.id)">@r.title</a>
+                    <a href="@routes.GameController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
                   </li>
                 }
                 </ul>
@@ -57,8 +57,8 @@
                 <ul>
                 @for(r <- models.game.rules.GameRulesSet.unfinished) {
                   <li>
-                    <a href="@routes.HomeController.newGame(r.id)">@r.title</a>
-                    <a href="@routes.HomeController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
+                    <a href="@routes.GameController.newGame(r.id)">@r.title</a>
+                    <a href="@routes.GameController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
                   </li>
                 }
                 </ul>
@@ -74,7 +74,7 @@
             <div class="panel-body">
             @if(user.username.nonEmpty) {
               @Messages("index.known.as", user.username.getOrElse(Messages("guest.name")))<br/>
-              <a class="btn btn-default" href="@routes.HomeController.profile()">@Messages("index.buttons.profile")</a>
+              <a class="btn btn-default" href="@routes.ProfileController.profile()">@Messages("index.buttons.profile")</a>
               <a class="btn btn-default" href="@controllers.auth.routes.AuthenticationController.signOut()">@Messages("index.buttons.sign.out")</a>
             } else {
               @Messages("index.anonymous")<br/>
@@ -91,6 +91,7 @@
               </div>
               <div class="panel-body">
                 <a class="btn btn-default" href="@controllers.admin.routes.AdminController.status()">Activity</a>
+                <a class="btn btn-default" href="@controllers.admin.routes.FeedbackController.feedbackList()">Feedback</a>
                 <a class="btn btn-default" href="@controllers.admin.routes.RequestLogController.requestList()">Requests</a>
                 <a class="btn btn-default" href="@controllers.admin.routes.UserController.userList()">Users</a>
                 <a class="btn btn-default" href="@controllers.admin.routes.GameHistoryController.gameList()">Games</a>

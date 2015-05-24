@@ -20,20 +20,20 @@ import scala.util.Random
 object AdminController extends BaseController {
   implicit val timeout = Timeout(10.seconds)
 
-  def enable = SecuredAction.async { implicit request =>
+  def enable = withSession { implicit request =>
     Database.execute(UserQueries.AddRole(request.identity.id, Role.Admin)).map { x =>
       CacheService.removeUser(request.identity.id)
       Ok("OK")
     }
   }
 
-  def status = AdminAction.async { implicit request =>
+  def status = withAdminSession { implicit request =>
     (ActorSupervisor.instance ask GetSystemStatus).map {
       case x: SystemStatus => Ok(views.html.admin.status(x))
     }
   }
 
-  def observeRandomGame() = AdminAction.async { implicit request =>
+  def observeRandomGame() = withAdminSession { implicit request =>
     (ActorSupervisor.instance ask GetSystemStatus).map {
       case ss: SystemStatus => if (ss.games.isEmpty) {
         Ok("No games available.")
@@ -45,11 +45,11 @@ object AdminController extends BaseController {
     }
   }
 
-  def observeGameAsAdmin(gameId: UUID) = AdminAction.async { implicit request =>
+  def observeGameAsAdmin(gameId: UUID) = withAdminSession { implicit request =>
     Future.successful(Ok(views.html.game.gameplay("Observing [" + gameId + "]", request.identity, "", Seq("observe", gameId.toString))))
   }
 
-  def observeGameAs(gameId: UUID, as: UUID) = AdminAction.async { implicit request =>
+  def observeGameAs(gameId: UUID, as: UUID) = withAdminSession { implicit request =>
     Future.successful(Ok(views.html.game.gameplay("Observing [" + gameId + "]", request.identity, "", Seq("observe", gameId.toString, as.toString))))
   }
 }

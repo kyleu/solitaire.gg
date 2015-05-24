@@ -12,9 +12,9 @@ object UserFeedbackQueries extends BaseQueries {
   override protected val tableName = "user_feedback"
   override protected val columns = Seq("id", "user_id", "active_game_id", "feedback", "occurred")
 
-  case class CreateUserFeedback(id: UUID, userId: UUID, activeGameId: UUID, feedback: String, occurred: LocalDateTime) extends Statement {
+  case class CreateUserFeedback(f: UserFeedback) extends Statement {
     override val sql = insertSql
-    override val values = Seq[Any](id, userId, activeGameId, feedback, DateUtils.toSqlTimestamp(occurred))
+    override val values = Seq[Any](f.id, f.userId, f.activeGameId, f.feedback, DateUtils.toSqlTimestamp(f.occurred))
   }
 
   case class SearchUserFeedback(q: String, orderBy: String) extends Query[List[UserFeedback]] {

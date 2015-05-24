@@ -2,14 +2,12 @@ package controllers
 
 import java.util.UUID
 
-import _root_.services.audit.RequestLogService
-import _root_.services.database.Database
-import _root_.services.user.AuthenticationEnvironment
+import services.audit.RequestLogService
+import services.user.AuthenticationEnvironment
 import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
 import models.audit.RequestLog
-import models.database.queries.RequestLogQueries
-import models.user.{ Role, User, WithRole }
+import models.user.{ Role, User }
 import nl.grons.metrics.scala.Timer
 import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -26,7 +24,18 @@ object BaseController extends Instrumented {
 abstract class BaseController extends Silhouette[User, CookieAuthenticator] with Instrumented with Logging {
   override protected def env = AuthenticationEnvironment
 
-  object AdminAction extends SecuredActionBuilder(Some(WithRole(Role.Admin)))
+  def withAdminSession(block: (SecuredRequest[AnyContent]) => Future[Result]) = SecuredAction.async { implicit request =>
+    val startTime = System.currentTimeMillis
+    if(request.identity.roles.contains(Role.Admin)) {
+      block(request).map { r =>
+        val duration = (System.currentTimeMillis - startTime).toInt
+        logRequest(request, request.identity.id, request.authenticator.loginInfo, duration, r.header.status)
+        r
+      }
+    } else {
+      Future.successful(NotFound("404 Not Found"))
+    }
+  }
 
   def withSession(block: (SecuredRequest[AnyContent]) => Future[Result]) = UserAwareAction.async { implicit request =>
     val startTime = System.currentTimeMillis

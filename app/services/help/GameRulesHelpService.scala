@@ -15,7 +15,7 @@ object GameRulesHelpService {
         GameRulesSet.allById(id)
       }
       if (link) {
-        val url = controllers.routes.HomeController.help(rules.id).url
+        val url = controllers.routes.GameController.help(rules.id).url
         desc.replaceAllLiterally("^" + id + "^", "<a href=\"" + url + "\">" + rules.title + "</a>")
       } else {
         desc.replaceAllLiterally("^" + id + "^", rules.title)

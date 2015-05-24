@@ -16,18 +16,22 @@
       @th("request-method", "Method")
       @th("request-host", "Host")
       @th("request-path", "Path")
+      @th("request-lang", "Lang")
       @th("request-started", "Started")
+      @th("request-duration", "Duration")
     </tr>
   </thead>
   <tbody>
   @for(r <- requests) {
     <tr>
       <td title="@r.id">@r.id.toString.substring(0, 8)</td>
-      <td><a href="@controllers.admin.routes.UserController.userDetail(r.userId)">@r.userId</a></td>
-      <td>@r.method</td>
+      <td title="@r.userId"><a href="@controllers.admin.routes.UserController.userDetail(r.userId)">@r.userId.toString.substring(0, 8)</a></td>
+      <td title="@r.userAgent">@r.method</td>
       <td>@r.host</td>
       <td>@r.path</td>
+      <td>@r.lang</td>
       <td>@r.started.toString("yyyy-MM-dd HH:mm:ss")</td>
+      <td>@{r.duration}ms</td>
     </tr>
   }
   </tbody>

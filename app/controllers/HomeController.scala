@@ -1,13 +1,12 @@
 package controllers
 
-import models.database.queries.auth.{ UserQueries, ProfileQueries }
-import models.game.rules.GameRulesSet
-import models.user.Avatars
-import play.api.i18n.Messages
+import java.util.UUID
+
+import models.user.UserFeedback
+import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.mvc.{ AnyContent, Action }
-import services.database.Database
-import utils.CacheService
+import play.api.mvc.Action
+import services.user.UserFeedbackService
 
 import scala.concurrent.Future
 
@@ -20,85 +19,27 @@ object HomeController extends BaseController {
     Future.successful(MovedPermanently("/" + path))
   }
 
-  def profile = withSession { implicit request =>
-    Database.query(ProfileQueries.FindProfilesByUser(request.identity.id)).map { profiles =>
-      Ok(views.html.profile(request.identity, profiles))
-    }
+  def feedbackForm = withSession { implicit request =>
+    Future.successful(Ok(views.html.feedback()))
   }
 
-  def updateAvatar(key: String) = withSession { implicit request =>
-    val loginInfo = key match {
-      case "facebook" => request.identity.profiles.find(_.providerID == "facebook")
-      case "google" => request.identity.profiles.find(_.providerID == "google")
-      case "twitter" => request.identity.profiles.find(_.providerID == "twitter")
-      case "steam" => request.identity.profiles.find(_.providerID == "steam")
-      case _ => None
-    }
-    val urlFuture = if (Avatars.all.isDefinedAt(key)) {
-      Future.successful(Avatars.all(key))
-    } else {
-      loginInfo match {
-        case Some(li) => Database.query(ProfileQueries.FindProfile(li.providerID, li.providerKey)).map(_.flatMap(_.avatarURL).getOrElse(Avatars.default))
-        case None => throw new IllegalStateException("Cannot find avatar to match [" + key + "].")
+  def submitFeedback = withSession { implicit request =>
+    request.body.asFormUrlEncoded match {
+      case Some(form) => form.get("feedback") match {
+        case Some(feedback) =>
+          val obj = UserFeedback(
+            id = UUID.randomUUID,
+            userId = request.identity.id,
+            activeGameId = None,
+            feedback = feedback.mkString("\n\n"),
+            occurred = new LocalDateTime()
+          )
+          UserFeedbackService.save(obj).map { x =>
+            Redirect(routes.HomeController.feedbackForm()).flashing("success" -> "Your feedback has been submitted. Thanks!")
+          }
+        case None => Future.successful(Redirect(routes.HomeController.feedbackForm()).flashing("error" -> "Please include some feedback."))
       }
+      case None => Future.successful(Redirect(routes.HomeController.feedbackForm()).flashing("error" -> "Please include some feedback."))
     }
-    urlFuture.flatMap { url =>
-      Database.execute(UserQueries.SetAvatarUrl(request.identity.id, url)).map { i =>
-        CacheService.removeUser(request.identity.id)
-        Redirect(controllers.routes.HomeController.profile())
-      }
-    }
-  }
-
-  def help(id: String) = withSession { implicit request =>
-    Future.successful {
-      id match {
-        case "undefined" => Ok(Messages("help.general"))
-        case _ => GameRulesSet.allById.get(id) match {
-          case Some(rules) => Ok(views.html.help(rules))
-          case None => Ok(Messages("invalid.game.rules", id))
-        }
-      }
-    }
-  }
-
-  def newDefaultGame() = withSession { implicit request =>
-    startGame()
-  }
-
-  def newFacebookGame() = withSession { implicit request =>
-    startGame()
-  }
-
-  def newGame(rules: String) = withSession { implicit request =>
-    startGame(rules)
-  }
-
-  def newGameWithSeed(rules: String, seed: Int) = withSession { implicit request =>
-    startGame(rules, seed = Some(seed))
-  }
-
-  def newDefaultOfflineGame() = withSession { implicit request =>
-    startGame(offline = true)
-  }
-
-  def newOfflineGame(rules: String) = withSession { implicit request =>
-    startGame(rules, offline = true)
-  }
-
-  def newOfflineGameWithSeed(rules: String, seed: Int) = withSession { implicit request =>
-    startGame(rules, seed = Some(seed), offline = true)
-  }
-
-  private[this] def startGame(
-    rulesId: String = "klondike",
-    initialAction: Seq[String] = Seq("start"),
-    seed: Option[Int] = None,
-    offline: Boolean = false
-  )(implicit request: SecuredRequest[AnyContent]) = {
-    Future.successful(GameRulesSet.allById.get(rulesId) match {
-      case Some(rules) => Ok(views.html.game.gameplay(rules.title, request.identity, rulesId, initialAction, seed, offline))
-      case None => NotFound(Messages("invalid.game.rules", rulesId))
-    })
   }
 }

@@ -12,9 +12,9 @@ object GameHistoryService {
     Database.execute(GameHistoryQueries.CreateGameHistory(id, seed, rules, status, userId, created)).map(_ == 1)
   }
 
-  def searchGames(q: String, orderBy: String) = Database.query(GameHistoryQueries.SearchGameHistories(q, orderBy))
+  def searchGames(q: String, orderBy: String) = Database.query(GameHistoryQueries.SearchGameHistories(q, getOrderClause(orderBy)))
 
-  def getByUser(id: UUID, sortBy: String) = Database.query(GameHistoryQueries.GetGameHistoriesByUser(id, sortBy))
+  def getByUser(id: UUID, orderBy: String) = Database.query(GameHistoryQueries.GetGameHistoriesByUser(id, getOrderClause(orderBy)))
 
   def updateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int, completed: Option[LocalDateTime]) = {
     Database.execute(GameHistoryQueries.UpdateGameHistory(id, status, moves, undos, redos, completed)).map(_ == 1)

@@ -13,6 +13,16 @@ define(['ui/Modal'], function(Modal) {
     }
   };
 
+  Help.prototype.toggleFeedback = function() {
+    if(Modal.isVisible()) {
+      Modal.hide();
+    } else {
+      var height = this.game.height * 0.9;
+      var margin = this.game.height * 0.05;
+      Modal.show(height, margin, "/feedback");
+    }
+  };
+
   Help.prototype.initIfNeeded = function() {
     if(this.graphics === undefined) {
       this.graphics = new Phaser.Graphics(this.game, 0, 0);

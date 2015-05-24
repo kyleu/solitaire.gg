@@ -1,0 +1,21 @@
+@()(implicit request: Request[AnyContent], session: Session, flash: Flash)@layout.basic(
+  "Submit Feedback", stylesheets = Seq(routes.Assets.at("stylesheets/feedback.css").url)
+) {
+  @if(flash.get("error").isDefined) {
+    <div class="feedback-error">
+    @flash.get("error")
+    </div>
+  }
+  @if(flash.get("success").isDefined) {
+    <div class="feedback-success">
+      @flash.get("success")
+    </div>
+  } else {
+    <p class="feedback-prompt">Feedback is always appreciated. Thanks for sharing yours.</p>
+
+    <form action="@routes.HomeController.submitFeedback()" method="post" enctype="application/x-www-form-urlencoded">
+      <textarea name="feedback" class="feedback-input"></textarea>
+      <input class="feedback-submit" type="submit" value="Submit" />
+    </form>
+  }
+}
