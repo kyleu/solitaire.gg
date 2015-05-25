@@ -48,13 +48,14 @@ define(['game/pile/PileLayout', 'game/pile/PileHelpers', 'game/pile/DragFromCons
   Pile.prototype = Object.create(Phaser.Group.prototype);
   Pile.prototype.constructor = Pile;
 
-  Pile.prototype.addCard = function(card) {
+  Pile.prototype.addCard = function(card, cardPileIndex) {
     card.pile = this;
     card.pileIndex = this.cards.length;
-    this.cards.push(card);
-
+    if(cardPileIndex !== undefined) {
+      card.pileIndex = cardPileIndex;
+    }
+    this.cards[card.pileIndex] = card;
     PileLayout.cardAdded(this, card);
-
     this.game.playmat.add(card);
   };
 

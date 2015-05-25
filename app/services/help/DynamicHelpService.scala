@@ -8,7 +8,7 @@ object DynamicHelpService {
 
     val cardCount = rules.deckOptions.numDecks * rules.deckOptions.suits.size * rules.deckOptions.ranks.size
 
-    if(rules.deckOptions.numDecks == 1) {
+    if (rules.deckOptions.numDecks == 1) {
       ret += "pre-deal" -> s"The game is played with a single, standard deck of $cardCount playing cards."
     } else {
       ret += "pre-deal" -> s"The game is played with ${rules.deckOptions.numDecks} standard decks totalling $cardCount playing cards."

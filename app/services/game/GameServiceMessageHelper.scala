@@ -14,8 +14,8 @@ trait GameServiceMessageHelper { this: GameService =>
 
   protected[this] def handleStopGame() {
     log.info("Stopping game [" + id + "].")
-    if(status == "started") {
-      status = "abandoned"
+    if (getStatus == "started") {
+      setStatus("abandoned")
     }
 
     context.parent ! GameStopped(id)

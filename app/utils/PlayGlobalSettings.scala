@@ -5,12 +5,12 @@ import java.util.TimeZone
 import com.codahale.metrics.SharedMetricRegistries
 import org.joda.time.DateTimeZone
 import play.api.http.HeaderNames
-import play.api.mvc.{Action, RequestHeader, Results, WithFilters}
-import play.api.{Application, GlobalSettings, Mode}
+import play.api.mvc.{ Action, RequestHeader, Results, WithFilters }
+import play.api.{ Application, GlobalSettings, Mode }
 import play.filters.gzip.GzipFilter
 import play.filters.headers.SecurityHeadersFilter
 import services.ActorSupervisor
-import services.database.{Database, Schema}
+import services.database.{ Database, Schema }
 import utils.metrics.Instrumented
 
 import scala.concurrent.Future
@@ -55,7 +55,7 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeaders
     if (!Option(request.path).exists(_.startsWith("/assets"))) {
       log.info("Request from [" + request.remoteAddress + "]: " + request.toString)
     }
-    if(request.domain == utils.Config.hostname) {
+    if (request.domain == utils.Config.hostname) {
       super.onRouteRequest(request)
     } else {
       Some(redirectToBareDomain(request))
@@ -63,7 +63,7 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeaders
   }
 
   private[this] def redirectToBareDomain(request: RequestHeader) = Action {
-    val protocol = if(request.secure) { "https" } else { "http" }
+    val protocol = if (request.secure) { "https" } else { "http" }
     Results.MovedPermanently(s"$protocol://${utils.Config.hostname}${request.path}").withHeaders(HeaderNames.CACHE_CONTROL -> "public, max-age=31556926")
   }
 }

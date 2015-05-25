@@ -26,7 +26,7 @@ abstract class BaseController extends Silhouette[User, CookieAuthenticator] with
 
   def withAdminSession(block: (SecuredRequest[AnyContent]) => Future[Result]) = SecuredAction.async { implicit request =>
     val startTime = System.currentTimeMillis
-    if(request.identity.roles.contains(Role.Admin)) {
+    if (request.identity.roles.contains(Role.Admin)) {
       block(request).map { r =>
         val duration = (System.currentTimeMillis - startTime).toInt
         logRequest(request, request.identity.id, request.authenticator.loginInfo, duration, r.header.status)

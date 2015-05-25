@@ -2,7 +2,7 @@ package models
 
 import java.util.UUID
 
-import models.game.{Suit, Rank}
+import models.game.{ Suit, Rank }
 import org.joda.time.LocalDateTime
 
 object GameHistory {

@@ -1,7 +1,7 @@
 package services.help
 
 import models.game.rules.{ WastePlayableCards, WasteRules }
-import play.api.i18n.{Messages, Lang}
+import play.api.i18n.{ Messages, Lang }
 import utils.NumberUtils
 
 object WasteHelpService {

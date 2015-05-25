@@ -5,8 +5,8 @@ import java.util.UUID
 import com.github.mauricio.async.db.RowData
 import models.GameHistory
 import models.database.queries.BaseQueries
-import models.database.{Query, Statement}
-import models.game.{Suit, Rank}
+import models.database.{ Query, Statement }
+import models.game.{ Suit, Rank }
 
 object GameHistoryCardQueries extends BaseQueries {
   override protected val tableName = "game_cards"

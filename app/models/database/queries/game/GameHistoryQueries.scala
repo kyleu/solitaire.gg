@@ -5,7 +5,7 @@ import java.util.UUID
 import com.github.mauricio.async.db.RowData
 import models.GameHistory
 import models.database.queries.BaseQueries
-import models.database.{FlatSingleRowQuery, Query, Statement}
+import models.database.{ FlatSingleRowQuery, Query, Statement }
 import org.joda.time.LocalDateTime
 import utils.DateUtils
 

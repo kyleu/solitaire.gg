@@ -47,7 +47,9 @@ define(['utils/Config', 'game/Card', 'game/pile/Pile'], function(cfg, Card, Pile
     }
   };
 
-  GameplayHelper.prototype.loadCards = function(pileSets) {
+  GameplayHelper.prototype.loadCards = function(pileSets, originalOrder) {
+    var cards = {};
+
     for(var pileSetIndex in pileSets) {
       var pileSet = pileSets[pileSetIndex];
       for(var pileIndex in pileSet.piles) {
@@ -56,10 +58,21 @@ define(['utils/Config', 'game/Card', 'game/pile/Pile'], function(cfg, Card, Pile
         for(var cardIndex in pile.cards) {
           var card = pile.cards[cardIndex];
           var cardObj = new Card(this.game, card.id, card.r, card.s, card.u);
-          pileObj.addCard(cardObj);
+          cards[card.id] = [cardObj, pileObj, cardIndex];
         }
       }
     }
+
+    _.each(originalOrder, function(cardId, cardIndex) {
+      var c = cards[cardId];
+      var cardObj = c[0];
+      var pileObj = c[1];
+      var cardPileIndex = c[2];
+      setTimeout(function() { pileObj.addCard(cardObj, cardPileIndex); }, 30 * cardIndex);
+    });
+
+    var game = this.game;
+    setTimeout(function() { game.orderPiles(); }, (30 * (originalOrder.length - 1)) + 500);
   };
 
   GameplayHelper.prototype.moveCard = function(card, src, tgt, turn) {

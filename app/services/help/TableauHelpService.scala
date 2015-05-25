@@ -1,7 +1,7 @@
 package services.help
 
 import models.game.rules._
-import play.api.i18n.{Messages, Lang}
+import play.api.i18n.{ Messages, Lang }
 import utils.NumberUtils
 
 object TableauHelpService {
@@ -15,7 +15,7 @@ object TableauHelpService {
       case 1 => rules.initialCards match {
         case InitialCards.Count(i) => if (i == 0) {
           Messages("help.piles.single.cards.empty", loweredName)
-        } else if(i == 1) {
+        } else if (i == 1) {
           Messages("help.piles.single.cards.single", loweredName)
         } else {
           Messages("help.piles.single.cards.multiple", loweredName, NumberUtils.toWords(i))
@@ -25,7 +25,7 @@ object TableauHelpService {
       case x => rules.initialCards match {
         case InitialCards.Count(i) => if (i == 0) {
           Messages("help.piles.multiple.cards.empty", NumberUtils.toWords(x, properCase = true), loweredName)
-        } else if(i == 1) {
+        } else if (i == 1) {
           Messages("help.piles.multiple.cards.single.each", NumberUtils.toWords(x, properCase = true), loweredName)
         } else {
           Messages("help.piles.multiple.cards.multiple.each", NumberUtils.toWords(x, properCase = true), loweredName, NumberUtils.toWords(i))
@@ -54,7 +54,7 @@ object TableauHelpService {
 
     ret += MatchRuleHelpService.toWords(rules.emptyFilledWith, deckOptions.lowRank, deckOptions.highRank)
 
-    if(rules.rankMatchRuleForBuilding != RankMatchRule.None && rules.suitMatchRuleForBuilding != SuitMatchRule.None) {
+    if (rules.rankMatchRuleForBuilding != RankMatchRule.None && rules.suitMatchRuleForBuilding != SuitMatchRule.None) {
       ret += Messages("help.tableau.build.none", loweredName)
     } else {
       ret += Messages(
@@ -65,7 +65,7 @@ object TableauHelpService {
       )
     }
 
-    if(rules.rankMatchRuleForMovingStacks != RankMatchRule.None && rules.suitMatchRuleForMovingStacks != SuitMatchRule.None) {
+    if (rules.rankMatchRuleForMovingStacks != RankMatchRule.None && rules.suitMatchRuleForMovingStacks != SuitMatchRule.None) {
       ret += Messages("help.tableau.move.stacks.none", loweredName)
     } else {
       ret += Messages(

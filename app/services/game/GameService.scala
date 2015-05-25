@@ -23,8 +23,8 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
   protected[this] var gameWon = false
 
   private[this] var _status = "started"
-  protected[this] def status = _status
-  protected[this] def status_=(s: String) {
+  protected[this] def getStatus = _status
+  protected[this] def setStatus(s: String) {
     _status = s
     GameHistoryService.updateGameHistory(id, s, moveCount, undoHelper.undoCount, undoHelper.redoCount, Some(new LocalDateTime))
   }

@@ -1,8 +1,8 @@
 package services.help
 
 import models.game.Rank
-import models.game.rules.{FillEmptyWith, SuitMatchRule, RankMatchRule}
-import play.api.i18n.{Messages, Lang}
+import models.game.rules.{ FillEmptyWith, SuitMatchRule, RankMatchRule }
+import play.api.i18n.{ Messages, Lang }
 
 object MatchRuleHelpService {
   def toWords(rmr: RankMatchRule)(implicit lang: Lang) = rmr match {

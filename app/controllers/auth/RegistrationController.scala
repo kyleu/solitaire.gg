@@ -49,7 +49,7 @@ object RegistrationController extends BaseController {
       User(UUID.randomUUID, Some(data.username), profiles = Seq(loginInfo), created = new LocalDateTime(), avatar = "default")
     } else {
       request.identity.copy(
-        username = if(data.username.isEmpty) { request.identity.username } else { Some(data.username) },
+        username = if (data.username.isEmpty) { request.identity.username } else { Some(data.username) },
         profiles = request.identity.profiles :+ loginInfo
       )
     }

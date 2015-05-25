@@ -1,7 +1,7 @@
 package services.help
 
 import models.game.rules.{ StockCardsDealt, StockDealTo, StockRules }
-import play.api.i18n.{Messages, Lang}
+import play.api.i18n.{ Messages, Lang }
 import utils.NumberUtils
 
 object StockHelpService {

@@ -47,7 +47,7 @@ define([
         this.game.seed = v.state.seed;
         this.game.possibleMoves = v.moves;
         this.helper.loadPileSets(v.state.pileSets);
-        this.helper.loadCards(v.state.pileSets);
+        this.helper.loadCards(v.state.pileSets, v.state.deck.originalOrder);
         break;
       case "PossibleMoves":
         this.game.possibleMoves = v.moves;

@@ -4,7 +4,7 @@ import play.Play.autoImport._
 
 object Dependencies {
   object Database {
-    val postgresAsync = "com.github.mauricio" %% "postgresql-async" % "0.2.15"
+    val postgresAsync = "com.github.mauricio" %% "postgresql-async" % "0.2.16"
   }
 
   object Play {
@@ -27,7 +27,7 @@ object Dependencies {
   }
 
   object Metrics {
-    val metrics = "nl.grons" %% "metrics-scala" % "3.5.0" withSources()
+    val metrics = "nl.grons" %% "metrics-scala" % "3.5.1" withSources()
     val jvm = "io.dropwizard.metrics" % "metrics-jvm" % "3.1.2" withSources()
     val ehcache = "io.dropwizard.metrics" % "metrics-ehcache" % "3.1.2" withSources() intransitive()
     val healthChecks = "io.dropwizard.metrics" % "metrics-healthchecks" % "3.1.2" withSources() intransitive()

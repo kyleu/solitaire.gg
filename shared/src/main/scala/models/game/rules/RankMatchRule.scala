@@ -8,9 +8,9 @@ sealed trait RankMatchRule {
 
 object RankMatchRule {
   private[this] def upBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
-    val target = if(wrap && (l.value + i > 14)) {
+    val target = if (wrap && (l.value + i > 14)) {
       (l.value + i + 1) % 14
-    } else if(lowRank == Rank.Ace && l == Rank.Ace) {
+    } else if (lowRank == Rank.Ace && l == Rank.Ace) {
       i + 1
     } else {
       l.value + i
@@ -19,9 +19,9 @@ object RankMatchRule {
   }
 
   private[this] def downBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
-    val target = if(wrap && (l.value - i < 2)) {
+    val target = if (wrap && (l.value - i < 2)) {
       l.value - i + 14
-    } else if(lowRank == Rank.Ace && l == Rank.Ace) {
+    } else if (lowRank == Rank.Ace && l == Rank.Ace) {
       Rank.Ace.value - i
     } else {
       l.value - i

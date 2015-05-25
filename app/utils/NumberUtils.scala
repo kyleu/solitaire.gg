@@ -3,7 +3,7 @@ package utils
 import play.api.i18n.Lang
 
 object NumberUtils {
-  def toWords(i: Int, properCase: Boolean = false)(implicit lang: Lang) = if(lang == Lang.defaultLang){
+  def toWords(i: Int, properCase: Boolean = false)(implicit lang: Lang) = if (lang == Lang.defaultLang) {
     val ret = i match {
       case 0 => "zero"
       case 1 => "one"

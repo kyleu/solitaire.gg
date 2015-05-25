@@ -2,7 +2,7 @@ package services.help
 
 import models.game.Rank
 import models.game.rules.DeckOptions
-import play.api.i18n.{Lang, Messages}
+import play.api.i18n.{ Lang, Messages }
 import utils.NumberUtils
 
 object DeckOptionsHelpService {
@@ -45,10 +45,9 @@ object DeckOptionsHelpService {
       }
     }
 
-    if(options.lowRank != Rank.Ace) {
+    if (options.lowRank != Rank.Ace) {
       ret += options.lowRank + " is the lowest card."
     }
-
 
     ret.toSeq
   }

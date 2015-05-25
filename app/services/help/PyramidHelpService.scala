@@ -1,7 +1,7 @@
 package services.help
 
 import models.game.rules._
-import play.api.i18n.{Messages, Lang}
+import play.api.i18n.{ Messages, Lang }
 import utils.NumberUtils
 
 object PyramidHelpService {
@@ -25,7 +25,7 @@ object PyramidHelpService {
       ret += Messages("help.pyramid.wrap.ranks")
     }
 
-    if(rules.rankMatchRuleForBuilding != RankMatchRule.None && rules.suitMatchRuleForBuilding != SuitMatchRule.None) {
+    if (rules.rankMatchRuleForBuilding != RankMatchRule.None && rules.suitMatchRuleForBuilding != SuitMatchRule.None) {
       ret += Messages("help.pyramid.build.none", loweredName)
     } else {
       ret += Messages(
@@ -36,7 +36,7 @@ object PyramidHelpService {
       )
     }
 
-    if(rules.rankMatchRuleForMovingStacks != RankMatchRule.None && rules.suitMatchRuleForMovingStacks != SuitMatchRule.None) {
+    if (rules.rankMatchRuleForMovingStacks != RankMatchRule.None && rules.suitMatchRuleForMovingStacks != SuitMatchRule.None) {
       ret += Messages("help.pyramid.move.stacks.none", loweredName)
     } else {
       ret += Messages(

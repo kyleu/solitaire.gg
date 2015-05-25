@@ -3,7 +3,7 @@ package models.database.queries
 import java.util.UUID
 
 import com.github.mauricio.async.db.RowData
-import models.database.{FlatSingleRowQuery, Query, Statement}
+import models.database.{ FlatSingleRowQuery, Query, Statement }
 import models.user.UserFeedback
 import org.joda.time.LocalDateTime
 import utils.DateUtils

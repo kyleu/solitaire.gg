@@ -1,6 +1,6 @@
 package services
 
-import play.api.i18n.{Messages, Lang}
+import play.api.i18n.{ Messages, Lang }
 import play.api.libs.mailer._
 
 object EmailService {

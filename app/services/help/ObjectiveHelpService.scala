@@ -1,7 +1,7 @@
 package services.help
 
 import models.game.rules.{ CardRemovalMethod, VictoryCondition }
-import play.api.i18n.{Messages, Lang}
+import play.api.i18n.{ Messages, Lang }
 
 object ObjectiveHelpService {
   def objective(vc: VictoryCondition, crm: CardRemovalMethod)(implicit lang: Lang) = vc match {

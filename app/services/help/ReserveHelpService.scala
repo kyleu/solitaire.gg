@@ -1,7 +1,7 @@
 package services.help
 
 import models.game.rules.ReserveRules
-import play.api.i18n.{Messages, Lang}
+import play.api.i18n.{ Messages, Lang }
 import utils.NumberUtils
 
 object ReserveHelpService {

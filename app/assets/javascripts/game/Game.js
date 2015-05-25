@@ -62,6 +62,14 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet', 'game/Help'],
     this.piles[p.id] = p;
   };
 
+  Game.prototype.orderPiles = function() {
+    _.each(this.piles, function(pile) {
+      _.each(pile.cards, function(card) {
+        card.bringToTop();
+      });
+    });
+  };
+
   Game.prototype.addCard = function(c) {
     this.cards[c.id] = c;
   };
