@@ -1,5 +1,7 @@
 package models.game
 
+import java.util.UUID
+
 object Deck {
   def freshCards(ranks: Seq[Rank], suits: Seq[Suit]) = {
     val cards = for {
@@ -10,7 +12,7 @@ object Deck {
   }
 }
 
-case class Deck(var cards: Seq[Card], lowRank: Rank, highRank: Rank) {
+case class Deck(var cards: Seq[Card], lowRank: Rank, highRank: Rank, originalOrder: Seq[UUID]) {
   def getCards(
     numCards: Int = this.cards.size,
     turnFaceUp: Boolean = false,

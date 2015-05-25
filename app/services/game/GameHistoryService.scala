@@ -1,14 +1,14 @@
 package services.game
 
 import java.util.UUID
-
-import models.database.queries.GameHistoryQueries
+import models.database.queries.game.GameHistoryQueries
+import models.game.Card
 import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 
 object GameHistoryService {
-  def startGame(id: UUID, seed: Int, rules: String, status: String, userId: UUID, created: LocalDateTime) = {
+  def startGame(id: UUID, seed: Int, cards: Seq[Card], rules: String, status: String, userId: UUID, created: LocalDateTime) = {
     Database.execute(GameHistoryQueries.CreateGameHistory(id, seed, rules, status, userId, created)).map(_ == 1)
   }
 

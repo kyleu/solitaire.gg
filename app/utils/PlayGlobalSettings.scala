@@ -52,7 +52,7 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeaders
   )
 
   override def onRouteRequest(request: RequestHeader) = {
-    if (!request.path.startsWith("/assets")) {
+    if (!Option(request.path).exists(_.startsWith("/assets"))) {
       log.info("Request from [" + request.remoteAddress + "]: " + request.toString)
     }
     if(request.domain == utils.Config.hostname) {

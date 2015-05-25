@@ -8,9 +8,13 @@ object GameRulesSet {
   private[this] val completedIds = Seq(
     "alexanderthegreat",
     "batsford",
+    "beleagueredcastle",
+    "bisley",
     "canfield",
     "doubleklondike",
+    "flowergarden",
     "fourteenout",
+    "fortythieves",
     "freecell",
     "gargantua",
     "goldmine",

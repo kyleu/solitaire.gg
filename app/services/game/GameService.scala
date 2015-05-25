@@ -30,9 +30,9 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
   }
 
   override def preStart() {
-    InitialMoves.performInitialMoves(gameRules, gameState)
+    GameHistoryService.startGame(id, seed, gameState.deck.cards, rules, "started", player.userId, started)
 
-    GameHistoryService.startGame(id, seed, rules, "started", player.userId, started)
+    InitialMoves.performInitialMoves(gameRules, gameState)
 
     player.connectionActor.foreach(_ ! GameStarted(id, self, started))
     player.connectionActor.foreach(_ ! GameJoined(id, gameState.view(player.userId), possibleMoves(Some(player.userId))))
