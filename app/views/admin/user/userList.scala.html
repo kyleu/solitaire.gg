@@ -1,12 +1,4 @@
-@(q: String, sortBy: String, users: Seq[models.user.User])(implicit session: Session, flash: Flash)
-
-@th(key: String, label: String) = {
-  @if(sortBy == key) {
-    <th nowrap="nowrap" class="th-@key">@label <span class="caret"></span></th>
-  } else {
-    <th nowrap="nowrap" class="th-@key"><a href="?sortBy=@key">@label</a></th>
-  }
-}
+@(q: String, sortBy: String, count: Int, startIndex: Int, users: Seq[models.user.User])(implicit session: Session, flash: Flash)
 
 @layout.admin(utils.Config.projectName + " Users", "users") {
   <div class="container">
@@ -24,11 +16,16 @@
         </div>
         <div class="text-large">
           @if(q.isEmpty) {
-            @users.size user@if(users.size != 1){s}.
+            @count user@if(count != 1){s}.
           } else {
-            @users.size user@if(users.size != 1){s} for query [@q].
+            @count user@if(count != 1){s} for query [@q].
           }
         </div>
+        @if(users.size < count) {
+          <div>
+            Showing @{startIndex + 1} - @{startIndex + users.size} of @count users.
+          </div>
+        }
       </div>
     </div>
 
@@ -42,12 +39,12 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            @th("id", "User ID")
-            @th("username", "Username")
-            @th("roles", "Roles")
-            @th("accounts", "Accounts")
-            @th("created", "Created")
-            <th class="th-actions"></th>
+            @utils.ViewUtils.th("id", "User ID", sortBy)
+            @utils.ViewUtils.th("username", "Username", sortBy)
+            @utils.ViewUtils.th("roles", "Roles", sortBy)
+            @utils.ViewUtils.th("accounts", "Accounts", sortBy, link = false)
+            @utils.ViewUtils.th("created", "Created", sortBy)
+            @utils.ViewUtils.th("actions", "", sortBy)
           </tr>
         </thead>
         <tbody>

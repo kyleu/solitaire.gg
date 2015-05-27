@@ -59,7 +59,7 @@ GET         /admin/observe/:id/:as             controllers.admin.AdminController
 GET         /admin/test                        controllers.admin.TestController.tests
 GET         /admin/test/:test                  controllers.admin.TestController.runTest(test)
 
-GET         /admin/users                       controllers.admin.UserController.userList(q ?= "", sortBy ?= "created")
+GET         /admin/users                       controllers.admin.UserController.userList(q ?= "", sortBy ?= "created", page: Int = 0)
 GET         /admin/users/:id                   controllers.admin.UserController.userDetail(id: java.util.UUID, sortBy ?= "created")
 GET         /admin/users/:id/remove            controllers.admin.UserController.removeUser(id: java.util.UUID)
 

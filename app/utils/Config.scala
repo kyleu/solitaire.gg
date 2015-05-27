@@ -15,6 +15,9 @@ object Config {
 
   val defaultCardSet = cnf.getString("game.default.cardSet")
 
+  // Admin
+  val pageSize = 100
+
   // Metrics
   val jmxEnabled = cnf.getBoolean("metrics.jmx.enabled")
   val graphiteEnabled = cnf.getBoolean("metrics.graphite.enabled")

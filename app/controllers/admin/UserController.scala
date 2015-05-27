@@ -9,14 +9,16 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.game.GameHistoryService
 import services.user.UserService
-import utils.CacheService
+import utils.{Config, CacheService}
 
 import scala.concurrent.Future
 
 object UserController extends BaseController {
-  def userList(q: String, sortBy: String) = withAdminSession { implicit request =>
-    Database.query(UserQueries.SearchUsers(q)).map { users =>
-      Ok(views.html.admin.user.userList(q, sortBy, users))
+  def userList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
+    Database.query(UserQueries.CountUsers(q)).flatMap { count =>
+      Database.query(UserQueries.SearchUsers(q, getOrderClause(sortBy), Some(Config.pageSize), Some(page * Config.pageSize))).map { users =>
+        Ok(views.html.admin.user.userList(q, sortBy, count, 0, users))
+      }
     }
   }
 
@@ -36,5 +38,10 @@ object UserController extends BaseController {
       CacheService.removeUser(id)
       Redirect(controllers.admin.routes.UserController.userList(""))
     }
+  }
+
+  private[this] def getOrderClause(orderBy: String) = orderBy match {
+    case "created" => "created desc"
+    case x => x
   }
 }

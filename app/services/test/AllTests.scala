@@ -6,6 +6,7 @@ class AllTests {
   val all = Tree(Test("all"), Seq(
     new CardTests().all,
     new KnownGameTests().all,
+    new PokerTests().all,
     new VariantTests().all,
     new SolverTests().all,
     new RulesTests().all

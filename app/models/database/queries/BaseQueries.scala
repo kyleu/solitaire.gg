@@ -13,9 +13,14 @@ trait BaseQueries {
 
   protected lazy val getByIdSql = s"select ${columns.mkString(", ")} from $tableName where $idColumn = ?"
 
-  protected def getSql(whereClause: String, orderBy: Option[String] = None, limit: Option[Int] = None) = trim(s"""
+  protected def countSql(whereClause: String) = s"select count(*) as c from $tableName where $whereClause"
+
+  protected def getSql(whereClause: String, orderBy: Option[String] = None, limit: Option[Int] = None, offset: Option[Int] = None) = trim(s"""
     select ${columns.mkString(", ")} from $tableName
-    where $whereClause${orderBy.map(x => " order by " + x).getOrElse("")}${limit.map(x => " limit " + x).getOrElse("")}
+    where $whereClause
+    ${orderBy.map(x => " order by " + x).getOrElse("")}
+    ${limit.map(x => " limit " + x).getOrElse("")}
+    ${offset.map(x => " offset " + x).getOrElse("")}
   """)
 
   protected lazy val removeByIdSql = s"delete from $tableName where $idColumn = ?"

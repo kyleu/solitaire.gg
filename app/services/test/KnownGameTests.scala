@@ -59,7 +59,11 @@ class KnownGameTests {
   })
 
   val all = Tree(Test("known-game"), Seq(
-    connect().toTree, start().toTree, possibleMoves().toTree,
-    moveCardsA().toTree, moveCardsB().toTree, disconnect().toTree
+    connect().toTree,
+    start().toTree,
+    possibleMoves().toTree,
+    moveCardsA().toTree,
+    moveCardsB().toTree,
+    disconnect().toTree
   ))
 }

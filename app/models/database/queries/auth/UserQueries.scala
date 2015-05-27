@@ -61,9 +61,15 @@ object UserQueries extends BaseQueries {
     override def flatMap(row: RowData) = Some(fromRow(row))
   }
 
-  case class SearchUsers(q: String) extends Query[List[User]] {
-    override val sql = getSql("id::character varying like lower(?) or lower(username) like lower(?)", Some("created desc"))
-    override val values = Seq("%" + q + "%", "%" + q + "%")
+  case class CountUsers(q: String) extends Query[Int] {
+    override val sql = countSql(if(q.isEmpty) { "1 = 1" } else { "id::character varying like lower(?) or lower(username) like lower(?)" })
+    override val values = if(q.isEmpty) { Seq.empty } else { Seq("%" + q + "%", "%" + q + "%") }
+    override def reduce(rows: Iterator[RowData]) = rows.next()("c") match { case l: Long => l.toInt }
+  }
+
+  case class SearchUsers(q: String, sortBy: String, limit: Option[Int], offset: Option[Int]) extends Query[List[User]] {
+    override val sql = getSql(if(q.isEmpty) { "1 = 1" } else { "id::character varying like lower(?) or lower(username) like lower(?)" }, Some(sortBy), limit, offset)
+    override val values = if(q.isEmpty) { Seq.empty } else { Seq("%" + q + "%", "%" + q + "%") }
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }
 

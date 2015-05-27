@@ -16,6 +16,7 @@ object TestController extends BaseController {
       val testTree = test match {
         case "all" => new AllTests().all
         case "known" => new KnownGameTests().all
+        case "poker" => new PokerTests().all
 
         case "solver" => new SolverTests().all
         case x if x.startsWith("solve-") => new SolverTests().testSolver(x.substring(6)).toTree
