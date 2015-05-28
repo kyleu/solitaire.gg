@@ -1,15 +1,14 @@
-@(q: String, sortBy: String, requests: Seq[models.audit.RequestLog])(implicit session: Session, flash: Flash)
-
-@layout.admin(utils.Config.projectName + " Requests", "requests") {
-  <div class="container">
-    @if(requests.isEmpty) {
-      <div class="panel panel-default">
-        <div class="panel-body">
-          No requests found.
-        </div>
-      </div>
-    } else {
-      @requestListTable(sortBy, requests)
-    }
-  </div>
+@(q: String, sortBy: String, count: Int, page: Int, requests: Seq[models.audit.RequestLog])(implicit session: Session, flash: Flash)
+@views.html.admin.list(
+  "request",
+  "Requests",
+  count,
+  page,
+  requests.size,
+  q,
+  searchAction = controllers.admin.routes.RequestLogController.requestList(),
+  prevLink = controllers.admin.routes.RequestLogController.requestList(q, sortBy, page - 1),
+  nextLink = controllers.admin.routes.RequestLogController.requestList(q, sortBy, page + 1)
+) {
+  @requestListTable(sortBy, requests)
 }

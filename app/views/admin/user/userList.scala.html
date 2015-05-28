@@ -1,67 +1,39 @@
-@(q: String, sortBy: String, count: Int, startIndex: Int, users: Seq[models.user.User])(implicit session: Session, flash: Flash)
-
-@layout.admin(utils.Config.projectName + " Users", "users") {
-  <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="pull-right">
-          <form id="search-form" action="@controllers.admin.routes.UserController.userList()" class="form-inline">
-            <div class="form-group">
-              <div class="input-group">
-                <input type="text" class="form-control" name="q" id="searchInput" placeholder="Search Users" value="@q">
-                <div class="input-group-addon" id="search-button"><span class="glyphicon glyphicon-search"></span></div>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="text-large">
-          @if(q.isEmpty) {
-            @count user@if(count != 1){s}.
-          } else {
-            @count user@if(count != 1){s} for query [@q].
-          }
-        </div>
-        @if(users.size < count) {
-          <div>
-            Showing @{startIndex + 1} - @{startIndex + users.size} of @count users.
-          </div>
-        }
-      </div>
-    </div>
-
-    @if(users.isEmpty) {
-      <div class="panel panel-default">
-        <div class="panel-body">
-          No users found.
-        </div>
-      </div>
-    } else {
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            @utils.ViewUtils.th("id", "User ID", sortBy)
-            @utils.ViewUtils.th("username", "Username", sortBy)
-            @utils.ViewUtils.th("roles", "Roles", sortBy)
-            @utils.ViewUtils.th("accounts", "Accounts", sortBy, link = false)
-            @utils.ViewUtils.th("created", "Created", sortBy)
-            @utils.ViewUtils.th("actions", "", sortBy)
-          </tr>
-        </thead>
-        <tbody>
-          @for(u <- users) {
-            <tr>
-              <td><a href="@controllers.admin.routes.UserController.userDetail(u.id)">@u.id</a></td>
-              <td>@u.username</td>
-              <td>@Html(u.roles.map(_.name).mkString(",<br/>"))</td>
-              <td>@Html(u.profiles.map(x => x.providerID + ":" + x.providerKey).mkString(",<br/>"))</td>
-              <td>@u.created.toString("yyyy-MM-dd HH:mm:ss")</td>
-              <td>
-                <a href="@controllers.admin.routes.UserController.removeUser(u.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    }
-  </div>
+@(q: String, sortBy: String, count: Int, page: Int, users: Seq[models.user.User])(implicit session: Session, flash: Flash)
+@views.html.admin.list(
+  "user",
+  "Users",
+  count,
+  page,
+  users.size,
+  q,
+  searchAction = controllers.admin.routes.UserController.userList(),
+  prevLink = controllers.admin.routes.UserController.userList(q, sortBy, page - 1),
+  nextLink = controllers.admin.routes.UserController.userList(q, sortBy, page + 1)
+) {
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        @utils.ViewUtils.th("id", "User ID", sortBy)
+        @utils.ViewUtils.th("username", "Username", sortBy)
+        @utils.ViewUtils.th("roles", "Roles", sortBy)
+        @utils.ViewUtils.th("accounts", "Accounts", sortBy, link = false)
+        @utils.ViewUtils.th("created", "Created", sortBy)
+        @utils.ViewUtils.th("actions", "", sortBy)
+      </tr>
+    </thead>
+    <tbody>
+      @for(u <- users) {
+        <tr>
+          <td><a href="@controllers.admin.routes.UserController.userDetail(u.id)">@u.id</a></td>
+          <td>@u.username</td>
+          <td>@Html(u.roles.map(_.name).mkString(",<br/>"))</td>
+          <td>@Html(u.profiles.map(x => x.providerID + ":" + x.providerKey).mkString(",<br/>"))</td>
+          <td>@u.created.toString("yyyy-MM-dd HH:mm:ss")</td>
+          <td>
+            <a href="@controllers.admin.routes.UserController.removeUser(u.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
 }

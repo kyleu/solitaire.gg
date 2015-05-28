@@ -59,13 +59,13 @@ GET         /admin/observe/:id/:as             controllers.admin.AdminController
 GET         /admin/test                        controllers.admin.TestController.tests
 GET         /admin/test/:test                  controllers.admin.TestController.runTest(test)
 
-GET         /admin/users                       controllers.admin.UserController.userList(q ?= "", sortBy ?= "created", page: Int = 0)
+GET         /admin/users                       controllers.admin.UserController.userList(q ?= "", sortBy ?= "created", page: Int ?= 0)
 GET         /admin/users/:id                   controllers.admin.UserController.userDetail(id: java.util.UUID, sortBy ?= "created")
 GET         /admin/users/:id/remove            controllers.admin.UserController.removeUser(id: java.util.UUID)
 
-GET         /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created")
-GET         /admin/requests                    controllers.admin.RequestLogController.requestList(q ?= "", sortBy ?= "started")
-GET         /admin/feedback                    controllers.admin.FeedbackController.feedbackList(q ?= "", sortBy ?= "occurred")
+GET         /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created", page: Int ?= 0)
+GET         /admin/requests                    controllers.admin.RequestLogController.requestList(q ?= "", sortBy ?= "started", page: Int ?= 0)
+GET         /admin/feedback                    controllers.admin.FeedbackController.feedbackList(q ?= "", sortBy ?= "occurred", page: Int ?= 0)
 
 # Assets
 GET         /assets/*file                      controllers.Assets.at(path="/public", file)

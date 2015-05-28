@@ -77,6 +77,7 @@ object CardRemovalMethod {
   case object RemoveConsecutiveOrEqualRankPairs extends CardRemovalMethod {
     override def canRemove(l: Card, r: Card) = false
   }
+
   case object StackSameRankOrSuitInWaste extends CardRemovalMethod {
     override def canRemove(l: Card, r: Card) = false
   }

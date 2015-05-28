@@ -9,10 +9,11 @@ import models.database.{ FlatSingleRowQuery, Query, Statement }
 import org.joda.time.LocalDateTime
 import utils.DateUtils
 
-object GameHistoryQueries extends BaseQueries {
+object GameHistoryQueries extends BaseQueries[GameHistory] {
   override protected val tableName = "games"
   override protected lazy val insertSql = s"insert into $tableName (id, seed, rules, status, player, created) values (?, ?, ?, ?, ?, ?)"
   override protected val columns = Seq("id", "seed", "rules", "status", "player", "moves", "undos", "redos", "created", "completed")
+  override protected val searchColumns = Seq("id::text", "seed::text", "rules", "status", "player::text")
 
   case class CreateGameHistory(id: UUID, seed: Int, rules: String, status: String, player: UUID, created: LocalDateTime) extends Statement {
     override val sql = insertSql
@@ -22,12 +23,6 @@ object GameHistoryQueries extends BaseQueries {
   case class UpdateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int, completed: Option[LocalDateTime]) extends Statement {
     override val sql = updateSql(Seq("status", "moves", "undos", "redos", "completed"))
     override val values = Seq[Any](status, moves, undos, redos, completed.map(DateUtils.toSqlTimestamp), id)
-  }
-
-  case class SearchGameHistories(q: String, orderBy: String) extends Query[List[GameHistory]] {
-    override val sql = getSql("id::character varying like lower(?)", Some("?"))
-    override val values = Seq("%" + q + "%", orderBy)
-    override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }
 
   case class GetGameHistoriesByUser(id: UUID, sortBy: String) extends Query[List[GameHistory]] {
@@ -47,7 +42,7 @@ object GameHistoryQueries extends BaseQueries {
     override val values = Seq(id)
   }
 
-  private[this] def fromRow(row: RowData) = {
+  override protected def fromRow(row: RowData) = {
     val id = row("id") match { case s: String => UUID.fromString(s) }
     val seed = row("seed") match { case i: Int => i }
     val rules = row("rules") match { case s: String => s }

@@ -3,9 +3,11 @@ package services.game
 import java.util.UUID
 
 import models._
+import models.database.queries.game.GameHistoryQueries
 import models.game.rules.GameRulesSet
 import models.game.rules.moves.InitialMoves
 import org.joda.time.LocalDateTime
+import services.database.Database
 
 class GameService(val id: UUID, val rules: String, val seed: Int, val started: LocalDateTime, protected val player: PlayerRecord) extends GameServiceHelper {
   log.info("Started game [" + rules + "] for user [" + player.userId + ": " + player.name + "] with seed [" + seed + "].")
@@ -17,7 +19,7 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
 
   gameState.addPlayer(player.userId, player.name)
 
-  protected[this] val gameMessages = collection.mutable.ArrayBuffer.empty[GameMessage]
+  protected[this] val gameMessages = collection.mutable.ArrayBuffer.empty[(GameMessage, LocalDateTime)]
   protected[this] var moveCount = 0
   protected[this] var lastMoveMade: Option[LocalDateTime] = None
   protected[this] var gameWon = false
@@ -26,12 +28,11 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
   protected[this] def getStatus = _status
   protected[this] def setStatus(s: String) {
     _status = s
-    GameHistoryService.updateGameHistory(id, s, moveCount, undoHelper.undoCount, undoHelper.redoCount, Some(new LocalDateTime))
+    this.update()
   }
 
   override def preStart() {
-    GameHistoryService.startGame(id, seed, gameState.deck.cards, rules, "started", player.userId, started)
-
+    this.create()
     InitialMoves.performInitialMoves(gameRules, gameState)
 
     player.connectionActor.foreach(_ ! GameStarted(id, self, started))
@@ -47,9 +48,10 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
   private[this] def handleGameRequest(gr: GameRequest) = {
     //log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.userId + "] for game [" + id + "].")
     try {
-      gameMessages += gr.message
+      val time = new LocalDateTime()
+      gameMessages += gr.message -> time
       moveCount += 1
-      lastMoveMade = Some(new LocalDateTime())
+      lastMoveMade = Some(time)
       gr.message match {
         case GetPossibleMoves => timeReceive(GetPossibleMoves) { handleGetPossibleMoves(gr.userId) }
         case sc: SelectCard => timeReceive(sc) { handleSelectCard(gr.userId, sc.card, sc.pile) }

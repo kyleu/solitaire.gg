@@ -47,6 +47,7 @@ object Layouts {
     "penguin" -> ":.f|c|t",
     "pyramid" -> "p|::.swf",
     "royalrendezvous" -> "sw:ff|::::ff|t",
+    "poker" -> "5t|w",
     "sandbox" -> "s:f",
     "sandboxb" -> "s",
     "sevendevils" -> "swf|r:t",

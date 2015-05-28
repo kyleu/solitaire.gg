@@ -8,11 +8,12 @@ import models.database.queries.BaseQueries
 import models.database.{ Query, Statement }
 import models.game.{ Suit, Rank }
 
-object GameHistoryCardQueries extends BaseQueries {
+object GameHistoryCardQueries extends BaseQueries[GameHistory.Card] {
   override protected val tableName = "game_cards"
   override protected val columns = Seq("id", "game_id", "sort_order", "rank", "suit")
+  override protected val searchColumns = Seq("id::text", "game_id::text")
 
-  case class CreateGameMove(card: GameHistory.Card) extends Statement {
+  case class CreateGameCard(card: GameHistory.Card) extends Statement {
     override val sql = insertSql
     override val values = Seq[Any](card.id, card.gameId, card.sortOrder, card.rank.toChar, card.suit.toChar)
   }
@@ -28,7 +29,7 @@ object GameHistoryCardQueries extends BaseQueries {
     override val values = Seq(gameId)
   }
 
-  private[this] def fromRow(row: RowData) = {
+  override protected def fromRow(row: RowData) = {
     val id = row("id") match { case s: String => UUID.fromString(s) }
     val gameId = row("game_id") match { case s: String => UUID.fromString(s) }
     val order = row("sort_order") match { case i: Int => i }

@@ -48,7 +48,7 @@ object UserService extends IdentityService[User] with Logging {
 
   def retrieve(username: String): Future[Option[User]] = Database.query(UserQueries.FindUserByUsername(username))
 
-  override def retrieve(loginInfo: LoginInfo): Future[Option[User]] = CacheService.getUserByLoginInfo(loginInfo) match {
+  override def retrieve(loginInfo: LoginInfo) = CacheService.getUserByLoginInfo(loginInfo) match {
     case Some(u) => Future.successful(Some(u))
     case None => if (loginInfo.providerID == "anonymous") {
       Database.query(UserQueries.FindUser(UUID.fromString(loginInfo.providerKey))).map {

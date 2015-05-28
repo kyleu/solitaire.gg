@@ -1,6 +1,6 @@
 package models.game.rules
 
-import models.game.{Suit, Rank, Card}
+import models.game.{ Suit, Rank, Card }
 
 object PokerRules {
   sealed abstract class Hand(rank: Int)
@@ -18,19 +18,26 @@ object PokerRules {
   def checkHand(hand: Seq[Card]) = check(hand.map(c => c.r -> c.s))
 
   private[this] def check(hand: Seq[(Rank, Suit)]) = {
-    if(hand.length != 5) {
+    if (hand.length != 5) {
       throw new NotImplementedError()
     }
 
-    val ranks = hand.map(_._1).groupBy(x => x).map(x => (x._1, x._2.size)).toList.sortBy(-_._2)
-    val suits = hand.map(_._2).groupBy(x => x).map(x => (x._1, x._2.size)).toList.sortBy(-_._2)
+    val ranks = hand.map(_._1).groupBy(x => x).map(x => (x._1, x._2.size)).toIndexedSeq.sortBy(-_._2)
+    val firstRank = ranks.headOption.getOrElse(throw new IllegalStateException())
+    val secondRank = ranks(1)
+
+    val suits = hand.map(_._2).groupBy(x => x).map(x => (x._1, x._2.size)).toIndexedSeq.sortBy(-_._2)
 
     val isFlush = suits.size == 1
-    val straight = if(ranks.length == 5) {
+    val straight = if (ranks.length == 5) {
       val ranksSorted = ranks.map(_._1).sortBy(-_.value)
-      if(ranksSorted.head.value == (ranksSorted.last.value + 4)) {
-        Some(ranksSorted.head)
-      } else if(ranksSorted.head == Rank.Ace && ranksSorted.tail.head == Rank.Five) {
+      val first = ranksSorted.headOption.getOrElse(throw new IllegalStateException())
+      val second = ranksSorted(1)
+      val last = ranksSorted.lastOption.getOrElse(throw new IllegalStateException())
+
+      if (first.value == (last.value + 4)) {
+        Some(first)
+      } else if (first == Rank.Ace && second == Rank.Five) {
         Some(Rank.Five)
       } else {
         None
@@ -42,14 +49,14 @@ object PokerRules {
     true match {
       case _ if isFlush && straight.contains(Rank.Ace) => RoyalFlush
       case _ if isFlush && straight.isDefined => StraightFlush
-      case _ if ranks.head._2 == 4 => FourOfKind
-      case _ if ranks.head._2 == 3 && ranks.tail.head._2 == 2 => FullHouse
+      case _ if firstRank._2 == 4 => FourOfKind
+      case _ if firstRank._2 == 3 && secondRank._2 == 2 => FullHouse
       case _ if isFlush => Flush
       case _ if straight.isDefined => Straight
-      case _ if ranks.head._2 == 3 => ThreeOfKind
+      case _ if firstRank._2 == 3 => ThreeOfKind
       case _ if ranks.length == 3 => TwoPair
       case _ if ranks.length == 4 => OnePair
-      case _  => HighCard
+      case _ => HighCard
     }
   }
 }

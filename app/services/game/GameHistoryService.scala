@@ -9,10 +9,14 @@ import services.database.Database
 
 object GameHistoryService {
   def startGame(id: UUID, seed: Int, cards: Seq[Card], rules: String, status: String, userId: UUID, created: LocalDateTime) = {
-    Database.execute(GameHistoryQueries.CreateGameHistory(id, seed, rules, status, userId, created)).map(_ == 1)
+
   }
 
-  def searchGames(q: String, orderBy: String) = Database.query(GameHistoryQueries.SearchGameHistories(q, getOrderClause(orderBy)))
+  def searchGames(q: String, orderBy: String, page: Int) = Database.query(GameHistoryQueries.CountQuery(q)).flatMap { count =>
+    Database.query(GameHistoryQueries.SearchQuery(q, getOrderClause(orderBy), Some(page))).map { list =>
+      count -> list
+    }
+  }
 
   def getByUser(id: UUID, orderBy: String) = Database.query(GameHistoryQueries.GetGameHistoriesByUser(id, getOrderClause(orderBy)))
 

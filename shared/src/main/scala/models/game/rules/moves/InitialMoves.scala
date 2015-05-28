@@ -48,7 +48,12 @@ object InitialMoves {
     }
 
     rules.waste.foreach { w =>
-      gameState.addCards(gameState.deck.getCards(turnFaceUp = true), "waste-1", reveal = true)
+      val cardCount = if (w.maxCards.exists(x => x < gameState.deck.cards.length)) {
+        w.maxCards.getOrElse(0)
+      } else {
+        gameState.deck.cards.length
+      }
+      gameState.addCards(gameState.deck.getCards(numCards = cardCount, turnFaceUp = true), "waste-1", reveal = true)
     }
   }
 }

@@ -7,9 +7,10 @@ import models.database.queries.BaseQueries
 import models.database.{ FlatSingleRowQuery, Statement }
 import org.joda.time.LocalDateTime
 
-object AuthenticatorQueries extends BaseQueries {
+object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
   override protected val tableName = "session_info"
   override protected val columns = Seq("id", "provider", "key", "last_used", "expiration", "fingerprint", "created")
+  override protected val searchColumns = Seq("id::text", "key")
 
   case class CreateSessionInfo(s: CookieAuthenticator) extends Statement {
     override val sql = insertSql
@@ -41,7 +42,7 @@ object AuthenticatorQueries extends BaseQueries {
     override def flatMap(row: RowData) = Some(fromRow(row))
   }
 
-  private[this] def fromRow(row: RowData) = {
+  override protected def fromRow(row: RowData) = {
     val id = row("id") match { case s: String => s }
     val provider = row("provider") match { case s: String => s }
     val key = row("key") match { case s: String => s }

@@ -7,13 +7,14 @@ import models.audit.RequestLog
 import models.database.{ Query, Statement }
 import org.joda.time.LocalDateTime
 
-object RequestLogQueries extends BaseQueries {
+object RequestLogQueries extends BaseQueries[RequestLog] {
   override protected val tableName = "requests"
   override protected val columns = Seq(
     "id", "user_id", "auth_provider", "auth_key", "remote_address",
     "method", "host", "secure", "path", "query_string",
     "lang", "cookie", "referrer", "user_agent", "started", "duration", "status"
   )
+  override protected val searchColumns = Seq("id::text", "user_id::text", "method", "host", "path", "referrer", "user_agent")
 
   case class CreateRequest(r: RequestLog) extends Statement {
     override val sql = insertSql
@@ -24,19 +25,13 @@ object RequestLogQueries extends BaseQueries {
     )
   }
 
-  case class GetRecentRequests(limit: Int = 100) extends Query[List[RequestLog]] {
-    override val sql = getSql("1 = 1", orderBy = Some("started desc"), limit = Some(limit))
-    override val values = Nil
-    override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
-  }
-
   case class FindRequestsByUser(id: UUID) extends Query[List[RequestLog]] {
     override val sql = getSql("user_id = ?")
     override val values = Seq(id)
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }
 
-  private[this] def fromRow(row: RowData) = {
+  override protected def fromRow(row: RowData) = {
     val id = row("id") match { case s: String => UUID.fromString(s) }
     val userId = row("user_id") match { case s: String => UUID.fromString(s) }
     val authProvider = row("auth_provider") match { case s: String => s }

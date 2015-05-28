@@ -8,9 +8,10 @@ import models.database.{ FlatSingleRowQuery, Statement }
 import org.joda.time.LocalDateTime
 import play.api.libs.json.{ JsValue, Json }
 
-object OAuth2InfoQueries extends BaseQueries {
+object OAuth2InfoQueries extends BaseQueries[OAuth2Info] {
   override protected val tableName = "oauth2_info"
   override protected val columns = Seq("provider", "key", "access_token", "token_type", "expires_in", "refresh_token", "params", "created")
+  override protected val searchColumns = Seq("key")
 
   case class CreateOAuth2Info(l: LoginInfo, o: OAuth2Info) extends Statement {
     override val sql = insertSql
@@ -32,18 +33,20 @@ object OAuth2InfoQueries extends BaseQueries {
   case class FindOAuth2Info(l: LoginInfo) extends FlatSingleRowQuery[OAuth2Info] {
     override val sql = getSql("provider = ? and key = ?")
     override val values = Seq(l.providerID, l.providerKey)
-    override def flatMap(row: RowData) = {
-      val paramsString = row("params") match { case s: String => Some(s); case _ => None }
-      val params = paramsString.map { p =>
-        Json.parse(p).as[Map[String, JsValue]].map(x => x._1 -> x._2.as[String])
-      }
-      Some(OAuth2Info(
-        accessToken = row("access_token") match { case s: String => s },
-        tokenType = row("token_type") match { case s: String => Some(s); case _ => None },
-        expiresIn = row("expires_in") match { case i: Int => Some(i); case _ => None },
-        refreshToken = row("refresh_token") match { case s: String => Some(s); case _ => None },
-        params = params
-      ))
+    override def flatMap(row: RowData) = Some(fromRow(row))
+  }
+
+  override protected def fromRow(row: RowData) = {
+    val paramsString = row("params") match { case s: String => Some(s); case _ => None }
+    val params = paramsString.map { p =>
+      Json.parse(p).as[Map[String, JsValue]].map(x => x._1 -> x._2.as[String])
     }
+    OAuth2Info(
+      accessToken = row("access_token") match { case s: String => s },
+      tokenType = row("token_type") match { case s: String => Some(s); case _ => None },
+      expiresIn = row("expires_in") match { case i: Int => Some(i); case _ => None },
+      refreshToken = row("refresh_token") match { case s: String => Some(s); case _ => None },
+      params = params
+    )
   }
 }

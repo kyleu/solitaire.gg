@@ -1,7 +1,7 @@
 package services.help
 
 import models.game.rules._
-import play.api.i18n.{Lang, Messages}
+import play.api.i18n.{ Lang, Messages }
 import utils.NumberUtils
 
 object FoundationPilesHelpService {

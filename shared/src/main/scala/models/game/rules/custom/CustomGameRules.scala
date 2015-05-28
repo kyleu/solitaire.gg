@@ -4,6 +4,7 @@ object CustomGameRules {
   val all = Seq(
     KlondikeOneCard,
     Nestor,
+    PokerSquares,
     Sandbox,
     SandboxB,
     SevenDevils

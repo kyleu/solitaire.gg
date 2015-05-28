@@ -5,13 +5,14 @@ import java.util.UUID
 import com.github.mauricio.async.db.RowData
 import com.mohiva.play.silhouette.api.LoginInfo
 import models.database.queries.BaseQueries
-import models.database.{ Query, FlatSingleRowQuery, Statement }
+import models.database.{ FlatSingleRowQuery, Statement }
 import models.user.{ Role, User }
 import org.joda.time.LocalDateTime
 
-object UserQueries extends BaseQueries {
+object UserQueries extends BaseQueries[User] {
   override protected val tableName = "users"
   override protected val columns = Seq("id", "username", "avatar", "profiles", "roles", "created")
+  override protected val searchColumns = Seq("id::text", "username")
 
   case class CreateUser(u: User) extends Statement {
     override val sql = insertSql
@@ -61,24 +62,12 @@ object UserQueries extends BaseQueries {
     override def flatMap(row: RowData) = Some(fromRow(row))
   }
 
-  case class CountUsers(q: String) extends Query[Int] {
-    override val sql = countSql(if(q.isEmpty) { "1 = 1" } else { "id::character varying like lower(?) or lower(username) like lower(?)" })
-    override val values = if(q.isEmpty) { Seq.empty } else { Seq("%" + q + "%", "%" + q + "%") }
-    override def reduce(rows: Iterator[RowData]) = rows.next()("c") match { case l: Long => l.toInt }
-  }
-
-  case class SearchUsers(q: String, sortBy: String, limit: Option[Int], offset: Option[Int]) extends Query[List[User]] {
-    override val sql = getSql(if(q.isEmpty) { "1 = 1" } else { "id::character varying like lower(?) or lower(username) like lower(?)" }, Some(sortBy), limit, offset)
-    override val values = if(q.isEmpty) { Seq.empty } else { Seq("%" + q + "%", "%" + q + "%") }
-    override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
-  }
-
   case class RemoveUser(id: UUID) extends Statement {
     override val sql = removeByIdSql
     override val values = Seq(id)
   }
 
-  private[this] def fromRow(row: RowData) = {
+  override protected def fromRow(row: RowData) = {
     val id = row("id") match { case s: String => UUID.fromString(s) }
     val profiles = row("profiles") match {
       case arr: collection.mutable.ArrayBuffer[_] => arr.map { l =>

@@ -19,7 +19,7 @@ define(function () {
         break;
       case "reserve":
       case "tableau":
-        var overlappedCards = _.max(pileSet.piles, function(pile) { return pile.cards.length - 1; }).cards.length;
+        var overlappedCards = Math.max(_.max(pileSet.piles, function(pile) { return pile.cards.length; }).cards.length, 1);
         if(divisor > 1) {
           ret = [ret[0] / divisor, 1 + ((overlappedCards) * padding)];
         } else {

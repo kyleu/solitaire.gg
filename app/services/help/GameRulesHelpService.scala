@@ -6,7 +6,7 @@ import play.api.i18n.Lang
 object GameRulesHelpService {
   private[this] val descriptionLinkPattern = """\^([a-z0-9]+)\^""".r
 
-  def description(desc: String, link: Boolean = true)(implicit lang: Lang) = {
+  def description(desc: String, link: Boolean = true) = {
     val links = descriptionLinkPattern.findAllIn(desc).matchData.map(_.group(1))
     val linked = links.foldLeft(desc) { (desc, id) =>
       val rules = if (id == "fortytheives") {

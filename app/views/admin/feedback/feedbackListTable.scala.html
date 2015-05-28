@@ -1,32 +1,23 @@
 @(sortBy: String, feedbacks: Seq[models.user.UserFeedback])
 
-@th(key: String, label: String) = {
-  @if(sortBy == key) {
-    <th nowrap="nowrap" class="th-@key">@label <span class="caret"></span></th>
-  } else {
-    <th nowrap="nowrap" class="th-@key"><a href="?sortBy=@key">@label</a></th>
-  }
-}
-
 <table class="table table-bordered">
   <thead>
     <tr>
-      @th("feedback-id", "ID")
-      @th("feedback-user", "User")
-      @th("feedback-method", "Method")
-      @th("feedback-host", "Host")
-      @th("feedback-path", "Path")
-      @th("feedback-occurred", "Occurred")
+      @utils.ViewUtils.th("feedback-id", "ID", sortBy)
+      @utils.ViewUtils.th("feedback-user", "User", sortBy)
+      @utils.ViewUtils.th("feedback-game", "Game", sortBy)
+      @utils.ViewUtils.th("feedback-feedback", "Feedback", sortBy)
+      @utils.ViewUtils.th("feedback-occurred", "Occurred", sortBy)
     </tr>
   </thead>
   <tbody>
   @for(f <- feedbacks) {
     <tr>
       <td title="@f.id">@f.id.toString.substring(0, 8)</td>
-      <td><a href="@controllers.admin.routes.UserController.userDetail(f.userId)">@f.userId</a></td>
+      <td title="@f.userId"><a href="@controllers.admin.routes.UserController.userDetail(f.userId)">@f.userId.toString.substring(0, 8)</a></td>
       <td>@f.activeGameId</td>
       <td>
-        <pre>@f.feedback</pre>
+        @f.feedback
       </td>
       <td>@f.occurred.toString("yyyy-MM-dd HH:mm:ss")</td>
     </tr>

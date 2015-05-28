@@ -1,33 +1,14 @@
-@(q: String, sortBy: String, games: Seq[GameHistory])(implicit session: Session, flash: Flash)@layout.admin(utils.Config.projectName + " Games", "games") {
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="pull-right">
-        <form id="search-form" action="@controllers.admin.routes.GameHistoryController.gameList()" class="form-inline">
-          <div class="form-group">
-            <div class="input-group">
-              <input type="text" class="form-control" name="q" id="searchInput" placeholder="Search Games" value="@q">
-              <div class="input-group-addon" id="search-button"><span class="glyphicon glyphicon-search"></span></div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="text-large">
-        @if(q.isEmpty) {
-          @games.size game@if(games.size != 1){s}.
-        } else {
-          @games.size games@if(games.size != 1){s} for query [@q].
-        }
-      </div>
-    </div>
-  </div>
-
-  @if(games.isEmpty) {
-    <div class="panel panel-default">
-      <div class="panel-body">
-        No games found.
-      </div>
-    </div>
-  } else {
-    @gameListTable(sortBy, games, true)
-  }
+@(q: String, sortBy: String, count: Int, page: Int, games: Seq[GameHistory])(implicit session: Session, flash: Flash)
+@views.html.admin.list(
+  "game",
+  "Games",
+  count,
+  page,
+  games.size,
+  q,
+  searchAction = controllers.admin.routes.GameHistoryController.gameList(),
+  prevLink = controllers.admin.routes.GameHistoryController.gameList(q, sortBy, page - 1),
+  nextLink = controllers.admin.routes.GameHistoryController.gameList(q, sortBy, page + 1)
+) {
+  @gameListTable(sortBy, games)
 }

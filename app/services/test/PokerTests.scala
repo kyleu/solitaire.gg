@@ -1,12 +1,12 @@
 package services.test
 
 import models.game.rules.PokerRules
-import models.game.{Suit, Rank, Card}
-import models.test.{Test, Tree}
+import models.game.{ Suit, Rank, Card }
+import models.test.{ Test, Tree }
 
 class PokerTests {
   private[this] def cardFrom(s: String) = Card(r = Rank.allByChar(s.toCharArray()(0)), s = Suit.fromChar(s.toCharArray()(1)))
-  private[this] def handFrom(s: String)  = s.split(",").map(cardFrom).toSeq
+  private[this] def handFrom(s: String) = s.split(",").map(cardFrom).toSeq
   private[this] def testHand(name: String, hand: String) = {
     Test(name, () => { PokerRules.checkHand(handFrom(hand)).toString }).toTree
   }

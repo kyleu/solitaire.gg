@@ -65,10 +65,12 @@ define(['utils/Config', 'game/Card', 'game/pile/Pile'], function(cfg, Card, Pile
 
     _.each(originalOrder, function(cardId, cardIndex) {
       var c = cards[cardId];
-      var cardObj = c[0];
-      var pileObj = c[1];
-      var cardPileIndex = c[2];
-      setTimeout(function() { pileObj.addCard(cardObj, cardPileIndex); }, 30 * cardIndex);
+      if(c !== undefined) {
+        var cardObj = c[0];
+        var pileObj = c[1];
+        var cardPileIndex = c[2];
+        setTimeout(function() { pileObj.addCard(cardObj, cardPileIndex); }, 30 * cardIndex);
+      }
     });
 
     var game = this.game;

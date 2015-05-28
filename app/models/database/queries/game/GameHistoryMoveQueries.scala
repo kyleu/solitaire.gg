@@ -9,9 +9,10 @@ import models.database.{ Query, Statement }
 import org.joda.time.LocalDateTime
 import utils.DateUtils
 
-object GameHistoryMoveQueries extends BaseQueries {
+object GameHistoryMoveQueries extends BaseQueries[GameHistory.Move] {
   override protected val tableName = "game_moves"
   override protected val columns = Seq("game_id", "sequence", "player_id", "move", "cards", "src", "tgt", "occurred")
+  override protected val searchColumns = Seq("game_id::text", "player_id::text", "move")
 
   case class CreateGameMove(move: GameHistory.Move) extends Statement {
     override val sql = insertSql
@@ -31,7 +32,7 @@ object GameHistoryMoveQueries extends BaseQueries {
     override val values = Seq(gameId)
   }
 
-  private[this] def fromRow(row: RowData) = {
+  override protected def fromRow(row: RowData) = {
     val gameId = row("game_id") match { case s: String => UUID.fromString(s) }
     val sequence = row("sequence") match { case i: Int => i }
     val playerId = row("player_id") match { case s: String => UUID.fromString(s) }

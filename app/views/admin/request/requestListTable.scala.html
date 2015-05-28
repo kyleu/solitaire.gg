@@ -1,24 +1,15 @@
 @(sortBy: String, requests: Seq[models.audit.RequestLog])
-
-@th(key: String, label: String) = {
-  @if(sortBy == key) {
-    <th nowrap="nowrap" class="th-@key">@label <span class="caret"></span></th>
-  } else {
-    <th nowrap="nowrap" class="th-@key"><a href="?sortBy=@key">@label</a></th>
-  }
-}
-
 <table class="table table-bordered">
   <thead>
     <tr>
-      @th("request-id", "Request ID")
-      @th("request-user", "User")
-      @th("request-method", "Method")
-      @th("request-host", "Host")
-      @th("request-path", "Path")
-      @th("request-lang", "Lang")
-      @th("request-started", "Started")
-      @th("request-duration", "Duration")
+      @utils.ViewUtils.th("request-id", "Request ID", sortBy)
+      @utils.ViewUtils.th("request-user", "User", sortBy)
+      @utils.ViewUtils.th("request-method", "Method", sortBy)
+      @utils.ViewUtils.th("request-host", "Host", sortBy)
+      @utils.ViewUtils.th("request-path", "Path", sortBy)
+      @utils.ViewUtils.th("request-lang", "Lang", sortBy)
+      @utils.ViewUtils.th("request-started", "Started", sortBy)
+      @utils.ViewUtils.th("request-duration", "Duration", sortBy)
     </tr>
   </thead>
   <tbody>

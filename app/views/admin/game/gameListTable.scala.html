@@ -1,26 +1,18 @@
-@(sortBy: String, games: Seq[GameHistory], link: Boolean = false)
-
-@th(key: String, label: String) = {
-  @if(sortBy == key) {
-    <th nowrap="nowrap" class="th-@key">@label <span class="caret"></span></th>
-  } else {
-    <th nowrap="nowrap" class="th-@key"><a href="?sortBy=@key">@label</a></th>
-  }
-}
+@(sortBy: String, games: Seq[GameHistory])
 
 <table class="table table-bordered">
   <thead>
     <tr>
-      @th("game-id", "Game ID")
-      @th("seed", "Seed")
-      @th("rules", "Rules")
-      @th("status", "Status")
-      @th("player", "Player")
-      @th("moves", "Moves")
-      @th("undos", "Undos")
-      @th("redos", "Redos")
-      @th("created", "Created")
-      @th("completed", "Completed")
+      @utils.ViewUtils.th("game-id", "Game ID", sortBy)
+      @utils.ViewUtils.th("seed", "Seed", sortBy)
+      @utils.ViewUtils.th("rules", "Rules", sortBy)
+      @utils.ViewUtils.th("status", "Status", sortBy)
+      @utils.ViewUtils.th("player", "Player", sortBy)
+      @utils.ViewUtils.th("moves", "Moves", sortBy)
+      @utils.ViewUtils.th("undos", "Undos", sortBy)
+      @utils.ViewUtils.th("redos", "Redos", sortBy)
+      @utils.ViewUtils.th("created", "Created", sortBy)
+      @utils.ViewUtils.th("completed", "Completed", sortBy)
     </tr>
   </thead>
   <tbody>
@@ -30,10 +22,8 @@
       <td>@g.seed</td>
       <td>@g.rules</td>
       <td>@g.status</td>
-      @if(link) {
-        <td>@Html("<a href=\"" + controllers.admin.routes.UserController.userDetail(g.player) + "\"><div title=\"" + g.player.toString + "\">" + g.player.toString.substring(0, 8) + "</div></a>")</td>
-      } else {
-        <td>@Html("<div title=\"" + g.player.toString + "\">" + g.player.toString.substring(0, 8) + "</div>")</td>
+      @defining(controllers.admin.routes.UserController.userDetail(g.player)) { url =>
+        <td>@Html("<a href=\"" + url + "\"><div title=\"" + g.player.toString + "\">" + g.player.toString.substring(0, 8) + "</div></a>")</td>
       }
       <td>@g.moves</td>
       <td>@g.undos</td>

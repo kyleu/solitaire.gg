@@ -43,6 +43,7 @@ define(['game/helpers/Dimensions'], function (getDimensions) {
         case '2': currentDivisor = 2; break;
         case '3': currentDivisor = 3; break;
         case '4': currentDivisor = 4; break;
+        case '5': currentDivisor = 5; break;
         default:
           if(pileSet === undefined) {
             throw "Unable to find set matching [" + c + "]";
@@ -82,13 +83,14 @@ define(['game/helpers/Dimensions'], function (getDimensions) {
                 groupSize = pileSet.piles.length / currentDivisor;
               }
               _.each(pileSet.piles, function(pile, pileIndex) {
-                if(pileIndex == groupSize) {
+                if(pileIndex > 0 && pileIndex % groupSize === 0) {
                   newRow();
                   currentRowMaxHeight = pileSetDimensions[1];
                 }
                 locations[pile.id] = {x: xOffset, y: yOffset};
                 xOffset = xOffset + 1 + padding;
               });
+              // ? currentRowMaxHeight = Math.max(pileSetDimensions[1], pileSetDimensions[1] * currentDivisor);
               xOffset = originalXOffset + pileSetDimensions[0];
             }
           }

@@ -9,11 +9,10 @@ import models.database.queries.BaseQueries
 import models.database.{ Query, FlatSingleRowQuery, Statement }
 import org.joda.time.LocalDateTime
 
-object ProfileQueries extends BaseQueries {
+object ProfileQueries extends BaseQueries[CommonSocialProfile] {
   override protected val tableName = "user_profiles"
-  override protected val columns = Seq(
-    "provider", "key", "email", "first_name", "last_name", "full_name", "avatar_url", "created"
-  )
+  override protected val columns = Seq("provider", "key", "email", "first_name", "last_name", "full_name", "avatar_url", "created")
+  override protected val searchColumns = Seq("key", "email", "first_name", "last_name", "full_name")
 
   case class CreateProfile(p: CommonSocialProfile) extends Statement {
     override val sql = insertSql
@@ -38,7 +37,7 @@ object ProfileQueries extends BaseQueries {
     override val values = Seq(provider, key)
   }
 
-  private[this] def fromRow(row: RowData) = {
+  override protected def fromRow(row: RowData) = {
     val loginInfo = LoginInfo(
       providerID = row("provider") match { case s: String => s },
       providerKey = row("key") match { case s: String => s }

@@ -27,6 +27,6 @@ object VictoryCondition {
     override def check(gs: GameState) = gs.pileSets.exists(ps => ps.behavior == "pyramid" && ps.piles.forall(_.cards.isEmpty))
   }
   case object AllOnTableauSorted extends VictoryCondition {
-    override def check(gs: GameState) = !gs.pileSets.exists(ps => ps.behavior != "foundation" && ps.piles.exists(_.cards.nonEmpty))
+    override def check(gs: GameState) = !gs.pileSets.exists(ps => ps.behavior != "tableau" && ps.piles.exists(_.cards.nonEmpty)) // TODO For reals.
   }
 }
