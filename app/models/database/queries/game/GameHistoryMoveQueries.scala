@@ -38,9 +38,9 @@ object GameHistoryMoveQueries extends BaseQueries[GameHistory.Move] {
     val playerId = row("player_id") match { case s: String => UUID.fromString(s) }
     val moveType = row("move") match { case s: String => s }
     val cards = row("cards") match { case a: Array[UUID] => a; case x => throw new IllegalArgumentException(x.getClass.getName) }
-    val src = row("src") match { case s: String => s }
-    val tgt = row("tgt") match { case s: String => s }
+    val src = row("src") match { case s: String => Some(s) }
+    val tgt = row("tgt") match { case s: String => Some(s) }
     val occurred = row("occurred") match { case ldt: LocalDateTime => ldt }
-    GameHistory.Move(gameId, sequence, playerId, moveType, cards, src, tgt, occurred)
+    GameHistory.Move(gameId, sequence, playerId, moveType, Some(cards), src, tgt, occurred)
   }
 }

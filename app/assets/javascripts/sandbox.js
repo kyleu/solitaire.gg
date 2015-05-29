@@ -9,7 +9,6 @@ function go() {
 
 window.addEventListener("orientationchange", function() {
   "use strict";
-  alert("the orientation of the device is now " + screen.orientation);
   go();
 });
 
@@ -19,8 +18,10 @@ window.addEventListener("resize", function() {
 });
 
 Boot = function (game) {
-
+  this.game = game;
 };
+
+var i = 0;
 
 Boot.prototype = {
   init: function () {
@@ -38,11 +39,14 @@ Boot.prototype = {
 
   resize: function(x, y, z) {
     console.log(x, y, z);
+  },
+
+  update: function() {
   }
 };
 
 var init = function() {
-  new Phaser.Game('100%', '100%', Phaser.AUTO, 'container', new Boot());
+  //new Phaser.Game('100%', '100%', Phaser.AUTO, 'container', new Boot());
 };
 
 window.addEventListener('load', function() {

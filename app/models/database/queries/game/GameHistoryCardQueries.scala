@@ -10,8 +10,8 @@ import models.game.{ Suit, Rank }
 
 object GameHistoryCardQueries extends BaseQueries[GameHistory.Card] {
   override protected val tableName = "game_cards"
-  override protected val columns = Seq("id", "game_id", "sort_order", "rank", "suit")
-  override protected val searchColumns = Seq("id::text", "game_id::text")
+  override protected val columns = Seq("card_id", "game_id", "sort_order", "rank", "suit")
+  override protected val searchColumns = Seq("card_id::text", "game_id::text")
 
   case class CreateGameCard(card: GameHistory.Card) extends Statement {
     override val sql = insertSql

@@ -3,6 +3,8 @@ define(['game/helpers/Layout'], function (calculateLayout) {
 
   var Playmat = function(game, pileSets, layoutString) {
     Phaser.Group.call(this, game, null, 'playmat');
+    this.game.add.existing(this);
+
     this.pileSets = pileSets;
     this.layoutString = layoutString;
     this.refreshLayout();
@@ -13,7 +15,6 @@ define(['game/helpers/Layout'], function (calculateLayout) {
     this.suitEmitter[2] = this.makeEmitter(2);
     this.suitEmitter[3] = this.makeEmitter(3);
 
-    this.game.add.existing(this);
   };
 
   Playmat.prototype = Object.create(Phaser.Group.prototype);
@@ -60,7 +61,7 @@ define(['game/helpers/Layout'], function (calculateLayout) {
       this.scale = new Phaser.Point(widthRatio, widthRatio);
       var yOffset = (this.game.world.height - (this.h * widthRatio)) / 2;
       if(yOffset > 0 || this.y !== 0) {
-        this.y = 0; //yOffset;
+        this.y = 0; // yOffset;
       }
     } else {
       this.scale = new Phaser.Point(heightRatio, heightRatio);

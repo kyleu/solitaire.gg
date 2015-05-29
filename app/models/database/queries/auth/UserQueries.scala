@@ -62,11 +62,6 @@ object UserQueries extends BaseQueries[User] {
     override def flatMap(row: RowData) = Some(fromRow(row))
   }
 
-  case class RemoveUser(id: UUID) extends Statement {
-    override val sql = removeByIdSql
-    override val values = Seq(id)
-  }
-
   override protected def fromRow(row: RowData) = {
     val id = row("id") match { case s: String => UUID.fromString(s) }
     val profiles = row("profiles") match {

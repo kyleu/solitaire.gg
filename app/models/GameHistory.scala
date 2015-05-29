@@ -19,10 +19,10 @@ object GameHistory {
     sequence: Int,
     playerId: UUID,
     moveType: String,
-    cards: Seq[UUID],
-    src: String,
-    tgt: String,
-    occurred: LocalDateTime
+    cards: Option[Seq[UUID]] = None,
+    src: Option[String] = None,
+    tgt: Option[String] = None,
+    occurred: LocalDateTime = new LocalDateTime()
   )
 }
 

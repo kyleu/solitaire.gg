@@ -31,17 +31,6 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }
 
-  case class GetGameHistory(id: UUID) extends FlatSingleRowQuery[GameHistory] {
-    override val sql = getByIdSql
-    override val values = Seq(id)
-    override def flatMap(row: RowData) = Some(fromRow(row))
-  }
-
-  case class RemoveGameHistory(id: UUID) extends Statement {
-    override val sql = removeByIdSql
-    override val values = Seq(id)
-  }
-
   override protected def fromRow(row: RowData) = {
     val id = row("id") match { case s: String => UUID.fromString(s) }
     val seed = row("seed") match { case i: Int => i }

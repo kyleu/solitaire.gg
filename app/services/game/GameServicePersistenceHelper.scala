@@ -1,13 +1,14 @@
 package services.game
 
-import models.GameHistory
-import models.database.queries.game.{ GameHistoryCardQueries, GameHistoryQueries }
+import java.util.UUID
+
+import models._
+import models.database.queries.game.{GameHistoryMoveQueries, GameHistoryCardQueries, GameHistoryQueries}
 import org.joda.time.LocalDateTime
 import services.database.Database
 
 trait GameServicePersistenceHelper { this: GameService =>
   private[this] var lastStatus = "created"
-  private[this] var cardsPersisted = false
   private[this] var movesPersisted = 0
 
   protected[this] def create() = {
@@ -25,8 +26,35 @@ trait GameServicePersistenceHelper { this: GameService =>
     }
 
     if(movesPersisted < (moveCount - 1)) {
-      // TODO - This won't work. Concurrency from futures screws up transactions.
+      // This is ok since this particular method is actor-scoped, even if the persist isn't
       val movesToPersist = gameMessages.drop(movesPersisted)
+      movesToPersist.zipWithIndex.foreach { gm =>
+        val move = toMove(gm._1._1, gm._2, gm._1._2, gm._1._3)
+        Database.execute(GameHistoryMoveQueries.CreateGameMove(move))
+        movesPersisted += 1
+      }
     }
+  }
+
+  private[this] def toMove(gm: GameMessage, idx: Int, playerId: UUID, occurred: LocalDateTime) = {
+    val params = gm match {
+      case GetPossibleMoves => ("get-possible", None, None, None)
+      case sc: SelectCard => ("select-card", Some(Seq(sc.card)), Some(sc.pile), None)
+      case sp: SelectPile => ("select-pile", None, Some(sp.pile), None)
+      case mc: MoveCards => ("move", Some(mc.cards), Some(mc.src), Some(mc.tgt))
+      case Undo => ("undo", None, None, None)
+      case Redo => ("redo", None, None, None)
+      case ResignGame => ("resign", None, None, None)
+    }
+    GameHistory.Move(
+      gameId = id,
+      sequence = movesPersisted,
+      playerId = playerId,
+      moveType = params._1,
+      cards = params._2,
+      src = params._3,
+      tgt = params._4,
+      occurred = occurred
+    )
   }
 }

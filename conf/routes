@@ -40,6 +40,7 @@ GET         /admin/sandbox                     controllers.SandboxController.adm
 
 GET         /admin/enable                      controllers.admin.AdminController.enable
 GET         /admin/status                      controllers.admin.AdminController.status
+GET         /admin/wipe                        controllers.admin.AdminController.wipeSchema(key)
 
 GET         /admin/rules                       controllers.admin.RulesController.rules
 GET         /admin/rules/politaire             controllers.admin.RulesController.politaire
@@ -66,6 +67,9 @@ GET         /admin/users/:id/remove            controllers.admin.UserController.
 GET         /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created", page: Int ?= 0)
 GET         /admin/requests                    controllers.admin.RequestLogController.requestList(q ?= "", sortBy ?= "started", page: Int ?= 0)
 GET         /admin/feedback                    controllers.admin.FeedbackController.feedbackList(q ?= "", sortBy ?= "occurred", page: Int ?= 0)
+
+GET         /admin/ad-hoc                      controllers.admin.AdHocQueryController.queryList(query: Option[java.util.UUID])
+POST        /admin/ad-hoc/run                  controllers.admin.AdHocQueryController.run()
 
 # Assets
 GET         /assets/*file                      controllers.Assets.at(path="/public", file)

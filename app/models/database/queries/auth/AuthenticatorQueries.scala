@@ -25,17 +25,6 @@ object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
     )
   }
 
-  case class RemoveSessionInfo(id: String) extends Statement {
-    override val sql = removeByIdSql
-    override val values = Seq(id)
-  }
-
-  case class FindSessionInfo(id: String) extends FlatSingleRowQuery[CookieAuthenticator] {
-    override val sql = getByIdSql
-    override val values = Seq(id)
-    override def flatMap(row: RowData) = Some(fromRow(row))
-  }
-
   case class FindSessionInfoByLoginInfo(l: LoginInfo) extends FlatSingleRowQuery[CookieAuthenticator] {
     override val sql = getSql("provider = ? and key = ?")
     override val values = Seq(l.providerID, l.providerKey)

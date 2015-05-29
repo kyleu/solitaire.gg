@@ -5,8 +5,11 @@ import models.database.queries.ddl._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import utils.Logging
 
+import scala.concurrent.Future
+
 object Schema extends Logging {
-  val tables = Map(
+  val tables = Seq(
+    "adhoc_queries" -> CreateAdHocQueriesTable,
     "users" -> CreateUserTable,
     "user_feedback" -> CreateUserFeedbackTable,
     "user_profiles" -> CreateProfileTable,
@@ -21,15 +24,20 @@ object Schema extends Logging {
     "game_moves" -> CreateGameMovesTable
   )
 
-  def update() = {
-    tables.foreach { t =>
-      Database.query(DdlQueries.DoesTableExist(t._1)).foreach {
-        case false =>
-          log.info("Creating missing table [" + t._1 + "].")
-          val name = "CreateTable-" + t._1
-          Database.raw(name, t._2.sql)
-        case true => // no op
+  def update() = tables.foreach { t =>
+    Database.query(DdlQueries.DoesTableExist(t._1)).foreach { exists =>
+      if(!exists) {
+        log.info("Creating missing table [" + t._1 + "].")
+        val name = "CreateTable-" + t._1
+        Database.raw(name, t._2.sql)
       }
     }
+  }
+
+  def wipe() = {
+    log.warn("Wiping database schema.")
+    Future.sequence(tables.reverse.map { t =>
+      Database.execute(DdlQueries.TruncateTable(t._1)).map(x => t._1)
+    })
   }
 }

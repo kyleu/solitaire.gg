@@ -25,7 +25,7 @@ trait GameServiceCardHelper { this: GameService =>
 
   protected[this] def handleSelectPile(userId: UUID, pileId: String) {
     val pile = gameState.pilesById(pileId)
-    if (pile.cards.length > 0) {
+    if (pile.cards.nonEmpty) {
       log.warn("SelectPile [" + pileId + "] called on a non-empty deck.")
     }
     val messages = if (pile.canSelectPile(gameState)) {
@@ -76,5 +76,8 @@ trait GameServiceCardHelper { this: GameService =>
     gameWon = true
     setStatus("win")
     sendToAll(GameWon(id))
+    true
+  } else {
+    false
   }
 }

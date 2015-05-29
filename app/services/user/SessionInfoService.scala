@@ -14,13 +14,13 @@ object SessionInfoService extends AuthenticatorDAO[CookieAuthenticator] {
     CacheService.cacheSession(session)
   }
 
-  override def remove(id: String) = Database.execute(AuthenticatorQueries.RemoveSessionInfo(id)).map { i =>
+  override def remove(id: String) = Database.execute(AuthenticatorQueries.RemoveById(Seq(id))).map { i =>
     CacheService.removeSession(id)
   }
 
   override def find(id: String) = CacheService.getSession(id) match {
     case Some(sess) => Future.successful(Some(sess))
-    case None => Database.query(AuthenticatorQueries.FindSessionInfo(id)).map {
+    case None => Database.query(AuthenticatorQueries.GetById(Seq(id))).map {
       case Some(dbSess) =>
         CacheService.cacheSession(dbSess)
         Some(dbSess)

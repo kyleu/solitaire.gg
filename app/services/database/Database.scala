@@ -74,7 +74,8 @@ object Database extends Logging with Instrumented with FutureMetrics {
   }
 
   private[this] val factory = new PostgreSQLConnectionFactory(configuration)
-  private[this] val pool = new ConnectionPool(factory, PoolConfiguration.Default)
+  private[this] val poolConfig = new PoolConfiguration(maxObjects = 100, maxIdle = 10, maxQueueSize = 1000)
+  private[this] val pool = new ConnectionPool(factory, poolConfig)
 
   private[this] def prependComment(obj: Object, sql: String) = s"/* ${obj.getClass.getSimpleName.replace("$", "")} */ $sql"
 }

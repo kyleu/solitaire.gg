@@ -24,17 +24,6 @@ object UserFeedbackQueries extends BaseQueries[UserFeedback] {
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }
 
-  case class GetUserFeedback(id: UUID) extends FlatSingleRowQuery[UserFeedback] {
-    override val sql = getByIdSql
-    override val values = Seq(id)
-    override def flatMap(row: RowData) = Some(fromRow(row))
-  }
-
-  case class RemoveUserFeedback(id: UUID) extends Statement {
-    override val sql = removeByIdSql
-    override val values = Seq(id)
-  }
-
   override protected def fromRow(row: RowData) = {
     val id = row("id") match { case s: String => UUID.fromString(s) }
     val userId = row("user_id") match { case s: String => UUID.fromString(s) }

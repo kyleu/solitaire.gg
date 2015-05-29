@@ -7,10 +7,11 @@ import akka.util.Timeout
 import controllers.BaseController
 import models._
 import models.database.queries.auth.UserQueries
+import models.database.queries.ddl.DdlQueries
 import models.user.Role
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.ActorSupervisor
-import services.database.Database
+import services.database.{Schema, Database}
 import utils.CacheService
 
 import scala.concurrent.Future
@@ -30,6 +31,16 @@ object AdminController extends BaseController {
   def status = withAdminSession { implicit request =>
     (ActorSupervisor.instance ask GetSystemStatus).map {
       case x: SystemStatus => Ok(views.html.admin.status(x))
+    }
+  }
+
+  def wipeSchema(key: String) = withAdminSession { implicit request =>
+    if(key == "for realz") {
+      Schema.wipe().map { tables =>
+        Ok("OK, Wiped tables [" + tables.mkString(", ") + "].")
+      }
+    } else {
+      Future.successful(NotFound("Missing key."))
     }
   }
 

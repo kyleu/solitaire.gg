@@ -31,10 +31,11 @@ define(["utils/Config", "game/state/GameState", "game/state/LoadingScreen"], fun
     var resize = function() {
       g.state.getCurrentState().resize();
     };
+
     window.addEventListener("resize", function() {
       g.scale.setGameSize(window.innerWidth, window.innerHeight);
       if(g.playmat !== undefined) {
-        setTimeout(resize, 100);
+        resize();
       }
     });
 

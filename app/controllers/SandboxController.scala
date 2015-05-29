@@ -7,7 +7,8 @@ import scala.concurrent.Future
 
 object SandboxController extends BaseController {
   def sandbox() = withSession { implicit request =>
-    Future.successful(Ok(CacheService.keys().mkString("\n")))
+    val ret = views.html.sandbox()
+    Future.successful(Ok(ret))
   }
 
   def adminSandbox = withAdminSession { implicit request =>

@@ -19,7 +19,7 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
 
   gameState.addPlayer(player.userId, player.name)
 
-  protected[this] val gameMessages = collection.mutable.ArrayBuffer.empty[(GameMessage, LocalDateTime)]
+  protected[this] val gameMessages = collection.mutable.ArrayBuffer.empty[(GameMessage, UUID, LocalDateTime)]
   protected[this] var moveCount = 0
   protected[this] var lastMoveMade: Option[LocalDateTime] = None
   protected[this] var gameWon = false
@@ -49,9 +49,10 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
     //log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.userId + "] for game [" + id + "].")
     try {
       val time = new LocalDateTime()
-      gameMessages += gr.message -> time
+      gameMessages +=((gr.message, gr.userId, time))
       moveCount += 1
       lastMoveMade = Some(time)
+      update()
       gr.message match {
         case GetPossibleMoves => timeReceive(GetPossibleMoves) { handleGetPossibleMoves(gr.userId) }
         case sc: SelectCard => timeReceive(sc) { handleSelectCard(gr.userId, sc.card, sc.pile) }

@@ -34,7 +34,7 @@ object UserController extends BaseController {
   }
 
   def removeUser(id: UUID) = withAdminSession { implicit request =>
-    Database.execute(UserQueries.RemoveUser(id)).map { i =>
+    Database.execute(UserQueries.RemoveById(Seq(id))).map { i =>
       CacheService.removeUser(id)
       Redirect(controllers.admin.routes.UserController.userList(""))
     }

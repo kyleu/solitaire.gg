@@ -1,24 +1,24 @@
 package models.database.queries
 
 import com.github.mauricio.async.db.RowData
-import models.database.Query
+import models.database.{ FlatSingleRowQuery, Statement, SingleRowQuery, Query }
 import utils.Config
 
 trait BaseQueries[T] {
   protected def tableName: String
-  protected def idColumn: String = "id"
+  protected def idColumns = Seq("id")
   protected def columns: Seq[String]
   protected def searchColumns: Seq[String]
 
   protected def fromRow(row: RowData): T
 
+  private def idWhereClause = idColumns.map(c => c + " = ?").mkString(" and ")
+
   protected lazy val insertSql = s"insert into $tableName (${columns.mkString(", ")}) values (${columns.map(x => "?").mkString(", ")})"
 
   protected def updateSql(updateColumns: Seq[String], additionalUpdates: Option[String] = None) = trim(s"""
-    update $tableName set ${updateColumns.map(x => x + " = ?").mkString(", ")}${additionalUpdates.map(x => ", " + x).getOrElse("")} where $idColumn = ?
+    update $tableName set ${updateColumns.map(x => x + " = ?").mkString(", ")}${additionalUpdates.map(x => ", " + x).getOrElse("")} where $idWhereClause
   """)
-
-  protected lazy val getByIdSql = s"select ${columns.mkString(", ")} from $tableName where $idColumn = ?"
 
   protected def countSql(whereClause: String) = s"select count(*) as c from $tableName where $whereClause"
 
@@ -30,9 +30,16 @@ trait BaseQueries[T] {
     ${offset.map(x => " offset " + x).getOrElse("")}
   """)
 
-  protected lazy val removeByIdSql = s"delete from $tableName where $idColumn = ?"
-
   protected def trim(s: String) = s.replaceAll("""[\s]+""", " ").trim
+
+  case class GetById(override val values: Seq[Any]) extends FlatSingleRowQuery[T] {
+    override val sql = s"select ${columns.mkString(", ")} from $tableName where $idWhereClause"
+    override def flatMap(row: RowData) = Some(fromRow(row))
+  }
+
+  case class RemoveById(override val values: Seq[Any]) extends Statement {
+    override val sql = s"delete from $tableName where $idWhereClause"
+  }
 
   case class CountQuery(q: String) extends Query[Int] {
     override val sql = countSql(if (q.isEmpty) { "1 = 1" } else { searchColumns.map(c => "lower(" + c + ") like lower(?)").mkString(" or ") })

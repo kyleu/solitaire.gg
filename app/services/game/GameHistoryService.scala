@@ -25,7 +25,7 @@ object GameHistoryService {
   }
 
   def removeGameHistory(id: UUID) = {
-    Database.execute(GameHistoryQueries.RemoveGameHistory(id)).map(_ == 1)
+    Database.execute(GameHistoryQueries.RemoveById(Seq(id))).map(_ == 1)
   }
 
   private[this] def getOrderClause(orderBy: String) = orderBy match {

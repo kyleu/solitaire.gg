@@ -16,6 +16,7 @@ object Config {
   val defaultCardSet = cnf.getString("game.default.cardSet")
 
   // Admin
+  val adminEmail = cnf.getString("game.admin.email")
   val pageSize = 100
 
   // Metrics
