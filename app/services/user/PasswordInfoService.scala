@@ -22,7 +22,5 @@ object PasswordInfoService extends DelegableAuthInfoDAO[PasswordInfo] {
     }
   }
 
-  override def find(loginInfo: LoginInfo) = {
-    Database.query(PasswordInfoQueries.FindPasswordInfo(loginInfo))
-  }
+  override def find(loginInfo: LoginInfo) = Database.query(PasswordInfoQueries.GetById(Seq(loginInfo.providerID, loginInfo.providerKey)))
 }

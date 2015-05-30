@@ -22,7 +22,5 @@ object OAuth2InfoService extends DelegableAuthInfoDAO[OAuth2Info] {
     }
   }
 
-  override def find(loginInfo: LoginInfo) = {
-    Database.query(OAuth2InfoQueries.FindOAuth2Info(loginInfo))
-  }
+  override def find(loginInfo: LoginInfo) = Database.query(OAuth2InfoQueries.GetById(Seq(loginInfo.providerID, loginInfo.providerKey)))
 }

@@ -22,7 +22,5 @@ object OpenIdInfoService extends DelegableAuthInfoDAO[OpenIDInfo] {
     }
   }
 
-  override def find(loginInfo: LoginInfo) = {
-    Database.query(OpenIdInfoQueries.FindOpenIdInfo(loginInfo))
-  }
+  override def find(loginInfo: LoginInfo) = Database.query(OpenIdInfoQueries.GetById(Seq(loginInfo.providerID, loginInfo.providerKey)))
 }

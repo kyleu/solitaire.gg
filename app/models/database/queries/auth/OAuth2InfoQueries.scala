@@ -11,14 +11,12 @@ import play.api.libs.json.{ JsValue, Json }
 object OAuth2InfoQueries extends BaseQueries[OAuth2Info] {
   override protected val tableName = "oauth2_info"
   override protected val columns = Seq("provider", "key", "access_token", "token_type", "expires_in", "refresh_token", "params", "created")
-  override protected val searchColumns = Seq("key")
+  override protected val idColumns = Seq("provider", "key")
+  override protected val searchColumns = Seq("key", "access_token")
 
   case class CreateOAuth2Info(l: LoginInfo, o: OAuth2Info) extends Statement {
     override val sql = insertSql
-    override val values = {
-      val params = o.params.map(p => Json.prettyPrint(Json.toJson(p)))
-      Seq(l.providerID, l.providerKey, o.accessToken, o.tokenType, o.expiresIn, o.refreshToken, params, new LocalDateTime())
-    }
+    override val values = Seq(l.providerID, l.providerKey) ++ toDataSeq(o)
   }
 
   case class UpdateOAuth2Info(l: LoginInfo, o: OAuth2Info) extends Statement {
@@ -26,14 +24,8 @@ object OAuth2InfoQueries extends BaseQueries[OAuth2Info] {
       "where provider = ? and key = ?"
     override val values = {
       val params = o.params.map(p => Json.prettyPrint(Json.toJson(p)))
-      Seq(o.accessToken, o.tokenType, o.expiresIn, o.refreshToken, params, new LocalDateTime(), l.providerID, l.providerKey)
+      toDataSeq(o) ++ Seq(l.providerID, l.providerKey)
     }
-  }
-
-  case class FindOAuth2Info(l: LoginInfo) extends FlatSingleRowQuery[OAuth2Info] {
-    override val sql = getSql("provider = ? and key = ?")
-    override val values = Seq(l.providerID, l.providerKey)
-    override def flatMap(row: RowData) = Some(fromRow(row))
   }
 
   override protected def fromRow(row: RowData) = {
@@ -48,5 +40,10 @@ object OAuth2InfoQueries extends BaseQueries[OAuth2Info] {
       refreshToken = row("refresh_token") match { case s: String => Some(s); case _ => None },
       params = params
     )
+  }
+
+  override protected def toDataSeq(o: OAuth2Info) = {
+    val params = o.params.map(p => Json.prettyPrint(Json.toJson(p)))
+    Seq(o.accessToken, o.tokenType, o.expiresIn, o.refreshToken, params, new LocalDateTime())
   }
 }

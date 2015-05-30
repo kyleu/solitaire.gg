@@ -33,7 +33,7 @@ object Database extends Logging with Instrumented with FutureMetrics {
 
   def execute(statement: Statement, conn: Connection = pool): Future[Int] = {
     val name = statement.getClass.getSimpleName.replaceAllLiterally("$", "")
-    log.debug(s"Executing statement [$name] with SQL [${statement.sql}] with values [${statement.values.mkString("(", ", ", ")")}].")
+    log.debug(s"Executing statement [$name] with SQL [${statement.sql}] with values [${statement.values.mkString(", ")}].")
     val ret = timing("execute." + name) {
       conn.sendPreparedStatement(prependComment(statement, statement.sql), statement.values).map(_.rowsAffected.toInt)
     }
@@ -45,7 +45,7 @@ object Database extends Logging with Instrumented with FutureMetrics {
 
   def query[A](query: RawQuery[A], conn: Connection = pool): Future[A] = {
     val name = query.getClass.getSimpleName.replaceAllLiterally("$", "")
-    log.debug(s"Executing query [$name] with SQL [${query.sql}] with values [" + query.values.mkString("(", ", ", ")") + "].")
+    log.debug(s"Executing query [$name] with SQL [${query.sql}] with values [" + query.values.mkString(", ") + "].")
     val ret = timing("query." + name) {
       conn.sendPreparedStatement(prependComment(query, query.sql), query.values).map { r =>
         query.handle(r.rows.getOrElse(throw new IllegalStateException()))

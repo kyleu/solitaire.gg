@@ -4,6 +4,7 @@ import java.util.UUID
 
 import com.github.mauricio.async.db.RowData
 import models.GameHistory
+import models.GameHistory.Card
 import models.database.queries.BaseQueries
 import models.database.{ Query, Statement }
 import models.game.{ Suit, Rank }
@@ -13,13 +14,8 @@ object GameHistoryCardQueries extends BaseQueries[GameHistory.Card] {
   override protected val columns = Seq("card_id", "game_id", "sort_order", "rank", "suit")
   override protected val searchColumns = Seq("card_id::text", "game_id::text")
 
-  case class CreateGameCard(card: GameHistory.Card) extends Statement {
-    override val sql = insertSql
-    override val values = Seq[Any](card.id, card.gameId, card.sortOrder, card.rank.toChar, card.suit.toChar)
-  }
-
   case class GetGameCardsByGame(id: UUID) extends Query[List[GameHistory.Card]] {
-    override val sql = getSql("game_id = ?", Some("sort_order"))
+    override val sql = getSql(Some("game_id = ?"), Some("sort_order"))
     override val values = Seq(id)
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }
@@ -37,4 +33,6 @@ object GameHistoryCardQueries extends BaseQueries[GameHistory.Card] {
     val suit = row("suit") match { case s: String => Suit.fromChar(s.headOption.getOrElse(throw new IllegalStateException())) }
     GameHistory.Card(id, gameId, order, rank, suit)
   }
+
+  override protected def toDataSeq(c: Card) = Seq[Any](c.id, c.gameId, c.sortOrder, c.rank.toChar, c.suit.toChar)
 }

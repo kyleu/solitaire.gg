@@ -28,7 +28,7 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.8.4")
 // Code Quality
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.6.0") // scalastyle
 
-addSbtPlugin("com.sksamuel.scapegoat" %% "sbt-scapegoat" % "0.94.6")
+addSbtPlugin("com.sksamuel.scapegoat" %% "sbt-scapegoat" % "1.0.0")
 
 addSbtPlugin("com.orrsella" % "sbt-stats" % "1.0.5") // stats
 

@@ -4,7 +4,7 @@ import com.github.mauricio.async.db.RowData
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
 import models.database.queries.BaseQueries
-import models.database.{ FlatSingleRowQuery, Statement }
+import models.database.FlatSingleRowQuery
 import org.joda.time.LocalDateTime
 
 object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
@@ -12,21 +12,8 @@ object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
   override protected val columns = Seq("id", "provider", "key", "last_used", "expiration", "fingerprint", "created")
   override protected val searchColumns = Seq("id::text", "key")
 
-  case class CreateSessionInfo(s: CookieAuthenticator) extends Statement {
-    override val sql = insertSql
-    override val values = Seq(
-      s.id,
-      s.loginInfo.providerID,
-      s.loginInfo.providerKey,
-      s.lastUsedDate.toLocalDateTime,
-      s.expirationDate.toLocalDateTime,
-      s.fingerprint,
-      new LocalDateTime()
-    )
-  }
-
   case class FindSessionInfoByLoginInfo(l: LoginInfo) extends FlatSingleRowQuery[CookieAuthenticator] {
-    override val sql = getSql("provider = ? and key = ?")
+    override val sql = getSql(Some("provider = ? and key = ?"))
     override val values = Seq(l.providerID, l.providerKey)
     override def flatMap(row: RowData) = Some(fromRow(row))
   }
@@ -41,4 +28,14 @@ object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
     val created = row("created") match { case ldt: LocalDateTime => ldt }
     CookieAuthenticator(id, LoginInfo(provider, key), lastUsed, expiration, None, fingerprint)
   }
+
+  override protected def toDataSeq(ca: CookieAuthenticator) = Seq(
+    ca.id,
+    ca.loginInfo.providerID,
+    ca.loginInfo.providerKey,
+    ca.lastUsedDate.toLocalDateTime,
+    ca.expirationDate.toLocalDateTime,
+    ca.fingerprint,
+    new LocalDateTime()
+  )
 }

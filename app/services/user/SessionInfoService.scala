@@ -10,11 +10,11 @@ import utils.CacheService
 import scala.concurrent.Future
 
 object SessionInfoService extends AuthenticatorDAO[CookieAuthenticator] {
-  override def save(session: CookieAuthenticator) = Database.execute(AuthenticatorQueries.CreateSessionInfo(session)).map { x =>
+  override def save(session: CookieAuthenticator) = Database.execute(AuthenticatorQueries.Insert(session)).map { x =>
     CacheService.cacheSession(session)
   }
 
-  override def remove(id: String) = Database.execute(AuthenticatorQueries.RemoveById(Seq(id))).map { i =>
+  override def remove(id: String) = Database.execute(AuthenticatorQueries.RemoveById(Seq(id))).map { x =>
     CacheService.removeSession(id)
   }
 

@@ -4,7 +4,7 @@ invalid.game.rules = We can''t find any information about the game [{0}].
 # Authentication
 authentication.invalid.credentials = Invalid credentials.
 authentication.invalid.provider = Cannot authenticate with unknown social provider [{0}].
-authentication.service.error = Could''nt authenticate with provider [{0}].
+authentication.service.error = Couldn''t authenticate with provider [{0}].
 
 # Registration
 registration.username.taken = That username is already in use.

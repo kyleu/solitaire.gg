@@ -27,7 +27,7 @@ object UserService extends IdentityService[User] with Logging {
           Future.successful(existingUser)
         }
       case None => // Link to currentUser
-        Database.execute(ProfileQueries.CreateProfile(profile)).flatMap { x =>
+        Database.execute(ProfileQueries.Insert(profile)).flatMap { x =>
           val u = currentUser.copy(
             profiles = currentUser.profiles.filterNot(_.providerID == profile.loginInfo.providerID) :+ profile.loginInfo
           )
@@ -38,7 +38,7 @@ object UserService extends IdentityService[User] with Logging {
 
   def retrieve(id: UUID): Future[Option[User]] = CacheService.getUser(id) match {
     case Some(u) => Future.successful(Some(u))
-    case None => Database.query(UserQueries.FindUser(id)).map {
+    case None => Database.query(UserQueries.GetById(Seq(id))).map {
       case Some(dbUser) =>
         CacheService.cacheUser(dbUser)
         Some(dbUser)
@@ -51,7 +51,7 @@ object UserService extends IdentityService[User] with Logging {
   override def retrieve(loginInfo: LoginInfo) = CacheService.getUserByLoginInfo(loginInfo) match {
     case Some(u) => Future.successful(Some(u))
     case None => if (loginInfo.providerID == "anonymous") {
-      Database.query(UserQueries.FindUser(UUID.fromString(loginInfo.providerKey))).map {
+      Database.query(UserQueries.GetById(Seq(UUID.fromString(loginInfo.providerKey)))).map {
         case Some(dbUser) =>
           if (dbUser.profiles.nonEmpty) {
             log.warn("Attempt to authenticate as anonymous for user with profiles [" + dbUser.profiles + "].")
@@ -78,7 +78,7 @@ object UserService extends IdentityService[User] with Logging {
       UserQueries.UpdateUser(user)
     } else {
       log.info("Creating new user [" + user + "].")
-      UserQueries.CreateUser(user)
+      UserQueries.Insert(user)
     }
     Database.execute(statement).map { i =>
       CacheService.removeUser(user.id)

@@ -1,7 +1,7 @@
 package models.database.queries.ddl
 
 import com.github.mauricio.async.db.RowData
-import models.database.{Statement, SingleRowQuery}
+import models.database.{ Statement, SingleRowQuery }
 
 object DdlQueries {
   case class DoesTableExist(tableName: String) extends SingleRowQuery[Boolean] {
@@ -10,9 +10,8 @@ object DdlQueries {
     override def map(row: RowData) = row("exists") match { case b: Boolean => b }
   }
 
-  case class TruncateTable(tableName: String) extends Statement {
-    override val sql = "truncate ?"
-    override def values = Seq(tableName)
+  case class TruncateTables(tableNames: Seq[String]) extends Statement {
+    override val sql = "truncate " + tableNames.mkString(", ")
   }
 
   def trim(s: String) = s.replaceAll("""[\s]+""", " ").trim

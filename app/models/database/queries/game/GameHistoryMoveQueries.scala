@@ -14,15 +14,8 @@ object GameHistoryMoveQueries extends BaseQueries[GameHistory.Move] {
   override protected val columns = Seq("game_id", "sequence", "player_id", "move", "cards", "src", "tgt", "occurred")
   override protected val searchColumns = Seq("game_id::text", "player_id::text", "move")
 
-  case class CreateGameMove(move: GameHistory.Move) extends Statement {
-    override val sql = insertSql
-    override val values = Seq[Any](
-      move.gameId, move.sequence, move.playerId, move.moveType, move.cards.toArray, move.src, move.tgt, DateUtils.toSqlTimestamp(move.occurred)
-    )
-  }
-
   case class GetGameMovesByGame(id: UUID) extends Query[List[GameHistory.Move]] {
-    override val sql = getSql("game_id = ?", Some("sequence"))
+    override val sql = getSql(whereClause = Some("game_id = ?"), orderBy = Some("sequence"))
     override val values = Seq(id)
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }
@@ -42,5 +35,9 @@ object GameHistoryMoveQueries extends BaseQueries[GameHistory.Move] {
     val tgt = row("tgt") match { case s: String => Some(s) }
     val occurred = row("occurred") match { case ldt: LocalDateTime => ldt }
     GameHistory.Move(gameId, sequence, playerId, moveType, Some(cards), src, tgt, occurred)
+  }
+
+  protected def toDataSeq(m: GameHistory.Move) = {
+    Seq[Any](m.gameId, m.sequence, m.playerId, m.moveType, m.cards.toArray, m.src, m.tgt, DateUtils.toSqlTimestamp(m.occurred))
   }
 }

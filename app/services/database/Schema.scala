@@ -5,7 +5,8 @@ import models.database.queries.ddl._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import utils.Logging
 
-import scala.concurrent.Future
+import scala.concurrent.Await
+import scala.concurrent.duration._
 
 object Schema extends Logging {
   val tables = Seq(
@@ -26,7 +27,7 @@ object Schema extends Logging {
 
   def update() = tables.foreach { t =>
     Database.query(DdlQueries.DoesTableExist(t._1)).foreach { exists =>
-      if(!exists) {
+      if (!exists) {
         log.info("Creating missing table [" + t._1 + "].")
         val name = "CreateTable-" + t._1
         Database.raw(name, t._2.sql)
@@ -36,8 +37,7 @@ object Schema extends Logging {
 
   def wipe() = {
     log.warn("Wiping database schema.")
-    Future.sequence(tables.reverse.map { t =>
-      Database.execute(DdlQueries.TruncateTable(t._1)).map(x => t._1)
-    })
+    val tableNames = tables.reverse.map(_._1)
+    Database.execute(DdlQueries.TruncateTables(tableNames)).map(x => tableNames)
   }
 }

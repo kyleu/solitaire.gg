@@ -14,15 +14,6 @@ object UserQueries extends BaseQueries[User] {
   override protected val columns = Seq("id", "username", "avatar", "profiles", "roles", "created")
   override protected val searchColumns = Seq("id::text", "username")
 
-  case class CreateUser(u: User) extends Statement {
-    override val sql = insertSql
-    override val values = {
-      val profiles = u.profiles.map(l => l.providerID + ":" + l.providerKey).toArray
-      val roles = u.roles.map(_.name).toArray
-      Seq(u.id, u.username, u.avatar, profiles, roles, u.created)
-    }
-  }
-
   case class UpdateUser(u: User) extends Statement {
     override val sql = updateSql(Seq("username", "avatar", "profiles", "roles"))
     override val values = {
@@ -44,20 +35,14 @@ object UserQueries extends BaseQueries[User] {
     override val values = Seq(role.name, id)
   }
 
-  case class FindUser(id: UUID) extends FlatSingleRowQuery[User] {
-    override val sql = getSql("id = ?")
-    override val values = Seq(id)
-    override def flatMap(row: RowData) = Some(fromRow(row))
-  }
-
   case class FindUserByUsername(username: String) extends FlatSingleRowQuery[User] {
-    override val sql = getSql("username = ?")
+    override val sql = getSql(Some("username = ?"))
     override val values = Seq(username)
     override def flatMap(row: RowData) = Some(fromRow(row))
   }
 
   case class FindUserByProfile(loginInfo: LoginInfo) extends FlatSingleRowQuery[User] {
-    override val sql = getSql("profiles @> ARRAY[?]::text[]")
+    override val sql = getSql(Some("profiles @> ARRAY[?]::text[]"))
     override val values = Seq(loginInfo.providerID + ":" + loginInfo.providerKey)
     override def flatMap(row: RowData) = Some(fromRow(row))
   }
@@ -78,5 +63,11 @@ object UserQueries extends BaseQueries[User] {
     val roles = (row("roles") match { case ab: collection.mutable.ArrayBuffer[_] => ab }).map(x => Role(x.toString)).toSet
     val created = row("created") match { case ldt: LocalDateTime => ldt }
     User(id, username, avatar, profiles, roles, created)
+  }
+
+  override protected def toDataSeq(u: User) = {
+    val profiles = u.profiles.map(l => l.providerID + ":" + l.providerKey).toArray
+    val roles = u.roles.map(_.name).toArray
+    Seq(u.id, u.username, u.avatar, profiles, roles, u.created)
   }
 }

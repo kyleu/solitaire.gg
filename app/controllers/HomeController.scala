@@ -3,7 +3,6 @@ package controllers
 import java.util.UUID
 
 import models.database.queries.UserFeedbackQueries
-import models.database.queries.auth.UserQueries
 import models.user.UserFeedback
 import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -40,7 +39,7 @@ object HomeController extends BaseController {
 
           EmailService.feedbackSubmitted(obj, request.identity)
 
-          Database.execute(UserFeedbackQueries.CreateUserFeedback(obj)).map { x =>
+          Database.execute(UserFeedbackQueries.Insert(obj)).map { x =>
             Redirect(routes.HomeController.feedbackForm()).flashing("success" -> "Your feedback has been submitted. Thanks!")
           }
         case None => Future.successful(Redirect(routes.HomeController.feedbackForm()).flashing("error" -> "Please include some feedback."))

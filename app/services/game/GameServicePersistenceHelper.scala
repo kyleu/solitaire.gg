@@ -3,7 +3,7 @@ package services.game
 import java.util.UUID
 
 import models._
-import models.database.queries.game.{GameHistoryMoveQueries, GameHistoryCardQueries, GameHistoryQueries}
+import models.database.queries.game.{ GameHistoryMoveQueries, GameHistoryCardQueries, GameHistoryQueries }
 import org.joda.time.LocalDateTime
 import services.database.Database
 
@@ -12,25 +12,24 @@ trait GameServicePersistenceHelper { this: GameService =>
   private[this] var movesPersisted = 0
 
   protected[this] def create() = {
-    Database.execute(GameHistoryQueries.CreateGameHistory(id, seed, rules, "started", player.userId, started))
-    gameState.deck.cards.zipWithIndex.foreach { card =>
-      val c = new GameHistory.Card(card._1.id, id, card._2, card._1.r, card._1.s)
-      Database.execute(GameHistoryCardQueries.CreateGameCard(c))
-    }
+    val gh = GameHistory(id, seed, rules, "started", player.userId, 0, 0, 0, started, None)
+    Database.execute(GameHistoryQueries.Insert(gh))
+    val cards = gameState.deck.cards.zipWithIndex.map(card => new GameHistory.Card(card._1.id, id, card._2, card._1.r, card._1.s))
+    Database.execute(GameHistoryCardQueries.InsertBatch(cards))
   }
 
   protected[this] def update() = {
-    if(getStatus != lastStatus) {
+    if (getStatus != lastStatus) {
       lastStatus = getStatus
       GameHistoryService.updateGameHistory(id, lastStatus, moveCount, undoHelper.undoCount, undoHelper.redoCount, Some(new LocalDateTime))
     }
 
-    if(movesPersisted < (moveCount - 1)) {
+    if (movesPersisted < (moveCount - 1)) {
       // This is ok since this particular method is actor-scoped, even if the persist isn't
       val movesToPersist = gameMessages.drop(movesPersisted)
       movesToPersist.zipWithIndex.foreach { gm =>
         val move = toMove(gm._1._1, gm._2, gm._1._2, gm._1._3)
-        Database.execute(GameHistoryMoveQueries.CreateGameMove(move))
+        Database.execute(GameHistoryMoveQueries.Insert(move))
         movesPersisted += 1
       }
     }

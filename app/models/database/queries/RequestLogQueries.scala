@@ -4,7 +4,7 @@ import java.util.UUID
 
 import com.github.mauricio.async.db.RowData
 import models.audit.RequestLog
-import models.database.{ Query, Statement }
+import models.database.Query
 import org.joda.time.LocalDateTime
 
 object RequestLogQueries extends BaseQueries[RequestLog] {
@@ -16,17 +16,8 @@ object RequestLogQueries extends BaseQueries[RequestLog] {
   )
   override protected val searchColumns = Seq("id::text", "user_id::text", "method", "host", "path", "referrer", "user_agent")
 
-  case class CreateRequest(r: RequestLog) extends Statement {
-    override val sql = insertSql
-    override val values = Seq[Any](
-      r.id, r.userId, r.authProvider, r.authKey, r.remoteAddress,
-      r.method, r.host, r.secure, r.path, r.queryString,
-      r.lang, r.cookie, r.referrer, r.userAgent, r.started, r.duration, r.status
-    )
-  }
-
   case class FindRequestsByUser(id: UUID) extends Query[List[RequestLog]] {
-    override val sql = getSql("user_id = ?")
+    override val sql = getSql(Some("user_id = ?"))
     override val values = Seq(id)
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }
@@ -58,4 +49,10 @@ object RequestLogQueries extends BaseQueries[RequestLog] {
       lang, cookie, referrer, userAgent, started, duration, status
     )
   }
+
+  override protected def toDataSeq(r: RequestLog) = Seq[Any](
+    r.id, r.userId, r.authProvider, r.authKey, r.remoteAddress,
+    r.method, r.host, r.secure, r.path, r.queryString,
+    r.lang, r.cookie, r.referrer, r.userAgent, r.started, r.duration, r.status
+  )
 }

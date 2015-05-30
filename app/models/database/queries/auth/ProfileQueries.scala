@@ -14,13 +14,8 @@ object ProfileQueries extends BaseQueries[CommonSocialProfile] {
   override protected val columns = Seq("provider", "key", "email", "first_name", "last_name", "full_name", "avatar_url", "created")
   override protected val searchColumns = Seq("key", "email", "first_name", "last_name", "full_name")
 
-  case class CreateProfile(p: CommonSocialProfile) extends Statement {
-    override val sql = insertSql
-    override val values = Seq(p.loginInfo.providerID, p.loginInfo.providerKey, p.email, p.firstName, p.lastName, p.fullName, p.avatarURL, new LocalDateTime())
-  }
-
   case class FindProfile(provider: String, key: String) extends FlatSingleRowQuery[CommonSocialProfile] {
-    override val sql = getSql("provider = ? and key = ?")
+    override val sql = getSql(Some("provider = ? and key = ?"))
     override val values = Seq(provider, key)
     override def flatMap(row: RowData) = Some(fromRow(row))
   }
@@ -50,4 +45,8 @@ object ProfileQueries extends BaseQueries[CommonSocialProfile] {
 
     CommonSocialProfile(loginInfo, firstName, lastName, fullName, email, avatarUrl)
   }
+
+  override protected def toDataSeq(p: CommonSocialProfile) = Seq(
+    p.loginInfo.providerID, p.loginInfo.providerKey, p.email, p.firstName, p.lastName, p.fullName, p.avatarURL, new LocalDateTime()
+  )
 }

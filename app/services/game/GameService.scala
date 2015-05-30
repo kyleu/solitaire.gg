@@ -49,7 +49,7 @@ class GameService(val id: UUID, val rules: String, val seed: Int, val started: L
     //log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.userId + "] for game [" + id + "].")
     try {
       val time = new LocalDateTime()
-      gameMessages +=((gr.message, gr.userId, time))
+      gameMessages += ((gr.message, gr.userId, time))
       moveCount += 1
       lastMoveMade = Some(time)
       update()

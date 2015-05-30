@@ -5,20 +5,14 @@ import java.util.UUID
 import com.github.mauricio.async.db.RowData
 import models.GameHistory
 import models.database.queries.BaseQueries
-import models.database.{ FlatSingleRowQuery, Query, Statement }
+import models.database.{ Query, Statement }
 import org.joda.time.LocalDateTime
 import utils.DateUtils
 
 object GameHistoryQueries extends BaseQueries[GameHistory] {
   override protected val tableName = "games"
-  override protected lazy val insertSql = s"insert into $tableName (id, seed, rules, status, player, created) values (?, ?, ?, ?, ?, ?)"
   override protected val columns = Seq("id", "seed", "rules", "status", "player", "moves", "undos", "redos", "created", "completed")
   override protected val searchColumns = Seq("id::text", "seed::text", "rules", "status", "player::text")
-
-  case class CreateGameHistory(id: UUID, seed: Int, rules: String, status: String, player: UUID, created: LocalDateTime) extends Statement {
-    override val sql = insertSql
-    override val values = Seq[Any](id, seed, rules, status, player, DateUtils.toSqlTimestamp(created))
-  }
 
   case class UpdateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int, completed: Option[LocalDateTime]) extends Statement {
     override val sql = updateSql(Seq("status", "moves", "undos", "redos", "completed"))
@@ -26,7 +20,7 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   }
 
   case class GetGameHistoriesByUser(id: UUID, sortBy: String) extends Query[List[GameHistory]] {
-    override val sql = getSql("player = ?", Some("?"))
+    override val sql = getSql(Some("player = ?"), Some("?"))
     override val values = Seq(id, sortBy)
     override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
   }
@@ -44,4 +38,8 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     val complete = row("completed") match { case ldt: LocalDateTime => Some(ldt); case _ => None }
     GameHistory(id, seed, rules, status, player, moves, undos, redos, created, complete)
   }
+
+  override protected def toDataSeq(gh: GameHistory) = Seq[Any](
+    gh.id, gh.seed, gh.rules, gh.status, gh.player, gh.moves, gh.undos, gh.redos, gh.created, gh.completed
+  )
 }

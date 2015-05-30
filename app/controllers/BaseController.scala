@@ -75,6 +75,6 @@ abstract class BaseController extends Silhouette[User, CookieAuthenticator] with
 
   private[this] def logRequest(request: RequestHeader, userId: UUID, loginInfo: LoginInfo, duration: Int, status: Int) = {
     val log = RequestLog(request, userId, loginInfo, duration, status)
-    Database.execute(RequestLogQueries.CreateRequest(log)).map(i => log)
+    Database.execute(RequestLogQueries.Insert(log)).map(i => log)
   }
 }

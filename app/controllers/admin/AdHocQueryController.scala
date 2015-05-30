@@ -3,7 +3,8 @@ package controllers.admin
 import java.util.UUID
 
 import akka.util.Timeout
-import models.database.queries.adhoc.AdHocQueries
+import models.database.queries.adhoc.{ AdHocQuery, AdHocQueries }
+import org.joda.time.LocalDateTime
 import play.api.data.Form
 import play.api.data.Forms._
 import services.database.Database
@@ -40,8 +41,9 @@ object AdHocQueryController extends BaseController {
     executionForm.bindFromRequest.fold(
       formWithErrors => Future.successful(BadRequest("Couldn't process form:\n  " + formWithErrors.errors.mkString("  \n"))),
       form => form.action match {
-        case "save" => if(form.id.isEmpty || form.id.get.isEmpty) {
-          Database.execute(AdHocQueries.CreateAdHocQuery(UUID.randomUUID, form.title, request.identity.id, form.sql)).flatMap { ok =>
+        case "save" => if (form.id.isEmpty || form.id.getOrElse("").isEmpty) {
+          val q = AdHocQuery(UUID.randomUUID, form.title, request.identity.id, form.sql, new LocalDateTime, new LocalDateTime)
+          Database.execute(AdHocQueries.Insert(q)).flatMap { ok =>
             Database.query(AdHocQueries.SearchQuery("", "title", None)).map { queries =>
               val newId = queries.sortBy(_.created).headOption.map(_.id)
               Ok(views.html.admin.report.adhoc(newId, form.sql, Seq.empty -> Seq.empty, 0, queries))
@@ -49,7 +51,8 @@ object AdHocQueryController extends BaseController {
           }
         } else {
           val queryId = form.id.map(UUID.fromString)
-          Database.execute(AdHocQueries.UpdateAdHocQuery(queryId.get, form.title, request.identity.id, form.sql)).flatMap { ok =>
+          val q = AdHocQueries.UpdateAdHocQuery(queryId.getOrElse(throw new IllegalStateException()), form.title, request.identity.id, form.sql)
+          Database.execute(q).flatMap { ok =>
             Database.query(AdHocQueries.SearchQuery("", "title", None)).map { queries =>
               Ok(views.html.admin.report.adhoc(queryId, form.sql, Seq.empty -> Seq.empty, 0, queries))
             }
@@ -64,7 +67,7 @@ object AdHocQueryController extends BaseController {
               Ok(views.html.admin.report.adhoc(queryId, form.sql, result, executionTime, queries))
             }
           }
-        case x => throw new IllegalStateException(x.toString)
+        case x => throw new IllegalStateException(x)
       }
     )
   }

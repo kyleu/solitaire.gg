@@ -10,23 +10,17 @@ import org.joda.time.LocalDateTime
 object PasswordInfoQueries extends BaseQueries[PasswordInfo] {
   override protected val tableName = "password_info"
   override protected val columns = Seq("provider", "key", "hasher", "password", "salt", "created")
+  override protected def idColumns = Seq("provider", "key")
   override protected val searchColumns = Seq("key")
 
   case class CreatePasswordInfo(l: LoginInfo, p: PasswordInfo) extends Statement {
     override val sql = insertSql
-    override val values = Seq(l.providerID, l.providerKey, p.hasher, p.password, p.salt, new LocalDateTime())
+    override val values = Seq(l.providerID, l.providerKey) ++ toDataSeq(p)
   }
 
-  case class UpdatePasswordInfo(l: LoginInfo, o: PasswordInfo) extends Statement {
+  case class UpdatePasswordInfo(l: LoginInfo, p: PasswordInfo) extends Statement {
     override val sql = s"update $tableName set hasher = ?, password = ?, salt = ?, created = ? where provider = ? and key = ?"
-    override val values = Seq(o.hasher, o.password, o.salt, new LocalDateTime(), l.providerID, l.providerKey)
-  }
-
-  case class FindPasswordInfo(l: LoginInfo) extends FlatSingleRowQuery[PasswordInfo] {
-    override val sql = getSql("provider = ? and key = ?")
-    override val values = Seq(l.providerID, l.providerKey)
-
-    override def flatMap(row: RowData) = Some(fromRow(row))
+    override val values = toDataSeq(p) ++ Seq(l.providerID, l.providerKey)
   }
 
   override protected def fromRow(row: RowData) = PasswordInfo(
@@ -34,4 +28,6 @@ object PasswordInfoQueries extends BaseQueries[PasswordInfo] {
     password = row("password") match { case s: String => s },
     salt = row("salt") match { case s: String => Some(s); case _ => None }
   )
+
+  override protected def toDataSeq(p: PasswordInfo) = Seq(p.hasher, p.password, p.salt, new LocalDateTime())
 }
