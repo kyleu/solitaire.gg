@@ -42,6 +42,7 @@ object Pharaohs extends GameRules(
     ),
     PyramidRules(
       setNumber = 1,
+      height = 6,
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
@@ -49,6 +50,7 @@ object Pharaohs extends GameRules(
     ),
     PyramidRules(
       setNumber = 2,
+      height = 2,
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),

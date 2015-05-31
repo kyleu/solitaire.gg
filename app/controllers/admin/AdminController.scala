@@ -27,6 +27,10 @@ object AdminController extends BaseController {
     }
   }
 
+  def index = withAdminSession { implicit request =>
+    Future.successful(Ok(views.html.admin.index()))
+  }
+
   def status = withAdminSession { implicit request =>
     (ActorSupervisor.instance ask GetSystemStatus).map {
       case x: SystemStatus => Ok(views.html.admin.status(x))

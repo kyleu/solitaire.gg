@@ -14,7 +14,6 @@ define(['game/helpers/Layout'], function (calculateLayout) {
     this.suitEmitter[1] = this.makeEmitter(0);
     this.suitEmitter[2] = this.makeEmitter(2);
     this.suitEmitter[3] = this.makeEmitter(3);
-
   };
 
   Playmat.prototype = Object.create(Phaser.Group.prototype);

@@ -57,6 +57,7 @@ object Backbone extends GameRules(
   pyramids = Seq(
     PyramidRules(
       name = "Backbone",
+      height = 12,
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),

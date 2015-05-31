@@ -46,6 +46,7 @@ object DoublePyramid extends GameRules(
   ),
   pyramids = Seq(
     PyramidRules(
+      height = 9,
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
       mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),

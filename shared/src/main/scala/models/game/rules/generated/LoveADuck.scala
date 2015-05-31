@@ -31,6 +31,7 @@ object LoveADuck extends GameRules(
   pyramids = Seq(
     PyramidRules(
       name = "Tableau",
+      height = 5,
       suitMatchRuleForBuilding = SuitMatchRule.AlternatingColors,
       rankMatchRuleForBuilding = RankMatchRule.Down,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,

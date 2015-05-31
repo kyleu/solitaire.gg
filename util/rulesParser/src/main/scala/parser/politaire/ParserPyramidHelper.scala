@@ -8,6 +8,13 @@ trait ParserPyramidHelper { this: GameRulesParser =>
     val pyramidCount = getInt("Pn")
     val pyramids = (0 to pyramidCount - 1).map { i =>
       val prefix = "P" + i
+
+      var height = getInt(prefix + "size")
+      var wtf = getString(prefix + "ds")
+      if(height == 7 && wtf.nonEmpty) {
+        height = wtf.length + 1
+      }
+
       PyramidRules(
         name = getString(prefix + "Nm"),
         pyramidType = getInt(prefix + "type") match {
@@ -15,7 +22,7 @@ trait ParserPyramidHelper { this: GameRulesParser =>
           case 2 => PyramidType.Standard
           case 3 => PyramidType.Standard
         },
-        height = getInt(prefix + "size"),
+        height = height,
         cardsFaceDown = getInt(prefix + "df") match {
           case 100 => PyramidFaceDownCards.AllButLastRow
           case 101 => PyramidFaceDownCards.EvenNumbered
@@ -32,7 +39,6 @@ trait ParserPyramidHelper { this: GameRulesParser =>
         mayMoveToNonEmptyFrom = PolitaireLookup.parseBitmask("P0o", getInt(prefix + "o")),
         emptyFilledWith = getFillEmptyWith(getInt(prefix + "f")),
         mayMoveToEmptyFrom = PolitaireLookup.parseBitmask("P0o", getInt(prefix + "fo"))
-
       )
     }.toSeq
     pyramids
