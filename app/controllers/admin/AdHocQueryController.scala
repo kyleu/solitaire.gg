@@ -28,10 +28,22 @@ object AdHocQueryController extends BaseController {
 
   implicit val timeout = Timeout(10.seconds)
 
-  def queryList(query: Option[UUID]) = withAdminSession { implicit request =>
-    Database.query(AdHocQueries.SearchQuery("", "title", None)).map { queries =>
-      val q = query.flatMap(x => queries.find(_.id == x))
-      Ok(views.html.admin.report.adhoc(query, q.map(_.sql).getOrElse(""), Seq.empty -> Seq.empty, 0, queries))
+  def queryList(query: Option[UUID], action: Option[String]) = withAdminSession { implicit request =>
+    if (action.contains("load")) {
+      Database.query(AdHocQueries.SearchQuery("", "title", None)).map { queries =>
+        val q = query.flatMap(x => queries.find(_.id == x))
+        Ok(views.html.admin.report.adhoc(query, q.map(_.sql).getOrElse(""), Seq.empty -> Seq.empty, 0, queries))
+      }
+    } else if (action.contains("delete")) {
+      Database.execute(AdHocQueries.RemoveById(Seq(query.getOrElse(throw new IllegalStateException())))).flatMap { ok =>
+        Database.query(AdHocQueries.SearchQuery("", "title", None)).map { queries =>
+          Ok(views.html.admin.report.adhoc(None, "", Seq.empty -> Seq.empty, 0, queries))
+        }
+      }
+    } else {
+      Database.query(AdHocQueries.SearchQuery("", "title", None)).map { queries =>
+        Ok(views.html.admin.report.adhoc(query, "", Seq.empty -> Seq.empty, 0, queries))
+      }
     }
   }
 

@@ -4,14 +4,10 @@
     <title>@title</title>
     <meta charset="utf-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge">
-    <meta httpEquiv="viewport" content="initial-scale=1,minimum-scale=1,user-scalable=no">
+    <meta httpEquiv="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-    @for(script <- scripts) {
-      <script src="@script"></script>
-    }
-    @for(stylesheet <- stylesheets) {
-      <link rel="stylesheet" media="screen" href="@stylesheet" />
-    }
+    @for(script <- scripts) { <script src="@script"></script> }
+    @for(stylesheet <- stylesheets) { <link rel="stylesheet" media="screen" href="@stylesheet" /> }
   </head>
   <body>
     @content
