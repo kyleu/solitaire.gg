@@ -15,6 +15,8 @@ object Config {
 
   val defaultCardSet = cnf.getString("game.default.cardSet")
 
+  val fileCacheDir = cnf.getString("cache.dir")
+
   // Admin
   val adminEmail = cnf.getString("game.admin.email")
   val pageSize = 100

@@ -55,18 +55,20 @@ define(['game/helpers/Layout'], function (calculateLayout) {
 
   Playmat.prototype.resize = function() {
     var widthRatio = this.game.world.width / this.w;
-    var heightRatio = this.game.world.height / this.h;
+    var heightRatio = (this.game.world.height) / this.h;
     if(widthRatio < heightRatio) {
       this.scale = new Phaser.Point(widthRatio, widthRatio);
       var yOffset = (this.game.world.height - (this.h * widthRatio)) / 2;
       if(yOffset > 0 || this.y !== 0) {
-        this.y = 0; // yOffset;
+        this.x = 0;
+        this.y = 40; // yOffset;
       }
     } else {
       this.scale = new Phaser.Point(heightRatio, heightRatio);
       var xOffset = (this.game.world.width - (this.w * heightRatio)) / 2;
       if(xOffset > 0 || this.x !== 0) {
         this.x = xOffset;
+        this.y = 40;
       }
     }
   };

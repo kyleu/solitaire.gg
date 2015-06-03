@@ -25,9 +25,7 @@ object UserQueries extends BaseQueries[User] {
 
   case class SetAvatarUrl(userId: UUID, url: String) extends Statement {
     override val sql = updateSql(Seq("avatar"))
-    override val values = {
-      Seq(url, userId)
-    }
+    override val values = Seq(url, userId)
   }
 
   case class AddRole(id: UUID, role: Role) extends Statement {

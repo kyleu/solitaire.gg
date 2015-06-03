@@ -1,4 +1,4 @@
-define(['utils/DebugInfo'], function (di) {
+define(['utils/DebugInfo', 'utils/Status'], function (di, Status) {
   "use strict";
 
   function GameState(id, game) {
@@ -14,7 +14,7 @@ define(['utils/DebugInfo'], function (di) {
   };
 
   GameState.prototype.update = function() {
-    document.getElementById('status-fps').innerText = this.game.time.fps;
+    Status.setFps(this.game.time.fps);
   };
 
   GameState.prototype.onMessage = function(c, v) {

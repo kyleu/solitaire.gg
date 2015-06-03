@@ -1,4 +1,4 @@
-define(['utils/Config', 'game/state/InitialState', 'game/CardSet', 'game/Help'], function (config, InitialState, CardSet, Help) {
+define(['utils/Config', 'utils/Status', 'game/state/InitialState', 'game/CardSet', 'game/Help'], function (config, Status, InitialState, CardSet, Help) {
   "use strict";
 
   function Game(ws) {
@@ -13,7 +13,7 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet', 'game/Help'],
 
     this.help = new Help(this);
 
-    document.getElementById("status-username").innerText = config.user.name;
+    Status.setUsername(config.user.name);
 
     if(config.offline) {
       var self = this;
@@ -40,10 +40,10 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet', 'game/Help'],
     }
     switch(c) {
       case "Pong":
-        document.getElementById('status-latency').innerText = (new Date().getTime() - v.timestamp).toString();
+        Status.setLatency(v.timestamp);
         break;
       case "VersionResponse":
-        document.getElementById('status-version').innerText = v.version;
+        Status.setVersion(v.version);
         break;
       default:
         this.state.getCurrentState().onMessage(c, v);

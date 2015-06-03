@@ -4,8 +4,12 @@ import com.github.mauricio.async.db.RowData
 import models.database.{ FlatSingleRowQuery, Statement, Query }
 import utils.Config
 
+object BaseQueries {
+  def trim(s: String) = s.replaceAll("""[\s]+""", " ").trim
+}
+
 trait BaseQueries[T] {
-  protected def tableName: String
+  protected def tableName: String = "_invalid_"
   protected def idColumns = Seq("id")
   protected def columns: Seq[String]
   protected def searchColumns: Seq[String]
@@ -13,14 +17,15 @@ trait BaseQueries[T] {
   protected def fromRow(row: RowData): T
   protected def toDataSeq(t: T): Seq[Any]
 
-  protected def trim(s: String) = s.replaceAll("""[\s]+""", " ").trim
   protected lazy val insertSql = s"insert into $tableName (${columns.mkString(", ")}) values (${columns.map(x => "?").mkString(", ")})"
 
-  protected def updateSql(updateColumns: Seq[String], additionalUpdates: Option[String] = None) = trim(s"""
+  protected def updateSql(updateColumns: Seq[String], additionalUpdates: Option[String] = None) = BaseQueries.trim(s"""
     update $tableName set ${updateColumns.map(x => x + " = ?").mkString(", ")}${additionalUpdates.map(x => ", " + x).getOrElse("")} where $idWhereClause
   """)
 
-  protected def getSql(whereClause: Option[String] = None, orderBy: Option[String] = None, limit: Option[Int] = None, offset: Option[Int] = None) = trim(s"""
+  protected def getSql(
+    whereClause: Option[String] = None, orderBy: Option[String] = None, limit: Option[Int] = None, offset: Option[Int] = None
+  ) = BaseQueries.trim(s"""
     select ${columns.mkString(", ")} from $tableName
     ${whereClause.map(x => " where " + x).getOrElse("")}
     ${orderBy.map(x => " order by " + x).getOrElse("")}

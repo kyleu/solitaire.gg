@@ -1,4 +1,4 @@
-define(["utils/Config"], function (cfg) {
+define(['utils/Config', 'utils/Status'], function (cfg, Status) {
   "use strict";
 
   function Websocket(url, context) {
@@ -12,7 +12,7 @@ define(["utils/Config"], function (cfg) {
     var ws = new WebSocket(this.url);
     ws.onopen = function() {
       me.connected = true;
-      document.getElementById('status-connection').innerText = 'Connected';
+      Status.setConnectionStatus('Connected');
       context.onConnect(me.url);
     };
     ws.onmessage = function(event) {
@@ -35,13 +35,13 @@ define(["utils/Config"], function (cfg) {
     };
     ws.onclose = function() {
       me.connected = false;
-      document.getElementById('status-connection').innerText = 'Disconnected';
+      Status.setConnectionStatus('Disconnected');
       console.info("Websocket connection closed. Attempting to reconnect.");
       setTimeout(function() { me.connect(context); }, 5000);
     };
     ws.onerror = function(err) {
       me.connected = false;
-      document.getElementById('status-connection').innerText = 'Connection Error';
+      Status.setConnectionStatus('Connection Error');
       console.error("Received error from websocket connection [" + err + "].");
     };
     this.connection = ws;
