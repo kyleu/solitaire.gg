@@ -1,4 +1,4 @@
-define(['utils/Config', 'utils/Status', 'game/state/InitialState', 'game/CardSet', 'game/Help'], function (config, Status, InitialState, CardSet, Help) {
+define(['utils/Config', 'game/state/InitialState', 'game/CardSet', 'game/Help'], function (config, InitialState, CardSet, Help) {
   "use strict";
 
   function Game(ws) {
@@ -7,13 +7,11 @@ define(['utils/Config', 'utils/Status', 'game/state/InitialState', 'game/CardSet
     this.cardSet = CardSet[config.cardSet][cardSize];
     var initialState = new InitialState(this);
     Phaser.Game.call(this, '100%', '100%', Phaser.AUTO, 'game-container', initialState);
-
+    this.status = {};
     this.piles = {};
     this.cards = {};
 
     this.help = new Help(this);
-
-    Status.setUsername(config.user.name);
 
     if(config.offline) {
       var self = this;
@@ -40,10 +38,10 @@ define(['utils/Config', 'utils/Status', 'game/state/InitialState', 'game/CardSet
     }
     switch(c) {
       case "Pong":
-        Status.setLatency(v.timestamp);
+        this.status.latency = (new Date().getTime() - v.timestamp);
         break;
       case "VersionResponse":
-        Status.setVersion(v.version);
+        this.status.version = v.version;
         break;
       default:
         this.state.getCurrentState().onMessage(c, v);

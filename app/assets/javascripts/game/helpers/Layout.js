@@ -8,7 +8,7 @@ define(['game/helpers/Dimensions'], function (getDimensions) {
     console.log("Creating layout for [" + pileSets.length + "] pile sets using layout [" + layout + "] with aspect ratio of [" + aspectRatio + "].");
     var locations = {};
     var xOffset = margin;
-    var yOffset = margin;
+    var yOffset = 0.6;
     var remainingPileSets = pileSets;
     var currentRowMaxHeight = 1.0;
     var maxWidth = 0;
@@ -103,7 +103,7 @@ define(['game/helpers/Dimensions'], function (getDimensions) {
       processCharacter(char);
     });
     newRow();
-    return { "width": maxWidth - (margin / 2), "height": yOffset - 0.5, "locations": locations };
+    return { "width": maxWidth - margin + padding, "height": yOffset - 0.5, "locations": locations };
   }
   return calculateLayout;
 });

@@ -25,7 +25,7 @@ define(['game/helpers/Layout'], function (calculateLayout) {
     this.layout = calculateLayout(this.pileSets, this.layoutString, this.game.world.width / this.game.world.height);
 
     this.w = this.layout.width * this.game.cardSet.cardWidth;
-    this.h = this.layout.height * this.game.cardSet.cardHeight;
+    this.h = (this.layout.height * this.game.cardSet.cardHeight) + 40;
 
     if(this.w !== originalSize[0] || this.h !== originalSize[1]) {
       this.resize();

@@ -8,98 +8,80 @@ fi
 cd "../offline"
 
 _now=$(date +"%Y-%d-%m")
-mkdir -p "build/dev"
-mkdir -p "build/prod"
+mkdir -p "build"
 printf "Solitaire.GG\\n  Build Generated: $_now" > "build/build-info"
 
-rm -rf bin/dev
-rm -rf bin/prod
+rm -rf bin
 
 echo "  Updating web assets..."
 
-# Dev
-mkdir -p build/dev/web/assets
+mkdir -p build/web/assets
+cp "../target/web/rjs/build/client-opt.js" "build/web"
+cp "../target/web/rjs/build/javascripts/main.js" "build/web/solitaire.gg.js"
+cp "../target/web/less/main/stylesheets/solitaire.gg.css" "build/web"
 
-cp "../target/web/rjs/build/client-opt.js" "build/dev/web"
-cp "../target/web/rjs/build/client-opt.js.map" "build/dev/web"
-cp "../target/web/rjs/build/javascripts/main.js" "build/dev/web/solitaire.gg.js"
-cp "../target/web/less/main/stylesheets/solitaire.gg.css" "build/dev/web"
-cp "../target/web/less/main/stylesheets/solitaire.gg.css.map" "build/dev/web"
-cp "../app/assets/stylesheets/solitaire.gg.less" "build/dev/web"
+cp -R "../public/images/" "build/web/assets/images"
+rm -Rf "build/web/assets/images/game/cards/classic/_unprocessed"
+rm -Rf "build/web/assets/images/game/cards/standard/_resized"
+rm -Rf "build/web/assets/images/game/cards/standard/_unprocessed"
+rm -Rf "build/web/assets/images/game/cards/standard/x-large"
 
-cp -R "../public/images/" "build/dev/web/assets/images"
-rm -Rf "build/dev/web/assets/images/game/cards/standard/_resized"
-rm -Rf "build/dev/web/assets/images/game/cards/standard/_unprocessed"
-rm -Rf "build/dev/web/assets/images/game/cards/standard/x-large"
-
-mkdir -p build/dev/web/lib
-cp "../public/lib/phaser/js/phaser.js" "build/dev/web/lib"
-cp "../public/lib/underscore/underscore.js" "build/dev/web/lib"
-cp "../target/web/rjs/appdir/lib/requirejs/require.js" "build/dev/web/lib"
-
-
-# Prod
-mkdir -p build/prod/web/assets
-cp "../target/web/rjs/build/client-opt.js" "build/prod/web"
-cp "../target/web/rjs/build/javascripts/main.js" "build/prod/web/solitaire.gg.js"
-cp "../target/web/less/main/stylesheets/solitaire.gg.css" "build/prod/web"
-
-cp -R "../public/images/" "build/prod/web/assets/images"
-rm -Rf "build/prod/web/assets/images/game/cards/standard/_resized"
-rm -Rf "build/prod/web/assets/images/game/cards/standard/_unprocessed"
-rm -Rf "build/prod/web/assets/images/game/cards/standard/x-large"
-
-mkdir -p build/prod/web/lib
-cp "../public/lib/phaser/js/phaser.min.js" "build/prod/web/lib"
-cp "../public/lib/underscore/underscore.min.js" "build/prod/web/lib"
-cp "../target/web/rjs/build/lib/requirejs/require.min.js" "build/prod/web/lib"
+mkdir -p build/web/lib
+cp "../public/lib/phaser/js/phaser.min.js" "build/web/lib"
+cp "../public/lib/underscore/underscore.min.js" "build/web/lib"
+cp "../target/web/rjs/build/lib/requirejs/require.min.js" "build/web/lib"
 
 echo "  Building Electron apps..."
 
-# Dev
-mkdir -p bin/dev
-cp -R "resources/" "bin/dev"
+mkdir bin
+cp -R "assets/electron/" "bin"
 
-mkdir -p build/dev/electron
-cp -R "build/dev/web/" "build/dev/electron"
-cp -R "electron/dev/" "build/dev/electron"
-asar pack build/dev/electron bin/dev/solitaire.gg.asar
+mkdir -p build/electron
+cp -R "build/web/" "build/electron"
+cp -R "src/electron" "build/electron"
+asar pack build/electron build/solitaire.gg.asar
 
-cp bin/dev/solitaire.gg.asar bin/dev/osx/Solitaire.gg.app/Contents/Resources/app.asar
-cp bin/dev/solitaire.gg.asar bin/dev/linux/resources/app.asar
-cp bin/dev/solitaire.gg.asar bin/dev/win32/resources/app.asar
-cp bin/dev/solitaire.gg.asar bin/dev/win64/resources/app.asar
+cp build/solitaire.gg.asar bin/osx/Solitaire.gg.app/Contents/Resources/app.asar
+cp build/solitaire.gg.asar bin/linux/resources/app.asar
+cp build/solitaire.gg.asar bin/win32/resources/app.asar
+cp build/solitaire.gg.asar bin/win64/resources/app.asar
 
-# Prod
-mkdir -p bin/prod
-cp -R "resources/" "bin/prod"
+echo "  Building Cordova apps..."
 
-mkdir -p build/prod/electron
-cp -R "build/prod/web/" "build/prod/electron"
-cp -R "electron/prod/" "build/prod/electron"
-asar pack build/prod/electron bin/prod/solitaire.gg.asar
+mkdir -p build/cordova
+rm build/cordova/config.xml
+cp "src/cordova/config.xml" "build/cordova/config.xml"
+rm -rf build/cordova/www
+cp -R "assets/cordova/" "build/cordova"
+cp "src/cordova/config.xml" "build/cordova"
+cp -R "build/web/" "build/cordova/www"
+cp -R "src/cordova/www/" "build/cordova/www"
 
-cp bin/prod/solitaire.gg.asar bin/prod/osx/Solitaire.gg.app/Contents/Resources/app.asar
-cp bin/prod/solitaire.gg.asar bin/prod/linux/resources/app.asar
-cp bin/prod/solitaire.gg.asar bin/prod/win32/resources/app.asar
-cp bin/prod/solitaire.gg.asar bin/prod/win64/resources/app.asar
+rm -rf build/cordova/res
 
-echo "  Building Cocoon.js distribution..."
+mkdir -p build/cordova/res/ios
+cp -R "assets/design/ios/" "build/cordova/res/ios/"
 
-# Dev
-mkdir -p build/dev/cocoon
-cp -R "build/dev/web/" "build/dev/cocoon"
-cp -R "cocoon/dev/" "build/dev/cocoon"
-pushd build/dev/cocoon/
-zip -r -q ../../../bin/dev/solitaire.gg.zip ./*
+mkdir -p build/cordova/res/android
+cp -R "assets/design/android/" "build/cordova/res/android/"
+
+mkdir -p build/cordova/res/firefoxos
+cp -R "assets/design/firefoxos/" "build/cordova/res/firefoxos/"
+
+pushd build/cordova
+cordova build
 popd
 
-# Prod
-mkdir -p build/prod/cocoon
-cp -R "build/prod/web/" "build/prod/cocoon"
-cp -R "cocoon/prod/" "build/prod/cocoon"
-pushd build/prod/cocoon/
-zip -r -q ../../../bin/prod/solitaire.gg.zip ./*
-popd
+mkdir -p bin/ios
+cp -R build/cordova/platforms/ios/build/emulator/Solitaire.gg.app bin/ios
+
+mkdir -p bin/android
+cp build/cordova/platforms/android/build/outputs/apk/*.apk bin/android
+
+mkdir -p bin/amazon-fireos
+cp build/cordova/platforms/amazon-fireos/out/*.apk bin/amazon-fireos
+
+mkdir -p bin/firefoxos
+cp build/cordova/platforms/firefoxos/build/package.zip bin/firefoxos/Solitaire.gg.zip
 
 echo "  Build complete!"
