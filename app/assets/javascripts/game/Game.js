@@ -27,8 +27,6 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
     } else {
       this.ws = ws;
     }
-
-    console.log("Game started.");
   }
 
   Game.prototype = Phaser.Game.prototype;

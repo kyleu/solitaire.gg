@@ -11,7 +11,6 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
   }
 
   Solitaire.prototype.onConnect = function() {
-    console.log(cfg.user.name + " connected.");
     if(this.game === null) {
       this.game = new Game(this.ws);
     } else {

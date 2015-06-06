@@ -4,8 +4,8 @@ define(['game/helpers/Dimensions'], function (getDimensions) {
   var margin = 0.7;
   var padding = 0.2;
 
-  function calculateLayout(pileSets, layout, aspectRatio) {
-    console.log("Creating layout for [" + pileSets.length + "] pile sets using layout [" + layout + "] with aspect ratio of [" + aspectRatio + "].");
+  function calculateLayout(pileSets, layout /* , aspectRatio */) {
+    //console.log("Creating layout for [" + pileSets.length + "] pile sets using layout [" + layout + "] with aspect ratio of [" + aspectRatio + "].");
     var locations = {};
     var xOffset = margin;
     var yOffset = 0.6;
