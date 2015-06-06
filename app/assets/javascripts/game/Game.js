@@ -6,7 +6,8 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet', 'game/Help'],
     var cardSize = "medium";
     this.cardSet = CardSet[config.cardSet][cardSize];
     var initialState = new InitialState(this);
-    Phaser.Game.call(this, '100%', '100%', Phaser.AUTO, 'game-container', initialState);
+    var transparent = true;
+    Phaser.Game.call(this, '100%', '100%', Phaser.AUTO, 'game-container', initialState, transparent);
     this.status = {};
     this.piles = {};
     this.cards = {};

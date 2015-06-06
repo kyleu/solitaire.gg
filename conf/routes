@@ -33,11 +33,9 @@ GET         /offline/:rules/:seed              controllers.GameController.newOff
 
 GET         /websocket                         controllers.WebsocketController.connect()
 
-GET         /sandbox                           controllers.SandboxController.sandbox
 
 # Admin
 GET         /admin                             controllers.admin.AdminController.index()
-GET         /admin/sandbox                     controllers.SandboxController.adminSandbox()
 
 GET         /admin/enable                      controllers.admin.AdminController.enable
 GET         /admin/status                      controllers.admin.AdminController.status

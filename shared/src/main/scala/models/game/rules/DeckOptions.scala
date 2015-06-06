@@ -8,13 +8,10 @@ case class DeckOptions(
     ranks: Seq[Rank] = Rank.all,
     lowRank: Rank = Rank.Ace
 ) {
-  val highRank: Rank = if (lowRank == Rank.Ace) {
-    Rank.King
-  } else if (lowRank == Rank.Two) {
-    Rank.Ace
-  } else if (lowRank == Rank.Unknown) {
-    Rank.Unknown
-  } else {
-    Rank.allByValue(lowRank.value - 1)
+  val highRank: Rank = lowRank match {
+    case Rank.Ace => Rank.King
+    case Rank.Two => Rank.Ace
+    case Rank.Unknown => Rank.Unknown
+    case x => Rank.allByValue(x.value - 1)
   }
 }

@@ -24,11 +24,11 @@ define([
     Display.init(this.game);
     Keyboard.init(this.game);
 
-    this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
-    this.bg.height = this.game.height * 2;
-    this.bg.width = this.game.width * 2;
-    this.bg.scale = { x: 0.5, y: 0.5 };
-    this.add.existing(this.bg);
+    //this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
+    //this.bg.height = this.game.height * 2;
+    //this.bg.width = this.game.width * 2;
+    //this.bg.scale = { x: 0.5, y: 0.5 };
+    //this.add.existing(this.bg);
 
     this.game.send("Ping", { timestamp: new Date().getTime() });
     this.game.time.events.loop(Phaser.Timer.SECOND * 10, function() {
@@ -110,10 +110,10 @@ define([
         this.game.playmat.resize();
       }
 
-      if(this.bg !== undefined) {
-        this.bg.height = this.game.height * 2;
-        this.bg.width = this.game.width * 2;
-      }
+      //if(this.bg !== undefined) {
+      //  this.bg.height = this.game.height * 2;
+      //  this.bg.width = this.game.width * 2;
+      //}
     }
   };
 

@@ -3,22 +3,26 @@
 )@layout.basic(title + " - " + utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url)) {
   <div id="menu-container">
     <div class="menu-left">
-      <a class="btn" href="">Klondike #1302394</a>
+      <div class="btn menu"></div>
+      <a class="link" href="">Klondike #1302394</a>
     </div>
-    <img class="avatar-small" src="@user.avatar" />
     <div class="menu-right">
-      <a class="btn" href="">@user.username.getOrElse("Guest")</a>
+      <img class="avatar-small" src="@user.avatar" />
+      <a class="link" href="">@user.username.getOrElse("Guest")</a>
     </div>
     <div class="logo">@utils.Config.projectName</div>
   </div>
+
   <div id="status-container">
     <div class="menu-left">
-      <a class="btn options" href="">Options</a>
-      <a class="btn help" href="">Help</a>
+      <div class="btn options"></div>
+      <div class="btn help"></div>
+      <div class="btn feedback"></div>
     </div>
     <div class="menu-right">
-      <a class="btn undo" href="">Undo</a>
-      <a class="btn redo" href="">Redo</a>
+      <div class="btn redo disabled"></div>
+      <div class="btn hint"></div>
+      <div class="btn undo disabled"></div>
     </div>
     <div class="timer-container">
       <span class="timer">0:00</span>

@@ -1,9 +1,5 @@
 "use strict";
 
-function shouldRotateToOrientation(degrees) {
-  return true;
-}
-
 function checkConnection() {
   var networkState = navigator.connection.type;
   alert('Connection type: ' + networkState);

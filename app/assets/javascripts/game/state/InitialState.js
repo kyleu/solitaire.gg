@@ -14,7 +14,7 @@ define(["utils/Config", "game/state/GameState", "game/state/LoadingScreen"], fun
   InitialState.prototype.constructor = InitialState;
 
   InitialState.prototype.preload = function() {
-    this.game.load.image('bg-texture', this.assetRoot + 'assets/images/game/bg.jpg');
+    //this.game.load.image('bg-texture', this.assetRoot + 'assets/images/game/bg.jpg');
     this.game.load.image('load-bar', this.assetRoot + 'assets/images/load/bar.png');
   };
 

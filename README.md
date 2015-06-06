@@ -1,4 +1,4 @@
-# Scalataire
+# Solitaire.gg
 
 Almost certainly the web's finest card games.
 
@@ -14,7 +14,7 @@ $ open http://solitaire.dev
 
 ## Projects
 
-* `scalataire` Main web application. Handles online games.
+* `solitaire-gg` Main web application. Handles online games.
 * `sharedJvm` Core game logic and rules definitions, for JVM projects.
 * `sharedJs` Shared classes, compiled to Scala.js JavaScript.
 * `client` Bare-bones Scala.js app to support offline play.
