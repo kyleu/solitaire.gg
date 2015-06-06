@@ -8,5 +8,7 @@ requirejs.config({
 requirejs(['game/Solitaire'], function(Solitaire) {
   "use strict";
 
+  window.PhaserGlobal.hideBanner = true;
+
   window.solitaire = new Solitaire();
 });

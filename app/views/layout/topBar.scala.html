@@ -5,8 +5,12 @@
     <a id="link-game" class="link" href=""></a>
   </div>
   <div class="menu-right">
-    <img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@user.avatar" />
+    @if(user.avatar == "guest") {
+      <img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@routes.Assets.at("images/avatar/profile-ffffff.png")" />
+    } else {
+      <img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@user.avatar" />
+    }
     <a class="link" href="">@user.username.getOrElse("Guest")</a>
   </div>
-  <a class="logo" href="">@utils.Config.projectName</a>
+  <a class="logo" href="@routes.HomeController.index()">@utils.Config.projectName</a>
 </div>

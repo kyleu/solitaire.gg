@@ -1,6 +1,8 @@
-@(title: String, user: models.user.User, rulesId: String, initialAction: Seq[String], seed: Option[Int] = None, offline: Boolean = false)(
-    implicit session: Session, flash: Flash
-)@layout.basic(title + " - " + utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url)) {
+@(
+    title: String, user: models.user.User, rulesId: String, initialAction: Seq[String], seed: Option[Int] = None, offline: Boolean = false
+)(implicit session: Session, flash: Flash)@layout.basic(
+  title + " - " + utils.Config.projectName, bodyClass = Some("noscroll"), stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url)
+) {
   @views.html.layout.topBar(user)
   @views.html.layout.bottomBar()
 
