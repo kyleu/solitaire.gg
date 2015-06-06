@@ -7,6 +7,7 @@ import models.game.pile.PileSet
 case class GameState(
     gameId: UUID,
     rules: String,
+    rulesTitle: String,
     maxPlayers: Int,
     seed: Int,
     deck: Deck,

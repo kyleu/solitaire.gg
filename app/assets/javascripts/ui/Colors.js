@@ -1,4 +1,5 @@
 define([], function() {
+  "use strict";
   return [
     "000000",
     "ffffff",

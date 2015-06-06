@@ -1,4 +1,4 @@
-define(['utils/Config', 'game/state/InitialState', 'game/CardSet', 'game/Help'], function (config, InitialState, CardSet, Help) {
+define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet', 'game/Help'], function (config, Options, InitialState, CardSet, Help) {
   "use strict";
 
   function Game(ws) {
@@ -8,6 +8,7 @@ define(['utils/Config', 'game/state/InitialState', 'game/CardSet', 'game/Help'],
     var initialState = new InitialState(this);
     var transparent = true;
     Phaser.Game.call(this, '100%', '100%', Phaser.AUTO, 'game-container', initialState, transparent);
+    this.options = new Options(this);
     this.status = {};
     this.piles = {};
     this.cards = {};

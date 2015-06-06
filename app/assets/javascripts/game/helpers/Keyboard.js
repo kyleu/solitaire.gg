@@ -64,12 +64,16 @@ define([], function () {
 
       var undoKey = game.input.keyboard.addKey(Phaser.Keyboard.Z);
       undoKey.onDown.add(function() {
-        game.send("Undo", {});
+        if(game.options.undosAvailable > 0) {
+          game.send("Undo", {});
+        }
       });
 
       var redoKey = game.input.keyboard.addKey(Phaser.Keyboard.Y);
       redoKey.onDown.add(function() {
-        game.send("Redo", {});
+        if(game.options.redosAvailable > 0) {
+          game.send("Redo", {});
+        }
       });
 
       var victoriousCheatKey = game.input.keyboard.addKey(Phaser.Keyboard.V);

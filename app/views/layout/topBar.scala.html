@@ -1,0 +1,12 @@
+@(user: models.user.User)
+<div id="menu-container">
+  <div class="menu-left">
+    <div id="btn-menu" title="Menu" class="btn menu"></div>
+    <a id="link-game" class="link" href=""></a>
+  </div>
+  <div class="menu-right">
+    <img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@user.avatar" />
+    <a class="link" href="">@user.username.getOrElse("Guest")</a>
+  </div>
+  <a class="logo" href="">@utils.Config.projectName</a>
+</div>

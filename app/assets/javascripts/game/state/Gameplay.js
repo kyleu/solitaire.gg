@@ -48,12 +48,15 @@ define([
         this.game.possibleMoves = v.moves;
         this.helper.loadPileSets(v.state.pileSets);
         this.helper.loadCards(v.state.pileSets, v.state.deck.originalOrder);
+        this.game.options.setGame(v.state);
         break;
       case "PossibleMoves":
         this.game.possibleMoves = v.moves;
         if(v.moves.length === 0) {
           alert("No more moves available.");
         }
+        this.game.options.setUndosAvalable(v.undosAvailable);
+        this.game.options.setRedosAvalable(v.redosAvailable);
         break;
       case "CardRevealed":
         var existing = this.game.cards[v.card.id];

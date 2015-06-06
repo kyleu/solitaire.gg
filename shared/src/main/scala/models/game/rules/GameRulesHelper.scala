@@ -26,7 +26,7 @@ trait GameRulesHelper { this: GameRules =>
     val deck = newShuffledDecks(seed, rng, deckOptions.numDecks, deckOptions.ranks, deckOptions.suits, lowRank, highRank)
     val pileSets = newPileSets()
     val layout = Layouts.forRules(id)
-    val gameState = GameState(gameId, id, maxPlayers, seed, deck, pileSets, layout)
+    val gameState = GameState(gameId, id, title, maxPlayers, seed, deck, pileSets, layout)
     gameState
   }
 

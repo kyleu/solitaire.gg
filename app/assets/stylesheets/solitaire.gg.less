@@ -27,7 +27,7 @@ body {
   position: absolute;
   width: 100%;
   height: 40px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
   .link {
     color: #ffffff;
     text-decoration: none;
@@ -43,7 +43,7 @@ body {
   .menu-left {
     padding: 4px;
     float: left;
-    width: 200px;
+    width: 250px;
     .btn {
       float: left;
       margin-left: 5px;
@@ -57,7 +57,7 @@ body {
     padding: 4px;
     float: right;
     text-align: right;
-    width: 200px;
+    width: 250px;
     .btn {
       float: right;
       margin-right: 5px;
@@ -104,6 +104,9 @@ body {
     cursor: pointer;
   }
   .logo {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
     padding: 10px;
     text-align: center;
   }
@@ -113,21 +116,31 @@ body {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
   #menu-container, #status-container {
+    .link {
+      display: none;
+    }
+  }
+  #menu-container {
+    .menu-left {
+      width: 60px;
+    }
+    .menu-right {
+      width: 60px;
+    }
+  }
+  #status-container {
     .menu-left {
       width: 120px;
     }
     .menu-right {
       width: 120px;
     }
-    .link {
-      display: none;
-    }
   }
 }
 
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 290px) {
   #menu-container, #status-container {
     .logo {
       display: none;
