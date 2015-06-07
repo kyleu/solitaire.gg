@@ -6,9 +6,15 @@
     <div class="module">
       <div class="welcome">@Messages("index.welcome")</div>
       <div class="tagline">@Messages("index.tagline")</div>
-      <div class="play-now">
-        <a href="@routes.GameController.newGame("klondike").url" role="button">@Messages("index.play.now")</a>
-      </div>
+      @if(user.isGuest) {
+        <div class="coming-soon">
+          @Messages("index.coming.soon")
+        </div>
+      } else {
+        <div class="play-now">
+          <a href="@routes.GameController.newGame("klondike").url" role="button">@Messages("index.play.now")</a>
+        </div>
+      }
     </div>
 
     @if(!user.isGuest) {
