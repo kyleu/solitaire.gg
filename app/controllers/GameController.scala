@@ -19,24 +19,12 @@ object GameController extends BaseController {
     }
   }
 
-  def newDefaultGame() = withSession { implicit request =>
-    startGame()
-  }
-
-  def newFacebookGame() = withSession { implicit request =>
-    startGame()
-  }
-
   def newGame(rules: String) = withSession { implicit request =>
     startGame(rules)
   }
 
   def newGameWithSeed(rules: String, seed: Int) = withSession { implicit request =>
     startGame(rules, seed = Some(seed))
-  }
-
-  def newDefaultOfflineGame() = withSession { implicit request =>
-    startGame(offline = true)
   }
 
   def newOfflineGame(rules: String) = withSession { implicit request =>
@@ -48,7 +36,7 @@ object GameController extends BaseController {
   }
 
   private[this] def startGame(
-    rulesId: String = "klondike",
+    rulesId: String,
     initialAction: Seq[String] = Seq("start"),
     seed: Option[Int] = None,
     offline: Boolean = false

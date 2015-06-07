@@ -5,6 +5,7 @@ import java.util.UUID
 import com.mohiva.play.silhouette.api.{ LoginEvent, LoginInfo, SignUpEvent }
 import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, CredentialsProvider }
 import controllers.BaseController
+import models.ui.Colors
 import models.user.{ RegistrationData, User, UserForms }
 import org.joda.time.LocalDateTime
 import play.api.i18n.Messages
@@ -27,13 +28,11 @@ object RegistrationController extends BaseController {
       data => {
         env.identityService.retrieve(LoginInfo(CredentialsProvider.ID, data.email)).flatMap {
           case Some(user) => Future.successful {
-            Ok(views.html.auth.register(UserForms.registrationForm.fill(data)))
-            Redirect(controllers.auth.routes.RegistrationController.registrationForm()).flashing("error" -> Messages("registration.email.taken"))
+            Ok(views.html.auth.register(UserForms.registrationForm.fill(data))).flashing("error" -> Messages("registration.email.taken"))
           }
           case None => env.identityService.retrieve(data.username) flatMap {
             case Some(user) => Future.successful {
-              Ok(views.html.auth.register(UserForms.registrationForm.fill(data)))
-              Redirect(controllers.auth.routes.RegistrationController.registrationForm()).flashing("error" -> Messages("registration.username.taken"))
+              Ok(views.html.auth.register(UserForms.registrationForm.fill(data))).flashing("error" -> Messages("registration.username.taken"))
             }
             case None => saveProfile(data)
           }
@@ -43,16 +42,16 @@ object RegistrationController extends BaseController {
   }
 
   private[this] def saveProfile(data: RegistrationData)(implicit request: SecuredRequest[AnyContent]) = {
+    if (request.identity.profiles.exists(_.providerID == "credentials")) {
+      throw new IllegalStateException("You're already registered.") // TODO Fix?
+    }
+
     val loginInfo = LoginInfo(CredentialsProvider.ID, data.email)
     val authInfo = env.hasher.hash(data.password)
-    val user = if (request.identity.profiles.exists(_.providerID == "credentials")) {
-      User(UUID.randomUUID, Some(data.username), profiles = Seq(loginInfo), created = new LocalDateTime(), avatar = "default")
-    } else {
-      request.identity.copy(
-        username = if (data.username.isEmpty) { request.identity.username } else { Some(data.username) },
-        profiles = request.identity.profiles :+ loginInfo
-      )
-    }
+    val user = request.identity.copy(
+      username = if (data.username.isEmpty) { request.identity.username } else { Some(data.username) },
+      profiles = request.identity.profiles :+ loginInfo
+    )
     val profile = CommonSocialProfile(
       loginInfo = loginInfo,
       email = Some(data.email)
@@ -61,7 +60,7 @@ object RegistrationController extends BaseController {
     for {
       avatar <- env.avatarService.retrieveURL(data.email)
       profile <- env.identityService.create(user, profile.copy(avatarURL = avatar.orElse(Some("default"))))
-      user <- env.identityService.save(user.copy(avatar = avatar.getOrElse("default")), update = true)
+      user <- env.identityService.save(user.copy(avatar = avatar.getOrElse(request.identity.avatar)), update = true)
       authInfo <- env.authInfoService.save(loginInfo, authInfo)
       authenticator <- env.authenticatorService.create(loginInfo)
       value <- env.authenticatorService.init(authenticator)

@@ -2,6 +2,7 @@ package controllers
 
 import java.util.UUID
 
+import models.ui.Colors
 import services.database.Database
 import models.database.queries.RequestLogQueries
 import services.user.AuthenticationEnvironment
@@ -53,6 +54,7 @@ abstract class BaseController extends Silhouette[User, CookieAuthenticator] with
           id = UUID.randomUUID(),
           username = None,
           avatar = "guest",
+          color = Colors.randomColor._2,
           profiles = Nil,
           created = new LocalDateTime()
         )

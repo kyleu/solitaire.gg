@@ -5,10 +5,10 @@ define([], function() {
   var iframe = document.getElementById("gameplay-modal-iframe");
 
   var Modal = {
-    show: function(height, margin, url) {
+    show: function(url) {
       iframe.src = url;
-      content.style.marginTop = margin + "px";
-      content.style.height = (height - 40) + "px";
+      content.style.height = (window.innerHeight - 120 - 20) + "px";
+      content.style.marginTop = "60px";
       div.className = "on";
     },
 

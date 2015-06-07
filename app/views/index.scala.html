@@ -1,106 +1,72 @@
 @(user: models.user.User)(implicit request: Request[AnyContent], session: Session, flash: Flash)@layout.basic(
   utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url)
 ) {
-  @layout.topBar(user)
+  @layout.topBar(user, false)
   <div id="main-page-content">
-    <div class="scroll">
-      <h1>@utils.Config.projectName</h1>
-      <p>@Messages("index.tagline")</p>
-      @if(!user.isGuest) {
-        <p><a class="btn btn-primary btn-lg" href="@routes.GameController.newDefaultGame().url" role="button">@Messages("index.play.now")</a></p>
-      } else {
-        <p>@Messages("index.coming.soon")</p>
-      }
-      @if(!user.isGuest) {
-        <div class="row">
-          <div class="col-md-6">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">@Messages("index.games.completed")</h3>
-              </div>
-              <div class="panel-body">
-                <ul>
-                @for(r <- models.game.rules.GameRulesSet.completed) {
-                  <li>
-                    <a href="@routes.GameController.newGame(r.id)">@r.title</a>
-                    <a href="@routes.GameController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
-                  </li>
-                }
-                </ul>
-              </div>
-            </div>
-
-            @if(user.isAdmin) {
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">@Messages("index.games.in.progress")</h3>
-                </div>
-                <div class="panel-body">
-                  <ul>
-                  @for(r <- models.game.rules.GameRulesSet.inProgress) {
-                    <li>
-                      <a href="@routes.GameController.newGame(r.id)">@r.title</a>
-                      <a href="@routes.GameController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
-                    </li>
-                  }
-                  </ul>
-                </div>
-              </div>
-
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">@Messages("index.games.unstarted")</h3>
-                </div>
-                <div class="panel-body">
-                  <ul>
-                  @for(r <- models.game.rules.GameRulesSet.unfinished) {
-                    <li>
-                      <a href="@routes.GameController.newGame(r.id)">@r.title</a>
-                      <a href="@routes.GameController.help(r.id)"><span class="glyphicon glyphicon-question-sign"></span></a>
-                    </li>
-                  }
-                  </ul>
-                </div>
-              </div>
-            }
-          </div>
-          <div class="col-md-6">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Profile</h3>
-              </div>
-              <div class="panel-body">
-              @if(user.username.nonEmpty) {
-                @Messages("index.known.as", user.username.getOrElse(Messages("guest.name")))<br/>
-                <a class="btn btn-default" href="@routes.ProfileController.profile()">@Messages("index.buttons.profile")</a>
-                <a class="btn btn-default" href="@controllers.auth.routes.AuthenticationController.signOut()">@Messages("index.buttons.sign.out")</a>
-              } else {
-                @Messages("index.anonymous")<br/>
-                <a class="btn btn-default" href="@controllers.auth.routes.RegistrationController.registrationForm()">@Messages("index.buttons.sign.up")</a>
-                <a class="btn btn-default" href="@controllers.auth.routes.AuthenticationController.signInForm()">@Messages("index.buttons.sign.in")</a>?
-              }
-              </div>
-            </div>
-
-            @if(user.isAdmin) {
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">@Messages("index.administration")</h3>
-                </div>
-                <div class="panel-body">
-                  <a class="btn btn-default" href="@controllers.admin.routes.AdminController.status()">Activity</a>
-                  <a class="btn btn-default" href="@controllers.admin.routes.FeedbackController.feedbackList()">Feedback</a>
-                  <a class="btn btn-default" href="@controllers.admin.routes.UserController.userList()">Users</a>
-                  <a class="btn btn-default" href="@controllers.admin.routes.GameHistoryController.gameList()">Games</a>
-                  <a class="btn btn-default" href="@controllers.admin.routes.RequestLogController.requestList()">Requests</a>
-                  <a class="btn btn-default" href="@controllers.admin.routes.TestController.tests()">Tests</a>
-                  <a class="btn btn-default" href="@controllers.admin.routes.RulesController.rules()">Rules</a>
-                </div>
-              </div>
-            }
-          </div>
-        </div>
-      }
+    <div class="module">
+      <div class="welcome">@Messages("index.welcome")</div>
+      <div class="tagline">@Messages("index.tagline")</div>
+      <div class="play-now">
+        <a href="@routes.GameController.newGame("klondike").url" role="button">@Messages("index.play.now")</a>
+      </div>
     </div>
+
+    @if(!user.isGuest) {
+      <div class="module">
+        <div class="header">@Messages("index.games.popular")</div>
+        <ul>
+        @for(r <- Seq(
+          models.game.rules.generated.Klondike,
+          models.game.rules.generated.FreeCell,
+          models.game.rules.generated.Pyramid,
+          models.game.rules.generated.Canfield,
+          models.game.rules.generated.Spider
+        )) {
+          <li>
+            <div class="gamelink"><a href="@routes.GameController.newGame(r.id)">@r.title</a></div>
+          </li>
+        }
+        </ul>
+        <div class="clear"></div>
+      </div>
+
+      <div class="module">
+        <div class="header">@Messages("index.games.completed")</div>
+        <ul>
+        @for(r <- models.game.rules.GameRulesSet.completed) {
+          <li>
+            <div class="gamelink"><a href="@routes.GameController.newGame(r.id)">@r.title</a></div>
+          </li>
+        }
+        </ul>
+        <div class="clear"></div>
+      </div>
+    }
+
+    @if(user.isAdmin) {
+      <div class="module">
+        <div class="header">@Messages("index.games.in.progress")</div>
+        <ul>
+        @for(r <- models.game.rules.GameRulesSet.inProgress) {
+          <li>
+            <div class="gamelink"><a href="@routes.GameController.newGame(r.id)">@r.title</a></div>
+          </li>
+        }
+        </ul>
+        <div class="clear"></div>
+      </div>
+
+      <div class="module">
+        <div class="header">@Messages("index.games.unstarted")</div>
+        <ul>
+        @for(r <- models.game.rules.GameRulesSet.unfinished) {
+          <li>
+            <div class="gamelink"><a href="@routes.GameController.newGame(r.id)">@r.title</a></div>
+          </li>
+        }
+        </ul>
+        <div class="clear"></div>
+      </div>
+    }
   </div>
 }

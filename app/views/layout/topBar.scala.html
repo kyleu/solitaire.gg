@@ -1,16 +1,16 @@
-@(user: models.user.User)
+@(user: models.user.User, showMenu: Boolean = true)
 <div id="menu-container">
   <div class="menu-left">
-    <div id="btn-menu" title="Menu" class="btn menu"></div>
+    @if(showMenu) {
+      <div id="btn-menu" title="Menu" class="btn menu"></div>
+    }
     <a id="link-game" class="link" href=""></a>
   </div>
   <div class="menu-right">
-    @if(user.avatar == "guest") {
-      <img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@routes.Assets.at("images/avatar/profile-ffffff.png")" />
-    } else {
-      <img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@user.avatar" />
+    @defining(if(user.avatar == "guest" || user.avatar == "default") { routes.Assets.at("images/avatar/profile-ffffff.png") } else { user.avatar }) { av =>
+      <a href="@routes.ProfileController.profile()"><img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@av" /></a>
     }
-    <a class="link" href="">@user.username.getOrElse("Guest")</a>
+    <a class="link" href="@routes.ProfileController.profile()">@user.username.getOrElse("Guest")</a>
   </div>
   <a class="logo" href="@routes.HomeController.index()">@utils.Config.projectName</a>
 </div>

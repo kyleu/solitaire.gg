@@ -11,22 +11,14 @@ registration.username.taken = That username is already in use.
 registration.email.taken = That email address is already in use.
 
 # Index Page
+index.welcome = Welcome to Solitaire.gg
 index.tagline = I''m trying to build the web''s best card games. Thanks for checking out my progress!
-index.play.now = Play Now
-index.coming.soon = Coming Soon!
+index.play.now = Play Solitaire
 
-index.known.as = You are currently known as {0}.
-index.anonymous = You haven't picked a username yet.
-
-index.buttons.profile = Profile
-index.buttons.sign.up = Register
-index.buttons.sign.in = Sign In
-index.buttons.sign.out = Sign Out
-
-index.games.completed= Completed Games
+index.games.popular = Popular Games
+index.games.completed= All Games
 index.games.in.progress = Works in Progress
 index.games.unstarted = Unstarted Games
-index.administration = Administration
 
 # Email
 email.from = Solitaire.gg <solitaire@solitaire.gg>

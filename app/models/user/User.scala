@@ -9,6 +9,7 @@ case class User(
     id: UUID,
     username: Option[String],
     avatar: String,
+    color: String,
     profiles: Seq[LoginInfo],
     roles: Set[Role] = Set(Role.User),
     created: LocalDateTime

@@ -22,12 +22,9 @@ GET         /signout                           controllers.auth.AuthenticationCo
 # Game
 GET         /help/:id                          controllers.GameController.help(id)
 
-GET         /play                              controllers.GameController.newDefaultGame()
-POST        /play/facebook                     controllers.GameController.newFacebookGame()
 GET         /play/:rules                       controllers.GameController.newGame(rules)
 GET         /play/:rules/:seed                 controllers.GameController.newGameWithSeed(rules, seed: Int)
 
-GET         /offline                           controllers.GameController.newDefaultOfflineGame()
 GET         /offline/:rules                    controllers.GameController.newOfflineGame(rules)
 GET         /offline/:rules/:seed              controllers.GameController.newOfflineGameWithSeed(rules, seed: Int)
 

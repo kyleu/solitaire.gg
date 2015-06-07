@@ -8,6 +8,7 @@ case object CreateUserTable extends Statement {
       id uuid primary key,
       username character varying(256),
       avatar character varying(256) not null,
+      color character(6) not null,
       profiles text[] not null,
       roles character varying(64)[] not null,
       created timestamp not null

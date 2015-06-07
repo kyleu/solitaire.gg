@@ -11,21 +11,26 @@ import org.joda.time.LocalDateTime
 
 object UserQueries extends BaseQueries[User] {
   override protected val tableName = "users"
-  override protected val columns = Seq("id", "username", "avatar", "profiles", "roles", "created")
+  override protected val columns = Seq("id", "username", "avatar", "color", "profiles", "roles", "created")
   override protected val searchColumns = Seq("id::text", "username")
 
   case class UpdateUser(u: User) extends Statement {
-    override val sql = updateSql(Seq("username", "avatar", "profiles", "roles"))
+    override val sql = updateSql(Seq("username", "avatar", "color", "profiles", "roles"))
     override val values = {
       val profiles = u.profiles.map(l => l.providerID + ":" + l.providerKey).toArray
       val roles = u.roles.map(_.name).toArray
-      Seq(u.username, u.avatar, profiles, roles, u.id)
+      Seq(u.username, u.avatar, u.color, profiles, roles, u.id)
     }
   }
 
   case class SetAvatarUrl(userId: UUID, url: String) extends Statement {
     override val sql = updateSql(Seq("avatar"))
     override val values = Seq(url, userId)
+  }
+
+  case class SetColor(userId: UUID, color: String) extends Statement {
+    override val sql = updateSql(Seq("color"))
+    override val values = Seq(color, userId)
   }
 
   case class AddRole(id: UUID, role: Role) extends Statement {
@@ -58,14 +63,15 @@ object UserQueries extends BaseQueries[User] {
     }
     val username = row("username") match { case s: String => Some(s); case _ => None }
     val avatar = row("avatar") match { case s: String => s }
+    val color = row("color") match { case s: String => s }
     val roles = (row("roles") match { case ab: collection.mutable.ArrayBuffer[_] => ab }).map(x => Role(x.toString)).toSet
     val created = row("created") match { case ldt: LocalDateTime => ldt }
-    User(id, username, avatar, profiles, roles, created)
+    User(id, username, avatar, color, profiles, roles, created)
   }
 
   override protected def toDataSeq(u: User) = {
     val profiles = u.profiles.map(l => l.providerID + ":" + l.providerKey).toArray
     val roles = u.roles.map(_.name).toArray
-    Seq(u.id, u.username, u.avatar, profiles, roles, u.created)
+    Seq(u.id, u.username, u.avatar, u.color, profiles, roles, u.created)
   }
 }

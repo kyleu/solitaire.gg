@@ -11,7 +11,7 @@ object ReportQueries {
       where table_catalog = 'solitaire' and table_schema = 'public' and table_type = 'BASE TABLE'
       order by table_name
     """)
-    override def reduce(rows: Iterator[RowData]) = rows.map( row => row("tn") match { case s: String => s }).toList
+    override def reduce(rows: Iterator[RowData]) = rows.map(row => row("tn") match { case s: String => s }).toList
   }
 
   case class CountTable(t: String) extends SingleRowQuery[(String, Long)] {

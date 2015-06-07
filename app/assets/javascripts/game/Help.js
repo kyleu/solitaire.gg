@@ -7,9 +7,7 @@ define(['ui/Modal'], function(Modal) {
     if(Modal.isVisible()) {
       Modal.hide();
     } else {
-      var height = this.game.height * 0.9;
-      var margin = this.game.height * 0.05;
-      Modal.show(height, margin, "/help/" + this.game.rules);
+      Modal.show("/help/" + this.game.rules);
     }
   };
 
@@ -17,9 +15,7 @@ define(['ui/Modal'], function(Modal) {
     if(Modal.isVisible()) {
       Modal.hide();
     } else {
-      var height = this.game.height * 0.9;
-      var margin = this.game.height * 0.05;
-      Modal.show(height, margin, "/feedback");
+      Modal.show("/feedback");
     }
   };
 

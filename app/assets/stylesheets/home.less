@@ -1,3 +1,72 @@
 #main-page-content {
-  margin-top: 40px;
+  margin-top: 60px;
+
+  .module {
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000;
+    .header {
+      font-size: 120%;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      display: inline;
+      float: left;
+      width: 20%;
+      height: 40px;
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+      .gamelink {
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .welcome {
+    font-size: 120%;
+  }
+  .tagline {
+    margin: 10px 0;
+  }
+  .play-now {
+    font-size: 150%;
+    margin: 20px 0 10px 0;
+    a {
+      background-color: #607d8b;
+      padding: 10px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #main-page-content .module li {
+    width: 33%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #main-page-content .module li {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #main-page-content .module li {
+    width: 100%;
+  }
 }

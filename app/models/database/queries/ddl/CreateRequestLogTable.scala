@@ -17,6 +17,7 @@ case object CreateRequestLogTable extends Statement {
       path text not null,
       query_string text,
 
+      lang text,
       cookie text,
       referrer text,
       user_agent text,

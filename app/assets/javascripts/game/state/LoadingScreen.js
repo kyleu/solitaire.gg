@@ -14,7 +14,7 @@ define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState'], function
   LoadingScreen.prototype.constructor = LoadingScreen;
 
   LoadingScreen.prototype.preload = function() {
-    this.message = this.game.add.text(this.game.world.centerX - 90, this.game.world.centerY - 60, "Loading...", { font: "18px Helvetica", fill: "#ffffff"});
+    this.message = this.game.add.text(this.game.world.centerX - 25, this.game.world.centerY - 60, "Loading...", { font: "18px Helvetica", fill: "#ffffff"});
 
     //this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
     //this.bg.height = this.game.height * 2;
