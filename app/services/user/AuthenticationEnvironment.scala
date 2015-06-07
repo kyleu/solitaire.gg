@@ -1,14 +1,17 @@
 package services.user
 
 import com.mohiva.play.silhouette.api.util.{ PlayHTTPLayer, Clock }
-import com.mohiva.play.silhouette.api.{ EventBus, Environment }
+import com.mohiva.play.silhouette.api.{ RequestProvider, EventBus, Environment }
 import com.mohiva.play.silhouette.impl.authenticators._
-import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
-import com.mohiva.play.silhouette.impl.services.{ DelegableAuthInfoService, GravatarService }
-import com.mohiva.play.silhouette.impl.util.{ PlayCacheLayer, SecureRandomIDGenerator, BCryptPasswordHasher, DefaultFingerprintGenerator }
+import com.mohiva.play.silhouette.impl.providers.{ BasicAuthProvider, CredentialsProvider }
+import com.mohiva.play.silhouette.impl.repositories.DelegableAuthInfoRepository
+import com.mohiva.play.silhouette.impl.services.GravatarService
+import com.mohiva.play.silhouette.impl.util.{ SecureRandomIDGenerator, BCryptPasswordHasher, DefaultFingerprintGenerator }
 import models.user.User
 
 object AuthenticationEnvironment extends Environment[User, CookieAuthenticator] {
+  override implicit val executionContext = play.api.libs.concurrent.Execution.Implicits.defaultContext
+
   private[this] val fingerprintGenerator = new DefaultFingerprintGenerator(false)
 
   override val identityService = UserService
@@ -21,17 +24,19 @@ object AuthenticationEnvironment extends Environment[User, CookieAuthenticator] 
 
   val clock = Clock()
 
-  val authInfoService = new DelegableAuthInfoService(PasswordInfoService, OAuth1InfoService, OAuth2InfoService, OpenIdInfoService)
+  val authInfoService = new DelegableAuthInfoRepository(PasswordInfoService, OAuth1InfoService, OAuth2InfoService, OpenIdInfoService)
 
   val credentials = new CredentialsProvider(authInfoService, hasher, Seq(hasher))
 
   private[this] val sap = new SocialAuthProviders(play.api.Play.current.configuration, httpLayer, hasher, authInfoService, credentials, idGenerator, clock)
-  override val providers = sap.providers.toMap
+
+  val authProvider = new BasicAuthProvider(authInfoService, hasher, Nil)
+
+  override val requestProviders = Seq(authProvider)
   val providersSeq = sap.providers
+  val providersMap = sap.providers.toMap
 
   val avatarService = new GravatarService(httpLayer)
-
-  val cache = new PlayCacheLayer
 
   override val eventBus = EventBus()
 
@@ -51,16 +56,4 @@ object AuthenticationEnvironment extends Environment[User, CookieAuthenticator] 
       authenticatorExpiry = cfg.getInt("expiry").getOrElse(throw new IllegalArgumentException())
     ), SessionInfoService, fingerprintGenerator, idGenerator, clock)
   }
-  //  override val authenticatorService = {
-  //    val cfg = play.api.Play.current.configuration.getConfig("silhouette.authenticator.session").getOrElse {
-  //      throw new IllegalArgumentException("Missing session configuration.")
-  //    }
-  //    new SessionAuthenticatorService(SessionAuthenticatorSettings(
-  //      sessionKey = cfg.getString("sessionKey").getOrElse(throw new IllegalArgumentException()),
-  //      encryptAuthenticator = cfg.getBoolean("encryptAuthenticator").getOrElse(throw new IllegalArgumentException()),
-  //      useFingerprinting = cfg.getBoolean("useFingerprinting").getOrElse(throw new IllegalArgumentException()),
-  //      authenticatorIdleTimeout = cfg.getInt("authenticatorIdleTimeout"),
-  //      authenticatorExpiry = cfg.getInt("authenticatorExpiry").getOrElse(throw new IllegalArgumentException())
-  //    ), fingerprintGenerator, clock)
-  //  }
 }

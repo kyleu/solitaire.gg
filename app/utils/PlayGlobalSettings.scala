@@ -8,14 +8,13 @@ import play.api.http.HeaderNames
 import play.api.mvc.{ Action, RequestHeader, Results, WithFilters }
 import play.api.{ Application, GlobalSettings, Mode }
 import play.filters.gzip.GzipFilter
-import play.filters.headers.SecurityHeadersFilter
 import services.ActorSupervisor
 import services.database.{ Database, Schema }
 import utils.metrics.Instrumented
 
 import scala.concurrent.Future
 
-object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, SecurityHeadersFilter(), new GzipFilter()) with GlobalSettings with Logging {
+object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter()) with GlobalSettings with Logging {
   override def onStart(app: Application) {
     log.info(utils.Config.projectName + " build [" + BuildInfo.buildinfoBuildnumber + "] is starting on [" + utils.Config.hostname + "].")
 

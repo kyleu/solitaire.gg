@@ -2,8 +2,8 @@ package services.user
 
 import java.util.UUID
 
-import com.mohiva.play.silhouette.api.LoginInfo
-import com.mohiva.play.silhouette.api.services.{ AuthInfo, IdentityService }
+import com.mohiva.play.silhouette.api.{ AuthInfo, LoginInfo }
+import com.mohiva.play.silhouette.api.services.IdentityService
 import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile
 import models.database.queries.auth.{ ProfileQueries, UserQueries }
 import models.user.User

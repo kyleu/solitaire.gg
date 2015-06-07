@@ -5,18 +5,18 @@ import com.mohiva.play.silhouette.impl.providers.openid.SteamProvider
 import com.mohiva.play.silhouette.impl.providers._
 import com.mohiva.play.silhouette.impl.providers.openid.services.PlayOpenIDService
 import play.api.Play.current
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.{ JsArray, JsObject, Json }
+import play.api.libs.openid.OpenIdClient
 import play.api.libs.ws.WS
 import play.api.mvc.Request
 
-import scala.concurrent.Future
+import scala.concurrent.{ ExecutionContext, Future }
 
 object SteamUtils {
   private[this] lazy val apiKey = play.api.Play.current.configuration.getString("silhouette.steam.apiKey").getOrElse(throw new IllegalArgumentException())
 
-  def steamService(steamSettings: OpenIDSettings) = new PlayOpenIDService(steamSettings) {
-    override def verifiedID[B](implicit request: Request[B]): Future[OpenIDInfo] = {
+  def steamService(client: OpenIdClient, steamSettings: OpenIDSettings) = new PlayOpenIDService(client, steamSettings) {
+    override def verifiedID[B](implicit request: Request[B], ec: ExecutionContext): Future[OpenIDInfo] = {
       super.verifiedID.flatMap { info =>
         SteamUtils.getProfile(info.id).map { profile =>
           info.copy(attributes = profile)
@@ -40,8 +40,9 @@ object SteamUtils {
   }
 
   def getProfile(id: String) = {
+    import play.api.libs.concurrent.Execution.Implicits.defaultContext
     val url = "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + apiKey + "&steamids=" + id
-    WS.url(url).get().map { response =>
+    WS.client.url(url).get().map { response =>
       var ret = Seq.empty[(String, String)]
       val json = Json.parse(response.body)
       val content = (json \ "response").asOpt[JsObject].flatMap(x => (x \ "players").asOpt[JsArray].flatMap(_.value.headOption)).flatMap(_.asOpt[JsObject])

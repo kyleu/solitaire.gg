@@ -5,15 +5,16 @@ import java.util.UUID
 import controllers.BaseController
 import models.database.queries.RequestLogQueries
 import models.database.queries.auth.UserQueries
+import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.game.GameHistoryService
 import services.user.UserService
-import utils.{ Config, CacheService }
+import utils.CacheService
 
 import scala.concurrent.Future
 
-object UserController extends BaseController {
+class UserController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   def userList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     Database.query(UserQueries.CountQuery(q)).flatMap { count =>
       Database.query(UserQueries.SearchQuery(q, getOrderClause(sortBy), Some(page))).map { users =>

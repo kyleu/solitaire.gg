@@ -1,7 +1,7 @@
 package services.help
 
 import models.game.rules._
-import play.api.i18n.Lang
+import play.api.i18n.Messages
 
 object GameRulesHelpService {
   private[this] val descriptionLinkPattern = """\^([a-z0-9]+)\^""".r
@@ -24,7 +24,7 @@ object GameRulesHelpService {
     linked
   }
 
-  def layout(layoutString: String, rules: GameRules)(implicit lang: Lang) = {
+  def layout(layoutString: String, rules: GameRules)(implicit messages: Messages) = {
     var foundationsProcessed = 0
     var tableausProcessed = 0
     var pyramidsProcessed = 0

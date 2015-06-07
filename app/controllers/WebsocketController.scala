@@ -2,14 +2,14 @@ package controllers
 
 import akka.actor.ActorRef
 import models.{ RequestMessage, ResponseMessage }
-import play.api.i18n.Messages
+import play.api.i18n.{ MessagesApi, Messages }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.{ AnyContentAsEmpty, Request, WebSocket }
 import services.{ ActorSupervisor, ConnectionService }
 
 import scala.concurrent.Future
 
-object WebsocketController extends BaseController {
+class WebsocketController @javax.inject.Inject() (val messagesApi: MessagesApi)  extends BaseController {
   import play.api.Play.current
   import utils.MessageFrameFormatter._
 

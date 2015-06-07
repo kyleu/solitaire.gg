@@ -48,7 +48,7 @@ object RequestMessageSerializers {
       }
       jsResult match {
         case rm: JsSuccess[RequestMessage @unchecked] => rm.get
-        case e: JsError => throw new IllegalArgumentException("Error parsing json for [" + c + "]: " + JsError.toFlatJson(e).toString())
+        case e: JsError => throw new IllegalArgumentException("Error parsing json for [" + c + "]: " + JsError.toString)
       }
     }
 }

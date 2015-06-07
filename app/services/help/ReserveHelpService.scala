@@ -1,11 +1,11 @@
 package services.help
 
 import models.game.rules.ReserveRules
-import play.api.i18n.{ Messages, Lang }
+import play.api.i18n.Messages
 import utils.NumberUtils
 
 object ReserveHelpService {
-  def reserve(rules: ReserveRules)(implicit lang: Lang) = {
+  def reserve(rules: ReserveRules)(implicit messages: Messages) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
     val loweredName = rules.name.toLowerCase
 

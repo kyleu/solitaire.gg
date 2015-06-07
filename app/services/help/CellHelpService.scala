@@ -1,11 +1,11 @@
 package services.help
 
 import models.game.rules.CellRules
-import play.api.i18n.{ Lang, Messages }
+import play.api.i18n.Messages
 import utils.NumberUtils
 
 object CellHelpService {
-  def cell(rules: CellRules)(implicit lang: Lang) = {
+  def cell(rules: CellRules)(implicit messages: Messages) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
     val loweredName = rules.name.toLowerCase
 

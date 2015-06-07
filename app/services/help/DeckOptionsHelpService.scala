@@ -2,13 +2,13 @@ package services.help
 
 import models.game.Rank
 import models.game.rules.DeckOptions
-import play.api.i18n.{ Lang, Messages }
+import play.api.i18n.Messages
 import utils.NumberUtils
 
 object DeckOptionsHelpService {
   private[this] val defaultDeckOptions = DeckOptions()
 
-  def deck(options: DeckOptions)(implicit lang: Lang) = {
+  def deck(options: DeckOptions)(implicit messages: Messages) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
     val numCards = options.numDecks * options.ranks.size * options.suits.size
 

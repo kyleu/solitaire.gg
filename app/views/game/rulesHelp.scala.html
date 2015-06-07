@@ -1,4 +1,4 @@
-@(rules: models.game.rules.GameRules)(implicit request: Request[AnyContent])
+@(rules: models.game.rules.GameRules)(implicit messages: Messages)
 @rulesLink(r: models.game.rules.GameRules) = {
   <a href="@routes.GameController.help(r.id)">@r.title</a>
   <a href="@routes.GameController.newGame(r.id)" class="play-link" target="_parent" title="Play Now">&#9654;</a>

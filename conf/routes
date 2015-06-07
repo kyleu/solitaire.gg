@@ -1,75 +1,74 @@
-GET         /                                  controllers.HomeController.index
+GET         /                                  @controllers.HomeController.index
 
-GET         /*path/                            controllers.HomeController.untrail(path: String)
+GET         /*path/                            @controllers.HomeController.untrail(path: String)
 GET         /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/favicon.ico")
 
 # Feedback
-GET         /feedback                          controllers.HomeController.feedbackForm
-POST        /feedback                          controllers.HomeController.submitFeedback
+GET         /feedback                          @controllers.HomeController.feedbackForm
+POST        /feedback                          @controllers.HomeController.submitFeedback
 
 # Profile
-GET         /profile                           controllers.ProfileController.profile
-GET         /profile/avatar/:key               controllers.ProfileController.updateAvatar(key)
+GET         /profile                           @controllers.ProfileController.profile
+GET         /profile/avatar/:key               @controllers.ProfileController.updateAvatar(key)
 
 # Authentication
-GET         /signup                            controllers.auth.RegistrationController.registrationForm
-POST        /signup                            controllers.auth.RegistrationController.register
-GET         /signin                            controllers.auth.AuthenticationController.signInForm
-POST        /signin                            controllers.auth.AuthenticationController.authenticateCredentials
-GET         /signin/:provider                  controllers.auth.AuthenticationController.authenticateSocial(provider)
-GET         /signout                           controllers.auth.AuthenticationController.signOut
+GET         /signup                            @controllers.auth.RegistrationController.registrationForm
+POST        /signup                            @controllers.auth.RegistrationController.register
+GET         /signin                            @controllers.auth.AuthenticationController.signInForm
+POST        /signin                            @controllers.auth.AuthenticationController.authenticateCredentials
+GET         /signin/:provider                  @controllers.auth.AuthenticationController.authenticateSocial(provider)
+GET         /signout                           @controllers.auth.AuthenticationController.signOut
 
 # Game
-GET         /help/:id                          controllers.GameController.help(id)
+GET         /help/:id                          @controllers.GameController.help(id)
 
-GET         /play                              controllers.GameController.newDefaultGame()
-POST        /play/facebook                     controllers.GameController.newFacebookGame()
-GET         /play/:rules                       controllers.GameController.newGame(rules)
-GET         /play/:rules/:seed                 controllers.GameController.newGameWithSeed(rules, seed: Int)
+GET         /play                              @controllers.GameController.newDefaultGame()
+POST        /play/facebook                     @controllers.GameController.newFacebookGame()
+GET         /play/:rules                       @controllers.GameController.newGame(rules)
+GET         /play/:rules/:seed                 @controllers.GameController.newGameWithSeed(rules, seed: Int)
 
-GET         /offline                           controllers.GameController.newDefaultOfflineGame()
-GET         /offline/:rules                    controllers.GameController.newOfflineGame(rules)
-GET         /offline/:rules/:seed              controllers.GameController.newOfflineGameWithSeed(rules, seed: Int)
+GET         /offline                           @controllers.GameController.newDefaultOfflineGame()
+GET         /offline/:rules                    @controllers.GameController.newOfflineGame(rules)
+GET         /offline/:rules/:seed              @controllers.GameController.newOfflineGameWithSeed(rules, seed: Int)
 
-GET         /websocket                         controllers.WebsocketController.connect()
-
+GET         /websocket                         @controllers.WebsocketController.connect()
 
 # Admin
-GET         /admin                             controllers.admin.AdminController.index()
+GET         /admin                             @controllers.admin.AdminController.index()
 
-GET         /admin/enable                      controllers.admin.AdminController.enable
-GET         /admin/status                      controllers.admin.AdminController.status
-GET         /admin/wipe                        controllers.admin.AdminController.wipeSchema(key)
+GET         /admin/enable                      @controllers.admin.AdminController.enable
+GET         /admin/status                      @controllers.admin.AdminController.status
+GET         /admin/wipe                        @controllers.admin.AdminController.wipeSchema(key)
 
-GET         /admin/rules                       controllers.admin.RulesController.rules
-GET         /admin/rules/politaire             controllers.admin.RulesController.politaire
-GET         /admin/rules/import                controllers.admin.RulesController.importRules
-GET         /admin/rules/export                controllers.admin.RulesController.exportRules
-GET         /admin/rules/links                 controllers.admin.RulesController.links
-GET         /admin/rules/wipe                  controllers.admin.RulesController.wipeRules
+GET         /admin/rules                       @controllers.admin.RulesController.rules
+GET         /admin/rules/politaire             @controllers.admin.RulesController.politaire
+GET         /admin/rules/import                @controllers.admin.RulesController.importRules
+GET         /admin/rules/export                @controllers.admin.RulesController.exportRules
+GET         /admin/rules/links                 @controllers.admin.RulesController.links
+GET         /admin/rules/wipe                  @controllers.admin.RulesController.wipeRules
 
-GET         /admin/trace/connection/:id        controllers.admin.TraceController.traceConnection(id: java.util.UUID)
-GET         /admin/trace/client/:id            controllers.admin.TraceController.traceClient(id: java.util.UUID)
-GET         /admin/trace/game/:id              controllers.admin.TraceController.traceGame(id: java.util.UUID)
+GET         /admin/trace/connection/:id        @controllers.admin.TraceController.traceConnection(id: java.util.UUID)
+GET         /admin/trace/client/:id            @controllers.admin.TraceController.traceClient(id: java.util.UUID)
+GET         /admin/trace/game/:id              @controllers.admin.TraceController.traceGame(id: java.util.UUID)
 
-GET         /admin/observe/random              controllers.admin.AdminController.observeRandomGame()
-GET         /admin/observe/:id                 controllers.admin.AdminController.observeGameAsAdmin(id: java.util.UUID)
-GET         /admin/observe/:id/:as             controllers.admin.AdminController.observeGameAs(id: java.util.UUID, as: java.util.UUID)
+GET         /admin/observe/random              @controllers.admin.AdminController.observeRandomGame()
+GET         /admin/observe/:id                 @controllers.admin.AdminController.observeGameAsAdmin(id: java.util.UUID)
+GET         /admin/observe/:id/:as             @controllers.admin.AdminController.observeGameAs(id: java.util.UUID, as: java.util.UUID)
 
-GET         /admin/test                        controllers.admin.TestController.tests
-GET         /admin/test/:test                  controllers.admin.TestController.runTest(test)
+GET         /admin/test                        @controllers.admin.TestController.tests
+GET         /admin/test/:test                  @controllers.admin.TestController.runTest(test)
 
-GET         /admin/users                       controllers.admin.UserController.userList(q ?= "", sortBy ?= "created", page: Int ?= 0)
-GET         /admin/users/:id                   controllers.admin.UserController.userDetail(id: java.util.UUID, sortBy ?= "created")
-GET         /admin/users/:id/remove            controllers.admin.UserController.removeUser(id: java.util.UUID)
+GET         /admin/users                       @controllers.admin.UserController.userList(q ?= "", sortBy ?= "created", page: Int ?= 0)
+GET         /admin/users/:id                   @controllers.admin.UserController.userDetail(id: java.util.UUID, sortBy ?= "created")
+GET         /admin/users/:id/remove            @controllers.admin.UserController.removeUser(id: java.util.UUID)
 
-GET         /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created", page: Int ?= 0)
-GET         /admin/requests                    controllers.admin.RequestLogController.requestList(q ?= "", sortBy ?= "started", page: Int ?= 0)
-GET         /admin/feedback                    controllers.admin.FeedbackController.feedbackList(q ?= "", sortBy ?= "occurred", page: Int ?= 0)
+GET         /admin/games                       @controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created", page: Int ?= 0)
+GET         /admin/requests                    @controllers.admin.RequestLogController.requestList(q ?= "", sortBy ?= "started", page: Int ?= 0)
+GET         /admin/feedback                    @controllers.admin.FeedbackController.feedbackList(q ?= "", sortBy ?= "occurred", page: Int ?= 0)
 
-GET         /admin/report                      controllers.admin.ReportController.overview()
-GET         /admin/report/ad-hoc               controllers.admin.AdHocQueryController.queryList(query: Option[java.util.UUID] ?= None, action: Option[String] ?= None)
-POST        /admin/report/ad-hoc/run           controllers.admin.AdHocQueryController.run()
+GET         /admin/report                      @controllers.admin.ReportController.overview()
+GET         /admin/report/ad-hoc               @controllers.admin.AdHocQueryController.queryList(query: Option[java.util.UUID] ?= None, action: Option[String] ?= None)
+POST        /admin/report/ad-hoc/run           @controllers.admin.AdHocQueryController.run()
 
 # Assets
 GET         /assets/*file                      controllers.Assets.at(path="/public", file)

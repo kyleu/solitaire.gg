@@ -4,12 +4,13 @@ import controllers.BaseController
 import models.game.rules.GameRulesSet
 import parser.{ ScalaExporter, RulesReset }
 import parser.politaire.{ LinkParser, PolitaireParser }
+import play.api.i18n.MessagesApi
 import play.twirl.api.Html
 
 import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-object RulesController extends BaseController {
+class RulesController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   def politaire = withAdminSession { implicit request =>
     Future.successful(Ok(views.html.admin.rules.politaireList(PolitaireParser.politaireList)))
   }

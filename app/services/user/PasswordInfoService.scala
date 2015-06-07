@@ -10,6 +10,8 @@ import services.database.Database
 import scala.concurrent.Future
 
 object PasswordInfoService extends DelegableAuthInfoDAO[PasswordInfo] {
+  override def find(loginInfo: LoginInfo) = Database.query(PasswordInfoQueries.GetById(Seq(loginInfo.providerID, loginInfo.providerKey)))
+
   override def save(loginInfo: LoginInfo, authInfo: PasswordInfo) = {
     Database.transaction { conn =>
       Database.execute(PasswordInfoQueries.UpdatePasswordInfo(loginInfo, authInfo), conn).flatMap { rowsAffected =>
@@ -22,5 +24,15 @@ object PasswordInfoService extends DelegableAuthInfoDAO[PasswordInfo] {
     }
   }
 
-  override def find(loginInfo: LoginInfo) = Database.query(PasswordInfoQueries.GetById(Seq(loginInfo.providerID, loginInfo.providerKey)))
+  override def add(loginInfo: LoginInfo, authInfo: PasswordInfo): Future[PasswordInfo] = {
+    Database.execute(PasswordInfoQueries.CreatePasswordInfo(loginInfo, authInfo)).map(x => authInfo)
+  }
+
+  override def update(loginInfo: LoginInfo, authInfo: PasswordInfo): Future[PasswordInfo] = {
+    Database.execute(PasswordInfoQueries.UpdatePasswordInfo(loginInfo, authInfo)).map(x => authInfo)
+  }
+
+  override def remove(loginInfo: LoginInfo) = {
+    Database.execute(PasswordInfoQueries.RemoveById(Seq(loginInfo.providerID, loginInfo.providerKey))).map(x => Unit)
+  }
 }

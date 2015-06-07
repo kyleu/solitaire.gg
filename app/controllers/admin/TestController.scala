@@ -1,12 +1,13 @@
 package controllers.admin
 
 import controllers.BaseController
+import play.api.i18n.MessagesApi
 import services.test._
 
 import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-object TestController extends BaseController {
+class TestController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   def tests = withAdminSession { implicit request =>
     Future.successful(Ok(views.html.admin.test.tests()))
   }

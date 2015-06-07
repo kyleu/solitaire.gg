@@ -1,4 +1,4 @@
-@(form: Form[com.mohiva.play.silhouette.api.util.Credentials])(implicit session: Session, flash: Flash)@layout.basic(
+@(form: Form[com.mohiva.play.silhouette.api.util.Credentials])(implicit session: Session, flash: Flash, messages: Messages)@layout.basic(
   "Sign in to Solitaire.gg",
   stylesheets = Seq(routes.Assets.at("stylesheets/auth.css").url)
 ) {

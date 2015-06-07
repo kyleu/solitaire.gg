@@ -1,12 +1,13 @@
 package controllers
 
 import models.game.rules.GameRulesSet
-import play.api.i18n.Messages
+import play.api.i18n.{ MessagesApi, Messages }
 import play.api.mvc.AnyContent
 
 import scala.concurrent.Future
 
-object GameController extends BaseController {
+@javax.inject.Inject
+class GameController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   def help(id: String) = withSession { implicit request =>
     Future.successful {
       id match {

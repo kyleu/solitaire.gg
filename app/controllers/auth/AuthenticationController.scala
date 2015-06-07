@@ -6,13 +6,13 @@ import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
 import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, SocialProvider, CommonSocialProfileBuilder }
 import controllers.BaseController
 import models.user.{ User, UserForms }
-import play.api.i18n.Messages
+import play.api.i18n.{ MessagesApi, Messages }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 
-object AuthenticationController extends BaseController {
+class AuthenticationController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   override val env = AuthenticationEnvironment
 
   def signInForm = withSession { implicit request =>
@@ -23,10 +23,10 @@ object AuthenticationController extends BaseController {
     UserForms.signInForm.bindFromRequest.fold(
       form => Future.successful(BadRequest(views.html.auth.signin(form))),
       credentials => env.credentials.authenticate(credentials).flatMap { loginInfo =>
-        val result = Future.successful(Redirect(controllers.routes.HomeController.index()))
+        val result = Redirect(controllers.routes.HomeController.index())
         env.identityService.retrieve(loginInfo).flatMap {
           case Some(user) => env.authenticatorService.create(loginInfo).flatMap { authenticator =>
-            env.eventBus.publish(LoginEvent(user, request, request2lang))
+            env.eventBus.publish(LoginEvent(user, request, request2Messages))
             env.authenticatorService.init(authenticator).flatMap(v => env.authenticatorService.embed(v, result))
           }
           case None => Future.failed(new IdentityNotFoundException("Couldn't find user."))
@@ -39,7 +39,7 @@ object AuthenticationController extends BaseController {
   }
 
   def authenticateSocial(provider: String) = withSession { implicit request =>
-    (env.providers.get(provider) match {
+    (env.providersMap.get(provider) match {
       case Some(p: SocialProvider with CommonSocialProfileBuilder) =>
         p.authenticate().flatMap {
           case Left(result) => Future.successful(result)
@@ -49,9 +49,9 @@ object AuthenticationController extends BaseController {
             authInfo <- env.authInfoService.save(profile.loginInfo, authInfo)
             authenticator <- env.authenticatorService.create(profile.loginInfo)
             value <- env.authenticatorService.init(authenticator)
-            result <- env.authenticatorService.embed(value, Future.successful(Redirect(controllers.routes.HomeController.index())))
+            result <- env.authenticatorService.embed(value, Redirect(controllers.routes.HomeController.index()))
           } yield {
-            env.eventBus.publish(LoginEvent(user, request, request2lang))
+            env.eventBus.publish(LoginEvent(user, request, request2Messages))
             result
           }
         }
@@ -64,9 +64,9 @@ object AuthenticationController extends BaseController {
   }
 
   def signOut = SecuredAction.async { implicit request =>
-    val result = Future.successful(Redirect(controllers.routes.HomeController.index()))
-    env.eventBus.publish(LogoutEvent(request.identity, request, request2lang))
-    request.authenticator.discard(result)
+    val result = Redirect(controllers.routes.HomeController.index())
+    env.eventBus.publish(LogoutEvent(request.identity, request, request2Messages))
+    env.authenticatorService.discard(request.authenticator, result).map(x => result)
   }
 
   private[this] def mergeUser(user: User, profile: CommonSocialProfile) = {

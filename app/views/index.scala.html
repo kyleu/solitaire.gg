@@ -1,4 +1,4 @@
-@(user: models.user.User)(implicit request: Request[AnyContent], session: Session, flash: Flash)@layout.basic(
+@(user: models.user.User)(implicit session: Session, flash: Flash, messages: Messages)@layout.basic(
   utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url)
 ) {
   @layout.topBar(user)

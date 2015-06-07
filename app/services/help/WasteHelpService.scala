@@ -1,11 +1,11 @@
 package services.help
 
 import models.game.rules.{ WastePlayableCards, WasteRules }
-import play.api.i18n.{ Messages, Lang }
+import play.api.i18n.Messages
 import utils.NumberUtils
 
 object WasteHelpService {
-  def waste(rules: WasteRules)(implicit lang: Lang) = {
+  def waste(rules: WasteRules)(implicit messages: Messages) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
     val loweredName = rules.name.toLowerCase
 
