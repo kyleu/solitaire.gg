@@ -4,7 +4,7 @@
   title + " - " + utils.Config.projectName, bodyClass = Some("noscroll full-height background-" + user.color), stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url)
 ) {
   @views.html.layout.topBar(user)
-  @views.html.layout.bottomBar()
+  @views.html.layout.bottomBar(user)
 
   <div id="game-container"></div>
 

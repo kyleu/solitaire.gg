@@ -1,9 +1,6 @@
 define(['ui/Buttons'], function(Buttons) {
   var Options = function(game) {
-    var self = this;
-
     this.gameName = document.getElementById("link-game");
-
     this.buttons = Buttons(game, this);
   };
 
@@ -14,10 +11,14 @@ define(['ui/Buttons'], function(Buttons) {
   Options.prototype.setUndosAvalable = function(num) {
     this.undosAvailable = num;
     if(num === 0) {
-      this.buttons.undo.className = "btn undo disabled";
+      if(this.buttons.undo.className.indexOf(" disabled" === -1)) {
+        this.buttons.undo.className += " disabled";
+      }
       this.buttons.undo.title = "No undos available.";
     } else {
-      this.buttons.undo.className = "btn undo";
+      if(this.buttons.undo.className.indexOf(" disabled" > -1)) {
+        this.buttons.undo.className = this.buttons.undo.className.replace(" disabled", "");
+      }
       if(num === 1) {
         this.buttons.undo.title = "One undo available.";
       } else {
@@ -29,10 +30,14 @@ define(['ui/Buttons'], function(Buttons) {
   Options.prototype.setRedosAvalable = function(num) {
     this.redosAvailable = num;
     if(num === 0) {
-      this.buttons.redo.className = "btn redo disabled";
+      if(this.buttons.redo.className.indexOf(" disabled" === -1)) {
+        this.buttons.redo.className += " disabled";
+      }
       this.buttons.redo.title = "No redos available.";
     } else {
-      this.buttons.redo.className = "btn redo";
+      if(this.buttons.redo.className.indexOf(" disabled" > -1)) {
+        this.buttons.redo.className = this.buttons.redo.className.replace(" disabled", "");
+      }
       if(num === 1) {
         this.buttons.redo.title = "One redo available.";
       } else {
