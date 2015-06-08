@@ -11,6 +11,8 @@ object Pile {
 }
 
 case class Pile(id: String, options: PileOptions, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) {
+  var pileSet: Option[PileSet] = None
+
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
 
   def addCard(c: Card) {

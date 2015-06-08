@@ -65,6 +65,8 @@ define([
         existing.suit = Suit.fromChar(v.card.s);
         if(v.card.u && !wasFaceUp) {
           existing.turnFaceUp();
+        } else {
+          console.warn("Reveal received for already revealed card [" + v.card.id + "].");
         }
         break;
       case "CardHidden":

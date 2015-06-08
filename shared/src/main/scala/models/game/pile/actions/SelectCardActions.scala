@@ -57,8 +57,7 @@ object SelectCardActions {
     val msg = CardMoved(card.id, src.id, tgt.id, turn = turn)
     if (turn.exists(x => x) && !card.u) {
       card.u = true
-      val revealed = gameState.revealCardToAll(card)
-      revealed ++ Seq(msg)
+      gameState.revealCardToAll(card) :+ msg
     } else {
       Seq(msg)
     }

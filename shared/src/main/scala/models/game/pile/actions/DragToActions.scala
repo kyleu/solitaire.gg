@@ -13,7 +13,20 @@ object DragToActions {
       tgt.addCard(card)
       card.id
     }
-    Seq(CardsMoved(cardIds, src.id, tgt.id))
+    val moveMessage = CardsMoved(cardIds, src.id, tgt.id)
+    if(src.cards.lastOption.exists(!_.u)) {
+      val isReserve = src.pileSet.exists(_.behavior == "reserve")
+      val autoFlipOption = false
+      if(isReserve || autoFlipOption) {
+        val last = src.cards.lastOption.getOrElse(throw new IllegalStateException())
+        last.u = true
+        moveMessage +: gameState.revealCardToAll(last)
+      } else {
+        Seq(moveMessage)
+      }
+    } else {
+      Seq(moveMessage)
+    }
   })
 
   def remove() = DragToAction("remove-cards", (src, cards, tgt, gameState) => {
