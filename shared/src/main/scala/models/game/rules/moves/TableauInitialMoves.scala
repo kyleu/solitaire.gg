@@ -42,7 +42,7 @@ object TableauInitialMoves {
           }
         }
 
-        case InitialCards.RestOfDeck => (0 until gameState.deck.cards.size).foreach { i =>
+        case InitialCards.RestOfDeck => gameState.deck.cards.indices.foreach { i =>
           val row = (i / tr.numPiles) + 1
           val col = (i % tr.numPiles) + 1
           val reveal = tr.cardsFaceDown match {

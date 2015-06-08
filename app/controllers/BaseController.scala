@@ -54,7 +54,7 @@ abstract class BaseController extends Silhouette[User, CookieAuthenticator] with
           id = UUID.randomUUID(),
           username = None,
           avatar = "guest",
-          color = Colors.randomColor._1,
+          color = "greyblue",
           profiles = Nil,
           created = new LocalDateTime()
         )

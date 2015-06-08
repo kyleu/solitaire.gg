@@ -15,30 +15,36 @@ rm -rf bin
 
 echo "  Updating web assets..."
 
-mkdir -p build/web/assets
-cp "../target/web/rjs/build/client-opt.js" "build/web"
-cp "../target/web/rjs/build/javascripts/main.js" "build/web/solitaire.gg.js"
-cp "../target/web/less/main/stylesheets/solitaire.gg.css" "build/web"
+mkdir -p build/web/assets/images
+mkdir -p build/web/assets/stylesheets
+mkdir -p build/web/assets/javascripts
+mkdir -p build/web/assets/javascripts/lib
 
 cp -R "../public/images/" "build/web/assets/images"
+
+cp "../target/web/rjs/build/client-opt.js" "build/web/assets/javascripts"
+cp "../target/web/rjs/build/javascripts/main.js" "build/web/assets/javascripts/solitaire.gg.js"
+cp "../target/web/less/main/stylesheets/solitaire.gg.css" "build/web/assets/stylesheets"
+
 rm -Rf "build/web/assets/images/game/cards/classic/_unprocessed"
-rm -Rf "build/web/assets/images/game/cards/standard/_resized"
+rm -Rf "build/web/assets/images/game/cards/classic/_resized"
+rm -Rf "build/web/assets/images/game/cards/classic/x-large"
+
 rm -Rf "build/web/assets/images/game/cards/standard/_unprocessed"
+rm -Rf "build/web/assets/images/game/cards/standard/_resized"
 rm -Rf "build/web/assets/images/game/cards/standard/x-large"
 
-mkdir -p build/web/lib
-cp "../public/lib/phaser/js/phaser.min.js" "build/web/lib"
-cp "../public/lib/underscore/underscore.min.js" "build/web/lib"
-cp "../target/web/rjs/build/lib/requirejs/require.min.js" "build/web/lib"
+cp "../public/lib/phaser/js/phaser.min.js" "build/web/assets/javascripts/lib"
+cp "../public/lib/underscore/underscore.min.js" "build/web/assets/javascripts/lib"
+cp "../target/web/rjs/build/lib/requirejs/require.min.js" "build/web/assets/javascripts/lib"
 
 echo "  Building Electron apps..."
-
 mkdir bin
 cp -R "assets/electron/" "bin"
 
 mkdir -p build/electron
 cp -R "build/web/" "build/electron"
-cp -R "src/electron" "build/electron"
+cp -R "src/electron/" "build/electron"
 asar pack build/electron build/solitaire.gg.asar
 
 cp build/solitaire.gg.asar bin/osx/Solitaire.gg.app/Contents/Resources/app.asar

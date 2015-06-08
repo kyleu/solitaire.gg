@@ -5,32 +5,40 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" media="screen" href="solitaire.gg.css"/>
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="stylesheet" media="screen" href="assets/stylesheets/solitaire.gg.css"/>
   </head>
   <body>
     <div id="menu-container">
-      <div class="content">
-        <div id="status-panel">
-          <span id="status-username"></span>
-          (<span id="status-connection">Not Connected</span>,
-          <span id="status-latency">0</span>ms,
-          <span id="status-fps">0</span> fps,
-          v<span id="status-version">0</span>)
-        </div>
-        Solitaire.gg
+      <div class="menu-left">
+        <div id="btn-menu" title="Menu" class="btn menu"></div>
+        <a id="link-game" class="link" href=""></a>
+      </div>
+      <div class="menu-right">
+        <a href="@routes.ProfileController.profile()"><img title="Profile for [Guest)]" class="avatar-small" src="assets/images/avatar/profile-ffffff.png" /></a>
+        <a class="link" href="@routes.ProfileController.profile()">Mobile Player</a>
+      </div>
+      <a class="logo" href="index.html">Solitaire.gg</a>
+    </div>
+
+    <div id="status-container">
+      <div class="menu-left">
+        <div id="btn-options" title="Options" class="btn options"></div>
+        <div id="btn-help" title="Help" class="btn help"></div>
+        <div id="btn-feedback" title="Feedback" class="btn feedback"></div>
+      </div>
+      <div class="menu-right">
+        <div id="btn-redo" title="No redos available" class="btn redo disabled"></div>
+        <div id="btn-hint" title="Click for a hint" class="btn hint"></div>
+        <div id="btn-undo" title="No undos available" class="btn undo disabled"></div>
+      </div>
+      <div class="timer-container">
+        <span id="timer-display">0:00</span>
       </div>
     </div>
 
-    <div id="game-container"></div>
 
-    <div id="status-panel">
-      <span id="status-username"></span>
-      (<span id="status-connection">Not Connected</span>,
-      <span id="status-latency">0</span>ms,
-      <span id="status-fps">0</span> fps,
-      v<span id="status-version">0</span>)
-    </div>
+    <div id="game-container"></div>
 
     <div id="gameplay-modal">
       <div id="gameplay-modal-backdrop"></div>
@@ -55,12 +63,12 @@
       }
     </pre>
 
-    <script src="client-opt.js" type="text/javascript"></script>
-    <script src="lib/phaser.min.js" type="text/javascript"></script>
-    <script src="lib/underscore.min.js" type="text/javascript"></script>
+    <script src="assets/javascripts/client-opt.js" type="text/javascript"></script>
+    <script src="assets/javascripts/lib/phaser.min.js" type="text/javascript"></script>
+    <script src="assets/javascripts/lib/underscore.min.js" type="text/javascript"></script>
     <script src="cordova.js" type="text/javascript"></script>
     <script src="mobile.js" type="text/javascript"></script>
-    <script data-main="solitaire.gg.js" src="lib/require.min.js" type="text/javascript"></script>
+    <script data-main="assets/javascripts/solitaire.gg.js" src="assets/javascripts/lib/require.min.js" type="text/javascript"></script>
   </body>
 </html>
 

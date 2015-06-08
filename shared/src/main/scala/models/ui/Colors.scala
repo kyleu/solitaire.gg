@@ -23,7 +23,7 @@ object Colors {
     "darkorange" -> "ff5722",
     "brown" -> "795548",
     "grey" -> "9e9e9e",
-    "grayblue" -> "607d8b"
+    "greyblue" -> "607d8b"
   )
 
   def randomColor = all(Random.nextInt(all.size))
