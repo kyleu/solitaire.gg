@@ -55,7 +55,7 @@ define(['game/helpers/Layout'], function (calculateLayout) {
 
   Playmat.prototype.resize = function() {
     var widthRatio = this.game.world.width / this.w;
-    var heightRatio = (this.game.world.height) / this.h;
+    var heightRatio = (this.game.world.height - 40) / this.h;
     if(widthRatio < heightRatio) {
       this.scale = new Phaser.Point(widthRatio, widthRatio);
       var yOffset = (this.game.world.height - (this.h * widthRatio)) / 2;

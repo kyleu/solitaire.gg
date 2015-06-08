@@ -1,5 +1,5 @@
 @(user: models.user.User)(implicit request: Request[AnyContent], session: Session, flash: Flash)@layout.basic(
-  utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url)
+  utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url), bodyClass = Some("background-" + user.color)
 ) {
   @layout.topBar(user, false)
   <div id="main-page-content">
@@ -29,7 +29,7 @@
           models.game.rules.generated.Spider
         )) {
           <li>
-            <div class="gamelink"><a href="@routes.GameController.newGame(r.id)">@r.title</a></div>
+            <a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a>
           </li>
         }
         </ul>
@@ -41,7 +41,7 @@
         <ul>
         @for(r <- models.game.rules.GameRulesSet.completed) {
           <li>
-            <div class="gamelink"><a href="@routes.GameController.newGame(r.id)">@r.title</a></div>
+            <a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a>
           </li>
         }
         </ul>
@@ -55,7 +55,7 @@
         <ul>
         @for(r <- models.game.rules.GameRulesSet.inProgress) {
           <li>
-            <div class="gamelink"><a href="@routes.GameController.newGame(r.id)">@r.title</a></div>
+            <a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a>
           </li>
         }
         </ul>
@@ -67,7 +67,7 @@
         <ul>
         @for(r <- models.game.rules.GameRulesSet.unfinished) {
           <li>
-            <div class="gamelink"><a href="@routes.GameController.newGame(r.id)">@r.title</a></div>
+            <a href="@routes.GameController.newGame(r.id)">@r.title</a></div>
           </li>
         }
         </ul>

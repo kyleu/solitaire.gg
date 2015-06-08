@@ -11,7 +11,7 @@ trait ParserReserveHelper { this: GameRulesParser =>
           name = getString("R0Nm"),
           numPiles = numPiles,
           initialCards = getInt("R0d"),
-          cardsFaceDown = getInt("R0df")
+          cardsFaceDown = if(getInt("R0df") == 100) { -1 } else { getInt("R0df") }
         ))
     }
   }

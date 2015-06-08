@@ -55,7 +55,7 @@ define(['game/helpers/Dimensions'], function (getDimensions) {
           if(pileSet.visible !== undefined && !pileSet.visible) { // Hide this pile
             _.each(pileSet.piles, function(pile, pileIndex) {
               //console.log("Adding [" + pile.id + "]!");
-              locations[pile.id] = {x: (pileIndex * (1 + padding)) + 0.5, y: -0.5};
+              locations[pile.id] = {x: (pileIndex * (1 + padding)) + 0.5, y: -10};
             });
           } else {
             if(pileSetDimensions[1] > currentRowMaxHeight) {
@@ -90,7 +90,6 @@ define(['game/helpers/Dimensions'], function (getDimensions) {
                 locations[pile.id] = {x: xOffset, y: yOffset};
                 xOffset = xOffset + 1 + padding;
               });
-              // ? currentRowMaxHeight = Math.max(pileSetDimensions[1], pileSetDimensions[1] * currentDivisor);
               xOffset = originalXOffset + pileSetDimensions[0];
             }
           }
