@@ -74,7 +74,7 @@ object Boulevard extends GameRules(
       name = "Reserve",
       numPiles = 3,
       initialCards = 6,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

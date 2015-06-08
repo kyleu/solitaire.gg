@@ -80,7 +80,7 @@ object Chequers extends GameRules(
       name = "Reserve",
       numPiles = 1,
       initialCards = 4,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

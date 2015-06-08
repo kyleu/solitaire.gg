@@ -14,9 +14,13 @@ object InitialMoves {
     FoundationInitialMoves.performInitialMoves(rules, gameState)
 
     rules.reserves.foreach { rr =>
-      (1 to rr.numPiles).foreach { p =>
-        (0 until rr.initialCards).foreach { i =>
-          gameState.addCardsFromDeck(1, "reserve-" + p, reveal = true)
+      (0 until rr.initialCards).foreach { i =>
+        (1 to rr.numPiles).foreach { p =>
+          val reveal = rr.cardsFaceDown match {
+            case -1 => i == (rr.initialCards - 1)
+            case x => i >= x
+          }
+          gameState.addCardsFromDeck(1, "reserve-" + p, reveal = reveal)
         }
       }
     }

@@ -63,7 +63,7 @@ object VariegatedCanfield extends GameRules(
       name = "Reserve",
       numPiles = 1,
       initialCards = 13,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

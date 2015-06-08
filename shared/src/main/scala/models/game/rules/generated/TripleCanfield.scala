@@ -56,7 +56,7 @@ object TripleCanfield extends GameRules(
       name = "Reserve",
       numPiles = 1,
       initialCards = 26,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

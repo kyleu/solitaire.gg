@@ -52,7 +52,7 @@ object MamySusan extends GameRules(
       name = "Reserve",
       numPiles = 1,
       initialCards = 5,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

@@ -61,7 +61,7 @@ object AmericanToad extends GameRules(
       name = "Reserve",
       numPiles = 1,
       initialCards = 20,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

@@ -60,7 +60,7 @@ object DoubleStorehouse extends GameRules(
       name = "Storehouse",
       numPiles = 1,
       initialCards = 19,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

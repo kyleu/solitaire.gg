@@ -57,7 +57,7 @@ object Demon extends GameRules(
       name = "Reserve",
       numPiles = 1,
       initialCards = 40,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

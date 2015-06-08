@@ -54,7 +54,7 @@ object ShadyLanes extends GameRules(
       name = "Reserve",
       numPiles = 4,
       initialCards = 1,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

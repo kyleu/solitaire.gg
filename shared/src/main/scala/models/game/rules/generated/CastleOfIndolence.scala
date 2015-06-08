@@ -54,7 +54,7 @@ object CastleOfIndolence extends GameRules(
       name = "Reserve",
       numPiles = 4,
       initialCards = 13,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

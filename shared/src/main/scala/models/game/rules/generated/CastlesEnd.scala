@@ -51,7 +51,7 @@ object CastlesEnd extends GameRules(
       name = "Reserve",
       numPiles = 2,
       initialCards = 1,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

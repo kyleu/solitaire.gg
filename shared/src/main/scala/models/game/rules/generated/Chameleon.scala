@@ -62,7 +62,7 @@ object Chameleon extends GameRules(
       name = "Reserve",
       numPiles = 1,
       initialCards = 12,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

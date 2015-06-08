@@ -59,7 +59,7 @@ object ThreeDemons extends GameRules(
       name = "Reserve",
       numPiles = 1,
       initialCards = 48,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

@@ -63,7 +63,7 @@ object Beehive extends GameRules(
       name = "Reserve",
       numPiles = 1,
       initialCards = 10,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

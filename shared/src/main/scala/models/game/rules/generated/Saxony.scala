@@ -62,7 +62,7 @@ object Saxony extends GameRules(
       name = "Tableau",
       numPiles = 8,
       initialCards = 1,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

@@ -56,7 +56,7 @@ object AgnesBernauer extends GameRules(
       name = "Reserve",
       numPiles = 7,
       initialCards = 1,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )

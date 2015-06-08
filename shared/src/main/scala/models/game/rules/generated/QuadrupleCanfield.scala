@@ -54,7 +54,7 @@ object QuadrupleCanfield extends GameRules(
       name = "Reserve",
       numPiles = 1,
       initialCards = 39,
-      cardsFaceDown = 100
+      cardsFaceDown = -1
     )
   )
 )
