@@ -72,7 +72,7 @@ object StockPileOptions {
       direction = Some("r"),
       dragFromConstraint = dragFromConstraint,
       selectCardConstraint = selectCardConstraint,
-      selectPileConstraint = Some(selectPileConstraint._1),
+      selectPileConstraint = Some(Constraint.allOf("stock-select-pile", Constraint.empty, selectPileConstraint._1)),
       selectCardAction = selectCardAction,
       selectPileAction = selectPileAction
     )

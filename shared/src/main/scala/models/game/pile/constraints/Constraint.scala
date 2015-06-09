@@ -1,6 +1,7 @@
 package models.game.pile.constraints
 
 import models.game.pile.Pile
+import models.game.rules.CardRemovalMethod
 import models.game.{ Rank, Card, GameState }
 
 case class Constraint(id: String, f: Constraint.Check, clientOptions: Option[Map[String, String]] = None)
@@ -45,4 +46,8 @@ object Constraint {
   def pilesEmpty(piles: String*) = Constraint("piles-empty", (pile, cards, gameState) => {
     !piles.exists(p => gameState.pilesById(p).cards.nonEmpty)
   }, Some(Map("piles" -> piles.mkString(","))))
+
+  def forCardRemovalMethod(crm: CardRemovalMethod) = Constraint("card-removal", (pile, cards, gameState) => {
+    !cards.exists(c => !crm.canSelect(c))
+  })
 }

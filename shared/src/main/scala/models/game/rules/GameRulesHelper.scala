@@ -66,7 +66,7 @@ trait GameRulesHelper { this: GameRules =>
 
   protected[this] lazy val prototypePileSets = (
     stock.map(s => StockSet(s, pileIdsByType)) ++
-    waste.map(w => WasteSet(w)) ++
+    waste.map(w => WasteSet(w, cardRemovalMethod)) ++
     foundations.map(f => FoundationSet(f, deckOptions)) ++
     tableaus.map(t => TableauSet(t, deckOptions, cardRemovalMethod)) ++
     pyramids.map(p => PyramidSet(p, cardRemovalMethod, deckOptions.lowRank)) ++

@@ -4,6 +4,7 @@ import models.game.{ Rank, Card }
 
 sealed trait CardRemovalMethod {
   def canRemove(l: Card, r: Card): Boolean = false
+  def canSelect(c: Card): Boolean = false
 }
 
 object CardRemovalMethod {
@@ -20,6 +21,7 @@ object CardRemovalMethod {
   }
   case object RemoveNinesOrPairsAddingToNineOr10JQK extends CardRemovalMethod {
     override def canRemove(l: Card, r: Card) = checkTotal(9, l.r, r.r)
+    override def canSelect(c: Card) = c.r == Rank.Nine
   }
   case object RemovePairsAddingToTenOr10PairOrJPairOrQPairOrKPair extends CardRemovalMethod {
     override def canRemove(l: Card, r: Card) = checkTotal(10, l.r, r.r)
@@ -47,6 +49,7 @@ object CardRemovalMethod {
   }
   case object RemovePairsAddingToThirteenOrK extends CardRemovalMethod {
     override def canRemove(l: Card, r: Card) = checkTotal(13, l.r, r.r)
+    override def canSelect(c: Card) = c.r == Rank.King
   }
   case object RemovePairsAddingToFourteen extends CardRemovalMethod {
     override def canRemove(l: Card, r: Card) = checkTotal(14, l.r, r.r)

@@ -12,7 +12,7 @@ object PyramidPileOptions {
       direction = Some("d"),
       dragFromConstraint = Some(Constraint.topCardOnly),
       dragToConstraint = Some(dragToConstraint(crm, lowRank)),
-      selectCardConstraint = Some(Constraint.allOf("top-card-king", Constraint.topCardOnly, selectCardConstraint)),
+      selectCardConstraint = Some(Constraint.allOf("top-card-select", Constraint.topCardOnly, Constraint.forCardRemovalMethod(crm))),
       selectCardAction = Some(SelectCardActions.drawToPiles(1, Seq("foundation-1"))),
       dragToAction = Some(DragToActions.remove())
     )
@@ -31,20 +31,19 @@ object PyramidPileOptions {
   }
 
   private[this] def dragToConstraint(crm: CardRemovalMethod, lowRank: Rank) = Constraint("pyramid", (pile, cards, gameState) => {
-    val topCard = pile.cards.lastOption.getOrElse(throw new IllegalStateException())
-    val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
-    if (!topCard.u) {
-      false
-    } else {
-      crm match {
-        case CardRemovalMethod.BuildSequencesOnFoundation => throw new NotImplementedError(lowRank.toString)
-        case CardRemovalMethod.StackSameRankOrSuitInWaste => throw new NotImplementedError(lowRank.toString)
-        case _ => crm.canRemove(topCard, firstDraggedCard)
+    pile.cards.lastOption.exists { topCard =>
+      val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
+      if (!topCard.u) {
+        false
+      } else {
+        crm match {
+          case CardRemovalMethod.BuildSequencesOnFoundation => throw new NotImplementedError(lowRank.toString)
+          case CardRemovalMethod.StackSameRankOrSuitInWaste => throw new NotImplementedError(lowRank.toString)
+          case _ => crm.canRemove(topCard, firstDraggedCard)
+        }
       }
     }
   })
-
-  private[this] val selectCardConstraint = Constraint.specificRanks(Seq(Rank.King))
 
   private[this] def optionsFor(baseOptions: PileOptions, emptyPiles: String*) = {
     val c = Constraint.pilesEmpty(emptyPiles: _*)
@@ -52,8 +51,12 @@ object PyramidPileOptions {
       cardsShown = Some(1),
       direction = None,
       dragFromConstraint = Some(c),
-      dragToConstraint = Some(Constraint.allOf("pyramid-total", c, baseOptions.dragToConstraint.getOrElse(throw new IllegalStateException()))),
-      selectCardConstraint = Some(Constraint.allOf("pyramid-king", c, Constraint.topCardOnly, selectCardConstraint))
+      dragToConstraint = Some(Constraint.allOf("pyramid-total", c, baseOptions.dragToConstraint.getOrElse(
+        throw new IllegalStateException()
+      ))),
+      selectCardConstraint = Some(Constraint.allOf("pyramid-select", c, Constraint.topCardOnly, baseOptions.selectCardConstraint.getOrElse(
+        throw new IllegalStateException()
+      )))
     )
   }
 }
