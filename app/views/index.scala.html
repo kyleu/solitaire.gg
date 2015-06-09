@@ -21,30 +21,14 @@
       <div class="module">
         <div class="header">@Messages("index.games.popular")</div>
         <ul>
-        @for(r <- Seq(
-          models.game.rules.generated.Klondike,
-          models.game.rules.generated.FreeCell,
-          models.game.rules.generated.Pyramid,
-          models.game.rules.generated.Canfield,
-          models.game.rules.generated.Spider
-        )) {
-          <li>
-            <a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a>
-          </li>
-        }
+        @for(r <- models.game.rules.GameRulesSet.favorites) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}
         </ul>
         <div class="clear"></div>
       </div>
 
       <div class="module">
         <div class="header">@Messages("index.games.completed")</div>
-        <ul>
-        @for(r <- models.game.rules.GameRulesSet.completed) {
-          <li>
-            <a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a>
-          </li>
-        }
-        </ul>
+        <ul>@for(r <- models.game.rules.GameRulesSet.completed) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
         <div class="clear"></div>
       </div>
     }
@@ -52,25 +36,13 @@
     @if(user.isAdmin) {
       <div class="module">
         <div class="header">@Messages("index.games.in.progress")</div>
-        <ul>
-        @for(r <- models.game.rules.GameRulesSet.inProgress) {
-          <li>
-            <a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a>
-          </li>
-        }
-        </ul>
+        <ul>@for(r <- models.game.rules.GameRulesSet.inProgress) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
         <div class="clear"></div>
       </div>
 
       <div class="module">
         <div class="header">@Messages("index.games.unstarted")</div>
-        <ul>
-        @for(r <- models.game.rules.GameRulesSet.unfinished) {
-          <li>
-            <a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a>
-          </li>
-        }
-        </ul>
+        <ul>@for(r <- models.game.rules.GameRulesSet.unfinished) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
         <div class="clear"></div>
       </div>
     }
