@@ -13,6 +13,9 @@
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackgroundColor" value="0xff000000"/>
   <preference name="PaginationMode" value="unpaginated"/>
+  <preference name="StatusBarOverlaysWebView" value="false" />
+  <preference name="StatusBarBackgroundColor" value="#000000" />
+  <preference name="StatusBarStyle" value="blackopaque" />
 
   <!-- External URLs -->
   <allow-intent href="http://*/*"/>

@@ -1,7 +1,7 @@
 GET         /                                  controllers.HomeController.index
 
 GET         /*path/                            controllers.HomeController.untrail(path: String)
-GET         /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/favicon.ico")
+GET         /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/favicon/favicon.ico")
 
 # Feedback
 GET         /feedback                          controllers.HomeController.feedbackForm

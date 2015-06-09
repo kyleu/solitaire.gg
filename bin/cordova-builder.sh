@@ -20,6 +20,7 @@ cordova plugin add cordova-plugin-device
 cordova plugin add cordova-plugin-network-information
 cordova plugin add cordova-plugin-splashscreen
 cordova plugin add cordova-plugin-whitelist
+cordova plugin add cordova-plugin-statusbar
 # cordova plugin add cordova-plugin-console
 
 # 3rd Party Plugins

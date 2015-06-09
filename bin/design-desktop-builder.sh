@@ -25,4 +25,7 @@ mkdir windows
 convert original/icon.png -resize 16x16 windows/icon_16x16.png
 convert original/icon.png -resize 32x32 windows/icon_32x32.png
 convert original/icon.png -resize 48x48 windows/icon_48x48.png
+convert original/icon.png -resize 64x64 windows/icon_64x64.png
+convert original/icon.png -resize 128x128 windows/icon_128x128.png
 convert original/icon.png -resize 256x256 windows/icon_256x256.png
+convert windows/icon_32x32.png windows/icon_48x48.png windows/icon_64x64.png windows/icon_128x128.png windows/icon_256x256.png windows/icon.ico

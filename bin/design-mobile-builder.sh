@@ -45,7 +45,7 @@ convert original/icon.png -resize 96x96 android/icon-xhdpi.png
 convert original/icon.png -resize 144x144 android/icon-xxhdpi.png
 convert original/icon.png -resize 192x192 android/icon-xxxhdpi.png
 
-convert original/logo.png -resize 120x60 android/store-logo.png
+convert original/icon.png -resize 60x60 -gravity center -extent 120x60 android/store-logo.png
 
 convert original/splash-landscape.png -resize 732x412 android/ouya-splash.png
 
