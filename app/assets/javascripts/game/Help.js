@@ -4,19 +4,43 @@ define(['ui/Modal'], function(Modal) {
   };
 
   Help.prototype.toggleRules = function() {
-    if(Modal.isVisible()) {
-      Modal.hide();
-    } else {
-      Modal.show("/help/" + this.game.rules);
-    }
+    var postLoad = function() {
+      _.each(document.getElementsByClassName("help-link"), function(helpLink) {
+        helpLink.onclick = function() {
+          Modal.show("GET", helpLink.href, {}, postLoad);
+          return false;
+        };
+      });
+
+    };
+    Modal.show("GET", "/help/" + this.game.rules, {}, postLoad);
   };
 
   Help.prototype.toggleFeedback = function() {
-    if(Modal.isVisible()) {
-      Modal.hide();
-    } else {
-      Modal.show("/feedback");
-    }
+    var g = this.game;
+    var postLoad = function() {
+      var textarea = document.getElementById("feedback-input");
+      var button = document.getElementById("feedback-submit");
+
+      textarea.onfocus = function() {
+        console.log("off");
+        g.keyboard.disable();
+      };
+      textarea.onblur = function() {
+        console.log("on");
+        g.keyboard.enable();
+      };
+
+      button.onclick = function() {
+        var text = textarea.value;
+        if(text === "") {
+          alert("Please enter some feedback first.");
+        } else {
+          Modal.show("POST", "/feedback", { "feedback": text });
+        }
+      };
+    };
+    Modal.show("GET", "/feedback", {}, postLoad);
   };
 
   Help.prototype.initIfNeeded = function() {

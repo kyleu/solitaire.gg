@@ -176,7 +176,7 @@ help.tableau.build.none = No cards may be built on a card in a {0} pile.
 help.tableau.build.rank.and.suit.match.rules = A card may be built on a card in a {0} pile if it is {1} and {2}.
 
 help.tableau.move.stacks.none = No cards may be moved from a {0} pile.
-help.tableau.move.stacks.rank.and.suit.match.rules = Cards may be moved from a {0} pile if they are {1} and {2}.
+help.tableau.move.stacks.rank.and.suit.match.rules = Stacks of cards may be moved from a {0} pile if they are each {1} and {2}.
 
 # Pyramid Help
 help.pyramid.rows.single = a single row

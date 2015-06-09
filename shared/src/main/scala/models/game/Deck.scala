@@ -48,13 +48,19 @@ case class Deck(var cards: Seq[Card], lowRank: Rank, highRank: Rank, originalOrd
   def getCardsUniqueRanks(ranks: Seq[Rank], numCards: Int, turnFaceUp: Boolean = false) = {
     var ret = Seq.empty[Card]
     var enough = false
+    var seekIndex = 0
     while (!enough) {
-      val c = cards.headOption.getOrElse(throw new IllegalStateException())
+      if(seekIndex == cards.size) {
+        throw new IllegalStateException("Coulndn't find unique ranks.")
+      }
+      val c = cards(seekIndex)
       if (ret.exists(_.r == c.r) || ranks.contains(c.r)) {
-        cards = cards.tail :+ c
+        //cards = cards.tail :+ c
+        seekIndex += 1
       } else {
-        cards = cards.tail
+        cards = cards.filterNot(_ == c)
         ret = ret :+ c
+        seekIndex == 0
       }
       enough = ret.length == numCards
     }
@@ -63,7 +69,6 @@ case class Deck(var cards: Seq[Card], lowRank: Rank, highRank: Rank, originalOrd
         c.u = true
       }
     }
-    this.cards = this.cards.filterNot(card => ret.contains(card))
     ret
   }
 }

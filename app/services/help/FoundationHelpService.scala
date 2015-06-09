@@ -42,7 +42,7 @@ object FoundationHelpService {
       case None => // no op
     }
 
-    if (rules.rankMatchRule != RankMatchRule.None && rules.suitMatchRule != SuitMatchRule.None) {
+    if (rules.rankMatchRule == RankMatchRule.None || rules.suitMatchRule == SuitMatchRule.None) {
       ret += Messages("help.foundation.build.none", loweredName)
     } else {
       ret += Messages(

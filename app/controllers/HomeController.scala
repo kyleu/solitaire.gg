@@ -22,7 +22,7 @@ object HomeController extends BaseController {
   }
 
   def feedbackForm = withSession { implicit request =>
-    Future.successful(Ok(views.html.feedback()))
+    Future.successful(Ok(views.html.feedback(request.identity)))
   }
 
   def submitFeedback = withSession { implicit request =>

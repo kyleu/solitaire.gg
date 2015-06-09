@@ -1,0 +1,49 @@
+#gameplay-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 500ms linear;
+}
+
+#gameplay-modal.off {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 500ms linear;
+}
+#gameplay-modal.on {
+  visibility: visible;
+  opacity: 1;
+  transition: all 500ms linear;
+}
+
+#gameplay-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+}
+
+#gameplay-modal-content {
+  padding: 10px;
+  position: relative;
+  color: #000;
+  background-color: #eee;
+  border-radius: 10px;
+  margin: auto;
+  width: 90%;
+  height: 200px;
+}
+
+#gameplay-modal-data {
+  height: 100%;
+  overflow: auto;
+}

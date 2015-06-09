@@ -54,7 +54,7 @@ object TableauHelpService {
 
     ret += MatchRuleHelpService.toWords(rules.emptyFilledWith, deckOptions.lowRank, deckOptions.highRank)
 
-    if (rules.rankMatchRuleForBuilding != RankMatchRule.None && rules.suitMatchRuleForBuilding != SuitMatchRule.None) {
+    if (rules.rankMatchRuleForBuilding == RankMatchRule.None || rules.suitMatchRuleForBuilding == SuitMatchRule.None) {
       ret += Messages("help.tableau.build.none", loweredName)
     } else {
       ret += Messages(
@@ -65,7 +65,7 @@ object TableauHelpService {
       )
     }
 
-    if (rules.rankMatchRuleForMovingStacks != RankMatchRule.None && rules.suitMatchRuleForMovingStacks != SuitMatchRule.None) {
+    if (rules.rankMatchRuleForMovingStacks == RankMatchRule.None || rules.suitMatchRuleForMovingStacks == SuitMatchRule.None) {
       ret += Messages("help.tableau.move.stacks.none", loweredName)
     } else {
       ret += Messages(

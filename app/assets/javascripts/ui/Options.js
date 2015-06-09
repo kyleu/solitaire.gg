@@ -2,10 +2,15 @@ define(['ui/Buttons'], function(Buttons) {
   var Options = function(game) {
     this.gameName = document.getElementById("link-game");
     this.buttons = Buttons(game, this);
+    this.timerDisplay = document.getElementById("timer-display");
   };
 
   Options.prototype.setGame = function(state) {
     this.gameName.innerText = state.rulesTitle;
+  };
+
+  Options.prototype.setTimerValue = function(time) {
+    this.timerDisplay.innerText = time;
   };
 
   Options.prototype.setUndosAvalable = function(num) {

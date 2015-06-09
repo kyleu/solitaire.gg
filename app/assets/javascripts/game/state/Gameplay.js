@@ -22,7 +22,8 @@ define([
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     Display.init(this.game);
-    Keyboard.init(this.game);
+    this.game.keyboard = new Keyboard(this.game);
+    this.game.keyboard.init();
 
     //this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
     //this.bg.height = this.game.height * 2;
