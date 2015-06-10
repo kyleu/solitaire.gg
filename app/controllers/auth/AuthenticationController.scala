@@ -16,12 +16,12 @@ object AuthenticationController extends BaseController {
   override val env = AuthenticationEnvironment
 
   def signInForm = withSession { implicit request =>
-    Future.successful(Ok(views.html.auth.signin(UserForms.signInForm)))
+    Future.successful(Ok(views.html.auth.signin(request.identity, UserForms.signInForm)))
   }
 
   def authenticateCredentials = withSession { implicit request =>
     UserForms.signInForm.bindFromRequest.fold(
-      form => Future.successful(BadRequest(views.html.auth.signin(form))),
+      form => Future.successful(BadRequest(views.html.auth.signin(request.identity, form))),
       credentials => env.credentials.authenticate(credentials).flatMap { loginInfo =>
         val result = Future.successful(Redirect(controllers.routes.HomeController.index()))
         env.identityService.retrieve(loginInfo).flatMap {

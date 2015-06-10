@@ -1,7 +1,6 @@
-@(form: Form[user.RegistrationData])(implicit session: Session, flash: Flash) @layout.basic(
-  "Register with Solitaire.gg",
-  stylesheets = Seq(routes.Assets.at("stylesheets/auth.css").url)
-) {
+@(user: models.user.User, form: Form[models.user.RegistrationData])(
+  implicit request: Request[AnyContent], session: Session, flash: Flash
+)@layout.static(user = user, title = "Sign up for " + utils.Config.projectName, button = "menu") {
   <div class="sign-up">
     @flash.get("error").map { e =>
       <div class="error">@e</div>

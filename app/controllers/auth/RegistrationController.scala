@@ -1,13 +1,9 @@
 package controllers.auth
 
-import java.util.UUID
-
 import com.mohiva.play.silhouette.api.{ LoginEvent, LoginInfo, SignUpEvent }
 import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, CredentialsProvider }
 import controllers.BaseController
-import models.ui.Colors
-import models.user.{ RegistrationData, User, UserForms }
-import org.joda.time.LocalDateTime
+import models.user.{ RegistrationData, UserForms }
 import play.api.i18n.Messages
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.AnyContent
@@ -19,20 +15,20 @@ object RegistrationController extends BaseController {
   private[this] val env = AuthenticationEnvironment
 
   def registrationForm = withSession { implicit request =>
-    Future.successful(Ok(views.html.auth.register(UserForms.registrationForm)))
+    Future.successful(Ok(views.html.auth.register(request.identity, UserForms.registrationForm)))
   }
 
   def register = withSession { implicit request =>
     UserForms.registrationForm.bindFromRequest.fold(
-      form => Future.successful(BadRequest(views.html.auth.register(form))),
+      form => Future.successful(BadRequest(views.html.auth.register(request.identity, form))),
       data => {
         env.identityService.retrieve(LoginInfo(CredentialsProvider.ID, data.email)).flatMap {
           case Some(user) => Future.successful {
-            Ok(views.html.auth.register(UserForms.registrationForm.fill(data))).flashing("error" -> Messages("registration.email.taken"))
+            Ok(views.html.auth.register(request.identity, UserForms.registrationForm.fill(data))).flashing("error" -> Messages("registration.email.taken"))
           }
           case None => env.identityService.retrieve(data.username) flatMap {
             case Some(user) => Future.successful {
-              Ok(views.html.auth.register(UserForms.registrationForm.fill(data))).flashing("error" -> Messages("registration.username.taken"))
+              Ok(views.html.auth.register(request.identity, UserForms.registrationForm.fill(data))).flashing("error" -> Messages("registration.username.taken"))
             }
             case None => saveProfile(data)
           }

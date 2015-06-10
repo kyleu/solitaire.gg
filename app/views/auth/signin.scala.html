@@ -1,7 +1,6 @@
-@(form: Form[com.mohiva.play.silhouette.api.util.Credentials])(implicit session: Session, flash: Flash)@layout.basic(
-  "Sign in to Solitaire.gg",
-  stylesheets = Seq(routes.Assets.at("stylesheets/auth.css").url)
-) {
+@(user: models.user.User, form: Form[com.mohiva.play.silhouette.api.util.Credentials])(
+  implicit request: Request[AnyContent], session: Session, flash: Flash
+)@layout.static(user = user, title = "Sign in to " + utils.Config.projectName, button = "menu") {
   <div class="sign-in">
     @if(flash.get("error").isDefined) {
       <div class="flash-error">@flash("error")</div>
