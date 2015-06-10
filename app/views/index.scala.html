@@ -1,50 +1,42 @@
-@(user: models.user.User)(implicit request: Request[AnyContent], session: Session, flash: Flash)@layout.basic(
-  utils.Config.projectName, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url), bodyClass = Some("background-" + user.color)
-) {
-  @layout.topBar(user, false)
-  <div id="main-page-content">
-    <div class="module">
-      <div class="welcome">@Messages("index.welcome")</div>
-      <div class="tagline">@Messages("index.tagline")</div>
-      @if(user.isGuest) {
-        <div class="coming-soon">
-          @Messages("index.coming.soon")
-        </div>
-      } else {
-        <div class="play-now">
-          <a href="@routes.GameController.newGame("klondike").url" role="button">@Messages("index.play.now")</a>
-        </div>
-      }
-    </div>
-
-    @if(!user.isGuest) {
-      <div class="module">
-        <div class="header">@Messages("index.games.popular")</div>
-        <ul>
-        @for(r <- models.game.rules.GameRulesSet.favorites) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}
-        </ul>
-        <div class="clear"></div>
+@(user: models.user.User)(implicit request: Request[AnyContent], session: Session, flash: Flash)
+@layout.static(user = user, title = utils.Config.projectName, button = "about") {
+  <div class="module">
+    <div class="welcome">@Messages("index.welcome")</div>
+    <div class="tagline">@Messages("index.tagline")</div>
+    @if(user.isGuest) {
+      <div class="coming-soon">
+        @Messages("index.coming.soon")
       </div>
-
-      <div class="module">
-        <div class="header">@Messages("index.games.completed")</div>
-        <ul>@for(r <- models.game.rules.GameRulesSet.completed) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
-        <div class="clear"></div>
-      </div>
-    }
-
-    @if(user.isAdmin) {
-      <div class="module">
-        <div class="header">@Messages("index.games.in.progress")</div>
-        <ul>@for(r <- models.game.rules.GameRulesSet.inProgress) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
-        <div class="clear"></div>
-      </div>
-
-      <div class="module">
-        <div class="header">@Messages("index.games.unstarted")</div>
-        <ul>@for(r <- models.game.rules.GameRulesSet.unfinished) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
-        <div class="clear"></div>
+    } else {
+      <div class="play-now">
+        <a href="@routes.GameController.newGame("klondike").url" role="button">@Messages("index.play.now")</a>
       </div>
     }
   </div>
+
+  @if(!user.isGuest) {
+    <div class="module">
+      <div class="header">@Messages("index.games.popular")</div>
+      <ul>
+      @for(r <- models.game.rules.GameRulesSet.favorites) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}
+      </ul>
+    </div>
+
+    <div class="module">
+      <div class="header">@Messages("index.games.completed")</div>
+      <ul>@for(r <- models.game.rules.GameRulesSet.completed) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
+    </div>
+  }
+
+  @if(user.isAdmin) {
+    <div class="module">
+      <div class="header">@Messages("index.games.in.progress")</div>
+      <ul>@for(r <- models.game.rules.GameRulesSet.inProgress) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
+    </div>
+
+    <div class="module">
+      <div class="header">@Messages("index.games.unstarted")</div>
+      <ul>@for(r <- models.game.rules.GameRulesSet.unfinished) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
+    </div>
+  }
 }

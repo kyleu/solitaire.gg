@@ -1,6 +1,4 @@
-#main-page-content {
-  margin-top: 60px;
-
+#page-content {
   .module {
     margin: 20px;
     padding: 10px;
@@ -16,7 +14,6 @@
     }
     li {
       display: inline-block;
-      width: 12.5%;
       height: 40px;
       a {
         text-decoration: none;
@@ -54,26 +51,30 @@
   }
 }
 
+#page-content .module li {
+  width: 12.5%;
+}
+
 @media only screen and (max-width: 1600px) {
-  #main-page-content .module li {
+  #page-content .module li {
     width: 20%;
   }
 }
 
 @media only screen and (max-width: 1000px) {
-  #main-page-content .module li {
+  #page-content .module li {
     width: 33%;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  #main-page-content .module li {
+  #page-content .module li {
     width: 50%;
   }
 }
 
 @media only screen and (max-width: 420px) {
-  #main-page-content .module li {
+  #page-content .module li {
     width: 100%;
   }
 }

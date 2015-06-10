@@ -1,13 +1,14 @@
-#menu-container {
+#menu-container.fixed {
+  position: absolute;
   top: 0;
 }
 
-#status-container {
+#status-container.fixed {
+  position: absolute;
   bottom: 0;
 }
 
 #menu-container, #status-container {
-  position: absolute;
   width: 100%;
   height: 40px;
   background-color: rgba(0, 0, 0, 0.4);
@@ -22,10 +23,12 @@
     height: 32px;
     cursor: pointer;
   }
-  .spacer-32 {
-    width: 32px;
-    height: 32px;
+
+  #home-icons {
+    padding: 0;
+    margin: 0;
   }
+
   .menu-left {
     padding: 4px;
     float: left;
@@ -90,11 +93,13 @@
     cursor: pointer;
   }
   .logo {
-    color: #ffffff;
-    text-decoration: none;
     display: block;
     padding: 10px;
     text-align: center;
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
   }
   .timer-container {
     padding: 10px;
@@ -102,7 +107,7 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 620px) {
   #menu-container, #status-container {
     .link {
       display: none;
@@ -126,7 +131,7 @@
   }
 }
 
-@media only screen and (max-width: 290px) {
+@media only screen and (max-width: 295px) {
   #menu-container, #status-container {
     .logo {
       display: none;

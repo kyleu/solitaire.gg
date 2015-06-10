@@ -1,0 +1,6 @@
+@(user: models.user.User)(implicit request: Request[AnyContent], session: Session, flash: Flash)
+@layout.static(user = user, title = "About " + utils.Config.projectName, button = "menu") {
+  <div class="module">
+    This is @utils.Config.projectName! It's pretty cool.
+  </div>
+}

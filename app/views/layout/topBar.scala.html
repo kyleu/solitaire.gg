@@ -1,11 +1,7 @@
-@(user: models.user.User, showMenu: Boolean = true)
-<div id="menu-container">
+@(user: models.user.User)
+<div id="menu-container" class="fixed">
   <div class="menu-left">
-    @if(showMenu) {
-      <div id="btn-menu" title="Menu" class="btn btn-@user.color menu"></div>
-    } else {
-      <div class="spacer-32"></div>
-    }
+    <a id="btn-menu" title="Menu" class="btn btn-@user.color menu" href="@routes.HomeController.index()"></a>
     <a id="link-game" class="link" href=""></a>
   </div>
   <div class="menu-right">
@@ -14,5 +10,7 @@
     }
     <a class="link" href="@routes.ProfileController.profile()">@user.username.getOrElse("Guest")</a>
   </div>
-  <a class="logo" href="@routes.HomeController.index()">@utils.Config.projectName</a>
+  <div class="logo">
+    <a href="@routes.HomeController.index()">@utils.Config.projectName</a>
+  </div>
 </div>

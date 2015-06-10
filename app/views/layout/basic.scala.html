@@ -1,5 +1,5 @@
 @(
-  title: String, scripts: Seq[String] = Nil, stylesheets: Seq[String] = Nil, bodyClass: Option[String] = None
+  title: String, scripts: Seq[String] = Nil, stylesheets: Seq[String] = Nil, bodyClass: Option[String] = None, faviconColor: Option[String] = None
 )(content: Html)(implicit session: Session, flash: Flash)<!DOCTYPE html>
 <html>
   <head>
@@ -7,7 +7,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    @if(faviconColor.isDefined) {
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at(s"images/ui/favicon/favicon-${models.ui.Colors.allById(faviconColor.get)}.png")">
+    } else {
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/ui/favicon/favicon.png")">
+    }
     @for(script <- scripts) { <script src="@script"></script> }
     @for(stylesheet <- stylesheets) { <link rel="stylesheet" media="screen" href="@stylesheet" /> }
   </head>

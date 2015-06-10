@@ -21,6 +21,10 @@ object HomeController extends BaseController {
     Future.successful(MovedPermanently("/" + path))
   }
 
+  def about = withSession { implicit request =>
+    Future.successful(Ok(views.html.about(request.identity)))
+  }
+
   def feedbackForm = withSession { implicit request =>
     Future.successful(Ok(views.html.feedback(request.identity)))
   }

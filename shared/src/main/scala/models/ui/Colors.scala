@@ -26,5 +26,7 @@ object Colors {
     "greyblue" -> "607d8b"
   )
 
+  val allById = all.toMap
+
   def randomColor = all(Random.nextInt(all.size))
 }

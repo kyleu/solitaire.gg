@@ -1,0 +1,31 @@
+@(user: models.user.User, title: String, button: String)(content: Html)(implicit request: Request[AnyContent], session: Session, flash: Flash)@layout.basic(
+  title = title, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url), bodyClass = Some("background-" + user.color), faviconColor = Some(user.color)
+) {
+  <div id="menu-container">
+    <div class="menu-left">
+      @if(button == "about") {
+        <a id="btn-help" title="About @utils.Config.projectName" class="btn btn-@user.color help" href="@routes.HomeController.about()"></a>
+      } else {
+        @if(button == "menu") {
+          <a id="btn-menu" title="@utils.Config.projectName" class="btn btn-@user.color menu" href="@routes.HomeController.index()"></a>
+        } else {
+          ICON ERROR
+        }
+      }
+      <div id="link-game" class="link"></div>
+    </div>
+    <div class="menu-right">
+      @defining(if(user.avatar == "guest" || user.avatar == "default") { routes.Assets.at("images/avatar/profile-ffffff.png") } else { user.avatar }) { av =>
+        <a href="@routes.ProfileController.profile()"><img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@av" /></a>
+      }
+      <a class="link" href="@routes.ProfileController.profile()">@user.username.getOrElse("Guest")</a>
+    </div>
+    <div class="logo">
+      <a href="@routes.HomeController.index()">@utils.Config.projectName</a>
+    </div>
+  </div>
+
+  <div id="page-content">
+    @content
+  </div>
+}

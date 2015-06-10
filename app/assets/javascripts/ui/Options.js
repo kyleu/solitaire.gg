@@ -1,7 +1,7 @@
 define(['ui/Buttons'], function(Buttons) {
   var Options = function(game) {
     this.gameName = document.getElementById("link-game");
-    this.buttons = Buttons(game, this);
+    this.buttons = new Buttons(game, this);
     this.timerDisplay = document.getElementById("timer-display");
   };
 

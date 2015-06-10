@@ -1,8 +1,6 @@
-@(user: models.user.User, profiles: Seq[com.mohiva.play.silhouette.impl.providers.CommonSocialProfile])(implicit session: Session, flash: Flash)
-@import utils.AuthenticationSerializers._
-@import play.api.libs.json.Json
-
-@layout.basic(utils.Config.projectName + " Profile", stylesheets = Seq(routes.Assets.at("stylesheets/profile.css").url)) {
+@(user: models.user.User, profiles: Seq[com.mohiva.play.silhouette.impl.providers.CommonSocialProfile])(
+  implicit request: Request[AnyContent], session: Session, flash: Flash
+)@layout.static(user = user, title = utils.Config.projectName + " Profile", button = "menu") {
   <div class="profile">
     @if(user.isGuest) {
       <p>
@@ -89,7 +87,7 @@
               <a href="@url">Connect your Twitter account</a>
             }
           }
-            <div class="clear"></div>
+          <div class="clear"></div>
         </div>
       }
 
@@ -116,8 +114,4 @@
       }
     }
   </div>
-}
-
-@foo() = {
-
 }
