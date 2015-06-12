@@ -1,11 +1,16 @@
 .profile {
   width: 80%;
   margin: auto;
-  margin-top: 100px;
-  background-color: transparent;
-  border-radius: 10px;
-  border: 1px solid #ddd;
   padding: 20px;
+
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 
   .avatar-image {
     float: left;
@@ -25,11 +30,19 @@
   }
 
   .provider {
+    display: inline-block;
     width: 64px;
     height: 64px;
     margin-right: 10px;
     border-radius: 4px;
     outline: none;
+    vertical-align: top;
+  }
+
+  .local {
+    border: 1px solid #fff;
+    width: 62px;
+    height: 62px;
   }
 
   .clear {
@@ -40,5 +53,13 @@
 .profile-detail {
   height: 64px;
   margin-top: 20px;
+  border-radius: 5px;
+  padding: 10px;
   clear: both;
+  background-color: #fff;
+  color: #000;
+
+  .profile-links {
+    display: inline-block;
+  }
 }

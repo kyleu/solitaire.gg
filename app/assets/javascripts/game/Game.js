@@ -7,7 +7,19 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
     this.cardSet = CardSet[config.cardSet][cardSize];
     var initialState = new InitialState(this);
     var transparent = true;
-    Phaser.Game.call(this, '100%', '100%', Phaser.AUTO, 'game-container', initialState, transparent);
+
+    var configOptions = {
+      width: '100%',
+      height: '100%',
+      renderer: Phaser.AUTO,
+      parent: 'game-container',
+      state: initialState,
+      transparent: transparent,
+      resolution: 2
+    };
+
+    Phaser.Game.call(this, configOptions);
+
     this.options = new Options(this);
     this.status = {};
     this.piles = {};

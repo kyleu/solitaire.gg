@@ -1,18 +1,24 @@
 @(user: models.user.User, title: String, button: String)(content: Html)(implicit request: Request[AnyContent], session: Session, flash: Flash)@layout.basic(
-  title = title, stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.css").url), bodyClass = Some("background-" + user.color), faviconColor = Some(user.color)
+  title = title,
+  scripts = Seq(routes.Assets.at("javascripts/static.js").url),
+  stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.min.css").url),
+  bodyClass = Some("background-" + user.color),
+  faviconColor = Some(user.color)
 ) {
   <div id="menu-container">
     <div class="menu-left">
       @if(button == "about") {
-        <a id="btn-help" title="About @utils.Config.projectName" class="btn btn-@user.color help" href="@routes.HomeController.about()"></a>
+        <a id="btn-help" title="About @utils.Config.projectName" class="help btn btn-@user.color" href="@routes.HomeController.about()"></a>
       } else {
         @if(button == "menu") {
-          <a id="btn-menu" title="@utils.Config.projectName" class="btn btn-@user.color menu" href="@routes.HomeController.index()"></a>
+          <a id="btn-menu" title="@utils.Config.projectName" class="menu btn btn-@user.color" href="@routes.HomeController.index()"></a>
         } else {
           ICON ERROR
         }
       }
-      <div id="link-game" class="link"></div>
+      <div id="link-game" class="link game-icons">
+        <div id="btn-options" title="@utils.Config.projectName Options" class="options btn btn-@user.color"></div>
+      </div>
     </div>
     <div class="menu-right">
       @defining(if(user.avatar == "guest" || user.avatar == "default") { routes.Assets.at("images/avatar/profile-ffffff.png") } else { user.avatar }) { av =>
@@ -22,6 +28,19 @@
     </div>
     <div class="logo">
       <a href="@routes.HomeController.index()">@utils.Config.projectName</a>
+    </div>
+  </div>
+
+  <div id="static-options-panel">
+    <div id="color-list">
+      @for(color <- ui.Colors.all) {
+        @defining(if(color._1 == user.color) { " active" } else { "" }) { active =>
+          <div class="swatch-border @active"><div id="color-@color._1" class="swatch background-@color._1"></div></div>
+        }
+      }
+    </div>
+    <div class="action-buttons">
+      <div id="btn-color-confirm" title="OK" class="ok btn btn-@user.color disabled"></div>
     </div>
   </div>
 

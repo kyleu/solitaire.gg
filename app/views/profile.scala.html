@@ -18,11 +18,13 @@
 
       <div class="username">@user.username.getOrElse("Guest")</div>
       @defining(profiles.find(_.loginInfo.providerID == "credentials")) { credentials =>
-        @if(credentials.isDefined) {
-          <em>@credentials.get.email</em>
-        } else {
-          <a href="@controllers.auth.routes.RegistrationController.registrationForm()">Create a local account</a>
-        }
+        <div class="profile-detail">
+          @if(credentials.isDefined) {
+            <em>@credentials.get.email</em>
+          } else {
+            <a href="@controllers.auth.routes.RegistrationController.registrationForm()">Create a local account</a>
+          }
+        </div>
       }
 
       @defining(profiles.find(_.loginInfo.providerID == "facebook")) { facebook =>
@@ -31,16 +33,19 @@
             <div class="provider facebook">
               <img src="@routes.Assets.at("images/providers/facebook.png")">
             </div>
-            <strong>@facebook.get.fullName</strong><br/>
-            @facebook.get.email<br/>
-            <a href="@routes.ProfileController.updateAvatar("facebook")">Use your Facebook profile image as your avatar.</a>
+            <div class="profile-links">
+              <strong>@facebook.get.fullName</strong><br/>
+              @facebook.get.email<br/>
+              <a href="@routes.ProfileController.setOption("avatar", "facebook")">Use your Facebook profile image as your avatar.</a>
+            </div>
           } else {
             @defining(controllers.auth.routes.AuthenticationController.authenticateSocial("facebook")) { url =>
               <a href="@url" class="provider facebook">
                 <img src="@routes.Assets.at("images/providers/facebook.png")">
               </a>
-              <br/>
-              <a href="@url">Connect your Facebook account</a>
+              <div class="profile-links">
+                <a href="@url">Connect your Facebook account</a>
+              </div>
             }
           }
           <div class="clear"></div>
@@ -53,16 +58,19 @@
             <div class="provider google">
               <img src="@routes.Assets.at("images/providers/google.png")">
             </div>
-            <strong>@google.get.fullName</strong><br/>
-            @google.get.email<br/>
-            <a href="@routes.ProfileController.updateAvatar("google")">Use your Google+ profile image as your avatar.</a>
+            <div class="profile-links">
+              <strong>@google.get.fullName</strong><br/>
+              @google.get.email<br/>
+              <a href="@routes.ProfileController.setOption("avatar", "google")">Use your Google+ profile image as your avatar.</a>
+            </div>
           } else {
             @defining(controllers.auth.routes.AuthenticationController.authenticateSocial("google")) { url =>
               <a href="@url" class="provider google">
                 <img src="@routes.Assets.at("images/providers/google.png")">
               </a>
-              <br/>
-              <a href="@url">Connect your Google account</a>
+              <div class="profile-links">
+                <a href="@url">Connect your Google account</a>
+              </div>
             }
           }
           <div class="clear"></div>
@@ -75,16 +83,19 @@
             <div class="provider twitter">
               <img src="@routes.Assets.at("images/providers/twitter.png")">
             </div>
-            <strong>@twitter.get.fullName.map(n => "@" + n)</strong><br/>
-            @twitter.get.email<br/>
-            <a href="@routes.ProfileController.updateAvatar("twitter")">Use your Twitter profile image as your avatar.</a>
+            <div class="profile-links">
+              <strong>@twitter.get.fullName.map(n => "@" + n)</strong><br/>
+              @twitter.get.email<br/>
+              <a href="@routes.ProfileController.setOption("avatar", "twitter")">Use your Twitter profile image as your avatar.</a>
+            </div>
           } else {
             @defining(controllers.auth.routes.AuthenticationController.authenticateSocial("twitter")) { url =>
               <a href="@url" class="provider twitter">
                 <img src="@routes.Assets.at("images/providers/twitter.png")">
               </a>
-              <br/>
-              <a href="@url">Connect your Twitter account</a>
+              <div class="profile-links">
+                <a href="@url">Connect your Twitter account</a>
+              </div>
             }
           }
           <div class="clear"></div>
@@ -97,16 +108,19 @@
             <div class="provider steam">
               <img src="@routes.Assets.at("images/providers/steam.png")">
             </div>
-            <strong>@steam.get.fullName</strong><br/>
-            @steam.get.email<br/>
-            <a href="@routes.ProfileController.updateAvatar("steam")">Use your Steam profile image as your avatar.</a>
+            <div class="profile-links">
+              <strong>@steam.get.fullName</strong><br/>
+              @steam.get.email<br/>
+              <a href="@routes.ProfileController.setOption("avatar", "steam")">Use your Steam profile image as your avatar.</a>
+            </div>
           } else {
             @defining(controllers.auth.routes.AuthenticationController.authenticateSocial("steam")) { url =>
               <a href="@url" class="provider steam">
                 <img src="@routes.Assets.at("images/providers/steam.png")">
               </a>
-              <br/>
-              <a href="@url">Connect your Steam account</a>
+              <div class="profile-links">
+                <a href="@url">Connect your Steam account</a>
+              </div>
             }
           }
           <div class="clear"></div>

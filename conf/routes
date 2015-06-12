@@ -2,14 +2,7 @@ GET         /                                  controllers.HomeController.index
 
 GET         /*path/                            controllers.HomeController.untrail(path: String)
 GET         /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/favicon/favicon.ico")
-
-# Feedback
-GET         /feedback                          controllers.HomeController.feedbackForm
-POST        /feedback                          controllers.HomeController.submitFeedback
-
-# Profile
-GET         /profile                           controllers.ProfileController.profile
-GET         /profile/avatar/:key               controllers.ProfileController.updateAvatar(key)
+GET         /apple-touch-icon.png              controllers.Assets.at(path = "/public", file = "images/favicon/favicon.png")
 
 # Authentication
 GET         /signup                            controllers.auth.RegistrationController.registrationForm
@@ -18,6 +11,14 @@ GET         /signin                            controllers.auth.AuthenticationCo
 POST        /signin                            controllers.auth.AuthenticationController.authenticateCredentials
 GET         /signin/:provider                  controllers.auth.AuthenticationController.authenticateSocial(provider)
 GET         /signout                           controllers.auth.AuthenticationController.signOut
+
+# Feedback
+GET         /feedback                          controllers.HomeController.feedbackForm
+POST        /feedback                          controllers.HomeController.submitFeedback
+
+# Profile
+GET         /profile                           controllers.ProfileController.profile
+GET         /options/set/:option/:value        controllers.ProfileController.setOption(option, value)
 
 # Game
 GET         /help/:id                          controllers.GameController.help(id)
@@ -30,7 +31,6 @@ GET         /offline/:rules                    controllers.GameController.newOff
 GET         /offline/:rules/:seed              controllers.GameController.newOfflineGameWithSeed(rules, seed: Int)
 
 GET         /websocket                         controllers.WebsocketController.connect()
-
 
 # Admin
 GET         /admin                             controllers.admin.AdminController.index()

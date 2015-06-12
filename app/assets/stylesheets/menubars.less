@@ -11,22 +11,14 @@
 #menu-container, #status-container {
   width: 100%;
   height: 40px;
-  background-color: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+
+  background-color: rgba(0, 0, 0, 0.5);
   .link {
     color: #ffffff;
     text-decoration: none;
     vertical-align: top;
     margin-top: 6px;
-  }
-  .btn {
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-  }
-
-  #home-icons {
-    padding: 0;
-    margin: 0;
   }
 
   .menu-left {
@@ -40,6 +32,9 @@
     .link {
       float: left;
       margin-left: 10px;
+    }
+    .link.game-icons {
+      margin: 0;
     }
   }
   .menu-right {
@@ -55,35 +50,6 @@
       float: right;
       margin-right: 10px;
     }
-  }
-
-  .btn.disabled {
-    background-position-y: -32px;
-    cursor: default;
-  }
-  .btn.undo {
-    background-position-x: 0;
-  }
-  .btn.redo {
-    background-position-x: -32px;
-  }
-  .btn.hint {
-    background-position-x: -64px;
-  }
-  .btn.options {
-    background-position-x: -96px;
-  }
-  .btn.profile {
-    background-position-x: -128px;
-  }
-  .btn.menu {
-    background-position-x: -160px;
-  }
-  .btn.help {
-    background-position-x: -192px;
-  }
-  .btn.feedback {
-    background-position-x: -224px;
   }
 
   .avatar-small {
@@ -108,17 +74,15 @@
 }
 
 @media only screen and (max-width: 620px) {
-  #menu-container, #status-container {
-    .link {
-      display: none;
-    }
-  }
   #menu-container {
     .menu-left {
-      width: 60px;
+      width: 80px;
     }
     .menu-right {
-      width: 60px;
+      width: 80px;
+      .link {
+        display: none;
+      }
     }
   }
   #status-container {
