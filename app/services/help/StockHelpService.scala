@@ -1,11 +1,11 @@
 package services.help
 
 import models.game.rules.{ StockCardsDealt, StockDealTo, StockRules }
-import play.api.i18n.{ Messages, Lang }
+import play.api.i18n.Messages
 import utils.NumberUtils
 
 object StockHelpService {
-  def stock(rules: StockRules)(implicit lang: Lang) = {
+  def stock(rules: StockRules)(implicit messages: Messages) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
 
     val cardsDealt = rules.cardsDealt match {

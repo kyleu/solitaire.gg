@@ -2,13 +2,13 @@ package services.help
 
 import models.game.Rank
 import models.game.rules._
-import play.api.i18n.{ Lang, Messages }
+import play.api.i18n.Messages
 import utils.NumberUtils
 
 object FoundationHelpService {
   private[this] val defaults = FoundationRules()
 
-  def foundation(rules: FoundationRules, deckOptions: DeckOptions)(implicit lang: Lang) = {
+  def foundation(rules: FoundationRules, deckOptions: DeckOptions)(implicit messages: Messages) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
     val loweredName = rules.name.toLowerCase
 

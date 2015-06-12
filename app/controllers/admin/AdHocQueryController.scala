@@ -7,6 +7,7 @@ import models.database.queries.adhoc.{ AdHocQuery, AdHocQueries }
 import org.joda.time.LocalDateTime
 import play.api.data.Form
 import play.api.data.Forms._
+import play.api.i18n.MessagesApi
 import services.database.Database
 import utils.DateUtils
 import scala.concurrent.Future
@@ -14,7 +15,7 @@ import scala.concurrent.duration._
 import controllers.BaseController
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-object AdHocQueryController extends BaseController {
+class AdHocQueryController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   case class QueryExecution(action: String, id: Option[String], title: String, sql: String)
 
   val executionForm = Form(

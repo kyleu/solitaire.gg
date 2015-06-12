@@ -1,5 +1,5 @@
 @(user: models.user.User, form: Form[models.user.RegistrationData])(
-  implicit request: Request[AnyContent], session: Session, flash: Flash
+  implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
 )@layout.static(user = user, title = "Sign up for " + utils.Config.projectName, button = "menu") {
   <div class="sign-up">
     @flash.get("error").map { e =>
@@ -23,5 +23,18 @@
       <br/>
       <input type="submit" class="submit" value="Register" />
     </form>
+
+    @defining(services.user.AuthenticationEnvironment.providersSeq) { providers =>
+      @if(providers.nonEmpty) {
+        <div>
+          <p>Or sign in using these providers</p>
+          <div>
+          @for(p <- providers if p._2.id != "credentials") {
+            <a href="@controllers.auth.routes.AuthenticationController.authenticateSocial(p._2.id)" class="provider @p._2.id"><img src="@routes.Assets.at("images/providers/" + p._2.id + ".png")"></a>
+          }
+          </div>
+        </div>
+      }
+    }
   </div>
 }

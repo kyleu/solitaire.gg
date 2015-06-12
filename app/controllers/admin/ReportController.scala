@@ -2,12 +2,13 @@ package controllers.admin
 
 import controllers.BaseController
 import models.database.queries.ReportQueries
+import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 
 import scala.concurrent.Future
 
-object ReportController extends BaseController {
+class ReportController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   def overview() = withAdminSession { implicit request =>
     Database.query(ReportQueries.ListTables()).flatMap { tables =>
       Future.sequence(tables.map { table =>

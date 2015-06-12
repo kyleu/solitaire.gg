@@ -8,6 +8,7 @@ import controllers.BaseController
 import models._
 import models.database.queries.auth.UserQueries
 import models.user.Role
+import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.ActorSupervisor
 import services.database.{ Schema, Database }
@@ -17,7 +18,7 @@ import scala.concurrent.Future
 import scala.concurrent.duration._
 import scala.util.Random
 
-object AdminController extends BaseController {
+class AdminController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   implicit val timeout = Timeout(10.seconds)
 
   def enable = withSession { implicit request =>

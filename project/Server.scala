@@ -1,3 +1,4 @@
+import play.routes.compiler.InjectedRoutesGenerator
 import sbt._
 import sbt.Keys._
 import sbt.Project.projectToRef
@@ -22,7 +23,7 @@ object Server {
   private[this] val dependencies = {
     import Dependencies._
     Seq(
-      Database.postgresAsync, Play.playFilters, Play.playWs, Testing.akkaTestkit, Mail.mailer, Authentication.silhouette,
+      Cache.ehCache, Database.postgresAsync, Play.playFilters, Play.playWs, Testing.akkaTestkit, Mail.mailer, Authentication.silhouette,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap
     )
@@ -35,6 +36,8 @@ object Server {
 
     scalacOptions ++= Shared.compileOptions,
     scalacOptions in Test ++= Seq("-Yrangepos"),
+
+    resolvers += "Atlassian Releases" at "https://maven.atlassian.com/public/",
 
     libraryDependencies ++= dependencies,
 
@@ -77,7 +80,7 @@ object Server {
     base = file(".")
   )
     .enablePlugins(SbtWeb)
-    .enablePlugins(play.PlayScala)
+    .enablePlugins(play.sbt.PlayScala)
     .enablePlugins(GitVersioning)
     .settings(buildInfoSettings: _*)
     .settings(serverSettings: _*)

@@ -62,8 +62,8 @@ object PolitaireParser {
     }
 
     variants.map { v =>
-      val related = variants.filter(_.attributes.get("like").map(_.value.toString) == Some(v.id)).map(_.id)
-      v.attributes("related") = Attr("related", PolitaireLookup.getTitle("related").getOrElse("related"), related.mkString(", "), None, false)
+      val related = variants.filter(_.attributes.get("like").map(_.value.toString).contains(v.id)).map(_.id)
+      v.attributes("related") = Attr("related", PolitaireLookup.getTitle("related").getOrElse("related"), related.mkString(", "), None, defaultVal = false)
 
       v.attributes.get("like") match {
         case Some(like) if like.value.toString.nonEmpty => withParent(v, like.value.toString)
@@ -76,16 +76,16 @@ object PolitaireParser {
   private[this] def getAttributes(id: String, data: JsObject, overrides: Map[String, Int]) = {
     val ret = collection.mutable.LinkedHashMap.empty[String, Attr]
     def processAttr(attr: (String, String), default: Option[Any] = None, markDefaults: Boolean = true) {
-      data \ attr._1 match {
-        case JsString(s) =>
+      (data \ attr._1).toOption match {
+        case Some(JsString(s)) =>
           val value = IntUtils.parse(s.trim).getOrElse(s.trim)
           ret(attr._1) = Attr(attr._1, attr._2, value, None, defaultVal = false)
-        case JsNumber(n) => ret(attr._1) = PolitaireLookup.getTranslation(attr._1) match {
+        case Some(JsNumber(n)) => ret(attr._1) = PolitaireLookup.getTranslation(attr._1) match {
           case Some(x) => Attr(attr._1, attr._2, n.toInt, x.get(n.toInt), defaultVal = false)
           case None => Attr(attr._1, attr._2, n.toInt, None, defaultVal = false)
         }
-        case b: JsBoolean => ret(attr._1) = Attr(attr._1, attr._2, b.value, None, defaultVal = false)
-        case _: JsUndefined => default.foreach(x => ret(attr._1) = Attr(attr._1, attr._2, x, PolitaireLookup.getTranslation(attr._1) match {
+        case Some(b: JsBoolean) => ret(attr._1) = Attr(attr._1, attr._2, b.value, None, defaultVal = false)
+        case None => default.foreach(x => ret(attr._1) = Attr(attr._1, attr._2, x, PolitaireLookup.getTranslation(attr._1) match {
           case Some(a) => try { a.get(x.toString.toInt) } catch { case x: Exception => Some(x.toString) }
           case None => None
         }, defaultVal = markDefaults))

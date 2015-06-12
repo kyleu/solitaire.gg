@@ -2,10 +2,11 @@ package controllers.admin
 
 import controllers.BaseController
 import models.database.queries.RequestLogQueries
+import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 
-object RequestLogController extends BaseController {
+class RequestLogController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   def requestList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     Database.query(RequestLogQueries.CountQuery(q)).flatMap { count =>
       Database.query(RequestLogQueries.SearchQuery(q, getOrderClause(sortBy), Some(page))).map { requests =>

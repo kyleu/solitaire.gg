@@ -1,12 +1,12 @@
 package services
 
 import models.user.{ User, UserFeedback }
-import play.api.i18n.{ Messages, Lang }
+import play.api.i18n.Messages
 import play.api.libs.mailer._
 import utils.Config
 
-object EmailService {
-  def sendWelcomeMessage(toName: String, toAddress: String)(implicit lang: Lang) = {
+class EmailService(mailerClient: MailerClient) {
+  def sendWelcomeMessage(toName: String, toAddress: String)(implicit messages: Messages) = {
     val to = toName + " <" + toAddress + ">"
     val htmlTemplate = views.html.email.welcomeHtml()
     val textTemplate = views.html.email.welcomeText()
@@ -14,14 +14,13 @@ object EmailService {
     sendMessage(to, welcomeSubject, textTemplate.toString(), htmlTemplate.toString())
   }
 
-  def feedbackSubmitted(fb: UserFeedback, user: User) = {
+  def feedbackSubmitted(fb: UserFeedback, user: User)(implicit messages: Messages) = {
     val text = "You should really use HTML mail."
     val html = views.html.email.feedbackHtml(fb, user)
-    sendMessage(Config.adminEmail, Config.projectName + " user feedback from [" + fb.userId + "]", text, html.toString)
+    sendMessage(Config.adminEmail, Config.projectName + " user feedback from [" + fb.userId + "]", text, html.toString())
   }
 
-  private[this] def sendMessage(to: String, subject: String, textMessage: String, htmlMessage: String)(implicit lang: Lang) = {
-    import play.api.Play.current
+  def sendMessage(to: String, subject: String, textMessage: String, htmlMessage: String)(implicit messages: Messages) = {
     val from = Messages("email.from")
 
     val email = Email(
@@ -34,6 +33,6 @@ object EmailService {
       bcc = Nil,
       attachments = Nil
     )
-    MailerPlugin.send(email)
+    mailerClient.send(email)
   }
 }

@@ -1,7 +1,6 @@
 package services.user
 
-import com.mohiva.play.silhouette.api.LoginInfo
-import com.mohiva.play.silhouette.api.services.AuthInfoService
+import com.mohiva.play.silhouette.api.repositories.AuthInfoRepository
 import com.mohiva.play.silhouette.api.util.{ Clock, HTTPLayer, IDGenerator, PasswordHasher }
 import com.mohiva.play.silhouette.impl.providers._
 import com.mohiva.play.silhouette.impl.providers.oauth1.TwitterProvider
@@ -9,21 +8,13 @@ import com.mohiva.play.silhouette.impl.providers.oauth1.secrets.{ CookieSecretPr
 import com.mohiva.play.silhouette.impl.providers.oauth1.services.PlayOAuth1Service
 import com.mohiva.play.silhouette.impl.providers.oauth2.state.{ CookieStateProvider, CookieStateSettings }
 import com.mohiva.play.silhouette.impl.providers.oauth2.{ FacebookProvider, GoogleProvider }
-import com.mohiva.play.silhouette.impl.providers.openid.SteamProvider
-import com.mohiva.play.silhouette.impl.providers.openid.services.PlayOpenIDService
 import play.api.Configuration
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.mvc.Request
-import utils.SteamUtils
-import utils.SteamUtils.SteamProfileBuilder
-
-import scala.concurrent.Future
 
 class SocialAuthProviders(
     config: Configuration,
     httpLayer: HTTPLayer,
     hasher: PasswordHasher,
-    authInfoService: AuthInfoService,
+    authInfoService: AuthInfoRepository,
     credentials: CredentialsProvider,
     idGenerator: IDGenerator,
     clock: Clock
@@ -55,7 +46,7 @@ class SocialAuthProviders(
     scope = config.getString("silhouette.facebook.scope")
   )
 
-  private[this] val facebook = FacebookProvider(httpLayer, oAuth2StateProvider, facebookSettings)
+  private[this] val facebook = new FacebookProvider(httpLayer, oAuth2StateProvider, facebookSettings)
 
   private[this] val googleSettings = OAuth2Settings(
     authorizationURL = config.getString("silhouette.google.authorizationUrl"),
@@ -66,7 +57,7 @@ class SocialAuthProviders(
     scope = config.getString("silhouette.google.scope")
   )
 
-  private[this] val google = GoogleProvider(httpLayer, oAuth2StateProvider, googleSettings)
+  private[this] val google = new GoogleProvider(httpLayer, oAuth2StateProvider, googleSettings)
 
   private[this] val twitterSettings = OAuth1Settings(
     requestTokenURL = config.getString("silhouette.twitter.requestTokenUrl").getOrElse(throw new IllegalArgumentException()),
@@ -77,15 +68,7 @@ class SocialAuthProviders(
     consumerSecret = config.getString("silhouette.twitter.consumerSecret").getOrElse(throw new IllegalArgumentException())
   )
 
-  private[this] val twitter = TwitterProvider(httpLayer, new PlayOAuth1Service(twitterSettings), oAuth1TokenSecretProvider, twitterSettings)
+  private[this] val twitter = new TwitterProvider(httpLayer, new PlayOAuth1Service(twitterSettings), oAuth1TokenSecretProvider, twitterSettings)
 
-  private[this] val steamSettings = OpenIDSettings(
-    providerURL = config.getString("silhouette.steam.providerUrl").getOrElse(throw new IllegalArgumentException()),
-    callbackURL = config.getString("silhouette.steam.callbackUrl").getOrElse(throw new IllegalArgumentException()),
-    realm = config.getString("silhouette.steam.realm")
-  )
-
-  private[this] val steam = new SteamProvider(httpLayer, SteamUtils.steamService(steamSettings), steamSettings) with SteamProfileBuilder
-
-  val providers = Seq("credentials" -> credentials, "facebook" -> facebook, "google" -> google, "twitter" -> twitter, "steam" -> steam)
+  val providers = Seq("credentials" -> credentials, "facebook" -> facebook, "google" -> google, "twitter" -> twitter)
 }

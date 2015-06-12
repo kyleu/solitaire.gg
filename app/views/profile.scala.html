@@ -101,31 +101,6 @@
           <div class="clear"></div>
         </div>
       }
-
-      @defining(profiles.find(_.loginInfo.providerID == "steam")) { steam =>
-        <div class="profile-detail">
-          @if(steam.isDefined) {
-            <div class="provider steam">
-              <img src="@routes.Assets.at("images/providers/steam.png")">
-            </div>
-            <div class="profile-links">
-              <strong>@steam.get.fullName</strong><br/>
-              @steam.get.email<br/>
-              <a href="@routes.ProfileController.setOption("avatar", "steam")">Use your Steam profile image as your avatar.</a>
-            </div>
-          } else {
-            @defining(controllers.auth.routes.AuthenticationController.authenticateSocial("steam")) { url =>
-              <a href="@url" class="provider steam">
-                <img src="@routes.Assets.at("images/providers/steam.png")">
-              </a>
-              <div class="profile-links">
-                <a href="@url">Connect your Steam account</a>
-              </div>
-            }
-          }
-          <div class="clear"></div>
-        </div>
-      }
     }
   </div>
 }

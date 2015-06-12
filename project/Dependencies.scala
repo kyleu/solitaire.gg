@@ -1,16 +1,18 @@
 import sbt._
 
-import play.Play.autoImport._
-
 object Dependencies {
+  object Cache {
+    val ehCache = "net.sf.ehcache" % "ehcache-core" % "2.6.9"
+  }
+
   object Database {
     val postgresAsync = "com.github.mauricio" %% "postgresql-async" % "0.2.16"
   }
 
   object Play {
-    val playFilters = filters
-    val playWs = ws
-    val playJson = json
+    val playFilters = play.sbt.PlayImport.filters
+    val playWs = play.sbt.PlayImport.ws
+    val playJson = play.sbt.PlayImport.json
   }
 
   object WebJars {
@@ -19,11 +21,11 @@ object Dependencies {
   }
 
   object Mail {
-    val mailer = "com.typesafe.play" %% "play-mailer" % "2.4.1"
+    val mailer = "com.typesafe.play" %% "play-mailer" % "3.0.0-M1"
   }
 
   object Authentication {
-    val silhouette = "com.mohiva" %% "play-silhouette" % "2.0"
+    val silhouette = "com.mohiva" %% "play-silhouette" % "3.0.0-RC1"
   }
 
   object Metrics {
@@ -40,6 +42,6 @@ object Dependencies {
   }
 
   object Testing {
-    val akkaTestkit = "com.typesafe.akka" %% "akka-testkit" % "2.3.4"
+    val akkaTestkit = "com.typesafe.akka" %% "akka-testkit" % "2.3.11"
   }
 }

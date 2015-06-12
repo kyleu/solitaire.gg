@@ -1,5 +1,5 @@
 @(user: models.user.User, form: Form[com.mohiva.play.silhouette.api.util.Credentials])(
-  implicit request: Request[AnyContent], session: Session, flash: Flash
+  implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
 )@layout.static(user = user, title = "Sign in to " + utils.Config.projectName, button = "menu") {
   <div class="sign-in">
     @if(flash.get("error").isDefined) {

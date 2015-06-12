@@ -1,11 +1,11 @@
 package services.help
 
 import models.game.rules._
-import play.api.i18n.{ Lang, Messages }
+import play.api.i18n.Messages
 import utils.NumberUtils
 
 object FoundationPilesHelpService {
-  def piles(rules: FoundationRules)(implicit lang: Lang) = {
+  def piles(rules: FoundationRules)(implicit messages: Messages) = {
     val loweredName = rules.name.toLowerCase
 
     rules.numPiles match {

@@ -1,10 +1,10 @@
 package services.help
 
 import models.game.rules.{ CardRemovalMethod, VictoryCondition }
-import play.api.i18n.{ Messages, Lang }
+import play.api.i18n.Messages
 
 object ObjectiveHelpService {
-  def objective(vc: VictoryCondition, crm: CardRemovalMethod)(implicit lang: Lang) = vc match {
+  def objective(vc: VictoryCondition, crm: CardRemovalMethod)(implicit messages: Messages) = vc match {
     case VictoryCondition.AllButFourCardsOnFoundation => Messages("help.victory.condition.all.but.four.on.foundation")
     case VictoryCondition.AllOnFoundation => crm match {
       case CardRemovalMethod.BuildSequencesOnFoundation => Messages("help.victory.condition.all.on.foundation")

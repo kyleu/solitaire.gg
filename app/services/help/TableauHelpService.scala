@@ -1,13 +1,13 @@
 package services.help
 
 import models.game.rules._
-import play.api.i18n.{ Messages, Lang }
+import play.api.i18n.Messages
 import utils.NumberUtils
 
 object TableauHelpService {
   private[this] val defaults = TableauRules()
 
-  def tableau(rules: TableauRules, deckOptions: DeckOptions)(implicit lang: Lang) = {
+  def tableau(rules: TableauRules, deckOptions: DeckOptions)(implicit messages: Messages) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
     val loweredName = rules.name.toLowerCase
 

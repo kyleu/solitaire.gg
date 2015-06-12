@@ -2,10 +2,10 @@ package services.help
 
 import models.game.Rank
 import models.game.rules.{ FillEmptyWith, SuitMatchRule, RankMatchRule }
-import play.api.i18n.{ Messages, Lang }
+import play.api.i18n.Messages
 
 object MatchRuleHelpService {
-  def toWords(rmr: RankMatchRule)(implicit lang: Lang) = rmr match {
+  def toWords(rmr: RankMatchRule)(implicit messages: Messages) = rmr match {
     case RankMatchRule.None => Messages("help.rank.match.rule.none")
     case RankMatchRule.Up => Messages("help.rank.match.rule.up")
     case RankMatchRule.Down => Messages("help.rank.match.rule.down")
@@ -21,7 +21,7 @@ object MatchRuleHelpService {
     case RankMatchRule.Any => Messages("help.rank.match.rule.any")
   }
 
-  def toWords(smr: SuitMatchRule)(implicit lang: Lang) = smr match {
+  def toWords(smr: SuitMatchRule)(implicit messages: Messages) = smr match {
     case SuitMatchRule.None => Messages("help.suit.match.rule.none")
     case SuitMatchRule.SameSuit => Messages("help.suit.match.rule.same.suit")
     case SuitMatchRule.DifferentSuits => Messages("help.suit.match.rule.different.suit")
@@ -30,7 +30,7 @@ object MatchRuleHelpService {
     case SuitMatchRule.Any => Messages("help.suit.match.rule.any")
   }
 
-  def toWords(few: FillEmptyWith, lowRank: Rank, highRank: Rank) = few match {
+  def toWords(few: FillEmptyWith, lowRank: Rank, highRank: Rank)(implicit messages: Messages) = few match {
     case FillEmptyWith.Any => Messages("help.fill.empty.with.any")
     case FillEmptyWith.None => Messages("help.fill.empty.with.none")
     case FillEmptyWith.LowRank => Messages("help.fill.empty.with.rank", lowRank)

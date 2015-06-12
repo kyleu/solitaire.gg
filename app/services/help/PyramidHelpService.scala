@@ -1,13 +1,13 @@
 package services.help
 
 import models.game.rules._
-import play.api.i18n.{ Messages, Lang }
+import play.api.i18n.Messages
 import utils.NumberUtils
 
 object PyramidHelpService {
   private[this] val defaults = PyramidRules()
 
-  def pyramid(rules: PyramidRules, deckOptions: DeckOptions)(implicit lang: Lang) = {
+  def pyramid(rules: PyramidRules, deckOptions: DeckOptions)(implicit messages: Messages) = {
     val ret = collection.mutable.ArrayBuffer.empty[String]
     val loweredName = rules.name.toLowerCase
 

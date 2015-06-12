@@ -1,4 +1,4 @@
-@(user: models.user.User)(implicit request: Request[AnyContent], session: Session, flash: Flash)
+@(user: models.user.User)(implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages)
 @layout.static(user = user, title = utils.Config.projectName, button = "about") {
   <div class="module">
     <div class="welcome">@Messages("index.welcome")</div>

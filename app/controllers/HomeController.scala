@@ -5,14 +5,16 @@ import java.util.UUID
 import models.database.queries.UserFeedbackQueries
 import models.user.UserFeedback
 import org.joda.time.LocalDateTime
+import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.libs.mailer.MailerClient
 import play.api.mvc.Action
 import services.EmailService
 import services.database.Database
 
 import scala.concurrent.Future
 
-object HomeController extends BaseController {
+class HomeController @javax.inject.Inject() (val messagesApi: MessagesApi, mailer: MailerClient) extends BaseController {
   def index() = withSession { implicit request =>
     Future.successful(Ok(views.html.index(request.identity)))
   }
@@ -41,7 +43,7 @@ object HomeController extends BaseController {
             occurred = new LocalDateTime()
           )
 
-          EmailService.feedbackSubmitted(obj, request.identity)
+          new EmailService(mailer).feedbackSubmitted(obj, request.identity)
 
           Database.execute(UserFeedbackQueries.Insert(obj)).map { x =>
             Redirect(routes.HomeController.feedbackForm()).flashing("success" -> "Your feedback has been submitted. Thanks!")

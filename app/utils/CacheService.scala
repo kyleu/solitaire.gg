@@ -5,62 +5,87 @@ import java.util.UUID
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
 import models.user.User
-import play.api.Play.current
-import play.api.cache.{ EhCachePlugin, Cache }
+import net.sf.ehcache.{ CacheManager, Element }
+import org.apache.commons.lang3.reflect.TypeUtils
 
-import scala.concurrent.duration._
+import scala.reflect.ClassTag
 
 object CacheService {
-  private val ehCache = current.plugin[EhCachePlugin] match {
-    case Some(plugin) => plugin.cache
-    case None => throw new Exception("There is no [EhCache] plugin registered.")
+  private val manager = CacheManager.create()
+  manager.addCache(Config.projectId)
+  private val cache = manager.getCache(Config.projectId)
+
+  private val timeout = {
+    import scala.concurrent.duration._
+    4.hours.toSeconds.toInt
   }
 
   def getUser(id: UUID) = {
-    Cache.getAs[User]("user-" + id)
+    getAs[User]("user-" + id)
   }
 
   def cacheUser(user: User) = {
-    Cache.set("user-" + user.id, user, 4.hours)
+    set("user-" + user.id, user, timeout)
     user
   }
 
   def cacheUserForLoginInfo(user: User, loginInfo: LoginInfo) = {
-    Cache.set("user-" + user.id, user, 4.hours)
-    Cache.set("user-" + loginInfo.providerID + ":" + loginInfo.providerKey, user, 4.hours)
+    set("user-" + user.id, user, timeout)
+    set("user-" + loginInfo.providerID + ":" + loginInfo.providerKey, user, timeout)
   }
 
   def getUserByLoginInfo(loginInfo: LoginInfo) = {
-    Cache.getAs[User]("user-" + loginInfo.providerID + ":" + loginInfo.providerKey)
+    getAs[User]("user-" + loginInfo.providerID + ":" + loginInfo.providerKey)
   }
 
   def removeUser(id: UUID) = {
-    Cache.getAs[User]("user-" + id).foreach { u =>
+    getAs[User]("user-" + id).foreach { u =>
       for (p <- u.profiles) {
-        Cache.remove("user-" + p.providerID + ":" + p.providerKey)
+        cache.remove("user-" + p.providerID + ":" + p.providerKey)
       }
     }
-    Cache.remove("user-" + id)
+    cache.remove("user-" + id)
   }
 
   def cacheSession(session: CookieAuthenticator) = {
-    Cache.set(session.id, session, 4.hours)
+    set(session.id, session)
     session
   }
 
   def getSession(id: String) = {
-    Cache.getAs[CookieAuthenticator](id)
+    getAs[CookieAuthenticator](id)
   }
 
   def removeSession(id: String) = {
-    Cache.remove(id)
+    cache.remove(id)
   }
 
   def keys() = {
     import collection.JavaConverters._
-    ehCache.getKeys.asScala.map({
+    cache.getKeys.asScala.map({
       case s: String => s
       case x => x.toString
     })
+  }
+
+  private def set(key: String, value: Any, expiration: Int = 0): Unit = {
+    val element = new Element(key, value)
+    if (expiration == 0) element.setEternal(true)
+    element.setTimeToLive(expiration)
+    cache.put(element)
+  }
+
+  def set(key: String, value: Any): Unit = {
+    set(key, value, timeout)
+  }
+
+  def get(key: String): Option[Any] = {
+    Option(cache.get(key)).map(_.getObjectValue)
+  }
+
+  def getAs[T](key: String)(implicit ct: ClassTag[T]): Option[T] = {
+    get(key).map { item =>
+      if (TypeUtils.isInstance(item, ct.runtimeClass)) { Some(item.asInstanceOf[T]) } else { None }
+    }.getOrElse(None)
   }
 }

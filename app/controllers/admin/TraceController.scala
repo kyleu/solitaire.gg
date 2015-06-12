@@ -6,12 +6,13 @@ import akka.pattern.ask
 import akka.util.Timeout
 import controllers.BaseController
 import models._
+import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.ActorSupervisor
 
 import scala.concurrent.duration._
 
-object TraceController extends BaseController {
+class TraceController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   implicit val timeout = Timeout(10.seconds)
 
   def traceConnection(connectionId: UUID) = withAdminSession { implicit request =>
