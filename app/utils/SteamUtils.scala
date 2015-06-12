@@ -15,7 +15,9 @@ import scala.concurrent.{ ExecutionContext, Future }
 object SteamUtils {
   private[this] lazy val apiKey = play.api.Play.current.configuration.getString("silhouette.steam.apiKey").getOrElse(throw new IllegalArgumentException())
 
-  def steamService(client: OpenIdClient, steamSettings: OpenIDSettings) = new PlayOpenIDService(client, steamSettings) {
+  val openIdClient: OpenIdClient = null
+
+  def steamService(steamSettings: OpenIDSettings) = new PlayOpenIDService(openIdClient, steamSettings) {
     override def verifiedID[B](implicit request: Request[B], ec: ExecutionContext): Future[OpenIDInfo] = {
       super.verifiedID.flatMap { info =>
         SteamUtils.getProfile(info.id).map { profile =>

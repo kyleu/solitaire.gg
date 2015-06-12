@@ -11,7 +11,6 @@ import com.mohiva.play.silhouette.impl.providers.oauth2.{ FacebookProvider, Goog
 
 import com.mohiva.play.silhouette.impl.providers.openid.SteamProvider
 import play.api.Configuration
-import play.api.libs.openid.OpenID
 import utils.SteamUtils
 import utils.SteamUtils.SteamProfileBuilder
 
@@ -82,8 +81,7 @@ class SocialAuthProviders(
   )
 
   private[this] val steam = {
-    val openIdClient = OpenID
-    new SteamProvider(httpLayer, SteamUtils.steamService(openIdClient, steamSettings), steamSettings) with SteamProfileBuilder
+    new SteamProvider(httpLayer, SteamUtils.steamService(steamSettings), steamSettings)
   }
 
   val providers = Seq("credentials" -> credentials, "facebook" -> facebook, "google" -> google, "twitter" -> twitter, "steam" -> steam)
