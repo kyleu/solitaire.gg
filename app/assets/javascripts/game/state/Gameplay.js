@@ -56,8 +56,8 @@ define([
         if(v.moves.length === 0) {
           alert("No more moves available.");
         }
-        this.game.options.setUndosAvalable(v.undosAvailable);
-        this.game.options.setRedosAvalable(v.redosAvailable);
+        this.game.options.setUndosAvailable(v.undosAvailable);
+        this.game.options.setRedosAvailable(v.redosAvailable);
         break;
       case "CardRevealed":
         var existing = this.game.cards[v.card.id];

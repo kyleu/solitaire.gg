@@ -13,10 +13,10 @@ define(['ui/Buttons'], function(Buttons) {
     this.timerDisplay.innerText = time;
   };
 
-  Options.prototype.setUndosAvalable = function(num) {
+  Options.prototype.setUndosAvailable = function(num) {
     this.undosAvailable = num;
     if(num === 0) {
-      if(this.buttons.undo.className.indexOf(" disabled" === -1)) {
+      if(this.buttons.undo.className.indexOf(" disabled") === -1) {
         this.buttons.undo.className += " disabled";
       }
       this.buttons.undo.title = "No undos available.";
@@ -32,10 +32,10 @@ define(['ui/Buttons'], function(Buttons) {
     }
   };
 
-  Options.prototype.setRedosAvalable = function(num) {
+  Options.prototype.setRedosAvailable = function(num) {
     this.redosAvailable = num;
     if(num === 0) {
-      if(this.buttons.redo.className.indexOf(" disabled" === -1)) {
+      if(this.buttons.redo.className.indexOf(" disabled") === -1) {
         this.buttons.redo.className += " disabled";
       }
       this.buttons.redo.title = "No redos available.";

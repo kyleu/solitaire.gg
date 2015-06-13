@@ -10,6 +10,9 @@ define(['utils/Network'], function(Network) {
   };
 
   var Modal = {
+    display: function(id, postLoad) {
+      alert("Yay!");
+    },
     show: function(method, url, requestData, postLoad) {
       contentElement.style.height = (window.innerHeight - 120 - 20) + "px";
       contentElement.style.marginTop = "60px";

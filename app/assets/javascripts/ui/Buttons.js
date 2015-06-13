@@ -1,4 +1,4 @@
-define([], function() {
+define(['ui/Modal'], function(Modal) {
   return function(game, options) {
     var buttons = {
       "options": document.getElementById("btn-options"),
@@ -10,7 +10,7 @@ define([], function() {
     };
 
     buttons.options.onclick = function() {
-      alert("Options aren't quite ready yet.");
+      Modal.display("options");
     };
 
     buttons.help.onclick = function() {
