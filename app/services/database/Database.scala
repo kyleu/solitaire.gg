@@ -13,13 +13,16 @@ import scala.concurrent.duration._
 import scala.concurrent.{ Await, Future }
 
 object Database extends Logging with Instrumented with FutureMetrics {
-  private val configuration = new Configuration(
-    host = play.api.Play.current.configuration.getString("db.host").getOrElse(throw new IllegalStateException()),
-    username = play.api.Play.current.configuration.getString("db.username").getOrElse(throw new IllegalStateException()),
-    password = Some(play.api.Play.current.configuration.getString("db.password").getOrElse(throw new IllegalStateException())),
-    database = Some("solitaire"),
-    port = 5432
-  )
+  private val configuration = {
+    val cfg = play.api.Play.current.configuration
+    new Configuration(
+      host = cfg.getString("db.host").getOrElse(throw new IllegalStateException()),
+      port = 5432,
+      database = Some(cfg.getString("db.database").getOrElse(throw new IllegalStateException())),
+      username = cfg.getString("db.username").getOrElse(throw new IllegalStateException()),
+      password = Some(cfg.getString("db.password").getOrElse(throw new IllegalStateException()))
+    )
+  }
 
   def open() = {
     val healthCheck = pool.sendQuery("select now()")

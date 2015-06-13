@@ -10,7 +10,7 @@ import scala.concurrent.Future
 
 class ReportController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   def overview() = withAdminSession { implicit request =>
-    Database.query(ReportQueries.ListTables()).flatMap { tables =>
+    Database.query(ReportQueries.ListTables).flatMap { tables =>
       Future.sequence(tables.map { table =>
         Database.query(ReportQueries.CountTable(table))
       }).map { counts =>

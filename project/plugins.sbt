@@ -8,18 +8,18 @@ addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.4.0")
 // SBT-Web plugins
 addSbtPlugin("com.typesafe.sbt" % "sbt-less" % "1.0.0")
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-jshint" % "1.0.1")
+addSbtPlugin("com.typesafe.sbt" % "sbt-jshint" % "1.0.3")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-rjs" % "1.0.7")
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.0.0")
+addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.1.0")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % "1.0.0")
 
 // Scala.js
 addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.3")
 
-addSbtPlugin("com.vmunier" % "sbt-play-scalajs" % "0.2.5")
+addSbtPlugin("com.vmunier" % "sbt-play-scalajs" % "0.2.6")
 
 // Build Info
 addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.3.2")

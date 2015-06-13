@@ -22,9 +22,9 @@
     </div>
     <div class="menu-right">
       @defining(if(user.avatar == "guest" || user.avatar == "default") { routes.Assets.at("images/avatar/profile-ffffff.png") } else { user.avatar }) { av =>
-        <a href="@routes.ProfileController.profile()"><img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@av" /></a>
+        <a href="@routes.ProfileController.profile()" title="@if(user.isGuest) { Sign In } else { Profile }"><img class="avatar-small" src="@av" /></a>
       }
-      <a class="link" href="@routes.ProfileController.profile()">@user.username.getOrElse("Guest")</a>
+      <a class="link" href="@routes.ProfileController.profile()">@user.username.getOrElse("")</a>
     </div>
     <div class="logo">
       <a href="@routes.HomeController.index()">@utils.Config.projectName</a>

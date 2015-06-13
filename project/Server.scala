@@ -70,7 +70,7 @@ object Server {
     buildInfoPackage := "utils",
 
     // Code Quality
-    scapegoatIgnoredFiles := Seq(".*/routes_routing.scala", ".*/routes_reverseRouting.scala", ".*\\.template\\.scala"),
+    scapegoatIgnoredFiles := Seq(".*/Routes.scala", ".*/JavaScriptReverseRoutes.scala", ".*\\.template\\.scala"),
     scapegoatDisabledInspections := Seq("DuplicateImport"),
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   ) ++ graphSettings ++ defaultScalariformSettings

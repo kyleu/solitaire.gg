@@ -4,7 +4,7 @@ import com.github.mauricio.async.db.RowData
 import models.database.{ SingleRowQuery, Query }
 
 object ReportQueries {
-  case class ListTables() extends Query[List[String]] {
+  case object ListTables extends Query[List[String]] {
     override def sql = BaseQueries.trim("""
       select t.table_name as tn
       from information_schema.tables as t

@@ -10,7 +10,7 @@ define([], function() {
     };
 
     buttons.options.onclick = function() {
-      console.log("Options aren't quite ready yet.");
+      alert("Options aren't quite ready yet.");
     };
 
     buttons.help.onclick = function() {
@@ -34,7 +34,7 @@ define([], function() {
     };
 
     buttons.hint.onclick = function() {
-      console.log("Hints aren't quite ready yet.");
+      alert("Hints aren't quite ready yet.");
     };
 
     return buttons;

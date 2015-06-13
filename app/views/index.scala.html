@@ -3,30 +3,22 @@
   <div class="module">
     <div class="welcome">@Messages("index.welcome")</div>
     <div class="tagline">@Messages("index.tagline")</div>
-    @if(user.isGuest) {
-      <div class="coming-soon">
-        @Messages("index.coming.soon")
-      </div>
-    } else {
-      <div class="play-now">
-        <a href="@routes.GameController.newGame("klondike").url" role="button">@Messages("index.play.now")</a>
-      </div>
-    }
+    <div class="play-now">
+      <a href="@routes.GameController.newGame("klondike").url" role="button">@Messages("index.play.now")</a>
+    </div>
   </div>
 
-  @if(!user.isGuest) {
-    <div class="module">
-      <div class="header">@Messages("index.games.popular")</div>
-      <ul>
-      @for(r <- models.game.rules.GameRulesSet.favorites) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}
-      </ul>
-    </div>
+  <div class="module">
+    <div class="header">@Messages("index.games.popular")</div>
+    <ul>
+    @for(r <- models.game.rules.GameRulesSet.favorites) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}
+    </ul>
+  </div>
 
-    <div class="module">
-      <div class="header">@Messages("index.games.completed")</div>
-      <ul>@for(r <- models.game.rules.GameRulesSet.completed) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
-    </div>
-  }
+  <div class="module">
+    <div class="header">@Messages("index.games.completed")</div>
+    <ul>@for(r <- models.game.rules.GameRulesSet.completed) {<li><a class="gamelink" href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
+  </div>
 
   @if(user.isAdmin) {
     <div class="module">

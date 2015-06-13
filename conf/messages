@@ -14,7 +14,6 @@ registration.email.taken = That email address is already in use.
 index.welcome = Welcome to Solitaire.gg
 index.tagline = I''m trying to build the web''s best card games. Thanks for checking out my progress!
 index.play.now = Play Solitaire
-index.coming.soon = Coming Soon!
 
 index.games.popular = Popular Games
 index.games.completed= All Games
