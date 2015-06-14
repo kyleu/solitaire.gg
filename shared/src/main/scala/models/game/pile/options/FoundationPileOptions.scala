@@ -1,7 +1,6 @@
 package models.game.pile.options
 
-import models.game.{ GameState, Card, Rank }
-import models.game.pile.Pile
+import models.game.Rank
 import models.game.pile.constraints.Constraint
 import models.game.rules._
 
@@ -16,15 +15,15 @@ object FoundationPileOptions {
     val dragToConstraint = if(!rules.visible) {
       Some(Constraint.never)
     } else {
-      Some(Constraint("foundation", (pile: Pile, cards: Seq[Card], gameState: GameState) => {
+      Some(Constraint("foundation", (src, tgt, cards, gameState) => {
         if (cards.length == 1 && !rules.moveCompleteSequencesOnly) {
-          if (rules.maxCards > 0 && pile.cards.length >= rules.maxCards) {
+          if (rules.maxCards > 0 && tgt.cards.length >= rules.maxCards) {
             false
           } else {
             val firstCard = cards.headOption.getOrElse(throw new IllegalStateException())
-            if (pile.cards.isEmpty) {
-              val siblings = gameState.pileSets.find(ps => ps.piles.exists(p => p.id == pile.id)).map(_.piles.filterNot(_.id == pile.id)).getOrElse {
-                throw new IllegalStateException("Can't find pileset for [" + pile.id + "].")
+            if (tgt.cards.isEmpty) {
+              val siblings = gameState.pileSets.find(ps => ps.piles.exists(p => p.id == tgt.id)).map(_.piles.filterNot(_.id == tgt.id)).getOrElse {
+                throw new IllegalStateException("Can't find pileset for [" + tgt.id + "].")
               }
               val rankOk = if (lowRank == Rank.Unknown) {
                 siblings.flatMap(_.cards.headOption).headOption match {
@@ -50,7 +49,7 @@ object FoundationPileOptions {
                   rankOk
               }
             } else {
-              val target = pile.cards.last
+              val target = tgt.cards.last
               val s = rules.suitMatchRule.check(target.s, firstCard.s)
               val r = rules.rankMatchRule.check(target.r, firstCard.r, lowRank, rules.wrapFromKingToAce)
               s && r

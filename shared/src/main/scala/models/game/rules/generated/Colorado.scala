@@ -21,7 +21,7 @@ import models.game.rules._
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 20
- *   May move to non-empty tableau from (T0o): 1 (Stock)
+ *   May move to non-empty tableau from (T0o): 1 (stock)
  *   Tableau rank match rule for building (T0r): 8191 (Regardless of rank)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
@@ -79,7 +79,7 @@ object Colorado extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
       emptyFilledWith = FillEmptyWith.None,
-      mayMoveToNonEmptyFrom = Seq("Stock")
+      mayMoveToNonEmptyFrom = Seq("stock")
     )
   )
 )

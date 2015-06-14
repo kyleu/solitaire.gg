@@ -54,7 +54,7 @@ trait GameServiceCardHelper { this: GameService =>
     }
 
     if (sourcePile.canDragFrom(cards, gameState)) {
-      if (targetPile.canDragTo(cards, gameState)) {
+      if (targetPile.canDragTo(sourcePile, cards, gameState)) {
         val messages = targetPile.onDragTo(sourcePile, cards, gameState)
 
         sendToAll(messages)

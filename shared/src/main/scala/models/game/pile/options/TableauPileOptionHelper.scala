@@ -9,7 +9,7 @@ trait TableauPileOptionHelper {
     if (rmr == RankMatchRule.None || smr == SuitMatchRule.None) {
       Constraint.topCardOnly
     } else {
-      Constraint("sequence", (pile, cards, gameState) => {
+      Constraint("sequence", (src, tgt, cards, gameState) => {
         if (cards.exists(!_.u)) {
           false
         } else {
@@ -42,18 +42,18 @@ trait TableauPileOptionHelper {
     maxCards: Int,
     wrapFromKingToAce: Boolean
   ) = {
-    Constraint("tableau", (pile, cards, gameState) => {
-      if (maxCards > 0 && pile.cards.length + cards.length > maxCards) {
+    Constraint("tableau", (src, tgt, cards, gameState) => {
+      if (maxCards > 0 && tgt.cards.length + cards.length > maxCards) {
         false
       } else {
-        if (pile.cards.isEmpty) {
+        if (tgt.cards.isEmpty) {
           emptyPileRanks.length match {
             case 0 => false
             case _ => cards.exists(c => emptyPileRanks.contains(c.r))
           }
         } else {
-          val topCard = pile.cards.lastOption.getOrElse(throw new IllegalStateException())
           val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
+          val topCard = tgt.cards.lastOption.getOrElse(throw new IllegalStateException())
           if (!topCard.u) {
             false
           } else {

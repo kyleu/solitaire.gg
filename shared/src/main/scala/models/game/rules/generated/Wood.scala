@@ -13,7 +13,7 @@ import models.game.rules._
  *   Reserve cards face down (R0df): 0
  *   Number of reserve piles (R0n): 1
  *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled from (T0fo): 2 (Waste)
+ *   Empty tableau is filled from (T0fo): 2 (waste)
  *   Tableau piles (T0n): 8
  *   May move to non-empty tableau from (T0o): 191
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
@@ -50,8 +50,8 @@ object Wood extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToNonEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Cell", "Foundation", "Tableau"),
-      mayMoveToEmptyFrom = Seq("Waste")
+      mayMoveToNonEmptyFrom = Seq("stock", "pyramid", "waste", "pocket", "cell", "foundation", "tableau"),
+      mayMoveToEmptyFrom = Seq("waste")
     )
   ),
   reserves = Some(

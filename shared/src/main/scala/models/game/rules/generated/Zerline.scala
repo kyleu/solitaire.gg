@@ -14,7 +14,7 @@ import models.game.rules._
  *   Tableau initial cards (T1d): 0 (None)
  *   Maximum cards per tableau (T1m): 4 (4 cards)
  *   Tableau piles (T1n): 1
- *   May move to non-empty tableau from (T1o): 4 (Tableau)
+ *   May move to non-empty tableau from (T1o): 4 (tableau)
  *   Tableau rank match rule for building (T1r): 8191 (Regardless of rank)
  *   Tableau suit match rule for building (T1s): 5 (Regardless of suit)
  *   Tableau sets (Tn): 2 (2 tableau sets)
@@ -60,7 +60,7 @@ object Zerline extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToNonEmptyFrom = Seq("Tableau"),
+      mayMoveToNonEmptyFrom = Seq("tableau"),
       maxCards = 4
     )
   )

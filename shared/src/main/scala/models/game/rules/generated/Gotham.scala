@@ -53,7 +53,7 @@ object Gotham extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      mayMoveToEmptyFrom = Seq("Stock", "Waste")
+      mayMoveToEmptyFrom = Seq("stock", "waste")
     )
   )
 )

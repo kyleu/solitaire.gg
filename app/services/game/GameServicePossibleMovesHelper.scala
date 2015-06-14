@@ -33,7 +33,7 @@ trait GameServicePossibleMovesHelper { this: GameService =>
         val remainingCards = source.cards.take(c._2)
         if (source.canDragFrom(cards, gameState)) {
           gameState.piles.filter(p => p.id != source.id).foreach { target =>
-            if (target.canDragTo(cards, gameState)) {
+            if (target.canDragTo(source, cards, gameState)) {
               val move = PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
               if(
                 source.pileSet.exists(_.behavior == "tableau") &&

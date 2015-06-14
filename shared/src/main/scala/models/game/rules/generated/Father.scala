@@ -17,7 +17,7 @@ import models.game.rules._
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Maximum cards per tableau (T0m): 2 (2 cards)
  *   Tableau piles (T0n): 12
- *   May move to non-empty tableau from (T0o): 2 (Waste)
+ *   May move to non-empty tableau from (T0o): 2 (waste)
  *   Tableau rank match rule for building (T0r): 8191 (Regardless of rank)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Similar to (like): grandfather
@@ -63,7 +63,7 @@ object Father extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToNonEmptyFrom = Seq("Waste"),
+      mayMoveToNonEmptyFrom = Seq("waste"),
       maxCards = 2
     )
   )

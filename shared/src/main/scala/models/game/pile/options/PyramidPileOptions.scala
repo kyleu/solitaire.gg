@@ -30,8 +30,8 @@ object PyramidPileOptions {
     ret
   }
 
-  private[this] def dragToConstraint(crm: CardRemovalMethod, lowRank: Rank) = Constraint("pyramid", (pile, cards, gameState) => {
-    pile.cards.lastOption.exists { topCard =>
+  private[this] def dragToConstraint(crm: CardRemovalMethod, lowRank: Rank) = Constraint("pyramid", (src, tgt, cards, gameState) => {
+    tgt.cards.lastOption.exists { topCard =>
       val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
       if (!topCard.u) {
         false

@@ -18,7 +18,7 @@ trait SolitaireHelper {
         val cards = source.cards.drop(c._2)
         if (source.canDragFrom(cards, gameState)) {
           gameState.piles.filterNot(_.id == source.id).foreach { target =>
-            if (target.canDragTo(cards, gameState)) {
+            if (target.canDragTo(source, cards, gameState)) {
               ret += PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
             }
           }
@@ -69,7 +69,7 @@ trait SolitaireHelper {
       }
     }
     if (sourcePile.canDragFrom(cards, gameState)) {
-      if (targetPile.canDragTo(cards, gameState)) {
+      if (targetPile.canDragTo(sourcePile, cards, gameState)) {
         val messages = targetPile.onDragTo(sourcePile, cards, gameState)
         send(MessageSet(messages))
         if (!checkWinCondition()) {

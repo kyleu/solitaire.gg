@@ -9,7 +9,7 @@ import models.game.rules._
  *   Foundation Sets (Fn): 0
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Tableau piles (T0n): 8
- *   May move to non-empty tableau from (T0o): 2 (Waste)
+ *   May move to non-empty tableau from (T0o): 2 (waste)
  *   Tableau rank match rule for building (T0r): 128 (Build up)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Tableau wraps from king to ace (T0w): true
@@ -39,7 +39,7 @@ object CircleEight extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Up,
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToNonEmptyFrom = Seq("Waste")
+      mayMoveToNonEmptyFrom = Seq("waste")
     )
   )
 )

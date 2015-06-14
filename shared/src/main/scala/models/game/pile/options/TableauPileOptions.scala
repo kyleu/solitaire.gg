@@ -17,18 +17,22 @@ object TableauPileOptions extends TableauPileOptionHelper {
       case FillEmptyWith.Sevens => Seq(Rank.Seven)
     }
 
-    val dragFromConstraint = dragFrom(rules.rankMatchRuleForMovingStacks, rules.suitMatchRuleForMovingStacks, deckOptions.lowRank, rules.wrapFromKingToAce)
-    val dragToConstraint = {
-      dragTo(
-        crm = cardRemovalMethod,
-        rmr = rules.rankMatchRuleForBuilding,
-        smr = rules.suitMatchRuleForBuilding,
-        lowRank = deckOptions.lowRank,
-        emptyPileRanks = emptyRanks,
-        maxCards = rules.maxCards,
-        wrapFromKingToAce = rules.wrapFromKingToAce
-      )
-    }
+    val dragFromConstraint = dragFrom(
+      rmr = rules.rankMatchRuleForMovingStacks,
+      smr = rules.suitMatchRuleForMovingStacks,
+      lowRank = deckOptions.lowRank,
+      wrapFromKingToAce = rules.wrapFromKingToAce
+    )
+
+    val dragToConstraint = dragTo(
+      crm = cardRemovalMethod,
+      rmr = rules.rankMatchRuleForBuilding,
+      smr = rules.suitMatchRuleForBuilding,
+      lowRank = deckOptions.lowRank,
+      emptyPileRanks = emptyRanks,
+      maxCards = rules.maxCards,
+      wrapFromKingToAce = rules.wrapFromKingToAce
+    )
 
     val (selectCardConstraint, selectCardAction) = {
       cardRemovalMethod match {

@@ -53,7 +53,7 @@ object AmericanToad extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      mayMoveToEmptyFrom = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation")
+      mayMoveToEmptyFrom = Seq("stock", "pyramid", "waste", "pocket", "reserve", "cell", "foundation")
     )
   ),
   reserves = Some(

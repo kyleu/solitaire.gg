@@ -10,7 +10,7 @@ import models.game.rules._
  *   Reserve initial cards (R0d): 1
  *   Number of reserve piles (R0n): 4
  *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled from (T0fo): 64 (Reserve)
+ *   Empty tableau is filled from (T0fo): 64 (reserve)
  *   Tableau piles (T0n): 4
  *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
  *   Number of decks (ndecks): 2 (2 decks)
@@ -46,7 +46,7 @@ object ShadyLanes extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToEmptyFrom = Seq("Reserve")
+      mayMoveToEmptyFrom = Seq("reserve")
     )
   ),
   reserves = Some(

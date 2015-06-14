@@ -9,7 +9,7 @@ import models.game.rules._
  *   Card initially dealt into cells (C0d): 8 (8 cards)
  *   *C0fx (C0fx): 1
  *   Number of cells (C0n): 8
- *   Can move cards to cell from (C0o): 4 (Tableau)
+ *   Can move cards to cell from (C0o): 4 (tableau)
  *   Foundation name (F0Nm): Ace Foundation
  *   Auto-move cards to foundation (F0a): 0 (Never)
  *   Foundation initial cards (F0d): 0 (None)
@@ -90,13 +90,13 @@ object Tournament extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
       emptyFilledWith = FillEmptyWith.None,
-      mayMoveToNonEmptyFrom = Seq("Cell", "Tableau")
+      mayMoveToNonEmptyFrom = Seq("cell", "tableau")
     )
   ),
   cells = Some(
     CellRules(
       numPiles = 8,
-      canMoveFrom = Seq("Tableau"),
+      canMoveFrom = Seq("tableau"),
       initialCards = 8
     )
   ),

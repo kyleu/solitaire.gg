@@ -24,7 +24,7 @@ import models.game.rules._
  *   Tableau initial cards (T0d): 6 (6 cards)
  *   Empty tableau is filled with (T0f): 5 (No card)
  *   Tableau piles (T0n): 16
- *   May move to non-empty tableau from (T0o): 4 (Tableau)
+ *   May move to non-empty tableau from (T0o): 4 (tableau)
  *   Tableau rank match rule for building (T0r): 160 (Build up or down)
  *   Tableau suit match rule for building (T0s): 1 (In same suit)
  *   Tableau wraps from king to ace (T0w): true
@@ -84,7 +84,7 @@ object Crescent extends GameRules(
       wrapFromKingToAce = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.None,
-      mayMoveToNonEmptyFrom = Seq("Tableau")
+      mayMoveToNonEmptyFrom = Seq("tableau")
     )
   ),
   special = Some(

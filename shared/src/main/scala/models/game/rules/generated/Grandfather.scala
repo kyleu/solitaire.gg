@@ -17,7 +17,7 @@ import models.game.rules._
  *   Tableau initial cards (T0d): 1 (1 card)
  *   Maximum cards per tableau (T0m): 2 (2 cards)
  *   Tableau piles (T0n): 20
- *   May move to non-empty tableau from (T0o): 2 (Waste)
+ *   May move to non-empty tableau from (T0o): 2 (waste)
  *   Tableau rank match rule for building (T0r): 8191 (Regardless of rank)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Maximum deals from stock (maxdeals): 2 (2)
@@ -67,7 +67,7 @@ object Grandfather extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      mayMoveToNonEmptyFrom = Seq("Waste"),
+      mayMoveToNonEmptyFrom = Seq("waste"),
       maxCards = 2
     )
   )

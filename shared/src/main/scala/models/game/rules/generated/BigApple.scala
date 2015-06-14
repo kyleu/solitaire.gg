@@ -47,7 +47,7 @@ object BigApple extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      mayMoveToEmptyFrom = Seq("Stock", "Cell")
+      mayMoveToEmptyFrom = Seq("stock", "cell")
     )
   ),
   cells = Some(

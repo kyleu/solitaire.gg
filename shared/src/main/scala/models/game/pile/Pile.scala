@@ -26,11 +26,11 @@ case class Pile(id: String, options: PileOptions, cards: collection.mutable.Arra
     cards -= card
   }
 
-  def canSelectCard(card: Card, gameState: GameState) = options.selectCardConstraint.exists(_.f(this, Seq(card), gameState))
-  def canSelectPile(gameState: GameState) = options.selectPileConstraint.exists(_.f(this, Nil, gameState))
+  def canSelectCard(card: Card, gameState: GameState) = options.selectCardConstraint.exists(_.f(this, this, Seq(card), gameState))
+  def canSelectPile(gameState: GameState) = options.selectPileConstraint.exists(_.f(this, this, Nil, gameState))
 
-  def canDragFrom(cards: Seq[Card], gameState: GameState) = options.dragFromConstraint.exists(_.f(this, cards, gameState))
-  def canDragTo(cards: Seq[Card], gameState: GameState) = options.dragToConstraint.exists(_.f(this, cards, gameState))
+  def canDragFrom(cards: Seq[Card], gameState: GameState) = options.dragFromConstraint.exists(_.f(this, this, cards, gameState))
+  def canDragTo(src: Pile, cards: Seq[Card], gameState: GameState) = options.dragToConstraint.exists(_.f(src, this, cards, gameState))
 
   def onSelectCard(card: Card, gameState: GameState) = options.selectCardAction.getOrElse(SelectCardActions.none).f(this, card, gameState)
   def onSelectPile(gameState: GameState) = options.selectPileAction.getOrElse(SelectPileActions.none).f(this, gameState)

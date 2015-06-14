@@ -21,9 +21,9 @@ import models.game.rules._
  *   Foundation Sets (Fn): 2
  *   Tableau name (T0Nm): Reserve
  *   Tableau initial cards (T0d): 0 (None)
- *   Empty tableau is filled from (T0fo): 1 (Stock)
+ *   Empty tableau is filled from (T0fo): 1 (stock)
  *   Tableau piles (T0n): 4
- *   May move to non-empty tableau from (T0o): 1 (Stock)
+ *   May move to non-empty tableau from (T0o): 1 (stock)
  *   Tableau rank match rule for building (T0r): 8191 (Regardless of rank)
  *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
  *   Number of waste piles (W0n): 0
@@ -75,8 +75,8 @@ object Alternate extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToNonEmptyFrom = Seq("Stock"),
-      mayMoveToEmptyFrom = Seq("Stock")
+      mayMoveToNonEmptyFrom = Seq("stock"),
+      mayMoveToEmptyFrom = Seq("stock")
     )
   )
 )
