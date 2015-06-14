@@ -2,7 +2,7 @@ package models.game.rules
 
 object GameRules {
   val default = GameRules("default", "Default Game", "")
-  val allSources = Seq("Stock", "Pyramid", "Waste", "Pocket", "Reserve", "Cell", "Foundation", "Tableau")
+  val allSources = Seq("stock", "pyramid", "waste", "pocket", "reserve", "cell", "foundation", "tableau")
 }
 
 case class Link(title: String, url: String)

@@ -2,7 +2,7 @@ package parser.politaire
 
 object PolitaireParserHelper {
   val pileTypes = Map(
-    1 -> "Stock", 2 -> "Waste", 4 -> "Tableau", 8 -> "Foundation", 16 -> "Cell", 32 -> "Pocket", 64 -> "Reserve", 128 -> "Pyramid"
+    1 -> "stock", 2 -> "waste", 4 -> "tableau", 8 -> "foundation", 16 -> "cell", 32 -> "pocket", 64 -> "reserve", 128 -> "pyramid"
   )
   val suits = Map(
     1 -> "S", 2 -> "H", 4 -> "C", 8 -> "D", 16 -> "G" /* Clubs (Green) */ , 32 -> "B" /* Diamonds (Blue) */ ,

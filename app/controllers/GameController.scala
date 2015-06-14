@@ -13,7 +13,7 @@ class GameController @javax.inject.Inject() (val messagesApi: MessagesApi) exten
       id match {
         case "undefined" => Ok(Messages("help.general"))
         case _ => GameRulesSet.allById.get(id) match {
-          case Some(rules) => Ok(views.html.help(rules))
+          case Some(rules) => Ok(views.html.game.rulesHelp(rules))
           case None => Ok(Messages("invalid.game.rules", id))
         }
       }

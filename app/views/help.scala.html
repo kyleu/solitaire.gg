@@ -1,7 +1,0 @@
-@(rules: models.game.rules.GameRules)(implicit session: Session, flash: Flash, messages: Messages)@layout.basic(
-  rules.title, stylesheets = Seq(routes.Assets.at("stylesheets/help.css").url)
-) {
-  <div class="rules-container">
-    @views.html.game.rulesHelp(rules)
-  </div>
-}

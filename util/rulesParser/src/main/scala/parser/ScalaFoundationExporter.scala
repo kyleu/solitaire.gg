@@ -60,7 +60,7 @@ object ScalaFoundationExporter {
         if(f.canMoveFrom != defaults.canMoveFrom) {
           props += "      canMoveFrom = FoundationCanMoveFrom." + cls(f.canMoveFrom)
         }
-        if(!f.mayMoveToFrom.sameElements(defaults.mayMoveToFrom)) {
+        if(!(f.mayMoveToFrom == defaults.mayMoveToFrom)) {
           props += "      mayMoveToFrom = Seq(" + f.mayMoveToFrom.map(x => "\"" + x + "\"").mkString(", ") + ")"
         }
         if(f.visible != defaults.visible) {
@@ -69,7 +69,7 @@ object ScalaFoundationExporter {
         if(f.autoMoveCards != defaults.autoMoveCards) {
           props += "      autoMoveCards = " + f.autoMoveCards
         }
-        if(!f.autoMoveFrom.sameElements(defaults.autoMoveFrom)) {
+        if(!(f.autoMoveFrom == defaults.autoMoveFrom)) {
           props += "      autoMoveFrom = Seq(" + f.autoMoveFrom.map(x => "\"" + x + "\"").mkString(", ") + ")"
         }
 

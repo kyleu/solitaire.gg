@@ -31,7 +31,7 @@ object ScalaTableauExporter {
         if(t.initialCards != defaults.initialCards) {
           props += "      initialCards = InitialCards." + cls(t.initialCards)
         }
-        if(!t.customInitialCards.sameElements(defaults.customInitialCards)) {
+        if(!(t.customInitialCards == defaults.customInitialCards)) {
           props += "      customInitialCards = Seq(\n" + t.customInitialCards.map("        \"" + _ + "\"").mkString(",\n") + "\n      )"
         }
         if(t.cardsFaceDown != defaults.cardsFaceDown) {
@@ -58,10 +58,10 @@ object ScalaTableauExporter {
         if(t.emptyFilledWith != defaults.emptyFilledWith) {
           props += "      emptyFilledWith = FillEmptyWith." + cls(t.emptyFilledWith)
         }
-        if(!t.mayMoveToNonEmptyFrom.sameElements(defaults.mayMoveToNonEmptyFrom)) {
+        if(!(t.mayMoveToNonEmptyFrom == defaults.mayMoveToNonEmptyFrom)) {
           props += "      mayMoveToNonEmptyFrom = Seq(" + t.mayMoveToNonEmptyFrom.map("\"" + _ + "\"").mkString(", ") + ")"
         }
-        if(!t.mayMoveToEmptyFrom.sameElements(defaults.mayMoveToEmptyFrom)) {
+        if(!(t.mayMoveToEmptyFrom == defaults.mayMoveToEmptyFrom)) {
           props += "      mayMoveToEmptyFrom = Seq(" + t.mayMoveToEmptyFrom.map("\"" + _ + "\"").mkString(", ") + ")"
         }
         if(t.maxCards != defaults.maxCards) {
