@@ -74,7 +74,7 @@ define(['utils/Config', 'game/Card', 'game/pile/Pile'], function(cfg, Card, Pile
     });
 
     var game = this.game;
-    setTimeout(function() { game.orderPiles(); }, (30 * (originalOrder.length - 1)) + 500);
+    setTimeout(function() { game.initialMovesComplete(); }, (30 * (originalOrder.length - 1)) + 500);
   };
 
   GameplayHelper.prototype.moveCard = function(card, src, tgt, turn) {

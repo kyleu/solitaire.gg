@@ -56,7 +56,12 @@ define(['game/pile/PileLayout', 'game/pile/PileHelpers', 'game/pile/DragFromCons
     }
     this.cards[card.pileIndex] = card;
     PileLayout.cardAdded(this, card);
-    this.game.playmat.add(card);
+
+    if(this.game.initialized) {
+      this.game.playmat.refreshLayout();
+    } else {
+      this.game.playmat.add(card);
+    }
   };
 
   Pile.prototype.removeCard = function(card) {

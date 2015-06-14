@@ -25,7 +25,7 @@ define(['game/helpers/Layout'], function (calculateLayout) {
     this.layout = calculateLayout(this.pileSets, this.layoutString, this.game.world.width / this.game.world.height);
 
     this.w = this.layout.width * this.game.cardSet.cardWidth;
-    this.h = (this.layout.height * this.game.cardSet.cardHeight) + 40;
+    this.h = (this.layout.height - 0.1) * this.game.cardSet.cardHeight;
 
     if(this.w !== originalSize[0] || this.h !== originalSize[1]) {
       this.resize();
@@ -55,21 +55,30 @@ define(['game/helpers/Layout'], function (calculateLayout) {
 
   Playmat.prototype.resize = function() {
     var widthRatio = this.game.world.width / this.w;
-    var heightRatio = (this.game.world.height - 40) / this.h;
+    var heightRatio = (this.game.world.height - 80) / this.h;
+
+    var newPosition = this.position;
+    var newScale = this.scale;
+
     if(widthRatio < heightRatio) {
-      this.scale = new Phaser.Point(widthRatio, widthRatio);
+      newScale = new Phaser.Point(widthRatio, widthRatio);
       var yOffset = (this.game.world.height - (this.h * widthRatio)) / 2;
-      if(yOffset > 0 || this.y !== 0) {
-        this.x = 0;
-        this.y = 40; // yOffset;
+      if(yOffset > 0 || this.y !== 40) {
+        newPosition = new Phaser.Point(0, 40 /* yOffset */);
       }
     } else {
-      this.scale = new Phaser.Point(heightRatio, heightRatio);
+      newScale = new Phaser.Point(heightRatio, heightRatio);
       var xOffset = (this.game.world.width - (this.w * heightRatio)) / 2;
       if(xOffset > 0 || this.x !== 0) {
-        this.x = xOffset;
-        this.y = 40;
+        newPosition = new Phaser.Point(xOffset, 40);
       }
+    }
+    if(this.game.initialized) {
+      this.game.add.tween(this.scale).to({x: newScale.x, y: newScale.y}, 500, Phaser.Easing.Quadratic.InOut, true);
+      this.game.add.tween(this.position).to({x: newPosition.x, y: newPosition.y}, 500, Phaser.Easing.Quadratic.InOut, true);
+    } else {
+      this.scale = newScale;
+      this.position = newPosition;
     }
   };
 

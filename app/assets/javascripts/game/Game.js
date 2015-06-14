@@ -7,6 +7,7 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
     this.cardSet = CardSet[config.cardSet][cardSize];
     var initialState = new InitialState(this);
     var transparent = true;
+    this.initialized = false;
 
     var configOptions = {
       width: '100%',
@@ -76,12 +77,19 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
     this.piles[p.id] = p;
   };
 
-  Game.prototype.orderPiles = function() {
+  Game.prototype.initialMovesComplete = function() {
     _.each(this.piles, function(pile) {
       _.each(pile.cards, function(card) {
         card.bringToTop();
       });
     });
+
+    var piles = this.piles;
+    _.each(this.playmat.pileSets, function(pileSet) {
+      pileSet.piles = _.map(pileSet.piles, function(p) { return piles[p.id]; });
+    });
+
+    this.initialized = true;
   };
 
   Game.prototype.autoMove = function() {

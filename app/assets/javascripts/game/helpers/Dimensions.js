@@ -3,10 +3,11 @@ define(function () {
 
   var padding = 0.2;
 
-  function getDimensions(pileSet, divisor) {
-    if(pileSet.dimensions !== undefined) {
-      return pileSet.dimensions;
-    }
+  function getDimensions(pileSet, divisor, game) {
+    //if(pileSet.dimensions !== undefined) {
+    //  return pileSet.dimensions;
+    //}
+    //console.log("Calculating dimensions for: " + pileSet.behavior);
     var ret = [pileSet.piles.length * (1 + padding), 1 + padding];
     switch(pileSet.behavior) {
       case "waste":
