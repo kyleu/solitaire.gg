@@ -21,6 +21,7 @@ object Schema extends Logging {
     "session_info" -> CreateSessionInfoTable,
     "requests" -> CreateRequestLogTable,
     "games" -> CreateGameTable,
+    "game_seeds" -> CreateGameSeedsTable,
     "game_cards" -> CreateGameCardsTable,
     "game_moves" -> CreateGameMovesTable
   )

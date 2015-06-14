@@ -10,12 +10,13 @@
 
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
-      <pattern>%coloredLevel %logger{15} - %message%n%xException{20}</pattern>
+      <pattern>%coloredLevel - %date - %logger{15} - %message%n%xException{20}</pattern>
     </encoder>
   </appender>
 
-  <logger name="play" level="INFO" />
+  <logger name="play" level="DEBUG" />
   <logger name="application" level="DEBUG" />
+  <logger name="solitaire" level="DEBUG" />
   <logger name="com.mohiva" level="INFO" />
   <logger name="com.github.mauricio.async.db" level="WARN" />
 
