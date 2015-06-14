@@ -34,7 +34,7 @@ define(['ui/Modal'], function(Modal) {
     };
 
     buttons.hint.onclick = function() {
-      alert("Hints aren't quite ready yet.");
+      game.autoMove();
     };
 
     return buttons;

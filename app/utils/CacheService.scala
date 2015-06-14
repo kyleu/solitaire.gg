@@ -85,7 +85,14 @@ object CacheService {
 
   def getAs[T](key: String)(implicit ct: ClassTag[T]): Option[T] = {
     get(key).map { item =>
-      if (TypeUtils.isInstance(item, ct.runtimeClass)) { Some(item.asInstanceOf[T]) } else { None }
+      if (TypeUtils.isInstance(item, ct.runtimeClass)) {
+        item match {
+          case t: T => Some(t)
+          case _ => None
+        }
+      } else {
+        None
+      }
     }.getOrElse(None)
   }
 }

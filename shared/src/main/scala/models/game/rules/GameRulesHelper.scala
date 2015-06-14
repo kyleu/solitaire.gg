@@ -65,12 +65,12 @@ trait GameRulesHelper { this: GameRules =>
   )
 
   protected[this] lazy val prototypePileSets = (
-    stock.map(s => StockSet(s, pileIdsByType)) ++
-    waste.map(w => WasteSet(w, cardRemovalMethod)) ++
-    foundations.map(f => FoundationSet(f, deckOptions)) ++
     tableaus.map(t => TableauSet(t, deckOptions, cardRemovalMethod)) ++
-    pyramids.map(p => PyramidSet(p, cardRemovalMethod, deckOptions.lowRank)) ++
     reserves.map(r => ReserveSet(r)) ++
-    cells.map(c => CellSet(c))
+    waste.map(w => WasteSet(w, cardRemovalMethod)) ++
+    pyramids.map(p => PyramidSet(p, cardRemovalMethod, deckOptions.lowRank)) ++
+    cells.map(c => CellSet(c)) ++
+    stock.map(s => StockSet(s, pileIdsByType)) ++
+    foundations.map(f => FoundationSet(f, deckOptions))
   ).toSeq
 }

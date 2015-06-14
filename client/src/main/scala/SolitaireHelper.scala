@@ -14,13 +14,7 @@ trait SolitaireHelper {
   protected[this] def possibleMoves() = {
     val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
     gameState.piles.foreach { source =>
-      if (source.canSelectPile(gameState)) {
-        ret += PossibleMove("select-pile", Nil, source.id)
-      }
       source.cards.zipWithIndex.foreach { c =>
-        if (source.canSelectCard(c._1, gameState)) {
-          ret += PossibleMove("select-card", Seq(c._1.id), source.id)
-        }
         val cards = source.cards.drop(c._2)
         if (source.canDragFrom(cards, gameState)) {
           gameState.piles.filterNot(_.id == source.id).foreach { target =>
@@ -29,6 +23,12 @@ trait SolitaireHelper {
             }
           }
         }
+        if (source.canSelectCard(c._1, gameState)) {
+          ret += PossibleMove("select-card", Seq(c._1.id), source.id)
+        }
+      }
+      if (source.canSelectPile(gameState)) {
+        ret += PossibleMove("select-pile", Nil, source.id)
       }
     }
     ret
@@ -51,7 +51,7 @@ trait SolitaireHelper {
 
   protected[this] def handleSelectPile(userId: UUID, pileId: String) {
     val pile = gameState.pilesById(pileId)
-    if (pile.cards.length > 0) {
+    if (pile.cards.nonEmpty) {
       throw new IllegalStateException("SelectPile [" + pileId + "] called on a non-empty deck.")
     }
     val messages = if (pile.canSelectPile(gameState)) { pile.onSelectPile(gameState) } else { Nil }

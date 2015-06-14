@@ -68,6 +68,10 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
     this.send("SelectPile", { pile: pile.id } );
   };
 
+  Game.prototype.addCard = function(c) {
+    this.cards[c.id] = c;
+  };
+
   Game.prototype.addPile = function(p) {
     this.piles[p.id] = p;
   };
@@ -80,8 +84,26 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
     });
   };
 
-  Game.prototype.addCard = function(c) {
-    this.cards[c.id] = c;
+  Game.prototype.autoMove = function() {
+    if(this.possibleMoves !== undefined && this.possibleMoves.length > 0) {
+      var move = this.possibleMoves[0];
+      console.log(move);
+      switch(move.moveType) {
+        case "move-cards":
+          this.send("MoveCards", {cards: move.cards, src: move.sourcePile, tgt: move.targetPile});
+          break;
+        case "select-card":
+          var selectedCard = this.cards[move.cards[0]];
+          this.cardSelected(selectedCard);
+          break;
+        case "select-pile":
+          var selectedPile = this.piles[move.sourcePile];
+          this.pileSelected(selectedPile);
+          break;
+        default:
+          throw "Unknown move [" + move.moveType + "].";
+      }
+    }
   };
 
   Game.prototype.send = function(c, v) {

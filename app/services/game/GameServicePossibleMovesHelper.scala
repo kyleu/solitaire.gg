@@ -26,24 +26,38 @@ trait GameServicePossibleMovesHelper { this: GameService =>
 
   private[this] def possibleMoves(): Try[Seq[PossibleMove]] = Try {
     val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
+    val boringMoves = collection.mutable.ArrayBuffer.empty[PossibleMove]
     gameState.piles.foreach { source =>
-      if (source.canSelectPile(gameState)) {
-        ret += PossibleMove("select-pile", Nil, source.id)
-      }
       source.cards.zipWithIndex.foreach { c =>
-        if (source.canSelectCard(c._1, gameState)) {
-          ret += PossibleMove("select-card", Seq(c._1.id), source.id)
-        }
         val cards = source.cards.drop(c._2)
+        val remainingCards = source.cards.take(c._2)
         if (source.canDragFrom(cards, gameState)) {
           gameState.piles.filter(p => p.id != source.id).foreach { target =>
             if (target.canDragTo(cards, gameState)) {
-              ret += PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
+              val move = PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
+              if(
+                source.pileSet.exists(_.behavior == "tableau") &&
+                target.pileSet.exists(_.behavior == "tableau") &&
+                (
+                  remainingCards.lastOption.exists(_.u) || // Tableau bounce
+                  (remainingCards.isEmpty && target.cards.isEmpty) // King bounce
+                )
+              ) {
+                boringMoves += move
+              } else {
+                ret += move
+              }
             }
           }
         }
+        if (source.canSelectCard(c._1, gameState)) {
+          ret += PossibleMove("select-card", Seq(c._1.id), source.id)
+        }
+      }
+      if (source.canSelectPile(gameState)) {
+        ret += PossibleMove("select-pile", Nil, source.id)
       }
     }
-    ret
+    ret ++ boringMoves
   }
 }
