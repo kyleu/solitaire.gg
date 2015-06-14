@@ -7,8 +7,8 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 
 object GameHistoryService {
-  def searchGames(q: String, orderBy: String, page: Int) = Database.query(GameHistoryQueries.CountQuery(q)).flatMap { count =>
-    Database.query(GameHistoryQueries.SearchQuery(q, getOrderClause(orderBy), Some(page))).map { list =>
+  def searchGames(q: String, orderBy: String, page: Int) = Database.query(GameHistoryQueries.Count(q)).flatMap { count =>
+    Database.query(GameHistoryQueries.Search(q, getOrderClause(orderBy), Some(page))).map { list =>
       count -> list
     }
   }

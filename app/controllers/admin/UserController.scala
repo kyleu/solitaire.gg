@@ -16,8 +16,8 @@ import scala.concurrent.Future
 
 class UserController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   def userList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
-    Database.query(UserQueries.CountQuery(q)).flatMap { count =>
-      Database.query(UserQueries.SearchQuery(q, getOrderClause(sortBy), Some(page))).map { users =>
+    Database.query(UserQueries.Count(q)).flatMap { count =>
+      Database.query(UserQueries.Search(q, getOrderClause(sortBy), Some(page))).map { users =>
         Ok(views.html.admin.user.userList(q, sortBy, count, page, users))
       }
     }

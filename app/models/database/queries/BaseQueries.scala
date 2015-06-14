@@ -53,7 +53,7 @@ trait BaseQueries[T] {
     override val sql = s"delete from $tableName where $idWhereClause"
   }
 
-  case class CountQuery(q: String) extends Query[Int] {
+  case class Count(q: String) extends Query[Int] {
     override val sql = if (q.isEmpty) {
       s"select count(*) as c from $tableName"
     } else {
@@ -63,7 +63,7 @@ trait BaseQueries[T] {
     override def reduce(rows: Iterator[RowData]) = rows.next()("c") match { case l: Long => l.toInt }
   }
 
-  case class SearchQuery(q: String, sortBy: String, page: Option[Int]) extends Query[List[T]] {
+  case class Search(q: String, sortBy: String, page: Option[Int]) extends Query[List[T]] {
     private[this] val whereClause = if (q.isEmpty) { None } else { Some(searchColumns.map(c => "lower(" + c + ") like lower(?)").mkString(" or ")) }
     private[this] val limit = page.map(x => Config.pageSize)
     private[this] val offset = page.map(x => x * Config.pageSize)

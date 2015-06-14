@@ -30,7 +30,6 @@ object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
     )
   }
 
-
   override protected def fromRow(row: RowData) = {
     val id = row("id") match { case s: String => s }
     val provider = row("provider") match { case s: String => s }

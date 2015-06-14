@@ -23,7 +23,6 @@ object BaseController extends Instrumented {
   val timers = collection.mutable.HashMap.empty[String, Timer]
 }
 
-
 abstract class BaseController extends Silhouette[User, CookieAuthenticator] with I18nSupport with Instrumented with Logging {
   override protected def env = AuthenticationEnvironment
 

@@ -8,8 +8,8 @@ import services.database.Database
 
 class RequestLogController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   def requestList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
-    Database.query(RequestLogQueries.CountQuery(q)).flatMap { count =>
-      Database.query(RequestLogQueries.SearchQuery(q, getOrderClause(sortBy), Some(page))).map { requests =>
+    Database.query(RequestLogQueries.Count(q)).flatMap { count =>
+      Database.query(RequestLogQueries.Search(q, getOrderClause(sortBy), Some(page))).map { requests =>
         Ok(views.html.admin.request.requestList(q, sortBy, count, page, requests))
       }
     }

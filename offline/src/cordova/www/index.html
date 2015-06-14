@@ -9,34 +9,35 @@
     <link rel="stylesheet" media="screen" href="assets/stylesheets/solitaire.gg.min.css"/>
   </head>
   <body>
-    <div id="menu-container">
+    <div id="menu-container" class="fixed">
       <div class="menu-left">
-        <div id="btn-menu" title="Menu" class="btn menu"></div>
+        <a id="btn-menu" title="Menu" class="btn btn-greyblue menu" href=""></a>
         <a id="link-game" class="link" href=""></a>
       </div>
       <div class="menu-right">
-        <a href="@routes.ProfileController.profile()"><img title="Profile for [Guest)]" class="avatar-small" src="assets/images/avatar/profile-ffffff.png" /></a>
-        <a class="link" href="@routes.ProfileController.profile()">Mobile Player</a>
+        <a href=""><img title="Profile for [Guest]" class="avatar-small" src="assets/images/avatar/profile-ffffff.png" /></a>
+        <a class="link" href="">Guest</a>
       </div>
-      <a class="logo" href="index.html">Solitaire.gg</a>
+      <div class="logo">
+        <a href="">Solitaire.gg</a>
+      </div>
     </div>
 
-    <div id="status-container">
+    <div id="status-container" class="fixed">
       <div class="menu-left">
-        <div id="btn-options" title="Options" class="btn options"></div>
-        <div id="btn-help" title="Help" class="btn help"></div>
-        <div id="btn-feedback" title="Feedback" class="btn feedback"></div>
+        <div id="btn-options" title="Options" class="options btn btn-greyblue"></div>
+        <div id="btn-help" title="Help" class="help btn btn-greyblue"></div>
+        <div id="btn-feedback" title="Feedback" class="feedback btn btn-greyblue"></div>
       </div>
       <div class="menu-right">
-        <div id="btn-redo" title="No redos available" class="btn redo disabled"></div>
-        <div id="btn-hint" title="Click for a hint" class="btn hint"></div>
-        <div id="btn-undo" title="No undos available" class="btn undo disabled"></div>
+        <div id="btn-redo" title="No redos available" class="redo btn btn-greyblue disabled"></div>
+        <div id="btn-hint" title="Click for a hint" class="hint btn btn-greyblue"></div>
+        <div id="btn-undo" title="No undos available" class="undo btn btn-greyblue disabled"></div>
       </div>
       <div class="timer-container">
         <span id="timer-display">0:00</span>
       </div>
     </div>
-
 
     <div id="game-container"></div>
 

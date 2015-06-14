@@ -24,7 +24,7 @@ cp -R "../public/images/" "build/web/assets/images"
 
 cp "../target/web/rjs/build/client-opt.js" "build/web/assets/javascripts"
 cp "../target/web/rjs/build/javascripts/main.js" "build/web/assets/javascripts/solitaire.gg.js"
-cp "../target/web/less/main/stylesheets/solitaire.gg.css" "build/web/assets/stylesheets"
+cp "../target/web/less/main/stylesheets/solitaire.gg.min.css" "build/web/assets/stylesheets"
 
 rm -Rf "build/web/assets/images/game/cards/classic/_unprocessed"
 rm -Rf "build/web/assets/images/game/cards/classic/_resized"

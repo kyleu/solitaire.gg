@@ -50,7 +50,7 @@ case class Deck(var cards: Seq[Card], lowRank: Rank, highRank: Rank, originalOrd
     var enough = false
     var seekIndex = 0
     while (!enough) {
-      if(seekIndex == cards.size) {
+      if (seekIndex == cards.size) {
         throw new IllegalStateException("Coulndn't find unique ranks.")
       }
       val c = cards(seekIndex)
