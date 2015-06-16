@@ -1,6 +1,9 @@
 define(['game/helpers/Tweens'], function (Tweens) {
   "use strict";
 
+  var dragDeadZone = 10;
+  var doubleClickThresholdMs = 1000;
+
   function canSelectCard(card) {
     var valid = _.some(card.game.possibleMoves, function(move) {
       if(move.moveType === "select-card" && move.sourcePile === card.pile.id) {
@@ -23,6 +26,23 @@ define(['game/helpers/Tweens'], function (Tweens) {
       return false;
     });
     return move;
+  }
+
+  function click(card) {
+    if(canSelectCard(card)) {
+      card.pile.cardSelected(card);
+    } else {
+      var now = new Date().getTime();
+      if(card.lastClicked !== undefined && (now - card.lastClicked) < doubleClickThresholdMs) {
+        var moveTarget = getMoveTarget(card);
+        if(moveTarget !== null && moveTarget !== undefined) {
+          card.game.send("MoveCards", {cards: [card.id], src: card.pile.id, tgt: moveTarget.targetPile});
+        }
+        card.lastClicked = undefined;
+      } else {
+        card.lastClicked = now;
+      }
+    }
   }
 
   return {
@@ -50,15 +70,8 @@ define(['game/helpers/Tweens'], function (Tweens) {
       } else {
         var deltaX = Math.abs(p.positionDown.x - p.positionUp.x);
         var deltaY = Math.abs(p.positionDown.y - p.positionUp.y);
-        if(deltaX < 5 && deltaY < 5) {
-          if(canSelectCard(card)) {
-            card.pile.cardSelected(card);
-          } else {
-            var moveTarget = getMoveTarget(card);
-            if(moveTarget !== null && moveTarget !== undefined) {
-              card.game.send("MoveCards", {cards: [card.id], src: card.pile.id, tgt: moveTarget.targetPile});
-            }
-          }
+        if(deltaX < dragDeadZone && deltaY < dragDeadZone) {
+          click(card);
         }
       }
     },
@@ -67,19 +80,12 @@ define(['game/helpers/Tweens'], function (Tweens) {
       if(card.inputOriginalPosition !== null) {
         var xDelta = Math.abs(card.x - card.inputOriginalPosition.x);
         var yDelta = Math.abs(card.y - card.inputOriginalPosition.y);
-        if(xDelta > 5 || yDelta > 5) {
+        if(xDelta > dragDeadZone || yDelta > dragDeadZone) {
           // Dragged
           //card.game.add.tween(card).to({x: card.inputOriginalPosition.x, y: card.inputOriginalPosition.y, angle: 0}, 500, Phaser.Easing.Quadratic.InOut, true);
           Tweens.tweenCardTo(card, card.inputOriginalPosition.x, card.inputOriginalPosition.y, 0);
         } else {
-          if(canSelectCard(card)) {
-            card.pile.cardSelected(card);
-          } else {
-            var moveTarget = getMoveTarget(card);
-            if(moveTarget !== null && moveTarget !== undefined) {
-              card.game.send("MoveCards", {cards: [card.id], src: card.pile.id, tgt: moveTarget.targetPile});
-            }
-          }
+          click(card);
         }
         card.dragIndex = null;
         card.actualX = null;

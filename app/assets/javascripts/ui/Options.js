@@ -1,16 +1,22 @@
 define(['ui/Buttons'], function(Buttons) {
   var Options = function(game) {
-    this.gameName = document.getElementById("link-game");
+    this.game = game;
+    this.elements = {
+      "gameName": document.getElementById("link-game"),
+      "timerDisplay": document.getElementById("timer-display"),
+      "topBar": document.getElementById("menu-container"),
+      "bottomBar": document.getElementById("status-container")
+    };
+    game.menusVisible = this.elements.topBar.style.display !== 'none';
     this.buttons = new Buttons(game, this);
-    this.timerDisplay = document.getElementById("timer-display");
   };
 
   Options.prototype.setGame = function(state) {
-    this.gameName.innerText = state.rulesTitle;
+    this.elements.gameName.innerText = state.rulesTitle;
   };
 
   Options.prototype.setTimerValue = function(time) {
-    this.timerDisplay.innerText = time;
+    this.elements.timerDisplay.innerText = time;
   };
 
   Options.prototype.setUndosAvailable = function(num) {
@@ -48,6 +54,18 @@ define(['ui/Buttons'], function(Buttons) {
       } else {
         this.buttons.redo.title = num + " redos available.";
       }
+    }
+  };
+
+  Options.prototype.toggleMenus = function() {
+    if(this.game.menusVisible) {
+      this.elements.topBar.className = this.elements.topBar.className.replace(" fade-in", "") + " fade-out";
+      this.elements.bottomBar.className = this.elements.bottomBar.className.replace(" fade-in", "") + " fade-out";
+      this.game.menusVisible = false;
+    } else {
+      this.elements.topBar.className = this.elements.topBar.className.replace(" fade-out", "") + " fade-in";
+      this.elements.bottomBar.className = this.elements.bottomBar.className.replace(" fade-out", "") + " fade-in";
+      this.game.menusVisible = true;
     }
   };
 

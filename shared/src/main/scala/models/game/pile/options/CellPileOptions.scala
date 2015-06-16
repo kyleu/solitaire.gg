@@ -5,9 +5,9 @@ import models.game.rules.CellRules
 
 object CellPileOptions {
   def apply(rules: CellRules) = {
-    if (rules.canMoveFrom.isEmpty) {
-      throw new IllegalStateException()
-    }
-    PileOptions(direction = Some("d"), dragFromConstraint = Some(Constraint.topCardOnly), dragToConstraint = Some(Constraint.empty))
+    val dragToConstraint = Constraint("cell", (src, tgt, cards, gameState) => {
+      src.pileSet.exists(x => rules.mayMoveToFrom.contains(x.behavior))
+    })
+    PileOptions(direction = Some("d"), dragFromConstraint = Some(Constraint.topCardOnly), dragToConstraint = Some(dragToConstraint))
   }
 }

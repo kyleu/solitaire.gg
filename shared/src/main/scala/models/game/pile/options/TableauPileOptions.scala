@@ -31,6 +31,8 @@ object TableauPileOptions extends TableauPileOptionHelper {
       lowRank = deckOptions.lowRank,
       emptyPileRanks = emptyRanks,
       maxCards = rules.maxCards,
+      mayMoveToEmptyFrom = rules.mayMoveToEmptyFrom,
+      mayMoveToNonEmptyFrom = rules.mayMoveToNonEmptyFrom,
       wrapFromKingToAce = rules.wrapFromKingToAce
     )
 

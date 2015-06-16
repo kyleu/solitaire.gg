@@ -16,7 +16,7 @@ object FoundationPileOptions {
       Some(Constraint.never)
     } else {
       Some(Constraint("foundation", (src, tgt, cards, gameState) => {
-        if (cards.length == 1 && !rules.moveCompleteSequencesOnly) {
+        val ret = if (cards.length == 1 && !rules.moveCompleteSequencesOnly) {
           if (rules.maxCards > 0 && tgt.cards.length >= rules.maxCards) {
             false
           } else {
@@ -60,6 +60,7 @@ object FoundationPileOptions {
         } else {
           false
         }
+        ret && src.pileSet.exists(x => rules.mayMoveToFrom.contains(x.behavior))
       }))
     }
     (dragFromConstraint, dragToConstraint)

@@ -1,8 +1,8 @@
 define([
   'utils/Config', 'game/Rank', 'game/Suit', 'game/Card', 'game/pile/Pile',
-  'game/helpers/Display', 'game/helpers/Keyboard', 'game/helpers/Tweens',
-  'game/Playmat', 'game/state/GameState', 'game/helpers/GameplayHelper'
-], function (cfg, Rank, Suit, Card, Pile, Display, Keyboard, Tweens, Playmat, GameState, GameplayHelper) {
+  'game/helpers/Backdrop', 'game/helpers/Display', 'game/helpers/Keyboard', 'game/helpers/Tweens',
+  'game/Playmat', 'game/state/GameState', 'game/state/GameplayHelper'
+], function (cfg, Rank, Suit, Card, Pile, Backdrop, Display, Keyboard, Tweens, Playmat, GameState, GameplayHelper) {
   "use strict";
 
   function Gameplay(game) {
@@ -25,11 +25,8 @@ define([
     this.game.keyboard = new Keyboard(this.game);
     this.game.keyboard.init();
 
-    //this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
-    //this.bg.height = this.game.height * 2;
-    //this.bg.width = this.game.width * 2;
-    //this.bg.scale = { x: 0.5, y: 0.5 };
-    //this.add.existing(this.bg);
+    this.backdrop = new Backdrop(this.game);
+    this.add.existing(this.backdrop.bg);
 
     this.game.send("Ping", { timestamp: new Date().getTime() });
     this.game.time.events.loop(Phaser.Timer.SECOND * 10, function() {
@@ -116,10 +113,10 @@ define([
         this.game.playmat.resize();
       }
 
-      //if(this.bg !== undefined) {
-      //  this.bg.height = this.game.height * 2;
-      //  this.bg.width = this.game.width * 2;
-      //}
+      if(this.backdrop !== undefined) {
+        this.backdrop.height = this.game.height;
+        this.backdrop.width = this.game.width;
+      }
     }
   };
 

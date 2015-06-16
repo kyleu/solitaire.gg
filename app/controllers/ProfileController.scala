@@ -16,10 +16,6 @@ class ProfileController @javax.inject.Inject() (val messagesApi: MessagesApi) ex
     }
   }
 
-  def options = withSession { implicit request =>
-    Future.successful(Ok(views.html.game.optionsPanel(request.identity)))
-  }
-
   def setOption(option: String, value: String) = withSession { implicit request =>
     val f = option match {
       case "avatar" =>

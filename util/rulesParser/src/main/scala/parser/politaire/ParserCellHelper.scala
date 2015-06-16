@@ -12,7 +12,7 @@ trait ParserCellHelper { this: GameRulesParser =>
           name = getString("C0Ns"),
           pluralName = getString("C0Nm"),
           numPiles = numPiles,
-          canMoveFrom = PolitaireLookup.parseBitmask("C0o", getInt("C0o")),
+          mayMoveToFrom = PolitaireLookup.parseBitmask("C0o", getInt("C0o")),
           initialCards = getInt("C0d"),
           numEphemeral = getInt("C0e")
         ))

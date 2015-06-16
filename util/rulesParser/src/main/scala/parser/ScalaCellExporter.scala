@@ -18,8 +18,8 @@ object ScalaCellExporter {
         if(c.numPiles != defaults.numPiles) {
           props += "      numPiles = " + c.numPiles
         }
-        if(!c.canMoveFrom.sameElements(defaults.canMoveFrom)) {
-          props += "      canMoveFrom = Seq(" + c.canMoveFrom.map(x => "\"" + x + "\"").mkString(", ") + ")"
+        if(!c.mayMoveToFrom.sameElements(defaults.mayMoveToFrom)) {
+          props += "      mayMoveToFrom = Seq(" + c.mayMoveToFrom.map(x => "\"" + x + "\"").mkString(", ") + ")"
         }
         if(c.initialCards != defaults.initialCards) {
           props += "      initialCards = " + c.initialCards

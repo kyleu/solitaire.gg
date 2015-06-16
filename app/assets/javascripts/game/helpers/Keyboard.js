@@ -25,7 +25,6 @@ define(['ui/Modal'], function (Modal) {
     console.log("  G: Show game rules.");
     console.log("  H: Dynamic help.");
     console.log("  V: Victory animation.");
-    console.log("  T: Fire trails because why not.");
     console.log("  C: Force connection close.");
     console.log("  Space: Toggle debug view.");
     console.log("Game [" + this.game.id + "] (" + this.game.rules + "):");
@@ -87,11 +86,6 @@ define(['ui/Modal'], function (Modal) {
       for(var cardIndex in g.cards) {
         g.cards[cardIndex].animation = {id: "mouse", speed: 200 + Math.floor(Math.random() * 200)};
       }
-    });
-
-    var trailsCheatKey = g.input.keyboard.addKey(Phaser.Keyboard.T);
-    trailsCheatKey.onDown.add(function() {
-      g.playmat.enableTrails();
     });
 
     var closeConnectionKey = g.input.keyboard.addKey(Phaser.Keyboard.C);

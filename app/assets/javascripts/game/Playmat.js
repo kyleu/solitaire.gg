@@ -22,7 +22,7 @@ define(['game/helpers/Layout'], function (calculateLayout) {
   Playmat.prototype.refreshLayout = function() {
     var originalSize = [this.w, this.h];
 
-    this.layout = calculateLayout(this.pileSets, this.layoutString, this.game.world.width / this.game.world.height);
+    this.layout = calculateLayout(this.pileSets, this.layoutString, this.game.world.width / this.game.world.height, this.game.menusVisible);
 
     this.w = this.layout.width * this.game.cardSet.cardWidth;
     this.h = (this.layout.height - 0.1) * this.game.cardSet.cardHeight;
@@ -54,23 +54,29 @@ define(['game/helpers/Layout'], function (calculateLayout) {
   };
 
   Playmat.prototype.resize = function() {
+    var totalHeight = this.game.world.height;
+    var menuHeight = 0;
+    if(this.game.menusVisible) {
+      totalHeight -= 80;
+      menuHeight = 40;
+    }
     var widthRatio = this.game.world.width / this.w;
-    var heightRatio = (this.game.world.height - 80) / this.h;
+    var heightRatio = totalHeight / this.h;
 
     var newPosition = this.position;
     var newScale = this.scale;
 
     if(widthRatio < heightRatio) {
       newScale = new Phaser.Point(widthRatio, widthRatio);
-      var yOffset = (this.game.world.height - (this.h * widthRatio)) / 2;
-      if(yOffset > 0 || this.y !== 40) {
-        newPosition = new Phaser.Point(0, 40 /* yOffset */);
+      var yOffset = (totalHeight - (this.h * widthRatio)) / 2;
+      if(yOffset > 0 || this.y !== menuHeight) {
+        newPosition = new Phaser.Point(0, menuHeight /* yOffset */);
       }
     } else {
       newScale = new Phaser.Point(heightRatio, heightRatio);
       var xOffset = (this.game.world.width - (this.w * heightRatio)) / 2;
       if(xOffset > 0 || this.x !== 0) {
-        newPosition = new Phaser.Point(xOffset, 40);
+        newPosition = new Phaser.Point(xOffset, menuHeight);
       }
     }
     if(this.game.initialized) {
@@ -80,17 +86,6 @@ define(['game/helpers/Layout'], function (calculateLayout) {
       this.scale = newScale;
       this.position = newPosition;
     }
-  };
-
-  Playmat.prototype.enableTrails = function() {
-    this.emitter = new Phaser.Particles.Arcade.Emitter(this.game, 0, 0, 300);
-    this.emitter.makeParticles( [ 'fire1', 'fire2', 'fire3', 'smoke' ] );
-    this.emitter.gravity = -200;
-    this.emitter.setAlpha(1, 0, 3000);
-    this.emitter.setScale(1.5, 2, 1.5, 2, 3000);
-    this.emitter.start(false, 3000, 5);
-    this.emitter.on = false;
-    this.add(this.emitter);
   };
 
   Playmat.prototype.emitFor = function(card) {

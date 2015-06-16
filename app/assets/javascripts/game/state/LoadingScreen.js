@@ -37,11 +37,6 @@ define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState'], function
 
     this.game.load.spritesheet('suits', this.assetRoot + 'assets/images/particles/suits.png', 100, 100);
 
-    this.game.load.image('fire1', this.assetRoot + 'assets/images/particles/fire1.png');
-    this.game.load.image('fire2', this.assetRoot + 'assets/images/particles/fire2.png');
-    this.game.load.image('fire3', this.assetRoot + 'assets/images/particles/fire3.png');
-    this.game.load.image('smoke', this.assetRoot + 'assets/images/particles/smoke-puff.png');
-
     var gameplay = new Gameplay(this.game);
     this.game.state.add('gameplay', gameplay);
   };

@@ -11,7 +11,7 @@ object PyramidPileOptions {
       cardsShown = Some(1),
       direction = Some("d"),
       dragFromConstraint = Some(Constraint.topCardOnly),
-      dragToConstraint = Some(dragToConstraint(crm, lowRank)),
+      dragToConstraint = Some(dragToConstraint(crm, lowRank, rules.mayMoveToEmptyFrom, rules.mayMoveToNonEmptyFrom)),
       selectCardConstraint = Some(Constraint.allOf("top-card-select", Constraint.topCardOnly, Constraint.forCardRemovalMethod(crm))),
       selectCardAction = Some(SelectCardActions.drawToPiles(1, Seq("foundation-1"))),
       dragToAction = Some(DragToActions.remove())
@@ -30,20 +30,26 @@ object PyramidPileOptions {
     ret
   }
 
-  private[this] def dragToConstraint(crm: CardRemovalMethod, lowRank: Rank) = Constraint("pyramid", (src, tgt, cards, gameState) => {
-    tgt.cards.lastOption.exists { topCard =>
-      val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
-      if (!topCard.u) {
-        false
-      } else {
-        crm match {
-          case CardRemovalMethod.BuildSequencesOnFoundation => throw new NotImplementedError(lowRank.toString)
-          case CardRemovalMethod.StackSameRankOrSuitInWaste => throw new NotImplementedError(lowRank.toString)
-          case _ => crm.canRemove(topCard, firstDraggedCard)
+  private[this] def dragToConstraint(crm: CardRemovalMethod, lowRank: Rank, mayMoveToEmptyFrom: Seq[String], mayMoveToNonEmptyFrom: Seq[String]) = {
+    Constraint("pyramid", (src, tgt, cards, gameState) => tgt.cards.lastOption match {
+      case None => src.pileSet.exists(x => mayMoveToEmptyFrom.contains(x.behavior))
+
+      case Some(topCard) =>
+        val ret = {
+          val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
+          if (!topCard.u) {
+            false
+          } else {
+            crm match {
+              case CardRemovalMethod.BuildSequencesOnFoundation => throw new NotImplementedError(lowRank.toString)
+              case CardRemovalMethod.StackSameRankOrSuitInWaste => throw new NotImplementedError(lowRank.toString)
+              case _ => crm.canRemove(topCard, firstDraggedCard)
+            }
+          }
         }
-      }
-    }
-  })
+        ret && src.pileSet.exists(x => mayMoveToNonEmptyFrom.contains(x.behavior))
+    })
+  }
 
   private[this] def optionsFor(baseOptions: PileOptions, emptyPiles: String*) = {
     val c = Constraint.pilesEmpty(emptyPiles: _*)

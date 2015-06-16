@@ -40,6 +40,8 @@ trait TableauPileOptionHelper {
     lowRank: Rank,
     emptyPileRanks: Seq[Rank],
     maxCards: Int,
+    mayMoveToEmptyFrom: Seq[String],
+    mayMoveToNonEmptyFrom: Seq[String],
     wrapFromKingToAce: Boolean
   ) = {
     Constraint("tableau", (src, tgt, cards, gameState) => {
@@ -47,14 +49,14 @@ trait TableauPileOptionHelper {
         false
       } else {
         if (tgt.cards.isEmpty) {
-          emptyPileRanks.length match {
+          src.pileSet.exists(x => mayMoveToEmptyFrom.contains(x.behavior)) && (emptyPileRanks.length match {
             case 0 => false
             case _ => cards.exists(c => emptyPileRanks.contains(c.r))
-          }
+          })
         } else {
           val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
           val topCard = tgt.cards.lastOption.getOrElse(throw new IllegalStateException())
-          if (!topCard.u) {
+          val ret = if (!topCard.u) {
             false
           } else {
             crm match {
@@ -67,6 +69,7 @@ trait TableauPileOptionHelper {
               case _ => crm.canRemove(topCard, firstDraggedCard)
             }
           }
+          ret && src.pileSet.exists(x => mayMoveToNonEmptyFrom.contains(x.behavior))
         }
       }
     })

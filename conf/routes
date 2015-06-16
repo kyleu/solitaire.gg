@@ -18,7 +18,6 @@ GET         /signout                           @controllers.auth.AuthenticationC
 
 # Profile
 GET         /profile                           @controllers.ProfileController.profile
-GET         /options                           @controllers.ProfileController.options()
 GET         /options/set/:option/:value        @controllers.ProfileController.setOption(option, value)
 
 # Game

@@ -2,6 +2,7 @@ define(['utils/Network'], function(Network) {
   var element = document.getElementById("gameplay-modal");
   var backdropElement = document.getElementById("gameplay-modal-backdrop");
   var contentElement = document.getElementById("gameplay-modal-content");
+  var optionsElement = document.getElementById("gameplay-modal-options");
   var loadingElement = document.getElementById("gameplay-modal-loading");
   var dataElement = document.getElementById("gameplay-modal-data");
 
@@ -13,6 +14,10 @@ define(['utils/Network'], function(Network) {
     show: function(method, url, requestData, postLoad) {
       contentElement.style.height = (window.innerHeight - 120 - 20) + "px";
       contentElement.style.marginTop = "60px";
+
+      contentElement.style.display = "block";
+      optionsElement.style.display = "none";
+
       dataElement.style.display = "none";
       loadingElement.style.display = "block";
       element.className = "on";
@@ -29,6 +34,12 @@ define(['utils/Network'], function(Network) {
           postLoad(method, url, result);
         }
       }, errorCallback);
+    },
+
+    showOptions: function() {
+      contentElement.style.display = "none";
+      optionsElement.style.display = "block";
+      element.className = "on";
     },
 
     hide: function() {

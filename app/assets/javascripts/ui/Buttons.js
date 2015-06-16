@@ -10,7 +10,7 @@ define(['ui/Modal'], function(Modal) {
     };
 
     buttons.options.onclick = function() {
-      Modal.show("GET", "/options");
+      Modal.showOptions();
     };
 
     buttons.help.onclick = function() {

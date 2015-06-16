@@ -1,5 +1,10 @@
 @(
-    title: String, user: models.user.User, rulesId: String, initialAction: Seq[String], seed: Option[Int] = None, offline: Boolean = false
+  title: String,
+  user: models.user.User,
+  rulesId: String,
+  initialAction: Seq[String],
+  seed: Option[Int] = None,
+  offline: Boolean = false
 )(implicit session: Session, flash: Flash)@layout.basic(
   title + " - " + utils.Config.projectName,
   stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.min.css").url),
@@ -11,15 +16,16 @@
 
   <div id="game-container"></div>
 
-  <div id="gameplay-modal">
+  <div id="gameplay-modal" class="off">
     <div id="gameplay-modal-backdrop"></div>
-    <div id="gameplay-modal-content" class="off">
+    <div id="gameplay-modal-content">
       <div id="gameplay-modal-loading">
         Loading...
       </div>
       <div id="gameplay-modal-data">
       </div>
     </div>
+    @optionsPanel(user)
   </div>
 
   <pre id="@utils.Config.projectId-config">
