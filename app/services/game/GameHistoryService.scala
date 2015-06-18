@@ -7,8 +7,8 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 
 object GameHistoryService {
-  def searchGames(q: String, orderBy: String, page: Int) = Database.query(GameHistoryQueries.Count(q)).flatMap { count =>
-    Database.query(GameHistoryQueries.Search(q, getOrderClause(orderBy), Some(page))).map { list =>
+  def searchGames(q: String, orderBy: String, page: Int) = Database.query(GameHistoryQueries.count(q)).flatMap { count =>
+    Database.query(GameHistoryQueries.search(q, getOrderClause(orderBy), Some(page))).map { list =>
       count -> list
     }
   }
@@ -20,7 +20,7 @@ object GameHistoryService {
   }
 
   def removeGameHistory(id: UUID) = {
-    Database.execute(GameHistoryQueries.RemoveById(Seq(id))).map(_ == 1)
+    Database.execute(GameHistoryQueries.removeById(Seq(id))).map(_ == 1)
   }
 
   private[this] def getOrderClause(orderBy: String) = orderBy match {

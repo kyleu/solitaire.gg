@@ -1,8 +1,8 @@
-package models
+package models.audit
 
 import java.util.UUID
 
-import models.game.{ Suit, Rank }
+import models.game.{ Rank, Suit }
 import org.joda.time.LocalDateTime
 
 object GameHistory {

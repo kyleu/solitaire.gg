@@ -3,7 +3,7 @@ package models.database.queries.game
 import java.util.UUID
 
 import com.github.mauricio.async.db.RowData
-import models.GameHistory
+import models.audit.GameHistory
 import models.database.queries.BaseQueries
 import models.database.{ Query, Statement }
 import org.joda.time.LocalDateTime
@@ -13,6 +13,8 @@ object GameHistoryMoveQueries extends BaseQueries[GameHistory.Move] {
   override protected val tableName = "game_moves"
   override protected val columns = Seq("game_id", "sequence", "player_id", "move", "cards", "src", "tgt", "occurred")
   override protected val searchColumns = Seq("game_id::text", "player_id::text", "move")
+
+  val insert = Insert
 
   case class GetGameMovesByGame(id: UUID) extends Query[List[GameHistory.Move]] {
     override val sql = getSql(whereClause = Some("game_id = ?"), orderBy = Some("sequence"))

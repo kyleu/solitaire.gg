@@ -13,6 +13,10 @@ object UserFeedbackQueries extends BaseQueries[UserFeedback] {
   override protected val columns = Seq("id", "user_id", "active_game_id", "feedback", "occurred")
   override protected val searchColumns = Seq("id::text", "user_id::text", "active_game_id::text", "feedback")
 
+  val insert = Insert
+  val count = Count
+  val search = Search
+
   case class GetUserFeedbackByUser(id: UUID, sortBy: String) extends Query[List[UserFeedback]] {
     override val sql = getSql(whereClause = Some("player = ?"), orderBy = Some("?"))
     override val values = Seq(id, sortBy)

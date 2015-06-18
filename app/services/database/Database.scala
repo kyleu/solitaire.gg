@@ -2,28 +2,17 @@ package services.database
 
 import com.github.mauricio.async.db.pool.{ ConnectionPool, PoolConfiguration }
 import com.github.mauricio.async.db.postgresql.pool.PostgreSQLConnectionFactory
-import com.github.mauricio.async.db.{ Configuration, Connection, QueryResult }
+import com.github.mauricio.async.db.{ Connection, QueryResult }
 import models.database.{ RawQuery, Statement }
 import nl.grons.metrics.scala.FutureMetrics
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import utils.Logging
+import utils.{ Config, Logging }
 import utils.metrics.Instrumented
 
 import scala.concurrent.duration._
 import scala.concurrent.{ Await, Future }
 
 object Database extends Logging with Instrumented with FutureMetrics {
-  private val configuration = {
-    val cfg = play.api.Play.current.configuration
-    new Configuration(
-      host = cfg.getString("db.host").getOrElse(throw new IllegalStateException()),
-      port = 5432,
-      database = Some(cfg.getString("db.database").getOrElse(throw new IllegalStateException())),
-      username = cfg.getString("db.username").getOrElse(throw new IllegalStateException()),
-      password = Some(cfg.getString("db.password").getOrElse(throw new IllegalStateException()))
-    )
-  }
-
   def open() = {
     val healthCheck = pool.sendQuery("select now()")
     healthCheck.onFailure {
@@ -76,7 +65,7 @@ object Database extends Logging with Instrumented with FutureMetrics {
     true
   }
 
-  private[this] val factory = new PostgreSQLConnectionFactory(configuration)
+  private[this] val factory = new PostgreSQLConnectionFactory(Config.databaseConfiguration)
   private[this] val poolConfig = new PoolConfiguration(maxObjects = 100, maxIdle = 10, maxQueueSize = 1000)
   private[this] val pool = new ConnectionPool(factory, poolConfig)
 

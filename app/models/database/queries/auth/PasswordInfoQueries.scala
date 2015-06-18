@@ -13,6 +13,9 @@ object PasswordInfoQueries extends BaseQueries[PasswordInfo] {
   override protected def idColumns = Seq("provider", "key")
   override protected val searchColumns = Seq("key")
 
+  val getById = GetById
+  val removeById = RemoveById
+
   case class CreatePasswordInfo(l: LoginInfo, p: PasswordInfo) extends Statement {
     override val sql = insertSql
     override val values = Seq(l.providerID, l.providerKey) ++ toDataSeq(p)

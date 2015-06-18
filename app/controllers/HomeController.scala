@@ -45,7 +45,7 @@ class HomeController @javax.inject.Inject() (val messagesApi: MessagesApi, maile
 
           new EmailService(mailer).feedbackSubmitted(obj, request.identity)
 
-          Database.execute(UserFeedbackQueries.Insert(obj)).map { x =>
+          Database.execute(UserFeedbackQueries.insert(obj)).map { x =>
             Redirect(routes.HomeController.feedbackForm()).flashing("success" -> "Your feedback has been submitted. Thanks!")
           }
         case None => Future.successful(Redirect(routes.HomeController.feedbackForm()).flashing("error" -> "Please include some feedback."))

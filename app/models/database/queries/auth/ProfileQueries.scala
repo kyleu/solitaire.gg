@@ -14,6 +14,8 @@ object ProfileQueries extends BaseQueries[CommonSocialProfile] {
   override protected val columns = Seq("provider", "key", "email", "first_name", "last_name", "full_name", "avatar_url", "created")
   override protected val searchColumns = Seq("key", "email", "first_name", "last_name", "full_name")
 
+  val insert = Insert
+
   case class FindProfile(provider: String, key: String) extends FlatSingleRowQuery[CommonSocialProfile] {
     override val sql = getSql(Some("provider = ? and key = ?"))
     override val values = Seq(provider, key)

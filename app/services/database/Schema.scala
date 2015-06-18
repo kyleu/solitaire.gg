@@ -11,19 +11,20 @@ import scala.concurrent.duration._
 object Schema extends Logging {
   val tables = Seq(
     "adhoc_queries" -> CreateAdHocQueriesTable,
-    "users" -> CreateUserTable,
+    "users" -> CreateUsersTable,
     "user_feedback" -> CreateUserFeedbackTable,
-    "user_profiles" -> CreateProfileTable,
+    "user_profiles" -> CreateUserProfilesTable,
     "password_info" -> CreatePasswordInfoTable,
     "oauth1_info" -> CreateOAuth1InfoTable,
     "oauth2_info" -> CreateOAuth2InfoTable,
     "openid_info" -> CreateOpenIdInfoTable,
     "session_info" -> CreateSessionInfoTable,
-    "requests" -> CreateRequestLogTable,
-    "games" -> CreateGameTable,
+    "requests" -> CreateRequestsTable,
+    "games" -> CreateGamesTable,
     "game_seeds" -> CreateGameSeedsTable,
     "game_cards" -> CreateGameCardsTable,
-    "game_moves" -> CreateGameMovesTable
+    "game_moves" -> CreateGameMovesTable,
+    "daily_metrics" -> CreateDailyMetricsTable
   )
 
   def update() = tables.foreach { t =>

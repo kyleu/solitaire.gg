@@ -3,6 +3,7 @@ package services.game
 import java.util.UUID
 
 import models._
+import models.audit.GameHistory
 import models.database.queries.game.{ GameHistoryMoveQueries, GameHistoryCardQueries, GameHistoryQueries }
 import org.joda.time.LocalDateTime
 import services.database.Database
@@ -13,9 +14,9 @@ trait GameServicePersistenceHelper { this: GameService =>
 
   protected[this] def create() = {
     val gh = GameHistory(id, seed, rules, "started", player.userId, 0, 0, 0, started, None)
-    Database.execute(GameHistoryQueries.Insert(gh))
+    Database.execute(GameHistoryQueries.insert(gh))
     val cards = gameState.deck.cards.zipWithIndex.map(card => new GameHistory.Card(card._1.id, id, card._2, card._1.r, card._1.s))
-    Database.execute(GameHistoryCardQueries.InsertBatch(cards))
+    Database.execute(GameHistoryCardQueries.insertBatch(cards))
   }
 
   protected[this] def update() = {
@@ -29,7 +30,7 @@ trait GameServicePersistenceHelper { this: GameService =>
       val movesToPersist = gameMessages.drop(movesPersisted)
       movesToPersist.zipWithIndex.foreach { gm =>
         val move = toMove(gm._1._1, gm._2, gm._1._2, gm._1._3)
-        Database.execute(GameHistoryMoveQueries.Insert(move))
+        Database.execute(GameHistoryMoveQueries.insert(move))
         movesPersisted += 1
       }
     }

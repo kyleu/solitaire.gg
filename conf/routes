@@ -65,7 +65,7 @@ GET         /admin/games                       @controllers.admin.GameHistoryCon
 GET         /admin/requests                    @controllers.admin.RequestLogController.requestList(q ?= "", sortBy ?= "started", page: Int ?= 0)
 GET         /admin/feedback                    @controllers.admin.FeedbackController.feedbackList(q ?= "", sortBy ?= "occurred", page: Int ?= 0)
 
-GET         /admin/report                      @controllers.admin.ReportController.overview()
+GET         /admin/report/email                @controllers.admin.ReportController.email()
 GET         /admin/report/ad-hoc               @controllers.admin.AdHocQueryController.queryList(query: Option[java.util.UUID] ?= None, action: Option[String] ?= None)
 POST        /admin/report/ad-hoc/run           @controllers.admin.AdHocQueryController.run()
 

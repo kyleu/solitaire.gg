@@ -14,6 +14,12 @@ object UserQueries extends BaseQueries[User] {
   override protected val columns = Seq("id", "username", "avatar", "color", "profiles", "roles", "created")
   override protected val searchColumns = Seq("id::text", "username")
 
+  val insert = Insert
+  val getById = GetById
+  val count = Count
+  val search = Search
+  val removeById = RemoveById
+
   case class UpdateUser(u: User) extends Statement {
     override val sql = updateSql(Seq("username", "avatar", "color", "profiles", "roles"))
     override val values = {

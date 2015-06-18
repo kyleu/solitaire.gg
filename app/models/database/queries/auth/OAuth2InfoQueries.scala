@@ -14,6 +14,9 @@ object OAuth2InfoQueries extends BaseQueries[OAuth2Info] {
   override protected val idColumns = Seq("provider", "key")
   override protected val searchColumns = Seq("key", "access_token")
 
+  val getById = GetById
+  val removeById = RemoveById
+
   case class CreateOAuth2Info(l: LoginInfo, o: OAuth2Info) extends Statement {
     override val sql = insertSql
     override val values = Seq(l.providerID, l.providerKey) ++ toDataSeq(o)

@@ -12,7 +12,7 @@ import scala.concurrent.Future
 object SessionInfoService extends AuthenticatorDAO[CookieAuthenticator] {
   override def find(id: String) = CacheService.getSession(id) match {
     case Some(sess) => Future.successful(Some(sess))
-    case None => Database.query(AuthenticatorQueries.GetById(Seq(id))).map {
+    case None => Database.query(AuthenticatorQueries.getById(Seq(id))).map {
       case Some(dbSess) =>
         CacheService.cacheSession(dbSess)
         Some(dbSess)
@@ -20,7 +20,7 @@ object SessionInfoService extends AuthenticatorDAO[CookieAuthenticator] {
     }
   }
 
-  override def add(session: CookieAuthenticator) = Database.execute(AuthenticatorQueries.Insert(session)).map { x =>
+  override def add(session: CookieAuthenticator) = Database.execute(AuthenticatorQueries.insert(session)).map { x =>
     CacheService.cacheSession(session)
   }
 
@@ -28,7 +28,7 @@ object SessionInfoService extends AuthenticatorDAO[CookieAuthenticator] {
     CacheService.cacheSession(session)
   }
 
-  override def remove(id: String) = Database.execute(AuthenticatorQueries.RemoveById(Seq(id))).map { x =>
+  override def remove(id: String) = Database.execute(AuthenticatorQueries.removeById(Seq(id))).map { x =>
     CacheService.removeSession(id)
   }
 }

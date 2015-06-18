@@ -10,7 +10,7 @@ import services.database.Database
 import scala.concurrent.Future
 
 object OAuth2InfoService extends DelegableAuthInfoDAO[OAuth2Info] {
-  override def find(loginInfo: LoginInfo) = Database.query(OAuth2InfoQueries.GetById(Seq(loginInfo.providerID, loginInfo.providerKey)))
+  override def find(loginInfo: LoginInfo) = Database.query(OAuth2InfoQueries.getById(Seq(loginInfo.providerID, loginInfo.providerKey)))
 
   override def save(loginInfo: LoginInfo, authInfo: OAuth2Info) = {
     Database.transaction { conn =>
@@ -33,6 +33,6 @@ object OAuth2InfoService extends DelegableAuthInfoDAO[OAuth2Info] {
   }
 
   override def remove(loginInfo: LoginInfo) = {
-    Database.execute(OAuth2InfoQueries.RemoveById(Seq(loginInfo.providerID, loginInfo.providerKey))).map(x => Unit)
+    Database.execute(OAuth2InfoQueries.removeById(Seq(loginInfo.providerID, loginInfo.providerKey))).map(x => Unit)
   }
 }

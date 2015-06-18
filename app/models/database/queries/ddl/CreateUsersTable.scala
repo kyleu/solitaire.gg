@@ -2,7 +2,7 @@ package models.database.queries.ddl
 
 import models.database.Statement
 
-case object CreateUserTable extends Statement {
+case object CreateUsersTable extends Statement {
   override val sql = """
     create table users (
       id uuid primary key,
@@ -12,9 +12,7 @@ case object CreateUserTable extends Statement {
       profiles text[] not null,
       roles character varying(64)[] not null,
       created timestamp not null
-    ) with (
-      oids=false
-    );
+    ) with (oids=false);
 
     create index users_profiles_idx on users using gin (profiles);
     create unique index users_username_idx on users using btree (username collate pg_catalog."default");

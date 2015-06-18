@@ -1,3 +1,4 @@
+@import models.audit.GameHistory
 @(user: models.user.User, games: Seq[GameHistory], requests: Seq[models.audit.RequestLog], sortBy: String)(implicit session: Session, flash: Flash)
 @layout.admin(utils.Config.projectName + " User [" + user.username + "]", "users") {
   <div class="panel panel-default">

@@ -13,9 +13,6 @@ case object CreatePasswordInfoTable extends Statement {
        salt character varying(256),
        created timestamp without time zone not null,
        constraint pk_password_info primary key (provider, key)
-    )
-    with (
-      oids = false
-    )
+    ) with (oids = false);
   """
 }

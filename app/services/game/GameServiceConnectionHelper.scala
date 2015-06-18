@@ -23,7 +23,7 @@ trait GameServiceConnectionHelper { this: GameService =>
   }
 
   protected[this] def handleAddObserver(userId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef, as: Option[UUID]) {
-    observerConnections += (PlayerRecord(userId, name, Some(connectionId), Some(connectionActor)) -> as)
+    observerConnections += (GameService.PlayerRecord(userId, name, Some(connectionId), Some(connectionActor)) -> as)
     val gs = as match {
       case Some(p) => gameState.view(p)
       case None => gameState

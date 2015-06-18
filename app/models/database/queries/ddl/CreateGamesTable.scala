@@ -2,7 +2,7 @@ package models.database.queries.ddl
 
 import models.database.Statement
 
-case object CreateGameTable extends Statement {
+case object CreateGamesTable extends Statement {
   override val sql = """
     create table games (
       id uuid not null primary key,

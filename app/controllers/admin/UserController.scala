@@ -3,7 +3,7 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
-import models.database.queries.RequestLogQueries
+import models.database.queries.{ ReportQueries, RequestLogQueries }
 import models.database.queries.auth.UserQueries
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -16,9 +16,15 @@ import scala.concurrent.Future
 
 class UserController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
   def userList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
-    Database.query(UserQueries.Count(q)).flatMap { count =>
-      Database.query(UserQueries.Search(q, getOrderClause(sortBy), Some(page))).map { users =>
-        Ok(views.html.admin.user.userList(q, sortBy, count, page, users))
+    Database.query(UserQueries.count(q)).flatMap { count =>
+      Database.query(UserQueries.search(q, getOrderClause(sortBy), Some(page))).flatMap { users =>
+        Database.query(new ReportQueries.GameCountForUsers(users.map(_.id))).flatMap { gameCounts =>
+          Database.query(new ReportQueries.WinCountForUsers(users.map(_.id))).flatMap { winCounts =>
+            Database.query(new ReportQueries.RequestCountForUsers(users.map(_.id))).map { requestCounts =>
+              Ok(views.html.admin.user.userList(q, sortBy, count, page, users, gameCounts, winCounts, requestCounts))
+            }
+          }
+        }
       }
     }
   }
@@ -35,7 +41,7 @@ class UserController @javax.inject.Inject() (val messagesApi: MessagesApi) exten
   }
 
   def removeUser(id: UUID) = withAdminSession { implicit request =>
-    Database.execute(UserQueries.RemoveById(Seq(id))).map { i =>
+    Database.execute(UserQueries.removeById(Seq(id))).map { i =>
       CacheService.removeUser(id)
       Redirect(controllers.admin.routes.UserController.userList(""))
     }

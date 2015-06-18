@@ -12,9 +12,6 @@ case object CreateOpenIdInfoTable extends Statement {
        attributes text not null,
        created timestamp without time zone not null,
        constraint pk_openid_info primary key (provider, key)
-    )
-    with (
-      oids = false
-    );
+    ) with (oids = false);
   """
 }

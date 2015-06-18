@@ -13,6 +13,11 @@ object AdHocQueries extends BaseQueries[AdHocQuery] {
   override protected val columns = Seq("id", "title", "author", "sql", "created", "updated")
   override protected val searchColumns = Seq("id::text", "title", "author::text", "sql")
 
+  val insert = Insert
+  val getById = GetById
+  val search = Search
+  val removeById = RemoveById
+
   case class UpdateAdHocQuery(id: UUID, title: String, author: UUID, sqlString: String) extends Statement {
     override val sql = updateSql(Seq("author", "title", "sql", "updated"))
     override val values = Seq[Any](author, title, sqlString, new LocalDateTime(), id)

@@ -2,7 +2,7 @@ package models.database.queries.ddl
 
 import models.database.Statement
 
-case object CreateRequestLogTable extends Statement {
+case object CreateRequestsTable extends Statement {
   override val sql = """
     create table requests (
       id uuid primary key not null,
@@ -24,9 +24,7 @@ case object CreateRequestLogTable extends Statement {
       started timestamp not null,
       duration integer not null,
       status integer not null
-    ) with (
-      oids=false
-    );
+    ) with (oids=false);
 
     create index requests_account_idx on requests using btree (user_id);
   """

@@ -12,6 +12,10 @@ object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
   override protected val columns = Seq("id", "provider", "key", "last_used", "expiration", "fingerprint", "created")
   override protected val searchColumns = Seq("id::text", "key")
 
+  val insert = Insert
+  val getById = GetById
+  val removeById = RemoveById
+
   case class FindSessionInfoByLoginInfo(l: LoginInfo) extends FlatSingleRowQuery[CookieAuthenticator] {
     override val sql = getSql(Some("provider = ? and key = ?"))
     override val values = Seq(l.providerID, l.providerKey)

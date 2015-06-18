@@ -12,9 +12,6 @@ case object CreateOAuth1InfoTable extends Statement {
        secret text not null,
        created timestamp without time zone not null,
        constraint pk_oauth1_info primary key (provider, key)
-    )
-    with (
-      oids = false
-    );
+    ) with (oids = false);
   """
 }

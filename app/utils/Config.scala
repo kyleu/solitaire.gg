@@ -1,5 +1,6 @@
 package utils
 
+import com.github.mauricio.async.db.Configuration
 import com.typesafe.config.ConfigFactory
 import play.api.Play
 
@@ -16,6 +17,15 @@ object Config {
   val defaultCardSet = cnf.getString("game.default.cardSet")
 
   val fileCacheDir = cnf.getString("cache.dir")
+
+  // Database
+  val databaseConfiguration = new Configuration(
+    host = Option(cnf.getString("db.host")).getOrElse("localhost"),
+    port = 5432,
+    database = Option(cnf.getString("db.database")),
+    username = Option(cnf.getString("db.username")).getOrElse(projectId),
+    password = Option(cnf.getString("db.password"))
+  )
 
   // Admin
   val adminEmail = cnf.getString("game.admin.email")

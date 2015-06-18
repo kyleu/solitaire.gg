@@ -1,0 +1,54 @@
+@(
+  d: org.joda.time.LocalDate, color: String, tableCounts: Seq[(String, Long)]
+)@layout.email(utils.Config.projectName + " Report", color) {
+  @defining(utils.CssEmailStyles(color)) { css =>
+  <div style="@css.title">@utils.Config.projectName report for @d</div>
+
+  <div style="@css.module">
+    <table style="@css.table">
+      <thead>
+        <tr style="@css.tr">
+          <th style="@css.th" colspan="2">Statistics for @d</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="@css.tr">
+          <td style="@css.td">Total users</td>
+          <td style="@css.td@css.alignRight">0</td>
+        </tr>
+        <tr style="@css.tr">
+          <td style="@css.td">Total games played</td>
+          <td style="@css.td@css.alignRight">0</td>
+        </tr>
+        <tr style="@css.tr">
+          <td style="@css.td">Games played on @d</td>
+          <td style="@css.td@css.alignRight">0</td>
+        </tr>
+        <tr style="@css.tr">
+          <td style="@css.td">Users playing games @d</td>
+          <td style="@css.td@css.alignRight">0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="@css.module">
+    <table style="@css.table">
+      <thead>
+        <tr style="@css.tr">
+          <th style="@css.th">Table</th>
+          <th style="@css.th@css.alignRight">Count</th>
+        </tr>
+      </thead>
+      <tbody>
+      @for(table <- tableCounts) {
+        <tr style="@css.tr">
+          <td style="@css.td">@table._1</td>
+          <td style="@css.td@css.alignRight">@utils.Formatter.withCommas(table._2)</td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  </div>
+  }
+}

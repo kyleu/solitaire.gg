@@ -3,16 +3,18 @@ package models.database.queries.game
 import java.util.UUID
 
 import com.github.mauricio.async.db.RowData
-import models.GameHistory
-import models.GameHistory.Card
+import models.audit.GameHistory
+import models.audit.GameHistory.Card
 import models.database.queries.BaseQueries
 import models.database.{ Query, Statement }
-import models.game.{ Suit, Rank }
+import models.game.{ Rank, Suit }
 
 object GameHistoryCardQueries extends BaseQueries[GameHistory.Card] {
   override protected val tableName = "game_cards"
   override protected val columns = Seq("card_id", "game_id", "sort_order", "rank", "suit")
   override protected val searchColumns = Seq("card_id::text", "game_id::text")
+
+  val insertBatch = InsertBatch
 
   case class GetGameCardsByGame(id: UUID) extends Query[List[GameHistory.Card]] {
     override val sql = getSql(Some("game_id = ?"), Some("sort_order"))

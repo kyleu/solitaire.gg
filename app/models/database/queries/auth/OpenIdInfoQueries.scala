@@ -14,6 +14,9 @@ object OpenIdInfoQueries extends BaseQueries[OpenIDInfo] {
   override protected val idColumns = Seq("provider", "key")
   override protected val searchColumns = Seq("key")
 
+  val getById = GetById
+  val removeById = RemoveById
+
   case class CreateOpenIdInfo(l: LoginInfo, o: OpenIDInfo) extends Statement {
     override val sql = insertSql
     override val values = Seq(l.providerID, l.providerKey) ++ toDataSeq(o)

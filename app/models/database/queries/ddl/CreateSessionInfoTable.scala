@@ -14,10 +14,7 @@ case object CreateSessionInfoTable extends Statement {
       fingerprint text,
       created timestamp without time zone not null,
       constraint pk_session_info primary key (id)
-    )
-    with (
-      oids = false
-    );
+    ) with (oids = false);
 
     create index idx_session_info_provider_key on session_info (provider, key);
   """

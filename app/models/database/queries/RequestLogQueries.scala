@@ -16,6 +16,10 @@ object RequestLogQueries extends BaseQueries[RequestLog] {
   )
   override protected val searchColumns = Seq("id::text", "user_id::text", "method", "host", "path", "referrer", "user_agent")
 
+  val insert = Insert
+  val count = Count
+  val search = Search
+
   case class FindRequestsByUser(id: UUID) extends Query[List[RequestLog]] {
     override val sql = getSql(Some("user_id = ?"))
     override val values = Seq(id)

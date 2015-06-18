@@ -15,9 +15,6 @@ case object CreateOAuth2InfoTable extends Statement {
        params text,
        created timestamp without time zone,
        constraint pk_oauth2_info primary key (provider, key)
-    )
-    with (
-      oids = false
-    )
+    ) with (oids = false);
   """
 }
