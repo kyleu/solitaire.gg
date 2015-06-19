@@ -6,14 +6,19 @@ import org.joda.time.LocalDate
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
+import services.report.DailyMetricService
 
 import scala.concurrent.Future
 
-class ReportController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
+@javax.inject.Singleton
+class ReportController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def email() = withAdminSession { implicit request =>
     Database.query(ReportQueries.ListTables).flatMap { tables =>
-      Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table)))).map { counts =>
-        Ok(views.html.admin.report.emailReport(new LocalDate(), request.identity.color, counts))
+      val d = new LocalDate("2015-06-10")
+      DailyMetricService.getMetrics(d).flatMap { metrics =>
+        Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table)))).map { counts =>
+          Ok(views.html.admin.report.emailReport(new LocalDate(), request.identity.color, metrics, counts))
+        }
       }
     }
   }

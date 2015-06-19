@@ -12,7 +12,9 @@ object GameService {
   case class PlayerRecord(userId: UUID, name: String, var connectionId: Option[UUID], var connectionActor: Option[ActorRef])
 }
 
-class GameService(val id: UUID, val rules: String, val seed: Int, val started: LocalDateTime, protected val player: GameService.PlayerRecord) extends GameServiceHelper {
+class GameService(
+  val id: UUID, val rules: String, val seed: Int, val started: LocalDateTime, protected val player: GameService.PlayerRecord
+) extends GameServiceHelper {
   log.info("Started game [" + rules + "] for user [" + player.userId + ": " + player.name + "] with seed [" + seed + "].")
 
   protected[this] val observerConnections = collection.mutable.ArrayBuffer.empty[(GameService.PlayerRecord, Option[UUID])]

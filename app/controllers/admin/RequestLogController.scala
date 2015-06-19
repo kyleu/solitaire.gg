@@ -6,7 +6,8 @@ import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 
-class RequestLogController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
+@javax.inject.Singleton
+class RequestLogController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def requestList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     Database.query(RequestLogQueries.count(q)).flatMap { count =>
       Database.query(RequestLogQueries.search(q, getOrderClause(sortBy), Some(page))).map { requests =>

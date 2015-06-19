@@ -27,12 +27,11 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter(
     Database.open()
     Schema.update()
     ActorSupervisor.instance
-
     super.onStart(app)
   }
+
   override def onStop(app: Application) {
     Database.close()
-
     super.onStop(app)
   }
 
@@ -43,9 +42,11 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter(
       Results.InternalServerError(views.html.error.serverError(request.path, Some(ex))(request.session, request.flash))
     )
   }
+
   override def onHandlerNotFound(request: RequestHeader) = Future.successful(
     Results.NotFound(views.html.error.notFound(request.path)(request.session, request.flash))
   )
+
   override def onBadRequest(request: RequestHeader, error: String) = Future.successful(
     Results.BadRequest(views.html.error.badRequest(request.path, error)(request.session, request.flash))
   )

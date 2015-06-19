@@ -14,7 +14,8 @@ import utils.CacheService
 
 import scala.concurrent.Future
 
-class UserController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
+@javax.inject.Singleton
+class UserController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def userList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     Database.query(UserQueries.count(q)).flatMap { count =>
       Database.query(UserQueries.search(q, getOrderClause(sortBy), Some(page))).flatMap { users =>

@@ -5,7 +5,8 @@ import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.game.GameHistoryService
 
-class GameHistoryController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
+@javax.inject.Singleton
+class GameHistoryController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def gameList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     GameHistoryService.searchGames(q, sortBy, page).map { games =>
       Ok(views.html.admin.game.gameList(q, sortBy, games._1, page, games._2))

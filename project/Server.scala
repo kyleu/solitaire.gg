@@ -1,4 +1,3 @@
-import play.routes.compiler.InjectedRoutesGenerator
 import sbt._
 import sbt.Keys._
 import sbt.Project.projectToRef
@@ -13,6 +12,9 @@ import com.typesafe.sbt.less.Import._
 import com.typesafe.sbt.rjs.Import._
 import com.typesafe.sbt.web.Import._
 import com.typesafe.sbt.web.SbtWeb
+
+import play.routes.compiler.InjectedRoutesGenerator
+import play.sbt.routes.RoutesKeys.routesGenerator
 
 import sbtbuildinfo.Plugin._
 import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
@@ -41,9 +43,14 @@ object Server {
 
     libraryDependencies ++= dependencies,
 
-    doc in Compile <<= target.map(_ / "none"),
+    routesGenerator := InjectedRoutesGenerator,
 
     scalaJSProjects := Seq(Client.client),
+
+    // Prevent Scaladoc
+    doc in Compile <<= target.map(_ / "none"),
+    sources in (Compile, doc) := Seq.empty,
+    publishArtifact in (Compile, packageDoc) := false,
 
     // Sbt-Web
     JsEngineKeys.engineType := JsEngineKeys.EngineType.Node,
@@ -70,7 +77,7 @@ object Server {
     buildInfoPackage := "utils",
 
     // Code Quality
-    scapegoatIgnoredFiles := Seq(".*/Routes.scala", ".*/ReverseRoutes.scala", ".*/JavaScriptReverseRoutes.scala", ".*\\.template\\.scala"),
+    scapegoatIgnoredFiles := Seq(".*/Row.scala", ".*/Routes.scala", ".*/ReverseRoutes.scala", ".*/JavaScriptReverseRoutes.scala", ".*/*.template.scala"),
     scapegoatDisabledInspections := Seq("DuplicateImport"),
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   ) ++ graphSettings ++ defaultScalariformSettings

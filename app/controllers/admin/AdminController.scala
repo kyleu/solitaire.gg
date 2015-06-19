@@ -10,26 +10,33 @@ import models.database.queries.auth.UserQueries
 import models.user.Role
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.libs.mailer.MailerClient
 import services.ActorSupervisor
 import services.database.{ Schema, Database }
-import utils.CacheService
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
 import scala.util.Random
 
-class AdminController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
+@javax.inject.Singleton
+class AdminController @javax.inject.Inject() (override val messagesApi: MessagesApi, mailerClient: MailerClient) extends BaseController {
   implicit val timeout = Timeout(10.seconds)
-
-  def enable = withSession { implicit request =>
-    Database.execute(UserQueries.AddRole(request.identity.id, Role.Admin)).map { x =>
-      CacheService.removeUser(request.identity.id)
-      Ok("OK")
-    }
-  }
 
   def index = withAdminSession { implicit request =>
     Future.successful(Ok(views.html.admin.index()))
+  }
+
+  def sandbox() = withAdminSession { implicit request =>
+    new utils.ScheduledTask(mailerClient).go().map { ret =>
+      Ok(ret.mkString("\n"))
+    }
+  }
+
+  def enable = withSession { implicit request =>
+    Database.execute(UserQueries.AddRole(request.identity.id, Role.Admin)).map { x =>
+      utils.CacheService.removeUser(request.identity.id)
+      Ok("OK")
+    }
   }
 
   def status = withAdminSession { implicit request =>

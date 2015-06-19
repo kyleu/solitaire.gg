@@ -15,7 +15,8 @@ import scala.concurrent.duration._
 import controllers.BaseController
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-class AdHocQueryController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
+@javax.inject.Singleton
+class AdHocQueryController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   case class QueryExecution(action: String, id: Option[String], title: String, sql: String)
 
   val executionForm = Form(

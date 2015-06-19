@@ -9,7 +9,8 @@ import services.{ ActorSupervisor, ConnectionService }
 
 import scala.concurrent.Future
 
-class WebsocketController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
+@javax.inject.Singleton
+class WebsocketController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   import play.api.Play.current
   import utils.MessageFrameFormatter._
 

@@ -1,10 +1,9 @@
 package models.database.queries.auth
 
-import com.github.mauricio.async.db.RowData
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.providers.OAuth2Info
 import models.database.queries.BaseQueries
-import models.database.{ FlatSingleRowQuery, Statement }
+import models.database.{ Row, Statement }
 import org.joda.time.LocalDateTime
 import play.api.libs.json.{ JsValue, Json }
 
@@ -31,16 +30,15 @@ object OAuth2InfoQueries extends BaseQueries[OAuth2Info] {
     }
   }
 
-  override protected def fromRow(row: RowData) = {
-    val paramsString = row("params") match { case s: String => Some(s); case _ => None }
-    val params = paramsString.map { p =>
+  override protected def fromRow(row: Row) = {
+    val params = row.asOpt[String]("params").map { p =>
       Json.parse(p).as[Map[String, JsValue]].map(x => x._1 -> x._2.as[String])
     }
     OAuth2Info(
-      accessToken = row("access_token") match { case s: String => s },
-      tokenType = row("token_type") match { case s: String => Some(s); case _ => None },
-      expiresIn = row("expires_in") match { case i: Int => Some(i); case _ => None },
-      refreshToken = row("refresh_token") match { case s: String => Some(s); case _ => None },
+      accessToken = row.as[String]("access_token"),
+      tokenType = row.asOpt[String]("token_type"),
+      expiresIn = row.asOpt[Int]("expires_in"),
+      refreshToken = row.asOpt[String]("refresh_token"),
       params = params
     )
   }

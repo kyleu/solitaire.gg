@@ -2,10 +2,9 @@ package models.database.queries.auth
 
 import java.util.UUID
 
-import com.github.mauricio.async.db.RowData
 import com.mohiva.play.silhouette.api.LoginInfo
 import models.database.queries.BaseQueries
-import models.database.{ FlatSingleRowQuery, Statement }
+import models.database.{ Row, FlatSingleRowQuery, Statement }
 import models.user.{ Role, User }
 import org.joda.time.LocalDateTime
 
@@ -47,31 +46,29 @@ object UserQueries extends BaseQueries[User] {
   case class FindUserByUsername(username: String) extends FlatSingleRowQuery[User] {
     override val sql = getSql(Some("username = ?"))
     override val values = Seq(username)
-    override def flatMap(row: RowData) = Some(fromRow(row))
+    override def flatMap(row: Row) = Some(fromRow(row))
   }
 
   case class FindUserByProfile(loginInfo: LoginInfo) extends FlatSingleRowQuery[User] {
     override val sql = getSql(Some("profiles @> ARRAY[?]::text[]"))
     override val values = Seq(loginInfo.providerID + ":" + loginInfo.providerKey)
-    override def flatMap(row: RowData) = Some(fromRow(row))
+    override def flatMap(row: Row) = Some(fromRow(row))
   }
 
-  override protected def fromRow(row: RowData) = {
-    val id = row("id") match { case s: String => UUID.fromString(s) }
-    val profiles = row("profiles") match {
-      case arr: collection.mutable.ArrayBuffer[_] => arr.map { l =>
-        val info = l.toString
-        val delimiter = info.indexOf(':')
-        val provider = info.substring(0, delimiter)
-        val key = info.substring(delimiter + 1)
-        LoginInfo(provider, key)
-      }
+  override protected def fromRow(row: Row) = {
+    val id = UUID.fromString(row.as[String]("id"))
+    val profiles = row.as[collection.mutable.ArrayBuffer[_]]("profiles").map { l =>
+      val info = l.toString
+      val delimiter = info.indexOf(':')
+      val provider = info.substring(0, delimiter)
+      val key = info.substring(delimiter + 1)
+      LoginInfo(provider, key)
     }
-    val username = row("username") match { case s: String => Some(s); case _ => None }
-    val avatar = row("avatar") match { case s: String => s }
-    val color = row("color") match { case s: String => s }
-    val roles = (row("roles") match { case ab: collection.mutable.ArrayBuffer[_] => ab }).map(x => Role(x.toString)).toSet
-    val created = row("created") match { case ldt: LocalDateTime => ldt }
+    val username = row.asOpt[String]("username")
+    val avatar = row.as[String]("avatar")
+    val color = row.as[String]("color")
+    val roles = row.as[collection.mutable.ArrayBuffer[_]]("roles").map(x => Role(x.toString)).toSet
+    val created = row.as[LocalDateTime]("created")
     User(id, username, avatar, color, profiles, roles, created)
   }
 

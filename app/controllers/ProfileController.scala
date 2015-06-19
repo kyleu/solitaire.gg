@@ -9,7 +9,8 @@ import utils.CacheService
 
 import scala.concurrent.Future
 
-class ProfileController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
+@javax.inject.Singleton
+class ProfileController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def profile = withSession { implicit request =>
     Database.query(ProfileQueries.FindProfilesByUser(request.identity.id)).map { profiles =>
       Ok(views.html.profile(request.identity, profiles))

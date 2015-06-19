@@ -6,8 +6,8 @@ import play.api.mvc.AnyContent
 
 import scala.concurrent.Future
 
-@javax.inject.Inject
-class GameController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
+@javax.inject.Singleton
+class GameController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def help(id: String) = withSession { implicit request =>
     Future.successful {
       id match {

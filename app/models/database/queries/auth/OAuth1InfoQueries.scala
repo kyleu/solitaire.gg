@@ -1,10 +1,9 @@
 package models.database.queries.auth
 
-import com.github.mauricio.async.db.RowData
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.providers.OAuth1Info
 import models.database.queries.BaseQueries
-import models.database.{ FlatSingleRowQuery, Statement }
+import models.database.{ Row, Statement }
 import org.joda.time.LocalDateTime
 
 object OAuth1InfoQueries extends BaseQueries[OAuth1Info] {
@@ -26,9 +25,9 @@ object OAuth1InfoQueries extends BaseQueries[OAuth1Info] {
     override val values = toDataSeq(o) ++ Seq(l.providerID, l.providerKey)
   }
 
-  override protected def fromRow(row: RowData) = {
-    val token = row("token") match { case s: String => s }
-    val secret = row("secret") match { case s: String => s }
+  override protected def fromRow(row: Row) = {
+    val token = row.as[String]("token")
+    val secret = row.as[String]("secret")
     OAuth1Info(token, secret)
   }
 

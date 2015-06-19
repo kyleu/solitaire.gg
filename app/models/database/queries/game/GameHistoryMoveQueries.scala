@@ -2,10 +2,9 @@ package models.database.queries.game
 
 import java.util.UUID
 
-import com.github.mauricio.async.db.RowData
 import models.audit.GameHistory
 import models.database.queries.BaseQueries
-import models.database.{ Query, Statement }
+import models.database.{ Row, Query, Statement }
 import org.joda.time.LocalDateTime
 import utils.DateUtils
 
@@ -19,7 +18,7 @@ object GameHistoryMoveQueries extends BaseQueries[GameHistory.Move] {
   case class GetGameMovesByGame(id: UUID) extends Query[List[GameHistory.Move]] {
     override val sql = getSql(whereClause = Some("game_id = ?"), orderBy = Some("sequence"))
     override val values = Seq(id)
-    override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
+    override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
   }
 
   case class RemoveGameMovesByGame(gameId: UUID) extends Statement {
@@ -27,15 +26,15 @@ object GameHistoryMoveQueries extends BaseQueries[GameHistory.Move] {
     override val values = Seq(gameId)
   }
 
-  override protected def fromRow(row: RowData) = {
-    val gameId = row("game_id") match { case s: String => UUID.fromString(s) }
-    val sequence = row("sequence") match { case i: Int => i }
-    val playerId = row("player_id") match { case s: String => UUID.fromString(s) }
-    val moveType = row("move") match { case s: String => s }
-    val cards = row("cards") match { case a: Array[UUID] => a; case x => throw new IllegalArgumentException(x.getClass.getName) }
-    val src = row("src") match { case s: String => Some(s) }
-    val tgt = row("tgt") match { case s: String => Some(s) }
-    val occurred = row("occurred") match { case ldt: LocalDateTime => ldt }
+  override protected def fromRow(row: Row) = {
+    val gameId = UUID.fromString(row.as[String]("game_id"))
+    val sequence = row.as[Int]("sequence")
+    val playerId = UUID.fromString(row.as[String]("player_id"))
+    val moveType = row.as[String]("move")
+    val cards = row.as[Array[UUID]]("cards")
+    val src = row.asOpt[String]("src")
+    val tgt = row.asOpt[String]("tgt")
+    val occurred = row.as[LocalDateTime]("occurred")
     GameHistory.Move(gameId, sequence, playerId, moveType, Some(cards), src, tgt, occurred)
   }
 

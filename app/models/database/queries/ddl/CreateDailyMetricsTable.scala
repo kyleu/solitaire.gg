@@ -8,7 +8,7 @@ case object CreateDailyMetricsTable extends Statement {
     (
        day date not null,
        metric character varying(128) not null,
-       value integer not null default 0,
+       value bigint not null default 0,
        measured timestamp without time zone not null,
        constraint pk_daily_metrics primary key (day, metric)
     ) with (oids = false);

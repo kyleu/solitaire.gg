@@ -2,9 +2,8 @@ package models.database.queries.adhoc
 
 import java.util.UUID
 
-import com.github.mauricio.async.db.RowData
 import com.github.mauricio.async.db.general.ArrayRowData
-import models.database.{ Query, Statement }
+import models.database.{ Row, Query, Statement }
 import models.database.queries.BaseQueries
 import org.joda.time.LocalDateTime
 
@@ -24,14 +23,17 @@ object AdHocQueries extends BaseQueries[AdHocQuery] {
   }
 
   case class AdHocQueryExecute(override val sql: String, override val values: Seq[Any]) extends Query[(Seq[String], Seq[Seq[Any]])] {
-    override def reduce(rows: Iterator[RowData]) = {
-      val rowsList = rows.toList
+    override def reduce(rows: Iterator[Row]) = {
+      val rowsList = rows.toList.map(_.rowData)
       val columns = (rowsList match {
         case Nil => Seq.empty[String]
         case head :: _ => head match {
           case ard: ArrayRowData => ard.mapping.toSeq.sortBy(_._2).map(_._1)
         }
-      }).map { case "?column?" => "--"; case s => s }
+      }).map {
+        case "?column?" => "--"
+        case s => s
+      }
 
       val result = rowsList.map { r =>
         r.iterator.toSeq
@@ -40,13 +42,13 @@ object AdHocQueries extends BaseQueries[AdHocQuery] {
     }
   }
 
-  override protected def fromRow(row: RowData) = {
-    val id = row("id") match { case s: String => UUID.fromString(s) }
-    val title = row("title") match { case s: String => s }
-    val author = row("author") match { case s: String => UUID.fromString(s) }
-    val sql = row("sql") match { case s: String => s }
-    val created = row("created") match { case ldt: LocalDateTime => ldt }
-    val updated = row("updated") match { case ldt: LocalDateTime => ldt }
+  override protected def fromRow(row: Row) = {
+    val id = UUID.fromString(row.as[String]("id"))
+    val title = row.as[String]("title")
+    val author = UUID.fromString(row.as[String]("author"))
+    val sql = row.as[String]("sql")
+    val created = row.as[LocalDateTime]("created")
+    val updated = row.as[LocalDateTime]("updated")
 
     AdHocQuery(id, title, author, sql, created, updated)
   }

@@ -12,7 +12,8 @@ import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 
-class AuthenticationController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
+@javax.inject.Singleton
+class AuthenticationController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   override val env = AuthenticationEnvironment
 
   def signInForm = withSession { implicit request =>

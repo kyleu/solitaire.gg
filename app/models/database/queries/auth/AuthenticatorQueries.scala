@@ -1,10 +1,9 @@
 package models.database.queries.auth
 
-import com.github.mauricio.async.db.RowData
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
 import models.database.queries.BaseQueries
-import models.database.{ Statement, FlatSingleRowQuery }
+import models.database.{ Row, Statement, FlatSingleRowQuery }
 import org.joda.time.LocalDateTime
 
 object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
@@ -19,7 +18,7 @@ object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
   case class FindSessionInfoByLoginInfo(l: LoginInfo) extends FlatSingleRowQuery[CookieAuthenticator] {
     override val sql = getSql(Some("provider = ? and key = ?"))
     override val values = Seq(l.providerID, l.providerKey)
-    override def flatMap(row: RowData) = Some(fromRow(row))
+    override def flatMap(row: Row) = Some(fromRow(row))
   }
 
   case class UpdateAuthenticator(ca: CookieAuthenticator) extends Statement {
@@ -34,14 +33,14 @@ object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
     )
   }
 
-  override protected def fromRow(row: RowData) = {
-    val id = row("id") match { case s: String => s }
-    val provider = row("provider") match { case s: String => s }
-    val key = row("key") match { case s: String => s }
-    val lastUsed = row("last_used") match { case ldt: LocalDateTime => ldt.toDateTime }
-    val expiration = row("expiration") match { case ldt: LocalDateTime => ldt.toDateTime }
-    val fingerprint = row("fingerprint") match { case s: String => Some(s); case _ => None }
-    val created = row("created") match { case ldt: LocalDateTime => ldt }
+  override protected def fromRow(row: Row) = {
+    val id = row.as[String]("id")
+    val provider = row.as[String]("provider")
+    val key = row.as[String]("key")
+    val lastUsed = row.as[LocalDateTime]("last_used").toDateTime
+    val expiration = row.as[LocalDateTime]("expiration").toDateTime
+    val fingerprint = row.asOpt[String]("fingerprint")
+    val created = row.as[LocalDateTime]("created")
     CookieAuthenticator(id, LoginInfo(provider, key), lastUsed, expiration, None, fingerprint)
   }
 

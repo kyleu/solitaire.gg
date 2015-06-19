@@ -12,7 +12,7 @@ object FoundationPileOptions {
       case FoundationCanMoveFrom.Never => Some(Constraint.never)
     }
 
-    val dragToConstraint = if(!rules.visible) {
+    val dragToConstraint = if (!rules.visible) {
       Some(Constraint.never)
     } else {
       Some(Constraint("foundation", (src, tgt, cards, gameState) => {

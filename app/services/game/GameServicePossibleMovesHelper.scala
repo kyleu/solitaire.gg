@@ -35,14 +35,12 @@ trait GameServicePossibleMovesHelper { this: GameService =>
           gameState.piles.filter(p => p.id != source.id).foreach { target =>
             if (target.canDragTo(source, cards, gameState)) {
               val move = PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
-              if(
-                source.pileSet.exists(_.behavior == "tableau") &&
+              if (source.pileSet.exists(_.behavior == "tableau") &&
                 target.pileSet.exists(_.behavior == "tableau") &&
                 (
                   remainingCards.lastOption.exists(_.u) || // Tableau bounce
                   (remainingCards.isEmpty && target.cards.isEmpty) // King bounce
-                )
-              ) {
+                )) {
                 boringMoves += move
               } else {
                 ret += move

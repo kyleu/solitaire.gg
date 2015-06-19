@@ -14,7 +14,10 @@ import services.database.Database
 
 import scala.concurrent.Future
 
-class HomeController @javax.inject.Inject() (val messagesApi: MessagesApi, mailer: MailerClient) extends BaseController {
+@javax.inject.Singleton
+class HomeController @javax.inject.Inject() (override val messagesApi: MessagesApi, mailer: MailerClient) extends BaseController {
+  private[this] val emailService = new EmailService(mailer)
+
   def index() = withSession { implicit request =>
     Future.successful(Ok(views.html.index(request.identity)))
   }
@@ -43,7 +46,7 @@ class HomeController @javax.inject.Inject() (val messagesApi: MessagesApi, maile
             occurred = new LocalDateTime()
           )
 
-          new EmailService(mailer).feedbackSubmitted(obj, request.identity)
+          emailService.feedbackSubmitted(obj, request.identity)
 
           Database.execute(UserFeedbackQueries.insert(obj)).map { x =>
             Redirect(routes.HomeController.feedbackForm()).flashing("success" -> "Your feedback has been submitted. Thanks!")

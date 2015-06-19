@@ -10,7 +10,8 @@ import play.twirl.api.Html
 import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-class RulesController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
+@javax.inject.Singleton
+class RulesController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def politaire = withAdminSession { implicit request =>
     Future.successful(Ok(views.html.admin.rules.politaireList(PolitaireParser.politaireList)))
   }

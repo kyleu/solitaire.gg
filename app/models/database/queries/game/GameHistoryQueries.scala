@@ -2,10 +2,9 @@ package models.database.queries.game
 
 import java.util.UUID
 
-import com.github.mauricio.async.db.RowData
 import models.audit.GameHistory
 import models.database.queries.BaseQueries
-import models.database.{ Query, Statement }
+import models.database.{ Row, Query, Statement }
 import org.joda.time.LocalDateTime
 import utils.DateUtils
 
@@ -27,20 +26,20 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   case class GetGameHistoriesByUser(id: UUID, sortBy: String) extends Query[List[GameHistory]] {
     override val sql = getSql(Some("player = ?"), orderBy = Some("?"))
     override val values = Seq(id, sortBy)
-    override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
+    override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
   }
 
-  override protected def fromRow(row: RowData) = {
-    val id = row("id") match { case s: String => UUID.fromString(s) }
-    val seed = row("seed") match { case i: Int => i }
-    val rules = row("rules") match { case s: String => s }
-    val status = row("status") match { case s: String => s }
-    val player = row("player") match { case s: String => UUID.fromString(s) }
-    val moves = row("moves") match { case i: Int => i }
-    val undos = row("undos") match { case i: Int => i }
-    val redos = row("redos") match { case i: Int => i }
-    val created = row("created") match { case ldt: LocalDateTime => ldt }
-    val complete = row("completed") match { case ldt: LocalDateTime => Some(ldt); case _ => None }
+  override protected def fromRow(row: Row) = {
+    val id = UUID.fromString(row.as[String]("id"))
+    val seed = row.as[Int]("seed")
+    val rules = row.as[String]("rules")
+    val status = row.as[String]("status")
+    val player = UUID.fromString(row.as[String]("player"))
+    val moves = row.as[Int]("moves")
+    val undos = row.as[Int]("undos")
+    val redos = row.as[Int]("redos")
+    val created = row.as[LocalDateTime]("created")
+    val complete = row.asOpt[LocalDateTime]("completed")
     GameHistory(id, seed, rules, status, player, moves, undos, redos, created, complete)
   }
 

@@ -7,7 +7,8 @@ import services.test._
 import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-class TestController @javax.inject.Inject() (val messagesApi: MessagesApi) extends BaseController {
+@javax.inject.Singleton
+class TestController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def tests = withAdminSession { implicit request =>
     Future.successful(Ok(views.html.admin.test.tests()))
   }

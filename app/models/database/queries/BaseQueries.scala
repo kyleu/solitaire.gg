@@ -1,7 +1,6 @@
 package models.database.queries
 
-import com.github.mauricio.async.db.RowData
-import models.database.{ FlatSingleRowQuery, Statement, Query }
+import models.database.{ Row, FlatSingleRowQuery, Statement, Query }
 import utils.Config
 
 object BaseQueries {
@@ -14,7 +13,7 @@ trait BaseQueries[T] {
   protected def columns: Seq[String]
   protected def searchColumns: Seq[String]
 
-  protected def fromRow(row: RowData): T
+  protected def fromRow(row: Row): T
   protected def toDataSeq(t: T): Seq[Any]
 
   protected lazy val insertSql = s"insert into $tableName (${columns.mkString(", ")}) values (${columns.map(x => "?").mkString(", ")})"
@@ -36,7 +35,7 @@ trait BaseQueries[T] {
 
   protected case class GetById(override val values: Seq[Any]) extends FlatSingleRowQuery[T] {
     override val sql = s"select ${columns.mkString(", ")} from $tableName where $idWhereClause"
-    override def flatMap(row: RowData) = Some(fromRow(row))
+    override def flatMap(row: Row) = Some(fromRow(row))
   }
 
   protected case class Insert(model: T) extends Statement {
@@ -62,7 +61,7 @@ trait BaseQueries[T] {
       s"select count(*) as c from $tableName where $searchWhere" + groupBy.map(" group by " + _).getOrElse("")
     }
     override val values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(c => "%" + q + "%") }
-    override def reduce(rows: Iterator[RowData]) = rows.next()("c") match { case l: Long => l.toInt }
+    override def reduce(rows: Iterator[Row]) = rows.next().as[Long]("c").toInt
   }
 
   case class Search(q: String, orderBy: String, page: Option[Int], groupBy: Option[String] = None) extends Query[List[T]] {
@@ -71,7 +70,7 @@ trait BaseQueries[T] {
     private[this] val offset = page.map(x => x * Config.pageSize)
     override val sql = getSql(whereClause, groupBy, Some(orderBy), limit, offset)
     override val values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(c => "%" + q + "%") }
-    override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
+    override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
   }
 
   private def idWhereClause = idColumns.map(c => c + " = ?").mkString(" and ")

@@ -2,8 +2,7 @@ package models.database.queries
 
 import java.util.UUID
 
-import com.github.mauricio.async.db.RowData
-import models.database.Query
+import models.database.{ Row, Query }
 import models.user.UserFeedback
 import org.joda.time.LocalDateTime
 import utils.DateUtils
@@ -20,15 +19,15 @@ object UserFeedbackQueries extends BaseQueries[UserFeedback] {
   case class GetUserFeedbackByUser(id: UUID, sortBy: String) extends Query[List[UserFeedback]] {
     override val sql = getSql(whereClause = Some("player = ?"), orderBy = Some("?"))
     override val values = Seq(id, sortBy)
-    override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
+    override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
   }
 
-  override protected def fromRow(row: RowData) = {
-    val id = row("id") match { case s: String => UUID.fromString(s) }
-    val userId = row("user_id") match { case s: String => UUID.fromString(s) }
-    val activeGameId = row("active_game_id") match { case s: String => Some(UUID.fromString(s)); case _ => None }
-    val feedback = row("feedback") match { case s: String => s }
-    val occurred = row("occurred") match { case ldt: LocalDateTime => ldt }
+  override protected def fromRow(row: Row) = {
+    val id = UUID.fromString(row.as[String]("id"))
+    val userId = UUID.fromString(row.as[String]("user_id"))
+    val activeGameId = row.asOpt[String]("active_game_id").map(UUID.fromString)
+    val feedback = row.as[String]("feedback")
+    val occurred = row.as[LocalDateTime]("occurred")
     UserFeedback(id, userId, activeGameId, feedback, occurred)
   }
 

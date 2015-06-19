@@ -2,11 +2,10 @@ package models.database.queries.auth
 
 import java.util.UUID
 
-import com.github.mauricio.async.db.RowData
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile
 import models.database.queries.BaseQueries
-import models.database.{ Query, FlatSingleRowQuery, Statement }
+import models.database.{ Row, Query, FlatSingleRowQuery, Statement }
 import org.joda.time.LocalDateTime
 
 object ProfileQueries extends BaseQueries[CommonSocialProfile] {
@@ -19,14 +18,14 @@ object ProfileQueries extends BaseQueries[CommonSocialProfile] {
   case class FindProfile(provider: String, key: String) extends FlatSingleRowQuery[CommonSocialProfile] {
     override val sql = getSql(Some("provider = ? and key = ?"))
     override val values = Seq(provider, key)
-    override def flatMap(row: RowData) = Some(fromRow(row))
+    override def flatMap(row: Row) = Some(fromRow(row))
   }
 
   case class FindProfilesByUser(id: UUID) extends Query[List[CommonSocialProfile]] {
     override val sql = s"select ${columns.mkString(", ")} from $tableName p " +
       "where (p.provider || ':' || p.key) in (select unnest(profiles) from users where users.id = ?)"
     override val values = Seq(id)
-    override def reduce(rows: Iterator[RowData]) = rows.map(fromRow).toList
+    override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
   }
 
   case class RemoveProfile(provider: String, key: String) extends Statement {
@@ -34,16 +33,16 @@ object ProfileQueries extends BaseQueries[CommonSocialProfile] {
     override val values = Seq(provider, key)
   }
 
-  override protected def fromRow(row: RowData) = {
+  override protected def fromRow(row: Row) = {
     val loginInfo = LoginInfo(
-      providerID = row("provider") match { case s: String => s },
-      providerKey = row("key") match { case s: String => s }
+      providerID = row.as[String]("provider"),
+      providerKey = row.as[String]("key")
     )
-    val firstName = row("first_name") match { case s: String => Some(s); case _ => None }
-    val lastName = row("last_name") match { case s: String => Some(s); case _ => None }
-    val fullName = row("full_name") match { case s: String => Some(s); case _ => None }
-    val email = row("email") match { case s: String => Some(s); case _ => None }
-    val avatarUrl = row("avatar_url") match { case s: String => Some(s); case _ => None }
+    val firstName = row.asOpt[String]("first_name")
+    val lastName = row.asOpt[String]("last_name")
+    val fullName = row.asOpt[String]("full_name")
+    val email = row.asOpt[String]("email")
+    val avatarUrl = row.asOpt[String]("avatar_url")
 
     CommonSocialProfile(loginInfo, firstName, lastName, fullName, email, avatarUrl)
   }
