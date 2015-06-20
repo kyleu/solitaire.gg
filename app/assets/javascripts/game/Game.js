@@ -95,7 +95,6 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
   Game.prototype.autoMove = function() {
     if(this.possibleMoves !== undefined && this.possibleMoves.length > 0) {
       var move = this.possibleMoves[0];
-      console.log(move);
       switch(move.moveType) {
         case "move-cards":
           this.send("MoveCards", {cards: move.cards, src: move.sourcePile, tgt: move.targetPile});

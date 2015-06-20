@@ -47,7 +47,7 @@ object PyramidPileOptions {
             }
           }
         }
-        ret && src.pileSet.exists(x => mayMoveToNonEmptyFrom.contains(x.behavior))
+        ret //&& src.pileSet.exists(x => mayMoveToNonEmptyFrom.contains(x.behavior))
     })
   }
 

@@ -15,7 +15,7 @@ import models.game.rules._
  *   Tableau piles (T0n): 6
  *   Tableau sets (Tn): 1 (1 tableau set)
  *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 9
+ *   Deal cards from stock (dealto): 1 (To all waste piles)
  *   Left mouse interface function (leftfunc): 1
  *   Similar to (like): giza
  *   Maximum deals from stock (maxdeals): 3 (3)

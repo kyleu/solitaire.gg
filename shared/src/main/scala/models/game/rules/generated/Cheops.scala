@@ -10,7 +10,7 @@ import models.game.rules._
  *   Number of foundation piles (F0n): 1 (1 stack)
  *   Number of pyramids (Pn): 1 (1 pyramid)
  *   Tableau sets (Tn): 0 (0 tableau sets)
- *   Deal cards from stock (dealto): 9
+ *   Deal cards from stock (dealto): 1 (To all waste piles)
  *   Left mouse interface function (leftfunc): 1
  *   Similar to (like): pyramid
  *   Maximum deals from stock (maxdeals): 1 (1)
@@ -28,7 +28,6 @@ object Cheops extends GameRules(
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveOrEqualRankPairs,
   stock = Some(
     StockRules(
-      dealTo = StockDealTo.WasteOrPairManually,
       maximumDeals = Some(1)
     )
   ),

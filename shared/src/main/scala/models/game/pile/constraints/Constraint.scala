@@ -25,22 +25,16 @@ object Constraint {
     }) -> (() => counter += 1)
   }
 
-  val faceDown = Constraint("face-down", (src, tgt, cards, gameState) => {
-    !cards.exists(_.u)
-  })
+  val faceDown = Constraint("face-down", (src, tgt, cards, gameState) => !cards.exists(_.u))
 
-  val topCardOnly = Constraint("top-card-only", (src, tgt, cards, gameState) => {
-    src.cards.lastOption == cards.headOption
-  })
+  val topCardOnly = Constraint("top-card-only", (src, tgt, cards, gameState) => src.cards.lastOption == cards.headOption)
 
   def specificRanks(ranks: Seq[Rank]) = Constraint("any-" + ranks.map(_.toChar).mkString, (src, tgt, cards, gameState) => {
     !cards.exists(c => !ranks.contains(c.r))
   })
 
-  def allNonEmpty(piles: Seq[String]) = Constraint("all-non-empty", (src, tgt, cards, gameState) => {
-    !piles.exists { p =>
-      gameState.pilesById(p).cards.isEmpty
-    }
+  def allNonEmpty(piles: Seq[String]) = Constraint("all-non-empty", (src, tgt, cards, gameState) => !piles.exists { p =>
+    gameState.pilesById(p).cards.isEmpty
   })
 
   def pilesEmpty(piles: String*) = Constraint("piles-empty", (src, tgt, cards, gameState) => {

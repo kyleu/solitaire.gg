@@ -34,8 +34,10 @@ define(['utils/Config'], function (cfg) {
     };
     ws.onclose = function() {
       me.connected = false;
-      console.info("Websocket connection closed. Attempting to reconnect.");
-      setTimeout(function() { me.connect(context); }, 5000);
+      setTimeout(function() {
+        console.info("Websocket connection closed. Attempting to reconnect.");
+        me.connect(context);
+      }, 5000);
     };
     ws.onerror = function(err) {
       me.connected = false;

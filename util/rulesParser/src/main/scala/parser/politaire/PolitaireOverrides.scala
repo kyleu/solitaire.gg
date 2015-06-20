@@ -10,7 +10,7 @@ object PolitaireOverrides {
     "fourteenout" -> Map("F0n" -> 1, "F0i" -> 1),
     "golf" -> Map("S0cardsShown" -> 16),
     "goodmeasure" -> Map("Tn" -> 1),
-    "pyramid" -> Map("F0n" -> 1),
+    "pyramid" -> Map("F0n" -> 1, "dealto" -> 1),
     "royalrendezvous" -> Map("T0f" -> 0),
     "thoughtful" -> Map("T0d" -> -3),
     "trustytwelve" -> Map("S0cardsShown" -> 19, "T0cardsShown" -> 2)

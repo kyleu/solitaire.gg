@@ -11,7 +11,7 @@ import models.game.rules._
  *   *P0ds (P0ds): ++++++++
  *   Number of pyramids (Pn): 1 (1 pyramid)
  *   Tableau sets (Tn): 0 (0 tableau sets)
- *   Deal cards from stock (dealto): 9
+ *   Deal cards from stock (dealto): 1 (To all waste piles)
  *   Left mouse interface function (leftfunc): 1
  *   Similar to (like): pyramid
  *   Maximum deals from stock (maxdeals): 3 (3)
@@ -32,7 +32,6 @@ object DoublePyramid extends GameRules(
   ),
   stock = Some(
     StockRules(
-      dealTo = StockDealTo.WasteOrPairManually,
       maximumDeals = Some(3)
     )
   ),

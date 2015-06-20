@@ -89,10 +89,14 @@ define(['game/helpers/Layout'], function (calculateLayout) {
   };
 
   Playmat.prototype.emitFor = function(card) {
-    var e = this.suitEmitter[card.suit.index];
-    e.emitX = card.x;
-    e.emitY = card.y;
-    e.start(true, 1000, null, 40);
+    if(card.suit.index === undefined) {
+      console.log("Tried to emit for [" + card + "].");
+    } else {
+      var e = this.suitEmitter[card.suit.index];
+      e.emitX = card.x;
+      e.emitY = card.y;
+      e.start(true, 1000, null, 40);
+    }
   };
 
   return Playmat;

@@ -6,9 +6,7 @@ import models.game.rules.{ StockRules, StockCardsDealt, StockDealTo }
 
 object StockPileOptions {
   def apply(rules: StockRules, pileIdsByType: Map[String, Seq[String]]) = {
-    val dragFromConstraint = if (rules.dealTo == StockDealTo.Manually) {
-      Some(Constraint.topCardOnly)
-    } else if (rules.dealTo == StockDealTo.WasteOrPairManually) {
+    val dragFromConstraint = if (rules.dealTo == StockDealTo.Manually || rules.dealTo == StockDealTo.WasteOrPairManually) {
       Some(Constraint.topCardOnly)
     } else {
       None

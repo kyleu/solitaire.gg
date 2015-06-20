@@ -10,16 +10,6 @@ define(['game/Rank', 'game/pile/PileLogic'], function(Rank, PileLogic) {
       return card.pileIndex == this.cards.length - 1;
     },
 
-    "face-up": function(card) {
-      var valid = true;
-      for(var selectedIndex = card.pileIndex; selectedIndex < this.cards.length; selectedIndex++) {
-        if(!this.cards[selectedIndex].faceUp) {
-          valid = false;
-        }
-      }
-      return valid;
-    },
-
     "sequence": function(card) {
       var opts = card.pile.options.dragFromOptions;
       if(!card.faceUp) {
