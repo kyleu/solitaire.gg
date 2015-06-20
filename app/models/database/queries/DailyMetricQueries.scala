@@ -1,7 +1,7 @@
 package models.database.queries
 
 import models.audit.DailyMetric
-import models.database.{ Row, SingleRowQuery, Query }
+import models.database.{ FlatSingleRowQuery, SingleRowQuery, Statement, Row, Query }
 import org.joda.time.{ LocalDateTime, LocalDate }
 
 object DailyMetricQueries extends BaseQueries[DailyMetric] {
@@ -10,10 +10,10 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
   override protected val idColumns = Seq("day", "metric")
   override protected val searchColumns = Seq("day", "metric", "value")
 
-  case class GetValue(d: LocalDate, m: DailyMetric.Metric) extends SingleRowQuery[Long] {
+  case class GetValue(d: LocalDate, m: DailyMetric.Metric) extends FlatSingleRowQuery[Long] {
     override val sql = s"select value from $tableName where day = ? and metric = ?"
     override def values = Seq(d, m)
-    override def map(row: Row) = row.as[Long]("value")
+    override def flatMap(row: Row) = Some(row.as[Long]("value"))
   }
   val insert = Insert
   val insertBatch = InsertBatch
@@ -36,6 +36,11 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
       val value = row.as[Long]("value")
       day -> value
     }.toSeq
+  }
+
+  case class UpdateMetric(dm: DailyMetric) extends Statement {
+    override def sql: String = updateSql(Seq("value", "measured"))
+    override def values = Seq(dm.value, dm.measured, dm.date, dm.metric)
   }
 
   case class CalculateMetric(metric: DailyMetric.Metric, override val sql: String, d: LocalDate) extends SingleRowQuery[(DailyMetric.Metric, Long)] {

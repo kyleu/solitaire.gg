@@ -1,78 +1,80 @@
-@(rules: models.game.rules.GameRules)(implicit messages: Messages)
+@(rules: models.game.rules.GameRules, color: String)(implicit messages: Messages)
+@import models.game.rules.GameRulesSet
 @rulesLink(r: models.game.rules.GameRules) = {
-  <a class="help-link" href="@routes.GameController.help(r.id)">@r.title</a>
-  <a class="play-link" href="@routes.GameController.newGame(r.id)" data-rules="@r.id" title="Play Now">&#9654;</a>
+  <a class="help-link color-@color" href="@routes.GameController.help(r.id)">@r.title</a>
+  <a class="play-link color-@color" href="@routes.GameController.newGame(r.id)" data-rules="@r.id" title="Play Now">&#9654;</a>
 }
-<div class="rules-container">
-  <div class="rules-help">
-    <h2>@rules.title <a class="play-link" href="@routes.GameController.newGame(rules.id)" title="Play Now">&#9654;</a></h2>
-    <div class="description"><em>@Html(services.help.GameRulesHelpService.description(rules.description))</em></div>
+<div class="rules-help">
+  <h2>
+    @rules.title
+    <a class="play-link color-@color" href="@routes.GameController.newGame(rules.id)" title="Play Now">&#9654;</a>
+  </h2>
+  <div class="description"><em>@Html(services.help.GameRulesHelpService.description(rules.description))</em></div>
 
-    <h3>Objective</h3>
-    <div class="objective">@Html(services.help.ObjectiveHelpService.objective(rules.victoryCondition, rules.cardRemovalMethod))</div>
+  <h3>Objective</h3>
+  <div class="objective">@Html(services.help.ObjectiveHelpService.objective(rules.victoryCondition, rules.cardRemovalMethod))</div>
 
-    <h3>Deck</h3>
-    <div class="deck">@Html(services.help.DeckOptionsHelpService.deck(rules.deckOptions).mkString("<br>"))</div>
+  <h3>Deck</h3>
+  <div class="deck">@Html(services.help.DeckOptionsHelpService.deck(rules.deckOptions).mkString("<br>"))</div>
 
-    <h3>Layout</h3>
-    @defining(models.game.pile.Layouts.forRules(rules.id)) { layoutString =>
-      @defining(services.help.GameRulesHelpService.layout(layoutString, rules)) { layout =>
-        <ul class="layout">
-          @for(pileSet <- layout) {
-            <li>
-              <h4>@pileSet._1</h4>
-              @if(pileSet._2.nonEmpty) {
-                <ul>
-                  @for(statement <- pileSet._2) {
-                    <li>@statement</li>
-                  }
-                </ul>
-              }
-            </li>
-          }
-        </ul>
-      }
-    }
-
-    @rules.like.map { l =>
-      <h3>Original Game</h3>
-      @defining(models.game.rules.GameRulesSet.allById(l)) { like =>
-        <ul>
+  <h3>Layout</h3>
+  @defining(models.game.pile.Layouts.forRules(rules.id)) { layoutString =>
+    @defining(services.help.GameRulesHelpService.layout(layoutString, rules)) { layout =>
+      <ul class="layout">
+        @for(pileSet <- layout) {
           <li>
-            @rulesLink(like)
-            <div>
-              <em>@Html(services.help.GameRulesHelpService.description(like.description, link = false))</em>
-            </div>
-          </li>
-        </ul>
-      }
-    }
-
-    @if(rules.related.nonEmpty) {
-      <h3>Related Games</h3>
-      <ul>
-        @rules.related.map { r =>
-          <li>
-            @defining(models.game.rules.GameRulesSet.allById(r)) { rel =>
-              @rulesLink(rel)
-              <div>
-                <em>@Html(services.help.GameRulesHelpService.description(rel.description, link = false))</em>
-              </div>
+            <h4>@pileSet._1</h4>
+            @if(pileSet._2.nonEmpty) {
+              <ul>
+                @for(statement <- pileSet._2) {
+                  <li>@statement</li>
+                }
+              </ul>
             }
           </li>
         }
       </ul>
     }
+  }
 
-    @if(rules.links.nonEmpty) {
-      <h3>Web Resources</h3>
+  @rules.like.map { l =>
+    <h3>Original Game</h3>
+    @defining(GameRulesSet.allById(l)) { like =>
       <ul>
-        @rules.links.map { l =>
+        <li>
+          @rulesLink(like)
+          <div>
+            <em>@Html(services.help.GameRulesHelpService.description(like.description, link = false))</em>
+          </div>
+        </li>
+      </ul>
+    }
+  }
+
+  @defining(GameRulesSet.completed.filter(x => rules.related.contains(x.id))) { rels =>
+    @if(rels.nonEmpty) {
+      <h3>Related Games</h3>
+      <ul>
+        @rels.map { rel =>
           <li>
-            <a target="_blank" href="http://@l.url">@l.title</a>
+            @rulesLink(rel)
+            <div>
+              <em>@Html(services.help.GameRulesHelpService.description(rel.description, link = false))</em>
+            </div>
           </li>
         }
       </ul>
     }
-  </div>
+  }
+
+  @if(rules.links.nonEmpty) {
+    <h3>Web Resources</h3>
+    <ul>
+      @rules.links.map { l =>
+        <li>
+          <a class="color-@color" target="_blank" href="http://@l.url">@l.title</a>
+        </li>
+      }
+    </ul>
+  }
 </div>

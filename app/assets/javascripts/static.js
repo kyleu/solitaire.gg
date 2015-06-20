@@ -43,7 +43,7 @@
   function init() {
     elements.optionsButton = document.getElementById("btn-options");
     elements.optionsPanel = document.getElementById("static-options-panel");
-    elements.confirmButton = document.getElementById("btn-color-confirm");
+    elements.confirmButton = document.getElementById("btn-confirm");
 
     elements.optionsButton.onclick = function() {
       if(elements.optionsPanel.style.display === "block") {

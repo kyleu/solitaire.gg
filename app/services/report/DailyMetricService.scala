@@ -25,6 +25,17 @@ object DailyMetricService {
     }
   }
 
+  def setMetric(d: LocalDate, metric: DailyMetric.Metric, value: Long) = {
+    val dm = DailyMetric(d, metric, value, new LocalDateTime())
+    Database.execute(DailyMetricQueries.UpdateMetric(dm)).flatMap { rowsAffected =>
+      if(rowsAffected == 1) {
+        Future.successful(dm)
+      } else {
+        Database.execute(DailyMetricQueries.insert(dm)).map(x => dm)
+      }
+    }
+  }
+
   private[this] def calculateMetrics(d: LocalDate, metrics: Seq[DailyMetric.Metric]) = {
     val futures = metrics.map { metric =>
       getSql(metric) match {

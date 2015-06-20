@@ -1,0 +1,5 @@
+@(rules: models.game.rules.GameRules, color: String)(implicit messages: Messages)
+<div class="rules-container">
+  <div class="rules-close modal-close">&times;</div>
+  @helpContent(rules, color)
+</div>

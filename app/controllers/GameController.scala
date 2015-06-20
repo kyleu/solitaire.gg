@@ -8,12 +8,16 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class GameController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
-  def help(id: String) = withSession { implicit request =>
+  def help(id: String, inline: Boolean) = withSession { implicit request =>
     Future.successful {
       id match {
         case "undefined" => Ok(Messages("help.general"))
         case _ => GameRulesSet.allById.get(id) match {
-          case Some(rules) => Ok(views.html.game.rulesHelp(rules))
+          case Some(rules) => if(inline) {
+            Ok(views.html.help.helpInline(rules, request.identity.color))
+          } else {
+            Ok(views.html.help.helpPage(request.identity, rules))
+          }
           case None => Ok(Messages("invalid.game.rules", id))
         }
       }

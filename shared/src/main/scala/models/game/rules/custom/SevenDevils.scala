@@ -5,7 +5,7 @@ import models.game.rules._
 object SevenDevils extends GameRules(
   id = "sevendevils",
   title = "Seven Devils",
-  description = "",
+  description = "Seven Devils is arguably the most difficult of all solitaire games. Good luck!",
   like = Some("klondike"),
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules()),

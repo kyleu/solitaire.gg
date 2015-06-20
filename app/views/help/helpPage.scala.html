@@ -1,0 +1,6 @@
+@(user: models.user.User, rules: models.game.rules.GameRules)(implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages)
+@layout.static(user = user, title = rules.title + " Help - " + utils.Config.projectName, button = "menu") {
+  <div class="static-help">
+    @helpContent(rules, user.color)
+  </div>
+}

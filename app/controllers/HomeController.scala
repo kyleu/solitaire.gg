@@ -7,7 +7,6 @@ import models.user.UserFeedback
 import org.joda.time.LocalDateTime
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.libs.mailer.MailerClient
 import play.api.mvc.Action
 import services.EmailService
 import services.database.Database
@@ -15,9 +14,7 @@ import services.database.Database
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class HomeController @javax.inject.Inject() (override val messagesApi: MessagesApi, mailer: MailerClient) extends BaseController {
-  private[this] val emailService = new EmailService(mailer)
-
+class HomeController @javax.inject.Inject() (override val messagesApi: MessagesApi, emailService: EmailService) extends BaseController {
   def index() = withSession { implicit request =>
     Future.successful(Ok(views.html.index(request.identity)))
   }

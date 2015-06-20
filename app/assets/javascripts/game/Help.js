@@ -7,13 +7,12 @@ define(['ui/Modal'], function(Modal) {
     var postLoad = function() {
       _.each(document.getElementsByClassName("help-link"), function(helpLink) {
         helpLink.onclick = function() {
-          Modal.show("GET", helpLink.href, {}, postLoad);
+          Modal.show("GET", helpLink.href + "?inline=true", {}, postLoad);
           return false;
         };
       });
-
     };
-    Modal.show("GET", "/help/" + this.game.rules, {}, postLoad);
+    Modal.show("GET", "/help/" + this.game.rules + "?inline=true", {}, postLoad);
   };
 
   Help.prototype.toggleFeedback = function() {

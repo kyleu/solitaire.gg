@@ -28,18 +28,19 @@ body {
 .fade-in {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s linear 0.0s, opacity 1s linear;
+  transition: visibility 0s linear 0.0s, opacity 500ms linear;
 }
 
 .fade-out {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s linear 1s, opacity 1s linear;
+  transition: visibility 0s linear 500ms, opacity 500ms linear;
 }
 
 @import "colors";
 @import "buttons";
 @import "menubars";
+@import "menu";
 @import "options";
 
 @import "static";

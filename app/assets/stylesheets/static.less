@@ -1,95 +1,87 @@
 #static-options-panel {
   display: none;
-  background-color: #000;
-  color: #fff;
+  background-color: #000000;
+  color: #ffffff;
   padding: 10px;
   text-align: center;
   .action-buttons {
     margin-top: 10px;
     text-align: center;
-    .btn {
-      display: inline-block;
-    }
   }
 }
 
-#page-content {
-  .module {
-    margin: 20px;
-    padding: 10px;
-    text-align: center;
-    color: #fff;
-    .header {
-      font-size: 120%;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-    li {
-      display: inline-block;
-      height: 40px;
-      a {
-        text-decoration: none;
-        color: #fff;
-      }
-      .gamelink {
-        display: block;
-        margin: 5px;
-        padding: 5px;
-        border-radius: 5px;
-        border: 1px solid #fff;
-      }
-    }
-  }
-
-  .welcome {
+.module {
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  .header {
     font-size: 120%;
   }
-  .tagline {
-    margin: 10px 0;
-  }
-  .coming-soon {
-    font-size: 150%;
-  }
-  .play-now {
-    font-size: 150%;
-    margin: 20px 0 10px 0;
+}
+
+ul.game-links {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: inline-block;
+    height: 40px;
+    width: 12.4%;
     a {
-      padding: 10px;
-      border: 1px solid #fff;
-      border-radius: 5px;
       text-decoration: none;
       color: #fff;
+      display: block;
+      margin: 5px;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #fff;
     }
   }
 }
 
-#page-content .module li {
-  width: 12.5%;
+.welcome {
+  font-size: 120%;
+}
+.tagline {
+  margin: 10px 0;
+}
+.coming-soon {
+  font-size: 150%;
+}
+.play-now {
+  font-size: 150%;
+  margin: 20px 0 10px 0;
+  a {
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+  }
 }
 
 @media only screen and (max-width: 1600px) {
-  #page-content .module li {
-    width: 20%;
+  ul.game-links li {
+    width: 19.5%;
   }
 }
 
 @media only screen and (max-width: 1000px) {
-  #page-content .module li {
-    width: 33%;
+  ul.game-links li {
+    width: 32.5%;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  #page-content .module li {
-    width: 50%;
+  ul.game-links li {
+    width: 49.5%;
   }
 }
 
 @media only screen and (max-width: 420px) {
-  #page-content .module li {
-    width: 100%;
+  ul.game-links li {
+    width: 99.5%;
   }
 }

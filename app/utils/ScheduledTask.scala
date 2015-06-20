@@ -4,7 +4,6 @@ import models.audit.DailyMetric
 import models.database.queries.ReportQueries
 import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.libs.mailer.MailerClient
 import services.EmailService
 import services.database.Database
 import services.report.DailyMetricService
@@ -12,18 +11,22 @@ import services.report.DailyMetricService
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class ScheduledTask @javax.inject.Inject() (mailer: MailerClient) extends Logging {
+class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends Logging with Runnable {
   private[this] var running = false
 
-  private[this] val emailService = new EmailService(mailer)
+  override def run() = go()
 
   def go() = {
     if (running) {
       Future.failed(new RuntimeException("Scheduled task already running."))
     } else {
       running = true
+      val startMs = System.currentTimeMillis
       val f = Future.sequence(Seq(
+        // updateMetrics()
         sendReportIfNeeded()
+        // updateCounts()
+        // reapTables()
       ))
       f.onFailure {
         case t: Throwable =>
@@ -33,23 +36,36 @@ class ScheduledTask @javax.inject.Inject() (mailer: MailerClient) extends Loggin
       f.onSuccess {
         case _ => running = false
       }
-      f
+      f.map { ret =>
+        val duration = System.currentTimeMillis - startMs
+        val actions = ret.filter(_._2.isDefined)
+        val msgStart = "Completed [" + ret.size + "] scheduled tasks in [" + duration + "ms]"
+        if(actions.nonEmpty) {
+          val result = ret.map(x => x._1 + ": " + x._2.getOrElse("No progress")).mkString(", ")
+          log.info(msgStart + " with result [" + result + "].")
+        } else {
+          log.debug(msgStart + ". No result.")
+        }
+        ret
+      }
     }
   }
 
   private[this] def sendReportIfNeeded() = {
     val yesterday = new LocalDate().minusDays(1)
     DailyMetricService.getMetric(yesterday, DailyMetric.ReportSent).flatMap { reportSent =>
-      if (reportSent == 1L) {
-        Future.successful("Ok: Report already sent.")
+      if (reportSent.contains(1L)) {
+        Future.successful("report" -> None)
       } else {
         Database.query(ReportQueries.ListTables).flatMap { tables =>
           Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table)))).flatMap { counts =>
             val today = new LocalDate()
             val yesterday = today.minusDays(1)
-            DailyMetricService.getMetrics(yesterday).map { yesterdayMetrics =>
+            DailyMetricService.getMetrics(yesterday).flatMap { yesterdayMetrics =>
               emailService.sendDailyReport(yesterday, "greyblue", yesterdayMetrics, counts)
-              "Ok: Sent report."
+              DailyMetricService.setMetric(yesterday, DailyMetric.ReportSent, 1L).map { x =>
+                "report" -> Some("Sent report")
+              }
             }
           }
         }

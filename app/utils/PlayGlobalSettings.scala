@@ -2,6 +2,7 @@ package utils
 
 import java.util.TimeZone
 
+import akka.actor.ActorSystem
 import com.codahale.metrics.SharedMetricRegistries
 import org.joda.time.DateTimeZone
 import play.api.http.HeaderNames
@@ -27,6 +28,9 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter(
     Database.open()
     Schema.update()
     ActorSupervisor.instance
+
+    scheduleTask(app)
+
     super.onStart(app)
   }
 
@@ -65,5 +69,16 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter(
   private[this] def redirectToBareDomain(request: RequestHeader) = Action {
     val protocol = if (request.secure) { "https" } else { "http" }
     Results.MovedPermanently(s"$protocol://${utils.Config.hostname}${request.path}").withHeaders(HeaderNames.CACHE_CONTROL -> "public, max-age=31556926")
+  }
+
+  private[this] def scheduleTask(app: Application) = {
+    import scala.concurrent.duration._
+    import scala.concurrent.ExecutionContext.Implicits.global
+    import play.api.Play.current
+
+    log.info("Scheduling task to run every minute, after five minutes.")
+    val task = app.injector.instanceOf[ScheduledTask]
+    val system = app.injector.instanceOf[ActorSystem]
+    system.scheduler.schedule(5.minutes, 1.minute, task)
   }
 }

@@ -5,7 +5,9 @@ define(['ui/Buttons'], function(Buttons) {
       "gameName": document.getElementById("link-game"),
       "timerDisplay": document.getElementById("timer-display"),
       "topBar": document.getElementById("menu-container"),
-      "bottomBar": document.getElementById("status-container")
+      "bottomBar": document.getElementById("status-container"),
+      "optionsPanel": document.getElementById("gameplay-options"),
+      "menuPanel": document.getElementById("gameplay-menu")
     };
     game.menusVisible = this.elements.topBar.style.display !== 'none';
     this.buttons = new Buttons(game, this);
@@ -66,6 +68,28 @@ define(['ui/Buttons'], function(Buttons) {
       this.elements.topBar.className = this.elements.topBar.className.replace(" fade-out", "") + " fade-in";
       this.elements.bottomBar.className = this.elements.bottomBar.className.replace(" fade-out", "") + " fade-in";
       this.game.menusVisible = true;
+    }
+  };
+
+  Options.prototype.toggleOptionsPanel = function() {
+    var e = this.elements.optionsPanel;
+    if(e.style.display === "block") {
+      e.style.display = "none";
+      return false;
+    } else {
+      e.style.display = "block";
+      return true;
+    }
+  };
+
+  Options.prototype.toggleMenuPanel = function() {
+    var e = this.elements.menuPanel;
+    if(e.style.display === "block") {
+      e.style.display = "none";
+      return false;
+    } else {
+      e.style.display = "block";
+      return true;
     }
   };
 

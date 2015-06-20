@@ -19,7 +19,11 @@ trait Query[A] extends RawQuery[A] {
 
 trait SingleRowQuery[A] extends Query[A] {
   def map(row: Row): A
-  override final def reduce(rows: Iterator[Row]) = rows.map(map).next()
+  override final def reduce(rows: Iterator[Row]) = if(rows.hasNext) {
+    rows.map(map).next()
+  } else {
+    throw new IllegalStateException("No row returned for [" + sql + "].")
+  }
 }
 
 trait FlatSingleRowQuery[A] extends Query[Option[A]] {

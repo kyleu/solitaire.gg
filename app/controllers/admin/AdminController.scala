@@ -10,16 +10,16 @@ import models.database.queries.auth.UserQueries
 import models.user.Role
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.libs.mailer.MailerClient
 import services.ActorSupervisor
 import services.database.{ Schema, Database }
+import utils.ScheduledTask
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
 import scala.util.Random
 
 @javax.inject.Singleton
-class AdminController @javax.inject.Inject() (override val messagesApi: MessagesApi, mailerClient: MailerClient) extends BaseController {
+class AdminController @javax.inject.Inject() (override val messagesApi: MessagesApi, scheduledTask: ScheduledTask) extends BaseController {
   implicit val timeout = Timeout(10.seconds)
 
   def index = withAdminSession { implicit request =>
@@ -27,8 +27,8 @@ class AdminController @javax.inject.Inject() (override val messagesApi: Messages
   }
 
   def sandbox() = withAdminSession { implicit request =>
-    new utils.ScheduledTask(mailerClient).go().map { ret =>
-      Ok(ret.mkString("\n"))
+    scheduledTask.go().map { ret =>
+      Ok(ret.map(x => x._1 + ": " + x._2.getOrElse("No progress")).mkString("\n"))
     }
   }
 
