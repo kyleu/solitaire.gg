@@ -24,7 +24,7 @@
       <td>@g.rules</td>
       <td>@g.status</td>
       @defining(controllers.admin.routes.UserController.userDetail(g.player)) { url =>
-        <td>@Html("<a href=\"" + url + "\"><div title=\"" + g.player.toString + "\">" + g.player.toString.substring(0, 8) + "</div></a>")</td>
+        <td>@Html(s"""<a href="$url"><div title="${g.player.toString}">${g.player.toString.substring(0, 8)}</div></a>""")</td>
       }
       <td>@g.moves</td>
       <td>@g.undos</td>

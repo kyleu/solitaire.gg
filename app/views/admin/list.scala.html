@@ -9,7 +9,7 @@
   prevLink: Call,
   nextLink: Call
 )(table: Html)(implicit session: Session, flash: Flash)
-@layout.admin(utils.Config.projectName + " " + modelProper, model + "s") {
+@layout.admin(s"${utils.Config.projectName} $modelProper", model + "s") {
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="pull-right">

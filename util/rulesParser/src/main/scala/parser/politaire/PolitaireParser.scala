@@ -43,7 +43,7 @@ object PolitaireParser {
         }
         ret
       } catch {
-        case x: Exception => throw new IllegalArgumentException("Unable to parse json [" + js._2.toString + "].", x)
+        case x: Exception => throw new IllegalArgumentException(s"Unable to parse json [${js._2.toString}].", x)
       }
     }.toList
 
@@ -57,7 +57,7 @@ object PolitaireParser {
           newAttributes ++= mergedParent.attributes.filterNot( x => doNotInheritFrom.contains(x._1))
           newAttributes ++= v.attributes.filterNot(_._2.defaultVal)
           v.copy(attributes = newAttributes)
-        case None => throw new IllegalStateException("Invalid parent [" + parentId + "].")
+        case None => throw new IllegalStateException(s"Invalid parent [$parentId].")
       }
     }
 
@@ -89,7 +89,7 @@ object PolitaireParser {
           case Some(a) => try { a.get(x.toString.toInt) } catch { case x: Exception => Some(x.toString) }
           case None => None
         }, defaultVal = markDefaults))
-        case x => throw new IllegalArgumentException("Invalid type [" + x.getClass.getSimpleName + ": " + x + "].")
+        case x => throw new IllegalArgumentException(s"Invalid type [${x.getClass.getSimpleName}: $x].")
       }
     }
 

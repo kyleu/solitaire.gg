@@ -26,7 +26,7 @@ object Database extends Logging with Instrumented with FutureMetrics {
   def execute(statement: Statement, conn: Connection = pool): Future[Int] = {
     val name = statement.getClass.getSimpleName.replaceAllLiterally("$", "")
     log.debug(s"Executing statement [$name] with SQL [${statement.sql}] with values [${statement.values.mkString(", ")}].")
-    val ret = timing("execute." + name) {
+    val ret = timing(s"execute.$name") {
       conn.sendPreparedStatement(prependComment(statement, statement.sql), statement.values).map(_.rowsAffected.toInt)
     }
     ret.onFailure {
@@ -38,7 +38,7 @@ object Database extends Logging with Instrumented with FutureMetrics {
   def query[A](query: RawQuery[A], conn: Connection = pool): Future[A] = {
     val name = query.getClass.getSimpleName.replaceAllLiterally("$", "")
     log.debug(s"Executing query [$name] with SQL [${query.sql}] with values [${query.values.mkString(", ")}].")
-    val ret = timing("query." + name) {
+    val ret = timing(s"query.$name") {
       conn.sendPreparedStatement(prependComment(query, query.sql), query.values).map { r =>
         query.handle(r.rows.getOrElse(throw new IllegalStateException()))
       }
@@ -51,7 +51,7 @@ object Database extends Logging with Instrumented with FutureMetrics {
 
   def raw(name: String, sql: String, conn: Connection = pool): Future[QueryResult] = {
     log.debug(s"Executing raw query [$name] with SQL [$sql].")
-    val ret = timing("rawquery." + name.getClass.getSimpleName.replaceAllLiterally("$", "")) {
+    val ret = timing(s"rawquery.$name") {
       conn.sendQuery(prependComment(name, sql))
     }
     ret.onFailure {

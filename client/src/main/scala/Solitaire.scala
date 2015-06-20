@@ -34,7 +34,7 @@ object Solitaire extends js.JSApp with SolitaireHelper {
       case "MoveCards" => handleMoveCards(userId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString)
       case "Undo" => handleUndo()
       case "Redo" => handleRedo()
-      case _ => throw new IllegalStateException("Invalid message [" + c + "].")
+      case _ => throw new IllegalStateException(s"Invalid message [$c].")
     }
   }
 

@@ -8,7 +8,7 @@ class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesPar
   def parse() = try {
     parseInternal()
   } catch {
-    case x: Exception => throw new IllegalStateException("Exception [" + x.getClass.getSimpleName + "] encountered while parsing [" + variant.id + "].", x)
+    case x: Exception => throw new IllegalStateException(s"Exception [${x.getClass.getSimpleName}] encountered while parsing [${variant.id}].", x)
   }
 
   private[this] def parseInternal() = {

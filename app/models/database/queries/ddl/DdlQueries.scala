@@ -10,7 +10,7 @@ object DdlQueries {
   }
 
   case class TruncateTables(tableNames: Seq[String]) extends Statement {
-    override val sql = "truncate " + tableNames.mkString(", ")
+    override val sql = s"truncate ${tableNames.mkString(", ")}"
   }
 
   def trim(s: String) = s.replaceAll("""[\s]+""", " ").trim

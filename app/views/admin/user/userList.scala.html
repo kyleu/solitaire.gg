@@ -30,7 +30,7 @@
           <td>@utils.Formatter.withCommas(winCounts.getOrElse(u.id, 0))</td>
           <td>@utils.Formatter.withCommas(requestCounts.getOrElse(u.id, 0))</td>
           <td>@Html(u.roles.map(_.name).mkString(",<br/>"))</td>
-          <td>@Html(u.profiles.map(x => x.providerID + ":" + x.providerKey).mkString(",<br/>"))</td>
+          <td>@Html(u.profiles.map(x => s"${x.providerID}:${x.providerKey}").mkString(",<br/>"))</td>
           <td>@u.created.toString("yyyy-MM-dd HH:mm:ss")</td>
           <td>
             <a href="@controllers.admin.routes.UserController.removeUser(u.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>

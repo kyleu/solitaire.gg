@@ -58,7 +58,7 @@ object JsonSerializers {
         case pm: PossibleMoves => writeJs(pm)
         case gw: GameWon => writeJs(gw)
         case ms: MessageSet => writeJs(ms)
-        case _ => throw new IllegalStateException("Invalid Message [" + rm.getClass.getName + "].")
+        case _ => throw new IllegalStateException(s"Invalid Message [${rm.getClass.getName}].")
       }
       val jsArray = jsVal match { case arr: Js.Arr => arr; case _ => throw new IllegalArgumentException(jsVal.toString) }
       jsArray.value.toList match {

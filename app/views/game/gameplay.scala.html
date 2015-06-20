@@ -6,9 +6,9 @@
   seed: Option[Int] = None,
   offline: Boolean = false
 )(implicit session: Session, flash: Flash)@layout.basic(
-  title + " - " + utils.Config.projectName,
+  s"$title - ${utils.Config.projectName}",
   stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.min.css").url),
-  bodyClass = Some("noscroll background-" + user.color),
+  bodyClass = Some(s"noscroll background-${user.color}"),
   faviconColor = Some(user.color)
 ) {
   @views.html.layout.topBar(user)

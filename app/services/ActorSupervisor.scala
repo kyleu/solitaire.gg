@@ -54,7 +54,7 @@ class ActorSupervisor extends ActorSupervisorHelper with Logging {
     case gt: GameTrace => timeReceive(gt) { handleGameTrace(gt) }
 
     case sm: InternalMessage => log.warn(s"Unhandled internal message [${sm.getClass.getSimpleName}] received.")
-    case x => log.warn("ActorSupervisor encountered unknown message: " + x.toString)
+    case x => log.warn(s"ActorSupervisor encountered unknown message: ${x.toString}")
   }
 
   private[this] def handleGetSystemStatus() = {

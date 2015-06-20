@@ -29,7 +29,7 @@ object Constraint {
 
   val topCardOnly = Constraint("top-card-only", (src, tgt, cards, gameState) => src.cards.lastOption == cards.headOption)
 
-  def specificRanks(ranks: Seq[Rank]) = Constraint("any-" + ranks.map(_.toChar).mkString, (src, tgt, cards, gameState) => {
+  def specificRanks(ranks: Seq[Rank]) = Constraint(s"any-${ranks.map(_.toChar).mkString}", (src, tgt, cards, gameState) => {
     !cards.exists(c => !ranks.contains(c.r))
   })
 

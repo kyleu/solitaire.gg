@@ -16,7 +16,7 @@ object SolverTests {
 class SolverTests {
   val all = Tree(Test("solver"), GameRulesSet.completed.map(x => testSolver(x.id).toTree))
 
-  def testSolver(rules: String) = Test("solver-" + rules, { () =>
+  def testSolver(rules: String) = Test(s"solver-$rules", { () =>
     val seed = SolverTests.solvableSeeds.getOrElse(rules, 1)
     runSolver(rules, seed)
   })

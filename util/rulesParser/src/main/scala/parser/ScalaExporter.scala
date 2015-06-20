@@ -80,10 +80,10 @@ object ScalaExporter {
   }
 
   def cls(o: Any) = o match {
-    case InitialCards.Count(i) => "Count(" + i + ")"
-    case TableauFaceDownCards.Count(i) => "Count(" + i + ")"
-    case PyramidFaceDownCards.Count(i) => "Count(" + i + ")"
-    case specificRank: FoundationLowRank.SpecificRank => "SpecificRank(Rank." + specificRank.r + ")"
+    case InitialCards.Count(i) => s"Count($i)"
+    case TableauFaceDownCards.Count(i) => s"Count($i)"
+    case PyramidFaceDownCards.Count(i) => s"Count($i)"
+    case specificRank: FoundationLowRank.SpecificRank => s"SpecificRank(Rank.${specificRank.r})"
     case cn => cn.getClass.getSimpleName.replaceAllLiterally("$", "")
   }
   private def getObjectName(rules: GameRules) = rules.title.replaceAll("[-'\\(\\)]", "").split(" ").map(x => x.head.toUpper + x.tail).mkString

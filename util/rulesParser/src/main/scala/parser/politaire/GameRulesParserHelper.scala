@@ -21,22 +21,22 @@ trait GameRulesParserHelper extends ParserGameHelper
   protected[this] def getString(key: String) = getValue(key) match {
     case s: String => s
     case i: Int => PolitaireLookup.getTranslation(key).map(_(i)).getOrElse {
-      throw new IllegalArgumentException("Value [" + key + ":" + i + "] has no translation.")
+      throw new IllegalArgumentException(s"Value [$key:$i] has no translation.")
     }
-    case x => throw new IllegalArgumentException("Value [" + x + "] is not a string.")
+    case x => throw new IllegalArgumentException(s"Value [$x] is not a string.")
   }
 
   protected[this] def getInt(key: String) = getValue(key) match {
     case i: Int => i
-    case s: String => IntUtils.parse(s).getOrElse(throw new IllegalArgumentException("Invalid integer [" + s + "]."))
-    case x => throw new IllegalArgumentException("Invalid integer [" + x + "].")
+    case s: String => IntUtils.parse(s).getOrElse(throw new IllegalArgumentException(s"Invalid integer [$s]."))
+    case x => throw new IllegalArgumentException(s"Invalid integer [$x].")
   }
 
   protected[this] def getBoolean(key: String) = {
     getValue(key) match {
       case i: Int => i != 0
       case b: Boolean => b
-      case x => throw new IllegalArgumentException("Invalid boolean [" + x + "].")
+      case x => throw new IllegalArgumentException(s"Invalid boolean [$x].")
     }
   }
 }

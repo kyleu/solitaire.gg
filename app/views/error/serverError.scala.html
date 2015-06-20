@@ -5,7 +5,7 @@
   </div>
   @if(utils.Config.debug) {
     @ex.map { e =>
-      @defining(e.getCause.getStackTrace.map(x => "  " + x.toString + "\n")) { s =>
+      @defining(e.getCause.getStackTrace.map(x => s"  " + x + "\n")) { s =>
 <pre>@e.getClass.getName: @e.getMessage
 @s</pre>
       }

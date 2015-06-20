@@ -1,6 +1,6 @@
 @(user: models.user.User, form: Form[models.user.RegistrationData])(
   implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
-)@layout.static(user = user, title = "Sign up for " + utils.Config.projectName, button = "menu") {
+)@layout.static(user = user, title = s"Sign up for ${utils.Config.projectName}", button = "menu") {
   <div class="sign-up">
     @flash.get("error").map { e =>
       <div class="error">@e</div>
@@ -30,7 +30,7 @@
           <p>Or sign in using these providers</p>
           <div>
           @for(p <- providers if p._2.id != "credentials") {
-            <a href="@controllers.auth.routes.AuthenticationController.authenticateSocial(p._2.id)" class="provider @p._2.id"><img src="@routes.Assets.at("images/providers/" + p._2.id + ".png")"></a>
+            <a href="@controllers.auth.routes.AuthenticationController.authenticateSocial(p._2.id)" class="provider @p._2.id"><img src="@routes.Assets.at(s"images/providers/${p._2.id}.png")"></a>
           }
           </div>
         </div>

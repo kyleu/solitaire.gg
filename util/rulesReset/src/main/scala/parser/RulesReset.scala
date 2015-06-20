@@ -6,7 +6,7 @@ object RulesReset extends App {
   val startMs = System.currentTimeMillis
   println("Resetting game rules...")
   go()
-  println("Reset complete in [" + (System.currentTimeMillis - startMs) + "ms].")
+  println(s"Reset complete in [${System.currentTimeMillis - startMs}ms].")
 
   def go() = {
     val srcDir = Paths.get(".", "shared", "src", "main", "scala", "models", "game", "rules", "generated")

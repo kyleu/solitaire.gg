@@ -20,7 +20,7 @@ class HomeController @javax.inject.Inject() (override val messagesApi: MessagesA
   }
 
   def untrail(path: String) = Action.async {
-    Future.successful(MovedPermanently("/" + path))
+    Future.successful(MovedPermanently(s"/$path"))
   }
 
   def about = withSession { implicit request =>

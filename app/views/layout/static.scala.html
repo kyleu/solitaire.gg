@@ -2,7 +2,7 @@
   title = title,
   scripts = Seq(routes.Assets.at("javascripts/static.js").url),
   stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.min.css").url),
-  bodyClass = Some("background-" + user.color),
+  bodyClass = Some(s"background-${user.color}"),
   faviconColor = Some(user.color)
 ) {
   <div id="menu-container">

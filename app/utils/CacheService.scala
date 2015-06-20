@@ -39,12 +39,12 @@ object CacheService {
   }
 
   def removeUser(id: UUID) = {
-    getAs[User]("user-" + id).foreach { u =>
+    getAs[User](s"user-$id").foreach { u =>
       for (p <- u.profiles) {
         cache.remove(s"user-${p.providerID}:${p.providerKey}")
       }
     }
-    cache.remove("user-" + id)
+    cache.remove(s"user-$id")
   }
 
   def cacheSession(session: CookieAuthenticator) = {

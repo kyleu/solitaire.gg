@@ -19,6 +19,8 @@ class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends 
   def go() = {
     if (running) {
       Future.failed(new RuntimeException("Scheduled task already running."))
+    } else if(utils.Config.debug) {
+      Future.successful(Nil)
     } else {
       running = true
       val startMs = System.currentTimeMillis

@@ -36,7 +36,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
 
     val started = new LocalDateTime()
     val pr = GameService.PlayerRecord(c.userId, c.name, Some(connectionId), Some(c.actorRef))
-    val actor = context.actorOf(Props(new GameService(id, rules, s, started, pr)), "game:" + id)
+    val actor = context.actorOf(Props(new GameService(id, rules, s, started, pr)), s"game:$id")
 
     c.activeGame = Some(id)
     games(id) = GameRecord(List((connectionId, c.name)), actor, started)

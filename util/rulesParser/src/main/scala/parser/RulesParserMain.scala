@@ -9,12 +9,12 @@ object RulesParserMain extends App {
     case _ => args(0)
   }
   val startMs = System.currentTimeMillis
-  println("Performing task [" + task + "]...")
+  println(s"Performing task [$task]...")
   task match {
     case "parse" => PolitaireParser.politaireList
     case "import" => PolitaireParser.gameRules
     case "view" => GameRulesSet.all
     case "export" => ScalaExporter.export(PolitaireParser.gameRules)
   }
-  println("Task [" + task + "] complete in [" + (System.currentTimeMillis - startMs) + "ms].")
+  println(s"Task [$task] complete in [${System.currentTimeMillis - startMs}ms].")
 }

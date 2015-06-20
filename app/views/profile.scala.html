@@ -84,7 +84,7 @@
               <img src="@routes.Assets.at("images/providers/twitter.png")">
             </div>
             <div class="profile-links">
-              <strong>@twitter.get.fullName.map(n => "@" + n)</strong><br/>
+              <strong>@twitter.get.fullName.map(n => s"@$n")</strong><br/>
               @twitter.get.email<br/>
               <a href="@routes.ProfileController.setOption("avatar", "twitter")">Use your Twitter profile image as your avatar.</a>
             </div>

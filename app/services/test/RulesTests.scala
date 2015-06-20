@@ -8,7 +8,7 @@ import models.test.{ Test, Tree }
 class RulesTests {
   val all = Tree(Test("rules"), GameRulesSet.all.map(x => testGameRules(x.id).toTree))
 
-  def testGameRules(id: String) = Test("rules-" + id, () => {
+  def testGameRules(id: String) = Test(s"rules-$id", () => {
     val rules = GameRulesSet.allById(id)
 
     val game = rules.newGame(UUID.randomUUID(), 0)

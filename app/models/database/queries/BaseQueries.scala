@@ -19,18 +19,18 @@ trait BaseQueries[T] {
   protected lazy val insertSql = s"insert into $tableName (${columns.mkString(", ")}) values (${columns.map(x => "?").mkString(", ")})"
 
   protected def updateSql(updateColumns: Seq[String], additionalUpdates: Option[String] = None) = BaseQueries.trim(s"""
-    update $tableName set ${updateColumns.map(x => s"$x = ?").mkString(", ")}${additionalUpdates.map(x => ", " + x).getOrElse("")} where $idWhereClause
+    update $tableName set ${updateColumns.map(x => s"$x = ?").mkString(", ")}${additionalUpdates.map(x => s", $x").getOrElse("")} where $idWhereClause
   """)
 
   protected def getSql(
     whereClause: Option[String] = None, groupBy: Option[String] = None, orderBy: Option[String] = None, limit: Option[Int] = None, offset: Option[Int] = None
   ) = BaseQueries.trim(s"""
     select ${columns.mkString(", ")} from $tableName
-    ${whereClause.map(x => " where " + x).getOrElse("")}
-    ${groupBy.map(x => " group by " + x).getOrElse("")}
-    ${orderBy.map(x => " order by " + x).getOrElse("")}
-    ${limit.map(x => " limit " + x).getOrElse("")}
-    ${offset.map(x => " offset " + x).getOrElse("")}
+    ${whereClause.map(x => s" where $x").getOrElse("")}
+    ${groupBy.map(x => s" group by $x").getOrElse("")}
+    ${orderBy.map(x => s" order by $x").getOrElse("")}
+    ${limit.map(x => s" limit $x").getOrElse("")}
+    ${offset.map(x => s" offset $x").getOrElse("")}
   """)
 
   protected case class GetById(override val values: Seq[Any]) extends FlatSingleRowQuery[T] {
@@ -55,16 +55,16 @@ trait BaseQueries[T] {
 
   protected case class Count(q: String, groupBy: Option[String] = None) extends Query[Int] {
     override val sql = if (q.isEmpty) {
-      s"select count(*) as c from $tableName" + groupBy.map(" group by " + _).getOrElse("")
+      s"select count(*) as c from $tableName${groupBy.map(x => s" group by $x").getOrElse("")}"
     } else {
       val searchWhere = searchColumns.map(c => s"lower($c) like lower(?)").mkString(" or ")
-      s"select count(*) as c from $tableName where $searchWhere" + groupBy.map(" group by " + _).getOrElse("")
+      s"select count(*) as c from $tableName where $searchWhere${groupBy.map(x => s" group by $x").getOrElse("")}"
     }
     override val values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(c => s"%$q%") }
     override def reduce(rows: Iterator[Row]) = rows.next().as[Long]("c").toInt
   }
 
-  case class Search(q: String, orderBy: String, page: Option[Int], groupBy: Option[String] = None) extends Query[List[T]] {
+  case class Search(q: String, orderBy: String, page: Option[Int], /* TODO use */groupBy: Option[String] = None) extends Query[List[T]] {
     private[this] val whereClause = if (q.isEmpty) { None } else { Some(searchColumns.map(c => s"lower($c) like lower(?)").mkString(" or ")) }
     private[this] val limit = page.map(x => Config.pageSize)
     private[this] val offset = page.map(x => x * Config.pageSize)

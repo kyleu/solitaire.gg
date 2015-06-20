@@ -36,7 +36,7 @@ object IconCreator extends App {
   private val startMs = System.currentTimeMillis
   println("Creating icons...")
   go()
-  println("Icon creation complete in [" + (System.currentTimeMillis - startMs) + "ms].")
+  println(s"Icon creation complete in [${System.currentTimeMillis - startMs}ms].")
 
   def go() = {
     wipeTarget()
@@ -44,7 +44,7 @@ object IconCreator extends App {
     for(color <- colors) {
       for(icon <- icons) {
         val src = srcDir.resolve(icon + ".svg")
-        val tgt = tmpDir.resolve(icon + "-" + color._1 + ".svg")
+        val tgt = tmpDir.resolve(s"$icon-${color._1}.svg")
         colorizeSvg(src, tgt, color._2)
         convert(icon, color._1)
       }
@@ -70,7 +70,7 @@ object IconCreator extends App {
 
   private[this] def convert(icon: String, color: String) = {
     import scala.sys.process._
-    println("Converting [" + icon + ":" + color + "]")
+    println(s"Converting [$icon:$color]")
     if(icon == "cards" || icon == "check" || icon == "error") {
       s"convert -resize 500x500 -background none ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color-500.png".!
       s"convert -resize 64x64 -background none ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color@2x.png".!
@@ -89,23 +89,23 @@ object IconCreator extends App {
 
   private[this] def stitch(color: String) = {
     import scala.sys.process._
-    println("Stitching icons for [" + color + "]")
+    println(s"Stitching icons for [$color]")
 
 
-    val activeIconNames = icons.map(x => "./tmp/icons/" + x + "-white.png").mkString(" ")
-    val inactiveIconNames = icons.map(x => "./tmp/icons/" + x + "-" + color + ".png").mkString(" ")
-    val cmd = "montage " + activeIconNames + " " + inactiveIconNames + " -tile " + icons.size + "x2 -geometry +0 -background Transparent ./tmp/icons/icons-" + color + ".png"
+    val activeIconNames = icons.map(x => s"./tmp/icons/$x-white.png").mkString(" ")
+    val inactiveIconNames = icons.map(x => s"./tmp/icons/$x-$color.png").mkString(" ")
+    val cmd = s"montage $activeIconNames $inactiveIconNames -tile ${icons.size}x2 -geometry +0 -background Transparent ./tmp/icons/icons-$color.png"
     cmd.!
 
-    val active2xIconNames = icons.map(x => "./tmp/icons/" + x + "-white@2x.png").mkString(" ")
-    val inactive2xIconNames = icons.map(x => "./tmp/icons/" + x + "-" + color + "@2x.png").mkString(" ")
-    val cmd2x = "montage " + active2xIconNames + " " + inactive2xIconNames + " -tile " + icons.size + "x2 -geometry +0 -background Transparent ./tmp/icons/icons-" + color + "@2x.png"
+    val active2xIconNames = icons.map(x => s"./tmp/icons/$x-white@2x.png").mkString(" ")
+    val inactive2xIconNames = icons.map(x => s"./tmp/icons/$x-$color@2x.png").mkString(" ")
+    val cmd2x = s"montage $active2xIconNames $inactive2xIconNames -tile ${icons.size}x2 -geometry +0 -background Transparent ./tmp/icons/icons-$color@2x.png"
     cmd2x.!
   }
 
   private[this] def logos(color: (String, String)) = {
     import scala.sys.process._
-    println("Creating logos for [" + color._1 + "]")
+    println(s"Creating logos for [${color._1}]")
 
     s"convert -resize 600x600 -background #${color._2} ./tmp/icons/cards-white.svg ./tmp/icons/logo-${color._1}.png".!
     //s"convert ./tmp/icons/logo-${color._1}.png -gravity center -background #${color._2} -extent 600x600 ./tmp/icons/logo-${color._1}.png".!

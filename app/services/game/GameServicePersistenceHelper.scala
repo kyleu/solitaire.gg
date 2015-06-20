@@ -47,7 +47,7 @@ trait GameServicePersistenceHelper { this: GameService =>
       case Undo => ("undo", None, None, None)
       case Redo => ("redo", None, None, None)
 
-      case sp: SetPreference => ("set-pref" + sp.name, None, Some(sp.name), Some(sp.value))
+      case sp: SetPreference => ("set-pref", None, Some(sp.name), Some(sp.value))
     }
     GameHistory.Move(
       gameId = id,

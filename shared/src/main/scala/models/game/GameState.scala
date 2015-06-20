@@ -52,7 +52,7 @@ case class GameState(
 
   def toStrings = Seq(
     s"Game ID: $gameId", s"Rules: $rules", s"Seed: $seed",
-    "Players: " + players.map(x => s"${x.userId} (${x.name})").mkString(", "),
+    s"Players: ${players.map(x => s"${x.userId} (${x.name})").mkString(", ")}",
     s"Deck: ${deck.cards}", s"${piles.size} Piles: "
   ) ++ piles.map(p => p.toString)
 }
