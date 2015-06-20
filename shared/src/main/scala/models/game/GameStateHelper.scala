@@ -10,7 +10,7 @@ trait GameStateHelper { this: GameState =>
     this.pilesById.get(pile) match {
       case Some(p) => p.addCard(card)
       case None =>
-        val msg = "Cannot find pile [" + pile + "] in known piles [" + this.pilesById.keys.toList.sorted.mkString(", ") + "]."
+        val msg = s"Cannot find pile [$pile] in known piles [${this.pilesById.keys.toList.sorted.mkString(", ")}]."
         throw new IllegalStateException(msg)
     }
     if (reveal) {

@@ -11,9 +11,9 @@ object GameSerializers {
       case JsString(s) => if (s.length == 1) {
         JsSuccess(Rank.allByChar(s.head))
       } else {
-        JsError("Invalid card suit value [" + s + "].")
+        JsError(s"Invalid card suit value [$s].")
       }
-      case _ => JsError("Invalid card suit value [" + Json.stringify(json) + "].")
+      case _ => JsError(s"Invalid card suit value [${Json.stringify(json)}].")
     }
   }
   implicit val rankWrites = new Writes[Rank] {
@@ -25,9 +25,9 @@ object GameSerializers {
       case JsString(s) => if (s.length == 1) {
         JsSuccess(Suit.fromChar(s.head))
       } else {
-        JsError("Invalid card suit value [" + s + "].")
+        JsError(s"Invalid card suit value [$s].")
       }
-      case _ => JsError("Invalid card suit value [" + Json.stringify(json) + "].")
+      case _ => JsError(s"Invalid card suit value [${Json.stringify(json)}].")
     }
   }
   implicit val suitWrites = new Writes[Suit] {

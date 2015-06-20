@@ -1,4 +1,4 @@
-define(['ui/Buttons'], function(Buttons) {
+define(['ui/Buttons', 'ui/Colors'], function(Buttons, Colors) {
   var Options = function(game) {
     this.game = game;
     this.elements = {
@@ -11,6 +11,9 @@ define(['ui/Buttons'], function(Buttons) {
     };
     game.menusVisible = this.elements.topBar.style.display !== 'none';
     this.buttons = new Buttons(game, this);
+    Colors.init(function(color) {
+      game.send("SetPreference", { "name": "color", "value": color });
+    });
   };
 
   Options.prototype.setGame = function(state) {

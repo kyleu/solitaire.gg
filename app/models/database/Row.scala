@@ -9,7 +9,7 @@ class Row(val rowData: RowData) {
   }
 
   def as[T](s: String) = rowData(s) match {
-    case null => throw new IllegalArgumentException("Column [" + s + "] is null.")
+    case null => throw new IllegalArgumentException(s"Column [$s] is null.")
     case x => x.asInstanceOf[T]
   }
 }

@@ -8,7 +8,7 @@ object TableauSet {
     val prefix = if (tableauRules.setNumber == 0) {
       "tableau-"
     } else {
-      "tableau" + (tableauRules.setNumber + 1) + "-"
+      s"tableau${tableauRules.setNumber + 1}-"
     }
 
     val options = TableauPileOptions(tableauRules, deckOptions, cardRemovalMethod)

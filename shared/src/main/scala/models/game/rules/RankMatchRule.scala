@@ -8,25 +8,38 @@ sealed trait RankMatchRule {
 
 object RankMatchRule {
   private[this] def upBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
-    val target = if (wrap && (l.value + i > 14)) {
-      (l.value + i + 1) % 14
-    } else if (lowRank == Rank.Ace && l == Rank.Ace) {
-      i + 1
-    } else {
-      l.value + i
-    }
-    target == r.value
+    val highRank = lowRank.previous
+    val target = (0 until i).foldLeft[Rank](l)((rank, i) => {
+      if(rank == Rank.Unknown) {
+        Rank.Unknown
+      } else if(rank == highRank) {
+        if(wrap) {
+          rank.next
+        } else {
+          Rank.Unknown
+        }
+      } else {
+        rank.next
+      }
+    })
+    target == r
   }
 
   private[this] def downBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
-    val target = if (wrap && (l.value - i < 2)) {
-      l.value - i + 14
-    } else if (lowRank == Rank.Ace && l == Rank.Ace) {
-      Rank.Ace.value - i
-    } else {
-      l.value - i
-    }
-    target == r.value
+    val target = (0 until i).foldLeft[Rank](l)((rank, i) => {
+      if(rank == Rank.Unknown) {
+        Rank.Unknown
+      } else if(rank == lowRank) {
+        if(wrap) {
+          rank.previous
+        } else {
+          Rank.Unknown
+        }
+      } else {
+        rank.previous
+      }
+    })
+    target == r
   }
 
   case object None extends RankMatchRule {

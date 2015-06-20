@@ -36,7 +36,7 @@ case class GameState(
       playerKnownIds(userId) = collection.mutable.HashSet.empty
   }
 
-  def getCard(id: UUID) = piles.flatMap(_.cards.find(_.id == id)).headOption.getOrElse(throw new IllegalStateException("Invalid card [" + id + "]."))
+  def getCard(id: UUID) = piles.flatMap(_.cards.find(_.id == id)).headOption.getOrElse(throw new IllegalStateException(s"Invalid card [$id]."))
 
   def view(userId: UUID) = {
     val knownCards = playerKnownIds(userId)
@@ -51,8 +51,8 @@ case class GameState(
   }
 
   def toStrings = Seq(
-    "Game ID: " + gameId, "Rules: " + rules, "Seed: " + seed,
-    "Players: " + players.map(x => x.userId.toString + " (" + x.name + ")").mkString(", "),
-    "Deck: " + deck.cards.toString, piles.size + " Piles: "
+    s"Game ID: $gameId", s"Rules: $rules", s"Seed: $seed",
+    "Players: " + players.map(x => s"${x.userId} (${x.name})").mkString(", "),
+    s"Deck: ${deck.cards}", s"${piles.size} Piles: "
   ) ++ piles.map(p => p.toString)
 }

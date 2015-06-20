@@ -24,7 +24,7 @@ class ConnectionService(val supervisor: ActorRef, val userId: UUID, val name: St
 
   override def receiveRequest = {
     // Incoming basic messages
-    case mr: MalformedRequest => timeReceive(mr) { log.error("MalformedRequest:  [" + mr.reason + "]: [" + mr.content + "].") }
+    case mr: MalformedRequest => timeReceive(mr) { log.error(s"MalformedRequest:  [${mr.reason}]: [${mr.content}].") }
     case p: Ping => timeReceive(p) { out ! Pong(p.timestamp) }
     case GetVersion => timeReceive(GetVersion) { out ! VersionResponse(Config.version) }
     case di: DebugInfo => timeReceive(di) { handleDebugInfo(di.data) }
@@ -40,7 +40,7 @@ class ConnectionService(val supervisor: ActorRef, val userId: UUID, val name: St
     // Outgoing messages
     case rm: ResponseMessage => handleResponseMessage(rm)
 
-    case x => throw new IllegalArgumentException("Unhandled message [" + x.getClass.getSimpleName + "].")
+    case x => throw new IllegalArgumentException(s"Unhandled message [${x.getClass.getSimpleName}].")
   }
 
   override def postStop() = {
@@ -53,6 +53,6 @@ class ConnectionService(val supervisor: ActorRef, val userId: UUID, val name: St
     case gs: GameStopped => timeReceive(gs) { handleGameStopped(gs.id) }
     case ct: ConnectionTrace => timeReceive(ct) { handleConnectionTrace() }
     case ct: ClientTrace => timeReceive(ct) { handleClientTrace() }
-    case x => throw new IllegalArgumentException("Unhandled internal message [" + x.getClass.getSimpleName + "].")
+    case x => throw new IllegalArgumentException(s"Unhandled internal message [${x.getClass.getSimpleName}].")
   }
 }

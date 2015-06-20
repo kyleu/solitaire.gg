@@ -31,10 +31,10 @@ class SolverTests {
     }
 
     if (solver.gameWon) {
-      val msg = "Won game [" + rules + "] with seed [" + seed + "] in [" + movesPerformed.size + "] moves."
+      val msg = s"Won game [$rules] with seed [$seed] in [${movesPerformed.size}] moves."
       msg
     } else {
-      val msg = "Unable to find a solution for [" + rules + "] seed [" + seed + "] in [" + movesPerformed.size + "] moves."
+      val msg = s"Unable to find a solution for [$rules] seed [$seed] in [${movesPerformed.size}] moves."
       msg
     }
   }

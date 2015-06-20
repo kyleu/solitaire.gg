@@ -23,7 +23,7 @@ object FoundationPileOptions {
             val firstCard = cards.headOption.getOrElse(throw new IllegalStateException())
             if (tgt.cards.isEmpty) {
               val siblings = gameState.pileSets.find(ps => ps.piles.exists(p => p.id == tgt.id)).map(_.piles.filterNot(_.id == tgt.id)).getOrElse {
-                throw new IllegalStateException("Can't find pileset for [" + tgt.id + "].")
+                throw new IllegalStateException(s"Can't find pileset for [${tgt.id}].")
               }
               val rankOk = if (lowRank == Rank.Unknown) {
                 siblings.flatMap(_.cards.headOption).headOption match {

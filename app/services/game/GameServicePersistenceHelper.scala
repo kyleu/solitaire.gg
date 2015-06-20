@@ -39,12 +39,15 @@ trait GameServicePersistenceHelper { this: GameService =>
   private[this] def toMove(gm: GameMessage, idx: Int, playerId: UUID, occurred: LocalDateTime) = {
     val params = gm match {
       case GetPossibleMoves => ("get-possible", None, None, None)
+
       case sc: SelectCard => ("select-card", Some(Seq(sc.card)), Some(sc.pile), None)
       case sp: SelectPile => ("select-pile", None, Some(sp.pile), None)
       case mc: MoveCards => ("move", Some(mc.cards), Some(mc.src), Some(mc.tgt))
+
       case Undo => ("undo", None, None, None)
       case Redo => ("redo", None, None, None)
-      case ResignGame => ("resign", None, None, None)
+
+      case sp: SetPreference => ("set-pref" + sp.name, None, Some(sp.name), Some(sp.value))
     }
     GameHistory.Move(
       gameId = id,

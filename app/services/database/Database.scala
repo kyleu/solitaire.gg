@@ -30,21 +30,21 @@ object Database extends Logging with Instrumented with FutureMetrics {
       conn.sendPreparedStatement(prependComment(statement, statement.sql), statement.values).map(_.rowsAffected.toInt)
     }
     ret.onFailure {
-      case x: Throwable => log.error("Error [" + x.getClass.getSimpleName + "] encountered while executing statement [" + name + "].", x)
+      case x: Throwable => log.error(s"Error [${x.getClass.getSimpleName}] encountered while executing statement [$name].", x)
     }
     ret
   }
 
   def query[A](query: RawQuery[A], conn: Connection = pool): Future[A] = {
     val name = query.getClass.getSimpleName.replaceAllLiterally("$", "")
-    log.debug(s"Executing query [$name] with SQL [${query.sql}] with values [" + query.values.mkString(", ") + "].")
+    log.debug(s"Executing query [$name] with SQL [${query.sql}] with values [${query.values.mkString(", ")}].")
     val ret = timing("query." + name) {
       conn.sendPreparedStatement(prependComment(query, query.sql), query.values).map { r =>
         query.handle(r.rows.getOrElse(throw new IllegalStateException()))
       }
     }
     ret.onFailure {
-      case x: Throwable => log.error("Error [" + x.getClass.getSimpleName + "] encountered while executing query [" + name + "].", x)
+      case x: Throwable => log.error(s"Error [${x.getClass.getSimpleName}] encountered while executing query [$name].", x)
     }
     ret
   }
@@ -55,7 +55,7 @@ object Database extends Logging with Instrumented with FutureMetrics {
       conn.sendQuery(prependComment(name, sql))
     }
     ret.onFailure {
-      case x: Throwable => log.error("Error [" + x.getClass.getSimpleName + "] encountered while executing raw query [" + name + "].", x)
+      case x: Throwable => log.error(s"Error [${x.getClass.getSimpleName}] encountered while executing raw query [$name].", x)
     }
     ret
   }

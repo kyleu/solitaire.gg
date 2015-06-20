@@ -48,20 +48,20 @@ trait GameRulesHelper { this: GameRules =>
     "stock" -> stock.map(s => Seq("stock")).getOrElse(Nil),
     "waste" -> waste.map(w => (1 to w.numPiles).map(i => "waste-" + i)).getOrElse(Nil),
     "foundations" -> foundations.flatMap(fs => (1 to fs.numPiles).map { i =>
-      if (fs.setNumber == 0) { "foundation-" + i } else { "foundation" + fs.setNumber + "-" + i }
+      if (fs.setNumber == 0) { s"foundation-$i" } else { s"foundation${fs.setNumber}-$i" }
     }),
     "tableaus" -> tableaus.flatMap(ts => (1 to ts.numPiles).map { i =>
-      if (ts.setNumber == 0) { "tableau-" + i } else { "tableau" + ts.setNumber + "-" + i }
+      if (ts.setNumber == 0) { s"tableau-$i" } else { s"tableau${ts.setNumber}-$i" }
     }),
     "pyramids" -> pyramids.flatMap { ps =>
       (1 to ps.height).flatMap { i =>
         (1 to i).map { j =>
-          if (ps.setNumber == 0) { "pyramid-" + i + "-" + j } else { "pyramid" + ps.setNumber + "-" + i + "-" + j }
+          if (ps.setNumber == 0) { s"pyramid-$i-$j" } else { s"pyramid${ps.setNumber}-$i-$j" }
         }
       }
     },
-    "reserves" -> reserves.map(r => (1 to r.numPiles).map(i => "reserve-" + i)).getOrElse(Nil),
-    "cells" -> cells.map(c => (1 to c.numPiles).map(i => "cells-" + i)).getOrElse(Nil)
+    "reserves" -> reserves.map(r => (1 to r.numPiles).map(i => s"reserve-$i")).getOrElse(Nil),
+    "cells" -> cells.map(c => (1 to c.numPiles).map(i => s"cells-$i")).getOrElse(Nil)
   )
 
   protected[this] lazy val prototypePileSets = (

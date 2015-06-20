@@ -17,7 +17,7 @@ import scala.concurrent.Future
 
 object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter()) with GlobalSettings with Logging {
   override def onStart(app: Application) {
-    log.info(utils.Config.projectName + " build [" + BuildInfo.buildinfoBuildnumber + "] is starting on [" + utils.Config.hostname + "].")
+    log.info(s"${utils.Config.projectName} build [${BuildInfo.buildinfoBuildnumber}] is starting on [${utils.Config.hostname}].")
 
     SharedMetricRegistries.remove("default")
     SharedMetricRegistries.add("default", Instrumented.metricRegistry)
@@ -57,7 +57,7 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter(
 
   override def onRouteRequest(request: RequestHeader) = {
     if (!Option(request.path).exists(_.startsWith("/assets"))) {
-      log.info("Request from [" + request.remoteAddress + "]: " + request.toString)
+      log.info(s"Request from [${request.remoteAddress}]: ${request.toString}")
     }
     if (request.domain == utils.Config.hostname) {
       super.onRouteRequest(request)

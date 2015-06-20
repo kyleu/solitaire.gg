@@ -35,7 +35,8 @@ class RulesController @javax.inject.Inject() (override val messagesApi: Messages
   def links = withAdminSession { implicit request =>
     Future {
       val links = LinkParser.parse()
-      val ret = "<ul>\n" + links.map(l => "\n  <li>" + l._1 + ": [" + l._2.mkString(" :: ") + "]</li>").mkString("\n") + "\n</ul>"
+      val liSeq = links.map(l => s"\n  <li>${l._1}: [${l._2.mkString(" :: ")}]</li>").mkString("\n")
+      val ret = s"<ul>\n$liSeq\n</ul>"
       Ok(Html(ret))
     }
   }

@@ -9,7 +9,7 @@ object TableauInitialMoves {
       val prefix = if (tr.setNumber == 0) {
         "tableau-"
       } else {
-        "tableau" + (tr.setNumber + 1) + "-"
+        s"tableau${tr.setNumber + 1}-"
       }
       tr.initialCards match {
         case InitialCards.Count(i) => (1 to i).foreach { row =>

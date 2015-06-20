@@ -3,6 +3,8 @@ package models.game
 sealed trait Rank {
   def value: Int
   def toChar: Char
+  lazy val previous = Rank.allByValue(value - 1)
+  lazy val next = Rank.allByValue(value + 1)
 }
 
 object Rank {
@@ -11,72 +13,76 @@ object Rank {
   val allByValue = all.map(r => r.value -> r).toMap + (1 -> Ace)
 
   case object Two extends Rank {
-    override def value = 2
-    override def toChar = '2'
+    override val value = 2
+    override val toChar = '2'
+    override lazy val previous = Ace
   }
 
   case object Three extends Rank {
-    override def value = 3
-    override def toChar = '3'
+    override val value = 3
+    override val toChar = '3'
   }
 
   case object Four extends Rank {
-    override def value = 4
-    override def toChar = '4'
+    override val value = 4
+    override val toChar = '4'
   }
 
   case object Five extends Rank {
-    override def value = 5
-    override def toChar = '5'
+    override val value = 5
+    override val toChar = '5'
   }
 
   case object Six extends Rank {
-    override def value = 6
-    override def toChar = '6'
+    override val value = 6
+    override val toChar = '6'
   }
 
   case object Seven extends Rank {
-    override def value = 7
-    override def toChar = '7'
+    override val value = 7
+    override val toChar = '7'
   }
 
   case object Eight extends Rank {
-    override def value = 8
-    override def toChar = '8'
+    override val value = 8
+    override val toChar = '8'
   }
 
   case object Nine extends Rank {
-    override def value = 9
-    override def toChar = '9'
+    override val value = 9
+    override val toChar = '9'
   }
 
   case object Ten extends Rank {
-    override def value = 10
-    override def toChar = 'X'
+    override val value = 10
+    override val toChar = 'X'
   }
 
   case object Jack extends Rank {
-    override def value = 11
-    override def toChar = 'J'
+    override val value = 11
+    override val toChar = 'J'
   }
 
   case object Queen extends Rank {
-    override def value = 12
-    override def toChar = 'Q'
+    override val value = 12
+    override val toChar = 'Q'
   }
 
   case object King extends Rank {
-    override def value = 13
-    override def toChar = 'K'
+    override val value = 13
+    override val toChar = 'K'
   }
 
   case object Ace extends Rank {
-    override def value = 14
-    override def toChar = 'A'
+    override val value = 14
+    override val toChar = 'A'
+    override lazy val next = Two
   }
 
   case object Unknown extends Rank {
-    override def value = 0
-    override def toChar = '?'
+    override val value = 0
+    override val toChar = '?'
+    override lazy val previous = Unknown
+    override lazy val next = Unknown
   }
 }

@@ -14,11 +14,10 @@ trait GameServiceTraceHelper { this: GameService =>
     val playerString = player.connectionId match {
       case Some(cId) =>
         val observeUrl = controllers.admin.routes.AdminController.observeGameAs(id, player.userId).url
-        "User ID:" + player.userId + "<br />" +
-          "Connection ID: " + cId + "<br />" +
-          " <a class=\"btn btn-default\" href=\"" + connUrl(cId) + "\" class=\"trace-link\">Trace Connection</a>" +
-          " <a class=\"btn btn-default\" href=\"" + observeUrl + "\" target=\"_blank\">Observe game as [" + player.name + "]</a>"
-      case None => player.userId.toString + " (Disconnected)"
+        val traceLink = s"""<a class="btn btn-default" href="${connUrl(cId)}" class="trace-link">Trace Connection</a>"""
+        val observeLink = s"""<a class="btn btn-default" href="$observeUrl" target="_blank">Observe game as [${player.name}]</a>"""
+        s"User ID:${player.userId}<br />Connection ID: $cId<br />$traceLink$observeLink"
+      case None => s"${player.userId.toString} (Disconnected)"
     }
 
     val ret = TraceResponse(this.id, List(
@@ -28,14 +27,12 @@ trait GameServiceTraceHelper { this: GameService =>
       "player" -> playerString,
       "observers" -> observerConnections.map { x =>
         x._1.connectionId match {
-          case Some(connId) =>
-            "<a href=\"" + connUrl(connId) + "\" class=\"trace-link\">" + connId + "</a>" +
-              " (" + x._1.name + " as " + x._2.getOrElse("admin") + ")"
-          case None => x._1.toString + " (Disconnected)"
+          case Some(connId) => s"""<a href="${connUrl(connId)}" class="trace-link">$connId</a> (${x._1.name} as ${x._2.getOrElse("admin")})"""
+          case None => s"${x._1.toString} (Disconnected)"
         }
       }.mkString("<br/>\n"),
       "gameMessageCount" -> gameMessages.size,
-      "lastMessage" -> gameMessages.lastOption.map(_.toString).getOrElse("none")
+      "lastMessage" -> gameMessages.lastOption.map(_.toString()).getOrElse("none")
     ))
     sender() ! ret
   }

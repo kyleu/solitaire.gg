@@ -39,12 +39,12 @@ class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends 
       f.map { ret =>
         val duration = System.currentTimeMillis - startMs
         val actions = ret.filter(_._2.isDefined)
-        val msgStart = "Completed [" + ret.size + "] scheduled tasks in [" + duration + "ms]"
+        val msgStart = s"Completed [${ret.size}] scheduled tasks in [${duration}ms]"
         if(actions.nonEmpty) {
-          val result = ret.map(x => x._1 + ": " + x._2.getOrElse("No progress")).mkString(", ")
-          log.info(msgStart + " with result [" + result + "].")
+          val result = ret.map(x => s"${x._1}: ${x._2.getOrElse("No progress")}").mkString(", ")
+          log.info(s"$msgStart with result [$result].")
         } else {
-          log.debug(msgStart + ". No result.")
+          log.debug(s"$msgStart. No result.")
         }
         ret
       }

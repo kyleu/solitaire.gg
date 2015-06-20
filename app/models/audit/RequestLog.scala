@@ -21,7 +21,7 @@ object RequestLog {
     queryString = r.rawQueryString,
 
     lang = r.acceptLanguages.headOption.map(_.code),
-    cookie = if (r.cookies.isEmpty) { None } else { Some(r.cookies.toSeq.map(c => c.name + "=" + c.value).mkString(", ")) },
+    cookie = if (r.cookies.isEmpty) { None } else { Some(r.cookies.toSeq.map(c => s"${c.name}=${c.value}").mkString(", ")) },
     referrer = r.headers.get("Referer"),
     userAgent = r.headers.get("User-Agent"),
     started = new LocalDateTime(),

@@ -26,5 +26,4 @@ trait GameServiceUndoHelper { this: GameService =>
       handleGetPossibleMoves(userId)
     }
   }
-
 }

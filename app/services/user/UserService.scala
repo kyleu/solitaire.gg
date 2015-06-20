@@ -15,7 +15,7 @@ import scala.concurrent.Future
 
 object UserService extends IdentityService[User] with Logging {
   def create[A <: AuthInfo](currentUser: User, profile: CommonSocialProfile): Future[User] = {
-    log.info("Saving profile [" + profile + "].")
+    log.info(s"Saving profile [$profile].")
     retrieve(profile.loginInfo).flatMap {
       case Some(existingUser) =>
         if (existingUser.id == currentUser.id) {
@@ -54,7 +54,7 @@ object UserService extends IdentityService[User] with Logging {
       Database.query(UserQueries.getById(Seq(UUID.fromString(loginInfo.providerKey)))).map {
         case Some(dbUser) =>
           if (dbUser.profiles.nonEmpty) {
-            log.warn("Attempt to authenticate as anonymous for user with profiles [" + dbUser.profiles + "].")
+            log.warn(s"Attempt to authenticate as anonymous for user with profiles [${dbUser.profiles}].")
             None
           } else {
             CacheService.cacheUserForLoginInfo(dbUser, loginInfo)
@@ -74,10 +74,10 @@ object UserService extends IdentityService[User] with Logging {
 
   def save(user: User, update: Boolean = false): Future[User] = {
     val statement = if (update) {
-      log.info("Updating user [" + user + "].")
+      log.info(s"Updating user [$user].")
       UserQueries.UpdateUser(user)
     } else {
-      log.info("Creating new user [" + user + "].")
+      log.info(s"Creating new user [$user].")
       UserQueries.insert(user)
     }
     Database.execute(statement).map { i =>

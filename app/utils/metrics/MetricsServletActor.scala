@@ -23,7 +23,7 @@ class MetricsServletActor extends InstrumentedActor with Logging {
     }
 
     if (Config.graphiteEnabled) {
-      log.info("Starting Graphite reporter for [" + Config.graphiteServer + ":" + Config.graphitePort + "].")
+      log.info(s"Starting Graphite reporter for [${Config.graphiteServer}:${Config.graphitePort}].")
       val graphiteServer = new Graphite(new InetSocketAddress(Config.graphiteServer, Config.graphitePort))
       graphiteReporter = Some(
         GraphiteReporter.forRegistry(Instrumented.metricRegistry)
@@ -36,7 +36,7 @@ class MetricsServletActor extends InstrumentedActor with Logging {
     }
 
     if (Config.servletEnabled) {
-      log.info("Starting metrics servlet at [http://0.0.0.0:" + Config.servletPort + "/].")
+      log.info(s"Starting metrics servlet at [http://0.0.0.0:${Config.servletPort}/].")
       httpServer = Some(createJettyServer())
       httpServer.foreach(s => s.start())
     }

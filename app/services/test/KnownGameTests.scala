@@ -29,13 +29,13 @@ class KnownGameTests {
     conn ! StartGame("klondike", Some(seed))
     val gameJoined = testProbe.expectMsgClass(classOf[GameJoined])
     activeGameId = gameJoined.id
-    "Started [" + rules + "] game [" + activeGameId + "]."
+    s"Started [$rules] game [$activeGameId]."
   })
 
   private[this] def possibleMoves() = Test("possible-moves", () => {
     conn ! GetPossibleMoves
     moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
-    "Started [" + rules + "] game [" + activeGameId + "]."
+    s"Started [$rules] game [$activeGameId]."
   })
 
   private[this] def moveCardsA() = Test("move-cards-a", () => {
@@ -43,7 +43,7 @@ class KnownGameTests {
     conn ! action
     val cardMoved = testProbe.expectMsgClass(classOf[CardsMoved])
     moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
-    "Performed [MoveCards], received [" + moves.size + "] possible moves."
+    s"Performed [MoveCards], received [${moves.size}] possible moves."
   })
 
   private[this] def moveCardsB() = Test("move-cards-b", () => {
@@ -51,7 +51,7 @@ class KnownGameTests {
     conn ! action
     val cardMoved = testProbe.expectMsgClass(classOf[CardsMoved])
     moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
-    "Performed [MoveCards], received [" + moves.size + "] possible moves."
+    s"Performed [MoveCards], received [${moves.size}] possible moves."
   })
 
   private[this] def disconnect() = Test("disconnect", () => {

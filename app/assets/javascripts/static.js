@@ -26,7 +26,6 @@
         colorIndexEnd = cn.length;
       }
       var newClassName = cn.substr(0, colorIndexStart) + "btn-" + color + cn.substr(colorIndexEnd);
-      console.log(newClassName);
       btn.className = newClassName;
     }
 

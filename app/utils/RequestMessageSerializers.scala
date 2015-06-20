@@ -15,12 +15,15 @@ object RequestMessageSerializers {
   private[this] val observeGameReads = Json.reads[ObserveGame]
 
   // case object [GetPossibleMoves]
+
   private[this] val selectCardReads = Json.reads[SelectCard]
   private[this] val selectPileReads = Json.reads[SelectPile]
   private[this] val moveCardsReads = Json.reads[MoveCards]
 
   // case object Undo
   // case object Redo
+
+  private[this] val setPreferenceReads = Json.reads[SetPreference]
 
   implicit val requestMessageReads: Reads[RequestMessage] = (
     (__ \ 'c).read[String] and
@@ -37,6 +40,7 @@ object RequestMessageSerializers {
         case "ObserveGame" => observeGameReads.reads(v)
 
         case "GetPossibleMoves" => JsSuccess(GetPossibleMoves)
+
         case "SelectCard" => selectCardReads.reads(v)
         case "SelectPile" => selectPileReads.reads(v)
         case "MoveCards" => moveCardsReads.reads(v)
@@ -44,11 +48,13 @@ object RequestMessageSerializers {
         case "Undo" => JsSuccess(Undo)
         case "Redo" => JsSuccess(Redo)
 
-        case _ => JsSuccess(MalformedRequest("UnknownType", "c: " + c + ", v: " + Json.stringify(v)))
+        case "SetPreference" => setPreferenceReads.reads(v)
+
+        case _ => JsSuccess(MalformedRequest("UnknownType", s"c: $c, v: ${Json.stringify(v)}"))
       }
       jsResult match {
         case rm: JsSuccess[RequestMessage @unchecked] => rm.get
-        case e: JsError => throw new IllegalArgumentException("Error parsing json for [" + c + "]: " + JsError.toString)
+        case e: JsError => throw new IllegalArgumentException(s"Error parsing json for [$c]: $JsError")
       }
     }
 }

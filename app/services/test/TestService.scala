@@ -17,10 +17,10 @@ object TestService extends Logging {
       TestResult(test.id, (System.currentTimeMillis - startMs).toInt, Some(ret))
     } catch {
       case x: Exception =>
-        log.warn("Exception encountered processing test [" + test.id + "].", x)
+        log.warn(s"Exception encountered processing test [${test.id}].", x)
         TestResult(test.id, (System.currentTimeMillis - startMs).toInt, None, Some(x))
       case x: Error =>
-        log.warn("Error encountered processing test [" + test.id + "].", x)
+        log.warn(s"Error encountered processing test [${test.id}].", x)
         TestResult(test.id, (System.currentTimeMillis - startMs).toInt, None, Some(x))
     }
   }

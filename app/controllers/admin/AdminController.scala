@@ -28,7 +28,7 @@ class AdminController @javax.inject.Inject() (override val messagesApi: Messages
 
   def sandbox() = withAdminSession { implicit request =>
     scheduledTask.go().map { ret =>
-      Ok(ret.map(x => x._1 + ": " + x._2.getOrElse("No progress")).mkString("\n"))
+      Ok(ret.map(x => s"${x._1}: ${x._2.getOrElse("No progress")}").mkString("\n"))
     }
   }
 
@@ -48,7 +48,7 @@ class AdminController @javax.inject.Inject() (override val messagesApi: Messages
   def wipeSchema(key: String) = withAdminSession { implicit request =>
     if (key == "for realz") {
       Schema.wipe().map { tables =>
-        Ok("OK, Wiped tables [" + tables.mkString(", ") + "].")
+        Ok(s"OK, Wiped tables [${tables.mkString(", ")}].")
       }
     } else {
       Future.successful(NotFound("Missing key."))
@@ -61,17 +61,17 @@ class AdminController @javax.inject.Inject() (override val messagesApi: Messages
         Ok("No games available.")
       } else {
         val gameId = ss.games(new Random().nextInt(ss.games.length))._1
-        Ok(views.html.game.gameplay("Observing [" + gameId + "]", request.identity, "", Seq("observe", gameId.toString)))
+        Ok(views.html.game.gameplay(s"Observing [$gameId]", request.identity, "", Seq("observe", gameId.toString)))
       }
-      case se: ServerError => Ok(se.reason + ": " + se.content)
+      case se: ServerError => Ok(s"${se.reason}: ${se.content}")
     }
   }
 
   def observeGameAsAdmin(gameId: UUID) = withAdminSession { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay("Observing [" + gameId + "]", request.identity, "", Seq("observe", gameId.toString))))
+    Future.successful(Ok(views.html.game.gameplay(s"Observing [$gameId]", request.identity, "", Seq("observe", gameId.toString))))
   }
 
   def observeGameAs(gameId: UUID, as: UUID) = withAdminSession { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay("Observing [" + gameId + "]", request.identity, "", Seq("observe", gameId.toString, as.toString))))
+    Future.successful(Ok(views.html.game.gameplay(s"Observing [$gameId]", request.identity, "", Seq("observe", gameId.toString, as.toString))))
   }
 }

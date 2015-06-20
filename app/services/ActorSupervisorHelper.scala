@@ -15,7 +15,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
   private[this] def masterRng = new Random()
 
   protected[this] def handleConnectionStarted(userId: UUID, username: String, connectionId: UUID, conn: ActorRef) {
-    log.debug("Connection [" + connectionId + "] registered to [" + username + "] with path [" + conn.path + "].")
+    log.debug(s"Connection [$connectionId] registered to [$username] with path [${conn.path}].")
     connections(connectionId) = ConnectionRecord(userId, username, conn, None, new LocalDateTime())
     connectionsCounter.inc()
   }
@@ -24,8 +24,8 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
     connections.remove(id) match {
       case Some(conn) =>
         connectionsCounter.dec()
-        log.debug("Connection [" + id + "] [" + conn.actorRef.path + "] stopped.")
-      case None => log.warn("Connection [" + id + "] stopped but is not registered.")
+        log.debug(s"Connection [$id] [${conn.actorRef.path}] stopped.")
+      case None => log.warn(s"Connection [$id] stopped but is not registered.")
     }
   }
 
@@ -45,12 +45,12 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
 
   protected[this] def handleConnectionGameJoin(id: UUID, connectionId: UUID) = games.get(id) match {
     case Some(g) =>
-      log.info("Joining game [" + id + "].")
+      log.info(s"Joining game [$id].")
       val c = connections(connectionId)
       c.activeGame = Some(id)
       g.actorRef ! AddPlayer(c.userId, c.name, connectionId, c.actorRef)
     case None =>
-      log.warn("Attempted to observe invalid game [" + id + "].")
+      log.warn(s"Attempted to observe invalid game [$id].")
       sender() ! ServerError("Invalid Game", id.toString)
   }
 
@@ -62,13 +62,13 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
     }
     game match {
       case Some(g) =>
-        log.info("Connection [" + connectionId + "] is observing game [" + gameId + "].")
+        log.info(s"Connection [$connectionId] is observing game [$gameId].")
         val c = connections(connectionId)
         c.activeGame = Some(gameId)
         c.actorRef ! GameStarted(gameId, g.actorRef, g.started)
         g.actorRef ! AddObserver(c.userId, c.name, connectionId, c.actorRef, as)
       case None =>
-        log.warn("Attempted to observe invalid game [" + gameId + "].")
+        log.warn(s"Attempted to observe invalid game [$gameId].")
         sender() ! ServerError("Invalid Game", gameId.toString)
     }
   }
@@ -82,7 +82,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
           cr.actorRef ! GameStopped(id)
         }
       }
-      log.debug("Game [" + id + "] stopped.")
-    case None => log.warn("Attempted to stop missing game [" + id + "].")
+      log.debug(s"Game [$id] stopped.")
+    case None => log.warn(s"Attempted to stop missing game [$id].")
   }
 }

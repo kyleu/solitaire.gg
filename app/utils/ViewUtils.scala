@@ -7,10 +7,10 @@ object ViewUtils {
     val ret = if (!link) {
       label
     } else if (selected == key) {
-      label + " <span class=\"caret\"></span>"
+      s"""$label <span class="caret"></span>"""
     } else {
-      "<a href=\"?sortBy=" + key + "\">" + label + "</a></th>"
+      s"""<a href="?sortBy=$key">$label</a></th>"""
     }
-    Html("<th nowrap=\"nowrap\" class=\"th-" + key + "\">" + ret + "</th>")
+    Html(s"""<th nowrap="nowrap" class="th-$key">$ret</th>""")
   }
 }

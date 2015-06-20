@@ -9,12 +9,12 @@ import utils.ResponseMessageSerializers._
 
 object MessageFrameFormatter {
   private[this] def requestToJson(r: RequestMessage): JsValue = {
-    throw new IllegalArgumentException("Attempted to serialize RequestMessage [" + r + "] on server.")
+    throw new IllegalArgumentException(s"Attempted to serialize RequestMessage [$r] on server.")
   }
 
   private[this] def requestFromJson(json: JsValue): RequestMessage = Json.fromJson[RequestMessage](json) match {
     case rm: JsSuccess[RequestMessage @unchecked] => rm.get
-    case e: JsError => MalformedRequest(e.errors.map(x => x._1.toString + ": [" + x._2.mkString(" :: ")).mkString(", "), Json.stringify(json))
+    case e: JsError => MalformedRequest(e.errors.map(x => s"$x._1: [${x._2.mkString(" :: ")}").mkString(", "), Json.stringify(json))
   }
 
   private[this] def responseToJson(r: ResponseMessage): JsValue = {
@@ -25,9 +25,9 @@ object MessageFrameFormatter {
         Json.toJson(r)
     }
   }
-  private[this] def responseFromJson(json: JsValue): ResponseMessage = throw new IllegalArgumentException(
-    "Attempted to deserialize ResponseMessage [" + json + "] on server."
-  )
+  private[this] def responseFromJson(json: JsValue): ResponseMessage = {
+    throw new IllegalArgumentException(s"Attempted to deserialize ResponseMessage [$json] on server.")
+  }
 
   private[this] val jsValueFrame: FrameFormatter[JsValue] = {
     val toStr = if (Config.debug) { Json.prettyPrint _ } else { Json.stringify _ }

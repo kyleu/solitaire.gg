@@ -9,11 +9,11 @@ object PyramidSet {
     val prefix = if (pyramidRules.setNumber == 0) {
       "pyramid-"
     } else {
-      "pyramid" + (pyramidRules.setNumber + 1) + "-"
+      s"pyramid${pyramidRules.setNumber + 1}-"
     }
     val pileOptions = PyramidPileOptions(pyramidRules, crm, lowRank)
     val piles = pileOptions.map {
-      case (o, i, j) => Pile(prefix + i + "-" + j, o)
+      case (o, i, j) => Pile(s"$prefix$i-$j", o)
     }
     new PyramidSet(piles)
   }

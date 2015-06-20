@@ -46,8 +46,8 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
   case class CalculateMetric(metric: DailyMetric.Metric, override val sql: String, d: LocalDate) extends SingleRowQuery[(DailyMetric.Metric, Long)] {
     override val values = sql.count(_ == '?') match {
       case 0 => Nil
-      case 1 => Seq(d.plusDays(1).toString + " 00:00:00")
-      case 2 => Seq(d.toString + " 00:00:00", d.plusDays(1).toString + " 00:00:00")
+      case 1 => Seq(s"${d.plusDays(1).toString} 00:00:00")
+      case 2 => Seq(s"${d.toString} 00:00:00", s"${d.plusDays(1).toString} 00:00:00")
     }
     override def map(row: Row) = metric -> row.as[Long]("c")
   }

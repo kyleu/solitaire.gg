@@ -18,9 +18,9 @@ object PlayLoggingFilter extends Filter with Logging with Instrumented {
 
   lazy val statusCodes: Map[Int, Meter] = knownStatuses.map(s => s -> metricRegistry.meter(prefix + s.toString)).toMap
 
-  lazy val requestsTimer = metricRegistry.timer(prefix + "requestTimer")
-  lazy val activeRequests = metricRegistry.counter(prefix + "activeRequests")
-  lazy val otherStatuses = metricRegistry.meter(prefix + "other")
+  lazy val requestsTimer = metricRegistry.timer(s"${prefix}requestTimer")
+  lazy val activeRequests = metricRegistry.counter(s"${prefix}activeRequests")
+  lazy val otherStatuses = metricRegistry.meter(s"${prefix}other")
 
   def apply(nextFilter: (RequestHeader) => Future[Result])(request: RequestHeader): Future[Result] = {
     val startTime = System.currentTimeMillis

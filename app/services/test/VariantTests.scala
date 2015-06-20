@@ -26,6 +26,6 @@ class VariantTests {
     conn ! GetPossibleMoves
     val moves = testProbe.expectMsgClass(classOf[PossibleMoves])
     conn ! PoisonPill
-    "Received [" + moves.moves.size + "] possible moves."
+    s"Received [${moves.moves.size}] possible moves."
   })
 }

@@ -21,27 +21,27 @@ object CacheService {
   }
 
   def getUser(id: UUID) = {
-    getAs[User]("user-" + id)
+    getAs[User](s"user-$id")
   }
 
   def cacheUser(user: User) = {
-    set("user-" + user.id, user, timeout)
+    set(s"user-${user.id}", user, timeout)
     user
   }
 
   def cacheUserForLoginInfo(user: User, loginInfo: LoginInfo) = {
-    set("user-" + user.id, user, timeout)
-    set("user-" + loginInfo.providerID + ":" + loginInfo.providerKey, user, timeout)
+    set(s"user-${user.id}", user, timeout)
+    set(s"user-${loginInfo.providerID}:${loginInfo.providerKey}", user, timeout)
   }
 
   def getUserByLoginInfo(loginInfo: LoginInfo) = {
-    getAs[User]("user-" + loginInfo.providerID + ":" + loginInfo.providerKey)
+    getAs[User](s"user-${loginInfo.providerID}:${loginInfo.providerKey}")
   }
 
   def removeUser(id: UUID) = {
     getAs[User]("user-" + id).foreach { u =>
       for (p <- u.profiles) {
-        cache.remove("user-" + p.providerID + ":" + p.providerKey)
+        cache.remove(s"user-${p.providerID}:${p.providerKey}")
       }
     }
     cache.remove("user-" + id)

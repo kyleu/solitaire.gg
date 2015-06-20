@@ -20,7 +20,7 @@ object InitialMoves {
             case -1 => i == (rr.initialCards - 1)
             case x => i >= x
           }
-          gameState.addCardsFromDeck(1, "reserve-" + p, reveal = reveal)
+          gameState.addCardsFromDeck(1, s"reserve-$p", reveal = reveal)
         }
       }
     }
@@ -28,7 +28,7 @@ object InitialMoves {
     rules.cells.foreach { cr =>
       (0 until cr.initialCards).foreach { i =>
         val col = (i % cr.numPiles) + 1
-        gameState.addCardsFromDeck(1, "cell-" + col, reveal = true)
+        gameState.addCardsFromDeck(1, s"cell-$col", reveal = true)
       }
     }
 
@@ -36,11 +36,11 @@ object InitialMoves {
       val prefix = if (pr.setNumber == 0) {
         "pyramid-"
       } else {
-        "pyramid" + (pr.setNumber + 1) + "-"
+        s"pyramid${pr.setNumber + 1}-"
       }
       (1 to pr.height).foreach { i =>
         (1 to i).foreach { j =>
-          gameState.addCardsFromDeck(1, prefix + i + "-" + j, reveal = true)
+          gameState.addCardsFromDeck(1, s"$prefix$i-$j", reveal = true)
         }
       }
     }

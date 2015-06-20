@@ -19,14 +19,14 @@ class TraceController @javax.inject.Inject() (override val messagesApi: Messages
   def traceConnection(connectionId: UUID) = withAdminSession { implicit request =>
     (ActorSupervisor.instance ask ConnectionTrace(connectionId)).map {
       case tr: TraceResponse => Ok(views.html.admin.trace("Connection", tr))
-      case se: ServerError => Ok(se.reason + ": " + se.content)
+      case se: ServerError => Ok(s"${se.reason}: ${se.content}")
     }
   }
 
   def traceClient(connectionId: UUID) = withAdminSession { implicit request =>
     (ActorSupervisor.instance ask ClientTrace(connectionId)).map {
       case tr: TraceResponse => Ok(views.html.admin.trace("Client", tr))
-      case se: ServerError => Ok(se.reason + ": " + se.content)
+      case se: ServerError => Ok(s"${se.reason}: ${se.content}")
     }
   }
 
@@ -35,7 +35,7 @@ class TraceController @javax.inject.Inject() (override val messagesApi: Messages
       case tr: TraceResponse =>
         val buttons = Seq("Observe As Admin" -> controllers.admin.routes.AdminController.observeGameAsAdmin(gameId).url)
         Ok(views.html.admin.trace("Game", tr, buttons))
-      case se: ServerError => Ok(se.reason + ": " + se.content)
+      case se: ServerError => Ok(s"${se.reason}: ${se.content}")
     }
   }
 }

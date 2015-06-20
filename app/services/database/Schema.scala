@@ -30,8 +30,8 @@ object Schema extends Logging {
   def update() = tables.foreach { t =>
     Database.query(DdlQueries.DoesTableExist(t._1)).foreach { exists =>
       if (!exists) {
-        log.info("Creating missing table [" + t._1 + "].")
-        val name = "CreateTable-" + t._1
+        log.info(s"Creating missing table [${t._1}].")
+        val name = s"CreateTable-${t._1}"
         Database.raw(name, t._2.sql)
       }
     }

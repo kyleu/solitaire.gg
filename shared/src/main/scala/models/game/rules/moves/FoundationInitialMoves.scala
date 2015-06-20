@@ -9,7 +9,7 @@ object FoundationInitialMoves {
       val prefix = if (fr.setNumber == 0) {
         "foundation-"
       } else {
-        "foundation" + (fr.setNumber + 1) + "-"
+        s"foundation${fr.setNumber + 1}-"
       }
       val randomRank = gameState.deck.cards.headOption match {
         case Some(c) => c.r

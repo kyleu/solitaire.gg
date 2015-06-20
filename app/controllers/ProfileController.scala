@@ -31,7 +31,7 @@ class ProfileController @javax.inject.Inject() (override val messagesApi: Messag
         } else {
           loginInfo match {
             case Some(li) => Database.query(ProfileQueries.FindProfile(li.providerID, li.providerKey)).map(_.flatMap(_.avatarURL).getOrElse(Avatars.default))
-            case None => throw new IllegalStateException("Cannot find avatar to match [" + value + "].")
+            case None => throw new IllegalStateException(s"Cannot find avatar to match [$value].")
           }
         }
         urlFuture.flatMap { url =>

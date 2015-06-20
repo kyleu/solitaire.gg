@@ -17,7 +17,7 @@ trait GameServicePossibleMovesHelper { this: GameService =>
       case Success(moves) =>
         moves
       case Failure(ex) =>
-        log.error("Exception [" + ex.getClass.getSimpleName + "] encountered trying to calculate possible moves.", ex)
+        log.error(s"Exception [${ex.getClass.getSimpleName}] encountered trying to calculate possible moves.", ex)
         Nil
     }
     //log.info("Generated [" + ret.size + "] possible moves for [" + id + "].")

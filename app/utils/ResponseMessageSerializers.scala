@@ -46,7 +46,7 @@ object ResponseMessageSerializers {
       case cm: CardMoved => cardMovedWrites.writes(cm)
       case cm: CardsMoved => cardsMovedWrites.writes(cm)
 
-      case _ => throw new IllegalArgumentException("Unhandled ResponseMessage type [" + r.getClass.getSimpleName + "].")
+      case _ => throw new IllegalArgumentException(s"Unhandled ResponseMessage type [${r.getClass.getSimpleName}].")
     }
     JsObject(Seq("c" -> JsString(r.getClass.getSimpleName.replace("$", "")), "v" -> json))
   }

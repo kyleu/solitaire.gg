@@ -38,13 +38,13 @@ trait GameServiceConnectionHelper { this: GameService =>
     import scala.concurrent.duration._
 
     if (player.connectionId == Some(connectionId)) {
-      log.info("Player connection [" + connectionId + "] stopped.")
+      log.info(s"Player connection [$connectionId] stopped.")
       player.connectionId = None
       player.connectionActor = None
     }
     observerConnections.find(_._1.connectionId.contains(connectionId)) match {
       case Some(observerConnection) =>
-        log.info("Observer connection [" + connectionId + "] stopped.")
+        log.info(s"Observer connection [$connectionId] stopped.")
         observerConnection._1.connectionId = None
         observerConnection._1.connectionActor = None
       case None => // noop

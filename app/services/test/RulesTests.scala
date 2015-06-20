@@ -12,6 +12,6 @@ class RulesTests {
     val rules = GameRulesSet.allById(id)
 
     val game = rules.newGame(UUID.randomUUID(), 0)
-    "OK (" + game.deck.cards.size + " cards)"
+    s"OK (${game.deck.cards.size} cards)"
   })
 }

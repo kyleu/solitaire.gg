@@ -9,13 +9,13 @@ trait GameServiceCardHelper { this: GameService =>
     val card = gameState.cardsById(cardId)
     val pile = gameState.pilesById(pileId)
     if (!pile.cards.contains(card)) {
-      log.warn("SelectCard for game [" + id + "]: Card [" + card.toString + "] is not part of the [" + pileId + "] pile.")
+      log.warn(s"SelectCard for game [$id]: Card [$card] is not part of the [$pileId] pile.")
     }
     if (pile.canSelectCard(card, gameState)) {
       val messages = pile.onSelectCard(card, gameState)
       sendToAll(messages)
     } else {
-      log.warn("SelectCard called on [" + card + "], which cannot be selected.")
+      log.warn(s"SelectCard called on [$card], which cannot be selected.")
     }
     checkWinCondition()
     if (!gameWon) {
@@ -26,12 +26,12 @@ trait GameServiceCardHelper { this: GameService =>
   protected[this] def handleSelectPile(userId: UUID, pileId: String) {
     val pile = gameState.pilesById(pileId)
     if (pile.cards.nonEmpty) {
-      log.warn("SelectPile [" + pileId + "] called on a non-empty deck.")
+      log.warn(s"SelectPile [$pileId] called on a non-empty deck.")
     }
     val messages = if (pile.canSelectPile(gameState)) {
       pile.onSelectPile(gameState)
     } else {
-      log.warn("SelectPile called on [" + pile + "], which cannot be selected.")
+      log.warn(s"SelectPile called on [$pile], which cannot be selected.")
       Nil
     }
     sendToAll(messages)
@@ -49,7 +49,7 @@ trait GameServiceCardHelper { this: GameService =>
 
     for (c <- cards) {
       if (!sourcePile.cards.contains(c)) {
-        throw new IllegalArgumentException("Card [" + c + "] is not a part of source pile [" + sourcePile.id + "].")
+        throw new IllegalArgumentException(s"Card [$c] is not a part of source pile [${sourcePile.id}].")
       }
     }
 
@@ -63,11 +63,11 @@ trait GameServiceCardHelper { this: GameService =>
           handleGetPossibleMoves(userId)
         }
       } else {
-        log.debug("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] to pile [" + targetPile.id + "].")
+        log.debug(s"Cannot drag cards [${cards.map(_.toString).mkString(", ")}] to pile [${targetPile.id}].")
         sendToAll(CardMoveCancelled(cardIds, source))
       }
     } else {
-      log.debug("Cannot drag cards [" + cards.map(_.toString).mkString(", ") + "] from pile [" + sourcePile.id + "].")
+      log.debug(s"Cannot drag cards [${cards.map(_.toString).mkString(", ")}] from pile [${sourcePile.id}].")
       sendToAll(CardMoveCancelled(cardIds, source))
     }
   }

@@ -46,7 +46,7 @@ object DeckOptionsHelpService {
     }
 
     if (options.lowRank != Rank.Ace) {
-      ret += options.lowRank + " is the lowest card."
+      ret += s"${options.lowRank} is the lowest card."
     }
 
     ret.toSeq

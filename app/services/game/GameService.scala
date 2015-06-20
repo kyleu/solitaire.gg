@@ -15,7 +15,7 @@ object GameService {
 class GameService(
   val id: UUID, val rules: String, val seed: Int, val started: LocalDateTime, protected val player: GameService.PlayerRecord
 ) extends GameServiceHelper {
-  log.info("Started game [" + rules + "] for user [" + player.userId + ": " + player.name + "] with seed [" + seed + "].")
+  log.info(s"Started game [$rules] for user [${player.userId}: ${player.name}] with seed [$seed].")
 
   protected[this] val observerConnections = collection.mutable.ArrayBuffer.empty[(GameService.PlayerRecord, Option[UUID])]
 
@@ -47,7 +47,7 @@ class GameService(
   override def receiveRequest = {
     case gr: GameRequest => handleGameRequest(gr)
     case im: InternalMessage => handleInternalMessage(im)
-    case x => log.warn("GameService received unknown message [" + x.getClass.getSimpleName + "].")
+    case x => log.warn(s"GameService received unknown message [${x.getClass.getSimpleName}].")
   }
 
   private[this] def handleGameRequest(gr: GameRequest) = {
@@ -60,16 +60,21 @@ class GameService(
       update()
       gr.message match {
         case GetPossibleMoves => timeReceive(GetPossibleMoves) { handleGetPossibleMoves(gr.userId) }
+
         case sc: SelectCard => timeReceive(sc) { handleSelectCard(gr.userId, sc.card, sc.pile) }
         case sp: SelectPile => timeReceive(sp) { handleSelectPile(gr.userId, sp.pile) }
         case mc: MoveCards => timeReceive(mc) { handleMoveCards(gr.userId, mc.cards, mc.src, mc.tgt) }
+
         case Undo => timeReceive(Undo) { handleUndo(gr.userId) }
         case Redo => timeReceive(Redo) { handleRedo(gr.userId) }
-        case r => log.warn("GameService received unknown game message [" + r.getClass.getSimpleName.replace("$", "") + "].")
+
+        case sp: SetPreference => timeReceive(Undo) { handleSetPreference(gr.userId, sp.name, sp.value) }
+
+        case r => log.warn(s"GameService received unknown game message [${r.getClass.getSimpleName.replace("$", "")}].")
       }
     } catch {
       case x: Exception =>
-        log.error("Exception processing game request [" + gr + "].", x)
+        log.error(s"Exception processing game request [$gr].", x)
         sender() ! ServerError(x.getClass.getSimpleName, x.getMessage)
     }
   }
@@ -84,10 +89,10 @@ class GameService(
         case StopGame => timeReceive(StopGame) { handleStopGame() }
         case StopGameIfEmpty => timeReceive(StopGameIfEmpty) { handleStopGameIfEmpty() }
         case gt: GameTrace => timeReceive(gt) { handleGameTrace() }
-        case _ => log.warn("GameService received unhandled internal message [" + im.getClass.getSimpleName + "].")
+        case _ => log.warn(s"GameService received unhandled internal message [${im.getClass.getSimpleName}].")
       }
     } catch {
-      case x: Exception => log.error("Exception processing internal message [" + im + "].", x)
+      case x: Exception => log.error(s"Exception processing internal message [$im].", x)
     }
   }
 }

@@ -21,7 +21,7 @@ case class Pile(id: String, options: PileOptions, cards: collection.mutable.Arra
 
   def removeCard(card: Card) {
     if (!cards.contains(card)) {
-      throw new IllegalArgumentException("Provided card [" + card + "] is not included in pile [" + id + "].")
+      throw new IllegalArgumentException(s"Provided card [$card] is not included in pile [$id].")
     }
     cards -= card
   }
@@ -36,5 +36,5 @@ case class Pile(id: String, options: PileOptions, cards: collection.mutable.Arra
   def onSelectPile(gameState: GameState) = options.selectPileAction.getOrElse(SelectPileActions.none).f(this, gameState)
   def onDragTo(src: Pile, cards: Seq[Card], gameState: GameState) = options.dragToAction.getOrElse(DragToActions.moveCards).f(src, cards, this, gameState)
 
-  override def toString: String = id + ": " + cards.map(_.toString).mkString(", ")
+  override def toString: String = s"$id: ${cards.map(_.toString).mkString(", ")}"
 }

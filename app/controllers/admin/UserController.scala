@@ -17,17 +17,13 @@ import scala.concurrent.Future
 @javax.inject.Singleton
 class UserController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def userList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
-    Database.query(UserQueries.count(q)).flatMap { count =>
-      Database.query(UserQueries.search(q, getOrderClause(sortBy), Some(page))).flatMap { users =>
-        Database.query(new ReportQueries.GameCountForUsers(users.map(_.id))).flatMap { gameCounts =>
-          Database.query(new ReportQueries.WinCountForUsers(users.map(_.id))).flatMap { winCounts =>
-            Database.query(new ReportQueries.RequestCountForUsers(users.map(_.id))).map { requestCounts =>
-              Ok(views.html.admin.user.userList(q, sortBy, count, page, users, gameCounts, winCounts, requestCounts))
-            }
-          }
-        }
-      }
-    }
+    for {
+      count <- Database.query(UserQueries.count(q))
+      users <- Database.query(UserQueries.search(q, getOrderClause(sortBy), Some(page)))
+      gameCounts <- Database.query(new ReportQueries.GameCountForUsers(users.map(_.id)))
+      winCounts <- Database.query(new ReportQueries.WinCountForUsers(users.map(_.id)))
+      requestCounts <- Database.query(new ReportQueries.RequestCountForUsers(users.map(_.id)))
+    } yield Ok(views.html.admin.user.userList(q, sortBy, count, page, users, gameCounts, winCounts, requestCounts))
   }
 
   def userDetail(id: UUID, sortGamesBy: String) = withAdminSession { implicit request =>
@@ -37,7 +33,7 @@ class UserController @javax.inject.Inject() (override val messagesApi: MessagesA
           Ok(views.html.admin.user.userDetail(user, games, requests, ""))
         }
       }
-      case None => Future.successful(NotFound("User [" + id + "] not found."))
+      case None => Future.successful(NotFound(s"User [$id] not found."))
     }
   }
 

@@ -84,7 +84,7 @@ case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None
         case "move-cards" => MoveCards(move.cards, move.sourcePile, move.targetPile.getOrElse(throw new IllegalStateException()))
         case "select-card" => SelectCard(move.cards.headOption.getOrElse(throw new IllegalStateException()), move.sourcePile)
         case "select-pile" => SelectPile(move.sourcePile)
-        case _ => throw new IllegalArgumentException("Invalid possible move [" + move.moveType + "].")
+        case _ => throw new IllegalArgumentException(s"Invalid possible move [${move.moveType}].")
       }
       //log.info("Sending [" + msg + "].")
       conn ! msg

@@ -53,7 +53,7 @@ object PyramidHelpService {
       rules.name
     } else {
       if (rules.name == defaults.name) {
-        rules.name + " " + NumberUtils.toWords(rules.setNumber + 1, properCase = true)
+        s"${rules.name} ${NumberUtils.toWords(rules.setNumber + 1, properCase = true)}"
       } else {
         rules.name
       }
