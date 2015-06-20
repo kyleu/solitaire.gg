@@ -59,6 +59,8 @@ define(['game/helpers/Tweens'], function (Tweens) {
     },
 
     onInputUp: function(e, p, card) {
+      card.game.options.hidePanels();
+
       if(card.game.playmat.emitter !== undefined) {
         card.game.playmat.emitter.on = false;
       }

@@ -1,8 +1,8 @@
 @(user: models.user.User)
 <div id="menu-container" class="fixed">
   <div class="menu-left">
-    <a id="btn-menu" title="Menu" class="btn btn-@user.color menu" href="@routes.HomeController.index()"></a>
-    <a id="link-game" class="link" href=""></a>
+    <div id="btn-menu" title="Menu" class="btn btn-@user.color menu"></div>
+    <div id="btn-options" title="Options" class="options btn btn-@user.color"></div>
   </div>
   <div class="menu-right">
     @defining(if(user.avatar == "guest" || user.avatar == "default") { routes.Assets.at("images/avatar/profile-ffffff.png") } else { user.avatar }) { av =>

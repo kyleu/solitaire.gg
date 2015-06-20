@@ -9,6 +9,8 @@ define([], function() {
     bg.height = game.height;
     bg.inputEnabled = true;
     bg.events.onInputUp.add(function(e, p) {
+      game.options.hidePanels();
+
       var deltaX = Math.abs(p.positionDown.x - p.positionUp.x);
       var deltaY = Math.abs(p.positionDown.y - p.positionUp.y);
       if(deltaX < 10 && deltaY < 10) {

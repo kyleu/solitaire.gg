@@ -11,20 +11,11 @@ define([], function() {
     };
 
     buttons.menu.onclick = function() {
-      if(game.options.toggleMenuPanel()) {
-        buttons.menu.className += " disabled";
-      } else {
-        buttons.menu.className = buttons.menu.className.replace(" disabled", "");
-      }
-      return false;
+      game.options.toggleMenuPanel();
     };
 
     buttons.options.onclick = function() {
-      if(game.options.toggleOptionsPanel()) {
-        buttons.options.className += " disabled";
-      } else {
-        buttons.options.className = buttons.options.className.replace(" disabled", "");
-      }
+      game.options.toggleOptionsPanel();
     };
 
     buttons.help.onclick = function() {

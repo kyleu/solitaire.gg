@@ -23,8 +23,8 @@ stitch()
 
 optimize()
 {
-  optipng *.png;
-  jpegoptim *.jpg;
+  optipng -o7 *.png;
+  # jpegoptim *.jpg;
 }
 
 process()

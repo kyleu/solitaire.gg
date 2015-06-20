@@ -31,8 +31,10 @@ define([], function() {
       btn.className = newClassName;
     }
 
-    activeColor = color;
-    selectCallback(color);
+    if(activeColor !== color) {
+      selectCallback(color);
+      activeColor = color;
+    }
   }
 
   function init(callback) {
