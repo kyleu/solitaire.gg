@@ -21,39 +21,12 @@
     margin-top: 6px;
   }
 
-  .menu-left {
-    padding: 4px;
-    float: left;
-    width: 250px;
-    .btn {
-      float: left;
-      margin-left: 5px;
-    }
-    .link {
-      float: left;
-      margin-left: 5px;
-    }
-  }
-  .menu-right {
-    padding: 4px;
-    float: right;
-    text-align: right;
-    width: 250px;
-    .btn {
-      float: right;
-      margin-right: 5px;
-    }
-    .link {
-      float: right;
-      margin-right: 5px;
-    }
-  }
-
   .avatar-small {
     float: right;
     width: 32px;
     height: 32px;
     cursor: pointer;
+    margin-right: 4px;
   }
   .logo {
     display: block;
@@ -77,32 +50,61 @@
   }
 }
 
-@media only screen and (max-width: 620px) {
-  #menu-container {
-    .menu-left {
-      width: 80px;
-    }
-    .menu-right {
-      width: 80px;
-      .link {
-        display: none;
-      }
-    }
+.menu-left,.menu-right {
+  padding: 4px 0;
+  width: 600px;
+}
+
+.menu-left {
+  float: left;
+  .btn {
+    float: left;
+    margin-left: 4px;
   }
-  #status-container {
-    .menu-left {
-      width: 120px;
-    }
-    .menu-right {
-      width: 120px;
-    }
+  .link {
+    float: left;
+    margin-left: 4px;
+  }
+}
+.menu-right {
+  float: right;
+  text-align: right;
+  .btn {
+    float: right;
+    margin-right: 4px;
+  }
+  .link {
+    float: right;
+    margin-right: 4px;
   }
 }
 
-@media only screen and (max-width: 295px) {
-  #menu-container, #status-container {
-    .logo {
-      display: none;
-    }
+@media only screen and (max-width: 1600px) {
+  .menu-left, .menu-right {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .menu-left, .menu-right {
+    width: 320px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .menu-left, .menu-right {
+    width: 240px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .menu-left, .menu-right {
+    width: 160px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .menu-left, .menu-right {
+    width: 100px;
   }
 }

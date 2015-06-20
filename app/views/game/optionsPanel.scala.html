@@ -1,5 +1,5 @@
 @(user: models.user.User)
-<div id="gameplay-options">
+<div id="gameplay-options" class="invisible">
   <div id="color-list">
     @for(color <- ui.Colors.all) {
       @defining(if(color._1 == user.color) { " active" } else { "" }) { active =>

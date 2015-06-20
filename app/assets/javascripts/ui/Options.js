@@ -20,6 +20,9 @@ define(['ui/Buttons', 'ui/Colors'], function(Buttons, Colors) {
 
   Options.prototype.setGame = function(state) {
     this.elements.gameName.textContent = state.rulesTitle;
+    this.elements.bottomBar.className += " fade-in";
+    this.elements.optionsButton.className += " fade-in";
+    this.elements.menuButton.className += " fade-in";
   };
 
   Options.prototype.setTimerValue = function(time) {
@@ -87,19 +90,19 @@ define(['ui/Buttons', 'ui/Colors'], function(Buttons, Colors) {
 
   Options.prototype.showOptionsPanel = function() {
     this.elements.optionsButton.className += " disabled";
-    this.elements.optionsPanel.style.visibility = "inherit";
+    this.elements.optionsPanel.className = "fade-in";
   };
 
   Options.prototype.hideOptionsPanel = function() {
     this.elements.optionsButton.className = this.elements.optionsButton.className.replace(" disabled", "");
-    this.elements.optionsPanel.style.visibility = "hidden";
+    this.elements.optionsPanel.className = "fade-out";
   };
 
   Options.prototype.toggleOptionsPanel = function() {
-    if(this.elements.optionsPanel.style.visibility === "inherit") {
+    if(this.elements.optionsPanel.className === "fade-in") {
       this.hideOptionsPanel();
     } else {
-      if(this.elements.menuPanel.style.visibility === "inherit") {
+      if(this.elements.menuPanel.className === "fade-in") {
         this.hideMenuPanel();
       }
       this.showOptionsPanel();
@@ -108,19 +111,19 @@ define(['ui/Buttons', 'ui/Colors'], function(Buttons, Colors) {
 
   Options.prototype.showMenuPanel = function() {
     this.elements.menuButton.className += " disabled";
-    this.elements.menuPanel.style.visibility = "inherit";
+    this.elements.menuPanel.className = "fade-in";
   };
 
   Options.prototype.hideMenuPanel = function() {
     this.elements.menuButton.className = this.elements.menuButton.className.replace(" disabled", "");
-    this.elements.menuPanel.style.visibility = "hidden";
+    this.elements.menuPanel.className = "fade-out";
   };
 
   Options.prototype.toggleMenuPanel = function() {
-    if(this.elements.menuPanel.style.visibility === "inherit") {
+    if(this.elements.menuPanel.className === "fade-in") {
       this.hideMenuPanel();
     } else {
-      if(this.elements.optionsPanel.style.visibility === "inherit") {
+      if(this.elements.optionsPanel.className === "fade-in") {
         this.hideOptionsPanel();
       }
       this.showMenuPanel();
