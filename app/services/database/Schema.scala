@@ -5,26 +5,30 @@ import models.database.queries.ddl._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import utils.Logging
 
-import scala.concurrent.Await
-import scala.concurrent.duration._
-
 object Schema extends Logging {
   val tables = Seq(
-    "adhoc_queries" -> CreateAdHocQueriesTable,
     "users" -> CreateUsersTable,
-    "user_feedback" -> CreateUserFeedbackTable,
+
     "user_profiles" -> CreateUserProfilesTable,
     "password_info" -> CreatePasswordInfoTable,
     "oauth1_info" -> CreateOAuth1InfoTable,
     "oauth2_info" -> CreateOAuth2InfoTable,
     "openid_info" -> CreateOpenIdInfoTable,
     "session_info" -> CreateSessionInfoTable,
+
     "requests" -> CreateRequestsTable,
+
     "games" -> CreateGamesTable,
     "game_seeds" -> CreateGameSeedsTable,
     "game_cards" -> CreateGameCardsTable,
     "game_moves" -> CreateGameMovesTable,
-    "daily_metrics" -> CreateDailyMetricsTable
+
+    "user_feedback" -> CreateUserFeedbackTable,
+    "user_feedback_notes" -> CreateUserFeedbackNotesTable,
+
+    "daily_metrics" -> CreateDailyMetricsTable,
+
+    "adhoc_queries" -> CreateAdHocQueriesTable
   )
 
   def update() = tables.foreach { t =>

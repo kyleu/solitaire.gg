@@ -24,6 +24,18 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
     override def reduce(rows: Iterator[Row]) = rows.map(tupleFromRow).toMap
   }
 
+  case object GetAllMetrics extends Query[Seq[(LocalDate, Map[DailyMetric.Metric, Long])]] {
+    import utils.DateUtils.localDateOrdering
+
+    override def sql = s"select day, metric, value from $tableName order by day, metric"
+    override def values = Nil
+    override def reduce(rows: Iterator[Row]) = rows.map { row =>
+      (row.as[LocalDate]("day"), row.as[String]("metric"), row.as[Long]("value"))
+    }.toSeq.groupBy(_._1).map { x =>
+      x._1 -> x._2.map(y => DailyMetric.fromString(y._2) -> y._3).toMap
+    }.toSeq.sortBy(_._1).reverse
+  }
+
   case class GetTotals(last: LocalDate) extends Query[Map[DailyMetric.Metric, Long]] {
     override def sql = s"select metric, sum(value) as value from $tableName where day <= ? group by metric"
     override def values = Seq(last)

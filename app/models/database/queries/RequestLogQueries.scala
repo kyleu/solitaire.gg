@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models.audit.RequestLog
 import models.database.{ Statement, Row, Query }
-import org.joda.time.LocalDateTime
+import org.joda.time.{ LocalDate, LocalDateTime }
 
 object RequestLogQueries extends BaseQueries[RequestLog] {
   override protected val tableName = "requests"
@@ -28,6 +28,12 @@ object RequestLogQueries extends BaseQueries[RequestLog] {
   case class RemoveRequestsByUser(userId: UUID) extends Statement {
     override val sql = s"delete from $tableName where user_id = ?"
     override val values = Seq(userId)
+  }
+
+  case object GetEarliestDay extends Query[LocalDate] {
+    override val sql = s"select min(started::date) as d from $tableName"
+    override val values = Nil
+    override def reduce(rows: Iterator[Row]) = rows.next().as[LocalDate]("d")
   }
 
   override protected def fromRow(row: Row) = {

@@ -14,16 +14,18 @@ object DailyMetricService {
 
   def getMetrics(d: LocalDate) = Database.query(DailyMetricQueries.GetMetrics(d)).flatMap { m =>
     if (m.size == DailyMetric.all.size) {
-      Future.successful(m)
+      Future.successful(d -> m)
     } else {
       val missingMetrics = DailyMetric.all.filterNot(m.keySet.contains)
       calculateMetrics(d, missingMetrics).map { metrics =>
         val models = metrics.map(x => DailyMetric(d, x._1, x._2, new LocalDateTime())).toSeq
         Database.execute(DailyMetricQueries.insertBatch(models))
-        m ++ metrics
+        d -> (m ++ metrics)
       }
     }
   }
+
+  def getAllMetrics = Database.query(DailyMetricQueries.GetAllMetrics)
 
   def setMetric(d: LocalDate, metric: DailyMetric.Metric, value: Long) = {
     val dm = DailyMetric(d, metric, value, new LocalDateTime())
@@ -53,8 +55,11 @@ object DailyMetricService {
     case GamesStarted => Some("select count(*) as c from games where created >= ? and created < ?")
     case GamesWon => Some("select count(*) as c from games where created >= ? and created < ? and status = 'win'")
 
-    case Requests => Some("select count(*) as c from requests where started >= ? and started < ?")
     case Signups => Some("select count(*) as c from users where created >= ? and created < ?")
+
+    case Requests => Some("select count(*) as c from requests where started >= ? and started < ?")
+
+    case Feedbacks => Some("select count(*) as c from user_feedback where occurred >= ? and occurred < ?")
 
     case _ => None
   }

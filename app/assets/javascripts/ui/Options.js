@@ -80,10 +80,10 @@ define(['ui/Buttons', 'ui/Colors'], function(Buttons, Colors) {
   };
 
   Options.prototype.hidePanels = function() {
-    if(this.elements.optionsPanel.style.visibility === "inherit") {
+    if(this.elements.optionsPanel.className === "fade-in") {
       this.hideOptionsPanel();
     }
-    if(this.elements.menuPanel.style.visibility === "inherit") {
+    if(this.elements.menuPanel.className === "fade-in") {
       this.hideMenuPanel();
     }
   };

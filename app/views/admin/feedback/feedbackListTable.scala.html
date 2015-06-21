@@ -1,5 +1,4 @@
-@(sortBy: String, feedbacks: Seq[models.user.UserFeedback])
-
+@(sortBy: String, feedbacks: Seq[models.user.UserFeedback], notes: Seq[models.user.UserFeedback.FeedbackNote])
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -8,6 +7,7 @@
       @utils.ViewUtils.th("feedback-game", "Game", sortBy)
       @utils.ViewUtils.th("feedback-feedback", "Feedback", sortBy)
       @utils.ViewUtils.th("feedback-occurred", "Occurred", sortBy)
+      @utils.ViewUtils.th("actions-two", "", sortBy)
     </tr>
   </thead>
   <tbody>
@@ -17,9 +17,25 @@
       <td title="@f.userId"><a href="@controllers.admin.routes.UserController.userDetail(f.userId)">@f.userId.toString.substring(0, 8)</a></td>
       <td>@f.activeGameId</td>
       <td>
-        @f.feedback
+        <div>@f.feedback</div>
+        @defining(notes.filter(_.feedbackId == f.id)) { n =>
+          @if(n.nonEmpty) {
+            <strong>Notes</strong>
+            <ul>
+            @n.map { note =>
+              <li class="feedback-note">
+                @note
+              </li>
+            }
+            </ul>
+          }
+        }
       </td>
       <td>@f.occurred.toString("yyyy-MM-dd HH:mm:ss")</td>
+      <td>
+        <a href="@controllers.admin.routes.FeedbackController.feedbackNoteForm(f.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="@controllers.admin.routes.FeedbackController.removeFeedback(f.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+      </td>
     </tr>
   }
   </tbody>

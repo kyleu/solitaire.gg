@@ -23,7 +23,7 @@ object EmailReport {
           yesterdayMetrics <- DailyMetricService.getMetrics(yesterday)
           totals <- DailyMetricService.getTotals(yesterday)
           counts <- Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table))))
-          report <- emailService.sendDailyReport(yesterday, "greyblue", yesterdayMetrics, totals, counts)
+          report <- emailService.sendDailyReport(yesterday, "greyblue", yesterdayMetrics._2, totals, counts)
         } yield {
           "report" -> Some("Sent report")
         }

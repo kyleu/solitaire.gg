@@ -1,18 +1,32 @@
 package controllers.admin
 
+import java.util.UUID
+
 import controllers.BaseController
-import models.database.queries.UserFeedbackQueries
+import models.database.queries.{ UserFeedbackNoteQueries, UserFeedbackQueries }
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 
+import scala.concurrent.Future
+
 @javax.inject.Singleton
 class FeedbackController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def feedbackList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
-    Database.query(UserFeedbackQueries.count(q)).flatMap { count =>
-      Database.query(UserFeedbackQueries.search(q, getOrderClause(sortBy), Some(page))).map { list =>
-        Ok(views.html.admin.feedback.feedbackList(q, sortBy, count, page, list))
-      }
+    for {
+      count <- Database.query(UserFeedbackQueries.count(q))
+      feedbacks <- Database.query(UserFeedbackQueries.search(q, getOrderClause(sortBy), Some(page)))
+      notes <- Database.query(UserFeedbackNoteQueries.GetUserFeedbackNotes(feedbacks.map(_.id)))
+    } yield Ok(views.html.admin.feedback.feedbackList(q, sortBy, count, page, feedbacks, notes))
+  }
+
+  def feedbackNoteForm(feedbackId: UUID) = withAdminSession { implicit request =>
+    Future.successful(Ok("Coming soon!"))
+  }
+
+  def removeFeedback(id: UUID) = withAdminSession { implicit request =>
+    Database.execute(UserFeedbackQueries.remove(Seq(id))).map { ok =>
+      Redirect(controllers.admin.routes.FeedbackController.feedbackList("", "occurred", 0))
     }
   }
 
