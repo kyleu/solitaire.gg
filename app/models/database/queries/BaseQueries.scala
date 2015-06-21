@@ -64,7 +64,7 @@ trait BaseQueries[T] {
     override def reduce(rows: Iterator[Row]) = rows.next().as[Long]("c").toInt
   }
 
-  case class Search(q: String, orderBy: String, page: Option[Int], /* TODO use */groupBy: Option[String] = None) extends Query[List[T]] {
+  case class Search(q: String, orderBy: String, page: Option[Int], /* TODO use */ groupBy: Option[String] = None) extends Query[List[T]] {
     private[this] val whereClause = if (q.isEmpty) { None } else { Some(searchColumns.map(c => s"lower($c) like lower(?)").mkString(" or ")) }
     private[this] val limit = page.map(x => Config.pageSize)
     private[this] val offset = page.map(x => x * Config.pageSize)

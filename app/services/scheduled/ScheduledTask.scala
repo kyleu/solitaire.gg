@@ -1,12 +1,7 @@
 package services.scheduled
 
-import models.audit.DailyMetric
-import models.database.queries.ReportQueries
-import org.joda.time.{ LocalDate, LocalDateTime }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.EmailService
-import services.database.Database
-import services.report.DailyMetricService
 import utils.Logging
 
 import scala.concurrent.Future
@@ -20,7 +15,7 @@ class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends 
   def go() = {
     if (running) {
       Future.failed(new RuntimeException("Scheduled task already running."))
-    } else if(utils.Config.debug) {
+    } else if (utils.Config.debug) {
       Future.successful(Nil)
     } else {
       running = true
@@ -43,7 +38,7 @@ class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends 
         val duration = System.currentTimeMillis - startMs
         val actions = ret.filter(_._2.isDefined)
         val msgStart = s"Completed [${ret.size}] scheduled tasks in [${duration}ms]"
-        if(actions.nonEmpty) {
+        if (actions.nonEmpty) {
           val result = ret.map(x => s"${x._1}: ${x._2.getOrElse("No progress")}").mkString(", ")
           log.info(s"$msgStart with result [$result].")
         } else {

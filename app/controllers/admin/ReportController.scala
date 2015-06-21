@@ -15,11 +15,11 @@ class ReportController @javax.inject.Inject() (override val messagesApi: Message
   def email() = withAdminSession { implicit request =>
     Database.query(ReportQueries.ListTables).flatMap { tables =>
       val d = new LocalDate("2015-06-10")
-      DailyMetricService.getMetrics(d).flatMap { metrics =>
-        Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table)))).map { counts =>
-          Ok(views.html.admin.report.emailReport(new LocalDate(), request.identity.color, metrics, counts))
-        }
-      }
+      for {
+        metrics <- DailyMetricService.getMetrics(d)
+        totals <- DailyMetricService.getTotals(d)
+        counts <- Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table))))
+      } yield Ok(views.html.admin.report.emailReport(new LocalDate(), request.identity.color, metrics, totals, counts))
     }
   }
 }

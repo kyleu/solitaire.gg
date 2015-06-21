@@ -3,6 +3,7 @@ package services.scheduled
 import models.audit.DailyMetric
 import models.database.queries.ReportQueries
 import org.joda.time.{ LocalDate, LocalDateTime }
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.EmailService
 import services.database.Database
 import services.report.DailyMetricService
@@ -16,17 +17,15 @@ object EmailReport {
       if (reportSent.contains(1L)) {
         Future.successful("report" -> None)
       } else {
-        Database.query(ReportQueries.ListTables).flatMap { tables =>
-          Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table)))).flatMap { counts =>
-            val today = new LocalDate()
-            val yesterday = today.minusDays(1)
-            DailyMetricService.getMetrics(yesterday).flatMap { yesterdayMetrics =>
-              emailService.sendDailyReport(yesterday, "greyblue", yesterdayMetrics, counts)
-              DailyMetricService.setMetric(yesterday, DailyMetric.ReportSent, 1L).map { x =>
-                "report" -> Some("Sent report")
-              }
-            }
-          }
+        val yesterday = new LocalDate().minusDays(1)
+        for {
+          tables <- Database.query(ReportQueries.ListTables)
+          yesterdayMetrics <- DailyMetricService.getMetrics(yesterday)
+          totals <- DailyMetricService.getTotals(yesterday)
+          counts <- Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table))))
+          report <- emailService.sendDailyReport(yesterday, "greyblue", yesterdayMetrics, totals, counts)
+        } yield {
+          "report" -> Some("Sent report")
         }
       }
     }

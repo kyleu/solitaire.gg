@@ -28,13 +28,15 @@ object DailyMetricService {
   def setMetric(d: LocalDate, metric: DailyMetric.Metric, value: Long) = {
     val dm = DailyMetric(d, metric, value, new LocalDateTime())
     Database.execute(DailyMetricQueries.UpdateMetric(dm)).flatMap { rowsAffected =>
-      if(rowsAffected == 1) {
+      if (rowsAffected == 1) {
         Future.successful(dm)
       } else {
         Database.execute(DailyMetricQueries.insert(dm)).map(x => dm)
       }
     }
   }
+
+  def getTotals(last: LocalDate) = Database.query(DailyMetricQueries.GetTotals(last))
 
   private[this] def calculateMetrics(d: LocalDate, metrics: Seq[DailyMetric.Metric]) = {
     val futures = metrics.map { metric =>
@@ -53,10 +55,6 @@ object DailyMetricService {
 
     case Requests => Some("select count(*) as c from requests where started >= ? and started < ?")
     case Signups => Some("select count(*) as c from users where created >= ? and created < ?")
-
-    case TotalUsers => Some("select count(*) as c from users where created < ?")
-    case TotalGames => Some("select count(*) as c from games where created < ?")
-    case TotalRequests => Some("select count(*) as c from requests where started < ?")
 
     case _ => None
   }

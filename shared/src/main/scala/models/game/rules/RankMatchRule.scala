@@ -10,10 +10,10 @@ object RankMatchRule {
   private[this] def upBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
     val highRank = lowRank.previous
     val target = (0 until i).foldLeft[Rank](l)((rank, i) => {
-      if(rank == Rank.Unknown) {
+      if (rank == Rank.Unknown) {
         Rank.Unknown
-      } else if(rank == highRank) {
-        if(wrap) {
+      } else if (rank == highRank) {
+        if (wrap) {
           rank.next
         } else {
           Rank.Unknown
@@ -27,10 +27,10 @@ object RankMatchRule {
 
   private[this] def downBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
     val target = (0 until i).foldLeft[Rank](l)((rank, i) => {
-      if(rank == Rank.Unknown) {
+      if (rank == Rank.Unknown) {
         Rank.Unknown
-      } else if(rank == lowRank) {
-        if(wrap) {
+      } else if (rank == lowRank) {
+        if (wrap) {
           rank.previous
         } else {
           Rank.Unknown

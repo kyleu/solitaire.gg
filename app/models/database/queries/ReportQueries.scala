@@ -5,7 +5,11 @@ import java.util.UUID
 import models.database.{ Row, SingleRowQuery, Query }
 
 object ReportQueries {
-  private[this] def playerClause(name: String, userIds: Seq[UUID]) = if (userIds.isEmpty) { "" } else { s" where $name in (${userIds.map(id => "?").mkString(", ")})" }
+  private[this] def playerClause(name: String, userIds: Seq[UUID]) = if (userIds.isEmpty) {
+    ""
+  } else {
+    s" where $name in (${userIds.map(id => "?").mkString(", ")})"
+  }
 
   case object ListTables extends Query[List[String]] {
     override def sql = BaseQueries.trim("""

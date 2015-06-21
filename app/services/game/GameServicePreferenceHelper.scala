@@ -7,7 +7,6 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import utils.CacheService
 
-
 trait GameServicePreferenceHelper { this: GameService =>
   protected[this] def handleSetPreference(userId: UUID, name: String, value: String): Unit = name match {
     case "color" => Database.execute(UserQueries.SetColor(userId, value)).map(x => CacheService.removeUser(userId))

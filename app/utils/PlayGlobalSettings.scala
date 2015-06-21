@@ -58,7 +58,7 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter(
 
   override def onRouteRequest(request: RequestHeader) = {
     if (!Option(request.path).exists(_.startsWith("/assets"))) {
-      log.info(s"Request from [${request.remoteAddress}]: ${request.toString}")
+      log.info(s"Request from [${request.remoteAddress}]: ${request.toString()}")
     }
     if (request.domain == utils.Config.hostname) {
       super.onRouteRequest(request)
@@ -77,7 +77,7 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter(
     import scala.concurrent.ExecutionContext.Implicits.global
     import play.api.Play.current
 
-    if(current.mode == Mode.Dev) {
+    if (current.mode == Mode.Dev) {
       log.info("Dev mode, so not starting scheduled task.")
     } else {
       log.info("Scheduling task to run every minute, after five minutes.")

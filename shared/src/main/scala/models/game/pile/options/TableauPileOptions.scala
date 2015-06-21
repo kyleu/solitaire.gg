@@ -26,14 +26,9 @@ object TableauPileOptions extends TableauPileOptionHelper {
 
     val dragToConstraint = dragTo(
       crm = cardRemovalMethod,
-      rmr = rules.rankMatchRuleForBuilding,
-      smr = rules.suitMatchRuleForBuilding,
+      rules = rules,
       lowRank = deckOptions.lowRank,
-      emptyPileRanks = emptyRanks,
-      maxCards = rules.maxCards,
-      mayMoveToEmptyFrom = rules.mayMoveToEmptyFrom,
-      mayMoveToNonEmptyFrom = rules.mayMoveToNonEmptyFrom,
-      wrapFromKingToAce = rules.wrapFromKingToAce
+      emptyPileRanks = emptyRanks
     )
 
     val (selectCardConstraint, selectCardAction) = {

@@ -5,7 +5,7 @@ import java.util.UUID
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile
 import models.database.queries.BaseQueries
-import models.database.{ Row, Query, FlatSingleRowQuery, Statement }
+import models.database.{ Row, Query, FlatSingleRowQuery }
 import org.joda.time.LocalDateTime
 
 object ProfileQueries extends BaseQueries[CommonSocialProfile] {

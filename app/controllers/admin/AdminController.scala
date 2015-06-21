@@ -26,12 +26,6 @@ class AdminController @javax.inject.Inject() (override val messagesApi: Messages
     Future.successful(Ok(views.html.admin.index()))
   }
 
-  def sandbox() = withAdminSession { implicit request =>
-    scheduledTask.go().map { ret =>
-      Ok(ret.map(x => s"${x._1}: ${x._2.getOrElse("No progress")}").mkString("\n"))
-    }
-  }
-
   def enable = withSession { implicit request =>
     Database.execute(UserQueries.AddRole(request.identity.id, Role.Admin)).map { x =>
       utils.CacheService.removeUser(request.identity.id)

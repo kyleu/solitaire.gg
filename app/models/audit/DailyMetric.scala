@@ -9,23 +9,21 @@ object DailyMetric {
   case object GamesStarted extends Metric
   case object GamesWon extends Metric
 
-  case object Requests extends Metric
   case object Signups extends Metric
 
-  case object TotalUsers extends Metric
-  case object TotalGames extends Metric
-  case object TotalRequests extends Metric
+  case object Requests extends Metric
 
   case object ReportSent extends Metric
 
   val all = Seq[Metric](
     GamesAdandoned, GamesStarted, GamesWon,
-    Requests, Signups,
-    TotalUsers, TotalGames, TotalRequests,
+    Signups,
+    Requests,
     ReportSent
   )
 
-  def fromString(s: String) = all.find(_.toString == s).getOrElse(throw new IllegalStateException(s"Unknown metric [$s]."))
+  private[this] val allMap = all.map(m => m.toString -> m).toMap
+  def fromString(s: String) = allMap(s)
 }
 
 case class DailyMetric(date: LocalDate, metric: DailyMetric.Metric, value: Long, measured: LocalDateTime)

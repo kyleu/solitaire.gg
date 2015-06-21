@@ -22,12 +22,10 @@ object OAuth2InfoQueries extends BaseQueries[OAuth2Info] {
   }
 
   case class UpdateOAuth2Info(l: LoginInfo, o: OAuth2Info) extends Statement {
-    override val sql = s"update $tableName set access_token = ?, token_type = ?, expires_in = ?, refresh_token = ?, params = ?, created = ?" +
-      "where provider = ? and key = ?"
-    override val values = {
-      val params = o.params.map(p => Json.prettyPrint(Json.toJson(p)))
-      toDataSeq(o) ++ Seq(l.providerID, l.providerKey)
+    override val sql = {
+      s"update $tableName set access_token = ?, token_type = ?, expires_in = ?, refresh_token = ?, params = ?, created = ? where provider = ? and key = ?"
     }
+    override val values = toDataSeq(o) ++ Seq(l.providerID, l.providerKey)
   }
 
   override protected def fromRow(row: Row) = {

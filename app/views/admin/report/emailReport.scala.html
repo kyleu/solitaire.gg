@@ -1,61 +1,55 @@
 @(
-  d: org.joda.time.LocalDate, color: String, metrics: Map[models.audit.DailyMetric.Metric, Long], tableCounts: Seq[(String, Long)]
-)@import models.audit.DailyMetric._
+  d: org.joda.time.LocalDate,
+  color: String,
+  metrics: Map[models.audit.DailyMetric.Metric, Long],
+  totals: Map[models.audit.DailyMetric.Metric, Long],
+  tableCounts: Seq[(String, Long)]
+)
+@import models.audit.DailyMetric._
+
+@metricsTable(title: String, m: Map[models.audit.DailyMetric.Metric, Long], css: utils.CssEmailStyles) = {
+  <table style="@css.table">
+    <thead>
+      <tr style="@css.tr">
+        <th style="@css.th" colspan="2">@title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="@css.tr">
+        <td style="@css.td">Users signed up</td>
+        <td style="@css.td@css.alignRight">@m(Signups)</td>
+      </tr>
+      <tr style="@css.tr">
+        <td style="@css.td">Games started</td>
+        <td style="@css.td@css.alignRight">@m(GamesStarted)</td>
+      </tr>
+      <tr style="@css.tr">
+        <td style="@css.td">Games abandoned</td>
+        <td style="@css.td@css.alignRight">@m(GamesAdandoned)</td>
+      </tr>
+      <tr style="@css.tr">
+        <td style="@css.td">Games won</td>
+        <td style="@css.td@css.alignRight">@m(GamesWon)</td>
+      </tr>
+      <tr style="@css.tr">
+        <td style="@css.td">Html requests</td>
+        <td style="@css.td@css.alignRight">@m(Requests)</td>
+      </tr>
+    </tbody>
+  </table>
+}
+
 @layout.email(utils.Config.projectName + " Report", color) {
   @defining(utils.CssEmailStyles(color)) { css =>
   <div style="@css.title">@utils.Config.projectName</div>
   <div style="@css.subtitle">Daily Report for @d</div>
 
   <div style="@css.module">
-    <table style="@css.table">
-      <thead>
-        <tr style="@css.tr">
-          <th style="@css.th" colspan="2">Statistics for @d</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="@css.tr">
-          <td style="@css.td">Games started</td>
-          <td style="@css.td@css.alignRight">@metrics(GamesStarted)</td>
-        </tr>
-        <tr style="@css.tr">
-          <td style="@css.td">Games abandoned</td>
-          <td style="@css.td@css.alignRight">@metrics(GamesAdandoned)</td>
-        </tr>
-        <tr style="@css.tr">
-          <td style="@css.td">Games won</td>
-          <td style="@css.td@css.alignRight">@metrics(GamesWon)</td>
-        </tr>
-        <tr style="@css.tr">
-          <td style="@css.td">Users signed up</td>
-          <td style="@css.td@css.alignRight">@metrics(Signups)</td>
-        </tr>
-      </tbody>
-    </table>
+    @metricsTable(s"Statistics for $d", metrics, css)
   </div>
 
   <div style="@css.module">
-    <table style="@css.table">
-      <thead>
-        <tr style="@css.tr">
-          <th style="@css.th" colspan="2">Totals as of @d</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="@css.tr">
-          <td style="@css.td">Users</td>
-          <td style="@css.td@css.alignRight">@metrics(TotalUsers)</td>
-        </tr>
-        <tr style="@css.tr">
-          <td style="@css.td">Games</td>
-          <td style="@css.td@css.alignRight">@metrics(TotalGames)</td>
-        </tr>
-        <tr style="@css.tr">
-          <td style="@css.td">Requests</td>
-          <td style="@css.td@css.alignRight">@metrics(TotalRequests)</td>
-        </tr>
-      </tbody>
-    </table>
+    @metricsTable(s"Totals as of $d", metrics, css)
   </div>
 
   <div style="@css.module">

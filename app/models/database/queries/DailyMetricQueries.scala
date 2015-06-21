@@ -21,21 +21,19 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
   case class GetMetrics(d: LocalDate) extends Query[Map[DailyMetric.Metric, Long]] {
     override def sql = s"select metric, value from $tableName where day = ?"
     override def values = Seq(d)
-    override def reduce(rows: Iterator[Row]) = rows.map { row =>
-      val metric = DailyMetric.fromString(row.as[String]("metric"))
-      val value = row.as[Long]("value")
-      metric -> value
-    }.toMap
+    override def reduce(rows: Iterator[Row]) = rows.map(tupleFromRow).toMap
+  }
+
+  case class GetTotals(last: LocalDate) extends Query[Map[DailyMetric.Metric, Long]] {
+    override def sql = s"select metric, sum(value) as value from $tableName where day <= ? group by metric"
+    override def values = Seq(last)
+    override def reduce(rows: Iterator[Row]) = rows.map(tupleFromRow).toMap
   }
 
   case class GetMetricHistory(metric: DailyMetric.Metric) extends Query[Seq[(LocalDate, Long)]] {
     override def sql = s"select day, value from $tableName where metric = ? order by day"
     override def values = Seq(metric)
-    override def reduce(rows: Iterator[Row]) = rows.map { row =>
-      val day = row.as[LocalDate]("day")
-      val value = row.as[Long]("value")
-      day -> value
-    }.toSeq
+    override def reduce(rows: Iterator[Row]) = rows.map(row => row.as[LocalDate]("day") -> row.as[Long]("value")).toSeq
   }
 
   case class UpdateMetric(dm: DailyMetric) extends Statement {
@@ -51,6 +49,8 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
     }
     override def map(row: Row) = metric -> row.as[Long]("c")
   }
+
+  private[this] def tupleFromRow(row: Row) = DailyMetric.fromString(row.as[String]("metric")) -> row.as[Long]("value")
 
   override protected def fromRow(row: Row) = {
     val day = row.as[LocalDate]("day")

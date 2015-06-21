@@ -35,21 +35,19 @@ trait TableauPileOptionHelper {
 
   protected[this] def dragTo(
     crm: CardRemovalMethod,
-    rmr: RankMatchRule,
-    smr: SuitMatchRule,
+    rules: TableauRules,
     lowRank: Rank,
-    emptyPileRanks: Seq[Rank],
-    maxCards: Int,
-    mayMoveToEmptyFrom: Seq[String],
-    mayMoveToNonEmptyFrom: Seq[String],
-    wrapFromKingToAce: Boolean
+    emptyPileRanks: Seq[Rank]
   ) = {
+    val rmr = rules.rankMatchRuleForBuilding
+    val smr = rules.suitMatchRuleForBuilding
+
     Constraint("tableau", (src, tgt, cards, gameState) => {
-      if (maxCards > 0 && tgt.cards.length + cards.length > maxCards) {
+      if (rules.maxCards > 0 && tgt.cards.length + cards.length >rules. maxCards) {
         false
       } else {
         if (tgt.cards.isEmpty) {
-          src.pileSet.exists(x => mayMoveToEmptyFrom.contains(x.behavior)) && (emptyPileRanks.length match {
+          src.pileSet.exists(x => rules.mayMoveToEmptyFrom.contains(x.behavior)) && (emptyPileRanks.length match {
             case 0 => false
             case _ => cards.exists(c => emptyPileRanks.contains(c.r))
           })
@@ -61,7 +59,7 @@ trait TableauPileOptionHelper {
           } else {
             crm match {
               case CardRemovalMethod.BuildSequencesOnFoundation => if (smr.check(topCard.s, firstDraggedCard.s)) {
-                rmr.check(topCard.r, firstDraggedCard.r, lowRank, wrapFromKingToAce)
+                rmr.check(topCard.r, firstDraggedCard.r, lowRank, rules.wrapFromKingToAce)
               } else {
                 false
               }
@@ -69,7 +67,7 @@ trait TableauPileOptionHelper {
               case _ => crm.canRemove(topCard, firstDraggedCard)
             }
           }
-          ret && src.pileSet.exists(x => mayMoveToNonEmptyFrom.contains(x.behavior))
+          ret && src.pileSet.exists(x => rules.mayMoveToNonEmptyFrom.contains(x.behavior))
         }
       }
     })

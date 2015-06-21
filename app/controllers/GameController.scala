@@ -13,7 +13,7 @@ class GameController @javax.inject.Inject() (override val messagesApi: MessagesA
       id match {
         case "undefined" => Ok(Messages("help.general"))
         case _ => GameRulesSet.allById.get(id) match {
-          case Some(rules) => if(inline) {
+          case Some(rules) => if (inline) {
             Ok(views.html.help.helpInline(rules, request.identity.color))
           } else {
             Ok(views.html.help.helpPage(request.identity, rules))

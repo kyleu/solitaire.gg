@@ -40,7 +40,6 @@ object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
     val lastUsed = row.as[LocalDateTime]("last_used").toDateTime
     val expiration = row.as[LocalDateTime]("expiration").toDateTime
     val fingerprint = row.asOpt[String]("fingerprint")
-    val created = row.as[LocalDateTime]("created")
     CookieAuthenticator(id, LoginInfo(provider, key), lastUsed, expiration, None, fingerprint)
   }
 
