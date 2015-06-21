@@ -26,19 +26,20 @@
           <li @if(section == "rules") { class="active" }>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rules <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="@controllers.admin.routes.RulesController.rules()">View</a></li>
-              <li><a href="@controllers.admin.routes.RulesController.politaire()">Parse</a></li>
-              <li><a href="@controllers.admin.routes.RulesController.importRules()">Import</a></li>
-              <li><a href="@controllers.admin.routes.RulesController.exportRules()">Export</a></li>
-              <li><a href="@controllers.admin.routes.RulesController.links()">Links</a></li>
-              <li><a href="@controllers.admin.routes.RulesController.wipeRules()">Wipe</a></li>
+              <li><a href="@controllers.admin.routes.RulesController.rulesList()">Overview</a></li>
+              <li><a href="@controllers.admin.routes.RulesController.rulesData()">Raw Data</a></li>
+              <li class="divider"></li>
+              <li><a href="@controllers.admin.routes.ParserController.politaire()">Parse</a></li>
+              <li><a href="@controllers.admin.routes.ParserController.importRules()">Import</a></li>
+              <li><a href="@controllers.admin.routes.ParserController.exportRules()">Export</a></li>
+              <li><a href="@controllers.admin.routes.ParserController.links()">Links</a></li>
+              <li><a href="@controllers.admin.routes.ParserController.wipeRules()">Wipe</a></li>
             </ul>
           </li>
           <li @if(section == "reports") { class="active" }>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="@controllers.admin.routes.ReportController.trend()">Trend</a></li>
-              <li><a href="@controllers.admin.routes.ReportController.rules()">Rules</a></li>
               <li><a href="@controllers.admin.routes.ReportController.email()">Email</a></li>
               <li><a href="@controllers.admin.routes.AdHocQueryController.queryList(None)">Ad-Hoc</a></li>
             </ul>

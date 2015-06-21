@@ -18,7 +18,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
   val getById = GetById
   val search = Search
 
-  case object GetCounts extends Query[Seq[(String, (Int, Int, Int, Int))]] {
+  case object GetCounts extends Query[Map[String, (Int, Int, Int, Int)]] {
     override val sql = """
       select
         rules,
@@ -26,7 +26,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
         max(moves) as maxmoves,
         avg(moves)::int as avgmoves,
         min(moves) as minmoves
-      from game_seeds group by rules order by seeds desc, rules
+      from game_seeds group by rules
     """
     override def reduce(rows: Iterator[Row]) = rows.map { row =>
       val stats = (
@@ -36,7 +36,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
         row.as[Int]("minmoves")
       )
       (row.as[String]("rules"), stats)
-    }.toSeq
+    }.toMap
   }
 
   case class UpdateGameSeed(gs: GameSeed) extends Statement {

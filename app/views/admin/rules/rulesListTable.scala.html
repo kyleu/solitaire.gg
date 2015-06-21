@@ -1,0 +1,32 @@
+@(sortBy: String, statuses: Seq[models.audit.RulesStatus])
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      @utils.ViewUtils.th("title", "Rules", sortBy)
+      @utils.ViewUtils.th("seeds", "Winning Seeds", sortBy)
+      @utils.ViewUtils.th("max-moves", "Max Moves", sortBy)
+      @utils.ViewUtils.th("avg-moves", "Avg Moves", sortBy)
+      @utils.ViewUtils.th("min-moves", "Min Moves", sortBy)
+    </tr>
+  </thead>
+  <tbody>
+  @for(rs <- statuses) {
+    <tr>
+      <td><a href="@controllers.admin.routes.RulesController.rulesDetail(rs.rules.id)">@rs.rules.title</a></td>
+      <td>@utils.Formatter.withCommas(rs.winningSeeds)</td>
+      <td>@utils.Formatter.withCommas(rs.maxMoves)</td>
+      <td>@utils.Formatter.withCommas(rs.avgMoves)</td>
+      <td>@utils.Formatter.withCommas(rs.minMoves)</td>
+    </tr>
+  }
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Total</th>
+      <th>@utils.Formatter.withCommas(statuses.map(_.winningSeeds).sum)</th>
+      <th>@utils.Formatter.withCommas(statuses.map(_.maxMoves).max)</th>
+      <th>@utils.Formatter.withCommas(statuses.map(_.avgMoves).sum / statuses.size)</th>
+      <th>@utils.Formatter.withCommas(statuses.map(_.minMoves).min)</th>
+    </tr>
+  </tfoot>
+</table>

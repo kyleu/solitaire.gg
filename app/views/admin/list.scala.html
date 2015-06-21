@@ -6,8 +6,8 @@
   recordCount: Int,
   searchQuery: String,
   searchAction: Call,
-  prevLink: Call,
-  nextLink: Call
+  prevLink: Call = Call("GET", "/"),
+  nextLink: Call = Call("GET", "/")
 )(table: Html)(implicit session: Session, flash: Flash)
 @layout.admin(s"${utils.Config.projectName} $modelProper", model + "s") {
   <div class="panel panel-default">

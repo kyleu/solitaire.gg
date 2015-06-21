@@ -1,25 +1,7 @@
-@(ruleSet: Seq[models.game.rules.GameRules])(implicit session: Session, flash: Flash)
-
-@import play.api.libs.json.Json
-@import utils.GameRulesSerializers._
-
-@layout.admin(utils.Config.projectName + " Rules", "rules") {
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="text-large">
-        @utils.Formatter.withCommas(ruleSet.size) Available Rules
-      </div>
-    </div>
-  </div>
-
-  <h4>Rules</h4>
-  @for(rules <- ruleSet.sortBy(_.title)) {
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="text-large">@rules.title (@rules.id)</div>
-        <div class="game-description"><em>@rules.description</em></div>
-        <pre>@Json.prettyPrint(Json.toJson(rules))</pre>
-      </div>
-    </div>
-  }
+@(q: String, sortBy: String, count: Int, page: Int, statuses: Seq[models.audit.RulesStatus])(implicit session: Session, flash: Flash)
+@views.html.admin.list(
+  "game rule", "Game Rules", count, page, statuses.size, q,
+  searchAction = controllers.admin.routes.RulesController.rulesList()
+) {
+  @rulesListTable(sortBy, statuses)
 }
