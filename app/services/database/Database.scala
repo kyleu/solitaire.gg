@@ -23,11 +23,11 @@ object Database extends Logging with Instrumented with FutureMetrics {
 
   def transaction[A](f: (Connection) => Future[A], conn: Connection = pool): Future[A] = conn.inTransaction(c => f(c))
 
-  def execute(statement: Statement, conn: Connection = pool): Future[Int] = {
+  def execute(statement: Statement, conn: Option[Connection] = None): Future[Int] = {
     val name = statement.getClass.getSimpleName.replaceAllLiterally("$", "")
     log.debug(s"Executing statement [$name] with SQL [${statement.sql}] with values [${statement.values.mkString(", ")}].")
     val ret = timing(s"execute.$name") {
-      conn.sendPreparedStatement(prependComment(statement, statement.sql), statement.values).map(_.rowsAffected.toInt)
+      conn.getOrElse(pool).sendPreparedStatement(prependComment(statement, statement.sql), statement.values).map(_.rowsAffected.toInt)
     }
     ret.onFailure {
       case x: Throwable => log.error(s"Error [${x.getClass.getSimpleName}] encountered while executing statement [$name].", x)
@@ -35,11 +35,11 @@ object Database extends Logging with Instrumented with FutureMetrics {
     ret
   }
 
-  def query[A](query: RawQuery[A], conn: Connection = pool): Future[A] = {
+  def query[A](query: RawQuery[A], conn: Option[Connection] = None): Future[A] = {
     val name = query.getClass.getSimpleName.replaceAllLiterally("$", "")
     log.debug(s"Executing query [$name] with SQL [${query.sql}] with values [${query.values.mkString(", ")}].")
     val ret = timing(s"query.$name") {
-      conn.sendPreparedStatement(prependComment(query, query.sql), query.values).map { r =>
+      conn.getOrElse(pool).sendPreparedStatement(prependComment(query, query.sql), query.values).map { r =>
         query.handle(r.rows.getOrElse(throw new IllegalStateException()))
       }
     }
@@ -49,10 +49,10 @@ object Database extends Logging with Instrumented with FutureMetrics {
     ret
   }
 
-  def raw(name: String, sql: String, conn: Connection = pool): Future[QueryResult] = {
+  def raw(name: String, sql: String, conn: Option[Connection] = None): Future[QueryResult] = {
     log.debug(s"Executing raw query [$name] with SQL [$sql].")
     val ret = timing(s"rawquery.$name") {
-      conn.sendQuery(prependComment(name, sql))
+      conn.getOrElse(pool).sendQuery(prependComment(name, sql))
     }
     ret.onFailure {
       case x: Throwable => log.error(s"Error [${x.getClass.getSimpleName}] encountered while executing raw query [$name].", x)

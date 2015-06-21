@@ -17,5 +17,9 @@ case object CreateSessionInfoTable extends Statement {
     ) with (oids = false);
 
     create index idx_session_info_provider_key on session_info (provider, key);
+
+    alter table session_info add constraint
+      session_info_user_profiles_fk foreign key (provider, key)
+      references user_profiles (provider, key) on update no action on delete no action;
   """
 }

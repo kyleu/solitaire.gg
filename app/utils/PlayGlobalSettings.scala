@@ -11,6 +11,7 @@ import play.api.{ Application, GlobalSettings, Mode }
 import play.filters.gzip.GzipFilter
 import services.ActorSupervisor
 import services.database.{ Database, Schema }
+import services.scheduled.ScheduledTask
 import utils.metrics.Instrumented
 
 import scala.concurrent.Future
@@ -76,9 +77,13 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter(
     import scala.concurrent.ExecutionContext.Implicits.global
     import play.api.Play.current
 
-    log.info("Scheduling task to run every minute, after five minutes.")
-    val task = app.injector.instanceOf[ScheduledTask]
-    val system = app.injector.instanceOf[ActorSystem]
-    system.scheduler.schedule(5.minutes, 1.minute, task)
+    if(current.mode == Mode.Dev) {
+      log.info("Dev mode, so not starting scheduled task.")
+    } else {
+      log.info("Scheduling task to run every minute, after five minutes.")
+      val task = app.injector.instanceOf[ScheduledTask]
+      val system = app.injector.instanceOf[ActorSystem]
+      system.scheduler.schedule(5.minutes, 1.minute, task)
+    }
   }
 }

@@ -14,9 +14,9 @@ object OAuth2InfoService extends DelegableAuthInfoDAO[OAuth2Info] {
 
   override def save(loginInfo: LoginInfo, authInfo: OAuth2Info) = {
     Database.transaction { conn =>
-      Database.execute(OAuth2InfoQueries.UpdateOAuth2Info(loginInfo, authInfo), conn).flatMap { rowsAffected =>
+      Database.execute(OAuth2InfoQueries.UpdateOAuth2Info(loginInfo, authInfo), Some(conn)).flatMap { rowsAffected =>
         if (rowsAffected == 0) {
-          Database.execute(OAuth2InfoQueries.CreateOAuth2Info(loginInfo, authInfo), conn).map(x => authInfo)
+          Database.execute(OAuth2InfoQueries.CreateOAuth2Info(loginInfo, authInfo), Some(conn)).map(x => authInfo)
         } else {
           Future.successful(authInfo)
         }

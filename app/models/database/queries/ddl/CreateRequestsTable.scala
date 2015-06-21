@@ -27,5 +27,7 @@ case object CreateRequestsTable extends Statement {
     ) with (oids=false);
 
     create index requests_account_idx on requests using btree (user_id);
+
+    alter table requests add constraint requests_users_fk foreign key (user_id) references users (id) on update no action on delete no action;
   """
 }

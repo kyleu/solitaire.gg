@@ -16,5 +16,7 @@ case object CreateUserProfilesTable extends Statement {
     ) with (oids=false);
 
     create index user_profiles_email_idx on user_profiles using btree (email collate pg_catalog."default");
+
+    alter table user_profiles add constraint user_profiles_provider_key_idx unique (provider, key);
   """
 }

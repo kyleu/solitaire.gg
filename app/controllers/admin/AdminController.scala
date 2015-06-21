@@ -12,7 +12,7 @@ import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.ActorSupervisor
 import services.database.{ Schema, Database }
-import utils.ScheduledTask
+import services.scheduled.ScheduledTask
 
 import scala.concurrent.Future
 import scala.concurrent.duration._

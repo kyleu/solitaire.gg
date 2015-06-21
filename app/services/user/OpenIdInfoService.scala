@@ -14,9 +14,9 @@ object OpenIdInfoService extends DelegableAuthInfoDAO[OpenIDInfo] {
 
   override def save(loginInfo: LoginInfo, authInfo: OpenIDInfo) = {
     Database.transaction { conn =>
-      Database.execute(OpenIdInfoQueries.UpdateOpenIdInfo(loginInfo, authInfo), conn).flatMap { rowsAffected =>
+      Database.execute(OpenIdInfoQueries.UpdateOpenIdInfo(loginInfo, authInfo), Some(conn)).flatMap { rowsAffected =>
         if (rowsAffected == 0) {
-          Database.execute(OpenIdInfoQueries.CreateOpenIdInfo(loginInfo, authInfo), conn).map(x => authInfo)
+          Database.execute(OpenIdInfoQueries.CreateOpenIdInfo(loginInfo, authInfo), Some(conn)).map(x => authInfo)
         } else {
           Future.successful(authInfo)
         }

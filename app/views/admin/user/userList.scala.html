@@ -12,11 +12,11 @@
       <tr>
         @utils.ViewUtils.th("id", "User ID", sortBy)
         @utils.ViewUtils.th("username", "Username", sortBy)
+        @utils.ViewUtils.th("requests", "Requests", sortBy)
         @utils.ViewUtils.th("games", "Games", sortBy)
         @utils.ViewUtils.th("wins", "Wins", sortBy)
-        @utils.ViewUtils.th("requests", "Requests", sortBy)
         @utils.ViewUtils.th("roles", "Roles", sortBy)
-        @utils.ViewUtils.th("accounts", "Accounts", sortBy, link = false)
+        @utils.ViewUtils.th("profiles", "Profiles", sortBy, link = false)
         @utils.ViewUtils.th("created", "Created", sortBy)
         @utils.ViewUtils.th("actions", "", sortBy)
       </tr>
@@ -26,9 +26,9 @@
         <tr>
           <td><a href="@controllers.admin.routes.UserController.userDetail(u.id)">@u.id</a></td>
           <td>@u.username</td>
+          <td>@utils.Formatter.withCommas(requestCounts.getOrElse(u.id, 0))</td>
           <td>@utils.Formatter.withCommas(gameCounts.getOrElse(u.id, 0))</td>
           <td>@utils.Formatter.withCommas(winCounts.getOrElse(u.id, 0))</td>
-          <td>@utils.Formatter.withCommas(requestCounts.getOrElse(u.id, 0))</td>
           <td>@Html(u.roles.map(_.name).mkString(",<br/>"))</td>
           <td>@Html(u.profiles.map(x => s"${x.providerID}:${x.providerKey}").mkString(",<br/>"))</td>
           <td>@u.created.toString("yyyy-MM-dd HH:mm:ss")</td>

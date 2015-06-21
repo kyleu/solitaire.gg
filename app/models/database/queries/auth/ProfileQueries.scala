@@ -14,6 +14,7 @@ object ProfileQueries extends BaseQueries[CommonSocialProfile] {
   override protected val searchColumns = Seq("key", "email", "first_name", "last_name", "full_name")
 
   val insert = Insert
+  val remove = RemoveById
 
   case class FindProfile(provider: String, key: String) extends FlatSingleRowQuery[CommonSocialProfile] {
     override val sql = getSql(Some("provider = ? and key = ?"))
@@ -26,11 +27,6 @@ object ProfileQueries extends BaseQueries[CommonSocialProfile] {
       "where (p.provider || ':' || p.key) in (select unnest(profiles) from users where users.id = ?)"
     override val values = Seq(id)
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
-  }
-
-  case class RemoveProfile(provider: String, key: String) extends Statement {
-    override val sql = s"delete from $tableName where provider = ? and key = ?"
-    override val values = Seq(provider, key)
   }
 
   override protected def fromRow(row: Row) = {

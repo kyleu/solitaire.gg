@@ -18,5 +18,7 @@ case object CreateGamesTable extends Statement {
     ) with (oids=false);
 
     create index games_player_idx on games using btree (player);
+
+    alter table games add constraint games_users_fk foreign key (player) references users (id) on update no action on delete no action;
   """
 }

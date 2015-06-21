@@ -2,6 +2,7 @@ package services.history
 
 import java.util.UUID
 
+import com.github.mauricio.async.db.Connection
 import models.audit.RequestLog
 import models.database.queries.RequestLogQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -18,5 +19,5 @@ object RequestHistoryService {
 
   def getByUser(id: UUID) = Database.query(RequestLogQueries.GetRequestsByUser(id))
 
-  def removeRequestsByUser(userId: UUID) = Database.execute(RequestLogQueries.RemoveRequestsByUser(userId))
+  def removeRequestsByUser(userId: UUID, conn: Option[Connection]) = Database.execute(RequestLogQueries.RemoveRequestsByUser(userId), conn)
 }

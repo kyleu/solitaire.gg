@@ -1,12 +1,13 @@
-package utils
+package services.scheduled
 
 import models.audit.DailyMetric
 import models.database.queries.ReportQueries
-import org.joda.time.LocalDate
+import org.joda.time.{ LocalDate, LocalDateTime }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.EmailService
 import services.database.Database
 import services.report.DailyMetricService
+import utils.Logging
 
 import scala.concurrent.Future
 
@@ -26,7 +27,7 @@ class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends 
       val startMs = System.currentTimeMillis
       val f = Future.sequence(Seq(
         // updateMetrics()
-        sendReportIfNeeded()
+        EmailReport.sendReportIfNeeded(emailService)
         // updateCounts()
         // reapTables()
       ))
@@ -49,28 +50,6 @@ class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends 
           log.debug(s"$msgStart. No result.")
         }
         ret
-      }
-    }
-  }
-
-  private[this] def sendReportIfNeeded() = {
-    val yesterday = new LocalDate().minusDays(1)
-    DailyMetricService.getMetric(yesterday, DailyMetric.ReportSent).flatMap { reportSent =>
-      if (reportSent.contains(1L)) {
-        Future.successful("report" -> None)
-      } else {
-        Database.query(ReportQueries.ListTables).flatMap { tables =>
-          Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table)))).flatMap { counts =>
-            val today = new LocalDate()
-            val yesterday = today.minusDays(1)
-            DailyMetricService.getMetrics(yesterday).flatMap { yesterdayMetrics =>
-              emailService.sendDailyReport(yesterday, "greyblue", yesterdayMetrics, counts)
-              DailyMetricService.setMetric(yesterday, DailyMetric.ReportSent, 1L).map { x =>
-                "report" -> Some("Sent report")
-              }
-            }
-          }
-        }
       }
     }
   }

@@ -12,6 +12,8 @@ case object CreateAdHocQueriesTable extends Statement {
       params text[],
       created timestamp not null,
       updated timestamp not null
-    ) with (oids=false)
+    ) with (oids=false);
+
+    alter table adhoc_queries add constraint adhoc_queries_users_fk foreign key (author) references users (id) on update no action on delete no action;
   """
 }

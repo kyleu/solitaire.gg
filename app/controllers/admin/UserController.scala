@@ -37,7 +37,15 @@ class UserController @javax.inject.Inject() (override val messagesApi: MessagesA
 
   def removeUser(id: UUID) = withAdminSession { implicit request =>
     env.userService.remove(id).map { result =>
-      Redirect(controllers.admin.routes.UserController.userList("")).flashing("success" -> s"User [$id] removed.")
+      val success = if(result("users") == 1) { "successfully" } else { "with an error" }
+      val profiles = result("profiles")
+      val requests = result("requests")
+      val games = result("games")
+      val cards = result("cards")
+      val moves = result("moves")
+      val timing = result("timing")
+      val msg = s"User [$id] removed $success in [${timing}ms]. Removed $profiles profiles, $requests requests, and $games games, along with their $cards cards and $moves moves."
+      Redirect(controllers.admin.routes.UserController.userList("")).flashing("success" -> msg)
     }
   }
 

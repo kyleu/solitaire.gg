@@ -14,9 +14,9 @@ object PasswordInfoService extends DelegableAuthInfoDAO[PasswordInfo] {
 
   override def save(loginInfo: LoginInfo, authInfo: PasswordInfo) = {
     Database.transaction { conn =>
-      Database.execute(PasswordInfoQueries.UpdatePasswordInfo(loginInfo, authInfo), conn).flatMap { rowsAffected =>
+      Database.execute(PasswordInfoQueries.UpdatePasswordInfo(loginInfo, authInfo), Some(conn)).flatMap { rowsAffected =>
         if (rowsAffected == 0) {
-          Database.execute(PasswordInfoQueries.CreatePasswordInfo(loginInfo, authInfo), conn).map(x => authInfo)
+          Database.execute(PasswordInfoQueries.CreatePasswordInfo(loginInfo, authInfo), Some(conn)).map(x => authInfo)
         } else {
           Future.successful(authInfo)
         }
