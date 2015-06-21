@@ -18,7 +18,7 @@ object FoundationInitialMoves {
 
       val requiredRank = fr.lowRank match {
         case FoundationLowRank.AnyCard => None
-        case FoundationLowRank.Ascending => throw new NotImplementedError()
+        case FoundationLowRank.Ascending => throw new NotImplementedError("FoundationLowRank.Ascending")
         case FoundationLowRank.SpecificRank(r) if r == Rank.Unknown => Some(randomRank)
         case FoundationLowRank.SpecificRank(r) => Some(r)
         case FoundationLowRank.DeckLowRank => Some(gameState.deck.lowRank)

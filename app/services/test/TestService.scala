@@ -1,9 +1,14 @@
 package services.test
 
+import java.util.UUID
+
 import models.test.{ Tree, TestResult, Test }
 import utils.Logging
 
 object TestService extends Logging {
+  val testUserId = UUID.fromString("00000000-0000-0000-0000-000000000000")
+  val testGameId = UUID.fromString("00000000-0000-0000-0000-000000000000")
+
   def run(tree: Tree[Test]): Tree[TestResult] = {
     val result = run(tree.node)
     val childResults = tree.children.map(run)
@@ -13,8 +18,8 @@ object TestService extends Logging {
   def run(test: Test): TestResult = {
     val startMs = System.currentTimeMillis
     try {
-      val ret = test.run()
-      TestResult(test.id, (System.currentTimeMillis - startMs).toInt, Some(ret))
+      val result = test.run()
+      TestResult(test.id, (System.currentTimeMillis - startMs).toInt, Some(result))
     } catch {
       case x: Exception =>
         log.warn(s"Exception encountered processing test [${test.id}].", x)

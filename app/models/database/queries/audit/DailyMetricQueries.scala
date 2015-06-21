@@ -1,8 +1,9 @@
-package models.database.queries
+package models.database.queries.audit
 
 import models.audit.DailyMetric
-import models.database.{ FlatSingleRowQuery, SingleRowQuery, Statement, Row, Query }
-import org.joda.time.{ LocalDateTime, LocalDate }
+import models.database.queries.BaseQueries
+import models.database.{ FlatSingleRowQuery, Query, Row, SingleRowQuery, Statement }
+import org.joda.time.{ LocalDate, LocalDateTime }
 
 object DailyMetricQueries extends BaseQueries[DailyMetric] {
   override protected val tableName = "daily_metrics"
@@ -28,7 +29,6 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
     import utils.DateUtils.localDateOrdering
 
     override def sql = s"select day, metric, value from $tableName order by day, metric"
-    override def values = Nil
     override def reduce(rows: Iterator[Row]) = rows.map { row =>
       (row.as[LocalDate]("day"), row.as[String]("metric"), row.as[Long]("value"))
     }.toSeq.groupBy(_._1).map { x =>

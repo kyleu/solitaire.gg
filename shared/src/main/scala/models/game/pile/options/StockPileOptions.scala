@@ -26,7 +26,7 @@ object StockPileOptions {
 
     val cardsToDraw = rules.cardsDealt match {
       case StockCardsDealt.Count(i) => i
-      case StockCardsDealt.FewerEachTime => 3 // TODO throw new NotImplementedError()
+      case StockCardsDealt.FewerEachTime => throw new NotImplementedError("StockCardsDealt.FewerEachTime")
     }
 
     val drawTo = rules.dealTo match {

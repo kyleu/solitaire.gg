@@ -1,7 +1,5 @@
 package services.test
 
-import java.util.UUID
-
 import akka.testkit.TestProbe
 import models._
 import play.api.libs.concurrent.Akka
@@ -19,10 +17,9 @@ case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None
 
   implicit val system = Akka.system
   val testProbe = TestProbe()
-  val userId = UUID.randomUUID
-  val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, userId, "test-user", testProbe.ref))
+  val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, TestService.testUserId, "test-user", testProbe.ref))
 
-  conn ! StartGame(rules, gameSeed)
+  conn ! StartGame(rules, gameSeed, testGame = Some(true))
   val gameJoined = testProbe.expectMsgClass(classOf[GameJoined])
   val gameId = gameJoined.id
   var moves = gameJoined.moves
@@ -33,27 +30,15 @@ case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None
   def onMsg() = testProbe.expectMsgPF() {
     case rm: ResponseMessage =>
       rm match {
-        case cr: CardRevealed =>
-          //log.info("Received [" + cr + "].")
-          true
-        case ch: CardHidden =>
-          //log.info("Received [" + ch + "].")
-          true
-        case cm: CardMoved =>
-          //log.info("Received [" + cm + "].")
-          true
-        case cm: CardsMoved =>
-          //log.info("Received [" + cm + "].")
-          true
-        case ms: MessageSet =>
-          //log.info("Received [MessageSet(...)].")
-          true
+        case cr: CardRevealed => true
+        case ch: CardHidden => true
+        case cm: CardMoved => true
+        case cm: CardsMoved => true
+        case ms: MessageSet => true
         case gw: GameWon =>
-          //log.info("Received [GameWon].")
           gameWon = true
           false
         case pm: PossibleMoves =>
-          //log.info("Received [PossibleMoves(" + pm.moves.size + ": " + pm.moves.hashCode() + ")].")
           moves = pm.moves
           undosAvailable = pm.undosAvailable
           false
@@ -79,7 +64,11 @@ case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None
       }
       Undo
     } else {
-      val move = moves(rng.nextInt(moves.size))
+      val move = if(rng.nextInt(10) < 7) {
+        unexploredMoves.headOption.getOrElse(throw new IllegalStateException())
+      } else {
+        unexploredMoves(rng.nextInt(unexploredMoves.size))
+      }
       val msg = move.moveType match {
         case "move-cards" => MoveCards(move.cards, move.sourcePile, move.targetPile.getOrElse(throw new IllegalStateException()))
         case "select-card" => SelectCard(move.cards.headOption.getOrElse(throw new IllegalStateException()), move.sourcePile)

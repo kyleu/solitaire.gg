@@ -69,6 +69,7 @@ GET         /admin/feedback                    controllers.admin.FeedbackControl
 GET         /admin/feedback/:id/note           controllers.admin.FeedbackController.feedbackNoteForm(id: java.util.UUID)
 GET         /admin/feedback/:id/remove         controllers.admin.FeedbackController.removeFeedback(id: java.util.UUID)
 
+GET         /admin/report/rules                controllers.admin.ReportController.rules()
 GET         /admin/report/trend                controllers.admin.ReportController.trend()
 GET         /admin/report/email                controllers.admin.ReportController.email()
 GET         /admin/report/ad-hoc               controllers.admin.AdHocQueryController.queryList(query: Option[java.util.UUID] ?= None, action: Option[String] ?= None)

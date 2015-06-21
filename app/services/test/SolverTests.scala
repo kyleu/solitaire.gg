@@ -4,26 +4,19 @@ import models.GameMessage
 import models.game.rules.GameRulesSet
 import models.test.{ Test, Tree }
 
-object SolverTests {
-  val solvableSeeds = Map(
-    "klondike" -> 11,
-    "pyramid" -> 2,
-    "spider" -> 50,
-    "trustyTwelve" -> 3
-  )
-}
+import scala.util.Random
 
 class SolverTests {
-  val all = Tree(Test("solver"), GameRulesSet.completed.map(x => testSolver(x.id).toTree))
+  val all = Tree(Test("solver"), GameRulesSet.all.map(x => testSolver(x.id).toTree))
 
   def testSolver(rules: String) = Test(s"solver-$rules", { () =>
-    val seed = SolverTests.solvableSeeds.getOrElse(rules, 1)
+    val seed = Random.nextInt(1000000)
     runSolver(rules, seed)
   })
 
   private[this] def runSolver(rules: String, seed: Int) = {
     val solver = GameSolver(rules, 0, Some(seed))
-    val maxMoves = 2000
+    val maxMoves = 500
     val movesPerformed = collection.mutable.ArrayBuffer.empty[GameMessage]
     while (!solver.gameWon && movesPerformed.size < maxMoves) {
       val move = solver.performMove()

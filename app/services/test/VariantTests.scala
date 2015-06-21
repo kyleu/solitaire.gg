@@ -13,7 +13,7 @@ import services.{ ActorSupervisor, ConnectionService }
 import play.api.Play.current
 
 class VariantTests {
-  val all = Tree(Test("variant"), GameRulesSet.completed.map(x => testVariant(x.id).toTree))
+  val all = Tree(Test("variant"), GameRulesSet.all.map(x => testVariant(x.id).toTree))
 
   def testVariant(rules: String) = Test(s"variant-$rules", () => {
     implicit val system = Akka.system
@@ -21,7 +21,7 @@ class VariantTests {
     val userId = UUID.randomUUID
     val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, userId, "test-user", testProbe.ref))
     var msg = "Unknown Result"
-    conn ! StartGame(rules)
+    conn ! StartGame(rules, None, testGame = Some(true))
     val gameJoined = testProbe.expectMsgClass(classOf[GameJoined])
     conn ! GetPossibleMoves
     val moves = testProbe.expectMsgClass(classOf[PossibleMoves])

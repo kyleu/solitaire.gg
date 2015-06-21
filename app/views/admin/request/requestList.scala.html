@@ -1,4 +1,4 @@
-@(q: String, sortBy: String, count: Int, page: Int, requests: Seq[models.audit.RequestLog])(implicit session: Session, flash: Flash)
+@(q: String, sortBy: String, count: Int, page: Int, requests: Seq[models.history.RequestLog])(implicit session: Session, flash: Flash)
 @views.html.admin.list(
   "request", "Requests", count, page, requests.size, q,
   searchAction = controllers.admin.routes.RequestLogController.requestList(),

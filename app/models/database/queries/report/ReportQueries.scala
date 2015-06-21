@@ -1,8 +1,9 @@
-package models.database.queries
+package models.database.queries.report
 
 import java.util.UUID
 
-import models.database.{ Row, SingleRowQuery, Query }
+import models.database.queries.BaseQueries
+import models.database.{ Query, Row, SingleRowQuery }
 
 object ReportQueries {
   private[this] def playerClause(name: String, userIds: Seq[UUID]) = if (userIds.isEmpty) {

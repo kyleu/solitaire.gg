@@ -1,5 +1,6 @@
 package models.game.rules.custom
 
+import models.game.Rank
 import models.game.rules._
 
 object Sandbox extends GameRules(
@@ -7,6 +8,8 @@ object Sandbox extends GameRules(
   title = "Sandbox",
   description = "A work in progress...",
   cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
+
+  deckOptions = DeckOptions(ranks = Seq(Rank.Ace)),
 
   foundations = Seq(FoundationRules(
     suitMatchRule = SuitMatchRule.Any,

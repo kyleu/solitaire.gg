@@ -1,10 +1,10 @@
-package models.database.queries.game
+package models.database.queries.history
 
 import java.util.UUID
 
-import models.audit.GameHistory
 import models.database.queries.BaseQueries
-import models.database.{ Row, Query, Statement }
+import models.database.{ Query, Row, Statement }
+import models.history.GameHistory
 import org.joda.time.LocalDateTime
 import utils.DateUtils
 

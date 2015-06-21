@@ -19,7 +19,7 @@ object PokerRules {
 
   private[this] def check(hand: Seq[(Rank, Suit)]) = {
     if (hand.length != 5) {
-      throw new NotImplementedError()
+      throw new NotImplementedError("PokerRules.OddSizeHand")
     }
 
     val ranks = hand.map(_._1).groupBy(x => x).map(x => (x._1, x._2.size)).toIndexedSeq.sortBy(-_._2)

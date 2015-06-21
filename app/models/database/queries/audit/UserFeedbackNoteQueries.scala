@@ -1,9 +1,10 @@
-package models.database.queries
+package models.database.queries.audit
 
 import java.util.UUID
 
+import models.audit.UserFeedback
+import models.database.queries.BaseQueries
 import models.database.{ Query, Row }
-import models.user.UserFeedback
 import org.joda.time.LocalDateTime
 import utils.DateUtils
 

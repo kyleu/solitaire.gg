@@ -3,7 +3,7 @@ package services.history
 import java.util.UUID
 
 import com.github.mauricio.async.db.Connection
-import models.database.queries.game.{ GameHistoryCardQueries, GameHistoryMoveQueries, GameHistoryQueries }
+import models.database.queries.history.{ GameHistoryQueries, GameHistoryMoveQueries, GameHistoryCardQueries }
 import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database

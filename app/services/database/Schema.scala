@@ -5,6 +5,8 @@ import models.database.queries.ddl._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import utils.Logging
 
+import scala.concurrent.Future
+
 object Schema extends Logging {
   val tables = Seq(
     "users" -> CreateUsersTable,
@@ -18,8 +20,9 @@ object Schema extends Logging {
 
     "requests" -> CreateRequestsTable,
 
-    "games" -> CreateGamesTable,
     "game_seeds" -> CreateGameSeedsTable,
+
+    "games" -> CreateGamesTable,
     "game_cards" -> CreateGameCardsTable,
     "game_moves" -> CreateGameMovesTable,
 
@@ -31,12 +34,25 @@ object Schema extends Logging {
     "adhoc_queries" -> CreateAdHocQueriesTable
   )
 
-  def update() = tables.foreach { t =>
-    Database.query(DdlQueries.DoesTableExist(t._1)).foreach { exists =>
-      if (!exists) {
-        log.info(s"Creating missing table [${t._1}].")
-        val name = s"CreateTable-${t._1}"
-        Database.raw(name, t._2.sql)
+  def update() = {
+    Future.sequence(tables.map { t =>
+      Database.query(DdlQueries.DoesTableExist(t._1)).flatMap { exists =>
+        if (exists) {
+          Future.successful(Unit)
+        } else {
+          log.info(s"Creating missing table [${t._1}].")
+          val name = s"CreateTable-${t._1}"
+          Database.raw(name, t._2.sql).map(x => Unit)
+        }
+      }
+    }).flatMap { ok =>
+      Database.query(DdlQueries.DoesTestUserExist).flatMap { exists =>
+        if (exists) {
+          Future.successful(Unit)
+        } else {
+          log.info(s"Creating test user.")
+          Database.execute(DdlQueries.InsertTestUser).map(x => Unit)
+        }
       }
     }
   }

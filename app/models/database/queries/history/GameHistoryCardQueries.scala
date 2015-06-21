@@ -1,12 +1,12 @@
-package models.database.queries.game
+package models.database.queries.history
 
 import java.util.UUID
 
-import models.audit.GameHistory
-import models.audit.GameHistory.Card
 import models.database.queries.BaseQueries
-import models.database.{ Row, Query, Statement }
+import models.database.{ Query, Row, Statement }
 import models.game.{ Rank, Suit }
+import models.history.GameHistory
+import models.history.GameHistory.Card
 
 object GameHistoryCardQueries extends BaseQueries[GameHistory.Card] {
   override protected val tableName = "game_cards"

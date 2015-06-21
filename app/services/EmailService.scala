@@ -1,11 +1,11 @@
 package services
 
-import models.audit.DailyMetric
-import models.user.{ User, UserFeedback }
+import models.audit.{ UserFeedback, DailyMetric }
+import models.user.User
 import org.joda.time.{ LocalDateTime, LocalDate }
 import play.api.i18n.Messages
 import play.api.libs.mailer._
-import services.report.DailyMetricService
+import services.audit.DailyMetricService
 import utils.Config
 
 @javax.inject.Singleton

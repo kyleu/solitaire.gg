@@ -1,0 +1,36 @@
+@(rules: Seq[(String, (Int, Int, Int, Int))])(implicit session: Session, flash: Flash)@layout.admin(utils.Config.projectName + " Rules Report", "reports") {
+  <h3>@utils.Config.projectName Rules Report</h3>
+  <h4>Displaying winning seed information for @utils.Formatter.withCommas(rules.size) rules.</h4>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Rules</th>
+        <th>Winning Seeds</th>
+        <th>Max Moves</th>
+        <th>Avg Moves</th>
+        <th>Min Moves</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(rule <- rules) {
+        <tr>
+          <td>@rule._1</td>
+          <td>@utils.Formatter.withCommas(rule._2._1)</td>
+          <td>@utils.Formatter.withCommas(rule._2._2)</td>
+          <td>@utils.Formatter.withCommas(rule._2._3)</td>
+          <td>@utils.Formatter.withCommas(rule._2._4)</td>
+        </tr>
+      }
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <th>@utils.Formatter.withCommas(rules.map(_._2._1).sum)</th>
+        <th>@utils.Formatter.withCommas(rules.map(_._2._2).max)</th>
+        <th>@utils.Formatter.withCommas(rules.map(_._2._3).sum / rules.size)</th>
+        <th>@utils.Formatter.withCommas(rules.map(_._2._4).min)</th>
+      </tr>
+    </tfoot>
+  </table>
+}

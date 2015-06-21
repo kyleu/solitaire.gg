@@ -15,7 +15,7 @@ case class Disconnected(reason: String) extends ResponseMessage
 
 case class GameJoined(id: UUID, state: GameState, moves: Seq[PossibleMove]) extends ResponseMessage
 case class GameLost(id: UUID) extends ResponseMessage
-case class GameWon(id: UUID) extends ResponseMessage
+case class GameWon(id: UUID, firstForSeed: Boolean) extends ResponseMessage
 
 case class PossibleMove(moveType: String, cards: Seq[UUID], sourcePile: String, targetPile: Option[String] = None)
 case class PossibleMoves(moves: Seq[PossibleMove], undosAvailable: Int, redosAvailable: Int) extends ResponseMessage

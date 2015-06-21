@@ -3,8 +3,8 @@
   sortBy: String,
   count: Int,
   page: Int,
-  feedback: Seq[models.user.UserFeedback],
-  notes: Seq[models.user.UserFeedback.FeedbackNote]
+  feedback: Seq[models.audit.UserFeedback],
+  notes: Seq[models.audit.UserFeedback.FeedbackNote]
 )(implicit session: Session, flash: Flash)@views.html.admin.list(
   "feedback", "Feedback", count, page, feedback.size, q,
   searchAction = controllers.admin.routes.FeedbackController.feedbackList(),

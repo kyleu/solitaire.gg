@@ -9,8 +9,8 @@ import play.api.libs.json.{ Json, JsObject }
 import utils.metrics.InstrumentedActor
 
 trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionService =>
-  protected[this] def handleStartGame(gameType: String, seed: Option[Int]) {
-    supervisor ! CreateGame(gameType, id, seed)
+  protected[this] def handleStartGame(gameType: String, seed: Option[Int], testGame: Boolean) {
+    supervisor ! CreateGame(gameType, id, seed, testGame = testGame)
   }
 
   protected[this] def handleJoinGame(gameId: UUID) = {

@@ -1,4 +1,4 @@
-package models.user
+package models.audit
 
 import java.util.UUID
 

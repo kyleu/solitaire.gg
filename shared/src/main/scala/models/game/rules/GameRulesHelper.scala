@@ -12,14 +12,16 @@ trait GameRulesHelper { this: GameRules =>
     val rng = new Random(new java.util.Random(seed))
     val maxPlayers = 1
     val lowRank = if (deckOptions.lowRank == Rank.Unknown) {
-      Rank.all(rng.nextInt(Rank.all.length))
+      deckOptions.ranks(rng.nextInt(Rank.all.length))
     } else {
       deckOptions.lowRank
     }
-    val highRank = if (lowRank == Rank.Ace) {
-      Rank.King
+    val highRank = if(deckOptions.ranks.size == 1) {
+      lowRank
+    } else if (lowRank == Rank.Ace) {
+      deckOptions.ranks.filter(_ == Rank.Ace).sortBy(_.value).lastOption.getOrElse(throw new IllegalStateException())
     } else if (lowRank == Rank.Two) {
-      Rank.Ace
+      deckOptions.ranks.filter(_ == Rank.Two).sortBy(_.value).lastOption.getOrElse(throw new IllegalStateException())
     } else {
       Rank.allByValue(lowRank.value - 1)
     }

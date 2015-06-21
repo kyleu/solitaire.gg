@@ -9,6 +9,19 @@ object DdlQueries {
     override def map(row: Row) = row.as[Boolean]("exists")
   }
 
+  case object DoesTestUserExist extends SingleRowQuery[Boolean] {
+    override def sql = s"select count(*) as c from users where id = '${services.test.TestService.testUserId}'"
+    override def map(row: Row): Boolean = row.as[Long]("c") == 1L
+  }
+
+  case object InsertTestUser extends Statement {
+    override def sql = s"""insert into users (
+      id, username, avatar, color, profiles, roles, created
+    ) values (
+      '${services.test.TestService.testUserId}', 'Test User', 'guest', 'red', '{ }', '{ "user" }', '2015-01-01 00:00:00.000'
+    )"""
+  }
+
   case class TruncateTables(tableNames: Seq[String]) extends Statement {
     override val sql = s"truncate ${tableNames.mkString(", ")}"
   }

@@ -1,5 +1,4 @@
-@import models.audit.GameHistory
-@(q: String, sortBy: String, count: Int, page: Int, games: Seq[GameHistory])(implicit session: Session, flash: Flash)
+@(q: String, sortBy: String, count: Int, page: Int, games: Seq[models.history.GameHistory])(implicit session: Session, flash: Flash)
 @views.html.admin.list(
   "game", "Games", count, page, games.size, q,
   searchAction = controllers.admin.routes.GameHistoryController.gameList(),

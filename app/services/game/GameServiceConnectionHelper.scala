@@ -16,7 +16,7 @@ trait GameServiceConnectionHelper { this: GameService =>
     } else {
       // playerConnections += PlayerRecord(userId, name, Some(connectionId), Some(connectionActor))
       gameState.addPlayer(userId, name)
-      throw new NotImplementedError()
+      throw new NotImplementedError("AddPlayer")
     }
 
     connectionActor ! GameStarted(id, self, started)

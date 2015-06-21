@@ -3,8 +3,8 @@ package services.history
 import java.util.UUID
 
 import com.github.mauricio.async.db.Connection
-import models.audit.RequestLog
-import models.database.queries.RequestLogQueries
+import models.database.queries.history.RequestLogQueries
+import models.history.RequestLog
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 

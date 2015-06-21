@@ -8,7 +8,10 @@ import models.game.rules.moves.InitialMoves
 import models.user.PlayerRecord
 import org.joda.time.LocalDateTime
 
-case class GameService(id: UUID, rules: String, seed: Int, started: LocalDateTime, protected val player: PlayerRecord) extends GameServiceHelper {
+case class GameService(
+  id: UUID, rules: String, seed: Int, started: LocalDateTime,
+  protected val player: PlayerRecord, protected val testGame: Boolean
+) extends GameServiceHelper {
   log.info(s"Started game [$rules] for user [${player.userId}: ${player.name}] with seed [$seed].")
 
   protected[this] val observerConnections = collection.mutable.ArrayBuffer.empty[(PlayerRecord, Option[UUID])]

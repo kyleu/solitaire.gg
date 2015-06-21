@@ -13,7 +13,7 @@ import play.api.Play.current
 
 class KnownGameTests {
   val rules = "klondike"
-  val seed = 5
+  val seed = 3
   implicit val system = Akka.system
   val testProbe = TestProbe()
   val userId = UUID.randomUUID
@@ -26,7 +26,7 @@ class KnownGameTests {
   })
 
   private[this] def start() = Test("start", () => {
-    conn ! StartGame("klondike", Some(seed))
+    conn ! StartGame("klondike", Some(seed), testGame = Some(true))
     val gameJoined = testProbe.expectMsgClass(classOf[GameJoined])
     activeGameId = gameJoined.id
     s"Started [$rules] game [$activeGameId]."
@@ -39,7 +39,7 @@ class KnownGameTests {
   })
 
   private[this] def moveCardsA() = Test("move-cards-a", () => {
-    val action = MoveCards(moves.find(_.sourcePile == "tableau-1").getOrElse(throw new IllegalStateException()).cards, "tableau-1", "tableau-6")
+    val action = MoveCards(moves.find(_.sourcePile == "tableau-4").getOrElse(throw new IllegalStateException()).cards, "tableau-4", "foundation-1")
     conn ! action
     val cardMoved = testProbe.expectMsgClass(classOf[CardsMoved])
     moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
@@ -47,7 +47,15 @@ class KnownGameTests {
   })
 
   private[this] def moveCardsB() = Test("move-cards-b", () => {
-    val action = MoveCards(moves.find(_.sourcePile == "tableau-6").getOrElse(throw new IllegalStateException()).cards, "tableau-6", "tableau-4")
+    val action = SelectCard(moves.find(_.sourcePile == "tableau-4").getOrElse(throw new IllegalStateException()).cards.last, "tableau-4")
+    conn ! action
+    val cardMoved = testProbe.expectMsgClass(classOf[CardRevealed])
+    moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
+    s"Performed [MoveCards], received [${moves.size}] possible moves."
+  })
+
+  private[this] def moveCardsC() = Test("move-cards-c", () => {
+    val action = MoveCards(moves.find(_.sourcePile == "tableau-4").getOrElse(throw new IllegalStateException()).cards, "tableau-4", "tableau-2")
     conn ! action
     val cardMoved = testProbe.expectMsgClass(classOf[CardsMoved])
     moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
@@ -64,6 +72,7 @@ class KnownGameTests {
     possibleMoves().toTree,
     moveCardsA().toTree,
     moveCardsB().toTree,
+    moveCardsC().toTree,
     disconnect().toTree
   ))
 }

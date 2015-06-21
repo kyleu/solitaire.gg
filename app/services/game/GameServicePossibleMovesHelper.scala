@@ -9,7 +9,7 @@ import scala.util.{ Failure, Try, Success }
 trait GameServicePossibleMovesHelper { this: GameService =>
   protected[this] def handleGetPossibleMoves(player: UUID) = {
     val moves = possibleMoves(Some(player))
-    sendToAll(PossibleMoves(moves, undoHelper.historyQueue.size, undoHelper.undoneQueue.size))
+    sendToAll("PossibleMoves", PossibleMoves(moves, undoHelper.historyQueue.size, undoHelper.undoneQueue.size))
   }
 
   protected[this] def possibleMoves(player: Option[UUID]): Seq[PossibleMove] = {

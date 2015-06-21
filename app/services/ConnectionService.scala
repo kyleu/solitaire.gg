@@ -30,7 +30,7 @@ class ConnectionService(val supervisor: ActorRef, val userId: UUID, val name: St
     case di: DebugInfo => timeReceive(di) { handleDebugInfo(di.data) }
 
     // Incoming game messages
-    case sg: StartGame => timeReceive(sg) { handleStartGame(sg.rules, sg.seed) }
+    case sg: StartGame => timeReceive(sg) { handleStartGame(sg.rules, sg.seed, sg.testGame.contains(true)) }
     case jg: JoinGame => timeReceive(jg) { handleJoinGame(jg.id) }
     case og: ObserveGame => timeReceive(og) { handleObserveGame(og.id, og.as) }
 

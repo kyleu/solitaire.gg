@@ -3,6 +3,11 @@ package services.game
 import java.util.UUID
 
 import models._
+import models.leaderboard.GameSeed
+import org.joda.time.LocalDateTime
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import services.leaderboard.GameSeedService
+import utils.DateUtils
 
 trait GameServiceCardHelper { this: GameService =>
   protected[this] def handleSelectCard(userId: UUID, cardId: UUID, pileId: String) {
@@ -13,7 +18,7 @@ trait GameServiceCardHelper { this: GameService =>
     }
     if (pile.canSelectCard(card, gameState)) {
       val messages = pile.onSelectCard(card, gameState)
-      sendToAll(messages)
+      sendToAll("SelectCard", messages)
     } else {
       log.warn(s"SelectCard called on [$card], which cannot be selected.")
     }
@@ -34,7 +39,7 @@ trait GameServiceCardHelper { this: GameService =>
       log.warn(s"SelectPile called on [$pile], which cannot be selected.")
       Nil
     }
-    sendToAll(messages)
+    sendToAll("SelectPile", messages)
 
     checkWinCondition()
     if (!gameWon) {
@@ -56,26 +61,40 @@ trait GameServiceCardHelper { this: GameService =>
     if (sourcePile.canDragFrom(cards, gameState)) {
       if (targetPile.canDragTo(sourcePile, cards, gameState)) {
         val messages = targetPile.onDragTo(sourcePile, cards, gameState)
-
-        sendToAll(messages)
+        sendToAll("DragTo", messages)
         checkWinCondition()
         if (!gameWon) {
           handleGetPossibleMoves(userId)
         }
       } else {
-        log.debug(s"Cannot drag cards [${cards.map(_.toString).mkString(", ")}] to pile [${targetPile.id}].")
-        sendToAll(CardMoveCancelled(cardIds, source))
+        log.warn(s"Cannot drag cards [${cards.map(_.toString).mkString(", ")}] to pile [${targetPile.id}].")
+        sendToAll("CardMoveCancelled", CardMoveCancelled(cardIds, source))
       }
     } else {
-      log.debug(s"Cannot drag cards [${cards.map(_.toString).mkString(", ")}] from pile [${sourcePile.id}].")
-      sendToAll(CardMoveCancelled(cardIds, source))
+      log.warn(s"Cannot drag cards [${cards.map(_.toString).mkString(", ")}] from pile [${sourcePile.id}].")
+      sendToAll("CardMoveCancelled", CardMoveCancelled(cardIds, source))
     }
   }
 
   private[this] def checkWinCondition() = if (!gameWon && gameRules.victoryCondition.check(gameState)) {
     gameWon = true
     setStatus("win")
-    sendToAll(GameWon(id))
+
+    val completed = new LocalDateTime()
+    val elapsed = (DateUtils.toMillis(completed) - DateUtils.toMillis(started)).toInt
+    val gs = GameSeed(
+      rules = rules,
+      seed = seed,
+      player = player.userId,
+      moves = moveCount,
+      elapsed = elapsed,
+      completed = completed
+    )
+    log.debug(s"Processing winning [${gs.rules}] game with seed [${gs.seed}].")
+    GameSeedService.register(gs).map { firstForSeed =>
+      sendToAll("GameWon", GameWon(id, firstForSeed))
+    }
+
     true
   } else {
     false

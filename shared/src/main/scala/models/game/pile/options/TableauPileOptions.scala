@@ -12,7 +12,7 @@ object TableauPileOptions extends TableauPileOptionHelper {
       case FillEmptyWith.None => Nil
       case FillEmptyWith.LowRank => Seq(deckOptions.lowRank)
       case FillEmptyWith.HighRank => Seq(deckOptions.highRank)
-      case FillEmptyWith.HighRankUntilStockEmpty => throw new NotImplementedError() // TODO
+      case FillEmptyWith.HighRankUntilStockEmpty => throw new NotImplementedError("FillEmptyWith.HighRankUntilStockEmpty")
       case FillEmptyWith.HighRankOrLowRank => Seq(deckOptions.lowRank, deckOptions.highRank)
       case FillEmptyWith.Sevens => Seq(Rank.Seven)
     }

@@ -1,9 +1,9 @@
-package services.report
+package services.audit
 
 import models.audit.DailyMetric
 import models.audit.DailyMetric._
-import models.database.queries.DailyMetricQueries
-import org.joda.time.{ LocalDateTime, LocalDate }
+import models.database.queries.audit.DailyMetricQueries
+import org.joda.time.{ LocalDate, LocalDateTime }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 

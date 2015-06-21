@@ -1,12 +1,12 @@
 package services.scheduled
 
 import models.audit.DailyMetric
-import models.database.queries.ReportQueries
+import models.database.queries.report.ReportQueries
 import org.joda.time.{ LocalDate, LocalDateTime }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.EmailService
+import services.audit.DailyMetricService
 import services.database.Database
-import services.report.DailyMetricService
 
 import scala.concurrent.Future
 

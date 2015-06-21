@@ -2,14 +2,16 @@ package controllers.admin
 
 import akka.util.Timeout
 import controllers.BaseController
-import models.database.queries.RequestLogQueries
+import models.database.queries.history.RequestLogQueries
 import org.joda.time.{ LocalDate, LocalDateTime }
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import services.audit.DailyMetricService
 import services.database.Database
-import services.report.DailyMetricService
 import services.scheduled.ScheduledTask
+import services.test.{ SolverTests, TestService }
 
+import scala.annotation.tailrec
 import scala.concurrent.Future
 import scala.concurrent.duration._
 
@@ -17,6 +19,7 @@ object SandboxController {
   val sandboxes = Seq(
     "list" -> "List available sandboxes (this one).",
     "scheduled" -> "Run the scheduled task.",
+    "solver-test" -> "Infinite stress test for the poor solver.",
     "error-mail" -> "Send the error email.",
     "backfill-metrics" -> "Backfill missing daily metrics."
   )
@@ -33,6 +36,7 @@ class SandboxController @javax.inject.Inject() (override val messagesApi: Messag
       case "list" => listSandboxes()
       case "scheduled" => runScheduledTask()
       case "error-mail" => runErrorMail()
+      case "solver-test" => runSolverStressTest()
       case "backfill-metrics" => runBackfillMetrics()
       case x => throw new IllegalArgumentException(s"Invalid sandbox [$x].")
     }
@@ -50,6 +54,21 @@ class SandboxController @javax.inject.Inject() (override val messagesApi: Messag
   private[this] def runErrorMail() = Future.successful(
     Ok(views.html.email.severeErrorHtml("Error Message", "Test Context", Some(new Exception("Text Exception")), None, new LocalDateTime()))
   )
+
+  private[this] def runSolverStressTest() = Future.successful {
+    var runsCompleted = 0
+
+    def runTest(): Future[Unit] = {
+      Future(TestService.run(new SolverTests().all)).flatMap { result =>
+        runsCompleted += 1
+        log.info(s"COMPLEEEEETE! $runsCompleted runs completed!")
+        runTest()
+      }
+    }
+
+    runTest()
+    Ok("OK, churning...")
+  }
 
   private[this] def runBackfillMetrics() = {
     def getDays(d: LocalDate) = {

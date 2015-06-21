@@ -12,7 +12,7 @@ trait GameServiceUndoHelper { this: GameService =>
       log.info("Attempt to undo with no actions available.")
     } else {
       val undone = undoHelper.undo(gameState)
-      sendToAll(undone, registerUndoResponse = false)
+      sendToAll("Undo", undone, registerUndoResponse = false)
       handleGetPossibleMoves(userId)
     }
   }
@@ -22,7 +22,7 @@ trait GameServiceUndoHelper { this: GameService =>
       log.info("Attempt to redo from empty undo stack.")
     } else {
       val redone = undoHelper.redo(gameState)
-      sendToAll(redone, registerUndoResponse = false)
+      sendToAll("Redo", redone, registerUndoResponse = false)
       handleGetPossibleMoves(userId)
     }
   }

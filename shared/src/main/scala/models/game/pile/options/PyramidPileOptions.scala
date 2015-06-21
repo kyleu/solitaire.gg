@@ -41,8 +41,8 @@ object PyramidPileOptions {
             false
           } else {
             crm match {
-              case CardRemovalMethod.BuildSequencesOnFoundation => throw new NotImplementedError(lowRank.toString)
-              case CardRemovalMethod.StackSameRankOrSuitInWaste => throw new NotImplementedError(lowRank.toString)
+              case CardRemovalMethod.BuildSequencesOnFoundation => throw new NotImplementedError("CardRemovalMethod.BuildSequencesOnFoundation:" + lowRank.toString)
+              case CardRemovalMethod.StackSameRankOrSuitInWaste => throw new NotImplementedError("CardRemovalMethod.StackSameRankOrSuitInWaste:" + lowRank.toString)
               case _ => crm.canRemove(topCard, firstDraggedCard)
             }
           }

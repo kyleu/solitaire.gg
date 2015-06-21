@@ -1,9 +1,10 @@
-package models.database.queries
+package models.database.queries.history
 
 import java.util.UUID
 
-import models.audit.RequestLog
-import models.database.{ Statement, Row, Query }
+import models.database.queries.BaseQueries
+import models.database.{ Query, Row, Statement }
+import models.history.RequestLog
 import org.joda.time.{ LocalDate, LocalDateTime }
 
 object RequestLogQueries extends BaseQueries[RequestLog] {
@@ -32,7 +33,6 @@ object RequestLogQueries extends BaseQueries[RequestLog] {
 
   case object GetEarliestDay extends Query[LocalDate] {
     override val sql = s"select min(started::date) as d from $tableName"
-    override val values = Nil
     override def reduce(rows: Iterator[Row]) = rows.next().as[LocalDate]("d")
   }
 

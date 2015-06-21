@@ -30,14 +30,14 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
     }
   }
 
-  protected[this] def handleCreateGame(rules: String, connectionId: UUID, seed: Option[Int]) {
+  protected[this] def handleCreateGame(rules: String, connectionId: UUID, seed: Option[Int], testGame: Boolean) {
     val id = UUID.randomUUID
     val s = Math.abs(seed.getOrElse(masterRng.nextInt()))
     val c = connections(connectionId)
 
     val started = new LocalDateTime()
     val pr = PlayerRecord(c.userId, c.name, Some(connectionId), Some(c.actorRef))
-    val actor = context.actorOf(Props(new GameService(id, rules, s, started, pr)), s"game:$id")
+    val actor = context.actorOf(Props(new GameService(id, rules, s, started, pr, testGame)), s"game:$id")
 
     c.activeGame = Some(id)
     games(id) = GameRecord(List((connectionId, c.name)), actor, started)
@@ -56,7 +56,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
   }
 
   protected[this] def handleConnectionGameObserve(gameId: UUID, connectionId: UUID, as: Option[UUID]) = {
-    val game = if (gameId == UUID.fromString("00000000-0000-0000-0000-000000000000")) {
+    val game = if (gameId == services.test.TestService.testGameId) {
       games.headOption.map(_._2)
     } else {
       games.get(gameId)

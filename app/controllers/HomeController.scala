@@ -2,8 +2,8 @@ package controllers
 
 import java.util.UUID
 
-import models.database.queries.UserFeedbackQueries
-import models.user.UserFeedback
+import models.audit.UserFeedback
+import models.database.queries.audit.UserFeedbackQueries
 import org.joda.time.LocalDateTime
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext

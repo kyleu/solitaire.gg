@@ -63,7 +63,7 @@ trait TableauPileOptionHelper {
               } else {
                 false
               }
-              case CardRemovalMethod.StackSameRankOrSuitInWaste => throw new NotImplementedError()
+              case CardRemovalMethod.StackSameRankOrSuitInWaste => throw new NotImplementedError("CardRemovalMethod.StackSameRankOrSuitInWaste")
               case _ => crm.canRemove(topCard, firstDraggedCard)
             }
           }

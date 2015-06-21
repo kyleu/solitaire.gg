@@ -2,12 +2,12 @@ package controllers
 
 import java.util.UUID
 
+import models.history.RequestLog
 import services.history.RequestHistoryService
 import services.user.AuthenticationEnvironment
 import play.api.i18n.I18nSupport
 import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
-import models.audit.RequestLog
 import models.user.{ Role, User }
 import nl.grons.metrics.scala.Timer
 import org.joda.time.LocalDateTime

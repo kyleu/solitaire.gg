@@ -2,12 +2,13 @@ package controllers.admin
 
 import controllers.BaseController
 import models.audit.DailyMetric
-import models.database.queries.ReportQueries
+import models.database.queries.leaderboard.GameSeedQueries
+import models.database.queries.report.ReportQueries
 import org.joda.time.LocalDate
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import services.audit.DailyMetricService
 import services.database.Database
-import services.report.DailyMetricService
 
 import scala.concurrent.Future
 
@@ -21,6 +22,12 @@ class ReportController @javax.inject.Inject() (override val messagesApi: Message
         totals <- DailyMetricService.getTotals(d)
         counts <- Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table))))
       } yield Ok(views.html.admin.report.emailReport(new LocalDate(), request.identity.color, metrics._2, totals, counts))
+    }
+  }
+
+  def rules() = withAdminSession { implicit request =>
+    Database.query(GameSeedQueries.GetCounts).map { rules =>
+      Ok(views.html.admin.report.rules(rules))
     }
   }
 

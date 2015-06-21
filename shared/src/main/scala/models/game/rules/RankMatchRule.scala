@@ -76,7 +76,7 @@ object RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = downBy(4, l, r, lowRank, wrap)
   }
   case object UpByPileIndex extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = throw new NotImplementedError("up-by-pile-index")
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = throw new NotImplementedError("RankMatchRule.UpByPileIndex")
   }
   case object Any extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = true

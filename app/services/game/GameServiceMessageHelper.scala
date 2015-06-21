@@ -2,7 +2,6 @@ package services.game
 
 import akka.actor.PoisonPill
 import models._
-import org.joda.time.LocalDateTime
 
 trait GameServiceMessageHelper { this: GameService =>
   protected[this] def handleStopGameIfEmpty() {
@@ -22,17 +21,17 @@ trait GameServiceMessageHelper { this: GameService =>
     self ! PoisonPill
   }
 
-  protected[this] def sendToAll(messages: Seq[ResponseMessage]): Unit = {
+  protected[this] def sendToAll(context: String, messages: Seq[ResponseMessage]): Unit = {
     if (messages.isEmpty) {
-      log.info("No messages to send to all players.")
+      log.info(s"No messages to send to all players for game [$rules:$seed] in context [$context].")
     } else if (messages.tail.isEmpty) {
-      sendToAll(messages.headOption.getOrElse(throw new IllegalStateException()))
+      sendToAll(context, messages.headOption.getOrElse(throw new IllegalStateException()))
     } else {
-      sendToAll(MessageSet(messages))
+      sendToAll(context, MessageSet(messages))
     }
   }
 
-  protected[this] def sendToAll(message: ResponseMessage, registerUndoResponse: Boolean = true): Unit = {
+  protected[this] def sendToAll(context: String, message: ResponseMessage, registerUndoResponse: Boolean = true): Unit = {
     if (registerUndoResponse) {
       undoHelper.registerResponse(message)
     }
