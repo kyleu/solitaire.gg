@@ -4,7 +4,7 @@ import com.mohiva.play.silhouette.api.{ LoginEvent, LoginInfo, SignUpEvent }
 import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, CredentialsProvider }
 import controllers.BaseController
 import models.user.{ RegistrationData, UserForms }
-import play.api.i18n.{ MessagesApi, Messages }
+import play.api.i18n.{ Messages, MessagesApi }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.AnyContent
 import services.user.AuthenticationEnvironment
@@ -56,8 +56,8 @@ class RegistrationController @javax.inject.Inject() (override val messagesApi: M
     val r = Redirect(controllers.routes.HomeController.index())
     for {
       avatar <- env.avatarService.retrieveURL(data.email)
-      profile <- env.identityService.create(user, profile.copy(avatarURL = avatar.orElse(Some("default"))))
-      user <- env.identityService.save(user.copy(avatar = avatar.getOrElse(request.identity.avatar)), update = true)
+      profile <- env.userService.create(user, profile.copy(avatarURL = avatar.orElse(Some("default"))))
+      user <- env.userService.save(user.copy(avatar = avatar.getOrElse(request.identity.avatar)), update = true)
       authInfo <- env.authInfoService.save(loginInfo, authInfo)
       authenticator <- env.authenticatorService.create(loginInfo)
       value <- env.authenticatorService.init(authenticator)

@@ -2,22 +2,16 @@ package services.game
 
 import java.util.UUID
 
-import akka.actor.ActorRef
 import models._
 import models.game.rules.GameRulesSet
 import models.game.rules.moves.InitialMoves
+import models.user.PlayerRecord
 import org.joda.time.LocalDateTime
 
-object GameService {
-  case class PlayerRecord(userId: UUID, name: String, var connectionId: Option[UUID], var connectionActor: Option[ActorRef])
-}
-
-class GameService(
-  val id: UUID, val rules: String, val seed: Int, val started: LocalDateTime, protected val player: GameService.PlayerRecord
-) extends GameServiceHelper {
+case class GameService(id: UUID, rules: String, seed: Int, started: LocalDateTime, protected val player: PlayerRecord) extends GameServiceHelper {
   log.info(s"Started game [$rules] for user [${player.userId}: ${player.name}] with seed [$seed].")
 
-  protected[this] val observerConnections = collection.mutable.ArrayBuffer.empty[(GameService.PlayerRecord, Option[UUID])]
+  protected[this] val observerConnections = collection.mutable.ArrayBuffer.empty[(PlayerRecord, Option[UUID])]
 
   protected[this] val gameRules = GameRulesSet.allById(rules)
   protected[this] val gameState = gameRules.newGame(id, seed)

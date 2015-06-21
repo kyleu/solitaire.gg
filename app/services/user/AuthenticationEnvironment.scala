@@ -1,7 +1,7 @@
 package services.user
 
 import com.mohiva.play.silhouette.api.util.{ PlayHTTPLayer, Clock }
-import com.mohiva.play.silhouette.api.{ RequestProvider, EventBus, Environment }
+import com.mohiva.play.silhouette.api.{ EventBus, Environment }
 import com.mohiva.play.silhouette.impl.authenticators._
 import com.mohiva.play.silhouette.impl.providers.{ BasicAuthProvider, CredentialsProvider }
 import com.mohiva.play.silhouette.impl.repositories.DelegableAuthInfoRepository
@@ -14,7 +14,9 @@ object AuthenticationEnvironment extends Environment[User, CookieAuthenticator] 
 
   private[this] val fingerprintGenerator = new DefaultFingerprintGenerator(false)
 
-  override val identityService = UserService
+  override val identityService = UserSearchService
+
+  val userService = UserService
 
   private[this] val httpLayer = new PlayHTTPLayer
 

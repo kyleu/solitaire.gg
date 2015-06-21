@@ -3,10 +3,10 @@ package controllers.auth
 import com.mohiva.play.silhouette.api.exceptions.ProviderException
 import com.mohiva.play.silhouette.api.{ LoginEvent, LogoutEvent }
 import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
-import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, SocialProvider, CommonSocialProfileBuilder }
+import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, CommonSocialProfileBuilder, SocialProvider }
 import controllers.BaseController
 import models.user.{ User, UserForms }
-import play.api.i18n.{ MessagesApi, Messages }
+import play.api.i18n.{ Messages, MessagesApi }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.user.AuthenticationEnvironment
 
@@ -46,7 +46,7 @@ class AuthenticationController @javax.inject.Inject() (override val messagesApi:
           case Left(result) => Future.successful(result)
           case Right(authInfo) => for {
             profile <- p.retrieveProfile(authInfo)
-            user <- env.identityService.create(mergeUser(request.identity, profile), profile)
+            user <- env.userService.create(mergeUser(request.identity, profile), profile)
             authInfo <- env.authInfoService.save(profile.loginInfo, authInfo)
             authenticator <- env.authenticatorService.create(profile.loginInfo)
             value <- env.authenticatorService.init(authenticator)

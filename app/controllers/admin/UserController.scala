@@ -3,14 +3,12 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
-import models.database.queries.{ ReportQueries, RequestLogQueries }
+import models.database.queries.ReportQueries
 import models.database.queries.auth.UserQueries
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import services.game.GameHistoryService
-import services.user.UserService
-import utils.CacheService
+import services.history.{ RequestHistoryService, GameHistoryService }
 
 import scala.concurrent.Future
 
@@ -27,9 +25,9 @@ class UserController @javax.inject.Inject() (override val messagesApi: MessagesA
   }
 
   def userDetail(id: UUID, sortGamesBy: String) = withAdminSession { implicit request =>
-    UserService.retrieve(id).flatMap {
+    env.identityService.retrieve(id).flatMap {
       case Some(user) => GameHistoryService.getByUser(id, sortGamesBy).flatMap { games =>
-        Database.query(RequestLogQueries.FindRequestsByUser(id)).map { requests =>
+        RequestHistoryService.getByUser(id).map { requests =>
           Ok(views.html.admin.user.userDetail(user, games, requests, ""))
         }
       }
@@ -38,9 +36,8 @@ class UserController @javax.inject.Inject() (override val messagesApi: MessagesA
   }
 
   def removeUser(id: UUID) = withAdminSession { implicit request =>
-    Database.execute(UserQueries.removeById(Seq(id))).map { i =>
-      CacheService.removeUser(id)
-      Redirect(controllers.admin.routes.UserController.userList(""))
+    env.userService.remove(id).map { result =>
+      Redirect(controllers.admin.routes.UserController.userList("")).flashing("success" -> s"User [$id] removed.")
     }
   }
 

@@ -2,10 +2,9 @@ package controllers
 
 import java.util.UUID
 
-import models.database.queries.RequestLogQueries
-import play.api.i18n.I18nSupport
-import services.database.Database
+import services.history.RequestHistoryService
 import services.user.AuthenticationEnvironment
+import play.api.i18n.I18nSupport
 import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
 import models.audit.RequestLog
@@ -60,7 +59,7 @@ abstract class BaseController extends Silhouette[User, CookieAuthenticator] with
         )
 
         for {
-          user <- env.identityService.save(user)
+          user <- env.userService.save(user)
           authenticator <- env.authenticatorService.create(LoginInfo("anonymous", user.id.toString))
           value <- env.authenticatorService.init(authenticator)
           result <- block(SecuredRequest(user, authenticator, request))
@@ -78,6 +77,6 @@ abstract class BaseController extends Silhouette[User, CookieAuthenticator] with
 
   private[this] def logRequest(request: RequestHeader, userId: UUID, loginInfo: LoginInfo, duration: Int, status: Int) = {
     val log = RequestLog(request, userId, loginInfo, duration, status)
-    Database.execute(RequestLogQueries.insert(log)).map(i => log)
+    RequestHistoryService.insert(log)
   }
 }

@@ -23,9 +23,9 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     override val values = Seq[Any](status, moves, undos, redos, completed.map(DateUtils.toSqlTimestamp), id)
   }
 
-  case class GetGameHistoriesByUser(id: UUID, sortBy: String) extends Query[List[GameHistory]] {
+  case class GetGameHistoriesByUser(userId: UUID, sortBy: String) extends Query[List[GameHistory]] {
     override val sql = getSql(Some("player = ?"), orderBy = Some("?"))
-    override val values = Seq(id, sortBy)
+    override val values = Seq(userId, sortBy)
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
   }
 

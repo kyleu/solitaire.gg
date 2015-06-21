@@ -4,6 +4,7 @@ import java.util.UUID
 
 import akka.actor.ActorRef
 import models._
+import models.user.PlayerRecord
 import play.api.libs.concurrent.Akka
 
 trait GameServiceConnectionHelper { this: GameService =>
@@ -23,7 +24,7 @@ trait GameServiceConnectionHelper { this: GameService =>
   }
 
   protected[this] def handleAddObserver(userId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef, as: Option[UUID]) {
-    observerConnections += (GameService.PlayerRecord(userId, name, Some(connectionId), Some(connectionActor)) -> as)
+    observerConnections += (PlayerRecord(userId, name, Some(connectionId), Some(connectionActor)) -> as)
     val gs = as match {
       case Some(p) => gameState.view(p)
       case None => gameState
@@ -37,7 +38,7 @@ trait GameServiceConnectionHelper { this: GameService =>
 
     import scala.concurrent.duration._
 
-    if (player.connectionId == Some(connectionId)) {
+    if (player.connectionId.contains(connectionId)) {
       log.info(s"Player connection [$connectionId] stopped.")
       player.connectionId = None
       player.connectionActor = None

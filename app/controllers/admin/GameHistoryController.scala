@@ -3,7 +3,7 @@ package controllers.admin
 import controllers.BaseController
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.game.GameHistoryService
+import services.history.GameHistoryService
 
 @javax.inject.Singleton
 class GameHistoryController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {

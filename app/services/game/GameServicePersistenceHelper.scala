@@ -7,6 +7,7 @@ import models.audit.GameHistory
 import models.database.queries.game.{ GameHistoryMoveQueries, GameHistoryCardQueries, GameHistoryQueries }
 import org.joda.time.LocalDateTime
 import services.database.Database
+import services.history.GameHistoryService
 
 trait GameServicePersistenceHelper { this: GameService =>
   private[this] var lastStatus = "created"

@@ -4,6 +4,7 @@ import java.util.UUID
 
 import akka.actor.{ ActorRef, Props }
 import models._
+import models.user.PlayerRecord
 import org.joda.time.LocalDateTime
 import services.ActorSupervisor.{ ConnectionRecord, GameRecord }
 import services.game.GameService
@@ -35,7 +36,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
     val c = connections(connectionId)
 
     val started = new LocalDateTime()
-    val pr = GameService.PlayerRecord(c.userId, c.name, Some(connectionId), Some(c.actorRef))
+    val pr = PlayerRecord(c.userId, c.name, Some(connectionId), Some(c.actorRef))
     val actor = context.actorOf(Props(new GameService(id, rules, s, started, pr)), s"game:$id")
 
     c.activeGame = Some(id)

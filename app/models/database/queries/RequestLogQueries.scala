@@ -3,7 +3,7 @@ package models.database.queries
 import java.util.UUID
 
 import models.audit.RequestLog
-import models.database.{ Row, Query }
+import models.database.{ Statement, Row, Query }
 import org.joda.time.LocalDateTime
 
 object RequestLogQueries extends BaseQueries[RequestLog] {
@@ -19,10 +19,15 @@ object RequestLogQueries extends BaseQueries[RequestLog] {
   val count = Count
   val search = Search
 
-  case class FindRequestsByUser(id: UUID) extends Query[List[RequestLog]] {
-    override val sql = getSql(Some("user_id = ?"))
+  case class GetRequestsByUser(id: UUID) extends Query[List[RequestLog]] {
+    override val sql = getSql(Some("user_id = ?"), orderBy = Some("started desc"))
     override val values = Seq(id)
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
+  }
+
+  case class RemoveRequestsByUser(userId: UUID) extends Statement {
+    override val sql = s"delete from $tableName where user_id = ?"
+    override val values = Seq(userId)
   }
 
   override protected def fromRow(row: Row) = {

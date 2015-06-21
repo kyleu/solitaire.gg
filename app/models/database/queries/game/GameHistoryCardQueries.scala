@@ -21,7 +21,7 @@ object GameHistoryCardQueries extends BaseQueries[GameHistory.Card] {
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
   }
 
-  case class RemoveGameMovesByGame(gameId: UUID) extends Statement {
+  case class RemoveGameCardsByGame(gameId: UUID) extends Statement {
     override val sql = s"delete from $tableName where game_id = ?"
     override val values = Seq(gameId)
   }

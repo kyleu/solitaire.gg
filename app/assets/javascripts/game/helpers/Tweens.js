@@ -44,7 +44,6 @@ define([], function() {
 
     tweenRestore: function(card) {
       card.game.playmat.add(card);
-
       var tween = card.game.add.tween(card);
       tween.to({ alpha: 1 }, 400);
       tween.onComplete.add(function() {
@@ -64,6 +63,7 @@ define([], function() {
         showTween.to({ width: origWidth }, 100, Phaser.Easing.Cubic.In);
         showTween.onComplete.add(function() {
           card.tweening = false;
+          card.width = origWidth;
         }, card);
         showTween.start();
       }, card);
