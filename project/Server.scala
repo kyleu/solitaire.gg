@@ -94,6 +94,7 @@ object Server {
     .aggregate(projectToRef(Client.client))
     .aggregate(Shared.sharedJvm)
     .dependsOn(Shared.sharedJvm)
+    .dependsOn(Utilities.screenshotCreator)
     .dependsOn(Utilities.rulesParser)
     .dependsOn(Utilities.rulesReset)
 }

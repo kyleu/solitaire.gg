@@ -20,6 +20,7 @@ import scala.concurrent.duration._
 object SandboxController {
   val sandboxes = Seq(
     "scratchpad" -> "A one-off I don't feel like putting anwhere else.",
+    "screenshots" -> "Generates screenshots for completed games.",
     "scheduled-task" -> "Run the scheduled task.",
     "solver-test" -> "Infinite stress test for the poor solver.",
     "error-mail" -> "Send the error email.",
@@ -36,6 +37,7 @@ class SandboxController @javax.inject.Inject() (override val messagesApi: Messag
   def sandbox(key: String) = withAdminSession { implicit request =>
     key match {
       case "scratchpad" => runScratchpad()
+      case "screenshots" => runScreenshots()
       case "scheduled-task" => runScheduledTask()
       case "error-mail" => runErrorMail()
       case "solver-test" => runSolverStressTest()
@@ -59,6 +61,11 @@ class SandboxController @javax.inject.Inject() (override val messagesApi: Messag
       wrap = false
     )
     val ret = "Ok: " + isSorted
+    Future.successful(Ok(ret))
+  }
+
+  private[this] def runScreenshots() = {
+    val ret = screenshots.ScreenshotCreator.processAll
     Future.successful(Ok(ret))
   }
 

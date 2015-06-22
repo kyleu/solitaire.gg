@@ -19,6 +19,7 @@ import models.game.rules.{ GameRules, GameRulesSet }
 object Layouts {
   val layouts = Map(
     "accordion" -> "wf",
+    "aceofhearts" -> "s::f|t",
     "acesandkings" -> "swff|::r:t",
     "alexanderthegreat" -> "f::f|2t",
     "alternative" -> ":.f:f|2t",
@@ -60,12 +61,10 @@ object Layouts {
     "triplefreecell" -> ".f|:.c|t",
     "tripleklondike" -> "swf|:t",
     "trustytwelve" -> "s|2t",
-    "westcliff" -> "sw:f|t",
+    "westcliff" -> "swf|t",
     "yukon" -> ":::f|t",
     "zerline" -> "swf|.t:t"
-  ) ++ Seq(
-      "aceofhearts"
-    ).map(id => id -> defaultLayout(id))
+  )
 
   def forRules(id: String) = {
     layouts.getOrElse(id, defaultLayout(id))

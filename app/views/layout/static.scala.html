@@ -20,7 +20,7 @@
     </div>
 
     <div class="menu-right">
-      @defining(if(user.avatar == "guest" || user.avatar == "default") { routes.Assets.at("images/avatar/profile-ffffff.png") } else { user.avatar }) { av =>
+      @defining(if(user.avatar == "guest" || user.avatar == "default") { routes.Assets.at("images/avatar/profile-ffffff@2x.png") } else { user.avatar }) { av =>
         <a href="@routes.ProfileController.profile()" title="@if(user.isGuest) { Sign In } else { Profile }"><img class="avatar-small" src="@av" /></a>
       }
       <a class="link" href="@routes.ProfileController.profile()">@user.username.getOrElse("")</a>
