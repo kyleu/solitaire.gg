@@ -76,7 +76,7 @@ trait GameServiceCardHelper { this: GameService =>
     }
   }
 
-  private[this] def checkWinCondition() = if (!gameWon && gameRules.victoryCondition.check(gameState)) {
+  private[this] def checkWinCondition() = if (!gameWon && gameRules.victoryCondition.check(gameRules, gameState)) {
     gameWon = true
     setStatus("win")
 

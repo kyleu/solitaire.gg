@@ -39,7 +39,7 @@ object BrownRecluse extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
-      wrapFromKingToAce = true,
+      wrap = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
       emptyFilledWith = FillEmptyWith.HighRank

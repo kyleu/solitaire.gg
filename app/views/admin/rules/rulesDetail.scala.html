@@ -1,5 +1,32 @@
-@(rules: models.game.rules.GameRules)
-
-<p>Ok!</p>
-
-@rules
+@(status: models.audit.RulesStatus)(implicit session: Session, flash: Flash)@layout.admin(status.rules.title + " Overview", "tests") {
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2 id="rules-detail-title">@status.rules.title</h2>
+          <em>@Html(services.help.GameRulesHelpService.description(status.rules.description))</em>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a class="btn btn-default btn-block" target="_blank" href="@routes.GameController.newGame(status.rules.id).url">Play Now</a>
+          <a class="btn btn-default btn-block" target="_blank" href="@routes.GameController.help(status.rules.id).url">Help</a>
+          <a class="btn btn-default btn-block" href="">Solver Test</a>
+          <a class="btn btn-default btn-block" href="">View Games</a>
+          <a class="btn btn-default btn-block" href="">View Seeds</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          Content!
+        </div>
+      </div>
+    </div>
+  </div>
+}

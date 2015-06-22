@@ -32,7 +32,7 @@ object SimonSays extends GameRules(
       initialCards = InitialCards.RestOfDeck,
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
-      wrapFromKingToAce = true,
+      wrap = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
     )
   ),

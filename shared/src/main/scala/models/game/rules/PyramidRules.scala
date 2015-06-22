@@ -23,7 +23,7 @@ case class PyramidRules(
 
   suitMatchRuleForBuilding: SuitMatchRule = SuitMatchRule.None,
   rankMatchRuleForBuilding: RankMatchRule = RankMatchRule.None,
-  wrapFromKingToAce: Boolean = false,
+  wrap: Boolean = false,
   suitMatchRuleForMovingStacks: SuitMatchRule = SuitMatchRule.None,
   rankMatchRuleForMovingStacks: RankMatchRule = RankMatchRule.None,
 

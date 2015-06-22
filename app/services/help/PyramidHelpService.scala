@@ -21,7 +21,7 @@ object PyramidHelpService {
       case PyramidType.Inverted => ret += Messages("help.pyramid.type.inverted", loweredName, rows)
     }
 
-    if (rules.wrapFromKingToAce) {
+    if (rules.wrap) {
       ret += Messages("help.pyramid.wrap.ranks")
     }
 

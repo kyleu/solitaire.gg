@@ -1,6 +1,6 @@
 @(q: String, sortBy: String, count: Int, page: Int, games: Seq[models.history.GameHistory])(implicit session: Session, flash: Flash)
 @views.html.admin.list(
-  "game", "Games", count, page, games.size, q,
+  "game", "Games", "explore", count, page, games.size, q,
   searchAction = controllers.admin.routes.GameHistoryController.gameList(),
   prevLink = controllers.admin.routes.GameHistoryController.gameList(q, sortBy, page - 1),
   nextLink = controllers.admin.routes.GameHistoryController.gameList(q, sortBy, page + 1)

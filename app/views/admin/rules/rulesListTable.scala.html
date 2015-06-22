@@ -1,8 +1,10 @@
 @(sortBy: String, statuses: Seq[models.audit.RulesStatus])
+@icon(i: String, t: String) = { <span title="@t" class="glyphicon glyphicon-@i"></span> }
 <table class="table table-bordered">
   <thead>
     <tr>
       @utils.ViewUtils.th("title", "Rules", sortBy)
+      @utils.ViewUtils.th("status", "Status", sortBy)
       @utils.ViewUtils.th("seeds", "Winning Seeds", sortBy)
       @utils.ViewUtils.th("max-moves", "Max Moves", sortBy)
       @utils.ViewUtils.th("avg-moves", "Avg Moves", sortBy)
@@ -13,6 +15,11 @@
   @for(rs <- statuses) {
     <tr>
       <td><a href="@controllers.admin.routes.RulesController.rulesDetail(rs.rules.id)">@rs.rules.title</a></td>
+      <td>@if(rs.completed) {
+        @icon("ok", "Complete")
+      } else {
+        @if(rs.inProgress) { @icon("pencil", "In Progress") } else { @icon("remove", "Not Started") }
+      }</td>
       <td>@utils.Formatter.withCommas(rs.winningSeeds)</td>
       <td>@utils.Formatter.withCommas(rs.maxMoves)</td>
       <td>@utils.Formatter.withCommas(rs.avgMoves)</td>

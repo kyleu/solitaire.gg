@@ -42,7 +42,7 @@ object CastlesEnd extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
-      wrapFromKingToAce = true,
+      wrap = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),

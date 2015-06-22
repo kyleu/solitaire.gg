@@ -84,8 +84,8 @@ trait SolitaireHelper {
   }
 
   private[this] def checkWinCondition() = {
-    if (gameRules.victoryCondition.check(gameState)) {
-      send(GameWon(gameId, false))
+    if (gameRules.victoryCondition.check(gameRules, gameState)) {
+      send(GameWon(gameId, firstForSeed = false))
       true
     } else {
       false

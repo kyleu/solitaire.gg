@@ -1,8 +1,4 @@
 @(status: SystemStatus)(implicit session: Session, flash: Flash)@layout.admin("Server Status", "activity") {
-  <div class="buttons-right">
-    <a href="@controllers.admin.routes.AdminController.observeRandomGame()" target="_blank" class="btn btn-default">Observe Random Game</a>
-  </div>
-
   <div class="row">
     <div class="col-md-6">
       <div class="panel panel-default">

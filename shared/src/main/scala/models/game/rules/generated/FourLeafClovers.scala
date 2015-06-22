@@ -43,7 +43,7 @@ object FourLeafClovers extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
-      wrapFromKingToAce = true,
+      wrap = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.None
     )

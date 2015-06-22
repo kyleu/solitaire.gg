@@ -55,7 +55,7 @@ object Gloucestershire extends GameRules(
         "UUUUUUUUUU"
       ),
       cardsFaceDown = TableauFaceDownCards.Count(0),
-      wrapFromKingToAce = true,
+      wrap = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   )

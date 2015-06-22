@@ -32,7 +32,7 @@ trait ParserPyramidHelper { this: GameRulesParser =>
 
         suitMatchRuleForBuilding = getSuitMatchRule(getInt(prefix + "s")),
         rankMatchRuleForBuilding = getRankMatchRule(getInt(prefix + "r")),
-        wrapFromKingToAce = getBoolean(prefix + "w"),
+        wrap = getBoolean(prefix + "w"),
         suitMatchRuleForMovingStacks = getSuitMatchRule(getInt(prefix + "ts")),
         rankMatchRuleForMovingStacks = getRankMatchRule(getInt(prefix + "tr")),
 

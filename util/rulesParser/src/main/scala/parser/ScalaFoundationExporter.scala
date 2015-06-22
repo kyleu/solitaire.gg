@@ -48,8 +48,8 @@ object ScalaFoundationExporter {
         if(f.rankMatchRule != defaults.rankMatchRule) {
           props += "      rankMatchRule = RankMatchRule." + cls(f.rankMatchRule)
         }
-        if(f.wrapFromKingToAce != defaults.wrapFromKingToAce) {
-          props += "      wrapFromKingToAce = " + f.wrapFromKingToAce
+        if(f.wrap != defaults.wrap) {
+          props += "      wrap = " + f.wrap
         }
         if(f.moveCompleteSequencesOnly != defaults.moveCompleteSequencesOnly) {
           props += "      moveCompleteSequencesOnly = " + f.moveCompleteSequencesOnly

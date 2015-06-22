@@ -10,12 +10,12 @@ import scala.concurrent.Future
 class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends Logging with Runnable {
   private[this] var running = false
 
-  override def run() = go()
+  override def run() = go(false)
 
-  def go() = {
+  def go(force: Boolean) = {
     if (running) {
       Future.failed(new RuntimeException("Scheduled task already running."))
-    } else if (utils.Config.debug) {
+    } else if (utils.Config.debug && !force) {
       Future.successful(Nil)
     } else {
       running = true

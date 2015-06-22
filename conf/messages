@@ -64,7 +64,7 @@ help.fill.empty.with.sevens = An empty pile may be filled with any Seven.
 help.victory.condition.all.but.four.on.foundation = Place all but four cards on the foundation.
 help.victory.condition.all.on.foundation = Place all cards on the foundation in sequence.
 help.victory.condition.all.on.foundation.or.stock = Place all cards on the foundation or stock.
-help.victory.condition.all.on.tableau.sorted = Sort all cards on the tableau or move them to the foundation.
+help.victory.condition.all.on.tableau.sorted = Sort all cards on the tableau so that each is {0} and {1}, or move them to the foundation.
 help.victory.condition.none.in.pyramid = Remove all cards from the pyramid.
 help.victory.condition.none.in.stock = Remove all cards from the stock.
 help.victory.condition.pairs.sr = Remove all pairs with equal ranks.
@@ -160,6 +160,8 @@ help.foundation.build.rank.and.suit.match.rules = A card may be built on a card 
 
 help.foundation.wrap.ranks = An Ace may be played on a King, continuing the sequence.
 help.foundation.cards.shown = {0} cards are visible.
+
+help.foundation.move.complete.sequences.only = Complete sorted sequences of cards may be moved an empty {0} pile.
 
 # Tableau Help
 help.tableau.unique.ranks = The piles are dealt in such a way that no two cards in the same pile have the same rank.

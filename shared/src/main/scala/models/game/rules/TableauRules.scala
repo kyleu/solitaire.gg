@@ -41,7 +41,7 @@ case class TableauRules(
   cardsFaceDown: TableauFaceDownCards = TableauFaceDownCards.AllButOne,
   suitMatchRuleForBuilding: SuitMatchRule = SuitMatchRule.AlternatingColors,
   rankMatchRuleForBuilding: RankMatchRule = RankMatchRule.Down,
-  wrapFromKingToAce: Boolean = false,
+  wrap: Boolean = false,
   suitMatchRuleForMovingStacks: SuitMatchRule = SuitMatchRule.AlternatingColors,
   rankMatchRuleForMovingStacks: RankMatchRule = RankMatchRule.Down,
 

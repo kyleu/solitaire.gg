@@ -21,7 +21,7 @@ object TableauPileOptions extends TableauPileOptionHelper {
       rmr = rules.rankMatchRuleForMovingStacks,
       smr = rules.suitMatchRuleForMovingStacks,
       lowRank = deckOptions.lowRank,
-      wrapFromKingToAce = rules.wrapFromKingToAce
+      wrap = rules.wrap
     )
 
     val dragToConstraint = dragTo(

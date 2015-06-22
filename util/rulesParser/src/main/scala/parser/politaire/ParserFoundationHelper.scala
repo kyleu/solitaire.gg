@@ -40,7 +40,7 @@ trait ParserFoundationHelper { this: GameRulesParser =>
         },
         suitMatchRule = getSuitMatchRule(getInt(prefix + "s")),
         rankMatchRule = getRankMatchRule(getInt(prefix + "r")),
-        wrapFromKingToAce = getBoolean(prefix + "w"),
+        wrap = getBoolean(prefix + "w"),
         moveCompleteSequencesOnly = getBoolean(prefix + "cs"),
         maxCards = getInt(prefix + "m"),
         canMoveFrom = if(!visible) {

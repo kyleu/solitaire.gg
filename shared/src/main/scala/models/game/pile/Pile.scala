@@ -2,8 +2,10 @@ package models.game.pile
 
 import models.game.pile.actions.{ DragToActions, SelectPileActions, SelectCardActions }
 import models.game.pile.options.PileOptions
-import models.game.{ GameState, Card }
+import models.game.rules.{ SuitMatchRule, RankMatchRule }
+import models.game.{ Rank, GameState, Card }
 
+import scala.annotation.tailrec
 import scala.collection.mutable.ArrayBuffer
 
 object Pile {
@@ -35,6 +37,25 @@ case class Pile(id: String, options: PileOptions, cards: collection.mutable.Arra
   def onSelectCard(card: Card, gameState: GameState) = options.selectCardAction.getOrElse(SelectCardActions.none).f(this, card, gameState)
   def onSelectPile(gameState: GameState) = options.selectPileAction.getOrElse(SelectPileActions.none).f(this, gameState)
   def onDragTo(src: Pile, cards: Seq[Card], gameState: GameState) = options.dragToAction.getOrElse(DragToActions.moveCards).f(src, cards, this, gameState)
+
+  def isSorted(requireFaceUp: Boolean, rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank, wrap: Boolean): Boolean = {
+    if(requireFaceUp && this.cards.exists(!_.u)) {
+      false
+    } else {
+      isSorted(this.cards.reverse.toList, rmr, smr, lowRank, wrap)
+    }
+  }
+
+  @tailrec
+  private[this] def isSorted(l: List[Card], rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank, wrap: Boolean): Boolean = l match {
+    case Nil => true
+    case left :: Nil => true
+    case left :: xs =>
+      val right = xs.headOption.getOrElse(throw new IllegalStateException())
+      val rankMatch = rmr.check(left.r, right.r, lowRank, wrap)
+      val suitMatch = smr.check(left.s, right.s)
+      rankMatch && suitMatch && isSorted(xs, rmr, smr, lowRank, wrap)
+  }
 
   override def toString: String = s"$id: ${cards.map(_.toString).mkString(", ")}"
 }

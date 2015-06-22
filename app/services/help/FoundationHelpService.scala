@@ -22,39 +22,43 @@ object FoundationHelpService {
       case FoundationLowRank.SpecificRank(r) => r
     }
 
-    if (lowRank == Rank.Unknown && rules.lowRank == FoundationLowRank.AnyCard) {
-      ret += Messages("help.foundation.lowrank.any", loweredName)
-    } else if (lowRank == Rank.Unknown && rules.lowRank == FoundationLowRank.Ascending) {
-      ret += Messages("help.foundation.lowrank.ascending", loweredName)
-    } else if (lowRank == Rank.Unknown) {
-      ret += Messages("help.foundation.lowrank.first.becomes.base", loweredName)
+    if(rules.moveCompleteSequencesOnly) {
+      ret += Messages("help.foundation.move.complete.sequences.only", loweredName)
     } else {
-      ret += Messages("help.foundation.lowrank.specific", loweredName, lowRank)
-    }
+      if (lowRank == Rank.Unknown && rules.lowRank == FoundationLowRank.AnyCard) {
+        ret += Messages("help.foundation.lowrank.any", loweredName)
+      } else if (lowRank == Rank.Unknown && rules.lowRank == FoundationLowRank.Ascending) {
+        ret += Messages("help.foundation.lowrank.ascending", loweredName)
+      } else if (lowRank == Rank.Unknown) {
+        ret += Messages("help.foundation.lowrank.first.becomes.base", loweredName)
+      } else {
+        ret += Messages("help.foundation.lowrank.specific", loweredName, lowRank)
+      }
 
-    rules.initialCardRestriction match {
-      case Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(c)) => ret += Messages(
-        "help.foundation.initial.restriction.specific.color.unique.suits", c.toString.toLowerCase
-      )
-      case Some(FoundationInitialCardRestriction.SpecificSuit(s)) => ret += Messages("help.foundation.initial.restriction.specific.suit", s.toString)
-      case Some(FoundationInitialCardRestriction.UniqueColors) => ret += Messages("help.foundation.initial.restriction.unique.colors")
-      case Some(FoundationInitialCardRestriction.UniqueSuits) => ret += Messages("help.foundation.initial.restriction.unique.suits")
-      case None => // no op
-    }
+      rules.initialCardRestriction match {
+        case Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(c)) => ret += Messages(
+          "help.foundation.initial.restriction.specific.color.unique.suits", c.toString.toLowerCase
+        )
+        case Some(FoundationInitialCardRestriction.SpecificSuit(s)) => ret += Messages("help.foundation.initial.restriction.specific.suit", s.toString)
+        case Some(FoundationInitialCardRestriction.UniqueColors) => ret += Messages("help.foundation.initial.restriction.unique.colors")
+        case Some(FoundationInitialCardRestriction.UniqueSuits) => ret += Messages("help.foundation.initial.restriction.unique.suits")
+        case None => // no op
+      }
 
-    if (rules.rankMatchRule == RankMatchRule.None || rules.suitMatchRule == SuitMatchRule.None) {
-      ret += Messages("help.foundation.build.none", loweredName)
-    } else {
-      ret += Messages(
-        "help.foundation.build.rank.and.suit.match.rules",
-        loweredName,
-        MatchRuleHelpService.toWords(rules.rankMatchRule),
-        MatchRuleHelpService.toWords(rules.suitMatchRule)
-      )
-    }
+      if (rules.rankMatchRule == RankMatchRule.None || rules.suitMatchRule == SuitMatchRule.None) {
+        ret += Messages("help.foundation.build.none", loweredName)
+      } else {
+        ret += Messages(
+          "help.foundation.build.rank.and.suit.match.rules",
+          loweredName,
+          MatchRuleHelpService.toWords(rules.rankMatchRule),
+          MatchRuleHelpService.toWords(rules.suitMatchRule)
+        )
+      }
 
-    if (rules.wrapFromKingToAce) {
-      ret += Messages("help.foundation.wrap.ranks")
+      if (rules.wrap) {
+        ret += Messages("help.foundation.wrap.ranks")
+      }
     }
 
     if (rules.cardsShown > 1) {

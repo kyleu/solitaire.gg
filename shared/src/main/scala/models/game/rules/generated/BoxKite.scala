@@ -64,7 +64,7 @@ object BoxKite extends GameRules(
       initialCards = InitialCards.Count(8),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
-      wrapFromKingToAce = true,
+      wrap = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.None
     )

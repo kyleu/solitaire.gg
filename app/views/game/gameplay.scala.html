@@ -12,6 +12,9 @@
   faviconColor = Some(user.color)
 ) {
   @views.html.layout.topBar(user)
+  @views.html.game.menuPanel(user)
+  @views.html.game.optionsPanel(user)
+
   @views.html.layout.bottomBar(user)
 
   <div id="game-container"></div>
@@ -26,10 +29,6 @@
       </div>
     </div>
   </div>
-
-  @menuPanel(user)
-
-  @optionsPanel(user)
 
   <pre id="@utils.Config.projectId-config">
   {

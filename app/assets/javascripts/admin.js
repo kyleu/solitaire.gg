@@ -19,7 +19,7 @@ function wireSearchButton() {
 
 function getChartData() {
   var c = document.getElementById("trend-chart-data");
-  if(c === undefined) {
+  if(c === undefined || c === null) {
     return [];
   } else {
     var json = c.innerHTML;

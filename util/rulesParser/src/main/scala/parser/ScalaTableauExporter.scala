@@ -43,8 +43,8 @@ object ScalaTableauExporter {
         if(t.rankMatchRuleForBuilding != defaults.rankMatchRuleForBuilding) {
           props += "      rankMatchRuleForBuilding = RankMatchRule." + cls(t.rankMatchRuleForBuilding)
         }
-        if(t.wrapFromKingToAce != defaults.wrapFromKingToAce) {
-          props += "      wrapFromKingToAce = " + t.wrapFromKingToAce
+        if(t.wrap != defaults.wrap) {
+          props += "      wrap = " + t.wrap
         }
         if(t.suitMatchRuleForMovingStacks != defaults.suitMatchRuleForMovingStacks) {
           props += "      suitMatchRuleForMovingStacks = SuitMatchRule." + cls(t.suitMatchRuleForMovingStacks)

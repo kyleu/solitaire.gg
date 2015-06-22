@@ -18,7 +18,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
   val getById = GetById
   val search = Search
 
-  case object GetCounts extends Query[Map[String, (Int, Int, Int, Int)]] {
+  case class GetCounts(whereClause: Option[String]) extends Query[Map[String, (Int, Int, Int, Int)]] {
     override val sql = """
       select
         rules,

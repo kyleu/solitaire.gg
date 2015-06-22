@@ -37,8 +37,8 @@ object ScalaPyramidExporter {
         if(p.rankMatchRuleForBuilding != defaults.rankMatchRuleForBuilding) {
           props += "      rankMatchRuleForBuilding = RankMatchRule." + cls(p.rankMatchRuleForBuilding)
         }
-        if(p.wrapFromKingToAce != defaults.wrapFromKingToAce) {
-          props += "      wrapFromKingToAce = " + p.wrapFromKingToAce
+        if(p.wrap != defaults.wrap) {
+          props += "      wrap = " + p.wrap
         }
         if(p.suitMatchRuleForMovingStacks != defaults.suitMatchRuleForMovingStacks) {
           props += "      suitMatchRuleForMovingStacks = SuitMatchRule." + cls(p.suitMatchRuleForMovingStacks)

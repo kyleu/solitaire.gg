@@ -1,12 +1,14 @@
 package services.help
 
-import models.game.rules.{ CardRemovalMethod, VictoryCondition }
+import models.game.rules.{ GameRules, CardRemovalMethod, VictoryCondition }
 import play.api.i18n.Messages
 
 object ObjectiveHelpService {
-  def objective(vc: VictoryCondition, crm: CardRemovalMethod)(implicit messages: Messages) = vc match {
+  def objective(rules: GameRules)(implicit messages: Messages) = rules.victoryCondition match {
+    case VictoryCondition.NoneInPyramid => Messages("help.victory.condition.none.in.pyramid")
+    case VictoryCondition.NoneInStock => Messages("help.victory.condition.none.in.stock")
     case VictoryCondition.AllButFourCardsOnFoundation => Messages("help.victory.condition.all.but.four.on.foundation")
-    case VictoryCondition.AllOnFoundation => crm match {
+    case VictoryCondition.AllOnFoundation => rules.cardRemovalMethod match {
       case CardRemovalMethod.BuildSequencesOnFoundation => Messages("help.victory.condition.all.on.foundation")
       case CardRemovalMethod.RemovePairsOfSameRank => Messages("help.victory.condition.pairs.sr")
       case CardRemovalMethod.RemovePairsOfSameRankAndColor => Messages("help.victory.condition.pairs.srsc")
@@ -33,8 +35,14 @@ object ObjectiveHelpService {
       case CardRemovalMethod.StackSameRankOrSuitInWaste => Messages("help.victory.condition.stack.same.suit.or.rank.in.waste")
     }
     case VictoryCondition.AllOnFoundationOrStock => Messages("help.victory.condition.all.on.foundation.or.stock")
-    case VictoryCondition.AllOnTableauSorted => Messages("help.victory.condition.all.on.tableau.sorted")
-    case VictoryCondition.NoneInPyramid => Messages("help.victory.condition.none.in.pyramid")
-    case VictoryCondition.NoneInStock => Messages("help.victory.condition.none.in.stock")
+    case VictoryCondition.AllOnTableauSorted =>
+      val (rmr, smr) = rules.tableaus.toList match {
+        case h :: Nil => (
+          MatchRuleHelpService.toWords(h.rankMatchRuleForBuilding),
+          MatchRuleHelpService.toWords(h.suitMatchRuleForBuilding)
+          )
+        case _ => throw new IllegalStateException("Invalid number of tableau sets.")
+      }
+      Messages("help.victory.condition.all.on.tableau.sorted", rmr, smr)
   }
 }

@@ -3,6 +3,9 @@ package controllers.admin
 import akka.util.Timeout
 import controllers.BaseController
 import models.database.queries.history.RequestLogQueries
+import models.game.pile.Pile
+import models.game.rules.{ SuitMatchRule, RankMatchRule }
+import models.game.{ Rank, Suit, Card }
 import org.joda.time.{ LocalDate, LocalDateTime }
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -11,14 +14,13 @@ import services.database.Database
 import services.scheduled.ScheduledTask
 import services.test.{ SolverTests, TestService }
 
-import scala.annotation.tailrec
 import scala.concurrent.Future
 import scala.concurrent.duration._
 
 object SandboxController {
   val sandboxes = Seq(
-    "list" -> "List available sandboxes (this one).",
-    "scheduled" -> "Run the scheduled task.",
+    "scratchpad" -> "A one-off I don't feel like putting anwhere else.",
+    "scheduled-task" -> "Run the scheduled task.",
     "solver-test" -> "Infinite stress test for the poor solver.",
     "error-mail" -> "Send the error email.",
     "backfill-metrics" -> "Backfill missing daily metrics."
@@ -33,8 +35,8 @@ class SandboxController @javax.inject.Inject() (override val messagesApi: Messag
 
   def sandbox(key: String) = withAdminSession { implicit request =>
     key match {
-      case "list" => listSandboxes()
-      case "scheduled" => runScheduledTask()
+      case "scratchpad" => runScratchpad()
+      case "scheduled-task" => runScheduledTask()
       case "error-mail" => runErrorMail()
       case "solver-test" => runSolverStressTest()
       case "backfill-metrics" => runBackfillMetrics()
@@ -42,12 +44,25 @@ class SandboxController @javax.inject.Inject() (override val messagesApi: Messag
     }
   }
 
-  private[this] def listSandboxes() = {
-    val ret = SandboxController.sandboxes.map(x => s"${x._1}: ${x._2}").mkString("\n")
+  private[this] def runScratchpad() = {
+    val cards = collection.mutable.ArrayBuffer(
+      Card(r = Rank.Two, s = Suit.Hearts, u = true),
+      Card(r = Rank.Three, s = Suit.Hearts, u = true),
+      Card(r = Rank.Four, s = Suit.Hearts, u = true)
+    )
+    val p = Pile("scratchpad", Pile.options, cards)
+    val isSorted = p.isSorted(
+      requireFaceUp = true,
+      rmr = RankMatchRule.Any,
+      smr = SuitMatchRule.Any,
+      lowRank = Rank.Ace,
+      wrap = false
+    )
+    val ret = "Ok: " + isSorted
     Future.successful(Ok(ret))
   }
 
-  private[this] def runScheduledTask() = scheduledTask.go().map { ret =>
+  private[this] def runScheduledTask() = scheduledTask.go(true).map { ret =>
     Ok(ret.map(x => s"${x._1}: ${x._2.getOrElse("No progress")}").mkString("\n"))
   }
 

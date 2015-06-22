@@ -40,7 +40,7 @@ object Dnieper extends GameRules(
     TableauRules(
       initialCards = InitialCards.Count(4),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      wrapFromKingToAce = true,
+      wrap = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any
     )
