@@ -56,6 +56,7 @@ object Layouts {
     "spider" -> "s:f|t",
     "tarantula" -> "s:f|t",
     "tournament" -> "sff|:c|::t",
+    "trillium" -> "s::f|t",
     "triplefreecell" -> ".f|:.c|t",
     "tripleklondike" -> "swf|:t",
     "trustytwelve" -> "s|2t",

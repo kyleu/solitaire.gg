@@ -9,6 +9,9 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
     var transparent = true;
     this.initialized = false;
 
+    this.possibleMoves = [];
+    this.recentMoves = [];
+
     var configOptions = {
       width: '100%',
       height: '100%',
@@ -93,23 +96,41 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
   };
 
   Game.prototype.autoMove = function() {
-    if(this.possibleMoves !== undefined && this.possibleMoves.length > 0) {
-      var move = this.possibleMoves[0];
-      switch(move.moveType) {
-        case "move-cards":
-          this.send("MoveCards", {cards: move.cards, src: move.sourcePile, tgt: move.targetPile});
-          break;
-        case "select-card":
-          var selectedCard = this.cards[move.cards[0]];
-          this.cardSelected(selectedCard);
-          break;
-        case "select-pile":
-          var selectedPile = this.piles[move.sourcePile];
-          this.pileSelected(selectedPile);
-          break;
-        default:
-          throw "Unknown move [" + move.moveType + "].";
+    var idx = 0;
+    var move = null;
+    var candidate = null;
+    var matches = function(e) { return _.isEqual(e, candidate); };
+    while(move === null && this.possibleMoves.length > idx) {
+      candidate = this.possibleMoves[idx];
+      if(_.find(this.recentMoves, matches) !== undefined) {
+        idx += 1;
+      } else {
+        move = candidate;
       }
+    }
+    if(move !== null) {
+      if(move.moveType === 'move-cards') {
+        this.recentMoves.push(move);
+      }
+      this.sendMove(move);
+    }
+  };
+
+  Game.prototype.sendMove = function(move) {
+    switch(move.moveType) {
+      case "move-cards":
+        this.send("MoveCards", {cards: move.cards, src: move.sourcePile, tgt: move.targetPile});
+        break;
+      case "select-card":
+        var selectedCard = this.cards[move.cards[0]];
+        this.cardSelected(selectedCard);
+        break;
+      case "select-pile":
+        var selectedPile = this.piles[move.sourcePile];
+        this.pileSelected(selectedPile);
+        break;
+      default:
+        throw "Unknown move [" + move.moveType + "].";
     }
   };
 

@@ -46,13 +46,10 @@ trait TableauPileOptionHelper {
       if (rules.maxCards > 0 && tgt.cards.length + cards.length >rules. maxCards) {
         false
       } else {
+        val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
         if (tgt.cards.isEmpty) {
-          src.pileSet.exists(x => rules.mayMoveToEmptyFrom.contains(x.behavior)) && (emptyPileRanks.length match {
-            case 0 => false
-            case _ => cards.exists(c => emptyPileRanks.contains(c.r))
-          })
+          src.pileSet.exists(x => rules.mayMoveToEmptyFrom.contains(x.behavior)) && emptyPileRanks.contains(firstDraggedCard.r)
         } else {
-          val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
           val topCard = tgt.cards.lastOption.getOrElse(throw new IllegalStateException())
           val ret = if (!topCard.u) {
             false

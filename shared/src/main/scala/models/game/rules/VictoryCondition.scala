@@ -1,7 +1,7 @@
 package models.game.rules
 
 import models.game.pile.Pile
-import models.game.{ Rank, GameState }
+import models.game.GameState
 
 sealed trait VictoryCondition {
   def check(rules: GameRules, gs: GameState): Boolean
@@ -34,13 +34,16 @@ object VictoryCondition {
         case _ => throw new IllegalStateException("Invalid number of tableau sets.")
       }
       def sorted(p: Pile) = p.isSorted(
-        requireFaceUp = true,
+        requireFaceUp = false,
         rmr = tableauRules.rankMatchRuleForBuilding,
         smr = tableauRules.suitMatchRuleForBuilding,
         lowRank = gs.deck.lowRank,
         wrap = tableauRules.wrap
       )
-      !gs.pileSets.exists(ps => ps.behavior != "tableau" && ps.piles.forall(sorted))
+      val allTableauSorted = gs.pileSets.filter(_.behavior == "tableau").forall(ps => ps.piles.forall(sorted))
+      val eligible = gs.pileSets.filterNot(ps => ps.behavior == "foundation" || ps.behavior == "tableau")
+      val eligibleEmpty = eligible.forall(ps => ps.piles.forall(_.cards.isEmpty))
+      allTableauSorted && eligibleEmpty
     }
   }
 }

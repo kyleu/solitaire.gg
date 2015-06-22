@@ -42,7 +42,8 @@ case class Pile(id: String, options: PileOptions, cards: collection.mutable.Arra
     if(requireFaceUp && this.cards.exists(!_.u)) {
       false
     } else {
-      isSorted(this.cards.reverse.toList, rmr, smr, lowRank, wrap)
+      val sorted = isSorted(this.cards.reverse.toList, rmr, smr, lowRank, wrap)
+      sorted
     }
   }
 

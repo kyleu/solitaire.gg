@@ -15,9 +15,8 @@
         <div class="panel-body">
           <a class="btn btn-default btn-block" target="_blank" href="@routes.GameController.newGame(status.rules.id).url">Play Now</a>
           <a class="btn btn-default btn-block" target="_blank" href="@routes.GameController.help(status.rules.id).url">Help</a>
-          <a class="btn btn-default btn-block" href="">Solver Test</a>
-          <a class="btn btn-default btn-block" href="">View Games</a>
-          <a class="btn btn-default btn-block" href="">View Seeds</a>
+          <a class="btn btn-default btn-block" target="_blank" href="@controllers.admin.routes.TestController.runTest("solve-" + status.rules.id).url">Solver Test</a>
+          <a class="btn btn-default btn-block" target="_blank" href="@controllers.admin.routes.GameHistoryController.gameList(status.rules.id, "created", 0)">View Games</a>
         </div>
       </div>
     </div>

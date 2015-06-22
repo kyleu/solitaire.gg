@@ -10,6 +10,10 @@ import utils.Logging
 
 import scala.util.Random
 
+object GameSolver {
+  val moveLimit = 5000
+}
+
 case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None) extends Logging {
   val rng = new Random(testSeed)
 
