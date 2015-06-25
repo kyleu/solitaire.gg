@@ -16,16 +16,7 @@ trait GameRulesHelper { this: GameRules =>
     } else {
       deckOptions.lowRank
     }
-    val highRank = if(deckOptions.ranks.size == 1) {
-      lowRank
-    } else if (lowRank == Rank.Ace) {
-      deckOptions.ranks.filter(_ == Rank.Ace).sortBy(_.value).lastOption.getOrElse(throw new IllegalStateException())
-    } else if (lowRank == Rank.Two) {
-      deckOptions.ranks.filter(_ == Rank.Two).sortBy(_.value).lastOption.getOrElse(throw new IllegalStateException())
-    } else {
-      Rank.allByValue(lowRank.value - 1)
-    }
-    val deck = newShuffledDecks(seed, rng, deckOptions.numDecks, deckOptions.ranks, deckOptions.suits, lowRank, highRank)
+    val deck = newShuffledDecks(seed, rng, deckOptions.numDecks, deckOptions.ranks, deckOptions.suits, lowRank, deckOptions.highRank)
     val pileSets = newPileSets()
     val layout = Layouts.forRules(id)
     val gameState = GameState(gameId, id, title, maxPlayers, seed, deck, pileSets, layout)
@@ -66,7 +57,7 @@ trait GameRulesHelper { this: GameRules =>
     "cells" -> cells.map(c => (1 to c.numPiles).map(i => s"cells-$i")).getOrElse(Nil)
   )
 
-  protected[this] lazy val prototypePileSets = (
+  protected[this] lazy val prototypePileSets = {
     tableaus.map(t => TableauSet(t, deckOptions, cardRemovalMethod)) ++
     reserves.map(r => ReserveSet(r)) ++
     waste.map(w => WasteSet(w, cardRemovalMethod)) ++
@@ -74,5 +65,5 @@ trait GameRulesHelper { this: GameRules =>
     cells.map(c => CellSet(c)) ++
     stock.map(s => StockSet(s, pileIdsByType)) ++
     foundations.map(f => FoundationSet(f, deckOptions))
-  ).toSeq
+  }
 }

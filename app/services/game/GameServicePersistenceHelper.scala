@@ -4,6 +4,7 @@ import java.util.UUID
 
 import models._
 import models.database.queries.history.{ GameHistoryQueries, GameHistoryMoveQueries, GameHistoryCardQueries }
+import models.game.Card
 import models.history.GameHistory
 import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -14,15 +15,17 @@ import scala.concurrent.Future
 
 trait GameServicePersistenceHelper { this: GameService =>
   private[this] var lastStatus = "created"
+  private[this] var cardsPersisted = false
+  private[this] var originalCards = Seq.empty[Card]
   private[this] var movesPersisted = 0
 
   protected[this] def create() = if(testGame) {
     Future.successful(true)
   } else {
     val gh = GameHistory(id, seed, rules, "started", player.userId, 0, 0, 0, started, None)
-    Database.execute(GameHistoryQueries.insert(gh)).flatMap { ok =>
-      val cards = gameState.deck.cards.zipWithIndex.map(card => new GameHistory.Card(card._1.id, id, card._2, card._1.r, card._1.s))
-      Database.execute(GameHistoryCardQueries.insertBatch(cards)).map(_ == cards.size)
+    Database.execute(GameHistoryQueries.insert(gh)).map { ok =>
+      originalCards = gameState.deck.cards
+      true
     }
   }
 
@@ -36,6 +39,16 @@ trait GameServicePersistenceHelper { this: GameService =>
       }
 
       if (movesPersisted < (moveCount - 1)) {
+        if(!cardsPersisted) {
+          if(!testGame) {
+            val cards = originalCards.zipWithIndex.map { card =>
+              new GameHistory.Card(card._1.id, id, card._2, card._1.r, card._1.s)
+            }
+            Database.execute(GameHistoryCardQueries.insertBatch(cards))
+          }
+          cardsPersisted = true
+        }
+
         // This is ok since this particular method is actor-scoped, even if the persist isn't
         val movesToPersist = gameMessages.drop(movesPersisted)
         movesToPersist.zipWithIndex.foreach { gm =>

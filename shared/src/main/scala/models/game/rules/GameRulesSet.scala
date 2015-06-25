@@ -8,6 +8,8 @@ import models.game.rules.custom.{ KlondikeOneCard, CustomGameRules }
 object GameRulesSet {
   val completed = Seq(
     AceOfHearts,
+    AcesAndKings,
+    AceyAndKingsley,
     AlexanderTheGreat,
     Batsford,
     BeleagueredCastle,
