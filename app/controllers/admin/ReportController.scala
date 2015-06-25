@@ -8,19 +8,19 @@ import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.DailyMetricService
 import services.database.Database
+import utils.DateUtils
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
 class ReportController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
-  def email() = withAdminSession { implicit request =>
+  def email(d: LocalDate = DateUtils.today) = withAdminSession { implicit request =>
     Database.query(ReportQueries.ListTables).flatMap { tables =>
-      val d = new LocalDate("2015-06-10")
       for {
-        metrics <- DailyMetricService.getMetrics(d)
+        metrics <- DailyMetricService.recalculateMetrics(d)
         totals <- DailyMetricService.getTotals(d)
         counts <- Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table))))
-      } yield Ok(views.html.admin.report.emailReport(new LocalDate(), request.identity.color, metrics._2, totals, counts))
+      } yield Ok(views.html.admin.report.emailReport(d, request.identity.color, metrics._2._1, totals, counts))
     }
   }
 

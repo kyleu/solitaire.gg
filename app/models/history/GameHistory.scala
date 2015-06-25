@@ -4,6 +4,7 @@ import java.util.UUID
 
 import models.game.{ Rank, Suit }
 import org.joda.time.LocalDateTime
+import utils.DateUtils
 
 object GameHistory {
   case class Card(
@@ -22,7 +23,7 @@ object GameHistory {
     cards: Option[Seq[UUID]] = None,
     src: Option[String] = None,
     tgt: Option[String] = None,
-    occurred: LocalDateTime = new LocalDateTime()
+    occurred: LocalDateTime = DateUtils.now
   )
 }
 

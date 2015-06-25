@@ -27,6 +27,7 @@ object Layouts {
     "beehive" -> "2f|.t|::rsw",
     "beleagueredcastle" -> "::f|t",
     "bisley" -> ":f:::f|tt",
+    "bunker" -> "s:::w|t",
     "canfield" -> "swf|:r:t",
     "congress" -> "sw|f|t",
     "cruel" -> "::f|2t",

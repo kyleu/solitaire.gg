@@ -4,7 +4,7 @@ import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.providers.OAuth1Info
 import models.database.queries.BaseQueries
 import models.database.{ Row, Statement }
-import org.joda.time.LocalDateTime
+import utils.DateUtils
 
 object OAuth1InfoQueries extends BaseQueries[OAuth1Info] {
   override protected val tableName = "oauth1_info"
@@ -31,5 +31,5 @@ object OAuth1InfoQueries extends BaseQueries[OAuth1Info] {
     OAuth1Info(token, secret)
   }
 
-  override protected def toDataSeq(o: OAuth1Info) = Seq(o.token, o.secret, new LocalDateTime())
+  override protected def toDataSeq(o: OAuth1Info) = Seq(o.token, o.secret, DateUtils.now)
 }

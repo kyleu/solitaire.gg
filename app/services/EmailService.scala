@@ -2,11 +2,11 @@ package services
 
 import models.audit.{ UserFeedback, DailyMetric }
 import models.user.User
-import org.joda.time.{ LocalDateTime, LocalDate }
+import org.joda.time.LocalDate
 import play.api.i18n.Messages
 import play.api.libs.mailer._
 import services.audit.DailyMetricService
-import utils.Config
+import utils.{ DateUtils, Config }
 
 @javax.inject.Singleton
 class EmailService @javax.inject.Inject() (mailerClient: MailerClient) {
@@ -40,7 +40,7 @@ class EmailService @javax.inject.Inject() (mailerClient: MailerClient) {
   }
 
   def sendError(msg: String, ctx: String, ex: Option[Throwable], user: Option[User]) = {
-    val html = views.html.email.severeErrorHtml(msg, ctx, ex, user, new LocalDateTime()).toString
+    val html = views.html.email.severeErrorHtml(msg, ctx, ex, user, DateUtils.now).toString()
     sendMessage(adminFrom, Config.adminEmail, s"${Config.projectName} error for [$ctx].", adminTextMessage, html)
   }
 

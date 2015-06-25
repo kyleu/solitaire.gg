@@ -1,4 +1,5 @@
-@(rules: models.game.rules.GameRules, color: String)(implicit messages: Messages)
-<div class="rules-container">
-  @helpContent(rules, color)
+@(rules: models.game.rules.GameRules, color: String, routesMap: utils.RoutesMap = utils.RoutesMap.dynamic)(
+  implicit messages: Messages
+)<div class="rules-container">
+  @helpContent(rules, color, routesMap)
 </div>

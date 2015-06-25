@@ -10,10 +10,9 @@ import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
 import models.user.{ Role, User }
 import nl.grons.metrics.scala.Timer
-import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.{ AnyContent, RequestHeader, Result }
-import utils.Logging
+import utils.{ DateUtils, Logging }
 import utils.metrics.Instrumented
 
 import scala.concurrent.Future
@@ -55,7 +54,7 @@ abstract class BaseController extends Silhouette[User, CookieAuthenticator] with
           avatar = "guest",
           color = "greyblue",
           profiles = Nil,
-          created = new LocalDateTime()
+          created = DateUtils.now
         )
 
         for {

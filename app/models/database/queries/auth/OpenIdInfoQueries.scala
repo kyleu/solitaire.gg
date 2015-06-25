@@ -4,8 +4,8 @@ import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.providers.OpenIDInfo
 import models.database.queries.BaseQueries
 import models.database.{ Row, Statement }
-import org.joda.time.LocalDateTime
 import play.api.libs.json.{ JsValue, Json }
+import utils.DateUtils
 
 object OpenIdInfoQueries extends BaseQueries[OpenIDInfo] {
   override protected val tableName = "openid_info"
@@ -36,6 +36,6 @@ object OpenIdInfoQueries extends BaseQueries[OpenIDInfo] {
 
   override protected def toDataSeq(o: OpenIDInfo) = {
     val attributes = Json.prettyPrint(Json.toJson(o.attributes))
-    Seq(o.id, attributes, new LocalDateTime())
+    Seq(o.id, attributes, DateUtils.now)
   }
 }

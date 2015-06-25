@@ -1,27 +1,28 @@
-@(user: models.user.User, title: String, button: String)(content: Html)(implicit request: Request[AnyContent], session: Session, flash: Flash)@layout.basic(
+@(user: models.user.User, title: String, button: String, routesMap: utils.RoutesMap = utils.RoutesMap.dynamic)(content: Html)(
+  implicit request: Request[AnyContent], session: Session, flash: Flash
+)@layout.basic(
   title = title,
-  scripts = Seq(routes.Assets.at("javascripts/static.js").url),
-  stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.min.css").url),
+  scripts = Seq(routesMap("script-root", "static.js")),
+  stylesheets = Seq(routesMap("css-root", "solitaire.gg.min.css")),
   bodyClass = Some(s"background-${user.color}"),
-  faviconColor = Some(user.color)
+  faviconColor = Some(user.color),
+  routesMap = utils.RoutesMap.dynamic
 ) {
   <div id="menu-container">
     <div class="menu-left">
       @if(button == "about") {
-        <a id="btn-help" title="About @utils.Config.projectName" class="help btn btn-@user.color" href="@routes.HomeController.about()"></a>
+      <a id="btn-help" title="About @utils.Config.projectName" class="help btn btn-@user.color" href="@routesMap("about")"></a>
+      } else { @if(button == "menu") {
+      <a id="btn-menu" title="@utils.Config.projectName" class="menu btn btn-@user.color" href="@routesMap("index")"></a>
       } else {
-        @if(button == "menu") {
-          <a id="btn-menu" title="@utils.Config.projectName" class="menu btn btn-@user.color" href="@routes.HomeController.index()"></a>
-        } else {
-          ICON ERROR
-        }
-      }
+      ICON ERROR
+      } }
       <div id="btn-options" title="@utils.Config.projectName Options" class="options btn btn-@user.color"></div>
     </div>
 
     <div class="menu-right">
       @defining(if(user.avatar == "guest" || user.avatar == "default") { routes.Assets.at("images/avatar/profile-ffffff@2x.png") } else { user.avatar }) { av =>
-        <a href="@routes.ProfileController.profile()" title="@if(user.isGuest) { Sign In } else { Profile }"><img class="avatar-small" src="@av" /></a>
+      <a href="@routesMap("profile")" title="@if(user.isGuest) { Sign In } else { Profile }"><img class="avatar-small" src="@av" /></a>
       }
       <a class="link" href="@routes.ProfileController.profile()">@user.username.getOrElse("")</a>
     </div>
@@ -32,12 +33,10 @@
   </div>
 
   <div id="static-options-panel">
-    <div id="color-list">
-      @for(color <- ui.Colors.all) {
-        @defining(if(color._1 == user.color) { " active" } else { "" }) { active =>
-          <div class="swatch-border @active"><div id="color-@color._1" class="swatch background-@color._1"></div></div>
-        }
-      }
+    <div id="color-list"> @for(color <- ui.Colors.all) {
+      <div class="swatch-border@{ if(color._1 == user.color) { " active" } else { "" } }">
+        <div id="color-@color._1" class="swatch background-@color._1"></div>
+      </div> }
     </div>
     <div class="action-buttons">
       <div id="btn-confirm" title="OK" class="ok btn btn-@user.color disabled"></div>
@@ -46,5 +45,4 @@
 
   <div id="page-content">
     @content
-  </div>
-}
+  </div> }

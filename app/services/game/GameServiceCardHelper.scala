@@ -4,7 +4,6 @@ import java.util.UUID
 
 import models._
 import models.leaderboard.GameSeed
-import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.leaderboard.GameSeedService
 import utils.DateUtils
@@ -80,7 +79,7 @@ trait GameServiceCardHelper { this: GameService =>
     gameWon = true
     setStatus("win")
 
-    val completed = new LocalDateTime()
+    val completed = DateUtils.now
     val elapsed = (DateUtils.toMillis(completed) - DateUtils.toMillis(started)).toInt
     val gs = GameSeed(
       rules = rules,

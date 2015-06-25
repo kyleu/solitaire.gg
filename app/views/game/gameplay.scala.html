@@ -4,14 +4,15 @@
   rulesId: String,
   initialAction: Seq[String],
   seed: Option[Int] = None,
-  offline: Boolean = false
+  offline: Boolean = false,
+  routesMap: utils.RoutesMap = utils.RoutesMap.dynamic
 )(implicit session: Session, flash: Flash)@layout.basic(
   s"$title - ${utils.Config.projectName}",
-  stylesheets = Seq(routes.Assets.at("stylesheets/solitaire.gg.min.css").url),
+  stylesheets = Seq(routesMap("css-root", "solitaire.gg.min.css")),
   bodyClass = Some(s"noscroll background-${user.color}"),
   faviconColor = Some(user.color)
 ) {
-  @views.html.layout.topBar(user)
+  @views.html.layout.topBar(user, routesMap)
   @views.html.game.menuPanel(user)
   @views.html.game.optionsPanel(user)
 
@@ -55,12 +56,12 @@
   }
 
   @if(utils.Config.debug) {
-  <script src="/assets/lib/phaser/js/phaser.js"></script>
+  <script src="@routes.Assets.at("lib/phaser/js/phaser.js")"></script>
   <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/phaser-debug.min.css").url" />
-  <script src="/assets/lib/phaser/js/phaser-debug.js"></script>
+  <script src="@routes.Assets.at("lib/phaser/js/phaser-debug.js")"></script>
   <script src="@routes.Assets.at("lib/underscore/underscore.js").url"></script>
   } else {
-  <script src="/assets/lib/phaser/js/phaser.min.js"></script>
+  <script src="@routes.Assets.at("lib/phaser/js/phaser.js")"></script>
   <script src="@routes.Assets.at("lib/underscore/underscore.min.js").url"></script>
   }
   <script data-main="/assets/javascripts/main.js?build=@utils.BuildInfo.buildinfoBuildnumber" src="/assets/lib/requirejs/require.min.js"></script>

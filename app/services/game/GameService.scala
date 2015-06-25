@@ -7,6 +7,7 @@ import models.game.rules.GameRulesSet
 import models.game.rules.moves.InitialMoves
 import models.user.PlayerRecord
 import org.joda.time.LocalDateTime
+import utils.DateUtils
 
 case class GameService(
   id: UUID, rules: String, seed: Int, started: LocalDateTime,
@@ -50,7 +51,7 @@ case class GameService(
   private[this] def handleGameRequest(gr: GameRequest) = {
     //log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.userId + "] for game [" + id + "].")
     try {
-      val time = new LocalDateTime()
+      val time = DateUtils.now
       gameMessages += ((gr.message, gr.userId, time))
       moveCount += 1
       lastMoveMade = Some(time)

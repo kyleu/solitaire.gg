@@ -1,34 +1,39 @@
-@(user: models.user.User)(implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages)
-@layout.static(user = user, title = utils.Config.projectName, button = "about") {
+@(user: models.user.User, routesMap: utils.RoutesMap = utils.RoutesMap.dynamic)(
+  implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
+)@layout.static(user = user, title = utils.Config.projectName, button = "about", routesMap) {
   <div class="module">
     <div class="welcome">@Messages("index.welcome")</div>
     <div class="tagline">@Messages("index.tagline")</div>
     <div class="play-now">
-      <a href="@routes.GameController.newGame("klondike").url" role="button">@Messages("index.play.now")</a>
+      <a href="@routesMap("new-game", "klondike")" role="button">@Messages("index.play.now")</a>
     </div>
   </div>
 
   <div class="module">
     <div class="header">@Messages("index.games.popular")</div>
-    <ul class="game-links">
-    @for(r <- models.game.rules.GameRulesSet.favorites) {<li><a href="@routes.GameController.newGame(r.id)">@r.title</a></li>}
+    <ul class="game-links">@for(r <- models.game.rules.GameRulesSet.favorites) {
+      <li><a href="@routesMap("new-game", r.id)">@r.title</a></li>}
     </ul>
   </div>
 
   <div class="module">
     <div class="header">@Messages("index.games.completed")</div>
-    <ul class="game-links">@for(r <- models.game.rules.GameRulesSet.completed) {<li><a href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
+    <ul class="game-links">@for(r <- models.game.rules.GameRulesSet.completed) {
+      <li><a href="@routesMap("new-game", r.id)">@r.title</a></li>}
+    </ul>
   </div>
 
   @if(user.isAdmin) {
     <div class="module">
       <div class="header">@Messages("index.games.in.progress")</div>
-      <ul class="game-links">@for(r <- models.game.rules.GameRulesSet.inProgress) {<li><a href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
+      <ul class="game-links">@for(r <- models.game.rules.GameRulesSet.inProgress) {
+        <li><a href="@routesMap("new-game", r.id)">@r.title</a></li>}
+      </ul>
     </div>
 
     <div class="module">
       <div class="header">@Messages("index.games.unstarted")</div>
-      <ul class="game-links">@for(r <- models.game.rules.GameRulesSet.unfinished) {<li><a href="@routes.GameController.newGame(r.id)">@r.title</a></li>}</ul>
-    </div>
-  }
-}
+      <ul class="game-links">@for(r <- models.game.rules.GameRulesSet.unfinished) {
+        <li><a href="@routesMap("new-game", r.id)">@r.title</a></li>}
+      </ul>
+    </div> } }

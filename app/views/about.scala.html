@@ -1,5 +1,6 @@
-@(user: models.user.User)(implicit request: Request[AnyContent], session: Session, flash: Flash)
-@layout.static(user = user, title = s"About ${utils.Config.projectName}", button = "menu") {
+@(user: models.user.User, routesMap: utils.RoutesMap = utils.RoutesMap.dynamic)(
+  implicit request: Request[AnyContent], session: Session, flash: Flash
+)@layout.static(user = user, title = s"About ${utils.Config.projectName}", button = "menu", routesMap) {
   <div class="module">
     This is @utils.Config.projectName! It's pretty cool.
   </div>

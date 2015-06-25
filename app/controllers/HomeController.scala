@@ -4,12 +4,12 @@ import java.util.UUID
 
 import models.audit.UserFeedback
 import models.database.queries.audit.UserFeedbackQueries
-import org.joda.time.LocalDateTime
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.Action
 import services.EmailService
 import services.database.Database
+import utils.DateUtils
 
 import scala.concurrent.Future
 
@@ -40,7 +40,7 @@ class HomeController @javax.inject.Inject() (override val messagesApi: MessagesA
             userId = request.identity.id,
             activeGameId = None,
             feedback = feedback.mkString("\n\n"),
-            occurred = new LocalDateTime()
+            occurred = DateUtils.now
           )
 
           emailService.feedbackSubmitted(obj, request.identity)

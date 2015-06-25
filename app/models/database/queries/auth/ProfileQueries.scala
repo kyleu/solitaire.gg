@@ -6,7 +6,7 @@ import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile
 import models.database.queries.BaseQueries
 import models.database.{ Row, Query, FlatSingleRowQuery }
-import org.joda.time.LocalDateTime
+import utils.DateUtils
 
 object ProfileQueries extends BaseQueries[CommonSocialProfile] {
   override protected val tableName = "user_profiles"
@@ -44,6 +44,6 @@ object ProfileQueries extends BaseQueries[CommonSocialProfile] {
   }
 
   override protected def toDataSeq(p: CommonSocialProfile) = Seq(
-    p.loginInfo.providerID, p.loginInfo.providerKey, p.email, p.firstName, p.lastName, p.fullName, p.avatarURL, new LocalDateTime()
+    p.loginInfo.providerID, p.loginInfo.providerKey, p.email, p.firstName, p.lastName, p.fullName, p.avatarURL, DateUtils.now
   )
 }

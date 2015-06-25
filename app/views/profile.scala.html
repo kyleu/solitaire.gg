@@ -1,6 +1,6 @@
-@(user: models.user.User, profiles: Seq[com.mohiva.play.silhouette.impl.providers.CommonSocialProfile])(
+@(user: models.user.User, profiles: Seq[com.mohiva.play.silhouette.impl.providers.CommonSocialProfile], routesMap: utils.RoutesMap = utils.RoutesMap.dynamic)(
   implicit request: Request[AnyContent], session: Session, flash: Flash
-)@layout.static(user = user, title = utils.Config.projectName + " Profile", button = "menu") {
+)@layout.static(user = user, title = utils.Config.projectName + " Profile", button = "menu", routesMap) {
   <div class="profile">
     @if(user.isGuest) {
       <p>

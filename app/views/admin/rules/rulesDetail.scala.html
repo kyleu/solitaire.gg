@@ -23,7 +23,35 @@
     <div class="col-md-9">
       <div class="panel panel-default">
         <div class="panel-body">
-          Content!
+          <img src="@controllers.admin.routes.RulesController.rulesScreenshot(status.rules.id)" class="rules-screenshot" /><br />
+          <table class="table">
+            <tbody>
+              <tr>
+                <td class="rules-property-label">Games</td>
+                <td>@status.gameCount</td>
+              </tr>
+              <tr>
+                <td class="rules-property-label">Wins</td>
+                <td>@status.gameWins</td>
+              </tr>
+              <tr>
+                <td class="rules-property-label">Winning Seeds</td>
+                <td>@status.winningSeeds</td>
+              </tr>
+              <tr>
+                <td class="rules-property-label">Moves</td>
+                <td>min @status.minMoves / avg @status.avgMoves / max @status.maxMoves</td>
+              </tr>
+              <tr>
+                <td class="rules-property-label">Completed</td>
+                <td>@status.completed</td>
+              </tr>
+              <tr>
+                <td class="rules-property-label">In Progress</td>
+                <td>@status.inProgress</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

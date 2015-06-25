@@ -12,6 +12,7 @@ object GameRulesSet {
     Batsford,
     BeleagueredCastle,
     Bisley,
+    Bunker,
     Canfield,
     DoubleFreeCell,
     DoubleKlondike,

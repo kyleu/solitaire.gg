@@ -40,6 +40,11 @@ class RulesController @javax.inject.Inject() (override val messagesApi: Messages
     }
   }
 
+  def rulesScreenshot(id: String) = withAdminSession { implicit request =>
+    val filename = s"./offline/build/screenshots/$id-hd.png"
+    Future.successful(Ok.sendFile(new java.io.File(filename)))
+  }
+
   private[this] def getStatus(r: GameRules, seedCount: (Int, Int, Int, Int)) = {
     val gameCounts = (0, 0)
     RulesStatus(r,

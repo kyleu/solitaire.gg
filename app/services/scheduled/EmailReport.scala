@@ -2,7 +2,6 @@ package services.scheduled
 
 import models.audit.DailyMetric
 import models.database.queries.report.ReportQueries
-import org.joda.time.{ LocalDate, LocalDateTime }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.EmailService
 import services.audit.DailyMetricService
@@ -13,7 +12,7 @@ import scala.concurrent.Future
 
 object EmailReport {
   def sendReportIfNeeded(emailService: EmailService) = {
-    val yesterdayAndBuffer = new LocalDateTime().minusDays(1).plusHours(3).toLocalDate
+    val yesterdayAndBuffer = DateUtils.now.minusDays(1).minusHours(3).toLocalDate
     if(DateUtils.today.minusDays(1) != yesterdayAndBuffer) {
       Future.successful("report" -> None)
     } else {
@@ -21,15 +20,15 @@ object EmailReport {
         if (reportSent.contains(1L)) {
           Future.successful("report" -> None)
         } else {
-          val yesterday = new LocalDate().minusDays(1)
+          val yesterday = DateUtils.today.minusDays(1)
           for {
             tables <- Database.query(ReportQueries.ListTables)
             yesterdayMetrics <- DailyMetricService.getMetrics(yesterday)
             totals <- DailyMetricService.getTotals(yesterday)
             counts <- Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table))))
-            report <- emailService.sendDailyReport(yesterday, "greyblue", yesterdayMetrics._2, totals, counts)
+            report <- emailService.sendDailyReport(yesterday, "greyblue", yesterdayMetrics._2._1, totals, counts)
           } yield {
-            "report" -> Some("Sent report")
+            "report" -> Some(s"Sent report for [$yesterdayAndBuffer]")
           }
         }
       }

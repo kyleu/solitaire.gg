@@ -5,6 +5,7 @@ import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
 import models.database.queries.BaseQueries
 import models.database.{ Row, Statement, FlatSingleRowQuery }
 import org.joda.time.LocalDateTime
+import utils.DateUtils
 
 object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
   override protected val tableName = "session_info"
@@ -50,6 +51,6 @@ object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
     ca.lastUsedDate.toLocalDateTime,
     ca.expirationDate.toLocalDateTime,
     ca.fingerprint,
-    new LocalDateTime()
+    DateUtils.now
   )
 }

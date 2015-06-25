@@ -5,9 +5,9 @@ import java.util.UUID
 import akka.actor.{ ActorRef, Props }
 import models._
 import models.user.PlayerRecord
-import org.joda.time.LocalDateTime
 import services.ActorSupervisor.{ ConnectionRecord, GameRecord }
 import services.game.GameService
+import utils.DateUtils
 import utils.metrics.InstrumentedActor
 
 import scala.util.Random
@@ -17,7 +17,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
 
   protected[this] def handleConnectionStarted(userId: UUID, username: String, connectionId: UUID, conn: ActorRef) {
     log.debug(s"Connection [$connectionId] registered to [$username] with path [${conn.path}].")
-    connections(connectionId) = ConnectionRecord(userId, username, conn, None, new LocalDateTime())
+    connections(connectionId) = ConnectionRecord(userId, username, conn, None, DateUtils.now)
     connectionsCounter.inc()
   }
 
@@ -35,7 +35,7 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
     val s = Math.abs(seed.getOrElse(masterRng.nextInt()))
     val c = connections(connectionId)
 
-    val started = new LocalDateTime()
+    val started = DateUtils.now
     val pr = PlayerRecord(c.userId, c.name, Some(connectionId), Some(c.actorRef))
     val actor = context.actorOf(Props(new GameService(id, rules, s, started, pr, testGame)), s"game:$id")
 

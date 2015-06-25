@@ -4,8 +4,8 @@ import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.impl.providers.OAuth2Info
 import models.database.queries.BaseQueries
 import models.database.{ Row, Statement }
-import org.joda.time.LocalDateTime
 import play.api.libs.json.{ JsValue, Json }
+import utils.DateUtils
 
 object OAuth2InfoQueries extends BaseQueries[OAuth2Info] {
   override protected val tableName = "oauth2_info"
@@ -43,6 +43,6 @@ object OAuth2InfoQueries extends BaseQueries[OAuth2Info] {
 
   override protected def toDataSeq(o: OAuth2Info) = {
     val params = o.params.map(p => Json.prettyPrint(Json.toJson(p)))
-    Seq(o.accessToken, o.tokenType, o.expiresIn, o.refreshToken, params, new LocalDateTime())
+    Seq(o.accessToken, o.tokenType, o.expiresIn, o.refreshToken, params, DateUtils.now)
   }
 }

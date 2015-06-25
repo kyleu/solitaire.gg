@@ -26,21 +26,36 @@ object ScreenshotCreator {
   def processRules(rules: String) = {
     import scala.sys.process._
 
-    println(s"  Creating screenshot for [$rules]...")
+    println(s"  Creating screenshots for [$rules]...")
     val startMs = System.currentTimeMillis
 
     "killall Safari".!
+
     s"open -a Safari".!
     Thread.sleep(1000)
 
     s"./util/screenshotCreator/bin/safari-set-url.sh $baseUrl$rules".!!
-    Thread.sleep(10000)
+    Thread.sleep(7000)
 
     val windowId = "./util/screenshotCreator/bin/safari-window-id.sh".!!.trim
     println(s"Using window id [$windowId].")
 
-    s"screencapture -l$windowId -o -x $outDir/$rules-browser.png".!!
-    println(s"  Screenshot complete for [$rules] in [${System.currentTimeMillis - startMs}ms].")
+    s"./util/screenshotCreator/bin/safari-resize.sh 0 0 1280 782".!!
+    Thread.sleep(1000)
+    s"screencapture -l$windowId -o -x $outDir/$rules-hd-browser.png".!!
+    s"convert $outDir/$rules-hd-browser.png -crop +0+124 +repage $outDir/$rules-hd.png".!!
+
+    s"./util/screenshotCreator/bin/safari-resize.sh 0 0 900 662".!!
+    Thread.sleep(1000)
+    s"screencapture -l$windowId -o -x $outDir/$rules-landscape-browser.png".!!
+    s"convert $outDir/$rules-landscape-browser.png -crop +0+124 +repage $outDir/$rules-landscape.png".!!
+
+    s"./util/screenshotCreator/bin/safari-resize.sh 0 0 400 662".!!
+    Thread.sleep(1000)
+    s"screencapture -l$windowId -o -x $outDir/$rules-portrait-browser.png".!!
+    s"convert $outDir/$rules-portrait-browser.png -crop +0+124 +repage $outDir/$rules-portrait.png".!!
+
+    println(s"  Screenshots complete for [$rules] in [${System.currentTimeMillis - startMs}ms].")
 
     s"Ok, rendered a screenshot for [$rules]."
   }

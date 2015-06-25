@@ -21,7 +21,7 @@ class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends 
       running = true
       val startMs = System.currentTimeMillis
       val f = Future.sequence(Seq(
-        // updateMetrics()
+        MetricsUpdate.updateMetrics(),
         EmailReport.sendReportIfNeeded(emailService)
         // updateCounts()
         // reapTables()

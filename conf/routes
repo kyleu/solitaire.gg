@@ -41,14 +41,16 @@ GET         /admin/enable                      controllers.admin.AdminController
 GET         /admin/status                      controllers.admin.AdminController.status
 GET         /admin/wipe                        controllers.admin.AdminController.wipeSchema(key)
 
-GET         /admin/rules                       controllers.admin.RulesController.rulesList(q ?= "", sortBy ?= "title")
-GET         /admin/rules/data                  controllers.admin.RulesController.rulesData
 GET         /admin/rules/politaire             controllers.admin.ParserController.politaire
 GET         /admin/rules/import                controllers.admin.ParserController.importRules
 GET         /admin/rules/export                controllers.admin.ParserController.exportRules
 GET         /admin/rules/links                 controllers.admin.ParserController.links
 GET         /admin/rules/wipe                  controllers.admin.ParserController.wipeRules
+
+GET         /admin/rules                       controllers.admin.RulesController.rulesList(q ?= "", sortBy ?= "title")
+GET         /admin/rules/data                  controllers.admin.RulesController.rulesData
 GET         /admin/rules/:id                   controllers.admin.RulesController.rulesDetail(id: String)
+GET         /admin/rules/:id/screenshot        controllers.admin.RulesController.rulesScreenshot(id: String)
 
 GET         /admin/trace/connection/:id        controllers.admin.TraceController.traceConnection(id: java.util.UUID)
 GET         /admin/trace/client/:id            controllers.admin.TraceController.traceClient(id: java.util.UUID)

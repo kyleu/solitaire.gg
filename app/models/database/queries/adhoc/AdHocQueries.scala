@@ -6,6 +6,7 @@ import com.github.mauricio.async.db.general.ArrayRowData
 import models.database.{ Row, Query, Statement }
 import models.database.queries.BaseQueries
 import org.joda.time.LocalDateTime
+import utils.DateUtils
 
 object AdHocQueries extends BaseQueries[AdHocQuery] {
   override protected val tableName = "adhoc_queries"
@@ -19,7 +20,7 @@ object AdHocQueries extends BaseQueries[AdHocQuery] {
 
   case class UpdateAdHocQuery(id: UUID, title: String, author: UUID, sqlString: String) extends Statement {
     override val sql = updateSql(Seq("author", "title", "sql", "updated"))
-    override val values = Seq[Any](author, title, sqlString, new LocalDateTime(), id)
+    override val values = Seq[Any](author, title, sqlString, DateUtils.now, id)
   }
 
   case class AdHocQueryExecute(override val sql: String, override val values: Seq[Any]) extends Query[(Seq[String], Seq[Seq[Any]])] {

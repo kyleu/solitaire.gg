@@ -5,6 +5,7 @@ import java.util.UUID
 import com.mohiva.play.silhouette.api.LoginInfo
 import org.joda.time.LocalDateTime
 import play.api.mvc.RequestHeader
+import utils.DateUtils
 
 object RequestLog {
   def apply(r: RequestHeader, userId: UUID, loginInfo: LoginInfo, duration: Int, status: Int): RequestLog = RequestLog(
@@ -24,7 +25,7 @@ object RequestLog {
     cookie = if (r.cookies.isEmpty) { None } else { Some(r.cookies.toSeq.map(c => s"${c.name}=${c.value}").mkString(", ")) },
     referrer = r.headers.get("Referer"),
     userAgent = r.headers.get("User-Agent"),
-    started = new LocalDateTime(),
+    started = DateUtils.now,
     duration = duration,
     status = status
   )

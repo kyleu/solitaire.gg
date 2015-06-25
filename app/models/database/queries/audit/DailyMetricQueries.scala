@@ -42,6 +42,11 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
     override def reduce(rows: Iterator[Row]) = rows.map(tupleFromRow).toMap
   }
 
+  case class RemoveByDay(d: LocalDate) extends Statement {
+    override def sql = s"delete from $tableName where day = ?"
+    override def values = Seq(d)
+  }
+
   case class GetMetricHistory(metric: DailyMetric.Metric) extends Query[Seq[(LocalDate, Long)]] {
     override def sql = s"select day, value from $tableName where metric = ? order by day"
     override def values = Seq(metric)

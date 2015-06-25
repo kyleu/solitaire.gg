@@ -29,15 +29,18 @@ object DailyMetric {
     override val title = "Feedbacks"
   }
 
+  case object ServerFreeSpace extends Metric {
+    override val title = "Server Free Space"
+  }
+
   case object ReportSent extends Metric {
     override val title = "Mailed"
   }
 
   val all = Seq[Metric](
     GamesStarted, GamesWon, GamesAdandoned,
-    Signups,
-    Requests,
-    Feedbacks,
+    Signups, Requests, Feedbacks,
+    ServerFreeSpace,
     ReportSent
   )
 
