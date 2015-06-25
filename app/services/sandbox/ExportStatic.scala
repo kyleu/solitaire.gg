@@ -49,6 +49,8 @@ object ExportStatic {
   }
 
   private[this] def render(filename: String, content: Html) = {
-    Files.write(outPath.resolve(filename), content.toString().getBytes("UTF-8"))
+    if(Files.exists(outPath.resolve(filename))) {
+      Files.write(outPath.resolve(filename), content.toString().getBytes("UTF-8"))
+    }
   }
 }
