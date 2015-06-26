@@ -17,6 +17,7 @@ import models.game.rules._
  */
 object Klondike extends GameRules(
   id = "klondike",
+  completed = true,
   title = "Klondike",
   related = Seq(
     "whitehorse", "kingsley", "trigon", "goldmine", "thoughtful", "klondikegallery", "chineseklondike", "athena",

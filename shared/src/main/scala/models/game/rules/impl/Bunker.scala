@@ -22,6 +22,7 @@ import models.game.rules._
  */
 object Bunker extends GameRules(
   id = "bunker",
+  completed = true,
   title = "Bunker",
   like = Some("trustytwelve"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bunker.htm")),

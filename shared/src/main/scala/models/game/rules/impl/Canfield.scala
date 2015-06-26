@@ -21,6 +21,7 @@ import models.game.rules._
  */
 object Canfield extends GameRules(
   id = "canfield",
+  completed = true,
   title = "Canfield",
   related = Seq("rainbow", "storehouse", "acme", "canfieldgallery", "superiorcanfield", "canfieldrush", "demonsandthieves", "chameleon"),
   links = Seq(

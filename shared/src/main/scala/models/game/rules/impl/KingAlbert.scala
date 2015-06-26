@@ -17,6 +17,7 @@ import models.game.rules._
  */
 object KingAlbert extends GameRules(
   id = "kingalbert",
+  completed = true,
   title = "King Albert",
   related = Seq("queenvictoria", "muse", "raglan"),
   links = Seq(

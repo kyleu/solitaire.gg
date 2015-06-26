@@ -18,6 +18,7 @@ import models.game.rules._
  */
 object FlowerGarden extends GameRules(
   id = "flowergarden",
+  completed = true,
   title = "Flower Garden",
   related = Seq("wildflower", "brigade"),
   links = Seq(

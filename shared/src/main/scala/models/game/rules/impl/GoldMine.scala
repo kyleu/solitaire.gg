@@ -17,6 +17,7 @@ import models.game.rules._
  */
 object GoldMine extends GameRules(
   id = "goldmine",
+  completed = true,
   title = "Gold Mine",
   like = Some("klondike"),
   links = Seq(

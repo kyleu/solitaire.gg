@@ -21,6 +21,7 @@ import models.game.rules._
  */
 object CanfieldRush extends GameRules(
   id = "canfieldrush",
+  completed = true,
   title = "Canfield Rush",
   like = Some("canfield"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/canfield_rush.htm")),

@@ -17,6 +17,7 @@ import models.game.rules._
  */
 object TripleTriangle extends GameRules(
   id = "tripletriangle",
+  completed = true,
   title = "Triple Triangle",
   like = Some("eternaltriangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_triangle.htm")),

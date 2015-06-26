@@ -20,6 +20,7 @@ import models.game.rules._
  */
 object DoublePyramid extends GameRules(
   id = "doublepyramid",
+  completed = true,
   title = "Double Pyramid",
   like = Some("pyramid"),
   related = Seq("anubis"),

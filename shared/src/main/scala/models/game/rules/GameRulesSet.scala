@@ -6,46 +6,6 @@ import models.game.rules.impl._
 object GameRulesSet {
   val favorites = Seq(Klondike, FreeCell, Pyramid, Canfield, Spider)
 
-  val completed = Seq(
-    AceOfHearts,
-    AcesAndKings,
-    AceyAndKingsley,
-    AlexanderTheGreat,
-    Batsford,
-    BeleagueredCastle,
-    Bisley,
-    Bunker,
-    Canfield,
-    DoubleFreeCell,
-    DoubleKlondike,
-    DoublePyramid,
-    FlowerGarden,
-    FourteenOut,
-    FortyThieves,
-    FreeCell,
-    Gargantua,
-    GoldMine,
-    Golf,
-    Gypsy,
-    KingAlbert,
-    Kingsley,
-    Klondike,
-    KlondikeOneCard,
-    Nestor,
-    Pyramid,
-    RoyalRendezvous,
-    SevenDevils,
-    Spider,
-    Tarantula,
-    Trigon,
-    TripleFreeCell,
-    TripleKlondike,
-    TripleTriangle,
-    Westcliff,
-    Whitehorse,
-    Zerline
-  )
-
   val all = Seq(
     Accordion,
     AceOfHearts,
@@ -593,6 +553,7 @@ object GameRulesSet {
 
   val allById = all.map(x => x.id -> x).toMap
 
+  lazy val completed = all.filter(_.completed)
   lazy val inProgress = all.filter(r => r.layout.isDefined && !completed.contains(r))
   lazy val unfinished = GameRulesSet.all.filterNot(r => completed.contains(r) || inProgress.contains(r))
 }

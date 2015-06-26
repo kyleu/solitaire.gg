@@ -27,6 +27,7 @@ import models.game.rules._
  */
 object Golf extends GameRules(
   id = "golf",
+  completed = true,
   title = "Golf",
   related = Seq("allinarow", "escalator", "puttputt", "panthercreek", "golfrush"),
   links = Seq(

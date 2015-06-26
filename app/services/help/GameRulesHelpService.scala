@@ -1,5 +1,6 @@
 package services.help
 
+import models.game.pile.Layouts
 import models.game.rules._
 import play.api.i18n.Messages
 
@@ -29,7 +30,7 @@ object GameRulesHelpService {
     var tableausProcessed = 0
     var pyramidsProcessed = 0
 
-    rules.layout.flatMap {
+    rules.layout.getOrElse(Layouts.defaultLayout(rules)).flatMap {
       case 's' => rules.stock.map(StockHelpService.stock)
       case 'w' => rules.waste.map(WasteHelpService.waste)
       case 'r' => rules.reserves.map(ReserveHelpService.reserve)

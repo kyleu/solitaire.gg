@@ -29,6 +29,7 @@ import models.game.rules._
  */
 object AlexanderTheGreat extends GameRules(
   id = "alexanderthegreat",
+  completed = true,
   title = "Alexander the Great",
   related = Seq("cloverleaf"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/alexander_the_great.htm")),

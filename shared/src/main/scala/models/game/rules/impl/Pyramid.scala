@@ -17,6 +17,7 @@ import models.game.rules._
  */
 object Pyramid extends GameRules(
   id = "pyramid",
+  completed = true,
   title = "Pyramid",
   related = Seq("kingtut", "giza", "doublepyramid", "darkpyramid", "apophis", "cheops"),
   links = Seq(

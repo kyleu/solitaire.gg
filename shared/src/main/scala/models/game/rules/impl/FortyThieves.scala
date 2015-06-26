@@ -14,6 +14,7 @@ import models.game.rules._
  */
 object FortyThieves extends GameRules(
   id = "fortythieves",
+  completed = true,
   title = "Forty Thieves",
   related = Seq(
     "robie", "napoleonsquadrilateral", "famousfifty", "fortybandits", "limited", "elba", "threepirates", "squadron",

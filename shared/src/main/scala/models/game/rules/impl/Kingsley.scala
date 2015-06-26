@@ -21,6 +21,7 @@ import models.game.rules._
  */
 object Kingsley extends GameRules(
   id = "kingsley",
+  completed = true,
   title = "Kingsley",
   like = Some("klondike"),
   links = Seq(

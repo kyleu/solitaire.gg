@@ -18,6 +18,7 @@ import models.game.rules._
  */
 object Gypsy extends GameRules(
   id = "gypsy",
+  completed = true,
   title = "Gypsy",
   related = Seq("irmgard"),
   links = Seq(

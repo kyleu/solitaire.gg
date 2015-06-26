@@ -42,6 +42,7 @@ import models.game.rules._
  */
 object RoyalRendezvous extends GameRules(
   id = "royalrendezvous",
+  completed = true,
   title = "Royal Rendezvous",
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Royal_Rendezvous"),

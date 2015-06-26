@@ -18,6 +18,7 @@ import models.game.rules._
  */
 object FreeCell extends GameRules(
   id = "freecell",
+  completed = true,
   title = "FreeCell",
   related = Seq(
     "sixbyfour", "ephemeralfreecell", "challengefreecell", "antares", "sevenbyfive", "spidercells", "bigfreecell", "chinesefreecell",

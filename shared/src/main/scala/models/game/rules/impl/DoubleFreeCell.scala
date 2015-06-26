@@ -23,6 +23,7 @@ import models.game.rules._
  */
 object DoubleFreeCell extends GameRules(
   id = "doublefreecell",
+  completed = true,
   title = "Double FreeCell",
   like = Some("freecell"),
   links = Seq(

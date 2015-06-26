@@ -39,9 +39,9 @@ object TableauPileOptions extends TableauPileOptionHelper {
     val (selectCardConstraint, selectCardAction) = {
       cardRemovalMethod match {
         case CardRemovalMethod.RemoveNinesOrPairsAddingToNineOr10JQK =>
-          Some(Constraint.specificRanks(Seq(Rank.Nine))) -> Some(SelectCardActions.drawToPiles(1, Seq("foundation-1")))
+          Some(Constraint.specificRanks(Seq(Rank.Nine))) -> Some(SelectCardActions.drawToPiles(() => 1, Seq("foundation-1")))
         case CardRemovalMethod.RemovePairsAddingToThirteenOrK =>
-          Some(Constraint.specificRanks(Seq(Rank.King))) -> Some(SelectCardActions.drawToPiles(1, Seq("foundation-1")))
+          Some(Constraint.specificRanks(Seq(Rank.King))) -> Some(SelectCardActions.drawToPiles(() => 1, Seq("foundation-1")))
         case CardRemovalMethod.BuildSequencesOnFoundation =>
           Some(Constraint.allOf("top-face-down", Constraint.topCardOnly, Constraint.faceDown)) -> Some(SelectCardActions.flip)
         case _ => None -> None

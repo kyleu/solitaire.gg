@@ -16,6 +16,7 @@ import models.game.rules._
  */
 object Gargantua extends GameRules(
   id = "gargantua",
+  completed = true,
   title = "Gargantua",
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Gargantua_(solitaire)"),

@@ -13,13 +13,13 @@ object PyramidPileOptions {
       dragFromConstraint = Some(Constraint.topCardOnly),
       dragToConstraint = Some(dragToConstraint(crm, lowRank, rules.mayMoveToEmptyFrom, rules.mayMoveToNonEmptyFrom)),
       selectCardConstraint = Some(Constraint.allOf("top-card-select", Constraint.topCardOnly, Constraint.forCardRemovalMethod(crm))),
-      selectCardAction = Some(SelectCardActions.drawToPiles(1, Seq("foundation-1"))),
+      selectCardAction = Some(SelectCardActions.drawToPiles(() => 1, Seq("foundation-1"))),
       dragToAction = Some(DragToActions.remove())
     )
 
     val ret = (1 to rules.height).flatMap { i =>
       (1 to i).map { j =>
-        val opts = if (i == 7) {
+        val opts = if (i == rules.height) {
           baseOptions
         } else {
           optionsFor(baseOptions, s"pyramid-${i + 1}-$j", s"pyramid-${i + 1}-${j + 1}")

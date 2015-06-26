@@ -16,7 +16,7 @@ object WastePileOptions {
       direction = Some("r"),
       dragFromConstraint = Some(dragFrom),
       selectCardConstraint = Some(Constraint.allOf("waste-select", Constraint.topCardOnly, Constraint.forCardRemovalMethod(crm))),
-      selectCardAction = Some(SelectCardActions.drawToPiles(1, Seq("foundation-1")))
+      selectCardAction = Some(SelectCardActions.drawToPiles(() => 1, Seq("foundation-1")))
     )
   }
 }

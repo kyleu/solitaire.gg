@@ -24,6 +24,7 @@ import models.game.rules._
  */
 object Bisley extends GameRules(
   id = "bisley",
+  completed = true,
   title = "Bisley",
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Bisley_(solitaire)"),

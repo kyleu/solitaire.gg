@@ -19,6 +19,7 @@ import models.game.rules._
  */
 object Trigon extends GameRules(
   id = "trigon",
+  completed = true,
   title = "Trigon",
   like = Some("klondike"),
   related = Seq("doubletrigon", "quadrupletrigon", "trigonleft"),

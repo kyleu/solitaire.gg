@@ -19,6 +19,7 @@ import models.game.rules._
  */
 object FourteenOut extends GameRules(
   id = "fourteenout",
+  completed = true,
   title = "Fourteen Out",
   related = Seq("juvenile", "doublefourteens", "triplefourteens", "tensout"),
   links = Seq(

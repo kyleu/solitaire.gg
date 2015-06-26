@@ -18,6 +18,7 @@ import models.game.rules._
  */
 object DoubleKlondike extends GameRules(
   id = "doubleklondike",
+  completed = true,
   title = "Double Klondike",
   related = Seq("sally", "suittriangle"),
   links = Seq(

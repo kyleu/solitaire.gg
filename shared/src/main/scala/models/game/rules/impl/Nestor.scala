@@ -4,6 +4,7 @@ import models.game.rules._
 
 object Nestor extends GameRules(
   id = "nestor",
+  completed = true,
   title = "Nestor",
   description = """
     Discard any pair of cards of the same rank, regardless of suit (for example, two Aces, two Fives, etc.).

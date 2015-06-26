@@ -17,6 +17,7 @@ import models.game.rules._
  */
 object TripleKlondike extends GameRules(
   id = "tripleklondike",
+  completed = true,
   title = "Triple Klondike",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_klondike.htm")),
   description = "A three deck version of ^klondike^ invented by Thomas Warfield.",

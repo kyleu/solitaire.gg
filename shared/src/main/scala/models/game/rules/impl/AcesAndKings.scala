@@ -30,6 +30,7 @@ import models.game.rules._
  */
 object AcesAndKings extends GameRules(
   id = "acesandkings",
+  completed = true,
   title = "Aces and Kings",
   related = Seq("doubleacesandkings", "aceyandkingsley", "deucesandqueens", "racingaces"),
   links = Seq(

@@ -18,6 +18,7 @@ import models.game.rules._
  */
 object Whitehorse extends GameRules(
   id = "whitehorse",
+  completed = true,
   title = "Whitehorse",
   like = Some("klondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/whitehorse.htm")),

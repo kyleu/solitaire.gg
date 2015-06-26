@@ -32,6 +32,7 @@ import models.game.rules._
  */
 object AceyAndKingsley extends GameRules(
   id = "aceyandkingsley",
+  completed = true,
   title = "Acey and Kingsley",
   like = Some("acesandkings"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/acey_and_kingsley.htm")),

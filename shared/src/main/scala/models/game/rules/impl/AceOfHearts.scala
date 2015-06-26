@@ -22,6 +22,7 @@ import models.game.rules._
  */
 object AceOfHearts extends GameRules(
   id = "aceofhearts",
+  completed = true,
   title = "Ace of Hearts",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/ace_of_hearts.htm")),
   description = "All cards must be built onto a single foundation pile in this Thomas Warfield invention.",

@@ -16,6 +16,7 @@ import models.game.rules._
  */
 object BeleagueredCastle extends GameRules(
   id = "beleagueredcastle",
+  completed = true,
   title = "Beleaguered Castle",
   related = Seq("fortress", "citadel", "castlemount", "castleofindolence", "streetsandalleys", "selectivecastle"),
   links = Seq(

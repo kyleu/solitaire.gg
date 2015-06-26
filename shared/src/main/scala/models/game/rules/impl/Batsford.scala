@@ -24,6 +24,7 @@ import models.game.rules._
  */
 object Batsford extends GameRules(
   id = "batsford",
+  completed = true,
   title = "Batsford",
   related = Seq("batsfordagain"),
   links = Seq(

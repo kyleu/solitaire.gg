@@ -22,6 +22,7 @@ import models.game.rules._
  */
 object Tarantula extends GameRules(
   id = "tarantula",
+  completed = true,
   title = "Tarantula",
   like = Some("spider"),
   links = Seq(

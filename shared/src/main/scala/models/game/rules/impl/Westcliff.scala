@@ -13,6 +13,7 @@ import models.game.rules._
  */
 object Westcliff extends GameRules(
   id = "westcliff",
+  completed = true,
   title = "Westcliff",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/westcliff.htm"),

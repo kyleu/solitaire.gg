@@ -18,10 +18,12 @@ object StockPileOptions {
       Some(Constraint.topCardOnly)
     }
 
-    val selectPileConstraint: (Constraint, () => Unit) = rules.maximumDeals match {
-      case Some(1) => Constraint.never -> (() => Unit)
-      case Some(i) => Constraint.finiteTimes(i - 1)
-      case None => Constraint.empty -> (() => Unit)
+    val selectPileConstraint: (Constraint, () => Unit) = {
+      rules.maximumDeals match {
+        case Some(1) => Constraint.never -> (() => Unit)
+        case Some(i) => Constraint.finiteTimes(i - 1)
+        case None => Constraint.empty -> (() => Unit)
+      }
     }
 
     var cardsToDraw = rules.cardsDealt match {
@@ -51,9 +53,9 @@ object StockPileOptions {
       if (rules.dealTo == StockDealTo.Manually) {
         None
       } else if (rules.dealTo == StockDealTo.TableauNonEmpty) {
-        Some(SelectCardActions.drawToNonEmptyPiles(cardsToDraw, drawTo, Some(true)))
+        Some(SelectCardActions.drawToNonEmptyPiles(() => cardsToDraw, drawTo, Some(true)))
       } else {
-        Some(SelectCardActions.drawToPiles(cardsToDraw, drawTo, Some(true)))
+        Some(SelectCardActions.drawToPiles(() => cardsToDraw, drawTo, Some(true)))
       }
     } else {
       None
@@ -62,10 +64,12 @@ object StockPileOptions {
     val selectPileAction = if (redrawFrom.isEmpty) {
       None
     } else {
-      if(cardsToDraw > 1 && rules.cardsDealt == StockCardsDealt.FewerEachTime) {
-        cardsToDraw -= 1
-      }
-      Some(SelectPileActions.moveAllFrom(redrawFrom, selectPileConstraint._2))
+      Some(SelectPileActions.moveAllFrom(redrawFrom, () => {
+        if(cardsToDraw > 1 && rules.cardsDealt == StockCardsDealt.FewerEachTime) {
+          cardsToDraw -= 1
+        }
+        selectPileConstraint._2()
+      }))
     }
 
     PileOptions(

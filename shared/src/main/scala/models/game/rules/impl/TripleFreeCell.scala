@@ -17,6 +17,7 @@ import models.game.rules._
  */
 object TripleFreeCell extends GameRules(
   id = "triplefreecell",
+  completed = true,
   title = "Triple FreeCell",
   related = Seq("celleleven", "freecellthreedeck"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_freecell.htm")),

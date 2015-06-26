@@ -23,6 +23,7 @@ import models.game.rules._
  */
 object Zerline extends GameRules(
   id = "zerline",
+  completed = true,
   title = "Zerline",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/zerline.htm")),
   description = "A German game where queens are high and you have a four card storage area.",

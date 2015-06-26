@@ -22,6 +22,7 @@ import models.game.rules._
  */
 object Spider extends GameRules(
   id = "spider",
+  completed = true,
   title = "Spider",
   related = Seq(
     "fredsspider", "chinesespider", "astrocyte", "mondospider", "tarantula", "trillium", "spideronesuit", "spidertwosuits",

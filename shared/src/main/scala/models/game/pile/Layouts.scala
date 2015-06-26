@@ -17,9 +17,8 @@ import models.game.rules.{ GameRules, GameRulesSet }
  *   | - New line
  */
 object Layouts {
-  def defaultLayout(id: String) = {
+  def defaultLayout(rules: GameRules) = {
     var ret = ""
-    val rules = GameRulesSet.allById.getOrElse(id, GameRules.default)
     if (rules.stock.isDefined) { ret += "s" }
     if (rules.waste.isDefined) { ret += "w" }
     for (f <- rules.foundations) { ret += "f" }

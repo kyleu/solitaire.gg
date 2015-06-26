@@ -25,5 +25,6 @@ case class GameRules(
   tableaus: Seq[TableauRules] = Nil,
   pyramids: Seq[PyramidRules] = Nil,
   special: Option[SpecialRules] = None,
-  layout: Option[String] = None
+  layout: Option[String] = None,
+  completed: Boolean = false
 ) extends GameRulesHelper
