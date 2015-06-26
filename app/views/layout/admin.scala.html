@@ -38,12 +38,6 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href="@controllers.admin.routes.RulesController.rulesList()">Overview</a></li>
               <li><a href="@controllers.admin.routes.RulesController.rulesData()">Raw Data</a></li>
-              <li class="divider"></li>
-              <li><a href="@controllers.admin.routes.ParserController.politaire()">Parse</a></li>
-              <li><a href="@controllers.admin.routes.ParserController.importRules()">Import</a></li>
-              <li><a href="@controllers.admin.routes.ParserController.exportRules()">Export</a></li>
-              <li><a href="@controllers.admin.routes.ParserController.links()">Links</a></li>
-              <li><a href="@controllers.admin.routes.ParserController.wipeRules()">Wipe</a></li>
             </ul>
           </li>
           <li @if(section == "tests") { class="active" }>
@@ -61,6 +55,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="@controllers.admin.routes.ReportController.trend()">Trend</a></li>
+              <li><a href="@controllers.admin.routes.ReportController.requests()">Requests</a></li>
               <li><a href="@controllers.admin.routes.ReportController.email()">Email</a></li>
               <li><a href="@controllers.admin.routes.AdHocQueryController.queryList(None)">Ad-Hoc</a></li>
             </ul>

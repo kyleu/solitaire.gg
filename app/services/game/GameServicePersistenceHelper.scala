@@ -22,9 +22,9 @@ trait GameServicePersistenceHelper { this: GameService =>
   protected[this] def create() = if(testGame) {
     Future.successful(true)
   } else {
+    originalCards = gameState.deck.cards
     val gh = GameHistory(id, seed, rules, "started", player.userId, 0, 0, 0, started, None)
     Database.execute(GameHistoryQueries.insert(gh)).map { ok =>
-      originalCards = gameState.deck.cards
       true
     }
   }
@@ -38,23 +38,29 @@ trait GameServicePersistenceHelper { this: GameService =>
         GameHistoryService.updateGameHistory(id, lastStatus, moveCount, undoHelper.undoCount, undoHelper.redoCount, Some(new LocalDateTime))
       }
 
-      if (movesPersisted < (moveCount - 1)) {
-        if(!cardsPersisted) {
-          if(!testGame) {
-            val cards = originalCards.zipWithIndex.map { card =>
-              new GameHistory.Card(card._1.id, id, card._2, card._1.r, card._1.s)
-            }
-            Database.execute(GameHistoryCardQueries.insertBatch(cards))
+      if (movesPersisted < moveCount) {
+        val persist = if(cardsPersisted) {
+          Future.successful(false)
+        } else if(testGame) {
+          cardsPersisted = true
+          Future.successful(true)
+        } else {
+          val cards = originalCards.zipWithIndex.map { card =>
+            new GameHistory.Card(card._1.id, id, card._2, card._1.r, card._1.s)
           }
           cardsPersisted = true
+          Database.execute(GameHistoryCardQueries.insertBatch(cards)).map(_ == cards.size)
         }
 
-        // This is ok since this particular method is actor-scoped, even if the persist isn't
-        val movesToPersist = gameMessages.drop(movesPersisted)
-        movesToPersist.zipWithIndex.foreach { gm =>
-          val move = toMove(gm._1._1, gm._2, gm._1._2, gm._1._3)
-          Database.execute(GameHistoryMoveQueries.insert(move))
-          movesPersisted += 1
+        persist.map { ok =>
+          // This is ok since this particular method is actor-scoped, even if the persist isn't
+          val movesToPersist = gameMessages.drop(movesPersisted)
+
+          movesToPersist.zipWithIndex.foreach { gm =>
+            val move = toMove(gm._1._1, gm._2, gm._1._2, gm._1._3)
+            Database.execute(GameHistoryMoveQueries.insert(move))
+            movesPersisted += 1
+          }
         }
       }
     }

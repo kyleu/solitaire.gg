@@ -13,12 +13,12 @@ object Dependencies {
     val playFilters = play.sbt.PlayImport.filters
     val playWs = play.sbt.PlayImport.ws
     val playJson = play.sbt.PlayImport.json
-    val playTest = "com.typesafe.play" %% "play-test" % "2.4.0"
+    val playTest = "com.typesafe.play" %% "play-test" % "2.4.1"
   }
 
   object WebJars {
     val requireJs = "org.webjars" % "requirejs" % "2.1.18"
-    val bootstrap = "org.webjars" % "bootstrap" % "3.3.4"
+    val bootstrap = "org.webjars" % "bootstrap" % "3.3.5"
   }
 
   object Mail {

@@ -53,16 +53,19 @@ trait BaseQueries[T] {
     override val sql = s"delete from $tableName where $idWhereClause"
   }
 
-  protected case class Count(q: String, groupBy: Option[String] = None) extends Query[Int] {
-    override val sql = if (q.isEmpty) {
+  protected case class Count(override val sql: String, override val values: Seq[Any]) extends Query[Int] {
+    override def reduce(rows: Iterator[Row]) = rows.next().as[Long]("c").toInt
+  }
+
+  protected class SearchCount(q: String, groupBy: Option[String] = None) extends Count(
+    sql = if (q.isEmpty) {
       s"select count(*) as c from $tableName${groupBy.map(x => s" group by $x").getOrElse("")}"
     } else {
       val searchWhere = searchColumns.map(c => s"lower($c) like lower(?)").mkString(" or ")
       s"select count(*) as c from $tableName where $searchWhere${groupBy.map(x => s" group by $x").getOrElse("")}"
-    }
-    override val values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(c => s"%$q%") }
-    override def reduce(rows: Iterator[Row]) = rows.next().as[Long]("c").toInt
-  }
+    },
+    values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(c => s"%$q%") }
+  )
 
   case class Search(q: String, orderBy: String, page: Option[Int], /* TODO use */ groupBy: Option[String] = None) extends Query[List[T]] {
     private[this] val whereClause = if (q.isEmpty) { None } else { Some(searchColumns.map(c => s"lower($c) like lower(?)").mkString(" or ")) }

@@ -1,33 +1,38 @@
-@(user: models.user.User, games: Seq[models.history.GameHistory], requests: Seq[models.history.RequestLog], sortBy: String)(
+@(user: models.user.User, gameCount: Int, requestCount: Int)(
   implicit session: Session, flash: Flash
-)@layout.admin(s"${utils.Config.projectName} User [${user.username}]", "users") {
+)@layout.admin(s"${utils.Config.projectName} User Detail", "users") {
   <div class="panel panel-default">
     <div class="panel-body">
-      <h4>@user.username (@user.color)</h4>
+      @user.username.map { un => <h4>@un</h4> }
       <h5>@user.id</h5>
-      <em>@games.size games, @requests.size requests</em>
+      <em>@gameCount games, @requestCount requests</em>
     </div>
   </div>
 
-  @if(games.isEmpty) {
-    <div class="panel panel-default">
-      <div class="panel-body">
-        No games found for this user.
-      </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h5>Preferences</h5>
+      <table class="table">
+        <tr><td>Username</td><td>@user.username</td></tr>
+        <tr><td>Color</td><td>@user.color</td></tr>
+        <tr><td>Avatar</td><td>@user.avatar</td></tr>
+      </table>
     </div>
-  } else {
-    <h4>@utils.Formatter.withCommas(games.size) games</h4>
-    @views.html.admin.game.gameListTable(sortBy, games)
-  }
+  </div>
 
-  @if(requests.isEmpty) {
-    <div class="panel panel-default">
-      <div class="panel-body">
-        No requests found for this user.
-      </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h5>Profiles</h5>
+      <table class="table">
+      @if(user.profiles.isEmpty) {
+        <tr><td>Guest User</td></tr>
+      } else {
+        <tr><th>Provider</th><td>Key</td></tr>
+        @for(profile <- user.profiles) {
+          <tr><td>@profile.providerID</td><td>@profile.providerKey</td></tr>
+        }
+      }
+      </table>
     </div>
-  } else {
-    <h4>@utils.Formatter.withCommas(requests.size) requests</h4>
-    @views.html.admin.request.requestListTable(sortBy, requests)
-  }
+  </div>
 }

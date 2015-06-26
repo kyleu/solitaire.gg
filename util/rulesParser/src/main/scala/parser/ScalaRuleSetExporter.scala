@@ -7,7 +7,7 @@ object ScalaRuleSetExporter {
     val ret = new StringBuilder()
     def add(s: String) = ret ++= s + "\n"
 
-    add("package models.game.rules.generated")
+    add("package models.game.rules.impl")
     add("")
     add("// scalastyle:off")
     add("object GeneratedGameRules {")

@@ -24,9 +24,9 @@ object StockPileOptions {
       case None => Constraint.empty -> (() => Unit)
     }
 
-    val cardsToDraw = rules.cardsDealt match {
+    var cardsToDraw = rules.cardsDealt match {
       case StockCardsDealt.Count(i) => i
-      case StockCardsDealt.FewerEachTime => throw new NotImplementedError("StockCardsDealt.FewerEachTime")
+      case StockCardsDealt.FewerEachTime => 3
     }
 
     val drawTo = rules.dealTo match {
@@ -62,6 +62,9 @@ object StockPileOptions {
     val selectPileAction = if (redrawFrom.isEmpty) {
       None
     } else {
+      if(cardsToDraw > 1 && rules.cardsDealt == StockCardsDealt.FewerEachTime) {
+        cardsToDraw -= 1
+      }
       Some(SelectPileActions.moveAllFrom(redrawFrom, selectPileConstraint._2))
     }
 

@@ -37,13 +37,16 @@ trait TableauPileOptionHelper {
     crm: CardRemovalMethod,
     rules: TableauRules,
     lowRank: Rank,
-    emptyPileRanks: Seq[Rank]
+    emptyPileRanks: Seq[Rank],
+    requireNonEmptyPiles: Seq[String]
   ) = {
     val rmr = rules.rankMatchRuleForBuilding
     val smr = rules.suitMatchRuleForBuilding
 
     Constraint("tableau", (src, tgt, cards, gameState) => {
-      if (rules.maxCards > 0 && tgt.cards.length + cards.length >rules. maxCards) {
+      if(requireNonEmptyPiles.exists(id => gameState.pilesById(id).cards.isEmpty)) {
+        false
+      } else if (rules.maxCards > 0 && (tgt.cards.length + cards.length) > rules.maxCards) {
         false
       } else {
         val firstDraggedCard = cards.headOption.getOrElse(throw new IllegalStateException())
@@ -60,7 +63,7 @@ trait TableauPileOptionHelper {
               } else {
                 false
               }
-              case CardRemovalMethod.StackSameRankOrSuitInWaste => throw new NotImplementedError("CardRemovalMethod.StackSameRankOrSuitInWaste")
+              case CardRemovalMethod.StackSameRankOrSuitInWaste => throw new IllegalStateException("Tableau CardRemovalMethod.StackSameRankOrSuitInWaste")
               case _ => crm.canRemove(topCard, firstDraggedCard)
             }
           }

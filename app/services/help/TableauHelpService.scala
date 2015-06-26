@@ -20,7 +20,7 @@ object TableauHelpService {
         } else {
           Messages("help.piles.single.cards.multiple", loweredName, NumberUtils.toWords(i))
         }
-        case ic => throw new NotImplementedError(ic.toString)
+        case ic => throw new IllegalStateException(ic.toString)
       }
       case x => rules.initialCards match {
         case InitialCards.Count(i) => if (i == 0) {

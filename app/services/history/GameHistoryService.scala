@@ -11,13 +11,12 @@ import services.database.Database
 import scala.concurrent.Future
 
 object GameHistoryService {
-  def searchGames(q: String, orderBy: String, page: Int) = Database.query(GameHistoryQueries.count(q)).flatMap { count =>
-    Database.query(GameHistoryQueries.search(q, getOrderClause(orderBy), Some(page))).map { list =>
-      count -> list
-    }
-  }
+  def searchGames(q: String, orderBy: String, page: Int) = for {
+    count <- Database.query(GameHistoryQueries.searchCount(q))
+    list <- Database.query(GameHistoryQueries.search(q, getOrderClause(orderBy), Some(page)))
+  } yield count -> list
 
-  def getByUser(id: UUID, orderBy: String) = Database.query(GameHistoryQueries.GetGameHistoriesByUser(id, getOrderClause(orderBy)))
+  def getCountByUser(id: UUID) = Database.query(GameHistoryQueries.getGameHistoryCountForUser(id))
 
   def updateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int, completed: Option[LocalDateTime]) = {
     Database.execute(GameHistoryQueries.UpdateGameHistory(id, status, moves, undos, redos, completed)).map(_ == 1)
@@ -29,9 +28,11 @@ object GameHistoryService {
     success <- Database.execute(GameHistoryQueries.removeById(Seq(id)), conn).map(_ == 1)
   } yield (id, (success, cards, moves))
 
-  def removeGameHistoriesByUser(userId: UUID, conn: Option[Connection]) = getByUser(userId, "id").flatMap { games =>
-    val futures = games.map(game => removeGameHistory(game.id, conn))
-    Future.sequence(futures)
+  def removeGameHistoriesByUser(userId: UUID, conn: Option[Connection]) = {
+    Database.query(GameHistoryQueries.GetGameHistoryIdsForUser(userId)).flatMap { gameIds =>
+      val futures = gameIds.map(id => removeGameHistory(id, conn))
+      Future.sequence(futures)
+    }
   }
 
   private[this] def getOrderClause(orderBy: String) = orderBy match {

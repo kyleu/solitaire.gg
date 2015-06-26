@@ -17,7 +17,7 @@ object RequestLogQueries extends BaseQueries[RequestLog] {
   override protected val searchColumns = Seq("id::text", "user_id::text", "method", "host", "path", "referrer", "user_agent")
 
   val insert = Insert
-  val count = Count
+  def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
   val search = Search
 
   case class GetRequestsByUser(id: UUID) extends Query[List[RequestLog]] {
@@ -26,9 +26,30 @@ object RequestLogQueries extends BaseQueries[RequestLog] {
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
   }
 
+  def getRequestCountForUser(userId: UUID) = new Count(s"select count(*) as c from $tableName where user_id = ?", Seq(userId))
+
   case class RemoveRequestsByUser(userId: UUID) extends Statement {
     override val sql = s"delete from $tableName where user_id = ?"
     override val values = Seq(userId)
+  }
+
+  case object GetUserCounts extends Query[Seq[(UUID, Option[String], Int)]] {
+    override val sql = """
+      select r.user_id as id, u.username as un, count(r.id) as c
+      from requests r join users u on r.user_id = u.id
+      group by r.user_id, u.username
+      order by c desc;
+    """
+    override def reduce(rows: Iterator[Row]) = rows.map { row =>
+      (UUID.fromString(row.as[String]("id")), row.asOpt[String]("un"), row.as[Long]("c").toInt)
+    }.toSeq
+  }
+
+  case class GetCounts(col: String) extends Query[Seq[(String, Int)]] {
+    override val sql = s"select r.$col as col, count(r.id) as c from requests r group by r.$col order by c desc;"
+    override def reduce(rows: Iterator[Row]) = rows.map { row =>
+      (row.as[String]("col"), row.as[Long]("c").toInt)
+    }.toSeq
   }
 
   case object GetEarliestDay extends Query[LocalDate] {

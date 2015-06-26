@@ -96,6 +96,4 @@ object Server {
     .aggregate(Shared.sharedJvm)
     .dependsOn(Shared.sharedJvm)
     .dependsOn(Utilities.screenshotCreator)
-    .dependsOn(Utilities.rulesParser)
-    .dependsOn(Utilities.rulesReset)
 }

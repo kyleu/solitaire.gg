@@ -2,6 +2,7 @@ package controllers.admin
 
 import controllers.BaseController
 import models.audit.DailyMetric
+import models.database.queries.history.RequestLogQueries
 import models.database.queries.report.ReportQueries
 import org.joda.time.LocalDate
 import play.api.i18n.MessagesApi
@@ -15,19 +16,26 @@ import scala.concurrent.Future
 @javax.inject.Singleton
 class ReportController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def email(d: LocalDate = DateUtils.today) = withAdminSession { implicit request =>
-    Database.query(ReportQueries.ListTables).flatMap { tables =>
-      for {
-        metrics <- DailyMetricService.recalculateMetrics(d)
-        totals <- DailyMetricService.getTotals(d)
-        counts <- Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table))))
-      } yield Ok(views.html.admin.report.emailReport(d, request.identity.color, metrics._2._1, totals, counts))
-    }
+    for {
+      tables <- Database.query(ReportQueries.ListTables)
+      metrics <- DailyMetricService.recalculateMetrics(d)
+      totals <- DailyMetricService.getTotals(d)
+      counts <- Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table))))
+    } yield Ok(views.html.admin.report.emailReport(d, request.identity.color, metrics._2._1, totals, counts))
   }
 
   def trend() = withAdminSession { implicit request =>
     DailyMetricService.getAllMetrics.map { metrics =>
       Ok(views.html.admin.report.trend(metrics, toChartData(metrics)))
     }
+  }
+
+  def requests() = withAdminSession { implicit request =>
+    for {
+      userCounts <- Database.query(RequestLogQueries.GetUserCounts)
+      userAgentCounts <- Database.query(RequestLogQueries.GetCounts("user_agent"))
+      pathCounts <- Database.query(RequestLogQueries.GetCounts("path"))
+    } yield Ok(views.html.admin.report.requests(userCounts, userAgentCounts, pathCounts))
   }
 
   private[this] def toChartData(metrics: Seq[(org.joda.time.LocalDate, Map[models.audit.DailyMetric.Metric, Long])]) = {

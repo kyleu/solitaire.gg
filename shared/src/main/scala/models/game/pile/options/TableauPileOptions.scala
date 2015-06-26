@@ -12,7 +12,7 @@ object TableauPileOptions extends TableauPileOptionHelper {
       case FillEmptyWith.None => Nil
       case FillEmptyWith.LowRank => Seq(deckOptions.lowRank)
       case FillEmptyWith.HighRank => Seq(deckOptions.highRank)
-      case FillEmptyWith.HighRankUntilStockEmpty => throw new NotImplementedError("FillEmptyWith.HighRankUntilStockEmpty")
+      case FillEmptyWith.HighRankUntilStockEmpty => Seq(deckOptions.highRank)
       case FillEmptyWith.HighRankOrLowRank => Seq(deckOptions.lowRank, deckOptions.highRank)
       case FillEmptyWith.Sevens => Seq(Rank.Seven)
     }
@@ -28,7 +28,12 @@ object TableauPileOptions extends TableauPileOptionHelper {
       crm = cardRemovalMethod,
       rules = rules,
       lowRank = deckOptions.lowRank,
-      emptyPileRanks = emptyRanks
+      emptyPileRanks = emptyRanks,
+      requireNonEmptyPiles = if(rules.emptyFilledWith == FillEmptyWith.HighRankUntilStockEmpty) {
+        Seq("stock")
+      } else {
+        Nil
+      }
     )
 
     val (selectCardConstraint, selectCardAction) = {

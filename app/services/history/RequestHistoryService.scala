@@ -11,13 +11,12 @@ import services.database.Database
 object RequestHistoryService {
   def insert(log: RequestLog) = Database.execute(RequestLogQueries.insert(log)).map(i => log)
 
-  def searchRequests(q: String, orderBy: String, page: Int) = Database.query(RequestLogQueries.count(q)).flatMap { count =>
-    Database.query(RequestLogQueries.search(q, orderBy, Some(page))).map { list =>
-      count -> list
-    }
-  }
+  def searchRequests(q: String, orderBy: String, page: Int) = for {
+    count <- Database.query(RequestLogQueries.searchCount(q))
+    list <- Database.query(RequestLogQueries.search(q, orderBy, Some(page)))
+  } yield count -> list
 
-  def getByUser(id: UUID) = Database.query(RequestLogQueries.GetRequestsByUser(id))
+  def getCountByUser(id: UUID) = Database.query(RequestLogQueries.getRequestCountForUser(id))
 
   def removeRequestsByUser(userId: UUID, conn: Option[Connection]) = Database.execute(RequestLogQueries.RemoveRequestsByUser(userId), conn)
 }

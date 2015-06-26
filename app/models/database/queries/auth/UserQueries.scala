@@ -15,7 +15,7 @@ object UserQueries extends BaseQueries[User] {
 
   val insert = Insert
   val getById = GetById
-  val count = Count
+  def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
   val search = Search
   val removeById = RemoveById
 

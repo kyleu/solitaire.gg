@@ -17,7 +17,11 @@ object ScreenshotCreator {
     val set = GameRulesSet.all
     println(s"Creating [${set.size}] screenshots...")
     for(rules <- set) {
-      processRules(rules.id)
+      if(hasAllScreenshots(rules.id)) {
+        println(s"Skipping already-generated screenshots for [${rules.id}].")
+      } else {
+        processRules(rules.id)
+      }
     }
     println(s"Screenshot creation complete in [${System.currentTimeMillis - startMs}ms].")
     s"Ok, rendered [${set.size}] screenshots."
@@ -58,5 +62,12 @@ object ScreenshotCreator {
     println(s"  Screenshots complete for [$rules] in [${System.currentTimeMillis - startMs}ms].")
 
     s"Ok, rendered a screenshot for [$rules]."
+  }
+
+  private[this] def hasAllScreenshots(id: String) = {
+    val hd = outDir.resolve(s"$id-hd.png")
+    val l = outDir.resolve(s"$id-landscape.png")
+    val p = outDir.resolve(s"$id-portrait.png")
+    Files.exists(hd) && Files.exists(l) && Files.exists(p)
   }
 }

@@ -24,12 +24,12 @@ object GameRulesHelpService {
     linked
   }
 
-  def layout(layoutString: String, rules: GameRules)(implicit messages: Messages) = {
+  def layout(rules: GameRules)(implicit messages: Messages) = {
     var foundationsProcessed = 0
     var tableausProcessed = 0
     var pyramidsProcessed = 0
 
-    layoutString.flatMap {
+    rules.layout.flatMap {
       case 's' => rules.stock.map(StockHelpService.stock)
       case 'w' => rules.waste.map(WasteHelpService.waste)
       case 'r' => rules.reserves.map(ReserveHelpService.reserve)

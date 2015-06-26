@@ -89,7 +89,7 @@ help.victory.condition.pairs.face-and-three-that-add-to-18 = Remove all sets of 
 help.victory.condition.pairs.cr = Remove all pairs with consecutive ranks.
 help.victory.condition.pairs.cr-or-AK = Remove all pairs with consecutive ranks or Ace/King.
 help.victory.condition.pairs.cr-or-sr = Remove all pairs with consecutive or equal ranks.
-help.victory.condition.stack.same.suit.or.rank.in.waste = Stack cards of same rank and suit in the waste.
+help.victory.condition.stack.same.suit.or.rank.in.waste = Remove all cards from the foundations.
 
 # Deck Options Help
 help.deck.single.standard = One standard deck of {0} cards.

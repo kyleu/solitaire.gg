@@ -3,13 +3,13 @@ package parser
 import java.nio.file.{ Files, Path, Paths }
 
 import models.game.rules._
-import models.game.rules.custom.CustomGameRules
+import models.game.rules.impl.CustomGameRules
 import parser.politaire.PolitaireParser
 import parser.politaire.lookup.PolitaireLookup
 
 object ScalaExporter {
   def export(rulesSet: Seq[GameRules]) = {
-    val srcDir = Paths.get(".", "shared", "src", "main", "scala", "models", "game", "rules", "generated")
+    val srcDir = Paths.get(".", "shared", "src", "main", "scala", "models", "game", "rules", "impl")
     writeFile(srcDir.resolve("GeneratedGameRules.scala"), ScalaRuleSetExporter.exportRulesSet(rulesSet))
 
     val src = PolitaireParser.politaireList
@@ -27,7 +27,7 @@ object ScalaExporter {
     def add(s: String): Unit = ret ++= s + "\n"
 
     add("// Generated rules for Solitaire.gg.")
-    add("package models.game.rules.generated")
+    add("package models.game.rules.impl")
     add("")
     add("import models.game._")
     add("import models.game.rules._")

@@ -14,7 +14,7 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   override protected val searchColumns = Seq("id::text", "seed::text", "rules", "status", "player::text")
 
   val insert = Insert
-  val count = Count
+  def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
   val search = Search
   val removeById = RemoveById
 
@@ -23,11 +23,13 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     override val values = Seq[Any](status, moves, undos, redos, completed.map(DateUtils.toSqlTimestamp), id)
   }
 
-  case class GetGameHistoriesByUser(userId: UUID, sortBy: String) extends Query[List[GameHistory]] {
-    override val sql = getSql(Some("player = ?"), orderBy = Some("?"))
-    override val values = Seq(userId, sortBy)
-    override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
+  case class GetGameHistoryIdsForUser(userId: UUID) extends Query[List[UUID]] {
+    override val sql = s"select id from $tableName where player = ?"
+    override val values = Seq(userId)
+    override def reduce(rows: Iterator[Row]) = rows.map(_.as[String]("id")).map(UUID.fromString).toList
   }
+
+  def getGameHistoryCountForUser(userId: UUID) = new Count(s"select count(*) as c from $tableName where player = ?", Seq(userId))
 
   override protected def fromRow(row: Row) = {
     val id = UUID.fromString(row.as[String]("id"))

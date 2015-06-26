@@ -14,7 +14,7 @@ object UserFeedbackQueries extends BaseQueries[UserFeedback] {
   override protected val searchColumns = Seq("id::text", "user_id::text", "active_game_id::text", "feedback")
 
   val insert = Insert
-  val count = Count
+  def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
   val search = Search
   val remove = RemoveById
 

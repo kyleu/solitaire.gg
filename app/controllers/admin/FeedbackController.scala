@@ -14,7 +14,7 @@ import scala.concurrent.Future
 class FeedbackController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def feedbackList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     for {
-      count <- Database.query(UserFeedbackQueries.count(q))
+      count <- Database.query(UserFeedbackQueries.searchCount(q))
       feedbacks <- Database.query(UserFeedbackQueries.search(q, getOrderClause(sortBy), Some(page)))
       notes <- Database.query(UserFeedbackNoteQueries.GetUserFeedbackNotes(feedbacks.map(_.id)))
     } yield Ok(views.html.admin.feedback.feedbackList(q, sortBy, count, page, feedbacks, notes))

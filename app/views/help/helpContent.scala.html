@@ -18,8 +18,7 @@
       <div class="deck">@Html(services.help.DeckOptionsHelpService.deck(rules.deckOptions).mkString("<br>"))</div>
 
       <h3>Layout</h3>
-      @defining(models.game.pile.Layouts.forRules(rules.id)) { layoutString =>
-      @defining(services.help.GameRulesHelpService.layout(layoutString, rules)) { layout =>
+      @defining(services.help.GameRulesHelpService.layout(rules)) { layout =>
       <ul class="layout">
         @for(pileSet <- layout) {
         <li>
@@ -34,7 +33,6 @@
         </li>
         }
       </ul>
-      }
       }
 
       @rules.like.map { l =>

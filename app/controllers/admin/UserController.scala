@@ -16,7 +16,7 @@ import scala.concurrent.Future
 class UserController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
   def userList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     for {
-      count <- Database.query(UserQueries.count(q))
+      count <- Database.query(UserQueries.searchCount(q))
       users <- Database.query(UserQueries.search(q, getOrderClause(sortBy), Some(page)))
       gameCounts <- Database.query(new ReportQueries.GameCountForUsers(users.map(_.id)))
       winCounts <- Database.query(new ReportQueries.WinCountForUsers(users.map(_.id)))
@@ -24,13 +24,12 @@ class UserController @javax.inject.Inject() (override val messagesApi: MessagesA
     } yield Ok(views.html.admin.user.userList(q, sortBy, count, page, users, gameCounts, winCounts, requestCounts))
   }
 
-  def userDetail(id: UUID, sortGamesBy: String) = withAdminSession { implicit request =>
+  def userDetail(id: UUID) = withAdminSession { implicit request =>
     env.identityService.retrieve(id).flatMap {
-      case Some(user) => GameHistoryService.getByUser(id, sortGamesBy).flatMap { games =>
-        RequestHistoryService.getByUser(id).map { requests =>
-          Ok(views.html.admin.user.userDetail(user, games, requests, ""))
-        }
-      }
+      case Some(user) => for {
+        gameCount <- GameHistoryService.getCountByUser(id)
+        requestCount <- RequestHistoryService.getCountByUser(id)
+      } yield Ok(views.html.admin.user.userDetail(user, gameCount, requestCount))
       case None => Future.successful(NotFound(s"User [$id] not found."))
     }
   }

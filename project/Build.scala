@@ -10,6 +10,4 @@ object Build extends Build with UniversalKeys {
 
   lazy val screenshotCreator = Utilities.screenshotCreator
   lazy val iconCreator = Utilities.iconCreator
-  lazy val rulesParser = Utilities.rulesParser
-  lazy val rulesReset = Utilities.rulesReset
 }
