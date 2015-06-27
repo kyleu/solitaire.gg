@@ -17,6 +17,7 @@ import models.rules._
  */
 object ThirtyNineSteps extends GameRules(
   id = "thirtyninesteps",
+  completed = true,
   title = "Thirty Nine Steps",
   like = Some("waningmoon"),
   related = Seq("lucas"),
@@ -25,6 +26,7 @@ object ThirtyNineSteps extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/thirty-nine-steps.htm")
   ),
   description = "^waningmoon^ with fewer cards in the initial tableau.",
+  layout = Some("sw:.f|t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

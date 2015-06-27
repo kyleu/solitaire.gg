@@ -19,6 +19,7 @@ import models.rules._
  */
 object FortunesFavor extends GameRules(
   id = "fortunesfavor",
+  completed = true,
   title = "Fortune's Favor",
   like = Some("busyaces"),
   related = Seq("preference"),
@@ -32,6 +33,7 @@ object FortunesFavor extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/fortunes_favor.htm")
   ),
   description = "An extremely easy, one-deck version of ^busyaces^.",
+  layout = Some("sw:f|t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

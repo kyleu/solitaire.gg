@@ -22,10 +22,12 @@ import models.rules._
  */
 object Balcony extends GameRules(
   id = "balcony",
+  completed = true,
   title = "Balcony",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/balcony.htm")),
   description = "Similar to ^canfield^, but foundations are built up in alternate colors, reserve cards can only be played to the foundation, and e" +
     "mpty spaces are autofilled from the stock.",
+  layout = Some(".swf|rt"),
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

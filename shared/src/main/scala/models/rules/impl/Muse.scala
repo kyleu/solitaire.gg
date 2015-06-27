@@ -21,10 +21,12 @@ import models.rules._
  */
 object Muse extends GameRules(
   id = "muse",
+  completed = true,
   title = "Muse",
   like = Some("kingalbert"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/muse.htm")),
   description = "This variation of ^kingalbert^ has cells instead of a reserve.",
+  layout = Some("::.f|:c|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
