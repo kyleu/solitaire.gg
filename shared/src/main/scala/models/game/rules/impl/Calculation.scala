@@ -21,7 +21,12 @@ import models.game.rules._
  */
 object Calculation extends GameRules(
   id = "calculation",
+  completed = true,
   title = "Calculation",
+  aka = Map(
+    "brokenintervals" -> "Broken Intervals",
+    "hopscotch" -> "Hopscotch"
+  ),
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Calculation_(card_game)"),
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/calculation.htm"),

@@ -10,6 +10,11 @@ object GameRulesSet {
   lazy val unfinished = GameRulesSet.all.filterNot(r => completed.contains(r) || inProgress.contains(r))
   lazy val allById = all.map(x => x.id -> x).toMap
 
+  lazy val allByIdAndAliases = allById ++ all.flatMap(x => x.aka.map(aka => aka._1 -> x)).toMap
+  lazy val allSortedByTitle = allByIdAndAliases.toSeq.sortBy { row =>
+    if(row._1 == row._2.id) { row._2.title } else { row._2.aka(row._1) }
+  }
+
   val all = Seq(
     Accordion,
     AceOfHearts,

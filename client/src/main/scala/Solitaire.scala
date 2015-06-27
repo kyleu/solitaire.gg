@@ -48,7 +48,7 @@ object Solitaire extends js.JSApp with SolitaireHelper {
 
   private[this] def handleStartGame(rules: String, seed: Option[Int]): Unit = {
     gameId = UUID.randomUUID
-    gameRules = GameRulesSet.allById(rules)
+    gameRules = GameRulesSet.allByIdAndAliases(rules)
     gameState = gameRules.newGame(gameId, seed.getOrElse(Math.abs(rng.nextInt())))
     gameState.addPlayer(userId, "Offline Player")
     InitialMoves.performInitialMoves(gameRules, gameState)

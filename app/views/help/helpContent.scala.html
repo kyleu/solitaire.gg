@@ -1,8 +1,8 @@
 @(rules: models.game.rules.GameRules, color: String, routesMap: utils.RoutesMap)(implicit messages: Messages)
 @import models.game.rules.GameRulesSet
-@rulesLink(r: models.game.rules.GameRules) = {
-            <a class="help-link color-@color" href="@routesMap("help", r.id)">@r.title</a>
-            <a class="play-link color-@color" href="@routesMap("new-game", r.id)" data-rules="@r.id" title="Play Now">&#9654;</a>
+@rulesLink(rulesId: String, rulesTitle: String) = {
+            <a class="help-link color-@color" href="@routesMap("help", rulesId)">@rulesTitle</a>
+            <a class="play-link color-@color" href="@routesMap("new-game", rulesId)" data-rules="@rulesId" title="Play @rulesTitle Now">&#9654;</a>
 }
     <div class="rules-help">
       <h2>
@@ -10,6 +10,13 @@
         <a class="play-link color-@color" href="@routesMap("new-game", rules.id)" title="Play Now">&#9654;</a>
       </h2>
       <div class="description"><em>@Html(services.help.GameRulesHelpService.description(rules.description))</em></div>
+
+      @if(rules.aka.nonEmpty) {
+      <h3>Also Known As</h3>
+      <div class="objective">@rules.aka.map { aka =>
+        @rulesLink(aka._1, aka._2)
+      }</div>
+      }
 
       <h3>Objective</h3>
       <div class="objective">@Html(services.help.ObjectiveHelpService.objective(rules))</div>
@@ -40,7 +47,7 @@
       @defining(GameRulesSet.allById(l)) { like =>
       <ul>
         <li>
-          @rulesLink(like)
+          @rulesLink(like.id, like.title)
           <div>
             <em>@Html(services.help.GameRulesHelpService.description(like.description, link = false))</em>
           </div>
@@ -55,7 +62,7 @@
       <ul>
         @rels.map { rel =>
           <li>
-            @rulesLink(rel)
+            @rulesLink(rel.id, rel.title)
             <div>
               <em>@Html(services.help.GameRulesHelpService.description(rel.description, link = false))</em>
             </div>
