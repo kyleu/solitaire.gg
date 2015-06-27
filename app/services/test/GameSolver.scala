@@ -1,5 +1,6 @@
 package services.test
 
+import akka.actor.PoisonPill
 import akka.testkit.TestProbe
 import models._
 import play.api.libs.concurrent.Akka
@@ -48,6 +49,10 @@ case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None
           false
         case _ => throw new IllegalStateException(rm.toString)
       }
+  }
+
+  def close() = {
+    conn ! PoisonPill
   }
 
   def pointless(move: PossibleMove) = {

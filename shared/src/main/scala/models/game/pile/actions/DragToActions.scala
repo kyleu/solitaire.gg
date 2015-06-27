@@ -13,6 +13,10 @@ object DragToActions {
       tgt.addCard(card)
       card.id
     }
+    val reveals = cards.filterNot(_.u).flatMap { c =>
+      c.u = true
+      gameState.revealCardToAll(c)
+    }
     val moveMessage = CardsMoved(cardIds, src.id, tgt.id)
     if (src.cards.lastOption.exists(!_.u)) {
       val isReserve = src.pileSet.exists(_.behavior == "reserve")
@@ -20,12 +24,12 @@ object DragToActions {
       if (isReserve || autoFlipOption) {
         val last = src.cards.lastOption.getOrElse(throw new IllegalStateException())
         last.u = true
-        moveMessage +: gameState.revealCardToAll(last)
+        reveals ++ (moveMessage +: gameState.revealCardToAll(last))
       } else {
-        Seq(moveMessage)
+        reveals :+ moveMessage
       }
     } else {
-      Seq(moveMessage)
+      reveals :+ moveMessage
     }
   })
 

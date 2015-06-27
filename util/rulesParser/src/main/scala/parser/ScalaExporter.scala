@@ -60,7 +60,7 @@ object ScalaExporter {
     if (rules.victoryCondition != GameRules.default.victoryCondition) {
       add("  victoryCondition = VictoryCondition." + cls(rules.victoryCondition) + ",")
     }
-    if (rules.cardRemovalMethod != GameRules.default.cardRemovalMethod) {
+    if (rules.cardRemovalMethod != CardRemovalMethod.default) {
       add("  cardRemovalMethod = CardRemovalMethod." + cls(rules.cardRemovalMethod) + ",")
     }
     val opts = Seq(

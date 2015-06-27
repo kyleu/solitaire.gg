@@ -1,12 +1,12 @@
 GET         /                                  controllers.HomeController.index
 
+# Utility
 GET         /*path/                            controllers.HomeController.untrail(path: String)
-GET         /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.ico")
-GET         /apple-touch-icon.png              controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.png")
+GET         /link                              controllers.HomeController.externalLink(url: String)
 
 # Feedback
-GET         /feedback                          controllers.HomeController.feedbackForm
-POST        /feedback                          controllers.HomeController.submitFeedback
+GET         /feedback                          controllers.FeedbackController.feedbackForm
+POST        /feedback                          controllers.FeedbackController.submitFeedback
 
 # Authentication
 GET         /signup                            controllers.auth.RegistrationController.registrationForm
@@ -74,4 +74,7 @@ GET         /admin/report/ad-hoc               controllers.admin.AdHocQueryContr
 POST        /admin/report/ad-hoc/run           controllers.admin.AdHocQueryController.run()
 
 # Assets
+GET         /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.ico")
+GET         /apple-touch-icon.png              controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.png")
+
 GET         /assets/*file                      controllers.Assets.at(path="/public", file)

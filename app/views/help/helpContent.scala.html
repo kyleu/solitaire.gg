@@ -70,7 +70,7 @@
       <ul>
         @rules.links.map { l =>
         <li>
-          <a class="color-@color" target="_blank" href="http://@l.url">@l.title</a>
+          <a class="color-@color" target="_blank" href="@routes.HomeController.externalLink(l.url)">@l.title</a>
         </li>
         }
       </ul>

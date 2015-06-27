@@ -146,7 +146,7 @@ help.waste.playable.cards.top = The top card may be moved from the {0}.
 
 # Foundation Help
 help.foundation.lowrank.any = Any card may be moved to any empty {0} pile.
-help.foundation.lowrank.ascending = There is one {0} pile for each rank from Ace to King.
+help.foundation.lowrank.ascending = An Ace may be played the first {0} pile, a Two on the second, and so on.
 help.foundation.lowrank.first.becomes.base = The first card played to a {0} becomes the base card for others.
 help.foundation.lowrank.specific = Any {1} may be played to any empty {0} pile.
 
@@ -158,7 +158,7 @@ help.foundation.initial.restriction.unique.suits = Each pile must be started wit
 help.foundation.build.none = No cards may be built on a card in a {0} pile.
 help.foundation.build.rank.and.suit.match.rules = A card may be built on a card in a {0} pile if it is {1} and {2}.
 
-help.foundation.wrap.ranks = An Ace may be played on a King, continuing the sequence.
+help.foundation.wrap.ranks = An {0} may be played on a {1}, continuing the sequence.
 help.foundation.cards.shown = {0} cards are visible.
 
 help.foundation.move.complete.sequences.only = Complete sorted sequences of cards may be moved an empty {0} pile.

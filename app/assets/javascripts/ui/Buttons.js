@@ -3,11 +3,18 @@ define([], function() {
     var buttons = {
       "menu": document.getElementById("btn-menu"),
       "options": document.getElementById("btn-options"),
+
       "help": document.getElementById("btn-help"),
       "feedback": document.getElementById("btn-feedback"),
+
       "undo": document.getElementById("btn-undo"),
       "redo": document.getElementById("btn-redo"),
-      "hint": document.getElementById("btn-hint")
+      "hint": document.getElementById("btn-hint"),
+
+      "redeal": document.getElementById("btn-redeal"),
+      "chooseGame": document.getElementById("btn-choose-game"),
+      "giveUp": document.getElementById("btn-give-up"),
+      "otherStuff": document.getElementById("btn-other-stuff")
     };
 
     buttons.menu.onclick = function() {
@@ -41,6 +48,15 @@ define([], function() {
     buttons.hint.onclick = function() {
       game.autoMove();
     };
+
+    var comingSoon = function() {
+      alert("Coming soon!");
+    };
+
+    buttons.redeal.onclick = comingSoon;
+    buttons.chooseGame.onclick = comingSoon;
+    buttons.giveUp.onclick = comingSoon;
+    buttons.otherStuff.onclick = comingSoon;
 
     return buttons;
   };

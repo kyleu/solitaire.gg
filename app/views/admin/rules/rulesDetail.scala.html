@@ -19,6 +19,14 @@
           <a class="btn btn-default btn-block" target="_blank" href="@controllers.admin.routes.GameHistoryController.gameList(status.rules.id, "created", 0)">View Games</a>
         </div>
       </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a class="btn btn-default btn-block" target="_blank" href="http://politaire.com/@status.rules.id">Politaire</a>
+          @status.rules.links.map { link =>
+            <a class="btn btn-default btn-block" target="_blank" href="@routes.HomeController.externalLink(link.url)">@link.title</a>
+          }
+        </div>
+      </div>
     </div>
     <div class="col-md-9">
       <div class="panel panel-default">

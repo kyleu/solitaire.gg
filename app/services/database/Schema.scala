@@ -1,5 +1,6 @@
 package services.database
 
+import models.database.Statement
 import models.database.queries.ddl.DdlQueries
 import models.database.queries.ddl._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -46,13 +47,8 @@ object Schema extends Logging {
         }
       }
     }).flatMap { ok =>
-      Database.query(DdlQueries.DoesTestUserExist).flatMap { exists =>
-        if (exists) {
-          Future.successful(Unit)
-        } else {
-          log.info(s"Creating test user.")
-          Database.execute(DdlQueries.InsertTestUser).map(x => Unit)
-        }
+      createUser(Database.query(DdlQueries.DoesTestUserExist), DdlQueries.InsertTestUser).flatMap { stillOk =>
+        createUser(Database.query(DdlQueries.DoesAdminUserExist), DdlQueries.InsertAdminUser)
       }
     }
   }
@@ -61,5 +57,14 @@ object Schema extends Logging {
     log.warn("Wiping database schema.")
     val tableNames = tables.reverse.map(_._1)
     Database.execute(DdlQueries.TruncateTables(tableNames)).map(x => tableNames)
+  }
+
+  private[this] def createUser(q: Future[Boolean], insert: Statement) = q.flatMap { exists =>
+    if (exists) {
+      Future.successful(Unit)
+    } else {
+      log.info(s"Creating user [" + insert.getClass.getSimpleName + "].")
+      Database.execute(insert).map(x => x == 1)
+    }
   }
 }

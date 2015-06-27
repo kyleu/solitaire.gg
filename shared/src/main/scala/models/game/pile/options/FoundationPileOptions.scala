@@ -5,7 +5,7 @@ import models.game.pile.constraints.Constraint
 import models.game.rules._
 
 object FoundationPileOptions {
-  private[this] def getConstraints(lowRank: Rank, numRanks: Int, rules: FoundationRules) = {
+  private[this] def getConstraints(lowRank: Rank, numRanks: Int, rules: FoundationRules, pileIndex: Int) = {
     val dragFromConstraint = rules.canMoveFrom match {
       case FoundationCanMoveFrom.Always => Some(Constraint.topCardOnly)
       case FoundationCanMoveFrom.EmptyStock => Some(Constraint.pilesEmpty("stock"))
@@ -51,7 +51,7 @@ object FoundationPileOptions {
             } else {
               val target = tgt.cards.last
               val s = rules.suitMatchRule.check(target.s, firstCard.s)
-              val r = rules.rankMatchRule.check(target.r, firstCard.r, lowRank, rules.wrap)
+              val r = rules.rankMatchRule.check(target.r, firstCard.r, lowRank, rules.wrap, pileIndex)
               s && r
             }
           }
@@ -69,7 +69,8 @@ object FoundationPileOptions {
   def apply(rules: FoundationRules, deckOptions: DeckOptions) = {
     if (rules.lowRank == FoundationLowRank.Ascending) {
       (1 to rules.numPiles).map { i =>
-        val (dragFromConstraint, dragToConstraint) = getConstraints(Rank.allByValue(i), deckOptions.ranks.size, rules)
+        val nextRank = if(i == 1) { 14 } else { i }
+        val (dragFromConstraint, dragToConstraint) = getConstraints(Rank.allByValue(nextRank), deckOptions.ranks.size, rules, i)
         PileOptions(
           cardsShown = Some(rules.cardsShown),
           dragFromConstraint = dragFromConstraint,
@@ -85,7 +86,7 @@ object FoundationPileOptions {
         case FoundationLowRank.SpecificRank(r) => r
       }
 
-      val (dragFromConstraint, dragToConstraint) = getConstraints(lowRank, deckOptions.ranks.size, rules)
+      val (dragFromConstraint, dragToConstraint) = getConstraints(lowRank, deckOptions.ranks.size, rules, 0)
       Seq(PileOptions(
         cardsShown = Some(rules.cardsShown),
         dragFromConstraint = dragFromConstraint,

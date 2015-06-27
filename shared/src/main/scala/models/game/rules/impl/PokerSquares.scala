@@ -4,6 +4,7 @@ import models.game.rules._
 
 object PokerSquares extends GameRules(
   id = "pokersquares",
+  custom = true,
   title = "Poker Squares",
   description = "Make ten five-card poker hands from a 5x5 grid. Try for the high score!",
   layout = Some("5t|w"),

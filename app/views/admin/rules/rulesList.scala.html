@@ -1,7 +1,10 @@
 @(q: String, sortBy: String, count: Int, page: Int, statuses: Seq[models.audit.RulesStatus])(implicit session: Session, flash: Flash)
 @views.html.admin.list(
-  "game rule", "Game Rules", "rules", count, page, statuses.size, q,
+  "game rule", "Game Rules", "explore", count, page, statuses.size, q,
   searchAction = controllers.admin.routes.RulesController.rulesList()
 ) {
+  <div class="pull-right">
+    <a href="@controllers.admin.routes.RulesController.rulesData()">Raw Data</a>
+  </div>
   @rulesListTable(sortBy, statuses)
 }

@@ -8,6 +8,8 @@ sealed trait CardRemovalMethod {
 }
 
 object CardRemovalMethod {
+  val default = BuildSequencesOnFoundation
+
   case object BuildSequencesOnFoundation extends CardRemovalMethod
 
   case object RemovePairsOfSameRank extends CardRemovalMethod {

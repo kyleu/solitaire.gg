@@ -8,6 +8,8 @@ sealed trait VictoryCondition {
 }
 
 object VictoryCondition {
+  val default = AllOnFoundation
+
   case object AllOnFoundation extends VictoryCondition {
     override def check(rules: GameRules, gs: GameState) = !gs.pileSets.exists(ps => ps.behavior != "foundation" && ps.piles.exists(_.cards.nonEmpty))
   }

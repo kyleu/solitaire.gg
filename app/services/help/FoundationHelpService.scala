@@ -57,7 +57,7 @@ object FoundationHelpService {
       }
 
       if (rules.wrap) {
-        ret += Messages("help.foundation.wrap.ranks")
+        ret += Messages("help.foundation.wrap.ranks", deckOptions.lowRank, deckOptions.highRank)
       }
     }
 

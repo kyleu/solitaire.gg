@@ -17,9 +17,13 @@ class SolverTests {
   private[this] def runSolver(rules: String, seed: Int) = {
     val solver = GameSolver(rules, 0, Some(seed))
     val movesPerformed = collection.mutable.ArrayBuffer.empty[GameMessage]
-    while (!solver.gameWon && movesPerformed.size < GameSolver.moveLimit) {
-      val move = solver.performMove()
-      movesPerformed += move
+    try {
+      while(!solver.gameWon && movesPerformed.size < GameSolver.moveLimit) {
+        val move = solver.performMove()
+        movesPerformed += move
+      }
+    } finally {
+      solver.close()
     }
 
     if (solver.gameWon) {

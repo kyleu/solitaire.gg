@@ -27,17 +27,11 @@
           <li @if(section == "explore") { class="active" }>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Explore <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
+              <li><a href="@controllers.admin.routes.RulesController.rulesList()">Rules</a></li>
               <li><a href="@controllers.admin.routes.FeedbackController.feedbackList()">Feedback</a></li>
               <li><a href="@controllers.admin.routes.UserController.userList()">Users</a></li>
               <li><a href="@controllers.admin.routes.GameHistoryController.gameList()">Games</a></li>
               <li><a href="@controllers.admin.routes.RequestLogController.requestList()">Requests</a></li>
-            </ul>
-          </li>
-          <li @if(section == "rules") { class="active" }>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rules <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="@controllers.admin.routes.RulesController.rulesList()">Overview</a></li>
-              <li><a href="@controllers.admin.routes.RulesController.rulesData()">Raw Data</a></li>
             </ul>
           </li>
           <li @if(section == "tests") { class="active" }>

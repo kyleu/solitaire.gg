@@ -5,6 +5,7 @@ import models.game.rules._
 object SevenDevils extends GameRules(
   id = "sevendevils",
   completed = true,
+  custom = true,
   title = "Seven Devils",
   description = "Seven Devils is arguably the most difficult of all solitaire games. Good luck!",
   layout = Some("swf|r:t"),

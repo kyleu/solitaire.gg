@@ -17,6 +17,7 @@
       }
 
       <div class="username">@user.username.getOrElse("Guest")</div>
+      <div class="logout"><a href="@controllers.auth.routes.AuthenticationController.signOut">Sign Out</a></div>
       @defining(profiles.find(_.loginInfo.providerID == "credentials")) { credentials =>
         <div class="profile-detail">
           @if(credentials.isDefined) {

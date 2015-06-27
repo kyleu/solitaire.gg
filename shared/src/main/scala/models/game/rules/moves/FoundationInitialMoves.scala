@@ -16,15 +16,6 @@ object FoundationInitialMoves {
         case None => throw new IllegalStateException()
       }
 
-      val requiredRank = fr.lowRank match {
-        case FoundationLowRank.AnyCard => None
-        case FoundationLowRank.Ascending => throw new NotImplementedError("FoundationLowRank.Ascending")
-        case FoundationLowRank.SpecificRank(r) if r == Rank.Unknown => Some(randomRank)
-        case FoundationLowRank.SpecificRank(r) => Some(r)
-        case FoundationLowRank.DeckLowRank => Some(gameState.deck.lowRank)
-        case FoundationLowRank.DeckHighRank => Some(gameState.deck.highRank)
-      }
-
       val (uniqueSuits, requiredSuit, uniqueColors, requiredColor) = fr.initialCardRestriction match {
         case Some(FoundationInitialCardRestriction.UniqueSuits) => (true, None, false, None)
         case Some(FoundationInitialCardRestriction.UniqueColors) => (false, None, true, None)
@@ -36,9 +27,26 @@ object FoundationInitialMoves {
       var encounteredSuits = Set.empty[Suit]
       var encounteredColors = Set.empty[Color]
 
+      val requiredRank = fr.lowRank match {
+        case FoundationLowRank.AnyCard => None
+        case FoundationLowRank.Ascending => Some(Rank.Unknown)
+        case FoundationLowRank.SpecificRank(r) if r == Rank.Unknown => Some(randomRank)
+        case FoundationLowRank.SpecificRank(r) => Some(r)
+        case FoundationLowRank.DeckLowRank => Some(gameState.deck.lowRank)
+        case FoundationLowRank.DeckHighRank => Some(gameState.deck.highRank)
+      }
+
+
       (0 until fr.initialCards).foreach { i =>
         val col = i % fr.numPiles
-        val cards = gameState.deck.getCards(1, turnFaceUp = true, requiredRank, Set.empty, requiredSuit, encounteredSuits, requiredColor, encounteredColors)
+        val rank = requiredRank.map {
+          case Rank.Unknown => col match {
+            case 0 => Rank.Ace
+            case _ => Rank.allByValue(col + 1)
+          }
+          case x => x
+        }
+        val cards = gameState.deck.getCards(1, turnFaceUp = true, rank, Set.empty, requiredSuit, encounteredSuits, requiredColor, encounteredColors)
         if (uniqueSuits) {
           encounteredSuits = encounteredSuits ++ cards.map(_.s)
         }

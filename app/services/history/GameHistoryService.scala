@@ -30,8 +30,7 @@ object GameHistoryService {
 
   def removeGameHistoriesByUser(userId: UUID, conn: Option[Connection]) = {
     Database.query(GameHistoryQueries.GetGameHistoryIdsForUser(userId)).flatMap { gameIds =>
-      val futures = gameIds.map(id => removeGameHistory(id, conn))
-      Future.sequence(futures)
+      Future.sequence(gameIds.map(id => removeGameHistory(id, None)))
     }
   }
 
