@@ -1,7 +1,7 @@
 package services.help
 
-import models.game.pile.Layouts
-import models.game.rules._
+import models.pile.Layouts
+import models.rules._
 import play.api.i18n.Messages
 
 object GameRulesHelpService {

@@ -2,7 +2,7 @@ package services.test
 
 import java.util.UUID
 
-import models.game.rules.GameRulesSet
+import models.rules.GameRulesSet
 import models.test.{ Test, Tree }
 
 class RulesTests {

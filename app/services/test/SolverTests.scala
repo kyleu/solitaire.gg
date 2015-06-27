@@ -1,7 +1,7 @@
 package services.test
 
 import models.GameMessage
-import models.game.rules.GameRulesSet
+import models.rules.GameRulesSet
 import models.test.{ Test, Tree }
 
 import scala.util.Random

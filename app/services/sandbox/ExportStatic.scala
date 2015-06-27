@@ -2,7 +2,7 @@ package services.sandbox
 
 import java.nio.file.{ Files, Paths }
 
-import models.game.rules.GameRulesSet
+import models.rules.GameRulesSet
 import models.user.User
 import play.twirl.api.Html
 import services.test.TestService

@@ -2,7 +2,7 @@ package screenshots
 
 import java.nio.file.{ Files, Paths }
 
-import models.game.rules.GameRulesSet
+import models.rules.GameRulesSet
 
 object ScreenshotCreator {
   val outDir = Paths.get(".", "offline", "build", "screenshots")

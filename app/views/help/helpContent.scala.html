@@ -1,5 +1,5 @@
-@(rules: models.game.rules.GameRules, color: String, routesMap: utils.RoutesMap)(implicit messages: Messages)
-@import models.game.rules.GameRulesSet
+@(rules: models.rules.GameRules, color: String, routesMap: utils.RoutesMap)(implicit messages: Messages)
+@import models.rules.GameRulesSet
 @rulesLink(rulesId: String, rulesTitle: String) = {
             <a class="help-link color-@color" href="@routesMap("help", rulesId)">@rulesTitle</a>
             <a class="play-link color-@color" href="@routesMap("new-game", rulesId)" data-rules="@rulesId" title="Play @rulesTitle Now">&#9654;</a>

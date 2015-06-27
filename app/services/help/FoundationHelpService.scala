@@ -1,7 +1,7 @@
 package services.help
 
 import models.game.Rank
-import models.game.rules._
+import models.rules._
 import play.api.i18n.Messages
 import utils.NumberUtils
 
@@ -57,7 +57,12 @@ object FoundationHelpService {
       }
 
       if (rules.wrap) {
-        ret += Messages("help.foundation.wrap.ranks", deckOptions.lowRank, deckOptions.highRank)
+        val (lr, hr) = if(deckOptions.lowRank == Rank.Unknown) {
+          Rank.Ace -> Rank.King
+        } else {
+          deckOptions.lowRank -> deckOptions.highRank
+        }
+        ret += Messages("help.foundation.wrap.ranks", lr, hr)
       }
     }
 

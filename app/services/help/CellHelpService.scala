@@ -1,6 +1,6 @@
 package services.help
 
-import models.game.rules.CellRules
+import models.rules.CellRules
 import play.api.i18n.Messages
 import utils.NumberUtils
 

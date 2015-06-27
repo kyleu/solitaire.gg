@@ -1,6 +1,6 @@
 package parser
 
-import models.game.rules._
+import models.rules._
 
 object ScalaStockExporter {
   private[this] val defaults = StockRules()

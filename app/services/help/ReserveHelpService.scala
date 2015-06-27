@@ -1,6 +1,6 @@
 package services.help
 
-import models.game.rules.ReserveRules
+import models.rules.ReserveRules
 import play.api.i18n.Messages
 import utils.NumberUtils
 

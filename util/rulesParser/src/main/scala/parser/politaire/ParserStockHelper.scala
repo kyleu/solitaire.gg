@@ -1,6 +1,6 @@
 package parser.politaire
 
-import models.game.rules.{ StockCardsDealt, StockDealTo, StockRules }
+import models.rules.{ StockCardsDealt, StockDealTo, StockRules }
 
 trait ParserStockHelper { this: GameRulesParser =>
   protected[this] def getStock = {

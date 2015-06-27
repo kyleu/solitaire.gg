@@ -1,7 +1,7 @@
 package parser.politaire
 
 import models.game._
-import models.game.rules._
+import models.rules._
 import parser.politaire.lookup.PolitaireLookup
 
 class GameRulesParser(val variant: PolitaireParser.Variant) extends GameRulesParserHelper {

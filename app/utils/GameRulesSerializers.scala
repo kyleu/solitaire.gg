@@ -1,6 +1,6 @@
 package utils
 
-import models.game.rules._
+import models.rules._
 import play.api.libs.json._
 
 object GameRulesSerializers {

@@ -2,7 +2,7 @@ package parser.politaire
 
 import models.game.{Black, Red, Rank}
 import models.game.Suit.{Hearts, Spades}
-import models.game.rules._
+import models.rules._
 import parser.politaire.lookup.PolitaireLookup
 
 trait ParserFoundationHelper { this: GameRulesParser =>

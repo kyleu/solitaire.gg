@@ -2,7 +2,7 @@ package models.game
 
 import java.util.UUID
 
-import models.game.pile.PileSet
+import models.pile.set.PileSet
 
 case class GameState(
     gameId: UUID,

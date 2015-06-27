@@ -1,4 +1,4 @@
-@(user: models.user.User, rules: models.game.rules.GameRules, routesMap: utils.RoutesMap = utils.RoutesMap.dynamic)(
+@(user: models.user.User, rules: models.rules.GameRules, routesMap: utils.RoutesMap = utils.RoutesMap.dynamic)(
   implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
 )@layout.static(user = user, title = s"${rules.title} Help - ${utils.Config.projectName}", button = "menu", routesMap) {
   <div class="static-help">

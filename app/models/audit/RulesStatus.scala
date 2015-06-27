@@ -1,6 +1,6 @@
 package models.audit
 
-import models.game.rules.GameRules
+import models.rules.GameRules
 
 case class RulesStatus(
   rules: GameRules,

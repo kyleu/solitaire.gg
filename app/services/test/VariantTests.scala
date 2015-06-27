@@ -4,7 +4,7 @@ import java.util.UUID
 
 import akka.actor.PoisonPill
 import akka.testkit.TestProbe
-import models.game.rules.GameRulesSet
+import models.rules.GameRulesSet
 import models.test.{ Test, Tree }
 import models.{ GetPossibleMoves, PossibleMoves, GameJoined, StartGame }
 import play.api.libs.concurrent.Akka

@@ -1,6 +1,6 @@
 package parser.politaire
 
-import models.game.rules.ReserveRules
+import models.rules.ReserveRules
 
 trait ParserReserveHelper { this: GameRulesParser =>
   protected[this] def getReserves = {

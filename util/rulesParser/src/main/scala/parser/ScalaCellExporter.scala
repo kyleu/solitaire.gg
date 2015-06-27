@@ -1,6 +1,6 @@
 package parser
 
-import models.game.rules._
+import models.rules._
 
 object ScalaCellExporter {
   private[this] val defaults = CellRules()

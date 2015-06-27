@@ -1,7 +1,7 @@
 package services.help
 
 import models.game.Rank
-import models.game.rules.{ FillEmptyWith, SuitMatchRule, RankMatchRule }
+import models.rules.{ FillEmptyWith, SuitMatchRule, RankMatchRule }
 import play.api.i18n.Messages
 
 object MatchRuleHelpService {

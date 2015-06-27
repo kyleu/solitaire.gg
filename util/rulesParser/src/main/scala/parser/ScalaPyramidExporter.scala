@@ -1,6 +1,6 @@
 package parser
 
-import models.game.rules._
+import models.rules._
 
 object ScalaPyramidExporter {
   private[this] val defaults = PyramidRules()

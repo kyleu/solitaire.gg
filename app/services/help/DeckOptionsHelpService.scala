@@ -1,7 +1,7 @@
 package services.help
 
 import models.game.Rank
-import models.game.rules.DeckOptions
+import models.rules.DeckOptions
 import play.api.i18n.Messages
 import utils.NumberUtils
 

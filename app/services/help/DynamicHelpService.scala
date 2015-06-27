@@ -1,6 +1,6 @@
 package services.help
 
-import models.game.rules.GameRules
+import models.rules.GameRules
 
 object DynamicHelpService {
   def helpFor(rules: GameRules) = {

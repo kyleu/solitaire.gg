@@ -1,6 +1,6 @@
 package parser.politaire
 
-import models.game.rules.{ FillEmptyWith, PyramidType, PyramidFaceDownCards, PyramidRules }
+import models.rules.{ FillEmptyWith, PyramidType, PyramidFaceDownCards, PyramidRules }
 import parser.politaire.lookup.PolitaireLookup
 
 trait ParserPyramidHelper { this: GameRulesParser =>

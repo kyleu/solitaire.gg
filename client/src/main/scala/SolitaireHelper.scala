@@ -2,7 +2,7 @@ import java.util.UUID
 
 import models._
 import models.game.GameState
-import models.game.rules.GameRules
+import models.rules.GameRules
 
 trait SolitaireHelper {
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit

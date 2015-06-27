@@ -1,6 +1,6 @@
 package parser
 
-import models.game.rules._
+import models.rules._
 
 object ScalaRuleSetExporter {
   def exportRulesSet(rulesSet: Seq[GameRules]) = {

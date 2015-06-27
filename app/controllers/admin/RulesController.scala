@@ -3,7 +3,7 @@ package controllers.admin
 import controllers.BaseController
 import models.audit.RulesStatus
 import models.database.queries.leaderboard.GameSeedQueries
-import models.game.rules.{ GameRules, GameRulesSet }
+import models.rules.{ GameRules, GameRulesSet }
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database

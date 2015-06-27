@@ -1,6 +1,6 @@
 package services.help
 
-import models.game.rules.{ GameRules, CardRemovalMethod, VictoryCondition }
+import models.rules.{ GameRules, CardRemovalMethod, VictoryCondition }
 import play.api.i18n.Messages
 
 object ObjectiveHelpService {

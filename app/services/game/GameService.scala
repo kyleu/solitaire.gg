@@ -3,8 +3,8 @@ package services.game
 import java.util.UUID
 
 import models._
-import models.game.rules.GameRulesSet
-import models.game.rules.moves.InitialMoves
+import models.rules.GameRulesSet
+import models.rules.moves.InitialMoves
 import models.user.PlayerRecord
 import org.joda.time.LocalDateTime
 import utils.DateUtils

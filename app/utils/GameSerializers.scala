@@ -1,8 +1,9 @@
 package utils
 
 import models.game._
-import models.game.pile.options.{ ClientPileOptions, PileOptions }
-import models.game.pile.{ PileSet, Pile }
+import models.pile.options.{ ClientPileOptions, PileOptions }
+import models.pile.Pile
+import models.pile.set.PileSet
 import play.api.libs.json._
 
 object GameSerializers {

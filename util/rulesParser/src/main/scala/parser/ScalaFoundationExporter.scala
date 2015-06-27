@@ -1,6 +1,6 @@
 package parser
 
-import models.game.rules._
+import models.rules._
 
 object ScalaFoundationExporter {
   private[this] val defaults = FoundationRules()

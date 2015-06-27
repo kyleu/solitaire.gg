@@ -1,6 +1,6 @@
 package parser
 
-import models.game.rules.GameRulesSet
+import models.rules.GameRulesSet
 import parser.politaire.PolitaireParser
 
 object RulesParserMain extends App {

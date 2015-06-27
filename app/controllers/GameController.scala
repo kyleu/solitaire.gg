@@ -1,6 +1,6 @@
 package controllers
 
-import models.game.rules.GameRulesSet
+import models.rules.GameRulesSet
 import play.api.i18n.{ MessagesApi, Messages }
 import play.api.mvc.AnyContent
 

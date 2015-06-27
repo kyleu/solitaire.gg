@@ -1,8 +1,8 @@
 import java.util.UUID
 
-import models.game.rules.GameRulesSet
+import models.rules.GameRulesSet
 import models._
-import models.game.rules.moves.InitialMoves
+import models.rules.moves.InitialMoves
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport

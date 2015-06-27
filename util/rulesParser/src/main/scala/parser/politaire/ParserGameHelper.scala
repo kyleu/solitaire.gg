@@ -1,6 +1,6 @@
 package parser.politaire
 
-import models.game.rules.{FillEmptyWith, RankMatchRule, SuitMatchRule, InitialCards}
+import models.rules.{FillEmptyWith, RankMatchRule, SuitMatchRule, InitialCards}
 
 trait ParserGameHelper { this: GameRulesParser =>
   protected[this] def getInitialCards(i: Int) = i match {

@@ -2,8 +2,8 @@ package parser
 
 import java.nio.file.{ Files, Path, Paths }
 
-import models.game.rules._
-import models.game.rules.impl.CustomGameRules
+import models.rules._
+import models.rules.impl.CustomGameRules
 import parser.politaire.PolitaireParser
 import parser.politaire.lookup.PolitaireLookup
 

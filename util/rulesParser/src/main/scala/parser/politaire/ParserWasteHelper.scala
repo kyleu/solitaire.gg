@@ -1,6 +1,6 @@
 package parser.politaire
 
-import models.game.rules.{ WastePlayableCards, WasteRules }
+import models.rules.{ WastePlayableCards, WasteRules }
 
 trait ParserWasteHelper { this: GameRulesParser =>
   protected[this] def getWaste = {

@@ -1,6 +1,6 @@
 package services.test
 
-import models.game.rules.PokerRules
+import models.rules.PokerRules
 import models.game.{ Suit, Rank, Card }
 import models.test.{ Test, Tree }
 

@@ -1,6 +1,6 @@
 package parser.politaire
 
-import models.game.rules.{ DealOrder, SpecialRules }
+import models.rules.{ DealOrder, SpecialRules }
 
 trait ParserSpecialHelper { this: GameRulesParser =>
   private[this] def getDealOrder(i: Int) = i match {

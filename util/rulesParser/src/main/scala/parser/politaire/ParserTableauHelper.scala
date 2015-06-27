@@ -1,6 +1,6 @@
 package parser.politaire
 
-import models.game.rules._
+import models.rules._
 import parser.politaire.lookup.PolitaireLookup
 
 trait ParserTableauHelper { this: GameRulesParser =>
