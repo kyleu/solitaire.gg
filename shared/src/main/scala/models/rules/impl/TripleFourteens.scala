@@ -20,10 +20,12 @@ import models.rules._
  */
 object TripleFourteens extends GameRules(
   id = "triplefourteens",
+  completed = true,
   title = "Triple Fourteens",
   like = Some("fourteenout"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_fourteens.htm")),
   description = "An three-deck version of ^fourteenout^ which was invented by Thomas Warfield.",
+  layout = Some("3tf"),
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(
     numDecks = 3

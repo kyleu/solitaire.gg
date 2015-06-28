@@ -3,8 +3,16 @@
   "game rule", "Game Rules", "explore", count, page, statuses.size, q,
   searchAction = controllers.admin.routes.RulesController.rulesList()
 ) {
-  <div class="pull-right">
-    <a href="@controllers.admin.routes.RulesController.rulesData()">Raw Data</a>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="pull-right">
+        <a href="@controllers.admin.routes.RulesController.rulesData()">Raw Data</a>
+      </div>
+      <div>
+        @utils.Formatter.withCommas(models.rules.GameRulesSet.completed.size) completed games,
+        @utils.Formatter.withCommas(models.rules.GameRulesSet.inProgress.size) games in progress.
+      </div>
+    </div>
   </div>
   @rulesListTable(sortBy, statuses)
 }

@@ -17,9 +17,11 @@ import models.rules._
  */
 object Moosehide extends GameRules(
   id = "moosehide",
+  completed = true,
   title = "Moosehide",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/moosehide.htm")),
   description = "A variant of ^yukon^ where you build down in non-matching suits",
+  layout = Some(":.f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -1,6 +1,7 @@
 package icons
 
 import java.nio.file.{ Files, Path, Paths }
+import scala.sys.process._
 
 object IconCreator extends App {
   private val icons = Seq("back", "next", "hint", "options", "profile", "menu", "help", "edit", "cards", "check", "error")
@@ -31,6 +32,7 @@ object IconCreator extends App {
 
   val srcDir = Paths.get(".", "util", "iconCreator", "src", "main", "resources", "icons", "svg")
   val tmpDir = Paths.get(".", "tmp", "icons")
+  Files.createDirectories(tmpDir)
   val outDir = Paths.get(".", "out")
 
   private val startMs = System.currentTimeMillis
@@ -69,7 +71,6 @@ object IconCreator extends App {
   }
 
   private[this] def convert(icon: String, color: String) = {
-    import scala.sys.process._
     println(s"Converting [$icon:$color]")
     if(icon == "cards" || icon == "check" || icon == "error") {
       s"convert -resize 500x500 -background none ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color-500.png".!
@@ -88,7 +89,6 @@ object IconCreator extends App {
   }
 
   private[this] def stitch(color: String) = {
-    import scala.sys.process._
     println(s"Stitching icons for [$color]")
 
 
@@ -107,7 +107,7 @@ object IconCreator extends App {
     import scala.sys.process._
     println(s"Creating logos for [${color._1}]")
 
-    s"convert -resize 600x600 -background #${color._2} ./tmp/icons/cards-white.svg ./tmp/icons/logo-${color._1}.png".!
+    s"convert -resize 1024x1024 -background #${color._2} ./tmp/icons/cards-white.svg ./tmp/icons/logo-${color._1}.png".!
     //s"convert ./tmp/icons/logo-${color._1}.png -gravity center -background #${color._2} -extent 600x600 ./tmp/icons/logo-${color._1}.png".!
     s"convert ./tmp/icons/logo-${color._1}.png -gravity center -background #${color._2} -extent 1920x1080 ./tmp/icons/splash-landscape-${color._1}.png".!
     s"convert ./tmp/icons/logo-${color._1}.png -gravity center -background #${color._2} -extent 1080x1920 ./tmp/icons/splash-portrait-${color._1}.png".!

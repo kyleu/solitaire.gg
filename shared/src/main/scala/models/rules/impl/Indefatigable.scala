@@ -24,6 +24,7 @@ import models.rules._
  */
 object Indefatigable extends GameRules(
   id = "indefatigable",
+  completed = true,
   title = "Indefatigable",
   like = Some("cruel"),
   related = Seq("royalfamily"),
@@ -35,6 +36,7 @@ object Indefatigable extends GameRules(
   ),
   description = "This variation of ^royalfamily^ is basically the same, but the foundations build up from ace, and it is made even easier by a extr" +
     "a redeal.",
+  layout = Some("::::f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

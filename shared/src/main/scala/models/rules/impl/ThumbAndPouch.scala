@@ -13,6 +13,7 @@ import models.rules._
  */
 object ThumbAndPouch extends GameRules(
   id = "thumbandpouch",
+  completed = true,
   title = "Thumb and Pouch",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/thumb_and_pouch.htm"),

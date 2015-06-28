@@ -20,9 +20,11 @@ import models.rules._
  */
 object Ants extends GameRules(
   id = "ants",
+  completed = true,
   title = "Ants",
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/ants.htm")),
   description = "Like four parallel ^golf^ games",
+  layout = Some("sf|.t"),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

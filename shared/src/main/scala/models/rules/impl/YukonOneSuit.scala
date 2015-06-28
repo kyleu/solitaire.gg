@@ -21,17 +21,19 @@ import models.rules._
  */
 object YukonOneSuit extends GameRules(
   id = "yukononesuit",
+  completed = true,
   title = "Yukon One Suit",
   like = Some("yukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukon_one_suit.htm")),
   description = "A one-suit variation of ^yukon^. The game is almost always winnable, but still makes you think a bit.",
+  layout = Some(":.f|t"),
   deckOptions = DeckOptions(
     numDecks = 4,
     suits = Seq(Suit.Spades)
   ),
   foundations = Seq(
     FoundationRules(
-      numPiles = 16,
+      numPiles = 4,
       autoMoveCards = true
     )
   ),
