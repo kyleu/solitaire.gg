@@ -31,6 +31,7 @@ object BearRiver extends GameRules(
   id = "bearriver",
   title = "Bear River",
   description = "A ^fan^ variation where you can build up and down in suit, but are limited to three cards per pile.",
+  layout = Some(":::::.f|t|::::::t"),
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

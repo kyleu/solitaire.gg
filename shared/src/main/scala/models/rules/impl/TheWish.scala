@@ -19,6 +19,7 @@ import models.rules._
  */
 object TheWish extends GameRules(
   id = "thewish",
+  completed = true,
   title = "The Wish",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/the_wish.htm"),
@@ -33,7 +34,8 @@ object TheWish extends GameRules(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.AnyCard,
-      autoMoveCards = true
+      autoMoveCards = true,
+      visible = false
     )
   ),
   tableaus = Seq(

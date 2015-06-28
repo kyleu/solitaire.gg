@@ -30,6 +30,7 @@ object Fifteen extends GameRules(
     Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#fifteen")
   ),
   description = "Build up on one foundation, down on the other. Build up or down on the tableau.",
+  layout = Some(":::f:f|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

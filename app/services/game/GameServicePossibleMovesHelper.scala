@@ -24,6 +24,7 @@ trait GameServicePossibleMovesHelper { this: GameService =>
 
   private[this] def possibleMoves(): Try[Seq[PossibleMove]] = Try {
     val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
+    val awesomeMoves = collection.mutable.ArrayBuffer.empty[PossibleMove]
     val boringMoves = collection.mutable.ArrayBuffer.empty[PossibleMove]
     gameState.piles.foreach { source =>
       val sourceBehavior = source.pileSet.map(_.behavior).getOrElse(throw new IllegalStateException())
@@ -35,13 +36,10 @@ trait GameServicePossibleMovesHelper { this: GameService =>
             val targetBehavior = target.pileSet.map(_.behavior).getOrElse(throw new IllegalStateException())
             if (target.canDragTo(source, cards, gameState)) {
               val move = PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
-              if (
-                sourceBehavior == "tableau" && targetBehavior == "tableau" && (
-                  //remainingCards.lastOption.exists(_.u) || // Tableau bounce
-                  (remainingCards.isEmpty && target.cards.isEmpty) // King bounce
-                )
-              ) {
+              if (sourceBehavior == "tableau" && targetBehavior == "tableau" && remainingCards.isEmpty && target.cards.isEmpty) {
                 boringMoves += move
+              } else if(targetBehavior == "foundation" && sourceBehavior != "foundation") {
+                awesomeMoves += move
               } else {
                 ret += move
               }
@@ -56,6 +54,6 @@ trait GameServicePossibleMovesHelper { this: GameService =>
         ret += PossibleMove("select-pile", Nil, source.id)
       }
     }
-    ret ++ boringMoves
+    awesomeMoves ++ ret ++ boringMoves
   }
 }

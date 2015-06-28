@@ -19,6 +19,7 @@ import models.rules._
  */
 object Bastion extends GameRules(
   id = "bastion",
+  completed = true,
   title = "Bastion",
   like = Some("fortress"),
   links = Seq(
@@ -26,6 +27,7 @@ object Bastion extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/bastion.htm")
   ),
   description = "^fortress^ with cells.",
+  layout = Some(":.f:c|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

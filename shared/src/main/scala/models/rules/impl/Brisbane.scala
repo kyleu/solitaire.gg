@@ -25,6 +25,7 @@ object Brisbane extends GameRules(
     Link("dogMelon", "www.dogmelon.com.au/solhelp/Brisbane%20Solitaire.shtml")
   ),
   description = "Just like ^yukon^, but the starting layout is a bit different and you build regardless of suit.",
+  layout = Some(":.f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

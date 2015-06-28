@@ -19,10 +19,12 @@ import models.rules._
  */
 object Stewart extends GameRules(
   id = "stewart",
+  completed = true,
   title = "Stewart",
   like = Some("martha"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/stewart.htm")),
   description = "A more difficult variation of ^martha^ in which only single cards may be moved. It is similar to ^bakersdozen^.",
+  layout = Some(":f|2t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

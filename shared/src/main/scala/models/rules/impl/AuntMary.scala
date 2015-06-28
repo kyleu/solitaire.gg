@@ -17,6 +17,7 @@ import models.rules._
  */
 object AuntMary extends GameRules(
   id = "auntmary",
+  completed = true,
   title = "Aunt Mary",
   like = Some("thoughtful"),
   links = Seq(
@@ -27,6 +28,7 @@ object AuntMary extends GameRules(
     Link("L.Schaffer on Hobby Hub", "www.hobbyhub360.com/index.php/how-to-play-aunt-mary-solitaire-14352/")
   ),
   description = "A difficult ^klondike^ variation where the tableau contains one fewer pile but all cards are face up.",
+  layout = Some("swf|.t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

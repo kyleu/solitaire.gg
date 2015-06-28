@@ -26,6 +26,7 @@ object Carpet extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/carpet.htm")
   ),
   description = "An easy game with twenty reserve piles and no building.",
+  layout = Some("swf|2t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

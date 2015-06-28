@@ -28,6 +28,7 @@ object Bristol extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Bristol.html.en")
   ),
   description = "A game with three waste piles invented by Albert Morehead and Geoffrey Mott-Smith.",
+  layout = Some("sw::f|.t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

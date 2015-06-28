@@ -23,6 +23,7 @@ import models.rules._
 object PileUp extends GameRules(
   id = "pileup",
   title = "Pile Up",
+  completed = true,
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fifteen_puzzle.htm"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Pileon.html.en")
