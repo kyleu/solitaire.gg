@@ -18,10 +18,12 @@ import models.rules._
  */
 object Preference extends GameRules(
   id = "preference",
+  completed = true,
   title = "Preference",
   like = Some("fortunesfavor"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/preference.htm")),
   description = "A slightly more challenging version of ^fortunesfavor^ with fewer tableau piles.",
+  layout = Some("sw:f|t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

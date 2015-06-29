@@ -25,6 +25,7 @@ import models.rules._
  */
 object Juvenile extends GameRules(
   id = "juvenile",
+  completed = true,
   title = "Juvenile",
   like = Some("fourteenout"),
   links = Seq(

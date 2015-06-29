@@ -59,8 +59,7 @@ object Acquaintance extends GameRules(
   ),
   special = Some(
     SpecialRules(
-      redealsAllowed = 2,
-      shuffleBeforeRedeal = false
+      redealsAllowed = 2
     )
   )
 )

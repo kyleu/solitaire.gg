@@ -14,6 +14,7 @@ import models.rules._
  */
 object BigForty extends GameRules(
   id = "bigforty",
+  completed = true,
   title = "Big Forty",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/big_forty.htm"),

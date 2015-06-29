@@ -28,6 +28,7 @@ import models.rules._
  */
 object Caprice extends GameRules(
   id = "caprice",
+  completed = true,
   title = "Caprice",
   related = Seq("chequers", "cicely", "nationale"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/caprice.htm")),

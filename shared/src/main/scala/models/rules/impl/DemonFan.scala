@@ -38,9 +38,7 @@ object DemonFan extends GameRules(
   ),
   special = Some(
     SpecialRules(
-      redealsAllowed = 6,
-      shuffleBeforeRedeal = false,
-      dealOrder = DealOrder.RowsLeftToRightTopToBottom
+      redealsAllowed = 6
     )
   )
 )

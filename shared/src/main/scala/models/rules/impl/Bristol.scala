@@ -15,6 +15,7 @@ import models.rules._
  */
 object Bristol extends GameRules(
   id = "bristol",
+  completed = true,
   title = "Bristol",
   related = Seq("dover"),
   links = Seq(

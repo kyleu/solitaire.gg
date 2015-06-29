@@ -34,6 +34,7 @@ import models.rules._
  */
 object LittleBillie extends GameRules(
   id = "littlebillie",
+  completed = true,
   title = "Little Billie",
   like = Some("buffalobill"),
   links = Seq(
@@ -43,6 +44,7 @@ object LittleBillie extends GameRules(
   ),
   description = "In this game dating back to around 1900, no building is allowed, but you have some cells that can be used to uncover the cards you" +
     " need. Two redeals are allowed.",
+  layout = Some("::ff|::c|2t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),
@@ -85,8 +87,7 @@ object LittleBillie extends GameRules(
   ),
   special = Some(
     SpecialRules(
-      redealsAllowed = 2,
-      dealOrder = DealOrder.ColumnsLeftToRightTopToBottom
+      redealsAllowed = 2
     )
   )
 )

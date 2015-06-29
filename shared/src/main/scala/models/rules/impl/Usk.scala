@@ -56,9 +56,7 @@ object Usk extends GameRules(
   ),
   special = Some(
     SpecialRules(
-      redealsAllowed = 1,
-      shuffleBeforeRedeal = false,
-      dealOrder = DealOrder.RowsLeftToRightTopToBottom
+      redealsAllowed = 1
     )
   )
 )

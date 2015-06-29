@@ -56,9 +56,7 @@ object Indefatigable extends GameRules(
   ),
   special = Some(
     SpecialRules(
-      redealsAllowed = 2,
-      shuffleBeforeRedeal = false,
-      dealOrder = DealOrder.RowsLeftToRightTopToBottom
+      redealsAllowed = 2
     )
   )
 )

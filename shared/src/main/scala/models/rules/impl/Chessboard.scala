@@ -21,6 +21,7 @@ import models.rules._
  */
 object Chessboard extends GameRules(
   id = "chessboard",
+  completed = true,
   title = "Chessboard",
   like = Some("fortress"),
   related = Seq("lasker", "castlesend"),

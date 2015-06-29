@@ -15,6 +15,7 @@ import models.rules._
  */
 object Cassim extends GameRules(
   id = "cassim",
+  completed = true,
   title = "Cassim",
   like = Some("alibaba"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cassim.htm")),

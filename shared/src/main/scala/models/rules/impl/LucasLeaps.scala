@@ -17,6 +17,7 @@ import models.rules._
  */
 object LucasLeaps extends GameRules(
   id = "lucasleaps",
+  completed = true,
   title = "Lucas Leaps",
   like = Some("waningmoon"),
   links = Seq(

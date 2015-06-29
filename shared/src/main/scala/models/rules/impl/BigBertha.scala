@@ -27,6 +27,7 @@ import models.rules._
  */
 object BigBertha extends GameRules(
   id = "bigbertha",
+  completed = true,
   title = "Big Bertha",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/big_bertha.htm"),
@@ -34,6 +35,7 @@ object BigBertha extends GameRules(
   ),
   description = "This two-deck version of ^kingalbert^ which has 14 reserve cards that are all playable, and a separate foundation pile that you ca" +
     "n put all the kings on.",
+  layout = Some(":.wf:f|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

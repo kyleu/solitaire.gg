@@ -20,10 +20,12 @@ import models.rules._
  */
 object TenAcross extends GameRules(
   id = "tenacross",
+  completed = true,
   title = "Ten Across",
   like = Some("russian"),
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Ten_Across.html.en")),
   description = "A variation of ^russian^ with a different starting tableau and two cells, which start full.",
+  layout = Some(":.f:c|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

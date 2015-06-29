@@ -14,8 +14,11 @@ import models.rules._
  */
 object LuckierThirteen extends GameRules(
   id = "luckierthirteen",
+  completed = true,
   title = "Luckier Thirteen",
+  aka = Map("thirteenbyzero" -> "Thirteen by Zero"),
   description = "An easier version of ^luckythirteen^, or a cell-free version of ^freecell^. Also known as \"Thirteen by Zero\".",
+  layout = Some("::::.f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

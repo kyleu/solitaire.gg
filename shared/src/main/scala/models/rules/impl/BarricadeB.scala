@@ -16,9 +16,11 @@ import models.rules._
  */
 object BarricadeB extends GameRules(
   id = "barricadeb",
+  completed = true,
   title = "Barricade B",
   like = Some("block"),
   description = "An easier, but still very difficult, modification of ^block^ invented by Richard Mechen and Thomas Warfield.",
+  layout = Some("s::f|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -18,6 +18,7 @@ import models.rules._
  */
 object Fortress extends GameRules(
   id = "fortress",
+  completed = true,
   title = "Fortress",
   like = Some("beleagueredcastle"),
   related = Seq("bastion", "chessboard", "fortressofmercy", "beleagueredfortress"),
@@ -32,6 +33,7 @@ object Fortress extends GameRules(
     Link("Michael Keller's Strategy Guide", "solitairelaboratory.com/fortress.html")
   ),
   description = "A classic and usually insolvable ancestor of ^beleagueredcastle^ where you can build both up and down in the tableau.",
+  layout = Some(":::f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

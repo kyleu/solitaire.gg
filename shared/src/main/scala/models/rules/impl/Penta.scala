@@ -36,6 +36,7 @@ import models.rules._
  */
 object Penta extends GameRules(
   id = "penta",
+  completed = true,
   title = "Penta",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/penta.htm")),
   description = "Another ^busyaces^ variation by Thomas Warfield, in this one, half the tabeau builds up, and half builds down.",

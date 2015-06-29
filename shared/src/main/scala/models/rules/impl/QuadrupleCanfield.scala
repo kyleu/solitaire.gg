@@ -21,9 +21,11 @@ import models.rules._
  */
 object QuadrupleCanfield extends GameRules(
   id = "quadruplecanfield",
+  completed = true,
   title = "Quadruple Canfield",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_canfield.htm")),
   description = "An easy four-deck version of ^canfield^ invented by Thomas Warfield.",
+  layout = Some("swf|r::::::t"),
   deckOptions = DeckOptions(
     numDecks = 4,
     lowRank = Rank.Unknown

@@ -19,10 +19,12 @@ import models.rules._
  */
 object QuadrupleTrigon extends GameRules(
   id = "quadrupletrigon",
+  completed = true,
   title = "Quadruple Trigon",
   like = Some("trigon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_trigon.htm")),
   description = "A four-deck version of ^trigon^. Needs a large screen.",
+  layout = Some("swf|:.t"),
   deckOptions = DeckOptions(
     numDecks = 4
   ),

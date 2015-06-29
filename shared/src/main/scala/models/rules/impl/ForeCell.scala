@@ -17,6 +17,7 @@ import models.rules._
  */
 object ForeCell extends GameRules(
   id = "forecell",
+  completed = true,
   title = "ForeCell",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/forecell.htm"),
@@ -25,6 +26,7 @@ object ForeCell extends GameRules(
   ),
   description = "A Swedish predecessor to ^freecell^, originally one of many games called \"Napolean at St. Helena\". The initial layout is a bit d" +
     "ifferent from FreeCell, and spaces can only be filled by Kings.",
+  layout = Some("f:c|.t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

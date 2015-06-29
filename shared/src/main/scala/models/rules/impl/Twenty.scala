@@ -28,6 +28,7 @@ import models.rules._
  */
 object Twenty extends GameRules(
   id = "twenty",
+  completed = true,
   title = "Twenty",
   related = Seq("colorado"),
   links = Seq(

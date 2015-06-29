@@ -88,7 +88,6 @@ object Crescent extends GameRules(
   ),
   special = Some(
     SpecialRules(
-      shuffleBeforeRedeal = false,
       rotationsAllowed = 3,
       rotationTopToBottom = false
     )

@@ -19,11 +19,13 @@ import models.rules._
  */
 object DoubleTrigon extends GameRules(
   id = "doubletrigon",
+  completed = true,
   title = "Double Trigon",
   like = Some("trigon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_trigon.htm")),
   description = "A two-deck version of ^trigon^ or maybe a version of ^doubleklondike^ with building in suit. I suppose it depends on how you look " +
     "at it.",
+  layout = Some("swf|:t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

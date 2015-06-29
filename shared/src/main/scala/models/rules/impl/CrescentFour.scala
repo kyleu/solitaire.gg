@@ -76,7 +76,6 @@ object CrescentFour extends GameRules(
   ),
   special = Some(
     SpecialRules(
-      shuffleBeforeRedeal = false,
       rotationsAllowed = 4,
       rotationTopToBottom = false
     )

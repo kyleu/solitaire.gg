@@ -18,6 +18,7 @@ import models.rules._
  */
 object Brisbane extends GameRules(
   id = "brisbane",
+  completed = true,
   title = "Brisbane",
   like = Some("yukon"),
   links = Seq(

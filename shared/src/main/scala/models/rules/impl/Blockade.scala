@@ -18,6 +18,7 @@ import models.rules._
  */
 object Blockade extends GameRules(
   id = "blockade",
+  completed = true,
   title = "Blockade",
   related = Seq("napoleonssquare"),
   links = Seq(
@@ -29,6 +30,7 @@ object Blockade extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/blockade.htm")
   ),
   description = "A simple game that starts slow and ends with a flourish.",
+  layout = Some(":s:f|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

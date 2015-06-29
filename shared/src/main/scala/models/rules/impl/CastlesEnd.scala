@@ -22,10 +22,12 @@ import models.rules._
  */
 object CastlesEnd extends GameRules(
   id = "castlesend",
+  completed = true,
   title = "Castle's End",
   like = Some("chessboard"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/castles_end.htm")),
   description = "A slightly different version of ^chessboard^ with a two-card reserve.",
+  layout = Some(":f::r|t"),
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

@@ -82,7 +82,6 @@ object RainbowFan extends GameRules(
   ),
   special = Some(
     SpecialRules(
-      shuffleBeforeRedeal = false,
       rotationsAllowed = 3
     )
   )

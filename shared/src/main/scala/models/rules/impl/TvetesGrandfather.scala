@@ -52,9 +52,7 @@ object TvetesGrandfather extends GameRules(
   ),
   special = Some(
     SpecialRules(
-      redealsAllowed = 2,
-      shuffleBeforeRedeal = false,
-      dealOrder = DealOrder.ColumnsLeftToRightTopToBottom
+      redealsAllowed = 2
     )
   )
 )

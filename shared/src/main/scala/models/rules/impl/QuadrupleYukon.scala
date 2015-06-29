@@ -19,6 +19,7 @@ import models.rules._
  */
 object QuadrupleYukon extends GameRules(
   id = "quadrupleyukon",
+  completed = true,
   title = "Quadruple Yukon",
   like = Some("doubleyukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_yukon.htm")),

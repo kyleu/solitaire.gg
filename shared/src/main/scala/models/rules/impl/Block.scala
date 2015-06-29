@@ -16,9 +16,11 @@ import models.rules._
  */
 object Block extends GameRules(
   id = "block",
+  completed = true,
   title = "Block",
   related = Seq("barricadeb"),
   description = "A nearly unwinnably difficult two-deck game that gets its name from the fact that it routinely blocks.",
+  layout = Some(":s:f|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

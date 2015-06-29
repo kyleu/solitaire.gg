@@ -60,8 +60,6 @@ object GameRulesSerializers {
   implicit val pyramidSetWrites = Json.writes[PyramidRules]
 
   // Special
-  implicit val dealOrderWrites = stringWriter[DealOrder]
-
   implicit val specialWrites = Json.writes[SpecialRules]
 
   // Game Rules

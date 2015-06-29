@@ -16,6 +16,7 @@ import models.rules._
  */
 object LuckyThirteen extends GameRules(
   id = "luckythirteen",
+  completed = true,
   title = "Lucky Thirteen",
   related = Seq("luckypiles"),
   links = Seq(
@@ -25,6 +26,7 @@ object LuckyThirteen extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/lucky-thirteen.htm")
   ),
   description = "A rarely-winnable game with simple \"rules\": build down regardless of suit, no stack moves.",
+  layout = Some("::::.f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -68,7 +68,6 @@ object ThreeShufflesAndADraw extends GameRules(
   special = Some(
     SpecialRules(
       redealsAllowed = 2,
-      dealOrder = DealOrder.ColumnsLeftToRightTopToBottom,
       drawsAllowed = 1,
       drawsAfterRedeals = true
     )

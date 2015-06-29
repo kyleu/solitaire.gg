@@ -24,6 +24,7 @@ import models.rules._
  */
 object Fifteen extends GameRules(
   id = "fifteen",
+  completed = true,
   title = "Fifteen",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fifteen.htm"),

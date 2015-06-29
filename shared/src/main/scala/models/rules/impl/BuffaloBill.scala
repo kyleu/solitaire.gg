@@ -30,6 +30,7 @@ import models.rules._
  */
 object BuffaloBill extends GameRules(
   id = "buffalobill",
+  completed = true,
   title = "Buffalo Bill",
   related = Seq("littlebillie"),
   links = Seq(
@@ -42,6 +43,7 @@ object BuffaloBill extends GameRules(
   ),
   description = "In this easy variation of ^littlebillie^, by David Parlett, there are more fans and the reserve cells start empty, but there are n" +
     "o redeals.",
+  layout = Some(":.f::f|::.c|2t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

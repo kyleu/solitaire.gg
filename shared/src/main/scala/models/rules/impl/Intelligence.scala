@@ -71,8 +71,7 @@ object Intelligence extends GameRules(
   ),
   special = Some(
     SpecialRules(
-      redealsAllowed = 2,
-      dealOrder = DealOrder.ColumnsLeftToRightTopToBottom
+      redealsAllowed = 2
     )
   )
 )

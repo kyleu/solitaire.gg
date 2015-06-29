@@ -43,7 +43,6 @@ object MidnightClover extends GameRules(
   ),
   special = Some(
     SpecialRules(
-      shuffleBeforeRedeal = false,
       drawsAllowed = 1
     )
   )

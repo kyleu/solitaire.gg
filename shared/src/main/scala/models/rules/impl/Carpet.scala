@@ -15,6 +15,7 @@ import models.rules._
  */
 object Carpet extends GameRules(
   id = "carpet",
+  completed = true,
   title = "Carpet",
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Carpet_(solitaire)"),

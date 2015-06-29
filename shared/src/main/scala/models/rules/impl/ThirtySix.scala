@@ -12,6 +12,7 @@ import models.rules._
  */
 object ThirtySix extends GameRules(
   id = "thirtysix",
+  completed = true,
   title = "Thirty Six",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/thirty_six.htm"),
@@ -22,6 +23,7 @@ object ThirtySix extends GameRules(
     Link("Jan Wolter's Experiments", "/article/thirtysix.html")
   ),
   description = "A six-by-six tableau where you build regardless of color.",
+  layout = Some("swf|.t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

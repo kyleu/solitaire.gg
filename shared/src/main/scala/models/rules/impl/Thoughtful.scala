@@ -18,6 +18,7 @@ import models.rules._
  */
 object Thoughtful extends GameRules(
   id = "thoughtful",
+  completed = true,
   title = "Thoughtful",
   like = Some("klondike"),
   related = Seq("auntmary"),
