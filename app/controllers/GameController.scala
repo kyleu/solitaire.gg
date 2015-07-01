@@ -12,7 +12,7 @@ class GameController @javax.inject.Inject() (override val messagesApi: MessagesA
     Future.successful {
       id match {
         case "undefined" => Ok(Messages("help.general"))
-        case _ => GameRulesSet.allById.get(id) match {
+        case _ => GameRulesSet.allByIdWithAliases.get(id) match {
           case Some(rules) => if (inline) {
             Ok(views.html.help.helpInline(rules, request.identity.color))
           } else {
@@ -46,8 +46,10 @@ class GameController @javax.inject.Inject() (override val messagesApi: MessagesA
     seed: Option[Int] = None,
     offline: Boolean = false
   )(implicit request: SecuredRequest[AnyContent]) = {
-    Future.successful(GameRulesSet.allById.get(rulesId) match {
-      case Some(rules) => Ok(views.html.game.gameplay(rules.title, request.identity, rulesId, initialAction, seed, offline))
+    Future.successful(GameRulesSet.allByIdWithAliases.get(rulesId) match {
+      case Some(rules) =>
+        val title = if (rulesId == rules.id) { rules.title } else { rules.aka(rulesId) }
+        Ok(views.html.game.gameplay(title, request.identity, rulesId, initialAction, seed, offline))
       case None => NotFound(Messages("invalid.game.rules", rulesId))
     })
   }

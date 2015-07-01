@@ -69,7 +69,7 @@ object FoundationPileOptions {
   def apply(rules: FoundationRules, deckOptions: DeckOptions) = {
     if (rules.lowRank == FoundationLowRank.Ascending) {
       (1 to rules.numPiles).map { i =>
-        val nextRank = if(i == 1) { 14 } else { i }
+        val nextRank = if (i == 1) { 14 } else { i }
         val (dragFromConstraint, dragToConstraint) = getConstraints(Rank.allByValue(nextRank), deckOptions.ranks.size, rules, i)
         PileOptions(
           cardsShown = Some(rules.cardsShown),

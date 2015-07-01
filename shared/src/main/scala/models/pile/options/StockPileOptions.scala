@@ -65,7 +65,7 @@ object StockPileOptions {
       None
     } else {
       Some(SelectPileActions.moveAllFrom(redrawFrom, () => {
-        if(cardsToDraw > 1 && rules.cardsDealt == StockCardsDealt.FewerEachTime) {
+        if (cardsToDraw > 1 && rules.cardsDealt == StockCardsDealt.FewerEachTime) {
           cardsToDraw -= 1
         }
         selectPileConstraint._2()

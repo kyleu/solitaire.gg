@@ -13,7 +13,7 @@ import scala.concurrent.Future
 object EmailReport {
   def sendReportIfNeeded(emailService: EmailService) = {
     val yesterdayAndBuffer = DateUtils.now.minusDays(1).minusHours(3).toLocalDate
-    if(DateUtils.today.minusDays(1) != yesterdayAndBuffer) {
+    if (DateUtils.today.minusDays(1) != yesterdayAndBuffer) {
       Future.successful("report" -> None)
     } else {
       DailyMetricService.getMetric(yesterdayAndBuffer, DailyMetric.ReportSent).flatMap { reportSent =>

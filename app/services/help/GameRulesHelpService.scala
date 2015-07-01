@@ -10,11 +10,7 @@ object GameRulesHelpService {
   def description(desc: String, link: Boolean = true) = {
     val links = descriptionLinkPattern.findAllIn(desc).matchData.map(_.group(1))
     val linked = links.foldLeft(desc) { (desc, id) =>
-      val rules = if (id == "fortytheives") {
-        GameRulesSet.allById("fortythieves")
-      } else {
-        GameRulesSet.allById(id)
-      }
+      val rules = GameRulesSet.allByIdWithAliases(id)
       if (link) {
         val url = controllers.routes.GameController.help(rules.id).url
         desc.replaceAllLiterally(s"^$id^", s"""<a class="help-link" href="$url">${rules.title}</a>""")

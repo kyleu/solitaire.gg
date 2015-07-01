@@ -40,7 +40,7 @@ object ObjectiveHelpService {
         case h :: Nil => (
           MatchRuleHelpService.toWords(h.rankMatchRuleForBuilding),
           MatchRuleHelpService.toWords(h.suitMatchRuleForBuilding)
-          )
+        )
         case _ => throw new IllegalStateException("Invalid number of tableau sets.")
       }
       Messages("help.victory.condition.all.on.tableau.sorted", rmr, smr)

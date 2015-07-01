@@ -5,14 +5,12 @@ import models.rules.impl._
 // scalastyle:off
 object GameRulesSet {
   lazy val favorites = Seq(Klondike, FreeCell, Pyramid, Canfield, Spider)
-  lazy val completed = all.filter(_.completed)
-  lazy val inProgress = all.filter(r => r.layout.isDefined && !completed.contains(r))
-  lazy val unfinished = GameRulesSet.all.filterNot(r => completed.contains(r) || inProgress.contains(r))
-  lazy val allById = all.map(x => x.id -> x).toMap
+  lazy val completed = allSortedByTitle.filter(_._2.completed)
+  lazy val unfinished = GameRulesSet.all.filterNot(r => completed.exists(_._2 == r))
 
-  lazy val allByIdAndAliases = allById ++ all.flatMap(x => x.aka.map(aka => aka._1 -> x)).toMap
-  lazy val allSortedByTitle = allByIdAndAliases.toSeq.sortBy { row =>
-    if(row._1 == row._2.id) { row._2.title } else { row._2.aka(row._1) }
+  lazy val allByIdWithAliases = all.map(x => x.id -> x).toMap ++ all.flatMap(x => x.aka.map(aka => aka._1 -> x)).toMap
+  lazy val allSortedByTitle = allByIdWithAliases.toSeq.sortBy { row =>
+    if (row._1 == row._2.id) { row._2.title } else { row._2.aka(row._1) }
   }
 
   val all = Seq(

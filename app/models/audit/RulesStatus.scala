@@ -13,6 +13,5 @@ case class RulesStatus(
   avgMoves: Int,
   minMoves: Int,
 
-  completed: Boolean,
-  inProgress: Boolean
+  completed: Boolean
 )

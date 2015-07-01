@@ -9,9 +9,9 @@ class RulesTests {
   val all = Tree(Test("rules"), GameRulesSet.all.map(x => testGameRules(x.id).toTree))
 
   def testGameRules(id: String) = Test(s"rules-$id", () => {
-    val rules = GameRulesSet.allById(id)
+    val rules = GameRulesSet.allByIdWithAliases(id)
 
-    val game = rules.newGame(UUID.randomUUID(), 0)
+    val game = rules.newGame(UUID.randomUUID(), 0, id)
     s"OK (${game.deck.cards.size} cards)"
   })
 }

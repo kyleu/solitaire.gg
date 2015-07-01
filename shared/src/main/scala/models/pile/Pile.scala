@@ -18,7 +18,7 @@ case class Pile(id: String, options: PileOptions, cards: collection.mutable.Arra
 
   val pileIndex = {
     val idx = id.lastIndexOf('-')
-    if(idx == -1) {
+    if (idx == -1) {
       0
     } else {
       id.substring(idx + 1).toInt
@@ -49,7 +49,7 @@ case class Pile(id: String, options: PileOptions, cards: collection.mutable.Arra
   def onDragTo(src: Pile, cards: Seq[Card], gameState: GameState) = options.dragToAction.getOrElse(DragToActions.moveCards).f(src, cards, this, gameState)
 
   def isSorted(requireFaceUp: Boolean, rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank, wrap: Boolean): Boolean = {
-    if(requireFaceUp && this.cards.exists(!_.u)) {
+    if (requireFaceUp && this.cards.exists(!_.u)) {
       false
     } else {
       val sorted = isSorted(this.cards.reverse.toList, rmr, smr, lowRank, wrap)

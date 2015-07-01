@@ -53,7 +53,7 @@ trait GameServiceConnectionHelper { this: GameService =>
 
     val hasPlayer = player.connectionId.isDefined || observerConnections.exists(_._1.connectionId.isDefined)
     if (!hasPlayer) {
-      if(testGame) {
+      if (testGame) {
         self ! StopGameIfEmpty
       } else {
         Akka.system.scheduler.scheduleOnce(30.seconds, self, StopGameIfEmpty)

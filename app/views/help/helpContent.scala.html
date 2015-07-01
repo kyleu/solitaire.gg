@@ -44,7 +44,7 @@
 
       @rules.like.map { l =>
       <h3>Original Game</h3>
-      @defining(GameRulesSet.allById(l)) { like =>
+      @defining(GameRulesSet.allByIdWithAliases(l)) { like =>
       <ul>
         <li>
           @rulesLink(like.id, like.title)
@@ -56,15 +56,15 @@
       }
       }
 
-      @defining(GameRulesSet.completed.filter(x => rules.related.contains(x.id))) { rels =>
+      @defining(GameRulesSet.completed.filter(x => rules.related.contains(x._2.id))) { rels =>
       @if(rels.nonEmpty) {
       <h3>Related Games</h3>
       <ul>
         @rels.map { rel =>
           <li>
-            @rulesLink(rel.id, rel.title)
+            @rulesLink(rel._1, rel._2.title)
             <div>
-              <em>@Html(services.help.GameRulesHelpService.description(rel.description, link = false))</em>
+              <em>@Html(services.help.GameRulesHelpService.description(rel._2.description, link = false))</em>
             </div>
           </li>
         }

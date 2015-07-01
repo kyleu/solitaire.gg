@@ -140,15 +140,6 @@ define(['game/helpers/Tweens'], function (Tweens) {
             card.game.playmat.emitter.emitY = (card.y);
           }
         }
-      } else if(card.animation.id === "mouse") {
-        var tgtX = card.game.input.x - ((card.width / 2) * card.game.playmat.scale.x);
-        var tgtY = card.game.input.y - ((card.height / 2) * card.game.playmat.scale.y);
-        var distance = card.game.math.distance(card.world.x, card.world.y, tgtX, tgtY);
-        if(distance > 20) {
-          var rotation = card.game.math.angleBetween(card.world.x, card.world.y, tgtX, tgtY);
-          card.x += Math.cos(rotation) * 10;
-          card.y += Math.sin(rotation) * 10;
-        }
       }
     }
   };

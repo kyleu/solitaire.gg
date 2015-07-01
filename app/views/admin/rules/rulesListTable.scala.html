@@ -18,7 +18,7 @@
       <td>@if(rs.completed) {
         @icon("ok", "Complete")
       } else {
-        @if(rs.inProgress) { @icon("pencil", "In Progress") } else { @icon("remove", "Not Started") }
+        @icon("remove", "Not Started")
       }</td>
       <td>@utils.Formatter.withCommas(rs.winningSeeds)</td>
       <td>@utils.Formatter.withCommas(rs.maxMoves)</td>

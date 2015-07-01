@@ -19,7 +19,7 @@ trait GameServicePersistenceHelper { this: GameService =>
   private[this] var originalCards = Seq.empty[Card]
   private[this] var movesPersisted = 0
 
-  protected[this] def create() = if(testGame) {
+  protected[this] def create() = if (testGame) {
     Future.successful(true)
   } else {
     originalCards = gameState.deck.cards
@@ -30,7 +30,7 @@ trait GameServicePersistenceHelper { this: GameService =>
   }
 
   protected[this] def update() = {
-    if(testGame) {
+    if (testGame) {
       Future.successful(true)
     } else {
       if (getStatus != lastStatus) {
@@ -39,9 +39,9 @@ trait GameServicePersistenceHelper { this: GameService =>
       }
 
       if (movesPersisted < moveCount) {
-        val persist = if(cardsPersisted) {
+        val persist = if (cardsPersisted) {
           Future.successful(false)
-        } else if(testGame) {
+        } else if (testGame) {
           cardsPersisted = true
           Future.successful(true)
         } else {

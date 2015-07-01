@@ -36,7 +36,6 @@ object FoundationInitialMoves {
         case FoundationLowRank.DeckHighRank => Some(gameState.deck.highRank)
       }
 
-
       (0 until fr.initialCards).foreach { i =>
         val col = i % fr.numPiles
         val rank = requiredRank.map {

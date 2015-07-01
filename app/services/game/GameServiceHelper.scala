@@ -13,6 +13,7 @@ trait GameServiceHelper
     with GameServicePossibleMovesHelper
     with GameServicePreferenceHelper
     with GameServiceTraceHelper
-    with GameServiceUndoHelper {
+    with GameServiceUndoHelper
+    with GameServiceVictoryHelper {
   this: GameService =>
 }

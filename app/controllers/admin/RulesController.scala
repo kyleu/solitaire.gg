@@ -18,8 +18,8 @@ class RulesController @javax.inject.Inject() (override val messagesApi: Messages
         val seedCount = seedCounts.getOrElse(r.id, (0, 0, 0, 0))
         getStatus(r, seedCount)
       }
-      val filtered = if(q.nonEmpty) {
-        statuses.filter( s => s.rules.id.toLowerCase.contains(q) || s.rules.title.toLowerCase.contains(q))
+      val filtered = if (q.nonEmpty) {
+        statuses.filter(s => s.rules.id.toLowerCase.contains(q) || s.rules.title.toLowerCase.contains(q))
       } else {
         statuses
       }
@@ -33,7 +33,7 @@ class RulesController @javax.inject.Inject() (override val messagesApi: Messages
   }
 
   def rulesDetail(id: String) = withAdminSession { implicit request =>
-    val rules = GameRulesSet.allById(id)
+    val rules = GameRulesSet.allByIdWithAliases(id)
     Database.query(GameSeedQueries.GetCounts(Some(s"rules = '$id'"))).map { seedCounts =>
       val status = getStatus(rules, seedCounts.getOrElse(id, (0, 0, 0, 0)))
       Ok(views.html.admin.rules.rulesDetail(status))
@@ -47,17 +47,17 @@ class RulesController @javax.inject.Inject() (override val messagesApi: Messages
 
   private[this] def getStatus(r: GameRules, seedCount: (Int, Int, Int, Int)) = {
     val gameCounts = (0, 0)
-    RulesStatus(r,
+    RulesStatus(
+      r,
       gameCounts._1, gameCounts._2,
       seedCount._1, seedCount._2, seedCount._3, seedCount._4,
-      completed = GameRulesSet.completed.contains(r),
-      inProgress = GameRulesSet.inProgress.contains(r)
+      completed = GameRulesSet.completed.exists(_._2 == r)
     )
   }
 
   private[this] def sort(order: String, rs: Seq[RulesStatus]) = order match {
     case "title" => rs.sortBy(_.rules.title)
-    case "status" => rs.sortBy(x => (!x.completed, !x.inProgress, x.rules.title))
+    case "status" => rs.sortBy(x => (!x.completed, x.rules.title))
     case "seeds" => rs.sortBy(_.winningSeeds).reverse
     case "max-moves" => rs.sortBy(_.maxMoves).reverse
     case "avg-moves" => rs.sortBy(_.avgMoves).reverse

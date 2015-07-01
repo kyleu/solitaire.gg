@@ -18,10 +18,10 @@ object ExportStatic {
   private[this] val offlineUser = User(TestService.testUserId, Some("Offline"), "default", "greyblue", Nil, created = DateUtils.now)
 
   def run(messagesApi: MessagesApi) = {
-    if(!Files.exists(outPath)) {
+    if (!Files.exists(outPath)) {
       throw new IllegalStateException()
     }
-    if(!Files.exists(helpPath)) {
+    if (!Files.exists(helpPath)) {
       Files.createDirectory(helpPath)
     }
 
@@ -42,14 +42,14 @@ object ExportStatic {
     ))
 
     GameRulesSet.completed.map { rules =>
-      render(s"help/${rules.id}.html", views.html.help.helpPage(offlineUser, rules, RoutesMap.static))
+      render(s"help/${rules._1}.html", views.html.help.helpPage(offlineUser, rules._2, RoutesMap.static))
     }
 
     Future.successful("Ok!")
   }
 
   private[this] def render(filename: String, content: Html) = {
-    if(Files.exists(outPath.resolve(filename))) {
+    if (Files.exists(outPath.resolve(filename))) {
       Files.write(outPath.resolve(filename), content.toString().getBytes("UTF-8"))
     }
   }

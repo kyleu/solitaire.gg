@@ -74,28 +74,4 @@ trait GameServiceCardHelper { this: GameService =>
       sendToAll("CardMoveCancelled", CardMoveCancelled(cardIds, source))
     }
   }
-
-  private[this] def checkWinCondition() = if (!gameWon && gameRules.victoryCondition.check(gameRules, gameState)) {
-    gameWon = true
-    setStatus("win")
-
-    val completed = DateUtils.now
-    val elapsed = (DateUtils.toMillis(completed) - DateUtils.toMillis(started)).toInt
-    val gs = GameSeed(
-      rules = rules,
-      seed = seed,
-      player = player.userId,
-      moves = moveCount,
-      elapsed = elapsed,
-      completed = completed
-    )
-    log.debug(s"Processing winning [${gs.rules}] game with seed [${gs.seed}].")
-    GameSeedService.register(gs).map { firstForSeed =>
-      sendToAll("GameWon", GameWon(id, firstForSeed))
-    }
-
-    true
-  } else {
-    false
-  }
 }

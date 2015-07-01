@@ -22,7 +22,7 @@ object FoundationHelpService {
       case FoundationLowRank.SpecificRank(r) => r
     }
 
-    if(rules.moveCompleteSequencesOnly) {
+    if (rules.moveCompleteSequencesOnly) {
       ret += Messages("help.foundation.move.complete.sequences.only", loweredName)
     } else {
       if (lowRank == Rank.Unknown && rules.lowRank == FoundationLowRank.AnyCard) {
@@ -57,7 +57,7 @@ object FoundationHelpService {
       }
 
       if (rules.wrap) {
-        val (lr, hr) = if(deckOptions.lowRank == Rank.Unknown) {
+        val (lr, hr) = if (deckOptions.lowRank == Rank.Unknown) {
           Rank.Ace -> Rank.King
         } else {
           deckOptions.lowRank -> deckOptions.highRank

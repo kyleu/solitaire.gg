@@ -73,7 +73,7 @@ case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None
       }
       Undo
     } else {
-      val move = if(rng.nextInt(10) < 7) {
+      val move = if (rng.nextInt(10) < 7) {
         unexploredMoves.headOption.getOrElse(throw new IllegalStateException())
       } else {
         unexploredMoves(rng.nextInt(unexploredMoves.size))

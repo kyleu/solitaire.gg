@@ -1,4 +1,5 @@
-define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet', 'game/Help'], function (config, Options, InitialState, CardSet, Help) {
+define(['utils/Config', 'ui/Options', 'game/helpers/GameNetwork', 'game/state/InitialState', 'game/CardSet', 'game/Help', 'game/Sandbox'],
+function (config, Options, GameNetwork, InitialState, CardSet, Help, Sandbox) {
   "use strict";
 
   function Game(ws) {
@@ -10,7 +11,6 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
     this.initialized = false;
 
     this.possibleMoves = [];
-    this.recentMoves = [];
 
     var configOptions = {
       width: '100%',
@@ -31,6 +31,8 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
 
     this.help = new Help(this);
 
+    GameNetwork.setGame(this);
+
     if(config.offline) {
       var self = this;
       var callback = function(json) {
@@ -48,37 +50,18 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
   Game.prototype = Phaser.Game.prototype;
   Game.prototype.constructor = Game;
 
-  Game.prototype.onMessage = function(c, v) {
-    if(c != "Pong") {
-      //console.log("Message [" + c + "] received with content [" + JSON.stringify(v) + "].");
-    }
-    switch(c) {
-      case "Pong":
-        this.status.latency = (new Date().getTime() - v.timestamp);
-        break;
-      case "VersionResponse":
-        this.status.version = v.version;
-        break;
-      default:
-        this.state.getCurrentState().onMessage(c, v);
-    }
-  };
+  Game.prototype.cardSelected = function(card) { this.send("SelectCard", { card: card.id, pile: card.pile.id }); };
+  Game.prototype.pileSelected = function(pile) { this.send("SelectPile", { pile: pile.id } ); };
 
-  Game.prototype.cardSelected = function(card) {
-    this.send("SelectCard", { card: card.id, pile: card.pile.id });
-  };
+  Game.prototype.addCard = function(c) { this.cards[c.id] = c; };
+  Game.prototype.addPile = function(p) { this.piles[p.id] = p; };
 
-  Game.prototype.pileSelected = function(pile) {
-    this.send("SelectPile", { pile: pile.id } );
-  };
+  Game.prototype.sandbox = function() { return Sandbox.go(this); };
 
-  Game.prototype.addCard = function(c) {
-    this.cards[c.id] = c;
-  };
-
-  Game.prototype.addPile = function(p) {
-    this.piles[p.id] = p;
-  };
+  Game.prototype.onMessage = GameNetwork.onMessage;
+  Game.prototype.autoMove = GameNetwork.autoMove;
+  Game.prototype.sendMove = GameNetwork.sendMove;
+  Game.prototype.send = GameNetwork.send;
 
   Game.prototype.initialMovesComplete = function() {
     _.each(this.piles, function(pile) {
@@ -93,53 +76,6 @@ define(['utils/Config', 'ui/Options', 'game/state/InitialState', 'game/CardSet',
     });
 
     this.initialized = true;
-  };
-
-  Game.prototype.autoMove = function() {
-    var idx = 0;
-    var move = null;
-    var candidate = null;
-    var matches = function(e) { return _.isEqual(e, candidate); };
-    while(move === null && this.possibleMoves.length > idx) {
-      candidate = this.possibleMoves[idx];
-      if(_.find(this.recentMoves, matches) !== undefined) {
-        idx += 1;
-      } else {
-        move = candidate;
-      }
-    }
-    if(move !== null) {
-      if(move.moveType === 'move-cards') {
-        this.recentMoves.push(move);
-      }
-      this.sendMove(move);
-    }
-  };
-
-  Game.prototype.sendMove = function(move) {
-    switch(move.moveType) {
-      case "move-cards":
-        this.send("MoveCards", {cards: move.cards, src: move.sourcePile, tgt: move.targetPile});
-        break;
-      case "select-card":
-        var selectedCard = this.cards[move.cards[0]];
-        this.cardSelected(selectedCard);
-        break;
-      case "select-pile":
-        var selectedPile = this.piles[move.sourcePile];
-        this.pileSelected(selectedPile);
-        break;
-      default:
-        throw "Unknown move [" + move.moveType + "].";
-    }
-  };
-
-  Game.prototype.send = function(c, v) {
-    if(config.offline) {
-      this.offlineService.receive(c, v);
-    } else {
-      this.ws.send(c, v);
-    }
   };
 
   return Game;

@@ -16,12 +16,6 @@ define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState'], function
   LoadingScreen.prototype.preload = function() {
     this.message = this.game.add.text(this.game.world.centerX - 25, this.game.world.centerY - 60, "Loading...", { font: "18px Helvetica", fill: "#ffffff"});
 
-    //this.bg = new Phaser.TileSprite(this, 0, 0, 0, 0, 'bg-texture');
-    //this.bg.height = this.game.height * 2;
-    //this.bg.width = this.game.width * 2;
-    //this.bg.scale = { x: 0.5, y: 0.5 };
-    //this.add.existing(this.bg);
-
     this.loadBar = this.add.sprite(this.game.width * 0.1, this.game.world.centerY, 'load-bar');
     this.loadBar.width = this.game.width * 0.8;
 

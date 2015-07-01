@@ -24,16 +24,13 @@ object TableauPileOptions extends TableauPileOptionHelper {
       wrap = rules.wrap
     )
 
+    val requireNonEmptyPiles = if (rules.emptyFilledWith == FillEmptyWith.HighRankUntilStockEmpty) { Seq("stock") } else { Seq.empty }
     val dragToConstraint = dragTo(
       crm = cardRemovalMethod,
       rules = rules,
       lowRank = deckOptions.lowRank,
       emptyPileRanks = emptyRanks,
-      requireNonEmptyPiles = if(rules.emptyFilledWith == FillEmptyWith.HighRankUntilStockEmpty) {
-        Seq("stock")
-      } else {
-        Nil
-      }
+      requireNonEmptyPiles = requireNonEmptyPiles
     )
 
     val (selectCardConstraint, selectCardAction) = {

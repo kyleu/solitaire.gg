@@ -17,7 +17,7 @@ class HomeController @javax.inject.Inject() (override val messagesApi: MessagesA
   }
 
   def externalLink(url: String) = Action.async {
-    Future.successful(Redirect(if(url.startsWith("http")) { url } else { "http://" + url }))
+    Future.successful(Redirect(if (url.startsWith("http")) { url } else { "http://" + url }))
   }
 
   def about = withSession { implicit request =>

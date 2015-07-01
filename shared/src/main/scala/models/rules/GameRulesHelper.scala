@@ -9,7 +9,7 @@ import models.pile.set._
 import scala.util.Random
 
 trait GameRulesHelper { this: GameRules =>
-  def newGame(gameId: UUID, seed: Int) = {
+  def newGame(gameId: UUID, seed: Int, withRules: String) = {
     val rng = new Random(new java.util.Random(seed))
     val maxPlayers = 1
     val lowRank = if (deckOptions.lowRank == Rank.Unknown) {
@@ -20,7 +20,8 @@ trait GameRulesHelper { this: GameRules =>
     val deck = newShuffledDecks(seed, rng, deckOptions.numDecks, deckOptions.ranks, deckOptions.suits, lowRank, deckOptions.highRank)
     val pileSets = newPileSets()
     val layout = this.layout.getOrElse(Layouts.defaultLayout(this))
-    val gameState = GameState(gameId, id, title, maxPlayers, seed, deck, pileSets, layout)
+    val rulesTitle = if(withRules == id) { title } else { aka(withRules) }
+    val gameState = GameState(gameId, withRules, rulesTitle, maxPlayers, seed, deck, pileSets, layout)
     gameState
   }
 
@@ -60,11 +61,11 @@ trait GameRulesHelper { this: GameRules =>
 
   protected[this] lazy val prototypePileSets = {
     tableaus.map(t => TableauSet(t, deckOptions, cardRemovalMethod)) ++
-    reserves.map(r => ReserveSet(r)) ++
-    waste.map(w => WasteSet(w, cardRemovalMethod)) ++
-    pyramids.map(p => PyramidSet(p, cardRemovalMethod, deckOptions.lowRank)) ++
-    cells.map(c => CellSet(c)) ++
-    stock.map(s => StockSet(s, pileIdsByType)) ++
-    foundations.map(f => FoundationSet(f, deckOptions))
+      reserves.map(r => ReserveSet(r)) ++
+      waste.map(w => WasteSet(w, cardRemovalMethod)) ++
+      pyramids.map(p => PyramidSet(p, cardRemovalMethod, deckOptions.lowRank)) ++
+      cells.map(c => CellSet(c)) ++
+      stock.map(s => StockSet(s, pileIdsByType)) ++
+      foundations.map(f => FoundationSet(f, deckOptions))
   }
 }

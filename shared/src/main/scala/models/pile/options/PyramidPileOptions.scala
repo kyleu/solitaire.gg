@@ -41,8 +41,10 @@ object PyramidPileOptions {
             false
           } else {
             crm match {
-              case CardRemovalMethod.BuildSequencesOnFoundation => throw new IllegalStateException("Pyramid CardRemovalMethod.BuildSequencesOnFoundation:" + lowRank.toString)
-              case CardRemovalMethod.StackSameRankOrSuitInWaste => throw new IllegalStateException("Pyramid CardRemovalMethod.StackSameRankOrSuitInWaste:" + lowRank.toString)
+              case CardRemovalMethod.BuildSequencesOnFoundation =>
+                throw new IllegalStateException("Pyramid CardRemovalMethod.BuildSequencesOnFoundation:" + lowRank.toString)
+              case CardRemovalMethod.StackSameRankOrSuitInWaste =>
+                throw new IllegalStateException("Pyramid CardRemovalMethod.StackSameRankOrSuitInWaste:" + lowRank.toString)
               case _ => crm.canRemove(topCard, firstDraggedCard)
             }
           }

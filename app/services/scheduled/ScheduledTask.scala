@@ -23,8 +23,8 @@ class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends 
       val f = Future.sequence(Seq(
         MetricsUpdate.updateMetrics(),
         EmailReport.sendReportIfNeeded(emailService)
-        // updateCounts()
-        // reapTables()
+      // updateCounts()
+      // reapTables()
       ))
       f.onFailure {
         case t: Throwable =>

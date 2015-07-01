@@ -38,7 +38,7 @@ trait GameServicePossibleMovesHelper { this: GameService =>
               val move = PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
               if (sourceBehavior == "tableau" && targetBehavior == "tableau" && remainingCards.isEmpty && target.cards.isEmpty) {
                 boringMoves += move
-              } else if(targetBehavior == "foundation" && sourceBehavior != "foundation") {
+              } else if (targetBehavior == "foundation" && sourceBehavior != "foundation") {
                 awesomeMoves += move
               } else {
                 ret += move

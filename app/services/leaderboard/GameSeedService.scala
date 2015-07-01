@@ -13,18 +13,18 @@ object GameSeedService extends Logging {
   def register(gs: GameSeed) = Database.transaction { conn =>
     Database.query(GameSeedQueries.getById(Seq(gs.rules, gs.seed)), Some(conn)).flatMap {
       case Some(existing) =>
-        val update = if(existing.player != TestService.testUserId && gs.player == TestService.testUserId) {
+        val update = if (existing.player != TestService.testUserId && gs.player == TestService.testUserId) {
           false
-        } else if(existing.player == TestService.testUserId && gs.player != TestService.testUserId) {
+        } else if (existing.player == TestService.testUserId && gs.player != TestService.testUserId) {
           true
-        } else if(gs.moves < existing.moves) {
+        } else if (gs.moves < existing.moves) {
           true
-        } else if(gs.moves == existing.moves) {
+        } else if (gs.moves == existing.moves) {
           gs.elapsed <= existing.elapsed
         } else {
           false
         }
-        if(update) {
+        if (update) {
           log.info(s"Overwriting existing winning [${gs.rules}] game with seed [${gs.seed}].")
           Database.execute(GameSeedQueries.UpdateGameSeed(gs), Some(conn)).map(x => true)
         } else {

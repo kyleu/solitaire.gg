@@ -19,21 +19,16 @@
   <div class="module">
     <div class="header">@Messages("index.games.completed")</div>
     <ul class="game-links">@for(r <- models.rules.GameRulesSet.completed) {
-      <li><a href="@routesMap("new-game", r.id)">@r.title</a></li>}
-    </ul>
+      <li><a href="@routesMap("new-game", r._1)">@if(r._1 == r._2.id) { @r._2.title } else { @r._2.aka(r._1) }</a></li>
+    }</ul>
   </div>
 
   @if(user.isAdmin) {
-    <div class="module">
-      <div class="header">@Messages("index.games.in.progress")</div>
-      <ul class="game-links">@for(r <- models.rules.GameRulesSet.inProgress) {
-        <li><a href="@routesMap("new-game", r.id)">@r.title</a></li>}
-      </ul>
-    </div>
-
     <div class="module">
       <div class="header">@Messages("index.games.unstarted")</div>
       <ul class="game-links">@for(r <- models.rules.GameRulesSet.unfinished) {
         <li><a href="@routesMap("new-game", r.id)">@r.title</a></li>}
       </ul>
-    </div> } }
+    </div>
+  }
+}

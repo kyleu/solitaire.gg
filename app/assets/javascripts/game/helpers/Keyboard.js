@@ -17,53 +17,12 @@ define(['ui/Modal'], function (Modal) {
     this.game = game;
   };
 
-  Keyboard.prototype.logGame = function() {
-    console.log("Hotkeys:");
-    console.log("  L: Show this message and log game to console.");
-    console.log("  U: Undo move.");
-    console.log("  R: Redo move.");
-    console.log("  G: Show game rules.");
-    console.log("  H: Dynamic help.");
-    console.log("  V: Victory animation.");
-    console.log("  C: Force connection close.");
-    console.log("  Space: Toggle debug view.");
-    console.log("Game [" + this.game.id + "] (" + this.game.rules + "):");
-    console.log(this.game);
-    console.log("Piles:");
-    for(var cardIndex in this.game.piles) {
-      console.log(this.game.piles[cardIndex]);
-    }
-    console.log("Possible Moves:");
-    for(var moveIndex in this.game.possibleMoves) {
-      console.log(this.game.possibleMoves[moveIndex]);
-    }
-  };
-
   Keyboard.prototype.init = function() {
     var g = this.game;
 
-    var rulesKey = g.input.keyboard.addKey(Phaser.Keyboard.G);
-    rulesKey.onDown.add(function() {
-      g.help.toggleRules();
-    });
-
     var helpKey = g.input.keyboard.addKey(Phaser.Keyboard.H);
     helpKey.onDown.add(function () {
-      g.help.toggleHelp();
-    });
-
-    var logKey = g.input.keyboard.addKey(Phaser.Keyboard.L);
-    logKey.onDown.add(this.logGame);
-
-    var feedbackKey = g.input.keyboard.addKey(Phaser.Keyboard.F);
-    feedbackKey.onDown.add(function() {
-      g.help.toggleFeedback();
-    });
-
-    var quietKey = g.input.keyboard.addKey(Phaser.Keyboard.Q);
-    quietKey.onDown.add(function() {
-      var gp = document.getElementById("game-container");
-      if(gp.style.display === "none") { gp.style.display = "block"; } else { gp.style.display = "none"; }
+      g.help.toggleRules();
     });
 
     var undoKey = g.input.keyboard.addKey(Phaser.Keyboard.Z);
@@ -80,22 +39,14 @@ define(['ui/Modal'], function (Modal) {
       }
     });
 
-    var victoriousCheatKey = g.input.keyboard.addKey(Phaser.Keyboard.V);
-    victoriousCheatKey.onDown.add(function() {
-      console.log("Victorious!");
-      for(var cardIndex in g.cards) {
-        g.cards[cardIndex].animation = {id: "mouse", speed: 200 + Math.floor(Math.random() * 200)};
-      }
-    });
-
-    var closeConnectionKey = g.input.keyboard.addKey(Phaser.Keyboard.C);
-    closeConnectionKey.onDown.add(function() {
-      g.ws.close();
-    });
-
     var hideModalKey = g.input.keyboard.addKey(Phaser.Keyboard.ESC);
     hideModalKey.onDown.add(function() {
       Modal.hide();
+    });
+
+    var sandboxKey = g.input.keyboard.addKey(Phaser.Keyboard.X);
+    sandboxKey.onDown.add(function() {
+      g.sandbox();
     });
 
     var debugKey = g.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);

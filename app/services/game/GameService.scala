@@ -10,15 +10,15 @@ import org.joda.time.LocalDateTime
 import utils.DateUtils
 
 case class GameService(
-  id: UUID, rules: String, seed: Int, started: LocalDateTime,
-  protected val player: PlayerRecord, protected val testGame: Boolean
+    id: UUID, rules: String, seed: Int, started: LocalDateTime,
+    protected val player: PlayerRecord, protected val testGame: Boolean
 ) extends GameServiceHelper {
   log.info(s"Started game [$rules] for user [${player.userId}: ${player.name}] with seed [$seed].")
 
   protected[this] val observerConnections = collection.mutable.ArrayBuffer.empty[(PlayerRecord, Option[UUID])]
 
-  protected[this] val gameRules = GameRulesSet.allById(rules)
-  protected[this] val gameState = gameRules.newGame(id, seed)
+  protected[this] val gameRules = GameRulesSet.allByIdWithAliases(rules)
+  protected[this] val gameState = gameRules.newGame(id, seed, rules)
 
   gameState.addPlayer(player.userId, player.name)
 

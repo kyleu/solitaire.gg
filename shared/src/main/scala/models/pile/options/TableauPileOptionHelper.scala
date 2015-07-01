@@ -44,7 +44,7 @@ trait TableauPileOptionHelper {
     val smr = rules.suitMatchRuleForBuilding
 
     Constraint("tableau", (src, tgt, cards, gameState) => {
-      if(requireNonEmptyPiles.exists(id => gameState.pilesById(id).cards.isEmpty)) {
+      if (requireNonEmptyPiles.exists(id => gameState.pilesById(id).cards.isEmpty)) {
         false
       } else if (rules.maxCards > 0 && (tgt.cards.length + cards.length) > rules.maxCards) {
         false
