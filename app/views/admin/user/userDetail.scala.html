@@ -1,6 +1,6 @@
 @(user: models.user.User, gameCount: Int, requestCount: Int)(
   implicit session: Session, flash: Flash
-)@layout.admin(s"${utils.Config.projectName} User Detail", "users") {
+)@layout.admin(s"${utils.Config.projectName} User Detail", "explore") {
   <div class="panel panel-default">
     <div class="panel-body">
       @user.username.map { un => <h4>@un</h4> }

@@ -1,4 +1,4 @@
-define(['utils/Config', 'game/Card', 'game/pile/Pile'], function(cfg, Card, Pile) {
+define(['utils/Config', 'game/Card', 'game/pile/Pile', 'game/helpers/CardImages'], function(cfg, Card, Pile, CardImages) {
   var GameplayHelper = function(game) {
     this.game = game;
   };
@@ -33,6 +33,11 @@ define(['utils/Config', 'game/Card', 'game/pile/Pile'], function(cfg, Card, Pile
       default:
         alert("Invalid initial action [" + cfg.initialAction + "].");
     }
+  };
+
+  GameplayHelper.prototype.loadCardImages = function() {
+    CardImages.init(this.game);
+    this.game.cardTextures = CardImages.textures;
   };
 
   GameplayHelper.prototype.loadPileSets = function(pileSets) {

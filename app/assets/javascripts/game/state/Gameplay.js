@@ -44,6 +44,7 @@ define([
         this.game.rules = v.state.rules;
         this.game.seed = v.state.seed;
         this.game.possibleMoves = v.moves;
+        this.helper.loadCardImages();
         this.helper.loadPileSets(v.state.pileSets);
         this.helper.loadCards(v.state.pileSets, v.state.deck.originalOrder);
         this.game.options.setGame(v.state);

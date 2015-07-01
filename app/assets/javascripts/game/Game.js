@@ -1,11 +1,15 @@
-define(['utils/Config', 'ui/Options', 'game/helpers/GameNetwork', 'game/state/InitialState', 'game/CardSet', 'game/Help', 'game/Sandbox'],
-function (config, Options, GameNetwork, InitialState, CardSet, Help, Sandbox) {
+define(['utils/Config', 'ui/Options', 'game/helpers/GameNetwork', 'game/state/InitialState', 'game/Help', 'game/Sandbox'],
+function (config, Options, GameNetwork, InitialState, Help, Sandbox) {
   "use strict";
 
   function Game(ws) {
     this.id = null;
-    var cardSize = "medium";
-    this.cardSet = CardSet[config.cardSet][cardSize];
+    this.cardSet = {
+      cardWidth: 400,
+      cardHeight: 600,
+      cardHorizontalOffset: 80,
+      cardVerticalOffset: 120
+    };
     var initialState = new InitialState(this);
     var transparent = true;
     this.initialized = false;

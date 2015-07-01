@@ -9,11 +9,7 @@ define(['game/helpers/Layout'], function (calculateLayout) {
     this.layoutString = layoutString;
     this.refreshLayout();
 
-    this.suitEmitter = [];
-    this.suitEmitter[0] = this.makeEmitter(1);
-    this.suitEmitter[1] = this.makeEmitter(0);
-    this.suitEmitter[2] = this.makeEmitter(2);
-    this.suitEmitter[3] = this.makeEmitter(3);
+    this.suitEmitter = [this.makeEmitter(0), this.makeEmitter(1), this.makeEmitter(2), this.makeEmitter(3)];
   };
 
   Playmat.prototype = Object.create(Phaser.Group.prototype);
@@ -34,7 +30,7 @@ define(['game/helpers/Layout'], function (calculateLayout) {
 
   Playmat.prototype.makeEmitter = function(frame) {
     var ret = new Phaser.Particles.Arcade.Emitter(this.game, 0, 0, 50);
-    ret.makeParticles('suits', frame);
+    ret.makeParticles('card-suits', frame);
     ret.gravity = 0;
     ret.minParticleSpeed.setTo(-400, -400);
     ret.maxParticleSpeed.setTo(400, 400);

@@ -14,8 +14,6 @@ object Config {
 
   val debug = !Play.isProd(Play.current)
 
-  val defaultCardSet = cnf.getString("game.default.cardSet")
-
   val fileCacheDir = cnf.getString("cache.dir")
 
   // Database

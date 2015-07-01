@@ -15,12 +15,11 @@ define(['utils/Config', 'game/Rank', 'game/Suit', 'game/helpers/CardInput', 'gam
     var initialX = (game.width / 2) / game.playmat.scale.x;
     var initialY = game.height / game.playmat.scale.y;
 
-    this.spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
-    this.cardBackIndex = (4 * 13) + 0;
     if(this.faceUp) {
-      Phaser.Sprite.call(this, game, initialX, initialY, 'card', this.spriteIndex);
+      var tex = game.cardTextures[this.rank.char + this.suit.char];
+      Phaser.Sprite.call(this, game, initialX, initialY, tex);
     } else {
-      Phaser.Sprite.call(this, game, initialX, initialY, 'card', this.cardBackIndex);
+      Phaser.Sprite.call(this, game, initialX, initialY, 'card-back');
     }
 
     this.anchor.setTo(0.5, 0.5);
@@ -40,12 +39,11 @@ define(['utils/Config', 'game/Rank', 'game/Suit', 'game/helpers/CardInput', 'gam
 
   Card.prototype.updateSprite = function(faceUp) {
     this.faceUp = faceUp;
-    this.spriteIndex = (this.suit.index * 13) + (this.rank.value - 2);
-    this.cardBackIndex = (4 * 13) + 0;
     if(this.faceUp) {
-      this.loadTexture('card', this.spriteIndex);
+      var tex = this.game.cardTextures[this.rank.char + this.suit.char];
+      this.loadTexture(tex);
     } else {
-      this.loadTexture('card', this.cardBackIndex);
+      this.loadTexture('card-back');
     }
   };
 
