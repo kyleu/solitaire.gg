@@ -29,6 +29,7 @@ define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState'], function
     this.game.load.image('card-back', this.assetRoot + 'assets/images/cards/back-a.png');
     this.game.load.spritesheet('card-suits', this.assetRoot + 'assets/images/cards/suits.png', 200, 200);
     this.game.load.spritesheet('card-ranks', this.assetRoot + 'assets/images/cards/ranks.png', 200, 200);
+    this.game.load.spritesheet('face-cards', this.assetRoot + 'assets/images/cards/face-cards.png', 200, 300);
 
     var gameplay = new Gameplay(this.game);
     this.game.state.add('gameplay', gameplay);
