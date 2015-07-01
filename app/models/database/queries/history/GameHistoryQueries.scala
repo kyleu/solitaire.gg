@@ -13,6 +13,7 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   override protected val columns = Seq("id", "seed", "rules", "status", "player", "moves", "undos", "redos", "created", "completed")
   override protected val searchColumns = Seq("id::text", "seed::text", "rules", "status", "player::text")
 
+  val getById = GetById
   val insert = Insert
   def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
   val search = Search

@@ -20,6 +20,7 @@ object Schema extends Logging {
     "session_info" -> CreateSessionInfoTable,
 
     "requests" -> CreateRequestsTable,
+    "client_trace" -> CreateClientTraceTable,
 
     "game_seeds" -> CreateGameSeedsTable,
 

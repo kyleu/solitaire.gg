@@ -62,7 +62,15 @@ GET         /admin/users/:id                   controllers.admin.UserController.
 GET         /admin/users/:id/remove            controllers.admin.UserController.removeUser(id: java.util.UUID)
 
 GET         /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created", page: Int ?= 0)
+GET         /admin/games/:id                   controllers.admin.GameHistoryController.gameDetail(id: java.util.UUID)
+GET         /admin/games/:id/remove            controllers.admin.GameHistoryController.removeGame(id: java.util.UUID)
+
+GET         /admin/traces                      controllers.admin.ClientTraceController.traceList(q ?= "", sortBy ?= "created", page: Int ?= 0)
+GET         /admin/traces/:id                  controllers.admin.ClientTraceController.traceDetail(id: java.util.UUID)
+GET         /admin/traces/:id/remove           controllers.admin.ClientTraceController.removeTrace(id: java.util.UUID)
+
 GET         /admin/requests                    controllers.admin.RequestLogController.requestList(q ?= "", sortBy ?= "started", page: Int ?= 0)
+
 GET         /admin/feedback                    controllers.admin.FeedbackController.feedbackList(q ?= "", sortBy ?= "occurred", page: Int ?= 0)
 GET         /admin/feedback/:id/note           controllers.admin.FeedbackController.feedbackNoteForm(id: java.util.UUID)
 GET         /admin/feedback/:id/remove         controllers.admin.FeedbackController.removeFeedback(id: java.util.UUID)

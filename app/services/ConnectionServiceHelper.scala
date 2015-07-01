@@ -6,6 +6,7 @@ import akka.actor.ActorRef
 import models._
 import org.joda.time.LocalDateTime
 import play.api.libs.json.{ Json, JsObject }
+import services.audit.ClientTraceService
 import utils.metrics.InstrumentedActor
 
 trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionService =>
@@ -56,7 +57,10 @@ trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionServic
   }
 
   protected[this] def handleDebugInfo(data: String) = pendingDebugChannel match {
-    case Some(dc) => dc ! TraceResponse(id, Json.parse(data).as[JsObject].fields)
+    case Some(dc) =>
+      val json = Json.parse(data).as[JsObject]
+      ClientTraceService.persistTrace(userId, json)
+      dc ! TraceResponse(id, json.fields)
     case None => log.warn(s"Received unsolicited DebugInfo [$data] from [$id].")
   }
 
