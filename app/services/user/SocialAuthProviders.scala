@@ -10,6 +10,16 @@ import com.mohiva.play.silhouette.impl.providers.oauth2.state.{ CookieStateProvi
 import com.mohiva.play.silhouette.impl.providers.oauth2.{ FacebookProvider, GoogleProvider }
 import play.api.Configuration
 
+import scala.concurrent.duration._
+
+object SocialAuthProviders {
+  val providers = Seq(
+    "facebook" -> "Facebook",
+    "google" -> "Google",
+    "twitter" -> "Twitter"
+  )
+}
+
 class SocialAuthProviders(
     config: Configuration,
     httpLayer: HTTPLayer,
@@ -25,7 +35,7 @@ class SocialAuthProviders(
     cookieDomain = config.getString("silhouette.oauth1TokenSecretProvider.cookieDomain"),
     secureCookie = config.getBoolean("silhouette.oauth1TokenSecretProvider.secureCookie").getOrElse(throw new IllegalArgumentException()),
     httpOnlyCookie = config.getBoolean("silhouette.oauth1TokenSecretProvider.httpOnlyCookie").getOrElse(throw new IllegalArgumentException()),
-    expirationTime = config.getInt("silhouette.oauth1TokenSecretProvider.expirationTime").getOrElse(throw new IllegalArgumentException())
+    expirationTime = config.getInt("silhouette.oauth1TokenSecretProvider.expirationTime").map(_.seconds).getOrElse(throw new IllegalArgumentException())
   ), clock)
 
   private[this] val oAuth2StateProvider = new CookieStateProvider(CookieStateSettings(
@@ -34,7 +44,7 @@ class SocialAuthProviders(
     cookieDomain = config.getString("silhouette.oauth2StateProvider.cookieDomain"),
     secureCookie = config.getBoolean("silhouette.oauth2StateProvider.secureCookie").getOrElse(throw new IllegalArgumentException()),
     httpOnlyCookie = config.getBoolean("silhouette.oauth2StateProvider.httpOnlyCookie").getOrElse(throw new IllegalArgumentException()),
-    expirationTime = config.getInt("silhouette.oauth2StateProvider.expirationTime").getOrElse(throw new IllegalArgumentException())
+    expirationTime = config.getInt("silhouette.oauth2StateProvider.expirationTime").map(_.seconds).getOrElse(throw new IllegalArgumentException())
   ), idGenerator, clock)
 
   private[this] val facebookSettings = OAuth2Settings(

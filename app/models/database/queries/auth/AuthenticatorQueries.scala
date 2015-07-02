@@ -27,8 +27,8 @@ object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
     override val values = Seq(
       ca.loginInfo.providerID,
       ca.loginInfo.providerKey,
-      ca.lastUsedDate.toLocalDateTime,
-      ca.expirationDate.toLocalDateTime,
+      ca.lastUsedDateTime.toLocalDateTime,
+      ca.expirationDateTime.toLocalDateTime,
       ca.fingerprint,
       ca.id
     )
@@ -40,16 +40,18 @@ object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
     val key = row.as[String]("key")
     val lastUsed = row.as[LocalDateTime]("last_used").toDateTime
     val expiration = row.as[LocalDateTime]("expiration").toDateTime
+    val idleTimeout = None
+    val cookieMaxAge = None
     val fingerprint = row.asOpt[String]("fingerprint")
-    CookieAuthenticator(id, LoginInfo(provider, key), lastUsed, expiration, None, fingerprint)
+    CookieAuthenticator(id, LoginInfo(provider, key), lastUsed, expiration, idleTimeout, cookieMaxAge, fingerprint)
   }
 
   override protected def toDataSeq(ca: CookieAuthenticator) = Seq(
     ca.id,
     ca.loginInfo.providerID,
     ca.loginInfo.providerKey,
-    ca.lastUsedDate.toLocalDateTime,
-    ca.expirationDate.toLocalDateTime,
+    ca.lastUsedDateTime.toLocalDateTime,
+    ca.expirationDateTime.toLocalDateTime,
     ca.fingerprint,
     DateUtils.now
   )

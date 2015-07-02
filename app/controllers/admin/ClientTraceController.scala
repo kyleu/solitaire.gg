@@ -6,9 +6,13 @@ import controllers.BaseController
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.ClientTraceService
+import services.user.AuthenticationEnvironment
 
 @javax.inject.Singleton
-class ClientTraceController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
+class ClientTraceController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment
+) extends BaseController {
   def traceList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     for {
       (count, traces) <- ClientTraceService.searchTraces(q, sortBy, page)

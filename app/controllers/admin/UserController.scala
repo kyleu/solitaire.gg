@@ -9,11 +9,15 @@ import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.history.{ RequestHistoryService, GameHistoryService }
+import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class UserController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
+class UserController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment
+) extends BaseController {
   def userList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     for {
       count <- Database.query(UserQueries.searchCount(q))

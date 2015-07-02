@@ -12,8 +12,10 @@ import services.user.AuthenticationEnvironment
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class RegistrationController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
-  private[this] val env = AuthenticationEnvironment
+class RegistrationController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment
+) extends BaseController {
 
   def registrationForm = withSession { implicit request =>
     Future.successful(Ok(views.html.auth.register(request.identity, UserForms.registrationForm)))

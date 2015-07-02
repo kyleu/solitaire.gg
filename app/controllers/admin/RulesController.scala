@@ -7,11 +7,15 @@ import models.rules.{ GameRules, GameRulesSet }
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
+import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class RulesController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
+class RulesController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment
+) extends BaseController {
   def rulesList(q: String, sortBy: String) = withAdminSession { implicit request =>
     Database.query(GameSeedQueries.GetCounts(None)).map { seedCounts =>
       val statuses = GameRulesSet.all.map { r =>

@@ -9,12 +9,16 @@ import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.DailyMetricService
 import services.database.Database
+import services.user.AuthenticationEnvironment
 import utils.DateUtils
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class ReportController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
+class ReportController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment
+) extends BaseController {
   def email(d: LocalDate = DateUtils.today) = withAdminSession { implicit request =>
     for {
       tables <- Database.query(ReportQueries.ListTables)
@@ -35,7 +39,8 @@ class ReportController @javax.inject.Inject() (override val messagesApi: Message
       userCounts <- Database.query(RequestLogQueries.GetUserCounts)
       userAgentCounts <- Database.query(RequestLogQueries.GetCounts("user_agent"))
       pathCounts <- Database.query(RequestLogQueries.GetCounts("path"))
-    } yield Ok(views.html.admin.report.requests(userCounts, userAgentCounts, pathCounts))
+      referrerCounts <- Database.query(RequestLogQueries.GetCounts("referrer"))
+    } yield Ok(views.html.admin.report.requests(userCounts, userAgentCounts, pathCounts, referrerCounts))
   }
 
   private[this] def toChartData(metrics: Seq[(org.joda.time.LocalDate, Map[models.audit.DailyMetric.Metric, Long])]) = {

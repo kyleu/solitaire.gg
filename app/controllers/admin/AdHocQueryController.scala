@@ -9,6 +9,7 @@ import play.api.data.Form
 import play.api.data.Forms._
 import play.api.i18n.MessagesApi
 import services.database.Database
+import services.user.AuthenticationEnvironment
 import utils.DateUtils
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -16,7 +17,10 @@ import controllers.BaseController
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 @javax.inject.Singleton
-class AdHocQueryController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
+class AdHocQueryController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment
+) extends BaseController {
   case class QueryExecution(action: String, id: Option[String], title: String, sql: String)
 
   val executionForm = Form(

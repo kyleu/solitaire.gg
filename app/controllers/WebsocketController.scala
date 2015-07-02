@@ -5,12 +5,16 @@ import models.{ RequestMessage, ResponseMessage }
 import play.api.i18n.{ MessagesApi, Messages }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.{ AnyContentAsEmpty, Request, WebSocket }
+import services.user.AuthenticationEnvironment
 import services.{ ActorSupervisor, ConnectionService }
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class WebsocketController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
+class WebsocketController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment
+) extends BaseController {
   import play.api.Play.current
   import utils.MessageFrameFormatter._
 

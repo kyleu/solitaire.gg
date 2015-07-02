@@ -22,13 +22,15 @@
       <p>Not a member? <a href="@controllers.auth.routes.RegistrationController.registrationForm()">Sign up now</a></p>
     </div>
 
-    @defining(services.user.AuthenticationEnvironment.providersSeq) { providers =>
+    @defining(services.user.SocialAuthProviders.providers) { providers =>
       @if(providers.nonEmpty) {
         <div>
           <p>Or sign in using these providers</p>
           <div>
-          @for(p <- providers if p._2.id != "credentials") {
-            <a href="@controllers.auth.routes.AuthenticationController.authenticateSocial(p._2.id)" class="provider @p._2.id"><img src="@routes.Assets.at(s"images/providers/${p._2.id}.png")"></a>
+          @for(p <- providers if p._1 != "credentials") {
+            <a title="Sign in with @p._2" href="@controllers.auth.routes.AuthenticationController.authenticateSocial(p._1)" class="provider @p._1">
+              <img src="@routes.Assets.at(s"images/providers/${p._1}.png")">
+            </a>
           }
           </div>
         </div>

@@ -13,13 +13,18 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.ActorSupervisor
 import services.database.{ Schema, Database }
 import services.scheduled.ScheduledTask
+import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
 import scala.util.Random
 
 @javax.inject.Singleton
-class AdminController @javax.inject.Inject() (override val messagesApi: MessagesApi, scheduledTask: ScheduledTask) extends BaseController {
+class AdminController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment,
+  scheduledTask: ScheduledTask
+) extends BaseController {
   implicit val timeout = Timeout(10.seconds)
 
   def index = withAdminSession { implicit request =>

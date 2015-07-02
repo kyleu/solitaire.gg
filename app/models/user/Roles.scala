@@ -15,7 +15,7 @@ case class WithRole(role: Role) extends Authorization[User, Authenticator] {
   }
 }
 
-sealed trait Role {
+sealed trait Role extends Serializable {
   def name: String
 }
 

@@ -3,11 +3,15 @@ package controllers
 import models.rules.GameRulesSet
 import play.api.i18n.{ MessagesApi, Messages }
 import play.api.mvc.AnyContent
+import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class GameController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
+class GameController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment
+) extends BaseController {
   def help(id: String, inline: Boolean) = withSession { implicit request =>
     Future.successful {
       id match {

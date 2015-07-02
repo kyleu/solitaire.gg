@@ -8,12 +8,17 @@ import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.EmailService
 import services.database.Database
+import services.user.AuthenticationEnvironment
 import utils.DateUtils
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class FeedbackController @javax.inject.Inject() (override val messagesApi: MessagesApi, emailService: EmailService) extends BaseController {
+class FeedbackController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment,
+  emailService: EmailService
+) extends BaseController {
   def feedbackForm = withSession { implicit request =>
     Future.successful(Ok(views.html.feedback(request.identity)))
   }

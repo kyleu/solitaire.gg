@@ -4,9 +4,13 @@ import controllers.BaseController
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.history.RequestHistoryService
+import services.user.AuthenticationEnvironment
 
 @javax.inject.Singleton
-class RequestLogController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
+class RequestLogController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment
+) extends BaseController {
   def requestList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     RequestHistoryService.searchRequests(q, getOrderClause(sortBy), page).map { result =>
       Ok(views.html.admin.request.requestList(q, sortBy, result._1, page, result._2))

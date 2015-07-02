@@ -8,14 +8,16 @@ import controllers.BaseController
 import models.user.{ User, UserForms }
 import play.api.i18n.{ Messages, MessagesApi }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.libs.ws.WSClient
 import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class AuthenticationController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
-  override val env = AuthenticationEnvironment
-
+class AuthenticationController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment
+) extends BaseController {
   def signInForm = withSession { implicit request =>
     Future.successful(Ok(views.html.auth.signin(request.identity, UserForms.signInForm)))
   }

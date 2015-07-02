@@ -1,15 +1,19 @@
 package services.user
 
-import com.mohiva.play.silhouette.api.util.{ PlayHTTPLayer, Clock }
-import com.mohiva.play.silhouette.api.{ EventBus, Environment }
+import com.mohiva.play.silhouette.api.util.{ Clock, PlayHTTPLayer }
+import com.mohiva.play.silhouette.api.{ Environment, EventBus }
 import com.mohiva.play.silhouette.impl.authenticators._
 import com.mohiva.play.silhouette.impl.providers.{ BasicAuthProvider, CredentialsProvider }
 import com.mohiva.play.silhouette.impl.repositories.DelegableAuthInfoRepository
 import com.mohiva.play.silhouette.impl.services.GravatarService
-import com.mohiva.play.silhouette.impl.util.{ SecureRandomIDGenerator, BCryptPasswordHasher, DefaultFingerprintGenerator }
+import com.mohiva.play.silhouette.impl.util.{ BCryptPasswordHasher, DefaultFingerprintGenerator, SecureRandomIDGenerator }
 import models.user.User
+import play.api.libs.ws.WSClient
 
-object AuthenticationEnvironment extends Environment[User, CookieAuthenticator] {
+import scala.concurrent.duration._
+
+@javax.inject.Singleton
+class AuthenticationEnvironment @javax.inject.Inject() (val wsClient: WSClient) extends Environment[User, CookieAuthenticator] {
   override implicit val executionContext = play.api.libs.concurrent.Execution.Implicits.defaultContext
 
   private[this] val fingerprintGenerator = new DefaultFingerprintGenerator(false)
@@ -18,7 +22,7 @@ object AuthenticationEnvironment extends Environment[User, CookieAuthenticator] 
 
   val userService = UserService
 
-  private[this] val httpLayer = new PlayHTTPLayer
+  private[this] val httpLayer = new PlayHTTPLayer(wsClient)
 
   val hasher = new BCryptPasswordHasher()
 
@@ -53,9 +57,9 @@ object AuthenticationEnvironment extends Environment[User, CookieAuthenticator] 
       secureCookie = cfg.getBoolean("secure").getOrElse(throw new IllegalArgumentException()),
       httpOnlyCookie = true,
       useFingerprinting = cfg.getBoolean("useFingerprinting").getOrElse(throw new IllegalArgumentException()),
-      cookieMaxAge = cfg.getInt("maxAge"),
-      authenticatorIdleTimeout = cfg.getInt("idleTimeout"),
-      authenticatorExpiry = cfg.getInt("expiry").getOrElse(throw new IllegalArgumentException())
-    ), SessionInfoService, fingerprintGenerator, idGenerator, clock)
+      cookieMaxAge = cfg.getInt("maxAge").map(_.seconds),
+      authenticatorIdleTimeout = cfg.getInt("idleTimeout").map(_.seconds),
+      authenticatorExpiry = cfg.getInt("expiry").map(_.seconds).getOrElse(throw new IllegalArgumentException())
+    ), Some(SessionInfoService), fingerprintGenerator, idGenerator, clock)
   }
 }

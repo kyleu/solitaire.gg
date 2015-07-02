@@ -20,7 +20,7 @@ trait GameRulesHelper { this: GameRules =>
     val deck = newShuffledDecks(seed, rng, deckOptions.numDecks, deckOptions.ranks, deckOptions.suits, lowRank, deckOptions.highRank)
     val pileSets = newPileSets()
     val layout = this.layout.getOrElse(Layouts.defaultLayout(this))
-    val rulesTitle = if(withRules == id) { title } else { aka(withRules) }
+    val rulesTitle = if (withRules == id) { title } else { aka(withRules) }
     val gameState = GameState(gameId, withRules, rulesTitle, maxPlayers, seed, deck, pileSets, layout)
     gameState
   }

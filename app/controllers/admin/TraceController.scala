@@ -9,11 +9,15 @@ import models._
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.ActorSupervisor
+import services.user.AuthenticationEnvironment
 
 import scala.concurrent.duration._
 
 @javax.inject.Singleton
-class TraceController @javax.inject.Inject() (override val messagesApi: MessagesApi) extends BaseController {
+class TraceController @javax.inject.Inject() (
+  override val messagesApi: MessagesApi,
+  override val env: AuthenticationEnvironment
+) extends BaseController {
   implicit val timeout = Timeout(10.seconds)
 
   def traceConnection(connectionId: UUID) = withAdminSession { implicit request =>

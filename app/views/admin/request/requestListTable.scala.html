@@ -8,6 +8,7 @@
       @utils.ViewUtils.th("request-host", "Host", sortBy)
       @utils.ViewUtils.th("request-path", "Path", sortBy)
       @utils.ViewUtils.th("request-lang", "Lang", sortBy)
+      @utils.ViewUtils.th("request-referrer", "Referrer", sortBy)
       @utils.ViewUtils.th("request-started", "Started", sortBy)
       @utils.ViewUtils.th("request-duration", "Duration", sortBy)
     </tr>
@@ -21,6 +22,7 @@
       <td>@r.host</td>
       <td>@r.path</td>
       <td>@r.lang</td>
+      <td title="@r.referrer">...</td>
       <td>@r.started.toString("yyyy-MM-dd HH:mm:ss")</td>
       <td>@{r.duration}ms</td>
     </tr>

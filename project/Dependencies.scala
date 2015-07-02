@@ -26,7 +26,7 @@ object Dependencies {
   }
 
   object Authentication {
-    val silhouette = "com.mohiva" %% "play-silhouette" % "3.0.0-RC1"
+    val silhouette = "com.mohiva" %% "play-silhouette" % "3.0.0-RC2"
   }
 
   object Metrics {
