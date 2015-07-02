@@ -27,8 +27,7 @@ define([], function() {
       if(colorIndexEnd == -1) {
         colorIndexEnd = cn.length;
       }
-      var newClassName = cn.substr(0, colorIndexStart) + "btn-" + color + cn.substr(colorIndexEnd);
-      btn.className = newClassName;
+      btn.className = cn.substr(0, colorIndexStart) + "btn-" + color + cn.substr(colorIndexEnd);
     }
 
     if(activeColor !== color) {

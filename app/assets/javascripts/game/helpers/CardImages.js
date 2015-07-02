@@ -63,28 +63,24 @@ define(["game/Rank", "game/Suit"], function(Rank, Suit) {
 
     switch(layout) {
       case 'standard':
-        var rankWidth = rankWidths[r.value - 2];
-        tex.draw(rankImage, 60 * rankWidth, 60, 80, 80);
-        tex.draw(suitImage, 140 * rankWidth, 60, 80, 80);
         if(r.locs === undefined) {
-          tex.draw(suitImage, 200, 300, 200, 200);
+          if(r === Rank.ace) {
+            tex.draw(suitImage, 200, 300, 200, 200);
+          } else {
+            tex.draw(faceCardImages[(s.index * 3) + r.value - 11], 200, 325, 350, 525);
+          }
         } else {
           _.each(r.locs, function(loc) {
             tex.draw(suitImage, (loc[0] * 300) + 50, (loc[1] * 500) + 100, 100, 100);
           });
         }
+
+        var rankWidth = rankWidths[r.value - 2];
+        tex.draw(rankImage, 60 * rankWidth, 60, 80, 80);
+        tex.draw(suitImage, 140 * rankWidth, 60, 80, 80);
+
         break;
       case 'classic':
-        tex.draw(rankImage, 35, 35, 50, 50);
-        tex.draw(suitImage, 35, 85, 50, 50);
-
-        rankImage.angle = 180;
-        suitImage.angle = 180;
-        tex.draw(rankImage, 365, 565, 50, 50);
-        tex.draw(suitImage, 365, 515, 50, 50);
-        rankImage.angle = 0;
-        suitImage.angle = 0;
-
         if(r.locs === undefined) {
           if(r === Rank.ace) {
             tex.draw(suitImage, 200, 300, 200, 200);
@@ -102,6 +98,16 @@ define(["game/Rank", "game/Suit"], function(Rank, Suit) {
             }
           });
         }
+
+        tex.draw(rankImage, 35, 45, 50, 50);
+        tex.draw(suitImage, 35, 95, 50, 50);
+        rankImage.angle = 180;
+        suitImage.angle = 180;
+        tex.draw(rankImage, 365, 565, 50, 50);
+        tex.draw(suitImage, 365, 515, 50, 50);
+        rankImage.angle = 0;
+        suitImage.angle = 0;
+
         break;
       default:
         throw "?";

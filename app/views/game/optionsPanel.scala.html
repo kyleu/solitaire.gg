@@ -7,4 +7,40 @@
       }
     }
   </div>
+  <div id="card-layout-list">
+  @for(idx <- Seq("standard", "mobile")) {
+    @defining(if(idx == user.color) { " active" } else { "" }) { active =>
+      <div class="card-layout @active">
+        <img src="" />
+      </div>
+    }
+  }
+  </div>
+  <div id="face-card-list">
+  @for(idx <- Seq("a", "b")) {
+    @defining(if(idx == user.color) { " active" } else { "" }) { active =>
+      <div class="face-card @active">
+        <img src="" />
+      </div>
+    }
+  }
+  </div>
+  <div id="card-rank-list">
+    @for(idx <- Seq("a", "b")) {
+      @defining(if(idx == user.color) { " active" } else { "" }) { active =>
+        <div class="card-rank @active">
+          <img src="" />
+        </div>
+      }
+    }
+  </div>
+  <div id="card-suit-list">
+    @for(idx <- Seq("a")) {
+      @defining(if(idx == user.color) { " active" } else { "" }) { active =>
+        <div class="card-suit @active">
+          <img src="" />
+        </div>
+      }
+    }
+  </div>
 </div>

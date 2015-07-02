@@ -22,14 +22,14 @@ define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState'], function
     this.game.load.setPreloadSprite(this.loadBar);
 
     this.game.load.spritesheet(
-      'empty-piles', this.assetRoot + 'assets/images/cards/empty.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight
+      'empty-piles', this.assetRoot + 'assets/images/cards/empty-a.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight
     );
 
     this.game.load.image('card-blank', this.assetRoot + 'assets/images/cards/blank.png');
     this.game.load.image('card-back', this.assetRoot + 'assets/images/cards/back-a.png');
-    this.game.load.spritesheet('card-suits', this.assetRoot + 'assets/images/cards/suits.png', 200, 200);
-    this.game.load.spritesheet('card-ranks', this.assetRoot + 'assets/images/cards/ranks.png', 200, 200);
-    this.game.load.spritesheet('face-cards', this.assetRoot + 'assets/images/cards/face-cards.png', 200, 300);
+    this.game.load.spritesheet('card-suits', this.assetRoot + 'assets/images/cards/suits-a.png', 200, 200);
+    this.game.load.spritesheet('card-ranks', this.assetRoot + 'assets/images/cards/ranks-a.png', 200, 200);
+    this.game.load.spritesheet('face-cards', this.assetRoot + 'assets/images/cards/face-cards-a.png', 200, 300);
 
     var gameplay = new Gameplay(this.game);
     this.game.state.add('gameplay', gameplay);
