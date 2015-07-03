@@ -13,8 +13,8 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class WebsocketController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   import play.api.Play.current
   import MessageFrameFormatter._

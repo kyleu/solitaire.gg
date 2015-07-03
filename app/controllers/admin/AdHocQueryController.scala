@@ -18,8 +18,8 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 @javax.inject.Singleton
 class AdHocQueryController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   case class QueryExecution(action: String, id: Option[String], title: String, sql: String)
 

@@ -13,8 +13,8 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class FeedbackController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   def feedbackList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     for {
@@ -25,7 +25,7 @@ class FeedbackController @javax.inject.Inject() (
   }
 
   def feedbackNoteForm(feedbackId: UUID) = withAdminSession { implicit request =>
-    Future.successful(Ok("Coming soon!"))
+    Future.successful(Ok(s"Coming soon for [$feedbackId]!"))
   }
 
   def removeFeedback(id: UUID) = withAdminSession { implicit request =>

@@ -21,26 +21,24 @@ define(['game/Rank', 'game/pile/PileLogic'], function(Rank, PileLogic) {
       for(var selectedIndex = card.pileIndex; selectedIndex < this.cards.length; selectedIndex++) {
         cards.push(this.cards[selectedIndex]);
       }
-      var valid = true;
-      var lastCard = null;
 
       var rankRule = opts.r;
       var suitRule = opts.s;
       var lowRank = opts.lr;
 
-      for(var c in cards) {
-        if(cards.hasOwnProperty(c)) {
-          var testCard = cards[c];
-          if(lastCard !== null && valid) {
-            if(!PileLogic.rank(rankRule, lastCard.rank, testCard.rank, lowRank)) {
-              valid = false;
-            } else if(!PileLogic.suit(suitRule, lastCard.suit, testCard.suit)) {
-              valid = false;
-            }
+      var valid = true;
+      var lastCard;
+
+      _.each(cards, function(testCard) {
+        if(lastCard !== undefined && valid) {
+          if(!PileLogic.rank(rankRule, lastCard.rank, testCard.rank, lowRank)) {
+            valid = false;
+          } else if(!PileLogic.suit(suitRule, lastCard.suit, testCard.suit)) {
+            valid = false;
           }
-          lastCard = testCard;
         }
-      }
+        lastCard = testCard;
+      });
       return valid;
     },
 

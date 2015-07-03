@@ -5,7 +5,7 @@ import java.util.UUID
 import models.database.queries.auth.UserQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import utils.cache.CacheService
+import utils.cache.UserCache
 
 trait GameServicePreferenceHelper { this: GameService =>
   protected[this] def handleSetPreference(userId: UUID, name: String, value: String): Unit = {
@@ -22,7 +22,7 @@ trait GameServicePreferenceHelper { this: GameService =>
           case _ => log.errorThenThrow(s"Unhandled preference [$name] for user [$userId] with value [$value].")
         }
         Database.execute(UserQueries.SetPreferences(userId, newPrefs)).map { x =>
-          CacheService.cacheUser(u.copy(preferences = newPrefs))
+          UserCache.cacheUser(u.copy(preferences = newPrefs))
         }
       case None => throw new IllegalArgumentException(s"Cannot find user [$userId].")
     }

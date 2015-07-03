@@ -15,8 +15,8 @@ import scala.concurrent.duration._
 
 @javax.inject.Singleton
 class TraceController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   implicit val timeout = Timeout(10.seconds)
 

@@ -9,9 +9,9 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class HomeController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment,
-  emailService: EmailService
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment,
+    emailService: EmailService
 ) extends BaseController {
   def index() = withSession { implicit request =>
     Future.successful(Ok(views.html.index(request.identity)))

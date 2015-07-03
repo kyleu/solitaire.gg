@@ -20,7 +20,7 @@ object Shared {
 
   object Versions {
     val app = "0.1-SNAPSHOT"
-    val scala = "2.11.6"
+    val scala = "2.11.7"
   }
 
   lazy val sharedJs = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(

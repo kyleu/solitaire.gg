@@ -10,8 +10,8 @@ import services.user.AuthenticationEnvironment
 
 @javax.inject.Singleton
 class ClientTraceController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   def traceList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     for {

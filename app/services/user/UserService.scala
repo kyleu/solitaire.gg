@@ -11,7 +11,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.history.{ RequestHistoryService, GameHistoryService }
 import utils.Logging
-import utils.cache.CacheService
+import utils.cache.UserCache
 
 import scala.concurrent.Future
 
@@ -47,7 +47,7 @@ object UserService extends Logging {
       UserQueries.insert(user)
     }
     Database.execute(statement).map { i =>
-      CacheService.cacheUser(user)
+      UserCache.cacheUser(user)
       user
     }
   }
@@ -56,19 +56,19 @@ object UserService extends Logging {
     val start = System.currentTimeMillis
     Database.transaction { conn =>
       for {
-        games <- GameHistoryService.removeGameHistoriesByUser(userId, Some(conn))
+        games <- GameHistoryService.removeGameHistoriesByUser(userId)
         requests <- RequestHistoryService.removeRequestsByUser(userId, Some(conn))
-        profiles <- removeProfiles(userId, Some(conn)).map(_.size)
+        profiles <- removeProfiles(userId, Some(conn)).map(_.length)
         users <- Database.execute(UserQueries.removeById(Seq(userId)), Some(conn))
       } yield {
-        CacheService.removeUser(userId)
+        UserCache.removeUser(userId)
         val cardCount = games.map(_._2._2).sum
         val moveCount = games.map(_._2._3).sum
         Map(
           "users" -> users,
           "profiles" -> profiles,
           "requests" -> requests,
-          "games" -> games.size,
+          "games" -> games.length,
           "cards" -> cardCount,
           "moves" -> moveCount,
           "timing" -> (System.currentTimeMillis - start).toInt

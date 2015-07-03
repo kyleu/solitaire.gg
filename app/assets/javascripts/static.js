@@ -61,7 +61,7 @@
     }
 
     elements.colors = [];
-    var els = document.getElementsByClassName('swatch');
+    var els = document.getElementsByClassName('background-color');
     for(var elIndex = 0; elIndex < els.length; elIndex++) {
       var el = els.item(elIndex);
       el.onclick = onClick;

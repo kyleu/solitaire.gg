@@ -5,7 +5,7 @@
   "curly": true,
   "devel": true,
   "eqeqeq": true,
-  "esnext": true,
+  "esnext": false,
   "expr": true,
   "forin": true,
   "freeze": true,

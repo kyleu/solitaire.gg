@@ -64,7 +64,7 @@ object Schema extends Logging {
     if (exists) {
       Future.successful(Unit)
     } else {
-      log.info(s"Creating user [" + insert.getClass.getSimpleName + "].")
+      log.info(s"Creating user [${insert.getClass.getSimpleName}].")
       Database.execute(insert).map(x => x == 1)
     }
   }

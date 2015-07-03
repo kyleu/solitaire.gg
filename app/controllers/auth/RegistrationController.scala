@@ -13,8 +13,8 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class RegistrationController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
 
   def registrationForm = withSession { implicit request =>
@@ -59,8 +59,8 @@ class RegistrationController @javax.inject.Inject() (
     for {
       avatar <- env.avatarService.retrieveURL(data.email)
       profile <- env.userService.create(user, profile.copy(avatarURL = avatar.orElse(Some("default"))))
-      u <- env.userService.save(user.copy(
-        preferences = user.preferences.copy(avatar = avatar.getOrElse(user.preferences.avatar))),
+      u <- env.userService.save(
+        user.copy(preferences = user.preferences.copy(avatar = avatar.getOrElse(user.preferences.avatar))),
         update = true
       )
       authInfo <- env.authInfoService.save(loginInfo, authInfo)

@@ -2,7 +2,7 @@ package utils
 
 import com.github.mauricio.async.db.Configuration
 import com.typesafe.config.ConfigFactory
-import play.api.Play
+import _root_.play.api.Play
 
 object Config {
   private[this] val cnf = ConfigFactory.load()

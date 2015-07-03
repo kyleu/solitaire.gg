@@ -30,7 +30,7 @@ object GameHistoryService {
     success <- Database.execute(GameHistoryQueries.removeById(Seq(id)), conn).map(_ == 1)
   } yield (id, (success, cards, moves))
 
-  def removeGameHistoriesByUser(userId: UUID, conn: Option[Connection]) = {
+  def removeGameHistoriesByUser(userId: UUID) = {
     Database.query(GameHistoryQueries.GetGameHistoryIdsForUser(userId)).flatMap { gameIds =>
       Future.sequence(gameIds.map(id => removeGameHistory(id, None)))
     }

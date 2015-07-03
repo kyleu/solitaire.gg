@@ -11,7 +11,7 @@ object PyramidPileOptions {
       cardsShown = Some(1),
       direction = Some("d"),
       dragFromConstraint = Some(Constraint.topCardOnly),
-      dragToConstraint = Some(dragToConstraint(crm, lowRank, rules.mayMoveToEmptyFrom, rules.mayMoveToNonEmptyFrom)),
+      dragToConstraint = Some(dragToConstraint(crm, lowRank, rules.mayMoveToEmptyFrom)),
       selectCardConstraint = Some(Constraint.allOf("top-card-select", Constraint.topCardOnly, Constraint.forCardRemovalMethod(crm))),
       selectCardAction = Some(SelectCardActions.drawToPiles(() => 1, Seq("foundation-1"))),
       dragToAction = Some(DragToActions.remove())
@@ -30,7 +30,7 @@ object PyramidPileOptions {
     ret
   }
 
-  private[this] def dragToConstraint(crm: CardRemovalMethod, lowRank: Rank, mayMoveToEmptyFrom: Seq[String], mayMoveToNonEmptyFrom: Seq[String]) = {
+  private[this] def dragToConstraint(crm: CardRemovalMethod, lowRank: Rank, mayMoveToEmptyFrom: Seq[String]) = {
     Constraint("pyramid", (src, tgt, cards, gameState) => tgt.cards.lastOption match {
       case None => src.pileSet.exists(x => mayMoveToEmptyFrom.contains(x.behavior))
 

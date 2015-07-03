@@ -14,7 +14,7 @@ import services.ActorSupervisor
 import services.database.{ Schema, Database }
 import services.scheduled.ScheduledTask
 import services.user.AuthenticationEnvironment
-import utils.cache.CacheService
+import utils.cache.UserCache
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -22,9 +22,9 @@ import scala.util.Random
 
 @javax.inject.Singleton
 class AdminController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment,
-  scheduledTask: ScheduledTask
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment,
+    scheduledTask: ScheduledTask
 ) extends BaseController {
   implicit val timeout = Timeout(10.seconds)
 
@@ -34,7 +34,7 @@ class AdminController @javax.inject.Inject() (
 
   def enable = withSession { implicit request =>
     Database.execute(UserQueries.AddRole(request.identity.id, Role.Admin)).map { x =>
-      CacheService.cacheUser(request.identity.copy(roles = request.identity.roles + Role.Admin))
+      UserCache.cacheUser(request.identity.copy(roles = request.identity.roles + Role.Admin))
       Ok("OK")
     }
   }

@@ -1,17 +1,3 @@
-.swatch-border {
-  display: inline-block;
-  border: 5px solid #000000;
-  margin: 0;
-  .swatch {
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-  }
-}
-.swatch-border.active {
-  border: 5px solid #ffffff;
-}
-
 #gameplay-options {
   background-color: #000000;
   color: #ffffff;
@@ -22,11 +8,40 @@
   top: 40px;
 }
 
+.options-list {
+  display: inline-block;
+  margin: auto;
+
+  .options-label {
+    margin: 5px 0;
+  }
+
+  .game-options {
+    margin: 0 10px;
+    border-top: 1px solid #888888;
+    padding: 5px;
+  }
+}
+
 .game-option {
-  width: 40px;
-  height: 40px;
+  display: inline-block;
   border: 5px solid #000000;
+  margin: 0;
+  div {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+  }
 }
 .game-option.active {
   border: 5px solid #ffffff;
+  div {
+    cursor: default;
+  }
+}
+.game-option.active:hover {
+  border: 5px solid #ffffff;
+}
+.game-option:hover {
+  border: 5px solid #666666;
 }

@@ -13,9 +13,32 @@
     <div class="panel-body">
       <h5>Preferences</h5>
       <table class="table">
-        <tr><td>Username</td><td>@user.username</td></tr>
-        <tr><td>Color</td><td>@user.preferences.color</td></tr>
-        <tr><td>Avatar</td><td>@user.preferences.avatar</td></tr>
+        <tr>
+          <td>Username</td>
+          <td>@user.username</td>
+        </tr>
+        <tr>
+          <td>Color</td>
+          <td>@user.preferences.color</td>
+        </tr>
+        <tr>
+          <td>Avatar</td>
+          <td>@user.preferences.avatar</td>
+        </tr>
+        <tr>
+          <td>Auto Flip</td>
+          <td>@user.preferences.autoFlip</td>
+        </tr>
+        <tr>
+          <td>Card Preferences</td>
+          <td>
+            Back: @user.preferences.cards.back
+            Layout: @user.preferences.cards.layout,
+            Ranks: @user.preferences.cards.ranks,
+            Suits: @user.preferences.cards.suits,
+            Face Cards: @user.preferences.cards.faceCards
+          </td>
+        </tr>
       </table>
     </div>
   </div>

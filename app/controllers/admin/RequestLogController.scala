@@ -8,8 +8,8 @@ import services.user.AuthenticationEnvironment
 
 @javax.inject.Singleton
 class RequestLogController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   def requestList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     RequestHistoryService.searchRequests(q, getOrderClause(sortBy), page).map { result =>

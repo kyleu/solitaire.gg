@@ -5,30 +5,30 @@ import com.mohiva.play.silhouette.impl.daos.AuthenticatorDAO
 import models.database.queries.auth.AuthenticatorQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import utils.cache.CacheService
+import utils.cache.UserCache
 
 import scala.concurrent.Future
 
 object SessionInfoService extends AuthenticatorDAO[CookieAuthenticator] {
-  override def find(id: String) = CacheService.getSession(id) match {
+  override def find(id: String) = UserCache.getSession(id) match {
     case Some(sess) => Future.successful(Some(sess))
     case None => Database.query(AuthenticatorQueries.getById(Seq(id))).map {
       case Some(dbSess) =>
-        CacheService.cacheSession(dbSess)
+        UserCache.cacheSession(dbSess)
         Some(dbSess)
       case None => None
     }
   }
 
   override def add(session: CookieAuthenticator) = Database.execute(AuthenticatorQueries.insert(session)).map { x =>
-    CacheService.cacheSession(session)
+    UserCache.cacheSession(session)
   }
 
   override def update(session: CookieAuthenticator) = Database.execute(AuthenticatorQueries.UpdateAuthenticator(session)).map { x =>
-    CacheService.cacheSession(session)
+    UserCache.cacheSession(session)
   }
 
   override def remove(id: String) = Database.execute(AuthenticatorQueries.removeById(Seq(id))).map { x =>
-    CacheService.removeSession(id)
+    UserCache.removeSession(id)
   }
 }

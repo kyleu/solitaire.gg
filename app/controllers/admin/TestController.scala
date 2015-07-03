@@ -10,8 +10,8 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 @javax.inject.Singleton
 class TestController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   def tests = withAdminSession { implicit request =>
     Future.successful(Ok(views.html.admin.test.tests()))

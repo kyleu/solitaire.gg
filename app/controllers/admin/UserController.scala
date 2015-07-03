@@ -15,8 +15,8 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class UserController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   def userList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     for {

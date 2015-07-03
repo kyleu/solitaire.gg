@@ -9,8 +9,8 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class GameController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   def help(id: String, inline: Boolean) = withSession { implicit request =>
     Future.successful {

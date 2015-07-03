@@ -1,74 +1,20 @@
 package utils.cache
 
-import java.util.UUID
-
-import com.mohiva.play.silhouette.api.LoginInfo
-import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
-import models.user.User
 import net.sf.ehcache.{ CacheManager, Element }
 import org.apache.commons.lang3.reflect.TypeUtils
-import play.twirl.api.Html
 import utils.Config
 
 import scala.reflect.ClassTag
 
 object CacheService {
-  private val manager = CacheManager.create()
+  private[this] val manager = CacheManager.create()
   manager.addCache(Config.projectId)
-  private val cache = manager.getCache(Config.projectId)
+
+  protected[this] val cache = manager.getCache(Config.projectId)
 
   private val timeout = {
     import scala.concurrent.duration._
     4.hours.toSeconds.toInt
-  }
-
-  def getUser(id: UUID) = {
-    getAs[User](s"user.$id")
-  }
-
-  def cacheUser(user: User) = {
-    set(s"user.${user.id}", user, timeout)
-    user
-  }
-
-  def cacheUserForLoginInfo(user: User, loginInfo: LoginInfo) = {
-    set(s"user.${user.id}", user, timeout)
-    set(s"user.${loginInfo.providerID}:${loginInfo.providerKey}", user, timeout)
-  }
-
-  def getUserByLoginInfo(loginInfo: LoginInfo) = {
-    getAs[User](s"user.${loginInfo.providerID}:${loginInfo.providerKey}")
-  }
-
-  def removeUser(id: UUID) = {
-    getAs[User](s"user.$id").foreach { u =>
-      for (p <- u.profiles) {
-        cache.remove(s"user.${p.providerID}:${p.providerKey}")
-      }
-    }
-    cache.remove(s"user.$id")
-  }
-
-  def cacheSession(session: CookieAuthenticator) = {
-    set(session.id, session)
-    session
-  }
-
-  def getSession(id: String) = {
-    getAs[CookieAuthenticator](id)
-  }
-
-  def removeSession(id: String) = {
-    cache.remove(id)
-  }
-
-  def cacheTemplate(key: String, html: Html) = {
-    set("template." + key, html)
-    html
-  }
-
-  def getTemplate(key: String) = {
-    getAs[Html]("template." + key)
   }
 
   def keys() = {
@@ -106,4 +52,6 @@ object CacheService {
       }
     }.getOrElse(None)
   }
+
+  def remove(key: String) = cache.remove(key)
 }

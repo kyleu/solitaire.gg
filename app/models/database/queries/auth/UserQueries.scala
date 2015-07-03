@@ -25,7 +25,7 @@ object UserQueries extends BaseQueries[User] {
   private[this] val defaultPreferencesJson = Json.toJson(UserPreferences()).as[JsObject]
 
   case class UpdateUser(u: User) extends Statement {
-    override val sql = updateSql(Seq("username", "preferences", "profiles", "roles"))
+    override val sql = updateSql(Seq("username", "prefs", "profiles", "roles"))
     override val values = {
       val profiles = u.profiles.map(l => s"${l.providerID}:${l.providerKey}").toArray
       val roles = u.roles.map(_.name).toArray

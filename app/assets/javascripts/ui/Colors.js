@@ -10,9 +10,9 @@ define([], function() {
   function selectColor(color) {
     _.each(elements.colors, function(el) {
       if(el.id === 'color-' + color) {
-        el.parentElement.className = 'swatch-border active';
+        el.parentElement.className = 'background-color active';
       } else {
-        el.parentElement.className = 'swatch-border';
+        el.parentElement.className = 'background-color';
       }
     });
     var bgIndex = document.body.className.indexOf('background-');
@@ -47,7 +47,7 @@ define([], function() {
     }
 
     elements.colors = [];
-    var els = document.getElementsByClassName('swatch');
+    var els = document.getElementsByClassName('background-color');
     for(var elIndex = 0; elIndex < els.length; elIndex++) {
       var el = els.item(elIndex);
       el.onclick = onClick;

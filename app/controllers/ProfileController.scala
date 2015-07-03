@@ -6,14 +6,14 @@ import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.user.AuthenticationEnvironment
-import utils.cache.CacheService
+import utils.cache.UserCache
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
 class ProfileController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   def profile = withSession { implicit request =>
     Database.query(ProfileQueries.FindProfilesByUser(request.identity.id)).map { profiles =>
@@ -41,20 +41,20 @@ class ProfileController @javax.inject.Inject() (
         urlFuture.flatMap { url =>
           val prefs = request.identity.preferences.copy(avatar = url)
           Database.execute(UserQueries.SetPreferences(request.identity.id, prefs)).map { i =>
-            CacheService.cacheUser(request.identity.copy(preferences = prefs))
+            UserCache.cacheUser(request.identity.copy(preferences = prefs))
             Redirect(controllers.routes.ProfileController.profile())
           }
         }
       case "color" =>
         val prefs = request.identity.preferences.copy(color = value)
         Database.execute(UserQueries.SetPreferences(request.identity.id, prefs)).map { x =>
-          CacheService.cacheUser(request.identity.copy(preferences = prefs))
+          UserCache.cacheUser(request.identity.copy(preferences = prefs))
           Ok("OK")
         }
       case "username" =>
-        val name = if(value.isEmpty) { None } else { Some(value) }
+        val name = if (value.isEmpty) { None } else { Some(value) }
         Database.execute(UserQueries.SetUsername(request.identity.id, name)).map { i =>
-          CacheService.cacheUser(request.identity.copy(username = name))
+          UserCache.cacheUser(request.identity.copy(username = name))
           Redirect(controllers.routes.ProfileController.profile())
         }.recoverWith {
           case x => Future.successful {

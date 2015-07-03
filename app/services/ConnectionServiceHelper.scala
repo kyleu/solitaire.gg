@@ -56,7 +56,7 @@ trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionServic
     out ! SendDebugInfo
   }
 
-  protected[this] def handleDebugInfo(data: String) = if(data.startsWith("cheat")) {
+  protected[this] def handleDebugInfo(data: String) = if (data.startsWith("cheat")) {
     activeGame match {
       case Some(g) => g forward DebugInfo(data)
       case None => log.warn(s"Received DebugInfo [$data] from [$id], but no game exists.")

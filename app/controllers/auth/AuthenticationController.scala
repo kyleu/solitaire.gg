@@ -14,8 +14,8 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class AuthenticationController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   def signInForm = withSession { implicit request =>
     Future.successful(Ok(views.html.auth.signin(request.identity, UserForms.signInForm)))

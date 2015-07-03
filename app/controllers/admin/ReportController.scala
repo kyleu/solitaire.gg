@@ -16,8 +16,8 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class ReportController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   def email(d: LocalDate = DateUtils.today) = withAdminSession { implicit request =>
     for {

@@ -27,9 +27,9 @@ object SandboxController {
 
 @javax.inject.Singleton
 class SandboxController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment,
-  scheduledTask: ScheduledTask
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment,
+    scheduledTask: ScheduledTask
 ) extends BaseController {
   implicit val timeout = Timeout(10.seconds)
 

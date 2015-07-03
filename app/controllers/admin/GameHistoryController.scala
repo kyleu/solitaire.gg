@@ -12,8 +12,8 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class GameHistoryController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
   def gameList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
     GameHistoryService.searchGames(q, sortBy, page).map { games =>

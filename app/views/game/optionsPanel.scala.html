@@ -1,64 +1,84 @@
 @(user: models.user.User)
 <div id="gameplay-options" class="invisible">
-  <div id="color-list">
+  <div id="card-layout-list" class="options-list">
+    <div class="options-label">Layout</div>
+    <div class="game-options">
+      @for(idx <- Seq("a", "b")) {
+        @defining(if(idx == user.preferences.cards.layout) { " active" } else { "" }) { active =>
+          <div class="game-option card-layout @active" data-option-value="@idx">
+            <div>@idx</div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+  <div id="face-card-list" class="options-list">
+    <div class="options-label">Face Cards</div>
+    <div class="game-options">
+      @for(idx <- Seq("a", "b")) {
+        @defining(if(idx == user.preferences.cards.faceCards) { " active" } else { "" }) { active =>
+          <div class="game-option face-card @active" data-option-value="@idx">
+            <div>@idx</div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+  <div id="card-rank-list" class="options-list">
+    <div class="options-label">Ranks</div>
+    <div class="game-options">
+      @for(idx <- Seq("a", "b")) {
+        @defining(if(idx == user.preferences.cards.ranks) { " active" } else { "" }) { active =>
+          <div class="game-option card-rank @active" data-option-value="@idx">
+            <div>@idx</div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+  <div id="card-suit-list" class="options-list">
+    <div class="options-label">Suits</div>
+    <div class="game-options">
+      @for(idx <- Seq("a", "b")) {
+        @defining(if(idx == user.preferences.cards.suits) { " active" } else { "" }) { active =>
+          <div class="game-option card-suit @active" data-option-value="@idx">
+            <div>@idx</div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+  <div id="auto-flip-list" class="options-list">
+    <div class="options-label">Auto Flip</div>
+    <div class="game-options">
+      @defining(if(user.preferences.autoFlip) { " active" } else { "" }) { active =>
+        <div class="game-option auto-flip @active" data-option-value="true">
+          <div>true</div>
+        </div>
+      }
+
+      @defining(if(!user.preferences.autoFlip) { " active" } else { "" }) { active =>
+        <div class="game-option auto-flip @active" data-option-value="false">
+          <div>false</div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div id="color-list" class="options-list">
+    <div class="options-label">Background Color</div>
+    <div class="game-options">
     @for(color <- ui.Colors.all) {
       @defining(if(color._1 == user.preferences.color) { " active" } else { "" }) { active =>
-        <div class="swatch-border @active"><div id="color-@color._1" class="swatch background-@color._1"></div></div>
-      }
-    }
-  </div>
-
-  <div id="card-layout-list">
-  @for(idx <- Seq("standard", "mobile")) {
-    @defining(if(idx == user.preferences.cards.layout) { " active" } else { "" }) { active =>
-      <div class="game-option card-layout @active" data-option-value="@idx">
-        @idx
-      </div>
-    }
-  }
-  </div>
-
-  <div id="face-card-list">
-  @for(idx <- Seq("a", "b")) {
-    @defining(if(idx == user.preferences.cards.faceCards) { " active" } else { "" }) { active =>
-      <div class="game-option face-card @active" data-option-value="@idx">
-        @idx
-      </div>
-    }
-  }
-  </div>
-
-  <div id="card-rank-list">
-    @for(idx <- Seq("a", "b")) {
-      @defining(if(idx == user.preferences.cards.ranks) { " active" } else { "" }) { active =>
-        <div class="game-option card-rank @active" data-option-value="@idx">
-          @idx
+        <div class="game-option background-color @active" data-option-value="@color._1">
+          <div id="color-@color._1" class="background-@color._1"></div>
         </div>
       }
     }
-  </div>
-
-  <div id="card-suit-list">
-  @for(idx <- Seq("a")) {
-    @defining(if(idx == user.preferences.cards.suits) { " active" } else { "" }) { active =>
-      <div class="game-option card-suit @active" data-option-value="@idx">
-        @idx
-      </div>
-    }
-  }
-  </div>
-
-  <div id="auto-flip-list">
-    @defining(if(user.preferences.autoFlip) { " active" } else { "" }) { active =>
-      <div class="game-option auto-flip @active" data-option-value="true">
-        true
-      </div>
-    }
-
-    @defining(if(!user.preferences.autoFlip) { " active" } else { "" }) { active =>
-      <div class="game-option auto-flip" data-option-value="false">
-        false
-      </div>
-    }
+    </div>
   </div>
 </div>
