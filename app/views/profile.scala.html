@@ -3,7 +3,7 @@
   profiles: Seq[com.mohiva.play.silhouette.impl.providers.CommonSocialProfile],
   routesMap: utils.play.RoutesMap = utils.play.RoutesMap.dynamic
 )(
-  implicit request: Request[AnyContent], session: Session, flash: Flash
+  implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
 )@layout.static(user = user, title = utils.Config.projectName + " Profile", button = "menu", routesMap) {
   <div class="profile">
     @if(user.isGuest) {
@@ -23,92 +23,45 @@
       @user.username.map { un =>
         <div class="username">@un</div>
       }.getOrElse {
-        <div class="username">Guest</div>
+        <div class="username">@Messages("guest.name")</div>
       }
-      <div class="logout"><a href="@controllers.auth.routes.AuthenticationController.signOut">Sign Out</a></div>
+      <div class="logout">
+        <a class="sign-out-link" href="@controllers.auth.routes.AuthenticationController.signOut">@Messages("profile.sign.out")</a>
+      </div>
       @defining(profiles.find(_.loginInfo.providerID == "credentials")) { credentials =>
         <div class="profile-detail">
           @if(credentials.isDefined) {
             <em>@credentials.get.email</em>
           } else {
-            <a href="@controllers.auth.routes.RegistrationController.registrationForm()">Create a local account</a>
+            <a href="@controllers.auth.routes.RegistrationController.registrationForm()">@Messages("profile.create.account")</a>
           }
         </div>
       }
-
-      @defining(profiles.find(_.loginInfo.providerID == "facebook")) { facebook =>
-        <div class="profile-detail">
-          @if(facebook.isDefined) {
-            <div class="provider facebook">
-              <img src="@routes.Assets.at("images/providers/facebook.png")">
-            </div>
-            <div class="profile-links">
-              <strong>@facebook.get.fullName</strong><br/>
-              @facebook.get.email<br/>
-              <a href="@routes.ProfileController.setOption("avatar", "facebook")">Use your Facebook profile image as your avatar.</a>
-            </div>
-          } else {
-            @defining(controllers.auth.routes.AuthenticationController.authenticateSocial("facebook")) { url =>
-              <a href="@url" class="provider facebook">
-                <img src="@routes.Assets.at("images/providers/facebook.png")">
-              </a>
-              <div class="profile-links">
-                <a href="@url">Connect your Facebook account</a>
+      @services.user.SocialAuthProviders.providers.map { provider =>
+        @defining(profiles.find(_.loginInfo.providerID == provider._1)) { profile =>
+          <div class="profile-detail">
+            @if(profile.isDefined) {
+              <div class="provider @provider._1">
+                <img src="@routes.Assets.at("images/providers/" + provider._1 + ".png")">
               </div>
-            }
-          }
-          <div class="clear"></div>
-        </div>
-      }
-
-      @defining(profiles.find(_.loginInfo.providerID == "google")) { google =>
-        <div class="profile-detail">
-          @if(google.isDefined) {
-            <div class="provider google">
-              <img src="@routes.Assets.at("images/providers/google.png")">
-            </div>
-            <div class="profile-links">
-              <strong>@google.get.fullName</strong><br/>
-              @google.get.email<br/>
-              <a href="@routes.ProfileController.setOption("avatar", "google")">Use your Google+ profile image as your avatar.</a>
-            </div>
-          } else {
-            @defining(controllers.auth.routes.AuthenticationController.authenticateSocial("google")) { url =>
-              <a href="@url" class="provider google">
-                <img src="@routes.Assets.at("images/providers/google.png")">
-              </a>
               <div class="profile-links">
-                <a href="@url">Connect your Google account</a>
+                <strong>@profile.get.fullName</strong><br/>
+                @profile.get.email<br/>
+                <a href="@routes.ProfileController.setOption("avatar", provider._1)">@Messages("profile.use.image.as.avatar", provider._2)</a>
               </div>
+            } else {
+              @defining(controllers.auth.routes.AuthenticationController.authenticateSocial(provider._1)) { url =>
+                <a href="@url" class="provider @provider._1">
+                  <img src="@routes.Assets.at("images/providers/" + provider._1 + ".png")">
+                </a>
+                <div class="profile-links">
+                  <a href="@url">@Messages("profile.connect.account", provider._2)</a>
+                </div>
+              }
             }
-          }
-          <div class="clear"></div>
-        </div>
-      }
-
-      @defining(profiles.find(_.loginInfo.providerID == "twitter")) { twitter =>
-        <div class="profile-detail">
-          @if(twitter.isDefined) {
-            <div class="provider twitter">
-              <img src="@routes.Assets.at("images/providers/twitter.png")">
-            </div>
-            <div class="profile-links">
-              <strong>@twitter.get.fullName.map(n => s"@$n")</strong><br/>
-              @twitter.get.email<br/>
-              <a href="@routes.ProfileController.setOption("avatar", "twitter")">Use your Twitter profile image as your avatar.</a>
-            </div>
-          } else {
-            @defining(controllers.auth.routes.AuthenticationController.authenticateSocial("twitter")) { url =>
-              <a href="@url" class="provider twitter">
-                <img src="@routes.Assets.at("images/providers/twitter.png")">
-              </a>
-              <div class="profile-links">
-                <a href="@url">Connect your Twitter account</a>
-              </div>
-            }
-          }
-          <div class="clear"></div>
-        </div>
+            <div class="clear"></div>
+          </div>
+        }
       }
     }
   </div>

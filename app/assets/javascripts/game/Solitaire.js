@@ -9,7 +9,30 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
       this.game = null;
       this.ws = new Websocket(cfg.wsUrl, this);
     }
+
+    var self = this;
+    window.onbeforeunload = function() {
+      return self.onBeforeUnload();
+    };
+    window.onunload = function() {
+      return self.onUnload();
+    };
   }
+
+  Solitaire.prototype.onBeforeUnload = function() {
+    if(this.game !== null) {
+      console.log(this.game);
+      return 'You\'re playing a game. Are you sure you\'d like to resign?';
+    }
+  };
+
+  Solitaire.prototype.onUnload = function() {
+    if(this.game !== null) {
+      if(this.game.id !== undefined) {
+        this.game.sendMessage('ResignGame', {id: this.game.id});
+      }
+    }
+  };
 
   Solitaire.prototype.onConnect = function() {
     if(this.game === null) {

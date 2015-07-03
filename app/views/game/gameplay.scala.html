@@ -6,7 +6,7 @@
   seed: Option[Int] = None,
   offline: Boolean = false,
   routesMap: utils.play.RoutesMap = utils.play.RoutesMap.dynamic
-)(implicit session: Session, flash: Flash)@layout.basic(
+)(implicit session: Session, flash: Flash, messages: Messages)@layout.basic(
   s"$title - ${utils.Config.projectName}",
   stylesheets = Seq(routesMap("css-root", "solitaire.gg.min.css")),
   bodyClass = Some(s"noscroll background-${user.preferences.color}"),

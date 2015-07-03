@@ -8,9 +8,9 @@
       if(elements.colors.hasOwnProperty(elIndex)) {
         var el = elements.colors[elIndex];
         if(el.id === 'color-' + color) {
-          el.parentElement.className = 'swatch-border active';
+          el.className = 'game-option background-color active';
         } else {
-          el.parentElement.className = 'swatch-border';
+          el.className = 'game-option background-color';
         }
       }
     }
@@ -57,6 +57,9 @@
 
     function onClick(evt) {
       var color = evt.target.id.substr(6);
+      if(color === '') {
+        color = evt.target.parentElement.id.substr(6);
+      }
       selectColor(color);
     }
 

@@ -38,8 +38,8 @@
 
   <div id="static-options-panel">
     <div id="color-list"> @for(color <- ui.Colors.all) {
-      <div class="game-option background-color @{ if(color._1 == user.preferences.color) { " active" } else { "" } }">
-        <div id="color-@color._1" class="background-@color._1"></div>
+      <div id="color-@color._1" class="game-option background-color @{ if(color._1 == user.preferences.color) { " active" } else { "" } }">
+        <div class="background-@color._1"></div>
       </div> }
     </div>
     <div class="action-buttons">

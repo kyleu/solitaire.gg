@@ -6,24 +6,24 @@
     <div class="rules-help">
       <h2>
         @rules.title
-        <a class="play-link color-@color" href="@routesMap("new-game", rules.id)" title="Play Now">&#9654;</a>
+        <a class="play-link color-@color" href="@routesMap("new-game", rules.id)" title="@Messages("help.play.now")">&#9654;</a>
       </h2>
       <div class="description"><em>@Html(services.help.GameRulesHelpService.description(rules.description))</em></div>
 
       @if(rules.aka.nonEmpty) {
-      <h3>Also Known As</h3>
+      <h3>@Messages("help.also.known.as")</h3>
       <div class="objective">@rules.aka.map { aka =>
         @rulesLink(aka._1, aka._2)<br>
       }</div>
       }
 
-      <h3>Objective</h3>
+      <h3>@Messages("help.objective")</h3>
       <div class="objective">@Html(services.help.ObjectiveHelpService.objective(rules))</div>
 
-      <h3>Deck</h3>
+      <h3>@Messages("help.deck")</h3>
       <div class="deck">@Html(services.help.DeckOptionsHelpService.deck(rules.deckOptions).mkString("<br>"))</div>
 
-      <h3>Layout</h3>
+      <h3>@Messages("help.layout")</h3>
       @defining(services.help.GameRulesHelpService.layout(rules)) { layout =>
       <ul class="layout">
         @for(pileSet <- layout) {
@@ -42,7 +42,7 @@
       }
 
       @rules.like.map { l =>
-      <h3>Original Game</h3>
+      <h3>@Messages("help.original.game")</h3>
       @defining(models.rules.GameRulesSet.allByIdWithAliases(l)) { like =>
       <ul>
         <li>
@@ -57,7 +57,7 @@
 
       @defining(models.rules.GameRulesSet.completed.filter(x => rules.related.contains(x._2.id))) { rels =>
       @if(rels.nonEmpty) {
-      <h3>Related Games</h3>
+      <h3>@Messages("help.related.games")</h3>
       <ul>
         @rels.map { rel =>
           <li>
@@ -72,7 +72,7 @@
       }
 
       @if(rules.links.nonEmpty) {
-      <h3>Web Resources</h3>
+      <h3>@Messages("help.web.resources")</h3>
       <ul>
         @rules.links.map { l =>
         <li>

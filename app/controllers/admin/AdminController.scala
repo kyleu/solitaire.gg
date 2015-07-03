@@ -34,7 +34,7 @@ class AdminController @javax.inject.Inject() (
 
   def enable = withSession { implicit request =>
     Database.execute(UserQueries.AddRole(request.identity.id, Role.Admin)).map { x =>
-      UserCache.cacheUser(request.identity.copy(roles = request.identity.roles + Role.Admin))
+      UserCache.removeUser(request.identity.id)
       Ok("OK")
     }
   }

@@ -41,20 +41,20 @@ class ProfileController @javax.inject.Inject() (
         urlFuture.flatMap { url =>
           val prefs = request.identity.preferences.copy(avatar = url)
           Database.execute(UserQueries.SetPreferences(request.identity.id, prefs)).map { i =>
-            UserCache.cacheUser(request.identity.copy(preferences = prefs))
+            UserCache.removeUser(request.identity.id)
             Redirect(controllers.routes.ProfileController.profile())
           }
         }
       case "color" =>
         val prefs = request.identity.preferences.copy(color = value)
         Database.execute(UserQueries.SetPreferences(request.identity.id, prefs)).map { x =>
-          UserCache.cacheUser(request.identity.copy(preferences = prefs))
+          UserCache.removeUser(request.identity.id)
           Ok("OK")
         }
       case "username" =>
         val name = if (value.isEmpty) { None } else { Some(value) }
         Database.execute(UserQueries.SetUsername(request.identity.id, name)).map { i =>
-          UserCache.cacheUser(request.identity.copy(username = name))
+          UserCache.removeUser(request.identity.id)
           Redirect(controllers.routes.ProfileController.profile())
         }.recoverWith {
           case x => Future.successful {

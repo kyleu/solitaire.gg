@@ -17,8 +17,21 @@ index.play.now = Play Solitaire
 
 index.games.popular = Popular Games
 index.games.completed= All Games
-index.games.in.progress = Works in Progress
 index.games.unstarted = Unstarted Games
+
+# Gameplay
+options.cards.layout = Card Layout
+options.cards.face.cards = Face Cards
+options.cards.ranks = Ranks
+options.cards.suits = Suits
+options.cards.auto.flip = Auto Flip
+options.background.color = Background Color
+
+# Profile
+profile.create.account = Create a local account
+profile.sign.out = Sign Out
+profile.use.image.as.avatar = Use your {0} profile image as your avatar
+profile.connect.account = Connect your {0} account
 
 # Email
 email.from = Solitaire.gg <solitaire@solitaire.gg>
@@ -28,6 +41,14 @@ email.welcome.body.text = Welcome to Solitaire.gg! We're so glad you're here.
 
 # Help
 help.general = Help for Solitaire.gg.
+help.play.now = Play Now
+help.also.known.as = Also Known As
+help.objective = Objective
+help.deck = Deck
+help.layout = Layout
+help.original.game = Original Game
+help.related.games = Related Games
+help.web.resources = Web Resources
 
 # Rank Match Rule Help
 help.rank.match.rule.none = none

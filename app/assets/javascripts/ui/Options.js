@@ -1,5 +1,5 @@
 /* global define:false */
-define(['ui/Buttons', 'ui/Colors', 'ui/Panels'], function(Buttons, Colors, Panels) {
+define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels) {
   var Options = function(game) {
     this.game = game;
     this.elements = {
@@ -14,9 +14,7 @@ define(['ui/Buttons', 'ui/Colors', 'ui/Panels'], function(Buttons, Colors, Panel
     };
     game.menusVisible = this.elements.topBar.style.display !== 'none';
     this.buttons = new Buttons(game, this);
-    Colors.init(function(color) {
-      game.send('SetPreference', { 'name': 'color', 'value': color });
-    });
+    this.theme = new Theme(game);
   };
 
   Options.prototype.setGame = function(state) {

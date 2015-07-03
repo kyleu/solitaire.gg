@@ -22,7 +22,7 @@ trait GameServicePreferenceHelper { this: GameService =>
           case _ => log.errorThenThrow(s"Unhandled preference [$name] for user [$userId] with value [$value].")
         }
         Database.execute(UserQueries.SetPreferences(userId, newPrefs)).map { x =>
-          UserCache.cacheUser(u.copy(preferences = newPrefs))
+          UserCache.removeUser(userId)
         }
       case None => throw new IllegalArgumentException(s"Cannot find user [$userId].")
     }
