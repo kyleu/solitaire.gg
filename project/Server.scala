@@ -1,3 +1,4 @@
+import com.typesafe.sbt.jshint.Import.JshintKeys
 import sbt._
 import sbt.Keys._
 import sbt.Project.projectToRef
@@ -59,6 +60,7 @@ object Server {
     includeFilter in (Assets, LessKeys.less) := "*.less",
     excludeFilter in (Assets, LessKeys.less) := "_*.less",
     LessKeys.compress in Assets := true,
+    JshintKeys.config := Some(new java.io.File("conf/.jshintrc")),
 
     // Build Info
     sourceGenerators in Compile <+= buildInfo,

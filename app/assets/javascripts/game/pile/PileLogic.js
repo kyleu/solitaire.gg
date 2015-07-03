@@ -1,6 +1,7 @@
+/* global define:false */
 define(['game/Rank'], function(Rank) {
   function upBy(i, l, r, lowRank) {
-    if (lowRank == Rank.ace.value && l == Rank.ace) {
+    if (lowRank === Rank.ace.value && l === Rank.ace) {
       switch(i) {
         case 1:
           return r === Rank.two;
@@ -11,7 +12,7 @@ define(['game/Rank'], function(Rank) {
         case 4:
           return r === Rank.five;
         default:
-          throw "?";
+          throw '?';
       }
     } else {
       return l.value === r.value - i;
@@ -19,7 +20,7 @@ define(['game/Rank'], function(Rank) {
   }
 
   function downBy(i, l, r, lowRank) {
-    if (lowRank == Rank.ace.value && l == Rank.ace) {
+    if (lowRank === Rank.ace.value && l === Rank.ace) {
       switch(i) {
         case 1:
           return r === Rank.king;
@@ -30,64 +31,64 @@ define(['game/Rank'], function(Rank) {
         case 4:
           return r === Rank.ten;
         default:
-          throw "?";
+          throw '?';
       }
     } else {
-      return l.value == r.value + i;
+      return l.value === r.value + i;
     }
   }
 
 
   return {
-    "rank": function(rule, l, r, lowRank) {
+    'rank': function(rule, l, r, lowRank) {
       switch(rule) {
-        case "None":
+        case 'None':
           return false;
-        case "Up":
+        case 'Up':
           return upBy(1, l, r, lowRank);
-        case "Down":
+        case 'Down':
           return downBy(1, l, r, lowRank);
-        case "Equal":
+        case 'Equal':
           return l === r;
-        case "UpOrDown":
+        case 'UpOrDown':
           return upBy(1, l, r, lowRank) || downBy(1, l, r, lowRank);
-        case "UpBy2":
+        case 'UpBy2':
           return upBy(2, l, r, lowRank);
-        case "DownBy2":
+        case 'DownBy2':
           return downBy(2, l, r, lowRank);
-        case "UpBy3":
+        case 'UpBy3':
           return upBy(3, l, r, lowRank);
-        case "DownBy3":
+        case 'DownBy3':
           return downBy(3, l, r, lowRank);
-        case "UpBy4":
+        case 'UpBy4':
           return upBy(4, l, r, lowRank);
-        case "DownBy4":
+        case 'DownBy4':
           return downBy(4, l, r, lowRank);
-        case "UpByPileIndex":
-          throw "?";
-        case "Any":
+        case 'UpByPileIndex':
+          throw '?';
+        case 'Any':
           return true;
         default:
-          throw "?";
+          throw '?';
       }
     },
 
-    "suit": function(rule, l, r) {
+    'suit': function(rule, l, r) {
       switch(rule) {
-        case "None":
+        case 'None':
           return false;
-        case "SameSuit":
+        case 'SameSuit':
           return l === r;
-        case "DifferentSuits":
+        case 'DifferentSuits':
           return l !== r;
-        case "SameColor":
+        case 'SameColor':
           return l.color === r.color;
-        case "AlternatingColors":
+        case 'AlternatingColors':
           return l.color !== r.color;
-        case "Any":
+        case 'Any':
           return true;
         default:
-          throw "?";
+          throw '?';
       }
     }
   };

@@ -1,23 +1,22 @@
+/* global define:false */
+/* global Phaser:false */
+/* global _:false */
 define(['game/pile/PileLayout', 'game/pile/PileHelpers', 'game/pile/DragFromConstraints'], function (PileLayout, PileHelpers, DragFromConstraints) {
-  "use strict";
+  'use strict';
 
   function getConstraint(key) {
-    var ret = DragFromConstraints[key === undefined ? "never" : key];
+    var ret = DragFromConstraints[key === undefined ? 'never' : key];
     if(ret === undefined) {
-      throw "Invalid dragFrom constraint [" + key + "].";
+      throw 'Invalid dragFrom constraint [' + key + '].';
     } else {
       return ret;
     }
   }
 
   function canSelectPile(p) {
-    var valid = false;
-    for(var moveIndex in p.game.possibleMoves) {
-      var move = p.game.possibleMoves[moveIndex];
-      if(move.moveType === "select-pile" && move.sourcePile === p.id) {
-        valid = true;
-      }
-    }
+    var valid = _.find(p.game.possibleMoves, function(move) {
+      return move.moveType === 'select-pile' && move.sourcePile === p.id;
+    }) !== undefined;
     return valid;
   }
 
@@ -67,7 +66,7 @@ define(['game/pile/PileLayout', 'game/pile/PileHelpers', 'game/pile/DragFromCons
 
   Pile.prototype.removeCard = function(card) {
     if(card.pile !== this) {
-      throw "Provided card is not a part of this pile.";
+      throw 'Provided card is not a part of this pile.';
     }
 
     card.pile = null;
@@ -76,9 +75,9 @@ define(['game/pile/PileLayout', 'game/pile/PileHelpers', 'game/pile/DragFromCons
     var index = this.cards.indexOf(card);
     this.cards.splice(index, 1);
 
-    for(var cardIndex in this.cards) {
-      this.cards[cardIndex].pileIndex = parseInt(cardIndex);
-    }
+    _.each(this.cards, function(c, idx) {
+      c.pileIndex = idx;
+    });
 
     PileLayout.cardRemoved(this, card);
   };

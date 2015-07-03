@@ -1,3 +1,5 @@
+/* global define:false */
+/* global _:false */
 define(['utils/Config', 'game/Card', 'game/pile/Pile', 'game/helpers/CardImages'], function(cfg, Card, Pile, CardImages) {
   var GameplayHelper = function(game) {
     this.game = game;
@@ -9,29 +11,29 @@ define(['utils/Config', 'game/Card', 'game/pile/Pile', 'game/helpers/CardImages'
 
   GameplayHelper.prototype.sendInitialMessage = function() {
     if(cfg.initialAction === undefined) {
-      cfg.initialAction = ["start"];
+      cfg.initialAction = ['start'];
     }
 
     switch(cfg.initialAction[0]) {
-      case "start":
+      case 'start':
         if(cfg.seed === undefined) {
-          this.game.send("StartGame", {"rules": cfg.rules});
+          this.game.send('StartGame', {'rules': cfg.rules});
         } else {
-          this.game.send("StartGame", {"rules": cfg.rules, "seed": cfg.seed});
+          this.game.send('StartGame', {'rules': cfg.rules, 'seed': cfg.seed});
         }
         break;
-      case "join":
-        this.game.send("JoinGame", {"id": cfg.initialAction[1]});
+      case 'join':
+        this.game.send('JoinGame', {'id': cfg.initialAction[1]});
         break;
-      case "observe":
+      case 'observe':
         if(cfg.initialAction.length === 2) {
-          this.game.send("ObserveGame", {"id": cfg.initialAction[1]});
+          this.game.send('ObserveGame', {'id': cfg.initialAction[1]});
         } else {
-          this.game.send("ObserveGame", {"id": cfg.initialAction[1], "as": cfg.initialAction[2]});
+          this.game.send('ObserveGame', {'id': cfg.initialAction[1], 'as': cfg.initialAction[2]});
         }
         break;
       default:
-        alert("Invalid initial action [" + cfg.initialAction + "].");
+        alert('Invalid initial action [' + cfg.initialAction + '].');
     }
   };
 
@@ -42,31 +44,27 @@ define(['utils/Config', 'game/Card', 'game/pile/Pile', 'game/helpers/CardImages'
 
   GameplayHelper.prototype.loadPileSets = function(pileSets) {
     this.game.pileSets = pileSets;
-    for(var pileSetIndex in pileSets) {
-      var pileSet = pileSets[pileSetIndex];
-      for(var pileIndex in pileSet.piles) {
-        var pile = pileSet.piles[pileIndex];
-        var pileObj = new Pile(this.game, pile.id, pileSet, pile.options);
-        this.game.playmat.addPile(pileObj);
-      }
-    }
+    var g = this.game;
+    _.each(pileSets, function(pileSet) {
+      _.each(pileSet.piles, function(pile) {
+        var pileObj = new Pile(g, pile.id, pileSet, pile.options);
+        g.playmat.addPile(pileObj);
+      });
+    });
   };
 
   GameplayHelper.prototype.loadCards = function(pileSets, originalOrder) {
     var cards = {};
-
-    for(var pileSetIndex in pileSets) {
-      var pileSet = pileSets[pileSetIndex];
-      for(var pileIndex in pileSet.piles) {
-        var pile = pileSet.piles[pileIndex];
-        var pileObj = this.game.piles[pile.id];
-        for(var cardIndex in pile.cards) {
-          var card = pile.cards[cardIndex];
-          var cardObj = new Card(this.game, card.id, card.r, card.s, card.u);
+    var g = this.game;
+    _.each(pileSets, function(pileSet) {
+      _.each(pileSet.piles, function(pile) {
+        var pileObj = g.piles[pile.id];
+        _.each(pile.cards, function(card, cardIndex) {
+          var cardObj = new Card(g, card.id, card.r, card.s, card.u);
           cards[card.id] = [cardObj, pileObj, cardIndex];
-        }
-      }
-    }
+        });
+      });
+    });
 
     _.each(originalOrder, function(cardId, cardIndex) {
       var c = cards[cardId];

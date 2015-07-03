@@ -1,10 +1,12 @@
-define(["utils/Config", "game/state/GameState", "game/state/LoadingScreen"], function (cfg, GameState, LoadingScreen) {
-  "use strict";
+/* global define:false */
+/* global Phaser:false */
+define(['utils/Config', 'game/state/GameState', 'game/state/LoadingScreen'], function (cfg, GameState, LoadingScreen) {
+  'use strict';
 
   function InitialState(game) {
     GameState.call(this, 'initial', game);
 
-    this.assetRoot = "/";
+    this.assetRoot = '/';
     if(cfg.assetRoot !== undefined) {
       this.assetRoot = cfg.assetRoot;
     }
@@ -32,7 +34,7 @@ define(["utils/Config", "game/state/GameState", "game/state/LoadingScreen"], fun
       g.state.getCurrentState().resize();
     };
 
-    window.addEventListener("resize", function() {
+    window.addEventListener('resize', function() {
       g.scale.setGameSize(window.innerWidth, window.innerHeight);
       if(g.playmat !== undefined) {
         resize();
@@ -43,7 +45,7 @@ define(["utils/Config", "game/state/GameState", "game/state/LoadingScreen"], fun
       this.game.add.plugin(Phaser.Plugin.Debug);
     }
 
-    this.game.send("GetVersion", {});
+    this.game.send('GetVersion', {});
     this.game.state.start('loading');
   };
 

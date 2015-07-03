@@ -1,5 +1,7 @@
+/* global define:false */
+/* global Phaser:false */
 define(['utils/Config', 'game/Rank', 'game/Suit', 'game/helpers/CardInput', 'game/helpers/Tweens'], function (cfg, Rank, Suit, CardInput, Tweens) {
-  "use strict";
+  'use strict';
 
   function Card(game, id, rank, suit, faceUp) {
     this.id = id;
@@ -80,7 +82,7 @@ define(['utils/Config', 'game/Rank', 'game/Suit', 'game/helpers/CardInput', 'gam
   };
 
   Card.prototype.toString = function() {
-    return this.rank.char + this.suit.char + (this.faceUp ? "+" : "-") +": " + this.id.substring(0, 8);
+    return this.rank.char + this.suit.char + (this.faceUp ? '+' : '-') +': ' + this.id.substring(0, 8);
   };
 
   return Card;

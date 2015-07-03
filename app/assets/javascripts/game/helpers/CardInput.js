@@ -1,12 +1,14 @@
+/* global define:false */
+/* global _:false */
 define(['game/helpers/Tweens'], function (Tweens) {
-  "use strict";
+  'use strict';
 
   var dragDeadZone = 10;
   var doubleClickThresholdMs = 1000;
 
   function canSelectCard(card) {
     var valid = _.some(card.game.possibleMoves, function(move) {
-      if(move.moveType === "select-card" && move.sourcePile === card.pile.id) {
+      if(move.moveType === 'select-card' && move.sourcePile === card.pile.id) {
         if(move.cards.length === 1 && move.cards[0] === card.id) {
           return true;
         }
@@ -18,7 +20,7 @@ define(['game/helpers/Tweens'], function (Tweens) {
 
   function getMoveTarget(card) {
     var move = _.find(card.game.possibleMoves, function(move) {
-      if(move.moveType === "move-cards" && move.sourcePile === card.pile.id) {
+      if(move.moveType === 'move-cards' && move.sourcePile === card.pile.id) {
         if(move.cards.length === 1 && move.cards[0] === card.id) {
           return true;
         }
@@ -36,7 +38,7 @@ define(['game/helpers/Tweens'], function (Tweens) {
       if(card.lastClicked !== undefined && (now - card.lastClicked) < doubleClickThresholdMs) {
         var moveTarget = getMoveTarget(card);
         if(moveTarget !== null && moveTarget !== undefined) {
-          card.game.send("MoveCards", {cards: [card.id], src: card.pile.id, tgt: moveTarget.targetPile});
+          card.game.send('MoveCards', {cards: [card.id], src: card.pile.id, tgt: moveTarget.targetPile});
         }
         card.lastClicked = undefined;
       } else {
@@ -84,7 +86,10 @@ define(['game/helpers/Tweens'], function (Tweens) {
         var yDelta = Math.abs(card.y - card.inputOriginalPosition.y);
         if(xDelta > dragDeadZone || yDelta > dragDeadZone) {
           // Dragged
-          //card.game.add.tween(card).to({x: card.inputOriginalPosition.x, y: card.inputOriginalPosition.y, angle: 0}, 500, Phaser.Easing.Quadratic.InOut, true);
+          //card.game.add.tween(card).to({
+          //  x: card.inputOriginalPosition.x,
+          //  y: card.inputOriginalPosition.y, angle: 0
+          //}, 500, Phaser.Easing.Quadratic.InOut, true);
           Tweens.tweenCardTo(card, card.inputOriginalPosition.x, card.inputOriginalPosition.y, 0);
         } else {
           click(card);
@@ -93,7 +98,7 @@ define(['game/helpers/Tweens'], function (Tweens) {
         card.actualX = null;
         card.inputOriginalPosition = null;
       } else {
-        throw "!1";
+        throw '!1';
       }
     },
 

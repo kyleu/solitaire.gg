@@ -1,14 +1,16 @@
+/* global define:false */
+/* global Phaser:false */
 define(['ui/Modal'], function (Modal) {
-  "use strict";
+  'use strict';
 
   function toggleDebug() {
-    var debugPanels = document.getElementsByClassName("pdebug");
-    if(debugPanels.length == 1) {
+    var debugPanels = document.getElementsByClassName('pdebug');
+    if(debugPanels.length === 1) {
       console.log(debugPanels[0].style.display);
-      if(debugPanels[0].style.display === "none" || debugPanels[0].style.display === "") {
-        debugPanels[0].style.display = "block";
+      if(debugPanels[0].style.display === 'none' || debugPanels[0].style.display === '') {
+        debugPanels[0].style.display = 'block';
       } else {
-        debugPanels[0].style.display = "none";
+        debugPanels[0].style.display = 'none';
       }
     }
   }
@@ -28,14 +30,14 @@ define(['ui/Modal'], function (Modal) {
     var undoKey = g.input.keyboard.addKey(Phaser.Keyboard.Z);
     undoKey.onDown.add(function() {
       if(g.options.undosAvailable > 0) {
-        g.send("Undo", {});
+        g.send('Undo', {});
       }
     });
 
     var redoKey = g.input.keyboard.addKey(Phaser.Keyboard.Y);
     redoKey.onDown.add(function() {
       if(g.options.redosAvailable > 0) {
-        g.send("Redo", {});
+        g.send('Redo', {});
       }
     });
 

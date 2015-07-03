@@ -1,11 +1,13 @@
+/* global define:false */
+/* global _:false */
 define(['game/helpers/Dimensions'], function (getDimensions) {
-  "use strict";
+  'use strict';
 
   var margin = 0.7;
   var padding = 0.2;
 
   function calculateLayout(pileSets, layout /* , aspectRatio */) {
-    //console.log("Creating layout for [" + pileSets.length + "] pile sets using layout [" + layout + "] with aspect ratio of [" + aspectRatio + "].");
+    //console.log('Creating layout for [' + pileSets.length + '] pile sets using layout [' + layout + '] with aspect ratio of [' + aspectRatio + '].');
     var locations = {};
     var xOffset = margin;
     var yOffset = 0.6;
@@ -27,26 +29,54 @@ define(['game/helpers/Dimensions'], function (getDimensions) {
     function processCharacter(c) {
       var pileSet;
       switch(c) {
-        case 's': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "stock"; }); break;
-        case 'w': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "waste"; }); break;
-        case 'f': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "foundation"; }); break;
-        case 't': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "tableau"; }); break;
-        case 'c': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "cell"; }); break;
-        case 'r': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "reserve"; }); break;
-        case 'p': pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === "pyramid"; }); break;
+        case 's':
+          pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === 'stock'; });
+          break;
+        case 'w':
+          pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === 'waste'; });
+          break;
+        case 'f':
+          pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === 'foundation'; });
+          break;
+        case 't':
+          pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === 'tableau'; });
+          break;
+        case 'c':
+          pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === 'cell'; });
+          break;
+        case 'r':
+          pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === 'reserve'; });
+          break;
+        case 'p':
+          pileSet = _.find(remainingPileSets, function(ps) { return ps.behavior === 'pyramid'; });
+          break;
         default:
       }
       switch(c) {
-        case ':': xOffset += 1 + padding; break;
-        case '.': xOffset += (1 + padding) / 2; break;
-        case '|': newRow(); break;
-        case '2': currentDivisor = 2; break;
-        case '3': currentDivisor = 3; break;
-        case '4': currentDivisor = 4; break;
-        case '5': currentDivisor = 5; break;
+        case ':':
+          xOffset += 1 + padding;
+          break;
+        case '.':
+          xOffset += (1 + padding) / 2;
+          break;
+        case '|':
+          newRow();
+          break;
+        case '2':
+          currentDivisor = 2;
+          break;
+        case '3':
+          currentDivisor = 3;
+          break;
+        case '4':
+          currentDivisor = 4;
+          break;
+        case '5':
+          currentDivisor = 5;
+          break;
         default:
           if(pileSet === undefined) {
-            throw "Unable to find set matching [" + c + "]";
+            throw 'Unable to find set matching [' + c + ']';
           }
           remainingPileSets = _.without(remainingPileSets, pileSet);
           pileSet.position = [xOffset - 0.5, yOffset - 0.5];
@@ -54,14 +84,14 @@ define(['game/helpers/Dimensions'], function (getDimensions) {
           //console.log(pileSet);
           if(pileSet.visible !== undefined && !pileSet.visible) { // Hide this pile
             _.each(pileSet.piles, function(pile, pileIndex) {
-              //console.log("Adding [" + pile.id + "]!");
+              //console.log('Adding [' + pile.id + ']!');
               locations[pile.id] = {x: (pileIndex * (1 + padding)) + 0.5, y: -10};
             });
           } else {
             if(pileSetDimensions[1] > currentRowMaxHeight) {
               currentRowMaxHeight = pileSetDimensions[1];
             }
-            if(pileSet.behavior === "pyramid") {
+            if(pileSet.behavior === 'pyramid') {
               var currentRow = 1;
               var rowCounter = 0;
               xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding);
@@ -102,7 +132,7 @@ define(['game/helpers/Dimensions'], function (getDimensions) {
       processCharacter(char);
     });
     newRow();
-    return { "width": maxWidth - margin + padding, "height": yOffset - 0.5, "locations": locations };
+    return { width: maxWidth - margin + padding, height: yOffset - 0.5, locations: locations };
   }
   return calculateLayout;
 });

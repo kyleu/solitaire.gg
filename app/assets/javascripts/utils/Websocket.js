@@ -1,5 +1,7 @@
+/* global define:false */
+/* global _:false */
 define(['utils/Config'], function (cfg) {
-  "use strict";
+  'use strict';
 
   function Websocket(url, context) {
     this.url = url;
@@ -16,32 +18,27 @@ define(['utils/Config'], function (cfg) {
     };
     ws.onmessage = function(event) {
       var json = JSON.parse(event.data);
-      if(json.c === "Pong") {
-        //console.log("Received message [Pong].");
-      } else if(json.c === "MessageSet") {
-        var messages = "";
-        for(var messageIndex in json.v.messages) {
+      if(json.c === 'MessageSet') {
+        var messages = '';
+        _.each(json.v.messages, function(message, messageIndex) {
           if(messageIndex > 0) {
-            messages += ", ";
+            messages += ', ';
           }
-          messages += json.v.messages[messageIndex].c;
-        }
-        // console.log("Received message [MessageSet] containing [" + messages + "].");
-      } else {
-        // console.log("Received message [" + json.c + "].");
+          messages += message.c;
+        });
       }
       context.onMessage(json.c, json.v);
     };
     ws.onclose = function() {
       me.connected = false;
       setTimeout(function() {
-        console.info("Websocket connection closed. Attempting to reconnect.");
+        console.info('Websocket connection closed. Attempting to reconnect.');
         me.connect(context);
       }, 5000);
     };
     ws.onerror = function(err) {
       me.connected = false;
-      console.error("Received error from websocket connection [" + err + "].");
+      console.error('Received error from websocket connection [' + err + '].');
     };
     this.connection = ws;
   };
@@ -51,10 +48,10 @@ define(['utils/Config'], function (cfg) {
   };
 
   Websocket.prototype.send = function(c, v) {
-    var msg = { "c": c, "v": v };
+    var msg = { c: c, v: v };
     var s = null;
     if(cfg.debug) {
-      // console.log("Sending message [" + c + "].");
+      // console.log('Sending message [' + c + '].');
       s = JSON.stringify(msg, undefined, 2);
     } else {
       s = JSON.stringify(msg);

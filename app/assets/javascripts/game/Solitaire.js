@@ -1,5 +1,6 @@
+/* global define:false */
 define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocket, Game) {
-  "use strict";
+  'use strict';
 
   function Solitaire() {
     if(cfg.offline) {
@@ -14,13 +15,13 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
     if(this.game === null) {
       this.game = new Game(this.ws);
     } else {
-      this.game.onMessage("Reconnect", {});
+      this.game.onMessage('Reconnect', {});
     }
   };
 
   Solitaire.prototype.onMessage = function(c, v) {
     if(this.game === null) {
-      console.log("No game available for message [" + c + "].");
+      console.log('No game available for message [' + c + '].');
     } else {
       this.game.onMessage(c, v);
     }

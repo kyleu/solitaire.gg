@@ -1,5 +1,7 @@
+/* global define:false */
+/* global Phaser:false */
 define([], function() {
-  "use strict";
+  'use strict';
 
   var lastClickTime = 0;
 

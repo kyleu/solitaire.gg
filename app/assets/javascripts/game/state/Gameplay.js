@@ -1,9 +1,12 @@
+/* global define:false */
+/* global Phaser:false */
+/* global _:false */
 define([
   'utils/Config', 'game/Rank', 'game/Suit', 'game/Card', 'game/pile/Pile',
   'game/helpers/Backdrop', 'game/helpers/Display', 'game/helpers/Keyboard', 'game/helpers/Tweens',
   'game/Playmat', 'game/state/GameState', 'game/state/GameplayHelper'
 ], function (cfg, Rank, Suit, Card, Pile, Backdrop, Display, Keyboard, Tweens, Playmat, GameState, GameplayHelper) {
-  "use strict";
+  'use strict';
 
   function Gameplay(game) {
     GameState.call(this, 'gameplay', game);
@@ -28,17 +31,18 @@ define([
     this.backdrop = new Backdrop(this.game);
     this.add.existing(this.backdrop.bg);
 
-    this.game.send("Ping", { timestamp: new Date().getTime() });
+    this.game.send('Ping', { timestamp: new Date().getTime() });
     this.game.time.events.loop(Phaser.Timer.SECOND * 10, function() {
-      this.game.send("Ping", { timestamp: new Date().getTime() });
+      this.game.send('Ping', { timestamp: new Date().getTime() });
     }, this);
 
     this.helper.sendInitialMessage();
   };
 
   Gameplay.prototype.onMessage = function(c, v) {
+    var self = this;
     switch(c) {
-      case "GameJoined":
+      case 'GameJoined':
         this.game.playmat = new Playmat(this.game, v.state.pileSets, v.state.layout);
         this.game.id = v.state.gameId;
         this.game.rules = v.state.rules;
@@ -49,15 +53,15 @@ define([
         this.helper.loadCards(v.state.pileSets, v.state.deck.originalOrder);
         this.game.options.setGame(v.state);
         break;
-      case "PossibleMoves":
+      case 'PossibleMoves':
         this.game.possibleMoves = v.moves;
         if(v.moves.length === 0) {
-          alert("No more moves available.");
+          alert('No more moves available.');
         }
         this.game.options.setUndosAvailable(v.undosAvailable);
         this.game.options.setRedosAvailable(v.redosAvailable);
         break;
-      case "CardRevealed":
+      case 'CardRevealed':
         var existing = this.game.cards[v.card.id];
         var wasFaceUp = existing.faceUp;
         existing.rank = Rank.fromChar(v.card.r);
@@ -65,39 +69,39 @@ define([
         if(v.card.u && !wasFaceUp) {
           existing.turnFaceUp();
         } else {
-          console.warn("Reveal received for already revealed card [" + v.card.id + "].");
+          console.warn('Reveal received for already revealed card [' + v.card.id + '].');
         }
         break;
-      case "CardHidden":
+      case 'CardHidden':
         var hidden = this.game.cards[v.id];
         hidden.turnFaceDown();
         break;
-      case "CardMoved":
+      case 'CardMoved':
         this.helper.moveCard(v.card, v.source, v.target, v.turn);
         break;
-      case "CardsMoved":
-        for(var cardIndex in v.cards) {
-          this.helper.moveCard(v.cards[cardIndex], v.source, v.target, v.turn);
-        }
+      case 'CardsMoved':
+        _.each(v.cards, function(movedCard) {
+          self.helper.moveCard(movedCard, v.source, v.target, v.turn);
+        });
         break;
-      case "CardMoveCancelled":
-        for(var cardCancelledIndex in v.cards) {
-          this.game.cards[v.cards[cardCancelledIndex]].cancelDrag();
-        }
+      case 'CardMoveCancelled':
+        _.each(v.cards, function(cancelledCard) {
+          self.game.cards[cancelledCard].cancelDrag();
+        });
         break;
-      case "GameLost":
-        alert("You lose!");
+      case 'GameLost':
+        alert('You lose!');
         break;
-      case "GameWon":
-        alert("You win!");
+      case 'GameWon':
+        alert('You win!');
         break;
-      case "Reconnect":
+      case 'Reconnect':
         this.game.playmat.destroy();
-        this.game.send("JoinGame", { "id": this.game.id });
-        console.log("Reconnecting to game [" + this.game.id + "].");
+        this.game.send('JoinGame', { 'id': this.game.id });
+        console.log('Reconnecting to game [' + this.game.id + '].');
         break;
-      case "ServerError":
-        console.error("Server error encountered.", v);
+      case 'ServerError':
+        console.error('Server error encountered.', v);
         break;
       default:
         GameState.prototype.onMessage.apply(this, arguments);

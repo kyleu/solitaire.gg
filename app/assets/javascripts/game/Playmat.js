@@ -1,5 +1,7 @@
+/* global define:false */
+/* global Phaser:false */
 define(['game/helpers/Layout'], function (calculateLayout) {
-  "use strict";
+  'use strict';
 
   var Playmat = function(game, pileSets, layoutString) {
     Phaser.Group.call(this, game, null, 'playmat');
@@ -43,7 +45,7 @@ define(['game/helpers/Layout'], function (calculateLayout) {
   Playmat.prototype.addPile = function(pile) {
     var pileLocation = this.layout.locations[pile.id];
     if(pileLocation === undefined) {
-      throw "Cannot find location for pile [" + pile.id + "].";
+      throw 'Cannot find location for pile [' + pile.id + '].';
     }
     pile.x = pileLocation.x * this.game.cardSet.cardWidth;
     pile.y = pileLocation.y * this.game.cardSet.cardHeight;
@@ -86,7 +88,7 @@ define(['game/helpers/Layout'], function (calculateLayout) {
 
   Playmat.prototype.emitFor = function(card) {
     if(card.suit.index === undefined) {
-      console.log("Tried to emit for [" + card + "].");
+      console.log('Tried to emit for [' + card + '].');
     } else {
       var e = this.suitEmitter[card.suit.index];
       e.emitX = card.x;

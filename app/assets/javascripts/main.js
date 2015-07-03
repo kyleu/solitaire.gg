@@ -1,3 +1,5 @@
+/* global requirejs:false */
+
 requirejs.config({
   baseUrl: '/assets/javascripts',
   paths: {
@@ -6,7 +8,11 @@ requirejs.config({
 });
 
 requirejs(['game/Solitaire'], function(Solitaire) {
-  "use strict";
+  'use strict';
+
+  let x = 1;
+  const y = 2;
+  console.log(x + y);
 
   if(window.PhaserGlobal === undefined) {
     window.PhaserGlobal = {};

@@ -1,12 +1,15 @@
-define(["game/Rank", "game/Suit"], function(Rank, Suit) {
-  "use strict";
+/* global define:false */
+/* global Phaser:false */
+/* global _:false */
+define(['game/Rank', 'game/Suit'], function(Rank, Suit) {
+  'use strict';
 
   var cardTextures = [];
 
   var blank, suitImages, smallSuitImages, blackRankImages, redRankImages, faceCardImages;
 
   function init(game) {
-    if(cardTextures.length > 0) { throw "Double initialize."; }
+    if(cardTextures.length > 0) { throw 'Double initialize.'; }
 
     blank = new Phaser.Image(game, 0, 0, 'card-blank', 0);
 
@@ -71,7 +74,7 @@ define(["game/Rank", "game/Suit"], function(Rank, Suit) {
           }
         } else {
           _.each(r.locs, function(loc) {
-            tex.draw(suitImage, (loc[0] * 300) + 50, (loc[1] * 500) + 100, 100, 100);
+            tex.draw(suitImage, (loc[0] * 300) + 50, (loc[1] * 500) + 50, 100, 100);
           });
         }
 
@@ -110,7 +113,7 @@ define(["game/Rank", "game/Suit"], function(Rank, Suit) {
 
         break;
       default:
-        throw "?";
+        throw '?';
     }
 
     return tex;

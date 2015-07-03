@@ -1,33 +1,34 @@
+/* global define:false */
+/* global _:false */
 define([], function() {
-  "use strict";
+  'use strict';
 
   var elements = {};
-  var activeColor = "";
+  var activeColor = '';
   var selectCallback = function() {};
 
   function selectColor(color) {
-    for(var elIndex in elements.colors) {
-      var el = elements.colors[elIndex];
-      if(el.id == "color-" + color) {
-        el.parentElement.className = "swatch-border active";
+    _.each(elements.colors, function(el) {
+      if(el.id === 'color-' + color) {
+        el.parentElement.className = 'swatch-border active';
       } else {
-        el.parentElement.className = "swatch-border";
+        el.parentElement.className = 'swatch-border';
       }
-    }
-    var bgIndex = document.body.className.indexOf("background-");
-    document.body.className = document.body.className.substring(0, bgIndex) + " background-" + color;
-    document.getElementById("favicon").href = "/assets/images/ui/favicon/favicon-" + color + ".png";
+    });
+    var bgIndex = document.body.className.indexOf('background-');
+    document.body.className = document.body.className.substring(0, bgIndex) + ' background-' + color;
+    document.getElementById('favicon').href = '/assets/images/ui/favicon/favicon-' + color + '.png';
 
-    var buttons = document.getElementsByClassName("btn");
+    var buttons = document.getElementsByClassName('btn');
     for(var btnIndex = 0; btnIndex < buttons.length; btnIndex++) {
       var btn = buttons.item(btnIndex);
       var cn = btn.className;
-      var colorIndexStart = cn.indexOf("btn-");
-      var colorIndexEnd = cn.indexOf(" ", colorIndexStart);
-      if(colorIndexEnd == -1) {
+      var colorIndexStart = cn.indexOf('btn-');
+      var colorIndexEnd = cn.indexOf(' ', colorIndexStart);
+      if(colorIndexEnd === -1) {
         colorIndexEnd = cn.length;
       }
-      btn.className = cn.substr(0, colorIndexStart) + "btn-" + color + cn.substr(colorIndexEnd);
+      btn.className = cn.substr(0, colorIndexStart) + 'btn-' + color + cn.substr(colorIndexEnd);
     }
 
     if(activeColor !== color) {
@@ -46,7 +47,7 @@ define([], function() {
     }
 
     elements.colors = [];
-    var els = document.getElementsByClassName("swatch");
+    var els = document.getElementsByClassName('swatch');
     for(var elIndex = 0; elIndex < els.length; elIndex++) {
       var el = els.item(elIndex);
       el.onclick = onClick;

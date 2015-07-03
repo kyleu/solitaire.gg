@@ -1,10 +1,11 @@
+/* global define:false */
 define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState'], function (cfg, Gameplay, GameState) {
-  "use strict";
+  'use strict';
 
   function LoadingScreen(game) {
     GameState.call(this, 'loading', game);
 
-    this.assetRoot = "/";
+    this.assetRoot = '/';
     if(cfg.assetRoot !== undefined) {
       this.assetRoot = cfg.assetRoot;
     }
@@ -14,7 +15,7 @@ define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState'], function
   LoadingScreen.prototype.constructor = LoadingScreen;
 
   LoadingScreen.prototype.preload = function() {
-    this.message = this.game.add.text(this.game.world.centerX - 25, this.game.world.centerY - 60, "Loading...", { font: "18px Helvetica", fill: "#ffffff"});
+    this.message = this.game.add.text(this.game.world.centerX - 25, this.game.world.centerY - 60, 'Loading...', { font: '18px Helvetica', fill: '#ffffff'});
 
     this.loadBar = this.add.sprite(this.game.width * 0.1, this.game.world.centerY, 'load-bar');
     this.loadBar.width = this.game.width * 0.8;

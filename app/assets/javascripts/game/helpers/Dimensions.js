@@ -1,5 +1,7 @@
+/* global define:false */
+/* global _:false */
 define(function () {
-  "use strict";
+  'use strict';
 
   var padding = 0.2;
 
@@ -7,10 +9,10 @@ define(function () {
     //if(pileSet.dimensions !== undefined) {
     //  return pileSet.dimensions;
     //}
-    //console.log("Calculating dimensions for: " + pileSet.behavior);
+    //console.log('Calculating dimensions for: ' + pileSet.behavior);
     var ret = [pileSet.piles.length * (1 + padding), 1 + padding];
     switch(pileSet.behavior) {
-      case "waste":
+      case 'waste':
         var wasteCardsShown = pileSet.piles[0].options.cardsShown;
         if(wasteCardsShown === 3) {
           ret = [2 * (1 + padding), ret[1]];
@@ -18,8 +20,8 @@ define(function () {
           ret = [1 + (wasteCardsShown * padding * 1.5), ret[1]];
         }
         break;
-      case "reserve":
-      case "tableau":
+      case 'reserve':
+      case 'tableau':
         var overlappedCards = Math.max(_.max(pileSet.piles, function(pile) { return pile.cards.length; }).cards.length, 1);
         if(divisor > 1) {
           ret = [ret[0] / divisor, 1 + ((overlappedCards) * padding)];
@@ -27,7 +29,7 @@ define(function () {
           ret = [ret[0], 1 + ((overlappedCards) * padding)];
         }
         break;
-      case "pyramid":
+      case 'pyramid':
         var rows = 1;
         var rowCounter = 0;
         _.each(pileSet.piles, function() {

@@ -1,10 +1,12 @@
+/* global define:false */
+/* global Phaser:false */
 define([], function() {
-  "use strict";
+  'use strict';
 
   return {
     tweenCardTo: function(card, x, y, angle, emitWhenComplete) {
       var time = 500;
-      if(x != card.x || y != card.y) {
+      if(x !== card.x || y !== card.y) {
         var xTween = card.game.add.tween(card);
         xTween.to({ x: x, angle: angle }, time, Phaser.Easing.Cubic.Out);
         xTween.onComplete.add(function() {
@@ -16,7 +18,7 @@ define([], function() {
         }, card);
         xTween.start();
 
-        var bounce = (y == card.y) && (Math.abs(card.x - x) > card.width);
+        var bounce = (y === card.y) && (Math.abs(card.x - x) > card.width);
 
         if(bounce) {
           var targetY = y - (card.height * 0.05);

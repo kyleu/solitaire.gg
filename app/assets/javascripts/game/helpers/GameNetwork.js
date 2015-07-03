@@ -1,5 +1,7 @@
+/* global define:false */
+/* global _:false */
 define(['utils/Config'], function (config) {
-  "use strict";
+  'use strict';
 
   var game;
   var recentMoves = [];
@@ -7,14 +9,14 @@ define(['utils/Config'], function (config) {
   return {
     setGame: function(g) { game = g; },
     onMessage: function(c, v) {
-      if(c != "Pong") {
-        //console.log("Message [" + c + "] received with content [" + JSON.stringify(v) + "].");
-      }
+      //if(c !== 'Pong') {
+      //  console.log('Message [' + c + '] received with content [' + JSON.stringify(v) + '].');
+      //}
       switch(c) {
-        case "Pong":
+        case 'Pong':
           game.status.latency = (new Date().getTime() - v.timestamp);
           break;
-        case "VersionResponse":
+        case 'VersionResponse':
           game.status.version = v.version;
           break;
         default:
@@ -43,19 +45,19 @@ define(['utils/Config'], function (config) {
     },
     sendMove: function(move) {
       switch(move.moveType) {
-        case "move-cards":
-          game.send("MoveCards", { cards: move.cards, src: move.sourcePile, tgt: move.targetPile });
+        case 'move-cards':
+          game.send('MoveCards', { cards: move.cards, src: move.sourcePile, tgt: move.targetPile });
           break;
-        case "select-card":
+        case 'select-card':
           var selectedCard = game.cards[move.cards[0]];
           game.cardSelected(selectedCard);
           break;
-        case "select-pile":
+        case 'select-pile':
           var selectedPile = game.piles[move.sourcePile];
           game.pileSelected(selectedPile);
           break;
         default:
-          throw "Unknown move [" + move.moveType + "].";
+          throw 'Unknown move [' + move.moveType + '].';
       }
     },
     send: function(c, v) {

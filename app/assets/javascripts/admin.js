@@ -1,8 +1,11 @@
+/* global nv:false */
+/* global d3:false */
+
 function wireLinks() {
-  "use strict";
-  $(".trace-link").on('click', function(ev) {
+  'use strict';
+  $('.trace-link').on('click', function(ev) {
     var url = ev.currentTarget.href;
-    $("#trace-content").load(url, null, function() {
+    $('#trace-content').load(url, null, function() {
       wireLinks();
     });
     return false;
@@ -10,15 +13,15 @@ function wireLinks() {
 }
 
 function wireSearchButton() {
-  "use strict";
-  $("#search-button").on('click', function(ev) {
-    $("#search-form").submit();
+  'use strict';
+  $('#search-button').on('click', function(ev) {
+    $('#search-form').submit();
     return false;
   });
 }
 
 function getChartData() {
-  var c = document.getElementById("trend-chart-data");
+  var c = document.getElementById('trend-chart-data');
   if(c === undefined || c === null) {
     return [];
   } else {
@@ -32,7 +35,7 @@ function wireChart() {
   if(chartData.length > 0) {
     nv.addGraph(function() {
       var chart = nv.models.lineChart()
-        .margin({ "left": 30, "right": 30 })
+        .margin({ left: 30, right: 30 })
         .useInteractiveGuideline(true)
         .showLegend(true)
         .showYAxis(true)
@@ -53,7 +56,7 @@ function wireChart() {
 }
 
 $(function() {
-  "use strict";
+  'use strict';
   wireLinks();
   wireSearchButton();
   wireChart();
