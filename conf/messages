@@ -1,12 +1,24 @@
 guest.name = Guest
 invalid.game.rules = We can''t find any information about the game [{0}].
 
+# Errors
+error.bad.request = Bad Request: {0}
+error.exception = Exception encountered
+error.not.found = Page not found
+
 # Authentication
+authentication.call.to.action = Sign in to {0}
+authentication.sign.in = Sign In
+authentication.form.username = Email or username
+authentication.form.password = Password
 authentication.invalid.credentials = Invalid credentials.
 authentication.invalid.provider = Cannot authenticate with unknown social provider [{0}].
 authentication.service.error = Couldn''t authenticate with provider [{0}].
 
 # Registration
+registration.title = Sign up for {0}
+registration.call.to.action = Welcome! Go ahead and sign up.
+registration.social.sign.in = Or, sign in using these providers
 registration.username.taken = That username is already in use.
 registration.email.taken = That email address is already in use.
 
@@ -19,13 +31,31 @@ index.games.popular = Popular Games
 index.games.completed= All Games
 index.games.unstarted = Unstarted Games
 
+# Menus
+menu.title = Menu
+menu.options = Options
+menu.help = Help
+menu.feedback = Feedback
+menu.redos = No redos available
+menu.hint = Click for a hint
+menu.undos = No undos available
+menu.redeal = Redeal
+menu.different.game = Different Game
+menu.give.up = Give Up
+menu.other.stuff = Other Stuff
+
 # Gameplay
+game.loading = Loading...
 options.cards.layout = Card Layout
 options.cards.face.cards = Face Cards
 options.cards.ranks = Ranks
 options.cards.suits = Suits
 options.cards.auto.flip = Auto Flip
 options.background.color = Background Color
+
+# Feedback
+feedback.prompt = Feedback is always appreciated. Thanks for sharing yours.
+feedback.submit = Submit Feedback
 
 # Profile
 profile.create.account = Create a local account
@@ -35,12 +65,14 @@ profile.connect.account = Connect your {0} account
 
 # Email
 email.from = Solitaire.gg <solitaire@solitaire.gg>
-email.welcome.subject = Welcome to Solitaire.gg!
+email.welcome.subject = Welcome to {0}!
 email.welcome.body.html = <em>Welcome to <strong>Solitaire.gg</strong>!</em><br>We're so glad you're here.
 email.welcome.body.text = Welcome to Solitaire.gg! We're so glad you're here.
 
 # Help
-help.general = Help for Solitaire.gg.
+help.title = {0} Help
+help.about = This is {0}! It's pretty cool.
+help.general = Help for {0}.
 help.play.now = Play Now
 help.also.known.as = Also Known As
 help.objective = Objective

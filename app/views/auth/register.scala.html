@@ -1,12 +1,12 @@
 @(user: models.user.User, form: Form[models.user.RegistrationData])(
   implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
-)@layout.static(user = user, title = s"Sign up for ${utils.Config.projectName}", button = "menu") {
+)@layout.static(user = user, title = Messages("registration.title", utils.Config.projectName), button = "menu") {
   <div class="sign-up">
     @flash.get("error").map { e =>
       <div class="error">@e</div>
     }
 
-    <h4>Welcome! Go ahead and sign up.</h4>
+    <h4>@Messages("registration.call.to.action")</h4>
     <form method="post" action="@controllers.auth.routes.RegistrationController.register()">
       <input type="text" class="form-control" name="username" value="@form("username").value" placeholder="Username" />
       @if(form.error("username").isDefined) {
@@ -27,7 +27,7 @@
     @defining(services.user.SocialAuthProviders.providers) { providers =>
       @if(providers.nonEmpty) {
         <div>
-          <p>Or sign in using these providers</p>
+          <p>@Messages("registration.social.sign.in")</p>
           <div>
           @for(p <- providers if p._1 != "credentials") {
             <a title="Sign in with @p._2" href="@controllers.auth.routes.AuthenticationController.authenticateSocial(p._1)" class="provider @p._1">

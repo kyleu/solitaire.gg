@@ -7,6 +7,7 @@ import com.codahale.metrics.SharedMetricRegistries
 import org.joda.time.DateTimeZone
 import play.api.http.HeaderNames
 import play.api.Play.current
+import play.api.i18n.Messages
 import play.api.mvc.{ Action, RequestHeader, Results, WithFilters }
 import play.api.{ Application, GlobalSettings, Mode }
 import play.filters.gzip.GzipFilter

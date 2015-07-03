@@ -1,9 +1,9 @@
-@(user: models.user.User)
+@(user: models.user.User)(implicit messages: Messages)
 <div id="gameplay-menu" class="invisible">
   <ul class="game-links">
-    <li><div id="btn-redeal" class="menu-link">Redeal</div></li>
-    <li><div id="btn-choose-game" class="menu-link">Different Game</div></li>
-    <li><div id="btn-give-up" class="menu-link">Give Up</div></li>
-    <li><div id="btn-other-stuff" class="menu-link">Other Stuff</div></li>
+    <li><div id="btn-redeal" class="menu-link">@Messages("menu.redeal")</div></li>
+    <li><div id="btn-choose-game" class="menu-link">@Messages("menu.different.game")</div></li>
+    <li><div id="btn-give-up" class="menu-link">@Messages("menu.give.up")</div></li>
+    <li><div id="btn-other-stuff" class="menu-link">@Messages("menu.other.stuff")</div></li>
   </ul>
 </div>

@@ -17,7 +17,7 @@ class EmailService @javax.inject.Inject() (mailerClient: MailerClient) {
     val to = s"$toName <$toAddress>"
     val textTemplate = views.html.email.welcomeText()
     val htmlTemplate = views.html.email.welcomeHtml().toString()
-    val welcomeSubject = Messages("email.welcome.subject")
+    val welcomeSubject = Messages("email.welcome.subject", utils.Config.projectName)
     sendMessage(Messages("email.from"), to, welcomeSubject, textTemplate.toString(), htmlTemplate)
   }
 
@@ -40,7 +40,7 @@ class EmailService @javax.inject.Inject() (mailerClient: MailerClient) {
   }
 
   def sendError(msg: String, ctx: String, ex: Option[Throwable], user: Option[User]) = {
-    val html = views.html.email.severeErrorHtml(msg, ctx, ex, user, DateUtils.now).toString()
+    val html = views.html.email.severeErrorHtml(msg, ctx, ex, user, DateUtils.now).toString
     sendMessage(adminFrom, Config.adminEmail, s"${Config.projectName} error for [$ctx].", adminTextMessage, html)
   }
 

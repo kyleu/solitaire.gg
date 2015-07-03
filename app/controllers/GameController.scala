@@ -15,7 +15,7 @@ class GameController @javax.inject.Inject() (
   def help(id: String, inline: Boolean) = withSession { implicit request =>
     Future.successful {
       id match {
-        case "undefined" => Ok(Messages("help.general"))
+        case "undefined" => Ok(Messages("help.general", utils.Config.projectName))
         case _ => GameRulesSet.allByIdWithAliases.get(id) match {
           case Some(rules) => if (inline) {
             Ok(views.html.help.helpInline(rules, request.identity.preferences.color))
