@@ -4,13 +4,16 @@ import java.util.UUID
 
 import com.mohiva.play.silhouette.api.LoginInfo
 import models.database.queries.BaseQueries
-import models.database.{ Row, FlatSingleRowQuery, Statement }
-import models.user.{ Role, User }
+import models.database.{ FlatSingleRowQuery, Row, Statement }
+import models.user.{ Role, User, UserPreferences }
 import org.joda.time.LocalDateTime
+import play.api.libs.json.{ JsObject, JsError, JsSuccess, Json }
+import utils.json.UserSerializers
+import UserSerializers._
 
 object UserQueries extends BaseQueries[User] {
   override protected val tableName = "users"
-  override protected val columns = Seq("id", "username", "avatar", "color", "profiles", "roles", "created")
+  override protected val columns = Seq("id", "username", "prefs", "profiles", "roles", "created")
   override protected val searchColumns = Seq("id::text", "username")
 
   val insert = Insert
@@ -19,23 +22,26 @@ object UserQueries extends BaseQueries[User] {
   val search = Search
   val removeById = RemoveById
 
+  private[this] val defaultPreferencesJson = Json.toJson(UserPreferences()).as[JsObject]
+
   case class UpdateUser(u: User) extends Statement {
-    override val sql = updateSql(Seq("username", "avatar", "color", "profiles", "roles"))
+    override val sql = updateSql(Seq("username", "preferences", "profiles", "roles"))
     override val values = {
       val profiles = u.profiles.map(l => s"${l.providerID}:${l.providerKey}").toArray
       val roles = u.roles.map(_.name).toArray
-      Seq(u.username, u.avatar, u.color, profiles, roles, u.id)
+      val prefs = Json.toJson(u.preferences).toString()
+      Seq(u.username, prefs, profiles, roles, u.id)
     }
   }
 
-  case class SetAvatarUrl(userId: UUID, url: String) extends Statement {
-    override val sql = updateSql(Seq("avatar"))
-    override val values = Seq(url, userId)
+  case class SetUsername(userId: UUID, username: Option[String]) extends Statement {
+    override val sql = updateSql(Seq("username"))
+    override val values = Seq(username, userId)
   }
 
-  case class SetColor(userId: UUID, color: String) extends Statement {
-    override val sql = updateSql(Seq("color"))
-    override val values = Seq(color, userId)
+  case class SetPreferences(userId: UUID, userPreferences: UserPreferences) extends Statement {
+    override val sql = updateSql(Seq("prefs"))
+    override val values = Seq(Json.toJson(userPreferences).toString(), userId)
   }
 
   case class AddRole(id: UUID, role: Role) extends Statement {
@@ -65,16 +71,21 @@ object UserQueries extends BaseQueries[User] {
       LoginInfo(provider, key)
     }
     val username = row.asOpt[String]("username")
-    val avatar = row.as[String]("avatar")
-    val color = row.as[String]("color")
+    val prefsString = row.as[String]("prefs")
+    val prefsJson = Json.parse(prefsString).as[JsObject]
+    val preferences = Json.fromJson[UserPreferences](defaultPreferencesJson ++ prefsJson) match {
+      case s: JsSuccess[UserPreferences] => s.get
+      case e: JsError => throw new IllegalArgumentException(s"Error parsing [$prefsString] as preferences: $e")
+    }
     val roles = row.as[collection.mutable.ArrayBuffer[_]]("roles").map(x => Role(x.toString)).toSet
     val created = row.as[LocalDateTime]("created")
-    User(id, username, avatar, color, profiles, roles, created)
+    User(id, username, preferences, profiles, roles, created)
   }
 
   override protected def toDataSeq(u: User) = {
+    val prefs = Json.toJson(u.preferences).toString()
     val profiles = u.profiles.map(l => s"${l.providerID}:${l.providerKey}").toArray
     val roles = u.roles.map(_.name).toArray
-    Seq(u.id, u.username, u.avatar, u.color, profiles, roles, u.created)
+    Seq(u.id, u.username, prefs, profiles, roles, u.created)
   }
 }

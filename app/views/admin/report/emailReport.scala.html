@@ -7,7 +7,7 @@
 )
 @import models.audit.DailyMetric._
 
-@metricsTable(title: String, m: Map[models.audit.DailyMetric.Metric, Long], css: utils.CssEmailStyles, isTotals: Boolean = false) = {
+@metricsTable(title: String, m: Map[models.audit.DailyMetric.Metric, Long], css: utils.play.CssEmailStyles, isTotals: Boolean = false) = {
   <table style="@css.table">
     <thead>
       <tr style="@css.tr">
@@ -38,7 +38,7 @@
       @if(!isTotals) {
       <tr style="@css.tr">
         <td style="@css.td">Server free space</td>
-        <td style="@css.td @css.alignRight">@m(ServerFreeSpace)%</td>
+        <td style="@css.td@css.alignRight">@m(ServerFreeSpace)%</td>
       </tr>
       }
     </tbody>
@@ -46,7 +46,7 @@
 }
 
 @layout.email(utils.Config.projectName + " Report", color) {
-  @defining(utils.CssEmailStyles(color)) { css =>
+  @defining(utils.play.CssEmailStyles(color)) { css =>
   <div style="@css.title">@utils.Config.projectName</div>
   <div style="@css.subtitle">Daily Report for @d</div>
 

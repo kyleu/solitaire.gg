@@ -1,5 +1,4 @@
-@(rules: models.rules.GameRules, color: String, routesMap: utils.RoutesMap)(implicit messages: Messages)
-@import models.rules.GameRulesSet
+@(rules: models.rules.GameRules, color: String, routesMap: utils.play.RoutesMap)(implicit messages: Messages)
 @rulesLink(rulesId: String, rulesTitle: String) = {
             <a class="help-link color-@color" href="@routesMap("help", rulesId)">@rulesTitle</a>
             <a class="play-link color-@color" href="@routesMap("new-game", rulesId)" data-rules="@rulesId" title="Play @rulesTitle Now">&#9654;</a>
@@ -44,7 +43,7 @@
 
       @rules.like.map { l =>
       <h3>Original Game</h3>
-      @defining(GameRulesSet.allByIdWithAliases(l)) { like =>
+      @defining(models.rules.GameRulesSet.allByIdWithAliases(l)) { like =>
       <ul>
         <li>
           @rulesLink(like.id, like.title)
@@ -56,7 +55,7 @@
       }
       }
 
-      @defining(GameRulesSet.completed.filter(x => rules.related.contains(x._2.id))) { rels =>
+      @defining(models.rules.GameRulesSet.completed.filter(x => rules.related.contains(x._2.id))) { rels =>
       @if(rels.nonEmpty) {
       <h3>Related Games</h3>
       <ul>

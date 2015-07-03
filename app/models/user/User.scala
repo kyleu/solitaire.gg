@@ -8,8 +8,7 @@ import org.joda.time.LocalDateTime
 case class User(
     id: UUID,
     username: Option[String],
-    avatar: String,
-    color: String,
+    preferences: UserPreferences,
     profiles: Seq[LoginInfo],
     roles: Set[Role] = Set(Role.User),
     created: LocalDateTime

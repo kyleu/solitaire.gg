@@ -1,11 +1,13 @@
-package utils
+package utils.play
 
 import com.codahale.metrics.Meter
 import play.api.http.Status
-import play.api.mvc._
-import utils.metrics.Instrumented
-import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.mvc._
+import utils.Logging
+import utils.metrics.Instrumented
+
+import scala.concurrent.Future
 
 object PlayLoggingFilter extends Filter with Logging with Instrumented {
   val prefix = "solitaire-gg.requests."

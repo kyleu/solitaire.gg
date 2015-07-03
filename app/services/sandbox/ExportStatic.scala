@@ -3,19 +3,21 @@ package services.sandbox
 import java.nio.file.{ Files, Paths }
 
 import models.rules.GameRulesSet
-import models.user.User
+import models.user.{ User, UserPreferences }
+import play.api.i18n.MessagesApi
+import play.api.test.FakeRequest
 import play.twirl.api.Html
 import services.test.TestService
-import play.api.test.FakeRequest
-import play.api.i18n.MessagesApi
-import utils.{ RoutesMap, DateUtils }
+import utils.DateUtils
+import utils.play.RoutesMap
+
 import scala.concurrent.Future
 
 object ExportStatic {
   private[this] val outPath = Paths.get(".", "offline", "build", "templates")
   private[this] val helpPath = outPath.resolve("help")
 
-  private[this] val offlineUser = User(TestService.testUserId, Some("Offline"), "default", "greyblue", Nil, created = DateUtils.now)
+  private[this] val offlineUser = User(TestService.testUserId, Some("Offline"), UserPreferences(), Nil, created = DateUtils.now)
 
   def run(messagesApi: MessagesApi) = {
     if (!Files.exists(outPath)) {

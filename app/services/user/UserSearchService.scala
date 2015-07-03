@@ -8,7 +8,8 @@ import models.database.queries.auth.UserQueries
 import models.user.User
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import utils.{ CacheService, Logging }
+import utils.Logging
+import utils.cache.CacheService
 
 import scala.concurrent.Future
 

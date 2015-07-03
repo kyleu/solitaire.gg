@@ -45,6 +45,7 @@ case class GameService(
   override def receiveRequest = {
     case gr: GameRequest => handleGameRequest(gr)
     case im: InternalMessage => handleInternalMessage(im)
+    case di: DebugInfo => handleCheat(di.data)
     case x => log.warn(s"GameService received unknown message [${x.getClass.getSimpleName}].")
   }
 

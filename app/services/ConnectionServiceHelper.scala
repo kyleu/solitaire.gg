@@ -56,12 +56,19 @@ trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionServic
     out ! SendDebugInfo
   }
 
-  protected[this] def handleDebugInfo(data: String) = pendingDebugChannel match {
-    case Some(dc) =>
-      val json = Json.parse(data).as[JsObject]
-      ClientTraceService.persistTrace(userId, json)
-      dc ! TraceResponse(id, json.fields)
-    case None => log.warn(s"Received unsolicited DebugInfo [$data] from [$id].")
+  protected[this] def handleDebugInfo(data: String) = if(data.startsWith("cheat")) {
+    activeGame match {
+      case Some(g) => g forward DebugInfo(data)
+      case None => log.warn(s"Received DebugInfo [$data] from [$id], but no game exists.")
+    }
+  } else {
+    pendingDebugChannel match {
+      case Some(dc) =>
+        val json = Json.parse(data).as[JsObject]
+        ClientTraceService.persistTrace(userId, json)
+        dc ! TraceResponse(id, json.fields)
+      case None => log.warn(s"Received unsolicited DebugInfo [$data] from [$id].")
+    }
   }
 
   protected[this] def handleResponseMessage(rm: ResponseMessage) {

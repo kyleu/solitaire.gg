@@ -1,8 +1,8 @@
-package utils
+package utils.json
 
 import models.game._
-import models.pile.options.{ ClientPileOptions, PileOptions }
 import models.pile.Pile
+import models.pile.options.{ ClientPileOptions, PileOptions }
 import models.pile.set.PileSet
 import play.api.libs.json._
 

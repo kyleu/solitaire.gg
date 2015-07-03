@@ -14,6 +14,7 @@ import services.ActorSupervisor
 import services.database.{ Schema, Database }
 import services.scheduled.ScheduledTask
 import services.user.AuthenticationEnvironment
+import utils.cache.CacheService
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -33,7 +34,7 @@ class AdminController @javax.inject.Inject() (
 
   def enable = withSession { implicit request =>
     Database.execute(UserQueries.AddRole(request.identity.id, Role.Admin)).map { x =>
-      utils.CacheService.removeUser(request.identity.id)
+      CacheService.cacheUser(request.identity.copy(roles = request.identity.roles + Role.Admin))
       Ok("OK")
     }
   }

@@ -18,7 +18,7 @@ class GameController @javax.inject.Inject() (
         case "undefined" => Ok(Messages("help.general"))
         case _ => GameRulesSet.allByIdWithAliases.get(id) match {
           case Some(rules) => if (inline) {
-            Ok(views.html.help.helpInline(rules, request.identity.color))
+            Ok(views.html.help.helpInline(rules, request.identity.preferences.color))
           } else {
             Ok(views.html.help.helpPage(request.identity, rules))
           }

@@ -1,7 +1,7 @@
 package utils
 
+import _root_.play.api.Logger
 import org.slf4j.LoggerFactory
-import play.api.Logger
 import utils.metrics.Instrumented
 
 object Logging extends Instrumented {
@@ -51,6 +51,14 @@ object Logging extends Instrumented {
     override def error(message: => String, error: => Throwable) = {
       errorMeter.mark()
       super.error(message, error)
+    }
+    def errorThenThrow(message: => String) = {
+      this.error(message)
+      throw new IllegalStateException(message)
+    }
+    def errorThenThrow(message: => String, error: => Throwable) = {
+      this.error(message, error)
+      throw error
     }
   }
 }

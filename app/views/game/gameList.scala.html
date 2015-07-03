@@ -1,0 +1,22 @@
+@()(implicit messages: Messages)
+<div class="module">
+  <div class="welcome">@Messages("index.welcome")</div>
+  <div class="tagline">@Messages("index.tagline")</div>
+  <div class="play-now">
+    <a href="@utils.play.RoutesMap.dynamic("new-game", "klondike")" role="button">@Messages("index.play.now")</a>
+  </div>
+</div>
+
+<div class="module">
+  <div class="header">@Messages("index.games.popular")</div>
+  <ul class="game-links">@for(r <- models.rules.GameRulesSet.favorites) {
+    <li><a href="@utils.play.RoutesMap.dynamic("new-game", r.id)">@r.title</a></li>}
+  </ul>
+</div>
+
+<div class="module">
+  <div class="header">@Messages("index.games.completed")</div>
+  <ul class="game-links">@for(r <- models.rules.GameRulesSet.completed) {
+    <li><a href="@utils.play.RoutesMap.dynamic("new-game", r._1)">@if(r._1 == r._2.id) { @r._2.title } else { @r._2.aka(r._1) }</a></li>
+  }</ul>
+</div>

@@ -1,4 +1,4 @@
-package utils
+package utils.play
 
 import java.util.TimeZone
 
@@ -6,6 +6,7 @@ import akka.actor.ActorSystem
 import com.codahale.metrics.SharedMetricRegistries
 import org.joda.time.DateTimeZone
 import play.api.http.HeaderNames
+import play.api.Play.current
 import play.api.mvc.{ Action, RequestHeader, Results, WithFilters }
 import play.api.{ Application, GlobalSettings, Mode }
 import play.filters.gzip.GzipFilter
@@ -13,6 +14,7 @@ import services.ActorSupervisor
 import services.database.{ Database, Schema }
 import services.scheduled.ScheduledTask
 import utils.metrics.Instrumented
+import utils.{ BuildInfo, Logging }
 
 import scala.concurrent.Future
 
@@ -40,7 +42,7 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter(
     super.onStop(app)
   }
 
-  override def onError(request: RequestHeader, ex: Throwable) = if (play.api.Play.current.mode == Mode.Dev) {
+  override def onError(request: RequestHeader, ex: Throwable) = if (current.mode == Mode.Dev) {
     super.onError(request, ex)
   } else {
     Future.successful(
@@ -73,9 +75,8 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter(
   }
 
   private[this] def scheduleTask(app: Application) = {
-    import scala.concurrent.duration._
     import scala.concurrent.ExecutionContext.Implicits.global
-    import play.api.Play.current
+    import scala.concurrent.duration._
 
     if (current.mode == Mode.Dev) {
       log.info("Dev mode, so not starting scheduled task.")

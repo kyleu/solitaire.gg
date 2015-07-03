@@ -7,6 +7,7 @@ trait GameServiceHelper
     extends InstrumentedActor
     with Logging
     with GameServiceCardHelper
+    with GameServiceCheatHelper
     with GameServiceConnectionHelper
     with GameServiceMessageHelper
     with GameServicePersistenceHelper

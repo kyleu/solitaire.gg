@@ -8,7 +8,6 @@ import controllers.BaseController
 import models.user.{ User, UserForms }
 import play.api.i18n.{ Messages, MessagesApi }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.libs.ws.WSClient
 import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
@@ -75,7 +74,7 @@ class AuthenticationController @javax.inject.Inject() (
   private[this] def mergeUser(user: User, profile: CommonSocialProfile) = {
     user.copy(
       username = if (profile.firstName.isDefined && user.username.isEmpty) { profile.firstName } else { user.username },
-      avatar = profile.avatarURL.getOrElse(user.avatar)
+      preferences = user.preferences.copy(avatar = profile.avatarURL.getOrElse(user.preferences.avatar))
     )
   }
 }

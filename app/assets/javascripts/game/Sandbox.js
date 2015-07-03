@@ -1,5 +1,6 @@
 define([], function () {
   function sandbox(game) {
+    game.send("DebugInfo", { data: "cheat win" });
     return "Ok: " + game.id;
   }
 

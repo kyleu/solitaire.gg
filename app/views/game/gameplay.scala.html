@@ -5,12 +5,12 @@
   initialAction: Seq[String],
   seed: Option[Int] = None,
   offline: Boolean = false,
-  routesMap: utils.RoutesMap = utils.RoutesMap.dynamic
+  routesMap: utils.play.RoutesMap = utils.play.RoutesMap.dynamic
 )(implicit session: Session, flash: Flash)@layout.basic(
   s"$title - ${utils.Config.projectName}",
   stylesheets = Seq(routesMap("css-root", "solitaire.gg.min.css")),
-  bodyClass = Some(s"noscroll background-${user.color}"),
-  faviconColor = Some(user.color)
+  bodyClass = Some(s"noscroll background-${user.preferences.color}"),
+  faviconColor = Some(user.preferences.color)
 ) {
   @views.html.layout.topBar(user, routesMap)
   @views.html.game.menuPanel(user)

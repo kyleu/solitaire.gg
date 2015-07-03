@@ -1,9 +1,9 @@
-package utils
+package utils.json
 
 import models._
-import utils.GameSerializers._
 import play.api.libs.json._
-import play.api.libs.functional.syntax._
+
+import GameSerializers._
 
 object ResponseMessageSerializers {
   private[this] val serverErrorWrites = Json.writes[ServerError]

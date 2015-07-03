@@ -1,4 +1,4 @@
-package utils
+package utils.play
 
 import play.api.http.HttpFilters
 import play.filters.headers.SecurityHeadersFilter

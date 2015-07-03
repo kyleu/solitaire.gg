@@ -7,6 +7,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.{ AnyContentAsEmpty, Request, WebSocket }
 import services.user.AuthenticationEnvironment
 import services.{ ActorSupervisor, ConnectionService }
+import utils.play.MessageFrameFormatter
 
 import scala.concurrent.Future
 
@@ -16,7 +17,7 @@ class WebsocketController @javax.inject.Inject() (
   override val env: AuthenticationEnvironment
 ) extends BaseController {
   import play.api.Play.current
-  import utils.MessageFrameFormatter._
+  import MessageFrameFormatter._
 
   val supervisor = ActorSupervisor.instance
 

@@ -41,7 +41,7 @@ define(["game/Rank", "game/Suit"], function(Rank, Suit) {
     }));
     _.each(Suit.all, function(s) {
       _.each(Rank.all, function(r) {
-        cardTextures[r.char + s.char] = renderCard(game, s, r, 'classic');
+        cardTextures[r.char + s.char] = renderCard(game, s, r, 'a');
       });
     });
   }
@@ -62,7 +62,7 @@ define(["game/Rank", "game/Suit"], function(Rank, Suit) {
     }
 
     switch(layout) {
-      case 'standard':
+      case 'a': // Standard
         if(r.locs === undefined) {
           if(r === Rank.ace) {
             tex.draw(suitImage, 200, 300, 200, 200);
@@ -80,7 +80,7 @@ define(["game/Rank", "game/Suit"], function(Rank, Suit) {
         tex.draw(suitImage, 140 * rankWidth, 60, 80, 80);
 
         break;
-      case 'classic':
+      case 'b': // Classic
         if(r.locs === undefined) {
           if(r === Rank.ace) {
             tex.draw(suitImage, 200, 300, 200, 200);

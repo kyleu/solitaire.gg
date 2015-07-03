@@ -6,7 +6,7 @@ import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.user.AuthenticationEnvironment
-import utils.CacheService
+import utils.cache.CacheService
 
 import scala.concurrent.Future
 
@@ -22,7 +22,7 @@ class ProfileController @javax.inject.Inject() (
   }
 
   def setOption(option: String, value: String) = withSession { implicit request =>
-    val f = option match {
+    option match {
       case "avatar" =>
         val loginInfo = value match {
           case "facebook" => request.identity.profiles.find(_.providerID == "facebook")
@@ -39,17 +39,29 @@ class ProfileController @javax.inject.Inject() (
           }
         }
         urlFuture.flatMap { url =>
-          Database.execute(UserQueries.SetAvatarUrl(request.identity.id, url)).map { i =>
-            CacheService.removeUser(request.identity.id)
+          val prefs = request.identity.preferences.copy(avatar = url)
+          Database.execute(UserQueries.SetPreferences(request.identity.id, prefs)).map { i =>
+            CacheService.cacheUser(request.identity.copy(preferences = prefs))
             Redirect(controllers.routes.ProfileController.profile())
           }
         }
       case "color" =>
-        Database.execute(UserQueries.SetColor(request.identity.id, value)).map(x => Ok("OK"))
-    }
-    f.map { x =>
-      CacheService.removeUser(request.identity.id)
-      x
+        val prefs = request.identity.preferences.copy(color = value)
+        Database.execute(UserQueries.SetPreferences(request.identity.id, prefs)).map { x =>
+          CacheService.cacheUser(request.identity.copy(preferences = prefs))
+          Ok("OK")
+        }
+      case "username" =>
+        val name = if(value.isEmpty) { None } else { Some(value) }
+        Database.execute(UserQueries.SetUsername(request.identity.id, name)).map { i =>
+          CacheService.cacheUser(request.identity.copy(username = name))
+          Redirect(controllers.routes.ProfileController.profile())
+        }.recoverWith {
+          case x => Future.successful {
+            Redirect(controllers.routes.ProfileController.profile()).flashing("error" -> "That username is in use.")
+          }
+        }
+      case _ => throw new IllegalArgumentException(s"Invalid option [$option] with value [$value].")
     }
   }
 }

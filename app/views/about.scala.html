@@ -1,4 +1,4 @@
-@(user: models.user.User, routesMap: utils.RoutesMap = utils.RoutesMap.dynamic)(
+@(user: models.user.User, routesMap: utils.play.RoutesMap = utils.play.RoutesMap.dynamic)(
   implicit request: Request[AnyContent], session: Session, flash: Flash
 )@layout.static(user = user, title = s"About ${utils.Config.projectName}", button = "menu", routesMap) {
   <div class="module">

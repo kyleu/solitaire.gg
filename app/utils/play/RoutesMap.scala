@@ -1,4 +1,4 @@
-package utils
+package utils.play
 
 object RoutesMap {
   val static = RoutesMap(Map(
@@ -12,7 +12,7 @@ object RoutesMap {
 
     ("help", (args: Seq[String]) => "help/" + args.head + ".html"),
     ("new-game", (args: Seq[String]) => "gameplay.html?rules=" + args.head)
-  ))
+  ), dynamic = false)
 
   val dynamic = RoutesMap(Map(
     ("css-root", (args: Seq[String]) => "/assets/stylesheets/" + args.head),
@@ -25,10 +25,10 @@ object RoutesMap {
 
     ("help", (args: Seq[String]) => controllers.routes.GameController.help(args.head).url),
     ("new-game", (args: Seq[String]) => controllers.routes.GameController.newGame(args.head).url)
-  ))
+  ), dynamic = true)
 }
 
-case class RoutesMap(routes: Map[String, (Seq[String] => String)]) {
+case class RoutesMap(routes: Map[String, (Seq[String] => String)], dynamic: Boolean) {
   def apply(path: String): String = {
     routes(path)(Seq.empty)
   }

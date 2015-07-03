@@ -1,11 +1,12 @@
-package utils
+package utils.play
 
-import models.{ MessageSet, MalformedRequest, RequestMessage, ResponseMessage }
+import models.{ MalformedRequest, MessageSet, RequestMessage, ResponseMessage }
 import play.api.libs.json._
 import play.api.mvc.WebSocket.FrameFormatter
-
-import utils.RequestMessageSerializers._
-import utils.ResponseMessageSerializers._
+import utils.Config
+import utils.json.RequestMessageSerializers._
+import utils.json.ResponseMessageSerializers._
+import utils.json.{ RequestMessageSerializers, ResponseMessageSerializers }
 
 object MessageFrameFormatter {
   private[this] def requestToJson(r: RequestMessage): JsValue = {

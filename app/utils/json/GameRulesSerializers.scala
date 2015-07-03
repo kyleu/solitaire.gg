@@ -1,10 +1,11 @@
-package utils
+package utils.json
 
 import models.rules._
 import play.api.libs.json._
 
+import GameSerializers._
+
 object GameRulesSerializers {
-  import GameSerializers._
 
   private[this] def stringWriter[T] = new Writes[T] {
     override def writes(t: T) = JsString(t.toString)

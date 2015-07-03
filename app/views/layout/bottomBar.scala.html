@@ -1,13 +1,13 @@
 @(user: models.user.User)
 <div id="status-container" class="fixed invisible">
   <div class="menu-left">
-    <div id="btn-help" title="Help" class="help btn btn-@user.color"></div>
-    <div id="btn-feedback" title="Feedback" class="feedback btn btn-@user.color"></div>
+    <div id="btn-help" title="Help" class="help btn btn-@user.preferences.color"></div>
+    <div id="btn-feedback" title="Feedback" class="feedback btn btn-@user.preferences.color"></div>
   </div>
   <div class="menu-right">
-    <div id="btn-redo" title="No redos available" class="redo btn btn-@user.color disabled"></div>
-    <div id="btn-hint" title="Click for a hint" class="hint btn btn-@user.color"></div>
-    <div id="btn-undo" title="No undos available" class="undo btn btn-@user.color disabled"></div>
+    <div id="btn-redo" title="No redos available" class="redo btn btn-@user.preferences.color disabled"></div>
+    <div id="btn-hint" title="Click for a hint" class="hint btn btn-@user.preferences.color"></div>
+    <div id="btn-undo" title="No undos available" class="undo btn btn-@user.preferences.color disabled"></div>
   </div>
 
   <div class="game-name-container">

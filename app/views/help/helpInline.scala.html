@@ -1,5 +1,9 @@
-@(rules: models.rules.GameRules, color: String, routesMap: utils.RoutesMap = utils.RoutesMap.dynamic)(
+@(rules: models.rules.GameRules, color: String, routesMap: utils.play.RoutesMap = utils.play.RoutesMap.dynamic)(
   implicit messages: Messages
 )<div class="rules-container">
-  @helpContent(rules, color, routesMap)
+  @if(routesMap.dynamic) {
+    @utils.play.ViewUtils.cachedTemplate("help." + rules.id, helpContent(rules, color, routesMap))
+  } else {
+    @helpContent(rules, color, routesMap)
+  }
 </div>

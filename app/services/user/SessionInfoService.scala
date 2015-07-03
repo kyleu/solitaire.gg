@@ -5,7 +5,7 @@ import com.mohiva.play.silhouette.impl.daos.AuthenticatorDAO
 import models.database.queries.auth.AuthenticatorQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import utils.CacheService
+import utils.cache.CacheService
 
 import scala.concurrent.Future
 

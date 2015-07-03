@@ -10,7 +10,8 @@ import models.user.User
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.history.{ RequestHistoryService, GameHistoryService }
-import utils.{ CacheService, Logging }
+import utils.Logging
+import utils.cache.CacheService
 
 import scala.concurrent.Future
 
@@ -46,7 +47,7 @@ object UserService extends Logging {
       UserQueries.insert(user)
     }
     Database.execute(statement).map { i =>
-      CacheService.removeUser(user.id)
+      CacheService.cacheUser(user)
       user
     }
   }

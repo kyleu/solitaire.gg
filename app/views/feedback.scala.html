@@ -3,7 +3,7 @@
   <div class="feedback-success">
     @flash.get("success")
   </div>
-  <div class="feedback-modal-close modal-close background-@user.color">Resume</div>
+  <div class="feedback-modal-close modal-close background-@user.preferences.color">Resume</div>
 } else {
   @if(flash.get("error").isDefined) {
     <div class="feedback-error">
@@ -12,5 +12,5 @@
   }
   <p class="feedback-prompt">Feedback is always appreciated. Thanks for sharing yours.</p>
   <textarea id="feedback-input"></textarea>
-  <button id="feedback-submit" class="background-@user.color">Submit Feedback</button>
+  <button id="feedback-submit" class="background-@user.preferences.color">Submit Feedback</button>
 }

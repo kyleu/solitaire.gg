@@ -1,4 +1,4 @@
-define(['ui/Buttons', 'ui/Colors'], function(Buttons, Colors) {
+define(['ui/Buttons', 'ui/Colors', 'ui/Panels'], function(Buttons, Colors, Panels) {
   var Options = function(game) {
     this.game = game;
     this.elements = {
@@ -67,68 +67,14 @@ define(['ui/Buttons', 'ui/Colors'], function(Buttons, Colors) {
     }
   };
 
-  Options.prototype.toggleMenus = function() {
-    if(this.game.menusVisible) {
-      this.elements.topBar.className = this.elements.topBar.className.replace(" fade-in", "") + " fade-out";
-      this.elements.bottomBar.className = this.elements.bottomBar.className.replace(" fade-in", "") + " fade-out";
-      this.game.menusVisible = false;
-    } else {
-      this.elements.topBar.className = this.elements.topBar.className.replace(" fade-out", "") + " fade-in";
-      this.elements.bottomBar.className = this.elements.bottomBar.className.replace(" fade-out", "") + " fade-in";
-      this.game.menusVisible = true;
-    }
-  };
-
-  Options.prototype.hidePanels = function() {
-    if(this.elements.optionsPanel.className === "fade-in") {
-      this.hideOptionsPanel();
-    }
-    if(this.elements.menuPanel.className === "fade-in") {
-      this.hideMenuPanel();
-    }
-  };
-
-  Options.prototype.showOptionsPanel = function() {
-    this.elements.optionsButton.className += " disabled";
-    this.elements.optionsPanel.className = "fade-in";
-  };
-
-  Options.prototype.hideOptionsPanel = function() {
-    this.elements.optionsButton.className = this.elements.optionsButton.className.replace(" disabled", "");
-    this.elements.optionsPanel.className = "fade-out";
-  };
-
-  Options.prototype.toggleOptionsPanel = function() {
-    if(this.elements.optionsPanel.className === "fade-in") {
-      this.hideOptionsPanel();
-    } else {
-      if(this.elements.menuPanel.className === "fade-in") {
-        this.hideMenuPanel();
-      }
-      this.showOptionsPanel();
-    }
-  };
-
-  Options.prototype.showMenuPanel = function() {
-    this.elements.menuButton.className += " disabled";
-    this.elements.menuPanel.className = "fade-in";
-  };
-
-  Options.prototype.hideMenuPanel = function() {
-    this.elements.menuButton.className = this.elements.menuButton.className.replace(" disabled", "");
-    this.elements.menuPanel.className = "fade-out";
-  };
-
-  Options.prototype.toggleMenuPanel = function() {
-    if(this.elements.menuPanel.className === "fade-in") {
-      this.hideMenuPanel();
-    } else {
-      if(this.elements.optionsPanel.className === "fade-in") {
-        this.hideOptionsPanel();
-      }
-      this.showMenuPanel();
-    }
-  };
+  Options.prototype.toggleMenus = Panels.toggleMenus;
+  Options.prototype.hidePanels = Panels.hidePanels;
+  Options.prototype.showOptionsPanel = Panels.showOptionsPanel;
+  Options.prototype.hideOptionsPanel = Panels.hideOptionsPanel;
+  Options.prototype.toggleOptionsPanel = Panels.toggleOptionsPanel;
+  Options.prototype.showMenuPanel = Panels.showMenuPanel;
+  Options.prototype.hideMenuPanel = Panels.hideMenuPanel;
+  Options.prototype.toggleMenuPanel = Panels.toggleMenuPanel;
 
   return Options;
 });

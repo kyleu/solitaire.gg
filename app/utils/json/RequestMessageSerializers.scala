@@ -1,8 +1,8 @@
-package utils
+package utils.json
 
 import models._
-import play.api.libs.json._
 import play.api.libs.functional.syntax._
+import play.api.libs.json._
 
 object RequestMessageSerializers {
   private[this] val malformedRequestReads = Json.reads[MalformedRequest]

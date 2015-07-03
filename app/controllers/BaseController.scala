@@ -8,7 +8,7 @@ import services.user.AuthenticationEnvironment
 import play.api.i18n.I18nSupport
 import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
-import models.user.{ Role, User }
+import models.user.{ UserPreferences, Role, User }
 import nl.grons.metrics.scala.Timer
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.{ AnyContent, RequestHeader, Result }
@@ -51,8 +51,7 @@ abstract class BaseController() extends Silhouette[User, CookieAuthenticator] wi
         val user = User(
           id = UUID.randomUUID(),
           username = None,
-          avatar = "guest",
-          color = "greyblue",
+          preferences = UserPreferences(),
           profiles = Nil,
           created = DateUtils.now
         )

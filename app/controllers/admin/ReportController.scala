@@ -25,7 +25,7 @@ class ReportController @javax.inject.Inject() (
       metrics <- DailyMetricService.recalculateMetrics(d)
       totals <- DailyMetricService.getTotals(d)
       counts <- Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table))))
-    } yield Ok(views.html.admin.report.emailReport(d, request.identity.color, metrics._2._1, totals, counts))
+    } yield Ok(views.html.admin.report.emailReport(d, request.identity.preferences.color, metrics._2._1, totals, counts))
   }
 
   def trend() = withAdminSession { implicit request =>

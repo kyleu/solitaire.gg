@@ -59,14 +59,17 @@ class RegistrationController @javax.inject.Inject() (
     for {
       avatar <- env.avatarService.retrieveURL(data.email)
       profile <- env.userService.create(user, profile.copy(avatarURL = avatar.orElse(Some("default"))))
-      user <- env.userService.save(user.copy(avatar = avatar.getOrElse(request.identity.avatar)), update = true)
+      u <- env.userService.save(user.copy(
+        preferences = user.preferences.copy(avatar = avatar.getOrElse(user.preferences.avatar))),
+        update = true
+      )
       authInfo <- env.authInfoService.save(loginInfo, authInfo)
       authenticator <- env.authenticatorService.create(loginInfo)
       value <- env.authenticatorService.init(authenticator)
       result <- env.authenticatorService.embed(value, r)
     } yield {
-      env.eventBus.publish(SignUpEvent(user, request, request2Messages))
-      env.eventBus.publish(LoginEvent(user, request, request2Messages))
+      env.eventBus.publish(SignUpEvent(u, request, request2Messages))
+      env.eventBus.publish(LoginEvent(u, request, request2Messages))
       result
     }
   }

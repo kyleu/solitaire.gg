@@ -1,4 +1,8 @@
-@(user: models.user.User, profiles: Seq[com.mohiva.play.silhouette.impl.providers.CommonSocialProfile], routesMap: utils.RoutesMap = utils.RoutesMap.dynamic)(
+@(
+  user: models.user.User,
+  profiles: Seq[com.mohiva.play.silhouette.impl.providers.CommonSocialProfile],
+  routesMap: utils.play.RoutesMap = utils.play.RoutesMap.dynamic
+)(
   implicit request: Request[AnyContent], session: Session, flash: Flash
 )@layout.static(user = user, title = utils.Config.projectName + " Profile", button = "menu", routesMap) {
   <div class="profile">
@@ -10,13 +14,17 @@
         ?
       </p>
     } else {
-      @if(user.avatar.startsWith("http")) {
+      @if(user.preferences.avatar.startsWith("http")) {
         <div class="avatar-image">
-          <img src="@user.avatar" />
+          <img src="@user.preferences.avatar" />
         </div>
       }
 
-      <div class="username">@user.username.getOrElse("Guest")</div>
+      @user.username.map { un =>
+        <div class="username">@un</div>
+      }.getOrElse {
+        <div class="username">Guest</div>
+      }
       <div class="logout"><a href="@controllers.auth.routes.AuthenticationController.signOut">Sign Out</a></div>
       @defining(profiles.find(_.loginInfo.providerID == "credentials")) { credentials =>
         <div class="profile-detail">
