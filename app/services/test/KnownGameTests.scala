@@ -16,13 +16,12 @@ class KnownGameTests {
   val seed = 3
   implicit val system = Akka.system
   val testProbe = TestProbe()
-  val userId = UUID.randomUUID
   var moves = Seq.empty[PossibleMove]
   var conn: ActorRef = _
   var activeGameId: UUID = _
 
   private[this] def connect() = Test("connect", () => {
-    conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, userId, "test-user", testProbe.ref))
+    conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, TestService.testUser, testProbe.ref))
   })
 
   private[this] def start() = Test("start", () => {

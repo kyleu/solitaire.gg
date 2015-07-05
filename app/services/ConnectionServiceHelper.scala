@@ -23,7 +23,7 @@ trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionServic
   }
 
   protected[this] def handleGameMessage(gm: GameMessage) = activeGame match {
-    case Some(ag) => ag forward GameRequest(userId, gm)
+    case Some(ag) => ag forward GameRequest(user.id, gm)
     case None => throw new IllegalArgumentException(s"Received game message [${gm.getClass.getSimpleName}] while not in game.")
   }
 
@@ -42,8 +42,8 @@ trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionServic
 
   protected[this] def handleConnectionTrace() {
     val ret = TraceResponse(id, List(
-      "userId" -> userId,
-      "name" -> name,
+      "userId" -> user.id,
+      "name" -> user.username.getOrElse("Guest"),
       "game" -> activeGameId.map { i =>
         s"""<a href="${controllers.admin.routes.TraceController.traceGame(i)}" class="trace-link">$i</a>"""
       }.getOrElse("Not in game")
@@ -65,7 +65,7 @@ trait ConnectionServiceHelper extends InstrumentedActor { this: ConnectionServic
     pendingDebugChannel match {
       case Some(dc) =>
         val json = Json.parse(data).as[JsObject]
-        ClientTraceService.persistTrace(userId, json)
+        ClientTraceService.persistTrace(user.id, json)
         dc ! TraceResponse(id, json.fields)
       case None => log.warn(s"Received unsolicited DebugInfo [$data] from [$id].")
     }

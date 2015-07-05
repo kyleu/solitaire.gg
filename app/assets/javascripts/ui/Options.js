@@ -14,7 +14,7 @@ define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels)
     };
     game.menusVisible = this.elements.topBar.style.display !== 'none';
     this.buttons = new Buttons(game, this);
-    this.theme = new Theme(game);
+    Theme.init(game);
   };
 
   Options.prototype.setGame = function(state) {

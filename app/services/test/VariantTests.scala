@@ -18,8 +18,7 @@ class VariantTests {
   def testVariant(rules: String) = Test(s"variant-$rules", () => {
     implicit val system = Akka.system
     val testProbe = TestProbe()
-    val userId = UUID.randomUUID
-    val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, userId, "test-user", testProbe.ref))
+    val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, TestService.testUser, testProbe.ref))
     var msg = "Unknown Result"
     conn ! StartGame(rules, None, testGame = Some(true))
     val gameJoined = testProbe.expectMsgClass(classOf[GameJoined])

@@ -4,7 +4,7 @@ import java.util.UUID
 
 import akka.actor.{ ActorRef, Props }
 import models._
-import models.user.PlayerRecord
+import models.user.{ User, PlayerRecord }
 import services.ActorSupervisor.{ ConnectionRecord, GameRecord }
 import services.game.GameService
 import utils.DateUtils
@@ -15,9 +15,9 @@ import scala.util.Random
 trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
   private[this] def masterRng = new Random()
 
-  protected[this] def handleConnectionStarted(userId: UUID, username: String, connectionId: UUID, conn: ActorRef) {
-    log.debug(s"Connection [$connectionId] registered to [$username] with path [${conn.path}].")
-    connections(connectionId) = ConnectionRecord(userId, username, conn, None, DateUtils.now)
+  protected[this] def handleConnectionStarted(user: User, connectionId: UUID, conn: ActorRef) {
+    log.debug(s"Connection [$connectionId] registered to [${user.username.getOrElse(user.id)}] with path [${conn.path}].")
+    connections(connectionId) = ConnectionRecord(user.id, user.username.getOrElse("Guest"), conn, None, DateUtils.now)
     connectionsCounter.inc()
   }
 

@@ -39,11 +39,15 @@ define(['utils/Config'], function (config) {
       if(move !== null) {
         if(move.moveType === 'move-cards') {
           recentMoves.push(move);
+          if(recentMoves.length > 50) {
+            recentMoves = recentMoves.splice(recentMoves.length - 50, 0);
+          }
         }
         game.sendMove(move);
       }
     },
     sendMove: function(move) {
+      game.movesMade += 1;
       switch(move.moveType) {
         case 'move-cards':
           game.send('MoveCards', { cards: move.cards, src: move.sourcePile, tgt: move.targetPile });

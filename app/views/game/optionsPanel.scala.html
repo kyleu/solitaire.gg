@@ -5,33 +5,7 @@
     <div class="game-options">
       @for(idx <- Seq("a", "b")) {
         @defining(if(idx == user.preferences.cards.layout) { " active" } else { "" }) { active =>
-          <div class="game-option card-layout @active" data-option-value="@idx">
-            <div>@idx</div>
-          </div>
-        }
-      }
-    </div>
-  </div>
-
-  <div id="face-card-list" class="options-list">
-    <div class="options-label">@Messages("options.cards.face.cards")</div>
-    <div class="game-options">
-      @for(idx <- Seq("a", "b")) {
-        @defining(if(idx == user.preferences.cards.faceCards) { " active" } else { "" }) { active =>
-          <div class="game-option face-card @active" data-option-value="@idx">
-            <div>@idx</div>
-          </div>
-        }
-      }
-    </div>
-  </div>
-
-  <div id="card-rank-list" class="options-list">
-    <div class="options-label">@Messages("options.cards.ranks")</div>
-    <div class="game-options">
-      @for(idx <- Seq("a", "b")) {
-        @defining(if(idx == user.preferences.cards.ranks) { " active" } else { "" }) { active =>
-          <div class="game-option card-rank @active" data-option-value="@idx">
+          <div class="game-option@active" data-option-class="card-layout" data-option-value="@idx">
             <div>@idx</div>
           </div>
         }
@@ -44,7 +18,7 @@
     <div class="game-options">
       @for(idx <- Seq("a", "b")) {
         @defining(if(idx == user.preferences.cards.suits) { " active" } else { "" }) { active =>
-          <div class="game-option card-suit @active" data-option-value="@idx">
+          <div class="game-option@active" data-option-class="card-suit" data-option-value="@idx">
             <div>@idx</div>
           </div>
         }
@@ -52,17 +26,43 @@
     </div>
   </div>
 
+  <div id="card-rank-list" class="options-list">
+    <div class="options-label">@Messages("options.cards.ranks")</div>
+    <div class="game-options">
+    @for(idx <- Seq("a", "b")) {
+      @defining(if(idx == user.preferences.cards.ranks) { " active" } else { "" }) { active =>
+        <div class="game-option@active" data-option-class="card-rank" data-option-value="@idx">
+          <div>@idx</div>
+        </div>
+      }
+    }
+    </div>
+  </div>
+
+  <div id="card-face-list" class="options-list">
+    <div class="options-label">@Messages("options.cards.face.cards")</div>
+    <div class="game-options">
+    @for(idx <- Seq("a", "b")) {
+      @defining(if(idx == user.preferences.cards.faceCards) { " active" } else { "" }) { active =>
+        <div class="game-option@active" data-option-class="card-face" data-option-value="@idx">
+          <div>@idx</div>
+        </div>
+      }
+    }
+    </div>
+  </div>
+
   <div id="auto-flip-list" class="options-list">
     <div class="options-label">@Messages("options.cards.auto.flip")</div>
     <div class="game-options">
       @defining(if(user.preferences.autoFlip) { " active" } else { "" }) { active =>
-        <div class="game-option auto-flip @active" data-option-value="true">
+        <div class="game-option@active" data-option-class="auto-flip" data-option-value="true">
           <div>true</div>
         </div>
       }
 
       @defining(if(!user.preferences.autoFlip) { " active" } else { "" }) { active =>
-        <div class="game-option auto-flip @active" data-option-value="false">
+        <div class="game-option@active" data-option-class="auto-flip" data-option-value="false">
           <div>false</div>
         </div>
       }
@@ -74,7 +74,7 @@
     <div class="game-options">
     @for(color <- ui.Colors.all) {
       @defining(if(color._1 == user.preferences.color) { " active" } else { "" }) { active =>
-        <div id="color-@color._1" class="game-option background-color @active" data-option-value="@color._1">
+        <div class="game-option @active" data-option-class="background-color" data-option-value="@color._1">
           <div class="background-@color._1"></div>
         </div>
       }

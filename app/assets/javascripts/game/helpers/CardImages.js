@@ -37,7 +37,7 @@ define(['game/Rank', 'game/Suit'], function(Rank, Suit) {
     });
     faceCardImages = _.flatten(_.map(Suit.all, function(s) {
       return _.map([0, 1, 2], function(i) {
-        var ret = new Phaser.Image(game, 0, 0, 'face-cards', (s.index * 3) + i);
+        var ret = new Phaser.Image(game, 0, 0, 'card-faces', (s.index * 3) + i);
         ret.anchor.setTo(0.5, 0.5);
         return ret;
       });

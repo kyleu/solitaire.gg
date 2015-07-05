@@ -17,8 +17,8 @@ function (config, Options, GameNetwork, InitialState, Help, Sandbox) {
     var initialState = new InitialState(this);
     var transparent = true;
     this.initialized = false;
-
     this.possibleMoves = [];
+    this.movesMade = 0;
 
     var configOptions = {
       width: '100%',

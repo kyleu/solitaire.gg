@@ -3,10 +3,20 @@ package services.test
 import java.util.UUID
 
 import models.test.{ Tree, TestResult, Test }
+import models.user.{ UserPreferences, User }
+import org.joda.time.LocalDateTime
 import utils.Logging
 
 object TestService extends Logging {
   val testUserId = UUID.fromString("00000000-0000-0000-0000-000000000000")
+  val testUser = User(
+    id = TestService.testUserId,
+    username = Some("test-user"),
+    preferences = UserPreferences(autoFlip = true),
+    profiles = Nil,
+    created = new LocalDateTime()
+  )
+
   val testGameId = UUID.fromString("00000000-0000-0000-0000-000000000000")
 
   def run(tree: Tree[Test]): Tree[TestResult] = {

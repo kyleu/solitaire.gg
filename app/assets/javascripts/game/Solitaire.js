@@ -21,15 +21,16 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
 
   Solitaire.prototype.onBeforeUnload = function() {
     if(this.game !== null) {
-      console.log(this.game);
-      return 'You\'re playing a game. Are you sure you\'d like to resign?';
+      if(this.game.movesMade > 0) {
+        return 'You\'re playing a game. Are you sure you\'d like to resign?';
+      }
     }
   };
 
   Solitaire.prototype.onUnload = function() {
     if(this.game !== null) {
       if(this.game.id !== undefined) {
-        this.game.sendMessage('ResignGame', {id: this.game.id});
+        this.game.send('ResignGame', {id: this.game.id});
       }
     }
   };

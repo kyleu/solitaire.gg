@@ -40,7 +40,7 @@ class ActorSupervisor extends ActorSupervisorHelper with Logging {
   }
 
   override def receiveRequest = {
-    case cs: ConnectionStarted => timeReceive(cs) { handleConnectionStarted(cs.userId, cs.username, cs.connectionId, cs.conn) }
+    case cs: ConnectionStarted => timeReceive(cs) { handleConnectionStarted(cs.user, cs.connectionId, cs.conn) }
     case cs: ConnectionStopped => timeReceive(cs) { handleConnectionStopped(cs.connectionId) }
 
     case cg: CreateGame => timeReceive(cg) { handleCreateGame(cg.rules, cg.connectionId, cg.seed, cg.testGame) }

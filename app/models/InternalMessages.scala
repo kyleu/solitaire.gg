@@ -3,11 +3,12 @@ package models
 import java.util.UUID
 
 import akka.actor.ActorRef
+import models.user.User
 import org.joda.time.LocalDateTime
 
 sealed trait InternalMessage
 
-case class ConnectionStarted(userId: UUID, username: String, connectionId: UUID, conn: ActorRef) extends InternalMessage
+case class ConnectionStarted(user: User, connectionId: UUID, conn: ActorRef) extends InternalMessage
 case class ConnectionStopped(connectionId: UUID) extends InternalMessage
 
 case class AddPlayer(userId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef) extends InternalMessage

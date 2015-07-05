@@ -12,13 +12,13 @@ trait GameServicePreferenceHelper { this: GameService =>
     Database.query(UserQueries.getById(Seq(userId))).map {
       case Some(u) =>
         val newPrefs = name match {
-          case "color" => u.preferences.copy(color = value)
-          case "autoFlip" => u.preferences.copy(autoFlip = value.toBoolean)
-          case "back" => u.preferences.copy(cards = u.preferences.cards.copy(back = value))
-          case "layout" => u.preferences.copy(cards = u.preferences.cards.copy(layout = value))
-          case "ranks" => u.preferences.copy(cards = u.preferences.cards.copy(ranks = value))
-          case "suits" => u.preferences.copy(cards = u.preferences.cards.copy(suits = value))
-          case "faceCards" => u.preferences.copy(cards = u.preferences.cards.copy(faceCards = value))
+          case "card-back" => u.preferences.copy(cards = u.preferences.cards.copy(back = value))
+          case "card-layout" => u.preferences.copy(cards = u.preferences.cards.copy(layout = value))
+          case "card-rank" => u.preferences.copy(cards = u.preferences.cards.copy(ranks = value))
+          case "card-suit" => u.preferences.copy(cards = u.preferences.cards.copy(suits = value))
+          case "card-face" => u.preferences.copy(cards = u.preferences.cards.copy(faceCards = value))
+          case "auto-flip" => u.preferences.copy(autoFlip = value.toBoolean)
+          case "background-color" => u.preferences.copy(color = value)
           case _ => log.errorThenThrow(s"Unhandled preference [$name] for user [$userId] with value [$value].")
         }
         Database.execute(UserQueries.SetPreferences(userId, newPrefs)).map { x =>
