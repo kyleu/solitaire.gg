@@ -19,7 +19,7 @@ object Solitaire extends js.JSApp with SolitaireHelper {
   private[this] var sendCallback: js.Function1[String, Unit] = _
 
   @JSExport
-  def register(callback: js.Function1[String, Unit]) {
+  def register(callback: js.Function1[String, Unit]) = {
     sendCallback = callback
   }
 
@@ -50,7 +50,7 @@ object Solitaire extends js.JSApp with SolitaireHelper {
     gameId = UUID.randomUUID
     gameRules = GameRulesSet.allByIdWithAliases(rules)
     gameState = gameRules.newGame(gameId, seed.getOrElse(Math.abs(rng.nextInt())), rules)
-    gameState.addPlayer(userId, "Offline Player")
+    gameState.addPlayer(userId, "Offline Player", autoFlipOption = false)
     InitialMoves.performInitialMoves(gameRules, gameState)
 
     send(GameJoined(gameId, gameState.view(userId), possibleMoves()))

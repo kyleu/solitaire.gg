@@ -8,5 +8,6 @@ case class PlayerRecord(
   userId: UUID,
   name: String,
   var connectionId: Option[UUID],
-  var connectionActor: Option[ActorRef]
+  var connectionActor: Option[ActorRef],
+  var autoFlipOption: Boolean
 )

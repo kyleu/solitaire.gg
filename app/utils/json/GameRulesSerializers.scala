@@ -3,7 +3,7 @@ package utils.json
 import models.rules._
 import play.api.libs.json._
 
-import GameSerializers._
+import utils.json.GameSerializers._
 
 object GameRulesSerializers {
 

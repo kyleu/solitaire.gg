@@ -1,5 +1,5 @@
 /* global define:false */
-define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState'], function (cfg, Gameplay, GameState) {
+define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState', 'ui/Theme'], function (cfg, Gameplay, GameState, Theme) {
   'use strict';
 
   function LoadingScreen(game) {
@@ -26,11 +26,13 @@ define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState'], function
       'empty-piles', this.assetRoot + 'assets/images/cards/empty-a.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight
     );
 
+    var preferences = Theme.init();
+
     this.game.load.image('card-blank', this.assetRoot + 'assets/images/cards/blank.png');
-    this.game.load.image('card-back', this.assetRoot + 'assets/images/cards/back-a.png');
-    this.game.load.spritesheet('card-suits', this.assetRoot + 'assets/images/cards/suits-a.png', 200, 200);
-    this.game.load.spritesheet('card-ranks', this.assetRoot + 'assets/images/cards/ranks-a.png', 200, 200);
-    this.game.load.spritesheet('card-faces', this.assetRoot + 'assets/images/cards/face-cards-a.png', 200, 300);
+    this.game.load.image('card-back', this.assetRoot + 'assets/images/cards/back-' + preferences['card-back'] + '.png');
+    this.game.load.spritesheet('card-suits', this.assetRoot + 'assets/images/cards/suits-' + preferences['card-suit'] + '.png', 200, 200);
+    this.game.load.spritesheet('card-ranks', this.assetRoot + 'assets/images/cards/ranks-' + preferences['card-rank'] + '.png', 200, 200);
+    this.game.load.spritesheet('card-faces', this.assetRoot + 'assets/images/cards/face-cards-' + preferences['card-face'] + '.png', 200, 300);
 
     var gameplay = new Gameplay(this.game);
     this.game.state.add('gameplay', gameplay);

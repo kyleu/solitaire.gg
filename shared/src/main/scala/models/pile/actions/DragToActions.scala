@@ -20,8 +20,7 @@ object DragToActions {
     val moveMessage = CardsMoved(cardIds, src.id, tgt.id)
     if (src.cards.lastOption.exists(!_.u)) {
       val isReserve = src.pileSet.exists(_.behavior == "reserve")
-      val autoFlipOption = false
-      if (isReserve || autoFlipOption) {
+      if (isReserve || gameState.players.exists(_.autoFlipOption)) {
         val last = src.cards.lastOption.getOrElse(throw new IllegalStateException())
         last.u = true
         reveals ++ (moveMessage +: gameState.revealCardToAll(last))

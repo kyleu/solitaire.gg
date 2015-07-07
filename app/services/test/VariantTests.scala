@@ -8,9 +8,10 @@ import models.rules.GameRulesSet
 import models.test.{ Test, Tree }
 import models.{ GetPossibleMoves, PossibleMoves, GameJoined, StartGame }
 import play.api.libs.concurrent.Akka
-import services.{ ActorSupervisor, ConnectionService }
+import services.ActorSupervisor
 
 import play.api.Play.current
+import services.connection.ConnectionService
 
 class VariantTests {
   val all = Tree(Test("variant"), GameRulesSet.all.map(x => testVariant(x.id).toTree))

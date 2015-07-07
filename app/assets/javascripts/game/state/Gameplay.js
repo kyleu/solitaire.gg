@@ -2,7 +2,7 @@
 /* global Phaser:false */
 /* global _:false */
 define([
-  'utils/Config', 'game/Rank', 'game/Suit', 'game/Card', 'game/pile/Pile',
+  'utils/Config', 'game/Rank', 'game/Suit', 'game/card/Card', 'game/pile/Pile',
   'game/helpers/Backdrop', 'game/helpers/Display', 'game/helpers/Keyboard', 'game/helpers/Tweens',
   'game/Playmat', 'game/state/GameState', 'game/state/GameplayHelper'
 ], function (cfg, Rank, Suit, Card, Pile, Backdrop, Display, Keyboard, Tweens, Playmat, GameState, GameplayHelper) {

@@ -1,11 +1,6 @@
 guest.name = Guest
 invalid.game.rules = We can''t find any information about the game [{0}].
 
-# Errors
-error.bad.request = Bad Request: {0}
-error.exception = Exception encountered
-error.not.found = Page not found
-
 # Authentication
 authentication.call.to.action = Sign in to {0}
 authentication.sign.in = Sign In
@@ -46,6 +41,7 @@ menu.other.stuff = Other Stuff
 
 # Gameplay
 game.loading = Loading...
+options.cards.back = Card Back
 options.cards.layout = Card Layout
 options.cards.face.cards = Face Cards
 options.cards.ranks = Ranks

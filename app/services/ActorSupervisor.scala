@@ -43,8 +43,8 @@ class ActorSupervisor extends ActorSupervisorHelper with Logging {
     case cs: ConnectionStarted => timeReceive(cs) { handleConnectionStarted(cs.user, cs.connectionId, cs.conn) }
     case cs: ConnectionStopped => timeReceive(cs) { handleConnectionStopped(cs.connectionId) }
 
-    case cg: CreateGame => timeReceive(cg) { handleCreateGame(cg.rules, cg.connectionId, cg.seed, cg.testGame) }
-    case cgj: ConnectionGameJoin => timeReceive(cgj) { handleConnectionGameJoin(cgj.id, cgj.connectionId) }
+    case cg: CreateGame => timeReceive(cg) { handleCreateGame(cg.rules, cg.connectionId, cg.seed, cg.testGame, cg.autoFlipOption) }
+    case cgj: ConnectionGameJoin => timeReceive(cgj) { handleConnectionGameJoin(cgj.id, cgj.connectionId, cgj.autoFlipOption) }
     case cgo: ConnectionGameObserve => timeReceive(cgo) { handleConnectionGameObserve(cgo.id, cgo.connectionId, cgo.as) }
     case gs: GameStopped => timeReceive(gs) { handleGameStopped(gs.id) }
 

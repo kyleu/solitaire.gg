@@ -6,22 +6,15 @@ define(['game/Rank', 'game/Suit'], function(Rank, Suit) {
 
   var cardTextures = [];
 
-  var blank, suitImages, smallSuitImages, blackRankImages, redRankImages, faceCardImages;
+  var blank, suitImages, blackRankImages, redRankImages, faceCardImages;
 
-  function init(game) {
+  function init(game, preferences) {
     if(cardTextures.length > 0) { throw 'Double initialize.'; }
 
     blank = new Phaser.Image(game, 0, 0, 'card-blank', 0);
 
     suitImages = _.map([0, 1, 2, 3], function(i) {
       var ret = new Phaser.Image(game, 0, 0, 'card-suits', i);
-      ret.anchor.setTo(0.5, 0.5);
-      return ret;
-    });
-    smallSuitImages = _.map(Suit.all, function(s) {
-      var ret = new Phaser.Image(game, 0, 0, 'card-suits', s.index);
-      ret.width = 60;
-      ret.height = 60;
       ret.anchor.setTo(0.5, 0.5);
       return ret;
     });
@@ -42,18 +35,27 @@ define(['game/Rank', 'game/Suit'], function(Rank, Suit) {
         return ret;
       });
     }));
+    var layout = preferences['card-layout'];
     _.each(Suit.all, function(s) {
       _.each(Rank.all, function(r) {
-        cardTextures[r.char + s.char] = renderCard(game, s, r, 'a');
+        var tex = game.add.bitmapData(400, 600);
+        cardTextures[r.char + s.char] = renderCard(s, r, layout, tex);
+      });
+    });
+  }
+
+  function rerender(preferences) {
+    console.log('CardImages.rerender();');
+    _.each(Suit.all, function(s) {
+      _.each(Rank.all, function(r) {
+        renderCard(s, r, preferences['card-layout'], cardTextures[r.char + s.char]);
       });
     });
   }
 
   var rankWidths = [0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.0, 0.9, 0.9, 0.9, 0.9];
 
-  function renderCard(game, s, r, layout) {
-    var tex = game.add.bitmapData(400, 600);
-
+  function renderCard(s, r, layout, tex) {
     tex.draw(blank, 0, 0);
 
     var suitImage = suitImages[s.index];
@@ -113,7 +115,7 @@ define(['game/Rank', 'game/Suit'], function(Rank, Suit) {
 
         break;
       default:
-        throw '?';
+        throw '?: ' + layout;
     }
 
     return tex;
@@ -121,6 +123,7 @@ define(['game/Rank', 'game/Suit'], function(Rank, Suit) {
 
   return {
     init: init,
+    rerender: rerender,
     textures: cardTextures
   };
 });

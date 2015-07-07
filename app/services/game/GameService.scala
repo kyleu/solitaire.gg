@@ -19,12 +19,14 @@ case class GameService(
   protected[this] val gameRules = GameRulesSet.allByIdWithAliases(rules)
   protected[this] val gameState = gameRules.newGame(id, seed, rules)
 
-  gameState.addPlayer(player.userId, player.name)
+  gameState.addPlayer(player.userId, player.name, player.autoFlipOption)
 
   protected[this] val gameMessages = collection.mutable.ArrayBuffer.empty[(GameMessage, UUID, LocalDateTime)]
   protected[this] var moveCount = 0
   protected[this] var lastMoveMade: Option[LocalDateTime] = None
   protected[this] var gameWon = false
+
+  protected[this] var autoFlipOption = false
 
   private[this] var _status = "started"
   protected[this] def getStatus = _status
@@ -45,6 +47,7 @@ case class GameService(
     case gr: GameRequest => handleGameRequest(gr)
     case im: InternalMessage => handleInternalMessage(im)
     case di: DebugInfo => handleCheat(di.data)
+    case sp: SetPreference => handleSetPreference(sp.name, sp.value)
     case x => log.warn(s"GameService received unknown message [${x.getClass.getSimpleName}].")
   }
 
@@ -66,8 +69,6 @@ case class GameService(
         case Undo => timeReceive(Undo) { handleUndo(gr.userId) }
         case Redo => timeReceive(Redo) { handleRedo(gr.userId) }
 
-        case sp: SetPreference => timeReceive(Undo) { handleSetPreference(gr.userId, sp.name, sp.value) }
-
         case r => log.warn(s"GameService received unknown game message [${r.getClass.getSimpleName.replace("$", "")}].")
       }
     } catch {
@@ -81,7 +82,7 @@ case class GameService(
     //log.debug("Handling [" + im.getClass.getSimpleName.replace("$", "") + "] internal message for game [" + id + "].")
     try {
       im match {
-        case ap: AddPlayer => timeReceive(ap) { handleAddPlayer(ap.userId, ap.name, ap.connectionId, ap.connectionActor) }
+        case ap: AddPlayer => timeReceive(ap) { handleAddPlayer(ap.userId, ap.name, ap.connectionId, ap.connectionActor, ap.autoFlipOption) }
         case ao: AddObserver => timeReceive(ao) { handleAddObserver(ao.userId, ao.name, ao.connectionId, ao.connectionActor, ao.as) }
         case cs: ConnectionStopped => timeReceive(cs) { handleConnectionStopped(cs.connectionId) }
         case StopGame => timeReceive(StopGame) { handleStopGame() }

@@ -27,11 +27,11 @@ case class Pile(id: String, options: PileOptions, cards: collection.mutable.Arra
 
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
 
-  def addCard(c: Card) {
+  def addCard(c: Card) = {
     cards += c
   }
 
-  def removeCard(card: Card) {
+  def removeCard(card: Card) = {
     if (!cards.contains(card)) {
       throw new IllegalArgumentException(s"Provided card [$card] is not included in pile [$id].")
     }

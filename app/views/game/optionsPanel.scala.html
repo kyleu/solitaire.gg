@@ -1,15 +1,28 @@
 @(user: models.user.User)(implicit messages: Messages)
 <div id="gameplay-options" class="invisible">
+  <div id="card-back-list" class="options-list">
+    <div class="options-label">@Messages("options.cards.back")</div>
+    <div class="game-options">
+    @for(idx <- Seq("a", "b", "c", "d")) {
+      @defining(if(idx == user.preferences.cards.back) { " active" } else { "" }) { active =>
+        <div class="game-option@active" data-option-class="card-back" data-option-value="@idx">
+          <div>@idx</div>
+        </div>
+      }
+    }
+    </div>
+  </div>
+
   <div id="card-layout-list" class="options-list">
     <div class="options-label">@Messages("options.cards.layout")</div>
     <div class="game-options">
-      @for(idx <- Seq("a", "b")) {
-        @defining(if(idx == user.preferences.cards.layout) { " active" } else { "" }) { active =>
-          <div class="game-option@active" data-option-class="card-layout" data-option-value="@idx">
-            <div>@idx</div>
-          </div>
-        }
+    @for(idx <- Seq("a", "b")) {
+      @defining(if(idx == user.preferences.cards.layout) { " active" } else { "" }) { active =>
+        <div class="game-option@active" data-option-class="card-layout" data-option-value="@idx">
+          <div>@idx</div>
+        </div>
       }
+    }
     </div>
   </div>
 

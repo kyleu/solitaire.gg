@@ -8,6 +8,7 @@ case class MalformedRequest(reason: String, content: String) extends RequestMess
 
 case class Ping(timestamp: Long) extends RequestMessage
 case object GetVersion extends RequestMessage
+case class SetPreference(name: String, value: String) extends RequestMessage
 
 case class DebugInfo(data: String) extends RequestMessage
 
@@ -26,4 +27,3 @@ case class MoveCards(cards: Seq[UUID], src: String, tgt: String) extends GameMes
 case object Undo extends GameMessage
 case object Redo extends GameMessage
 
-case class SetPreference(name: String, value: String) extends GameMessage

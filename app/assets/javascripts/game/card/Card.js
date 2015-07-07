@@ -1,6 +1,6 @@
 /* global define:false */
 /* global Phaser:false */
-define(['utils/Config', 'game/Rank', 'game/Suit', 'game/helpers/CardInput', 'game/helpers/Tweens'], function (cfg, Rank, Suit, CardInput, Tweens) {
+define(['utils/Config', 'game/Rank', 'game/Suit', 'game/card/CardInput', 'game/helpers/Tweens'], function (cfg, Rank, Suit, CardInput, Tweens) {
   'use strict';
 
   function Card(game, id, rank, suit, faceUp) {

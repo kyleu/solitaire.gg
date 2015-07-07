@@ -34,7 +34,7 @@ trait SolitaireHelper {
     ret
   }
 
-  protected[this] def handleSelectCard(userId: UUID, cardId: UUID, pileId: String) {
+  protected[this] def handleSelectCard(userId: UUID, cardId: UUID, pileId: String) = {
     val card = gameState.cardsById(cardId)
     val pile = gameState.pilesById(pileId)
     if (!pile.cards.contains(card)) {
@@ -49,7 +49,7 @@ trait SolitaireHelper {
     }
   }
 
-  protected[this] def handleSelectPile(userId: UUID, pileId: String) {
+  protected[this] def handleSelectPile(userId: UUID, pileId: String) = {
     val pile = gameState.pilesById(pileId)
     if (pile.cards.nonEmpty) {
       throw new IllegalStateException(s"SelectPile [$pileId] called on a non-empty deck.")
@@ -59,7 +59,7 @@ trait SolitaireHelper {
     if (!checkWinCondition()) { send(PossibleMoves(possibleMoves(), 0, 0)) }
   }
 
-  protected[this] def handleMoveCards(userId: UUID, cardIds: Seq[UUID], source: String, target: String) {
+  protected[this] def handleMoveCards(userId: UUID, cardIds: Seq[UUID], source: String, target: String) = {
     val cards = cardIds.map(gameState.cardsById)
     val sourcePile = gameState.pilesById(source)
     val targetPile = gameState.pilesById(target)

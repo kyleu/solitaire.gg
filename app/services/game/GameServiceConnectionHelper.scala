@@ -8,14 +8,15 @@ import models.user.PlayerRecord
 import play.api.libs.concurrent.Akka
 
 trait GameServiceConnectionHelper { this: GameService =>
-  protected[this] def handleAddPlayer(userId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef) {
+  protected[this] def handleAddPlayer(userId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef, autoFlipOption: Boolean) {
     if (player.userId == userId) {
       player.connectionActor.foreach(_ ! Disconnected("Joined from another connection."))
       player.connectionId = Some(connectionId)
       player.connectionActor = Some(connectionActor)
+      player.autoFlipOption = autoFlipOption
     } else {
       // playerConnections += PlayerRecord(userId, name, Some(connectionId), Some(connectionActor))
-      gameState.addPlayer(userId, name)
+      //gameState.addPlayer(userId, name)
       throw new NotImplementedError("AddPlayer")
     }
 
@@ -24,7 +25,7 @@ trait GameServiceConnectionHelper { this: GameService =>
   }
 
   protected[this] def handleAddObserver(userId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef, as: Option[UUID]) {
-    observerConnections += (PlayerRecord(userId, name, Some(connectionId), Some(connectionActor)) -> as)
+    observerConnections += (PlayerRecord(userId, name, Some(connectionId), Some(connectionActor), autoFlipOption = false) -> as)
     val gs = as match {
       case Some(p) => gameState.view(p)
       case None => gameState

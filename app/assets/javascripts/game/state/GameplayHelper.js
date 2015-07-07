@@ -1,6 +1,6 @@
 /* global define:false */
 /* global _:false */
-define(['utils/Config', 'game/Card', 'game/pile/Pile', 'game/helpers/CardImages'], function(cfg, Card, Pile, CardImages) {
+define(['utils/Config', 'game/card/Card', 'game/pile/Pile', 'game/card/CardImages', 'ui/Theme'], function(cfg, Card, Pile, CardImages, Theme) {
   var GameplayHelper = function(game) {
     this.game = game;
   };
@@ -38,7 +38,7 @@ define(['utils/Config', 'game/Card', 'game/pile/Pile', 'game/helpers/CardImages'
   };
 
   GameplayHelper.prototype.loadCardImages = function() {
-    CardImages.init(this.game);
+    CardImages.init(this.game, Theme.getPreferences());
     this.game.cardTextures = CardImages.textures;
   };
 

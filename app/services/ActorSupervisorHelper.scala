@@ -30,13 +30,13 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
     }
   }
 
-  protected[this] def handleCreateGame(rules: String, connectionId: UUID, seed: Option[Int], testGame: Boolean) {
+  protected[this] def handleCreateGame(rules: String, connectionId: UUID, seed: Option[Int], testGame: Boolean, autoFlipOption: Boolean) {
     val id = UUID.randomUUID
     val s = Math.abs(seed.getOrElse(masterRng.nextInt()))
     val c = connections(connectionId)
 
     val started = DateUtils.now
-    val pr = PlayerRecord(c.userId, c.name, Some(connectionId), Some(c.actorRef))
+    val pr = PlayerRecord(c.userId, c.name, Some(connectionId), Some(c.actorRef), autoFlipOption)
     val actor = context.actorOf(Props(new GameService(id, rules, s, started, pr, testGame)), s"game:$id")
 
     c.activeGame = Some(id)
@@ -44,14 +44,14 @@ trait ActorSupervisorHelper extends InstrumentedActor { this: ActorSupervisor =>
     gamesCounter.inc()
   }
 
-  protected[this] def handleConnectionGameJoin(id: UUID, connectionId: UUID) = games.get(id) match {
+  protected[this] def handleConnectionGameJoin(id: UUID, connectionId: UUID, autoFlipOption: Boolean) = games.get(id) match {
     case Some(g) =>
       log.info(s"Joining game [$id].")
       val c = connections(connectionId)
       c.activeGame = Some(id)
-      g.actorRef ! AddPlayer(c.userId, c.name, connectionId, c.actorRef)
+      g.actorRef ! AddPlayer(c.userId, c.name, connectionId, c.actorRef, autoFlipOption)
     case None =>
-      log.warn(s"Attempted to observe invalid game [$id].")
+      log.warn(s"Attempted to join invalid game [$id].")
       sender() ! ServerError("Invalid Game", id.toString)
   }
 

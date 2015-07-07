@@ -7,7 +7,7 @@ object ClientPileOptions {
   def fromPileOptions(po: PileOptions) = ClientPileOptions(
     po.cardsShown,
     po.direction,
-    po.dragFromConstraint.map(_.id).getOrElse("never"),
+    po.dragFromConstraint.fold("never")(_.id),
     po.dragFromConstraint.flatMap(_.clientOptions)
   )
 }

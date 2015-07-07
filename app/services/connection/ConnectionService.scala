@@ -1,21 +1,22 @@
-package services
+package services.connection
 
 import java.util.UUID
 
-import akka.actor.{ Props, ActorRef }
+import akka.actor.{ ActorRef, Props }
 import models._
 import models.user.User
-import utils.{ Logging, Config }
+import utils.Config
 
 object ConnectionService {
   def props(supervisor: ActorRef, user: User, out: ActorRef) = Props(new ConnectionService(supervisor, user, out))
 }
 
-class ConnectionService(val supervisor: ActorRef, val user: User, val out: ActorRef) extends ConnectionServiceHelper with Logging {
+class ConnectionService(val supervisor: ActorRef, val user: User, val out: ActorRef) extends ConnectionServiceHelper {
   protected[this] val id = UUID.randomUUID
 
   protected[this] var activeGameId: Option[UUID] = None
   protected[this] var activeGame: Option[ActorRef] = None
+  protected[this] var userPreferences = user.preferences
 
   protected[this] var pendingDebugChannel: Option[ActorRef] = None
 
@@ -28,6 +29,7 @@ class ConnectionService(val supervisor: ActorRef, val user: User, val out: Actor
     case mr: MalformedRequest => timeReceive(mr) { log.error(s"MalformedRequest:  [${mr.reason}]: [${mr.content}].") }
     case p: Ping => timeReceive(p) { out ! Pong(p.timestamp) }
     case GetVersion => timeReceive(GetVersion) { out ! VersionResponse(Config.version) }
+    case sp: SetPreference => timeReceive(sp) { handleSetPreference(sp) }
     case di: DebugInfo => timeReceive(di) { handleDebugInfo(di.data) }
 
     // Incoming game messages

@@ -4,9 +4,10 @@ import akka.actor.PoisonPill
 import akka.testkit.TestProbe
 import models._
 import play.api.libs.concurrent.Akka
-import services.{ ActorSupervisor, ConnectionService }
+import services.ActorSupervisor
 
 import play.api.Play.current
+import services.connection.ConnectionService
 import utils.Logging
 
 import scala.util.Random

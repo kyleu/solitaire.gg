@@ -22,7 +22,7 @@ case class GameState(
   val piles = pileSets.flatMap(_.piles)
   val pilesById = piles.map(p => p.id -> p).toMap
 
-  def addPlayer(userId: UUID, name: String) = players.find(_.userId == userId) match {
+  def addPlayer(userId: UUID, name: String, autoFlipOption: Boolean) = players.find(_.userId == userId) match {
     case Some(p) =>
     //log.info("Reconnecting to game [" + gameId + "] from user [" + name + ": " + userId + "]")
     // TODO Reconnect
@@ -32,7 +32,7 @@ case class GameState(
       if (playerIndex == maxPlayers) {
         throw new IllegalArgumentException("Too many players.")
       }
-      players = players :+ GamePlayer(userId, name)
+      players = players :+ GamePlayer(userId, name, autoFlipOption)
       playerKnownIds(userId) = collection.mutable.HashSet.empty
   }
 
