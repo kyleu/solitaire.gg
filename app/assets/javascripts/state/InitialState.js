@@ -1,6 +1,6 @@
 /* global define:false */
 /* global Phaser:false */
-define(['utils/Config', 'game/state/GameState', 'game/state/LoadingScreen'], function (cfg, GameState, LoadingScreen) {
+define(['utils/Config', 'state/GameState', 'state/LoadingScreen'], function (cfg, GameState, LoadingScreen) {
   'use strict';
 
   function InitialState(game) {

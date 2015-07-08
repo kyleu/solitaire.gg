@@ -1,5 +1,5 @@
 /* global define:false */
-define(['utils/Config', 'game/state/Gameplay', 'game/state/GameState', 'ui/Theme'], function (cfg, Gameplay, GameState, Theme) {
+define(['utils/Config', 'state/Gameplay', 'state/GameState', 'ui/Theme'], function (cfg, Gameplay, GameState, Theme) {
   'use strict';
 
   function LoadingScreen(game) {

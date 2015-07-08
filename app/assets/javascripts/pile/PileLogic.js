@@ -1,5 +1,5 @@
 /* global define:false */
-define(['game/Rank'], function(Rank) {
+define(['card/Rank'], function(Rank) {
   function upBy(i, l, r, lowRank) {
     if (lowRank === Rank.ace.value && l === Rank.ace) {
       switch(i) {

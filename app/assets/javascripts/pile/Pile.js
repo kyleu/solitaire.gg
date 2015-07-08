@@ -1,7 +1,7 @@
 /* global define:false */
 /* global Phaser:false */
 /* global _:false */
-define(['game/pile/PileLayout', 'game/pile/PileHelpers', 'game/pile/DragFromConstraints'], function (PileLayout, PileHelpers, DragFromConstraints) {
+define(['pile/PileLayout', 'pile/PileHelpers', 'pile/DragFromConstraints'], function (PileLayout, PileHelpers, DragFromConstraints) {
   'use strict';
 
   function getConstraint(key) {

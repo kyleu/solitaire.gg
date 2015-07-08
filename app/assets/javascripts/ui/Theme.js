@@ -1,6 +1,6 @@
 /* global define:false */
 /* global _:false */
-define(['game/card/CardImages'], function(CardImages) {
+define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup) {
   var game;
   var preferences;
   var elements = {
@@ -69,10 +69,16 @@ define(['game/card/CardImages'], function(CardImages) {
     }
 
     if(preferences[optionClass] !== optionValue) {
-      if(optionClass === 'background-color') {
-        selectColor(optionValue);
-      } else if(optionClass !== 'auto-flip') {
-        CardImages.rerender(preferences);
+      switch(optionClass) {
+        case 'background-color':
+          selectColor(optionValue);
+          break;
+        case 'auto-flip':
+          break;
+        default:
+          CardImages.rerender(preferences);
+          game.refreshTextures();
+          break;
       }
       preferences[optionClass] = optionValue;
       game.send('SetPreference', {'name': optionClass, 'value': optionValue});
@@ -89,44 +95,7 @@ define(['game/card/CardImages'], function(CardImages) {
 
   return {
     init: function() {
-      preferences = {};
-      var optionsPanel = document.getElementById('gameplay-options');
-      var layoutOptions = optionsPanel.getElementsByClassName('game-option');
-      _.each(layoutOptions, function(layoutOption) {
-        var optionClass = layoutOption.getAttribute('data-option-class');
-        switch(optionClass) {
-          case 'card-back':
-            elements.backs.push(layoutOption);
-            break;
-          case 'card-layout':
-            elements.layouts.push(layoutOption);
-            break;
-          case 'card-suit':
-            elements.suits.push(layoutOption);
-            break;
-          case 'card-rank':
-            elements.ranks.push(layoutOption);
-            break;
-          case 'card-face':
-            elements.faceCards.push(layoutOption);
-            break;
-          case 'auto-flip':
-            elements.autoFlips.push(layoutOption);
-            break;
-          case 'background-color':
-            elements.colors.push(layoutOption);
-            break;
-          default:
-            throw optionClass;
-        }
-
-        if(layoutOption.className.indexOf('active') > -1) {
-          preferences[optionClass] = layoutOption.getAttribute('data-option-value');
-        }
-
-        layoutOption.onclick = optionClick;
-      });
-
+      preferences = ThemeStartup.init(optionClick, elements);
       return preferences;
     },
     getPreferences: function() {

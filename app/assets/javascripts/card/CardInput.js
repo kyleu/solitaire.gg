@@ -1,6 +1,6 @@
 /* global define:false */
 /* global _:false */
-define(['game/helpers/Tweens'], function (Tweens) {
+define(['card/Tweens'], function (Tweens) {
   'use strict';
 
   var dragDeadZone = 10;

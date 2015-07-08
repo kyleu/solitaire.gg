@@ -1,6 +1,6 @@
 /* global define:false */
 /* global _:false */
-define(['game/Rank', 'game/pile/PileLogic'], function(Rank, PileLogic) {
+define(['card/Rank', 'pile/PileLogic'], function(Rank, PileLogic) {
   'use strict';
 
   return {

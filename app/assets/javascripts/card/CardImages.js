@@ -1,7 +1,7 @@
 /* global define:false */
 /* global Phaser:false */
 /* global _:false */
-define(['game/Rank', 'game/Suit'], function(Rank, Suit) {
+define(['card/Rank', 'card/Suit'], function(Rank, Suit) {
   'use strict';
 
   var cardTextures = [];

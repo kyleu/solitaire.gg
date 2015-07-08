@@ -2,7 +2,7 @@
 /* global Phaser:false */
 /* global _:false */
 /* global Solitaire:false */
-define(['utils/Config', 'ui/Options', 'game/helpers/GameNetwork', 'game/state/InitialState', 'game/Help', 'game/Sandbox'],
+define(['utils/Config', 'ui/Options', 'game/helpers/GameNetwork', 'state/InitialState', 'help/Help', 'sandbox/Sandbox'],
 function (config, Options, GameNetwork, InitialState, Help, Sandbox) {
   'use strict';
 
@@ -84,6 +84,14 @@ function (config, Options, GameNetwork, InitialState, Help, Sandbox) {
     });
 
     this.initialized = true;
+  };
+
+  Game.prototype.refreshTextures = function() {
+    _.each(this.piles, function(pile) {
+      _.each(pile.cards, function(card) {
+        card.updateSprite();
+      });
+    });
   };
 
   return Game;

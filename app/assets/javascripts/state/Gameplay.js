@@ -2,10 +2,10 @@
 /* global Phaser:false */
 /* global _:false */
 define([
-  'utils/Config', 'game/Rank', 'game/Suit', 'game/card/Card', 'game/pile/Pile',
-  'game/helpers/Backdrop', 'game/helpers/Display', 'game/helpers/Keyboard', 'game/helpers/Tweens',
-  'game/Playmat', 'game/state/GameState', 'game/state/GameplayHelper'
-], function (cfg, Rank, Suit, Card, Pile, Backdrop, Display, Keyboard, Tweens, Playmat, GameState, GameplayHelper) {
+  'utils/Config', 'card/Rank', 'card/Suit', 'card/Card', 'card/Tweens', 'pile/Pile',
+  'game/helpers/Backdrop', 'game/helpers/Display', 'game/helpers/Keyboard',
+  'game/Playmat', 'state/GameState', 'state/GameplayHelper'
+], function (cfg, Rank, Suit, Card, Tweens, Pile, Backdrop, Display, Keyboard, Playmat, GameState, GameplayHelper) {
   'use strict';
 
   function Gameplay(game) {

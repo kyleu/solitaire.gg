@@ -23,7 +23,7 @@ $ open http://solitaire.dev
 
 ## Technology
 
-Solitaire.gg is a WebGL client-server solitaire implementation with offline support.
+Solitaire.gg is a WebGL client-server solitaire implementation with offline support. Using 4K-ready retina-quality HD graphics, Solitaire.gg aims to be the best card game available.
 
 In online mode, a Play application communicates over a WebSocket to a pool of Akka actors managing games and connections. 
 Serialization is handled by Play Json, and all database communication runs via postgres-async. In offline mode, Scala.js compiles the
@@ -31,7 +31,7 @@ shared code and provides an in-browser server, communicating with the client via
 
 Rendering is handled by Phaser.io using a simple message-passing interface.
 You can sign in with Facebook, Google, or Twitter thanks to Play Silhouette.
-
+A general Solitaire solver is included, supporting backtracking and propagation.
 
 ## Metrics
 
