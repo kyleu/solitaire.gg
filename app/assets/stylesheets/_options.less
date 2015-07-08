@@ -18,8 +18,6 @@
 
   .game-options {
     margin: 0 10px;
-    border: 1px solid #ffffff;
-    border-radius: 8px;
     padding: 5px;
   }
 }
@@ -27,23 +25,71 @@
 .game-option {
   display: inline-block;
   border: 5px solid #000000;
-  border-radius: 5px;
   margin: 0;
   div {
     cursor: pointer;
     width: 40px;
     height: 40px;
   }
+  .option-image {
+    background-image: url("../images/game/game-options.png");
+    background-size: 600px 40px;
+  }
 }
 .game-option.active {
-  border: 5px solid #ffffff;
+  border: 5px solid #aaaaaa;
   div {
     cursor: default;
   }
 }
 .game-option.active:hover {
-  border: 5px solid #ffffff;
+  border: 5px solid #aaaaaa;
 }
 .game-option:hover {
   border: 5px solid #666666;
+}
+
+#card-layout-a {
+  background-position: 0 0;
+}
+#card-layout-b {
+  background-position: -40px 0;
+}
+
+#card-back-a {
+  background-position: -80px 0;
+}
+#card-back-b {
+  background-position: -120px 0;
+}
+#card-back-c {
+  background-position: -160px 0;
+}
+
+#card-face-a {
+  background-position: -240px 0;
+}
+#card-face-b {
+  background-position: -280px 0;
+}
+
+#card-suit-a {
+  background-position: -320px 0;
+}
+#card-suit-b {
+  background-position: -360px 0;
+}
+
+#card-rank-a {
+  background-position: -400px 0;
+}
+#card-rank-b {
+  background-position: -440px 0;
+}
+
+#auto-flip-true {
+  background-position: -480px 0;
+}
+#auto-flip-false {
+  background-position: -520px 0;
 }

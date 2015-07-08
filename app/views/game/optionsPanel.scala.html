@@ -1,51 +1,25 @@
 @(user: models.user.User)(implicit messages: Messages)
 <div id="gameplay-options" class="invisible">
-  <div id="card-back-list" class="options-list">
-    <div class="options-label">@Messages("options.cards.back")</div>
-    <div class="game-options">
-    @for(idx <- Seq("a", "b", "c", "d")) {
-      @defining(if(idx == user.preferences.cards.back) { " active" } else { "" }) { active =>
-        <div class="game-option@active" data-option-class="card-back" data-option-value="@idx">
-          <div>@idx</div>
-        </div>
-      }
-    }
-    </div>
-  </div>
-
   <div id="card-layout-list" class="options-list">
     <div class="options-label">@Messages("options.cards.layout")</div>
     <div class="game-options">
     @for(idx <- Seq("a", "b")) {
       @defining(if(idx == user.preferences.cards.layout) { " active" } else { "" }) { active =>
         <div class="game-option@active" data-option-class="card-layout" data-option-value="@idx">
-          <div>@idx</div>
+          <div id="card-layout-@idx" class="option-image"></div>
         </div>
       }
     }
     </div>
   </div>
 
-  <div id="card-suit-list" class="options-list">
-    <div class="options-label">@Messages("options.cards.suits")</div>
+  <div id="card-back-list" class="options-list">
+    <div class="options-label">@Messages("options.cards.back")</div>
     <div class="game-options">
-      @for(idx <- Seq("a", "b")) {
-        @defining(if(idx == user.preferences.cards.suits) { " active" } else { "" }) { active =>
-          <div class="game-option@active" data-option-class="card-suit" data-option-value="@idx">
-            <div>@idx</div>
-          </div>
-        }
-      }
-    </div>
-  </div>
-
-  <div id="card-rank-list" class="options-list">
-    <div class="options-label">@Messages("options.cards.ranks")</div>
-    <div class="game-options">
-    @for(idx <- Seq("a", "b")) {
-      @defining(if(idx == user.preferences.cards.ranks) { " active" } else { "" }) { active =>
-        <div class="game-option@active" data-option-class="card-rank" data-option-value="@idx">
-          <div>@idx</div>
+    @for(idx <- Seq("a", "b", "c")) {
+      @defining(if(idx == user.preferences.cards.back) { " active" } else { "" }) { active =>
+        <div class="game-option@active" data-option-class="card-back" data-option-value="@idx">
+          <div id="card-back-@idx" class="option-image"></div>
         </div>
       }
     }
@@ -58,7 +32,33 @@
     @for(idx <- Seq("a", "b")) {
       @defining(if(idx == user.preferences.cards.faceCards) { " active" } else { "" }) { active =>
         <div class="game-option@active" data-option-class="card-face" data-option-value="@idx">
-          <div>@idx</div>
+          <div id="card-face-@idx" class="option-image"></div>
+        </div>
+      }
+    }
+    </div>
+  </div>
+
+  <div id="card-suit-list" class="options-list">
+    <div class="options-label">@Messages("options.cards.suits")</div>
+    <div class="game-options">
+      @for(idx <- Seq("a", "b")) {
+        @defining(if(idx == user.preferences.cards.suits) { " active" } else { "" }) { active =>
+          <div class="game-option@active" data-option-class="card-suit" data-option-value="@idx">
+            <div id="card-suit-@idx" class="option-image"></div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+  <div id="card-rank-list" class="options-list">
+    <div class="options-label">@Messages("options.cards.ranks")</div>
+    <div class="game-options">
+    @for(idx <- Seq("a", "b")) {
+      @defining(if(idx == user.preferences.cards.ranks) { " active" } else { "" }) { active =>
+        <div class="game-option@active" data-option-class="card-rank" data-option-value="@idx">
+          <div id="card-rank-@idx" class="option-image"></div>
         </div>
       }
     }
@@ -70,13 +70,13 @@
     <div class="game-options">
       @defining(if(user.preferences.autoFlip) { " active" } else { "" }) { active =>
         <div class="game-option@active" data-option-class="auto-flip" data-option-value="true">
-          <div>true</div>
+          <div id="auto-flip-true" class="option-image"></div>
         </div>
       }
 
       @defining(if(!user.preferences.autoFlip) { " active" } else { "" }) { active =>
         <div class="game-option@active" data-option-class="auto-flip" data-option-value="false">
-          <div>false</div>
+          <div id="auto-flip-false" class="option-image"></div>
         </div>
       }
     </div>
@@ -87,11 +87,13 @@
     <div class="game-options">
     @for(color <- ui.Colors.all) {
       @defining(if(color._1 == user.preferences.color) { " active" } else { "" }) { active =>
-        <div class="game-option @active" data-option-class="background-color" data-option-value="@color._1">
+        <div class="game-option@active" data-option-class="background-color" data-option-value="@color._1">
           <div class="background-@color._1"></div>
         </div>
       }
     }
     </div>
   </div>
+
+  <div class="clear"></div>
 </div>
