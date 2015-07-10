@@ -30,20 +30,22 @@ define([], function() {
     },
 
     showOptionsPanel: function() {
-      this.elements.optionsButton.className += ' disabled';
-      this.elements.optionsPanel.className = 'fade-in';
+      var els = this.elements;
+      els.optionsButton.className += ' disabled';
+      els.optionsPanel.style.display = 'block';
     },
 
     hideOptionsPanel: function() {
-      this.elements.optionsButton.className = this.elements.optionsButton.className.replace(' disabled', '');
-      this.elements.optionsPanel.className = 'fade-out';
+      var els = this.elements;
+      els.optionsButton.className = this.elements.optionsButton.className.replace(' disabled', '');
+      els.optionsPanel.style.display = 'none';
     },
 
     toggleOptionsPanel: function() {
-      if(this.elements.optionsPanel.className === 'fade-in') {
+      if(this.elements.optionsPanel.style.display === 'block') {
         this.hideOptionsPanel();
       } else {
-        if(this.elements.menuPanel.className === 'fade-in') {
+        if(this.elements.menuPanel.style.display === 'block') {
           this.hideMenuPanel();
         }
         this.showOptionsPanel();
@@ -51,20 +53,22 @@ define([], function() {
     },
 
     showMenuPanel: function() {
-      this.elements.menuButton.className += ' disabled';
-      this.elements.menuPanel.className = 'fade-in';
+      var els = this.elements;
+      els.menuButton.className += ' disabled';
+      els.menuPanel.style.display = 'block';
     },
 
     hideMenuPanel: function() {
-      this.elements.menuButton.className = this.elements.menuButton.className.replace(' disabled', '');
-      this.elements.menuPanel.className = 'fade-out';
+      var els = this.elements;
+      els.menuButton.className = this.elements.menuButton.className.replace(' disabled', '');
+      els.menuPanel.style.display = 'none';
     },
 
     toggleMenuPanel: function() {
-      if(this.elements.menuPanel.className === 'fade-in') {
+      if(this.elements.menuPanel.style.display === 'block') {
         this.hideMenuPanel();
       } else {
-        if(this.elements.optionsPanel.className === 'fade-in') {
+        if(this.elements.optionsPanel.style.display === 'block') {
           this.hideOptionsPanel();
         }
         this.showMenuPanel();
