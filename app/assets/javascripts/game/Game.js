@@ -89,7 +89,7 @@ function (config, Options, GameNetwork, InitialState, Help, Sandbox) {
   Game.prototype.refreshTextures = function() {
     _.each(this.piles, function(pile) {
       _.each(pile.cards, function(card) {
-        card.updateSprite();
+        card.updateSprite(card.faceUp);
       });
     });
   };

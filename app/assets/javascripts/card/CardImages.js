@@ -45,7 +45,6 @@ define(['card/Rank', 'card/Suit'], function(Rank, Suit) {
   }
 
   function rerender(preferences) {
-    console.log('CardImages.rerender();');
     _.each(Suit.all, function(s) {
       _.each(Rank.all, function(r) {
         renderCard(s, r, preferences['card-layout'], cardTextures[r.char + s.char]);

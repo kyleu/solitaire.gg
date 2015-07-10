@@ -69,6 +69,9 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
     }
 
     if(preferences[optionClass] !== optionValue) {
+      preferences[optionClass] = optionValue;
+      game.send('SetPreference', {'name': optionClass, 'value': optionValue});
+
       switch(optionClass) {
         case 'background-color':
           selectColor(optionValue);
@@ -80,8 +83,6 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
           game.refreshTextures();
           break;
       }
-      preferences[optionClass] = optionValue;
-      game.send('SetPreference', {'name': optionClass, 'value': optionValue});
 
       _.each(selectedElements, function(el) {
         if(el.getAttribute('data-option-value') === optionValue) {
