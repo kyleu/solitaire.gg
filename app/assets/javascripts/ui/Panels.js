@@ -21,10 +21,10 @@ define([], function() {
     },
 
     hidePanels: function() {
-      if(this.elements.optionsPanel.className === 'fade-in') {
+      if(this.elements.optionsPanel.style.display === 'block') {
         this.hideOptionsPanel();
       }
-      if(this.elements.menuPanel.className === 'fade-in') {
+      if(this.elements.menuPanel.style.display === 'block') {
         this.hideMenuPanel();
       }
     },
