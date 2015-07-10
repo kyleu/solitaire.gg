@@ -21,7 +21,7 @@ object ExportStatic {
 
   def run(messagesApi: MessagesApi) = {
     if (!Files.exists(outPath)) {
-      throw new IllegalStateException()
+      Files.createDirectory(outPath)
     }
     if (!Files.exists(helpPath)) {
       Files.createDirectory(helpPath)
@@ -51,8 +51,6 @@ object ExportStatic {
   }
 
   private[this] def render(filename: String, content: Html) = {
-    if (Files.exists(outPath.resolve(filename))) {
-      Files.write(outPath.resolve(filename), content.toString().getBytes("UTF-8"))
-    }
+    Files.write(outPath.resolve(filename), content.toString().getBytes("UTF-8"))
   }
 }

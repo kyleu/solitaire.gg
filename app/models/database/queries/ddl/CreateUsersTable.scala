@@ -7,8 +7,7 @@ case object CreateUsersTable extends Statement {
     create table users (
       id uuid primary key,
       username character varying(256),
-      avatar character varying(256) not null,
-      color character varying(64) not null,
+      prefs json NOT NULL,
       profiles text[] not null,
       roles character varying(64)[] not null,
       created timestamp not null

@@ -1,7 +1,7 @@
 package services.scheduled
 
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.EmailService
+import services.email.EmailService
 import utils.Logging
 
 import scala.concurrent.Future

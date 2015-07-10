@@ -3,9 +3,9 @@ package services.scheduled
 import models.audit.DailyMetric
 import models.database.queries.report.ReportQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.EmailService
 import services.audit.DailyMetricService
 import services.database.Database
+import services.email.EmailService
 import utils.DateUtils
 
 import scala.concurrent.Future

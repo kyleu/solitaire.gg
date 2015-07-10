@@ -1,10 +1,10 @@
 @(user: models.user.User)(implicit messages: Messages)
-<div id="status-container" class="fixed invisible">
-  <div class="menu-left">
+<div id="status-container" class="fixed">
+  <div id="status-container-left" class="menu-left invisible">
     <div id="btn-help" title="@Messages("menu.help")" class="help btn btn-@user.preferences.color"></div>
     <div id="btn-feedback" title="@Messages("menu.feedback")" class="feedback btn btn-@user.preferences.color"></div>
   </div>
-  <div class="menu-right">
+  <div id="status-container-right" class="menu-right invisible">
     <div id="btn-redo" title="@Messages("menu.redos")" class="redo btn btn-@user.preferences.color disabled"></div>
     <div id="btn-hint" title="@Messages("menu.hint")" class="hint btn btn-@user.preferences.color"></div>
     <div id="btn-undo" title="@Messages("menu.undos")" class="undo btn btn-@user.preferences.color disabled"></div>

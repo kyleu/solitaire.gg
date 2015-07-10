@@ -41,13 +41,12 @@ object Server {
     scalacOptions ++= Shared.compileOptions,
     scalacOptions in Test ++= Seq("-Yrangepos"),
 
-    resolvers += "Atlassian Releases" at "https://maven.atlassian.com/public/",
-
     libraryDependencies ++= dependencies,
 
     routesGenerator := InjectedRoutesGenerator,
 
     scalaJSProjects := Seq(Client.client),
+
 
     // Prevent Scaladoc
     doc in Compile <<= target.map(_ / "none"),

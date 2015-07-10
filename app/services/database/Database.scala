@@ -1,19 +1,28 @@
 package services.database
 
 import com.github.mauricio.async.db.pool.{ ConnectionPool, PoolConfiguration }
+import com.github.mauricio.async.db.postgresql.PostgreSQLConnection
 import com.github.mauricio.async.db.postgresql.pool.PostgreSQLConnectionFactory
-import com.github.mauricio.async.db.{ Connection, QueryResult }
+import com.github.mauricio.async.db.{ Configuration, Connection, QueryResult }
 import models.database.{ RawQuery, Statement }
 import nl.grons.metrics.scala.FutureMetrics
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import utils.{ Config, Logging }
+import utils.Logging
 import utils.metrics.Instrumented
 
 import scala.concurrent.duration._
 import scala.concurrent.{ Await, Future }
 
 object Database extends Logging with Instrumented with FutureMetrics {
-  def open() = {
+  private[this] var factory: PostgreSQLConnectionFactory = _
+  private[this] val poolConfig = new PoolConfiguration(maxObjects = 100, maxIdle = 10, maxQueueSize = 1000)
+  private[this] var pool: ConnectionPool[PostgreSQLConnection] = _
+  private[this] def prependComment(obj: Object, sql: String) = s"/* ${obj.getClass.getSimpleName.replace("$", "")} */ $sql"
+
+  def open(configuration: Configuration) = {
+    factory = new PostgreSQLConnectionFactory(configuration)
+    pool = new ConnectionPool(factory, poolConfig)
+
     val healthCheck = pool.sendQuery("select now()")
     healthCheck.onFailure {
       case x => throw new IllegalStateException("Cannot connect to database.", x)
@@ -64,10 +73,4 @@ object Database extends Logging with Instrumented with FutureMetrics {
     Await.result(pool.close, 5.seconds)
     true
   }
-
-  private[this] val factory = new PostgreSQLConnectionFactory(Config.databaseConfiguration)
-  private[this] val poolConfig = new PoolConfiguration(maxObjects = 100, maxIdle = 10, maxQueueSize = 1000)
-  private[this] val pool = new ConnectionPool(factory, poolConfig)
-
-  private[this] def prependComment(obj: Object, sql: String) = s"/* ${obj.getClass.getSimpleName.replace("$", "")} */ $sql"
 }

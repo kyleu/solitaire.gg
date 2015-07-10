@@ -2,13 +2,20 @@
 define([], function() {
   return {
     toggleMenus: function() {
+      var els = this.elements;
       if(this.game.menusVisible) {
-        this.elements.topBar.className = this.elements.topBar.className.replace(' fade-in', '') + ' fade-out';
-        this.elements.bottomBar.className = this.elements.bottomBar.className.replace(' fade-in', '') + ' fade-out';
+        els.topBar.className = els.topBar.className.replace(' fade-in', '') + ' fade-out';
+        els.bottomBar.className = els.bottomBar.className.replace(' fade-in', '') + ' fade-out';
         this.game.menusVisible = false;
+        setTimeout(function() {
+          els.topBar.style.height = '0';
+          els.bottomBar.style.height = '0';
+        }, 1000);
       } else {
-        this.elements.topBar.className = this.elements.topBar.className.replace(' fade-out', '') + ' fade-in';
-        this.elements.bottomBar.className = this.elements.bottomBar.className.replace(' fade-out', '') + ' fade-in';
+        els.topBar.style.height = '40px';
+        els.bottomBar.style.height = '40px';
+        els.topBar.className = els.topBar.className.replace(' fade-out', '') + ' fade-in';
+        els.bottomBar.className = els.bottomBar.className.replace(' fade-out', '') + ' fade-in';
         this.game.menusVisible = true;
       }
     },

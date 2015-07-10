@@ -11,11 +11,11 @@ import play.api.i18n.Messages
 import play.api.mvc.{ Action, RequestHeader, Results, WithFilters }
 import play.api.{ Application, GlobalSettings, Mode }
 import play.filters.gzip.GzipFilter
-import services.ActorSupervisor
 import services.database.{ Database, Schema }
 import services.scheduled.ScheduledTask
+import services.supervisor.ActorSupervisor
 import utils.metrics.Instrumented
-import utils.{ BuildInfo, Logging }
+import utils.{ Config, BuildInfo, Logging }
 
 import scala.concurrent.Future
 
@@ -29,7 +29,7 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter(
     DateTimeZone.setDefault(DateTimeZone.UTC)
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
 
-    Database.open()
+    Database.open(Config.databaseConfiguration)
     Schema.update()
     ActorSupervisor.instance
 

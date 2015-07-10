@@ -3,14 +3,16 @@ define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels)
   var Options = function(game) {
     this.game = game;
     this.elements = {
-      'gameName': document.getElementById('game-name'),
-      'timerDisplay': document.getElementById('timer-display'),
-      'topBar': document.getElementById('menu-container'),
-      'bottomBar': document.getElementById('status-container'),
-      'optionsButton': document.getElementById('btn-options'),
-      'optionsPanel': document.getElementById('gameplay-options'),
-      'menuButton': document.getElementById('btn-menu'),
-      'menuPanel': document.getElementById('gameplay-menu')
+      gameName: document.getElementById('game-name'),
+      timerDisplay: document.getElementById('timer-display'),
+      topBar: document.getElementById('menu-container'),
+      optionsButton: document.getElementById('btn-options'),
+      optionsPanel: document.getElementById('gameplay-options'),
+      menuButton: document.getElementById('btn-menu'),
+      menuPanel: document.getElementById('gameplay-menu'),
+      bottomBar: document.getElementById('status-container'),
+      bottomBarLeft: document.getElementById('status-container-left'),
+      bottomBarRight: document.getElementById('status-container-right')
     };
     game.menusVisible = this.elements.topBar.style.display !== 'none';
     this.buttons = new Buttons(game, this);
@@ -18,10 +20,12 @@ define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels)
   };
 
   Options.prototype.setGame = function(state) {
-    this.elements.gameName.textContent = state.rulesTitle;
-    this.elements.bottomBar.className += ' fade-in';
-    this.elements.optionsButton.className += ' fade-in';
-    this.elements.menuButton.className += ' fade-in';
+    var els = this.elements;
+    els.gameName.textContent = state.rulesTitle;
+    els.optionsButton.className = els.optionsButton.className.replace('invisible', 'fade-in');
+    els.menuButton.className = els.menuButton.className.replace('invisible', 'fade-in');
+    els.bottomBarLeft.className = els.bottomBarLeft.className.replace('invisible', 'fade-in');
+    els.bottomBarRight.className = els.bottomBarRight.className.replace('invisible', 'fade-in');
   };
 
   Options.prototype.setTimerValue = function(time) {

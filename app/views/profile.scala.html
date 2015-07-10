@@ -42,7 +42,7 @@
           <div class="profile-detail">
             @if(profile.isDefined) {
               <div class="provider @provider._1">
-                <img src="@routes.Assets.at("images/providers/" + provider._1 + ".png")">
+                <img src="@routes.Assets.versioned("images/providers/" + provider._1 + ".png")">
               </div>
               <div class="profile-links">
                 <strong>@profile.get.fullName</strong><br/>
@@ -52,7 +52,7 @@
             } else {
               @defining(controllers.auth.routes.AuthenticationController.authenticateSocial(provider._1)) { url =>
                 <a href="@url" class="provider @provider._1">
-                  <img src="@routes.Assets.at("images/providers/" + provider._1 + ".png")">
+                  <img src="@routes.Assets.versioned("images/providers/" + provider._1 + ".png")">
                 </a>
                 <div class="profile-links">
                   <a href="@url">@Messages("profile.connect.account", provider._2)</a>

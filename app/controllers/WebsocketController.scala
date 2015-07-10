@@ -6,8 +6,8 @@ import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.{ AnyContentAsEmpty, Request, WebSocket }
 import services.connection.ConnectionService
+import services.supervisor.ActorSupervisor
 import services.user.AuthenticationEnvironment
-import services.ActorSupervisor
 import utils.play.MessageFrameFormatter
 
 import scala.concurrent.Future

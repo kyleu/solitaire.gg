@@ -8,7 +8,7 @@ import controllers.BaseController
 import models._
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.ActorSupervisor
+import services.supervisor.ActorSupervisor
 import services.user.AuthenticationEnvironment
 
 import scala.concurrent.duration._

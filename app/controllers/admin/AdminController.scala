@@ -10,9 +10,9 @@ import models.database.queries.auth.UserQueries
 import models.user.Role
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.ActorSupervisor
 import services.database.{ Schema, Database }
 import services.scheduled.ScheduledTask
+import services.supervisor.ActorSupervisor
 import services.user.AuthenticationEnvironment
 import utils.cache.UserCache
 

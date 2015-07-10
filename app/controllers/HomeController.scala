@@ -2,7 +2,7 @@ package controllers
 
 import play.api.i18n.MessagesApi
 import play.api.mvc.Action
-import services.EmailService
+import services.email.EmailService
 import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future

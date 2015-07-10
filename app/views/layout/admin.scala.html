@@ -1,7 +1,7 @@
 @(title: String, section: String, scripts: Seq[String] = Nil, stylesheets: Seq[String] = Nil)(content: Html)(implicit session: Session, flash: Flash)@bootstrap(
   title,
-  scripts = Seq(routes.Assets.at("javascripts/admin.js").url) ++ scripts,
-  stylesheets = Seq(routes.Assets.at("stylesheets/admin.min.css").url) ++ stylesheets
+  scripts = Seq(routes.Assets.versioned("javascripts/admin.js").url) ++ scripts,
+  stylesheets = Seq(routes.Assets.versioned("stylesheets/admin.min.css").url) ++ stylesheets
 ) {
   <nav class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
@@ -12,7 +12,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand navbar-logo" href="@routes.HomeController.index()"><img alt="@utils.Config.projectName" src="@routes.Assets.at("images/ui/favicon/favicon.png")"></a>
+        <a class="navbar-brand navbar-logo" href="@routes.HomeController.index()"><img alt="@utils.Config.projectName" src="@routes.Assets.versioned("images/ui/favicon/favicon.png")"></a>
         <a class="navbar-brand" href="@controllers.admin.routes.AdminController.index()">@utils.Config.projectName Admin</a>
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse">

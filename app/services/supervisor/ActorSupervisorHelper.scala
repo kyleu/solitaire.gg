@@ -1,12 +1,12 @@
-package services
+package services.supervisor
 
 import java.util.UUID
 
 import akka.actor.{ ActorRef, Props }
 import models._
-import models.user.{ User, PlayerRecord }
-import services.ActorSupervisor.{ ConnectionRecord, GameRecord }
+import models.user.{ PlayerRecord, User }
 import services.game.GameService
+import services.supervisor.ActorSupervisor.{ GameRecord, ConnectionRecord }
 import utils.DateUtils
 import utils.metrics.InstrumentedActor
 

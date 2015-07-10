@@ -7,10 +7,10 @@ import akka.testkit.TestProbe
 import models._
 import models.test.{ Tree, Test }
 import play.api.libs.concurrent.Akka
-import services.ActorSupervisor
 
 import play.api.Play.current
 import services.connection.ConnectionService
+import services.supervisor.ActorSupervisor
 
 class KnownGameTests {
   val rules = "klondike"

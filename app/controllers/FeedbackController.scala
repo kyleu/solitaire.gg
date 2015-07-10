@@ -6,8 +6,8 @@ import models.audit.UserFeedback
 import models.database.queries.audit.UserFeedbackQueries
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.EmailService
 import services.database.Database
+import services.email.EmailService
 import services.user.AuthenticationEnvironment
 import utils.DateUtils
 
