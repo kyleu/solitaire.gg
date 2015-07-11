@@ -1,6 +1,7 @@
 /* global define:false */
 /* global _:false */
 define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup) {
+  var assetRoot;
   var game;
   var preferences;
   var elements = {
@@ -28,6 +29,18 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
       }
       btn.className = cn.substr(0, colorIndexStart) + 'btn-' + color + cn.substr(colorIndexEnd);
     });
+  }
+
+  function reloadTexture(loader) {
+    function fileComplete() {
+      console.log('reloaded');
+      loader.onFileComplete.remove(fileComplete);
+      CardImages.rerender(preferences);
+      game.refreshTextures();
+    }
+    loader.onFileComplete.add(fileComplete);
+    loader.start();
+    console.log('reloading', loader);
   }
 
   function optionClick(evt) {
@@ -78,10 +91,24 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
           break;
         case 'auto-flip':
           break;
-        default:
+        case 'card-layout':
           CardImages.rerender(preferences);
           game.refreshTextures();
           break;
+        case 'card-back':
+          reloadTexture(game.load.image('card-back', assetRoot + 'assets/images/cards/back-' + optionValue + '.png'));
+          break;
+        case 'card-face':
+          reloadTexture(game.load.spritesheet('card-faces', assetRoot + 'assets/images/cards/face-cards-' + optionValue + '.png', 200, 300));
+          break;
+        case 'card-suit':
+          reloadTexture(game.load.spritesheet('card-suits', assetRoot + 'assets/images/cards/suits-' + optionValue + '.png', 200, 200));
+          break;
+        case 'card-rank':
+          reloadTexture(game.load.spritesheet('card-ranks', assetRoot + 'assets/images/cards/ranks-' + optionValue + '.png', 200, 200));
+          break;
+        default:
+          throw optionClass;
       }
 
       _.each(selectedElements, function(el) {
@@ -101,6 +128,9 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
     },
     getPreferences: function() {
       return preferences;
+    },
+    setAssetRoot: function(ar) {
+      assetRoot = ar;
     },
     setGame: function(g) {
       game = g;

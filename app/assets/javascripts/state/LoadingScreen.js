@@ -9,6 +9,7 @@ define(['utils/Config', 'state/Gameplay', 'state/GameState', 'ui/Theme'], functi
     if(cfg.assetRoot !== undefined) {
       this.assetRoot = cfg.assetRoot;
     }
+    Theme.setAssetRoot(this.assetRoot);
   }
 
   LoadingScreen.prototype = Object.create(GameState.prototype);

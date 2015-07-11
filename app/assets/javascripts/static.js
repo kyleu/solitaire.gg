@@ -2,6 +2,7 @@
   'use strict';
   var elements = {};
   var activeColor = '';
+  var currentUsername;
 
   function selectColor(color) {
     for(var elIndex in elements.colors) {
@@ -40,10 +41,33 @@
     request.send();
   }
 
+  function usernameEditStart() {
+    currentUsername = elements.usernameLabel.textContent;
+    elements.usernameInput.value = currentUsername;
+
+    elements.usernameEdit.style.display = 'block';
+    elements.usernameLabel.style.display = 'none';
+  }
+
+  function saveUsername() {
+    var url = '/options/set/username/' + elements.usernameInput.value;
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.send();
+  }
+
   function init() {
     elements.optionsButton = document.getElementById('btn-options');
     elements.optionsPanel = document.getElementById('static-options-panel');
     elements.confirmButton = document.getElementById('btn-confirm');
+    elements.usernameContainer = document.getElementById('username-container');
+    if(elements.usernameContainer !== null) {
+      elements.usernameLabel = document.getElementById('username-label');
+      elements.usernameEdit = document.getElementById('username-edit');
+      elements.usernameInput = document.getElementById('username-input');
+      elements.usernameEditConfirm = document.getElementById('username-edit-confirm');
+      elements.usernameEditCancel = document.getElementById('username-edit-cancel');
+    }
 
     elements.optionsButton.onclick = function() {
       if(elements.optionsPanel.style.display === 'block') {
@@ -78,6 +102,11 @@
       elements.optionsButton.className = elements.optionsButton.className.replace(' disabled', '');
       elements.optionsPanel.style.display = 'none';
     };
+
+    if(elements.usernameContainer !== null) {
+      elements.usernameLabel.onclick = usernameEditStart;
+      elements.usernameEditConfirm.onclick = saveUsername;
+    }
   }
 
   document.addEventListener('DOMContentLoaded', init);
