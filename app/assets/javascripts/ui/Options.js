@@ -1,9 +1,10 @@
 /* global define:false */
 define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels) {
   var Options = function(game) {
-    this.game = game;
-    this.elements = {
+    var els = {
+      gameNameContainer: document.getElementById('game-name-container'),
       gameName: document.getElementById('game-name'),
+      timerContainer: document.getElementById('timer-container'),
       timerDisplay: document.getElementById('timer-display'),
       topBar: document.getElementById('menu-container'),
       optionsButton: document.getElementById('btn-options'),
@@ -14,7 +15,20 @@ define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels)
       bottomBarLeft: document.getElementById('status-container-left'),
       bottomBarRight: document.getElementById('status-container-right')
     };
-    game.menusVisible = this.elements.topBar.style.display !== 'none';
+
+    els.gameName.onclick = function() {
+      els.gameNameContainer.style.display = 'none';
+      els.timerContainer.style.display = 'block';
+    };
+    els.timerDisplay.onclick = function() {
+      els.timerContainer.style.display = 'none';
+      els.gameNameContainer.style.display = 'block';
+    };
+
+    game.menusVisible = els.topBar.style.display !== 'none';
+
+    this.game = game;
+    this.elements = els;
     this.buttons = new Buttons(game, this);
     Theme.setGame(game);
   };

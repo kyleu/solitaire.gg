@@ -10,63 +10,51 @@
   "sharedCrosshair": false,
   "rows": [
     {
-      "title": "New row",
-      "height": "200px",
-      "editable": true,
       "collapse": false,
+      "editable": true,
+      "height": "200px",
       "panels": [
         {
-          "title": "Connected Users",
-          "error": false,
-          "span": 12,
-          "editable": true,
-          "type": "graph",
-          "id": 7,
+          "aliasColors": {},
+          "bars": false,
           "datasource": null,
-          "renderer": "flot",
-          "x-axis": true,
-          "y-axis": true,
-          "y_formats": [
-            "short",
-            "short"
-          ],
+          "editable": true,
+          "error": false,
+          "fill": 1,
           "grid": {
             "leftLogBase": 1,
             "leftMax": null,
-            "rightMax": null,
             "leftMin": null,
-            "rightMin": null,
             "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
             "threshold1": null,
-            "threshold2": null,
             "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
-          "lines": true,
-          "fill": 1,
-          "linewidth": 2,
-          "points": false,
-          "pointradius": 5,
-          "bars": false,
-          "stack": false,
-          "percentage": false,
+          "id": 7,
           "legend": {
-            "show": true,
-            "values": false,
-            "min": false,
-            "max": false,
+            "avg": false,
             "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
             "total": false,
-            "avg": false
+            "values": false
           },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
           "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
           "steppedLine": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "shared": true
-          },
-          "timeFrom": null,
-          "timeShift": null,
           "targets": [
             {
               "target": "alias(solitaire-gg.ActorSupervisor.active-connections.count, 'Active Connections')"
@@ -75,11 +63,23 @@
               "target": "alias(solitaire-gg.ActorSupervisor.active-games.count, 'Active Games')"
             }
           ],
-          "aliasColors": {},
-          "seriesOverrides": [],
-          "links": []
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Connected Users",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
         }
-      ]
+      ],
+      "title": "New row"
     },
     {
       "collapse": false,
@@ -265,8 +265,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "hide": false,
-              "target": "alias(solitaire-gg.GameService.receiveTimer.count, 'messages received')"
+              "target": "aliasByNode(solitaire-gg.GameService.receive.*.count, 3)"
             }
           ],
           "timeFrom": null,
@@ -290,7 +289,7 @@
           "datasource": null,
           "editable": true,
           "error": false,
-          "fill": 0,
+          "fill": 1,
           "grid": {
             "leftLogBase": 1,
             "leftMax": null,
@@ -303,7 +302,7 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
-          "id": 2,
+          "id": 8,
           "legend": {
             "avg": false,
             "current": false,
@@ -314,7 +313,7 @@
             "values": false
           },
           "lines": true,
-          "linewidth": 1,
+          "linewidth": 2,
           "links": [],
           "nullPointMode": "connected",
           "percentage": false,
@@ -327,18 +326,12 @@
           "steppedLine": false,
           "targets": [
             {
-              "target": "alias(solitaire-gg.BaseController.request.count, 'home')"
-            },
-            {
-              "target": "aliasByNode(solitaire-gg.BaseController.request.admin.*.count, 4, -3)"
-            },
-            {
-              "target": "aliasByNode(solitaire-gg.BaseController.request.play.*.count, 4, -3)"
+              "target": "aliasByNode(solitaire-gg.*.exceptionMeter.count, 1)"
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Web Request Counts",
+          "title": "Exception Counts",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -365,7 +358,7 @@
           "datasource": null,
           "editable": true,
           "error": false,
-          "fill": 0,
+          "fill": 1,
           "grid": {
             "leftLogBase": 1,
             "leftMax": null,
@@ -378,7 +371,7 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
-          "id": 3,
+          "id": 9,
           "legend": {
             "avg": false,
             "current": false,
@@ -389,7 +382,7 @@
             "values": false
           },
           "lines": true,
-          "linewidth": 1,
+          "linewidth": 2,
           "links": [],
           "nullPointMode": "connected",
           "percentage": false,
@@ -397,17 +390,17 @@
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 6,
+          "span": 12,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "target": "aliasByNode(solitaire-gg.DatabaseConnection.*.count, 2)"
+              "target": "aliasByNode(solitaire-gg.requests.*.count, 2)"
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "SQL Execution Counts",
+          "title": "Web Requests by Status",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -419,14 +412,22 @@
             "short",
             "short"
           ]
-        },
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
         {
           "aliasColors": {},
           "bars": false,
           "datasource": null,
           "editable": true,
           "error": false,
-          "fill": 0,
+          "fill": 1,
           "grid": {
             "leftLogBase": 1,
             "leftMax": null,
@@ -439,7 +440,7 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
-          "id": 6,
+          "id": 11,
           "legend": {
             "avg": false,
             "current": false,
@@ -450,7 +451,7 @@
             "values": false
           },
           "lines": true,
-          "linewidth": 1,
+          "linewidth": 2,
           "links": [],
           "nullPointMode": "connected",
           "percentage": false,
@@ -458,17 +459,89 @@
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 6,
+          "span": 12,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "target": "aliasByNode(solitaire-gg.DatabaseConnection.*.p75, 2)"
+              "target": "aliasByNode(solitaire-gg.GameController.new.*.count, 3)"
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "SQL Execution Times",
+          "title": "New Games",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 10,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "target": "aliasByNode(solitaire-gg.Database.query.*.p95, 3)"
+            },
+            {
+              "target": "aliasByNode(solitaire-gg.Database.execute.*.p95, 3)"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Database Timing",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -519,7 +592,7 @@
     }
   ],
   "time": {
-    "from": "now-1h",
+    "from": "now-5m",
     "to": "now"
   },
   "templating": {
@@ -529,5 +602,5 @@
     "list": []
   },
   "schemaVersion": 6,
-  "version": 9
+  "version": 14
 }
