@@ -10,9 +10,11 @@ define(['card/Rank', 'card/Suit'], function(Rank, Suit) {
 
   function init(game, preferences) {
     if(cardTextures.length > 0) { throw 'Double initialize.'; }
-
     blank = new Phaser.Image(game, 0, 0, 'card-blank', 0);
+    rerender(game, preferences);
+  }
 
+  function rerender(game, preferences) {
     suitImages = _.map([0, 1, 2, 3], function(i) {
       var ret = new Phaser.Image(game, 0, 0, 'card-suits', i);
       ret.anchor.setTo(0.5, 0.5);
@@ -40,14 +42,6 @@ define(['card/Rank', 'card/Suit'], function(Rank, Suit) {
       _.each(Rank.all, function(r) {
         var tex = game.add.bitmapData(400, 600);
         cardTextures[r.char + s.char] = renderCard(s, r, layout, tex);
-      });
-    });
-  }
-
-  function rerender(preferences) {
-    _.each(Suit.all, function(s) {
-      _.each(Rank.all, function(r) {
-        renderCard(s, r, preferences['card-layout'], cardTextures[r.char + s.char]);
       });
     });
   }

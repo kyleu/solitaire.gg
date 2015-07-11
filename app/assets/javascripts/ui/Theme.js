@@ -33,14 +33,11 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
 
   function reloadTexture(loader) {
     function fileComplete() {
-      console.log('reloaded');
-      loader.onFileComplete.remove(fileComplete);
-      CardImages.rerender(preferences);
+      CardImages.rerender(game, preferences);
       game.refreshTextures();
     }
-    loader.onFileComplete.add(fileComplete);
+    loader.onFileComplete.addOnce(fileComplete);
     loader.start();
-    console.log('reloading', loader);
   }
 
   function optionClick(evt) {
@@ -92,7 +89,7 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
         case 'auto-flip':
           break;
         case 'card-layout':
-          CardImages.rerender(preferences);
+          CardImages.rerender(game, preferences);
           game.refreshTextures();
           break;
         case 'card-back':
