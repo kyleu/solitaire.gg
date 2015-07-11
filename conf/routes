@@ -37,7 +37,6 @@ GET         /admin                             controllers.admin.AdminController
 GET         /admin/sandbox                     controllers.admin.SandboxController.defaultSandbox()
 GET         /admin/sandbox/:key                controllers.admin.SandboxController.sandbox(key)
 
-GET         /admin/enable                      controllers.admin.AdminController.enable
 GET         /admin/status                      controllers.admin.AdminController.status
 GET         /admin/wipe                        controllers.admin.AdminController.wipeSchema(key)
 

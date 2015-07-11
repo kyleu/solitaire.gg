@@ -13,7 +13,7 @@ class HomeController @javax.inject.Inject() (
     override val env: AuthenticationEnvironment,
     emailService: EmailService
 ) extends BaseController {
-  def index() = withSession { implicit request =>
+  def index() = withSession("index") { implicit request =>
     Future.successful(Ok(views.html.index(request.identity)))
   }
 
@@ -21,11 +21,11 @@ class HomeController @javax.inject.Inject() (
     Future.successful(MovedPermanently(s"/$path"))
   }
 
-  def externalLink(url: String) = Action.async {
+  def externalLink(url: String) = withSession("external.link") { implicit request =>
     Future.successful(Redirect(if (url.startsWith("http")) { url } else { "http://" + url }))
   }
 
-  def about = withSession { implicit request =>
+  def about = withSession("about") { implicit request =>
     Future.successful(Ok(views.html.about(request.identity)))
   }
 }

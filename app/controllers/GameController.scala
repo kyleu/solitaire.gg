@@ -12,7 +12,7 @@ class GameController @javax.inject.Inject() (
     override val messagesApi: MessagesApi,
     override val env: AuthenticationEnvironment
 ) extends BaseController {
-  def help(id: String, inline: Boolean) = withSession { implicit request =>
+  def help(id: String, inline: Boolean) = withSession("help." + id) { implicit request =>
     Future.successful {
       id match {
         case "undefined" => Ok(Messages("help.general", utils.Config.projectName))
@@ -28,19 +28,19 @@ class GameController @javax.inject.Inject() (
     }
   }
 
-  def newGame(rules: String) = withSession { implicit request =>
+  def newGame(rules: String) = withSession(s"new.$rules") { implicit request =>
     startGame(rules)
   }
 
-  def newGameWithSeed(rules: String, seed: Int) = withSession { implicit request =>
+  def newGameWithSeed(rules: String, seed: Int) = withSession(s"new.$rules.withseed") { implicit request =>
     startGame(rules, seed = Some(seed))
   }
 
-  def newOfflineGame(rules: String) = withSession { implicit request =>
+  def newOfflineGame(rules: String) = withSession(s"new.$rules.offline") { implicit request =>
     startGame(rules, offline = true)
   }
 
-  def newOfflineGameWithSeed(rules: String, seed: Int) = withSession { implicit request =>
+  def newOfflineGameWithSeed(rules: String, seed: Int) = withSession(s"new.$rules.offline.withseed") { implicit request =>
     startGame(rules, seed = Some(seed), offline = true)
   }
 

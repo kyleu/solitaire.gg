@@ -75,7 +75,8 @@ define(['card/Rank', 'card/Suit'], function(Rank, Suit) {
 
         var rankWidth = rankWidths[r.value - 2];
         tex.draw(rankImage, 60 * rankWidth, 60, 80, 80);
-        tex.draw(suitImage, 140 * rankWidth, 60, 80, 80);
+        tex.draw(suitImage, (60 * rankWidth) + 60, 60, 50, 50);
+        tex.draw(suitImage, 60 * rankWidth, 140, 50, 50);
 
         break;
       case 'b': // Classic

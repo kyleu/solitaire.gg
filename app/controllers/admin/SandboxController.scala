@@ -35,7 +35,7 @@ class SandboxController @javax.inject.Inject() (
 
   def defaultSandbox() = sandbox("list")
 
-  def sandbox(key: String) = withAdminSession { implicit request =>
+  def sandbox(key: String) = withAdminSession(key) { implicit request =>
     val ret = key match {
       case "scratchpad" => Scratchpad.run()
       case "screenshots" => runScreenshots()

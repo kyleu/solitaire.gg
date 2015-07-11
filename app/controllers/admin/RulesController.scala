@@ -12,11 +12,8 @@ import services.user.AuthenticationEnvironment
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class RulesController @javax.inject.Inject() (
-    override val messagesApi: MessagesApi,
-    override val env: AuthenticationEnvironment
-) extends BaseController {
-  def rulesList(q: String, sortBy: String) = withAdminSession { implicit request =>
+class RulesController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
+  def rulesList(q: String, sortBy: String) = withAdminSession("list") { implicit request =>
     Database.query(GameSeedQueries.GetCounts(None)).map { seedCounts =>
       val statuses = GameRulesSet.all.map { r =>
         val seedCount = seedCounts.getOrElse(r.id, (0, 0, 0, 0))
@@ -32,11 +29,11 @@ class RulesController @javax.inject.Inject() (
     }
   }
 
-  def rulesData = withAdminSession { implicit request =>
+  def rulesData = withAdminSession("data") { implicit request =>
     Future.successful(Ok(views.html.admin.rules.rulesDataList(GameRulesSet.all)))
   }
 
-  def rulesDetail(id: String) = withAdminSession { implicit request =>
+  def rulesDetail(id: String) = withAdminSession("detail") { implicit request =>
     val rules = GameRulesSet.allByIdWithAliases(id)
     Database.query(GameSeedQueries.GetCounts(Some(s"rules = '$id'"))).map { seedCounts =>
       val status = getStatus(rules, seedCounts.getOrElse(id, (0, 0, 0, 0)))
@@ -44,7 +41,7 @@ class RulesController @javax.inject.Inject() (
     }
   }
 
-  def rulesScreenshot(id: String) = withAdminSession { implicit request =>
+  def rulesScreenshot(id: String) = withAdminSession("screenshot") { implicit request =>
     val filename = s"./offline/build/screenshots/$id-hd.png"
     Future.successful(Ok.sendFile(new java.io.File(filename)))
   }

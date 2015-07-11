@@ -14,11 +14,8 @@ import services.user.AuthenticationEnvironment
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class UserController @javax.inject.Inject() (
-    override val messagesApi: MessagesApi,
-    override val env: AuthenticationEnvironment
-) extends BaseController {
-  def userList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
+class UserController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
+  def userList(q: String, sortBy: String, page: Int) = withAdminSession("list") { implicit request =>
     for {
       count <- Database.query(UserQueries.searchCount(q))
       users <- Database.query(UserQueries.search(q, getOrderClause(sortBy), Some(page)))
@@ -28,7 +25,7 @@ class UserController @javax.inject.Inject() (
     } yield Ok(views.html.admin.user.userList(q, sortBy, count, page, users, gameCounts, winCounts, requestCounts))
   }
 
-  def userDetail(id: UUID) = withAdminSession { implicit request =>
+  def userDetail(id: UUID) = withAdminSession("detail") { implicit request =>
     env.identityService.retrieve(id).flatMap {
       case Some(user) => for {
         gameCount <- GameHistoryService.getCountByUser(id)
@@ -38,7 +35,7 @@ class UserController @javax.inject.Inject() (
     }
   }
 
-  def removeUser(id: UUID) = withAdminSession { implicit request =>
+  def removeUser(id: UUID) = withAdminSession("remove") { implicit request =>
     env.userService.remove(id).map { result =>
       val success = if (result("users") == 1) { "successfully" } else { "with an error" }
       val profiles = result("profiles")

@@ -15,11 +15,8 @@ import utils.DateUtils
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class ReportController @javax.inject.Inject() (
-    override val messagesApi: MessagesApi,
-    override val env: AuthenticationEnvironment
-) extends BaseController {
-  def email(d: LocalDate = DateUtils.today) = withAdminSession { implicit request =>
+class ReportController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
+  def email(d: LocalDate = DateUtils.today) = withAdminSession("email") { implicit request =>
     for {
       tables <- Database.query(ReportQueries.ListTables)
       metrics <- DailyMetricService.recalculateMetrics(d)
@@ -28,13 +25,13 @@ class ReportController @javax.inject.Inject() (
     } yield Ok(views.html.admin.report.emailReport(d, request.identity.preferences.color, metrics._2._1, totals, counts))
   }
 
-  def trend() = withAdminSession { implicit request =>
+  def trend() = withAdminSession("trend") { implicit request =>
     DailyMetricService.getAllMetrics.map { metrics =>
       Ok(views.html.admin.report.trend(metrics, toChartData(metrics)))
     }
   }
 
-  def requests() = withAdminSession { implicit request =>
+  def requests() = withAdminSession("requests") { implicit request =>
     for {
       userCounts <- Database.query(RequestLogQueries.GetUserCounts)
       userAgentCounts <- Database.query(RequestLogQueries.GetCounts("user_agent"))

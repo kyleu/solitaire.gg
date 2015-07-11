@@ -12,11 +12,8 @@ import services.user.AuthenticationEnvironment
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class FeedbackController @javax.inject.Inject() (
-    override val messagesApi: MessagesApi,
-    override val env: AuthenticationEnvironment
-) extends BaseController {
-  def feedbackList(q: String, sortBy: String, page: Int) = withAdminSession { implicit request =>
+class FeedbackController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
+  def feedbackList(q: String, sortBy: String, page: Int) = withAdminSession("list") { implicit request =>
     for {
       count <- Database.query(UserFeedbackQueries.searchCount(q))
       feedbacks <- Database.query(UserFeedbackQueries.search(q, getOrderClause(sortBy), Some(page)))
@@ -24,11 +21,11 @@ class FeedbackController @javax.inject.Inject() (
     } yield Ok(views.html.admin.feedback.feedbackList(q, sortBy, count, page, feedbacks, notes))
   }
 
-  def feedbackNoteForm(feedbackId: UUID) = withAdminSession { implicit request =>
+  def feedbackNoteForm(feedbackId: UUID) = withAdminSession("note.form") { implicit request =>
     Future.successful(Ok(s"Coming soon for [$feedbackId]!"))
   }
 
-  def removeFeedback(id: UUID) = withAdminSession { implicit request =>
+  def removeFeedback(id: UUID) = withAdminSession("remove") { implicit request =>
     Database.execute(UserFeedbackQueries.remove(Seq(id))).map { ok =>
       Redirect(controllers.admin.routes.FeedbackController.feedbackList("", "occurred", 0))
     }

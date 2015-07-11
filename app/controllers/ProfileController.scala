@@ -12,13 +12,13 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class ProfileController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
-  def profile = withSession { implicit request =>
+  def profile = withSession("profile") { implicit request =>
     Database.query(ProfileQueries.FindProfilesByUser(request.identity.id)).map { profiles =>
       Ok(views.html.profile(request.identity, profiles))
     }
   }
 
-  def setOption(option: String, value: String) = withSession { implicit request =>
+  def setOption(option: String, value: String) = withSession("set.option") { implicit request =>
     option match {
       case "avatar" =>
         val loginInfo = value match {

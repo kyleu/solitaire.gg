@@ -34,7 +34,7 @@ class AdHocQueryController @javax.inject.Inject() (
 
   implicit val timeout = Timeout(10.seconds)
 
-  def queryList(query: Option[UUID], action: Option[String]) = withAdminSession { implicit request =>
+  def queryList(query: Option[UUID], action: Option[String]) = withAdminSession("list") { implicit request =>
     if (action.contains("load")) {
       Database.query(AdHocQueries.search("", "title", None)).map { queries =>
         val q = query.flatMap(x => queries.find(_.id == x))
@@ -51,7 +51,7 @@ class AdHocQueryController @javax.inject.Inject() (
     }
   }
 
-  def run() = withAdminSession { implicit request =>
+  def run() = withAdminSession("run") { implicit request =>
     import DateUtils._
 
     executionForm.bindFromRequest.fold(

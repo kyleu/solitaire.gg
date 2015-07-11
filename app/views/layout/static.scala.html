@@ -22,7 +22,7 @@
 
     <div class="menu-right">
       @defining(if(user.preferences.avatar == "guest" || user.preferences.avatar == "default") {
-        routes.Assets.versioned("images/avatar/profile-ffffff@2x.png")
+        routes.Assets.versioned("images/avatar/default.png")
       } else {
         user.preferences.avatar
       }) { av =>

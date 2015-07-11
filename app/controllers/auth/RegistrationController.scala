@@ -17,11 +17,11 @@ class RegistrationController @javax.inject.Inject() (
     override val env: AuthenticationEnvironment
 ) extends BaseController {
 
-  def registrationForm = withSession { implicit request =>
+  def registrationForm = withSession("form") { implicit request =>
     Future.successful(Ok(views.html.auth.register(request.identity, UserForms.registrationForm)))
   }
 
-  def register = withSession { implicit request =>
+  def register = withSession("register") { implicit request =>
     UserForms.registrationForm.bindFromRequest.fold(
       form => Future.successful(BadRequest(views.html.auth.register(request.identity, form))),
       data => {

@@ -19,11 +19,11 @@ class FeedbackController @javax.inject.Inject() (
     override val env: AuthenticationEnvironment,
     emailService: EmailService
 ) extends BaseController {
-  def feedbackForm = withSession { implicit request =>
+  def feedbackForm = withSession("form") { implicit request =>
     Future.successful(Ok(views.html.feedback(request.identity)))
   }
 
-  def submitFeedback = withSession { implicit request =>
+  def submitFeedback = withSession("submit") { implicit request =>
     request.body.asFormUrlEncoded match {
       case Some(form) => form.get("feedback") match {
         case Some(feedback) =>

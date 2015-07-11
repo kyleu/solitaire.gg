@@ -17,11 +17,11 @@ class AuthenticationController @javax.inject.Inject() (
     override val messagesApi: MessagesApi,
     override val env: AuthenticationEnvironment
 ) extends BaseController {
-  def signInForm = withSession { implicit request =>
+  def signInForm = withSession("form") { implicit request =>
     Future.successful(Ok(views.html.auth.signin(request.identity, UserForms.signInForm)))
   }
 
-  def authenticateCredentials = withSession { implicit request =>
+  def authenticateCredentials = withSession("authenticate") { implicit request =>
     UserForms.signInForm.bindFromRequest.fold(
       form => Future.successful(BadRequest(views.html.auth.signin(request.identity, form))),
       credentials => env.credentials.authenticate(credentials).flatMap { loginInfo =>
@@ -40,7 +40,7 @@ class AuthenticationController @javax.inject.Inject() (
     )
   }
 
-  def authenticateSocial(provider: String) = withSession { implicit request =>
+  def authenticateSocial(provider: String) = withSession("authenticate.social") { implicit request =>
     (env.providersMap.get(provider) match {
       case Some(p: SocialProvider with CommonSocialProfileBuilder) =>
         p.authenticate().flatMap {
@@ -65,7 +65,7 @@ class AuthenticationController @javax.inject.Inject() (
     }
   }
 
-  def signOut = SecuredAction.async { implicit request =>
+  def signOut = withSession("signout") { implicit request =>
     val result = Redirect(controllers.routes.HomeController.index())
     env.eventBus.publish(LogoutEvent(request.identity, request, request2Messages))
     env.authenticatorService.discard(request.authenticator, result).map(x => result)
