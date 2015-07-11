@@ -1,58 +1,12 @@
 /* global define:false */
 /* global Phaser:false */
 /* global _:false */
-/* global Solitaire:false */
-define(['utils/Config', 'ui/Options', 'game/helpers/GameNetwork', 'state/InitialState', 'help/Help', 'sandbox/Sandbox'],
-function (config, Options, GameNetwork, InitialState, Help, Sandbox) {
+define(['utils/Config', 'game/Playmat', 'game/helpers/GameInit', 'game/helpers/GameNetwork', 'sandbox/Sandbox'],
+function (config, Playmat, gameInit, GameNetwork, Sandbox) {
   'use strict';
 
   function Game(ws) {
-    this.id = null;
-    this.cardSet = {
-      cardWidth: 400,
-      cardHeight: 600,
-      cardHorizontalOffset: 80,
-      cardVerticalOffset: 120
-    };
-    var initialState = new InitialState(this);
-    var transparent = true;
-    this.initialized = false;
-    this.possibleMoves = [];
-    this.movesMade = 0;
-
-    var configOptions = {
-      width: '100%',
-      height: '100%',
-      renderer: Phaser.AUTO,
-      parent: 'game-container',
-      state: initialState,
-      transparent: transparent,
-      resolution: 2
-    };
-
-    Phaser.Game.call(this, configOptions);
-
-    this.options = new Options(this);
-    this.status = {};
-    this.piles = {};
-    this.cards = {};
-
-    this.help = new Help(this);
-
-    GameNetwork.setGame(this);
-
-    if(config.offline) {
-      var self = this;
-      var callback = function(json) {
-        var ret = JSON.parse(json);
-        self.onMessage(ret.c, ret.v);
-      };
-
-      this.offlineService = new Solitaire();
-      this.offlineService.register(callback);
-    } else {
-      this.ws = ws;
-    }
+    gameInit(this, ws);
   }
 
   Game.prototype = Phaser.Game.prototype;
@@ -70,6 +24,15 @@ function (config, Options, GameNetwork, InitialState, Help, Sandbox) {
   Game.prototype.autoMove = GameNetwork.autoMove;
   Game.prototype.sendMove = GameNetwork.sendMove;
   Game.prototype.send = GameNetwork.send;
+
+  Game.prototype.join = function(state, moves) {
+    this.playmat = new Playmat(this, state.pileSets, state.layout);
+    this.id = state.gameId;
+    this.rules = state.rules;
+    this.seed = state.seed;
+    this.possibleMoves = moves;
+    this.options.setGame(state);
+  };
 
   Game.prototype.initialMovesComplete = function() {
     _.each(this.piles, function(pile) {

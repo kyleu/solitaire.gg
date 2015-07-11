@@ -1,7 +1,9 @@
 /* global define:false */
-define(['utils/Config', 'card/Card', 'card/CardImages', 'pile/Pile', 'ui/Theme'], function(cfg, Card, CardImages, Pile, Theme) {
-  var GameplayMessageHelper = function(game) {
+/* global _:false */
+define(['utils/Config', 'card/Rank', 'card/Suit', 'state/GameState'], function (cfg, Rank, Suit, GameState) {
+  var GameplayMessageHelper = function(game, loadHelper) {
     this.game = game;
+    this.loadHelper = loadHelper;
   };
 
   GameplayMessageHelper.prototype.sendInitialMessage = function() {
@@ -53,15 +55,12 @@ define(['utils/Config', 'card/Card', 'card/CardImages', 'pile/Pile', 'ui/Theme']
     var self = this;
     switch(c) {
       case 'GameJoined':
-        this.game.playmat = new Playmat(this.game, v.state.pileSets, v.state.layout);
-        this.game.id = v.state.gameId;
-        this.game.rules = v.state.rules;
-        this.game.seed = v.state.seed;
-        this.game.possibleMoves = v.moves;
-        this.loadHelper.loadCardImages();
+        if(this.game.cardTextures === undefined) {
+          this.loadHelper.loadCardImages();
+        }
+        this.game.join(v.state, v.moves);
         this.loadHelper.loadPileSets(v.state.pileSets);
         this.loadHelper.loadCards(v.state.pileSets, v.state.deck.originalOrder);
-        this.game.options.setGame(v.state);
         break;
       case 'PossibleMoves':
         this.game.possibleMoves = v.moves;
@@ -87,11 +86,11 @@ define(['utils/Config', 'card/Card', 'card/CardImages', 'pile/Pile', 'ui/Theme']
         hidden.turnFaceDown();
         break;
       case 'CardMoved':
-        this.loadHelper.moveCard(v.card, v.source, v.target, v.turn);
+        this.moveCard(v.card, v.source, v.target, v.turn);
         break;
       case 'CardsMoved':
         _.each(v.cards, function(movedCard) {
-          self.loadHelper.moveCard(movedCard, v.source, v.target, v.turn);
+          self.moveCard(movedCard, v.source, v.target, v.turn);
         });
         break;
       case 'CardMoveCancelled':

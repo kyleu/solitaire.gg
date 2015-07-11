@@ -1,17 +1,15 @@
 /* global define:false */
 /* global Phaser:false */
-/* global _:false */
 define([
-  'utils/Config', 'card/Rank', 'card/Suit', 'card/Card', 'card/Tweens', 'pile/Pile',
   'game/helpers/Backdrop', 'game/helpers/Display', 'game/helpers/Keyboard',
-  'game/Playmat', 'state/GameState', 'state/GameplayLoadHelper', 'state/GameplayMessageHelper'
-], function (cfg, Rank, Suit, Card, Tweens, Pile, Backdrop, Display, Keyboard, Playmat, GameState, GameplayLoadHelper, GameplayMessageHelper) {
+  'state/GameState', 'state/GameplayLoadHelper', 'state/GameplayMessageHelper'
+], function (Backdrop, Display, Keyboard, GameState, GameplayLoadHelper, GameplayMessageHelper) {
   'use strict';
 
   function Gameplay(game) {
     GameState.call(this, 'gameplay', game);
     this.loadHelper = new GameplayLoadHelper(game);
-    this.messageHelper = new GameplayMessageHelper(game);
+    this.messageHelper = new GameplayMessageHelper(game, this.loadHelper);
   }
 
   Gameplay.prototype = Object.create(GameState.prototype);

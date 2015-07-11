@@ -1,6 +1,8 @@
 /* global define:false */
 /* global _:false */
-define(['utils/Config', 'card/Card', 'card/CardImages', 'pile/Pile', 'ui/Theme'], function(cfg, Card, CardImages, Pile, Theme) {
+define([
+  'utils/Config', 'card/Rank', 'card/Suit', 'card/Card', 'card/CardImages', 'card/Tweens', 'pile/Pile', 'ui/Theme'
+], function (cfg, Rank, Suit, Card, CardImages, Tweens, Pile, Theme) {
   var GameplayLoadHelper = function(game) {
     this.game = game;
   };
