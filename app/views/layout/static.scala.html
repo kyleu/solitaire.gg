@@ -28,7 +28,7 @@
       }) { av =>
       <a href="@routesMap("profile")" title="@if(user.isGuest) { Sign In } else { Profile }"><img class="avatar-small" src="@av" /></a>
       }
-      <a class="link" href="@routes.ProfileController.profile()">@user.username.getOrElse("")</a>
+      <a id="profile-link" class="link" href="@routes.ProfileController.profile()">@user.username.getOrElse("")</a>
     </div>
 
     <div class="logo">

@@ -18,9 +18,13 @@
     margin-bottom: 10px;
   }
 
-  .username {
+  #username-label {
     font-weight: bold;
-    font-size: 120%;
+    font-size: 130%;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .avatar-image img {
@@ -45,8 +49,11 @@
     height: 62px;
   }
 
-  .sign-out-link {
-    color: #ffffff;
+  .logout {
+    float: right;
+    .sign-out-link {
+      color: #ffffff;
+    }
   }
 }
 
@@ -61,5 +68,21 @@
 
   .profile-links {
     display: inline-block;
+  }
+}
+
+#username-container {
+  #username-edit {
+    display: none;
+  }
+  #username-input {
+    border: none;
+    font-size: 130%;
+  }
+  #username-edit-confirm, #username-edit-cancel {
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

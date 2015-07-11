@@ -11,10 +11,7 @@ import utils.cache.UserCache
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class ProfileController @javax.inject.Inject() (
-    override val messagesApi: MessagesApi,
-    override val env: AuthenticationEnvironment
-) extends BaseController {
+class ProfileController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
   def profile = withSession { implicit request =>
     Database.query(ProfileQueries.FindProfilesByUser(request.identity.id)).map { profiles =>
       Ok(views.html.profile(request.identity, profiles))
@@ -55,11 +52,9 @@ class ProfileController @javax.inject.Inject() (
         val name = if (value.isEmpty) { None } else { Some(value) }
         Database.execute(UserQueries.SetUsername(request.identity.id, name)).map { i =>
           UserCache.removeUser(request.identity.id)
-          Redirect(controllers.routes.ProfileController.profile())
+          Ok("OK")
         }.recoverWith {
-          case x => Future.successful {
-            Redirect(controllers.routes.ProfileController.profile()).flashing("error" -> "That username is in use.")
-          }
+          case x => Future.successful(Ok("ERROR:That username is in use."))
         }
       case _ => throw new IllegalArgumentException(s"Invalid option [$option] with value [$value].")
     }

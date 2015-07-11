@@ -20,18 +20,20 @@
         </div>
       }
 
+      <div class="logout">
+        <a class="sign-out-link" href="@controllers.auth.routes.AuthenticationController.signOut">@Messages("profile.sign.out")</a>
+      </div>
+
       <div id="username-container">
-        <div id="username-label" class="username">@user.username.getOrElse(Messages("guest.name"))</div>
+        <span id="username-label">@user.username.getOrElse(Messages("profile.set.username"))</span>
         <div id="username-edit">
-          <input id="username-input" />
+          <input id="username-input" /><br/>
           <span id="username-edit-confirm">Save</span>
           <span id="username-edit-cancel">Cancel</span>
           <div id="username-edit-error"></div>
         </div>
       </div>
-      <div class="logout">
-        <a class="sign-out-link" href="@controllers.auth.routes.AuthenticationController.signOut">@Messages("profile.sign.out")</a>
-      </div>
+
       @defining(profiles.find(_.loginInfo.providerID == "credentials")) { credentials =>
         <div class="profile-detail">
           @if(credentials.isDefined) {

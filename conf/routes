@@ -80,6 +80,7 @@ GET         /admin/report/requests             controllers.admin.ReportControlle
 GET         /admin/report/email                controllers.admin.ReportController.email()
 GET         /admin/report/ad-hoc               controllers.admin.AdHocQueryController.queryList(query: Option[java.util.UUID] ?= None, action: Option[String] ?= None)
 POST        /admin/report/ad-hoc/run           controllers.admin.AdHocQueryController.run()
+
 # Assets
 GET         /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.ico")
 GET         /apple-touch-icon.png              controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.png")
