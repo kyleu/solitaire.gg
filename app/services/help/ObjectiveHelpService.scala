@@ -32,7 +32,6 @@ object ObjectiveHelpService {
       case CardRemovalMethod.RemoveConsecutiveRankPairs => Messages("help.victory.condition.pairs.cr")
       case CardRemovalMethod.RemoveConsecutiveRankPairsOrAK => Messages("help.victory.condition.pairs.cr-or-AK")
       case CardRemovalMethod.RemoveConsecutiveOrEqualRankPairs => Messages("help.victory.condition.pairs.cr-or-sr")
-      case CardRemovalMethod.StackSameRankOrSuitInWaste => Messages("help.victory.condition.stack.same.suit.or.rank.in.waste")
     }
     case VictoryCondition.AllOnFoundationOrStock => Messages("help.victory.condition.all.on.foundation.or.stock")
     case VictoryCondition.AllOnTableauSorted =>

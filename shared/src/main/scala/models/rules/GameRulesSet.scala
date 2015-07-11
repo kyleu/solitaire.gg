@@ -14,7 +14,6 @@ object GameRulesSet {
   }
 
   val all = Seq(
-    Accordion,
     AceOfHearts,
     AcesAndKings,
     AceyAndKingsley,

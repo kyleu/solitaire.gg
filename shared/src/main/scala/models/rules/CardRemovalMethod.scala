@@ -87,10 +87,6 @@ object CardRemovalMethod {
     override def canRemove(l: Card, r: Card) = l.r == r.r || l.r.value == (r.r.value + 1) || l.r.value == (r.r.value - 1)
   }
 
-  case object StackSameRankOrSuitInWaste extends CardRemovalMethod {
-    override def canRemove(l: Card, r: Card) = false // TODO Who knows
-  }
-
   def checkTotal(i: Int, l: Rank, r: Rank, aceHigh: Boolean = false) = {
     val lValue = if (l == Rank.Ace && !aceHigh) { 1 } else { l.value }
     val rValue = if (r == Rank.Ace && !aceHigh) { 1 } else { r.value }
