@@ -20,7 +20,7 @@ define([], function() {
         if(now - lastClickTime < 1000) {
           game.options.toggleMenus();
           if(game.playmat !== undefined) {
-            game.playmat.resize();
+            game.playmat.resizer.resize();
           }
           lastClickTime = 0;
         } else {

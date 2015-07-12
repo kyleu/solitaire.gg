@@ -49,7 +49,7 @@ define([
       this.lastSize = [this.game.width, this.game.height];
 
       if(this.game.playmat !== undefined) {
-        this.game.playmat.resize();
+        this.game.playmat.resizer.resize();
       }
 
       if(this.backdrop !== undefined) {

@@ -99,10 +99,10 @@ define(['utils/Config', 'card/Rank', 'card/Suit', 'state/GameState'], function (
         });
         break;
       case 'GameLost':
-        alert('You lose!');
+        self.game.playmat.lose();
         break;
       case 'GameWon':
-        alert('You win!');
+        self.game.playmat.win();
         break;
       case 'Reconnect':
         this.game.playmat.destroy();

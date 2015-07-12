@@ -13,7 +13,7 @@ define([], function() {
           card.actualX = x;
           card.tweening = false;
           if(emitWhenComplete) {
-            card.game.playmat.emitFor(card);
+            card.game.playmat.emitter.emitFor(card);
           }
         }, card);
         xTween.start();

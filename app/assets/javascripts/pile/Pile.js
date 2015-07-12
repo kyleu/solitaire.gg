@@ -58,7 +58,7 @@ define(['pile/PileLayout', 'pile/PileHelpers', 'pile/DragFromConstraints'], func
     PileLayout.cardAdded(this, card);
 
     if(this.game.initialized) {
-      this.game.playmat.refreshLayout();
+      this.game.playmat.resizer.refreshLayout();
     } else {
       this.game.playmat.add(card);
     }
