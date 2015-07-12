@@ -83,7 +83,7 @@ define(function() {
           cardIds.push(dragCard.id);
         });
 
-        this.game.send('MoveCards', {cards: cardIds, src: this.id, tgt: dropTarget.id});
+        this.game.sendMove({ moveType: 'move-cards', cards: cardIds, sourcePile: this.id, targetPile: dropTarget.id });
       }
       this.dragCards = [];
     }

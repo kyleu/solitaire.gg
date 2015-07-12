@@ -58,7 +58,7 @@ define(['utils/Config', 'card/Rank', 'card/Suit', 'state/GameState'], function (
         if(this.game.cardTextures === undefined) {
           this.loadHelper.loadCardImages();
         }
-        this.game.join(v.state, v.moves);
+        this.game.join(v.state, v.elapsedMs, v.moves);
         this.loadHelper.loadPileSets(v.state.pileSets);
         this.loadHelper.loadCards(v.state.pileSets, v.state.deck.originalOrder);
         break;

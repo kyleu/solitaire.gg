@@ -44,10 +44,8 @@ define(['utils/Config', 'card/Rank', 'card/Suit', 'card/CardInput', 'card/Tweens
     if(this.faceUp) {
       var tex = this.game.cardTextures[this.rank.char + this.suit.char];
       this.loadTexture(tex);
-      console.log('Loading texture.');
     } else {
       this.loadTexture('card-back');
-      console.log('Loading card back.');
     }
   };
 

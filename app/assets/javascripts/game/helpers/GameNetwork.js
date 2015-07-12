@@ -48,6 +48,10 @@ define(['utils/Config'], function (config) {
     },
     sendMove: function(move) {
       game.movesMade += 1;
+      if(game.timerStarted === undefined) {
+        game.startTimer();
+      }
+
       switch(move.moveType) {
         case 'move-cards':
           game.send('MoveCards', { cards: move.cards, src: move.sourcePile, tgt: move.targetPile });

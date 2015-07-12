@@ -53,7 +53,7 @@ object Solitaire extends js.JSApp with SolitaireHelper {
     gameState.addPlayer(userId, "Offline Player", autoFlipOption = false)
     InitialMoves.performInitialMoves(gameRules, gameState)
 
-    send(GameJoined(gameId, gameState.view(userId), possibleMoves()))
+    send(GameJoined(gameId, gameState.view(userId), 0, possibleMoves()))
   }
 
   private[this] def handleUndo(): Unit = {

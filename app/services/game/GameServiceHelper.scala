@@ -1,20 +1,25 @@
 package services.game
 
-import utils.Logging
+import org.joda.time.LocalDateTime
+import utils.{ DateUtils, Logging }
 import utils.metrics.InstrumentedActor
 
 trait GameServiceHelper
-    extends InstrumentedActor
-    with Logging
-    with GameServiceCardHelper
-    with GameServiceCheatHelper
-    with GameServiceConnectionHelper
-    with GameServiceMessageHelper
-    with GameServicePersistenceHelper
-    with GameServicePossibleMovesHelper
-    with GameServicePreferenceHelper
-    with GameServiceTraceHelper
-    with GameServiceUndoHelper
-    with GameServiceVictoryHelper {
-  this: GameService =>
+  extends InstrumentedActor
+  with Logging
+  with GameServiceCardHelper
+  with GameServiceCheatHelper
+  with GameServiceConnectionHelper
+  with GameServiceMessageHelper
+  with GameServicePersistenceHelper
+  with GameServicePossibleMovesHelper
+  with GameServicePreferenceHelper
+  with GameServiceTraceHelper
+  with GameServiceUndoHelper
+  with GameServiceVictoryHelper { this: GameService =>
+
+  protected[this] def elapsedMs = firstMoveMade match {
+    case Some(fmm) => DateUtils.toMillis(new LocalDateTime()).toInt
+    case None => 0
+  }
 }

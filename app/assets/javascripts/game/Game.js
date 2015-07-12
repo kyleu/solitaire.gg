@@ -25,13 +25,39 @@ function (config, Playmat, gameInit, GameNetwork, Sandbox) {
   Game.prototype.sendMove = GameNetwork.sendMove;
   Game.prototype.send = GameNetwork.send;
 
-  Game.prototype.join = function(state, moves) {
+  Game.prototype.join = function(state, elapsedMs, moves) {
     this.playmat = new Playmat(this, state.pileSets, state.layout);
     this.id = state.gameId;
     this.rules = state.rules;
     this.seed = state.seed;
     this.possibleMoves = moves;
     this.options.setGame(state);
+    if(elapsedMs > 0) {
+      this.startTimer(elapsedMs);
+    }
+  };
+
+  Game.prototype.startTimer = function(elapsedMs) {
+    if(elapsedMs) {
+      this.timerStarted = new Date().getTime() + elapsedMs;
+    } else {
+      this.timerStarted = new Date().getTime();
+    }
+
+    var el = document.getElementById('timer-display');
+    var self = this;
+    function timerTick() {
+      var delta = new Date().getTime() - self.timerStarted;
+      var minutes = parseInt(delta / 1000 / 60);
+      var seconds = parseInt((delta / 1000) % 60);
+      if(seconds < 10) {
+        seconds = '0' + seconds;
+      }
+      el.textContent = minutes + ':' + seconds;
+      setTimeout(timerTick, 1000);
+    }
+
+    setTimeout(timerTick, 1000);
   };
 
   Game.prototype.initialMovesComplete = function() {

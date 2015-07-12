@@ -13,7 +13,7 @@ case class VersionResponse(version: String) extends ResponseMessage
 case object SendDebugInfo extends ResponseMessage
 case class Disconnected(reason: String) extends ResponseMessage
 
-case class GameJoined(id: UUID, state: GameState, moves: Seq[PossibleMove]) extends ResponseMessage
+case class GameJoined(id: UUID, state: GameState, elapsedMs: Int, moves: Seq[PossibleMove]) extends ResponseMessage
 case class GameLost(id: UUID) extends ResponseMessage
 case class GameWon(id: UUID, firstForSeed: Boolean) extends ResponseMessage
 

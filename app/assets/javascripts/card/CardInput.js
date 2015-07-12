@@ -38,7 +38,7 @@ define(['card/Tweens'], function (Tweens) {
       if(card.lastClicked !== undefined && (now - card.lastClicked) < doubleClickThresholdMs) {
         var moveTarget = getMoveTarget(card);
         if(moveTarget !== null && moveTarget !== undefined) {
-          card.game.send('MoveCards', {cards: [card.id], src: card.pile.id, tgt: moveTarget.targetPile});
+          card.game.sendMove({ moveType: 'move-cards', cards: [card.id], sourcePile: card.pile.id, targetPile: moveTarget.targetPile });
         }
         card.lastClicked = undefined;
       } else {

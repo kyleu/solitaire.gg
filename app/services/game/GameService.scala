@@ -23,6 +23,7 @@ case class GameService(
 
   protected[this] val gameMessages = collection.mutable.ArrayBuffer.empty[(GameMessage, UUID, LocalDateTime)]
   protected[this] var moveCount = 0
+  protected[this] var firstMoveMade: Option[LocalDateTime] = None
   protected[this] var lastMoveMade: Option[LocalDateTime] = None
   protected[this] var gameWon = false
 
@@ -40,7 +41,7 @@ case class GameService(
     InitialMoves.performInitialMoves(gameRules, gameState)
 
     player.connectionActor.foreach(_ ! GameStarted(id, self, started))
-    player.connectionActor.foreach(_ ! GameJoined(id, gameState.view(player.userId), possibleMoves(Some(player.userId))))
+    player.connectionActor.foreach(_ ! GameJoined(id, gameState.view(player.userId), 0, possibleMoves(Some(player.userId))))
   }
 
   override def receiveRequest = {
@@ -57,6 +58,9 @@ case class GameService(
       val time = DateUtils.now
       gameMessages += ((gr.message, gr.userId, time))
       moveCount += 1
+      if(firstMoveMade.isEmpty) {
+        firstMoveMade = Some(time)
+      }
       lastMoveMade = Some(time)
       update()
       gr.message match {
