@@ -1,5 +1,6 @@
 /* global define:false */
 /* global Phaser:false */
+/* global _:false */
 define(['game/helpers/Layout', 'game/helpers/PlaymatResizer', 'game/helpers/PlaymatEmitter'], function (calculateLayout, PlaymatResizer, PlaymatEmitter) {
   'use strict';
 
@@ -26,6 +27,23 @@ define(['game/helpers/Layout', 'game/helpers/PlaymatResizer', 'game/helpers/Play
     }
     pile.x = pileLocation.x * this.game.cardSet.cardWidth;
     pile.y = pileLocation.y * this.game.cardSet.cardHeight;
+  };
+
+  Playmat.prototype.win = function() {
+    var animationDimensions = [ this.game.world.width / this.scale.x, this.game.world.height / this.scale.y ];
+    var playmatOrigin = [ this.x / this.scale.x, this.y / this.scale.y ];
+    console.log(animationDimensions, playmatOrigin);
+
+    _.each(this.game.cards, function(card) {
+      var origin = [ card.x + playmatOrigin[0], card.y + playmatOrigin[1] ];
+      console.log(origin);
+    });
+
+    alert('You win!');
+  };
+
+  Playmat.prototype.lose = function() {
+    alert('You lose!');
   };
 
   return Playmat;
