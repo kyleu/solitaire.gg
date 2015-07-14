@@ -138,10 +138,6 @@ define(['card/Tweens'], function (Tweens) {
         card.x = swayX;
         card.y = newY;
 
-        if(card.pile.dragCards.length > 0 && card === card.pile.dragCards[card.pile.dragCards.length - 1]) {
-          card.game.playmat.cardShadows.update();
-        }
-
         if(card.game.playmat.emitter !== undefined) {
           card.game.playmat.emitter.on = true;
           card.game.playmat.emitter.emitX = (card.x);

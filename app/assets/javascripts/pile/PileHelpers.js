@@ -58,7 +58,6 @@ define(function() {
   return {
     dragSlice: function(card, p) {
       this.dragCards = this.cards.slice(card.pileIndex);
-      card.game.playmat.cardShadows.start(this.dragCards);
       _.each(this.dragCards, function(c, idx) {
         c.startDrag(p, idx);
       });
@@ -66,8 +65,6 @@ define(function() {
 
     endDrag: function() {
       var dropTarget = getDropTarget(this);
-
-      this.game.playmat.cardShadows.stop();
 
       if(dropTarget === null) {
         _.each(this.dragCards, function(cancelCard) {

@@ -2,8 +2,8 @@
 /* global Phaser:false */
 /* global _:false */
 define([
-  'game/helpers/Layout', 'game/helpers/PlaymatResizer', 'game/helpers/PlaymatEmitter', 'card/CardShadows'
-], function (calculateLayout, PlaymatResizer, PlaymatEmitter, CardShadows) {
+  'game/helpers/Layout', 'game/helpers/PlaymatResizer', 'game/helpers/PlaymatEmitter'
+], function (calculateLayout, PlaymatResizer, PlaymatEmitter) {
   'use strict';
 
   var Playmat = function(game, pileSets, layoutString) {
@@ -17,8 +17,6 @@ define([
     this.resizer.refreshLayout();
 
     this.emitter = new PlaymatEmitter(this);
-
-    this.cardShadows = new CardShadows(this);
   };
 
   Playmat.prototype = Object.create(Phaser.Group.prototype);
