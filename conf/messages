@@ -28,7 +28,8 @@ index.games.unstarted = Unstarted Games
 
 # Menus
 menu.title = Menu
-menu.options = Options
+menu.game.options = Game Options
+menu.card.options = Card Options
 menu.help = Help
 menu.feedback = Feedback
 menu.redos = No redos available

@@ -1,5 +1,5 @@
 @(user: models.user.User)(implicit messages: Messages)
-<div id="gameplay-options" class="display-none">
+<div id="card-options" class="display-none">
   <div id="card-layout-list" class="options-list">
     <div class="options-label">@Messages("options.cards.layout")</div>
     <div class="game-options">
@@ -59,36 +59,6 @@
       @defining(if(idx == user.preferences.cards.ranks) { " active" } else { "" }) { active =>
         <div class="game-option@active" data-option-class="card-rank" data-option-value="@idx">
           <div id="card-rank-@idx" class="option-image"></div>
-        </div>
-      }
-    }
-    </div>
-  </div>
-
-  <div id="auto-flip-list" class="options-list">
-    <div class="options-label">@Messages("options.cards.auto.flip")</div>
-    <div class="game-options">
-      @defining(if(user.preferences.autoFlip) { " active" } else { "" }) { active =>
-        <div class="game-option@active" data-option-class="auto-flip" data-option-value="true">
-          <div id="auto-flip-true" class="option-image"></div>
-        </div>
-      }
-
-      @defining(if(!user.preferences.autoFlip) { " active" } else { "" }) { active =>
-        <div class="game-option@active" data-option-class="auto-flip" data-option-value="false">
-          <div id="auto-flip-false" class="option-image"></div>
-        </div>
-      }
-    </div>
-  </div>
-
-  <div id="color-list" class="options-list">
-    <div class="options-label">@Messages("options.background.color")</div>
-    <div class="game-options">
-    @for(color <- ui.Colors.all) {
-      @defining(if(color._1 == user.preferences.color) { " active" } else { "" }) { active =>
-        <div class="game-option@active" data-option-class="background-color" data-option-value="@color._1">
-          <div class="background-@color._1"></div>
         </div>
       }
     }

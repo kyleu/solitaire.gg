@@ -5,8 +5,7 @@ define([], function() {
   return {
     init: function(optionClick, elements) {
       var preferences = {};
-      var optionsPanel = document.getElementById('gameplay-options');
-      var layoutOptions = optionsPanel.getElementsByClassName('game-option');
+      var layoutOptions = document.getElementsByClassName('game-option');
       _.each(layoutOptions, function(layoutOption) {
         var optionClass = layoutOption.getAttribute('data-option-class');
         switch(optionClass) {

@@ -97,7 +97,7 @@
   }
 
   function init() {
-    elements.optionsButton = document.getElementById('btn-options');
+    elements.optionsButton = document.getElementById('btn-game-options');
     elements.optionsPanel = document.getElementById('static-options-panel');
     elements.confirmButton = document.getElementById('btn-confirm');
     elements.usernameContainer = document.getElementById('username-container');

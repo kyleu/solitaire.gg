@@ -2,7 +2,8 @@
 <div id="menu-container" class="fixed">
   <div class="menu-left">
     <div id="btn-menu" title="@Messages("menu.title")" class="btn btn-@user.preferences.color menu invisible"></div>
-    <div id="btn-options" title="@Messages("menu.options")" class="options btn btn-@user.preferences.color invisible"></div>
+    <div id="btn-game-options" title="@Messages("menu.game.options")" class="game-options btn btn-@user.preferences.color invisible"></div>
+    <div id="btn-card-options" title="@Messages("menu.card.options")" class="card-options btn btn-@user.preferences.color invisible"></div>
   </div>
   <div class="menu-right">
     @defining(if(user.preferences.avatar == "guest" || user.preferences.avatar == "default") {

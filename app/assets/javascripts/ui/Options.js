@@ -7,10 +7,12 @@ define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels)
       timerContainer: document.getElementById('timer-container'),
       timerDisplay: document.getElementById('timer-display'),
       topBar: document.getElementById('menu-container'),
-      optionsButton: document.getElementById('btn-options'),
-      optionsPanel: document.getElementById('gameplay-options'),
       menuButton: document.getElementById('btn-menu'),
       menuPanel: document.getElementById('gameplay-menu'),
+      gameOptionsButton: document.getElementById('btn-game-options'),
+      gameOptionsPanel: document.getElementById('gameplay-options'),
+      cardOptionsButton: document.getElementById('btn-card-options'),
+      cardOptionsPanel: document.getElementById('card-options'),
       bottomBar: document.getElementById('status-container'),
       bottomBarLeft: document.getElementById('status-container-left'),
       bottomBarRight: document.getElementById('status-container-right')
@@ -36,7 +38,8 @@ define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels)
   Options.prototype.setGame = function(state) {
     var els = this.elements;
     els.gameName.textContent = state.rulesTitle;
-    els.optionsButton.className = els.optionsButton.className.replace('invisible', 'fade-in');
+    els.gameOptionsButton.className = els.gameOptionsButton.className.replace('invisible', 'fade-in');
+    els.cardOptionsButton.className = els.cardOptionsButton.className.replace('invisible', 'fade-in');
     els.menuButton.className = els.menuButton.className.replace('invisible', 'fade-in');
     els.bottomBarLeft.className = els.bottomBarLeft.className.replace('invisible', 'fade-in');
     els.bottomBarRight.className = els.bottomBarRight.className.replace('invisible', 'fade-in');
@@ -86,12 +89,15 @@ define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels)
 
   Options.prototype.toggleMenus = Panels.toggleMenus;
   Options.prototype.hidePanels = Panels.hidePanels;
-  Options.prototype.showOptionsPanel = Panels.showOptionsPanel;
-  Options.prototype.hideOptionsPanel = Panels.hideOptionsPanel;
-  Options.prototype.toggleOptionsPanel = Panels.toggleOptionsPanel;
   Options.prototype.showMenuPanel = Panels.showMenuPanel;
   Options.prototype.hideMenuPanel = Panels.hideMenuPanel;
   Options.prototype.toggleMenuPanel = Panels.toggleMenuPanel;
+  Options.prototype.showGameOptionsPanel = Panels.showGameOptionsPanel;
+  Options.prototype.hideGameOptionsPanel = Panels.hideGameOptionsPanel;
+  Options.prototype.toggleGameOptionsPanel = Panels.toggleGameOptionsPanel;
+  Options.prototype.showCardOptionsPanel = Panels.showCardOptionsPanel;
+  Options.prototype.hideCardOptionsPanel = Panels.hideCardOptionsPanel;
+  Options.prototype.toggleCardOptionsPanel = Panels.toggleCardOptionsPanel;
 
   return Options;
 });
