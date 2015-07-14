@@ -1,6 +1,6 @@
 package models.rules
 
-import models.game.Rank
+import models.card.Rank
 
 sealed trait RankMatchRule {
   def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int): Boolean

@@ -1,6 +1,7 @@
 package utils.json
 
-import models.game._
+import models.card.{ Card, Deck, Rank, Suit }
+import models.game.{ GamePlayer, GameState }
 import models.pile.Pile
 import models.pile.options.{ ClientPileOptions, PileOptions }
 import models.pile.set.PileSet

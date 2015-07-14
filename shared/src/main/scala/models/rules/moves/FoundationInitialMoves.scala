@@ -1,6 +1,7 @@
 package models.rules.moves
 
-import models.game.{ Color, Suit, Rank, GameState }
+import models.card.{ Color, Rank, Suit }
+import models.game.GameState
 import models.rules.{ FoundationInitialCardRestriction, FoundationLowRank, GameRules }
 
 object FoundationInitialMoves {

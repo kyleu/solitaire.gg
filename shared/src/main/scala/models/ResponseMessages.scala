@@ -2,7 +2,8 @@ package models
 
 import java.util.UUID
 
-import models.game.{ Card, GameState }
+import models.card.Card
+import models.game.GameState
 
 sealed trait ResponseMessage
 trait ReversibleResponseMessage extends ResponseMessage

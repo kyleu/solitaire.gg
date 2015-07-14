@@ -33,31 +33,8 @@ function (config, Playmat, gameInit, GameNetwork, Sandbox) {
     this.possibleMoves = moves;
     this.options.setGame(state);
     if(elapsedMs > 0) {
-      this.startTimer(elapsedMs);
+      this.timer.start(elapsedMs);
     }
-  };
-
-  Game.prototype.startTimer = function(elapsedMs) {
-    if(elapsedMs) {
-      this.timerStarted = new Date().getTime() + elapsedMs;
-    } else {
-      this.timerStarted = new Date().getTime();
-    }
-
-    var el = document.getElementById('timer-display');
-    var self = this;
-    function timerTick() {
-      var delta = new Date().getTime() - self.timerStarted;
-      var minutes = parseInt(delta / 1000 / 60);
-      var seconds = parseInt((delta / 1000) % 60);
-      if(seconds < 10) {
-        seconds = '0' + seconds;
-      }
-      el.textContent = minutes + ':' + seconds;
-      setTimeout(timerTick, 1000);
-    }
-
-    setTimeout(timerTick, 1000);
   };
 
   Game.prototype.initialMovesComplete = function() {
@@ -73,6 +50,14 @@ function (config, Playmat, gameInit, GameNetwork, Sandbox) {
     });
 
     this.initialized = true;
+  };
+
+  Game.prototype.redeal = function() {
+    var tween = this.add.tween(this.playmat).to({ alpha: 0 }, 500, Phaser.Easing.Cubic.Out);
+    tween.onComplete.add(function() {
+      this.send('Redeal', {});
+    }, this);
+    tween.start();
   };
 
   Game.prototype.refreshTextures = function() {

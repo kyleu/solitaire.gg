@@ -1,6 +1,6 @@
 package models.rules
 
-import models.game._
+import models.card.{ Rank, Suit, Color }
 
 sealed trait FoundationInitialCardRestriction
 object FoundationInitialCardRestriction {

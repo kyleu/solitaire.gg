@@ -1,6 +1,6 @@
 package models.pile.options
 
-import models.game.Rank
+import models.card.Rank
 import models.pile.actions.{ DragToActions, SelectCardActions }
 import models.pile.constraints.Constraint
 import models.rules.{ CardRemovalMethod, PyramidRules }

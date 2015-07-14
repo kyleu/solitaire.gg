@@ -1,6 +1,7 @@
 // Generated rules for Solitaire.gg.
 package models.rules.impl
 
+import models.card.Rank
 import models.game._
 import models.rules._
 

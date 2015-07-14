@@ -1,7 +1,8 @@
 import models._
+import models.card.{ Card, Suit, Rank }
+import models.game.GameState
 import models.pile.Pile
 import models.pile.options.{ PileOptions, ClientPileOptions }
-import models.game.{ Card, GameState, Rank, Suit }
 import upickle._
 
 object JsonSerializers {

@@ -1,8 +1,8 @@
 package models.pile.options
 
+import models.card.{ Card, Rank }
 import models.pile.constraints.Constraint
 import models.rules._
-import models.game.{ Card, Rank }
 
 trait TableauPileOptionHelper {
   protected[this] def dragFrom(rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank, wrap: Boolean) = {

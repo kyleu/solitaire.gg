@@ -1,7 +1,8 @@
 // Generated rules for Solitaire.gg.
 package models.rules.impl
 
-import models.game._
+import models.card.{ Red, Black }
+
 import models.rules._
 
 /**

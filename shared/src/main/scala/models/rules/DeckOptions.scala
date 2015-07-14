@@ -1,6 +1,6 @@
 package models.rules
 
-import models.game._
+import models.card.{ Rank, Suit }
 
 case class DeckOptions(
     numDecks: Int = 1,

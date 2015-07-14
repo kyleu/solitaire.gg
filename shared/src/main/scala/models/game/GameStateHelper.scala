@@ -2,6 +2,7 @@ package models.game
 
 import java.util.UUID
 
+import models.card.Card
 import models.{ CardHidden, CardRevealed }
 
 trait GameStateHelper { this: GameState =>

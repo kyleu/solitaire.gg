@@ -1,7 +1,7 @@
 // Generated rules for Solitaire.gg.
 package models.rules.impl
 
-import models.game._
+import models.card.Rank
 import models.rules._
 
 object RacingAces extends GameRules(

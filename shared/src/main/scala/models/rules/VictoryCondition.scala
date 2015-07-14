@@ -1,7 +1,7 @@
 package models.rules
 
-import models.pile.Pile
 import models.game.GameState
+import models.pile.Pile
 
 sealed trait VictoryCondition {
   def check(rules: GameRules, gs: GameState): Boolean

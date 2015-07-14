@@ -2,9 +2,9 @@ package models.database.queries.history
 
 import java.util.UUID
 
+import models.card.{ Rank, Suit }
 import models.database.queries.BaseQueries
 import models.database.{ Query, Row, Statement }
-import models.game.{ Rank, Suit }
 import models.history.GameHistory
 import models.history.GameHistory.Card
 

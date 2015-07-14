@@ -23,11 +23,11 @@ define([], function() {
         if(bounce) {
           var targetY = y - (card.height * 0.05);
           var yTween = card.game.add.tween(card);
-          yTween.to({y: targetY}, time * 0.5, Phaser.Easing.Cubic.Out);
-          yTween.to({y: y}, time * 0.5, Phaser.Easing.Cubic.In);
+          yTween.to({ y: targetY }, time * 0.5, Phaser.Easing.Cubic.Out);
+          yTween.to({ y: y }, time * 0.5, Phaser.Easing.Cubic.In);
           yTween.start();
         } else {
-          card.game.add.tween(card).to({y: y}, time, Phaser.Easing.Cubic.Out).start();
+          card.game.add.tween(card).to({ y: y }, time, Phaser.Easing.Cubic.Out).start();
         }
 
         card.tweening = true;

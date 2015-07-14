@@ -59,7 +59,9 @@ define([], function() {
       alert('Coming soon!');
     };
 
-    buttons.redeal.onclick = comingSoon;
+    buttons.redeal.onclick = function() {
+      game.redeal();
+    };
     buttons.chooseGame.onclick = comingSoon;
     buttons.giveUp.onclick = comingSoon;
     buttons.otherStuff.onclick = comingSoon;

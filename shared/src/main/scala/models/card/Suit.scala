@@ -1,4 +1,4 @@
-package models.game
+package models.card
 
 sealed trait Color
 

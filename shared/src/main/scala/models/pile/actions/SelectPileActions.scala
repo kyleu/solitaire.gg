@@ -1,8 +1,8 @@
 package models.pile.actions
 
-import models.{ CardMoved, ResponseMessage }
 import models.game.GameState
 import models.pile.Pile
+import models.{ CardMoved, ResponseMessage }
 
 case class SelectPileAction(id: String, f: (Pile, GameState) => Seq[ResponseMessage])
 

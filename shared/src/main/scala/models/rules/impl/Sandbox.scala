@@ -1,6 +1,6 @@
 package models.rules.impl
 
-import models.game.Rank
+import models.card.Rank
 import models.rules._
 
 object Sandbox extends GameRules(

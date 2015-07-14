@@ -1,6 +1,6 @@
 package models.rules
 
-import models.game.Suit
+import models.card.Suit
 
 sealed trait SuitMatchRule {
   def check(l: Suit, r: Suit): Boolean

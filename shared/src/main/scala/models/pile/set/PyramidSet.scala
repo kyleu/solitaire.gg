@@ -1,6 +1,6 @@
 package models.pile.set
 
-import models.game.Rank
+import models.card.Rank
 import models.pile.Pile
 import models.pile.options.PyramidPileOptions
 import models.rules.{ CardRemovalMethod, PyramidRules }

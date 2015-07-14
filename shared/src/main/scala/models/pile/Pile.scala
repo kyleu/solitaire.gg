@@ -1,10 +1,11 @@
 package models.pile
 
-import models.pile.actions.{ DragToActions, SelectPileActions, SelectCardActions }
+import models.card.{ Card, Rank }
+import models.game.GameState
+import models.pile.actions.{ DragToActions, SelectCardActions, SelectPileActions }
 import models.pile.options.PileOptions
 import models.pile.set.PileSet
-import models.rules.{ SuitMatchRule, RankMatchRule }
-import models.game.{ Rank, GameState, Card }
+import models.rules.{ RankMatchRule, SuitMatchRule }
 
 import scala.annotation.tailrec
 import scala.collection.mutable.ArrayBuffer

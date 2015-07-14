@@ -1,9 +1,9 @@
 package models.pile.options
 
+import models.card.Rank
 import models.pile.actions.{ DragToActions, SelectCardActions }
 import models.pile.constraints.Constraint
 import models.rules._
-import models.game.Rank
 
 object TableauPileOptions extends TableauPileOptionHelper {
   def apply(rules: TableauRules, deckOptions: DeckOptions, cardRemovalMethod: CardRemovalMethod) = {

@@ -1,8 +1,8 @@
 /* global define:false */
 /* global Phaser:false */
 /* global Solitaire:false */
-define(['utils/Config', 'ui/Options', 'game/helpers/GameNetwork', 'state/InitialState', 'help/Help'],
-function (config, Options, GameNetwork, InitialState, Help) {
+define(['utils/Config', 'ui/Options', 'game/helpers/GameNetwork', 'game/helpers/GameTimer', 'state/InitialState', 'help/Help'],
+function (config, Options, GameNetwork, GameTimer, InitialState, Help) {
   'use strict';
 
   return function (game, ws) {
@@ -18,6 +18,7 @@ function (config, Options, GameNetwork, InitialState, Help) {
     game.initialized = false;
     game.possibleMoves = [];
     game.movesMade = 0;
+    game.timer = new GameTimer();
 
     var configOptions = {
       width: '100%',

@@ -1,6 +1,6 @@
 package services.help
 
-import models.game.Rank
+import models.card.Rank
 import models.rules._
 import play.api.i18n.Messages
 import utils.NumberUtils

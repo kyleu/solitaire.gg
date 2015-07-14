@@ -48,8 +48,8 @@ define(['utils/Config'], function (config) {
     },
     sendMove: function(move) {
       game.movesMade += 1;
-      if(game.timerStarted === undefined) {
-        game.startTimer();
+      if(game.timer.started === undefined) {
+        game.timer.start();
       }
 
       switch(move.moveType) {

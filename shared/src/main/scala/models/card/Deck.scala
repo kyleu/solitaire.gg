@@ -1,4 +1,4 @@
-package models.game
+package models.card
 
 import java.util.UUID
 

@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models._
 import models.database.queries.history.{ GameHistoryQueries, GameHistoryMoveQueries, GameHistoryCardQueries }
-import models.game.Card
+import models.card.Card
 import models.history.GameHistory
 import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext

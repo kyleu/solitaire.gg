@@ -1,7 +1,7 @@
 // Generated rules for Solitaire.gg.
 package models.rules.impl
 
-import models.game._
+import models.card.Suit
 import models.rules._
 
 /**
@@ -18,8 +18,8 @@ import models.rules._
 object WaxingMoon extends GameRules(
   id = "waxingmoon",
   title = "Waxing Moon",
-  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/waxing_moon.htm")),
   description = "A very difficult ^fortythieves^ variant by Thomas Warfield.",
+  links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/waxing_moon.htm")),
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Clubs, Suit.Horseshoes)

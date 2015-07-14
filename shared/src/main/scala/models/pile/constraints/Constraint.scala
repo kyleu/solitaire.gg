@@ -1,8 +1,9 @@
 package models.pile.constraints
 
+import models.card.{ Card, Rank }
+import models.game.GameState
 import models.pile.Pile
 import models.rules.CardRemovalMethod
-import models.game.{ Rank, Card, GameState }
 
 case class Constraint(id: String, f: Constraint.Check, clientOptions: Option[Map[String, String]] = None)
 
