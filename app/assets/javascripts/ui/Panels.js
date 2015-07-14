@@ -8,8 +8,10 @@ define([], function() {
         els.bottomBar.className = els.bottomBar.className.replace(' fade-in', '') + ' fade-out';
         this.game.menusVisible = false;
         setTimeout(function() {
-          els.topBar.style.height = '0';
-          els.bottomBar.style.height = '0';
+          if(els.topBar.className.indexOf('fade-out') > -1) {
+            els.topBar.style.height = '0';
+            els.bottomBar.style.height = '0';
+          }
         }, 1000);
       } else {
         els.topBar.style.height = '40px';

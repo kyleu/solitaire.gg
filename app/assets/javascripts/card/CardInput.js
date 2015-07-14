@@ -103,47 +103,49 @@ define(['card/Tweens'], function (Tweens) {
     },
 
     update: function(card) {
-      if(card.animation === null) {
-        if(card.dragging) {
-          if(card.actualX === undefined || card.actualX === null) {
-            card.actualX = card.x;
-          }
-          var newX = ((card.game.input.x - card.game.playmat.x) / card.game.playmat.scale.x) - card.anchorPointX;
-          var xDelta = newX - card.actualX;
+      if(card.dragging) {
+        if(card.actualX === undefined || card.actualX === null) {
+          card.actualX = card.x;
+        }
+        var newX = ((card.game.input.x - card.game.playmat.x) / card.game.playmat.scale.x) - card.anchorPointX;
+        var xDelta = newX - card.actualX;
 
-          var now = card.game.time.now;
-          while(card.inertiaHistory.length > 0 && now - card.inertiaHistory[0][0] > 300) {
-            card.inertiaHistory.shift();
-          }
-          card.inertiaHistory.push([now, xDelta]);
+        var now = card.game.time.now;
+        while(card.inertiaHistory.length > 0 && now - card.inertiaHistory[0][0] > 300) {
+          card.inertiaHistory.shift();
+        }
+        card.inertiaHistory.push([now, xDelta]);
 
-          var totalDelta = 0;
-          _.each(card.inertiaHistory, function(inertiaHist) {
-            totalDelta += inertiaHist[1];
-          });
-          var angle = totalDelta / card.inertiaHistory.length / 2;
-          var maxAngle = 15 + (3 * card.dragIndex);
-          if(angle > maxAngle) {
-            angle = maxAngle;
-          }
-          if(angle < -maxAngle) {
-            angle = -maxAngle;
-          }
-          card.angle = angle;
+        var totalDelta = 0;
+        _.each(card.inertiaHistory, function(inertiaHist) {
+          totalDelta += inertiaHist[1];
+        });
+        var angle = totalDelta / card.inertiaHistory.length / 2;
+        var maxAngle = 15 + (3 * card.dragIndex);
+        if(angle > maxAngle) {
+          angle = maxAngle;
+        }
+        if(angle < -maxAngle) {
+          angle = -maxAngle;
+        }
+        card.angle = angle;
 
-          card.actualX = newX;
+        card.actualX = newX;
 
-          var swayX = newX - (card.dragIndex * angle * 0.9);
-          var newY = ((card.game.input.y - card.game.playmat.y) / card.game.playmat.scale.y) - card.anchorPointY;
+        var swayX = newX - (card.dragIndex * angle * 0.9);
+        var newY = ((card.game.input.y - card.game.playmat.y) / card.game.playmat.scale.y) - card.anchorPointY;
 
-          card.x = swayX;
-          card.y = newY;
+        card.x = swayX;
+        card.y = newY;
 
-          if(card.game.playmat.emitter !== undefined) {
-            card.game.playmat.emitter.on = true;
-            card.game.playmat.emitter.emitX = (card.x);
-            card.game.playmat.emitter.emitY = (card.y);
-          }
+        if(card.pile.dragCards.length > 0 && card === card.pile.dragCards[card.pile.dragCards.length - 1]) {
+          card.game.playmat.cardShadows.update();
+        }
+
+        if(card.game.playmat.emitter !== undefined) {
+          card.game.playmat.emitter.on = true;
+          card.game.playmat.emitter.emitX = (card.x);
+          card.game.playmat.emitter.emitY = (card.y);
         }
       }
     }

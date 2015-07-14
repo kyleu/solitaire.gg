@@ -25,6 +25,8 @@ define([], function() {
 
       game.input.gamepad.start();
       console.log('Gamepads initialized.');
+    } else {
+      console.log('No gamepad support detected.');
     }
   };
 

@@ -91,6 +91,7 @@ define(['pile/PileLayout', 'pile/PileHelpers', 'pile/DragFromConstraints'], func
   };
 
   Pile.prototype.startDrag = PileHelpers.dragSlice;
+  Pile.prototype.dragUpdate = PileHelpers.dragUpdate;
   Pile.prototype.endDrag = PileHelpers.endDrag;
 
   return Pile;
