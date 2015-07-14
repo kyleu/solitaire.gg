@@ -11,6 +11,8 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
     ranks: [],
     faceCards: [],
     autoFlips: [],
+    audio: [],
+    gamepad: [],
     colors: []
   };
 
@@ -71,6 +73,12 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
       case 'auto-flip':
         selectedElements = elements.autoFlips;
         break;
+      case 'audio':
+        selectedElements = elements.audio;
+        break;
+      case 'gamepad':
+        selectedElements = elements.gamepad;
+        break;
       case 'background-color':
         selectedElements = elements.colors;
         break;
@@ -79,43 +87,51 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
     }
 
     if(preferences[optionClass] !== optionValue) {
-      preferences[optionClass] = optionValue;
-      game.send('SetPreference', {'name': optionClass, 'value': optionValue});
-
-      switch(optionClass) {
-        case 'background-color':
-          selectColor(optionValue);
-          break;
-        case 'auto-flip':
-          break;
-        case 'card-layout':
-          CardImages.rerender(game, preferences);
-          game.refreshTextures();
-          break;
-        case 'card-back':
-          reloadTexture(game.load.image('card-back', assetRoot + 'assets/images/cards/back-' + optionValue + '.png'));
-          break;
-        case 'card-face':
-          reloadTexture(game.load.spritesheet('card-faces', assetRoot + 'assets/images/cards/face-cards-' + optionValue + '.png', 200, 300));
-          break;
-        case 'card-suit':
-          reloadTexture(game.load.spritesheet('card-suits', assetRoot + 'assets/images/cards/suits-' + optionValue + '.png', 200, 200));
-          break;
-        case 'card-rank':
-          reloadTexture(game.load.spritesheet('card-ranks', assetRoot + 'assets/images/cards/ranks-' + optionValue + '.png', 200, 200));
-          break;
-        default:
-          throw optionClass;
-      }
-
-      _.each(selectedElements, function(el) {
-        if(el.getAttribute('data-option-value') === optionValue) {
-          el.className = 'game-option active';
-        } else {
-          el.className = 'game-option';
-        }
-      });
+      setOption(optionClass, optionValue, selectedElements);
     }
+  }
+
+  function setOption(optionClass, optionValue, selectedElements) {
+    preferences[optionClass] = optionValue;
+    game.send('SetPreference', {'name': optionClass, 'value': optionValue});
+
+    switch(optionClass) {
+      case 'background-color':
+        selectColor(optionValue);
+        break;
+      case 'audio':
+        break;
+      case 'gamepad':
+        break;
+      case 'auto-flip':
+        break;
+      case 'card-layout':
+        CardImages.rerender(game, preferences);
+        game.refreshTextures();
+        break;
+      case 'card-back':
+        reloadTexture(game.load.image('card-back', assetRoot + 'assets/images/cards/back-' + optionValue + '.png'));
+        break;
+      case 'card-face':
+        reloadTexture(game.load.spritesheet('card-faces', assetRoot + 'assets/images/cards/face-cards-' + optionValue + '.png', 200, 300));
+        break;
+      case 'card-suit':
+        reloadTexture(game.load.spritesheet('card-suits', assetRoot + 'assets/images/cards/suits-' + optionValue + '.png', 200, 200));
+        break;
+      case 'card-rank':
+        reloadTexture(game.load.spritesheet('card-ranks', assetRoot + 'assets/images/cards/ranks-' + optionValue + '.png', 200, 200));
+        break;
+      default:
+        throw optionClass;
+    }
+
+    _.each(selectedElements, function(el) {
+      if(el.getAttribute('data-option-value') === optionValue) {
+        el.className = 'game-option active';
+      } else {
+        el.className = 'game-option';
+      }
+    });
   }
 
   return {

@@ -16,6 +16,8 @@ trait ConnectionServicePreferenceHelper extends InstrumentedActor { this: Connec
       case "card-suit" => userPreferences.copy(cards = userPreferences.cards.copy(suits = sp.value))
       case "card-face" => userPreferences.copy(cards = userPreferences.cards.copy(faceCards = sp.value))
       case "auto-flip" => userPreferences.copy(autoFlip = sp.value.toBoolean)
+      case "audio" => userPreferences.copy(audio = sp.value.toBoolean)
+      case "gamepad" => userPreferences.copy(gamepad = sp.value.toBoolean)
       case "background-color" => userPreferences.copy(color = sp.value)
       case _ => log.errorThenThrow(s"Unhandled preference [${sp.name}] for user [$user.id] with value [${sp.value}].")
     }

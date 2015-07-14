@@ -27,6 +27,12 @@ define([], function() {
           case 'auto-flip':
             elements.autoFlips.push(layoutOption);
             break;
+          case 'audio':
+            elements.audio.push(layoutOption);
+            break;
+          case 'gamepad':
+            elements.gamepad.push(layoutOption);
+            break;
           case 'background-color':
             elements.colors.push(layoutOption);
             break;

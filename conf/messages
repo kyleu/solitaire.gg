@@ -47,7 +47,10 @@ options.cards.layout = Card Layout
 options.cards.face.cards = Face Cards
 options.cards.ranks = Ranks
 options.cards.suits = Suits
-options.cards.auto.flip = Auto Flip
+
+options.auto.flip = Auto Flip
+options.audio = Audio
+options.gamepad = Gamepad
 options.background.color = Background Color
 
 # Feedback
