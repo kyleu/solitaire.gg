@@ -4,7 +4,7 @@ import java.util.UUID
 
 import com.mohiva.play.silhouette.api.LoginInfo
 import models.database.queries.BaseQueries
-import models.database.{ FlatSingleRowQuery, Row, Statement }
+import models.database.{ SingleRowQuery, FlatSingleRowQuery, Row, Statement }
 import models.user.{ Role, User, UserPreferences }
 import org.joda.time.LocalDateTime
 import play.api.libs.json.{ JsObject, JsError, JsSuccess, Json }
@@ -59,6 +59,11 @@ object UserQueries extends BaseQueries[User] {
     override val sql = getSql(Some("profiles @> ARRAY[?]::text[]"))
     override val values = Seq(s"${loginInfo.providerID}:${loginInfo.providerKey}")
     override def flatMap(row: Row) = Some(fromRow(row))
+  }
+
+  case object CountAdmins extends SingleRowQuery[Int]() {
+    override def sql = "select count(*) as c from users where 'admin' = any(roles)"
+    override def map(row: Row) = row.as[Long]("c").toInt
   }
 
   override protected def fromRow(row: Row) = {

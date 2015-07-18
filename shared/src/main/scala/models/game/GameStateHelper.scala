@@ -6,7 +6,7 @@ import models.card.Card
 import models.{ CardHidden, CardRevealed }
 
 trait GameStateHelper { this: GameState =>
-  def addCard(card: Card, pile: String, reveal: Boolean = false) = {
+  def addCard(card: Card, pile: String, reveal: Boolean = false): Unit = {
     this.cardsById(card.id) = card
     this.pilesById.get(pile) match {
       case Some(p) => p.addCard(card)

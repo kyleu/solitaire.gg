@@ -12,7 +12,7 @@ object PyramidSet {
     } else {
       s"pyramid${pyramidRules.setNumber + 1}-"
     }
-    val pileOptions = PyramidPileOptions(pyramidRules, crm, lowRank)
+    val pileOptions = PyramidPileOptions(pyramidRules, crm)
     val piles = pileOptions.map {
       case (o, i, j) => Pile(s"$prefix$i-$j", o)
     }

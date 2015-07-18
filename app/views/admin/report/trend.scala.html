@@ -3,8 +3,8 @@
 )@layout.admin(
   utils.Config.projectName + " Trend Report",
   "reports",
-  scripts = Seq(routes.Assets.versioned("lib/d3/d3.js").url, routes.Assets.versioned("lib/d3/nv.d3.js").url),
-  stylesheets = Seq(routes.Assets.versioned("lib/d3/nv.d3.css").url)
+  scripts = Seq(routes.Assets.versioned("lib/d3js/d3.js").url, routes.Assets.versioned("lib/nvd3-community/nv.d3.js").url),
+  stylesheets = Seq(routes.Assets.versioned("lib/nvd3-community/nv.d3.css").url)
 ) {
   <h3>@utils.Config.projectName Trend Report</h3>
   <h4>Displaying metrics for @utils.Formatter.withCommas(metrics.size) days.</h4>

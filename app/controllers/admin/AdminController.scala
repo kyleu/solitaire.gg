@@ -11,7 +11,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Schema
 import services.scheduled.ScheduledTask
 import services.supervisor.ActorSupervisor
-import services.user.AuthenticationEnvironment
+import services.user.{ UserService, AuthenticationEnvironment }
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -27,6 +27,12 @@ class AdminController @javax.inject.Inject() (
 
   def index = withAdminSession("index") { implicit request =>
     Future.successful(Ok(views.html.admin.index()))
+  }
+
+  def enable = withSession("admin.enable") { implicit request =>
+    UserService.enableAdmin(request.identity).map { response =>
+      Ok(response)
+    }
   }
 
   def status = withAdminSession("status") { implicit request =>

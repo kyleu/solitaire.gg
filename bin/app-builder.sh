@@ -34,8 +34,8 @@ rm -Rf "build/web/assets/images/game/cards/standard/_unprocessed"
 rm -Rf "build/web/assets/images/game/cards/standard/_resized"
 rm -Rf "build/web/assets/images/game/cards/standard/x-large"
 
-cp "../public/lib/phaser/js/phaser.min.js" "build/web/assets/javascripts/lib"
-cp "../public/lib/underscore/underscore.min.js" "build/web/assets/javascripts/lib"
+cp "../target/web/public/main/lib/phaser/build/custom/phaser-arcade-physics.min.js" "build/web/assets/javascripts/lib"
+cp "../target/web/public/main/lib/underscorejs/underscore-min.js" "build/web/assets/javascripts/lib"
 cp "../target/web/rjs/build/lib/requirejs/require.min.js" "build/web/assets/javascripts/lib"
 
 echo "  Building Electron apps..."

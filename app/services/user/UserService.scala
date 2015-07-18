@@ -6,10 +6,10 @@ import com.github.mauricio.async.db.Connection
 import com.mohiva.play.silhouette.api.AuthInfo
 import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile
 import models.database.queries.auth._
-import models.user.User
+import models.user.{ Role, User }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import services.history.{ RequestHistoryService, GameHistoryService }
+import services.history.{ GameHistoryService, RequestHistoryService }
 import utils.Logging
 import utils.cache.UserCache
 
@@ -73,6 +73,19 @@ object UserService extends Logging {
           "moves" -> moveCount,
           "timing" -> (System.currentTimeMillis - start).toInt
         )
+      }
+    }
+  }
+
+  def enableAdmin(user: User) = {
+    Database.query(UserQueries.CountAdmins).flatMap { adminCount =>
+      if (adminCount == 0) {
+        Database.execute(UserQueries.AddRole(user.id, Role.Admin)).map { x =>
+          UserCache.removeUser(user.id)
+          "OK"
+        }
+      } else {
+        Future.successful(s"Forbidden. $adminCount admins already exist.")
       }
     }
   }
