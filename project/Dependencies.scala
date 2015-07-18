@@ -19,6 +19,10 @@ object Dependencies {
   object WebJars {
     val requireJs = "org.webjars" % "requirejs" % "2.1.18"
     val bootstrap = "org.webjars" % "bootstrap" % "3.3.5"
+    val phaser = "org.webjars.bower" % "phaser" % "2.3.0"
+    val underscore = "org.webjars" % "underscorejs" % "1.8.3"
+    val d3 = "org.webjars" % "d3js" % "3.5.5-1"
+    val nvd3 = "org.webjars" % "nvd3-community" % "1.7.0"
   }
 
   object Mail {
