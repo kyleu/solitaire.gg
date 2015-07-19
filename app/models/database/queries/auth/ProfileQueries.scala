@@ -11,6 +11,7 @@ import utils.DateUtils
 object ProfileQueries extends BaseQueries[CommonSocialProfile] {
   override protected val tableName = "user_profiles"
   override protected val columns = Seq("provider", "key", "email", "first_name", "last_name", "full_name", "avatar_url", "created")
+  override protected def idColumns = Seq("provider", "key")
   override protected val searchColumns = Seq("key", "email", "first_name", "last_name", "full_name")
 
   val insert = Insert
