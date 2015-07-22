@@ -1,21 +1,17 @@
-@(user: models.user.User, title: String, button: String, routesMap: utils.play.RoutesMap = utils.play.RoutesMap.dynamic)(content: Html)(
+@(user: models.user.User, title: String, button: String)(content: Html)(
   implicit request: Request[AnyContent], session: Session, flash: Flash
 )@layout.basic(
   title = title,
-  scripts = Seq(routesMap("script-root", "static.js")),
-  stylesheets = Seq(routesMap("css-root", "solitaire.gg.min.css")),
+  scripts = Seq(routes.Assets.versioned("scripts/static.js").url),
+  stylesheets = Seq(routes.Assets.versioned("stylesheets/solitaire.gg.min.css").url),
   bodyClass = Some(s"background-${user.preferences.color}"),
-  faviconColor = Some(user.preferences.color),
-  routesMap = routesMap
+  faviconColor = Some(user.preferences.color)
 ) {
   <div id="menu-container">
     <div class="menu-left">
-      @if(button == "about") {
-      <a id="btn-help" title="About @utils.Config.projectName" class="help btn btn-@user.preferences.color" href="@routesMap("about")"></a>
-      } else { @if(button == "menu") {
-      <a id="btn-menu" title="@utils.Config.projectName" class="menu btn btn-@user.preferences.color" href="@routesMap("index")"></a>
-      } else {
-      ICON ERROR
+      @if(button == "about") {<a id="btn-help" title="About @utils.Config.projectName" class="help btn btn-@user.preferences.color" href="@routes.HomeController.about().url"></a>
+      } else { @if(button == "menu") {<a id="btn-menu" title="@utils.Config.projectName" class="menu btn btn-@user.preferences.color" href="@routes.HomeController.index().url"></a>
+      } else {ICON ERROR
       } }
       <div id="btn-game-options" title="@utils.Config.projectName Options" class="game-options btn btn-@user.preferences.color"></div>
     </div>
@@ -26,7 +22,7 @@
       } else {
         user.preferences.avatar
       }) { av =>
-      <a href="@routesMap("profile")" title="@if(user.isGuest) { Sign In } else { Profile }"><img class="avatar-small" src="@av" /></a>
+      <a href="@routes.ProfileController.profile().url" title="@if(user.isGuest) { Sign In } else { Profile }"><img class="avatar-small" src="@av" /></a>
       }
       <a id="profile-link" class="link" href="@routes.ProfileController.profile()">@user.username.getOrElse("")</a>
     </div>
@@ -37,10 +33,8 @@
   </div>
 
   <div id="static-options-panel">
-    <div id="color-list"> @for(color <- ui.Colors.all) {
-      <div id="color-@color._1" class="game-option background-color @{ if(color._1 == user.preferences.color) { " active" } else { "" } }">
-        <div class="background-@color._1"></div>
-      </div> }
+    <div id="color-list">@for(color <- ui.Colors.all) {
+      <div id="color-@color._1" class="game-option background-color @{ if(color._1 == user.preferences.color) { " active" } else { "" } }"><div class="background-@color._1"></div></div>}
     </div>
     <div class="action-buttons">
       <div id="btn-confirm" title="OK" class="ok btn btn-@user.preferences.color disabled"></div>
@@ -48,5 +42,5 @@
   </div>
 
   <div id="page-content">
-    @content
+  @content
   </div> }

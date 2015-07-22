@@ -1,11 +1,7 @@
-@(user: models.user.User, rules: models.rules.GameRules, routesMap: utils.play.RoutesMap = utils.play.RoutesMap.dynamic)(
+@(user: models.user.User, rules: models.rules.GameRules)(
   implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
-)@layout.static(user = user, title = Messages("help.title", rules.title) + " - " + utils.Config.projectName, button = "menu", routesMap) {
+)@layout.static(user = user, title = Messages("help.title", rules.title) + " - " + utils.Config.projectName, button = "menu") {
   <div class="static-help">
-    @if(routesMap.dynamic) {
-      @utils.play.ViewUtils.cachedTemplate("help." + rules.id, helpContent(rules, user.preferences.color, routesMap))
-    } else {
-      @helpContent(rules, user.preferences.color, routesMap)
-    }
+    @utils.play.ViewUtils.cachedTemplate("help." + rules.id, helpContent(rules, user.preferences.color))
   </div>
 }

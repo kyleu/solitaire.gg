@@ -3,8 +3,7 @@
   scripts: Seq[String] = Nil,
   stylesheets: Seq[String] = Nil,
   bodyClass: Option[String] = None,
-  faviconColor: Option[String] = None,
-  routesMap: utils.play.RoutesMap = utils.play.RoutesMap.dynamic
+  faviconColor: Option[String] = None
 )(content: Html)(implicit session: Session, flash: Flash)<!DOCTYPE html>
 <html>
   <head>
@@ -13,9 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     @if(faviconColor.isDefined) {
-    <link id="favicon" rel="shortcut icon" type="image/png" href="@routesMap("image-root", s"ui/favicon/favicon-${faviconColor.get}.png")">
+    <link id="favicon" rel="shortcut icon" type="image/png" href="@routes.Assets.versioned(s"images/ui/favicon/favicon-${faviconColor.get}.png")">
     } else {
-    <link id="favicon" rel="shortcut icon" type="image/png" href="@routesMap("image-root", "ui/favicon/favicon.png")">
+    <link id="favicon" rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/ui/favicon/favicon.png")">
     }
     @for(script <- scripts) {<script src="@script"></script>}
     @for(stylesheet <- stylesheets) {<link rel="stylesheet" media="screen" href="@stylesheet" />}

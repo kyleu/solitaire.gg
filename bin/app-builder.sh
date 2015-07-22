@@ -22,21 +22,20 @@ mkdir -p build/web/assets/javascripts/lib
 
 cp -R "../public/images/" "build/web/assets/images"
 
-cp "../target/web/rjs/build/client-opt.js" "build/web/assets/javascripts"
-cp "../target/web/rjs/build/javascripts/main.js" "build/web/assets/javascripts/solitaire.gg.js"
+cp -R "build/templates/" "build/web/"
+
+cp "../target/web/rjs/build/client-opt.js" "build/web/assets/client-opt.js"
+cp "../target/web/rjs/build/javascripts/main.js" "build/web/assets/javascripts/main.js"
 cp "../target/web/less/main/stylesheets/solitaire.gg.min.css" "build/web/assets/stylesheets"
 
-rm -Rf "build/web/assets/images/game/cards/classic/_unprocessed"
-rm -Rf "build/web/assets/images/game/cards/classic/_resized"
-rm -Rf "build/web/assets/images/game/cards/classic/x-large"
+mkdir -p "build/web/assets/lib/phaser/build/custom"
+cp "../target/web/public/main/lib/phaser/build/custom/phaser-arcade-physics.min.js" "build/web/assets/lib/phaser/build/custom"
 
-rm -Rf "build/web/assets/images/game/cards/standard/_unprocessed"
-rm -Rf "build/web/assets/images/game/cards/standard/_resized"
-rm -Rf "build/web/assets/images/game/cards/standard/x-large"
+mkdir -p "build/web/assets/lib/underscorejs"
+cp "../target/web/public/main/lib/underscorejs/underscore-min.js" "build/web/assets/lib/underscorejs"
 
-cp "../target/web/public/main/lib/phaser/build/custom/phaser-arcade-physics.min.js" "build/web/assets/javascripts/lib"
-cp "../target/web/public/main/lib/underscorejs/underscore-min.js" "build/web/assets/javascripts/lib"
-cp "../target/web/rjs/build/lib/requirejs/require.min.js" "build/web/assets/javascripts/lib"
+mkdir -p "build/web/assets/lib/requirejs"
+cp "../target/web/rjs/build/lib/requirejs/require.min.js" "build/web/assets/lib/requirejs"
 
 echo "  Building Electron apps..."
 mkdir bin

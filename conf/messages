@@ -38,7 +38,8 @@ menu.undos = No undos available
 menu.redeal = Redeal
 menu.different.game = Different Game
 menu.give.up = Give Up
-menu.other.stuff = Other Stuff
+menu.specific.seed = Specific Seed
+menu.winnable.game = Winnable Game
 
 # Gameplay
 game.loading = Loading...

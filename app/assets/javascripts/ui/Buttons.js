@@ -16,7 +16,8 @@ define([], function() {
       redeal: document.getElementById('btn-redeal'),
       chooseGame: document.getElementById('btn-choose-game'),
       giveUp: document.getElementById('btn-give-up'),
-      otherStuff: document.getElementById('btn-other-stuff')
+      specificSeed: document.getElementById('btn-specific-seed'),
+      winnableGame: document.getElementById('btn-winnable-game')
     };
 
     buttons.menu.onclick = function() {
@@ -64,7 +65,8 @@ define([], function() {
     };
     buttons.chooseGame.onclick = comingSoon;
     buttons.giveUp.onclick = comingSoon;
-    buttons.otherStuff.onclick = comingSoon;
+    buttons.specificSeed.onclick = comingSoon;
+    buttons.winnableGame.onclick = comingSoon;
 
     return buttons;
   };

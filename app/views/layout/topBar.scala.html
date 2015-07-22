@@ -1,4 +1,4 @@
-@(user: models.user.User, routesMap: utils.play.RoutesMap)(implicit messages: Messages)
+@(user: models.user.User)(implicit messages: Messages)
 <div id="menu-container" class="fixed">
   <div class="menu-left">
     <div id="btn-menu" title="@Messages("menu.title")" class="btn btn-@user.preferences.color menu invisible"></div>
@@ -11,11 +11,11 @@
     } else {
       user.preferences.avatar
     }) { av =>
-      <a href="@routesMap("profile")"><img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@av" /></a>
+      <a href="@controllers.routes.ProfileController.profile().url"><img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@av" /></a>
     }
-    <a id="profile-link" class="link" href="@routesMap("profile")">@user.username.getOrElse(Messages("guest.name"))</a>
+    <a id="profile-link" class="link" href="@controllers.routes.ProfileController.profile().url">@user.username.getOrElse(Messages("guest.name"))</a>
   </div>
   <div class="logo">
-    <a href="@routesMap("index")">@utils.Config.projectName</a>
+    <a href="@controllers.routes.HomeController.index().url">@utils.Config.projectName</a>
   </div>
 </div>

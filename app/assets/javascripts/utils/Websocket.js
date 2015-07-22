@@ -49,13 +49,7 @@ define(['utils/Config'], function (cfg) {
 
   Websocket.prototype.send = function(c, v) {
     var msg = { c: c, v: v };
-    var s = null;
-    if(cfg.debug) {
-      // console.log('Sending message [' + c + '].');
-      s = JSON.stringify(msg, undefined, 2);
-    } else {
-      s = JSON.stringify(msg);
-    }
+    var s = JSON.stringify(msg);
     this.connection.send(s);
   };
 

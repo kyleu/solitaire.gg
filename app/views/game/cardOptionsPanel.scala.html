@@ -2,66 +2,46 @@
 <div id="card-options" class="display-none">
   <div id="card-layout-list" class="options-list">
     <div class="options-label">@Messages("options.cards.layout")</div>
-    <div class="game-options">
-    @for(idx <- Seq("a", "b")) {
-      @defining(if(idx == user.preferences.cards.layout) { " active" } else { "" }) { active =>
-        <div class="game-option@active" data-option-class="card-layout" data-option-value="@idx">
-          <div id="card-layout-@idx" class="option-image"></div>
-        </div>
-      }
-    }
+    <div class="game-options">@for(idx <- Seq("a", "b")) {
+      <div class="game-option@{ if(idx == user.preferences.cards.layout) { " active" } else { "" } }" data-option-class="card-layout" data-option-value="@idx">
+        <div id="card-layout-@idx" class="option-image"></div>
+      </div>}
     </div>
   </div>
 
   <div id="card-back-list" class="options-list">
     <div class="options-label">@Messages("options.cards.back")</div>
-    <div class="game-options">
-    @for(idx <- Seq("a", "b", "c")) {
-      @defining(if(idx == user.preferences.cards.back) { " active" } else { "" }) { active =>
-        <div class="game-option@active" data-option-class="card-back" data-option-value="@idx">
-          <div id="card-back-@idx" class="option-image"></div>
-        </div>
-      }
-    }
+    <div class="game-options">@for(idx <- Seq("a", "b", "c")) {
+      <div class="game-option@{ if(idx == user.preferences.cards.back) { " active" } else { "" } }" data-option-class="card-back" data-option-value="@idx">
+        <div id="card-back-@idx" class="option-image"></div>
+      </div>}
     </div>
   </div>
 
   <div id="card-face-list" class="options-list">
     <div class="options-label">@Messages("options.cards.face.cards")</div>
-    <div class="game-options">
-    @for(idx <- Seq("a", "b")) {
-      @defining(if(idx == user.preferences.cards.faceCards) { " active" } else { "" }) { active =>
-        <div class="game-option@active" data-option-class="card-face" data-option-value="@idx">
-          <div id="card-face-@idx" class="option-image"></div>
-        </div>
-      }
-    }
+    <div class="game-options">@for(idx <- Seq("a", "b")) {
+      <div class="game-option@{ if(idx == user.preferences.cards.faceCards) { " active" } else { "" } }" data-option-class="card-face" data-option-value="@idx">
+        <div id="card-face-@idx" class="option-image"></div>
+      </div>}
     </div>
   </div>
 
   <div id="card-suit-list" class="options-list">
     <div class="options-label">@Messages("options.cards.suits")</div>
-    <div class="game-options">
-      @for(idx <- Seq("a", "b")) {
-        @defining(if(idx == user.preferences.cards.suits) { " active" } else { "" }) { active =>
-          <div class="game-option@active" data-option-class="card-suit" data-option-value="@idx">
-            <div id="card-suit-@idx" class="option-image"></div>
-          </div>
-        }
-      }
+    <div class="game-options">@for(idx <- Seq("a", "b")) {
+      <div class="game-option@{ if(idx == user.preferences.cards.suits) { " active" } else { "" } }" data-option-class="card-suit" data-option-value="@idx">
+        <div id="card-suit-@idx" class="option-image"></div>
+      </div>}
     </div>
   </div>
 
   <div id="card-rank-list" class="options-list">
     <div class="options-label">@Messages("options.cards.ranks")</div>
-    <div class="game-options">
-    @for(idx <- Seq("a", "b")) {
-      @defining(if(idx == user.preferences.cards.ranks) { " active" } else { "" }) { active =>
-        <div class="game-option@active" data-option-class="card-rank" data-option-value="@idx">
-          <div id="card-rank-@idx" class="option-image"></div>
-        </div>
-      }
-    }
+    <div class="game-options">@for(idx <- Seq("a", "b")) {
+      <div class="game-option@{ if(idx == user.preferences.cards.ranks) { " active" } else { "" } }" data-option-class="card-rank" data-option-value="@idx">
+        <div id="card-rank-@idx" class="option-image"></div>
+      </div>}
     </div>
   </div>
 

@@ -53,7 +53,7 @@ class GameController @javax.inject.Inject() (
     Future.successful(GameRulesSet.allByIdWithAliases.get(rulesId) match {
       case Some(rules) =>
         val title = if (rulesId == rules.id) { rules.title } else { rules.aka(rulesId) }
-        Ok(views.html.game.gameplay(title, request.identity, rulesId, initialAction, seed, offline))
+        Ok(views.html.game.gameplay(title, request.identity, rulesId, initialAction, seed, offline, utils.Config.debug))
       case None => NotFound(Messages("invalid.game.rules", rulesId))
     })
   }

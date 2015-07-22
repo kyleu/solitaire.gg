@@ -5,14 +5,14 @@
   initialAction: Seq[String],
   seed: Option[Int] = None,
   offline: Boolean = false,
-  routesMap: utils.play.RoutesMap = utils.play.RoutesMap.dynamic
+  debug: Boolean = false
 )(implicit session: Session, flash: Flash, messages: Messages)@layout.basic(
   s"$title - ${utils.Config.projectName}",
-  stylesheets = Seq(routesMap("css-root", "solitaire.gg.min.css")),
+  stylesheets = Seq(routes.Assets.versioned("stylesheets/solitaire.gg.min.css").url),
   bodyClass = Some(s"noscroll background-${user.preferences.color}"),
   faviconColor = Some(user.preferences.color)
 ) {
-  @views.html.layout.topBar(user, routesMap)
+  @views.html.layout.topBar(user)
   @views.html.game.menuPanel(user)
   @views.html.game.gameOptionsPanel(user)
   @views.html.game.cardOptionsPanel(user)
@@ -34,12 +34,7 @@
 
   <pre id="@utils.Config.projectId-config">
   {
-    "host": "@utils.Config.hostname",
-    "user": {
-      "id": "@user.id",
-      "name": "@user.username.getOrElse("Guest")"
-    },
-    "debug": "@utils.Config.debug",
+    "debug": "@debug",
     "rules": "@rulesId",
     @if(seed.isDefined) {"seed": @seed.get, }
     @if(offline) {"offline": true, }
@@ -47,22 +42,18 @@
   }
   </pre>
 
-  @if(offline) {
-  @if(play.api.Play.isProd(play.api.Play.current)) {
-  <script src="@routes.Assets.versioned("client-opt.js")" type="text/javascript"></script>
-  } else {
-  <script src="@routes.Assets.versioned("client-fastopt.js")" type="text/javascript"></script>
-  }
-  }
+  @if(offline) { @if(debug) {
+  <script src="@routes.Assets.versioned("client-fastopt.js")" type="text/javascript"></script>} else {
+  <script src="@routes.Assets.versioned("client-opt.js")" type="text/javascript"></script>} }
 
-  @if(utils.Config.debug) {
+  @if(debug) {
   <script src="@routes.Assets.versioned("lib/phaser/build/custom/phaser-arcade-physics.js")"></script>
   <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/phaser-debug.min.css").url" />
   <script src="@routes.Assets.versioned("lib/phaser/js/phaser-debug.js")"></script>
   <script src="@routes.Assets.versioned("lib/underscorejs/underscore.js").url"></script>
   } else {
   <script src="@routes.Assets.versioned("lib/phaser/build/custom/phaser-arcade-physics.min.js")"></script>
-  <script src="@routes.Assets.versioned("lib/underscorejs/underscore.min.js").url"></script>
+  <script src="@routes.Assets.versioned("lib/underscorejs/underscore-min.js").url"></script>
   }
-  <script data-main="/assets/javascripts/main.js?build=@utils.BuildInfo.buildinfoBuildnumber" src="/assets/lib/requirejs/require.min.js"></script>
+  <script data-main="@routes.Assets.versioned("javascripts/main.js")?build=@utils.BuildInfo.buildinfoBuildnumber" src="@routes.Assets.versioned("lib/requirejs/require.min.js").url"></script>
 }

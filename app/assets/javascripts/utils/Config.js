@@ -6,11 +6,11 @@ define(function () {
   if(c === undefined) {
     throw 'NoConfigurationException';
   }
-  var json = JSON.parse(c.innerHTML);
+  var json = JSON.parse(c.textContent);
   if(document.location.href.indexOf('https') === 0) {
-    json.wsUrl = 'wss://' + json.host + '/websocket';
+    json.wsUrl = 'wss://' + document.location.host + '/websocket';
   } else {
-    json.wsUrl = 'ws://' + json.host + '/websocket';
+    json.wsUrl = 'ws://' + document.location.host + '/websocket';
   }
   return json;
 });
