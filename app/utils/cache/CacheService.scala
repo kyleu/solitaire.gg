@@ -41,7 +41,7 @@ object CacheService {
   }
 
   def getAs[T](key: String)(implicit ct: ClassTag[T]): Option[T] = {
-    get(key).map { item =>
+    val ret = get(key).map { item =>
       if (TypeUtils.isInstance(item, ct.runtimeClass)) {
         item match {
           case t: T => Some(t)
@@ -51,7 +51,12 @@ object CacheService {
         None
       }
     }.getOrElse(None)
+    // log.info(s"Returning [${ret.map(_.getClass.getSimpleName)}] for key [$key]: $ret")
+    ret
   }
 
-  def remove(key: String) = cache.remove(key)
+  def remove(key: String) = {
+    // log.info(s"Removing key [$key].")
+    cache.remove(key)
+  }
 }

@@ -37,10 +37,15 @@ menu.redos = No redos available
 menu.hint = Click for a hint
 menu.undos = No undos available
 menu.redeal = Redeal
-menu.different.game = Different Game
-menu.give.up = Give Up
+menu.redeal.description = Redeal the current game, with a fresh shuffle.
 menu.specific.seed = Specific Seed
+menu.specific.seed.description = Play a specific shuffle and deal. This lets you "start over" with the same cards.
 menu.winnable.game = Winnable Game
+menu.winnable.game.description = Play a particular shuffle and deal of this game that has been beaten before.
+menu.different.game = Different Game
+menu.different.game.description = Choose from hundreds types of solitaire.
+menu.give.up = Give Up
+menu.give.up.description = Resign in defeat, and view your progress.
 
 # Gameplay
 game.loading = Loading...

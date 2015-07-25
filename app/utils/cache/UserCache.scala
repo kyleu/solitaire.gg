@@ -8,7 +8,8 @@ import models.user.User
 
 object UserCache {
   def getUser(id: UUID) = {
-    CacheService.getAs[User](s"user.$id")
+    val ret = CacheService.getAs[User](s"user.$id")
+    ret
   }
 
   def cacheUser(user: User) = {
@@ -32,6 +33,7 @@ object UserCache {
       }
     }
     CacheService.remove(s"user.$id")
+    CacheService.remove(s"user.anonymous:$id")
   }
 
   def cacheSession(session: CookieAuthenticator) = {
