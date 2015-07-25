@@ -8,7 +8,7 @@
   implicit request: Request[AnyContent], session: Session, flash: Flash
 )@layout.basic(
   title = title,
-  scripts = Seq(routes.Assets.versioned("scripts/static.js").url),
+  scripts = Seq(routes.Assets.versioned("javascripts/static.js").url),
   stylesheets = Seq(routes.Assets.versioned("stylesheets/solitaire.gg.min.css").url),
   bodyClass = Some(s"background-${user.preferences.color}"),
   faviconColor = Some(user.preferences.color),
