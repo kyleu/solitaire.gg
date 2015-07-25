@@ -57,17 +57,17 @@ class AdminController @javax.inject.Inject() (
         Ok("No games available.")
       } else {
         val gameId = ss.games(new Random().nextInt(ss.games.length))._1
-        Ok(views.html.game.gameplay(s"Observing [$gameId]", request.identity, "", Seq("observe", gameId.toString)))
+        Ok(views.html.game.gameplay(s"Observing [$gameId]", request.identity, "", "", Seq("observe", gameId.toString)))
       }
       case se: ServerError => Ok(s"${se.reason}: ${se.content}")
     }
   }
 
   def observeGameAsAdmin(gameId: UUID) = withAdminSession("observe.game") { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(s"Observing [$gameId]", request.identity, "", Seq("observe", gameId.toString))))
+    Future.successful(Ok(views.html.game.gameplay(s"Observing [$gameId]", request.identity, "", "", Seq("observe", gameId.toString))))
   }
 
   def observeGameAs(gameId: UUID, as: UUID) = withAdminSession("observe.game.as") { implicit request =>
-    Future.successful(Ok(views.html.game.gameplay(s"Observing [$gameId]", request.identity, "", Seq("observe", gameId.toString, as.toString))))
+    Future.successful(Ok(views.html.game.gameplay(s"Observing [$gameId]", request.identity, "", "", Seq("observe", gameId.toString, as.toString))))
   }
 }

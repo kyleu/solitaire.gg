@@ -6,11 +6,19 @@ define(function () {
   if(c === undefined) {
     throw 'NoConfigurationException';
   }
-  var json = JSON.parse(c.textContent);
+  var cfg = JSON.parse(c.textContent);
+
   if(document.location.href.indexOf('https') === 0) {
-    json.wsUrl = 'wss://' + document.location.host + '/websocket';
+    cfg.wsUrl = 'wss://' + document.location.host + '/websocket';
   } else {
-    json.wsUrl = 'ws://' + document.location.host + '/websocket';
+    cfg.wsUrl = 'ws://' + document.location.host + '/websocket';
   }
-  return json;
+
+  if(document.location.href.indexOf('http') === 0) {
+    cfg.assetRoot = '/assets/';
+  } else {
+    cfg.assetRoot = 'assets/';
+  }
+
+  return cfg;
 });

@@ -129,7 +129,6 @@ define(['card/Tweens'], function (Tweens) {
           angle = -maxAngle;
         }
         card.angle = angle;
-
         card.actualX = newX;
 
         var swayX = newX - (card.dragIndex * angle * 0.9);

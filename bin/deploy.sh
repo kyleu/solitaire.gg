@@ -3,7 +3,4 @@
 rm -rf ../target/universal/solitaire-gg-0.1-SNAPSHOT/*
 unzip ../target/universal/solitaire-gg-0.1-SNAPSHOT.zip -d ../target/universal/
 
-rm ../target/universal/solitaire-gg-0.1-SNAPSHOT/conf/logger.xml
-cp ../conf/logger.prod.xml ../target/universal/solitaire-gg-0.1-SNAPSHOT/conf/logger.xml
-
 rsync -zrv --delete -e "ssh -i /Users/kyle/.ssh/aws-ec2-key.pem" ../target/universal/solitaire-gg-0.1-SNAPSHOT/* ubuntu@solitaire.gg:~/deploy/solitaire.gg

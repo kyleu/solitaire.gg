@@ -10,7 +10,7 @@
   prevLink: Call = Call("GET", "/"),
   nextLink: Call = Call("GET", "/")
 )(table: Html)(implicit session: Session, flash: Flash)
-@layout.admin(s"${utils.Config.projectName} $modelProper", section) {
+@views.html.admin.base(s"${utils.Config.projectName} $modelProper", section) {
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="pull-right">

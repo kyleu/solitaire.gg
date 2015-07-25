@@ -14,19 +14,19 @@ define(['utils/Config', 'card/Rank', 'card/Suit', 'state/GameState'], function (
     switch(cfg.initialAction[0]) {
       case 'start':
         if(cfg.seed === undefined) {
-          this.game.send('StartGame', {'rules': cfg.rules});
+          this.game.send('StartGame', { rules: cfg.rules });
         } else {
-          this.game.send('StartGame', {'rules': cfg.rules, 'seed': cfg.seed});
+          this.game.send('StartGame', { rules: cfg.rules, seed: cfg.seed });
         }
         break;
       case 'join':
-        this.game.send('JoinGame', {'id': cfg.initialAction[1]});
+        this.game.send('JoinGame', { id: cfg.initialAction[1] });
         break;
       case 'observe':
         if(cfg.initialAction.length === 2) {
-          this.game.send('ObserveGame', {'id': cfg.initialAction[1]});
+          this.game.send('ObserveGame', { id: cfg.initialAction[1] });
         } else {
-          this.game.send('ObserveGame', {'id': cfg.initialAction[1], 'as': cfg.initialAction[2]});
+          this.game.send('ObserveGame', { id: cfg.initialAction[1], as: cfg.initialAction[2] });
         }
         break;
       default:

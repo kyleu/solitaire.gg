@@ -110,16 +110,16 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
         game.refreshTextures();
         break;
       case 'card-back':
-        reloadTexture(game.load.image('card-back', assetRoot + 'assets/images/cards/back-' + optionValue + '.png'));
+        reloadTexture(game.load.image('card-back', assetRoot + 'images/cards/back-' + optionValue + '.png'));
         break;
       case 'card-face':
-        reloadTexture(game.load.spritesheet('card-faces', assetRoot + 'assets/images/cards/face-cards-' + optionValue + '.png', 200, 300));
+        reloadTexture(game.load.spritesheet('card-faces', assetRoot + 'images/cards/face-cards-' + optionValue + '.png', 200, 300));
         break;
       case 'card-suit':
-        reloadTexture(game.load.spritesheet('card-suits', assetRoot + 'assets/images/cards/suits-' + optionValue + '.png', 200, 200));
+        reloadTexture(game.load.spritesheet('card-suits', assetRoot + 'images/cards/suits-' + optionValue + '.png', 200, 200));
         break;
       case 'card-rank':
-        reloadTexture(game.load.spritesheet('card-ranks', assetRoot + 'assets/images/cards/ranks-' + optionValue + '.png', 200, 200));
+        reloadTexture(game.load.spritesheet('card-ranks', assetRoot + 'images/cards/ranks-' + optionValue + '.png', 200, 200));
         break;
       default:
         throw optionClass;

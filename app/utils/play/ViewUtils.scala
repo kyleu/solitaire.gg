@@ -4,7 +4,7 @@ import _root_.play.twirl.api.Html
 import utils.cache.TemplateCache
 
 object ViewUtils {
-  def th(key: String, label: String, selected: String, link: Boolean = true) = {
+  def th(key: String, label: String, selected: String = "", link: Boolean = true) = {
     val ret = if (!link) {
       label
     } else if (selected == key) {

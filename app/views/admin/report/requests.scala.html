@@ -25,7 +25,7 @@
   </table>
 }
 
-@layout.admin(
+@views.html.admin.base(
   utils.Config.projectName + " Request Report",
   "reports",
   scripts = Seq(routes.Assets.versioned("lib/d3/d3.js").url, routes.Assets.versioned("lib/d3/nv.d3.js").url),

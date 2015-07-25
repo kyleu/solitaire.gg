@@ -58,13 +58,13 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
     override def values = Seq(dm.value, dm.measured, dm.date, dm.metric)
   }
 
-  case class CalculateMetric(metric: DailyMetric.Metric, override val sql: String, d: LocalDate) extends SingleRowQuery[(DailyMetric.Metric, Long)] {
+  case class CalculateMetric(metric: DailyMetric.Metric, override val sql: String, d: LocalDate) extends SingleRowQuery[Long] {
     override val values = sql.count(_ == '?') match {
       case 0 => Nil
       case 1 => Seq(s"${d.plusDays(1).toString} 00:00:00")
       case 2 => Seq(s"${d.toString} 00:00:00", s"${d.plusDays(1).toString} 00:00:00")
     }
-    override def map(row: Row) = metric -> row.as[Long]("c")
+    override def map(row: Row) = row.as[Long]("c")
   }
 
   private[this] def tupleFromRow(row: Row) = DailyMetric.fromString(row.as[String]("metric")) -> row.as[Long]("value")

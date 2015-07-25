@@ -34,7 +34,8 @@ object ExportStatic {
     render("gameplay.html", views.html.game.gameplay(
       title = "Solitaire.gg",
       user = offlineUser,
-      rulesId = "klondike",
+      rulesId = "",
+      rulesDescription = "",
       initialAction = Seq("start"),
       seed = None,
       offline = true,

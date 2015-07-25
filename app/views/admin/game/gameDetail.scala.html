@@ -1,6 +1,6 @@
 @(gameHistory: models.history.GameHistory)(
   implicit session: Session, flash: Flash
-)@layout.admin(s"${utils.Config.projectName} Game Detail", "explore") {
+)@views.html.admin.base(s"${utils.Config.projectName} Game Detail", "explore") {
   <div class="panel panel-default">
     <div class="panel-body">
       <pre>@gameHistory</pre>

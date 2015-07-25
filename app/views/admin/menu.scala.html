@@ -1,0 +1,67 @@
+@(section: String)
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="navbar-brand navbar-logo" href="@routes.HomeController.index()"><img alt="@utils.Config.projectName" src="@routes.Assets.versioned("images/ui/favicon/favicon.png")"></a>
+  <a class="navbar-brand" href="@controllers.admin.routes.AdminController.index()">@utils.Config.projectName Admin</a>
+</div>
+<div class="collapse navbar-collapse" id="navbar-collapse">
+  <ul class="nav navbar-nav">
+    <li @if(section == "activity") { class="active" }>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activity <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="@controllers.admin.routes.AdminController.status()">Overview</a></li>
+        <li><a href="@controllers.admin.routes.AdminController.observeRandomGame()">Observe Random Game</a></li>
+      </ul>
+    </li>
+    <li @if(section == "explore") { class="active" }>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Explore <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="@controllers.admin.routes.LogController.list()">Logs</a></li>
+        <li><a href="@controllers.admin.routes.RulesController.rulesList()">Rules</a></li>
+        <li><a href="@controllers.admin.routes.FeedbackController.feedbackList()">Feedback</a></li>
+        <li><a href="@controllers.admin.routes.UserController.userList()">Users</a></li>
+        <li><a href="@controllers.admin.routes.GameHistoryController.gameList()">Games</a></li>
+        <li><a href="@controllers.admin.routes.RequestLogController.requestList()">Requests</a></li>
+        <li><a href="@controllers.admin.routes.ClientTraceController.traceList()">Client Traces</a></li>
+      </ul>
+    </li>
+    <li @if(section == "tests") { class="active" }>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tests <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="@controllers.admin.routes.TestController.tests()">Overview</a></li>
+        <li class="divider"></li>
+        <li><a href="@controllers.admin.routes.TestController.runTest("all")">All Tests</a></li>
+        <li><a href="@controllers.admin.routes.TestController.runTest("rules")">Rules Tests</a></li>
+        <li><a href="@controllers.admin.routes.TestController.runTest("variants")">Variant Tests</a></li>
+        <li><a href="@controllers.admin.routes.TestController.runTest("solver")">Solver Tests</a></li>
+      </ul>
+    </li>
+    <li @if(section == "reports") { class="active" }>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="@controllers.admin.routes.ReportController.trend()">Trend</a></li>
+        <li><a href="@controllers.admin.routes.ReportController.requests()">Requests</a></li>
+        <li><a href="@controllers.admin.routes.ReportController.email()">Email</a></li>
+        <li><a href="@controllers.admin.routes.AdHocQueryController.queryList(None)">Ad-Hoc</a></li>
+      </ul>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Kyle <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="@controllers.admin.routes.SandboxController.defaultSandbox()"><strong>Sandboxes</strong></a></li>
+        @controllers.admin.SandboxController.sandboxes.map { sandbox =>
+          <li><a href="@controllers.admin.routes.SandboxController.sandbox(sandbox._1)" title="@sandbox._2">@sandbox._1</a></li>
+        }
+        <li class="divider"></li>
+        <li><a href="#">Sign Out</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>

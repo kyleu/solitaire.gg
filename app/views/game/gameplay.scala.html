@@ -2,6 +2,7 @@
   title: String,
   user: models.user.User,
   rulesId: String,
+  rulesDescription: String,
   initialAction: Seq[String],
   seed: Option[Int] = None,
   offline: Boolean = false,
@@ -10,7 +11,9 @@
   s"$title - ${utils.Config.projectName}",
   stylesheets = Seq(routes.Assets.versioned("stylesheets/solitaire.gg.min.css").url),
   bodyClass = Some(s"noscroll background-${user.preferences.color}"),
-  faviconColor = Some(user.preferences.color)
+  faviconColor = Some(user.preferences.color),
+  url = Some(if(offline) { "/offline/" + rulesId } else { "/play/" + rulesId }),
+  description = Some(rulesDescription)
 ) {
   @views.html.layout.topBar(user)
   @views.html.game.menuPanel(user)

@@ -55,7 +55,7 @@ function (config, Playmat, gameInit, GameNetwork, Sandbox) {
   Game.prototype.redeal = function() {
     var tween = this.add.tween(this.playmat).to({ alpha: 0 }, 500, Phaser.Easing.Cubic.Out);
     tween.onComplete.add(function() {
-      this.send('Redeal', {});
+      this.send('StartGame', { rules: config.rules });
     }, this);
     tween.start();
   };

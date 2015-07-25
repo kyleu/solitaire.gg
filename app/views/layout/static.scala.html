@@ -1,11 +1,19 @@
-@(user: models.user.User, title: String, button: String)(content: Html)(
+@(
+  user: models.user.User,
+  title: String,
+  button: String,
+  url: Option[String] = None,
+  description: Option[String] = None
+)(content: Html)(
   implicit request: Request[AnyContent], session: Session, flash: Flash
 )@layout.basic(
   title = title,
   scripts = Seq(routes.Assets.versioned("scripts/static.js").url),
   stylesheets = Seq(routes.Assets.versioned("stylesheets/solitaire.gg.min.css").url),
   bodyClass = Some(s"background-${user.preferences.color}"),
-  faviconColor = Some(user.preferences.color)
+  faviconColor = Some(user.preferences.color),
+  url = url,
+  description = description
 ) {
   <div id="menu-container">
     <div class="menu-left">

@@ -41,21 +41,20 @@ object DailyMetricService {
 
   def getTotals(last: LocalDate) = Database.query(DailyMetricQueries.GetTotals(last))
 
-  def recalculateMetrics(d: LocalDate) = {
-    Database.execute(DailyMetricQueries.RemoveByDay(d)).flatMap { rowsDeleted =>
-      getMetrics(d)
-    }
+  def recalculateMetrics(d: LocalDate) = Database.execute(DailyMetricQueries.RemoveByDay(d)).flatMap { rowsDeleted =>
+    getMetrics(d)
   }
 
   private[this] def calculateMetrics(d: LocalDate, metrics: Seq[DailyMetric.Metric]) = {
     val futures = metrics.map { metric =>
-      getSql(metric) match {
+      val f = getSql(metric) match {
         case Some(sql) => Database.query(DailyMetricQueries.CalculateMetric(metric, sql, d))
         case None => metric match {
-          case DailyMetric.ServerFreeSpace => Future.successful(metric -> getFreeSpace)
-          case _ => Future.successful(metric -> 0L)
+          case DailyMetric.ServerFreeSpace => Future.successful(getFreeSpace)
+          case _ => Future.successful(0L)
         }
       }
+      f.map(metric -> _)
     }
     Future.sequence(futures).map(_.toMap)
   }

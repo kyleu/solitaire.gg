@@ -3,7 +3,7 @@ package controllers.admin
 import controllers.BaseController
 import models.audit.DailyMetric
 import models.database.queries.history.RequestLogQueries
-import models.database.queries.report.ReportQueries
+import models.database.queries.report.RowCountQueries
 import org.joda.time.LocalDate
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -18,10 +18,10 @@ import scala.concurrent.Future
 class ReportController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
   def email(d: LocalDate = DateUtils.today) = withAdminSession("email") { implicit request =>
     for {
-      tables <- Database.query(ReportQueries.ListTables)
+      tables <- Database.query(RowCountQueries.ListTables)
       metrics <- DailyMetricService.recalculateMetrics(d)
       totals <- DailyMetricService.getTotals(d)
-      counts <- Future.sequence(tables.map(table => Database.query(ReportQueries.CountTable(table))))
+      counts <- Future.sequence(tables.map(table => Database.query(RowCountQueries.CountTable(table))))
     } yield Ok(views.html.admin.report.emailReport(d, request.identity.preferences.color, metrics._2._1, totals, counts))
   }
 

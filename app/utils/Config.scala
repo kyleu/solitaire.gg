@@ -9,6 +9,7 @@ object Config {
 
   val projectId = utils.BuildInfo.name
   val projectName = "Solitaire.gg"
+  val projectDescription = "Solitaire.gg is a collection of card games. It's quite good."
   val version = "0.1"
   val hostname = cnf.getString("host")
 

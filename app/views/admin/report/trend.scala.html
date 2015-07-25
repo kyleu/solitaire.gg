@@ -1,6 +1,6 @@
 @(metrics: Seq[(org.joda.time.LocalDate, Map[models.audit.DailyMetric.Metric, Long])], chartData: String)(
     implicit session: Session, flash: Flash
-)@layout.admin(
+)@views.html.admin.base(
   utils.Config.projectName + " Trend Report",
   "reports",
   scripts = Seq(routes.Assets.versioned("lib/d3js/d3.js").url, routes.Assets.versioned("lib/nvd3-community/nv.d3.js").url),

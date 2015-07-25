@@ -1,0 +1,20 @@
+@(title: String, section: String, scripts: Seq[String] = Nil, stylesheets: Seq[String] = Nil)(content: Html)(implicit session: Session, flash: Flash)@views.html.layout.bootstrap(
+  title,
+  scripts = Seq(routes.Assets.versioned("javascripts/admin.js").url) ++ scripts,
+  stylesheets = Seq(routes.Assets.versioned("stylesheets/admin.min.css").url) ++ stylesheets
+) {
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">@menu(section)</div>
+  </nav>
+  <div class="container">
+    @flash.get("error").map { msg => <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      @msg
+    </div> }@flash.get("info").map { msg => <div class="alert alert-info alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      @msg
+    </div> }@flash.get("success").map { msg => <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      @msg
+    </div> }@content
+  </div> }

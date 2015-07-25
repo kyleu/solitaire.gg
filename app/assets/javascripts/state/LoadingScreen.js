@@ -5,10 +5,10 @@ define(['utils/Config', 'state/Gameplay', 'state/GameState', 'ui/Theme'], functi
   function LoadingScreen(game) {
     GameState.call(this, 'loading', game);
 
-    this.assetRoot = '/';
-    if(cfg.assetRoot !== undefined) {
-      this.assetRoot = cfg.assetRoot;
+    if(cfg.assetRoot === undefined) {
+      throw 'No asset root.';
     }
+    this.assetRoot = cfg.assetRoot;
     Theme.setAssetRoot(this.assetRoot);
   }
 
@@ -24,16 +24,16 @@ define(['utils/Config', 'state/Gameplay', 'state/GameState', 'ui/Theme'], functi
     this.game.load.setPreloadSprite(this.loadBar);
 
     this.game.load.spritesheet(
-      'empty-piles', this.assetRoot + 'assets/images/cards/empty-a.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight
+      'empty-piles', this.assetRoot + 'images/cards/empty-a.png', this.game.cardSet.cardWidth, this.game.cardSet.cardHeight
     );
 
     var preferences = Theme.init();
 
-    this.game.load.image('card-blank', this.assetRoot + 'assets/images/cards/blank.png');
-    this.game.load.image('card-back', this.assetRoot + 'assets/images/cards/back-' + preferences['card-back'] + '.png');
-    this.game.load.spritesheet('card-suits', this.assetRoot + 'assets/images/cards/suits-' + preferences['card-suit'] + '.png', 200, 200);
-    this.game.load.spritesheet('card-ranks', this.assetRoot + 'assets/images/cards/ranks-' + preferences['card-rank'] + '.png', 200, 200);
-    this.game.load.spritesheet('card-faces', this.assetRoot + 'assets/images/cards/face-cards-' + preferences['card-face'] + '.png', 200, 300);
+    this.game.load.image('card-blank', this.assetRoot + 'images/cards/blank.png');
+    this.game.load.image('card-back', this.assetRoot + 'images/cards/back-' + preferences['card-back'] + '.png');
+    this.game.load.spritesheet('card-suits', this.assetRoot + 'images/cards/suits-' + preferences['card-suit'] + '.png', 200, 200);
+    this.game.load.spritesheet('card-ranks', this.assetRoot + 'images/cards/ranks-' + preferences['card-rank'] + '.png', 200, 200);
+    this.game.load.spritesheet('card-faces', this.assetRoot + 'images/cards/face-cards-' + preferences['card-face'] + '.png', 200, 300);
 
     var gameplay = new Gameplay(this.game);
     this.game.state.add('gameplay', gameplay);

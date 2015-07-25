@@ -22,9 +22,9 @@ class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends 
       val startMs = System.currentTimeMillis
       val f = Future.sequence(Seq(
         MetricsUpdate.updateMetrics(),
-        EmailReport.sendReportIfNeeded(emailService)
-      // updateCounts()
-      // reapTables()
+        EmailReport.sendReportIfNeeded(emailService),
+        RowCountUpdate.updateRowCounts(),
+        TableReaper.reap()
       ))
       f.onFailure {
         case t: Throwable =>

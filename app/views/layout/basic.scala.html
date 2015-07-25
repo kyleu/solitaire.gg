@@ -3,14 +3,26 @@
   scripts: Seq[String] = Nil,
   stylesheets: Seq[String] = Nil,
   bodyClass: Option[String] = None,
-  faviconColor: Option[String] = None
+  faviconColor: Option[String] = None,
+  url: Option[String] = None,
+  description: Option[String] = None
 )(content: Html)(implicit session: Session, flash: Flash)<!DOCTYPE html>
-<html>
+<html prefix="og: http://ogp.me/ns#">
   <head>
     <title>@title</title>
+
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:site_name" content="@utils.Config.projectName" />
+    <meta property="og:title" content="@title" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://solitaire.gg@url.getOrElse("")" />
+    <meta property="og:secure_url" content="https://solitaire.gg@url.getOrElse("")" />
+    <meta property="og:image" content="http://solitaire.gg/apple-touch-icon.png" />
+    <meta property="og:description" content="@description.getOrElse(utils.Config.projectDescription)" />
+    <meta property="og:locale" content="en_US" />
     @if(faviconColor.isDefined) {
     <link id="favicon" rel="shortcut icon" type="image/png" href="@routes.Assets.versioned(s"images/ui/favicon/favicon-${faviconColor.get}.png")">
     } else {
