@@ -1,6 +1,6 @@
 /* global define:false */
 /* global _:false */
-define(function() {
+define(['card/Tweens'], function(Tweens) {
   'use strict';
 
   var isValidMove = function(src, tgt) {
@@ -59,6 +59,7 @@ define(function() {
     dragSlice: function(card, p) {
       this.dragCards = this.cards.slice(card.pileIndex);
       _.each(this.dragCards, function(c, idx) {
+        Tweens.tweenPickUp(c);
         c.startDrag(p, idx);
       });
     },

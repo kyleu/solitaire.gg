@@ -6,6 +6,11 @@ define([], function() {
   return {
     tweenCardTo: function(card, x, y, angle, emitWhenComplete) {
       var time = 500;
+
+      var scaleTween = card.game.add.tween(card.scale);
+      scaleTween.to({ x: 1.0, y: 1.0 }, 200);
+      scaleTween.start();
+
       if(x !== card.x || y !== card.y) {
         var xTween = card.game.add.tween(card);
         xTween.to({ x: x, angle: angle }, time, Phaser.Easing.Cubic.Out);
@@ -19,7 +24,6 @@ define([], function() {
         xTween.start();
 
         var bounce = (y === card.y) && (Math.abs(card.x - x) > card.width);
-
         if(bounce) {
           var targetY = y - (card.height * 0.05);
           var yTween = card.game.add.tween(card);
@@ -52,6 +56,12 @@ define([], function() {
         //card.destroy();
       }, card);
       card.tweening = true;
+      tween.start();
+    },
+
+    tweenPickUp: function(card) {
+      var tween = card.game.add.tween(card.scale);
+      tween.to({ x: 1.05, y: 1.05 }, 200);
       tween.start();
     },
 

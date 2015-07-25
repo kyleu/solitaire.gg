@@ -63,7 +63,7 @@ define(['card/Tweens'], function (Tweens) {
     onInputUp: function(e, p, card) {
       card.game.options.hidePanels();
 
-      if(card.game.playmat.emitter !== undefined) {
+      if(card.game.playmat.emitter !== undefined && card.game.playmat.emitter.on) {
         card.game.playmat.emitter.on = false;
       }
       if(card.dragging) {
@@ -84,16 +84,10 @@ define(['card/Tweens'], function (Tweens) {
       if(card.inputOriginalPosition !== null) {
         var xDelta = Math.abs(card.x - card.inputOriginalPosition.x);
         var yDelta = Math.abs(card.y - card.inputOriginalPosition.y);
-        if(xDelta > dragDeadZone || yDelta > dragDeadZone) {
-          // Dragged
-          //card.game.add.tween(card).to({
-          //  x: card.inputOriginalPosition.x,
-          //  y: card.inputOriginalPosition.y, angle: 0
-          //}, 500, Phaser.Easing.Quadratic.InOut, true);
-          Tweens.tweenCardTo(card, card.inputOriginalPosition.x, card.inputOriginalPosition.y, 0);
-        } else {
+        if(xDelta < dragDeadZone && yDelta < dragDeadZone) {
           click(card);
         }
+        Tweens.tweenCardTo(card, card.inputOriginalPosition.x, card.inputOriginalPosition.y, 0);
         card.dragIndex = null;
         card.actualX = null;
         card.inputOriginalPosition = null;
