@@ -4,26 +4,27 @@ import models.game.GameState
 import models.pile.Pile
 import models.pile.options.{ PileOptions, ClientPileOptions }
 import upickle._
+import upickle.legacy._
 
 object JsonSerializers {
-  private implicit val stringOptionWriter = upickle.Writer[Option[String]] {
+  private implicit val stringOptionWriter = Writer[Option[String]] {
     case Some(s) => Js.Str(s)
     case None => Js.Null
   }
-  private implicit val intOptionWriter = upickle.Writer[Option[Int]] {
+  private implicit val intOptionWriter = Writer[Option[Int]] {
     case Some(i) => Js.Num(i)
     case None => Js.Null
   }
-  private implicit val boolOptionWriter = upickle.Writer[Option[Boolean]] {
+  private implicit val boolOptionWriter = Writer[Option[Boolean]] {
     case Some(b) => if (b) { Js.True } else { Js.False }
     case None => Js.Null
   }
 
-  private implicit val rankWriter = upickle.Writer[Rank] { case r => Js.Str(r.toChar.toString) }
-  private implicit val suitWriter = upickle.Writer[Suit] { case s => Js.Str(s.toChar.toString) }
-  private implicit val cardWriter = upickle.Writer[Card] { case c => writeJs(c) }
+  private implicit val rankWriter = Writer[Rank] { case r => Js.Str(r.toChar.toString) }
+  private implicit val suitWriter = Writer[Suit] { case s => Js.Str(s.toChar.toString) }
+  private implicit val cardWriter = Writer[Card] { case c => writeJs(c) }
 
-  private implicit val clientPileOptionsWriter = upickle.Writer[ClientPileOptions] {
+  private implicit val clientPileOptionsWriter = Writer[ClientPileOptions] {
     case cpo =>
       val dfo = cpo.dragFromOptions.map(opts => Js.Obj(opts.map(opt => opt._1 -> Js.Str(opt._2)).toSeq: _*)).getOrElse(Js.Null)
       Js.Obj(
@@ -33,19 +34,19 @@ object JsonSerializers {
         "dragFromOptions" -> dfo
       )
   }
-  private implicit val pileOptionsWriter = upickle.Writer[PileOptions] { case po => writeJs(ClientPileOptions.fromPileOptions(po)) }
-  private implicit val pileWriter = upickle.Writer[Pile] { case p => writeJs(p) }
+  private implicit val pileOptionsWriter = Writer[PileOptions] { case po => writeJs(ClientPileOptions.fromPileOptions(po)) }
+  private implicit val pileWriter = Writer[Pile] { case p => writeJs(p) }
 
-  private implicit val possibleMoveWriter = upickle.Writer[PossibleMove] { case pm => writeJs(pm) }
-  private implicit val possibleMovesWriter = upickle.Writer[PossibleMoves] { case pm => writeJs(pm) }
+  private implicit val possibleMoveWriter = Writer[PossibleMove] { case pm => writeJs(pm) }
+  private implicit val possibleMovesWriter = Writer[PossibleMoves] { case pm => writeJs(pm) }
 
-  private implicit val cardMovedWriter = upickle.Writer[CardMoved] { case cm => writeJs(cm) }
-  private implicit val cardsMovedWriter = upickle.Writer[CardsMoved] { case cm => writeJs(cm) }
+  private implicit val cardMovedWriter = Writer[CardMoved] { case cm => writeJs(cm) }
+  private implicit val cardsMovedWriter = Writer[CardsMoved] { case cm => writeJs(cm) }
 
-  private implicit val gameStateWriter = upickle.Writer[GameState] { case gs => writeJs(gs) }
-  private implicit val gameJoinedWriter = upickle.Writer[GameJoined] { case gj => writeJs(gj) }
+  private implicit val gameStateWriter = Writer[GameState] { case gs => writeJs(gs) }
+  private implicit val gameJoinedWriter = Writer[GameJoined] { case gj => writeJs(gj) }
 
-  private implicit val responseMessageWriter: Writer[ResponseMessage] = upickle.Writer[ResponseMessage] {
+  private implicit val responseMessageWriter: Writer[ResponseMessage] = Writer[ResponseMessage] {
     case rm =>
       val jsVal = rm match {
         case vr: VersionResponse => writeJs(vr)

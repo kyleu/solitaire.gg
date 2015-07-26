@@ -21,7 +21,7 @@ object MetricsUpdate {
         if(differences.isEmpty) {
           "metrics" -> None
         } else {
-          "metrics" -> Some(s"Updated metrics for [$d], adding [${differences.map(x => x._2 + " " + x._1).mkString(", ")}].")
+          "metrics" -> Some(s"Updated metrics for [$d], adding [${differences.map(x => x._2 + " " + x._1).mkString(", ")}]")
         }
       }
     }

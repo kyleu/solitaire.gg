@@ -34,7 +34,7 @@ object ExportStatic {
     render("gameplay.html", views.html.game.gameplay(
       title = "Solitaire.gg",
       user = offlineUser,
-      rulesId = "",
+      rulesId = "klondike",
       rulesDescription = "",
       initialAction = Seq("start"),
       seed = None,
@@ -50,7 +50,7 @@ object ExportStatic {
   }
 
   private[this] def render(filename: String, content: String, prefix: Option[String] = None) = {
-    val out = replaceGameLinks(replaceStaticLinks(content, prefix), prefix)
+    val out = replaceGameLinks(replaceStaticLinks(injectMobileScript(content, prefix), prefix), prefix)
     Files.write(outPath.resolve(filename), out.getBytes("UTF-8"))
   }
 
@@ -76,5 +76,10 @@ object ExportStatic {
       case None => s"""href="gameplay.html?game=${r._1}""""
     }
     s.replaceAllLiterally(s"""href="/play/${r._1}"""", swap)
+  }
+
+  private[this] def injectMobileScript(s: String, prefix: Option[String]) = {
+    val url = prefix.getOrElse("") + "mobile.js"
+    s.replaceAllLiterally("  </head>", "    <script src=\"" + url + "\" type=\"text/javascript\"></script>\n  </head>")
   }
 }
