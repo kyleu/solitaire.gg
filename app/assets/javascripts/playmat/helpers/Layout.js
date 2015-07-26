@@ -1,6 +1,6 @@
 /* global define:false */
 /* global _:false */
-define(['game/helpers/Dimensions'], function (getDimensions) {
+define(['playmat/helpers/Dimensions'], function (getDimensions) {
   'use strict';
 
   var margin = 0.7;

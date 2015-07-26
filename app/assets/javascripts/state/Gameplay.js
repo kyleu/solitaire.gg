@@ -1,7 +1,7 @@
 /* global define:false */
 /* global Phaser:false */
 define([
-  'game/helpers/Backdrop', 'game/helpers/Display', 'game/helpers/Keyboard',
+  'playmat/helpers/Backdrop', 'game/helpers/Display', 'game/helpers/Keyboard',
   'state/GameState', 'state/GameplayLoadHelper', 'state/GameplayMessageHelper'
 ], function (Backdrop, Display, Keyboard, GameState, GameplayLoadHelper, GameplayMessageHelper) {
   'use strict';

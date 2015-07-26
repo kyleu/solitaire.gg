@@ -2,7 +2,7 @@
 /* global Phaser:false */
 /* global _:false */
 define([
-  'game/helpers/Layout', 'game/helpers/PlaymatResizer', 'game/helpers/PlaymatEmitter'
+  'playmat/helpers/Layout', 'playmat/helpers/PlaymatResizer', 'playmat/helpers/PlaymatEmitter'
 ], function (calculateLayout, PlaymatResizer, PlaymatEmitter) {
   'use strict';
 

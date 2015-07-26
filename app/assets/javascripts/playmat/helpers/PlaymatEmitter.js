@@ -1,6 +1,6 @@
 /* global define:false */
 /* global Phaser:false */
-define(['game/helpers/Layout', 'game/helpers/PlaymatResizer'], function (calculateLayout, PlaymatResizer) {
+define(['playmat/helpers/Layout', 'playmat/helpers/PlaymatResizer'], function (calculateLayout, PlaymatResizer) {
   'use strict';
 
   var PlaymatEmitter = function(playmat) {

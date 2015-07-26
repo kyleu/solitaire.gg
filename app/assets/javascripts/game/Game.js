@@ -1,7 +1,7 @@
 /* global define:false */
 /* global Phaser:false */
 /* global _:false */
-define(['utils/Config', 'game/Playmat', 'game/helpers/GameInit', 'game/helpers/GameNetwork', 'sandbox/Sandbox'],
+define(['utils/Config', 'playmat/Playmat', 'game/helpers/GameInit', 'game/helpers/GameNetwork', 'sandbox/Sandbox'],
 function (config, Playmat, gameInit, GameNetwork, Sandbox) {
   'use strict';
 
