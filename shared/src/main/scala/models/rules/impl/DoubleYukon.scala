@@ -19,10 +19,12 @@ import models.rules._
  */
 object DoubleYukon extends GameRules(
   id = "doubleyukon",
+  completed = true,
   title = "Double Yukon",
   related = Seq("quadrupleyukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/doubleyukon.htm")),
   description = "A two-deck variation of ^yukon^",
+  layout = Some(":f|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

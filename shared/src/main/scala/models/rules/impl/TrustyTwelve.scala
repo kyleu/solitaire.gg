@@ -34,7 +34,7 @@ object TrustyTwelve extends GameRules(
   stock = Some(
     StockRules(
       cardsShown = 19,
-      dealTo = StockDealTo.Never,
+      dealTo = StockDealTo.TableauEmpty,
       maximumDeals = Some(1)
     )
   ),

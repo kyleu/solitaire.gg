@@ -192,6 +192,7 @@ help.stock.deal.to.reserve = When selected, deals {0} to each reserve pile.
 help.stock.deal.to.tableau = When selected, deals {0} to each tableau pile.
 help.stock.deal.to.tableau.first.set = When selected, deals {0} to each tableau pile in the first set.
 help.stock.deal.to.tableau.if.none.empty = When selected, deals {0} to each tableau pile if none are empty.
+help.stock.deal.to.tableau.empty = When selected, deals {0} to each empty tableau pile.
 help.stock.deal.to.tableau.non.empty = When selected, deals {0} to each non-empty tableau pile.
 help.stock.deal.to.waste = When selected, deals {0} to the waste.
 help.stock.deal.to.waste.or.pair.manually = When selected, deals {0} to the waste, or pair manually.

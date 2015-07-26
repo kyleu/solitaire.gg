@@ -20,27 +20,29 @@ define(['card/Tweens'], function (Tweens) {
       });
     } else {
       _.each(pile.cards, function(largeCard, largeIndex) {
-        var largeX, largeY;
+        if(largeCard !== undefined) {
+          var largeX, largeY;
 
-        var offset = 0;
-        if((pile.cards.length - largeIndex) < pile.options.cardsShown) {
-          if(pile.options.cardsShown === undefined || pile.options.cardsShown === null) {
-            offset = pile.cards.length - largeIndex;
-          } else {
-            offset = pile.options.cardsShown - (pile.cards.length - largeIndex);
+          var offset = 0;
+          if((pile.cards.length - largeIndex) < pile.options.cardsShown) {
+            if(pile.options.cardsShown === undefined || pile.options.cardsShown === null) {
+              offset = pile.cards.length - largeIndex;
+            } else {
+              offset = pile.options.cardsShown - (pile.cards.length - largeIndex);
+            }
           }
-        }
-        if(pile.options.direction === 'd') {
-          largeX = pile.x;
-          largeY = pile.y + (pile.game.cardSet.cardVerticalOffset * offset);
-        } else if(pile.options.direction === 'r') {
-          largeX = pile.x + (pile.game.cardSet.cardHorizontalOffset * offset);
-          largeY = pile.y;
-        } else {
-          throw 'Invalid direction [' + pile.options.direction + '].';
-        }
+          if(pile.options.direction === 'd') {
+            largeX = pile.x;
+            largeY = pile.y + (pile.game.cardSet.cardVerticalOffset * offset);
+          } else if(pile.options.direction === 'r') {
+            largeX = pile.x + (pile.game.cardSet.cardHorizontalOffset * offset);
+            largeY = pile.y;
+          } else {
+            throw 'Invalid direction [' + pile.options.direction + '].';
+          }
 
-        Tweens.tweenCardTo(largeCard, largeX, largeY, 0);
+          Tweens.tweenCardTo(largeCard, largeX, largeY, 0);
+        }
       });
     }
 
@@ -55,7 +57,7 @@ define(['card/Tweens'], function (Tweens) {
     cardAdded: function(pile, card) {
       if(pile.x < 0 || pile.y < 0) {
         Tweens.tweenRemove(card, true);
-        card.game.playmat.emitFor(card);
+        card.game.playmat.emitter.emitFor(card);
       } else {
         var emitFor = pile.pileSet.behavior === 'foundation';
         if(pile.options.cardsShown === undefined || pile.options.cardsShown === null) {

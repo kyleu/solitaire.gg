@@ -55,6 +55,7 @@ define(['pile/PileLayout', 'pile/PileHelpers', 'pile/DragFromConstraints'], func
       card.pileIndex = cardPileIndex;
     }
     this.cards[card.pileIndex] = card;
+
     PileLayout.cardAdded(this, card);
 
     if(this.game.initialized) {

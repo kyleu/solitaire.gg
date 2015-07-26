@@ -39,6 +39,7 @@ object StockPileOptions {
       case StockDealTo.Tableau => pileIdsByType("tableaus")
       case StockDealTo.TableauFirstSet => pileIdsByType("tableaus").filter(_.startsWith("tableau-"))
       case StockDealTo.TableauIfNoneEmpty => pileIdsByType("tableaus")
+      case StockDealTo.TableauEmpty => pileIdsByType("tableaus")
       case StockDealTo.TableauNonEmpty => pileIdsByType("tableaus")
       case StockDealTo.Manually => Nil
       case StockDealTo.Never => Nil
@@ -52,6 +53,8 @@ object StockPileOptions {
     val selectCardAction = if (drawTo.nonEmpty) {
       if (rules.dealTo == StockDealTo.Manually) {
         None
+      } else if (rules.dealTo == StockDealTo.TableauEmpty) {
+        Some(SelectCardActions.drawToEmptyPiles("tableau"))
       } else if (rules.dealTo == StockDealTo.TableauNonEmpty) {
         Some(SelectCardActions.drawToNonEmptyPiles(() => cardsToDraw, drawTo, Some(true)))
       } else {

@@ -16,9 +16,11 @@ import models.rules._
  */
 object EightByEight extends GameRules(
   id = "eightbyeight",
+  completed = true,
   title = "Eight by Eight",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eight_by_eight.htm")),
   description = "Build regardless of suit on an 8x8 tableau to get your cards onto the eight foundations.",
+  layout = Some("sw|f|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

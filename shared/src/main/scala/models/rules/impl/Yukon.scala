@@ -18,6 +18,7 @@ import models.rules._
  */
 object Yukon extends GameRules(
   id = "yukon",
+  completed = true,
   title = "Yukon",
   related = Seq("yukoncells", "brisbane", "yukononesuit", "yukonicplague", "alaska", "yukonkings", "yakutatbay"),
   links = Seq(

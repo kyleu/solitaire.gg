@@ -9,7 +9,8 @@
         <a href="@controllers.admin.routes.RulesController.rulesData()">Raw Data</a>
       </div>
       <div>
-        @utils.Formatter.withCommas(models.rules.GameRulesSet.completed.size) completed games
+        @utils.Formatter.withCommas(models.rules.GameRulesSet.completed.size) completed games,
+        @utils.Formatter.withCommas(statuses.count(_.winningSeeds > 0)) solved games.
       </div>
     </div>
   </div>

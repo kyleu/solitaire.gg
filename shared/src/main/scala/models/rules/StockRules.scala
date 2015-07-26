@@ -7,6 +7,7 @@ object StockDealTo {
   case object Tableau extends StockDealTo
   case object TableauFirstSet extends StockDealTo
   case object TableauIfNoneEmpty extends StockDealTo
+  case object TableauEmpty extends StockDealTo
   case object TableauNonEmpty extends StockDealTo
   case object Foundation extends StockDealTo
   case object Reserve extends StockDealTo

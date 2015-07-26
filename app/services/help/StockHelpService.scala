@@ -25,6 +25,7 @@ object StockHelpService {
       case StockDealTo.Tableau => Messages("help.stock.deal.to.tableau", cardsDealt)
       case StockDealTo.TableauFirstSet => Messages("help.stock.deal.to.tableau.first.set", cardsDealt)
       case StockDealTo.TableauIfNoneEmpty => Messages("help.stock.deal.to.tableau.if.none.empty", cardsDealt)
+      case StockDealTo.TableauEmpty => Messages("help.stock.deal.to.tableau.empty", cardsDealt)
       case StockDealTo.TableauNonEmpty => Messages("help.stock.deal.to.tableau.non.empty", cardsDealt)
       case StockDealTo.Waste => Messages("help.stock.deal.to.waste", cardsDealt)
       case StockDealTo.WasteOrPairManually => Messages("help.stock.deal.to.waste.or.pair.manually", cardsDealt)

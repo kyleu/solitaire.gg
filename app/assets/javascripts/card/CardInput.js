@@ -44,6 +44,9 @@ define(['card/Tweens'], function (Tweens) {
       } else {
         card.lastClicked = now;
       }
+      var scaleTween = card.game.add.tween(card.scale);
+      scaleTween.to({ x: 1.0, y: 1.0 }, 200);
+      scaleTween.start();
     }
   }
 
@@ -86,8 +89,9 @@ define(['card/Tweens'], function (Tweens) {
         var yDelta = Math.abs(card.y - card.inputOriginalPosition.y);
         if(xDelta < dragDeadZone && yDelta < dragDeadZone) {
           click(card);
+        } else {
+          Tweens.tweenCardTo(card, card.inputOriginalPosition.x, card.inputOriginalPosition.y, 0);
         }
-        Tweens.tweenCardTo(card, card.inputOriginalPosition.x, card.inputOriginalPosition.y, 0);
         card.dragIndex = null;
         card.actualX = null;
         card.inputOriginalPosition = null;
