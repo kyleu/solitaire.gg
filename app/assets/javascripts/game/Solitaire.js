@@ -28,11 +28,11 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
   };
 
   Solitaire.prototype.onUnload = function() {
-    if(this.game !== null) {
-      if(this.game.id !== undefined) {
-        this.game.send('ResignGame', {id: this.game.id});
-      }
-    }
+    //if(this.game !== null) {
+    //  if(this.game.id !== undefined) {
+    //    this.game.send('ResignGame', {id: this.game.id});
+    //  }
+    //}
   };
 
   Solitaire.prototype.onConnect = function() {

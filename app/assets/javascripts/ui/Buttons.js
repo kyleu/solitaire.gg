@@ -57,10 +57,12 @@ define([], function() {
     };
 
     var comingSoon = function() {
+      game.options.hidePanels();
       alert('Coming soon!');
     };
 
     buttons.redeal.onclick = function() {
+      game.options.hidePanels();
       game.redeal();
     };
     buttons.chooseGame.onclick = comingSoon;
