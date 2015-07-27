@@ -32,9 +32,11 @@ import models.rules._
  */
 object Carousel extends GameRules(
   id = "carousel",
+  completed = true,
   title = "Carousel",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/carousel.htm")),
   description = "A two-deck game with separate foundations for aces, evens and odds.",
+  layout = Some("sw.f|f|f|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     ranks = Seq(Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.Ace)

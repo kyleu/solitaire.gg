@@ -22,11 +22,13 @@ import models.rules._
  */
 object Chinese extends GameRules(
   id = "chinese",
+  completed = true,
   title = "Chinese",
   like = Some("scorpion"),
   related = Seq("dragon"),
   links = Seq(Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/chinese_solitaire.html")),
   description = "This ^scorpion^ variation has a different layout, a smaller stock, and allows cards to be moved to the foundation one at a time.",
+  layout = Some("s.f|t"),
   stock = Some(
     StockRules(
       name = "Reserve",

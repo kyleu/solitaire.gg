@@ -14,6 +14,7 @@ import models.rules._
  */
 object AliBaba extends GameRules(
   id = "alibaba",
+  completed = true,
   title = "Ali Baba",
   related = Seq("cassim"),
   links = Seq(

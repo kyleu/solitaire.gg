@@ -16,6 +16,7 @@ import models.rules._
  */
 object Easthaven extends GameRules(
   id = "easthaven",
+  completed = true,
   title = "Easthaven",
   related = Seq("tripleeasthaven", "doubleeasthaven"),
   links = Seq(
@@ -26,6 +27,7 @@ object Easthaven extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/easthaven.htm")
   ),
   description = "A one-deck cross between ^spider^ and ^klondike^.",
+  layout = Some("s.f|t"),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

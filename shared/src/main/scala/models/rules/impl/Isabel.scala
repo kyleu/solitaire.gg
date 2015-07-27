@@ -18,9 +18,11 @@ import models.rules._
  */
 object Isabel extends GameRules(
   id = "isabel",
+  completed = true,
   title = "Isabel",
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Isabel.html.en")),
   description = "Remove pairs of cards of equal rank from a 13x4 tableau.",
+  layout = Some(".::::f|t"),
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   foundations = Seq(
     FoundationRules(

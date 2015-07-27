@@ -19,10 +19,12 @@ import models.rules._
  */
 object MilliganYukon extends GameRules(
   id = "milliganyukon",
+  completed = true,
   title = "Milligan Yukon",
   like = Some("milliganharp"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/milligan_yukon.htm")),
   description = "A cross between ^milliganharp^ and ^yukon^.",
+  layout = Some("sf|.t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),
