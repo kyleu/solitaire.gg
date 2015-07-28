@@ -52,10 +52,18 @@ function (config, Playmat, gameInit, GameNetwork, Sandbox) {
     this.initialized = true;
   };
 
-  Game.prototype.redeal = function() {
+  Game.prototype.redeal = function(seed) {
     var tween = this.add.tween(this.playmat).to({ alpha: 0 }, 500, Phaser.Easing.Cubic.Out);
     tween.onComplete.add(function() {
-      this.send('StartGame', { rules: config.rules });
+      this.initialized = false;
+      this.possibleMoves = [];
+      this.movesMade = 0;
+
+      var msg = { rules: config.rules };
+      if(seed !== undefined) {
+        msg.seed = seed;
+      }
+      this.send('StartGame', msg);
     }, this);
     tween.start();
   };

@@ -35,16 +35,16 @@ GET         /websocket                         controllers.WebsocketController.c
 # Admin
 GET         /admin                             controllers.admin.AdminController.index()
 GET         /admin/enable                      controllers.admin.AdminController.enable()
+
 GET         /admin/sandbox                     controllers.admin.SandboxController.defaultSandbox()
 GET         /admin/sandbox/:key                controllers.admin.SandboxController.sandbox(key)
 
-GET         /admin/status                      controllers.admin.AdminController.status
 GET         /admin/wipe                        controllers.admin.AdminController.wipeSchema(key)
 
-GET         /admin/rules                       controllers.admin.RulesController.rulesList(q ?= "", sortBy ?= "title")
-GET         /admin/rules/data                  controllers.admin.RulesController.rulesData
-GET         /admin/rules/:id                   controllers.admin.RulesController.rulesDetail(id: String)
-GET         /admin/rules/:id/screenshot        controllers.admin.RulesController.rulesScreenshot(id: String)
+GET         /admin/status                      controllers.admin.AdminController.status
+
+GET         /admin/notify                      controllers.admin.AdminController.notifyAllForm
+POST        /admin/notify/:recipient           controllers.admin.AdminController.notification(recipient)
 
 GET         /admin/trace/connection/:id        controllers.admin.TraceController.traceConnection(id: java.util.UUID)
 GET         /admin/trace/client/:id            controllers.admin.TraceController.traceClient(id: java.util.UUID)
@@ -56,6 +56,11 @@ GET         /admin/observe/:id/:as             controllers.admin.AdminController
 
 GET         /admin/test                        controllers.admin.TestController.tests
 GET         /admin/test/:test                  controllers.admin.TestController.runTest(test)
+
+GET         /admin/rules                       controllers.admin.RulesController.rulesList(q ?= "", sortBy ?= "title")
+GET         /admin/rules/data                  controllers.admin.RulesController.rulesData
+GET         /admin/rules/:id                   controllers.admin.RulesController.rulesDetail(id: String)
+GET         /admin/rules/:id/screenshot        controllers.admin.RulesController.rulesScreenshot(id: String)
 
 GET         /admin/users                       controllers.admin.UserController.userList(q ?= "", sortBy ?= "created", page: Int ?= 0)
 GET         /admin/users/:id                   controllers.admin.UserController.userDetail(id: java.util.UUID)

@@ -53,6 +53,8 @@ class ActorSupervisor extends ActorSupervisorHelper with Logging {
     case ct: ClientTrace => timeReceive(ct) { handleClientTrace(ct) }
     case gt: GameTrace => timeReceive(gt) { handleGameTrace(gt) }
 
+    case n: Notification => timeReceive(n) { handleNotification(n) }
+
     case sm: InternalMessage => log.warn(s"Unhandled internal message [${sm.getClass.getSimpleName}] received.")
     case x => log.warn(s"ActorSupervisor encountered unknown message: ${x.toString}")
   }
@@ -63,18 +65,31 @@ class ActorSupervisor extends ActorSupervisorHelper with Logging {
     sender() ! SystemStatus(gameStatuses, connectionStatuses)
   }
 
-  private[this] def handleConnectionTrace(ct: ConnectionTrace) = connections.find(_._1 == ct.id) match {
-    case Some(g) => g._2.actorRef forward ct
+  private[this] def handleConnectionTrace(ct: ConnectionTrace) = connections.get(ct.id) match {
+    case Some(g) => g.actorRef forward ct
     case None => sender() ! ServerError("Unknown Connection", ct.id.toString)
   }
 
-  private[this] def handleClientTrace(ct: ClientTrace) = connections.find(_._1 == ct.id) match {
-    case Some(g) => g._2.actorRef forward ct
+  private[this] def handleClientTrace(ct: ClientTrace) = connections.get(ct.id) match {
+    case Some(g) => g.actorRef forward ct
     case None => sender() ! ServerError("Unknown Client", ct.id.toString)
   }
 
-  private[this] def handleGameTrace(gt: GameTrace) = games.find(_._1 == gt.id) match {
-    case Some(g) => g._2.actorRef forward gt
+  private[this] def handleGameTrace(gt: GameTrace) = games.get(gt.id) match {
+    case Some(g) => g.actorRef forward gt
     case None => sender() ! ServerError("Unknown Game", gt.id.toString)
+  }
+
+  private[this] def handleNotification(n: Notification) = n.recipient match {
+    case None => connections.foreach { conn =>
+      conn._2.actorRef forward n
+      sender() ! n
+    }
+    case Some(recipient) => connections.get(recipient) match {
+      case Some(g) =>
+        g.actorRef forward n
+        sender() ! n
+      case None => sender() ! ServerError("Unknown Recipient", recipient.toString)
+    }
   }
 }

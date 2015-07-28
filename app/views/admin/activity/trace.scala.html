@@ -16,4 +16,14 @@
       <td>@Html(stat._2.toString)</td>
     </tr>
   }
+  @if(traceType == "Connection") {
+    <tr>
+      <td class="notification" colspan="2">
+        <form action="@controllers.admin.routes.AdminController.notification(trace.id.toString)" method="post" enctype="application/x-www-form-urlencoded">
+          <textarea name="message" class="notification-message" placeholder="Message"></textarea>
+          <input type="submit" value="Send Notification" />
+        </form>
+      </td>
+    </tr>
+  }
 </table>

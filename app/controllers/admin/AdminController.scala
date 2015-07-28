@@ -37,7 +37,22 @@ class AdminController @javax.inject.Inject() (
 
   def status = withAdminSession("status") { implicit request =>
     (ActorSupervisor.instance ask GetSystemStatus).map {
-      case x: SystemStatus => Ok(views.html.admin.status(x))
+      case x: SystemStatus => Ok(views.html.admin.activity.status(x))
+    }
+  }
+
+  def notifyAllForm = withAdminSession("notfy-all") { implicit request =>
+    Future.successful(Ok(views.html.admin.activity.notifyForm()))
+  }
+
+  def notification(recipient: String) = withAdminSession("send-notification") { implicit request =>
+    val message = request.body.asFormUrlEncoded.map { body =>
+      body("message").headOption.getOrElse(throw new IllegalStateException())
+    }.getOrElse(throw new IllegalStateException())
+
+    val msg = Notification(if(recipient == "all") { None } else { Some(UUID.fromString(recipient)) }, message)
+    (ActorSupervisor.instance ask msg).map {
+      case _ => Ok(s"Notification [$message] sent to [$recipient].")
     }
   }
 

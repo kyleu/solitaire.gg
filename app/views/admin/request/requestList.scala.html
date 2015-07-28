@@ -1,5 +1,5 @@
 @(q: String, sortBy: String, count: Int, page: Int, requests: Seq[models.history.RequestLog])(implicit session: Session, flash: Flash)
-@views.html.admin.list(
+@views.html.admin.layout.list(
   "request", "Requests", "explore", count, page, requests.size, q,
   searchAction = controllers.admin.routes.RequestLogController.requestList(),
   prevLink = controllers.admin.routes.RequestLogController.requestList(q, sortBy, page - 1),

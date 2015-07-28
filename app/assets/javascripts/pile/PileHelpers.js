@@ -24,12 +24,14 @@ define(['card/Tweens'], function(Tweens) {
   var getDropTarget = function(pile) {
     var firstCard = pile.dragCards[0];
 
+    var multiplier = 0.9; // Adjust for growth while being dragged.
+
     var minX = firstCard.x;
-    var maxX = firstCard.x + firstCard.width;
-    var xPoint = firstCard.x + firstCard.anchorPointX;
+    var maxX = firstCard.x + (firstCard.width * multiplier);
+    var xPoint = firstCard.x + (firstCard.anchorPointX * multiplier);
     var minY = firstCard.y;
-    var maxY = firstCard.y + firstCard.height;
-    var yPoint = firstCard.y + firstCard.anchorPointY;
+    var maxY = firstCard.y + (firstCard.height * multiplier);
+    var yPoint = firstCard.y + (firstCard.anchorPointY * multiplier);
 
     var dropTarget = null;
     var dropDistance = 65536;

@@ -19,6 +19,9 @@ define(['utils/Config'], function (config) {
         case 'VersionResponse':
           game.status.version = v.version;
           break;
+        case 'Notification':
+          alert(v.message);
+          break;
         default:
           game.state.getCurrentState().onMessage(c, v);
       }

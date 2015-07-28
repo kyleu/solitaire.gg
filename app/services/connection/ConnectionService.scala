@@ -25,22 +25,21 @@ class ConnectionService(val supervisor: ActorRef, val user: User, val out: Actor
   }
 
   override def receiveRequest = {
-    // Incoming basic messages
+    case n: Notification => timeReceive(n) { out ! n }
+
     case mr: MalformedRequest => timeReceive(mr) { log.error(s"MalformedRequest:  [${mr.reason}]: [${mr.content}].") }
     case p: Ping => timeReceive(p) { out ! Pong(p.timestamp) }
     case GetVersion => timeReceive(GetVersion) { out ! VersionResponse(Config.version) }
     case sp: SetPreference => timeReceive(sp) { handleSetPreference(sp) }
     case di: DebugInfo => timeReceive(di) { handleDebugInfo(di.data) }
 
-    // Incoming game messages
     case sg: StartGame => timeReceive(sg) { handleStartGame(sg.rules, sg.seed, sg.testGame.contains(true)) }
     case jg: JoinGame => timeReceive(jg) { handleJoinGame(jg.id) }
     case og: ObserveGame => timeReceive(og) { handleObserveGame(og.id, og.as) }
-
     case gm: GameMessage => handleGameMessage(gm)
+
     case im: InternalMessage => handleInternalMessage(im)
 
-    // Outgoing messages
     case rm: ResponseMessage => handleResponseMessage(rm)
 
     case x => throw new IllegalArgumentException(s"Unhandled message [${x.getClass.getSimpleName}].")

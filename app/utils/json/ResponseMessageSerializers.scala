@@ -7,6 +7,7 @@ import GameSerializers._
 
 object ResponseMessageSerializers {
   private[this] val serverErrorWrites = Json.writes[ServerError]
+  private[this] val notificationWrites = Json.writes[Notification]
   private[this] val pongWrites = Json.writes[Pong]
   private[this] val versionResponseWrites = Json.writes[VersionResponse]
   private[this] val disconnectedResponseWrites = Json.writes[Disconnected]
@@ -28,6 +29,7 @@ object ResponseMessageSerializers {
   implicit val responseMessageWrites = Writes[ResponseMessage] { r: ResponseMessage =>
     val json = r match {
       case se: ServerError => serverErrorWrites.writes(se)
+      case n: Notification => notificationWrites.writes(n)
       case p: Pong => pongWrites.writes(p)
       case vr: VersionResponse => versionResponseWrites.writes(vr)
       case SendDebugInfo => JsObject(Nil)

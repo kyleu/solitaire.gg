@@ -14,7 +14,6 @@ function (config, Options, GameNetwork, GameTimer, InitialState, Help) {
       cardVerticalOffset: 120
     };
     var initialState = new InitialState(game);
-    var transparent = true;
     game.initialized = false;
     game.possibleMoves = [];
     game.movesMade = 0;
@@ -26,7 +25,7 @@ function (config, Options, GameNetwork, GameTimer, InitialState, Help) {
       renderer: Phaser.AUTO,
       parent: 'game-container',
       state: initialState,
-      transparent: transparent,
+      transparent: true,
       resolution: 2
     };
 
