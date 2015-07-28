@@ -10,6 +10,8 @@ import utils.Logging
 import scala.concurrent.Future
 
 object GameSeedService extends Logging {
+  def getWinnableSeed(rules: String) = Database.query(GameSeedQueries.RandomWinnableSeed(rules))
+
   def register(gs: GameSeed) = Database.transaction { conn =>
     Database.query(GameSeedQueries.getById(Seq(gs.rules, gs.seed)), Some(conn)).flatMap {
       case Some(existing) =>

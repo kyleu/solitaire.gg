@@ -3,7 +3,7 @@ package models.database.queries.leaderboard
 import java.util.UUID
 
 import models.database.queries.BaseQueries
-import models.database.{ Query, Row, Statement }
+import models.database.{ FlatSingleRowQuery, Query, Row, Statement }
 import models.leaderboard.GameSeed
 import org.joda.time.LocalDateTime
 import utils.DateUtils
@@ -19,14 +19,15 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
   val search = Search
 
   case class GetCounts(whereClause: Option[String]) extends Query[Map[String, (Int, Int, Int, Int)]] {
-    override val sql = """
+    override val sql = s"""
       select
         rules,
         count(*) as seeds,
         max(moves) as maxmoves,
         avg(moves)::int as avgmoves,
         min(moves) as minmoves
-      from game_seeds group by rules
+      from $tableName
+      group by rules
     """
     override def reduce(rows: Iterator[Row]) = rows.map { row =>
       val stats = (
@@ -37,6 +38,12 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
       )
       (row.as[String]("rules"), stats)
     }.toMap
+  }
+
+  case class RandomWinnableSeed(rules: String) extends FlatSingleRowQuery[Int] {
+    override def sql = s"select seed from $tableName where rules = ? order by random() limit 1"
+    override def values = Seq(rules)
+    override def flatMap(row: Row) = Some(row.as[Int]("seed").toInt)
   }
 
   case class UpdateGameSeed(gs: GameSeed) extends Statement {

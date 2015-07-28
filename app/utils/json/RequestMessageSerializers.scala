@@ -54,7 +54,7 @@ object RequestMessageSerializers {
       }
       jsResult match {
         case rm: JsSuccess[RequestMessage @unchecked] => rm.get
-        case e: JsError => throw new IllegalArgumentException(s"Error parsing json for [$c]: $JsError")
+        case e: JsError => throw new IllegalArgumentException(s"Error parsing json for [$c]: $e")
       }
     }
 }

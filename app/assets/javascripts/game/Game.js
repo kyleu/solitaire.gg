@@ -61,7 +61,11 @@ function (config, Playmat, gameInit, GameNetwork, Sandbox) {
 
       var msg = { rules: config.rules };
       if(seed !== undefined) {
-        msg.seed = seed;
+        try {
+          msg.seed = parseInt(seed, 10);
+        } catch(e) {
+          alert('Please enter a positive whole number (' + e + ').');
+        }
       }
       this.send('StartGame', msg);
     }, this);
