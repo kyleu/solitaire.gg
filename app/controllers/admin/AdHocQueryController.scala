@@ -3,18 +3,19 @@ package controllers.admin
 import java.util.UUID
 
 import akka.util.Timeout
-import models.database.queries.adhoc.{ AdHocQuery, AdHocQueries }
+import controllers.BaseController
+import models.database.queries.adhoc.{ AdHocQueries, AdHocQuery }
 import org.joda.time.LocalDateTime
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.i18n.MessagesApi
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.user.AuthenticationEnvironment
 import utils.DateUtils
+
 import scala.concurrent.Future
 import scala.concurrent.duration._
-import controllers.BaseController
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 @javax.inject.Singleton
 class AdHocQueryController @javax.inject.Inject() (

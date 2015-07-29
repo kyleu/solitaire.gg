@@ -37,11 +37,23 @@ define([
     console.log(animationDimensions, playmatOrigin);
 
     _.each(this.game.cards, function(card) {
-      var origin = [ card.x + playmatOrigin[0], card.y + playmatOrigin[1] ];
-      console.log(origin);
-    });
+      var spin = Math.random() * 3;
+      var inertiaMax = 20;
+      var driftX = (Math.random() * (inertiaMax * 2)) - inertiaMax;
+      var driftY = (Math.random() * (inertiaMax * 2)) - inertiaMax;
+      card.animation = function() {
+        card.angle += spin;
+        card.x += driftX;
+        card.y += driftY;
 
-    alert('You win!');
+        if((card.x - playmatOrigin[0]) < 0 || (card.x + playmatOrigin[0]) > animationDimensions[0]) {
+          driftX = -driftX;
+        }
+        if((card.y - playmatOrigin[1]) < 0 || (card.y + playmatOrigin[1]) > animationDimensions[1]) {
+          driftY = -driftY;
+        }
+      };
+    });
   };
 
   Playmat.prototype.lose = function() {

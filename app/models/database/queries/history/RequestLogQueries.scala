@@ -45,8 +45,8 @@ object RequestLogQueries extends BaseQueries[RequestLog] {
     }.toSeq
   }
 
-  case class GetCounts(col: String) extends Query[Seq[(String, Int)]] {
-    override val sql = s"select r.$col as col, count(r.id) as c from requests r group by r.$col order by c desc;"
+  case class GetCounts(col: String, whereClause: Option[String] = None) extends Query[Seq[(String, Int)]] {
+    override val sql = s"select r.$col as col, count(r.id) as c from requests r ${whereClause.map("where " + _).getOrElse("")} group by r.$col order by c desc;"
     override def reduce(rows: Iterator[Row]) = rows.map { row =>
       row.asOpt[String]("col").getOrElse("null") -> row.asOpt[Long]("c").getOrElse(0L).toInt
     }.toSeq

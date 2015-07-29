@@ -39,6 +39,8 @@
 
   @renderTable("Referrer", referrerCounts)
 
+  @renderTable("External Referrer", referrerCounts.filter(!_._1.contains(utils.Config.hostname)))
+
   <h5>Top 10 Users</h5>
   <table class="table table-bordered table-striped">
     <thead>

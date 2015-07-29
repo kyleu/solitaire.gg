@@ -33,6 +33,7 @@ object Schema extends Logging {
 
     "daily_metrics" -> CreateDailyMetricsTable,
 
+    "data_archive" -> CreateDataArchiveTable,
     "adhoc_queries" -> CreateAdHocQueriesTable
   )
 

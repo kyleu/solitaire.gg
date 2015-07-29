@@ -83,6 +83,9 @@ GET         /admin/feedback/:id/remove         controllers.admin.FeedbackControl
 GET         /admin/logs                        controllers.admin.LogController.list()
 GET         /admin/logs/:name                  controllers.admin.LogController.view(name)
 
+GET         /admin/archive/list                controllers.admin.DataArchiveController.list()
+GET         /admin/archive/process/:day        controllers.admin.DataArchiveController.process(day: org.joda.time.LocalDate)
+
 GET         /admin/report/trend                controllers.admin.ReportController.trend()
 GET         /admin/report/requests             controllers.admin.ReportController.requests()
 GET         /admin/report/email                controllers.admin.ReportController.email()

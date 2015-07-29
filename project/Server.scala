@@ -1,26 +1,22 @@
-import com.typesafe.sbt.jshint.Import.JshintKeys
-import sbt._
-import sbt.Keys._
-import sbt.Project.projectToRef
-
-import playscalajs.PlayScalaJS.autoImport._
-
-import com.typesafe.sbt.digest.Import._
+import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
 import com.typesafe.sbt.GitVersioning
+import com.typesafe.sbt.SbtScalariform.{ ScalariformKeys, defaultScalariformSettings }
+import com.typesafe.sbt.digest.Import._
 import com.typesafe.sbt.gzip.Import._
 import com.typesafe.sbt.jse.JsEngineImport.JsEngineKeys
+import com.typesafe.sbt.jshint.Import.JshintKeys
 import com.typesafe.sbt.less.Import._
 import com.typesafe.sbt.rjs.Import._
 import com.typesafe.sbt.web.Import._
 import com.typesafe.sbt.web.SbtWeb
-
-import play.routes.compiler.InjectedRoutesGenerator
-import play.sbt.routes.RoutesKeys.routesGenerator
-
-import sbtbuildinfo.Plugin._
-import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
-import com.typesafe.sbt.SbtScalariform.{ ScalariformKeys, defaultScalariformSettings }
 import net.virtualvoid.sbt.graph.Plugin.graphSettings
+import play.routes.compiler.InjectedRoutesGenerator
+import play.sbt.routes.RoutesKeys.{ routesGenerator, routesImport }
+import playscalajs.PlayScalaJS.autoImport._
+import sbt.Keys._
+import sbt.Project.projectToRef
+import sbt._
+import sbtbuildinfo.Plugin._
 
 object Server {
   private[this] val dependencies = {
@@ -44,6 +40,7 @@ object Server {
     libraryDependencies ++= dependencies,
 
     routesGenerator := InjectedRoutesGenerator,
+    routesImport ++= Seq("_root_.utils.play.RoutingImports._"),
 
     scalaJSProjects := Seq(Client.client),
 
