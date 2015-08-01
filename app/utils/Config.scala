@@ -7,7 +7,7 @@ import _root_.play.api.Play
 object Config {
   private[this] val cnf = ConfigFactory.load()
 
-  val projectId = utils.BuildInfo.name
+  val projectId = "solitaire-gg"
   val projectName = "Solitaire.gg"
   val projectDescription = "Solitaire.gg is a collection of card games. It's quite good."
   val version = "0.1"

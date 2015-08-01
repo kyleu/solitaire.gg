@@ -1,6 +1,5 @@
 package models.audit
 
-
 import org.joda.time.LocalDateTime
 import play.twirl.api.Html
 

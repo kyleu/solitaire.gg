@@ -16,16 +16,16 @@ import playscalajs.PlayScalaJS.autoImport._
 import sbt.Keys._
 import sbt.Project.projectToRef
 import sbt._
-import sbtbuildinfo.Plugin._
 
 object Server {
   private[this] val dependencies = {
     import Dependencies._
     Seq(
-      Cache.ehCache, Database.postgresAsync, Testing.akkaTestkit, Mail.mailer,
-      Play.playFilters, Play.playWs, Play.playTest, Authentication.silhouette,
+      Cache.ehCache, Database.postgresAsync, Mail.mailer, Authentication.silhouette,
+      Play.playFilters, Play.playWs, Play.playTest,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
-      WebJars.requireJs, WebJars.bootstrap, WebJars.phaser, WebJars.underscore, WebJars.d3, WebJars.nvd3
+      WebJars.requireJs, WebJars.bootstrap, WebJars.phaser, WebJars.underscore, WebJars.d3, WebJars.nvd3,
+      Testing.akkaTestkit
     )
   }
 
@@ -58,23 +58,6 @@ object Server {
     LessKeys.compress in Assets := true,
     JshintKeys.config := Some(new java.io.File("conf/.jshintrc")),
 
-    // Build Info
-    sourceGenerators in Compile <+= buildInfo,
-    buildInfoKeys := Seq[BuildInfoKey](
-      name,
-      version,
-      scalaVersion,
-      sbtVersion,
-      buildInfoBuildNumber,
-      "builtAtMillis" -> System.currentTimeMillis,
-      "builtAt" -> {
-        val dtf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        dtf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"))
-        dtf.format(new java.util.Date())
-      }
-    ),
-    buildInfoPackage := "utils",
-
     // Code Quality
     scapegoatIgnoredFiles := Seq(".*/Row.scala", ".*/Routes.scala", ".*/ReverseRoutes.scala", ".*/JavaScriptReverseRoutes.scala", ".*/*.template.scala"),
     scapegoatDisabledInspections := Seq("DuplicateImport"),
@@ -88,7 +71,6 @@ object Server {
     .enablePlugins(SbtWeb)
     .enablePlugins(play.sbt.PlayScala)
     .enablePlugins(GitVersioning)
-    .settings(buildInfoSettings: _*)
     .settings(serverSettings: _*)
     .aggregate(projectToRef(Client.client))
     .aggregate(Shared.sharedJvm)

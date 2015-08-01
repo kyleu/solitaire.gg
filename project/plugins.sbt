@@ -21,9 +21,6 @@ addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.4")
 
 addSbtPlugin("com.vmunier" % "sbt-play-scalajs" % "0.2.6")
 
-// Build Info
-addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.3.2")
-
 // Source Control
 addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.8.4")
 

@@ -3,7 +3,7 @@ define(function () {
   'use strict';
 
   var c = document.getElementById('solitaire-gg-config');
-  if(c === undefined) {
+  if(c === undefined || c === null) {
     throw 'NoConfigurationException';
   }
   var cfg = JSON.parse(c.textContent);

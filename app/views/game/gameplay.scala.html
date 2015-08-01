@@ -35,6 +35,8 @@
     </div>
   </div>
 
+  @gameResultsPanel()
+
   <pre id="@utils.Config.projectId-config">
   {
     "debug": "@debug",
@@ -58,5 +60,5 @@
   <script src="@routes.Assets.versioned("lib/phaser/build/custom/phaser-arcade-physics.min.js")"></script>
   <script src="@routes.Assets.versioned("lib/underscorejs/underscore-min.js").url"></script>
   }
-  <script data-main="@routes.Assets.versioned("javascripts/main.js")?build=@utils.BuildInfo.buildinfoBuildnumber" src="@routes.Assets.versioned("lib/requirejs/require.min.js").url"></script>
+  <script data-main="@routes.Assets.versioned("javascripts/main.js")" src="@routes.Assets.versioned("lib/requirejs/require.min.js").url"></script>
 }

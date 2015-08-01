@@ -10,8 +10,8 @@ import utils.DateUtils
 
 @javax.inject.Singleton
 class DataArchiveController @javax.inject.Inject() (
-  override val messagesApi: MessagesApi,
-  override val env: AuthenticationEnvironment
+    override val messagesApi: MessagesApi,
+    override val env: AuthenticationEnvironment
 ) extends BaseController {
 
   def list() = withAdminSession("data.archive.list") { implicit request =>

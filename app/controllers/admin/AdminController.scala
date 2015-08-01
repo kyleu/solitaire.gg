@@ -11,7 +11,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Schema
 import services.scheduled.ScheduledTask
 import services.supervisor.ActorSupervisor
-import services.user.{ UserService, AuthenticationEnvironment }
+import services.user.{ AdminService, AuthenticationEnvironment }
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -30,7 +30,7 @@ class AdminController @javax.inject.Inject() (
   }
 
   def enable = withSession("admin.enable") { implicit request =>
-    UserService.enableAdmin(request.identity).map { response =>
+    AdminService.enableAdmin(request.identity).map { response =>
       Ok(response)
     }
   }
@@ -50,7 +50,7 @@ class AdminController @javax.inject.Inject() (
       body("message").headOption.getOrElse(throw new IllegalStateException())
     }.getOrElse(throw new IllegalStateException())
 
-    val msg = Notification(if(recipient == "all") { None } else { Some(UUID.fromString(recipient)) }, message)
+    val msg = Notification(if (recipient == "all") { None } else { Some(UUID.fromString(recipient)) }, message)
     (ActorSupervisor.instance ask msg).map {
       case _ => Ok(s"Notification [$message] sent to [$recipient].")
     }
