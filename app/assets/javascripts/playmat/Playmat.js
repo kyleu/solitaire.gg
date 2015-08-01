@@ -37,7 +37,7 @@ define([
     console.log(animationDimensions, playmatOrigin);
 
     var driftMax = 20;
-    var growthMax = 0.05;
+    var growthMax = 0.01;
 
     _.each(this.game.cards, function(card) {
       var spin = Math.random() * 3;
@@ -51,15 +51,15 @@ define([
 
         var scaleX = card.scale.x + growthDelta;
         var scaleY = card.scale.y + growthDelta;
-        if(scaleX > 2 || scaleX < 0.3) {
+        if(scaleX > 1.5 || scaleX < 0.5) {
           growthDelta = -growthDelta;
         }
         card.scale = { x: scaleX, y: scaleY };
 
-        if((card.x - playmatOrigin[0]) < 0 || (card.x + playmatOrigin[0]) > animationDimensions[0]) {
+        if((card.x + playmatOrigin[0]) < 0 || (card.x + playmatOrigin[0]) > animationDimensions[0]) {
           driftX = -driftX;
         }
-        if((card.y - playmatOrigin[1]) < 0 || (card.y + playmatOrigin[1]) > animationDimensions[1]) {
+        if((card.y + playmatOrigin[1]) < 0 || (card.y + playmatOrigin[1]) > animationDimensions[1]) {
           driftY = -driftY;
         }
       };
