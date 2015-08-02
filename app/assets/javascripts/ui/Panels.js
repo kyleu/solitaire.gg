@@ -23,6 +23,9 @@ define([], function() {
     },
 
     hidePanels: function() {
+      if(this.elements.gameResultsPanel.style.display === 'block') {
+        this.elements.gameResultsPanel.style.display = 'none';
+      }
       if(this.elements.menuPanel.style.display === 'block') {
         this.hideMenuPanel();
       }

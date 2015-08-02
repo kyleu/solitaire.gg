@@ -9,6 +9,7 @@ define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels)
       topBar: document.getElementById('menu-container'),
       menuButton: document.getElementById('btn-menu'),
       menuPanel: document.getElementById('gameplay-menu'),
+      gameResultsPanel: document.getElementById('game-results-panel'),
       gameOptionsButton: document.getElementById('btn-game-options'),
       gameOptionsPanel: document.getElementById('gameplay-options'),
       cardOptionsButton: document.getElementById('btn-card-options'),

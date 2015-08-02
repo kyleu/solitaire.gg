@@ -17,7 +17,12 @@ define([], function() {
       specificSeed: document.getElementById('btn-specific-seed'),
       winnableGame: document.getElementById('btn-winnable-game'),
       chooseGame: document.getElementById('btn-choose-game'),
-      giveUp: document.getElementById('btn-give-up')
+      giveUp: document.getElementById('btn-give-up'),
+
+      redealResults: document.getElementById('btn-results-redeal'),
+      specificSeedResults: document.getElementById('btn-results-specific-seed'),
+      winnableGameResults: document.getElementById('btn-results-winnable-game'),
+      chooseGameResults: document.getElementById('btn-results-choose-game')
     };
 
     buttons.menu.onclick = function() {
@@ -56,26 +61,34 @@ define([], function() {
       game.autoMove();
     };
 
-    buttons.redeal.onclick = function() {
+    function redeal() {
       game.options.hidePanels();
       game.redeal();
-    };
+    }
+    buttons.redeal.onclick = redeal;
+    buttons.redealResults.onclick = redeal;
 
-    buttons.specificSeed.onclick = function() {
+    function specificSeed() {
       var seed = prompt('What game number would you like to play?', '1');
       game.options.hidePanels();
       game.redeal(seed);
-    };
+    }
+    buttons.specificSeed.onclick = specificSeed;
+    buttons.specificSeedResults.onclick = specificSeed;
 
-    buttons.winnableGame.onclick = function() {
+    function winnableGame() {
       game.options.hidePanels();
       game.redeal(-1);
-    };
+    }
+    buttons.winnableGame.onclick = winnableGame;
+    buttons.winnableGameResults.onclick = winnableGame;
 
-    buttons.chooseGame.onclick = function() {
+    function chooseGame() {
       game.options.hidePanels();
       window.location.href = '/';
-    };
+    }
+    buttons.chooseGame.onclick = chooseGame;
+    buttons.chooseGameResults.onclick = chooseGame;
 
     buttons.giveUp.onclick = function() {
       game.options.hidePanels();
