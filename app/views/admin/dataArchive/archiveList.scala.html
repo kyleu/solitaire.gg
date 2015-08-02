@@ -2,6 +2,9 @@
 @views.html.admin.layout.base("Data Archive", "explore") {
   <div class="row">
     <div class="col-md-12">
+      <a href="@controllers.admin.routes.DataArchiveController.process()">
+        Process <span class="glyphicon glyphicon-play-circle"></span>
+      </a>
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -9,7 +12,6 @@
             @services.history.DataArchiveService.tables.map { table =>
               <th>@table._1</th>
             }
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -18,14 +20,9 @@
               <td>@day</td>
               @defining(archives.filter(_.day == day)) { mine =>
                 @services.history.DataArchiveService.tables.map { table =>
-                  <td>@mine.find(_.table == table._2).map(x => utils.Formatter.withCommas(x.count)).getOrElse("-")</td>
+                  <td>@mine.find(_.table == table._2).map(x => utils.Formatter.withCommas(x.count)).getOrElse("")</td>
                 }
               }
-              <td>
-                <a href="@controllers.admin.routes.DataArchiveController.process(day)">
-                  <span class="glyphicon glyphicon-play-circle"></span>
-                </a>
-              </td>
             </tr>
           }
         </tbody>

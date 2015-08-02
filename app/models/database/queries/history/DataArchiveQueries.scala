@@ -1,7 +1,9 @@
 package models.database.queries.history
 
+import java.util.UUID
+
 import models.database.queries.BaseQueries
-import models.database.{ Query, Row }
+import models.database.{ Statement, Query, Row }
 import models.history.DataArchiveCount
 import org.joda.time.{ LocalDateTime, LocalDate }
 
@@ -14,7 +16,7 @@ object DataArchiveQueries extends BaseQueries[DataArchiveCount] {
   val getAll = Search("", "day, table_name", None)
 
   case class GetArchiveCountsByDay(day: LocalDate) extends Query[Seq[DataArchiveCount]] {
-    override val sql = getSql(Some("day = ?"), Some("table_name"))
+    override val sql = getSql(Some("day = ?"), None)
     override val values = Seq(day)
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toSeq
   }
@@ -22,6 +24,16 @@ object DataArchiveQueries extends BaseQueries[DataArchiveCount] {
   case class GetArchiveTotals() extends Query[Map[String, Int]] {
     override val sql = s"select table_name, sum(archived_count) as c from $tableName group by table_name"
     override def reduce(rows: Iterator[Row]) = rows.map(row => row.as[String]("table_name") -> row.as[Int]("c")).toMap
+  }
+
+  case class RemoveByDay(day: LocalDate) extends Statement {
+    override def sql = s"delete from $tableName where day = ?"
+    override def values = Seq(day)
+  }
+
+  case object GetUsersWithoutGames extends Query[Seq[UUID]] {
+    override def sql = "select id from users where id not in (select distinct player from games)"
+    override def reduce(rows: Iterator[Row]) = rows.map(r => UUID.fromString(r.as[String]("id"))).toSeq
   }
 
   override protected def fromRow(row: Row) = DataArchiveCount(
