@@ -36,3 +36,10 @@ addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.7.5") // dependenc
 addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.1.8") // dependencyUpdates
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-scalariform" % "1.3.0") // scalariformFormat
+
+// IDE Integration
+addSbtPlugin("org.jetbrains" % "sbt-ide-settings" % "0.1.1")
+
+addSbtPlugin("com.orrsella" % "sbt-sublime" % "1.1.0")
+
+addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "4.0.0")

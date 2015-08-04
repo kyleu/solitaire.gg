@@ -9,6 +9,7 @@ import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.DailyMetricService
 import services.database.Database
+import services.history.GameHistoryService
 import services.user.AuthenticationEnvironment
 import utils.DateUtils
 
@@ -21,8 +22,9 @@ class ReportController @javax.inject.Inject() (override val messagesApi: Message
       tables <- Database.query(RowCountQueries.ListTables)
       metrics <- DailyMetricService.recalculateMetrics(d)
       totals <- DailyMetricService.getTotals(d)
+      wins <- GameHistoryService.getWins(d)
       counts <- Future.sequence(tables.map(table => Database.query(RowCountQueries.CountTable(table))))
-    } yield Ok(views.html.admin.report.emailReport(d, request.identity.preferences.color, metrics._2._1, totals, counts))
+    } yield Ok(views.html.admin.report.emailReport(d, request.identity.preferences.color, metrics._2._1, totals, wins, counts))
   }
 
   def trend() = withAdminSession("trend") { implicit request =>

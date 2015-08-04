@@ -5,7 +5,7 @@ import java.util.UUID
 import models.database.queries.BaseQueries
 import models.database.{ Query, Row, Statement }
 import models.history.GameHistory
-import org.joda.time.LocalDateTime
+import org.joda.time.{ LocalDate, LocalDateTime }
 import utils.DateUtils
 
 object GameHistoryQueries extends BaseQueries[GameHistory] {
@@ -22,6 +22,12 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   case class UpdateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int, completed: Option[LocalDateTime]) extends Statement {
     override val sql = updateSql(Seq("status", "moves", "undos", "redos", "completed"))
     override val values = Seq[Any](status, moves, undos, redos, completed.map(DateUtils.toSqlTimestamp), id)
+  }
+
+  case class GetGameHistoriesByDayAndStatus(d: LocalDate, status: String) extends Query[Seq[GameHistory]] {
+    override def sql = getSql(whereClause = Some("completed >= ? and completed < ? and status = ?"), orderBy = Some("completed"))
+    override def values = Seq(d, d.plusDays(1), status)
+    override def reduce(rows: Iterator[Row]): Seq[GameHistory] = rows.map(fromRow).toList
   }
 
   case class GetGameHistoryIdsForUser(userId: UUID) extends Query[List[UUID]] {

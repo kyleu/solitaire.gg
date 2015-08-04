@@ -4,8 +4,7 @@ import models.database.Statement
 
 case object CreateSessionInfoTable extends Statement {
   override val sql = """
-    create table session_info
-    (
+    create table session_info (
       id text not null,
       provider character varying(64) not null,
       key text not null,

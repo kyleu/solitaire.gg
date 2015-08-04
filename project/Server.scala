@@ -16,6 +16,7 @@ import playscalajs.PlayScalaJS.autoImport._
 import sbt.Keys._
 import sbt.Project.projectToRef
 import sbt._
+import sbtide.Keys.ideExcludedDirectories
 
 object Server {
   private[this] val dependencies = {
@@ -44,7 +45,6 @@ object Server {
 
     scalaJSProjects := Seq(Client.client),
 
-
     // Prevent Scaladoc
     doc in Compile <<= target.map(_ / "none"),
     sources in (Compile, doc) := Seq.empty,
@@ -61,7 +61,10 @@ object Server {
     // Code Quality
     scapegoatIgnoredFiles := Seq(".*/Row.scala", ".*/Routes.scala", ".*/ReverseRoutes.scala", ".*/JavaScriptReverseRoutes.scala", ".*/*.template.scala"),
     scapegoatDisabledInspections := Seq("DuplicateImport"),
-    ScalariformKeys.preferences := ScalariformKeys.preferences.value
+    ScalariformKeys.preferences := ScalariformKeys.preferences.value,
+
+    // IDE Settings
+    ideExcludedDirectories := Seq(new File("offline/bin"), new File("offline/build"))
   ) ++ graphSettings ++ defaultScalariformSettings
 
   lazy val server = Project(

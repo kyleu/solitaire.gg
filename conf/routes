@@ -88,7 +88,7 @@ GET         /admin/archive/process             controllers.admin.DataArchiveCont
 
 GET         /admin/report/trend                controllers.admin.ReportController.trend()
 GET         /admin/report/requests             controllers.admin.ReportController.requests()
-GET         /admin/report/email                controllers.admin.ReportController.email()
+GET         /admin/report/email                controllers.admin.ReportController.email(d: org.joda.time.LocalDate ?= utils.DateUtils.today)
 GET         /admin/report/ad-hoc               controllers.admin.AdHocQueryController.queryList(query: Option[java.util.UUID] ?= None, action: Option[String] ?= None)
 POST        /admin/report/ad-hoc/run           controllers.admin.AdHocQueryController.run()
 

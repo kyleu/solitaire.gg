@@ -3,6 +3,7 @@
   color: String,
   metrics: Map[models.audit.DailyMetric.Metric, Long],
   totals: Map[models.audit.DailyMetric.Metric, Long],
+  wins: Seq[(models.history.GameHistory, models.user.User)],
   tableCounts: Seq[(String, Long)]
 )
 @import models.audit.DailyMetric._
@@ -56,6 +57,39 @@
 
   <div style="@css.module">
     @metricsTable(s"Totals as of $d", totals, css, isTotals = true)
+  </div>
+
+  <div style="@css.module">
+    <table style="@css.table">
+      <thead>
+        <tr style="@css.tr">
+          <th style="@css.th" colspan="4">Game Wins</th>
+        </tr>
+        <tr style="@css.tr">
+          <th style="@css.th">Player</th>
+          <th style="@css.th@css.alignRight">Moves</th>
+          <th style="@css.th@css.alignRight">Undos</th>
+          <th style="@css.th@css.alignRight">Redos</th>
+          <th style="@css.th@css.alignRight">Completed</th>
+        </tr>
+      </thead>
+      <tbody>
+      @if(wins.isEmpty) {
+        <tr style="@css.tr">
+          <td colspan="4" style="@css.td">No wins today. But keep at it, the players will come.</td>
+        </tr>
+      }
+      @for(win <- wins) {
+        <tr style="@css.tr">
+          <td style="@css.td" title="@win._1.player">@win._2.username.getOrElse(win._2.id.toString.take(13))</td>
+          <td style="@css.td@css.alignRight">@utils.Formatter.withCommas(win._1.moves)</td>
+          <td style="@css.td@css.alignRight">@utils.Formatter.withCommas(win._1.undos)</td>
+          <td style="@css.td@css.alignRight">@utils.Formatter.withCommas(win._1.redos)</td>
+          <td style="@css.td@css.alignRight">@win._1.completed.map(_.toString("HH:mm:ss")).getOrElse("?")</td>
+        </tr>
+      }
+      </tbody>
+    </table>
   </div>
 
   <div style="@css.module">
