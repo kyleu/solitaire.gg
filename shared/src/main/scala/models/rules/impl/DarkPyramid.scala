@@ -22,6 +22,7 @@ object DarkPyramid extends GameRules(
   like = Some("pyramid"),
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Thirteen.html.en")),
   description = "A version of ^pyramid^ where the cards are dealt face down.",
+  victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(
     StockRules(

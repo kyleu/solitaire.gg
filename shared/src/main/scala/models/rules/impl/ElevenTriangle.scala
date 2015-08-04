@@ -22,6 +22,7 @@ object ElevenTriangle extends GameRules(
   like = Some("triangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eleven_triangle.htm")),
   description = "A somewhat easier version of ^triangle^ where we remove pairs that add to eleven.",
+  victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJPairOrQPairOrKPair,
   stock = Some(
     StockRules(

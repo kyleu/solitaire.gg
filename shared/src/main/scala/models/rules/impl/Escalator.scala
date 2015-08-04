@@ -35,9 +35,8 @@ object Escalator extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pyramid_golf.htm"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Escalator.html.en")
   ),
-  description = "Deconstruct a pyramid by building up or down on a single foundation pile. This game is also known by the more descriptive name \"P" +
-    "yramid Golf.\"",
-  victoryCondition = VictoryCondition.AllOnFoundationOrStock,
+  description = "Deconstruct a pyramid by building up or down on a single foundation pile. This game is also known by the more descriptive name \"Pyramid Golf.\"",
+  victoryCondition = VictoryCondition.NoneInPyramid,
   stock = Some(
     StockRules(
       cardsShown = 16,

@@ -31,6 +31,7 @@ object Pyramid extends GameRules(
   ),
   description = "A classic pair-removal game with a triangular tableau.",
   layout = Some("p|::.swf"),
+  victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(
     StockRules(

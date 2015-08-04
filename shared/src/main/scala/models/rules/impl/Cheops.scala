@@ -24,6 +24,7 @@ object Cheops extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/cheops.htm")
   ),
   description = "A variation of ^pyramid^ where you remove pairs of cards with equal or consecutive ranks",
+  victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveOrEqualRankPairs,
   stock = Some(
     StockRules(

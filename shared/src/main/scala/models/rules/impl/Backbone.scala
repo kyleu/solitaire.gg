@@ -29,6 +29,7 @@ object Backbone extends GameRules(
     Link("L. Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-backbone-solitaire-14353/")
   ),
   description = "A difficult game of Victorian origin with a forked reserve pile",
+  victoryCondition = VictoryCondition.NoneInPyramid,
   deckOptions = DeckOptions(
     numDecks = 2
   ),
