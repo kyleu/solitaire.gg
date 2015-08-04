@@ -22,11 +22,11 @@ object PlayGlobalSettings extends WithFilters(PlayLoggingFilter, new GzipFilter(
   override def onStart(app: Application) {
     log.info(s"${utils.Config.projectName} is starting on [${utils.Config.hostname}].")
 
-    SharedMetricRegistries.remove("default")
-    SharedMetricRegistries.add("default", Instrumented.metricRegistry)
-
     DateTimeZone.setDefault(DateTimeZone.UTC)
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
+
+    SharedMetricRegistries.remove("default")
+    SharedMetricRegistries.add("default", Instrumented.metricRegistry)
 
     Database.open(Config.databaseConfiguration)
     Schema.update()

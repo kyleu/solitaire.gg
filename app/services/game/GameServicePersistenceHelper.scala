@@ -23,7 +23,7 @@ trait GameServicePersistenceHelper { this: GameService =>
     Future.successful(true)
   } else {
     originalCards = gameState.deck.cards
-    val gh = GameHistory(id, seed, rules, "started", player.userId, 0, 0, 0, started, None)
+    val gh = GameHistory(id, seed, rules, "started", player.userId, originalCards.size, 0, 0, 0, started, None)
     Database.execute(GameHistoryQueries.insert(gh)).map { ok =>
       true
     }

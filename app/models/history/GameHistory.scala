@@ -33,6 +33,7 @@ case class GameHistory(
   rules: String,
   status: String,
   player: UUID,
+  cards: Int,
   moves: Int,
   undos: Int,
   redos: Int,

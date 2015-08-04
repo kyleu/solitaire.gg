@@ -39,6 +39,6 @@ object GameHistoryMoveQueries extends BaseQueries[GameHistory.Move] {
   }
 
   protected def toDataSeq(m: GameHistory.Move) = {
-    Seq[Any](m.gameId, m.sequence, m.playerId, m.moveType, m.cards.toArray, m.src, m.tgt, DateUtils.toSqlTimestamp(m.occurred))
+    Seq[Any](m.gameId, m.sequence, m.playerId, m.moveType, m.cards.toArray, m.src, m.tgt, m.occurred)
   }
 }

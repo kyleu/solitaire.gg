@@ -10,6 +10,7 @@ case object CreateGamesTable extends Statement {
       rules character varying(128) not null,
       status character varying(128) not null,
       player uuid not null,
+      cards integer not null default 0,
       moves integer not null default 0,
       undos integer not null default 0,
       redos integer not null default 0,

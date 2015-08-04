@@ -7,6 +7,7 @@
       @utils.play.ViewUtils.th("rules", "Rules", sortBy)
       @utils.play.ViewUtils.th("status", "Status", sortBy)
       @utils.play.ViewUtils.th("player", "Player", sortBy)
+      @utils.play.ViewUtils.th("cards", "Cards", sortBy)
       @utils.play.ViewUtils.th("moves", "Moves", sortBy)
       @utils.play.ViewUtils.th("undos", "Undos", sortBy)
       @utils.play.ViewUtils.th("redos", "Redos", sortBy)
@@ -24,6 +25,7 @@
       @defining(controllers.admin.routes.UserController.userDetail(g.player)) { url =>
         <td>@Html(s"""<a href="$url"><div title="${g.player.toString}">${g.player.toString.substring(0, 8)}</div></a>""")</td>
       }
+      <td>@g.cards</td>
       <td>@g.moves</td>
       <td>@g.undos</td>
       <td>@g.redos</td>

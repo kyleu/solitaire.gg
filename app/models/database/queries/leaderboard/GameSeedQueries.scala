@@ -48,7 +48,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
 
   case class UpdateGameSeed(gs: GameSeed) extends Statement {
     override val sql = updateSql(Seq("player", "moves", "elapsed_ms", "completed"))
-    override val values = Seq[Any](gs.player, gs.moves, gs.elapsed, DateUtils.toSqlTimestamp(gs.completed), gs.rules, gs.seed)
+    override val values = Seq[Any](gs.player, gs.moves, gs.elapsed, gs.completed, gs.rules, gs.seed)
   }
 
   override protected def fromRow(row: Row) = {

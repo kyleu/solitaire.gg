@@ -10,7 +10,7 @@ import utils.DateUtils
 
 object GameHistoryQueries extends BaseQueries[GameHistory] {
   override protected val tableName = "games"
-  override protected val columns = Seq("id", "seed", "rules", "status", "player", "moves", "undos", "redos", "created", "completed")
+  override protected val columns = Seq("id", "seed", "rules", "status", "player", "cards", "moves", "undos", "redos", "created", "completed")
   override protected val searchColumns = Seq("id::text", "seed::text", "rules", "status", "player::text")
 
   val getById = GetById
@@ -21,7 +21,7 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
 
   case class UpdateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int, completed: Option[LocalDateTime]) extends Statement {
     override val sql = updateSql(Seq("status", "moves", "undos", "redos", "completed"))
-    override val values = Seq[Any](status, moves, undos, redos, completed.map(DateUtils.toSqlTimestamp), id)
+    override val values = Seq[Any](status, moves, undos, redos, completed, id)
   }
 
   case class GetGameHistoriesByDayAndStatus(d: LocalDate, status: String) extends Query[Seq[GameHistory]] {
@@ -44,15 +44,16 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     val rules = row.as[String]("rules")
     val status = row.as[String]("status")
     val player = UUID.fromString(row.as[String]("player"))
+    val cards = row.as[Int]("cards")
     val moves = row.as[Int]("moves")
     val undos = row.as[Int]("undos")
     val redos = row.as[Int]("redos")
     val created = row.as[LocalDateTime]("created")
     val complete = row.asOpt[LocalDateTime]("completed")
-    GameHistory(id, seed, rules, status, player, moves, undos, redos, created, complete)
+    GameHistory(id, seed, rules, status, player, cards, moves, undos, redos, created, complete)
   }
 
   override protected def toDataSeq(gh: GameHistory) = Seq[Any](
-    gh.id, gh.seed, gh.rules, gh.status, gh.player, gh.moves, gh.undos, gh.redos, gh.created, gh.completed
+    gh.id, gh.seed, gh.rules, gh.status, gh.player, gh.cards, gh.moves, gh.undos, gh.redos, gh.created, gh.completed
   )
 }
