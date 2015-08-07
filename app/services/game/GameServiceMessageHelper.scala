@@ -54,6 +54,8 @@ trait GameServiceMessageHelper { this: GameService =>
       lastMoveMade = Some(time)
       update()
       gr.message match {
+        case x if gameWon => log.warn(s"Received game message [${x.getClass.getSimpleName}] for completed game [$id].")
+
         case GetPossibleMoves => timeReceive(GetPossibleMoves) { handleGetPossibleMoves(gr.userId) }
 
         case sc: SelectCard => timeReceive(sc) { handleSelectCard(gr.userId, sc.card, sc.pile) }

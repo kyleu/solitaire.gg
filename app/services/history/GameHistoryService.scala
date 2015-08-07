@@ -23,7 +23,7 @@ object GameHistoryService {
 
   def getWins(d: LocalDate) = Database.query(GameHistoryQueries.GetGameHistoriesByDayAndStatus(d, "win")).flatMap { histories =>
     Future.sequence(histories.map { h =>
-      Database.query(UserQueries.getById(Seq(h.player))).map( u => (h, u.getOrElse(throw new IllegalStateException())))
+      Database.query(UserQueries.getById(Seq(h.player))).map(u => (h, u.getOrElse(throw new IllegalStateException())))
     })
   }
 

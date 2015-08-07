@@ -6,7 +6,7 @@ import models.pile.options.PyramidPileOptions
 import models.rules.{ CardRemovalMethod, PyramidRules }
 
 object PyramidSet {
-  def apply(pyramidRules: PyramidRules, crm: CardRemovalMethod, lowRank: Rank): PyramidSet = {
+  def apply(pyramidRules: PyramidRules, crm: CardRemovalMethod): PyramidSet = {
     val prefix = if (pyramidRules.setNumber == 0) {
       "pyramid-"
     } else {

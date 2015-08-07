@@ -23,10 +23,12 @@ import models.rules._
  */
 object Algiers extends GameRules(
   id = "algiers",
+  completed = true,
   title = "Algiers",
   like = Some("carthage"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/algiers.htm")),
   description = "A three-deck variation of ^carthage^.",
+  layout = Some("f|s.t|t"),
   deckOptions = DeckOptions(
     numDecks = 3
   ),

@@ -1,7 +1,5 @@
 package models.database.queries.report
 
-import java.util.UUID
-
 import models.database.queries.BaseQueries
 import models.database.{ Query, Row, SingleRowQuery }
 

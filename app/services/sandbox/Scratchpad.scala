@@ -21,7 +21,7 @@ object Scratchpad {
         val dbFuture = Database.execute(UpdateCardCount(game.id, cardCount))
         Await.result(dbFuture, 10.seconds)
       }
-      Future.successful("Ok: [" + games.size + "] games updated.")
+      Future.successful("Ok: [" + games.length + "] games updated.")
     }
   }
 

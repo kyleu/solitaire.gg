@@ -21,7 +21,7 @@ object DataArchiveQueries extends BaseQueries[DataArchiveCount] {
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toSeq
   }
 
-  case class GetArchiveTotals() extends Query[Map[String, Int]] {
+  case object GetArchiveTotals extends Query[Map[String, Int]] {
     override val sql = s"select table_name, sum(archived_count) as c from $tableName group by table_name"
     override def reduce(rows: Iterator[Row]) = rows.map(row => row.as[String]("table_name") -> row.as[Int]("c")).toMap
   }
