@@ -38,6 +38,8 @@ trait BaseQueries[T] {
     override def flatMap(row: Row) = Some(fromRow(row))
   }
 
+  protected def getBySingleId(id: Any) = GetById(Seq(id))
+
   protected case class Insert(model: T) extends Statement {
     override val sql = insertSql
     override val values = toDataSeq(model)

@@ -6,6 +6,7 @@ import com.github.mauricio.async.db.Connection
 import com.mohiva.play.silhouette.api.AuthInfo
 import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile
 import models.database.queries.auth._
+import models.database.queries.user.UserQueries
 import models.user.User
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database

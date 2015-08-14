@@ -1,7 +1,7 @@
 package services.connection
 
 import models._
-import models.database.queries.auth.UserQueries
+import models.database.queries.user.UserQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import utils.cache.UserCache

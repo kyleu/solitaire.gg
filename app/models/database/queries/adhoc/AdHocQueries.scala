@@ -14,7 +14,7 @@ object AdHocQueries extends BaseQueries[AdHocQuery] {
   override protected val searchColumns = Seq("id::text", "title", "author::text", "sql")
 
   val insert = Insert
-  val getById = GetById
+  def getById(id: UUID) = getBySingleId(id)
   val search = Search
   val removeById = RemoveById
 

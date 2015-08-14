@@ -39,4 +39,7 @@ case class GameHistory(
   redos: Int,
   created: LocalDateTime,
   completed: Option[LocalDateTime]
-)
+) {
+  val isWin = status == "win"
+  val isCompleted = completed.isDefined
+}

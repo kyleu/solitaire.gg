@@ -64,7 +64,7 @@ object Server {
     ScalariformKeys.preferences := ScalariformKeys.preferences.value,
 
     // IDE Settings
-    ideExcludedDirectories := Seq(new File("offline/bin"), new File("offline/build"))
+    ideExcludedDirectories := Seq(new File("offline/bin"), new File("offline/build"), new File("target/streams"))
   ) ++ graphSettings ++ defaultScalariformSettings
 
   lazy val server = Project(

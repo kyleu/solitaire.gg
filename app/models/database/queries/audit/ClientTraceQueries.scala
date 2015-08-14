@@ -13,7 +13,7 @@ object ClientTraceQueries extends BaseQueries[ClientTraceResult] {
   override protected val columns = Seq("id", "player", "data", "created")
   override protected val searchColumns = Seq("id::text", "player::text", "data::text")
 
-  val getById = GetById
+  def getById(id: UUID) = getBySingleId(id)
   val insert = Insert
   val removeById = RemoveById
   val search = Search

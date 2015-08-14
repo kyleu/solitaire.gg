@@ -3,8 +3,8 @@ package services.history
 import java.util.UUID
 
 import com.github.mauricio.async.db.Connection
-import models.database.queries.auth.UserQueries
 import models.database.queries.history.{ GameHistoryQueries, GameHistoryMoveQueries, GameHistoryCardQueries }
+import models.database.queries.user.UserQueries
 import org.joda.time.{ LocalDate, LocalDateTime }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
@@ -12,7 +12,7 @@ import services.database.Database
 import scala.concurrent.Future
 
 object GameHistoryService {
-  def getGameHistory(id: UUID) = Database.query(GameHistoryQueries.getById(Seq(id)))
+  def getGameHistory(id: UUID) = Database.query(GameHistoryQueries.getById(id))
 
   def searchGames(q: String, orderBy: String, page: Int) = for {
     count <- Database.query(GameHistoryQueries.searchCount(q))
@@ -23,7 +23,7 @@ object GameHistoryService {
 
   def getWins(d: LocalDate) = Database.query(GameHistoryQueries.GetGameHistoriesByDayAndStatus(d, "win")).flatMap { histories =>
     Future.sequence(histories.map { h =>
-      Database.query(UserQueries.getById(Seq(h.player))).map(u => (h, u.getOrElse(throw new IllegalStateException())))
+      Database.query(UserQueries.getById(h.player)).map(u => (h, u.getOrElse(throw new IllegalStateException())))
     })
   }
 

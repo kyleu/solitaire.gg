@@ -13,7 +13,7 @@ object AuthenticatorQueries extends BaseQueries[CookieAuthenticator] {
   override protected val searchColumns = Seq("id::text", "key")
 
   val insert = Insert
-  val getById = GetById
+  def getById(id: String) = getBySingleId(id)
   val removeById = RemoveById
 
   case class FindSessionInfoByLoginInfo(l: LoginInfo) extends FlatSingleRowQuery[CookieAuthenticator] {

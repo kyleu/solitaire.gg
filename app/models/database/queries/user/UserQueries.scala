@@ -1,15 +1,15 @@
-package models.database.queries.auth
+package models.database.queries.user
 
 import java.util.UUID
 
 import com.mohiva.play.silhouette.api.LoginInfo
 import models.database.queries.BaseQueries
-import models.database.{ SingleRowQuery, FlatSingleRowQuery, Row, Statement }
+import models.database.{ FlatSingleRowQuery, Row, SingleRowQuery, Statement }
 import models.user.{ Role, User, UserPreferences }
 import org.joda.time.LocalDateTime
-import play.api.libs.json.{ JsObject, JsError, JsSuccess, Json }
+import play.api.libs.json.{ JsError, JsObject, JsSuccess, Json }
 import utils.json.UserSerializers
-import UserSerializers._
+import utils.json.UserSerializers._
 
 object UserQueries extends BaseQueries[User] {
   override protected val tableName = "users"
@@ -17,7 +17,7 @@ object UserQueries extends BaseQueries[User] {
   override protected val searchColumns = Seq("id::text", "username")
 
   val insert = Insert
-  val getById = GetById
+  def getById(id: UUID) = getBySingleId(id)
   def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
   val search = Search
   val removeById = RemoveById

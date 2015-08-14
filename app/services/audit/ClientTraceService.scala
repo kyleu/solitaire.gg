@@ -10,7 +10,7 @@ import play.api.libs.json.JsObject
 import services.database.Database
 
 object ClientTraceService {
-  def getTrace(id: UUID) = Database.query(ClientTraceQueries.getById(Seq(id)))
+  def getTrace(id: UUID) = Database.query(ClientTraceQueries.getById(id))
 
   def persistTrace(userId: UUID, data: JsObject) = {
     val ctr = ClientTraceResult(

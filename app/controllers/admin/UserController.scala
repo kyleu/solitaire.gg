@@ -3,8 +3,8 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
-import models.database.queries.auth.UserQueries
 import models.database.queries.report.ReportQueries
+import models.database.queries.user.UserQueries
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database

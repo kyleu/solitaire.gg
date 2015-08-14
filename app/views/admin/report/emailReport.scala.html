@@ -67,6 +67,7 @@
         </tr>
         <tr style="@css.tr">
           <th style="@css.th">Player</th>
+          <th style="@css.th">Rules</th>
           <th style="@css.th@css.alignRight">Moves</th>
           <th style="@css.th@css.alignRight">Undos</th>
           <th style="@css.th@css.alignRight">Redos</th>
@@ -76,12 +77,13 @@
       <tbody>
       @if(wins.isEmpty) {
         <tr style="@css.tr">
-          <td colspan="4" style="@css.td">No wins today. But keep at it, the players will come.</td>
+          <td colspan="6" style="@css.td">No wins today. But keep at it, the players will come.</td>
         </tr>
       }
       @for(win <- wins) {
         <tr style="@css.tr">
           <td style="@css.td" title="@win._1.player">@win._2.username.getOrElse(win._2.id.toString.take(13))</td>
+          <td style="@css.td">@win._1.rules</td>
           <td style="@css.td@css.alignRight">@utils.Formatter.withCommas(win._1.moves)</td>
           <td style="@css.td@css.alignRight">@utils.Formatter.withCommas(win._1.undos)</td>
           <td style="@css.td@css.alignRight">@utils.Formatter.withCommas(win._1.redos)</td>

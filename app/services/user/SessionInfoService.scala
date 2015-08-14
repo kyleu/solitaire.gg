@@ -12,7 +12,7 @@ import scala.concurrent.Future
 object SessionInfoService extends AuthenticatorDAO[CookieAuthenticator] {
   override def find(id: String) = UserCache.getSession(id) match {
     case Some(sess) => Future.successful(Some(sess))
-    case None => Database.query(AuthenticatorQueries.getById(Seq(id))).map {
+    case None => Database.query(AuthenticatorQueries.getById(id)).map {
       case Some(dbSess) =>
         UserCache.cacheSession(dbSess)
         Some(dbSess)
