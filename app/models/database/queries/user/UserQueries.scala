@@ -7,8 +7,7 @@ import models.database.queries.BaseQueries
 import models.database.{ FlatSingleRowQuery, Row, SingleRowQuery, Statement }
 import models.user.{ Role, User, UserPreferences }
 import org.joda.time.LocalDateTime
-import play.api.libs.json.{ JsError, JsObject, JsSuccess, Json }
-import utils.json.UserSerializers
+import play.api.libs.json.Json
 import utils.json.UserSerializers._
 
 object UserQueries extends BaseQueries[User] {
@@ -22,8 +21,6 @@ object UserQueries extends BaseQueries[User] {
   val search = Search
   val removeById = RemoveById
 
-  private[this] val defaultPreferencesJson = Json.toJson(UserPreferences()).as[JsObject]
-
   case class UpdateUser(u: User) extends Statement {
     override val sql = updateSql(Seq("username", "prefs", "profiles", "roles"))
     override val values = {
@@ -32,6 +29,12 @@ object UserQueries extends BaseQueries[User] {
       val prefs = Json.toJson(u.preferences).toString()
       Seq(u.username, prefs, profiles, roles, u.id)
     }
+  }
+
+  case class GetCreatedDate(id: UUID) extends FlatSingleRowQuery[LocalDateTime] {
+    override def sql = s"select created from $tableName where id = ?"
+    override def values = Seq(id)
+    override def flatMap(row: Row) = row.asOpt[LocalDateTime]("created")
   }
 
   case class SetUsername(userId: UUID, username: Option[String]) extends Statement {
@@ -66,31 +69,6 @@ object UserQueries extends BaseQueries[User] {
     override def map(row: Row) = row.as[Long]("c").toInt
   }
 
-  override protected def fromRow(row: Row) = {
-    val id = UUID.fromString(row.as[String]("id"))
-    val profiles = row.as[collection.mutable.ArrayBuffer[_]]("profiles").map { l =>
-      val info = l.toString
-      val delimiter = info.indexOf(':')
-      val provider = info.substring(0, delimiter)
-      val key = info.substring(delimiter + 1)
-      LoginInfo(provider, key)
-    }
-    val username = row.asOpt[String]("username")
-    val prefsString = row.as[String]("prefs")
-    val prefsJson = Json.parse(prefsString).as[JsObject]
-    val preferences = Json.fromJson[UserPreferences](defaultPreferencesJson ++ prefsJson) match {
-      case s: JsSuccess[UserPreferences] => s.get
-      case e: JsError => throw new IllegalArgumentException(s"Error parsing [$prefsString] as preferences: $e")
-    }
-    val roles = row.as[collection.mutable.ArrayBuffer[_]]("roles").map(x => Role(x.toString)).toSet
-    val created = row.as[LocalDateTime]("created")
-    User(id, username, preferences, profiles, roles, created)
-  }
-
-  override protected def toDataSeq(u: User) = {
-    val prefs = Json.toJson(u.preferences).toString()
-    val profiles = u.profiles.map(l => s"${l.providerID}:${l.providerKey}").toArray
-    val roles = u.roles.map(_.name).toArray
-    Seq(u.id, u.username, prefs, profiles, roles, u.created)
-  }
+  override protected def fromRow(row: Row) = UserQuerySerializers.fromRow(row)
+  override protected def toDataSeq(u: User) = UserQuerySerializers.toDataSeq(u)
 }

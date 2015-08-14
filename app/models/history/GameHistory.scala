@@ -40,6 +40,10 @@ case class GameHistory(
   created: LocalDateTime,
   completed: Option[LocalDateTime]
 ) {
+  val duration = completed match {
+    case Some(t) => DateUtils.toMillis(t) - DateUtils.toMillis(created)
+    case None => DateUtils.nowMillis - DateUtils.toMillis(created)
+  }
   val isWin = status == "win"
   val isCompleted = completed.isDefined
 }

@@ -1,32 +1,23 @@
 package services.sandbox
 
-import java.util.UUID
-import models.database.Statement
-import models.database.queries.history.GameHistoryQueries
-import models.rules.GameRulesSet
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.database.Database
-import scala.concurrent._
-import scala.concurrent.duration._
+import services.history.GameHistoryService
+import services.user.UserStatisticsService
+
+import scala.concurrent.Future
 
 object Scratchpad {
   def run() = {
-    val gamesFuture = Database.query(GameHistoryQueries.search("", "created", None, None))
-
-    gamesFuture.flatMap { games =>
-      games.map { game =>
-        val rules = GameRulesSet.allByIdWithAliases(game.rules)
-        val state = rules.newGame(UUID.randomUUID(), 0, rules.id)
-        val cardCount = state.deck.cards.size
-        val dbFuture = Database.execute(UpdateCardCount(game.id, cardCount))
-        Await.result(dbFuture, 10.seconds)
+    GameHistoryService.getAll.map { games =>
+      val gamesFuture = games.filter(_.isCompleted).foldLeft(Future.successful(Unit)) { (f, g) =>
+        f.flatMap { unused =>
+          UserStatisticsService.registerGame(g)
+        }
       }
-      Future.successful("Ok: [" + games.length + "] games updated.")
-    }
-  }
 
-  case class UpdateCardCount(id: UUID, cardCount: Int) extends Statement {
-    override def sql: String = "update games set cards = ? where id = ?"
-    override def values = Seq(cardCount, id)
+      gamesFuture.map { unused =>
+        s"Ok: [${games.size}] games loaded."
+      }
+    }
   }
 }

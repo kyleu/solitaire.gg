@@ -14,6 +14,8 @@ import scala.concurrent.Future
 object GameHistoryService {
   def getGameHistory(id: UUID) = Database.query(GameHistoryQueries.getById(id))
 
+  def getAll = Database.query(GameHistoryQueries.search("", "created", None))
+
   def searchGames(q: String, orderBy: String, page: Int) = for {
     count <- Database.query(GameHistoryQueries.searchCount(q))
     list <- Database.query(GameHistoryQueries.search(q, getOrderClause(orderBy), Some(page)))
