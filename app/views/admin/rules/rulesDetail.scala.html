@@ -1,10 +1,11 @@
-@(status: models.audit.RulesStatus)(implicit session: Session, flash: Flash)@views.html.admin.layout.base(status.rules.title + " Overview", "tests") {
+@(status: (models.rules.GameRules, models.leaderboard.GameSeed.SeedCount))(implicit session: Session, flash: Flash)
+@views.html.admin.layout.base(status._1.title + " Overview", "tests") {
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-body">
-          <h2 id="rules-detail-title">@status.rules.title</h2>
-          <em>@Html(services.help.GameRulesHelpService.description(status.rules.description))</em>
+          <h2 id="rules-detail-title">@status._1.title</h2>
+          <em>@Html(services.help.GameRulesHelpService.description(status._1.description))</em>
         </div>
       </div>
     </div>
@@ -13,16 +14,16 @@
     <div class="col-md-3">
       <div class="panel panel-default">
         <div class="panel-body">
-          <a class="btn btn-default btn-block" target="_blank" href="@routes.GameController.newGame(status.rules.id).url">Play Now</a>
-          <a class="btn btn-default btn-block" target="_blank" href="@routes.GameController.help(status.rules.id).url">Help</a>
-          <a class="btn btn-default btn-block" target="_blank" href="@controllers.admin.routes.TestController.runTest("solve-" + status.rules.id).url">Solver Test</a>
-          <a class="btn btn-default btn-block" target="_blank" href="@controllers.admin.routes.GameHistoryController.gameList(status.rules.id, "created", 0)">View Games</a>
+          <a class="btn btn-default btn-block" target="_blank" href="@routes.GameController.newGame(status._1.id).url">Play Now</a>
+          <a class="btn btn-default btn-block" target="_blank" href="@routes.GameController.help(status._1.id).url">Help</a>
+          <a class="btn btn-default btn-block" target="_blank" href="@controllers.admin.routes.TestController.runTest("solve-" + status._1.id).url">Solver Test</a>
+          <a class="btn btn-default btn-block" target="_blank" href="@controllers.admin.routes.GameHistoryController.gameList(status._1.id, "created", 0)">View Games</a>
         </div>
       </div>
       <div class="panel panel-default">
         <div class="panel-body">
-          <a class="btn btn-default btn-block" target="_blank" href="http://politaire.com/@status.rules.id">Politaire</a>
-          @status.rules.links.map { link =>
+          <a class="btn btn-default btn-block" target="_blank" href="http://politaire.com/@status._1.id">Politaire</a>
+          @status._1.links.map { link =>
             <a class="btn btn-default btn-block" target="_blank" href="@routes.HomeController.externalLink(link.url)">@link.title</a>
           }
         </div>
@@ -31,28 +32,28 @@
     <div class="col-md-9">
       <div class="panel panel-default">
         <div class="panel-body">
-          <img src="@controllers.admin.routes.RulesController.rulesScreenshot(status.rules.id)" class="rules-screenshot" /><br />
+          <img src="@controllers.admin.routes.RulesController.rulesScreenshot(status._1.id)" class="rules-screenshot" /><br />
           <table class="table">
             <tbody>
               <tr>
                 <td class="rules-property-label">Games</td>
-                <td>@status.gameCount</td>
+                <td>@status._2.games</td>
               </tr>
               <tr>
                 <td class="rules-property-label">Wins</td>
-                <td>@status.gameWins</td>
+                <td>@status._2.games</td>
               </tr>
               <tr>
                 <td class="rules-property-label">Winning Seeds</td>
-                <td>@status.winningSeeds</td>
+                <td>@status._2.seeds</td>
               </tr>
               <tr>
                 <td class="rules-property-label">Moves</td>
-                <td>min @status.minMoves / avg @status.avgMoves / max @status.maxMoves</td>
+                <td>min @status._2.minMoves / avg @status._2.avgMoves / max @status._2.maxMoves</td>
               </tr>
               <tr>
                 <td class="rules-property-label">Completed</td>
-                <td>@status.completed</td>
+                <td>@models.rules.GameRulesSet.allByIdWithAliases(status._1.id).completed</td>
               </tr>
             </tbody>
           </table>

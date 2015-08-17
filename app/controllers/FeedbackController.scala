@@ -3,12 +3,12 @@ package controllers
 import java.util.UUID
 
 import models.audit.UserFeedback
+import models.auth.AuthenticationEnvironment
 import models.database.queries.audit.UserFeedbackQueries
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.email.EmailService
-import services.user.AuthenticationEnvironment
 import utils.DateUtils
 
 import scala.concurrent.Future

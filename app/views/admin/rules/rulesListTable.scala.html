@@ -1,11 +1,13 @@
-@(sortBy: String, statuses: Seq[models.audit.RulesStatus])
+@(sortBy: String, statuses: Seq[(models.rules.GameRules, models.leaderboard.GameSeed.SeedCount, Boolean)])
 @icon(i: String, t: String) = { <span title="@t" class="glyphicon glyphicon-@i"></span> }
 <table class="table table-bordered">
   <thead>
     <tr>
       @utils.play.ViewUtils.th("title", "Rules", sortBy)
       @utils.play.ViewUtils.th("status", "Status", sortBy)
-      @utils.play.ViewUtils.th("seeds", "Winning Seeds", sortBy)
+      @utils.play.ViewUtils.th("seeds", "Seeds", sortBy)
+      @utils.play.ViewUtils.th("games", "Games", sortBy)
+      @utils.play.ViewUtils.th("wins", "Wins", sortBy)
       @utils.play.ViewUtils.th("max-moves", "Max Moves", sortBy)
       @utils.play.ViewUtils.th("avg-moves", "Avg Moves", sortBy)
       @utils.play.ViewUtils.th("min-moves", "Min Moves", sortBy)
@@ -14,26 +16,29 @@
   <tbody>
   @for(rs <- statuses) {
     <tr>
-      <td><a href="@controllers.admin.routes.RulesController.rulesDetail(rs.rules.id)">@rs.rules.title</a></td>
-      <td>@if(rs.completed) {
+      <td><a href="@controllers.admin.routes.RulesController.rulesDetail(rs._1.id)">@rs._1.title</a></td>
+      <td>@if(rs._3) {
         @icon("ok", "Complete")
       } else {
         @icon("remove", "Not Started")
       }</td>
-      <td>@utils.Formatter.withCommas(rs.winningSeeds)</td>
-      <td>@utils.Formatter.withCommas(rs.maxMoves)</td>
-      <td>@utils.Formatter.withCommas(rs.avgMoves)</td>
-      <td>@utils.Formatter.withCommas(rs.minMoves)</td>
+      <td>@utils.Formatter.withCommas(rs._2.seeds)</td>
+      <td>@utils.Formatter.withCommas(rs._2.games)</td>
+      <td>@utils.Formatter.withCommas(rs._2.wins)</td>
+      <td>@utils.Formatter.withCommas(rs._2.maxMoves)</td>
+      <td>@utils.Formatter.withCommas(rs._2.avgMoves)</td>
+      <td>@utils.Formatter.withCommas(rs._2.minMoves)</td>
     </tr>
   }
   </tbody>
   <tfoot>
     <tr>
       <th>Total</th>
-      <th>@utils.Formatter.withCommas(statuses.map(_.winningSeeds).sum)</th>
-      <th>@utils.Formatter.withCommas(statuses.map(_.maxMoves).max)</th>
-      <th>@utils.Formatter.withCommas(statuses.map(_.avgMoves).sum / statuses.size)</th>
-      <th>@utils.Formatter.withCommas(statuses.map(_.minMoves).min)</th>
+      <th>@utils.Formatter.withCommas(statuses.map(_._2.seeds).sum)</th>
+      <th>@utils.Formatter.withCommas(statuses.map(_._2.wins).sum)</th>
+      <th>@utils.Formatter.withCommas(statuses.map(_._2.maxMoves).max)</th>
+      <th>@utils.Formatter.withCommas(statuses.map(_._2.avgMoves).sum / statuses.size)</th>
+      <th>@utils.Formatter.withCommas(statuses.map(_._2.minMoves).min)</th>
     </tr>
   </tfoot>
 </table>

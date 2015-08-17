@@ -1,4 +1,4 @@
-package services.user
+package models.auth
 
 import com.mohiva.play.silhouette.api.util.{ Clock, PlayHTTPLayer }
 import com.mohiva.play.silhouette.api.{ Environment, EventBus }
@@ -9,6 +9,8 @@ import com.mohiva.play.silhouette.impl.services.GravatarService
 import com.mohiva.play.silhouette.impl.util.{ BCryptPasswordHasher, DefaultFingerprintGenerator, SecureRandomIDGenerator }
 import models.user.User
 import play.api.libs.ws.WSClient
+import services.auth._
+import services.user._
 
 import scala.concurrent.duration._
 

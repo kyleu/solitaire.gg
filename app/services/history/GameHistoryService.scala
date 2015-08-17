@@ -5,6 +5,7 @@ import java.util.UUID
 import com.github.mauricio.async.db.Connection
 import models.database.queries.history.{ GameHistoryQueries, GameHistoryMoveQueries, GameHistoryCardQueries }
 import models.database.queries.user.UserQueries
+import models.history.GameHistory
 import org.joda.time.{ LocalDate, LocalDateTime }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
@@ -28,6 +29,8 @@ object GameHistoryService {
       Database.query(UserQueries.getById(h.player)).map(u => (h, u.getOrElse(throw new IllegalStateException())))
     })
   }
+
+  def insert(gh: GameHistory) = Database.execute(GameHistoryQueries.insert(gh)).map(ok => true)
 
   def updateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int, completed: Option[LocalDateTime]) = {
     Database.execute(GameHistoryQueries.UpdateGameHistory(id, status, moves, undos, redos, completed)).map(_ == 1)

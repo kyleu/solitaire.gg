@@ -17,14 +17,16 @@ object UserStatisticsService {
       throw new IllegalStateException(s"Game [${game.id}] is not completed.")
     }
 
-    Database.execute(new Statement {
+    val update = new Statement {
       override def sql = UserStatisticsQueries.updateSql(game.isWin)
       override def values = Seq[Any](
         game.duration, game.moves, game.undos, game.redos,
         game.completed.getOrElse(throw new IllegalStateException()),
         game.player
       )
-    }).flatMap {
+    }
+
+    Database.execute(update).flatMap {
       case affected if affected == 1 => Future.successful(Unit)
       case _ => UserStatisticsService.getStatistics(game.player).flatMap { stats =>
         registerGame(game)

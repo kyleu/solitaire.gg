@@ -2,9 +2,9 @@ package controllers
 
 import java.util.UUID
 
+import models.auth.AuthenticationEnvironment
 import models.history.RequestLog
 import services.history.RequestHistoryService
-import services.user.AuthenticationEnvironment
 import play.api.i18n.I18nSupport
 import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator

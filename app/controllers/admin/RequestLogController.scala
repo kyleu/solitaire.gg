@@ -1,10 +1,10 @@
 package controllers.admin
 
 import controllers.BaseController
+import models.auth.AuthenticationEnvironment
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.history.RequestHistoryService
-import services.user.AuthenticationEnvironment
 
 @javax.inject.Singleton
 class RequestLogController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {

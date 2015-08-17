@@ -1,9 +1,9 @@
 package controllers
 
+import models.auth.AuthenticationEnvironment
 import play.api.i18n.MessagesApi
 import play.api.mvc.Action
 import services.email.EmailService
-import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 

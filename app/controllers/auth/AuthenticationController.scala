@@ -5,10 +5,10 @@ import com.mohiva.play.silhouette.api.{ LoginEvent, LogoutEvent }
 import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
 import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, CommonSocialProfileBuilder, SocialProvider }
 import controllers.BaseController
+import models.auth.AuthenticationEnvironment
 import models.user.{ User, UserForms }
 import play.api.i18n.{ Messages, MessagesApi }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 

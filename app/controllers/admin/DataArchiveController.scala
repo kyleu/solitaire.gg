@@ -1,11 +1,11 @@
 package controllers.admin
 
 import controllers.BaseController
+import models.auth.AuthenticationEnvironment
 import org.joda.time.{ Days, Period, LocalDate }
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.history.DataArchiveService
-import services.user.AuthenticationEnvironment
 import utils.DateUtils
 
 @javax.inject.Singleton

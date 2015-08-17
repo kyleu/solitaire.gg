@@ -1,4 +1,4 @@
-package services.user
+package services.auth
 
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
 import com.mohiva.play.silhouette.impl.daos.AuthenticatorDAO

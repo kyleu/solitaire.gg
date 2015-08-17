@@ -3,10 +3,10 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
+import models.auth.AuthenticationEnvironment
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.ClientTraceService
-import services.user.AuthenticationEnvironment
 
 @javax.inject.Singleton
 class ClientTraceController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {

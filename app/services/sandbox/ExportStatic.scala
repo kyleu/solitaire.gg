@@ -11,13 +11,19 @@ import utils.DateUtils
 
 import scala.concurrent.Future
 
-object ExportStatic {
+object ExportStatic extends SandboxTask {
   private[this] val outPath = Paths.get(".", "offline", "build", "templates")
   private[this] val helpPath = outPath.resolve("help")
 
   private[this] val offlineUser = User(TestService.testUserId, Some("Offline"), UserPreferences(), Nil, created = DateUtils.now)
 
-  def run(messagesApi: MessagesApi) = {
+  var messagesApi: Option[MessagesApi] = None
+
+  override def id = "export-static"
+  override def description = "Export static templates and supporting files."
+  override def run() = {
+    val mApi = messagesApi.getOrElse(throw new IllegalStateException())
+
     if (!Files.exists(outPath)) {
       Files.createDirectory(outPath)
     }
@@ -28,7 +34,7 @@ object ExportStatic {
     implicit val request = FakeRequest("GET", "/")
     implicit val session = request.session
     implicit val flash = request.flash
-    implicit val messages = messagesApi.preferred(request)
+    implicit val messages = mApi.preferred(request)
 
     render("index.html", views.html.index(offlineUser).toString())
     render("gameplay.html", views.html.game.gameplay(
@@ -40,10 +46,10 @@ object ExportStatic {
       seed = None,
       offline = true,
       debug = false
-    ).toString)
+    ).toString())
 
     GameRulesSet.completed.map { rules =>
-      render(s"help/${rules._1}.html", views.html.help.helpPage(offlineUser, rules._2).toString, prefix = Some("../"))
+      render(s"help/${rules._1}.html", views.html.help.helpPage(offlineUser, rules._2).toString(), prefix = Some("../"))
     }
 
     Future.successful("Ok!")

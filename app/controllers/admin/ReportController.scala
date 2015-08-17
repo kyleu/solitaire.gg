@@ -2,6 +2,7 @@ package controllers.admin
 
 import controllers.BaseController
 import models.audit.DailyMetric
+import models.auth.AuthenticationEnvironment
 import models.database.queries.history.RequestLogQueries
 import models.database.queries.report.RowCountQueries
 import org.joda.time.LocalDate
@@ -10,7 +11,6 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.DailyMetricService
 import services.database.Database
 import services.history.GameHistoryService
-import services.user.AuthenticationEnvironment
 import utils.DateUtils
 
 import scala.concurrent.Future

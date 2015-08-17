@@ -26,7 +26,7 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   case class GetGameHistoriesByDayAndStatus(d: LocalDate, status: String) extends Query[Seq[GameHistory]] {
     override def sql = getSql(whereClause = Some("completed >= ? and completed < ? and status = ?"), orderBy = Some("completed"))
     override def values = Seq(d, d.plusDays(1), status)
-    override def reduce(rows: Iterator[Row]): Seq[GameHistory] = rows.map(fromRow).toList
+    override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
   }
 
   case class GetGameHistoryIdsForUser(userId: UUID) extends Query[List[UUID]] {

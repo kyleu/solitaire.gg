@@ -3,10 +3,6 @@ package services.game
 import java.util.UUID
 
 import models._
-import models.leaderboard.GameSeed
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.leaderboard.GameSeedService
-import utils.DateUtils
 
 trait GameServiceCardHelper { this: GameService =>
   protected[this] def handleSelectCard(userId: UUID, cardId: UUID, pileId: String) {

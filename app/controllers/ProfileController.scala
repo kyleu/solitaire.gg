@@ -1,12 +1,12 @@
 package controllers
 
+import models.auth.AuthenticationEnvironment
 import models.database.queries.auth.ProfileQueries
 import models.database.queries.user.UserQueries
 import models.user.Avatars
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import services.user.AuthenticationEnvironment
 import utils.cache.UserCache
 
 import scala.concurrent.Future

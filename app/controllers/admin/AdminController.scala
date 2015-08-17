@@ -6,12 +6,13 @@ import akka.pattern.ask
 import akka.util.Timeout
 import controllers.BaseController
 import models._
+import models.auth.AuthenticationEnvironment
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Schema
 import services.scheduled.ScheduledTask
 import services.supervisor.ActorSupervisor
-import services.user.{ AdminService, AuthenticationEnvironment }
+import services.user.AdminService
 
 import scala.concurrent.Future
 import scala.concurrent.duration._

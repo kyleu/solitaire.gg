@@ -2,12 +2,12 @@ package controllers.admin
 
 import akka.util.Timeout
 import controllers.BaseController
+import models.auth.AuthenticationEnvironment
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.scheduled.ScheduledTask
 
 import services.sandbox._
-import services.user.AuthenticationEnvironment
 import utils.DateUtils
 
 import scala.concurrent.Future
@@ -15,13 +15,14 @@ import scala.concurrent.duration._
 
 object SandboxController {
   val sandboxes = Seq(
-    "scratchpad" -> "A one-off I don't feel like putting anwhere else.",
-    "screenshots" -> "Generates screenshots for completed games.",
-    "export-static" -> "Export static templates and supporting files.",
-    "scheduled-task" -> "Run the scheduled task.",
-    "solver-test" -> "Infinite stress test for the poor solver.",
-    "error-mail" -> "Send the error email.",
-    "backfill-metrics" -> "Backfill missing daily metrics."
+    Scratchpad,
+    ScreenshotCreator,
+    ExportStatic,
+    RunScheduledTask,
+    SolverStressTest,
+    SendErrorEmail,
+    BackfillGames,
+    BackfillMetrics
   )
 }
 
@@ -35,31 +36,15 @@ class SandboxController @javax.inject.Inject() (
 
   def defaultSandbox() = sandbox("list")
 
+  RunScheduledTask.scheduledTask = Some(scheduledTask)
+  ExportStatic.messagesApi = Some(messagesApi)
+
   def sandbox(key: String) = withAdminSession(key) { implicit request =>
-    val ret = key match {
-      case "scratchpad" => Scratchpad.run()
-      case "screenshots" => runScreenshots()
-      case "scheduled-task" => runScheduledTask()
-      case "export-static" => ExportStatic.run(messagesApi)
-      case "error-mail" => runErrorMail()
-      case "solver-test" => SolverStressTest.run()
-      case "backfill-metrics" => BackfillMetrics.run()
-      case x => throw new IllegalArgumentException(s"Invalid sandbox [$x].")
-    }
-    ret.map {
-      case s: String => Ok(s)
-      case other => Ok("?: " + other.getClass.getName)
-    }
-  }
+    val sandbox = SandboxController.sandboxes.find(_.id == key).getOrElse(throw new IllegalStateException())
 
-  private[this] def runScreenshots() = {
-    val ret = screenshots.ScreenshotCreator.processAll()
-    // val ret = screenshots.ScreenshotCreator.processRules("klondike")
-    Future.successful(ret)
-  }
-
-  private[this] def runScheduledTask() = scheduledTask.go(true).map { ret =>
-    ret.map(x => s"${x._1}: ${x._2.getOrElse("No progress")}").mkString("\n")
+    sandbox.run().map { result =>
+      Ok(result)
+    }
   }
 
   private[this] def runErrorMail() = Future.successful(

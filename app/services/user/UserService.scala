@@ -9,6 +9,7 @@ import models.database.queries.auth._
 import models.database.queries.user.UserQueries
 import models.user.User
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import services.auth.UserSearchService
 import services.database.Database
 import services.history.{ GameHistoryService, RequestHistoryService }
 import utils.Logging

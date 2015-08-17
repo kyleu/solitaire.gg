@@ -10,6 +10,7 @@ import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.history.GameHistoryService
+import utils.DateUtils
 
 import scala.concurrent.Future
 
@@ -24,9 +25,7 @@ trait GameServicePersistenceHelper { this: GameService =>
   } else {
     originalCards = gameState.deck.cards
     val gh = GameHistory(id, seed, rules, "started", player.userId, originalCards.size, 0, 0, 0, started, None)
-    Database.execute(GameHistoryQueries.insert(gh)).map { ok =>
-      true
-    }
+    GameHistoryService.insert(gh)
   }
 
   protected[this] def update() = {
@@ -35,7 +34,7 @@ trait GameServicePersistenceHelper { this: GameService =>
     } else {
       if (getStatus != lastStatus) {
         lastStatus = getStatus
-        GameHistoryService.updateGameHistory(id, lastStatus, moveCount, undoHelper.undoCount, undoHelper.redoCount, Some(new LocalDateTime))
+        GameHistoryService.updateGameHistory(id, lastStatus, moveCount, undoHelper.undoCount, undoHelper.redoCount, Some(DateUtils.now))
       }
 
       if (movesPersisted < moveCount) {

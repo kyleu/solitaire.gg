@@ -24,7 +24,7 @@
       <input type="submit" class="submit" value="Register" />
     </form>
 
-    @defining(services.user.SocialAuthProviders.providers) { providers =>
+    @defining(models.auth.SocialAuthProviders.providers) { providers =>
       @if(providers.nonEmpty) {
         <div>
           <p>@Messages("registration.social.sign.in")</p>

@@ -22,7 +22,7 @@
       <p>Not a member? <a href="@controllers.auth.routes.RegistrationController.registrationForm()">Sign up now</a></p>
     </div>
 
-    @defining(services.user.SocialAuthProviders.providers) { providers =>
+    @defining(models.auth.SocialAuthProviders.providers) { providers =>
       @if(providers.nonEmpty) {
         <div>
           <p>Or sign in using these providers</p>

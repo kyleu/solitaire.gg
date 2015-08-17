@@ -39,7 +39,7 @@
           }
         </div>
       }
-      @services.user.SocialAuthProviders.providers.map { provider =>
+      @models.auth.SocialAuthProviders.providers.map { provider =>
         @defining(profiles.find(_.loginInfo.providerID == provider._1)) { profile =>
           <div class="profile-detail">
             @if(profile.isDefined) {

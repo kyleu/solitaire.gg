@@ -1,9 +1,9 @@
 package controllers
 
+import models.auth.AuthenticationEnvironment
 import models.rules.GameRulesSet
 import play.api.i18n.{ MessagesApi, Messages }
 import play.api.mvc.AnyContent
-import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 

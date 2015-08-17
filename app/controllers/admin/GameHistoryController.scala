@@ -3,10 +3,10 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
+import models.auth.AuthenticationEnvironment
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.history.GameHistoryService
-import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 

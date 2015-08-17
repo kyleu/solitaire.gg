@@ -1,9 +1,9 @@
 package controllers.admin
 
 import controllers.BaseController
+import models.auth.AuthenticationEnvironment
 import play.api.i18n.MessagesApi
 import services.test._
-import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext

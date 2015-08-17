@@ -1,13 +1,13 @@
 package controllers.admin
 
 import controllers.BaseController
-import models.audit.RulesStatus
+import models.auth.AuthenticationEnvironment
 import models.database.queries.leaderboard.GameSeedQueries
+import models.leaderboard.GameSeed
 import models.rules.{ GameRules, GameRulesSet }
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import services.user.AuthenticationEnvironment
 
 import scala.concurrent.Future
 
@@ -16,11 +16,11 @@ class RulesController @javax.inject.Inject() (override val messagesApi: Messages
   def rulesList(q: String, sortBy: String) = withAdminSession("list") { implicit request =>
     Database.query(GameSeedQueries.GetCounts(None)).map { seedCounts =>
       val statuses = GameRulesSet.all.map { r =>
-        val seedCount = seedCounts.getOrElse(r.id, (0, 0, 0, 0))
+        val seedCount = seedCounts.getOrElse(r.id, GameSeed.emptyCount)
         getStatus(r, seedCount)
       }
       val filtered = if (q.nonEmpty) {
-        statuses.filter(s => s.rules.id.toLowerCase.contains(q) || s.rules.title.toLowerCase.contains(q))
+        statuses.filter(s => s._1.id.toLowerCase.contains(q) || s._1.title.toLowerCase.contains(q))
       } else {
         statuses
       }
@@ -36,7 +36,8 @@ class RulesController @javax.inject.Inject() (override val messagesApi: Messages
   def rulesDetail(id: String) = withAdminSession("detail") { implicit request =>
     val rules = GameRulesSet.allByIdWithAliases(id)
     Database.query(GameSeedQueries.GetCounts(Some(s"rules = '$id'"))).map { seedCounts =>
-      val status = getStatus(rules, seedCounts.getOrElse(id, (0, 0, 0, 0)))
+      val cnt = seedCounts.getOrElse(id, GameSeed.emptyCount)
+      val status = (rules, cnt)
       Ok(views.html.admin.rules.rulesDetail(status))
     }
   }
@@ -46,22 +47,20 @@ class RulesController @javax.inject.Inject() (override val messagesApi: Messages
     Future.successful(Ok.sendFile(new java.io.File(filename)))
   }
 
-  private[this] def getStatus(r: GameRules, seedCount: (Int, Int, Int, Int)) = {
-    val gameCounts = (0, 0)
-    RulesStatus(
-      r,
-      gameCounts._1, gameCounts._2,
-      seedCount._1, seedCount._2, seedCount._3, seedCount._4,
-      completed = GameRulesSet.completed.exists(_._2 == r)
-    )
+  private[this] def sort(order: String, rs: Seq[(GameRules, GameSeed.SeedCount, Boolean)]) = order match {
+    case "title" => rs.sortBy(_._1.title)
+    case "status" => rs.sortBy(x => (!x._3, x._1.title))
+    case "seeds" => rs.sortBy(_._2.seeds).reverse
+    case "games" => rs.sortBy(_._2.games).reverse
+    case "wins" => rs.sortBy(_._2.wins).reverse
+    case "max-moves" => rs.sortBy(_._2.maxMoves).reverse
+    case "avg-moves" => rs.sortBy(_._2.avgMoves).reverse
+    case "min-moves" => rs.sortBy(_._2.minMoves).reverse
   }
 
-  private[this] def sort(order: String, rs: Seq[RulesStatus]) = order match {
-    case "title" => rs.sortBy(_.rules.title)
-    case "status" => rs.sortBy(x => (!x.completed, x.rules.title))
-    case "seeds" => rs.sortBy(_.winningSeeds).reverse
-    case "max-moves" => rs.sortBy(_.maxMoves).reverse
-    case "avg-moves" => rs.sortBy(_.avgMoves).reverse
-    case "min-moves" => rs.sortBy(_.minMoves).reverse
+
+  private[this] def getStatus(r: GameRules, seedCount: GameSeed.SeedCount) = {
+    val completed = GameRulesSet.completed.exists(_._2 == r)
+    (r, seedCount, completed)
   }
 }

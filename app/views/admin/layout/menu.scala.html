@@ -61,7 +61,7 @@
       <ul class="dropdown-menu" role="menu">
         <li><a href="@controllers.admin.routes.SandboxController.defaultSandbox()"><strong>Sandboxes</strong></a></li>
         @controllers.admin.SandboxController.sandboxes.map { sandbox =>
-          <li><a href="@controllers.admin.routes.SandboxController.sandbox(sandbox._1)" title="@sandbox._2">@sandbox._1</a></li>
+          <li><a href="@controllers.admin.routes.SandboxController.sandbox(sandbox.id)" title="@sandbox.description">@sandbox.id</a></li>
         }
         <li class="divider"></li>
         <li><a href="#">Sign Out</a></li>

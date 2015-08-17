@@ -4,6 +4,7 @@ import java.util.UUID
 
 import akka.util.Timeout
 import controllers.BaseController
+import models.auth.AuthenticationEnvironment
 import models.database.queries.adhoc.{ AdHocQueries, AdHocQuery }
 import org.joda.time.LocalDateTime
 import play.api.data.Form
@@ -11,7 +12,6 @@ import play.api.data.Forms._
 import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import services.user.AuthenticationEnvironment
 import utils.DateUtils
 
 import scala.concurrent.Future

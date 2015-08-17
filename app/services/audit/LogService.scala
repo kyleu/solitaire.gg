@@ -12,13 +12,16 @@ import scala.io.Source
 object LogService {
   private[this] val logStartPhrases = Seq("[TRACE]", "[DEBUG]", "[INFO] ", "[WARN] ", "[ERROR]", "[FATAL]")
 
-  val logDir = new File("logs")
+  val logDir = new File("../../logs")
   if (!logDir.exists) {
     throw new IllegalStateException("Log directory does not exist.")
   }
 
-  def listFiles() = logDir.listFiles().filter(_.getName.endsWith(".log")).toSeq.sortBy(_.getName).map { f =>
-    f.getName -> f.length.toInt
+  def listFiles() = {
+    val files = logDir.listFiles().filter(_.getName.endsWith(".log")).toSeq.sortBy(_.getName)
+    files.map { f =>
+      f.getName -> f.length.toInt
+    }
   }
 
   def getLogs(name: String) = {

@@ -7,9 +7,11 @@ case object CreateGameSeedsTable extends Statement {
     create table game_seeds (
       rules character varying(128) not null,
       seed int not null,
-      player uuid not null,
-      moves integer not null default 0,
-      elapsed_ms integer not null default 0,
+      games int not null,
+      wins int not null,
+      player uuid,
+      moves integer default 0,
+      elapsed_ms integer,
       completed timestamp,
       constraint pk_game_seed primary key (rules, seed)
     ) with (oids=false);
