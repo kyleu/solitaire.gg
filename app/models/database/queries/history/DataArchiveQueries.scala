@@ -33,7 +33,7 @@ object DataArchiveQueries extends BaseQueries[DataArchiveCount] {
 
   case object GetUsersWithoutGames extends Query[Seq[UUID]] {
     override def sql = "select id from users where id not in (select distinct player from games)"
-    override def reduce(rows: Iterator[Row]) = rows.map(r => UUID.fromString(r.as[String]("id"))).toSeq
+    override def reduce(rows: Iterator[Row]) = rows.map(r => r.as[UUID]("id")).toSeq
   }
 
   override protected def fromRow(row: Row) = DataArchiveCount(

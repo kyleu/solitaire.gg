@@ -22,7 +22,7 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
   def getById(id: UUID) = getBySingleId(id)
 
   override protected def fromRow(row: Row) = UserStatistics(
-    userId = UUID.fromString(row.as[String]("id")),
+    userId = row.as[UUID]("id"),
     joined = row.as[LocalDate]("joined"),
     games = UserStatistics.Games(
       wins = row.as[Int]("wins"),
@@ -48,9 +48,9 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
   )
 
   def updateSql(win: Boolean) = {
-    val single = if(win) { "win" } else { "loss" }
-    val multi = if(win) { "wins" } else { "losses" }
-    val inverse = if(win) { "loss" } else { "win" }
+    val single = if (win) { "win" } else { "loss" }
+    val multi = if (win) { "wins" } else { "losses" }
+    val inverse = if (win) { "loss" } else { "win" }
     s"""
       update user_statistics
       set
@@ -61,7 +61,10 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
         $multi = $multi + 1,
         last_$single = ?,
         current_${single}_streak = current_${single}_streak + 1,
-        max_${single}_streak = case when max_${single}_streak > (current_${single}_streak + 1) then max_${single}_streak else (current_${single}_streak + 1) end,
+        max_${single}_streak = case
+          when max_${single}_streak > (current_${single}_streak + 1) then max_${single}_streak
+          else (current_${single}_streak + 1)
+        end,
         current_${inverse}_streak = 0
       where id = ?
     """

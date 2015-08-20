@@ -25,9 +25,9 @@
       <td>@utils.Formatter.withCommas(rs._2.seeds)</td>
       <td>@utils.Formatter.withCommas(rs._2.games)</td>
       <td>@utils.Formatter.withCommas(rs._2.wins)</td>
-      <td>@utils.Formatter.withCommas(rs._2.maxMoves)</td>
-      <td>@utils.Formatter.withCommas(rs._2.avgMoves)</td>
-      <td>@utils.Formatter.withCommas(rs._2.minMoves)</td>
+      <td>@rs._2.maxMoves.map(utils.Formatter.withCommas)</td>
+      <td>@rs._2.avgMoves.map(utils.Formatter.withCommas)</td>
+      <td>@rs._2.minMoves.map(utils.Formatter.withCommas)</td>
     </tr>
   }
   </tbody>
@@ -36,9 +36,9 @@
       <th>Total</th>
       <th>@utils.Formatter.withCommas(statuses.map(_._2.seeds).sum)</th>
       <th>@utils.Formatter.withCommas(statuses.map(_._2.wins).sum)</th>
-      <th>@utils.Formatter.withCommas(statuses.map(_._2.maxMoves).max)</th>
-      <th>@utils.Formatter.withCommas(statuses.map(_._2.avgMoves).sum / statuses.size)</th>
-      <th>@utils.Formatter.withCommas(statuses.map(_._2.minMoves).min)</th>
+      <th>@utils.Formatter.withCommas(statuses.flatMap(_._2.maxMoves).max)</th>
+      <th>@utils.Formatter.withCommas(statuses.flatMap(_._2.avgMoves).sum / statuses.size)</th>
+      <th>@utils.Formatter.withCommas(statuses.flatMap(_._2.minMoves).min)</th>
     </tr>
   </tfoot>
 </table>

@@ -6,7 +6,6 @@ import models.audit.UserFeedback
 import models.database.queries.BaseQueries
 import models.database.{ Query, Row }
 import org.joda.time.LocalDateTime
-import utils.DateUtils
 
 object UserFeedbackQueries extends BaseQueries[UserFeedback] {
   override protected val tableName = "user_feedback"
@@ -25,9 +24,9 @@ object UserFeedbackQueries extends BaseQueries[UserFeedback] {
   }
 
   override protected def fromRow(row: Row) = {
-    val id = UUID.fromString(row.as[String]("id"))
-    val userId = UUID.fromString(row.as[String]("user_id"))
-    val activeGameId = row.asOpt[String]("active_game_id").map(UUID.fromString)
+    val id = row.as[UUID]("id")
+    val userId = row.as[UUID]("user_id")
+    val activeGameId = row.asOpt[UUID]("active_game_id")
     val feedback = row.as[String]("feedback")
     val occurred = row.as[LocalDateTime]("occurred")
     UserFeedback(id, userId, activeGameId, feedback, occurred)

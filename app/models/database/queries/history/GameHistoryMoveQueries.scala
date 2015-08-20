@@ -27,9 +27,9 @@ object GameHistoryMoveQueries extends BaseQueries[GameHistory.Move] {
   }
 
   override protected def fromRow(row: Row) = {
-    val gameId = UUID.fromString(row.as[String]("game_id"))
+    val gameId = row.as[UUID]("game_id")
     val sequence = row.as[Int]("sequence")
-    val playerId = UUID.fromString(row.as[String]("player_id"))
+    val playerId = row.as[UUID]("player_id")
     val moveType = row.as[String]("move")
     val cards = row.as[Array[UUID]]("cards")
     val src = row.asOpt[String]("src")

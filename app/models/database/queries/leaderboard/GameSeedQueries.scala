@@ -28,7 +28,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
         avg(moves)::int as avgmoves,
         min(moves) as minmoves
       from $tableName
-      ${ whereClause.map("where " + _).getOrElse("") }
+      ${whereClause.map("where " + _).getOrElse("")}
       group by rules
     """
     override def reduce(rows: Iterator[Row]) = rows.map { row =>
@@ -36,9 +36,9 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
         seeds = row.as[Long]("seeds").toInt,
         games = row.as[Long]("games").toInt,
         wins = row.as[Long]("wins").toInt,
-        minMoves = row.as[Int]("minmoves"),
-        avgMoves = row.as[Int]("avgmoves"),
-        maxMoves = row.as[Int]("maxmoves")
+        minMoves = row.asOpt[Int]("minmoves"),
+        avgMoves = row.asOpt[Int]("avgmoves"),
+        maxMoves = row.asOpt[Int]("maxmoves")
       )
       (row.as[String]("rules"), count)
     }.toMap
@@ -75,7 +75,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
     val seed = row.as[Int]("seed")
     val games = row.as[Int]("games")
     val wins = row.as[Int]("wins")
-    val player = row.asOpt[String]("player").map(UUID.fromString)
+    val player = row.asOpt[UUID]("player")
     val moves = row.asOpt[Int]("moves")
     val elapsed = row.asOpt[Int]("elapsed_ms")
     val completed = row.asOpt[LocalDateTime]("completed")

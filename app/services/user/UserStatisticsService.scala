@@ -13,7 +13,7 @@ import scala.concurrent.Future
 
 object UserStatisticsService {
   def registerGame(game: GameHistory): Future[Unit.type] = {
-    if(!game.isCompleted) {
+    if (!game.isCompleted) {
       throw new IllegalStateException(s"Game [${game.id}] is not completed.")
     }
 

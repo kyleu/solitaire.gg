@@ -15,7 +15,7 @@ object BackfillGames extends SandboxTask {
       val gamesFuture = games.filter(_.isCompleted).foldLeft(Future.successful(Unit)) { (f, g) =>
         f.flatMap { unused =>
           val completed = g.completed.getOrElse(throw new IllegalStateException())
-          if(g.isWin) {
+          if (g.isWin) {
             GameSeedService.registerWin(g.rules, g.seed, g.player, g.moves, g.duration.toInt, completed)
           } else {
             GameSeedService.registerLoss(g.rules, g.seed)

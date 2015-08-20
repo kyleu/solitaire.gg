@@ -27,8 +27,8 @@ object GameHistoryCardQueries extends BaseQueries[GameHistory.Card] {
   }
 
   override protected def fromRow(row: Row) = {
-    val id = UUID.fromString(row.as[String]("id"))
-    val gameId = UUID.fromString(row.as[String]("game_id"))
+    val id = row.as[UUID]("id")
+    val gameId = row.as[UUID]("game_id")
     val order = row.as[Int]("sort_order")
     val rank = Rank.allByChar(row.as[String]("rank").headOption.getOrElse(throw new IllegalStateException()))
     val suit = Suit.fromChar(row.as[String]("suit").headOption.getOrElse(throw new IllegalStateException()))

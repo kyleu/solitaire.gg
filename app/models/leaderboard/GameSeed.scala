@@ -9,12 +9,12 @@ object GameSeed {
     seeds: Int,
     games: Int,
     wins: Int,
-    minMoves: Int,
-    avgMoves: Int,
-    maxMoves: Int
+    minMoves: Option[Int],
+    avgMoves: Option[Int],
+    maxMoves: Option[Int]
   )
 
-  val emptyCount = SeedCount(0, 0, 0, 0, 0, 0)
+  val emptyCount = SeedCount(0, 0, 0, None, None, None)
 }
 
 case class GameSeed(

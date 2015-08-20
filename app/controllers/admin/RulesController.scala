@@ -58,7 +58,6 @@ class RulesController @javax.inject.Inject() (override val messagesApi: Messages
     case "min-moves" => rs.sortBy(_._2.minMoves).reverse
   }
 
-
   private[this] def getStatus(r: GameRules, seedCount: GameSeed.SeedCount) = {
     val completed = GameRulesSet.completed.exists(_._2 == r)
     (r, seedCount, completed)

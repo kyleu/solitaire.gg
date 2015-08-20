@@ -28,17 +28,17 @@ object GameHistory {
 }
 
 case class GameHistory(
-  id: UUID,
-  seed: Int,
-  rules: String,
-  status: String,
-  player: UUID,
-  cards: Int,
-  moves: Int,
-  undos: Int,
-  redos: Int,
-  created: LocalDateTime,
-  completed: Option[LocalDateTime]
+    id: UUID,
+    seed: Int,
+    rules: String,
+    status: String,
+    player: UUID,
+    cards: Int,
+    moves: Int,
+    undos: Int,
+    redos: Int,
+    created: LocalDateTime,
+    completed: Option[LocalDateTime]
 ) {
   val duration = {
     val createdMillis = DateUtils.toMillis(created)

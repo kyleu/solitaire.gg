@@ -32,17 +32,17 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   case class GetGameHistoryIdsForUser(userId: UUID) extends Query[List[UUID]] {
     override val sql = s"select id from $tableName where player = ?"
     override val values = Seq(userId)
-    override def reduce(rows: Iterator[Row]) = rows.map(_.as[String]("id")).map(UUID.fromString).toList
+    override def reduce(rows: Iterator[Row]) = rows.map(_.as[UUID]("id")).toList
   }
 
   def getGameHistoryCountForUser(userId: UUID) = new Count(s"select count(*) as c from $tableName where player = ?", Seq(userId))
 
   override protected def fromRow(row: Row) = {
-    val id = UUID.fromString(row.as[String]("id"))
+    val id = row.as[UUID]("id")
     val seed = row.as[Int]("seed")
     val rules = row.as[String]("rules")
     val status = row.as[String]("status")
-    val player = UUID.fromString(row.as[String]("player"))
+    val player = row.as[UUID]("player")
     val cards = row.as[Int]("cards")
     val moves = row.as[Int]("moves")
     val undos = row.as[Int]("undos")

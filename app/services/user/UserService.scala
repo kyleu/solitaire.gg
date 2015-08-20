@@ -3,7 +3,6 @@ package services.user
 import java.util.UUID
 
 import com.github.mauricio.async.db.Connection
-import com.mohiva.play.silhouette.api.AuthInfo
 import com.mohiva.play.silhouette.impl.providers.CommonSocialProfile
 import models.database.queries.auth._
 import models.database.queries.user.UserQueries
@@ -18,7 +17,7 @@ import utils.cache.UserCache
 import scala.concurrent.Future
 
 object UserService extends Logging {
-  def create[A <: AuthInfo](currentUser: User, profile: CommonSocialProfile): Future[User] = {
+  def create(currentUser: User, profile: CommonSocialProfile): Future[User] = {
     log.info(s"Saving profile [$profile].")
     UserSearchService.retrieve(profile.loginInfo).flatMap {
       case Some(existingUser) =>
