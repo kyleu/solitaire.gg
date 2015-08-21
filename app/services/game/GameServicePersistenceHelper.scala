@@ -10,6 +10,7 @@ import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.history.GameHistoryService
+import services.user.UserStatisticsService
 import utils.DateUtils
 
 import scala.concurrent.Future
@@ -19,13 +20,14 @@ trait GameServicePersistenceHelper { this: GameService =>
   private[this] var cardsPersisted = false
   private[this] var originalCards = Seq.empty[Card]
   private[this] var movesPersisted = 0
+  private[this] var gameHistory: Option[GameHistory] = None
 
   protected[this] def create() = if (testGame) {
     Future.successful(true)
   } else {
     originalCards = gameState.deck.cards
-    val gh = GameHistory(id, seed, rules, "started", player.userId, originalCards.size, 0, 0, 0, started, None)
-    GameHistoryService.insert(gh)
+    gameHistory = Some(GameHistory(id, seed, rules, "started", player.userId, originalCards.size, 0, 0, 0, started, None, None))
+    gameHistory.map(GameHistoryService.insert)
   }
 
   protected[this] def update() = {
@@ -34,7 +36,15 @@ trait GameServicePersistenceHelper { this: GameService =>
     } else {
       if (getStatus != lastStatus) {
         lastStatus = getStatus
-        GameHistoryService.updateGameHistory(id, lastStatus, moveCount, undoHelper.undoCount, undoHelper.redoCount, Some(DateUtils.now))
+        gameHistory = gameHistory.map(_.copy(
+          status = lastStatus,
+          moves = moveCount,
+          undos = undoHelper.undoCount,
+          redos = undoHelper.redoCount,
+          completed = Some(DateUtils.now)
+        ))
+        gameHistory.map(GameHistoryService.updateGameHistory)
+        gameHistory.map(UserStatisticsService.registerGame)
       }
 
       if (movesPersisted < moveCount) {

@@ -38,9 +38,10 @@ case class GameHistory(
     undos: Int,
     redos: Int,
     created: LocalDateTime,
-    completed: Option[LocalDateTime]
+    completed: Option[LocalDateTime],
+    logged: Option[LocalDateTime]
 ) {
-  val duration = {
+  lazy val duration = {
     val createdMillis = DateUtils.toMillis(created)
     val completedMillis = completed match {
       case Some(t) => DateUtils.toMillis(t)
@@ -50,4 +51,5 @@ case class GameHistory(
   }
   val isWin = status == "win"
   val isCompleted = completed.isDefined
+  val isLogged = logged.isDefined
 }

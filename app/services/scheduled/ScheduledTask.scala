@@ -6,9 +6,22 @@ import utils.Logging
 
 import scala.concurrent.Future
 
+object ScheduledTask {
+  trait Task {
+    def run(): Future[(String, Option[String])]
+  }
+}
+
 @javax.inject.Singleton
 class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends Logging with Runnable {
   private[this] var running = false
+
+  private[this] val tasks = Seq(
+    new MetricsUpdate(),
+    new EmailReport(emailService),
+    new RowCountUpdate(),
+    new TableReaper()
+  )
 
   override def run() = go(false)
 
@@ -20,12 +33,7 @@ class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends 
     } else {
       running = true
       val startMs = System.currentTimeMillis
-      val f = Future.sequence(Seq(
-        MetricsUpdate.updateMetrics(),
-        EmailReport.sendReportIfNeeded(emailService),
-        RowCountUpdate.updateRowCounts(),
-        TableReaper.reap()
-      ))
+      val f = Future.sequence(tasks.map(_.run()))
       f.onFailure {
         case t: Throwable =>
           log.warn("Exception encountered running scheduled tasks.", t)

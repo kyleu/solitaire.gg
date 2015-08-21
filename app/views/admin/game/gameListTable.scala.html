@@ -13,6 +13,7 @@
       @utils.play.ViewUtils.th("redos", "Redos", sortBy)
       @utils.play.ViewUtils.th("created", "Created", sortBy)
       @utils.play.ViewUtils.th("completed", "Completed", sortBy)
+      @utils.play.ViewUtils.th("logged", "Logged", sortBy)
     </tr>
   </thead>
   <tbody>
@@ -31,6 +32,7 @@
       <td>@g.redos</td>
       <td>@g.created.toString("yyyy-MM-dd HH:mm:ss")</td>
       <td>@g.completed.map(_.toString("yyyy-MM-dd HH:mm:ss"))</td>
+      <td>@g.logged.map(x => "Yes").getOrElse("No")</td>
     </tr>
   }
   </tbody>

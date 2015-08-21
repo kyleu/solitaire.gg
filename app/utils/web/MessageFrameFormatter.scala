@@ -1,14 +1,12 @@
-package utils.play
+package utils.web
 
 import models.{ MalformedRequest, MessageSet, RequestMessage, ResponseMessage }
 import play.api.libs.json._
 import play.api.mvc.WebSocket.FrameFormatter
-import utils.Config
 import utils.json.RequestMessageSerializers._
 import utils.json.ResponseMessageSerializers._
-import utils.json.{ RequestMessageSerializers, ResponseMessageSerializers }
 
-object MessageFrameFormatter {
+class MessageFrameFormatter @javax.inject.Inject() () {
   private[this] def requestToJson(r: RequestMessage): JsValue = {
     throw new IllegalArgumentException(s"Attempted to serialize RequestMessage [$r] on server.")
   }
@@ -31,8 +29,7 @@ object MessageFrameFormatter {
   }
 
   private[this] val jsValueFrame: FrameFormatter[JsValue] = {
-    val toStr = if (Config.debug) { Json.prettyPrint _ } else { Json.stringify _ }
-    FrameFormatter.stringFrame.transform(toStr, { (s: String) =>
+    FrameFormatter.stringFrame.transform(Json.stringify, { (s: String) =>
       val ret = try {
         Json.parse(s)
       } catch {

@@ -1,5 +1,5 @@
 // Copyright 2010-2014 Dire Wolf Digital, LLC. All rights reserved.
-package utils.play
+package utils.web
 
 import org.joda.time.LocalDate
 import org.joda.time.format.DateTimeFormat

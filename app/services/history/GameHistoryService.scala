@@ -30,10 +30,12 @@ object GameHistoryService {
     })
   }
 
+  def setLoggedTime(id: UUID, dt: LocalDateTime) = Database.execute(GameHistoryQueries.UpdateGameHistoryLoggedTime(id, dt))
+
   def insert(gh: GameHistory) = Database.execute(GameHistoryQueries.insert(gh)).map(ok => true)
 
-  def updateGameHistory(id: UUID, status: String, moves: Int, undos: Int, redos: Int, completed: Option[LocalDateTime]) = {
-    Database.execute(GameHistoryQueries.UpdateGameHistory(id, status, moves, undos, redos, completed)).map(_ == 1)
+  def updateGameHistory(gh: GameHistory) = {
+    Database.execute(GameHistoryQueries.UpdateGameHistory(gh.id, gh.status, gh.moves, gh.undos, gh.redos, gh.completed, gh.logged)).map(_ == 1)
   }
 
   def removeGameHistory(id: UUID, conn: Option[Connection]) = for {

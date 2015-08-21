@@ -25,7 +25,7 @@ object BackfillGames extends SandboxTask {
       }
 
       gamesFuture.map { unused =>
-        s"Ok: [${games.size}] games loaded."
+        s"Ok: [${games.length}] games loaded."
       }
     }
   }

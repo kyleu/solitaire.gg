@@ -4,8 +4,10 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.DailyMetricService
 import utils.DateUtils
 
-object MetricsUpdate {
-  def updateMetrics() = {
+class MetricsUpdate extends ScheduledTask.Task {
+  override def run() = updateMetrics()
+
+  private[this] def updateMetrics() = {
     val d = DateUtils.today
     DailyMetricService.getMetrics(d).flatMap { oldMetrics =>
       DailyMetricService.recalculateMetrics(d).map { newMetrics =>

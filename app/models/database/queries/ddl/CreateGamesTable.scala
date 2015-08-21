@@ -15,7 +15,8 @@ case object CreateGamesTable extends Statement {
       undos integer not null default 0,
       redos integer not null default 0,
       created timestamp not null default now(),
-      completed timestamp
+      completed timestamp,
+      logged timestamp
     ) with (oids=false);
 
     create index games_player_idx on games using btree (player);
