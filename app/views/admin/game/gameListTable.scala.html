@@ -1,19 +1,30 @@
+@import utils.web.ViewUtils
+@import utils.web
+@import utils.web
+@import utils.web
+@import utils.web
+@import utils.web
+@import utils.web
+@import utils.web
+@import utils.web
+@import utils.web
+@import utils.web
 @(sortBy: String, games: Seq[models.history.GameHistory])
 <table class="table table-bordered">
   <thead>
     <tr>
-      @utils.play.ViewUtils.th("game-id", "Game ID", sortBy)
-      @utils.play.ViewUtils.th("seed", "Seed", sortBy)
-      @utils.play.ViewUtils.th("rules", "Rules", sortBy)
-      @utils.play.ViewUtils.th("status", "Status", sortBy)
-      @utils.play.ViewUtils.th("player", "Player", sortBy)
-      @utils.play.ViewUtils.th("cards", "Cards", sortBy)
-      @utils.play.ViewUtils.th("moves", "Moves", sortBy)
-      @utils.play.ViewUtils.th("undos", "Undos", sortBy)
-      @utils.play.ViewUtils.th("redos", "Redos", sortBy)
-      @utils.play.ViewUtils.th("created", "Created", sortBy)
-      @utils.play.ViewUtils.th("completed", "Completed", sortBy)
-      @utils.play.ViewUtils.th("logged", "Logged", sortBy)
+      @utils.web.ViewUtils.th("game-id", "Game ID", sortBy)
+      @utils.web.ViewUtils.th("seed", "Seed", sortBy)
+      @utils.web.ViewUtils.th("rules", "Rules", sortBy)
+      @utils.web.ViewUtils.th("status", "Status", sortBy)
+      @utils.web.ViewUtils.th("player", "Player", sortBy)
+      @utils.web.ViewUtils.th("cards", "Cards", sortBy)
+      @utils.web.ViewUtils.th("moves", "Moves", sortBy)
+      @utils.web.ViewUtils.th("undos", "Undos", sortBy)
+      @utils.web.ViewUtils.th("redos", "Redos", sortBy)
+      @utils.web.ViewUtils.th("created", "Created", sortBy)
+      @utils.web.ViewUtils.th("completed", "Completed", sortBy)
+      @utils.web.ViewUtils.th("logged", "Logged", sortBy)
     </tr>
   </thead>
   <tbody>

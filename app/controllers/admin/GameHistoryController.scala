@@ -3,15 +3,14 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
-import models.auth.AuthenticationEnvironment
-import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.history.GameHistoryService
+import utils.ApplicationContext
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class GameHistoryController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
+class GameHistoryController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def gameList(q: String, sortBy: String, page: Int) = withAdminSession("list") { implicit request =>
     GameHistoryService.searchGames(q, sortBy, page).map { games =>
       Ok(views.html.admin.game.gameList(q, sortBy, games._1, page, games._2))

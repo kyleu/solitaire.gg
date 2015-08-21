@@ -1,5 +1,5 @@
 @(rules: models.rules.GameRules, color: String)(
   implicit messages: Messages
 )<div class="rules-container">
-  @utils.play.ViewUtils.cachedTemplate("help." + rules.id, helpContent(rules, color))
+  @utils.web.ViewUtils.cachedTemplate("help." + rules.id, helpContent(rules, color))
 </div>

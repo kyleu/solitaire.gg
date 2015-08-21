@@ -13,7 +13,7 @@ object ScheduledTask {
 }
 
 @javax.inject.Singleton
-class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends Logging with Runnable {
+class ScheduledTask @javax.inject.Inject() (emailService: EmailService, config: utils.Config) extends Logging with Runnable {
   private[this] var running = false
 
   private[this] val tasks = Seq(
@@ -28,7 +28,7 @@ class ScheduledTask @javax.inject.Inject() (emailService: EmailService) extends 
   def go(force: Boolean) = {
     if (running) {
       Future.failed(new RuntimeException("Scheduled task already running."))
-    } else if (utils.Config.debug && !force) {
+    } else if (config.debug && !force) {
       Future.successful(Nil)
     } else {
       running = true

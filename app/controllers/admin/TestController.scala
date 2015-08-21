@@ -1,15 +1,14 @@
 package controllers.admin
 
 import controllers.BaseController
-import models.auth.AuthenticationEnvironment
-import play.api.i18n.MessagesApi
 import services.test._
+import utils.ApplicationContext
 
 import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 @javax.inject.Singleton
-class TestController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
+class TestController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def tests = withAdminSession("list") { implicit request =>
     Future.successful(Ok(views.html.admin.test.tests()))
   }
@@ -17,15 +16,15 @@ class TestController @javax.inject.Inject() (override val messagesApi: MessagesA
   def runTest(test: String) = withAdminSession("run." + test) { implicit request =>
     Future {
       val testTree = test match {
-        case "all" => new AllTests().all
-        case "known" => new KnownGameTests().all
+        case "all" => new AllTests(ctx.supervisor).all
+        case "known" => new KnownGameTests(ctx.supervisor).all
         case "poker" => new PokerTests().all
 
-        case "solver" => new SolverTests().all
-        case x if x.startsWith("solve-") => new SolverTests().testSolver(x.substring(6)).toTree
+        case "solver" => new SolverTests(ctx.supervisor).all
+        case x if x.startsWith("solve-") => new SolverTests(ctx.supervisor).testSolver(x.substring(6)).toTree
 
-        case "variants" => new VariantTests().all
-        case x if x.startsWith("variant-") => new VariantTests().testVariant(x.substring(8)).toTree
+        case "variants" => new VariantTests(ctx.supervisor).all
+        case x if x.startsWith("variant-") => new VariantTests(ctx.supervisor).testVariant(x.substring(8)).toTree
 
         case "rules" => new RulesTests().all
         case x if x.startsWith("rules-") => new RulesTests().testGameRules(x.substring(6)).toTree

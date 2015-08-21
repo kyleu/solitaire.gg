@@ -2,7 +2,8 @@
   userCounts: Seq[(java.util.UUID, Option[String], Int)],
   userAgentCounts: Seq[(String, Int)],
   pathCounts: Seq[(String, Int)],
-  referrerCounts: Seq[(String, Int)]
+  referrerCounts: Seq[(String, Int)],
+  hostname: String
 )(implicit session: Session, flash: Flash)
 
 @renderTable(label: String, counts: Seq[(String, Int)]) = {
@@ -39,7 +40,7 @@
 
   @renderTable("Referrer", referrerCounts)
 
-  @renderTable("External Referrer", referrerCounts.filter(!_._1.contains(utils.Config.hostname)))
+  @renderTable("External Referrer", referrerCounts.filter(!_._1.contains(hostname)))
 
   <h5>Top 10 Users</h5>
   <table class="table table-bordered table-striped">

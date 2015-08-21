@@ -5,18 +5,15 @@ import com.mohiva.play.silhouette.api.{ LoginEvent, LogoutEvent }
 import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
 import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, CommonSocialProfileBuilder, SocialProvider }
 import controllers.BaseController
-import models.auth.AuthenticationEnvironment
 import models.user.{ User, UserForms }
-import play.api.i18n.{ Messages, MessagesApi }
+import play.api.i18n.Messages
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.ApplicationContext
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class AuthenticationController @javax.inject.Inject() (
-    override val messagesApi: MessagesApi,
-    override val env: AuthenticationEnvironment
-) extends BaseController {
+class AuthenticationController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def signInForm = withSession("form") { implicit request =>
     Future.successful(Ok(views.html.auth.signin(request.identity, UserForms.signInForm)))
   }
@@ -24,12 +21,12 @@ class AuthenticationController @javax.inject.Inject() (
   def authenticateCredentials = withSession("authenticate") { implicit request =>
     UserForms.signInForm.bindFromRequest.fold(
       form => Future.successful(BadRequest(views.html.auth.signin(request.identity, form))),
-      credentials => env.credentials.authenticate(credentials).flatMap { loginInfo =>
+      credentials => ctx.env.credentials.authenticate(credentials).flatMap { loginInfo =>
         val result = Redirect(controllers.routes.HomeController.index())
-        env.identityService.retrieve(loginInfo).flatMap {
-          case Some(user) => env.authenticatorService.create(loginInfo).flatMap { authenticator =>
-            env.eventBus.publish(LoginEvent(user, request, request2Messages))
-            env.authenticatorService.init(authenticator).flatMap(v => env.authenticatorService.embed(v, result))
+        ctx.env.identityService.retrieve(loginInfo).flatMap {
+          case Some(user) => ctx.env.authenticatorService.create(loginInfo).flatMap { authenticator =>
+            ctx.env.eventBus.publish(LoginEvent(user, request, request2Messages))
+            ctx.env.authenticatorService.init(authenticator).flatMap(v => env.authenticatorService.embed(v, result))
           }
           case None => Future.failed(new IdentityNotFoundException("Couldn't find user."))
         }
@@ -41,19 +38,19 @@ class AuthenticationController @javax.inject.Inject() (
   }
 
   def authenticateSocial(provider: String) = withSession("authenticate.social") { implicit request =>
-    (env.providersMap.get(provider) match {
+    (ctx.env.providersMap.get(provider) match {
       case Some(p: SocialProvider with CommonSocialProfileBuilder) =>
         p.authenticate().flatMap {
           case Left(result) => Future.successful(result)
           case Right(authInfo) => for {
             profile <- p.retrieveProfile(authInfo)
-            user <- env.userService.create(mergeUser(request.identity, profile), profile)
-            authInfo <- env.authInfoService.save(profile.loginInfo, authInfo)
-            authenticator <- env.authenticatorService.create(profile.loginInfo)
-            value <- env.authenticatorService.init(authenticator)
-            result <- env.authenticatorService.embed(value, Redirect(controllers.routes.HomeController.index()))
+            user <- ctx.env.userService.create(mergeUser(request.identity, profile), profile)
+            authInfo <- ctx.env.authInfoService.save(profile.loginInfo, authInfo)
+            authenticator <- ctx.env.authenticatorService.create(profile.loginInfo)
+            value <- ctx.env.authenticatorService.init(authenticator)
+            result <- ctx.env.authenticatorService.embed(value, Redirect(controllers.routes.HomeController.index()))
           } yield {
-            env.eventBus.publish(LoginEvent(user, request, request2Messages))
+            ctx.env.eventBus.publish(LoginEvent(user, request, request2Messages))
             result
           }
         }
@@ -67,8 +64,8 @@ class AuthenticationController @javax.inject.Inject() (
 
   def signOut = withSession("signout") { implicit request =>
     val result = Redirect(controllers.routes.HomeController.index())
-    env.eventBus.publish(LogoutEvent(request.identity, request, request2Messages))
-    env.authenticatorService.discard(request.authenticator, result).map(x => result)
+    ctx.env.eventBus.publish(LogoutEvent(request.identity, request, request2Messages))
+    ctx.env.authenticatorService.discard(request.authenticator, result).map(x => result)
   }
 
   private[this] def mergeUser(user: User, profile: CommonSocialProfile) = {

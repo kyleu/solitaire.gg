@@ -7,7 +7,7 @@ import models.user.{ User, UserPreferences }
 import play.api.i18n.MessagesApi
 import play.api.test.FakeRequest
 import services.test.TestService
-import utils.DateUtils
+import utils.{ ApplicationContext, DateUtils }
 
 import scala.concurrent.Future
 
@@ -21,7 +21,7 @@ object ExportStatic extends SandboxTask {
 
   override def id = "export-static"
   override def description = "Export static templates and supporting files."
-  override def run() = {
+  override def run(ctx: ApplicationContext) = {
     val mApi = messagesApi.getOrElse(throw new IllegalStateException())
 
     if (!Files.exists(outPath)) {

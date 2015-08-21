@@ -6,23 +6,15 @@ import akka.actor.SupervisorStrategy.Stop
 import akka.actor._
 import models._
 import org.joda.time.LocalDateTime
-import play.api.libs.concurrent.Akka
-import utils.Logging
+import utils.{ ApplicationContext, Logging }
 import utils.metrics.MetricsServletActor
 
 object ActorSupervisor extends Logging {
-  lazy val instance = {
-    import play.api.Play.current
-    val instanceRef = Akka.system.actorOf(Props[ActorSupervisor], "supervisor")
-    log.info(s"Actor Supervisor [${instanceRef.path.toString}] started for [${utils.Config.projectId}].")
-    instanceRef
-  }
-
   case class GameRecord(connections: Seq[(UUID, String)], actorRef: ActorRef, started: LocalDateTime)
   case class ConnectionRecord(userId: UUID, name: String, actorRef: ActorRef, var activeGame: Option[UUID], started: LocalDateTime)
 }
 
-class ActorSupervisor extends ActorSupervisorHelper with Logging {
+class ActorSupervisor(ctx: ApplicationContext) extends ActorSupervisorHelper with Logging {
   import ActorSupervisor.{ ConnectionRecord, GameRecord }
 
   protected[this] val connections = collection.mutable.HashMap.empty[UUID, ConnectionRecord]
@@ -32,7 +24,7 @@ class ActorSupervisor extends ActorSupervisorHelper with Logging {
   protected[this] val gamesCounter = metrics.counter("active-games")
 
   override def preStart() {
-    context.actorOf(Props[MetricsServletActor], "metrics-servlet")
+    context.actorOf(Props(classOf[MetricsServletActor], ctx.config), "metrics-servlet")
   }
 
   override def supervisorStrategy: SupervisorStrategy = OneForOneStrategy() {

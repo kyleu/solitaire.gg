@@ -15,7 +15,7 @@ import services.user._
 import scala.concurrent.duration._
 
 @javax.inject.Singleton
-class AuthenticationEnvironment @javax.inject.Inject() (val wsClient: WSClient) extends Environment[User, CookieAuthenticator] {
+class AuthenticationEnvironment @javax.inject.Inject() (val wsClient: WSClient, config: play.api.Configuration) extends Environment[User, CookieAuthenticator] {
   override implicit val executionContext = play.api.libs.concurrent.Execution.Implicits.defaultContext
 
   private[this] val fingerprintGenerator = new DefaultFingerprintGenerator(false)
@@ -36,7 +36,7 @@ class AuthenticationEnvironment @javax.inject.Inject() (val wsClient: WSClient) 
 
   val credentials = new CredentialsProvider(authInfoService, hasher, Seq(hasher))
 
-  private[this] val sap = new SocialAuthProviders(play.api.Play.current.configuration, httpLayer, hasher, authInfoService, credentials, idGenerator, clock)
+  private[this] val sap = new SocialAuthProviders(config, httpLayer, hasher, authInfoService, credentials, idGenerator, clock)
 
   val authProvider = new BasicAuthProvider(authInfoService, hasher, Nil)
 
@@ -49,7 +49,7 @@ class AuthenticationEnvironment @javax.inject.Inject() (val wsClient: WSClient) 
   override val eventBus = EventBus()
 
   override val authenticatorService = {
-    val cfg = play.api.Play.current.configuration.getConfig("silhouette.authenticator.cookie").getOrElse {
+    val cfg = config.getConfig("silhouette.authenticator.cookie").getOrElse {
       throw new IllegalArgumentException("Missing cookie configuration.")
     }
     new CookieAuthenticatorService(CookieAuthenticatorSettings(

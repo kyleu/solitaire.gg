@@ -2,21 +2,20 @@ package controllers.admin
 
 import controllers.BaseController
 import models.audit.DailyMetric
-import models.auth.AuthenticationEnvironment
 import models.database.queries.history.RequestLogQueries
 import models.database.queries.report.RowCountQueries
 import org.joda.time.LocalDate
-import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.DailyMetricService
 import services.database.Database
 import services.history.GameHistoryService
-import utils.DateUtils
+import utils.{ ApplicationContext, DateUtils }
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class ReportController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
+class ReportController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+
   def email(d: LocalDate = DateUtils.today) = withAdminSession("email") { implicit request =>
     for {
       tables <- Database.query(RowCountQueries.ListTables)
@@ -39,7 +38,7 @@ class ReportController @javax.inject.Inject() (override val messagesApi: Message
       userAgentCounts <- Database.query(RequestLogQueries.GetCounts("user_agent"))
       pathCounts <- Database.query(RequestLogQueries.GetCounts("path"))
       referrerCounts <- Database.query(RequestLogQueries.GetCounts("referrer"))
-    } yield Ok(views.html.admin.report.requests(userCounts, userAgentCounts, pathCounts, referrerCounts))
+    } yield Ok(views.html.admin.report.requests(userCounts, userAgentCounts, pathCounts, referrerCounts, ctx.config.hostname))
   }
 
   private[this] def toChartData(metrics: Seq[(org.joda.time.LocalDate, Map[models.audit.DailyMetric.Metric, Long])]) = {

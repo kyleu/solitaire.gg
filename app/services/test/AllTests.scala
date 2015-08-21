@@ -1,14 +1,15 @@
 package services.test
 
+import akka.actor.ActorRef
 import models.test.{ Test, Tree }
 
-class AllTests {
+class AllTests(supervisor: ActorRef) {
   val all = Tree(Test("all"), Seq(
     new CardTests().all,
-    new KnownGameTests().all,
+    new KnownGameTests(supervisor).all,
     new PokerTests().all,
-    new VariantTests().all,
-    new SolverTests().all,
+    new VariantTests(supervisor).all,
+    new SolverTests(supervisor).all,
     new RulesTests().all
   ))
 }

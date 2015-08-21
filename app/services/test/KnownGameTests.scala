@@ -5,14 +5,12 @@ import java.util.UUID
 import akka.actor.{ ActorRef, PoisonPill }
 import akka.testkit.TestProbe
 import models._
-import models.test.{ Tree, Test }
-import play.api.libs.concurrent.Akka
-
+import models.test.{ Test, Tree }
 import play.api.Play.current
+import play.api.libs.concurrent.Akka
 import services.connection.ConnectionService
-import services.supervisor.ActorSupervisor
 
-class KnownGameTests {
+class KnownGameTests(supervisor: ActorRef) {
   val rules = "klondike"
   val seed = 3
   implicit val system = Akka.system
@@ -22,7 +20,7 @@ class KnownGameTests {
   var activeGameId: UUID = _
 
   private[this] def connect() = Test("connect", () => {
-    conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, TestService.testUser, testProbe.ref))
+    conn = system.actorOf(ConnectionService.props(supervisor, TestService.testUser, testProbe.ref))
   })
 
   private[this] def start() = Test("start", () => {

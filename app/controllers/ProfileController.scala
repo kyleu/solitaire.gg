@@ -1,18 +1,17 @@
 package controllers
 
-import models.auth.AuthenticationEnvironment
 import models.database.queries.auth.ProfileQueries
 import models.database.queries.user.UserQueries
 import models.user.Avatars
-import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
+import utils.ApplicationContext
 import utils.cache.UserCache
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class ProfileController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
+class ProfileController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def profile = withSession("profile") { implicit request =>
     Database.query(ProfileQueries.FindProfilesByUser(request.identity.id)).map { profiles =>
       Ok(views.html.profile(request.identity, profiles))

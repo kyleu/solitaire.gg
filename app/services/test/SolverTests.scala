@@ -1,12 +1,13 @@
 package services.test
 
+import akka.actor.ActorRef
 import models.GameMessage
 import models.rules.GameRulesSet
 import models.test.{ Test, Tree }
 
 import scala.util.Random
 
-class SolverTests {
+class SolverTests(supervisor: ActorRef) {
   val all = Tree(Test("solver"), GameRulesSet.all.map(x => testSolver(x.id).toTree))
 
   def testSolver(rules: String) = Test(s"solver-$rules", { () =>
@@ -15,7 +16,7 @@ class SolverTests {
   })
 
   private[this] def runSolver(rules: String, seed: Int) = {
-    val solver = GameSolver(rules, 0, Some(seed))
+    val solver = GameSolver(rules, 0, Some(seed), supervisor)
     val movesPerformed = collection.mutable.ArrayBuffer.empty[GameMessage]
     try {
       while (!solver.gameWon && movesPerformed.size < GameSolver.moveLimit) {

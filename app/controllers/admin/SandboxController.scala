@@ -8,7 +8,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.scheduled.ScheduledTask
 
 import services.sandbox._
-import utils.DateUtils
+import utils.{ ApplicationContext, DateUtils }
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -27,11 +27,7 @@ object SandboxController {
 }
 
 @javax.inject.Singleton
-class SandboxController @javax.inject.Inject() (
-    override val messagesApi: MessagesApi,
-    override val env: AuthenticationEnvironment,
-    scheduledTask: ScheduledTask
-) extends BaseController {
+class SandboxController @javax.inject.Inject() (override val ctx: ApplicationContext, scheduledTask: ScheduledTask) extends BaseController {
   implicit val timeout = Timeout(10.seconds)
 
   def defaultSandbox() = sandbox("list")
@@ -42,7 +38,7 @@ class SandboxController @javax.inject.Inject() (
   def sandbox(key: String) = withAdminSession(key) { implicit request =>
     val sandbox = SandboxController.sandboxes.find(_.id == key).getOrElse(throw new IllegalStateException())
 
-    sandbox.run().map { result =>
+    sandbox.run(ctx).map { result =>
       Ok(result)
     }
   }

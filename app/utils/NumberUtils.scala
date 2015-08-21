@@ -1,6 +1,6 @@
 package utils
 
-import _root_.play.api.i18n.Messages
+import play.api.i18n.Messages
 
 object NumberUtils {
   def toWords(i: Int, properCase: Boolean = false)(implicit messages: Messages) = if (messages.lang.language == "en") {

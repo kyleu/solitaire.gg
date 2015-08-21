@@ -1,6 +1,6 @@
 package utils
 
-import _root_.play.api.Logger
+import play.api.Logger
 import org.slf4j.LoggerFactory
 import utils.metrics.Instrumented
 

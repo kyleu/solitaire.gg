@@ -1,18 +1,13 @@
 package controllers.admin
 
 import controllers.BaseController
-import models.auth.AuthenticationEnvironment
-import org.joda.time.{ Days, Period, LocalDate }
-import play.api.i18n.MessagesApi
+import org.joda.time.{ Days, LocalDate }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.history.DataArchiveService
-import utils.DateUtils
+import utils.{ ApplicationContext, DateUtils }
 
 @javax.inject.Singleton
-class DataArchiveController @javax.inject.Inject() (
-    override val messagesApi: MessagesApi,
-    override val env: AuthenticationEnvironment
-) extends BaseController {
+class DataArchiveController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
 
   def list() = withAdminSession("data.archive.list") { implicit request =>
     DataArchiveService.getAll.map { archives =>

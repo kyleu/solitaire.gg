@@ -1,6 +1,6 @@
 package services.test
 
-import akka.actor.PoisonPill
+import akka.actor.{ ActorRef, PoisonPill }
 import akka.testkit.TestProbe
 import models._
 import play.api.libs.concurrent.Akka
@@ -16,14 +16,14 @@ object GameSolver {
   val moveLimit = 5000
 }
 
-case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None) extends Logging {
+case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None, supervisor: ActorRef) extends Logging {
   val rng = new Random(testSeed)
 
   var gameWon = false
 
   implicit val system = Akka.system
   val testProbe = TestProbe()
-  val conn = system.actorOf(ConnectionService.props(ActorSupervisor.instance, TestService.testUser, testProbe.ref))
+  val conn = system.actorOf(ConnectionService.props(supervisor, TestService.testUser, testProbe.ref))
 
   conn ! StartGame(rules, gameSeed, testGame = Some(true))
   val gameJoined = testProbe.expectMsgClass(classOf[GameJoined])

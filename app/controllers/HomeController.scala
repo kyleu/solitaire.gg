@@ -1,18 +1,12 @@
 package controllers
 
-import models.auth.AuthenticationEnvironment
-import play.api.i18n.MessagesApi
 import play.api.mvc.Action
-import services.email.EmailService
+import utils.ApplicationContext
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class HomeController @javax.inject.Inject() (
-    override val messagesApi: MessagesApi,
-    override val env: AuthenticationEnvironment,
-    emailService: EmailService
-) extends BaseController {
+class HomeController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def index() = withSession("index") { implicit request =>
     Future.successful(Ok(views.html.index(request.identity)))
   }

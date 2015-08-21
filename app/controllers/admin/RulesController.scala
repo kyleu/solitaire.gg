@@ -1,18 +1,17 @@
 package controllers.admin
 
 import controllers.BaseController
-import models.auth.AuthenticationEnvironment
 import models.database.queries.leaderboard.GameSeedQueries
 import models.leaderboard.GameSeed
 import models.rules.{ GameRules, GameRulesSet }
-import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
+import utils.ApplicationContext
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class RulesController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
+class RulesController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def rulesList(q: String, sortBy: String) = withAdminSession("list") { implicit request =>
     Database.query(GameSeedQueries.GetCounts(None)).map { seedCounts =>
       val statuses = GameRulesSet.all.map { r =>

@@ -4,24 +4,19 @@ import java.util.UUID
 
 import akka.util.Timeout
 import controllers.BaseController
-import models.auth.AuthenticationEnvironment
 import models.database.queries.adhoc.{ AdHocQueries, AdHocQuery }
 import org.joda.time.LocalDateTime
 import play.api.data.Form
 import play.api.data.Forms._
-import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import utils.DateUtils
+import utils.{ ApplicationContext, DateUtils }
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
 
 @javax.inject.Singleton
-class AdHocQueryController @javax.inject.Inject() (
-    override val messagesApi: MessagesApi,
-    override val env: AuthenticationEnvironment
-) extends BaseController {
+class AdHocQueryController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   case class QueryExecution(action: String, id: Option[String], title: String, sql: String)
 
   val executionForm = Form(

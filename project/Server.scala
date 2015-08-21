@@ -41,7 +41,7 @@ object Server {
     libraryDependencies ++= dependencies,
 
     routesGenerator := InjectedRoutesGenerator,
-    routesImport ++= Seq("_root_.utils.play.RoutingImports._"),
+    routesImport ++= Seq("utils.web.RoutingImports._"),
 
     scalaJSProjects := Seq(Client.client),
 
@@ -64,7 +64,10 @@ object Server {
     ScalariformKeys.preferences := ScalariformKeys.preferences.value,
 
     // IDE Settings
-    ideExcludedDirectories := Seq(new File("offline/bin"), new File("offline/build"), new File("target/streams"))
+    ideExcludedDirectories := Seq(
+      new File("offline/bin"), new File("offline/build"), new File("offline/assets"),
+      new File("target/streams"), new File("target/web")
+    )
   ) ++ graphSettings ++ defaultScalariformSettings
 
   lazy val server = Project(

@@ -2,23 +2,25 @@ package controllers
 
 import java.util.UUID
 
-import models.auth.AuthenticationEnvironment
 import models.history.RequestLog
-import services.history.RequestHistoryService
 import play.api.i18n.I18nSupport
+import services.history.RequestHistoryService
 import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
-import models.user.{ UserPreferences, Role, User }
+import models.user.{ Role, User, UserPreferences }
 import nl.grons.metrics.scala.FutureMetrics
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.{ AnyContent, RequestHeader, Result }
-import utils.{ DateUtils, Logging }
 import utils.metrics.Instrumented
+import utils.{ ApplicationContext, DateUtils, Logging }
 
 import scala.concurrent.Future
 
 abstract class BaseController() extends Silhouette[User, CookieAuthenticator] with I18nSupport with Instrumented with FutureMetrics with Logging {
-  def env: AuthenticationEnvironment
+  def ctx: ApplicationContext
+
+  override protected def env = ctx.env
+  override def messagesApi = ctx.messagesApi
 
   def withAdminSession(action: String)(block: (SecuredRequest[AnyContent]) => Future[Result]) = SecuredAction.async { implicit request =>
     timing(action) {
@@ -56,14 +58,14 @@ abstract class BaseController() extends Silhouette[User, CookieAuthenticator] wi
           )
 
           for {
-            user <- env.userService.save(user)
-            authenticator <- env.authenticatorService.create(LoginInfo("anonymous", user.id.toString))
-            value <- env.authenticatorService.init(authenticator)
+            user <- ctx.env.userService.save(user)
+            authenticator <- ctx.env.authenticatorService.create(LoginInfo("anonymous", user.id.toString))
+            value <- ctx.env.authenticatorService.init(authenticator)
             result <- block(SecuredRequest(user, authenticator, request))
-            authedResponse <- env.authenticatorService.embed(value, result)
+            authedResponse <- ctx.env.authenticatorService.embed(value, result)
           } yield {
-            env.eventBus.publish(SignUpEvent(user, request, request2Messages))
-            env.eventBus.publish(LoginEvent(user, request, request2Messages))
+            ctx.env.eventBus.publish(SignUpEvent(user, request, request2Messages))
+            ctx.env.eventBus.publish(LoginEvent(user, request, request2Messages))
             val duration = (System.currentTimeMillis - startTime).toInt
             logRequest(request, user.id, authenticator.loginInfo, duration, authedResponse.header.status)
             authedResponse

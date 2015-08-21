@@ -8,6 +8,6 @@
   description = Some("Solitaire.gg help for " + rules.title + ". " + rules.description)
 ) {
   <div class="static-help">
-    @utils.play.ViewUtils.cachedTemplate("help." + rules.id, helpContent(rules, user.preferences.color))
+    @utils.web.ViewUtils.cachedTemplate("help." + rules.id, helpContent(rules, user.preferences.color))
   </div>
 }

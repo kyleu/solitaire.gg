@@ -3,18 +3,17 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
-import models.auth.AuthenticationEnvironment
 import models.database.queries.report.ReportQueries
 import models.database.queries.user.UserQueries
-import play.api.i18n.MessagesApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.history.{ RequestHistoryService, GameHistoryService }
+import utils.ApplicationContext
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class UserController @javax.inject.Inject() (override val messagesApi: MessagesApi, override val env: AuthenticationEnvironment) extends BaseController {
+class UserController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def userList(q: String, sortBy: String, page: Int) = withAdminSession("list") { implicit request =>
     for {
       count <- Database.query(UserQueries.searchCount(q))
@@ -26,7 +25,7 @@ class UserController @javax.inject.Inject() (override val messagesApi: MessagesA
   }
 
   def userDetail(id: UUID) = withAdminSession("detail") { implicit request =>
-    env.identityService.retrieve(id).flatMap {
+    ctx.env.identityService.retrieve(id).flatMap {
       case Some(user) => for {
         gameCount <- GameHistoryService.getCountByUser(id)
         requestCount <- RequestHistoryService.getCountByUser(id)
@@ -36,7 +35,7 @@ class UserController @javax.inject.Inject() (override val messagesApi: MessagesA
   }
 
   def removeUser(id: UUID) = withAdminSession("remove") { implicit request =>
-    env.userService.remove(id).map { result =>
+    ctx.env.userService.remove(id).map { result =>
       val success = if (result("users") == 1) { "successfully" } else { "with an error" }
       val profiles = result("profiles")
       val requests = result("requests")

@@ -1,9 +1,9 @@
 package models.database.queries
 
 import models.database.{ Row, FlatSingleRowQuery, Statement, Query }
-import utils.Config
 
 object BaseQueries {
+  val pageSize = 100
   def trim(s: String) = s.replaceAll("""[\s]+""", " ").trim
 }
 
@@ -66,8 +66,8 @@ trait BaseQueries[T] {
 
   protected case class Search(q: String, orderBy: String, page: Option[Int], /* TODO use */ groupBy: Option[String] = None) extends Query[List[T]] {
     private[this] val whereClause = if (q.isEmpty) { None } else { Some(searchColumns.map(c => s"lower($c) like lower(?)").mkString(" or ")) }
-    private[this] val limit = page.map(x => Config.pageSize)
-    private[this] val offset = page.map(x => x * Config.pageSize)
+    private[this] val limit = page.map(x => BaseQueries.pageSize)
+    private[this] val offset = page.map(x => x * BaseQueries.pageSize)
     override val sql = getSql(whereClause, groupBy, Some(orderBy), limit, offset)
     override val values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(c => s"%$q%") }
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList

@@ -23,8 +23,8 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   val removeById = RemoveById
 
   case class UpdateGameHistory(
-    id: UUID, status: String, moves: Int, undos: Int, redos: Int,
-    completed: Option[LocalDateTime], logged: Option[LocalDateTime]
+      id: UUID, status: String, moves: Int, undos: Int, redos: Int,
+      completed: Option[LocalDateTime], logged: Option[LocalDateTime]
   ) extends Statement {
     override val sql = updateSql(Seq("status", "moves", "undos", "redos", "completed", "logged"))
     override val values = Seq[Any](status, moves, undos, redos, completed, logged, id)
