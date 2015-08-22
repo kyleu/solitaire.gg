@@ -1,38 +1,10 @@
 import java.util.UUID
 
 import models._
-import models.game.GameState
-import models.rules.GameRules
 
-trait SolitaireHelper {
+trait SolitaireMoveHelper extends SolitaireVictoryHelper {
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit
-
-  protected var gameId: UUID = _
-  protected var gameRules: GameRules = _
-  protected var gameState: GameState = _
-
-  protected[this] def possibleMoves() = {
-    val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
-    gameState.piles.foreach { source =>
-      source.cards.zipWithIndex.foreach { c =>
-        val cards = source.cards.drop(c._2)
-        if (source.canDragFrom(cards, gameState)) {
-          gameState.piles.filterNot(_.id == source.id).foreach { target =>
-            if (target.canDragTo(source, cards, gameState)) {
-              ret += PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
-            }
-          }
-        }
-        if (source.canSelectCard(c._1, gameState)) {
-          ret += PossibleMove("select-card", Seq(c._1.id), source.id)
-        }
-      }
-      if (source.canSelectPile(gameState)) {
-        ret += PossibleMove("select-pile", Nil, source.id)
-      }
-    }
-    ret
-  }
+  protected def getResult: GameResult
 
   protected[this] def handleSelectCard(userId: UUID, cardId: UUID, pileId: String) = {
     val card = gameState.cardsById(cardId)
@@ -44,9 +16,7 @@ trait SolitaireHelper {
       val messages = pile.onSelectCard(card, gameState)
       send(MessageSet(messages))
     }
-    if (!checkWinCondition()) {
-      send(PossibleMoves(possibleMoves(), 0, 0))
-    }
+    registerMove()
   }
 
   protected[this] def handleSelectPile(userId: UUID, pileId: String) = {
@@ -56,7 +26,7 @@ trait SolitaireHelper {
     }
     val messages = if (pile.canSelectPile(gameState)) { pile.onSelectPile(gameState) } else { Nil }
     send(MessageSet(messages))
-    if (!checkWinCondition()) { send(PossibleMoves(possibleMoves(), 0, 0)) }
+    registerMove()
   }
 
   protected[this] def handleMoveCards(userId: UUID, cardIds: Seq[UUID], source: String, target: String) = {
@@ -72,23 +42,12 @@ trait SolitaireHelper {
       if (targetPile.canDragTo(sourcePile, cards, gameState)) {
         val messages = targetPile.onDragTo(sourcePile, cards, gameState)
         send(MessageSet(messages))
-        if (!checkWinCondition()) {
-          send(PossibleMoves(possibleMoves(), 0, 0))
-        }
+        registerMove()
       } else {
         send(CardMoveCancelled(cardIds, source))
       }
     } else {
       send(CardMoveCancelled(cardIds, source))
-    }
-  }
-
-  private[this] def checkWinCondition() = {
-    if (gameRules.victoryCondition.check(gameRules, gameState)) {
-      send(GameWon(gameId, firstForRules = false, firstForSeed = false))
-      true
-    } else {
-      false
     }
   }
 }

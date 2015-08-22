@@ -16,8 +16,10 @@ case object SendDebugInfo extends ResponseMessage
 case class Disconnected(reason: String) extends ResponseMessage
 
 case class GameJoined(id: UUID, state: GameState, elapsedMs: Int, moves: Seq[PossibleMove]) extends ResponseMessage
-case class GameLost(id: UUID) extends ResponseMessage
-case class GameWon(id: UUID, firstForRules: Boolean, firstForSeed: Boolean) extends ResponseMessage
+
+case class GameResult(moves: Int, undos: Int, redos: Int, score: Int, durationSeconds: Int, leaderboardRanking: Int)
+case class GameLost(id: UUID, result: GameResult) extends ResponseMessage
+case class GameWon(id: UUID, firstForRules: Boolean, firstForSeed: Boolean, result: GameResult) extends ResponseMessage
 
 case class PossibleMove(moveType: String, cards: Seq[UUID], sourcePile: String, targetPile: Option[String] = None)
 case class PossibleMoves(moves: Seq[PossibleMove], undosAvailable: Int, redosAvailable: Int) extends ResponseMessage

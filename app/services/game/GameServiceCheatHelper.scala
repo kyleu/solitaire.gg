@@ -18,7 +18,7 @@ trait GameServiceCheatHelper { this: GameService =>
   private[this] def cheat(command: String, params: Seq[String]) = command match {
     case "win" =>
       log.info("WIIIIIIIIIIINER!!!")
-      sendToAll("GameWon", GameWon(id, firstForRules = false, firstForSeed = false))
+      sendToAll("GameWon", GameWon(id, firstForRules = false, firstForSeed = false, getResult))
     case _ => throw new IllegalArgumentException(s"Unknown cheat command [$command].")
   }
 }

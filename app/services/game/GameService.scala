@@ -35,6 +35,15 @@ case class GameService(
     this.update()
   }
 
+  protected[this] def getResult = GameResult(
+    moves = moveCount,
+    undos = undoHelper.undoCount,
+    redos = undoHelper.redoCount,
+    score = 0,
+    durationSeconds = 0,
+    leaderboardRanking = 0
+  )
+
   override def preStart() {
     this.create()
     InitialMoves.performInitialMoves(gameRules, gameState)

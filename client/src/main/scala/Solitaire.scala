@@ -9,7 +9,7 @@ import scala.scalajs.js.annotation.JSExport
 
 import scala.util.Random
 
-object Solitaire extends js.JSApp with SolitaireHelper {
+object Solitaire extends js.JSApp with SolitaireMoveHelper {
   override def main(): Unit = {}
 
   private[this] val userId = UUID.randomUUID
@@ -37,6 +37,15 @@ object Solitaire extends js.JSApp with SolitaireHelper {
       case _ => throw new IllegalStateException(s"Invalid message [$c].")
     }
   }
+
+  protected[this] def getResult = GameResult(
+    moves = moveCount,
+    undos = undoHelper.undoCount,
+    redos = undoHelper.redoCount,
+    score = 0,
+    durationSeconds = 0,
+    leaderboardRanking = 0
+  )
 
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit = {
     if (registerUndoResponse) {

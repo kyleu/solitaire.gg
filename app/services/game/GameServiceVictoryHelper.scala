@@ -14,7 +14,7 @@ trait GameServiceVictoryHelper { this: GameService =>
     log.debug(s"Processing winning [$rules] game with seed [$seed].")
     GameSeedService.registerWin(rules, seed, player.userId, moveCount, elapsed, completed).map { firsts =>
       val (firstForRules, firstForSeed) = firsts
-      sendToAll("GameWon", GameWon(id, firstForRules, firstForSeed))
+      sendToAll("GameWon", GameWon(id, firstForRules, firstForSeed, getResult))
     }
     true
   } else {

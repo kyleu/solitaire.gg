@@ -25,6 +25,8 @@ import utils.web.PlayGlobalSettings
 import scala.concurrent.Future
 
 object ApplicationContext {
+  var initialized = false
+
   class SimpleHttpRequestHandler @javax.inject.Inject() (router: Router) extends HttpRequestHandler {
     def handlerForRequest(request: RequestHeader) = {
       router.routes.lift(request) match {
@@ -37,7 +39,6 @@ object ApplicationContext {
 
 @javax.inject.Singleton
 class ApplicationContext @javax.inject.Inject() (
-    val wsClient: WSClient,
     val env: AuthenticationEnvironment,
     val config: utils.Config,
     val messagesApi: MessagesApi,
@@ -52,6 +53,11 @@ class ApplicationContext @javax.inject.Inject() (
   }
 
   private[this] def start() = {
+    if(ApplicationContext.initialized) {
+      throw new IllegalStateException("ApplicationContext is already initialized.")
+    }
+    ApplicationContext.initialized = true
+
     log.info(s"${Config.projectName} is starting on [${config.hostname}].")
 
     DateTimeZone.setDefault(DateTimeZone.UTC)
