@@ -2,8 +2,8 @@ package controllers.admin
 
 import controllers.BaseController
 import models.audit.DailyMetric
-import models.database.queries.history.RequestLogQueries
-import models.database.queries.report.RowCountQueries
+import models.queries.history.RequestLogQueries
+import models.queries.report.RowCountQueries
 import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.DailyMetricService

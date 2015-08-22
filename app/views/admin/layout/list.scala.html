@@ -45,12 +45,12 @@
         @if(page > 0) {
           <a href="@prevLink" class="prev btn-xs btn btn-default">Previous</a>
         }
-        @if((page * models.database.queries.BaseQueries.pageSize) + recordCount < totalCount) {
+        @if((page * models.queries.BaseQueries.pageSize) + recordCount < totalCount) {
           <a href="@nextLink" class="next btn-xs btn btn-default">Next</a>
         }
         <strong>
-          @defining(utils.Formatter.withCommas((page * models.database.queries.BaseQueries.pageSize) + 1)) { start =>
-            @defining(utils.Formatter.withCommas((page * models.database.queries.BaseQueries.pageSize) + recordCount)) { end =>
+          @defining(utils.Formatter.withCommas((page * models.queries.BaseQueries.pageSize) + 1)) { start =>
+            @defining(utils.Formatter.withCommas((page * models.queries.BaseQueries.pageSize) + recordCount)) { end =>
               @start-@end
             }
           } of @utils.Formatter.withCommas(totalCount) @model@if(totalCount != 1){s}

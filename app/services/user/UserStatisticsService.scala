@@ -3,11 +3,13 @@ package services.user
 import java.util.UUID
 
 import models.database.Statement
-import models.database.queries.user.{ UserQueries, UserStatisticsQueries }
+import models.queries.user.{ UserQueries, UserStatisticsQueries }
 import models.history.GameHistory
 import models.user.UserStatistics
+import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
+import services.history.GameHistoryService
 
 import scala.concurrent.Future
 
@@ -15,6 +17,9 @@ object UserStatisticsService {
   def registerGame(game: GameHistory): Future[Unit.type] = {
     if (!game.isCompleted) {
       throw new IllegalStateException(s"Game [${game.id}] is not completed.")
+    }
+    if (game.logged.isDefined) {
+      throw new IllegalStateException(s"Game [${game.id}] is already logged.")
     }
 
     val update = new Statement {
@@ -31,6 +36,8 @@ object UserStatisticsService {
       case _ => UserStatisticsService.getStatistics(game.player).flatMap { stats =>
         registerGame(game)
       }
+    }.flatMap { _ =>
+      GameHistoryService.setLoggedTime(game.id, new LocalDateTime()).map(x => Unit)
     }
   }
 

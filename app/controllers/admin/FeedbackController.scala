@@ -3,7 +3,7 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
-import models.database.queries.audit.{ UserFeedbackNoteQueries, UserFeedbackQueries }
+import models.queries.audit.{ UserFeedbackNoteQueries, UserFeedbackQueries }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import utils.ApplicationContext

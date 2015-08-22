@@ -2,7 +2,7 @@ package services.audit
 
 import models.audit.DailyMetric
 import models.audit.DailyMetric._
-import models.database.queries.audit.DailyMetricQueries
+import models.queries.audit.DailyMetricQueries
 import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database

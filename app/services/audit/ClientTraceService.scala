@@ -3,7 +3,7 @@ package services.audit
 import java.util.UUID
 
 import models.audit.ClientTraceResult
-import models.database.queries.audit.ClientTraceQueries
+import models.queries.audit.ClientTraceQueries
 import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.JsObject

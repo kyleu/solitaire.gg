@@ -1,7 +1,7 @@
 package controllers.admin
 
 import controllers.BaseController
-import models.database.queries.leaderboard.GameSeedQueries
+import models.queries.leaderboard.GameSeedQueries
 import models.leaderboard.GameSeed
 import models.rules.{ GameRules, GameRulesSet }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext

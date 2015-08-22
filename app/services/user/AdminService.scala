@@ -1,6 +1,6 @@
 package services.user
 
-import models.database.queries.user.UserQueries
+import models.queries.user.UserQueries
 import models.user.{ Role, User }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database

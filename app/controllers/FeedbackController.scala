@@ -3,7 +3,7 @@ package controllers
 import java.util.UUID
 
 import models.audit.UserFeedback
-import models.database.queries.audit.UserFeedbackQueries
+import models.queries.audit.UserFeedbackQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.email.EmailService

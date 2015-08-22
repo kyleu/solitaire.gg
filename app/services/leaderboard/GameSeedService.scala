@@ -2,7 +2,7 @@ package services.leaderboard
 
 import java.util.UUID
 
-import models.database.queries.leaderboard.GameSeedQueries
+import models.queries.leaderboard.GameSeedQueries
 import models.leaderboard.GameSeed
 import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext

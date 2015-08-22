@@ -2,7 +2,7 @@ package services.auth
 
 import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
 import com.mohiva.play.silhouette.impl.daos.AuthenticatorDAO
-import models.database.queries.auth.AuthenticatorQueries
+import models.queries.auth.AuthenticatorQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import utils.cache.UserCache

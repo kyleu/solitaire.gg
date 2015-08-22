@@ -1,6 +1,6 @@
 package services.sandbox
 
-import models.database.queries.history.RequestLogQueries
+import models.queries.history.RequestLogQueries
 import org.joda.time.LocalDate
 import services.audit.DailyMetricService
 import services.database.Database

@@ -1,6 +1,6 @@
 package services.history
 
-import models.database.queries.history.DataArchiveQueries
+import models.queries.history.DataArchiveQueries
 import models.history.DataArchiveCount
 import org.joda.time.{ LocalDateTime, LocalDate }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext

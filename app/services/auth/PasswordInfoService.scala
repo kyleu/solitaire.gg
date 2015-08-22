@@ -3,7 +3,7 @@ package services.auth
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.api.util.PasswordInfo
 import com.mohiva.play.silhouette.impl.daos.DelegableAuthInfoDAO
-import models.database.queries.auth.PasswordInfoQueries
+import models.queries.auth.PasswordInfoQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 

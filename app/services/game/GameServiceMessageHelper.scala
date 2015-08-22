@@ -2,6 +2,7 @@ package services.game
 
 import akka.actor.PoisonPill
 import models._
+import services.history.GameHistoryService
 import utils.DateUtils
 
 trait GameServiceMessageHelper { this: GameService =>
@@ -19,6 +20,7 @@ trait GameServiceMessageHelper { this: GameService =>
     }
 
     context.parent ! GameStopped(id)
+
     self ! PoisonPill
   }
 
