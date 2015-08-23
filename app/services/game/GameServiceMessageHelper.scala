@@ -15,12 +15,10 @@ trait GameServiceMessageHelper { this: GameService =>
 
   protected[this] def handleStopGame() {
     log.info(s"Stopping game [$id].")
-    if (getStatus == "started") {
-      setStatus("abandoned")
+    if (completed.isEmpty) {
+      completeGame(false)
     }
-
     context.parent ! GameStopped(id)
-
     self ! PoisonPill
   }
 
@@ -52,11 +50,12 @@ trait GameServiceMessageHelper { this: GameService =>
       moveCount += 1
       if (firstMoveMade.isEmpty) {
         firstMoveMade = Some(time)
+        GameHistoryService.setFirstMove(id, time)
       }
       lastMoveMade = Some(time)
       update()
       gr.message match {
-        case x if gameWon => log.warn(s"Received game message [${x.getClass.getSimpleName}] for completed game [$id].")
+        case x if completed.isDefined => log.warn(s"Received game message [${x.getClass.getSimpleName}] for completed game [$id].")
 
         case GetPossibleMoves => timeReceive(GetPossibleMoves) { handleGetPossibleMoves(gr.userId) }
 

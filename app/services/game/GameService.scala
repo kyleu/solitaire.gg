@@ -24,23 +24,17 @@ case class GameService(
   protected[this] var moveCount = 0
   protected[this] var firstMoveMade: Option[LocalDateTime] = None
   protected[this] var lastMoveMade: Option[LocalDateTime] = None
-  protected[this] var gameWon = false
 
   protected[this] var autoFlipOption = false
 
-  private[this] var _status = "started"
-  protected[this] def getStatus = _status
-  protected[this] def setStatus(s: String) {
-    _status = s
-    this.update()
-  }
+  protected[this] var status = "started"
 
   protected[this] def getResult = GameResult(
     moves = moveCount,
     undos = undoHelper.undoCount,
     redos = undoHelper.redoCount,
     score = 0,
-    durationSeconds = 0,
+    durationSeconds = elapsedMs / 1000,
     leaderboardRanking = 0
   )
 

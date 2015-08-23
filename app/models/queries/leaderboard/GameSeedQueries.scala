@@ -51,7 +51,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
   }
 
   case class RandomWinnableSeed(rules: String) extends FlatSingleRowQuery[Int] {
-    override def sql = s"select seed from $tableName where rules = ? order by random() limit 1"
+    override def sql = s"select seed from $tableName where rules = ? and wins > 0 order by random() limit 1"
     override def values = Seq(rules)
     override def flatMap(row: Row) = Some(row.as[Int]("seed"))
   }

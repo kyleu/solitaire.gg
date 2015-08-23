@@ -3,30 +3,29 @@ package services.game
 import java.util.UUID
 
 import models._
-import models.queries.history.{ GameHistoryQueries, GameHistoryMoveQueries, GameHistoryCardQueries }
+import models.queries.history.{ GameHistoryMoveQueries, GameHistoryCardQueries }
 import models.card.Card
 import models.history.GameHistory
 import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.history.GameHistoryService
-import services.user.UserStatisticsService
 import utils.DateUtils
 
 import scala.concurrent.Future
 
 trait GameServicePersistenceHelper { this: GameService =>
-  private[this] var lastStatus = "created"
   private[this] var cardsPersisted = false
   private[this] var originalCards = Seq.empty[Card]
   private[this] var movesPersisted = 0
-  private[this] var gameHistory: Option[GameHistory] = None
+
+  protected[this] var gameHistory: Option[GameHistory] = None
 
   protected[this] def create() = if (testGame) {
     Future.successful(true)
   } else {
     originalCards = gameState.deck.cards
-    gameHistory = Some(GameHistory(id, seed, rules, "started", player.userId, originalCards.size, 0, 0, 0, started, None, None))
+    gameHistory = Some(GameHistory(id, seed, rules, "started", player.userId, originalCards.size, 0, 0, 0, started, None, None, None))
     gameHistory.map(GameHistoryService.insert)
   }
 
@@ -34,18 +33,14 @@ trait GameServicePersistenceHelper { this: GameService =>
     if (testGame) {
       Future.successful(true)
     } else {
-      if (getStatus != lastStatus) {
-        lastStatus = getStatus
-        gameHistory = gameHistory.map(_.copy(
-          status = lastStatus,
-          moves = moveCount,
-          undos = undoHelper.undoCount,
-          redos = undoHelper.redoCount,
-          completed = Some(DateUtils.now)
-        ))
-        gameHistory.map(GameHistoryService.updateGameHistory)
-        gameHistory.map(UserStatisticsService.registerGame)
-      }
+      gameHistory = gameHistory.map(_.copy(
+        status = status,
+        moves = moveCount,
+        undos = undoHelper.undoCount,
+        redos = undoHelper.redoCount,
+        completed = completed
+      ))
+      gameHistory.map( gh => GameHistoryService.setCounts(gh.id, gh.moves, gh.undos, gh.redos))
 
       if (movesPersisted < moveCount) {
         val persist = if (cardsPersisted) {
@@ -70,7 +65,11 @@ trait GameServicePersistenceHelper { this: GameService =>
             Database.execute(GameHistoryMoveQueries.insert(move))
             movesPersisted += 1
           }
+
+          ok
         }
+      } else {
+        Future.successful(true)
       }
     }
   }

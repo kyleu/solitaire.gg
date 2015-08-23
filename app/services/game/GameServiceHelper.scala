@@ -9,6 +9,7 @@ trait GameServiceHelper
     with Logging
     with GameServiceCardHelper
     with GameServiceCheatHelper
+    with GameServiceCompletionHelper
     with GameServiceConnectionHelper
     with GameServiceMessageHelper
     with GameServicePersistenceHelper

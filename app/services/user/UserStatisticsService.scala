@@ -37,7 +37,7 @@ object UserStatisticsService {
         registerGame(game)
       }
     }.flatMap { _ =>
-      GameHistoryService.setLoggedTime(game.id, new LocalDateTime()).map(x => Unit)
+      GameHistoryService.setLogged(game.id, new LocalDateTime()).map(x => Unit)
     }
   }
 

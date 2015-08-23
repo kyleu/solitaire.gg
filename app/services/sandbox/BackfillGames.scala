@@ -13,7 +13,8 @@ object BackfillGames extends SandboxTask {
   override def description = "Register all games in the seeds and statistics engines."
   override def run(ctx: ApplicationContext) = {
     GameHistoryService.getAll.flatMap { games =>
-      val gamesFuture = games.filter(_.isCompleted).foldLeft(Future.successful(Unit)) { (f, g) =>
+      val filteredGames = games.filter(g => g.isCompleted && !g.isLogged)
+      val gamesFuture = filteredGames.foldLeft(Future.successful(Unit)) { (f, g) =>
         f.flatMap { unused =>
           val completed = g.completed.getOrElse(throw new IllegalStateException())
           if (g.isWin) {
@@ -26,7 +27,7 @@ object BackfillGames extends SandboxTask {
       }
 
       gamesFuture.map { unused =>
-        s"Ok: [${games.length}] games loaded."
+        s"Ok: [${filteredGames.length}] games loaded."
       }
     }
   }
