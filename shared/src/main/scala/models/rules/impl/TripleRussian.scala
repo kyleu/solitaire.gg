@@ -20,6 +20,7 @@ import models.rules._
  */
 object TripleRussian extends GameRules(
   id = "triplerussian",
+  completed = true,
   title = "Triple Russian",
   like = Some("russian"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_russian.htm")),

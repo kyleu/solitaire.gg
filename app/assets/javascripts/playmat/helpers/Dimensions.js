@@ -22,7 +22,15 @@ define(function () {
         break;
       case 'reserve':
       case 'tableau':
-        var overlappedCards = Math.max(_.max(pileSet.piles, function(pile) { return pile.cards.length; }).cards.length, 1);
+        var len = function(pile) {
+          var cardsShown = pile.options.cardsShown;
+          if(cardsShown < pile.cards.length) {
+            return cardsShown;
+          } else {
+            return pile.cards.length;
+          }
+        };
+        var overlappedCards = Math.max(len(_.max(pileSet.piles, len)), 1);
         if(divisor > 1) {
           ret = [ret[0] / divisor, 1 + ((overlappedCards) * padding)];
         } else {

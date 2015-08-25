@@ -16,9 +16,11 @@ import models.rules._
  */
 object TwoCell extends GameRules(
   id = "twocell",
+  completed = true,
   title = "Two Cell",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/two_cells.htm")),
   description = "A variation of ^freecell^ with only two cells.",
+  layout = Some("c::f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

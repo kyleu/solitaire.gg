@@ -16,10 +16,12 @@ import models.rules._
  */
 object Tripleharp extends GameRules(
   id = "tripleharp",
+  completed = true,
   title = "Tripleharp",
   like = Some("harp"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_harp.htm")),
   description = "A three-deck version of ^harp^ invented by Thomas Warfield.",
+  layout = Some("swf|.:t"),
   deckOptions = DeckOptions(
     numDecks = 3
   ),

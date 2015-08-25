@@ -17,12 +17,13 @@ import models.rules._
  */
 object WaxingMoon extends GameRules(
   id = "waxingmoon",
+  completed = true,
   title = "Waxing Moon",
   description = "A very difficult ^fortythieves^ variant by Thomas Warfield.",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/waxing_moon.htm")),
   deckOptions = DeckOptions(
     numDecks = 2,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Clubs, Suit.Horseshoes)
+    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs)
   ),
   stock = Some(
     StockRules(

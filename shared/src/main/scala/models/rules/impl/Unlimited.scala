@@ -19,11 +19,13 @@ import models.rules._
  */
 object Unlimited extends GameRules(
   id = "unlimited",
+  completed = true,
   title = "Unlimited",
   like = Some("interchange"),
   related = Seq("singleinterchange"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/unlimited.htm")),
   description = "An easier variant of ^interchange^, in which we are allowed unlimited redeals",
+  layout = Some("swf|::t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

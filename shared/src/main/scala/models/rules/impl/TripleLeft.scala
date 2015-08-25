@@ -17,10 +17,12 @@ import models.rules._
  */
 object TripleLeft extends GameRules(
   id = "tripleleft",
+  completed = true,
   title = "Triple Left",
   like = Some("movingleft"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_left.htm")),
   description = "Thomas Warfield's three-deck version of ^movingleft^.",
+  layout = Some("swf|.:t"),
   deckOptions = DeckOptions(
     numDecks = 3
   ),

@@ -20,6 +20,7 @@ import models.rules._
  */
 object TrustyTwelve extends GameRules(
   id = "trustytwelve",
+  completed = true,
   title = "Trusty Twelve",
   related = Seq("bunker", "knottynines", "sweetsixteen", "upandup"),
   links = Seq(

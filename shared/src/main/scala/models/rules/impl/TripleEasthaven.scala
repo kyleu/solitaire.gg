@@ -17,10 +17,12 @@ import models.rules._
  */
 object TripleEasthaven extends GameRules(
   id = "tripleeasthaven",
+  completed = true,
   title = "Triple Easthaven",
   like = Some("easthaven"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_easthaven.htm")),
   description = "A three-deck version of ^easthaven^ by Thomas Warfield.",
+  layout = Some("sf|.t"),
   deckOptions = DeckOptions(
     numDecks = 3
   ),

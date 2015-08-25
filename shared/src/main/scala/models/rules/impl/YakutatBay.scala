@@ -19,9 +19,11 @@ import models.rules._
  */
 object YakutatBay extends GameRules(
   id = "yakutatbay",
+  completed = true,
   title = "Yakutat Bay",
   like = Some("yukon"),
   description = "A cross between ^yukon^ and ^movingleft^.",
+  layout = Some(".:f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

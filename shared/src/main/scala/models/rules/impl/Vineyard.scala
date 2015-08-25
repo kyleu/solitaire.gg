@@ -15,10 +15,12 @@ import models.rules._
  */
 object Vineyard extends GameRules(
   id = "vineyard",
+  completed = true,
   title = "Vineyard",
   related = Seq("tenbyone", "winery"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/vineyard.htm")),
   description = "A difficult variation of ^bakersdozen^ invented by Peter Voke.",
+  layout = Some(":::f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
