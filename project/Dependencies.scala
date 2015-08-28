@@ -46,7 +46,8 @@ object Dependencies {
     val graphite = "io.dropwizard.metrics" % "metrics-graphite" % "3.1.2" withSources() intransitive()
   }
 
-  object Testing {
-    val akkaTestkit = "com.typesafe.akka" %% "akka-testkit" % "2.3.11"
+  object Akka {
+    val persistence = "com.typesafe.akka" %% "akka-persistence-experimental" % "2.3.11"
+    val testkit = "com.typesafe.akka" %% "akka-testkit" % "2.3.11"
   }
 }
