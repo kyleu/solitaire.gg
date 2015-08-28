@@ -1,4 +1,4 @@
-package models.queries.ddl
+package models.ddl
 
 import java.util.UUID
 
