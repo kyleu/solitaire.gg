@@ -1,8 +1,8 @@
 package services.database
 
 import models.database.Statement
-import models.queries.ddl.DdlQueries
-import models.queries.ddl._
+import models.ddl.DdlQueries
+import models.ddl._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import utils.Logging
 
