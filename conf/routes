@@ -86,6 +86,9 @@ GET         /admin/logs/:name                  controllers.admin.LogController.v
 GET         /admin/archive/list                controllers.admin.DataArchiveController.list()
 GET         /admin/archive/process             controllers.admin.DataArchiveController.process()
 
+GET         /admin/spark                       controllers.admin.SparkController.index()
+GET         /admin/spark/:job                  controllers.admin.SparkController.run(job)
+
 GET         /admin/report/trend                controllers.admin.ReportController.trend()
 GET         /admin/report/requests             controllers.admin.ReportController.requests()
 GET         /admin/report/email                controllers.admin.ReportController.email(d: org.joda.time.LocalDate ?= utils.DateUtils.today)

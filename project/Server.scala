@@ -24,6 +24,7 @@ object Server {
     Seq(
       Cache.ehCache, Database.postgresAsync, Mail.mailer, Authentication.silhouette,
       Play.playFilters, Play.playWs, Play.playTest,
+      Spark.core,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap, WebJars.phaser, WebJars.underscore, WebJars.d3, WebJars.nvd3,
       Akka.persistence, Akka.testkit
@@ -39,6 +40,9 @@ object Server {
     scalacOptions in Test ++= Seq("-Yrangepos"),
 
     libraryDependencies ++= dependencies,
+    dependencyOverrides ++= Set(
+      "com.fasterxml.jackson.core" % "jackson-databind" % "2.4.4"
+    ),
 
     routesGenerator := InjectedRoutesGenerator,
     routesImport ++= Seq("utils.web.RoutingImports._"),
