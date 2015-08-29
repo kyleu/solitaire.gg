@@ -1,13 +1,14 @@
 package controllers.admin
 
 import controllers.BaseController
+import play.api.inject.ApplicationLifecycle
 import services.spark.{ SparkJobHelper, SparkService }
 import utils.{ Formatter, ApplicationContext }
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class SparkController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+class SparkController @javax.inject.Inject() (override val ctx: ApplicationContext, lifecycle: ApplicationLifecycle) extends BaseController {
   def index = withAdminSession("index") { implicit request =>
     if(ctx.config.sparkEnabled) {
       Future.successful(Ok(views.html.admin.spark.index()))
@@ -19,9 +20,8 @@ class SparkController @javax.inject.Inject() (override val ctx: ApplicationConte
   def run(job: String) = withAdminSession(s"run-$job") { implicit request =>
     if(ctx.config.sparkEnabled) {
       val startMs = System.currentTimeMillis()
-      val ctx = SparkService.context
 
-      val logData = ctx.textFile("/Users/kyle/Temp/spark/s3/2015/7/1/*.gz")
+      val logData = SparkService.rddTextfile("/Users/kyle/Temp/spark/s3/2015/7/1/*.gz")
 
       val rdd = job match {
         case "one" => SparkJobHelper.processOne(logData)

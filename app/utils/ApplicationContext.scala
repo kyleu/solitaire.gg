@@ -13,7 +13,6 @@ import play.api.i18n.MessagesApi
 import play.api.inject.ApplicationLifecycle
 import play.api.libs.concurrent.Akka
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.libs.ws.WSClient
 import play.api.mvc.{ Action, RequestHeader, Results }
 import play.api.routing.Router
 import services.database.{ Database, Schema }
@@ -71,7 +70,7 @@ class ApplicationContext @javax.inject.Inject() (
     Schema.update()
 
     if(config.sparkEnabled) {
-      SparkService.start(config.sparkMaster)
+      SparkService.start(config.sparkMaster, config.sparkPort)
     }
 
     scheduleTask()

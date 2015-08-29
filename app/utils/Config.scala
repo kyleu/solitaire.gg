@@ -29,6 +29,7 @@ class Config @javax.inject.Inject() (cnf: play.api.Configuration) {
   // Spark
   val sparkEnabled = cnf.getBoolean("spark.enabled").getOrElse(false)
   val sparkMaster = cnf.getString("spark.master").getOrElse("local[8]")
+  val sparkPort = cnf.getInt("spark.uiport").getOrElse(4040)
 
   // Admin
   val adminEmail = cnf.getString("game.admin.email").getOrElse("admin@localhost")
