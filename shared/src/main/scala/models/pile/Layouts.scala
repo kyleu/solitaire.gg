@@ -1,6 +1,6 @@
 package models.pile
 
-import models.rules.{ GameRules, GameRulesSet }
+import models.rules.GameRules
 
 /**
  * Layout key:
