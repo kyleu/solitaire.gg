@@ -13,6 +13,7 @@ import models.rules._
  */
 object SingleRail extends GameRules(
   id = "singlerail",
+  completed = false,
   title = "Single Rail",
   related = Seq("doublerail"),
   links = Seq(
@@ -23,6 +24,7 @@ object SingleRail extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SingleRail.htm")
   ),
   description = "A one-deck version of ^doublerail^. A good little game for small screens.",
+  layout = Some("swf|t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

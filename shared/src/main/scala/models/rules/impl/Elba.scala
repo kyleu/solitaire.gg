@@ -19,10 +19,12 @@ import models.rules._
  */
 object Elba extends GameRules(
   id = "elba",
+  completed = false,
   title = "Elba",
   like = Some("fortythieves"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/elba.htm")),
   description = "A variant of ^fortythieves^ with ^klondike^-like building rules.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

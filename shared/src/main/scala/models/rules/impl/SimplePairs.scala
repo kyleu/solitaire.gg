@@ -20,6 +20,7 @@ import models.rules._
  */
 object SimplePairs extends GameRules(
   id = "simplepairs",
+  completed = false,
   title = "Simple Pairs",
   related = Seq("crisscross", "eighteens", "straightfifteens", "blockten", "patientpairs", "doubletcell", "doublets"),
   links = Seq(
@@ -30,6 +31,7 @@ object SimplePairs extends GameRules(
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
   description = "A game where you remove pairs of cards of the same rank. Bring your luck, not your brain, to this game.",
+  layout = Some("sf|t"),
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(
     StockRules(

@@ -28,10 +28,12 @@ import models.rules._
  */
 object PantherCreek extends GameRules(
   id = "panthercreek",
+  completed = false,
   title = "Panther Creek",
   like = Some("golf"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/panther_creek.htm")),
   description = "A four-deck ^golf^ variation.",
+  layout = Some("sf|t"),
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   deckOptions = DeckOptions(
     numDecks = 4

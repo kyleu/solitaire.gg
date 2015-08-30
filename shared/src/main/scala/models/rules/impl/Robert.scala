@@ -17,6 +17,7 @@ import models.rules._
  */
 object Robert extends GameRules(
   id = "robert",
+  completed = false,
   title = "Robert",
   related = Seq("bobby"),
   links = Seq(
@@ -26,6 +27,7 @@ object Robert extends GameRules(
     Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/robert.htm")
   ),
   description = "An nearly unwinnable game with no tableau.",
+  layout = Some("swf"),
   stock = Some(
     StockRules(
       maximumDeals = Some(3)

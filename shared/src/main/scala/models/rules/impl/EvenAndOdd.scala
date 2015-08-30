@@ -36,10 +36,12 @@ import models.rules._
  */
 object EvenAndOdd extends GameRules(
   id = "evenandodd",
+  completed = false,
   title = "Even and Odd",
   like = Some("boulevard"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/even-and-odd.htm")),
   description = "A one-deck version of ^boulevard^.",
+  layout = Some("swff|r|t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

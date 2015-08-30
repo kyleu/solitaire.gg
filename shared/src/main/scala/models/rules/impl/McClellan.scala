@@ -16,10 +16,12 @@ import models.rules._
  */
 object McClellan extends GameRules(
   id = "mcclellan",
+  completed = false,
   title = "McClellan",
   like = Some("littlenapoleon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/mcclellan.htm")),
   description = "A harder variation of ^littlenapoleon^ where you need to build in suit.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -18,6 +18,7 @@ import models.rules._
  */
 object BigHarp extends GameRules(
   id = "bigharp",
+  completed = false,
   title = "Big Harp",
   like = Some("endlessharp"),
   links = Seq(
@@ -25,6 +26,7 @@ object BigHarp extends GameRules(
     Link("Lena Games", "www.lenagames.com/bp_files/rul/big-harp.htm")
   ),
   description = "A two-deck ^klondike^ variation that is different than ^harp^ in several ways, without really being that much bigger.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

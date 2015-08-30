@@ -17,10 +17,12 @@ import models.rules._
  */
 object SingleLeft extends GameRules(
   id = "singleleft",
+  completed = false,
   title = "Single Left",
   like = Some("movingleft"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/single_left.htm")),
   description = "Thomas Warfield's one-deck version of ^movingleft^.",
+  layout = Some("swf|t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

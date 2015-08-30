@@ -16,6 +16,7 @@ import models.rules._
  */
 object Congress extends GameRules(
   id = "congress",
+  completed = false,
   title = "Congress",
   related = Seq("parliament", "diplomat", "dieppe"),
   links = Seq(

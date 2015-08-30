@@ -17,6 +17,7 @@ import models.rules._
  */
 object SanJuanHill extends GameRules(
   id = "sanjuanhill",
+  completed = false,
   title = "San Juan Hill",
   like = Some("fortythieves"),
   links = Seq(
@@ -24,6 +25,7 @@ object SanJuanHill extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SanJuanHill.htm")
   ),
   description = "An easier variant of ^fortythieves^ in which aces are already on the foundation.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -17,10 +17,12 @@ import models.rules._
  */
 object Quizzie extends GameRules(
   id = "quizzie",
+  completed = false,
   title = "Quizzie",
   like = Some("inquisitor"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quizzie.htm")),
   description = "A variation of ^inquisitor^ by Thomas Warfield where you deal fewer cards in each pass through the deck.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

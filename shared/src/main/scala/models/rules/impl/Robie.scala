@@ -14,10 +14,12 @@ import models.rules._
  */
 object Robie extends GameRules(
   id = "robie",
+  completed = false,
   title = "Robie",
   like = Some("fortythieves"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/robie.htm")),
   description = "Thomas Warfield's version of ^fortythieves^ in which the tableau starts empty.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

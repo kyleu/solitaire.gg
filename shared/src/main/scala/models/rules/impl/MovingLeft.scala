@@ -17,10 +17,12 @@ import models.rules._
  */
 object MovingLeft extends GameRules(
   id = "movingleft",
+  completed = false,
   title = "Moving Left",
   related = Seq("tripleleft", "singleleft"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/moving_left.htm")),
   description = "A variant of ^gargantua^ or ^doubleklondike^ where empty spaces are automatically filled from the next column.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

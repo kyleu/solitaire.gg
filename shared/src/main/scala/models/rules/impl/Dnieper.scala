@@ -19,9 +19,11 @@ import models.rules._
  */
 object Dnieper extends GameRules(
   id = "dnieper",
+  completed = false,
   title = "Dnieper",
   like = Some("kiev"),
   description = "Exactly like ^kiev^ but slightly easier because kings can be played on aces.",
+  layout = Some("sf|t"),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

@@ -27,6 +27,7 @@ import models.rules._
  */
 object GolfRush extends GameRules(
   id = "golfrush",
+  completed = false,
   title = "Golf Rush",
   like = Some("golf"),
   links = Seq(
@@ -34,6 +35,7 @@ object GolfRush extends GameRules(
     Link("Jan Wolter's Experiments", "/article/golf.html")
   ),
   description = "A variant of ^golf^ played on with a ^klondike^-style tableau.",
+  layout = Some("sf|t"),
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(
     StockRules(

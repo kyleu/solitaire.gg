@@ -16,6 +16,7 @@ import models.rules._
  */
 object RankAndFile extends GameRules(
   id = "rankandfile",
+  completed = false,
   title = "Rank and File",
   like = Some("numberten"),
   related = Seq("emperor"),
@@ -27,6 +28,7 @@ object RankAndFile extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/rank_and_file.htm")
   ),
   description = "Like ^numberten^, but three cards in each stack are dealt face down.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

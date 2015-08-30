@@ -28,6 +28,7 @@ import models.rules._
  */
 object Intelligence extends GameRules(
   id = "intelligence",
+  completed = false,
   title = "Intelligence",
   like = Some("labellelucie"),
   links = Seq(
@@ -41,6 +42,7 @@ object Intelligence extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/intelligence.html")
   ),
   description = "A two-deck version of ^labellelucie^.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

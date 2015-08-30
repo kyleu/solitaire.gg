@@ -25,6 +25,7 @@ import models.rules._
  */
 object SpiderOneSuit extends GameRules(
   id = "spideronesuit",
+  completed = false,
   title = "Spider One Suit",
   like = Some("spider"),
   links = Seq(
@@ -33,6 +34,7 @@ object SpiderOneSuit extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Spider.html.en")
   ),
   description = "^spider^ with nothing but spades, spades, spades, as far as the eye can see.",
+  layout = Some("s|t"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 8,

@@ -25,10 +25,12 @@ import models.rules._
  */
 object Needle extends GameRules(
   id = "needle",
+  completed = false,
   title = "Needle",
   like = Some("haystack"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/needle.htm")),
   description = "A game with a U-shaped tableau and a reserve you can store cards in.",
+  layout = Some("f|tt"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

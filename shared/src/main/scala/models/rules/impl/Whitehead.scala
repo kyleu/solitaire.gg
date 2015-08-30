@@ -12,6 +12,7 @@ import models.rules._
  */
 object Whitehead extends GameRules(
   id = "whitehead",
+  completed = false,
   title = "Whitehead",
   links = Seq(
     Link("Solitaire Whizz", "www.solitairewhizz.com/how-to-play/whitehead.shtml"),
@@ -27,6 +28,7 @@ object Whitehead extends GameRules(
   ),
   description = "Like ^klondike^, but with cards face up and you build in matching colors instead of alternating colors. You can move sequences, bu" +
     "t only if the suits match.",
+  layout = Some("swf|t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

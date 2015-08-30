@@ -19,6 +19,7 @@ import models.rules._
  */
 object German extends GameRules(
   id = "german",
+  completed = false,
   title = "German",
   related = Seq("bavarian"),
   links = Seq(
@@ -31,6 +32,7 @@ object German extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/german_patience.html")
   ),
   description = "A strange and difficult game where you must build sequences on the tableau, regardless of suit.",
+  layout = Some("sw|t"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2

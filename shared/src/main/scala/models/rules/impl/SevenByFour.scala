@@ -18,10 +18,12 @@ import models.rules._
  */
 object SevenByFour extends GameRules(
   id = "sevenbyfour",
+  completed = false,
   title = "Seven by Four",
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/seven_by_four.htm")),
   description = "A harder ^freecell^ variant with one fewer tableau column.",
+  layout = Some("f|c|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -15,10 +15,12 @@ import models.rules._
  */
 object Morehead extends GameRules(
   id = "morehead",
+  completed = false,
   title = "Morehead",
   like = Some("somerset"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/morehead.htm")),
   description = "A ^somerset^ variant where we build in different suits instead of alternate colors.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

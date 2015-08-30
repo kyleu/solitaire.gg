@@ -17,6 +17,7 @@ import models.rules._
  */
 object Breakwater extends GameRules(
   id = "breakwater",
+  completed = false,
   title = "Breakwater",
   like = Some("interchange"),
   links = Seq(
@@ -25,6 +26,7 @@ object Breakwater extends GameRules(
     Link("Solitaire City", "www.solitairecity.com/Alternations.shtml")
   ),
   description = "An easier variant of ^interchange^, in which we build regardless of suit.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

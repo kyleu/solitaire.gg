@@ -27,6 +27,7 @@ import models.rules._
  */
 object OddAndEven extends GameRules(
   id = "oddandeven",
+  completed = false,
   title = "Odd and Even",
   related = Seq("royalcotillion"),
   links = Seq(
@@ -40,6 +41,7 @@ object OddAndEven extends GameRules(
     Link("Dick's Games of Solitaire (1898)", "howtoplaysolitaire.blogspot.com/2010/06/odd-and-even-double-deck-solitaire-game.html")
   ),
   description = "A difficult, old and remarkably stupid game where foundation piles are built up by twos and no building is allowed on the tableau.",
+  layout = Some("swff|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

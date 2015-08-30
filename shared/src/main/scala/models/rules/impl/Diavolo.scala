@@ -32,6 +32,7 @@ import models.rules._
  */
 object Diavolo extends GameRules(
   id = "diavolo",
+  completed = false,
   title = "Diavolo",
   related = Seq("rougeetnoir"),
   links = Seq(

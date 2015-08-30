@@ -15,6 +15,7 @@ import models.rules._
  */
 object NumberTen extends GameRules(
   id = "numberten",
+  completed = false,
   title = "Number Ten",
   related = Seq("rankandfile"),
   links = Seq(
@@ -28,6 +29,7 @@ object NumberTen extends GameRules(
   ),
   description = "Like ^fortythieves^, but two cards in each tableau stack are dealt face down, we build in alternating colors, and can move stacks " +
     "as a whole.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

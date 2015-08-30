@@ -35,10 +35,12 @@ import models.rules._
  */
 object RainbowFan extends GameRules(
   id = "rainbowfan",
+  completed = false,
   title = "Rainbow Fan",
   related = Seq("crescent"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rainbow_fan.htm")),
   description = "A bidirectional building game where you can rotate cards in the stacks three times.",
+  layout = Some("sff|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

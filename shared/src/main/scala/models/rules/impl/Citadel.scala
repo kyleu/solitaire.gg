@@ -18,6 +18,7 @@ import models.rules._
  */
 object Citadel extends GameRules(
   id = "citadel",
+  completed = false,
   title = "Citadel",
   like = Some("beleagueredcastle"),
   related = Seq("exiledkings"),
@@ -29,6 +30,7 @@ object Citadel extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/citadel.php")
   ),
   description = "An easier variation of ^beleagueredcastle^ where cards are moved to the foundation during the deal.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

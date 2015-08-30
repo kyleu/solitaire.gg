@@ -20,6 +20,7 @@ import models.rules._
  */
 object KnottyNines extends GameRules(
   id = "knottynines",
+  completed = false,
   title = "Knotty Nines",
   like = Some("trustytwelve"),
   links = Seq(
@@ -29,6 +30,7 @@ object KnottyNines extends GameRules(
     Link("Antonia Hoyland", "www.allreadable.com/4c9d6pdH")
   ),
   description = "A more difficult variation of ^trustytwelve^.",
+  layout = Some("s|t"),
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(
     StockRules(

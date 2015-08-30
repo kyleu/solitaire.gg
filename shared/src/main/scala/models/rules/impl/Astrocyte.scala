@@ -24,9 +24,11 @@ import models.rules._
  */
 object Astrocyte extends GameRules(
   id = "astrocyte",
+  completed = false,
   title = "Astrocyte",
   like = Some("spider"),
   description = "A compressed game of ^spider^ with four cells.",
+  layout = Some("sf|c|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

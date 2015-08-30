@@ -21,6 +21,7 @@ import models.rules._
  */
 object CrissCross extends GameRules(
   id = "crisscross",
+  completed = false,
   title = "Criss Cross",
   like = Some("simplepairs"),
   links = Seq(
@@ -28,6 +29,7 @@ object CrissCross extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/CrissCross.htm")
   ),
   description = "A variation of ^simplepairs^ that requires a very large dose of pure luck to win.",
+  layout = Some("swf|t"),
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(
     StockRules(

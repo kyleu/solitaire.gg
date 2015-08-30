@@ -17,9 +17,11 @@ import models.rules._
  */
 object Castile extends GameRules(
   id = "castile",
+  completed = false,
   title = "Castile",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/castile.htm")),
   description = "An open variant of ^bristol^ invented by Thomas Warfield.",
+  layout = Some("f|r|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

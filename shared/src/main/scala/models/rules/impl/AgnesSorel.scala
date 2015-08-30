@@ -18,6 +18,7 @@ import models.rules._
  */
 object AgnesSorel extends GameRules(
   id = "agnessorel",
+  completed = false,
   title = "Agnes Sorel",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/agnes_sorel.htm"),
@@ -28,6 +29,7 @@ object AgnesSorel extends GameRules(
     Link("Jan Wolter's Experiments", "/article/agnessorel.html")
   ),
   description = "A variation on ^klondike^ where cards are dealt directly onto the tableau as in ^spider^.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

@@ -17,6 +17,7 @@ import models.rules._
  */
 object MilliganHarp extends GameRules(
   id = "milliganharp",
+  completed = false,
   title = "Milligan Harp",
   related = Seq("milliganyukon"),
   links = Seq(
@@ -27,6 +28,7 @@ object MilliganHarp extends GameRules(
     Link("PySol", "pysolfc.sourceforge.net/doc/rules/milliganharp.html")
   ),
   description = "A cross between ^missmilligan^ and the two-deck ^klondike^ variant known as Harp.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

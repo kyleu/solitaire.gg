@@ -25,10 +25,12 @@ import models.rules._
  */
 object Roman extends GameRules(
   id = "roman",
+  completed = false,
   title = "Roman",
   like = Some("signora"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/roman_patience.htm")),
   description = "A variation of ^signora^ where we build regardless of suit. Invented by Thomas Warfield.",
+  layout = Some("swf|r|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

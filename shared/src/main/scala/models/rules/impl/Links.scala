@@ -16,9 +16,11 @@ import models.rules._
  */
 object Links extends GameRules(
   id = "links",
+  completed = false,
   title = "Links",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/links.htm")),
   description = "A pair-removal game by Thomas Warfield, distantly related to ^golf^. Your priority should be to clear the cards in the stock.",
+  layout = Some("swf|t"),
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(
     StockRules(

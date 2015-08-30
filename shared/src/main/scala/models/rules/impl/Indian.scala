@@ -13,6 +13,7 @@ import models.rules._
  */
 object Indian extends GameRules(
   id = "indian",
+  completed = false,
   title = "Indian",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/indian.htm"),
@@ -28,6 +29,7 @@ object Indian extends GameRules(
   ),
   description = "An easy game that is similar to ^fortythieves^, except that the first card in each stack of the 10 by 3 tableau is face down, and " +
     "cards can be played on any suit other than their own.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

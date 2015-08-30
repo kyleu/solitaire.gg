@@ -20,6 +20,7 @@ import models.rules._
  */
 object Ukrainian extends GameRules(
   id = "ukrainian",
+  completed = false,
   title = "Ukrainian",
   like = Some("russian"),
   links = Seq(
@@ -27,6 +28,7 @@ object Ukrainian extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/UkrainianSolitaire.htm")
   ),
   description = "A rarely winnable version of ^russian^ Solitaire where only complete sequences can be taken off, as in spider.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

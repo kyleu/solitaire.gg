@@ -18,10 +18,12 @@ import models.rules._
  */
 object Phoenix extends GameRules(
   id = "phoenix",
+  completed = false,
   title = "Phoenix",
   like = Some("arizona"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/phoenix.htm")),
   description = "A more difficult variation of ^arizona^ where you build by alternate colors.",
+  layout = Some("wf|t"),
   waste = Some(
     WasteRules(
       name = "Reserve"

@@ -18,10 +18,12 @@ import models.rules._
  */
 object Dimes extends GameRules(
   id = "dimes",
+  completed = false,
   title = "Dimes",
   like = Some("busyaces"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/dimes.htm")),
   description = "A variation on ^deuces^ with fewer tableau piles.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Ten

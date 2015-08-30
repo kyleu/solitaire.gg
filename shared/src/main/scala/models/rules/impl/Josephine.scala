@@ -15,6 +15,7 @@ import models.rules._
  */
 object Josephine extends GameRules(
   id = "josephine",
+  completed = false,
   title = "Josephine",
   like = Some("fortythieves"),
   links = Seq(
@@ -26,6 +27,7 @@ object Josephine extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/josephine.htm")
   ),
   description = "Similar to ^fortythieves^, except that you can move sequences.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -17,6 +17,7 @@ import models.rules._
  */
 object Fan extends GameRules(
   id = "fan",
+  completed = false,
   title = "Fan",
   related = Seq("boxfan", "freefan", "ceilingfan", "midnightclover"),
   links = Seq(
@@ -24,6 +25,7 @@ object Fan extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/fan.htm")
   ),
   description = "The original Fan game involves building in suit on eighteen tableau piles.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

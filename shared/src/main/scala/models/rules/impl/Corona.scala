@@ -15,6 +15,7 @@ import models.rules._
  */
 object Corona extends GameRules(
   id = "corona",
+  completed = false,
   title = "Corona",
   related = Seq("quadrangle"),
   links = Seq(
@@ -26,6 +27,7 @@ object Corona extends GameRules(
   ),
   description = "A game similar to ^fortyandeight^ where spaces are autofilled from the waste and stock. The best way to win seems to be to get luc" +
     "ky.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

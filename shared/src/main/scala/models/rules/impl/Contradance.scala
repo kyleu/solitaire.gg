@@ -18,6 +18,7 @@ import models.rules._
  */
 object Contradance extends GameRules(
   id = "contradance",
+  completed = false,
   title = "Contradance",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/contradance.htm"),
@@ -25,6 +26,7 @@ object Contradance extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/contradance.htm")
   ),
   description = "A variation of ^sixesandsevens^ that is just as brainless as ^captivequeens^, but requires vastly more luck to ever win.",
+  layout = Some("swff"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

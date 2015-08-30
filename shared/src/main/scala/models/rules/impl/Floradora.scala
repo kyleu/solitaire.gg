@@ -24,6 +24,7 @@ import models.rules._
  */
 object Floradora extends GameRules(
   id = "floradora",
+  completed = false,
   title = "Floradora",
   like = Some("takingsilk"),
   links = Seq(
@@ -31,6 +32,7 @@ object Floradora extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/floradora.htm")
   ),
   description = "A two-deck variation of ^thirtysix^ with an extra foundation pile for kings, but no stack moves.",
+  layout = Some("swff|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

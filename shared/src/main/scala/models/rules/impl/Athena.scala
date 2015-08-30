@@ -18,6 +18,7 @@ import models.rules._
  */
 object Athena extends GameRules(
   id = "athena",
+  completed = false,
   title = "Athena",
   like = Some("klondike"),
   related = Seq("bureau", "minerva"),
@@ -27,6 +28,7 @@ object Athena extends GameRules(
     Link("Elton Gahr on HobbyHub", "www.solitairelaboratory.com/buildingranks.html")
   ),
   description = "A ^klondike^ variation with a rectangular starting tableau in which cards alternate face-up and face-down.",
+  layout = Some("swf|t"),
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

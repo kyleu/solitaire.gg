@@ -18,6 +18,7 @@ import models.rules._
  */
 object ExiledKings extends GameRules(
   id = "exiledkings",
+  completed = false,
   title = "Exiled Kings",
   like = Some("citadel"),
   links = Seq(
@@ -25,6 +26,7 @@ object ExiledKings extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/exiled-kings.htm")
   ),
   description = "A more difficult variation of ^citadel^ where spaces can only be filled by kings.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

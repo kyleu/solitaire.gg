@@ -21,11 +21,13 @@ import models.rules._
  */
 object Gotham extends GameRules(
   id = "gotham",
+  completed = false,
   title = "Gotham",
   like = Some("newyork"),
   related = Seq("bigapple"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gotham.htm")),
   description = "An easier variation of ^newyork^ where we build regardless of suit and same-suit stacks can be moved.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

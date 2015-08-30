@@ -19,9 +19,11 @@ import models.rules._
  */
 object DemonFan extends GameRules(
   id = "demonfan",
+  completed = false,
   title = "Demon Fan",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/demon_fan.htm")),
   description = "A very easy game where you build down in alternate colors, and are allowed six redeals.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

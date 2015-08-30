@@ -15,6 +15,7 @@ import models.rules._
  */
 object ThievesOfEgypt extends GameRules(
   id = "thievesofegypt",
+  completed = false,
   title = "Thieves of Egypt",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/thieves_of_egypt.htm"),
@@ -23,6 +24,7 @@ object ThievesOfEgypt extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/thieves-of-egypt.htm")
   ),
   description = "A variant of ^fortythieves^ with a pyramid-shaped tableau.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -20,9 +20,11 @@ import models.rules._
  */
 object JumboKlondike extends GameRules(
   id = "jumboklondike",
+  completed = false,
   title = "Jumbo Klondike",
   like = Some("klondike"),
   description = "^klondike^ played with a six-suit deck.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs, Suit.Stars, Suit.Tridents)
   ),

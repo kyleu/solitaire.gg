@@ -15,6 +15,7 @@ import models.rules._
  */
 object Scotch extends GameRules(
   id = "scotch",
+  completed = false,
   title = "Scotch",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/scotch_patience.htm"),
@@ -25,6 +26,7 @@ object Scotch extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/scotch_patience.html")
   ),
   description = "Foundations build in alternate colors, tableau builds regardless of suit.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

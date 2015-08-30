@@ -21,10 +21,12 @@ import models.rules._
  */
 object RippleFan extends GameRules(
   id = "ripplefan",
+  completed = false,
   title = "Ripple Fan",
   like = Some("cruel"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/ripple_fan.htm")),
   description = "An easier variation of ^cruel^ with one more tableau pile.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

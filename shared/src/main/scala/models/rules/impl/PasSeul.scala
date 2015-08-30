@@ -15,6 +15,7 @@ import models.rules._
  */
 object PasSeul extends GameRules(
   id = "passeul",
+  completed = false,
   title = "Pas Seul",
   like = Some("blindalleys"),
   links = Seq(
@@ -26,6 +27,7 @@ object PasSeul extends GameRules(
   ),
   description = "A ^klondike^ variant with a rectangular tableau, differing from ^blindalleys^ only in the number of passes through the deck allowe" +
     "d. The name refers to a dance sequence for one person.",
+  layout = Some("swf|t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

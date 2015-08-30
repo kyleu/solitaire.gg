@@ -21,6 +21,7 @@ import models.rules._
  */
 object BlockTen extends GameRules(
   id = "blockten",
+  completed = false,
   title = "Block Ten",
   like = Some("simplepairs"),
   links = Seq(
@@ -33,6 +34,7 @@ object BlockTen extends GameRules(
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
   description = "A game of pure luck where you can remove pairs that add to ten, or pairs of face cards, but not tens.",
+  layout = Some("sf|t"),
   victoryCondition = VictoryCondition.AllButFourCardsOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOr10JQK,
   stock = Some(

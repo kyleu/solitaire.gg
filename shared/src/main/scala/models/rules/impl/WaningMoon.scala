@@ -17,6 +17,7 @@ import models.rules._
  */
 object WaningMoon extends GameRules(
   id = "waningmoon",
+  completed = false,
   title = "Waning Moon",
   related = Seq("thirtyninesteps", "eclipse", "lucasleaps"),
   links = Seq(
@@ -26,6 +27,7 @@ object WaningMoon extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/waning_moon.htm")
   ),
   description = "A ^fortythieves^ variant with more tableau piles.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Clubs, Suit.Horseshoes)

@@ -21,10 +21,12 @@ import models.rules._
  */
 object Opus extends GameRules(
   id = "opus",
+  completed = false,
   title = "Opus",
   like = Some("penguin"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/opus.htm")),
   description = "Thomas Warfield's much more difficult version of ^penguin^ has two fewer cells",
+  layout = Some("f|c|t"),
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

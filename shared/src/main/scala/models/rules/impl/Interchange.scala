@@ -17,6 +17,7 @@ import models.rules._
  */
 object Interchange extends GameRules(
   id = "interchange",
+  completed = false,
   title = "Interchange",
   related = Seq("tripleinterchange", "breakwater", "unlimited"),
   links = Seq(
@@ -25,6 +26,7 @@ object Interchange extends GameRules(
     Link("Michael Smoker's very confusing description", "www.hobbyhub360.com/index.php/interchange-solitaire-card-game-8745/")
   ),
   description = "An extremely difficult ^fortythieves^ variant with alternate cards dealt face down.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -19,11 +19,13 @@ import models.rules._
  */
 object EndlessHarp extends GameRules(
   id = "endlessharp",
+  completed = false,
   title = "Endless Harp",
   like = Some("klondike"),
   related = Seq("bigharp"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/endless_harp.htm")),
   description = "A variation of Big Harp which allows unlimited redeals.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

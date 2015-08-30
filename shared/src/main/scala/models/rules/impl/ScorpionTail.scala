@@ -21,9 +21,11 @@ import models.rules._
  */
 object ScorpionTail extends GameRules(
   id = "scorpiontail",
+  completed = false,
   title = "Scorpion Tail",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/scorpion_tail.htm")),
   description = "A variation of ^scorpion^ where we build down by alternate color instead of down in suit.",
+  layout = Some("sf|t"),
   stock = Some(
     StockRules(
       name = "Reserve",

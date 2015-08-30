@@ -17,10 +17,12 @@ import models.rules._
  */
 object Chinaman extends GameRules(
   id = "chinaman",
+  completed = false,
   title = "Chinaman",
   like = Some("klondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinaman.htm")),
   description = "A ^klondike^ variant where we build by different suits.",
+  layout = Some("swf|t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(2),

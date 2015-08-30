@@ -27,6 +27,7 @@ import models.rules._
  */
 object Tabbycat extends GameRules(
   id = "tabbycat",
+  completed = false,
   title = "Tabbycat",
   like = Some("manx"),
   links = Seq(
@@ -37,6 +38,7 @@ object Tabbycat extends GameRules(
   ),
   description = "An easier version of ^manx^ which allows a sequence to be parkted in the tail. Also invented by Rick Holzgrafe of Solitaire Til Da" +
     "wn.",
+  layout = Some("sf|tt"),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.TableauFirstSet,

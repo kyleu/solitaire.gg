@@ -21,10 +21,12 @@ import models.rules._
  */
 object DoubleMinerva extends GameRules(
   id = "doubleminerva",
+  completed = false,
   title = "Double Minerva",
   like = Some("minerva"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_minerva.htm")),
   description = "Thomas Warfield's two-deck version of ^minerva^.",
+  layout = Some("swf|r|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

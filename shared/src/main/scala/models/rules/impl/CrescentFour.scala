@@ -36,9 +36,11 @@ import models.rules._
  */
 object CrescentFour extends GameRules(
   id = "crescentfour",
+  completed = false,
   title = "Crescent Four",
   like = Some("crescent"),
   description = "An easier variation of ^crescent^ that allows one extra rotation.",
+  layout = Some("ff|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

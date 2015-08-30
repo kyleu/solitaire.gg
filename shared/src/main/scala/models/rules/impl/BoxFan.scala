@@ -18,10 +18,12 @@ import models.rules._
  */
 object BoxFan extends GameRules(
   id = "boxfan",
+  completed = false,
   title = "Box Fan",
   like = Some("fan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/box_fan.htm")),
   description = "A ^fan^ variant with building by alternate color.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

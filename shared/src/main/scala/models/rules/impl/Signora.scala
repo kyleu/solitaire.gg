@@ -26,11 +26,13 @@ import models.rules._
  */
 object Signora extends GameRules(
   id = "signora",
+  completed = false,
   title = "Signora",
   like = Some("colonel"),
   related = Seq("doublesignora", "fallingstar", "blondesandbrunettes", "roman"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/signora.htm")),
   description = "Build everything in alternate colors, while trying to clear an eleven-card reserve to the foundaton.",
+  layout = Some("swf|r|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

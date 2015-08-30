@@ -21,6 +21,7 @@ import models.rules._
  */
 object Penguin extends GameRules(
   id = "penguin",
+  completed = false,
   title = "Penguin",
   related = Seq("opus"),
   links = Seq(

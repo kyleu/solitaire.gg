@@ -31,6 +31,7 @@ import models.rules._
  */
 object BlackHole extends GameRules(
   id = "blackhole",
+  completed = false,
   title = "Black Hole",
   like = Some("allinarow"),
   related = Seq("binarystar"),
@@ -45,6 +46,7 @@ object BlackHole extends GameRules(
     Link("Jan Wolter's Experiments", "/article/blackhole.html")
   ),
   description = "Like ^allinarow^, this is a variation of ^golf^ without a stock. Invented by David Parlett.",
+  layout = Some("f|t"),
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(
     FoundationRules(

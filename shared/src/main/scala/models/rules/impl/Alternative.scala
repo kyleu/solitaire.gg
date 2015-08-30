@@ -32,6 +32,7 @@ import models.rules._
  */
 object Alternative extends GameRules(
   id = "alternative",
+  completed = false,
   title = "Alternative",
   like = Some("cloverleaf"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/alternative.htm")),

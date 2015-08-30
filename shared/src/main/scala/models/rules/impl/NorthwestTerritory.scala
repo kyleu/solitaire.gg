@@ -16,12 +16,14 @@ import models.rules._
  */
 object NorthwestTerritory extends GameRules(
   id = "northwestterritory",
+  completed = false,
   title = "Northwest Territory",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/northwest_territory.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/northwest_territory.html")
   ),
   description = "A cross between ^flowergarden^ and ^klondike^, slightly easier than the similar ^klondiketerritory^ game.",
+  layout = Some("wf|t"),
   waste = Some(
     WasteRules(
       name = "Reserve"

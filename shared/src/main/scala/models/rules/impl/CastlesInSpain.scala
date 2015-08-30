@@ -22,6 +22,7 @@ import models.rules._
  */
 object CastlesInSpain extends GameRules(
   id = "castlesinspain",
+  completed = false,
   title = "Castles in Spain",
   like = Some("spanish"),
   links = Seq(
@@ -33,6 +34,7 @@ object CastlesInSpain extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/castles_in_spain.htm")
   ),
   description = "A variant of ^bakersdozen^ that allows filling in spaces with any card and where we build in alternate colors.",
+  layout = Some("f|tt"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

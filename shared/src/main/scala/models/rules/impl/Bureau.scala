@@ -19,11 +19,13 @@ import models.rules._
  */
 object Bureau extends GameRules(
   id = "bureau",
+  completed = false,
   title = "Bureau",
   like = Some("athena"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/bureau.htm")),
   description = "This game has rules similar to ^klondike^, except you build the foundation in alternate colors and cannot fill spaces in the table" +
     "au.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

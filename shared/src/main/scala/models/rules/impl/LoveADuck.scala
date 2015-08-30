@@ -19,8 +19,10 @@ import models.rules._
  */
 object LoveADuck extends GameRules(
   id = "loveaduck",
+  completed = false,
   title = "Love a Duck",
   description = "A ^yukon^-type game, played on an interlocking tableau.",
+  layout = Some("f|p"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

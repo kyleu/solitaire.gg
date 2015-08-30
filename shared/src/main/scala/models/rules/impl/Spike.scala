@@ -18,10 +18,12 @@ import models.rules._
  */
 object Spike extends GameRules(
   id = "spike",
+  completed = false,
   title = "Spike",
   like = Some("klondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/spike.htm")),
   description = "^klondike^ with three waste piles.",
+  layout = Some("swf|t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

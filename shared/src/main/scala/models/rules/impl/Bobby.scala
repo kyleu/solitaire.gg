@@ -17,10 +17,12 @@ import models.rules._
  */
 object Bobby extends GameRules(
   id = "bobby",
+  completed = false,
   title = "Bobby",
   like = Some("robert"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bobby.htm")),
   description = "A variation of ^robert^ with a second foundation pile to make it easier, but not much easier.",
+  layout = Some("swf"),
   stock = Some(
     StockRules(
       maximumDeals = Some(3)

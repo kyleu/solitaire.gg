@@ -22,9 +22,11 @@ import models.rules._
  */
 object FarmersWife extends GameRules(
   id = "farmerswife",
+  completed = false,
   title = "Farmer's Wife",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/farmers_wife.htm")),
   description = "A variation of ^threeblindmice^ where we build in alternate colors as in ^scorpiontail^.",
+  layout = Some("wf|t"),
   waste = Some(
     WasteRules(
       name = "Reserve"

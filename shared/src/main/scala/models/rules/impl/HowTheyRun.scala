@@ -21,9 +21,11 @@ import models.rules._
  */
 object HowTheyRun extends GameRules(
   id = "howtheyrun",
+  completed = false,
   title = "How They Run",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/how_they_run.htm")),
   description = "A variation of ^threeblindmice^ invented by Erik den Hollander with two cells replacing the two card reserve.",
+  layout = Some("f|c|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

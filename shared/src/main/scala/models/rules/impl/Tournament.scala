@@ -5,6 +5,7 @@ import models.rules._
 
 object Tournament extends GameRules(
   id = "tournament",
+  completed = false,
   title = "Tournament",
   like = Some("cicely"),
   links = Seq(

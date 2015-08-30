@@ -19,6 +19,7 @@ import models.rules._
  */
 object MissMilligan extends GameRules(
   id = "missmilligan",
+  completed = false,
   title = "Miss Milligan",
   related = Seq("imperialguards"),
   links = Seq(

@@ -23,6 +23,7 @@ import models.rules._
  */
 object Giza extends GameRules(
   id = "giza",
+  completed = false,
   title = "Giza",
   like = Some("pyramid"),
   related = Seq("pyramiddozen"),
@@ -31,6 +32,7 @@ object Giza extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/giza.htm")
   ),
   description = "Michael Keller's variation of ^pyramid^ has a tableau of cards instead of a stock, making it a completely open game.",
+  layout = Some("f|t|p"),
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   foundations = Seq(

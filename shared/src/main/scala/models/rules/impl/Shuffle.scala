@@ -21,10 +21,12 @@ import models.rules._
  */
 object Shuffle extends GameRules(
   id = "shuffle",
+  completed = false,
   title = "Shuffle",
   like = Some("neptune"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/shuffle.htm")),
   description = "A version of ^neptune^ where you can also pair kings with aces.",
+  layout = Some("sf|t"),
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveRankPairsOrAK,
   stock = Some(
     StockRules(

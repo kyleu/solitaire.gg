@@ -20,6 +20,7 @@ import models.rules._
  */
 object SuperChallengeFreeCell extends GameRules(
   id = "superchallengefreecell",
+  completed = false,
   title = "Super Challenge FreeCell",
   like = Some("challengefreecell"),
   links = Seq(
@@ -28,6 +29,7 @@ object SuperChallengeFreeCell extends GameRules(
   ),
   description = "A version of ^freecell^ invented by Thomas Warfield where the aces and twos are always at the bottoms of the eight stacks and wher" +
     "e spaces can only be filled by Kings.",
+  layout = Some("f|c|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

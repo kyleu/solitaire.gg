@@ -19,11 +19,13 @@ import models.rules._
  */
 object FreeFan extends GameRules(
   id = "freefan",
+  completed = false,
   title = "FreeFan",
   like = Some("fan"),
   related = Seq("luckyfan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/free_fan.htm")),
   description = "An easy variation of ^fan^ with cells. Invented by Gregg Seelhoff.",
+  layout = Some("f|c|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

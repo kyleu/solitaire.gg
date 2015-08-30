@@ -16,12 +16,14 @@ import models.rules._
  */
 object KlondikeTerritory extends GameRules(
   id = "klondiketerritory",
+  completed = false,
   title = "Klondike Territory",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/klondike_territory.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/klondike_territory.html")
   ),
   description = "A cross between ^flowergarden^ and ^klondike^, slightly more difficult than the similar Northwest Territory game.",
+  layout = Some("wf|t"),
   waste = Some(
     WasteRules(
       name = "Reserve"

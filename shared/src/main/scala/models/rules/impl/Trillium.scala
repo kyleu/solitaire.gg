@@ -25,6 +25,7 @@ import models.rules._
  */
 object Trillium extends GameRules(
   id = "trillium",
+  completed = false,
   title = "Trillium",
   like = Some("spider"),
   related = Seq("lily"),

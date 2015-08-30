@@ -22,10 +22,12 @@ import models.rules._
  */
 object HugeSpider extends GameRules(
   id = "hugespider",
+  completed = false,
   title = "Huge Spider",
   like = Some("spider"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/huge_spider.htm")),
   description = "A four-deck version of ^spider^.",
+  layout = Some("sf|t"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 4

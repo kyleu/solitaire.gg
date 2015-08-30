@@ -17,6 +17,7 @@ import models.rules._
  */
 object Dieppe extends GameRules(
   id = "dieppe",
+  completed = false,
   title = "Dieppe",
   like = Some("congress"),
   links = Seq(
@@ -29,6 +30,7 @@ object Dieppe extends GameRules(
   ),
   description = "A variation on ^congress^ where stacks may be moved, blanks can be filled by any card, and three rows of cards are dealt initially" +
     ". Almost every game seems winnable without any great difficulty.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

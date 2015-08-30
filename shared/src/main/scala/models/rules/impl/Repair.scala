@@ -17,12 +17,14 @@ import models.rules._
  */
 object Repair extends GameRules(
   id = "repair",
+  completed = false,
   title = "Repair",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/repair.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Repair.htm")
   ),
   description = "A two-deck version of ^freecell^.",
+  layout = Some("f|c|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

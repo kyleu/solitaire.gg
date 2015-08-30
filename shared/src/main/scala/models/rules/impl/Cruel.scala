@@ -21,6 +21,7 @@ import models.rules._
  */
 object Cruel extends GameRules(
   id = "cruel",
+  completed = false,
   title = "Cruel",
   related = Seq("indefatigable", "unusual", "ripplefan", "perseverancea"),
   links = Seq(

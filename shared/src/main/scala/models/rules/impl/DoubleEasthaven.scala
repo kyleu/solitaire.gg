@@ -17,6 +17,7 @@ import models.rules._
  */
 object DoubleEasthaven extends GameRules(
   id = "doubleeasthaven",
+  completed = false,
   title = "Double Easthaven",
   like = Some("easthaven"),
   links = Seq(
@@ -26,6 +27,7 @@ object DoubleEasthaven extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/double-easthaven.asp")
   ),
   description = "A two-deck version of ^easthaven^.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

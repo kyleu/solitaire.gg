@@ -18,6 +18,7 @@ import models.rules._
  */
 object Kiev extends GameRules(
   id = "kiev",
+  completed = false,
   title = "Kiev",
   related = Seq("dnieper", "sevastopol"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kiev.htm")),

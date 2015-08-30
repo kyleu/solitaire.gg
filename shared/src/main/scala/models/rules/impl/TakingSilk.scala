@@ -14,10 +14,12 @@ import models.rules._
  */
 object TakingSilk extends GameRules(
   id = "takingsilk",
+  completed = false,
   title = "Taking Silk",
   related = Seq("floradora"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/taking_silk.htm")),
   description = "A two deck version of ^thirtysix^. Having more suits than tableau piles makes this tricky.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

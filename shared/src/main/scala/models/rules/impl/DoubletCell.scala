@@ -22,10 +22,12 @@ import models.rules._
  */
 object DoubletCell extends GameRules(
   id = "doubletcell",
+  completed = false,
   title = "Doublet Cell",
   like = Some("simplepairs"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/doublet_cell.htm")),
   description = "A combination between ^doublets^ and ^freecell^.",
+  layout = Some("f|c|t"),
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRankAndColor,
   foundations = Seq(
     FoundationRules(

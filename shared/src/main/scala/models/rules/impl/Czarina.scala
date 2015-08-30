@@ -19,6 +19,7 @@ import models.rules._
  */
 object Czarina extends GameRules(
   id = "czarina",
+  completed = false,
   title = "Czarina",
   like = Some("fourseasons"),
   related = Seq("corners"),
@@ -29,6 +30,7 @@ object Czarina extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Czarina.htm")
   ),
   description = "A variation on ^fourseasons^ where spaces are filled automatically from the stock.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

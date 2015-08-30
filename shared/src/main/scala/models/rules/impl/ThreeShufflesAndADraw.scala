@@ -21,6 +21,7 @@ import models.rules._
  */
 object ThreeShufflesAndADraw extends GameRules(
   id = "threeshufflesandadraw",
+  completed = false,
   title = "Three Shuffles and a Draw",
   like = Some("labellelucie"),
   links = Seq(
@@ -29,6 +30,7 @@ object ThreeShufflesAndADraw extends GameRules(
     Link("Wikipedia", "en.wikipedia.org/wiki/Three_Shuffles_and_a_Draw_(solitaire)")
   ),
   description = "A variation of ^labellelucie^ that adds a draw.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

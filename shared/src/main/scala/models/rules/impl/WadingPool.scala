@@ -24,10 +24,12 @@ import models.rules._
  */
 object WadingPool extends GameRules(
   id = "wadingpool",
+  completed = false,
   title = "Wading Pool",
   like = Some("wavemotion"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/wading_pool.htm")),
   description = "An easier variation of ^wavemotion^ that permits building, but not stack moves, on the reserve.",
+  layout = Some("|tt"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
     TableauRules(

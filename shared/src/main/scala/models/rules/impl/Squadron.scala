@@ -17,6 +17,7 @@ import models.rules._
  */
 object Squadron extends GameRules(
   id = "squadron",
+  completed = false,
   title = "Squadron",
   like = Some("fortythieves"),
   links = Seq(
@@ -27,6 +28,7 @@ object Squadron extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/squadron.php")
   ),
   description = "A much easier version of ^fortytheives^ with three cells.",
+  layout = Some("swf|c|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

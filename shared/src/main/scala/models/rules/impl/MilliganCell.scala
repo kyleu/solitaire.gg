@@ -17,12 +17,14 @@ import models.rules._
  */
 object MilliganCell extends GameRules(
   id = "milligancell",
+  completed = false,
   title = "Milligan Cell",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/milligan_cell.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/milligan_cell.htm")
   ),
   description = "A ^freecell^ish variation of ^missmilligan^.",
+  layout = Some("sf|c|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

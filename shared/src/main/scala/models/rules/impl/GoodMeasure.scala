@@ -22,6 +22,7 @@ import models.rules._
  */
 object GoodMeasure extends GameRules(
   id = "goodmeasure",
+  completed = false,
   title = "Good Measure",
   like = Some("bakersdozen"),
   links = Seq(

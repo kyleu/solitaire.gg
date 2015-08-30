@@ -19,10 +19,12 @@ import models.rules._
  */
 object TrigonLeft extends GameRules(
   id = "trigonleft",
+  completed = false,
   title = "Trigon Left",
   like = Some("trigon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trigon_left.htm")),
   description = "A blend of ^trigon^ and ^movingleft^.",
+  layout = Some("swf|t"),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
   foundations = Seq(

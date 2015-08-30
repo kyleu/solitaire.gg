@@ -19,6 +19,7 @@ import models.rules._
  */
 object LadyBetty extends GameRules(
   id = "ladybetty",
+  completed = false,
   title = "Lady Betty",
   like = Some("sirtommy"),
   links = Seq(
@@ -30,6 +31,7 @@ object LadyBetty extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/LadyBetty.htm")
   ),
   description = "This cousin of ^sirtommy^ requires you to build the foundation in suit, but gives you two extra tableau piles to work with.",
+  layout = Some("sf|t"),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Manually,

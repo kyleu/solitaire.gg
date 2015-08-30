@@ -17,6 +17,7 @@ import models.rules._
  */
 object Courtyard extends GameRules(
   id = "courtyard",
+  completed = false,
   title = "Courtyard",
   like = Some("busyaces"),
   links = Seq(
@@ -28,6 +29,7 @@ object Courtyard extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/courtyard.html")
   ),
   description = "A variation of ^busyaces^ which increases the difficulty by autofilling empty tableau spaces the waste and stock.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

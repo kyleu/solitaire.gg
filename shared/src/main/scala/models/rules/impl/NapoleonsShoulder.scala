@@ -20,10 +20,12 @@ import models.rules._
  */
 object NapoleonsShoulder extends GameRules(
   id = "napoleonsshoulder",
+  completed = false,
   title = "Napoleon's Shoulder",
   like = Some("napoleonssquare"),
   links = Seq(Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/napoleons_shoulder.html")),
   description = "A varient of ^napoleonssquare^ where you build regardless of suit.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

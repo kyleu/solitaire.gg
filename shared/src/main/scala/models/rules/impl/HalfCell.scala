@@ -21,9 +21,11 @@ import models.rules._
  */
 object HalfCell extends GameRules(
   id = "halfcell",
+  completed = false,
   title = "HalfCell",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/halfcell.htm")),
   description = "^freecell^ with only two foundation piles.",
+  layout = Some("f|c|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 2,

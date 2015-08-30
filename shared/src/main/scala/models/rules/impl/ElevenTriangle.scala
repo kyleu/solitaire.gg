@@ -18,10 +18,12 @@ import models.rules._
  */
 object ElevenTriangle extends GameRules(
   id = "eleventriangle",
+  completed = false,
   title = "Eleven Triangle",
   like = Some("triangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eleven_triangle.htm")),
   description = "A somewhat easier version of ^triangle^ where we remove pairs that add to eleven.",
+  layout = Some("swf|p"),
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJPairOrQPairOrKPair,
   stock = Some(

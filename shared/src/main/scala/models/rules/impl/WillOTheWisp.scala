@@ -20,6 +20,7 @@ import models.rules._
  */
 object WillOTheWisp extends GameRules(
   id = "willothewisp",
+  completed = false,
   title = "Will o the Wisp",
   related = Seq("fairmaids"),
   links = Seq(
@@ -33,6 +34,7 @@ object WillOTheWisp extends GameRules(
     Link("L. Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-will-o-the-wisp-solitaire-14333/")
   ),
   description = "A one-deck version of ^spider^, with a rectangular 7x3 tableau.",
+  layout = Some("sf|t"),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.TableauIfNoneEmpty,

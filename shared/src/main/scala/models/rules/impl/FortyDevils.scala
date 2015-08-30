@@ -29,10 +29,12 @@ import models.rules._
  */
 object FortyDevils extends GameRules(
   id = "fortydevils",
+  completed = false,
   title = "Forty Devils",
   like = Some("ladycadogan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/forty_devils.htm")),
   description = "Thomas Warfield's difficult cross between ^rougeforty^ and ^ladycadogan^.",
+  layout = Some("swff|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

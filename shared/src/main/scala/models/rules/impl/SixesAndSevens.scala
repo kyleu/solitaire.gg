@@ -23,6 +23,7 @@ import models.rules._
  */
 object SixesAndSevens extends GameRules(
   id = "sixesandsevens",
+  completed = false,
   title = "Sixes and Sevens",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sixes_and_sevens.htm"),
@@ -31,6 +32,7 @@ object SixesAndSevens extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/sixes-and-sevens.htm")
   ),
   description = "No building on tableau, some foundation build up, some build down.",
+  layout = Some("swff|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

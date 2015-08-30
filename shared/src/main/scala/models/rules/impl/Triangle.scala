@@ -18,10 +18,12 @@ import models.rules._
  */
 object Triangle extends GameRules(
   id = "triangle",
+  completed = false,
   title = "Triangle",
   related = Seq("eleventriangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triangle.htm")),
   description = "A very hard inverted version of ^pyramid^.",
+  layout = Some("swf|p"),
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(

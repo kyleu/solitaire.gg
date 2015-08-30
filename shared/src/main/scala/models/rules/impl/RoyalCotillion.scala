@@ -32,6 +32,7 @@ import models.rules._
  */
 object RoyalCotillion extends GameRules(
   id = "royalcotillion",
+  completed = false,
   title = "Royal Cotillion",
   like = Some("oddandeven"),
   links = Seq(
@@ -42,6 +43,7 @@ object RoyalCotillion extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/RoyalCotillion.htm")
   ),
   description = "A variation of ^oddandeven^ with some extra tableau and reserve piles, but only one pass allowed through the deck.",
+  layout = Some("swff|r|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

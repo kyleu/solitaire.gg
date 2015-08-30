@@ -16,12 +16,14 @@ import models.rules._
  */
 object Swiss extends GameRules(
   id = "swiss",
+  completed = false,
   title = "Swiss",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/swiss_patience.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SwissPatience.htm")
   ),
   description = "Like ^klondike^ but aces are high and the tableau is pyramidical.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     lowRank = Rank.Two
   ),

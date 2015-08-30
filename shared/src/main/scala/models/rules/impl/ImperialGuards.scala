@@ -19,6 +19,7 @@ import models.rules._
  */
 object ImperialGuards extends GameRules(
   id = "imperialguards",
+  completed = false,
   title = "Imperial Guards",
   like = Some("missmilligan"),
   links = Seq(
@@ -28,6 +29,7 @@ object ImperialGuards extends GameRules(
   ),
   description = "A version of ^missmilligan^ where empty tableau spaces can be filled with any card instead of Kings only. Since empty spaces are c" +
     "ommon in these games, this greatly simplifies the game.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

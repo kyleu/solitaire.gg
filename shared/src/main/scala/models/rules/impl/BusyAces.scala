@@ -16,6 +16,7 @@ import models.rules._
  */
 object BusyAces extends GameRules(
   id = "busyaces",
+  completed = false,
   title = "Busy Aces",
   related = Seq("stages", "courtyard", "dimes", "fortunesfavor", "deuces"),
   links = Seq(
@@ -30,6 +31,7 @@ object BusyAces extends GameRules(
   ),
   description = "A fairly easy game dating back to 1939. Twelve tableau stacks of one card each mean you can easily get lots of empty spaces to wor" +
     "k with.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

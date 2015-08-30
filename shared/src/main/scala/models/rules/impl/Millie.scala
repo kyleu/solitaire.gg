@@ -15,9 +15,11 @@ import models.rules._
  */
 object Millie extends GameRules(
   id = "millie",
+  completed = false,
   title = "Millie",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/millie.htm")),
   description = "^missmilligan^ without reserve.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

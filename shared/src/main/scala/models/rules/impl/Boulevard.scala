@@ -31,10 +31,12 @@ import models.rules._
  */
 object Boulevard extends GameRules(
   id = "boulevard",
+  completed = false,
   title = "Boulevard",
   related = Seq("evenandodd"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/boulevard.htm")),
   description = "No building on the tableau, three reserve piles, and foundations that build up by twos.",
+  layout = Some("swff|r|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

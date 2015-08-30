@@ -20,6 +20,7 @@ import models.rules._
  */
 object Manx extends GameRules(
   id = "manx",
+  completed = false,
   title = "Manx",
   related = Seq("tabbycat"),
   links = Seq(
@@ -28,6 +29,7 @@ object Manx extends GameRules(
   ),
   description = "Build complete sequences by rearranging four piles regardless of suit in this game invented by Rick Holzgrafe of Solitaire Til Daw" +
     "n.",
+  layout = Some("sf|c|t"),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

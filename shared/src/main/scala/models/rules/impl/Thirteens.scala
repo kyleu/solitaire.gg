@@ -18,6 +18,7 @@ import models.rules._
  */
 object Thirteens extends GameRules(
   id = "thirteens",
+  completed = false,
   title = "Thirteens",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/thirteens.htm"),
@@ -26,6 +27,7 @@ object Thirteens extends GameRules(
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
   description = "Remove pairs that add the thirteen. Entirely a game of luck.",
+  layout = Some("sf|t"),
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(
     StockRules(

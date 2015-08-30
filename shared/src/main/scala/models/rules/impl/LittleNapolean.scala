@@ -17,6 +17,7 @@ import models.rules._
  */
 object LittleNapolean extends GameRules(
   id = "littlenapoleon",
+  completed = false,
   title = "Little Napolean",
   like = Some("fortythieves"),
   related = Seq("mcclellan"),
@@ -28,6 +29,7 @@ object LittleNapolean extends GameRules(
   ),
   description = "A ^fortythieves^ variant that shows some ^spider^ influences, because you can build regardless of suit, but only move same-suit se" +
     "quences.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

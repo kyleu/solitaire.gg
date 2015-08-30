@@ -16,6 +16,7 @@ import models.rules._
  */
 object ShadyLanes extends GameRules(
   id = "shadylanes",
+  completed = false,
   title = "Shady Lanes",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/shady_lanes.htm"),
@@ -24,6 +25,7 @@ object ShadyLanes extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/ShadyLanes.htm")
   ),
   description = "A difficult game with four reserve piles and four tableau piles.",
+  layout = Some("swf|r|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

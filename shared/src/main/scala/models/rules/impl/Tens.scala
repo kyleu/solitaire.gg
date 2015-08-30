@@ -18,6 +18,7 @@ import models.rules._
  */
 object Tens extends GameRules(
   id = "tens",
+  completed = false,
   title = "Tens",
   related = Seq("nines", "elevens"),
   links = Seq(
@@ -31,6 +32,7 @@ object Tens extends GameRules(
   ),
   description = "A set removal game similar to ^simplepairs^ where you can take off pairs that add to 10 or a set four matching cards ten or higher" +
     ". A game of pure luck.",
+  layout = Some("sf|t"),
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOrFour10JQK,
   stock = Some(
     StockRules(

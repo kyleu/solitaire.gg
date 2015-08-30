@@ -24,6 +24,7 @@ import models.rules._
  */
 object Spiderette extends GameRules(
   id = "spiderette",
+  completed = false,
   title = "Spiderette",
   like = Some("spider"),
   related = Seq("spidike"),
@@ -36,6 +37,7 @@ object Spiderette extends GameRules(
     Link("Solitaire City", "www.solitairecity.com/iPhone/Spiderette.shtml")
   ),
   description = "A one-deck version of ^spider^, with a ^klondike^-style triangular tableau.",
+  layout = Some("sf|t"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   stock = Some(
     StockRules(

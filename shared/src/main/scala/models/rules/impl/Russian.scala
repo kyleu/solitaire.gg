@@ -18,6 +18,7 @@ import models.rules._
  */
 object Russian extends GameRules(
   id = "russian",
+  completed = false,
   title = "Russian",
   related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
   links = Seq(
@@ -29,6 +30,7 @@ object Russian extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/russian_solitaire.htm")
   ),
   description = "A harder variation of ^yukon^ where you must build down in the same suit instead of in alternate colors.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

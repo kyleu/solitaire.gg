@@ -20,10 +20,12 @@ import models.rules._
  */
 object BigApple extends GameRules(
   id = "bigapple",
+  completed = false,
   title = "Big Apple",
   like = Some("gotham"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/big_apple.htm")),
   description = "A difficult variation of ^newyork^ with three cells instead of three waste piles, but where stacks can be moved.",
+  layout = Some("sf|c|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

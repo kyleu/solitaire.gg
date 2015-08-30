@@ -17,10 +17,12 @@ import models.rules._
  */
 object Parliament extends GameRules(
   id = "parliament",
+  completed = false,
   title = "Parliament",
   like = Some("congress"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/parliament.htm")),
   description = "An easier version of ^congress^, where the aces start on the foundation.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

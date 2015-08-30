@@ -19,10 +19,12 @@ import models.rules._
  */
 object Eclipse extends GameRules(
   id = "eclipse",
+  completed = false,
   title = "Eclipse",
   like = Some("waningmoon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eclipse.htm")),
   description = "A variant of ^waningmoon^, where sequence moves are allowed and cards are dealt to the tableau instead of to a waste pile.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

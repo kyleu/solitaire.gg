@@ -16,6 +16,7 @@ import models.rules._
  */
 object Steps extends GameRules(
   id = "steps",
+  completed = false,
   title = "Steps",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/steps.htm"),
@@ -27,6 +28,7 @@ object Steps extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/steps.htm")
   ),
   description = "A two-deck version of ^klondike^.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -21,6 +21,7 @@ import models.rules._
  */
 object VariegatedCanfield extends GameRules(
   id = "variegatedcanfield",
+  completed = false,
   title = "Variegated Canfield",
   like = Some("doublecanfield"),
   links = Seq(
@@ -32,6 +33,7 @@ object VariegatedCanfield extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/canfield/variegated_canfield.htm")
   ),
   description = "A difficult two-deck version of ^canfield^, with aces starting on the foundation and only three passes through the waste allowed.",
+  layout = Some("swf|r|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

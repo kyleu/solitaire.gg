@@ -21,6 +21,7 @@ import models.rules._
  */
 object BakersDozen extends GameRules(
   id = "bakersdozen",
+  completed = false,
   title = "Baker's Dozen",
   related = Seq("spanish", "goodmeasure"),
   links = Seq(

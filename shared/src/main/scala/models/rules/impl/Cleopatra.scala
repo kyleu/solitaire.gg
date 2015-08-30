@@ -14,9 +14,11 @@ import models.rules._
  */
 object Cleopatra extends GameRules(
   id = "cleopatra",
+  completed = false,
   title = "Cleopatra",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cleopatra.htm")),
   description = "Thomas Warfield's variant of ^fortythieves^ with a pyramid-shaped tableau.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

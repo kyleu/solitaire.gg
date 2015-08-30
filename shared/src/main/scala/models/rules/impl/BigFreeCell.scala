@@ -19,10 +19,12 @@ import models.rules._
  */
 object BigFreeCell extends GameRules(
   id = "bigfreecell",
+  completed = false,
   title = "Big FreeCell",
   like = Some("freecell"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/big-freecell.htm")),
   description = "A straight-forward two-deck version of ^freecell^.",
+  layout = Some("f|c|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

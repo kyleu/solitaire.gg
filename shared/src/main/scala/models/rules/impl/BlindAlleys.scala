@@ -15,6 +15,7 @@ import models.rules._
  */
 object BlindAlleys extends GameRules(
   id = "blindalleys",
+  completed = false,
   title = "Blind Alleys",
   related = Seq("passeul"),
   links = Seq(
@@ -23,6 +24,7 @@ object BlindAlleys extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/blind_alleys.htm")
   ),
   description = "A ^klondike^ variant with a square tableau, differing from ^passeul^ only in the number of passes through the deck allowed.",
+  layout = Some("swf|t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(2)

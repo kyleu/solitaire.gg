@@ -24,11 +24,13 @@ import models.rules._
  */
 object Spidike extends GameRules(
   id = "spidike",
+  completed = false,
   title = "Spidike",
   like = Some("spiderette"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/spidike.htm")),
   description = "Thomas Warfield's blend of ^spider^ with a ^klondike^ ends up looking a lot like ^spiderette^ except that cards can be moved singl" +
     "y to the foundation.",
+  layout = Some("sf|t"),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

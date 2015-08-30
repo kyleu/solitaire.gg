@@ -30,6 +30,7 @@ import models.rules._
  */
 object Colorado extends GameRules(
   id = "colorado",
+  completed = false,
   title = "Colorado",
   like = Some("twenty"),
   links = Seq(
@@ -42,6 +43,7 @@ object Colorado extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/colorado.htm")
   ),
   description = "A game where cards may be stacked arbitrarily on 20 tableau piles. Usually winnable, but requires some planning.",
+  layout = Some("sff|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

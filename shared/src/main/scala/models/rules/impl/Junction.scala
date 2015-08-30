@@ -15,12 +15,14 @@ import models.rules._
  */
 object Junction extends GameRules(
   id = "junction",
+  completed = false,
   title = "Junction",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/junction.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/junction.htm")
   ),
   description = "A variation of ^singlerail^ or ^doublerail^ for four piquet decks.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 4,
     ranks = Seq(Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace)

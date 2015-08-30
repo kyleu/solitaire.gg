@@ -19,6 +19,7 @@ import models.rules._
  */
 object SirTommy extends GameRules(
   id = "sirtommy",
+  completed = false,
   title = "Sir Tommy",
   related = Seq("alternate", "ladybetty"),
   links = Seq(
@@ -33,6 +34,7 @@ object SirTommy extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Sir_Tommy.html.en")
   ),
   description = "A classic old solitaire game where cards may be placed anywhere on the tableau, but cannot be rearranged.",
+  layout = Some("sf|t"),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Manually,

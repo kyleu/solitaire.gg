@@ -25,6 +25,7 @@ import models.rules._
  */
 object Acquaintance extends GameRules(
   id = "acquaintance",
+  completed = false,
   title = "Acquaintance",
   like = Some("auldlangsyne"),
   related = Seq("quadrennial"),
@@ -33,6 +34,7 @@ object Acquaintance extends GameRules(
     Link("Michael Smoker on HobbyHub", "www.hobbyhub360.com/index.php/acquaintance-solitaire-game-10370/")
   ),
   description = "A variation of ^auldlangsyne^ suggested by Michael Keller that adds some interest by allowing two redeals.",
+  layout = Some("sf|t"),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

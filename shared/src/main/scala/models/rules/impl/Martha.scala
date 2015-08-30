@@ -19,6 +19,7 @@ import models.rules._
  */
 object Martha extends GameRules(
   id = "martha",
+  completed = false,
   title = "Martha",
   related = Seq("stewart"),
   links = Seq(
@@ -31,6 +32,7 @@ object Martha extends GameRules(
     Link("dogMelon", "www.dogmelon.com.au/solhelp/Martha%20Solitaire.shtml")
   ),
   description = "An easy game with no stock where half the cards start face down. Somewhat similar to ^bakersdozen^.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

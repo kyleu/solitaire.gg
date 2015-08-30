@@ -15,9 +15,11 @@ import models.rules._
  */
 object Alexandria extends GameRules(
   id = "alexandria",
+  completed = false,
   title = "Alexandria",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/alexandria.htm")),
   description = "A three-deck version of ^thievesofegypt^ invented by Thomas Warfield.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 3
   ),

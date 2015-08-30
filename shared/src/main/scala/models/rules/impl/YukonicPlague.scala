@@ -21,10 +21,12 @@ import models.rules._
  */
 object YukonicPlague extends GameRules(
   id = "yukonicplague",
+  completed = false,
   title = "Yukonic Plague",
   like = Some("yukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukonic_plague.htm")),
   description = "A more difficult variation of ^yukon^ where many cards are buried in a reserve.",
+  layout = Some("f|r|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

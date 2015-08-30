@@ -19,6 +19,7 @@ import models.rules._
  */
 object NapoleonsSquare extends GameRules(
   id = "napoleonssquare",
+  completed = false,
   title = "Napoleon's Square",
   like = Some("blockade"),
   related = Seq("napoleonsshoulder"),
@@ -31,6 +32,7 @@ object NapoleonsSquare extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/NapoleonsSquare.htm")
   ),
   description = "This French game, first described by Lady Adelaide Cadogen in the early 1900's, is an easy variant of ^fortythieves^.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

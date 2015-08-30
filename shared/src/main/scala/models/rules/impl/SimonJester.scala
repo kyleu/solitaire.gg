@@ -19,10 +19,12 @@ import models.rules._
  */
 object SimonJester extends GameRules(
   id = "simonjester",
+  completed = false,
   title = "Simon Jester",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/simon_jester.htm")),
   description = "A two-deck variant of ^simplesimon^ invented by Adam Selene. It is like ^spider^ except that all cards start face up in a triangul" +
     "ar tableau and there are no further cards be dealt.",
+  layout = Some("f|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

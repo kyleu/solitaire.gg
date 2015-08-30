@@ -23,6 +23,7 @@ import models.rules._
  */
 object AmericanToad extends GameRules(
   id = "americantoad",
+  completed = false,
   title = "American Toad",
   links = Seq(
     Link("Solitaire Central", "www.solitairecentral.com/rules/AmericanToad.html"),
@@ -30,6 +31,7 @@ object AmericanToad extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/american_toad.html")
   ),
   description = "An easy two-deck variation of ^canfield^.",
+  layout = Some("swf|r|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

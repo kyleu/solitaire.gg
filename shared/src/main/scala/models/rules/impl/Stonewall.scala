@@ -18,6 +18,7 @@ import models.rules._
  */
 object Stonewall extends GameRules(
   id = "stonewall",
+  completed = false,
   title = "Stonewall",
   related = Seq("trevigarden"),
   links = Seq(
@@ -29,6 +30,7 @@ object Stonewall extends GameRules(
   ),
   description = "Similar to ^flowergarden^, except some cards start face down, you must build in alternate colors, and you can move sequences.  A h" +
     "ard game to win.",
+  layout = Some("wf|t"),
   waste = Some(
     WasteRules(
       name = "Reserve"

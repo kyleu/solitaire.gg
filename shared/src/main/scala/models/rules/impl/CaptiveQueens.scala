@@ -27,6 +27,7 @@ import models.rules._
  */
 object CaptiveQueens extends GameRules(
   id = "captivequeens",
+  completed = false,
   title = "Captive Queens",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/captive_queens.htm"),
@@ -38,6 +39,7 @@ object CaptiveQueens extends GameRules(
   ),
   description = "An easy and brainless variation of ^sixesandsevens^ also known as \"Quadrille\". Automoves default mostly off to give you somethin" +
     "g to do.",
+  layout = Some("swfff"),
   stock = Some(
     StockRules(
       maximumDeals = Some(3)

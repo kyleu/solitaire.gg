@@ -25,10 +25,12 @@ import models.rules._
  */
 object Haystack extends GameRules(
   id = "haystack",
+  completed = false,
   title = "Haystack",
   related = Seq("needle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/haystack.htm")),
   description = "A more difficult version of ^needle^ where only 8 cards can be stored in the reserve.",
+  layout = Some("f|tt"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

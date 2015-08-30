@@ -18,10 +18,12 @@ import models.rules._
  */
 object Hypotenuse extends GameRules(
   id = "hypotenuse",
+  completed = false,
   title = "Hypotenuse",
   like = Some("eternaltriangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/hypotenuse.htm")),
   description = "A version of ^eternaltriangle^ with some cards face down.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

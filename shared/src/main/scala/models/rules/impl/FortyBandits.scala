@@ -15,10 +15,12 @@ import models.rules._
  */
 object FortyBandits extends GameRules(
   id = "fortybandits",
+  completed = false,
   title = "Forty Bandits",
   like = Some("fortythieves"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/forty_thieves.htm")),
   description = "An easier variant of ^fortythieves^ where sequences may be moved.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

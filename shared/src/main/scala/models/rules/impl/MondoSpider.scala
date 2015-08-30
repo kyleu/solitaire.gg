@@ -25,9 +25,11 @@ import models.rules._
  */
 object MondoSpider extends GameRules(
   id = "mondospider",
+  completed = false,
   title = "Mondo Spider",
   like = Some("spider"),
   description = "A rather arduous double-size eight-suit ^spider^ variant.",
+  layout = Some("sf|t"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2,

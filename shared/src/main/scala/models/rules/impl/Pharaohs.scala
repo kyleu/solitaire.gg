@@ -17,12 +17,14 @@ import models.rules._
  */
 object Pharaohs extends GameRules(
   id = "pharaohs",
+  completed = false,
   title = "Pharaohs",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pharaohs.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Pharaohs.htm")
   ),
   description = "A variation of ^pyramid^ with three pyramids.",
+  layout = Some("f|ppp"),
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   foundations = Seq(

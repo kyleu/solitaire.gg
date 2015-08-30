@@ -17,12 +17,14 @@ import models.rules._
  */
 object OldCarlton extends GameRules(
   id = "oldcarlton",
+  completed = false,
   title = "Old Carlton",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/old_carlton.htm"),
     Link("Solavant Solitaire", "www.solavant.com/solitaire/old_carlton.php")
   ),
   description = "A two-deck ^klondike^ variation, much easier than ^carlton^.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

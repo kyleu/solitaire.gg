@@ -18,10 +18,12 @@ import models.rules._
  */
 object DoubleGoldRush extends GameRules(
   id = "doublegoldrush",
+  completed = false,
   title = "Double Gold Rush",
   like = Some("goldrush"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_gold_rush.htm")),
   description = "A two-deck version of ^goldrush^.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

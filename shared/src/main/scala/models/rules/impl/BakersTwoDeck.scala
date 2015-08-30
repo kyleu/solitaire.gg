@@ -18,10 +18,12 @@ import models.rules._
  */
 object BakersTwoDeck extends GameRules(
   id = "bakerstwodeck",
+  completed = false,
   title = "Baker's Two-Deck",
   like = Some("bakers"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/bakersgame2.htm")),
   description = "A two-deck version of ^bakers^ games.",
+  layout = Some("f|c|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

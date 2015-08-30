@@ -19,6 +19,7 @@ import models.rules._
  */
 object Brigade extends GameRules(
   id = "brigade",
+  completed = false,
   title = "Brigade",
   like = Some("flowergarden"),
   links = Seq(
@@ -27,6 +28,7 @@ object Brigade extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/brigade.html")
   ),
   description = "An easier variation of ^flowergarden^ with more tableau piles of fewer cards, and aces starting on the foundation.",
+  layout = Some("wf|t"),
   waste = Some(
     WasteRules(
       name = "Reserve",

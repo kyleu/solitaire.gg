@@ -24,11 +24,13 @@ import models.rules._
  */
 object BigSpider extends GameRules(
   id = "bigspider",
+  completed = false,
   title = "Big Spider",
   like = Some("spider"),
   related = Seq("spiderthreedeck"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/big_spider.htm")),
   description = "A three-deck version of ^spider^. This is a bit more challenging than ^spiderthreedeck^.",
+  layout = Some("sf|t"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 3

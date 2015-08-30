@@ -18,6 +18,7 @@ import models.rules._
  */
 object FourSeasons extends GameRules(
   id = "fourseasons",
+  completed = false,
   title = "Four Seasons",
   related = Seq("czarina"),
   links = Seq(
@@ -30,6 +31,7 @@ object FourSeasons extends GameRules(
   ),
   description = "A simple game of luck and skill where you move cards one at a time, stacking regardless of suit. The five tableau piles are suppos" +
     "ed to be arranged in a cross with the foundation piles in the four corners, but Politaire is still too stupid to do that.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

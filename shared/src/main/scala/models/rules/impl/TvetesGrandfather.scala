@@ -20,11 +20,13 @@ import models.rules._
  */
 object TvetesGrandfather extends GameRules(
   id = "tvetesgrandfather",
+  completed = false,
   title = "Tvete's Grandfather",
   links = Seq(Link("KPatience", "docs.kde.org/development/en/kdegames/kpat/rules-specific.html#grandfather")),
   description = "Paul Olav Tvete learned this game from his grandfather and included it in <a target=\"_blank\" href=\"\"http\"://www.kde.org/appli" +
     "cations/games/kpatience/\">KPatience</a>. It is a difficult game with an unusual tableau, ^yukon^-style stack moves, and two redea" +
     "ls.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

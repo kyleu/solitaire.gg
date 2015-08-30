@@ -18,9 +18,11 @@ import models.rules._
  */
 object GroundsForDivorce extends GameRules(
   id = "groundsfordivorce",
+  completed = false,
   title = "Grounds for Divorce",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/grounds_for_divorce.htm")),
   description = "A ^spider^ game where cards are not dealt to empty columns.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

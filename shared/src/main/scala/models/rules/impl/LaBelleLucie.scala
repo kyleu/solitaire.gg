@@ -19,6 +19,7 @@ import models.rules._
  */
 object LaBelleLucie extends GameRules(
   id = "labellelucie",
+  completed = false,
   title = "La Belle Lucie",
   related = Seq("threeshufflesandadraw", "intelligence", "linus", "trefoil", "superflowergarden"),
   links = Seq(
@@ -29,6 +30,7 @@ object LaBelleLucie extends GameRules(
     Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#belle")
   ),
   description = "A classic solitaire where you build down in suit on the tableau and can redeal twice. Rarely winnable.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

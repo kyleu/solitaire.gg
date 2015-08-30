@@ -25,10 +25,12 @@ import models.rules._
  */
 object BatsfordAgain extends GameRules(
   id = "batsfordagain",
+  completed = false,
   title = "Batsford Again",
   like = Some("batsford"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/batsford_again.htm")),
   description = "A variation of ^batsford^ with a redeal.",
+  layout = Some("swf|tt"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -20,6 +20,7 @@ import models.rules._
  */
 object Usk extends GameRules(
   id = "usk",
+  completed = false,
   title = "Usk",
   like = Some("somerset"),
   links = Seq(
@@ -28,6 +29,7 @@ object Usk extends GameRules(
   ),
   description = "A ^klondike^ variant without stock or waste. Unlike ^somerset^, moves of stacks are allowed and there is a redeal, but spaces can " +
     "only be filled by kings.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

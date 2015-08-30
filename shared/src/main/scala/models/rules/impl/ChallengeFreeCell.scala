@@ -20,6 +20,7 @@ import models.rules._
  */
 object ChallengeFreeCell extends GameRules(
   id = "challengefreecell",
+  completed = false,
   title = "Challenge FreeCell",
   like = Some("freecell"),
   related = Seq("superchallengefreecell"),
@@ -28,6 +29,7 @@ object ChallengeFreeCell extends GameRules(
     Link("Michael Keller's amazing FreeCell FAQ", "solitairelaboratory.com/fcfaq.html#AceDepth")
   ),
   description = "A version of ^freecell^ invented by Thomas Warfield where the aces and twos are always at the bottoms of the eight stacks.",
+  layout = Some("f|c|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

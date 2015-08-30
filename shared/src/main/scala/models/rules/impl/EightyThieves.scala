@@ -14,10 +14,12 @@ import models.rules._
  */
 object EightyThieves extends GameRules(
   id = "eightythieves",
+  completed = false,
   title = "Eighty Thieves",
   like = Some("fortythieves"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eighty_thieves.htm")),
   description = "A very difficult four-deck version of ^fortythieves^ by Thomas Warfield. Needs a large screen.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 4
   ),

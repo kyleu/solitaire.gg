@@ -17,9 +17,11 @@ import models.rules._
  */
 object DoubleSeaTowers extends GameRules(
   id = "doubleseatowers",
+  completed = false,
   title = "Double Sea Towers",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_seatowers.htm")),
   description = "A two-deck version of the ^freecell^ variation known as ^seatowers^.",
+  layout = Some("f|c|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

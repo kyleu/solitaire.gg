@@ -20,11 +20,13 @@ import models.rules._
  */
 object Gilbert extends GameRules(
   id = "gilbert",
+  completed = false,
   title = "Gilbert",
   like = Some("klondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gilbert.htm")),
   description = "An odd ^klondike^ variation with one set of foundations building up and one set building down. The fact that only sevens can fill " +
     "gaps in the tableau makes it nearly unplayable.",
+  layout = Some("swff|t"),
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

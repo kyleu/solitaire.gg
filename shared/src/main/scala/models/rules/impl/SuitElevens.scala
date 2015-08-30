@@ -18,6 +18,7 @@ import models.rules._
  */
 object SuitElevens extends GameRules(
   id = "suitelevens",
+  completed = false,
   title = "Suit Elevens",
   like = Some("elevens"),
   links = Seq(
@@ -25,6 +26,7 @@ object SuitElevens extends GameRules(
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
   description = "A variation of ^elevens^ where you can only remove sets of cards if they are all of the same suit.",
+  layout = Some("sf|t"),
   cardRemovalMethod = CardRemovalMethod.RemoveSameSuitPairsAddingToElevenOrJQK,
   stock = Some(
     StockRules(

@@ -15,6 +15,7 @@ import models.rules._
  */
 object RedAndBlack extends GameRules(
   id = "redandblack",
+  completed = false,
   title = "Red and Black",
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Red_and_Black_(solitaire)"),
@@ -26,6 +27,7 @@ object RedAndBlack extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Zebra.html.en")
   ),
   description = "A game where everything is built in alternate colors. Also known as \"Rouge et Noir\" or \"Zebra.\"",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

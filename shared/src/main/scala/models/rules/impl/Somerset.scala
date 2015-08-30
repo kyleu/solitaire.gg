@@ -15,6 +15,7 @@ import models.rules._
  */
 object Somerset extends GameRules(
   id = "somerset",
+  completed = false,
   title = "Somerset",
   related = Seq("morehead", "usk"),
   links = Seq(
@@ -26,6 +27,7 @@ object Somerset extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/somerset.htm")
   ),
   description = "A ^klondike^ variant without stock or waste. Unlike ^usk^, moves of stacks are not allowed, but spaces can be filled by any card.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

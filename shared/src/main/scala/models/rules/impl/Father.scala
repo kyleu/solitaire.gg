@@ -25,11 +25,13 @@ import models.rules._
  */
 object Father extends GameRules(
   id = "father",
+  completed = false,
   title = "Father",
   like = Some("grandfather"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/father.htm")),
   description = "This variation of ^grandfather^ by Thomas Warfield adds difficulty by reducing the number of tableau piles, and adds strategy by e" +
     "liminating the automatic filling of empty spaces, but it's still a pretty easy game.",
+  layout = Some("swff|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

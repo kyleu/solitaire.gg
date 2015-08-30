@@ -18,9 +18,11 @@ import models.rules._
  */
 object ThreeBears extends GameRules(
   id = "threebears",
+  completed = false,
   title = "Three Bears",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_bears.htm")),
   description = "A variation on ^tripleklondike^ invented by Thomas Warfield. You build in the same suit instead of alternate colors.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 3
   ),

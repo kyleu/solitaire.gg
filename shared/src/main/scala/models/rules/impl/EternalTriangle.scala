@@ -17,10 +17,12 @@ import models.rules._
  */
 object EternalTriangle extends GameRules(
   id = "eternaltriangle",
+  completed = false,
   title = "Eternal Triangle",
   related = Seq("hypotenuse", "tripletriangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eternal_triangle.htm")),
   description = "A fairly hard two-deck ^klondike^ variation.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

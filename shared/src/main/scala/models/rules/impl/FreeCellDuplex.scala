@@ -19,10 +19,12 @@ import models.rules._
  */
 object FreeCellDuplex extends GameRules(
   id = "freecellduplex",
+  completed = false,
   title = "FreeCell Duplex",
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/freecell_duplex.htm")),
   description = "An easy two-deck version of ^freecell^. Requires a large screen.",
+  layout = Some("f|c|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

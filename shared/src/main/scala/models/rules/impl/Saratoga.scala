@@ -17,6 +17,7 @@ import models.rules._
  */
 object Saratoga extends GameRules(
   id = "saratoga",
+  completed = false,
   title = "Saratoga",
   like = Some("klondike"),
   links = Seq(
@@ -26,6 +27,7 @@ object Saratoga extends GameRules(
     Link("Elton Gahr on HobbyHub", "www.hobbyhub360.com/index.php/solitaire-how-to-play-saratoga-13682/")
   ),
   description = "This is just ^klondike^ with the cards dealt face up.",
+  layout = Some("swf|t"),
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

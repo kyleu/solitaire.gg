@@ -31,6 +31,7 @@ import models.rules._
  */
 object Nationale extends GameRules(
   id = "nationale",
+  completed = false,
   title = "Nationale",
   like = Some("caprice"),
   links = Seq(
@@ -41,6 +42,7 @@ object Nationale extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/nationale.php")
   ),
   description = "Like ^caprice^ without a stock.",
+  layout = Some("ff|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

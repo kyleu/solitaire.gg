@@ -4,6 +4,7 @@ import models.rules._
 
 object SandboxB extends GameRules(
   id = "sandboxb",
+  completed = false,
   custom = true,
   title = "Sandbox B",
   layout = Some("s"),

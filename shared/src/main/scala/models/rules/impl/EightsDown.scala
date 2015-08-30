@@ -22,9 +22,11 @@ import models.rules._
  */
 object EightsDown extends GameRules(
   id = "eightsdown",
+  completed = false,
   title = "Eights Down",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eights_down.htm")),
   description = "A ^busyaces^ variant invented by Thomas Warfield, where the foundations build down from eight.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Eight

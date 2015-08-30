@@ -23,11 +23,13 @@ import models.rules._
  */
 object WaveMotion extends GameRules(
   id = "wavemotion",
+  completed = false,
   title = "Wave Motion",
   related = Seq("wadingpool", "flow"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/wave_motion.htm")),
   description = "In David Bernazzani's variation on ^freecell^ and ^scorpion^, all cards start on the reserve. They need to be arranged into sequen" +
     "ces on the tableau.",
+  layout = Some("|tt"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
     TableauRules(

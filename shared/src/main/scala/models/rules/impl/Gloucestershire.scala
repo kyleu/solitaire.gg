@@ -20,6 +20,7 @@ import models.rules._
  */
 object Gloucestershire extends GameRules(
   id = "gloucestershire",
+  completed = false,
   title = "Gloucestershire",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gloucestershire.htm"),
@@ -27,6 +28,7 @@ object Gloucestershire extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Gloucestershire.htm")
   ),
   description = "A two-deck variation of ^flowergarden^.",
+  layout = Some("wf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

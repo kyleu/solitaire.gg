@@ -39,6 +39,7 @@ import models.rules._
  */
 object Cicely extends GameRules(
   id = "cicely",
+  completed = false,
   title = "Cicely",
   like = Some("caprice"),
   related = Seq("tournament"),
@@ -48,6 +49,7 @@ object Cicely extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/cicely.htm")
   ),
   description = "A variation of ^tournament^ and ^kingsdowneights^ where you can build up and down on the tableau.",
+  layout = Some("sff|c|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

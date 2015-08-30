@@ -20,6 +20,7 @@ import models.rules._
  */
 object Deuces extends GameRules(
   id = "deuces",
+  completed = false,
   title = "Deuces",
   like = Some("busyaces"),
   related = Seq("jacksinthebox", "threescompany", "castoutnines"),
@@ -30,6 +31,7 @@ object Deuces extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/deuces.htm")
   ),
   description = "A more difficult variation of ^busyaces^ with fewer tableau piles.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Two

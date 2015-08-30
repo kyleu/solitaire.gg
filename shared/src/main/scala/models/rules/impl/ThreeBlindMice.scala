@@ -21,6 +21,7 @@ import models.rules._
  */
 object ThreeBlindMice extends GameRules(
   id = "threeblindmice",
+  completed = false,
   title = "Three Blind Mice",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_blind_mice.htm"),
@@ -29,6 +30,7 @@ object ThreeBlindMice extends GameRules(
     Link("Wikipedia", "en.wikipedia.org/wiki/Scorpion_(solitaire)")
   ),
   description = "A variation of ^scorpion^ with a 10 by 5 tableau and a two-card reserve.",
+  layout = Some("wf|t"),
   waste = Some(
     WasteRules(
       name = "Reserve"

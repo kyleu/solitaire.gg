@@ -18,10 +18,12 @@ import models.rules._
  */
 object Odessa extends GameRules(
   id = "odessa",
+  completed = false,
   title = "Odessa",
   like = Some("russian"),
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Odessa.html.en")),
   description = "A variant of ^russian^ with a different starting tableau.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

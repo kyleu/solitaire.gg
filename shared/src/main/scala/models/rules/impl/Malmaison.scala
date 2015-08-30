@@ -16,12 +16,14 @@ import models.rules._
  */
 object Malmaison extends GameRules(
   id = "malmaison",
+  completed = false,
   title = "Malmaison",
   like = Some("sixtythieves"),
   related = Seq("rueil"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/malmaison.htm")),
   description = "A difficult four-deck version of ^josephine^, or, if you prefer, a version of ^eightythieves^ which allows sequences to be moved. " +
     "Invented by Thomas Warfield.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 3
   ),

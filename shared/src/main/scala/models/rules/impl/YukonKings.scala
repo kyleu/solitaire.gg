@@ -22,10 +22,12 @@ import models.rules._
  */
 object YukonKings extends GameRules(
   id = "yukonkings",
+  completed = false,
   title = "Yukon Kings",
   like = Some("yukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukon_kings.htm")),
   description = "A difficult version of ^yukon^ without foundations.",
+  layout = Some("|t"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
     TableauRules(

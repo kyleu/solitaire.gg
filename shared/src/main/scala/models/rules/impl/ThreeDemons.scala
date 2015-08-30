@@ -23,11 +23,13 @@ import models.rules._
  */
 object ThreeDemons extends GameRules(
   id = "threedemons",
+  completed = false,
   title = "Three Demons",
   like = Some("triplecanfield"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_demons.htm")),
   description = "This three-deck version of ^canfield^ invented by Thomas Warfield starts with more cards in the reserve and more tableau piles tha" +
     "n ^triplecanfield^.",
+  layout = Some("swf|r|t"),
   deckOptions = DeckOptions(
     numDecks = 3,
     lowRank = Rank.Unknown

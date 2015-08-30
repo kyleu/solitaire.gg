@@ -12,9 +12,11 @@ import models.rules._
  */
 object Streets extends GameRules(
   id = "streets",
+  completed = false,
   title = "Streets",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/streets.htm")),
   description = "Just like ^fortythieves^, except you build in alternate colors.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

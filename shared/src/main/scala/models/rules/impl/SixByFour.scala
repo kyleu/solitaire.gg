@@ -18,10 +18,12 @@ import models.rules._
  */
 object SixByFour extends GameRules(
   id = "sixbyfour",
+  completed = false,
   title = "Six by Four",
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/six_by_four.htm")),
   description = "A much harder ^freecell^ variant with two fewer tableau columns.",
+  layout = Some("f|c|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

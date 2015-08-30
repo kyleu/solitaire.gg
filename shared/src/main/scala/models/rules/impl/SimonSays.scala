@@ -21,9 +21,11 @@ import models.rules._
  */
 object SimonSays extends GameRules(
   id = "simonsays",
+  completed = false,
   title = "Simon Says",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/simon_says.htm")),
   description = "A blend of ^simplesimon^ with ^freecell^ invented by Thomas Warfield.",
+  layout = Some("|c|t"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
     TableauRules(

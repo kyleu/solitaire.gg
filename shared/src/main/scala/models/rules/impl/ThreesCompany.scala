@@ -21,12 +21,14 @@ import models.rules._
  */
 object ThreesCompany extends GameRules(
   id = "threescompany",
+  completed = false,
   title = "Three's Company",
   like = Some("deuces"),
   related = Seq("foursup"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/threes_company.htm")),
   description = "A rather difficult variation of ^deuces^ or ^busyaces^ with still fewer tableau piles but stack moves are allowed. Invented by Tho" +
     "mas Warfield.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Three

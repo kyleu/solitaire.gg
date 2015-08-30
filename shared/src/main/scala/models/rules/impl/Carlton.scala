@@ -17,6 +17,7 @@ import models.rules._
  */
 object Carlton extends GameRules(
   id = "carlton",
+  completed = false,
   title = "Carlton",
   related = Seq("steve"),
   links = Seq(
@@ -29,6 +30,7 @@ object Carlton extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/carlton.htm")
   ),
   description = "A difficult two-deck ^klondike^ variation.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

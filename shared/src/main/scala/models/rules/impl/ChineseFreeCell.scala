@@ -22,10 +22,12 @@ import models.rules._
  */
 object ChineseFreeCell extends GameRules(
   id = "chinesefreecell",
+  completed = false,
   title = "Chinese FreeCell",
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinese_freecell.htm")),
   description = "A version of ^freecell^ played with only three suits.",
+  layout = Some("f|c|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds)

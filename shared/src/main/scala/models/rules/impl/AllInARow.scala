@@ -29,6 +29,7 @@ import models.rules._
  */
 object AllInARow extends GameRules(
   id = "allinarow",
+  completed = false,
   title = "All in a Row",
   like = Some("golf"),
   related = Seq("blackhole"),
@@ -39,6 +40,7 @@ object AllInARow extends GameRules(
     Link("Jan Wolter's Experiments", "/article/blackhole.html")
   ),
   description = "A variation of ^golf^ without a stock. Most deals are winnable, but require a lot of advance planning to win.",
+  layout = Some("f|t"),
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(
     FoundationRules(

@@ -20,6 +20,7 @@ import models.rules._
  */
 object Fifteens extends GameRules(
   id = "fifteens",
+  completed = false,
   title = "Fifteens",
   like = Some("straightfifteens"),
   links = Seq(
@@ -32,6 +33,7 @@ object Fifteens extends GameRules(
     Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/fifteens.htm")
   ),
   description = "A simple game where you remove sets that add to 15 or sets of four tens, four jacks, four queens, or four kings.",
+  layout = Some("sf|t"),
   cardRemovalMethod = CardRemovalMethod.RemoveSetsAddingToFifteenOrFour10JQK,
   stock = Some(
     StockRules(

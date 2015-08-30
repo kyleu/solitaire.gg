@@ -18,10 +18,12 @@ import models.rules._
  */
 object Apophis extends GameRules(
   id = "apophis",
+  completed = false,
   title = "Apophis",
   like = Some("pyramid"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/apophis.htm")),
   description = "^pyramid^ played with three waste piles.",
+  layout = Some("swf|p"),
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(

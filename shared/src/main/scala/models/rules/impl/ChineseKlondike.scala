@@ -20,10 +20,12 @@ import models.rules._
  */
 object ChineseKlondike extends GameRules(
   id = "chineseklondike",
+  completed = false,
   title = "Chinese Klondike",
   like = Some("klondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinese_klondike.htm")),
   description = "A three-suit version of ^klondike^.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 4,
     suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds)

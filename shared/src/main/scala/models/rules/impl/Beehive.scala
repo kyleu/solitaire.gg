@@ -25,6 +25,7 @@ import models.rules._
  */
 object Beehive extends GameRules(
   id = "beehive",
+  completed = false,
   title = "Beehive",
   related = Seq("beehivegallery"),
   links = Seq(Link("Michael Keller's Description", "www.solitairelaboratory.com/buildingranks.html")),

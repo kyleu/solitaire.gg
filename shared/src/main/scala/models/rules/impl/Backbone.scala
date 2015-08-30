@@ -19,6 +19,7 @@ import models.rules._
  */
 object Backbone extends GameRules(
   id = "backbone",
+  completed = false,
   title = "Backbone",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/backbone.htm"),
@@ -29,6 +30,7 @@ object Backbone extends GameRules(
     Link("L. Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-backbone-solitaire-14353/")
   ),
   description = "A difficult game of Victorian origin with a forked reserve pile",
+  layout = Some("swf|t|p"),
   victoryCondition = VictoryCondition.NoneInPyramid,
   deckOptions = DeckOptions(
     numDecks = 2

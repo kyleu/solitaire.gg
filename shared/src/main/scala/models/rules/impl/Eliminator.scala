@@ -20,9 +20,11 @@ import models.rules._
  */
 object Eliminator extends GameRules(
   id = "eliminator",
+  completed = false,
   title = "Eliminator",
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Eliminator.html.en")),
   description = "An easy ^golf^-like game with six foundations.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 6,

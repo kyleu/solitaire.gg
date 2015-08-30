@@ -22,6 +22,7 @@ import models.rules._
  */
 object SpiderCells extends GameRules(
   id = "spidercells",
+  completed = false,
   title = "SpiderCells",
   like = Some("freecell"),
   links = Seq(
@@ -30,6 +31,7 @@ object SpiderCells extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/spidercells.htm")
   ),
   description = "A ^freecell^ variant where you need to build complete alternating color sequences on the tableau.",
+  layout = Some("|c|t"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
     TableauRules(

@@ -19,6 +19,7 @@ import models.rules._
  */
 object FourLeafClovers extends GameRules(
   id = "fourleafclovers",
+  completed = false,
   title = "Four Leaf Clovers",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/four_leaf_clovers.htm"),
@@ -28,6 +29,7 @@ object FourLeafClovers extends GameRules(
   ),
   description = "A single foundation pile is built regardless of suit from ace to king and then from ace to king again with the help of a tableau w" +
     "here you can build both up and down.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       suitMatchRule = SuitMatchRule.Any,

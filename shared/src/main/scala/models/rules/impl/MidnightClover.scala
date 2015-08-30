@@ -19,10 +19,12 @@ import models.rules._
  */
 object MidnightClover extends GameRules(
   id = "midnightclover",
+  completed = false,
   title = "Midnight Clover",
   like = Some("fan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/midnight_clover.htm")),
   description = "A ^fan^ variant by Thomas Warfield where a draw is allowed.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

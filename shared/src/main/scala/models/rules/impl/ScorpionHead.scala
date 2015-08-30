@@ -20,9 +20,11 @@ import models.rules._
  */
 object ScorpionHead extends GameRules(
   id = "scorpionhead",
+  completed = false,
   title = "Scorpion Head",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/scorpion_head.htm")),
   description = "A variation of ^scorpion^ with some cells.",
+  layout = Some("f|c|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

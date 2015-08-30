@@ -20,10 +20,12 @@ import models.rules._
  */
 object Anubis extends GameRules(
   id = "anubis",
+  completed = false,
   title = "Anubis",
   like = Some("doublepyramid"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/anubis.htm")),
   description = "A variation of ^doublepyramid^ with three waste piles.",
+  layout = Some("swf|p"),
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   deckOptions = DeckOptions(
     numDecks = 2

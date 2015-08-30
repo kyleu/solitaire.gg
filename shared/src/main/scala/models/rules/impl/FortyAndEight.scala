@@ -15,6 +15,7 @@ import models.rules._
  */
 object FortyAndEight extends GameRules(
   id = "fortyandeight",
+  completed = false,
   title = "Forty and Eight",
   related = Seq("lower48"),
   links = Seq(

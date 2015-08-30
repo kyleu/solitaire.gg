@@ -15,11 +15,13 @@ import models.rules._
  */
 object SixtyThieves extends GameRules(
   id = "sixtythieves",
+  completed = false,
   title = "Sixty Thieves",
   like = Some("fortythieves"),
   related = Seq("marierose", "malmaison"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sixty_thieves.htm")),
   description = "A difficult three-deck version of ^fortythieves^ by Thomas Warfield.",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 3
   ),

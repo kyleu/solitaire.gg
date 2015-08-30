@@ -19,6 +19,7 @@ import models.rules._
  */
 object SimpleSimon extends GameRules(
   id = "simplesimon",
+  completed = false,
   title = "Simple Simon",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/simple_simon.htm"),
@@ -30,6 +31,7 @@ object SimpleSimon extends GameRules(
     Link("kPatience", "docs.kde.org/stable/en/kdegames/kpat/rules-specific.html#simple-simon")
   ),
   description = "Like a one-deck ^spider^ where all cards start face up in a triangular tableau and there are no further cards to deal.",
+  layout = Some("f|t"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   foundations = Seq(
     FoundationRules(

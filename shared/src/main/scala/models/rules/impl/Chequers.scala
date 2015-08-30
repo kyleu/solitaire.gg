@@ -34,6 +34,7 @@ import models.rules._
  */
 object Chequers extends GameRules(
   id = "chequers",
+  completed = false,
   title = "Chequers",
   like = Some("caprice"),
   links = Seq(
@@ -42,6 +43,7 @@ object Chequers extends GameRules(
   ),
   description = "This game has twenty-five tableau piles where you can build up or down, and you build up on half the foundations, and down on the " +
     "others. It needs a large screen.",
+  layout = Some("ff|r|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

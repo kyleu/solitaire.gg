@@ -27,6 +27,7 @@ import models.rules._
  */
 object FallingStar extends GameRules(
   id = "fallingstar",
+  completed = false,
   title = "Falling Star",
   like = Some("signora"),
   links = Seq(
@@ -39,6 +40,7 @@ object FallingStar extends GameRules(
     Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/falling_star.htm")
   ),
   description = "A more difficult ^signora^ variation with one fewer tableau pile and a predetermined foundation base.",
+  layout = Some("swf|r|t"),
   deckOptions = DeckOptions(
     numDecks = 2,
     suits = Seq(Suit.Horseshoes, Suit.Stars),

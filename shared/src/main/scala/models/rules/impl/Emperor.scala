@@ -15,6 +15,7 @@ import models.rules._
  */
 object Emperor extends GameRules(
   id = "emperor",
+  completed = false,
   title = "Emperor",
   like = Some("rankandfile"),
   links = Seq(
@@ -26,6 +27,7 @@ object Emperor extends GameRules(
     Link("Bicycle", "www.bicyclecards.ca/game-rules/emperor/184.php?page_id=32")
   ),
   description = "A more difficult version of ^rankandfile^ where only single cards can be moved..",
+  layout = Some("swf|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

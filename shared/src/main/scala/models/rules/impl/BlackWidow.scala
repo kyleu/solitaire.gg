@@ -22,6 +22,7 @@ import models.rules._
  */
 object BlackWidow extends GameRules(
   id = "blackwidow",
+  completed = false,
   title = "Black Widow",
   like = Some("spider"),
   links = Seq(
@@ -32,6 +33,7 @@ object BlackWidow extends GameRules(
     Link("Bryan Cohen on eHow", "www.ehow.com/list_6702718_black-widow-card-game-rules.html")
   ),
   description = "An easier variation of ^spider^ where you are allowed to move sequences even if they aren't all of one suit.",
+  layout = Some("sf|t"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2

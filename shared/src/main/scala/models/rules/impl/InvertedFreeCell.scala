@@ -21,10 +21,12 @@ import models.rules._
  */
 object InvertedFreeCell extends GameRules(
   id = "invertedfreecell",
+  completed = false,
   title = "Inverted FreeCell",
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/inverted_freecell.htm")),
   description = "Just like ^freecell^ but we limber up our brains by building everything in the opposite direction.",
+  layout = Some("f|c|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

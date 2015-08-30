@@ -19,12 +19,14 @@ import models.rules._
  */
 object KingsdownEights extends GameRules(
   id = "kingsdowneights",
+  completed = false,
   title = "Kingsdown Eights",
   links = Seq(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/Kingsdown-Eights.htm"),
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kingsdown_eights.htm")
   ),
   description = "This variation of ^tournament^ has a tableau where you can build by alternate color instead of cells.",
+  layout = Some("sf|r|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

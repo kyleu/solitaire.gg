@@ -16,6 +16,7 @@ import models.rules._
  */
 object MamySusan extends GameRules(
   id = "mamysusan",
+  completed = false,
   title = "Mamy Susan",
   like = Some("fortythieves"),
   links = Seq(
@@ -23,6 +24,7 @@ object MamySusan extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/MamySusan.htm")
   ),
   description = "A ^fortythieves^ variation from France with a five card reserve.",
+  layout = Some("swf|r|t"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -17,6 +17,7 @@ import models.rules._
  */
 object PenelopesWeb extends GameRules(
   id = "penelopesweb",
+  completed = false,
   title = "Penelope's Web",
   like = Some("streetsandalleys"),
   links = Seq(
@@ -24,6 +25,7 @@ object PenelopesWeb extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/penelope-web.htm")
   ),
   description = "A very difficult variation of ^beleagueredcastle^ where spaces can only be filled by kings.",
+  layout = Some("f|t"),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
