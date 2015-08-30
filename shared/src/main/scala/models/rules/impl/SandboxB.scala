@@ -6,7 +6,7 @@ object SandboxB extends GameRules(
   id = "sandboxb",
   completed = false,
   title = "Sandbox B",
-  layout = Some("s"),
+  layout = "s",
   description = "Another work in progress...",
   cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
 

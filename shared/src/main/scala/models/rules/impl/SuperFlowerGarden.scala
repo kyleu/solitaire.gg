@@ -30,7 +30,7 @@ object SuperFlowerGarden extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SuperFlowerGarden.htm")
   ),
   description = "This is an easier version of ^labellelucie^ in which one may build regardless of suit. It is unrelated to ^flowergarden^.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

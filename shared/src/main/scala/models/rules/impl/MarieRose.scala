@@ -20,7 +20,7 @@ object MarieRose extends GameRules(
   like = Some("sixtythieves"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/marie_rose.htm")),
   description = "A three-deck version of ^josephine^ or a version of ^sixtythieves^ which allows sequences to be moved.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 3
   ),

@@ -35,7 +35,7 @@ object Frog extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/frog.htm")
   ),
   description = "A relation of ^sirtommy^ with a reserve.",
-  layout = Some("sf|r|t"),
+  layout = "sf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

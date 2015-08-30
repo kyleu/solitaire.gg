@@ -30,7 +30,7 @@ object KnottyNines extends GameRules(
     Link("Antonia Hoyland", "www.allreadable.com/4c9d6pdH")
   ),
   description = "A more difficult variation of ^trustytwelve^.",
-  layout = Some("s|t"),
+  layout = "s|t",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(
     StockRules(

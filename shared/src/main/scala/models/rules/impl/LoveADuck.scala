@@ -22,7 +22,7 @@ object LoveADuck extends GameRules(
   completed = false,
   title = "Love a Duck",
   description = "A ^yukon^-type game, played on an interlocking tableau.",
-  layout = Some("f|p"),
+  layout = "f|p",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

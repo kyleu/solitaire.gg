@@ -23,7 +23,7 @@ object Kingdom extends GameRules(
   ),
   description = "A game where no building is allowed in the tableau and suits are ignored while building up the tableau. Our version may be slightl" +
     "y less dreadful than the usual.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

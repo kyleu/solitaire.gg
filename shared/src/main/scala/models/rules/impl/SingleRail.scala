@@ -24,7 +24,7 @@ object SingleRail extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SingleRail.htm")
   ),
   description = "A one-deck version of ^doublerail^. A good little game for small screens.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

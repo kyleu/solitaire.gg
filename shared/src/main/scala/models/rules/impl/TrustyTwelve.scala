@@ -30,7 +30,7 @@ object TrustyTwelve extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/TrustyTwelve.htm")
   ),
   description = "More luck than skill is needed to win this game of building sequences on the tableau.",
-  layout = Some("s|2t"),
+  layout = "s|2t",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(
     StockRules(

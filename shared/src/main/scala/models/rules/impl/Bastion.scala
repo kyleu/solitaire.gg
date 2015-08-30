@@ -27,7 +27,7 @@ object Bastion extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/bastion.htm")
   ),
   description = "^fortress^ with cells.",
-  layout = Some(":.f:c|t"),
+  layout = ":.f:c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

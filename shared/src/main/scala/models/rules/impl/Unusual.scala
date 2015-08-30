@@ -27,7 +27,7 @@ object Unusual extends GameRules(
   like = Some("cruel"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/unusual.htm")),
   description = "A two-deck version of ^cruel^.",
-  layout = Some("::f|2t"),
+  layout = "::f|2t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

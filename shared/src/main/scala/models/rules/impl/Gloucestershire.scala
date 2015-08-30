@@ -28,7 +28,7 @@ object Gloucestershire extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Gloucestershire.htm")
   ),
   description = "A two-deck variation of ^flowergarden^.",
-  layout = Some("wf|t"),
+  layout = "wf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

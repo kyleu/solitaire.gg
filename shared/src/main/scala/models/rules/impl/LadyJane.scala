@@ -21,7 +21,7 @@ object LadyJane extends GameRules(
   related = Seq("inquisitor"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lady_jane.htm")),
   description = "An easy two-deck ^spider^/^klondike^ blend by Thomas Warfield.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

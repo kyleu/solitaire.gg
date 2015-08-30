@@ -24,7 +24,7 @@ object Ants extends GameRules(
   title = "Ants",
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/ants.htm")),
   description = "Like four parallel ^golf^ games",
-  layout = Some("sf|.t"),
+  layout = "sf|.t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

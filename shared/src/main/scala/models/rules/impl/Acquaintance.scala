@@ -34,7 +34,7 @@ object Acquaintance extends GameRules(
     Link("Michael Smoker on HobbyHub", "www.hobbyhub360.com/index.php/acquaintance-solitaire-game-10370/")
   ),
   description = "A variation of ^auldlangsyne^ suggested by Michael Keller that adds some interest by allowing two redeals.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

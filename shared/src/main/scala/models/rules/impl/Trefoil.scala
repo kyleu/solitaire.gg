@@ -33,7 +33,7 @@ object Trefoil extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/trefoil.html")
   ),
   description = "A slightly easier variation of ^labellelucie^ where the aces start on the foundation and there are fewer tableau columns.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

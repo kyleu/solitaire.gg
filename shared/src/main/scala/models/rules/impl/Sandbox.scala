@@ -8,7 +8,7 @@ object Sandbox extends GameRules(
   completed = false,
   title = "Sandbox",
   description = "A work in progress...",
-  layout = Some("s|f"),
+  layout = "s|f",
   cardRemovalMethod = CardRemovalMethod.BuildSequencesOnFoundation,
 
   deckOptions = DeckOptions(ranks = Seq(Rank.Ace)),

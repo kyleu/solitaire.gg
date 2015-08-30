@@ -26,7 +26,7 @@ object SuitElevens extends GameRules(
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
   description = "A variation of ^elevens^ where you can only remove sets of cards if they are all of the same suit.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   cardRemovalMethod = CardRemovalMethod.RemoveSameSuitPairsAddingToElevenOrJQK,
   stock = Some(
     StockRules(

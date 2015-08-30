@@ -24,7 +24,7 @@ object Tuxedo extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/tuxedo.htm")
   ),
   description = "An easier variant of ^penguin^ where all cards start on the tableau.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -52,7 +52,7 @@ object Crescent extends GameRules(
     Link("Lena Games", "www.lenagames.com/bp_files/rul/crescent.htm")
   ),
   description = "A bidirectional building game where you can rotate cards in the stacks three times.",
-  layout = Some("ff|t"),
+  layout = "ff|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -25,7 +25,7 @@ object NapoleonsShoulder extends GameRules(
   like = Some("napoleonssquare"),
   links = Seq(Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/napoleons_shoulder.html")),
   description = "A varient of ^napoleonssquare^ where you build regardless of suit.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -37,7 +37,7 @@ object Chessboard extends GameRules(
     Link("L. Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-chessboard-solitaire-14077/")
   ),
   description = "A more interesting variation of ^fortress^ where you choose the base card.",
-  layout = Some(":::f|t"),
+  layout = ":::f|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

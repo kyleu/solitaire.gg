@@ -38,7 +38,7 @@ object DemonsAndThieves extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/demons_and_thieves.htm")),
   description = "In this game, the tableau is split into two halves, one half where you play by ^canfield^ rules, and one half where you play by ^f" +
     "ortythieves^ rules.",
-  layout = Some("swf|r|tt"),
+  layout = "swf|r|tt",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

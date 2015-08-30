@@ -24,7 +24,7 @@ object Elba extends GameRules(
   like = Some("fortythieves"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/elba.htm")),
   description = "A variant of ^fortythieves^ with ^klondike^-like building rules.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

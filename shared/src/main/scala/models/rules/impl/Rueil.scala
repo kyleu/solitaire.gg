@@ -21,7 +21,7 @@ object Rueil extends GameRules(
   like = Some("malmaison"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rueil.htm")),
   description = "A version of ^malmaison^ made easier by allowing a redeal.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 3
   ),

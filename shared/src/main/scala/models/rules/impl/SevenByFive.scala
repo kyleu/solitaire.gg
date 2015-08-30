@@ -23,7 +23,7 @@ object SevenByFive extends GameRules(
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/seven_by_five.htm")),
   description = "A ^freecell^ variant with one fewer tableau column and more more cell.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

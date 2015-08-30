@@ -31,7 +31,7 @@ object SimpleSimon extends GameRules(
     Link("kPatience", "docs.kde.org/stable/en/kdegames/kpat/rules-specific.html#simple-simon")
   ),
   description = "Like a one-deck ^spider^ where all cards start face up in a triangular tableau and there are no further cards to deal.",
-  layout = Some("f|t"),
+  layout = "f|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   foundations = Seq(
     FoundationRules(

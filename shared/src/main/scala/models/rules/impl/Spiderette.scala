@@ -37,7 +37,7 @@ object Spiderette extends GameRules(
     Link("Solitaire City", "www.solitairecity.com/iPhone/Spiderette.shtml")
   ),
   description = "A one-deck version of ^spider^, with a ^klondike^-style triangular tableau.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   stock = Some(
     StockRules(

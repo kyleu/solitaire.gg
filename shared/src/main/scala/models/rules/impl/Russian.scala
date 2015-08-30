@@ -30,7 +30,7 @@ object Russian extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/russian_solitaire.htm")
   ),
   description = "A harder variation of ^yukon^ where you must build down in the same suit instead of in alternate colors.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

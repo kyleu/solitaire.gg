@@ -38,7 +38,7 @@ object DoubleDot extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/double_dot.htm")
   ),
   description = "An easy game where you build up by twos on the foundation, and down by twos on the tableau.",
-  layout = Some("sff|t"),
+  layout = "sff|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

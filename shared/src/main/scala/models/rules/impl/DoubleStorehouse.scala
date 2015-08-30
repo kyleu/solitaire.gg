@@ -29,7 +29,7 @@ object DoubleStorehouse extends GameRules(
   like = Some("storehouse"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_storehouse.htm")),
   description = "A two-deck version of ^storehouse^.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Two

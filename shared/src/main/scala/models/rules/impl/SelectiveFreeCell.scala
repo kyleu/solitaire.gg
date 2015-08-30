@@ -25,7 +25,7 @@ object SelectiveFreeCell extends GameRules(
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/selective_freecell.htm")),
   description = "A variation of ^freecell^ where the first card played to the foudnation sets the base value for all the foundations.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

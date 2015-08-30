@@ -38,7 +38,7 @@ object Escalator extends GameRules(
   ),
   description = "Deconstruct a pyramid by building up or down on a single foundation pile. " +
     "This game is also known by the more descriptive name \"Pyramid Golf.\"",
-  layout = Some("sf|p"),
+  layout = "sf|p",
   victoryCondition = VictoryCondition.NoneInPyramid,
   stock = Some(
     StockRules(

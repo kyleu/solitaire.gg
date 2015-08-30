@@ -27,7 +27,7 @@ object Josephine extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/josephine.htm")
   ),
   description = "Similar to ^fortythieves^, except that you can move sequences.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

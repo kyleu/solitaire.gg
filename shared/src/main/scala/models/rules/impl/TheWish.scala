@@ -26,7 +26,7 @@ object TheWish extends GameRules(
     Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/TheWish.html")
   ),
   description = "This easy pair-removal game uses a short deck and no stock, but is otherwise similar to ^doublets^.",
-  layout = Some("f|t"),
+  layout = "f|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   deckOptions = DeckOptions(
     ranks = Seq(Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace)

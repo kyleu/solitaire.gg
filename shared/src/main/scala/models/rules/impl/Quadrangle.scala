@@ -30,7 +30,7 @@ object Quadrangle extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Quadrangle.htm")
   ),
   description = "A variation of ^corona^ where the base card is determined by a card dealt into the foundation.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

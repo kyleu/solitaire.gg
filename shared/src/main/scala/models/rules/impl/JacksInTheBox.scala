@@ -26,7 +26,7 @@ object JacksInTheBox extends GameRules(
   like = Some("deuces"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/jacks_in_the_box.htm")),
   description = "A variation on ^deuces^ which has fewer tableau piles but adds some cells.",
-  layout = Some("swf|c|t"),
+  layout = "swf|c|t",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Jack

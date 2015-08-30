@@ -24,7 +24,7 @@ object ScorpionHead extends GameRules(
   title = "Scorpion Head",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/scorpion_head.htm")),
   description = "A variation of ^scorpion^ with some cells.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

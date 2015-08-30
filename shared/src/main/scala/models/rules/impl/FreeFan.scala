@@ -25,7 +25,7 @@ object FreeFan extends GameRules(
   related = Seq("luckyfan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/free_fan.htm")),
   description = "An easy variation of ^fan^ with cells. Invented by Gregg Seelhoff.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

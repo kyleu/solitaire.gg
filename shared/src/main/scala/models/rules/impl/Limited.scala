@@ -31,7 +31,7 @@ object Limited extends GameRules(
     Link("Solitaire Central", "www.solitairecentral.com/rules/Limited.html")
   ),
   description = "Like ^fortythieves^, but with a 12 by 3 tableau.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

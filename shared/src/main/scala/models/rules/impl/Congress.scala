@@ -28,7 +28,7 @@ object Congress extends GameRules(
   ),
   description = "This has similarities to ^fortyandeight^, but spaces in the tableau may only be filled from the waste. This gives the game a very " +
     "different feel.",
-  layout = Some("sw|f|t"),
+  layout = "sw|f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

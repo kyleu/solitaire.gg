@@ -22,7 +22,7 @@ object QuadrupleKlondike extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_klondike.htm")),
   description = "A four-deck variation of ^klondike^, invented by Thomas Warfield. You will need a large screen for this. Try using the F11 key to " +
     "put your browser into full-screen mode.",
-  layout = Some("swf|:.t"),
+  layout = "swf|:.t",
   deckOptions = DeckOptions(
     numDecks = 4
   ),

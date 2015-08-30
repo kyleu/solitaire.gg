@@ -25,7 +25,7 @@ object Munger extends GameRules(
   like = Some("minerva"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/munger.htm")),
   description = "A variation of ^minerva^ with the reserve is smaller and only one pass through the stock is allowed.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

@@ -31,7 +31,7 @@ object DoubleFreeCell extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/double_freecell.htm")
   ),
   description = "Thomas Warfield's two-deck version of ^freecell^.",
-  layout = Some("f:c|.t"),
+  layout = "f:c|.t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -23,7 +23,7 @@ object Swiss extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SwissPatience.htm")
   ),
   description = "Like ^klondike^ but aces are high and the tableau is pyramidical.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Two
   ),

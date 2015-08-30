@@ -24,7 +24,7 @@ object FamousFifty extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/famous_fifty.htm")
   ),
   description = "A difficult ^fortythieves^ variation which starts with one extra card on each tableau pile.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

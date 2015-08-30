@@ -34,7 +34,7 @@ object WillOTheWisp extends GameRules(
     Link("L. Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-will-o-the-wisp-solitaire-14333/")
   ),
   description = "A one-deck version of ^spider^, with a rectangular 7x3 tableau.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.TableauIfNoneEmpty,

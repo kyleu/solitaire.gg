@@ -40,7 +40,7 @@ object AcesAndKings extends GameRules(
     Link("eHow", "www.ehow.com/how_2106994_play-aces-kings-solitaire.html")
   ),
   description = "Build up on one foundation, down on the other, but don't build at all on the tableau. Suits don't matter.",
-  layout = Some("swff|::r:t"),
+  layout = "swff|::r:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

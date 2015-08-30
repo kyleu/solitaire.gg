@@ -46,7 +46,7 @@ object BlackHole extends GameRules(
     Link("Jan Wolter's Experiments", "/article/blackhole.html")
   ),
   description = "Like ^allinarow^, this is a variation of ^golf^ without a stock. Invented by David Parlett.",
-  layout = Some("f|t"),
+  layout = "f|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(
     FoundationRules(

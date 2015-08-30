@@ -25,7 +25,7 @@ object DoubleRussian extends GameRules(
   like = Some("russian"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_russian.htm")),
   description = "A two-deck version of ^russian^ solitaire.",
-  layout = Some("f|t"),
+  layout = "f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

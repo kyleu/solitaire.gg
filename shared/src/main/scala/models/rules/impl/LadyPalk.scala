@@ -24,7 +24,7 @@ object LadyPalk extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/avenue.htm")
   ),
   description = "Similar to ^diplomat^, but allows stacks to be moved and spaces can only be filled by kings.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -30,7 +30,7 @@ object KingAlbert extends GameRules(
   ),
   description = "This game, one of several games also known as \"Idiot's Delight,\" has a triangular tableau and seven reserve cards, all playable." +
     " It's usually unsolvable.",
-  layout = Some("w:f|t"),
+  layout = "w:f|t",
   waste = Some(
     WasteRules(
       name = "Reserve"

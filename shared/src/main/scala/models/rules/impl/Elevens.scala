@@ -32,7 +32,7 @@ object Elevens extends GameRules(
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
   description = "A set removal sets of cards adding to 15 or sets containing ten through king.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJQK,
   stock = Some(
     StockRules(

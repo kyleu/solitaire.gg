@@ -20,7 +20,7 @@ object Morehead extends GameRules(
   like = Some("somerset"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/morehead.htm")),
   description = "A ^somerset^ variant where we build in different suits instead of alternate colors.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

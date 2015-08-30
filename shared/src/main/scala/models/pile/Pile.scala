@@ -14,6 +14,20 @@ object Pile {
   val options = PileOptions()
 }
 
+/**
+ * Layout key:
+ *   s - Stock
+ *   w - Waste
+ *   f - Foundation
+ *   c - Cell
+ *   r - Reserve
+ *   p - Pyramid
+ *
+ *   : - Full-size spacer
+ *   . - Half-size spacer
+ *
+ *   | - New line
+ */
 case class Pile(id: String, options: PileOptions, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) {
   var pileSet: Option[PileSet] = None
 

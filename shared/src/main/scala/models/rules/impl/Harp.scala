@@ -28,7 +28,7 @@ object Harp extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/harp.html")
   ),
   description = "A two-deck ^klondike^ variation.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

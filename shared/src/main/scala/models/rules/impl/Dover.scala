@@ -23,7 +23,7 @@ object Dover extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/dover.htm")),
   description = "This two-deck version of ^bristol^ still has three waste piles, but foundation piles must be built up in suit and empty tableau sp" +
     "aces may be filled, though only from the waste.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

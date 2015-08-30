@@ -24,7 +24,7 @@ object RussianCell extends GameRules(
   like = Some("russian"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/russian_cell.htm")),
   description = "Thomas Warfield's variant of ^russian^ Solitaire adds a couple cells.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

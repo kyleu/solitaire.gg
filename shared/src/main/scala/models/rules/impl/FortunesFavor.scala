@@ -33,7 +33,7 @@ object FortunesFavor extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/fortunes_favor.htm")
   ),
   description = "An extremely easy, one-deck version of ^busyaces^.",
-  layout = Some("sw:f|t"),
+  layout = "sw:f|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

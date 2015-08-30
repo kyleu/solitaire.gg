@@ -36,7 +36,7 @@ object MountOlympus extends GameRules(
     Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#mount")
   ),
   description = "Build by twos, so odds and evens are in separate sequences on the tableau and separate piles on the foundation.",
-  layout = Some("sf|:f|t"),
+  layout = "sf|:f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

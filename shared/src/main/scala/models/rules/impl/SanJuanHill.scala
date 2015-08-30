@@ -25,7 +25,7 @@ object SanJuanHill extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SanJuanHill.htm")
   ),
   description = "An easier variant of ^fortythieves^ in which aces are already on the foundation.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

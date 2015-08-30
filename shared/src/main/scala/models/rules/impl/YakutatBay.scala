@@ -23,7 +23,7 @@ object YakutatBay extends GameRules(
   title = "Yakutat Bay",
   like = Some("yukon"),
   description = "A cross between ^yukon^ and ^movingleft^.",
-  layout = Some(".:f|t"),
+  layout = ".:f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -30,7 +30,7 @@ object Carlton extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/carlton.htm")
   ),
   description = "A difficult two-deck ^klondike^ variation.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

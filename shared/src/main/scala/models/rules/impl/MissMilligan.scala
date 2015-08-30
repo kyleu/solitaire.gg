@@ -35,7 +35,7 @@ object MissMilligan extends GameRules(
   ),
   description = "Starting with one card in each column, build sequences down by alternate color. Deal new cards from the deck into all columns. Whe" +
     "n the deck is empty, gain a reserve area you can waive a stack of cards into.",
-  layout = Some("sf|:t"),
+  layout = "sf|:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

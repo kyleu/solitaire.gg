@@ -34,7 +34,7 @@ object SpiderOneSuit extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Spider.html.en")
   ),
   description = "^spider^ with nothing but spades, spades, spades, as far as the eye can see.",
-  layout = Some("s|t"),
+  layout = "s|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 8,

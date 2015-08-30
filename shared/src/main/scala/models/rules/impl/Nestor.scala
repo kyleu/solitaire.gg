@@ -10,7 +10,7 @@ object Nestor extends GameRules(
     Discard any pair of cards of the same rank, regardless of suit (for example, two Aces, two Fives, etc.).
     Only the top cards are available for play. Spaces can't be filled.
   """,
-  layout = Some("t|::tf"),
+  layout = "t|::tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
 
   foundations = Seq(

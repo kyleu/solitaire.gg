@@ -17,7 +17,7 @@ object LittleGiant extends GameRules(
   title = "Little Giant",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/little_giant.htm")),
   description = "A one-deck version of Giant.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

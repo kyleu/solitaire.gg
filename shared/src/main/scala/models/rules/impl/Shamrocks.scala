@@ -29,7 +29,7 @@ object Shamrocks extends GameRules(
     Link("Shamrocks Solitaire.com", "www.shamrockssolitaire.com/ShamrocksSolitaireInstructions.html")
   ),
   description = "A variation of ^fan^ where you can build up or down regardless of suit, but are limited to three cards per stack.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4

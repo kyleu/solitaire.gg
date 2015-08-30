@@ -26,7 +26,7 @@ object Gilbert extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gilbert.htm")),
   description = "An odd ^klondike^ variation with one set of foundations building up and one set building down. The fact that only sevens can fill " +
     "gaps in the tableau makes it nearly unplayable.",
-  layout = Some("swff|t"),
+  layout = "swff|t",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

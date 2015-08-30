@@ -31,7 +31,7 @@ object SpiderCells extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/spidercells.htm")
   ),
   description = "A ^freecell^ variant where you need to build complete alternating color sequences on the tableau.",
-  layout = Some("|c|t"),
+  layout = "|c|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
     TableauRules(

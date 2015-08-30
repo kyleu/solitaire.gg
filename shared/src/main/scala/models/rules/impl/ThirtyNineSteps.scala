@@ -26,7 +26,7 @@ object ThirtyNineSteps extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/thirty-nine-steps.htm")
   ),
   description = "^waningmoon^ with fewer cards in the initial tableau.",
-  layout = Some("sw:.f|t"),
+  layout = "sw:.f|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

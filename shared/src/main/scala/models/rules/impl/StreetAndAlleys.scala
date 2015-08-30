@@ -34,7 +34,7 @@ object StreetAndAlleys extends GameRules(
     Link("Swoop", "www.swoopsoftware.com/solitaire_rules/streets_and_alleys.html")
   ),
   description = "A more difficult variation of ^beleagueredcastle^ that starts with no cards dealt into the foundation.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

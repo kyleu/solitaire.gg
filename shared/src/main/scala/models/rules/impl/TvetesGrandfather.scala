@@ -26,7 +26,7 @@ object TvetesGrandfather extends GameRules(
   description = "Paul Olav Tvete learned this game from his grandfather and included it in <a target=\"_blank\" href=\"\"http\"://www.kde.org/appli" +
     "cations/games/kpatience/\">KPatience</a>. It is a difficult game with an unusual tableau, ^yukon^-style stack moves, and two redea" +
     "ls.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

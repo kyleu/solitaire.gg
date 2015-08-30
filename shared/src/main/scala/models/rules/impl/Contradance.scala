@@ -26,7 +26,7 @@ object Contradance extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/contradance.htm")
   ),
   description = "A variation of ^sixesandsevens^ that is just as brainless as ^captivequeens^, but requires vastly more luck to ever win.",
-  layout = Some("swff"),
+  layout = "swff",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

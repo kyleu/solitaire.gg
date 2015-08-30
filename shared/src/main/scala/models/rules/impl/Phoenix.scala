@@ -23,7 +23,7 @@ object Phoenix extends GameRules(
   like = Some("arizona"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/phoenix.htm")),
   description = "A more difficult variation of ^arizona^ where you build by alternate colors.",
-  layout = Some("wf|t"),
+  layout = "wf|t",
   waste = Some(
     WasteRules(
       name = "Reserve"

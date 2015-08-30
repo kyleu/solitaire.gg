@@ -23,7 +23,7 @@ object DoubleGoldRush extends GameRules(
   like = Some("goldrush"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_gold_rush.htm")),
   description = "A two-deck version of ^goldrush^.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

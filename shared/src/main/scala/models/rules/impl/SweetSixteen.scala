@@ -25,7 +25,7 @@ object SweetSixteen extends GameRules(
   like = Some("trustytwelve"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sweet_sixteen.htm")),
   description = "A variation of ^trustytwelve^ where you build by alternate color",
-  layout = Some("s|t"),
+  layout = "s|t",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(
     StockRules(

@@ -27,7 +27,7 @@ object Canister extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/canister.htm")
   ),
   description = "Yet another generic solitaire game, with all cards dealt face up and no stock. This is quite easy when it's not impossible.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

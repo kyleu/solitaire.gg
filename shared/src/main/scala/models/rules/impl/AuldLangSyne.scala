@@ -31,7 +31,7 @@ object AuldLangSyne extends GameRules(
   ),
   description = "An old solitaire game in which no building is allowed on the tableau. The secret to winning is to get extremely lucky before you a" +
     "bandon the game out of shear boredom or to play a more skill-dependent variation like ^sirtommy^ instead.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

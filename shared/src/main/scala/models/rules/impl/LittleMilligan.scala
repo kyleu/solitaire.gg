@@ -19,7 +19,7 @@ object LittleMilligan extends GameRules(
   title = "Little Milligan",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/little_milligan.htm")),
   description = "A hard-to-win one-deck version of ^missmilligan^.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

@@ -23,7 +23,7 @@ object SixByFour extends GameRules(
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/six_by_four.htm")),
   description = "A much harder ^freecell^ variant with two fewer tableau columns.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

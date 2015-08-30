@@ -30,7 +30,7 @@ object Beehive extends GameRules(
   related = Seq("beehivegallery"),
   links = Seq(Link("Michael Keller's Description", "www.solitairelaboratory.com/buildingranks.html")),
   description = "In this ^storehouse^ variant, we build and remove stacks of four cards of equal rank.",
-  layout = Some("2f|.t|::rsw"),
+  layout = "2f|.t|::rsw",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

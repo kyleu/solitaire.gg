@@ -19,7 +19,7 @@ object RoyalRendezvous extends GameRules(
   ),
   description = "An odd Austrian game with four foundation sets, one normal, one for evens, one for odds, and one for kings. No building on the tab" +
     "leau.",
-  layout = Some("sw:ff|::::ff|t"),
+  layout = "sw:ff|::::ff|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

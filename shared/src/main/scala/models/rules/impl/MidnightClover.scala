@@ -24,7 +24,7 @@ object MidnightClover extends GameRules(
   like = Some("fan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/midnight_clover.htm")),
   description = "A ^fan^ variant by Thomas Warfield where a draw is allowed.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

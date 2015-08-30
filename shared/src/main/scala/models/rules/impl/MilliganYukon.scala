@@ -24,7 +24,7 @@ object MilliganYukon extends GameRules(
   like = Some("milliganharp"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/milligan_yukon.htm")),
   description = "A cross between ^milliganharp^ and ^yukon^.",
-  layout = Some("sf|.t"),
+  layout = "sf|.t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

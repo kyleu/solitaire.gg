@@ -25,7 +25,7 @@ object Bureau extends GameRules(
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/bureau.htm")),
   description = "This game has rules similar to ^klondike^, except you build the foundation in alternate colors and cannot fill spaces in the table" +
     "au.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

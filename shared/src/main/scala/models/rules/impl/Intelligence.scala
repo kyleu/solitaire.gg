@@ -42,7 +42,7 @@ object Intelligence extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/intelligence.html")
   ),
   description = "A two-deck version of ^labellelucie^.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

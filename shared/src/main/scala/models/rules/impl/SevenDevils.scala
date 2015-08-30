@@ -7,7 +7,7 @@ object SevenDevils extends GameRules(
   completed = true,
   title = "Seven Devils",
   description = "Seven Devils is arguably the most difficult of all solitaire games. Good luck!",
-  layout = Some("swf|r:t"),
+  layout = "swf|r:t",
   like = Some("klondike"),
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules()),
@@ -16,4 +16,3 @@ object SevenDevils extends GameRules(
   foundations = Seq(FoundationRules(numPiles = 8)),
   tableaus = Seq(TableauRules(emptyFilledWith = FillEmptyWith.HighRank))
 )
-

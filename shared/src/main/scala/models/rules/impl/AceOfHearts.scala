@@ -26,7 +26,7 @@ object AceOfHearts extends GameRules(
   title = "Ace of Hearts",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/ace_of_hearts.htm")),
   description = "All cards must be built onto a single foundation pile in this Thomas Warfield invention.",
-  layout = Some("s::f|t"),
+  layout = "s::f|t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

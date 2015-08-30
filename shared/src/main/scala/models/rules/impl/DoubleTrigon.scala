@@ -25,7 +25,7 @@ object DoubleTrigon extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_trigon.htm")),
   description = "A two-deck version of ^trigon^ or maybe a version of ^doubleklondike^ with building in suit. I suppose it depends on how you look " +
     "at it.",
-  layout = Some("swf|:t"),
+  layout = "swf|:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

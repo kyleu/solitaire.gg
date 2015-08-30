@@ -32,7 +32,7 @@ object Chameleon extends GameRules(
   ),
   description = "In case ^canfield^ wasn't hard enough for you, here's a version with only three tableau piles. But you can stack cards regardless " +
     "of suit, so it'll be OK. Occasionally.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

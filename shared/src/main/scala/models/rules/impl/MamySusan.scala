@@ -24,7 +24,7 @@ object MamySusan extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/MamySusan.htm")
   ),
   description = "A ^fortythieves^ variation from France with a five card reserve.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

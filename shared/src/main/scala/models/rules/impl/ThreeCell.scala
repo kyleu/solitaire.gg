@@ -23,7 +23,7 @@ object ThreeCell extends GameRules(
     Link("Swoop Software", "www.swoopsoftware.com/solitaire_rules/threecell.html")
   ),
   description = "A variation of ^freecell^ with only three cells.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

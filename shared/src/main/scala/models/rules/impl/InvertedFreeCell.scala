@@ -26,7 +26,7 @@ object InvertedFreeCell extends GameRules(
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/inverted_freecell.htm")),
   description = "Just like ^freecell^ but we limber up our brains by building everything in the opposite direction.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -29,7 +29,7 @@ object Kansas extends GameRules(
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Kansas.html.en")),
   description = "Like ^rainbow^ this is a ^canfield^ variation where you build regardless of suit, but this is a bit more difficult because you onl" +
     "y have three tableau piles.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

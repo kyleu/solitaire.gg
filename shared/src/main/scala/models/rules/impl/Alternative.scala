@@ -37,7 +37,7 @@ object Alternative extends GameRules(
   like = Some("cloverleaf"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/alternative.htm")),
   description = "This relative of ^cloverleaf^ does not allow spaces to be filled, but allows one redeal.",
-  layout = Some(":.f:f|2t"),
+  layout = ":.f:f|2t",
   foundations = Seq(
     FoundationRules(
       name = "Red Foundation",

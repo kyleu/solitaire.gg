@@ -4,7 +4,6 @@ import java.util.UUID
 
 import models.card.{ Deck, Rank, Suit }
 import models.game.GameState
-import models.pile._
 import models.pile.set._
 
 import scala.util.Random
@@ -20,9 +19,8 @@ trait GameRulesHelper { this: GameRules =>
     }
     val deck = newShuffledDecks(seed, rng, deckOptions.numDecks, deckOptions.ranks, deckOptions.suits, lowRank, deckOptions.highRank)
     val pileSets = newPileSets()
-    val layout = this.layout.getOrElse(Layouts.defaultLayout(this))
     val rulesTitle = if (withRules == id) { title } else { aka(withRules) }
-    val gameState = GameState(gameId, withRules, rulesTitle, maxPlayers, seed, deck, pileSets, layout)
+    val gameState = GameState(gameId, withRules, rulesTitle, maxPlayers, seed, deck, pileSets, this.layout)
     gameState
   }
 

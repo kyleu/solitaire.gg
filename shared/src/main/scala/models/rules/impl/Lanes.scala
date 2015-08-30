@@ -20,7 +20,7 @@ object Lanes extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/lanes.htm")
   ),
   description = "A six-by-three tableau played much like ^klondike^, but you can't move stacks.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

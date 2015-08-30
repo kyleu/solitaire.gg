@@ -25,7 +25,7 @@ object DoubleFourteens extends GameRules(
   like = Some("fourteenout"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_fourteens.htm")),
   description = "An two-deck version of ^fourteenout^.",
-  layout = Some("2tf"),
+  layout = "2tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(
     numDecks = 2

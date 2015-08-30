@@ -22,7 +22,7 @@ object ThreeBears extends GameRules(
   title = "Three Bears",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_bears.htm")),
   description = "A variation on ^tripleklondike^ invented by Thomas Warfield. You build in the same suit instead of alternate colors.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 3
   ),

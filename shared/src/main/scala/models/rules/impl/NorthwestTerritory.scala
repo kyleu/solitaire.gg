@@ -23,7 +23,7 @@ object NorthwestTerritory extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/northwest_territory.html")
   ),
   description = "A cross between ^flowergarden^ and ^klondike^, slightly easier than the similar ^klondiketerritory^ game.",
-  layout = Some("wf|t"),
+  layout = "wf|t",
   waste = Some(
     WasteRules(
       name = "Reserve"

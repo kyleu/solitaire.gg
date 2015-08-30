@@ -31,7 +31,7 @@ object Lucas extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/lucas.htm")
   ),
   description = "A ^fortythieves^ variant with thirteen tableau piles and aces starting on the foundation.",
-  layout = Some("sw:.f|t"),
+  layout = "sw:.f|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

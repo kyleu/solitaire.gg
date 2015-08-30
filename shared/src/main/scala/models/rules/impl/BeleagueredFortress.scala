@@ -25,7 +25,7 @@ object BeleagueredFortress extends GameRules(
   like = Some("fortress"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/beleaguered-castle-2.htm")),
   description = "A variation of ^fortress^ with a twelve-card reserve from which all cards are playable.",
-  layout = Some("wf|t"),
+  layout = "wf|t",
   waste = Some(
     WasteRules(
       name = "Reserve"

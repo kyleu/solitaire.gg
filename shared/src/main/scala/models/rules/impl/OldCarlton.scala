@@ -24,7 +24,7 @@ object OldCarlton extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/old_carlton.php")
   ),
   description = "A two-deck ^klondike^ variation, much easier than ^carlton^.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

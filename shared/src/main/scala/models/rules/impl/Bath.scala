@@ -24,7 +24,7 @@ object Bath extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/bath.html")
   ),
   description = "A ^freecell^ variant where spaces can only be filled by kings and there are only two cells.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

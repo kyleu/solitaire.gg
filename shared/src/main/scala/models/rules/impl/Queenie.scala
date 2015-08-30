@@ -25,7 +25,7 @@ object Queenie extends GameRules(
   ),
   description = "Build stacks of cards in alternating colors as in ^klondike^, move arbitrary groups of cards as in ^yukon^, and deal waves of card" +
     "s onto to the tableau, as in ^spider^.",
-  layout = Some("s:f|t"),
+  layout = "s:f|t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

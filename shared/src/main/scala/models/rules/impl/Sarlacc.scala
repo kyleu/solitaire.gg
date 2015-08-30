@@ -22,7 +22,7 @@ object Sarlacc extends GameRules(
   completed = false,
   title = "Sarlacc",
   description = "A ^freecell^ variant with a tableau of interlocking columns.",
-  layout = Some("f|c|p"),
+  layout = "f|c|p",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

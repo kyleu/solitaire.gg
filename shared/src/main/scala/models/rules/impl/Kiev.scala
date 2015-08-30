@@ -24,7 +24,7 @@ object Kiev extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kiev.htm")),
   description = "A version of ^ukrainian^ Solitaire where there is a stock of cards dealt to a rectangular tableau, making the whole thing rather ^" +
     "spider^ish.",
-  layout = Some("s::f|t"),
+  layout = "s::f|t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

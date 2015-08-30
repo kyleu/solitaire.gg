@@ -22,7 +22,7 @@ object KingCell extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kingcell.htm")),
   description = "A variation of ^freecell^ where we build down regardless of suit instead of by alternate color, and only kings may be played to em" +
     "pty tableau spaces",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

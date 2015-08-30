@@ -26,7 +26,7 @@ object BritishCanister extends GameRules(
   ),
   description = "A difficult version of ^canister^ dating back to the 1890's. It resembles ^americancanister^ but does not allow stack moves and on" +
     "ly kings can fill spaces.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

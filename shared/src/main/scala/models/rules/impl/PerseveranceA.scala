@@ -34,7 +34,7 @@ object PerseveranceA extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Perseverance.htm")
   ),
   description = "A variation of ^cruel^ where stacks may be moved.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

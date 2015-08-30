@@ -37,7 +37,7 @@ object Storehouse extends GameRules(
     Link("Jan Wolter's Experiments", "/article/storehouse.html")
   ),
   description = "A old ^canfield^ variant first described in 1939. A pleasant game, but there is scarcely any strategy required.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Two
   ),

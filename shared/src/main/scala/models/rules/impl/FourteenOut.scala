@@ -30,7 +30,7 @@ object FourteenOut extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Fourteen.html.en")
   ),
   description = "An interesting game in which you remove pairs that add the fourteen.",
-  layout = Some("2tf"),
+  layout = "2tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   foundations = Seq(
     FoundationRules(

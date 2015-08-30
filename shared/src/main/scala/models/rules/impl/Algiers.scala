@@ -28,7 +28,7 @@ object Algiers extends GameRules(
   like = Some("carthage"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/algiers.htm")),
   description = "A three-deck variation of ^carthage^.",
-  layout = Some("f|s.t|t"),
+  layout = "f|s.t|t",
   deckOptions = DeckOptions(
     numDecks = 3
   ),

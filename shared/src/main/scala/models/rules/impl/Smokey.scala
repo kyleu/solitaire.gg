@@ -23,7 +23,7 @@ object Smokey extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/smokey.htm")),
   description = "A ^klondike^ variant invented by Ann Edwards where you can build sequences in color, but only move sequences of the same suit. Not" +
     " too hard. Not too easy.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(3)

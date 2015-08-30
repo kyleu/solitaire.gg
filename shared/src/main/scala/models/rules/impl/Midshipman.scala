@@ -27,7 +27,7 @@ object Midshipman extends GameRules(
   ),
   description = "A slightly easier variation of ^maria^ where we build by different suits instead of alternate colors and where some cards start ou" +
     "t face down.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

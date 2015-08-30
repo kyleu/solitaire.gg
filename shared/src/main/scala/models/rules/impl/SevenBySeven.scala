@@ -25,7 +25,7 @@ object SevenBySeven extends GameRules(
   title = "Seven by Seven",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/seven_by_seven.htm")),
   description = "This danish game with a seven-by-seven tableau and three cells allows two redeals.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

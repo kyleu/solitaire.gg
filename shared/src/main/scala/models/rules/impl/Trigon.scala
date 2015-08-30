@@ -28,7 +28,7 @@ object Trigon extends GameRules(
     Link("Jan Wolter's Experiments", "/article/trigon.html")
   ),
   description = "A variation of ^klondike^ where we build in suit instead of with alternating colors.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
   foundations = Seq(

@@ -25,7 +25,7 @@ object Lafayette extends GameRules(
   title = "Lafayette",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lafayette.htm")),
   description = "A ^canfield^ variant with one foundation building up and one building down.",
-  layout = Some("swff|r|t"),
+  layout = "swff|r|t",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

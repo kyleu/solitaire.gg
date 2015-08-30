@@ -33,7 +33,7 @@ object LincolnGreens extends GameRules(
   like = Some("puttputt"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lincoln_greens.htm")),
   description = "A four-deck variation of ^puttputt^, or a version of ^panthercreek^ that allows wrapping.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   deckOptions = DeckOptions(
     numDecks = 4

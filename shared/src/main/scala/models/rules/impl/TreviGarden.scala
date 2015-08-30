@@ -26,7 +26,7 @@ object TreviGarden extends GameRules(
   like = Some("stonewall"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trevi_garden.htm")),
   description = "A variation of ^stonewall^ made easier by the addition of two cells.",
-  layout = Some("wf|c|t"),
+  layout = "wf|c|t",
   waste = Some(
     WasteRules(
       name = "Fountain"

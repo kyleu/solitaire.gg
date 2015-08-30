@@ -31,7 +31,7 @@ object StraightFifteens extends GameRules(
   ),
   description = "An easier varition of ^fifteens^ where tens, jacks, queens and kings are removed in groups containing one of each instead of four " +
     "of a kind.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   cardRemovalMethod = CardRemovalMethod.RemoveSetsAddingToFifteenOr10JQK,
   stock = Some(
     StockRules(

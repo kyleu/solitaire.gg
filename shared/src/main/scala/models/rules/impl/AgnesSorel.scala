@@ -29,7 +29,7 @@ object AgnesSorel extends GameRules(
     Link("Jan Wolter's Experiments", "/article/agnessorel.html")
   ),
   description = "A variation on ^klondike^ where cards are dealt directly onto the tableau as in ^spider^.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

@@ -42,7 +42,7 @@ object Golf extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/golf.htm")
   ),
   description = "Build up or down on the single foundation to take cards off the tableau, where no building is allowed.",
-  layout = Some("t|f:s"),
+  layout = "t|f:s",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(
     StockRules(

@@ -30,7 +30,7 @@ object ThreeShufflesAndADraw extends GameRules(
     Link("Wikipedia", "en.wikipedia.org/wiki/Three_Shuffles_and_a_Draw_(solitaire)")
   ),
   description = "A variation of ^labellelucie^ that adds a draw.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

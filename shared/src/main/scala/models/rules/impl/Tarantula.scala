@@ -30,7 +30,7 @@ object Tarantula extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/tarantula.php")
   ),
   description = "An easier variation of ^spider^ where you are allowed to move sequences that are all one color even if they aren't all of one suit.",
-  layout = Some("s:f|t"),
+  layout = "s:f|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2

@@ -16,7 +16,7 @@ object Streets extends GameRules(
   title = "Streets",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/streets.htm")),
   description = "Just like ^fortythieves^, except you build in alternate colors.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

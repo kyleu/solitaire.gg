@@ -22,7 +22,7 @@ object FortyNine extends GameRules(
   ),
   description = "This ^fortyandeight^ variation has forty-nine cards in a seven by seven tableau. You build down regardless of suit, moving cards o" +
     "ne at a time.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

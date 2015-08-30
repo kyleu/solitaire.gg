@@ -22,7 +22,7 @@ object Chinaman extends GameRules(
   like = Some("klondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinaman.htm")),
   description = "A ^klondike^ variant where we build by different suits.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(2),

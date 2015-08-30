@@ -23,7 +23,7 @@ object BigForty extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/big_forty.htm")
   ),
   description = "A one-deck variant of ^fortythieves^ that allows stack moves.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
   foundations = Seq(

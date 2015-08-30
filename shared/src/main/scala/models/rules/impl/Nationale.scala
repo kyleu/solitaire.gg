@@ -42,7 +42,7 @@ object Nationale extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/nationale.php")
   ),
   description = "Like ^caprice^ without a stock.",
-  layout = Some("ff|t"),
+  layout = "ff|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

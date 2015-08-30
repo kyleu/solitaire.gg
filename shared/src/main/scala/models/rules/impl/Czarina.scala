@@ -30,7 +30,7 @@ object Czarina extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Czarina.htm")
   ),
   description = "A variation on ^fourseasons^ where spaces are filled automatically from the stock.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

@@ -26,7 +26,7 @@ object Scotch extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/scotch_patience.html")
   ),
   description = "Foundations build in alternate colors, tableau builds regardless of suit.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

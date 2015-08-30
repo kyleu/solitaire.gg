@@ -50,7 +50,7 @@ object BinaryStar extends GameRules(
     Link("Jan Wolter's Experiments", "/article/blackhole.html")
   ),
   description = "Thomas Warfield's two-deck version of ^blackhole^ has two foundation piles.",
-  layout = Some("ff|t"),
+  layout = "ff|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   deckOptions = DeckOptions(
     numDecks = 2

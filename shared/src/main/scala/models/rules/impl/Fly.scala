@@ -37,7 +37,7 @@ object Fly extends GameRules(
     Link("Wikipedia", "en.wikipedia.org/wiki/Frog_(game)")
   ),
   description = "A variation of ^frog^ where the aces start on the foundation.",
-  layout = Some("sf|r|t"),
+  layout = "sf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

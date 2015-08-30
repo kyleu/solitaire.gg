@@ -27,7 +27,7 @@ object KingTut extends GameRules(
     Link("Michael Keller's Discussion", "www.solitairelaboratory.com/pyramid.html")
   ),
   description = "A pyramid variation where we deal three cards at once and have unlimited redeals.",
-  layout = Some("swf|p"),
+  layout = "swf|p",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(

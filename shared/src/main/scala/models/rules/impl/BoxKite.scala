@@ -38,7 +38,7 @@ object BoxKite extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/BoxKite.htm")
   ),
   description = "Tableaus build up or down, half the foundations build up, half build down.",
-  layout = Some("ff|t"),
+  layout = "ff|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

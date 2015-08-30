@@ -28,7 +28,7 @@ object Flow extends GameRules(
   like = Some("wavemotion"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/flow.htm")),
   description = "An easier variation of ^wavemotion^ that permits building on the reserve.",
-  layout = Some("|tt"),
+  layout = "|tt",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
     TableauRules(

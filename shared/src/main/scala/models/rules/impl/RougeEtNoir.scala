@@ -48,7 +48,7 @@ object RougeEtNoir extends GameRules(
     Link("An 1898 description", "howtoplaysolitaire.blogspot.com/2010/06/rouge-et-noir-double-deck-solitaire.html")
   ),
   description = "A variant of ^diavolo^ with a different tableau and no waste. Invented by Charles Jewell.",
-  layout = Some("sfff|t"),
+  layout = "sfff|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -29,7 +29,7 @@ object LittleNapolean extends GameRules(
   ),
   description = "A ^fortythieves^ variant that shows some ^spider^ influences, because you can build regardless of suit, but only move same-suit se" +
     "quences.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

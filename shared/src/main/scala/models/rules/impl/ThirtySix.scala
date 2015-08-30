@@ -23,7 +23,7 @@ object ThirtySix extends GameRules(
     Link("Jan Wolter's Experiments", "/article/thirtysix.html")
   ),
   description = "A six-by-six tableau where you build regardless of color.",
-  layout = Some("swf|.t"),
+  layout = "swf|.t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

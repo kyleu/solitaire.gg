@@ -32,7 +32,7 @@ object NapoleonsSquare extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/NapoleonsSquare.htm")
   ),
   description = "This French game, first described by Lady Adelaide Cadogen in the early 1900's, is an easy variant of ^fortythieves^.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

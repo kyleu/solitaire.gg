@@ -27,7 +27,7 @@ object Neptune extends GameRules(
   related = Seq("shuffle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/neptune.htm")),
   description = "A game where you remove pairs of consecutive cards.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   victoryCondition = VictoryCondition.AllButFourCardsOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveRankPairs,
   deckOptions = DeckOptions(

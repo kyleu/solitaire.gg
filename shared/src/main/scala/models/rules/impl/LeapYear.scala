@@ -25,7 +25,7 @@ object LeapYear extends GameRules(
   like = Some("auldlangsyne"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/leap_year.htm")),
   description = "A four-deck version of ^auldlangsyne^. Requires a large screen.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   deckOptions = DeckOptions(
     numDecks = 4
   ),

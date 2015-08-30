@@ -34,7 +34,7 @@ object LadyCadogan extends GameRules(
   related = Seq("fortydevils"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lady_cadogan.htm")),
   description = "Thomas Warfield's ^rougeetnoir^ variant where we build regardless of suit instead of in alternating colors.",
-  layout = Some("swff|t"),
+  layout = "swff|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

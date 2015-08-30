@@ -23,7 +23,7 @@ object Sevastopol extends GameRules(
   title = "Sevastopol",
   like = Some("kiev"),
   description = "An easier version of ^kiev^ where four tableau piles start with three cards instead of four.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

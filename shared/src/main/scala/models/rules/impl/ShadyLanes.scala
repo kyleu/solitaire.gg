@@ -25,7 +25,7 @@ object ShadyLanes extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/ShadyLanes.htm")
   ),
   description = "A difficult game with four reserve piles and four tableau piles.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -38,7 +38,7 @@ object FortyThieves extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/forty_thieves.php")
   ),
   description = "Similar to ^fortyandeight^, but the tableau has forty cards in ten stacks of four, and we only allow one pass through the deck.",
-  layout = Some("swf|.t"),
+  layout = "swf|.t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -22,7 +22,7 @@ object Quizzie extends GameRules(
   like = Some("inquisitor"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quizzie.htm")),
   description = "A variation of ^inquisitor^ by Thomas Warfield where you deal fewer cards in each pass through the deck.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

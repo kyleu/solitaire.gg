@@ -37,7 +37,7 @@ object Stalactites extends GameRules(
     Link("PySol", "pysolfc.sourceforge.net/doc/rules/stalactites.html")
   ),
   description = "This suitless game with no building requires you to clear the tableau with only two cells you help you.",
-  layout = Some("f::c|t"),
+  layout = "f::c|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

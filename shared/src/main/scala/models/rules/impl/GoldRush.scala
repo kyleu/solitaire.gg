@@ -22,7 +22,7 @@ object GoldRush extends GameRules(
   related = Seq("doublegoldrush"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gold_rush.htm")),
   description = "A ^klondike^ variation where the number of cards dealt to the waste decreases with each pass through the stock.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(3),

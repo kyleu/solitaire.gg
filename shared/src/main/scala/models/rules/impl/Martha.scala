@@ -32,7 +32,7 @@ object Martha extends GameRules(
     Link("dogMelon", "www.dogmelon.com.au/solhelp/Martha%20Solitaire.shtml")
   ),
   description = "An easy game with no stock where half the cards start face down. Somewhat similar to ^bakersdozen^.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

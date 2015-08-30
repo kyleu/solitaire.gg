@@ -37,7 +37,7 @@ object AceyAndKingsley extends GameRules(
   like = Some("acesandkings"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/acey_and_kingsley.htm")),
   description = "A variation of ^acesandkings^ which starts with an ace or a king dealt to each foundation.",
-  layout = Some("swff|r|t"),
+  layout = "swff|r|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

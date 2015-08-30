@@ -28,7 +28,7 @@ object PatientPairs extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/patient_pairs.htm")),
   description = "As in ^simplepairs^, you remove pairs of cards of the same rank, but the cards start out all dealt to the tableau, so a smidgeon m" +
     "ore skill is involved.",
-  layout = Some("f|t"),
+  layout = "f|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   foundations = Seq(
     FoundationRules(

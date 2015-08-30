@@ -39,7 +39,7 @@ object PuttPutt extends GameRules(
     Link("Jan Wolter's Experiments", "/article/golf.html")
   ),
   description = "An easier variation of ^golf^ where wrapping from King to Ace is allowed.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(
     StockRules(

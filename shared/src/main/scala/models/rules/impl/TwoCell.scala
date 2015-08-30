@@ -20,7 +20,7 @@ object TwoCell extends GameRules(
   title = "Two Cell",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/two_cells.htm")),
   description = "A variation of ^freecell^ with only two cells.",
-  layout = Some("c::f|t"),
+  layout = "c::f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

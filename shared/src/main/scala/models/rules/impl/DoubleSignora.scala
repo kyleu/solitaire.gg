@@ -32,7 +32,7 @@ object DoubleSignora extends GameRules(
   related = Seq("empressofitaly"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_signora.htm")),
   description = "A four-deck version of ^signora^ invented by Thomas Warfield.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 4,
     lowRank = Rank.Unknown

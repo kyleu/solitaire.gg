@@ -20,7 +20,7 @@ object Vineyard extends GameRules(
   related = Seq("tenbyone", "winery"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/vineyard.htm")),
   description = "A difficult variation of ^bakersdozen^ invented by Peter Voke.",
-  layout = Some(":::f|t"),
+  layout = ":::f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

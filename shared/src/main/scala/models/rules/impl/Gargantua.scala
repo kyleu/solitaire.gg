@@ -27,7 +27,7 @@ object Gargantua extends GameRules(
   ),
   description = "A two-deck version of ^klondike^ invented by Albert Morehead and Geoffrey Mott-Smith. You get two passes through the deck, dealing" +
     " cards one at a time.",
-  layout = Some("swf|:t"),
+  layout = "swf|:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

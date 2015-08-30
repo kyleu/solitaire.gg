@@ -30,7 +30,7 @@ object ChineseSpider extends GameRules(
   like = Some("spider"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinese_spider.htm")),
   description = "A three-suit version of ^spider^.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 4,

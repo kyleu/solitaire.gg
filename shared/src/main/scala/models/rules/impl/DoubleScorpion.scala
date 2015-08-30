@@ -28,7 +28,7 @@ object DoubleScorpion extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/double-scorpion.htm")
   ),
   description = "An easy two-deck variation of ^scorpion^ where all cards are already dealt in the beginning.",
-  layout = Some("f|t"),
+  layout = "f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

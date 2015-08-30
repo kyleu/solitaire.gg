@@ -25,7 +25,7 @@ object TripleFourteens extends GameRules(
   like = Some("fourteenout"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_fourteens.htm")),
   description = "An three-deck version of ^fourteenout^ which was invented by Thomas Warfield.",
-  layout = Some("3tf"),
+  layout = "3tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(
     numDecks = 3

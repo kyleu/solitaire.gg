@@ -22,7 +22,7 @@ object Winery extends GameRules(
   like = Some("vineyard"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/winery.htm")),
   description = "A version of ^vineyard^ with cells added.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

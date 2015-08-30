@@ -36,7 +36,7 @@ object Indefatigable extends GameRules(
   ),
   description = "This variation of ^royalfamily^ is basically the same, but the foundations build up from ace, and it is made even easier by a extr" +
     "a redeal.",
-  layout = Some("::::f|t"),
+  layout = "::::f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

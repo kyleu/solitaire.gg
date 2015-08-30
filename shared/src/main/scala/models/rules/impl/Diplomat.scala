@@ -32,7 +32,7 @@ object Diplomat extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/diplomat.html")
   ),
   description = "A variation on ^congress^ or ^fortyandeight^.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -31,7 +31,7 @@ object Deuces extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/deuces.htm")
   ),
   description = "A more difficult variation of ^busyaces^ with fewer tableau piles.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Two

@@ -35,7 +35,7 @@ object AlexanderTheGreat extends GameRules(
   related = Seq("cloverleaf"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/alexander_the_great.htm")),
   description = "Thomas Warfield's more challenging variation of ^cloverleaf^.",
-  layout = Some("f::f|2t"),
+  layout = "f::f|2t",
   foundations = Seq(
     FoundationRules(
       name = "Red Foundation",

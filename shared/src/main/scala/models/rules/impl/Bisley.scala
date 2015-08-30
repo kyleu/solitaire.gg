@@ -37,7 +37,7 @@ object Bisley extends GameRules(
     Link("John Welford on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-bisley-solitaire-25748/")
   ),
   description = "A game of building up and down on the tableau.",
-  layout = Some(":f:::f|tt"),
+  layout = ":f:::f|tt",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

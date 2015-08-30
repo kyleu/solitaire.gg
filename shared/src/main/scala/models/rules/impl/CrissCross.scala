@@ -29,7 +29,7 @@ object CrissCross extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/CrissCross.htm")
   ),
   description = "A variation of ^simplepairs^ that requires a very large dose of pure luck to win.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(
     StockRules(

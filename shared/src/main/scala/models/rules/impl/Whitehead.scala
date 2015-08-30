@@ -28,7 +28,7 @@ object Whitehead extends GameRules(
   ),
   description = "Like ^klondike^, but with cards face up and you build in matching colors instead of alternating colors. You can move sequences, bu" +
     "t only if the suits match.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

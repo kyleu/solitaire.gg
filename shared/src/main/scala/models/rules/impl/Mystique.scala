@@ -25,7 +25,7 @@ object Mystique extends GameRules(
   like = Some("minerva"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/mystique.htm")),
   description = "A variation of ^munger^ and ^minerva^ with a reserve sized half-way between the two.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

@@ -44,7 +44,7 @@ object LittleBillie extends GameRules(
   ),
   description = "In this game dating back to around 1900, no building is allowed, but you have some cells that can be used to uncover the cards you" +
     " need. Two redeals are allowed.",
-  layout = Some("::ff|::c|2t"),
+  layout = "::ff|::c|2t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

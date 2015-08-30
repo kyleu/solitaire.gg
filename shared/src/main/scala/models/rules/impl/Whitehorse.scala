@@ -23,7 +23,7 @@ object Whitehorse extends GameRules(
   like = Some("klondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/whitehorse.htm")),
   description = "An easy ^klondike^ variant where instead of dealing a lot of cards to the tableau, we have spaces that autofill",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

@@ -23,7 +23,7 @@ object NapoleonsQuadrilateral extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/carre_napoleon.htm")),
   description = "This older, more difficult, version of ^napoleonssquare^ does not allow stack moves, but moves a lot of cards to the foundation du" +
     "ring the deal.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

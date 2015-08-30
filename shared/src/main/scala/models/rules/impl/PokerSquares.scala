@@ -7,7 +7,7 @@ object PokerSquares extends GameRules(
   completed = false,
   title = "Poker Squares",
   description = "Make ten five-card poker hands from a 5x5 grid. Try for the high score!",
-  layout = Some("5t|w"),
+  layout = "5t|w",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
 
   tableaus = Seq(TableauRules(

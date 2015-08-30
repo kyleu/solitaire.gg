@@ -30,7 +30,7 @@ object CastleOfIndolence extends GameRules(
   ),
   description = "Thomas Warfield's adaptation of a 19th century game first described in George A. Bonaventure's 1932 book of solitaire games. It is" +
     " two-deck game where 52 cards start on the tableau and another 52 start in the reserve. Suits of cards are completely ignored.",
-  layout = Some("f|::r|t"),
+  layout = "f|::r|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

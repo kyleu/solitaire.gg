@@ -24,7 +24,7 @@ object Cromwell extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/cromwell.php")
   ),
   description = "A two-deck game with 26 tableau piles and a draw. Requires planning.",
-  layout = Some("f|t"),
+  layout = "f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

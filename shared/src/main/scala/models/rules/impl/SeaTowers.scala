@@ -32,7 +32,7 @@ object SeaTowers extends GameRules(
   ),
   description = "A popular ^freecell^ variation invented in 1988 by Art Cabral. The initial layout is different, and we must build down in suit ins" +
     "tead of in alternating colors.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

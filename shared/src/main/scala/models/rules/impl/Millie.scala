@@ -19,7 +19,7 @@ object Millie extends GameRules(
   title = "Millie",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/millie.htm")),
   description = "^missmilligan^ without reserve.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

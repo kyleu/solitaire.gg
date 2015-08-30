@@ -30,7 +30,7 @@ object Lily extends GameRules(
   like = Some("trillium"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lily.htm")),
   description = "A harder variation of ^trillium^ where spaces may only be filled with kings.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2

@@ -35,7 +35,7 @@ object Canfield extends GameRules(
   ),
   description = "An old Casino game where the house usually wins. It's distinctive features include a reserve and foundations built up from the val" +
     "ue of one random card dealt into them.",
-  layout = Some("swf|:r:t"),
+  layout = "swf|:r:t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

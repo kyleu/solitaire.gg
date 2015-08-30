@@ -25,7 +25,7 @@ object Stronghold extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Stronghold.htm")
   ),
   description = "A variation of ^beleagueredcastle^ with one ^freecell^ style cell added.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

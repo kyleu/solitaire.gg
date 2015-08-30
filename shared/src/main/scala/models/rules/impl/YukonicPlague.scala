@@ -26,7 +26,7 @@ object YukonicPlague extends GameRules(
   like = Some("yukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukonic_plague.htm")),
   description = "A more difficult variation of ^yukon^ where many cards are buried in a reserve.",
-  layout = Some("f|r|t"),
+  layout = "f|r|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

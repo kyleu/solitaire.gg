@@ -31,7 +31,7 @@ object Beetle extends GameRules(
     Link("Chet Carrie on eHow", "www.ehow.com/how_7215429_play-beetle-solitaire.html")
   ),
   description = "A variation of ^spider^ where all cards are dealt face up.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 2

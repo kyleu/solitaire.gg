@@ -26,7 +26,7 @@ object LuckyThirteen extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/lucky-thirteen.htm")
   ),
   description = "A rarely-winnable game with simple \"rules\": build down regardless of suit, no stack moves.",
-  layout = Some("::::.f|t"),
+  layout = "::::.f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

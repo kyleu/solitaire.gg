@@ -25,7 +25,7 @@ object Anubis extends GameRules(
   like = Some("doublepyramid"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/anubis.htm")),
   description = "A variation of ^doublepyramid^ with three waste piles.",
-  layout = Some("swf|p"),
+  layout = "swf|p",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   deckOptions = DeckOptions(
     numDecks = 2

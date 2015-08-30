@@ -26,7 +26,7 @@ object DoubleRail extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/double_rail.htm")
   ),
   description = "A ^fortythieves^ variation where we build regardless of suit and can move stacks.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -27,7 +27,7 @@ object Corona extends GameRules(
   ),
   description = "A game similar to ^fortyandeight^ where spaces are autofilled from the waste and stock. The best way to win seems to be to get luc" +
     "ky.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

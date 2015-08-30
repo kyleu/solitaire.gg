@@ -26,7 +26,7 @@ object LittleForty extends GameRules(
   ),
   description = "Like ^fortythieves^, but we build in regardless of color, can move sequences, and can make three passes through the deck, dealing " +
     "three cards at a time.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

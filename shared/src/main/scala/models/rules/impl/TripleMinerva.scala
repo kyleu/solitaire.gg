@@ -26,7 +26,7 @@ object TripleMinerva extends GameRules(
   like = Some("minerva"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_minerva.htm")),
   description = "Thomas Warfield's three-deck version of ^minerva^.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 3
   ),

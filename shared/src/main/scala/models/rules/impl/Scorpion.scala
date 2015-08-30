@@ -41,7 +41,7 @@ object Scorpion extends GameRules(
   ),
   description = "A game with a seven-by-seven tableau, where three cards in the first four piles start face down. Unsorted stacks of cards can be m" +
     "oved around, as in ^yukon^, but cards cannot be moved to the foundation until they form complete sequences, as in ^spider^.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   stock = Some(
     StockRules(
       name = "Reserve",

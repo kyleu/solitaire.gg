@@ -22,7 +22,7 @@ object Skippy extends GameRules(
   title = "Skippy",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/skippy.htm")),
   description = "A game invented by Lillian Davies and Christa Baran.",
-  layout = Some("swf|c|t"),
+  layout = "swf|c|t",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

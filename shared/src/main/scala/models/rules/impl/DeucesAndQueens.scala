@@ -41,7 +41,7 @@ object DeucesAndQueens extends GameRules(
   like = Some("acesandkings"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/deuces_and_queens.htm")),
   description = "A variation on ^acesandkings^ where building is allowed on the tableau.",
-  layout = Some("swff|r|t"),
+  layout = "swff|r|t",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

@@ -22,7 +22,7 @@ object PrivateLane extends GameRules(
   like = Some("streetsandalleys"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/private_lane.htm")),
   description = "A variation of ^beleagueredcastle^ with two ^freecell^-style cells added.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

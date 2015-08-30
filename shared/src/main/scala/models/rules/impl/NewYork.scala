@@ -30,7 +30,7 @@ object NewYork extends GameRules(
   ),
   description = "In this variation of ^dover^, you can choose which of the three waste piles you play cards from the stock onto, which is good beca" +
     "use it's hard to rearrange things much on the tableau.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

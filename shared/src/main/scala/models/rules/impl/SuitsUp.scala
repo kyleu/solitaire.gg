@@ -22,7 +22,7 @@ object SuitsUp extends GameRules(
   title = "Suits Up",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/suits_up.htm")),
   description = "An easy game where you remove pairs of cards of the same suit, until only four cards are left.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   victoryCondition = VictoryCondition.AllButFourCardsOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameSuit,
   stock = Some(

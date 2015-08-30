@@ -23,7 +23,7 @@ object Dnieper extends GameRules(
   title = "Dnieper",
   like = Some("kiev"),
   description = "Exactly like ^kiev^ but slightly easier because kings can be played on aces.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

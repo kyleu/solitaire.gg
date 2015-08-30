@@ -27,7 +27,7 @@ object CanfieldRush extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/canfield_rush.htm")),
   description = "A ^canfield^ variant where cards are dealt by threes in the first pass, by twos in the second and one-at-a-time in the last. Easie" +
     "r than standard Canfield, but still a challenging game.",
-  layout = Some("swf|:r:t"),
+  layout = "swf|:r:t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

@@ -31,7 +31,7 @@ object BusyAces extends GameRules(
   ),
   description = "A fairly easy game dating back to 1939. Twelve tableau stacks of one card each mean you can easily get lots of empty spaces to wor" +
     "k with.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

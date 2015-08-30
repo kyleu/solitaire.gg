@@ -24,7 +24,7 @@ object TrigonLeft extends GameRules(
   like = Some("trigon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trigon_left.htm")),
   description = "A blend of ^trigon^ and ^movingleft^.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
   foundations = Seq(

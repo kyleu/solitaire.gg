@@ -19,7 +19,7 @@ object TakingSilk extends GameRules(
   related = Seq("floradora"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/taking_silk.htm")),
   description = "A two deck version of ^thirtysix^. Having more suits than tableau piles makes this tricky.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

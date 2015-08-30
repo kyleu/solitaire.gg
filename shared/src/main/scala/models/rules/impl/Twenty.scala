@@ -40,7 +40,7 @@ object Twenty extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/fox.html")
   ),
   description = "A somewhat mindless game with twenty reserve piles and no building.",
-  layout = Some("sf:f|2t"),
+  layout = "sf:f|2t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

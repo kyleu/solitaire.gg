@@ -27,7 +27,7 @@ object Thirteens extends GameRules(
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
   description = "Remove pairs that add the thirteen. Entirely a game of luck.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(
     StockRules(

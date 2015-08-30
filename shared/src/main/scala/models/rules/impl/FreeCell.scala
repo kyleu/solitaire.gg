@@ -30,7 +30,7 @@ object FreeCell extends GameRules(
     Link("FreeCell Solitaire", "www.solitairecentral.com/articles/FreeCellSolitaireAWinningStrategy.html")
   ),
   description = "Invented by Paul Alfille, made famous by Microsoft, this game provide four temporary storage cells that can be used to move cards around.",
-  layout = Some("c:f|.t"),
+  layout = "c:f|.t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

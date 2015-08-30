@@ -43,7 +43,7 @@ object RoyalCotillion extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/RoyalCotillion.htm")
   ),
   description = "A variation of ^oddandeven^ with some extra tableau and reserve piles, but only one pass allowed through the deck.",
-  layout = Some("swff|r|t"),
+  layout = "swff|r|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

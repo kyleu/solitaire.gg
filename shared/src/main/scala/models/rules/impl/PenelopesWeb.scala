@@ -25,7 +25,7 @@ object PenelopesWeb extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/penelope-web.htm")
   ),
   description = "A very difficult variation of ^beleagueredcastle^ where spaces can only be filled by kings.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

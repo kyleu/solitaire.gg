@@ -28,7 +28,7 @@ object Ukrainian extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/UkrainianSolitaire.htm")
   ),
   description = "A rarely winnable version of ^russian^ Solitaire where only complete sequences can be taken off, as in spider.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

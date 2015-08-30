@@ -25,7 +25,7 @@ object HalfCell extends GameRules(
   title = "HalfCell",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/halfcell.htm")),
   description = "^freecell^ with only two foundation piles.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 2,

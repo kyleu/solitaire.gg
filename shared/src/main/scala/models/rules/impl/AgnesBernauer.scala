@@ -30,7 +30,7 @@ object AgnesBernauer extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/agnes.html")
   ),
   description = "A variation on ^klondike^ with seven reserves.",
-  layout = Some("sf|r|t"),
+  layout = "sf|r|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

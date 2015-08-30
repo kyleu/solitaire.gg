@@ -20,7 +20,7 @@ object ThreePirates extends GameRules(
   like = Some("fortythieves"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_pirates.htm")),
   description = "A variation of ^fortythieves^ with three waste piles.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

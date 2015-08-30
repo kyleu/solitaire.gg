@@ -33,7 +33,7 @@ object DoubleCanfield extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/DoubleCanfield.htm")
   ),
   description = "An two-deck version of ^canfield^, much much easier than the original game.",
-  layout = Some("swf|r:::.t"),
+  layout = "swf|r:::.t",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

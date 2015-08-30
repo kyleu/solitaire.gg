@@ -28,7 +28,7 @@ object Steps extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/steps.htm")
   ),
   description = "A two-deck version of ^klondike^.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -32,7 +32,7 @@ object PerseveranceB extends GameRules(
   ),
   description = "An alternate version of ^perseverancea^ where there are only two redeals, the redeal method is different, and kings are automatica" +
     "lly moved to the bottoms of their stacks.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

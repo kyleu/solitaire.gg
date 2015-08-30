@@ -30,7 +30,7 @@ object Alaska extends GameRules(
   ),
   description = "A somewhat more difficult variation of ^yukon^ in which you can build up or down, but must build in the same suit. I think they ca" +
     "ll it \"Alaska\" because it is so cool when things work out.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -41,7 +41,7 @@ object RougeForty extends GameRules(
   like = Some("rougeetnoir"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rouge_forty.htm")),
   description = "A variation of ^rougeetnoir^ with a rectangular tableau. Invented by Thomas Warfield.",
-  layout = Some("sfff|t"),
+  layout = "sfff|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

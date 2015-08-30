@@ -27,7 +27,7 @@ object DoubleEasthaven extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/double-easthaven.asp")
   ),
   description = "A two-deck version of ^easthaven^.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

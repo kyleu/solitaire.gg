@@ -30,7 +30,7 @@ object Westcliff extends GameRules(
     Link("John Welford on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-westcliff-solitaire-28948/")
   ),
   description = "An very easy ^klondike^ variant where you have ten tableau piles.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

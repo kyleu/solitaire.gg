@@ -25,7 +25,7 @@ object Pitchfork extends GameRules(
   title = "Pitchfork",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pitchfork.htm")),
   description = "Thomas Warfield's variation of ^needle^ and ^haystack^ in which you cannot build on the reserve.",
-  layout = Some("f|r|t"),
+  layout = "f|r|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

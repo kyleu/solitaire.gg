@@ -28,7 +28,7 @@ object Nines extends GameRules(
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
   description = "A variation on ^simplepairs^ pairs that add to 9 or set of ten through king. Much luck required.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   cardRemovalMethod = CardRemovalMethod.RemoveNinesOrPairsAddingToNineOr10JQK,
   stock = Some(
     StockRules(

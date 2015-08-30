@@ -24,7 +24,7 @@ object Australian extends GameRules(
     Link("dogMelon", "www.dogmelon.com.au/solhelp/Australian%20Patience.shtml")
   ),
   description = "A variation of ^klondike^ that allows non-top cards to be moved (with the cards on top of them) as in ^yukon^.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

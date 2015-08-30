@@ -29,7 +29,7 @@ object ThumbAndPouch extends GameRules(
     Link("Elton Gahr on HobbyHub", "www.hobbyhub360.com/index.php/solitaire-how-to-play-thumb-and-pouch-13658/")
   ),
   description = "Like ^klondike^, but easier, because cards can be played on tableau cards of any different suit.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

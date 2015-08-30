@@ -28,7 +28,7 @@ object Demon extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/demon.htm")),
   description = "An two-deck version of ^canfield^, not quite as easy as ^doublecanfield^. \"Demon\" is the standard English name for Canfield. We " +
     "follow Thomas Warfield in fostering confusion by using the name for this different game.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

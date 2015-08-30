@@ -23,7 +23,7 @@ object BoxFan extends GameRules(
   like = Some("fan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/box_fan.htm")),
   description = "A ^fan^ variant with building by alternate color.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

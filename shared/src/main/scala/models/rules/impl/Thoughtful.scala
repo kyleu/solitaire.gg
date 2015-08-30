@@ -27,7 +27,7 @@ object Thoughtful extends GameRules(
     Link("Wikipedia", "en.wikipedia.org/wiki/Klondike_(solitaire)")
   ),
   description = "^klondike^ with all cards in the tableau starting face up. Also known as \"Saratoga\".",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

@@ -32,7 +32,7 @@ object SixesAndSevens extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/sixes-and-sevens.htm")
   ),
   description = "No building on tableau, some foundation build up, some build down.",
-  layout = Some("swff|t"),
+  layout = "swff|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

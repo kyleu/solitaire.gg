@@ -31,7 +31,7 @@ object Kingsley extends GameRules(
   ),
   description = "Reverse ^klondike^ which in theory is no more difficult, but which proves hard to wrap your head around if you are used to playing" +
     " it the other way round.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

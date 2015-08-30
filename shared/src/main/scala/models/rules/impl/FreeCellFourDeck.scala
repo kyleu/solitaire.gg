@@ -22,7 +22,7 @@ object FreeCellFourDeck extends GameRules(
   like = Some("freecellthreedeck"),
   links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/freecell_four_decks.htm")),
   description = "A four-deck version of ^freecell^ for those who like spending a long time solving a single deal.",
-  layout = Some("f|c|t"),
+  layout = "f|c|t",
   deckOptions = DeckOptions(
     numDecks = 4
   ),

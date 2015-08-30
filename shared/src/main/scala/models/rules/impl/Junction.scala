@@ -22,7 +22,7 @@ object Junction extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/junction.htm")
   ),
   description = "A variation of ^singlerail^ or ^doublerail^ for four piquet decks.",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 4,
     ranks = Seq(Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace)

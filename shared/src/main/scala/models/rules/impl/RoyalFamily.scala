@@ -36,7 +36,7 @@ object RoyalFamily extends GameRules(
   ),
   description = "This game allows you to build up and down and fill spaces with any card, which makes the game so easy that you often don't need th" +
     "e redeal that you are allowed.",
-  layout = Some("::::f|t"),
+  layout = "::::f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

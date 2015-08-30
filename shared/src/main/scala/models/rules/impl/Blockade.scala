@@ -30,7 +30,7 @@ object Blockade extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/blockade.htm")
   ),
   description = "A simple game that starts slow and ends with a flourish.",
-  layout = Some(":s:f|t"),
+  layout = ":s:f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

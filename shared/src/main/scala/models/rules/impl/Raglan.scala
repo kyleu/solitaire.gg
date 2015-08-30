@@ -32,7 +32,7 @@ object Raglan extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/raglan.htm")
   ),
   description = "This is ^kingalbert^ with a different tableau and Aces already on the foundation. It is a bit easier to solve.",
-  layout = Some("wf|t"),
+  layout = "wf|t",
   waste = Some(
     WasteRules(
       name = "Reserve"

@@ -32,7 +32,7 @@ object Floradora extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/floradora.htm")
   ),
   description = "A two-deck variation of ^thirtysix^ with an extra foundation pile for kings, but no stack moves.",
-  layout = Some("swff|t"),
+  layout = "swff|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

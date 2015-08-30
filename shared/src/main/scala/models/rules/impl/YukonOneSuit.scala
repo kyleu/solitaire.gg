@@ -24,7 +24,7 @@ object YukonOneSuit extends GameRules(
   completed = true,
   title = "Yukon One Suit",
   description = "A one-suit variation of ^yukon^. The game is almost always winnable, but still makes you think a bit.",
-  layout = Some(":.f|t"),
+  layout = ":.f|t",
   like = Some("yukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukon_one_suit.htm")),
   deckOptions = DeckOptions(

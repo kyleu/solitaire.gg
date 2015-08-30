@@ -29,7 +29,7 @@ object Colonel extends GameRules(
   related = Seq("signora"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/colonel.htm")),
   description = "A variation of ^signora^ invented by Thomas Warfield where we built in the same suit instead of alternating colors.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

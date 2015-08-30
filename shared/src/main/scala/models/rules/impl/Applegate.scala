@@ -26,7 +26,7 @@ object Applegate extends GameRules(
   title = "Applegate",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/applegate.htm")),
   description = "This game has similarities to both ^spider^ and ^yukon^, and may be an older version of ^scorpion^",
-  layout = Some("wf|t"),
+  layout = "wf|t",
   waste = Some(
     WasteRules(
       name = "Reserve"

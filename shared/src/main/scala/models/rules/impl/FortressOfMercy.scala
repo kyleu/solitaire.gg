@@ -23,7 +23,7 @@ object FortressOfMercy extends GameRules(
   like = Some("fortress"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fortress_of_mercy.htm")),
   description = "A variation of ^fortress^ that allows you one \"merci\" move, in which any one card can be moved to the top of its stack.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

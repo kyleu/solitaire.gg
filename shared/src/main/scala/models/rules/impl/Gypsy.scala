@@ -27,7 +27,7 @@ object Gypsy extends GameRules(
     Link("KPatience", "docs.kde.org/stable/en/kdegames/kpat/rules-specific.html#gypsy")
   ),
   description = "A cross between ^spider^ and ^klondike^.",
-  layout = Some("sf|:t"),
+  layout = "sf|:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

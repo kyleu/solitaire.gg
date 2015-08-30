@@ -30,7 +30,7 @@ object Pyramid extends GameRules(
     Link("Dan Fletcher's Strategy Guide at Solitaire Central", "www.solitairecentral.com/articles/PyramidSolitaireAStrategyGuideForBeginners.html")
   ),
   description = "A classic pair-removal game with a triangular tableau.",
-  layout = Some("p|::.swf"),
+  layout = "p|::.swf",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(

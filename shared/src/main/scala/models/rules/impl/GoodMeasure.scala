@@ -33,7 +33,7 @@ object GoodMeasure extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/good_measure.html")
   ),
   description = "A much more difficult variation of ^bakersdozen^ with fewer tableau piles.",
-  layout = Some(".f|2t"),
+  layout = ".f|2t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -27,7 +27,7 @@ object RedAndBlack extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Zebra.html.en")
   ),
   description = "A game where everything is built in alternate colors. Also known as \"Rouge et Noir\" or \"Zebra.\"",
-  layout = Some("swf|t"),
+  layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

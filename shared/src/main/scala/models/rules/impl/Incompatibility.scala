@@ -20,7 +20,7 @@ object Incompatibility extends GameRules(
   title = "Incompatibility",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/incompatibility.htm")),
   description = "A ^spider^ game where cards can be moved to the foundation one at a time and where cards are not dealt to empty columns.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

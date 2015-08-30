@@ -34,7 +34,7 @@ object SuperiorCanfield extends GameRules(
   ),
   description = "Canfield made a bit easier and a bit more strategic by dealing the reserve cards face up and not automatically filling spaces from" +
     " the reserve.",
-  layout = Some("swf|r|t"),
+  layout = "swf|r|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

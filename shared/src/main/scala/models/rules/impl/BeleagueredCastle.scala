@@ -27,7 +27,7 @@ object BeleagueredCastle extends GameRules(
   ),
   description = "A challenging game with simple rules. All cards start dealt face up and you build down regardless of suit, moving only single card" +
     "s. Somewhat similar to ^bakersdozen^.",
-  layout = Some("::f|t"),
+  layout = "::f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -26,7 +26,7 @@ object SelectiveCastle extends GameRules(
     Link("Wikipedia", "en.wikipedia.org/wiki/Beleaguered_Castle")
   ),
   description = "A version of ^beleagueredcastle^ where the base of the foundation is determined by the first card you play to it.",
-  layout = Some("f|t"),
+  layout = "f|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

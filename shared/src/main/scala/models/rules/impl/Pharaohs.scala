@@ -24,7 +24,7 @@ object Pharaohs extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Pharaohs.htm")
   ),
   description = "A variation of ^pyramid^ with three pyramids.",
-  layout = Some("f|ppp"),
+  layout = "f|ppp",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   foundations = Seq(

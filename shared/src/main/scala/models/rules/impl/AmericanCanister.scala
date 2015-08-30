@@ -24,7 +24,7 @@ object AmericanCanister extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/american_canister.htm")
   ),
   description = "A difficult variation of ^canister^ with building by alternate colors.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

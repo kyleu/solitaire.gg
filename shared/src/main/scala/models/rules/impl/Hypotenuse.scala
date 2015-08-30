@@ -23,7 +23,7 @@ object Hypotenuse extends GameRules(
   like = Some("eternaltriangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/hypotenuse.htm")),
   description = "A version of ^eternaltriangle^ with some cards face down.",
-  layout = Some("sf|t"),
+  layout = "sf|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

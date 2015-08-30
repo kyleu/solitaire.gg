@@ -28,7 +28,7 @@ object DoubleKlondike extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Jumbo.html.en")
   ),
   description = "A two-deck version of ^klondike^. This game is almost always winnable.",
-  layout = Some("swf|:t"),
+  layout = "swf|:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

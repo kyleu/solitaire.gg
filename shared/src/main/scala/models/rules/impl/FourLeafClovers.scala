@@ -29,7 +29,7 @@ object FourLeafClovers extends GameRules(
   ),
   description = "A single foundation pile is built regardless of suit from ace to king and then from ace to king again with the help of a tableau w" +
     "here you can build both up and down.",
-  layout = Some("f|t"),
+  layout = "f|t",
   foundations = Seq(
     FoundationRules(
       suitMatchRule = SuitMatchRule.Any,

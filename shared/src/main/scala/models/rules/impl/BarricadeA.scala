@@ -20,7 +20,7 @@ object BarricadeA extends GameRules(
   title = "Barricade A",
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/barricade.htm")),
   description = "A simple game where we build regardless of suit on both tableau and foundation and which uses a stock but not a waste.",
-  layout = Some(":s:f|t"),
+  layout = ":s:f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

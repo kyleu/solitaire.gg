@@ -34,7 +34,7 @@ object Grandfather extends GameRules(
   ),
   description = "A game with twenty tableau piles, each of which can hold any two cards. You build up on half the foundations and down on the other" +
     "s.",
-  layout = Some("::::sw|.f:f|2t"),
+  layout = "::::sw|.f:f|2t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

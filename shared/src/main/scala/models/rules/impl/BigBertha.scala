@@ -35,7 +35,7 @@ object BigBertha extends GameRules(
   ),
   description = "This two-deck version of ^kingalbert^ which has 14 reserve cards that are all playable, and a separate foundation pile that you ca" +
     "n put all the kings on.",
-  layout = Some(":.wf:f|t"),
+  layout = ":.wf:f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

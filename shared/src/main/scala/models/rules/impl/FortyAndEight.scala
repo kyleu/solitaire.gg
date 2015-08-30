@@ -29,7 +29,7 @@ object FortyAndEight extends GameRules(
   description = "Two decks, forty cards in the tableau, eight foundation piles, building down in the same suit. You can only move single cards. Oft" +
     "en it feels like nothing is happening for a long time, and then the game works out after all. A good game for making you feel smar" +
     "t.",
-  layout = Some("sw|f|t"),
+  layout = "sw|f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

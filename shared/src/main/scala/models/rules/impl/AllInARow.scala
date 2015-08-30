@@ -40,7 +40,7 @@ object AllInARow extends GameRules(
     Link("Jan Wolter's Experiments", "/article/blackhole.html")
   ),
   description = "A variation of ^golf^ without a stock. Most deals are winnable, but require a lot of advance planning to win.",
-  layout = Some("f|t"),
+  layout = "f|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(
     FoundationRules(

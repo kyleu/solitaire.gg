@@ -32,7 +32,7 @@ object GayGordons extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Gay_Gordons.html.en")
   ),
   description = "A pair removal game where you remove pairs that add to 11, Kings with Queens, or Jacks together.",
-  layout = Some("f|r|t"),
+  layout = "f|r|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJPairOrQK,
   foundations = Seq(
     FoundationRules(
