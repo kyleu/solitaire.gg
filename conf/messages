@@ -237,7 +237,7 @@ help.tableau.cards.face.down.odd.numbered = Each even numbered card is turned fa
 help.tableau.build.none = No cards may be built on a card in a {0} pile.
 help.tableau.build.rank.and.suit.match.rules = A card may be built on a card in a {0} pile if it is {1} and {2}.
 
-help.tableau.move.stacks.none = No cards may be moved from a {0} pile.
+help.tableau.move.stacks.none = No cards may be moved from {0} piles.
 help.tableau.move.stacks.rank.and.suit.match.rules = Stacks of cards may be moved from a {0} pile if they are each {1} and {2}.
 
 # Pyramid Help

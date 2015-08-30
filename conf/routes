@@ -35,6 +35,7 @@ GET         /websocket                         controllers.WebsocketController.c
 # Admin
 GET         /admin                             controllers.admin.AdminController.index()
 GET         /admin/enable                      controllers.admin.AdminController.enable()
+GET         /admin/unfinished                  controllers.admin.AdminController.unfinished()
 
 GET         /admin/sandbox                     controllers.admin.SandboxController.defaultSandbox()
 GET         /admin/sandbox/:key                controllers.admin.SandboxController.sandbox(key)

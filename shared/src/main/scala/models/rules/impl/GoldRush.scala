@@ -17,7 +17,7 @@ import models.rules._
  */
 object GoldRush extends GameRules(
   id = "goldrush",
-  completed = false,
+  completed = true,
   title = "Gold Rush",
   related = Seq("doublegoldrush"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gold_rush.htm")),

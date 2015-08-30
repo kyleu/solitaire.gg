@@ -6,6 +6,7 @@ import akka.pattern.ask
 import akka.util.Timeout
 import controllers.BaseController
 import models._
+import models.rules.GameRulesSet
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Schema
 import services.scheduled.ScheduledTask
@@ -29,6 +30,11 @@ class AdminController @javax.inject.Inject() (override val ctx: ApplicationConte
     AdminService.enableAdmin(request.identity).map { response =>
       Ok(response)
     }
+  }
+
+  def unfinished = withAdminSession("unfinished") { implicit request =>
+    val rules = GameRulesSet.unfinished(Random.nextInt(GameRulesSet.unfinished.size))
+    Future.successful(Redirect(controllers.routes.GameController.newGame(rules.id)))
   }
 
   def status = withAdminSession("status") { implicit request =>
