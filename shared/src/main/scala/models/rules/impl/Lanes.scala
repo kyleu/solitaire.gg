@@ -12,7 +12,7 @@ import models.rules._
  */
 object Lanes extends GameRules(
   id = "lanes",
-  completed = false,
+  completed = true,
   title = "Lanes",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lanes.htm"),
@@ -20,7 +20,7 @@ object Lanes extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/lanes.htm")
   ),
   description = "A six-by-three tableau played much like ^klondike^, but you can't move stacks.",
-  layout = "swf|t",
+  layout = "swf|.t",
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

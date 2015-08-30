@@ -19,6 +19,10 @@ class HomeController @javax.inject.Inject() (override val ctx: ApplicationContex
     Future.successful(Redirect(if (url.startsWith("http")) { url } else { "http://" + url }))
   }
 
+  def robots = Action.async {
+    Future.successful(Ok("User-agent: *\nDisallow:\n"))
+  }
+
   def about = withSession("about") { implicit request =>
     Future.successful(Ok(views.html.about(request.identity)))
   }

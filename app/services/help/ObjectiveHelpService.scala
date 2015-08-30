@@ -36,7 +36,7 @@ object ObjectiveHelpService {
     case VictoryCondition.AllOnFoundationOrStock => Messages("help.victory.condition.all.on.foundation.or.stock")
     case VictoryCondition.AllOnTableauSorted =>
       val (rmr, smr) = rules.tableaus.toList match {
-        case h :: Nil => (
+        case h :: _ => (
           MatchRuleHelpService.toWords(h.rankMatchRuleForBuilding),
           MatchRuleHelpService.toWords(h.suitMatchRuleForBuilding)
         )

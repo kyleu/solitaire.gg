@@ -26,7 +26,7 @@ object Server {
       Play.playFilters, Play.playWs, Play.playTest,
       Spark.core,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
-      WebJars.requireJs, WebJars.bootstrap, WebJars.phaser, WebJars.underscore, WebJars.d3, WebJars.nvd3,
+      WebJars.requireJs, WebJars.bootstrap, WebJars.underscore, WebJars.d3, WebJars.nvd3,
       Akka.persistence, Akka.testkit
     )
   }
@@ -70,6 +70,7 @@ object Server {
     // IDE Settings
     ideExcludedDirectories := Seq(
       new File("offline/bin"), new File("offline/build"), new File("offline/assets"),
+      new File("public/lib"),
       new File("target/streams"), new File("target/web")
     )
   ) ++ graphSettings ++ defaultScalariformSettings

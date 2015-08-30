@@ -18,12 +18,12 @@ import models.rules._
  */
 object SuitTriangle extends GameRules(
   id = "suittriangle",
-  completed = false,
+  completed = true,
   title = "Suit Triangle",
   like = Some("doubleklondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/suit_triangle.htm")),
   description = "A two-deck version of ^klondike^ where we build in the same suite.",
-  layout = "swf|t",
+  layout = "swf|.t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
