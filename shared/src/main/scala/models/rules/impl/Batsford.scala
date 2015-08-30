@@ -37,6 +37,7 @@ object Batsford extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/batsford.html")
   ),
   description = "A two-deck ^klondike^ game with a special reserve that can store up to three kings.",
+  layout = Some("swf|tt"),
   deckOptions = DeckOptions(
     numDecks = 2
   ),

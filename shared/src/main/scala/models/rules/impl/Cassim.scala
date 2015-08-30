@@ -21,6 +21,7 @@ object Cassim extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cassim.htm")),
   description = "A version of ^alibaba^ with a smaller tableau and an infinity of redeals. In the <em>One Thousand and One Nights</em> Cassim was A" +
     "li Baba's brother and the leader of the ^fortythieves^.",
+  layout = Some("swf|t"),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
   foundations = Seq(

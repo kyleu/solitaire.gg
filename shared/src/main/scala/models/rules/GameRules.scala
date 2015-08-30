@@ -12,7 +12,7 @@ case class GameRules(
   title: String,
   aka: Map[String, String] = Map.empty,
   description: String,
-  layout: Option[String] = None,
+  layout: Option[String],
   like: Option[String] = None,
   related: Seq[String] = Nil,
   links: Seq[Link] = Nil,

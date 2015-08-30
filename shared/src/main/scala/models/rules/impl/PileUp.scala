@@ -29,6 +29,7 @@ object PileUp extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Pileon.html.en")
   ),
   description = "A game where you must sort the cards by rank rather than suit.",
+  layout = Some("|t"),
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(
     TableauRules(

@@ -25,6 +25,7 @@ object TripleRussian extends GameRules(
   like = Some("russian"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_russian.htm")),
   description = "A three-deck version of ^russian^ solitaire by Thomas Warfield.",
+  layout = Some("f|t"),
   deckOptions = DeckOptions(
     numDecks = 3
   ),

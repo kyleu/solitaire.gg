@@ -22,6 +22,7 @@ object TripleTriangle extends GameRules(
   like = Some("eternaltriangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_triangle.htm")),
   description = "A three-deck ^eternaltriangle^ variation by Thomas Warfield.",
+  layout = Some("sf|t"),
   deckOptions = DeckOptions(
     numDecks = 3
   ),

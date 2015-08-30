@@ -40,6 +40,7 @@ object Klondike extends GameRules(
     Link("Bill's Solitaire Tester", "www.roziturnbull.com/bill/Solitaire/solitaire.htm")
   ),
   description = "The world's most famous solitaire game features a triangular tableau where you build down in alternating colors.",
+  layout = Some("swf|t"),
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

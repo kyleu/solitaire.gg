@@ -25,6 +25,7 @@ object GoldMine extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Gold_Mine.html.en")
   ),
   description = "A ^klondike^ variation that starts with an empty tableau.",
+  layout = Some("swf|t"),
   stock = Some(
     StockRules(
       maximumDeals = Some(1),
