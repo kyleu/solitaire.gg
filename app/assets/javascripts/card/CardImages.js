@@ -40,7 +40,7 @@ define(['card/Rank', 'card/Suit'], function(Rank, Suit) {
     var layout = preferences['card-layout'];
     _.each(Suit.all, function(s) {
       _.each(Rank.all, function(r) {
-        var tex = game.add.bitmapData(400, 600);
+        var tex = game.add.bitmapData(game.cardSet.cardWidth, game.cardSet.cardHeight);
         cardTextures[r.char + s.char] = renderCard(s, r, layout, tex);
       });
     });
