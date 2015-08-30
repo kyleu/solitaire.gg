@@ -9,7 +9,6 @@ case class Link(title: String, url: String)
 case class GameRules(
   id: String,
   completed: Boolean = false,
-  custom: Boolean = false,
   title: String,
   aka: Map[String, String] = Map.empty,
   description: String,
