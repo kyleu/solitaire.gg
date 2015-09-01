@@ -19,11 +19,11 @@ class Config @javax.inject.Inject() (cnf: play.api.Configuration) {
 
   // Database
   val databaseConfiguration = new DbConfig(
-    host = cnf.getString("db.host").getOrElse("localhost"),
+    host = cnf.getString("database.host").getOrElse("localhost"),
     port = 5432,
-    database = cnf.getString("db.database"),
-    username = cnf.getString("db.username").getOrElse(Config.projectId),
-    password = cnf.getString("db.password")
+    database = cnf.getString("database.schema"),
+    username = cnf.getString("database.username").getOrElse(Config.projectId),
+    password = cnf.getString("database.password")
   )
 
   // Spark
