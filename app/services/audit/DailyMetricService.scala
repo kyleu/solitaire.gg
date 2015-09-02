@@ -75,7 +75,7 @@ object DailyMetricService {
     val lastLine = result.split("\n").last
     val endIndex = lastLine.indexOf('%')
     val startIndex = lastLine.indexOf(' ', endIndex - 5)
-    val ret = lastLine.substring(startIndex, endIndex)
-    ret.trim.toLong
+    val ret = 100 - lastLine.substring(startIndex, endIndex).trim.toLong
+    ret
   }
 }
