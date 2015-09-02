@@ -17,7 +17,6 @@ import play.api.mvc.{ Action, RequestHeader, Results }
 import play.api.routing.Router
 import services.database.{ Database, Schema }
 import services.scheduled.ScheduledTask
-import services.spark.SparkService
 import services.supervisor.ActorSupervisor
 import utils.metrics.Instrumented
 import utils.web.PlayGlobalSettings
@@ -69,10 +68,6 @@ class ApplicationContext @javax.inject.Inject() (
     Database.open(config.databaseConfiguration)
     Schema.update()
 
-    if(config.sparkEnabled) {
-      SparkService.start(config.sparkMaster, config.sparkPort)
-    }
-
     scheduleTask()
 
     PlayGlobalSettings.hostname = config.hostname
@@ -81,9 +76,6 @@ class ApplicationContext @javax.inject.Inject() (
   }
 
   private[this] def stop() = {
-    if(config.sparkEnabled) {
-      SparkService.stop()
-    }
     Database.close()
     SharedMetricRegistries.remove("default")
   }
