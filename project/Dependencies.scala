@@ -7,6 +7,9 @@ object Dependencies {
 
   object Database {
     val postgresAsync = "com.github.mauricio" %% "postgresql-async" % "0.2.18"
+    val reactiveMongo = "org.reactivemongo" %% "reactivemongo" % "0.11.6"
+    val playMongo = "org.reactivemongo" %% "play2-reactivemongo" % "0.11.6.play24"
+    val graph = "com.assembla.scala-incubator" %% "graph-core" % "1.9.4"
   }
 
   object Play {
@@ -29,7 +32,7 @@ object Dependencies {
   }
 
   object Authentication {
-    val silhouette = "com.mohiva" %% "play-silhouette" % "3.0.0"
+    val silhouette = "com.mohiva" %% "play-silhouette" % "3.0.2"
   }
 
   object Metrics {
@@ -46,7 +49,16 @@ object Dependencies {
   }
 
   object Akka {
-    val persistence = "com.typesafe.akka" %% "akka-persistence-experimental" % "2.3.11"
-    val testkit = "com.typesafe.akka" %% "akka-testkit" % "2.3.11"
+    val actor = "com.typesafe.akka" %% "akka-actor" % "2.3.13"
+    val cluster = "com.typesafe.akka" %% "akka-cluster" % "2.3.13"
+    val contrib = "com.typesafe.akka" %% "akka-contrib" % "2.3.13"
+    val persistence = "com.typesafe.akka" %% "akka-persistence-experimental" % "2.3.13"
+    val remoting = "com.typesafe.akka" %% "akka-remote" % "2.3.13"
+    val testkit = "com.typesafe.akka" %% "akka-testkit" % "2.3.13"
+  }
+
+  object Utils {
+    val core = "com.twitter" %% "util-core" % "6.27.0"
+    val collection = "com.twitter" %% "util-collection" % "6.27.0"
   }
 }

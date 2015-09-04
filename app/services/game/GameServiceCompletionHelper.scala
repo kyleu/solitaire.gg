@@ -27,7 +27,8 @@ trait GameServiceCompletionHelper { this: GameService =>
 
     GameHistoryService.setCompleted(id, completionTime, status).flatMap { completed =>
       update().flatMap { updated =>
-        UserStatisticsService.registerGame(gameHistory.get).flatMap { stats =>
+        val history = gameHistory.getOrElse(throw new IllegalStateException(s"No game history available for [$id]."))
+        UserStatisticsService.registerGame(history).flatMap { stats =>
           if (win) {
             GameSeedService.registerWin(rules, seed, player.userId, moveCount, elapsed.getOrElse(0), completionTime)
           } else {

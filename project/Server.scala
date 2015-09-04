@@ -26,7 +26,8 @@ object Server {
       Play.playFilters, Play.playWs, Play.playTest,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap, WebJars.underscore, WebJars.d3, WebJars.nvd3,
-      Akka.persistence, Akka.testkit
+      Akka.actor, Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, Akka.testkit,
+      Utils.core, Utils.collection
     )
   }
 

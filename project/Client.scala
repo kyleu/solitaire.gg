@@ -15,7 +15,9 @@ object Client {
     persistLauncher := false,
     sourceMapsDirectories += Shared.sharedJs.base / "..",
     unmanagedSourceDirectories in Compile := Seq((scalaSource in Compile).value),
-    libraryDependencies ++= Seq("com.lihaoyi" %%% "upickle" % "0.3.5"),
+    libraryDependencies ++= Seq(
+      "com.lihaoyi" %%% "upickle" % "0.3.6"
+    ),
     scalaJSStage in Global := FastOptStage,
     scapegoatIgnoredFiles := Seq(".*/JsonUtils.scala", ".*/JsonSerializers.scala"),
     ScalariformKeys.preferences := ScalariformKeys.preferences.value

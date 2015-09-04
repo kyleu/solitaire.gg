@@ -18,7 +18,7 @@ class TestPersistentActor extends PersistentActor with Logging {
   import services.sandbox.TestPersistentActor._
 
   override def persistenceId = "test-actor-1"
-  log.info(s"Test actor started.")
+  log.info(s"Test actor [$persistenceId] started.")
 
   var state = ExampleState()
   private def updateState(event: Evt) = state = state.updated(event)
