@@ -39,13 +39,12 @@ object Server {
     scalacOptions in Test ++= Seq("-Yrangepos"),
 
     libraryDependencies ++= dependencies,
-    dependencyOverrides ++= Set(
-      "com.fasterxml.jackson.core" % "jackson-databind" % "2.4.4"
-    ),
 
+    // Play
     routesGenerator := InjectedRoutesGenerator,
     routesImport ++= Seq("utils.web.RoutingImports._"),
 
+    // Scala.js
     scalaJSProjects := Seq(Client.client),
 
     // Prevent Scaladoc
@@ -65,6 +64,10 @@ object Server {
     scapegoatIgnoredFiles := Seq(".*/Row.scala", ".*/Routes.scala", ".*/ReverseRoutes.scala", ".*/JavaScriptReverseRoutes.scala", ".*/*.template.scala"),
     scapegoatDisabledInspections := Seq("DuplicateImport"),
     ScalariformKeys.preferences := ScalariformKeys.preferences.value,
+
+    // SBT Output
+    ivyLoggingLevel := UpdateLogging.Quiet,
+    parallelExecution in Test := true,
 
     // IDE Settings
     ideExcludedDirectories := Seq(

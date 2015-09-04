@@ -8,6 +8,7 @@ define([], function() {
 
       help: document.getElementById('btn-help'),
       feedback: document.getElementById('btn-feedback'),
+      resultsFeedback: document.getElementById('results-feedback'),
 
       undo: document.getElementById('btn-undo'),
       redo: document.getElementById('btn-redo'),
@@ -43,6 +44,11 @@ define([], function() {
 
     buttons.feedback.onclick = function() {
       game.help.toggleFeedback();
+    };
+
+    buttons.resultsFeedback.onclick = function() {
+      game.help.toggleFeedback();
+      return false;
     };
 
     buttons.undo.onclick = function() {

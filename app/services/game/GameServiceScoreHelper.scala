@@ -2,6 +2,13 @@ package services.game
 
 trait GameServiceScoreHelper { this: GameService =>
   protected[this] def calculateScore() = {
-    (gameState.cardsById.size * 50) - (moveCount * 10) - (undoHelper.undoCount * 100) - (elapsedMs / 1000)
+    val baseScore = gameState.cardsById.size * 50
+    val moveDebit = moveCount * 10
+    val undoDebit = undoHelper.undoCount * 100
+    val timeDebit = elapsedMs / 1000
+
+    val score = baseScore - moveDebit - undoDebit - timeDebit
+
+    Math.max(1, score)
   }
 }

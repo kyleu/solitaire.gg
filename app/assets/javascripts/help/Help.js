@@ -19,6 +19,7 @@ define(['ui/Modal'], function(Modal) {
 
   Help.prototype.toggleFeedback = function() {
     var g = this.game;
+    this.game.options.hidePanels();
     var postLoad = function() {
       var textarea = document.getElementById('feedback-input');
       var button = document.getElementById('feedback-submit');
