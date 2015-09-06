@@ -17,11 +17,11 @@ import models.rules._
  */
 object CeilingFan extends GameRules(
   id = "ceilingfan",
-  completed = false,
+  completed = true,
   title = "Ceiling Fan",
   like = Some("fan"),
   description = "An easier variation of ^fan^ where you build in alternate colors.",
-  layout = "f|t",
+  layout = ".::f|2t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -18,7 +18,7 @@ import models.rules._
  */
 object EightOff extends GameRules(
   id = "eightoff",
-  completed = false,
+  completed = true,
   title = "Eight Off",
   related = Seq("eighton"),
   links = Seq(
@@ -29,7 +29,7 @@ object EightOff extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/eight_off.htm")
   ),
   description = "A ^freecell^ variation with more cells, but where you can only build down in the same suit",
-  layout = "f|c|t",
+  layout = "::f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

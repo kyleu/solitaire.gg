@@ -15,12 +15,12 @@ import models.rules._
  */
 object DoubleJane extends GameRules(
   id = "doublejane",
-  completed = false,
+  completed = true,
   title = "Double Jane",
   like = Some("arabella"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_jane.htm")),
   description = "An four-deck ^spider^/^klondike^, similar to ^ladyjane^.",
-  layout = "swf|t",
+  layout = "swf|:::t",
   deckOptions = DeckOptions(
     numDecks = 4
   ),
