@@ -20,9 +20,9 @@ object DdlQueries {
 
   case object InsertTestUser extends Statement {
     override def sql = s"""insert into users (
-      id, username, avatar, color, profiles, roles, created
+      id, username, prefs, profiles, roles, created
     ) values (
-      '${services.test.TestService.testUserId}', 'Test User', 'guest', 'red', '{ }', '{ "user" }', '2015-01-01 00:00:00.000'
+      '${services.test.TestService.testUserId}', 'Test User', '{}'::json, '{ }', '{ "user" }', '2015-01-01 00:00:00.000'
     )"""
   }
 
@@ -33,9 +33,9 @@ object DdlQueries {
 
   case object InsertAdminUser extends Statement {
     override def sql = s"""insert into users (
-      id, username, avatar, color, profiles, roles, created
+      id, username, prefs, profiles, roles, created
     ) values (
-      '$adminId', 'Kyle', 'kyle', 'greyblue', '{ }', '{ "user", "admin" }', '2015-01-01 00:00:00.000'
+      '$adminId', 'Kyle', '{}'::json, '{ }', '{ "user", "admin" }', '2015-01-01 00:00:00.000'
     )"""
   }
 

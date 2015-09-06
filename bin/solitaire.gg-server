@@ -1,0 +1,1 @@
+ssh -l ubuntu -i ~/.ssh/aws-ec2-key.pem solitaire.gg
