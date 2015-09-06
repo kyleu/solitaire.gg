@@ -12,7 +12,7 @@ import models.rules._
  */
 object FortyNine extends GameRules(
   id = "fortynine",
-  completed = false,
+  completed = true,
   title = "Forty-Nine",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/forty_nine.htm"),
@@ -22,7 +22,7 @@ object FortyNine extends GameRules(
   ),
   description = "This ^fortyandeight^ variation has forty-nine cards in a seven by seven tableau. You build down regardless of suit, moving cards o" +
     "ne at a time.",
-  layout = "swf|t",
+  layout = "swf|::t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

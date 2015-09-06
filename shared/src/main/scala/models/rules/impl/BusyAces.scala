@@ -16,7 +16,7 @@ import models.rules._
  */
 object BusyAces extends GameRules(
   id = "busyaces",
-  completed = false,
+  completed = true,
   title = "Busy Aces",
   related = Seq("stages", "courtyard", "dimes", "fortunesfavor", "deuces"),
   links = Seq(

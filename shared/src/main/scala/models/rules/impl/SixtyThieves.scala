@@ -15,7 +15,7 @@ import models.rules._
  */
 object SixtyThieves extends GameRules(
   id = "sixtythieves",
-  completed = false,
+  completed = true,
   title = "Sixty Thieves",
   like = Some("fortythieves"),
   related = Seq("marierose", "malmaison"),
