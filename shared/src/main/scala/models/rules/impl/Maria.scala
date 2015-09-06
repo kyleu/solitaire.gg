@@ -13,7 +13,7 @@ import models.rules._
  */
 object Maria extends GameRules(
   id = "maria",
-  completed = false,
+  completed = true,
   title = "Maria",
   related = Seq("midshipman"),
   links = Seq(
@@ -27,7 +27,7 @@ object Maria extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/maria.htm")
   ),
   description = "Like ^fortythieves^, but with a 9 by 4 tableau where you build in alternating colors.",
-  layout = "swf|t",
+  layout = "swf|:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -22,7 +22,7 @@ import models.rules._
  */
 object FredsSpider extends GameRules(
   id = "fredsspider",
-  completed = false,
+  completed = true,
   title = "Fred's Spider",
   like = Some("spider"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/freds_spider.htm")),
