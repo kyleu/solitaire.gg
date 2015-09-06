@@ -32,7 +32,9 @@ class SparkController @javax.inject.Inject() (override val ctx: ApplicationConte
       val total = result.map(_._2).sum
 
       val elapsed = (System.currentTimeMillis - startMs).toInt
-      val ret = s"Processed [${Formatter.withCommas(total)}] log entries in [${Formatter.withCommas(elapsed)}ms]:\n${result.map(x => "  " + x._1 + ": " + Formatter.withCommas(x._2)).mkString("\n")}"
+      val ret = s"Processed [${Formatter.withCommas(total)}] log entries in [${Formatter.withCommas(elapsed)}ms]:\n${result.map { x =>
+        "  " + x._1 + ": " + Formatter.withCommas(x._2)
+      }.mkString("\n")}"
       Future.successful(Ok(ret))
     } else {
       Future.successful(Ok("Spark not enabled."))

@@ -29,7 +29,7 @@ class TestPersistentActor extends PersistentActor with Logging {
       log.info(s"Test actor received [$data].")
       persistAsync(Evt(data))(updateState)
     case "snap" => saveSnapshot(state)
-    case "print" => println(state)
+    case "print" => log.info(state.toString)
   }
 
   override def receiveRecover = {
