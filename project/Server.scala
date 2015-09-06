@@ -24,6 +24,7 @@ object Server {
     Seq(
       Cache.ehCache, Database.postgresAsync, Mail.mailer, Authentication.silhouette,
       Play.playFilters, Play.playWs, Play.playTest,
+      Spark.core,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap, WebJars.underscore, WebJars.d3, WebJars.nvd3,
       Akka.actor, Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, Akka.testkit,

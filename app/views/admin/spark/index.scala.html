@@ -1,0 +1,28 @@
+@()(implicit session: Session, flash: Flash)
+@views.html.admin.layout.base("Spark Jobs Overview", "reports") {
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2 id="detail-title">Spark Jobs</h2>
+          <em>Showing all available Spark batch processing jobs.</em>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <ul>
+            <li><a href="@controllers.admin.routes.SparkController.run("one")">Job 1</a></li>
+            <li><a href="@controllers.admin.routes.SparkController.run("two")">Job 2</a></li>
+            <li><a href="@controllers.admin.routes.SparkController.run("three")">Job 3</a></li>
+            <li><a href="@controllers.admin.routes.SparkController.run("four")">Job 4</a></li>
+            <li><a href="@controllers.admin.routes.SparkController.run("five")">Job 5</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+}

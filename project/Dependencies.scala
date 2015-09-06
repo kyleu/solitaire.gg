@@ -19,6 +19,10 @@ object Dependencies {
     val playTest = "com.typesafe.play" %% "play-test" % "2.4.2"
   }
 
+  object Spark {
+    val core = "org.apache.spark" %% "spark-core" % "1.4.1" exclude("org.slf4j", "slf4j-log4j12")
+  }
+
   object WebJars {
     val requireJs = "org.webjars" % "requirejs" % "2.1.20"
     val bootstrap = "org.webjars" % "bootstrap" % "3.3.5"
