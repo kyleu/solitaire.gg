@@ -31,7 +31,7 @@ import models.rules._
  */
 object BlackHole extends GameRules(
   id = "blackhole",
-  completed = false,
+  completed = true,
   title = "Black Hole",
   like = Some("allinarow"),
   related = Seq("binarystar"),

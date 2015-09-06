@@ -17,7 +17,7 @@ import models.rules._
  */
 object Smokey extends GameRules(
   id = "smokey",
-  completed = false,
+  completed = true,
   title = "Smokey",
   like = Some("klondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/smokey.htm")),

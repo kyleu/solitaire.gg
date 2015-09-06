@@ -23,12 +23,12 @@ import models.rules._
  */
 object Carthage extends GameRules(
   id = "carthage",
-  completed = false,
+  completed = true,
   title = "Carthage",
   related = Seq("algiers"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/carthage.htm")),
   description = "A two-deck games where you deal to the reserves and build on the tableau. Empty reserves function as cells.",
-  layout = "sf|tt",
+  layout = "sf|.:t|.t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

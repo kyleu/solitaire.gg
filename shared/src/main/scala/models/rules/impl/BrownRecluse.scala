@@ -18,7 +18,7 @@ import models.rules._
  */
 object BrownRecluse extends GameRules(
   id = "brownrecluse",
-  completed = false,
+  completed = true,
   title = "Brown Recluse",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/brown_recluse.htm")),
   description = "This ^spider^ variant by Thomas Warfield has a stock and a waste pile. The tableau starts with just one card in each column, but s" +

@@ -24,7 +24,7 @@ import models.rules._
  */
 object BigSpider extends GameRules(
   id = "bigspider",
-  completed = false,
+  completed = true,
   title = "Big Spider",
   like = Some("spider"),
   related = Seq("spiderthreedeck"),

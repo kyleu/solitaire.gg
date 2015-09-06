@@ -24,7 +24,7 @@ import models.rules._
  */
 object Frog extends GameRules(
   id = "frog",
-  completed = false,
+  completed = true,
   title = "Frog",
   related = Seq("fly"),
   links = Seq(
@@ -35,7 +35,7 @@ object Frog extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/frog.htm")
   ),
   description = "A relation of ^sirtommy^ with a reserve.",
-  layout = "sf|r|t",
+  layout = "sf|r:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

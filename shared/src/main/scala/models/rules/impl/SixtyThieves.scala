@@ -21,7 +21,7 @@ object SixtyThieves extends GameRules(
   related = Seq("marierose", "malmaison"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sixty_thieves.htm")),
   description = "A difficult three-deck version of ^fortythieves^ by Thomas Warfield.",
-  layout = "swf|t",
+  layout = "swf|.:t",
   deckOptions = DeckOptions(
     numDecks = 3
   ),

@@ -19,10 +19,10 @@ import models.rules._
  */
 object Sarlacc extends GameRules(
   id = "sarlacc",
-  completed = false,
+  completed = true,
   title = "Sarlacc",
   description = "A ^freecell^ variant with a tableau of interlocking columns.",
-  layout = "f|c|p",
+  layout = ":f|c|:p",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
