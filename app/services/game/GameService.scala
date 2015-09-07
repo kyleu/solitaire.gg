@@ -34,7 +34,7 @@ case class GameService(
     undos = undoHelper.undoCount,
     redos = undoHelper.redoCount,
     score = calculateScore(),
-    durationSeconds = elapsedMs / 1000,
+    durationSeconds = elapsed.getOrElse(0),
     leaderboardRanking = 0
   )
 

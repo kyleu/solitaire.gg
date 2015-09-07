@@ -18,6 +18,7 @@ function (config, Options, GameNetwork, GameTimer, InitialState, Help) {
     game.possibleMoves = [];
     game.movesMade = 0;
     game.timer = new GameTimer();
+    game.complete = false;
 
     var configOptions = {
       width: '100%',

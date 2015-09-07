@@ -21,7 +21,7 @@ trait GameServiceConnectionHelper { this: GameService =>
     }
 
     connectionActor ! GameStarted(id, self, started)
-    connectionActor ! GameJoined(id, gameState.view(userId), elapsedMs, possibleMoves(Some(userId)))
+    connectionActor ! GameJoined(id, gameState.view(userId), elapsed.getOrElse(0), possibleMoves(Some(userId)))
   }
 
   protected[this] def handleAddObserver(userId: UUID, name: String, connectionId: UUID, connectionActor: ActorRef, as: Option[UUID]) {
@@ -30,7 +30,7 @@ trait GameServiceConnectionHelper { this: GameService =>
       case Some(p) => gameState.view(p)
       case None => gameState
     }
-    connectionActor ! GameJoined(id, gs, elapsedMs, possibleMoves(None))
+    connectionActor ! GameJoined(id, gs, elapsed.getOrElse(0), possibleMoves(None))
   }
 
   protected[this] def handleConnectionStopped(connectionId: UUID) {

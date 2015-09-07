@@ -1,6 +1,5 @@
 package services.game
 
-import org.joda.time.LocalDateTime
 import utils.{ DateUtils, Logging }
 import utils.metrics.InstrumentedActor
 
@@ -20,8 +19,4 @@ trait GameServiceHelper
     with GameServiceUndoHelper
     with GameServiceVictoryHelper { this: GameService =>
 
-  protected[this] def elapsedMs = firstMoveMade match {
-    case Some(fmm) => DateUtils.toMillis(new LocalDateTime()).toInt
-    case None => 0
-  }
 }

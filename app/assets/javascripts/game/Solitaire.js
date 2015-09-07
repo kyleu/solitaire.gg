@@ -21,7 +21,7 @@ define(['utils/Config', 'utils/Websocket', 'game/Game'], function (cfg, Websocke
 
   Solitaire.prototype.onBeforeUnload = function() {
     if(this.game !== null) {
-      if(this.game.movesMade > 0) {
+      if(this.game.movesMade > 0 && !this.game.complete) {
         return 'You\'re playing a game. Are you sure you\'d like to resign?';
       }
     }

@@ -102,7 +102,7 @@ define(['utils/Config', 'card/Rank', 'card/Suit', 'state/GameState'], function (
         self.game.playmat.lose();
         break;
       case 'GameWon':
-        self.game.playmat.win();
+        self.game.playmat.win(v.result);
         break;
       case 'Reconnect':
         this.game.playmat.destroy();

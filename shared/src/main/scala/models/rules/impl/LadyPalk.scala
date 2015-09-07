@@ -14,7 +14,7 @@ import models.rules._
  */
 object LadyPalk extends GameRules(
   id = "ladypalk",
-  completed = false,
+  completed = true,
   title = "Lady Palk",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lady_palk.htm"),
@@ -24,7 +24,7 @@ object LadyPalk extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/avenue.htm")
   ),
   description = "Similar to ^diplomat^, but allows stacks to be moved and spaces can only be filled by kings.",
-  layout = "swf|t",
+  layout = "swf|.:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

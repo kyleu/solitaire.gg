@@ -31,17 +31,19 @@ define([
     pile.y = pileLocation.y * this.game.cardSet.cardHeight;
   };
 
-  Playmat.prototype.win = function() {
+  Playmat.prototype.win = function(result) {
+    this.game.complete = true;
+
     CardAnimation.win(this);
 
     if(!GameResults.initialized()) {
       GameResults.init();
     }
-    GameResults.show();
+    GameResults.show(result, true);
   };
 
   Playmat.prototype.lose = function() {
-    alert('You lose!');
+    alert('You lose.');
   };
 
   return Playmat;

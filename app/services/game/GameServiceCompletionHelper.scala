@@ -10,6 +10,13 @@ import utils.DateUtils
 trait GameServiceCompletionHelper { this: GameService =>
   protected[this] var completed: Option[LocalDateTime] = None
 
+  protected[this] def elapsed = firstMoveMade.flatMap { first =>
+    lastMoveMade.map { last =>
+      Seconds.secondsBetween(first, last).getSeconds
+    }
+  }
+
+
   protected[this] def completeGame(win: Boolean) = {
     if(completed.isDefined) {
       throw new IllegalStateException(s"Attempt to complete already-completed game [$id].")
@@ -19,11 +26,6 @@ trait GameServiceCompletionHelper { this: GameService =>
 
     val completionTime = lastMoveMade.getOrElse(DateUtils.now)
     completed = Some(completionTime)
-    val elapsed = firstMoveMade.flatMap { first =>
-      lastMoveMade.map { last =>
-        Seconds.secondsBetween(first, last).getSeconds
-      }
-    }
 
     GameHistoryService.setCompleted(id, completionTime, status).flatMap { completed =>
       update().flatMap { updated =>

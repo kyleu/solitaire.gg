@@ -18,7 +18,7 @@ import models.rules._
  */
 object FreeCellThreeDeck extends GameRules(
   id = "freecellthreedeck",
-  completed = false,
+  completed = true,
   title = "FreeCell Three Deck",
   like = Some("triplefreecell"),
   related = Seq("freecellfourdeck"),
