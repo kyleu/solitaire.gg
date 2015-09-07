@@ -7,7 +7,6 @@ import play.api.Mode
 import java.util.TimeZone
 import services.database.{ Database, Schema }
 import services.scheduled.ScheduledTask
-import services.spark.SparkService
 import utils.metrics.Instrumented
 import utils.web.PlayGlobalSettings
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -32,10 +31,6 @@ trait ApplicationContextHelper { this: ApplicationContext =>
     Database.open(config.databaseConfiguration)
     Schema.update()
 
-    if(config.sparkEnabled) {
-      SparkService.start(config.sparkMaster, config.sparkPort)
-    }
-
     scheduleTask()
 
     PlayGlobalSettings.hostname = config.hostname
@@ -44,9 +39,6 @@ trait ApplicationContextHelper { this: ApplicationContext =>
   }
 
   private[this] def stop() = {
-    if(config.sparkEnabled) {
-      SparkService.stop()
-    }
     Database.close()
     SharedMetricRegistries.remove("default")
   }

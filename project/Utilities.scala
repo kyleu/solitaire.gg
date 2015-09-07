@@ -8,6 +8,7 @@ import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, defaultScalariformSetti
 object Utilities {
   lazy val iconCreator = (project in file("util/iconCreator")).settings(
     name := "icon-creator",
+    version := Shared.Versions.app,
     scalaVersion := Shared.Versions.scala,
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
@@ -18,6 +19,7 @@ object Utilities {
 
   lazy val screenshotCreator = (project in file("util/screenshotCreator")).settings(
     name := "screenshot-creator",
+    version := Shared.Versions.app,
     scalaVersion := Shared.Versions.scala,
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )

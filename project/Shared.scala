@@ -24,6 +24,7 @@ object Shared {
   }
 
   lazy val sharedJs = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(
+    version := Shared.Versions.app,
     scalaVersion := Versions.scala
   )
     .enablePlugins(ScalaJSPlay)
@@ -33,6 +34,7 @@ object Shared {
     ).js
 
   lazy val sharedJvm = (project in file("shared")).settings(
+    version := Shared.Versions.app,
     scalaVersion := Versions.scala,
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
