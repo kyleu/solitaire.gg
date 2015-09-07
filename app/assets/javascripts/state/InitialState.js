@@ -30,12 +30,16 @@ define(['utils/Config', 'state/GameState', 'state/LoadingScreen'], function (cfg
       g.state.getCurrentState().resize();
     };
 
-    window.addEventListener('resize', function() {
-      g.scale.setGameSize(window.innerWidth, window.innerHeight);
+    var resizeCallback = function() {
+      var w = window.innerWidth > 2000 ? 2000 : window.innerWidth;
+      g.scale.setGameSize(w, window.innerHeight);
       if(g.playmat !== undefined) {
         resize();
       }
-    });
+    };
+
+    window.addEventListener('resize', resizeCallback);
+    resizeCallback();
 
     if(typeof Phaser.Plugin.Debug === 'function') {
       this.game.add.plugin(Phaser.Plugin.Debug);

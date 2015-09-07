@@ -17,12 +17,12 @@ import models.rules._
  */
 object Winery extends GameRules(
   id = "winery",
-  completed = false,
+  completed = true,
   title = "Winery",
   like = Some("vineyard"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/winery.htm")),
   description = "A version of ^vineyard^ with cells added.",
-  layout = "f|c|t",
+  layout = "f::c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
