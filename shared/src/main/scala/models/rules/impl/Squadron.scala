@@ -27,7 +27,7 @@ object Squadron extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Squadron.htm"),
     Link("Solavant Solitaire", "www.solavant.com/solitaire/squadron.php")
   ),
-  description = "A much easier version of ^fortytheives^ with three cells.",
+  description = "A much easier version of ^fortythieves^ with three cells.",
   layout = "swf|::::c|.t",
   deckOptions = DeckOptions(
     numDecks = 2
