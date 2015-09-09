@@ -20,10 +20,11 @@ define(['pile/PileLayout', 'pile/PileHelpers', 'pile/DragFromConstraints'], func
     return valid;
   }
 
-  function Pile(game, id, pileSet, options) {
+  function Pile(game, id, pileSet, pileSetIndex, options) {
     Phaser.Group.call(this, game, game.playmat, id);
     this.id = id;
     this.pileSet = pileSet;
+    this.pileSetIndex = pileSetIndex;
     this.options = options;
     this.cards = [];
     this.game.addPile(this);

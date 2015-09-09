@@ -20,8 +20,8 @@ define([
     this.game.pileSets = pileSets;
     var g = this.game;
     _.each(pileSets, function(pileSet) {
-      _.each(pileSet.piles, function(pile) {
-        var pileObj = new Pile(g, pile.id, pileSet, pile.options);
+      _.each(pileSet.piles, function(pile, pileSetIndex) {
+        var pileObj = new Pile(g, pile.id, pileSet, pileSetIndex, pile.options);
         g.playmat.addPile(pileObj);
       });
     });

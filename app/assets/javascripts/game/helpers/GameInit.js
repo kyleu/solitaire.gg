@@ -1,8 +1,8 @@
 /* global define:false */
 /* global Phaser:false */
 /* global Solitaire:false */
-define(['utils/Config', 'ui/Options', 'game/helpers/GameNetwork', 'game/helpers/GameTimer', 'state/InitialState', 'help/Help'],
-function (config, Options, GameNetwork, GameTimer, InitialState, Help) {
+define(['utils/Config', 'ui/Options', 'game/helpers/GameInput', 'game/helpers/GameNetwork', 'game/helpers/GameTimer', 'state/InitialState', 'help/Help'],
+function (config, Options, GameInput, GameNetwork, GameTimer, InitialState, Help) {
   'use strict';
 
   return function (game, ws) {
@@ -40,6 +40,8 @@ function (config, Options, GameNetwork, GameTimer, InitialState, Help) {
     game.help = new Help(game);
 
     GameNetwork.setGame(game);
+
+    game.inputService = new GameInput(game);
 
     if(config.offline) {
       var self = game;

@@ -17,6 +17,7 @@ object Client {
     sourceMapsDirectories += Shared.sharedJs.base / "..",
     unmanagedSourceDirectories in Compile := Seq((scalaSource in Compile).value),
     libraryDependencies ++= Seq(
+      "org.scala-js" %%% "scalajs-dom" % "0.8.0",
       "com.lihaoyi" %%% "upickle" % "0.3.6"
     ),
     scalaJSStage in Global := FastOptStage,

@@ -49,9 +49,9 @@ define(['playmat/helpers/Layout'], function (calculateLayout) {
       }
     }
 
-    var fw = newPosition.x + (newScale.x * p.w) + newPosition.x;
-    console.log({ w: widthRatio, h: heightRatio }, newPosition, newScale, fw);
-    console.log(window.innerWidth + ' == ' + p.game.width + ' == ' + fw);
+    // var fw = newPosition.x + (newScale.x * p.w) + newPosition.x;
+    // console.log({ w: widthRatio, h: heightRatio }, newPosition, newScale, fw);
+    // console.log(window.innerWidth + ' == ' + p.game.width + ' == ' + fw);
 
     if(p.game.initialized) {
       p.game.add.tween(p.scale).to({x: newScale.x, y: newScale.y}, 500, Phaser.Easing.Quadratic.InOut, true);

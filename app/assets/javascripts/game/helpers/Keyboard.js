@@ -53,6 +53,21 @@ define(['ui/Modal'], function (Modal) {
 
     var debugKey = g.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     debugKey.onDown.add(toggleDebug);
+
+    function inputServiceHandler(cmd) {
+      return function() {
+        g.inputService.onInput(cmd);
+      };
+    }
+
+    var upKey = g.input.keyboard.addKey(Phaser.Keyboard.UP);
+    upKey.onDown.add(inputServiceHandler('prev-card'));
+    var downKey = g.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    downKey.onDown.add(inputServiceHandler('next-card'));
+    var leftKey = g.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    leftKey.onDown.add(inputServiceHandler('prev-pile'));
+    var rightKey = g.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    rightKey.onDown.add(inputServiceHandler('next-pile'));
   };
 
   Keyboard.prototype.enable = function() {
