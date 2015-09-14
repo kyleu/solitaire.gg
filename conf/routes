@@ -67,6 +67,8 @@ GET         /admin/rules/:id/screenshot        controllers.admin.RulesController
 
 GET         /admin/users                       controllers.admin.UserController.userList(q ?= "", sortBy ?= "created", page: Int ?= 0)
 GET         /admin/users/:id                   controllers.admin.UserController.userDetail(id: java.util.UUID)
+GET         /admin/users/:id/make-admin        controllers.admin.UserController.makeAdmin(id: java.util.UUID)
+GET         /admin/users/:id/remove-admin      controllers.admin.UserController.removeAdmin(id: java.util.UUID)
 GET         /admin/users/:id/remove            controllers.admin.UserController.removeUser(id: java.util.UUID)
 
 GET         /admin/games                       controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created", page: Int ?= 0)

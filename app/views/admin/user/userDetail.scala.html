@@ -1,8 +1,19 @@
-@(user: models.user.User, gameCount: Int, requestCount: Int)(
+@(user: models.user.User, gameCount: Int, requestCount: Int, self: java.util.UUID)(
   implicit session: Session, flash: Flash
 )@views.html.admin.layout.base(s"${utils.Config.projectName} User Detail", "explore") {
   <div class="panel panel-default">
     <div class="panel-body">
+      <div class="pull-right">
+        @if(user.id == self) {
+          This is you.
+        } else {
+          @if(user.roles.contains(models.user.Role.Admin)) {
+            <a href="@controllers.admin.routes.UserController.removeAdmin(user.id)" class="btn btn-default">Remove Admin Role</a>
+          } else {
+            <a href="@controllers.admin.routes.UserController.makeAdmin(user.id)" class="btn btn-default">Make Admin</a>
+          }
+        }
+      </div>
       @user.username.map { un => <h4>@un</h4> }
       <h5>@user.id</h5>
       <em>@gameCount games, @requestCount requests</em>

@@ -52,6 +52,11 @@ object UserQueries extends BaseQueries[User] {
     override val values = Seq(role.name, id)
   }
 
+  case class RemoveRole(id: UUID, role: Role) extends Statement {
+    override val sql = s"update $tableName set roles = array_remove(roles, ?) where id = ?"
+    override val values = Seq(role.name, id)
+  }
+
   case class FindUserByUsername(username: String) extends FlatSingleRowQuery[User] {
     override val sql = getSql(Some("username = ?"))
     override val values = Seq(username)
