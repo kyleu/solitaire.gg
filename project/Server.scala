@@ -33,13 +33,7 @@ object Server {
 
   private[this] lazy val serverSettings = Seq(
     name := Shared.projectId,
-    version := Shared.Versions.app,
-    scalaVersion := Shared.Versions.scala,
 
-    scalacOptions ++= Shared.compileOptions,
-    scalacOptions in Test ++= Seq("-Yrangepos"),
-
-    resolvers += Resolver.jcenterRepo,
     libraryDependencies ++= dependencies,
 
     // Play
@@ -48,11 +42,6 @@ object Server {
 
     // Scala.js
     scalaJSProjects := Seq(Client.client),
-
-    // Prevent Scaladoc
-    doc in Compile <<= target.map(_ / "none"),
-    sources in (Compile, doc) := Seq.empty,
-    publishArtifact in (Compile, packageDoc) := false,
 
     // Sbt-Web
     JsEngineKeys.engineType := JsEngineKeys.EngineType.Node,
@@ -77,7 +66,7 @@ object Server {
       new File("public/lib"),
       new File("target/streams"), new File("target/web")
     )
-  ) ++ graphSettings ++ defaultScalariformSettings
+  )
 
   lazy val server = Project(
     id = Shared.projectId,
@@ -86,7 +75,10 @@ object Server {
     .enablePlugins(SbtWeb)
     .enablePlugins(play.sbt.PlayScala)
     .enablePlugins(GitVersioning)
+    .settings(Shared.commonSettings: _*)
     .settings(serverSettings: _*)
+    .settings(defaultScalariformSettings: _*)
+    .settings(graphSettings: _*)
     .aggregate(projectToRef(Client.client))
     .aggregate(Shared.sharedJvm)
     .dependsOn(Shared.sharedJvm)

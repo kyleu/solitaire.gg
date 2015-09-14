@@ -11,8 +11,6 @@ import sbt._
 
 object Client {
   lazy val client = (project in file("client")).settings(
-    version := Shared.Versions.app,
-    scalaVersion := Shared.Versions.scala,
     persistLauncher := false,
     sourceMapsDirectories += Shared.sharedJs.base / "..",
     unmanagedSourceDirectories in Compile := Seq((scalaSource in Compile).value),
@@ -26,6 +24,7 @@ object Client {
   )
     .enablePlugins(GitVersioning)
     .enablePlugins(GitBranchPrompt)
+    .settings(Shared.commonSettings: _*)
     .settings(graphSettings: _*)
     .settings(defaultScalariformSettings: _*)
     .enablePlugins(ScalaJSPlugin, ScalaJSPlay)

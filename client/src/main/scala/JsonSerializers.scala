@@ -12,7 +12,7 @@ object JsonSerializers {
     case None => Js.Null
   }
   private implicit val intOptionWriter = Writer[Option[Int]] {
-    case Some(i) => Js.Num(i)
+    case Some(i) => Js.Num(i.toDouble)
     case None => Js.Null
   }
   private implicit val boolOptionWriter = Writer[Option[Boolean]] {
