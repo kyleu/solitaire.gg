@@ -1,10 +1,8 @@
 package models.ddl
 
-import models.database.Statement
-
-case object CreatePasswordInfoTable extends Statement {
-  override val sql = """
-    create table password_info
+case object CreatePasswordInfoTable extends CreateTableStatement("password_info") {
+  override val sql = s"""
+    create table $tableName
     (
        provider character varying(64) not null,
        key text not null,
@@ -12,7 +10,7 @@ case object CreatePasswordInfoTable extends Statement {
        password character varying(256) not null,
        salt character varying(256),
        created timestamp without time zone not null,
-       constraint pk_password_info primary key (provider, key)
+       constraint ${tableName}_pk primary key (provider, key)
     ) with (oids = false);
   """
 }

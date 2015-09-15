@@ -1,10 +1,8 @@
 package models.ddl
 
-import models.database.Statement
-
-case object CreateRequestsTable extends Statement {
-  override val sql = """
-    create table requests (
+case object CreateRequestsTable extends CreateTableStatement("requests") {
+  override val sql = s"""
+    create table $tableName (
       id uuid primary key not null,
       user_id uuid not null,
       auth_provider character varying(64) not null,
@@ -26,8 +24,9 @@ case object CreateRequestsTable extends Statement {
       status integer not null
     ) with (oids=false);
 
-    create index requests_account_idx on requests using btree (user_id);
+    create index ${tableName}_account_idx on $tableName using btree (user_id);
 
-    alter table requests add constraint requests_users_fk foreign key (user_id) references users (id) on update no action on delete no action;
+    alter table $tableName add constraint ${tableName}_${CreateUsersTable.tableName}_fk
+      foreign key (user_id) references ${CreateUsersTable.tableName} (id) on update no action on delete no action;
   """
 }

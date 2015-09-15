@@ -1,10 +1,8 @@
 package models.ddl
 
-import models.database.Statement
-
-case object CreateUserStatisticsTable extends Statement {
-  override val sql = """
-    create table user_statistics (
+case object CreateUserStatisticsTable extends CreateTableStatement("user_statistics") {
+  override val sql = s"""
+    create table $tableName (
       id uuid not null primary key,
       joined timestamp not null default now(),
       wins int not null default 0,
@@ -21,6 +19,6 @@ case object CreateUserStatisticsTable extends Statement {
       max_loss_streak integer not null default 0
     ) with (oids=false);
 
-    alter table user_statistics add constraint user_statistics_users_fk foreign key (id) references users (id) on update no action on delete no action;
+    alter table $tableName add constraint ${tableName}_users_fk foreign key (id) references ${CreateUsersTable.tableName} (id) on update no action on delete no action;
   """
 }

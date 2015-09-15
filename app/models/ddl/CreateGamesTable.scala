@@ -1,10 +1,8 @@
 package models.ddl
 
-import models.database.Statement
-
-case object CreateGamesTable extends Statement {
-  override val sql = """
-    create table games (
+case object CreateGamesTable extends CreateTableStatement("games") {
+  override val sql = s"""
+    create table $tableName (
       id uuid not null primary key,
       seed int not null,
       rules character varying(128) not null,
@@ -20,8 +18,9 @@ case object CreateGamesTable extends Statement {
       logged timestamp
     ) with (oids=false);
 
-    create index games_player_idx on games using btree (player);
+    create index ${tableName}_player_idx on $tableName using btree (player);
 
-    alter table games add constraint games_users_fk foreign key (player) references users (id) on update no action on delete no action;
+    alter table $tableName add constraint ${tableName}_${CreateUsersTable.tableName}_fk
+      foreign key (player) references ${CreateUsersTable.tableName} (id) on update no action on delete no action;
   """
 }

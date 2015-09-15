@@ -21,6 +21,12 @@ object UserQueries extends BaseQueries[User] {
   val search = Search
   val removeById = RemoveById
 
+  case class DoesUserExist(id: UUID) extends SingleRowQuery[Boolean] {
+    override def sql = s"select count(*) as c from users where id = ?"
+    override def values = Seq(id)
+    override def map(row: Row): Boolean = row.as[Long]("c") == 1L
+  }
+
   case class UpdateUser(u: User) extends Statement {
     override val sql = updateSql(Seq("username", "prefs", "profiles", "roles"))
     override val values = {

@@ -3,6 +3,7 @@ package services.database
 import models.database.Statement
 import models.ddl.DdlQueries
 import models.ddl._
+import models.queries.user.UserQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import utils.Logging
 
@@ -10,59 +11,58 @@ import scala.concurrent.Future
 
 object Schema extends Logging {
   val tables = Seq(
-    "users" -> CreateUsersTable,
-    "user_statistics" -> CreateUserStatisticsTable,
+    CreateUsersTable,
+    CreateUserStatisticsTable,
 
-    "user_profiles" -> CreateUserProfilesTable,
-    "password_info" -> CreatePasswordInfoTable,
-    "oauth1_info" -> CreateOAuth1InfoTable,
-    "oauth2_info" -> CreateOAuth2InfoTable,
-    "openid_info" -> CreateOpenIdInfoTable,
-    "session_info" -> CreateSessionInfoTable,
+    CreateUserProfilesTable,
+    CreatePasswordInfoTable,
+    CreateOAuth1InfoTable,
+    CreateOAuth2InfoTable,
+    CreateOpenIdInfoTable,
+    CreateSessionInfoTable,
 
-    "requests" -> CreateRequestsTable,
-    "client_trace" -> CreateClientTraceTable,
+    CreateRequestsTable,
+    CreateClientTraceTable,
 
-    "game_seeds" -> CreateGameSeedsTable,
+    CreateGameSeedsTable,
 
-    "games" -> CreateGamesTable,
-    "game_cards" -> CreateGameCardsTable,
-    "game_moves" -> CreateGameMovesTable,
+    CreateGamesTable,
+    CreateGameCardsTable,
+    CreateGameMovesTable,
 
-    "user_feedback" -> CreateUserFeedbackTable,
-    "user_feedback_notes" -> CreateUserFeedbackNotesTable,
+    CreateUserFeedbackTable,
+    CreateUserFeedbackNotesTable,
 
-    "daily_metrics" -> CreateDailyMetricsTable,
+    CreateDailyMetricsTable,
 
-    "data_archive" -> CreateDataArchiveTable,
-    "adhoc_queries" -> CreateAdHocQueriesTable
+    CreateDataArchiveTable,
+    CreateAdHocQueriesTable
   )
 
   def update() = {
     val tableFuture = tables.foldLeft(Future.successful(Unit)) { (f, t) =>
       f.flatMap { u =>
-        Database.query(DdlQueries.DoesTableExist(t._1)).flatMap { exists =>
+        Database.query(DdlQueries.DoesTableExist(t.tableName)).flatMap { exists =>
           if (exists) {
             Future.successful(Unit)
           } else {
-            log.info(s"Creating missing table [${t._1}].")
-            val name = s"CreateTable-${t._1}"
-            Database.raw(name, t._2.sql).map(x => Unit)
+            log.info(s"Creating missing table [${t.tableName}].")
+            Database.execute(t).map(x => Unit)
           }
         }
       }
     }
 
     tableFuture.flatMap { ok =>
-      createUser(Database.query(DdlQueries.DoesTestUserExist), DdlQueries.InsertTestUser).flatMap { stillOk =>
-        createUser(Database.query(DdlQueries.DoesAdminUserExist), DdlQueries.InsertAdminUser)
+      createUser(Database.query(UserQueries.DoesUserExist(DdlQueries.adminId)), DdlQueries.InsertTestUser).flatMap { stillOk =>
+        createUser(Database.query(UserQueries.DoesUserExist(services.test.TestService.testUserId)), DdlQueries.InsertAdminUser)
       }
     }
   }
 
   def wipe() = {
     log.warn("Wiping database schema.")
-    val tableNames = tables.reverse.map(_._1)
+    val tableNames = tables.reverse.map(_.tableName)
     Database.execute(DdlQueries.TruncateTables(tableNames)).map(x => tableNames)
   }
 

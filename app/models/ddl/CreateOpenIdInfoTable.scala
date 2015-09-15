@@ -1,17 +1,15 @@
 package models.ddl
 
-import models.database.Statement
-
-case object CreateOpenIdInfoTable extends Statement {
-  override val sql = """
-    create table openid_info
+case object CreateOpenIdInfoTable extends CreateTableStatement("openid_info") {
+  override val sql = s"""
+    create table $tableName
     (
        provider character varying(64) not null,
        key text not null,
        id text not null,
        attributes text not null,
        created timestamp without time zone not null,
-       constraint pk_openid_info primary key (provider, key)
+       constraint ${tableName}_pk primary key (provider, key)
     ) with (oids = false);
   """
 }

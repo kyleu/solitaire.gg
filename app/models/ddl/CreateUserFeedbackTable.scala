@@ -1,10 +1,8 @@
 package models.ddl
 
-import models.database.Statement
-
-object CreateUserFeedbackTable extends Statement {
-  override def sql: String = """
-    create table user_feedback (
+object CreateUserFeedbackTable extends CreateTableStatement("user_feedback") {
+  override def sql: String = s"""
+    create table $tableName (
       id uuid not null primary key,
       user_id uuid not null,
       active_game_id uuid,
@@ -12,7 +10,7 @@ object CreateUserFeedbackTable extends Statement {
       occurred timestamp without time zone not null
     ) with (oids=false);
 
-    alter table user_feedback add constraint user_feedback_users_fk foreign key (user_id) references users (id) on update no action on delete no action;
-    create index user_feedback_users_idx on user_feedback using btree (user_id);
+    alter table $tableName add constraint ${tableName}_users_fk foreign key (user_id) references users (id) on update no action on delete no action;
+    create index ${tableName}_users_idx on $tableName using btree (user_id);
   """
 }

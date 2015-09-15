@@ -1,10 +1,8 @@
 package models.ddl
 
-import models.database.Statement
-
-case object CreateSessionInfoTable extends Statement {
-  override val sql = """
-    create table session_info (
+case object CreateSessionInfoTable extends CreateTableStatement("session_info") {
+  override val sql = s"""
+    create table $tableName (
       id text not null,
       provider character varying(64) not null,
       key text not null,
@@ -15,6 +13,6 @@ case object CreateSessionInfoTable extends Statement {
       constraint pk_session_info primary key (id)
     ) with (oids = false);
 
-    create index idx_session_info_provider_key on session_info (provider, key);
+    create index ${tableName}_provider_key_idx on session_info (provider, key);
   """
 }
