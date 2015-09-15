@@ -16,7 +16,7 @@ object Dependencies {
     val playFilters = play.sbt.PlayImport.filters
     val playWs = play.sbt.PlayImport.ws
     val playJson = play.sbt.PlayImport.json
-    val playTest = "com.typesafe.play" %% "play-test" % "2.4.2"
+    val playTest = "com.typesafe.play" %% "play-test" % "2.4.3"
   }
 
   object Spark {
