@@ -40,7 +40,7 @@ trait GameServicePersistenceHelper { this: GameService =>
         redos = undoHelper.redoCount,
         completed = completed
       ))
-      gameHistory.map( gh => GameHistoryService.setCounts(gh.id, gh.moves, gh.undos, gh.redos))
+      gameHistory.map(gh => GameHistoryService.setCounts(gh.id, gh.moves, gh.undos, gh.redos))
 
       if (movesPersisted < moveCount) {
         val persist = if (cardsPersisted) {

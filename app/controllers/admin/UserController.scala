@@ -51,7 +51,6 @@ class UserController @javax.inject.Inject() (override val ctx: ApplicationContex
     }
   }
 
-
   def makeAdmin(id: UUID) = withAdminSession("detail") { implicit request =>
     ctx.env.identityService.retrieve(id).flatMap {
       case Some(user) =>

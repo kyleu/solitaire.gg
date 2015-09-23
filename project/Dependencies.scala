@@ -36,7 +36,7 @@ object Dependencies {
   }
 
   object Authentication {
-    val silhouette = "com.mohiva" %% "play-silhouette" % "3.0.2"
+    val silhouette = "com.mohiva" %% "play-silhouette" % "3.0.4"
   }
 
   object Metrics {
@@ -47,18 +47,18 @@ object Dependencies {
 
     val json = "io.dropwizard.metrics" % "metrics-json" % "3.1.2" withSources()
 
-    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.3.2.v20150730" withSources()
+    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.3.4.RC0" withSources()
     val servlets = "io.dropwizard.metrics" % "metrics-servlets" % "3.1.2" withSources() intransitive()
     val graphite = "io.dropwizard.metrics" % "metrics-graphite" % "3.1.2" withSources() intransitive()
   }
 
   object Akka {
-    val actor = "com.typesafe.akka" %% "akka-actor" % "2.3.13"
-    val cluster = "com.typesafe.akka" %% "akka-cluster" % "2.3.13"
-    val contrib = "com.typesafe.akka" %% "akka-contrib" % "2.3.13"
-    val persistence = "com.typesafe.akka" %% "akka-persistence-experimental" % "2.3.13"
-    val remoting = "com.typesafe.akka" %% "akka-remote" % "2.3.13"
-    val testkit = "com.typesafe.akka" %% "akka-testkit" % "2.3.13"
+    val actor = "com.typesafe.akka" %% "akka-actor" % "2.3.14"
+    val cluster = "com.typesafe.akka" %% "akka-cluster" % "2.3.14"
+    val contrib = "com.typesafe.akka" %% "akka-contrib" % "2.3.14"
+    val persistence = "com.typesafe.akka" %% "akka-persistence-experimental" % "2.3.14"
+    val remoting = "com.typesafe.akka" %% "akka-remote" % "2.3.14"
+    val testkit = "com.typesafe.akka" %% "akka-testkit" % "2.3.14"
   }
 
   object Utils {

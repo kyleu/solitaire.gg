@@ -16,13 +16,12 @@ trait GameServiceCompletionHelper { this: GameService =>
     }
   }
 
-
   protected[this] def completeGame(win: Boolean) = {
-    if(completed.isDefined) {
+    if (completed.isDefined) {
       throw new IllegalStateException(s"Attempt to complete already-completed game [$id].")
     }
 
-    status = if(win) { "win" } else { "abandoned" }
+    status = if (win) { "win" } else { "abandoned" }
 
     val completionTime = lastMoveMade.getOrElse(DateUtils.now)
     completed = Some(completionTime)

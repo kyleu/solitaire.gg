@@ -15,7 +15,7 @@ import scala.concurrent.Future
 
 trait ApplicationContextHelper { this: ApplicationContext =>
   protected[this] def start() = {
-    if(ApplicationContext.initialized) {
+    if (ApplicationContext.initialized) {
       throw new IllegalStateException("ApplicationContext is already initialized.")
     }
     ApplicationContext.initialized = true

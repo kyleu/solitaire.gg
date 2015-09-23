@@ -19,6 +19,7 @@ case object CreateUserStatisticsTable extends CreateTableStatement("user_statist
       max_loss_streak integer not null default 0
     ) with (oids=false);
 
-    alter table $tableName add constraint ${tableName}_users_fk foreign key (id) references ${CreateUsersTable.tableName} (id) on update no action on delete no action;
+    alter table $tableName add constraint ${tableName}_users_fk foreign key (id)
+      references ${CreateUsersTable.tableName} (id) on update no action on delete no action;
   """
 }
