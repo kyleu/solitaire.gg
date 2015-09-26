@@ -19,7 +19,8 @@ object SandboxController {
     SolverStressTest,
     SendErrorEmail,
     BackfillGames,
-    BackfillMetrics
+    BackfillMetrics,
+    RemoveUsers
   )
 }
 
