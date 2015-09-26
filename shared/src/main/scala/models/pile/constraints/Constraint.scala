@@ -19,12 +19,9 @@ object Constraint {
     !results.contains(false)
   })
 
-  def finiteTimes(numTimes: Int) = {
-    var counter = 0
-    Constraint("finite-times", (src, tgt, cards, gameState) => {
-      counter < numTimes
-    }) -> (() => counter += 1)
-  }
+  def finiteTimes(numTimes: Int) = Constraint("finite-times", (src, tgt, cards, gameState) => {
+    gameState.stockCounter < numTimes
+  })
 
   val faceDown = Constraint("face-down", (src, tgt, cards, gameState) => !cards.exists(_.u))
 

@@ -10,6 +10,7 @@ object SelectPileActions {
   val none = SelectPileAction("none", (pile, gameState) => Nil)
 
   def moveAllFrom(targets: Seq[String], trigger: () => Unit) = SelectPileAction("move-all", (pile, gameState) => {
+    gameState.stockCounter += 1
     targets.flatMap { target =>
       val targetPile = gameState.pilesById(target)
       val cards = Seq(targetPile.cards.reverse: _*)

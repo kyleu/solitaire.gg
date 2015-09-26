@@ -18,11 +18,11 @@ object StockPileOptions {
       Some(Constraint.topCardOnly)
     }
 
-    val selectPileConstraint: (Constraint, () => Unit) = {
+    val selectPileConstraint = {
       rules.maximumDeals match {
-        case Some(1) => Constraint.never -> (() => Unit)
+        case Some(1) => Constraint.never
         case Some(i) => Constraint.finiteTimes(i - 1)
-        case None => Constraint.empty -> (() => Unit)
+        case None => Constraint.empty
       }
     }
 
@@ -71,7 +71,6 @@ object StockPileOptions {
         if (cardsToDraw > 1 && rules.cardsDealt == StockCardsDealt.FewerEachTime) {
           cardsToDraw -= 1
         }
-        selectPileConstraint._2()
       }))
     }
 
@@ -80,7 +79,7 @@ object StockPileOptions {
       direction = Some("r"),
       dragFromConstraint = dragFromConstraint,
       selectCardConstraint = selectCardConstraint,
-      selectPileConstraint = Some(Constraint.allOf("stock-select-pile", Constraint.empty, selectPileConstraint._1)),
+      selectPileConstraint = Some(Constraint.allOf("stock-select-pile", Constraint.empty, selectPileConstraint)),
       selectCardAction = selectCardAction,
       selectPileAction = selectPileAction
     )

@@ -14,6 +14,7 @@ case class GameState(
     deck: Deck,
     pileSets: Seq[PileSet],
     layout: String,
+    var stockCounter: Int = 0,
     var players: Seq[GamePlayer] = Nil
 ) extends GameStateHelper {
 
