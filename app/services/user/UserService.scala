@@ -60,6 +60,7 @@ object UserService extends Logging {
         games <- GameHistoryService.removeGameHistoriesByUser(userId)
         requests <- RequestHistoryService.removeRequestsByUser(userId, Some(conn))
         profiles <- removeProfiles(userId, Some(conn)).map(_.length)
+        stats <- UserStatisticsService.removeStatisticsForUser(userId, Some(conn))
         users <- Database.execute(UserQueries.removeById(Seq(userId)), Some(conn))
       } yield {
         UserCache.removeUser(userId)
@@ -77,7 +78,6 @@ object UserService extends Logging {
       }
     }
   }
-
   private[this] def removeProfiles(userId: UUID, conn: Option[Connection]) = Database.query(ProfileQueries.FindProfilesByUser(userId)).flatMap { profiles =>
     Future.sequence(profiles.map { profile =>
       (profile.loginInfo.providerID match {

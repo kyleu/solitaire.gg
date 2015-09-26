@@ -5,7 +5,7 @@ import java.util.UUID
 import models.database.Row
 import models.queries.BaseQueries
 import models.user.UserStatistics
-import org.joda.time.{ LocalDateTime, LocalDate }
+import org.joda.time.{ LocalDate, LocalDateTime }
 
 object UserStatisticsQueries extends BaseQueries[UserStatistics] {
   override protected val tableName = "user_statistics"
@@ -20,6 +20,8 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
 
   val insert = Insert
   def getById(id: UUID) = getBySingleId(id)
+  def removeById(userId: UUID) = RemoveById(Seq(userId))
+
 
   override protected def fromRow(row: Row) = UserStatistics(
     userId = row.as[UUID]("id"),

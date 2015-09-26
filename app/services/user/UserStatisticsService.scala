@@ -2,6 +2,7 @@ package services.user
 
 import java.util.UUID
 
+import com.github.mauricio.async.db.Connection
 import models.database.Statement
 import models.queries.user.{ UserQueries, UserStatisticsQueries }
 import models.history.GameHistory
@@ -51,5 +52,9 @@ object UserStatisticsService {
         }
       case None => throw new IllegalStateException()
     }
+  }
+
+  def removeStatisticsForUser(userId: UUID, conn: Option[Connection]) = {
+    Database.execute(UserStatisticsQueries.removeById(userId), conn)
   }
 }
