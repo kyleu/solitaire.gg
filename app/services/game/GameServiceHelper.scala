@@ -1,5 +1,7 @@
 package services.game
 
+import java.util.UUID
+
 import utils.Logging
 import utils.metrics.InstrumentedActor
 
@@ -13,9 +15,12 @@ trait GameServiceHelper
     with GameServiceMessageHelper
     with GameServicePersistenceHelper
     with GameServicePossibleMovesHelper
-    with GameServicePreferenceHelper
     with GameServiceTraceHelper
     with GameServiceUndoHelper
     with GameServiceVictoryHelper { this: GameService =>
 
+  protected[this] def handleSetPreference(name: String, value: String) = name match {
+    case "auto-flip" => gameState.setAutoFlipOption(value == "true")
+    case _ => // no op
+  }
 }

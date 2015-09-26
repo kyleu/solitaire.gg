@@ -25,8 +25,6 @@ case class GameService(
   protected[this] var firstMoveMade: Option[LocalDateTime] = None
   protected[this] var lastMoveMade: Option[LocalDateTime] = None
 
-  protected[this] var autoFlipOption = false
-
   protected[this] var status = "started"
 
   protected[this] def getResult = GameResult(

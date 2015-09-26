@@ -12,7 +12,7 @@ object TestService extends Logging {
   val testUser = User(
     id = TestService.testUserId,
     username = Some("test-user"),
-    preferences = UserPreferences(autoFlip = true),
+    preferences = UserPreferences(),
     profiles = Nil,
     created = new LocalDateTime()
   )

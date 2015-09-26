@@ -37,6 +37,8 @@ case class GameState(
       playerKnownIds(userId) = collection.mutable.HashSet.empty
   }
 
+  def setAutoFlipOption(autoFlip: Boolean) = players = players.map( p => p.copy(autoFlipOption = autoFlip))
+
   def getCard(id: UUID) = piles.flatMap(_.cards.find(_.id == id)).headOption.getOrElse(throw new IllegalStateException(s"Invalid card [$id]."))
 
   def view(userId: UUID) = {

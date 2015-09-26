@@ -12,7 +12,7 @@ case class UserPreferences(
   avatar: String = "guest",
   color: String = "greyblue",
   cards: CardPreferences = CardPreferences(),
-  autoFlip: Boolean = false,
+  autoFlip: Boolean = true,
   audio: Boolean = false,
   gamepad: Boolean = false
 )
