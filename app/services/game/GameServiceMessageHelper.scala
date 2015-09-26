@@ -47,7 +47,6 @@ trait GameServiceMessageHelper { this: GameService =>
     try {
       val time = DateUtils.now
       gameMessages += ((gr.message, gr.userId, time))
-      moveCount += 1
       if (firstMoveMade.isEmpty) {
         firstMoveMade = Some(time)
         GameHistoryService.setFirstMove(id, time)

@@ -1,6 +1,6 @@
 package services.game
 
-import utils.{ DateUtils, Logging }
+import utils.Logging
 import utils.metrics.InstrumentedActor
 
 trait GameServiceHelper
@@ -14,7 +14,6 @@ trait GameServiceHelper
     with GameServicePersistenceHelper
     with GameServicePossibleMovesHelper
     with GameServicePreferenceHelper
-    with GameServiceScoreHelper
     with GameServiceTraceHelper
     with GameServiceUndoHelper
     with GameServiceVictoryHelper { this: GameService =>

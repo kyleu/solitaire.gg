@@ -51,6 +51,17 @@ case class GameState(
     )
   }
 
+  def calculateScore(moveCount: Int, undoCount: Int, elapsed: Int) = {
+    val baseScore = cardsById.size * 50
+    val moveDebit = moveCount * 10
+    val undoDebit = undoCount * 100
+    val timeDebit = elapsed
+
+    val score = baseScore - moveDebit - undoDebit - timeDebit
+
+    Math.max(1, score)
+  }
+
   def toStrings = Seq(
     s"Game ID: $gameId", s"Rules: $rules", s"Seed: $seed",
     s"Players: ${players.map(x => s"${x.userId} (${x.name})").mkString(", ")}",

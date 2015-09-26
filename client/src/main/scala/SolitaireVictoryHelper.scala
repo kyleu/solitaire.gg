@@ -16,6 +16,11 @@ trait SolitaireVictoryHelper {
   protected[this] var firstMoveMade: Option[Long] = None
   protected[this] var lastMoveMade: Option[Long] = None
 
+  protected[this] def elapsed = {
+    val ms = firstMoveMade.map(f => lastMoveMade.map(l => l - f).getOrElse(0L)).getOrElse(0L)
+    (ms / 1000).toInt
+  }
+
   protected[this] def registerMove() = {
     moveCount += 1
     if (firstMoveMade.isEmpty) {

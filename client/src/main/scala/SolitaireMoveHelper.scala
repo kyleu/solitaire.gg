@@ -3,7 +3,15 @@ import java.util.UUID
 import models._
 
 trait SolitaireMoveHelper extends SolitaireVictoryHelper {
-  protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit
+  protected def send(rm: ResponseMessage, registerUndoResponse: Boolean): Unit
+
+  protected def send(rms: Seq[ResponseMessage], registerUndoResponse: Boolean): Unit = if(rms.size == 1){
+    val msg = rms.headOption.getOrElse(throw new IllegalStateException())
+    send(msg, registerUndoResponse)
+  } else {
+    send(MessageSet(rms), registerUndoResponse)
+  }
+
   protected def getResult: GameResult
 
   protected[this] def handleSelectCard(userId: UUID, cardId: UUID, pileId: String) = {
@@ -14,9 +22,14 @@ trait SolitaireMoveHelper extends SolitaireVictoryHelper {
     }
     if (pile.canSelectCard(card, gameState)) {
       val messages = pile.onSelectCard(card, gameState)
-      send(MessageSet(messages))
+      send(messages, registerUndoResponse = true)
+      if(messages.size != 1 || messages.headOption.map {
+        case _: CardRevealed => false
+        case _ => true
+      }.getOrElse(true)) {
+        registerMove()
+      }
     }
-    registerMove()
   }
 
   protected[this] def handleSelectPile(userId: UUID, pileId: String) = {
@@ -25,7 +38,7 @@ trait SolitaireMoveHelper extends SolitaireVictoryHelper {
       throw new IllegalStateException(s"SelectPile [$pileId] called on a non-empty deck.")
     }
     val messages = if (pile.canSelectPile(gameState)) { pile.onSelectPile(gameState) } else { Nil }
-    send(MessageSet(messages))
+    send(messages, registerUndoResponse = true)
     registerMove()
   }
 
@@ -41,7 +54,7 @@ trait SolitaireMoveHelper extends SolitaireVictoryHelper {
     if (sourcePile.canDragFrom(cards, gameState)) {
       if (targetPile.canDragTo(sourcePile, cards, gameState)) {
         val messages = targetPile.onDragTo(sourcePile, cards, gameState)
-        send(MessageSet(messages))
+        send(messages, registerUndoResponse = true)
         registerMove()
       } else {
         send(CardMoveCancelled(cardIds, source))

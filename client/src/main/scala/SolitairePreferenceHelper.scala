@@ -6,4 +6,9 @@ trait SolitairePreferenceHelper {
     dom.localStorage.setItem(name, value)
     println(name + ": " + value + " (originally " + current + ").")
   }
+
+  def readPreferences() = {
+    val key = "?"
+    dom.localStorage.getItem(key)
+  }
 }

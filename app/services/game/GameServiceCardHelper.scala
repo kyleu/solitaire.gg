@@ -14,6 +14,12 @@ trait GameServiceCardHelper { this: GameService =>
     if (pile.canSelectCard(card, gameState)) {
       val messages = pile.onSelectCard(card, gameState)
       sendToAll("SelectCard", messages)
+      if(messages.size != 1 || messages.headOption.map {
+        case _: CardRevealed => false
+        case _ => true
+      }.getOrElse(true)) {
+        moveCount += 1
+      }
     } else {
       log.warn(s"SelectCard called on [$card], which cannot be selected.")
     }
@@ -36,6 +42,7 @@ trait GameServiceCardHelper { this: GameService =>
     }
     sendToAll("SelectPile", messages)
 
+    moveCount += 1
     checkWinCondition()
     if (completed.isEmpty) {
       handleGetPossibleMoves(userId)
@@ -57,6 +64,7 @@ trait GameServiceCardHelper { this: GameService =>
       if (targetPile.canDragTo(sourcePile, cards, gameState)) {
         val messages = targetPile.onDragTo(sourcePile, cards, gameState)
         sendToAll("DragTo", messages)
+        moveCount += 1
         checkWinCondition()
         if (completed.isEmpty) {
           handleGetPossibleMoves(userId)

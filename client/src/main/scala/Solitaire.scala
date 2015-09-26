@@ -35,6 +35,7 @@ object Solitaire extends js.JSApp with SolitaireMoveHelper with SolitairePrefere
       case "Undo" => handleUndo()
       case "Redo" => handleRedo()
       case "SetPreference" => handleSetPreference(v.name.toString, v.value.toString)
+      case "DebugInfo" => handleDebugInfo(v.data.toString)
       case _ => throw new IllegalStateException(s"Invalid message [$c].")
     }
   }
@@ -43,8 +44,8 @@ object Solitaire extends js.JSApp with SolitaireMoveHelper with SolitairePrefere
     moves = moveCount,
     undos = undoHelper.undoCount,
     redos = undoHelper.redoCount,
-    score = 0,
-    durationSeconds = 0,
+    score = gameState.calculateScore(moveCount, undoHelper.undoCount, elapsed),
+    durationSeconds = elapsed,
     leaderboardRanking = 0
   )
 
@@ -80,5 +81,10 @@ object Solitaire extends js.JSApp with SolitaireMoveHelper with SolitairePrefere
       send(redone, registerUndoResponse = false)
       send(PossibleMoves(possibleMoves(), undoHelper.historyQueue.size, undoHelper.undoneQueue.size), registerUndoResponse = false)
     }
+  }
+
+  private[this] def handleDebugInfo(data: String) = data match {
+    case "cheat win" => send(GameWon(gameId, firstForRules = false, firstForSeed = false, getResult))
+    case _ => throw new IllegalStateException("Debug: " + data)
   }
 }

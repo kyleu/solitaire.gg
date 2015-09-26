@@ -33,7 +33,7 @@ case class GameService(
     moves = moveCount,
     undos = undoHelper.undoCount,
     redos = undoHelper.redoCount,
-    score = calculateScore(),
+    score = gameState.calculateScore(moveCount, undoHelper.undoCount, elapsed.getOrElse(0)),
     durationSeconds = elapsed.getOrElse(0),
     leaderboardRanking = 0
   )
