@@ -5,10 +5,7 @@ define(function () {
 
   var padding = 0.2;
 
-  function getDimensions(pileSet, divisor, game) {
-    //if(pileSet.dimensions !== undefined) {
-    //  return pileSet.dimensions;
-    //}
+  function getDimensions(pileSet, divisor) {
     //console.log('Calculating dimensions for: ' + pileSet.behavior);
     var ret = [pileSet.piles.length * (1 + padding), 1 + padding];
     switch(pileSet.behavior) {
@@ -24,7 +21,7 @@ define(function () {
       case 'tableau':
         var len = function(pile) {
           var cardsShown = pile.options.cardsShown;
-          if(cardsShown < pile.cards.length) {
+          if(cardsShown !== null && cardsShown < pile.cards.length) {
             return cardsShown;
           } else {
             return pile.cards.length;

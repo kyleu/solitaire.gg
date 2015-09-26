@@ -15,4 +15,4 @@ object ReserveSet {
   }
 }
 
-class ReserveSet(piles: Seq[Pile]) extends PileSet("reserve", piles)
+class ReserveSet(piles: Seq[Pile]) extends PileSet("reserve", piles, visible = true)

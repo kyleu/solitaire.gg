@@ -15,4 +15,4 @@ object WasteSet {
   }
 }
 
-class WasteSet(piles: Seq[Pile]) extends PileSet("waste", piles)
+class WasteSet(piles: Seq[Pile]) extends PileSet("waste", piles, visible = true)

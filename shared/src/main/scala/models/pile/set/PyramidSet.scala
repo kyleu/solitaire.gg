@@ -20,4 +20,4 @@ object PyramidSet {
   }
 }
 
-class PyramidSet(piles: Seq[Pile]) extends PileSet("pyramid", piles)
+class PyramidSet(piles: Seq[Pile]) extends PileSet("pyramid", piles, visible = true)

@@ -15,4 +15,4 @@ object CellSet {
   }
 }
 
-class CellSet(piles: Seq[Pile]) extends PileSet("cell", piles)
+class CellSet(piles: Seq[Pile]) extends PileSet("cell", piles, visible = true)

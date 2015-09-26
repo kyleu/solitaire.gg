@@ -1,9 +1,9 @@
 /* global define:false */
 /* global Phaser:false */
 define([
-  'playmat/helpers/Layout', 'playmat/helpers/PlaymatResizer', 'playmat/helpers/PlaymatEmitter',
+  'playmat/helpers/PlaymatResizer', 'playmat/helpers/PlaymatEmitter',
   'card/CardAnimation', 'ui/GameResults'
-], function (calculateLayout, PlaymatResizer, PlaymatEmitter, CardAnimation, GameResults) {
+], function (PlaymatResizer, PlaymatEmitter, CardAnimation, GameResults) {
   'use strict';
 
   var Playmat = function(game, pileSets, layoutString) {
