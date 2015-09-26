@@ -78,8 +78,8 @@ trait GameServiceMessageHelper { this: GameService =>
     //log.debug("Handling [" + im.getClass.getSimpleName.replace("$", "") + "] internal message for game [" + id + "].")
     try {
       im match {
-        case ap: AddPlayer => timeReceive(ap) { handleAddPlayer(ap.userId, ap.name, ap.connectionId, ap.connectionActor, ap.autoFlipOption) }
-        case ao: AddObserver => timeReceive(ao) { handleAddObserver(ao.userId, ao.name, ao.connectionId, ao.connectionActor, ao.as) }
+        case ap: AddPlayer => timeReceive(ap) { handleAddPlayer(ap.userId, ap.name, ap.preferences, ap.connectionId, ap.connectionActor) }
+        case ao: AddObserver => timeReceive(ao) { handleAddObserver(ao.userId, ao.name, ao.preferences, ao.connectionId, ao.connectionActor, ao.as) }
         case cs: ConnectionStopped => timeReceive(cs) { handleConnectionStopped(cs.connectionId) }
         case StopGame => timeReceive(StopGame) { handleStopGame() }
         case StopGameIfEmpty => timeReceive(StopGameIfEmpty) { handleStopGameIfEmpty() }

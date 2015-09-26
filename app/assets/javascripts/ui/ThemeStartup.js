@@ -43,6 +43,7 @@ define([], function() {
         if(layoutOption.className.indexOf('active') > -1) {
           preferences[optionClass] = layoutOption.getAttribute('data-option-value');
         }
+        console.log('Reading');
 
         layoutOption.onclick = optionClick;
       });

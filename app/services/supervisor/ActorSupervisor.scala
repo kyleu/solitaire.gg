@@ -35,8 +35,8 @@ class ActorSupervisor(ctx: ApplicationContext) extends ActorSupervisorHelper wit
     case cs: ConnectionStarted => timeReceive(cs) { handleConnectionStarted(cs.user, cs.connectionId, cs.conn) }
     case cs: ConnectionStopped => timeReceive(cs) { handleConnectionStopped(cs.connectionId) }
 
-    case cg: CreateGame => timeReceive(cg) { handleCreateGame(cg.rules, cg.connectionId, cg.seed, cg.testGame, cg.autoFlipOption) }
-    case cgj: ConnectionGameJoin => timeReceive(cgj) { handleConnectionGameJoin(cgj.id, cgj.connectionId, cgj.autoFlipOption) }
+    case cg: CreateGame => timeReceive(cg) { handleCreateGame(cg.rules, cg.connectionId, cg.seed, cg.testGame, cg.preferences) }
+    case cgj: ConnectionGameJoin => timeReceive(cgj) { handleConnectionGameJoin(cgj.id, cgj.connectionId, cgj.preferences) }
     case cgo: ConnectionGameObserve => timeReceive(cgo) { handleConnectionGameObserve(cgo.id, cgo.connectionId, cgo.as) }
     case gs: GameStopped => timeReceive(gs) { handleGameStopped(gs.id) }
 

@@ -3,10 +3,12 @@ import models.card.{ Card, Suit, Rank }
 import models.game.GameState
 import models.pile.Pile
 import models.pile.options.{ PileOptions, ClientPileOptions }
+import models.user.{ CardPreferences, UserPreferences }
 import upickle._
 import upickle.legacy._
 
 object JsonSerializers {
+  // Core
   private implicit val stringOptionWriter = Writer[Option[String]] {
     case Some(s) => Js.Str(s)
     case None => Js.Null
@@ -20,10 +22,12 @@ object JsonSerializers {
     case None => Js.Null
   }
 
+  // Card
   private implicit val rankWriter = Writer[Rank] { case r => Js.Str(r.toChar.toString) }
   private implicit val suitWriter = Writer[Suit] { case s => Js.Str(s.toChar.toString) }
   private implicit val cardWriter = Writer[Card] { case c => writeJs(c) }
 
+  // GameState
   private implicit val clientPileOptionsWriter = Writer[ClientPileOptions] {
     case cpo =>
       val dfo = cpo.dragFromOptions.map(opts => Js.Obj(opts.map(opt => opt._1 -> Js.Str(opt._2)).toSeq: _*)).getOrElse(Js.Null)
@@ -46,6 +50,7 @@ object JsonSerializers {
   private implicit val gameStateWriter = Writer[GameState] { case gs => writeJs(gs) }
   private implicit val gameJoinedWriter = Writer[GameJoined] { case gj => writeJs(gj) }
 
+  // ResponseMessage
   private implicit val responseMessageWriter: Writer[ResponseMessage] = Writer[ResponseMessage] {
     case rm =>
       val jsVal = rm match {

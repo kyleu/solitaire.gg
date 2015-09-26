@@ -4,6 +4,7 @@ import java.util.UUID
 
 import models.card.Card
 import models.game.GameState
+import models.user.UserPreferences
 
 sealed trait ResponseMessage
 trait ReversibleResponseMessage extends ResponseMessage
@@ -15,7 +16,7 @@ case class VersionResponse(version: String) extends ResponseMessage
 case object SendDebugInfo extends ResponseMessage
 case class Disconnected(reason: String) extends ResponseMessage
 
-case class GameJoined(id: UUID, state: GameState, elapsedMs: Int, moves: Seq[PossibleMove]) extends ResponseMessage
+case class GameJoined(id: UUID, state: GameState, elapsedMs: Int, moves: Seq[PossibleMove], preferences: UserPreferences) extends ResponseMessage
 
 case class GameResult(moves: Int, undos: Int, redos: Int, score: Int, durationSeconds: Int, leaderboardRanking: Int)
 case class GameLost(id: UUID, result: GameResult) extends ResponseMessage

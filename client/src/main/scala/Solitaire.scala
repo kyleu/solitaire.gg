@@ -34,7 +34,7 @@ object Solitaire extends js.JSApp with SolitaireMoveHelper with SolitairePrefere
       case "MoveCards" => handleMoveCards(userId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString)
       case "Undo" => handleUndo()
       case "Redo" => handleRedo()
-      case "SetPreference" => handleSetPreference(v.name.toString, v.value.toString)
+      case "SetPreference" => handleSetPreference(v.name.toString, v.value.toString, gameState)
       case "DebugInfo" => handleDebugInfo(v.data.toString)
       case _ => throw new IllegalStateException(s"Invalid message [$c].")
     }
@@ -61,10 +61,10 @@ object Solitaire extends js.JSApp with SolitaireMoveHelper with SolitairePrefere
     gameId = UUID.randomUUID
     gameRules = GameRulesSet.allByIdWithAliases(rules)
     gameState = gameRules.newGame(gameId, seed.getOrElse(Math.abs(rng.nextInt())), rules)
-    gameState.addPlayer(userId, "Offline Player", autoFlipOption = false)
+    gameState.addPlayer(userId, "Offline Player", autoFlipOption = preferences.autoFlip)
     InitialMoves.performInitialMoves(gameRules, gameState)
 
-    send(GameJoined(gameId, gameState.view(userId), 0, possibleMoves()))
+    send(GameJoined(gameId, gameState.view(userId), 0, possibleMoves(), preferences))
   }
 
   private[this] def handleUndo(): Unit = {

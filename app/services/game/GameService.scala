@@ -18,7 +18,7 @@ case class GameService(
   protected[this] val gameRules = GameRulesSet.allByIdWithAliases(rules)
   protected[this] val gameState = gameRules.newGame(id, seed, rules)
 
-  gameState.addPlayer(player.userId, player.name, player.autoFlipOption)
+  gameState.addPlayer(player.userId, player.name, player.preferences.autoFlip)
 
   protected[this] val gameMessages = collection.mutable.ArrayBuffer.empty[(GameMessage, UUID, LocalDateTime)]
   protected[this] var moveCount = 0
@@ -41,7 +41,7 @@ case class GameService(
     InitialMoves.performInitialMoves(gameRules, gameState)
 
     player.connectionActor.foreach(_ ! GameStarted(id, self, started))
-    player.connectionActor.foreach(_ ! GameJoined(id, gameState.view(player.userId), 0, possibleMoves(Some(player.userId))))
+    player.connectionActor.foreach(_ ! GameJoined(id, gameState.view(player.userId), 0, possibleMoves(Some(player.userId)), player.preferences))
   }
 
   override def receiveRequest = {

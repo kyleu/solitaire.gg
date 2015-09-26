@@ -14,11 +14,11 @@ trait ConnectionServiceHelper
     with ConnectionServiceTraceHelper
     with Logging { this: ConnectionService =>
   protected[this] def handleStartGame(gameType: String, seed: Option[Int], testGame: Boolean) {
-    supervisor ! CreateGame(gameType, id, seed, testGame = testGame, autoFlipOption = user.preferences.autoFlip)
+    supervisor ! CreateGame(gameType, id, seed, testGame = testGame, preferences = user.preferences)
   }
 
   protected[this] def handleJoinGame(gameId: UUID) = {
-    supervisor ! ConnectionGameJoin(gameId, id, user.preferences.autoFlip)
+    supervisor ! ConnectionGameJoin(gameId, id, user.preferences)
   }
 
   protected[this] def handleObserveGame(gameId: UUID, as: Option[UUID]) = {

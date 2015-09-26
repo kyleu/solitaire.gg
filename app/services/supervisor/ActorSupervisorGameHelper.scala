@@ -4,7 +4,7 @@ import java.util.UUID
 
 import akka.actor.Props
 import models._
-import models.user.PlayerRecord
+import models.user.{ UserPreferences, PlayerRecord }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.game.GameService
 import services.leaderboard.GameSeedService
@@ -17,7 +17,7 @@ import scala.util.Random
 trait ActorSupervisorGameHelper { this: ActorSupervisor =>
   private[this] def masterRng = new Random()
 
-  protected[this] def handleCreateGame(rules: String, connectionId: UUID, seed: Option[Int], testGame: Boolean, autoFlipOption: Boolean) {
+  protected[this] def handleCreateGame(rules: String, connectionId: UUID, seed: Option[Int], testGame: Boolean, preferences: UserPreferences) {
     val id = UUID.randomUUID
     val c = connections(connectionId)
     val s = if (seed.contains(-1)) {
@@ -33,7 +33,7 @@ trait ActorSupervisorGameHelper { this: ActorSupervisor =>
 
     s.map { finalSeed =>
       val started = DateUtils.now
-      val pr = PlayerRecord(c.userId, c.name, Some(connectionId), Some(c.actorRef), autoFlipOption)
+      val pr = PlayerRecord(c.userId, c.name, Some(connectionId), Some(c.actorRef), preferences)
       val actor = context.actorOf(Props(new GameService(id, rules, finalSeed, started, pr, testGame)), s"game:$id")
 
       c.activeGame = Some(id)
@@ -42,12 +42,12 @@ trait ActorSupervisorGameHelper { this: ActorSupervisor =>
     }
   }
 
-  protected[this] def handleConnectionGameJoin(id: UUID, connectionId: UUID, autoFlipOption: Boolean) = games.get(id) match {
+  protected[this] def handleConnectionGameJoin(id: UUID, connectionId: UUID, preferences: UserPreferences) = games.get(id) match {
     case Some(g) =>
       log.info(s"Joining game [$id].")
       val c = connections(connectionId)
       c.activeGame = Some(id)
-      g.actorRef ! AddPlayer(c.userId, c.name, connectionId, c.actorRef, autoFlipOption)
+      g.actorRef ! AddPlayer(c.userId, c.name, preferences, connectionId, c.actorRef)
     case None =>
       log.warn(s"Attempted to join invalid game [$id].")
       sender() ! ServerError("Invalid Game", id.toString)
@@ -65,7 +65,7 @@ trait ActorSupervisorGameHelper { this: ActorSupervisor =>
         val c = connections(connectionId)
         c.activeGame = Some(gameId)
         c.actorRef ! GameStarted(gameId, g.actorRef, g.started)
-        g.actorRef ! AddObserver(c.userId, c.name, connectionId, c.actorRef, as)
+        g.actorRef ! AddObserver(c.userId, c.name, UserPreferences(), connectionId, c.actorRef, as)
       case None =>
         log.warn(s"Attempted to observe invalid game [$gameId].")
         sender() ! ServerError("Invalid Game", gameId.toString)
