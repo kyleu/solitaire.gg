@@ -15,7 +15,6 @@ object Schema extends Logging {
     CreateUserStatisticsTable,
 
     CreateUserProfilesTable,
-    CreatePasswordInfoTable,
     CreateOAuth1InfoTable,
     CreateOAuth2InfoTable,
     CreateOpenIdInfoTable,

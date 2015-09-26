@@ -1,7 +1,6 @@
 package models.auth
 
-import com.mohiva.play.silhouette.api.repositories.AuthInfoRepository
-import com.mohiva.play.silhouette.api.util.{ Clock, HTTPLayer, IDGenerator, PasswordHasher }
+import com.mohiva.play.silhouette.api.util.{ Clock, HTTPLayer, IDGenerator }
 import com.mohiva.play.silhouette.impl.providers._
 import com.mohiva.play.silhouette.impl.providers.oauth1.TwitterProvider
 import com.mohiva.play.silhouette.impl.providers.oauth1.secrets.{ CookieSecretProvider, CookieSecretSettings }
@@ -23,9 +22,6 @@ object SocialAuthProviders {
 class SocialAuthProviders(
     config: Configuration,
     httpLayer: HTTPLayer,
-    hasher: PasswordHasher,
-    authInfoService: AuthInfoRepository,
-    credentials: CredentialsProvider,
     idGenerator: IDGenerator,
     clock: Clock
 ) {
@@ -80,5 +76,5 @@ class SocialAuthProviders(
 
   private[this] val twitter = new TwitterProvider(httpLayer, new PlayOAuth1Service(twitterSettings), oAuth1TokenSecretProvider, twitterSettings)
 
-  val providers = Seq("credentials" -> credentials, "facebook" -> facebook, "google" -> google, "twitter" -> twitter)
+  val providers = Seq("facebook" -> facebook, "google" -> google, "twitter" -> twitter)
 }

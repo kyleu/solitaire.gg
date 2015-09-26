@@ -2,10 +2,9 @@ package controllers.auth
 
 import com.mohiva.play.silhouette.api.exceptions.ProviderException
 import com.mohiva.play.silhouette.api.{ LoginEvent, LogoutEvent }
-import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
 import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, CommonSocialProfileBuilder, SocialProvider }
 import controllers.BaseController
-import models.user.{ User, UserForms }
+import models.user.User
 import play.api.i18n.Messages
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import utils.ApplicationContext
@@ -15,26 +14,7 @@ import scala.concurrent.Future
 @javax.inject.Singleton
 class AuthenticationController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def signInForm = withSession("form") { implicit request =>
-    Future.successful(Ok(views.html.auth.signin(request.identity, UserForms.signInForm)))
-  }
-
-  def authenticateCredentials = withSession("authenticate") { implicit request =>
-    UserForms.signInForm.bindFromRequest.fold(
-      form => Future.successful(BadRequest(views.html.auth.signin(request.identity, form))),
-      credentials => ctx.env.credentials.authenticate(credentials).flatMap { loginInfo =>
-        val result = Redirect(controllers.routes.HomeController.index())
-        ctx.env.identityService.retrieve(loginInfo).flatMap {
-          case Some(user) => ctx.env.authenticatorService.create(loginInfo).flatMap { authenticator =>
-            ctx.env.eventBus.publish(LoginEvent(user, request, request2Messages))
-            ctx.env.authenticatorService.init(authenticator).flatMap(v => env.authenticatorService.embed(v, result))
-          }
-          case None => Future.failed(new IdentityNotFoundException("Couldn't find user."))
-        }
-      }.recover {
-        case e: ProviderException =>
-          Redirect(controllers.auth.routes.AuthenticationController.signInForm()).flashing("error" -> Messages("authentication.invalid.credentials"))
-      }
-    )
+    Future.successful(Ok(views.html.auth.signin(request.identity)))
   }
 
   def authenticateSocial(provider: String) = withSession("authenticate.social") { implicit request =>

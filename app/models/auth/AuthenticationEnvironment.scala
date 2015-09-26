@@ -3,9 +3,8 @@ package models.auth
 import com.mohiva.play.silhouette.api.util.{ Clock, PlayHTTPLayer }
 import com.mohiva.play.silhouette.api.{ Environment, EventBus }
 import com.mohiva.play.silhouette.impl.authenticators._
-import com.mohiva.play.silhouette.impl.providers.{ BasicAuthProvider, CredentialsProvider }
+import com.mohiva.play.silhouette.impl.providers.BasicAuthProvider
 import com.mohiva.play.silhouette.impl.repositories.DelegableAuthInfoRepository
-import com.mohiva.play.silhouette.impl.services.GravatarService
 import com.mohiva.play.silhouette.impl.util.{ BCryptPasswordHasher, DefaultFingerprintGenerator, SecureRandomIDGenerator }
 import models.user.User
 import play.api.libs.ws.WSClient
@@ -32,19 +31,15 @@ class AuthenticationEnvironment @javax.inject.Inject() (val wsClient: WSClient, 
 
   val clock = Clock()
 
-  val authInfoService = new DelegableAuthInfoRepository(PasswordInfoService, OAuth1InfoService, OAuth2InfoService, OpenIdInfoService)
+  val authInfoService = new DelegableAuthInfoRepository(OAuth1InfoService, OAuth2InfoService, OpenIdInfoService)
 
-  val credentials = new CredentialsProvider(authInfoService, hasher, Seq(hasher))
-
-  private[this] val sap = new SocialAuthProviders(config, httpLayer, hasher, authInfoService, credentials, idGenerator, clock)
+  private[this] val sap = new SocialAuthProviders(config, httpLayer, idGenerator, clock)
 
   val authProvider = new BasicAuthProvider(authInfoService, hasher, Nil)
 
   override val requestProviders = Seq(authProvider)
   val providersSeq = sap.providers
   val providersMap = sap.providers.toMap
-
-  val avatarService = new GravatarService(httpLayer)
 
   override val eventBus = EventBus()
 

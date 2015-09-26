@@ -1,4 +1,4 @@
-@(user: models.user.User, form: Form[com.mohiva.play.silhouette.api.util.Credentials])(
+@(user: models.user.User)(
   implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
 )@layout.static(user = user, title = Messages("authentication.sign.in", utils.Config.projectName), button = "menu") {
   <div class="sign-in">
@@ -6,26 +6,10 @@
       <div class="flash-error">@flash("error")</div>
     }
     <h4>@Messages("authentication.call.to.action", utils.Config.projectName)</h4>
-    <form method="post" action="@controllers.auth.routes.AuthenticationController.authenticateCredentials()">
-      <input type="text" class="form-control" name="email" value="@form("email").value" placeholder="@Messages("authentication.form.username")" />
-      @if(form.error("email").isDefined) {
-        <em>@Messages(form.error("email").get.message)</em>
-      }
-      <input type="password" class="form-control" name="password" placeholder="@Messages("authentication.form.password")" />
-      @if(form.error("password").isDefined) {
-        <em>@Messages(form.error("password").get.message)</em>
-      }
-      <input type="submit" class="submit" value="@Messages("authentication.sign.in")" />
-    </form>
-
-    <div>
-      <p>Not a member? <a href="@controllers.auth.routes.RegistrationController.registrationForm()">Sign up now</a></p>
-    </div>
 
     @defining(models.auth.SocialAuthProviders.providers) { providers =>
       @if(providers.nonEmpty) {
         <div>
-          <p>Or sign in using these providers</p>
           <div>
           @for(p <- providers if p._1 != "credentials") {
             <a title="Sign in with @p._2" href="@controllers.auth.routes.AuthenticationController.authenticateSocial(p._1)" class="provider @p._1">

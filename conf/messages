@@ -5,18 +5,8 @@ invalid.game.rules = We can''t find any information about the game [{0}].
 # Authentication
 authentication.call.to.action = Sign in to {0}
 authentication.sign.in = Sign In
-authentication.form.username = Email or username
-authentication.form.password = Password
-authentication.invalid.credentials = Invalid credentials.
 authentication.invalid.provider = Cannot authenticate with unknown social provider [{0}].
 authentication.service.error = Couldn''t authenticate with provider [{0}].
-
-# Registration
-registration.title = Sign up for {0}
-registration.call.to.action = Welcome! Go ahead and sign up.
-registration.social.sign.in = Or, sign in using these providers
-registration.username.taken = That username is already in use.
-registration.email.taken = That email address is already in use.
 
 # Index Page
 index.welcome = Welcome to Solitaire.gg
