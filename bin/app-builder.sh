@@ -29,8 +29,8 @@ cp "../target/web/rjs/build/javascripts/static.js" "build/web/assets/javascripts
 cp "../target/web/rjs/build/client-opt.js" "build/web/assets/client-opt.js"
 cp "../target/web/less/main/stylesheets/solitaire.gg.min.css" "build/web/assets/stylesheets"
 
-mkdir -p "build/web/assets/lib/phaser/build/custom"
-cp "../target/web/public/main/lib/phaser/build/custom/phaser-arcade-physics.min.js" "build/web/assets/lib/phaser/build/custom"
+mkdir -p "build/web/assets/lib/phaser/js"
+cp "../public/lib/phaser/js/phaser-arcade-physics.min.js" "build/web/assets/lib/phaser/js"
 
 mkdir -p "build/web/assets/lib/underscorejs"
 cp "../target/web/public/main/lib/underscorejs/underscore-min.js" "build/web/assets/lib/underscorejs"
