@@ -4,9 +4,6 @@ import upickle.json
 import upickle.legacy._
 
 object SolitaireStatisticsHelper {
-  implicit val statsReader = Reader[UserStatistics] { case s => readJs(s) }
-  implicit val statsWriter = Writer[UserStatistics] { case s => writeJs(s) }
-
   lazy val defaultStats = UserStatistics(java.util.UUID.randomUUID(), 0L, UserStatistics.Games())
 }
 
@@ -36,7 +33,6 @@ trait SolitaireStatisticsHelper {
   }
 
   def saveStatistics(s: UserStatistics) = {
-    val js = statsWriter.write(s)
-    dom.localStorage.setItem("user.statistics", json.write(js))
+    dom.localStorage.setItem("user.statistics", write(s))
   }
 }

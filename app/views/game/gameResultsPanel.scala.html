@@ -9,24 +9,58 @@
       <li><div id="btn-results-choose-game" title="@Messages("menu.different.game.description")" class="menu-link">@Messages("menu.different.game")</div></li>
     </ul>
 
-    <table class="game-results-table">
-      <tr>
-        <th>Score:</th>
-        <td id="results-score"></td>
-      </tr>
-      <tr>
-        <th>Time:</th>
-        <td id="results-time"></td>
-      </tr>
-      <tr>
-        <th>Moves:</th>
-        <td id="results-moves"></td>
-      </tr>
-      <tr>
-        <th>Undos:</th>
-        <td id="results-undos"></td>
-      </tr>
-    </table>
+    <hr class="sep">
+
+    <div>
+      <div class="game-stats">
+        <h4>Game Result</h4>
+        <table class="stats-table">
+          <tr>
+            <th>Score:</th>
+            <td id="results-score"></td>
+          </tr>
+          <tr>
+            <th>Time:</th>
+            <td id="results-time"></td>
+          </tr>
+          <tr>
+            <th>Moves:</th>
+            <td id="results-moves"></td>
+          </tr>
+          <tr>
+            <th>Undos:</th>
+            <td id="results-undos"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="total-stats">
+        <h4>Lifetime Totals</h4>
+        <table class="stats-table">
+          <tr>
+            <th>Wins:</th>
+            <td id="results-stats-wins"></td>
+          </tr>
+          <tr>
+            <th>Losses:</th>
+            <td id="results-stats-losses"></td>
+          </tr>
+          <tr>
+            <th>Time Played:</th>
+            <td id="results-stats-duration"></td>
+          </tr>
+          <tr>
+            <th>Moves:</th>
+            <td id="results-stats-moves"></td>
+          </tr>
+          <tr>
+            <th>Undos:</th>
+            <td id="results-stats-undos"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <hr class="sep">
 
     <div class="plea">
       Did you enjoy the game? We're just getting started and would love your <a id="results-feedback" href="#">feedback</a>.

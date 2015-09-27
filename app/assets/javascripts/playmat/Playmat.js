@@ -31,7 +31,7 @@ define([
     pile.y = pileLocation.y * this.game.cardSet.cardHeight;
   };
 
-  Playmat.prototype.win = function(result) {
+  Playmat.prototype.win = function(msg) {
     this.game.complete = true;
 
     CardAnimation.win(this);
@@ -39,7 +39,7 @@ define([
     if(!GameResults.initialized()) {
       GameResults.init();
     }
-    GameResults.show(result, true);
+    GameResults.show(msg.result, msg.stats, true);
   };
 
   Playmat.prototype.lose = function() {
