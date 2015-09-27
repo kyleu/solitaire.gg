@@ -49,7 +49,7 @@ object UserStatisticsService {
     case Some(stats) => Future.successful(stats)
     case None => Database.query(UserQueries.GetCreatedDate(user)).flatMap {
       case Some(joined) =>
-        val stats = UserStatistics(user, DateUtils.toMillis(joined), UserStatistics.Games())
+        val stats = UserStatistics(user, DateUtils.toMillis(joined), UserStatistics.Games.empty)
         Database.execute(UserStatisticsQueries.insert(stats)).map { _ =>
           stats
         }

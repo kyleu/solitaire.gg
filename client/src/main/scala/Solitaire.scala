@@ -9,13 +9,13 @@ import scala.scalajs.js.annotation.JSExport
 
 import scala.util.Random
 
-object Solitaire extends js.JSApp with SolitaireMoveHelper with SolitairePreferenceHelper {
+object Solitaire extends js.JSApp with SolitaireUndoHelper with SolitaireMoveHelper with SolitairePreferenceHelper {
   override def main(): Unit = {}
 
   private[this] val userId = UUID.randomUUID
   private[this] val rng = new Random()
 
-  protected[this] var undoHelper = new UndoHelper()
+  override protected val undoHelper = new UndoHelper()
   private[this] var sendCallback: js.Function1[String, Unit] = _
 
   @JSExport
@@ -67,24 +67,18 @@ object Solitaire extends js.JSApp with SolitaireMoveHelper with SolitairePrefere
     send(GameJoined(gameId, gameState.view(userId), 0, possibleMoves(), preferences))
   }
 
-  private[this] def handleUndo(): Unit = {
-    if (undoHelper.historyQueue.nonEmpty) {
-      val undone = undoHelper.undo(gameState)
-      send(undone, registerUndoResponse = false)
-      send(PossibleMoves(possibleMoves(), undoHelper.historyQueue.size, undoHelper.undoneQueue.size), registerUndoResponse = false)
-    }
-  }
-
-  private[this] def handleRedo(): Unit = {
-    if (undoHelper.undoneQueue.nonEmpty) {
-      val redone = undoHelper.redo(gameState)
-      send(redone, registerUndoResponse = false)
-      send(PossibleMoves(possibleMoves(), undoHelper.historyQueue.size, undoHelper.undoneQueue.size), registerUndoResponse = false)
-    }
+  override protected def onWin() = {
+    val completed = lastMoveMade.getOrElse(0L)
+    val stats = registerGame(win = true,
+      gameState.rules, gameState.seed, moveCount,
+      undoHelper.undoCount, undoHelper.redoCount,
+      firstMoveMade.map(x => completed - x).getOrElse(0L), completed
+    )
+    send(GameWon(gameId, firstForRules = false, firstForSeed = false, getResult, stats))
   }
 
   private[this] def handleDebugInfo(data: String) = data match {
-    case "cheat win" => send(GameWon(gameId, firstForRules = false, firstForSeed = false, getResult, readStatistics))
+    case "cheat win" => send(GameWon(gameId, firstForRules = false, firstForSeed = false, getResult, readStatistics()))
     case _ => throw new IllegalStateException("Debug: " + data)
   }
 }

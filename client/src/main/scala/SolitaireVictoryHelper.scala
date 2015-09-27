@@ -8,6 +8,8 @@ trait SolitaireVictoryHelper extends SolitaireStatisticsHelper {
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit
   protected def getResult: GameResult
 
+  protected def onWin(): Unit
+
   protected var gameId: UUID = _
   protected var gameRules: GameRules = _
   protected var gameState: GameState = _
@@ -32,7 +34,7 @@ trait SolitaireVictoryHelper extends SolitaireStatisticsHelper {
     }
   }
 
-  protected[this] def possibleMoves() = {
+  protected def possibleMoves() = {
     val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
     gameState.piles.foreach { source =>
       source.cards.zipWithIndex.foreach { c =>
@@ -56,8 +58,7 @@ trait SolitaireVictoryHelper extends SolitaireStatisticsHelper {
   }
 
   private[this] def checkWinCondition() = if (gameRules.victoryCondition.check(gameRules, gameState)) {
-    val stats = registerGame()
-    send(GameWon(gameId, firstForRules = false, firstForSeed = false, getResult, stats))
+    onWin()
     true
   } else {
     false

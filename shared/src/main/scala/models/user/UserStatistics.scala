@@ -3,19 +3,23 @@ package models.user
 import java.util.UUID
 
 object UserStatistics {
+  object Games {
+    lazy val empty = Games(0, 0, 0L, 0, 0, 0, None, None, 0, 0, 0, 0)
+  }
+
   case class Games(
-      wins: Int = 0,
-      losses: Int = 0,
-      totalDurationMs: Long = 0L,
-      totalMoves: Int = 0,
-      totalUndos: Int = 0,
-      totalRedos: Int = 0,
-      lastWin: Option[Long] = None,
-      lastLoss: Option[Long] = None,
-      currentWinStreak: Int = 0,
-      maxWinStreak: Int = 0,
-      currentLossStreak: Int = 0,
-      maxLossStreak: Int = 0
+      wins: Int,
+      losses: Int,
+      totalDurationMs: Long,
+      totalMoves: Int,
+      totalUndos: Int,
+      totalRedos: Int,
+      lastWin: Option[Long],
+      lastLoss: Option[Long],
+      currentWinStreak: Int,
+      maxWinStreak: Int,
+      currentLossStreak: Int,
+      maxLossStreak: Int
   ) {
     val totalPlayed = wins + losses
     val avgDuration = if (totalPlayed == 0) { 0 } else { totalDurationMs / totalPlayed }

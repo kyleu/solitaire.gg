@@ -33,7 +33,7 @@ class ApplicationContext @javax.inject.Inject() (
 ) extends ApplicationContextHelper with Logging {
   start()
 
-  lazy val supervisor = {
+  val supervisor = {
     val instanceRef = Akka.system.actorOf(Props(classOf[ActorSupervisor], this), "supervisor")
     log.info(s"Actor Supervisor [${instanceRef.path.toString}] started for [${utils.Config.projectId}].")
     instanceRef
