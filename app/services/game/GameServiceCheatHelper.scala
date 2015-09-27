@@ -2,6 +2,8 @@ package services.game
 
 import models.GameWon
 import org.joda.time.DateTime
+import services.user.UserStatisticsService
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 trait GameServiceCheatHelper { this: GameService =>
   private[this] val started = new DateTime()
@@ -16,9 +18,9 @@ trait GameServiceCheatHelper { this: GameService =>
   }
 
   private[this] def cheat(command: String, params: Seq[String]) = command match {
-    case "win" =>
-      log.info("WIIIIIIIIIIINER!!!")
-      sendToAll("GameWon", GameWon(id, firstForRules = false, firstForSeed = false, getResult))
+    case "win" => UserStatisticsService.getStatistics(player.userId).map { stats =>
+      sendToAll("GameWon", GameWon(id, firstForRules = false, firstForSeed = false, getResult, stats))
+    }
     case _ => throw new IllegalArgumentException(s"Unknown cheat command [$command].")
   }
 }

@@ -30,10 +30,13 @@ trait GameServiceCompletionHelper { this: GameService =>
       update().flatMap { updated =>
         val history = gameHistory.getOrElse(throw new IllegalStateException(s"No game history available for [$id]."))
         UserStatisticsService.registerGame(history).flatMap { stats =>
-          if (win) {
+          val firsts = if (win) {
             GameSeedService.registerWin(rules, seed, player.userId, moveCount, elapsed.getOrElse(0), completionTime)
           } else {
             GameSeedService.registerLoss(rules, seed).map(_ => (false, false))
+          }
+          firsts.map { f =>
+            (f._1, f._2, stats)
           }
         }
       }

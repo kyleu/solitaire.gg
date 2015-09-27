@@ -22,7 +22,7 @@ object BackfillGames extends SandboxTask {
           } else {
             GameSeedService.registerLoss(g.rules, g.seed)
           }
-          UserStatisticsService.registerGame(g)
+          UserStatisticsService.registerGame(g).map(_ => Unit)
         }
       }
 

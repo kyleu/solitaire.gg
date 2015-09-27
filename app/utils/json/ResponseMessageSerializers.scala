@@ -1,6 +1,7 @@
 package utils.json
 
 import models._
+import models.user.UserStatistics
 import play.api.libs.json._
 
 import GameSerializers._
@@ -16,7 +17,12 @@ object ResponseMessageSerializers {
   private[this] implicit val possibleMovesWrites = Json.writes[PossibleMoves]
 
   private[this] val gameJoinedWrites = Json.writes[GameJoined]
+
   private[this] implicit val gameResultWrites = Json.writes[GameResult]
+
+  private[this] implicit val gameStatisticsWrites = Json.writes[UserStatistics.Games]
+  private[this] implicit val userStatisticsWrites = Json.writes[UserStatistics]
+
   private[this] val gameLostWrites = Json.writes[GameLost]
   private[this] val gameWonWrites = Json.writes[GameWon]
 

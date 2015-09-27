@@ -84,7 +84,7 @@ object Solitaire extends js.JSApp with SolitaireMoveHelper with SolitairePrefere
   }
 
   private[this] def handleDebugInfo(data: String) = data match {
-    case "cheat win" => send(GameWon(gameId, firstForRules = false, firstForSeed = false, getResult))
+    case "cheat win" => send(GameWon(gameId, firstForRules = false, firstForSeed = false, getResult, readStatistics))
     case _ => throw new IllegalStateException("Debug: " + data)
   }
 }

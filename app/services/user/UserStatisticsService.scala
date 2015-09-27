@@ -11,11 +11,12 @@ import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.history.GameHistoryService
+import utils.DateUtils
 
 import scala.concurrent.Future
 
 object UserStatisticsService {
-  def registerGame(game: GameHistory): Future[Unit.type] = {
+  def registerGame(game: GameHistory): Future[UserStatistics] = {
     if (!game.isCompleted) {
       throw new IllegalStateException(s"Game [${game.id}] is not completed.")
     }
@@ -38,7 +39,9 @@ object UserStatisticsService {
         registerGame(game)
       }
     }.flatMap { _ =>
-      GameHistoryService.setLogged(game.id, new LocalDateTime()).map(x => Unit)
+      GameHistoryService.setLogged(game.id, new LocalDateTime()).flatMap { x =>
+        getStatistics(game.player)
+      }
     }
   }
 
@@ -46,7 +49,7 @@ object UserStatisticsService {
     case Some(stats) => Future.successful(stats)
     case None => Database.query(UserQueries.GetCreatedDate(user)).flatMap {
       case Some(joined) =>
-        val stats = UserStatistics(user, joined.toLocalDate, UserStatistics.Games())
+        val stats = UserStatistics(user, DateUtils.toMillis(joined), UserStatistics.Games())
         Database.execute(UserStatisticsQueries.insert(stats)).map { _ =>
           stats
         }

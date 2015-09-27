@@ -5,7 +5,8 @@ import java.util.UUID
 import models.database.Row
 import models.queries.BaseQueries
 import models.user.UserStatistics
-import org.joda.time.{ LocalDate, LocalDateTime }
+import org.joda.time.LocalDateTime
+import utils.DateUtils
 
 object UserStatisticsQueries extends BaseQueries[UserStatistics] {
   override protected val tableName = "user_statistics"
@@ -25,7 +26,7 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
 
   override protected def fromRow(row: Row) = UserStatistics(
     userId = row.as[UUID]("id"),
-    joined = row.as[LocalDate]("joined"),
+    joined = DateUtils.toMillis(row.as[LocalDateTime]("joined")),
     games = UserStatistics.Games(
       wins = row.as[Int]("wins"),
       losses = row.as[Int]("losses"),
@@ -33,8 +34,8 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
       totalMoves = row.as[Int]("total_moves"),
       totalUndos = row.as[Int]("total_undos"),
       totalRedos = row.as[Int]("total_redos"),
-      lastWin = row.asOpt[LocalDateTime]("last_win"),
-      lastLoss = row.asOpt[LocalDateTime]("last_loss"),
+      lastWin = row.asOpt[LocalDateTime]("last_win").map(DateUtils.toMillis),
+      lastLoss = row.asOpt[LocalDateTime]("last_loss").map(DateUtils.toMillis),
       currentWinStreak = row.as[Int]("current_win_streak"),
       maxWinStreak = row.as[Int]("max_win_streak"),
       currentLossStreak = row.as[Int]("current_loss_streak"),
@@ -43,9 +44,9 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
   )
 
   override protected def toDataSeq(s: UserStatistics) = Seq(
-    s.userId, s.joined,
+    s.userId, DateUtils.fromMillis(s.joined),
     s.games.wins, s.games.losses, s.games.totalDurationMs, s.games.totalMoves, s.games.totalUndos, s.games.totalRedos,
-    s.games.lastWin, s.games.lastLoss,
+    s.games.lastWin.map(DateUtils.fromMillis), s.games.lastLoss.map(DateUtils.fromMillis),
     s.games.currentWinStreak, s.games.maxWinStreak, s.games.currentLossStreak, s.games.maxLossStreak
   )
 

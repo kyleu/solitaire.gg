@@ -1,9 +1,8 @@
 import models._
-import models.card.{ Card, Suit, Rank }
+import models.card.{ Card, Rank, Suit }
 import models.game.GameState
 import models.pile.Pile
-import models.pile.options.{ PileOptions, ClientPileOptions }
-import models.user.{ CardPreferences, UserPreferences }
+import models.pile.options.{ ClientPileOptions, PileOptions }
 import upickle._
 import upickle.legacy._
 

@@ -4,7 +4,7 @@ import models._
 import models.game.GameState
 import models.rules.GameRules
 
-trait SolitaireVictoryHelper {
+trait SolitaireVictoryHelper extends SolitaireStatisticsHelper {
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit
   protected def getResult: GameResult
 
@@ -56,7 +56,8 @@ trait SolitaireVictoryHelper {
   }
 
   private[this] def checkWinCondition() = if (gameRules.victoryCondition.check(gameRules, gameState)) {
-    send(GameWon(gameId, firstForRules = false, firstForSeed = false, getResult))
+    val stats = registerGame()
+    send(GameWon(gameId, firstForRules = false, firstForSeed = false, getResult, stats))
     true
   } else {
     false

@@ -2,8 +2,6 @@ package models.user
 
 import java.util.UUID
 
-import org.joda.time.{ LocalDateTime, LocalDate }
-
 object UserStatistics {
   case class Games(
       wins: Int = 0,
@@ -12,8 +10,8 @@ object UserStatistics {
       totalMoves: Int = 0,
       totalUndos: Int = 0,
       totalRedos: Int = 0,
-      lastWin: Option[LocalDateTime] = None,
-      lastLoss: Option[LocalDateTime] = None,
+      lastWin: Option[Long] = None,
+      lastLoss: Option[Long] = None,
       currentWinStreak: Int = 0,
       maxWinStreak: Int = 0,
       currentLossStreak: Int = 0,
@@ -27,6 +25,6 @@ object UserStatistics {
 
 case class UserStatistics(
   userId: UUID,
-  joined: LocalDate,
+  joined: Long,
   games: UserStatistics.Games
 )
