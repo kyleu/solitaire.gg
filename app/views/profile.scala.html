@@ -9,7 +9,7 @@
     }
 
     <div class="logout">
-      <a class="sign-out-link" href="@controllers.auth.routes.AuthenticationController.signOut">@Messages("profile.sign.out")</a>
+      <a class="sign-out-link" href="@controllers.routes.AuthenticationController.signOut">@Messages("profile.sign.out")</a>
     </div>
 
     <div id="username-container">
@@ -35,7 +35,7 @@
               <a href="@routes.ProfileController.setOption("avatar", provider._1)">@Messages("profile.use.image.as.avatar", provider._2)</a>
             </div>
           } else {
-            @defining(controllers.auth.routes.AuthenticationController.authenticateSocial(provider._1)) { url =>
+            @defining(controllers.routes.AuthenticationController.authenticateSocial(provider._1)) { url =>
               <a href="@url" class="provider @provider._1">
                 <img src="@routes.Assets.versioned("images/providers/" + provider._1 + ".png")">
               </a>

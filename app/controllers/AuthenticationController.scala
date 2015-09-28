@@ -1,9 +1,8 @@
-package controllers.auth
+package controllers
 
 import com.mohiva.play.silhouette.api.exceptions.ProviderException
 import com.mohiva.play.silhouette.api.{ LoginEvent, LogoutEvent }
 import com.mohiva.play.silhouette.impl.providers.{ CommonSocialProfile, CommonSocialProfileBuilder, SocialProvider }
-import controllers.BaseController
 import models.user.User
 import play.api.i18n.Messages
 import play.api.libs.concurrent.Execution.Implicits.defaultContext

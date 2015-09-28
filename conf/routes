@@ -11,9 +11,9 @@ GET         /feedback                          controllers.FeedbackController.fe
 POST        /feedback                          controllers.FeedbackController.submitFeedback
 
 # Authentication
-GET         /signin                            controllers.auth.AuthenticationController.signInForm
-GET         /signin/:provider                  controllers.auth.AuthenticationController.authenticateSocial(provider)
-GET         /signout                           controllers.auth.AuthenticationController.signOut
+GET         /signin                            controllers.AuthenticationController.signInForm
+GET         /signin/:provider                  controllers.AuthenticationController.authenticateSocial(provider)
+GET         /signout                           controllers.AuthenticationController.signOut
 
 # Profile
 GET         /profile                           controllers.ProfileController.profile
