@@ -7,7 +7,6 @@ trait SolitairePreferenceHelper {
   setUi()
 
   def handleSetPreference(name: String, value: String, gameState: GameState) = {
-    println(name + ": " + value)
     dom.localStorage.setItem("preferences." + name, value)
     preferences = preferences.withNewValue(name, value)
     if(name == "auto-flip") {
@@ -60,10 +59,7 @@ trait SolitairePreferenceHelper {
       def setInactive() = element.attributes.getNamedItem("class").value = "game-option"
 
       def tagBooleanEl(b: Boolean) = if((b && v == "true") || ((!b) && v == "false")) { setActive() } else { setInactive() }
-      def tagStringEl(s: String) = {
-        println(s + " == " + v + ": " + (s == v))
-        if(s == v) { setActive() } else { setInactive() }
-      }
+      def tagStringEl(s: String) = if(s == v) { setActive() } else { setInactive() }
 
       c match {
         case "background-color" => tagStringEl(preferences.color)

@@ -34,7 +34,7 @@ object Solitaire extends js.JSApp with SolitaireUndoHelper with SolitaireMoveHel
       case "MoveCards" => handleMoveCards(userId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString)
       case "Undo" => handleUndo()
       case "Redo" => handleRedo()
-      case "SetPreference" => handleSetPreference(v.name.toString, v.value.toString, gameState)
+      case "SetPreference" => handleSetPreference(v.name.toString, v.value.toString, gameState.getOrElse(throw new IllegalStateException()))
       case "DebugInfo" => handleDebugInfo(v.data.toString)
       case _ => throw new IllegalStateException(s"Invalid message [$c].")
     }
@@ -44,7 +44,7 @@ object Solitaire extends js.JSApp with SolitaireUndoHelper with SolitaireMoveHel
     moves = moveCount,
     undos = undoHelper.undoCount,
     redos = undoHelper.redoCount,
-    score = gameState.calculateScore(moveCount, undoHelper.undoCount, elapsed),
+    score = gameState.getOrElse(throw new IllegalStateException()).calculateScore(moveCount, undoHelper.undoCount, elapsed),
     durationSeconds = elapsed,
     leaderboardRanking = 0
   )
@@ -58,27 +58,27 @@ object Solitaire extends js.JSApp with SolitaireUndoHelper with SolitaireMoveHel
   }
 
   private[this] def handleStartGame(rules: String, seed: Option[Int]): Unit = {
-    gameId = UUID.randomUUID
-    gameRules = GameRulesSet.allByIdWithAliases(rules)
-    gameState = gameRules.newGame(gameId, seed.getOrElse(Math.abs(rng.nextInt())), rules)
-    gameState.addPlayer(userId, "Offline Player", autoFlipOption = preferences.autoFlip)
-    InitialMoves.performInitialMoves(gameRules, gameState)
+    if(gameState.isDefined) {
+      onLoss()
+    }
 
-    send(GameJoined(gameId, gameState.view(userId), 0, possibleMoves(), preferences))
-  }
+    val id = UUID.randomUUID
+    gameId = Some(id)
 
-  override protected def onWin() = {
-    val completed = lastMoveMade.getOrElse(0L)
-    val stats = registerGame(win = true,
-      gameState.rules, gameState.seed, moveCount,
-      undoHelper.undoCount, undoHelper.redoCount,
-      firstMoveMade.map(x => completed - x).getOrElse(0L), completed
-    )
-    send(GameWon(gameId, firstForRules = false, firstForSeed = false, getResult, stats))
+    val gr = GameRulesSet.allByIdWithAliases(rules)
+    gameRules = Some(gr)
+
+    val gs = gr.newGame(id, seed.getOrElse(Math.abs(rng.nextInt())), rules)
+
+    gameState = Some(gs)
+    gs.addPlayer(userId, "Offline Player", autoFlipOption = preferences.autoFlip)
+    InitialMoves.performInitialMoves(gameRules.getOrElse(throw new IllegalStateException()), gs)
+
+    send(GameJoined(gameId.getOrElse(throw new IllegalStateException()), gs.view(userId), 0, possibleMoves(), preferences))
   }
 
   private[this] def handleDebugInfo(data: String) = data match {
-    case "cheat win" => send(GameWon(gameId, firstForRules = false, firstForSeed = false, getResult, readStatistics()))
+    case "cheat win" => send(GameWon(gameId.getOrElse(throw new IllegalStateException()), firstForRules = false, firstForSeed = false, getResult, readStatistics()))
     case _ => throw new IllegalStateException("Debug: " + data)
   }
 }

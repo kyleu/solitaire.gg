@@ -91,7 +91,11 @@ define([], function() {
 
     function chooseGame() {
       game.options.hidePanels();
-      window.location.href = '/';
+      var destination = '/';
+      if(window.location.href.indexOf('file://') > -1) {
+        destination = 'index.html';
+      }
+      window.location.href = destination;
     }
     buttons.chooseGame.onclick = chooseGame;
     buttons.chooseGameResults.onclick = chooseGame;
