@@ -31,7 +31,7 @@ class ConnectionService(val supervisor: ActorRef, val user: User, val out: Actor
     case p: Ping => timeReceive(p) { out ! Pong(p.timestamp) }
     case GetVersion => timeReceive(GetVersion) { out ! VersionResponse(Config.version) }
     case sp: SetPreference => timeReceive(sp) { handleSetPreference(sp) }
-    case di: DebugInfo => timeReceive(di) { handleDebugInfo(di.data) }
+    case di: DebugInfo => timeReceive(di) { handleDebugInfo(di) }
 
     case sg: StartGame => timeReceive(sg) { handleStartGame(sg.rules, sg.seed, sg.testGame.contains(true)) }
     case jg: JoinGame => timeReceive(jg) { handleJoinGame(jg.id) }

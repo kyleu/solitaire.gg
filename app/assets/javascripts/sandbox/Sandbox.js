@@ -1,7 +1,7 @@
 /* global define:false */
 define([], function () {
   function sandbox(game) {
-    game.send('DebugInfo', { data: 'cheat win' });
+    game.onMessage('SendDebugInfo', {});
     return 'Ok: ' + game.id;
   }
 

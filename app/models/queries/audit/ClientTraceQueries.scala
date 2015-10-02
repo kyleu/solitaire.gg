@@ -10,8 +10,8 @@ import play.api.libs.json.{ JsObject, Json }
 
 object ClientTraceQueries extends BaseQueries[ClientTraceResult] {
   override protected val tableName = "client_trace"
-  override protected val columns = Seq("id", "player", "data", "created")
-  override protected val searchColumns = Seq("id::text", "player::text", "data::text")
+  override protected val columns = Seq("id", "trace_type", "player", "data", "created")
+  override protected val searchColumns = Seq("id::text", "trace_type", "player::text", "data::text")
 
   def getById(id: UUID) = getBySingleId(id)
   val insert = Insert
@@ -21,11 +21,12 @@ object ClientTraceQueries extends BaseQueries[ClientTraceResult] {
 
   override protected def fromRow(row: Row) = {
     val id = row.as[UUID]("id")
+    val traceType = row.as[String]("trace_type")
     val player = row.as[UUID]("player")
     val data = Json.parse(row.as[String]("data")).as[JsObject]
     val created = row.as[LocalDateTime]("created")
-    ClientTraceResult(id, player, data, created)
+    ClientTraceResult(id, traceType, player, data, created)
   }
 
-  override protected def toDataSeq(ct: ClientTraceResult) = Seq(ct.id, ct.player, Json.prettyPrint(ct.data), ct.created)
+  override protected def toDataSeq(ct: ClientTraceResult) = Seq(ct.id, ct.traceType, ct.player, Json.prettyPrint(ct.data), ct.created)
 }

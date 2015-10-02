@@ -29,7 +29,7 @@ define(['utils/DebugInfo'], function (di) {
         });
         break;
       case 'SendDebugInfo':
-        this.game.send('DebugInfo', { data: JSON.stringify(di.getDebugInfo(this.id, this.game)) });
+        this.game.send('DebugInfo', { data: JSON.stringify(di.getDebugInfo(this.game)) });
         break;
       default:
         console.warn('Unhandled message [' + c + ']: ' + JSON.stringify(v));

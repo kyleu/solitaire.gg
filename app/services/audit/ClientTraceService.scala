@@ -12,9 +12,10 @@ import services.database.Database
 object ClientTraceService {
   def getTrace(id: UUID) = Database.query(ClientTraceQueries.getById(id))
 
-  def persistTrace(userId: UUID, data: JsObject) = {
+  def persistTrace(userId: UUID, traceType: String, data: JsObject) = {
     val ctr = ClientTraceResult(
       id = UUID.randomUUID,
+      traceType = traceType,
       player = userId,
       data = data,
       created = new LocalDateTime()

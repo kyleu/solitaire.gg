@@ -1,0 +1,32 @@
+package models.queries.audit
+
+import java.util.UUID
+
+import models.audit.AnalyticsEvent
+import models.database.Row
+import models.queries.BaseQueries
+import org.joda.time.LocalDateTime
+import play.api.libs.json.{ JsObject, Json }
+
+object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
+  override protected val tableName = "analytics_events"
+  override protected val columns = Seq("id", "event_type", "device", "data", "created")
+  override protected val searchColumns = Seq("id::text", "event_type", "device::text", "data::text")
+
+  def getById(id: UUID) = getBySingleId(id)
+  val insert = Insert
+  def removeById(id: UUID) = RemoveById(Seq(id))
+  val search = Search
+  def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
+
+  override protected def fromRow(row: Row) = {
+    val id = row.as[UUID]("id")
+    val eventType = AnalyticsEvent.EventType.fromString(row.as[String]("event_type"))
+    val device = row.as[UUID]("device")
+    val data = Json.parse(row.as[String]("data")).as[JsObject]
+    val created = row.as[LocalDateTime]("created")
+    AnalyticsEvent(id, eventType, device, data, created)
+  }
+
+  override protected def toDataSeq(ae: AnalyticsEvent) = Seq(ae.id, ae.eventType.id, ae.device, Json.prettyPrint(ae.data), ae.created)
+}

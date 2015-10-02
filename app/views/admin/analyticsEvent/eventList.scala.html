@@ -1,0 +1,9 @@
+@(q: String, sortBy: String, count: Int, page: Int, events: Seq[models.audit.AnalyticsEvent])(implicit session: Session, flash: Flash)
+@views.html.admin.layout.list(
+  "event", "Analytics Events", "explore", count, page, events.size, q,
+  searchAction = controllers.admin.routes.AnalyticsEventController.eventList(),
+  prevLink = controllers.admin.routes.AnalyticsEventController.eventList(q, sortBy, page - 1),
+  nextLink = controllers.admin.routes.AnalyticsEventController.eventList(q, sortBy, page + 1)
+) {
+  @eventListTable(sortBy, events)
+}

@@ -22,18 +22,20 @@ trait ConnectionServiceTraceHelper extends InstrumentedActor { this: ConnectionS
     out ! SendDebugInfo
   }
 
-  protected[this] def handleDebugInfo(data: String) = if (data.startsWith("cheat")) {
+  protected[this] def handleDebugInfo(di: DebugInfo) = if (di.data.startsWith("cheat")) {
     activeGame match {
-      case Some(g) => g forward DebugInfo(data)
-      case None => log.warn(s"Received DebugInfo [$data] from [$id], but no game exists.")
+      case Some(g) => g forward DebugInfo(di.data)
+      case None => log.warn(s"Received DebugInfo [$di.data] from [$id], but no game exists.")
     }
   } else {
+    val json = Json.parse(di.data).as[JsObject]
+    ClientTraceService.persistTrace(user.id, "web.requested", json)
+
     pendingDebugChannel match {
       case Some(dc) =>
-        val json = Json.parse(data).as[JsObject]
-        ClientTraceService.persistTrace(user.id, json)
         dc ! TraceResponse(id, json.fields)
-      case None => log.warn(s"Received unsolicited DebugInfo [$data] from [$id].")
+        pendingDebugChannel = None
+      case None => // No op
     }
   }
 }

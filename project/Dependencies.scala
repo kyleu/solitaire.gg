@@ -62,7 +62,7 @@ object Dependencies {
   }
 
   object Utils {
-    val core = "com.twitter" %% "util-core" % "6.27.0"
-    val collection = "com.twitter" %% "util-collection" % "6.27.0"
+    val core = "com.twitter" %% "util-core" % "6.28.0"
+    val collection = "com.twitter" %% "util-collection" % "6.28.0"
   }
 }
