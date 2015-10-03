@@ -33,7 +33,7 @@ GET         /websocket                           controllers.WebsocketController
 
 # Offline analytics
 POST        /a/install/:id                       controllers.AnalyticsController.install(id: java.util.UUID)
-POST        /a/game-start/:id                    controllers.AnalyticsController.gameStarted(id: java.util.UUID)
+POST        /a/game-start/:id                    controllers.AnalyticsController.gameStart(id: java.util.UUID)
 POST        /a/game-won/:id                      controllers.AnalyticsController.gameWon(id: java.util.UUID)
 POST        /a/game-resigned/:id                 controllers.AnalyticsController.gameResigned(id: java.util.UUID)
 

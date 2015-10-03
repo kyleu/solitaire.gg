@@ -1,5 +1,6 @@
 import java.util.UUID
 
+import json.{ JsonUtils, JsonSerializers }
 import models.rules.GameRulesSet
 import models._
 import models.rules.moves.InitialMoves
