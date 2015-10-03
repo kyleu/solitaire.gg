@@ -12,8 +12,6 @@ define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels)
       gameResultsPanel: document.getElementById('game-results-panel'),
       gameOptionsButton: document.getElementById('btn-game-options'),
       gameOptionsPanel: document.getElementById('gameplay-options'),
-      cardOptionsButton: document.getElementById('btn-card-options'),
-      cardOptionsPanel: document.getElementById('card-options'),
       bottomBar: document.getElementById('status-container'),
       bottomBarLeft: document.getElementById('status-container-left'),
       bottomBarRight: document.getElementById('status-container-right')
@@ -40,7 +38,6 @@ define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels)
     var els = this.elements;
     els.gameName.textContent = state.rulesTitle;
     els.gameOptionsButton.className = els.gameOptionsButton.className.replace('invisible', 'fade-in');
-    els.cardOptionsButton.className = els.cardOptionsButton.className.replace('invisible', 'fade-in');
     els.menuButton.className = els.menuButton.className.replace('invisible', 'fade-in');
     els.bottomBarLeft.className = els.bottomBarLeft.className.replace('invisible', 'fade-in');
     els.bottomBarRight.className = els.bottomBarRight.className.replace('invisible', 'fade-in');
@@ -96,9 +93,6 @@ define(['ui/Buttons', 'ui/Theme', 'ui/Panels'], function(Buttons, Theme, Panels)
   Options.prototype.showGameOptionsPanel = Panels.showGameOptionsPanel;
   Options.prototype.hideGameOptionsPanel = Panels.hideGameOptionsPanel;
   Options.prototype.toggleGameOptionsPanel = Panels.toggleGameOptionsPanel;
-  Options.prototype.showCardOptionsPanel = Panels.showCardOptionsPanel;
-  Options.prototype.hideCardOptionsPanel = Panels.hideCardOptionsPanel;
-  Options.prototype.toggleCardOptionsPanel = Panels.toggleCardOptionsPanel;
 
   return Options;
 });

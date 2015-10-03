@@ -4,7 +4,6 @@ define([], function() {
     var buttons = {
       menu: document.getElementById('btn-menu'),
       gameOptions: document.getElementById('btn-game-options'),
-      cardOptions: document.getElementById('btn-card-options'),
 
       help: document.getElementById('btn-help'),
       feedback: document.getElementById('btn-feedback'),
@@ -32,10 +31,6 @@ define([], function() {
 
     buttons.gameOptions.onclick = function() {
       game.options.toggleGameOptionsPanel();
-    };
-
-    buttons.cardOptions.onclick = function() {
-      game.options.toggleCardOptionsPanel();
     };
 
     buttons.help.onclick = function() {

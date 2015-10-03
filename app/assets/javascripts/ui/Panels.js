@@ -32,9 +32,6 @@ define([], function() {
       if(this.elements.gameOptionsPanel.style.display === 'block') {
         this.hideGameOptionsPanel();
       }
-      if(this.elements.cardOptionsPanel.style.display === 'block') {
-        this.hideCardOptionsPanel();
-      }
     },
 
     showMenuPanel: function() {
@@ -55,9 +52,6 @@ define([], function() {
       } else {
         if(this.elements.gameOptionsPanel.style.display === 'block') {
           this.hideGameOptionsPanel();
-        }
-        if(this.elements.cardOptionsPanel.style.display === 'block') {
-          this.hideCardOptionsPanel();
         }
         this.showMenuPanel();
       }
@@ -82,36 +76,7 @@ define([], function() {
         if(this.elements.menuPanel.style.display === 'block') {
           this.hideMenuPanel();
         }
-        if(this.elements.cardOptionsPanel.style.display === 'block') {
-          this.hideCardOptionsPanel();
-        }
         this.showGameOptionsPanel();
-      }
-    },
-
-    showCardOptionsPanel: function() {
-      var els = this.elements;
-      els.cardOptionsButton.className += ' disabled';
-      els.cardOptionsPanel.style.display = 'block';
-    },
-
-    hideCardOptionsPanel: function() {
-      var els = this.elements;
-      els.cardOptionsButton.className = this.elements.cardOptionsButton.className.replace(' disabled', '');
-      els.cardOptionsPanel.style.display = 'none';
-    },
-
-    toggleCardOptionsPanel: function() {
-      if(this.elements.cardOptionsPanel.style.display === 'block') {
-        this.hideCardOptionsPanel();
-      } else {
-        if(this.elements.menuPanel.style.display === 'block') {
-          this.hideMenuPanel();
-        }
-        if(this.elements.gameOptionsPanel.style.display === 'block') {
-          this.hideGameOptionsPanel();
-        }
-        this.showCardOptionsPanel();
       }
     }
   };
