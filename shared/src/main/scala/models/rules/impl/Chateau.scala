@@ -15,11 +15,11 @@ import models.rules._
  */
 object Chateau extends GameRules(
   id = "chateau",
-  completed = false,
+  completed = true,
   title = "Chateau",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chateau.htm")),
   description = "A two-deck ^beleagueredcastle^ variant.",
-  layout = "f|t",
+  layout = "::f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

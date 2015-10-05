@@ -15,7 +15,7 @@ import models.rules._
  */
 object Canister extends GameRules(
   id = "canister",
-  completed = false,
+  completed = true,
   title = "Canister",
   related = Seq("britishcanister", "americancanister", "bucket"),
   links = Seq(
@@ -26,7 +26,7 @@ object Canister extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/canister.htm")
   ),
   description = "Yet another generic solitaire game, with all cards dealt face up and no stock. This is quite easy when it's not impossible.",
-  layout = "f|t",
+  layout = "::f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

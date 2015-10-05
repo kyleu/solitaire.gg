@@ -18,11 +18,11 @@ import models.rules._
  */
 object Sevastopol extends GameRules(
   id = "sevastopol",
-  completed = false,
+  completed = true,
   title = "Sevastopol",
   like = Some("kiev"),
   description = "An easier version of ^kiev^ where four tableau piles start with three cards instead of four.",
-  layout = "sf|t",
+  layout = "s::f|t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

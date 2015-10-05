@@ -9,8 +9,6 @@ authentication.invalid.provider = Cannot authenticate with unknown social provid
 authentication.service.error = Couldn''t authenticate with provider [{0}].
 
 # Index Page
-index.welcome = Welcome to Solitaire.gg
-index.tagline = I''m trying to build the web''s best card games. Thanks for checking out my progress!
 index.play.now = Play Solitaire
 
 index.games.popular = Popular Games
@@ -69,7 +67,7 @@ email.welcome.body.text = Welcome to Solitaire.gg! We're so glad you're here.
 
 # Help
 help.title = {0} Help
-help.about = This is {0}! It's pretty cool.
+help.about = This is {0}.
 help.general = Help for {0}.
 help.play.now = Play Now
 help.also.known.as = Also Known As

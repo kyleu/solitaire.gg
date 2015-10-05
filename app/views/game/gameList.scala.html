@@ -1,7 +1,5 @@
 @()(implicit messages: Messages)
 <div class="module">
-  <div class="welcome">@Messages("index.welcome")</div>
-  <div class="tagline">@Messages("index.tagline")</div>
   <div class="play-now">
     <a href="@controllers.routes.GameController.newGame("klondike").url" role="button">@Messages("index.play.now")</a>
   </div>

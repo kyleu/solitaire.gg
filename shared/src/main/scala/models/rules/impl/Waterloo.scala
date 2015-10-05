@@ -12,11 +12,11 @@ import models.rules._
  */
 object Waterloo extends GameRules(
   id = "waterloo",
-  completed = false,
+  completed = true,
   title = "Waterloo",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/waterloo.htm")),
   description = "A ^fortythieves^ variant with ^spider^-like building rules.",
-  layout = "swf|t",
+  layout = "swf|.::t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

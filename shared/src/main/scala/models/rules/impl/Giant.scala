@@ -16,7 +16,7 @@ import models.rules._
  */
 object Giant extends GameRules(
   id = "giant",
-  completed = false,
+  completed = true,
   title = "Giant",
   related = Seq("titan"),
   links = Seq(
@@ -28,7 +28,7 @@ object Giant extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Giant.html.en")
   ),
   description = "A ^missmilligan^ variant without a pocket but in which any card can be played to an empty space.",
-  layout = "sf|t",
+  layout = "sf|.t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

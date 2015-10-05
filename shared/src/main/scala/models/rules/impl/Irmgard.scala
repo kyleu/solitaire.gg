@@ -18,7 +18,7 @@ import models.rules._
  */
 object Irmgard extends GameRules(
   id = "irmgard",
-  completed = false,
+  completed = true,
   title = "Irmgard",
   like = Some("gypsy"),
   links = Seq(Link("PySol", "pysolfc.sourceforge.net/doc/rules/irmgard.html")),

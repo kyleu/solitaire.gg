@@ -14,12 +14,12 @@ import models.rules._
  */
 object ThreePirates extends GameRules(
   id = "threepirates",
-  completed = false,
+  completed = true,
   title = "Three Pirates",
   like = Some("fortythieves"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_pirates.htm")),
   description = "A variation of ^fortythieves^ with three waste piles.",
-  layout = "swf|t",
+  layout = "sw:f|:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),
