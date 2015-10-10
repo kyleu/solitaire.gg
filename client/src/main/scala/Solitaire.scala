@@ -10,7 +10,7 @@ import scala.scalajs.js.annotation.JSExport
 
 import scala.util.Random
 
-object Solitaire extends js.JSApp with SolitaireUndoHelper with SolitaireMoveHelper with SolitairePreferenceHelper {
+object Solitaire extends js.JSApp with SolitaireHelper {
   override def main(): Unit = {}
 
   private[this] val userId = UUID.randomUUID

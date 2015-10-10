@@ -17,7 +17,7 @@ object Database extends Logging with Instrumented with FutureMetrics {
   private[this] var factory: PostgreSQLConnectionFactory = _
   private[this] val poolConfig = new PoolConfiguration(maxObjects = 50, maxIdle = 10, maxQueueSize = 1000)
   private[this] var pool: ConnectionPool[PostgreSQLConnection] = _
-  private[this] def prependComment(obj: Object, sql: String) = s"/* ${obj.getClass.getSimpleName.replace("$", "")} */ $sql"
+  private[this] def prependComment(name: String, sql: String) = s"/* $name */ $sql"
 
   def open(configuration: Configuration) = {
     factory = new PostgreSQLConnectionFactory(configuration)
@@ -36,7 +36,7 @@ object Database extends Logging with Instrumented with FutureMetrics {
     val name = statement.getClass.getSimpleName.replaceAllLiterally("$", "")
     log.debug(s"Executing statement [$name] with SQL [${statement.sql}] with values [${statement.values.mkString(", ")}].")
     val ret = timing(s"execute.$name") {
-      conn.getOrElse(pool).sendPreparedStatement(prependComment(statement, statement.sql), statement.values).map(_.rowsAffected.toInt)
+      conn.getOrElse(pool).sendPreparedStatement(prependComment(name, statement.sql), statement.values).map(_.rowsAffected.toInt)
     }
     ret.onFailure {
       case x: Throwable => log.error(s"Error [${x.getClass.getSimpleName}] encountered while executing statement [$name].", x)
@@ -48,7 +48,7 @@ object Database extends Logging with Instrumented with FutureMetrics {
     val name = query.getClass.getSimpleName.replaceAllLiterally("$", "")
     log.debug(s"Executing query [$name] with SQL [${query.sql}] with values [${query.values.mkString(", ")}].")
     val ret = timing(s"query.$name") {
-      conn.getOrElse(pool).sendPreparedStatement(prependComment(query, query.sql), query.values).map { r =>
+      conn.getOrElse(pool).sendPreparedStatement(prependComment(name, query.sql), query.values).map { r =>
         query.handle(r.rows.getOrElse(throw new IllegalStateException()))
       }
     }

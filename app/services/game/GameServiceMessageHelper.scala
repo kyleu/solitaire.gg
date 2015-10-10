@@ -43,7 +43,7 @@ trait GameServiceMessageHelper { this: GameService =>
   }
 
   protected[this] def handleGameRequest(gr: GameRequest) = {
-    //log.debug("Handling [" + gr.message.getClass.getSimpleName.replace("$", "") + "] message from user [" + gr.userId + "] for game [" + id + "].")
+    //log.debug("Handling [" + gr.message.getClass.getSimpleName.stripSuffix("$") + "] message from user [" + gr.userId + "] for game [" + id + "].")
     try {
       val time = DateUtils.now
       gameMessages += ((gr.message, gr.userId, time))
@@ -65,7 +65,7 @@ trait GameServiceMessageHelper { this: GameService =>
         case Undo => timeReceive(Undo) { handleUndo(gr.userId) }
         case Redo => timeReceive(Redo) { handleRedo(gr.userId) }
 
-        case r => log.warn(s"GameService received unknown game message [${r.getClass.getSimpleName.replace("$", "")}].")
+        case r => log.warn(s"GameService received unknown game message [${r.getClass.getSimpleName.stripSuffix("$")}].")
       }
     } catch {
       case x: Exception =>
@@ -75,7 +75,7 @@ trait GameServiceMessageHelper { this: GameService =>
   }
 
   protected[this] def handleInternalMessage(im: InternalMessage) = {
-    //log.debug("Handling [" + im.getClass.getSimpleName.replace("$", "") + "] internal message for game [" + id + "].")
+    //log.debug("Handling [" + im.getClass.getSimpleName.stripSuffix("$") + "] internal message for game [" + id + "].")
     try {
       im match {
         case ap: AddPlayer => timeReceive(ap) { handleAddPlayer(ap.userId, ap.name, ap.preferences, ap.connectionId, ap.connectionActor) }
