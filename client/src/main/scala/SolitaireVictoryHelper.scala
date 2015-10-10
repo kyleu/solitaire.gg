@@ -30,7 +30,8 @@ trait SolitaireVictoryHelper extends SolitaireStatisticsHelper {
     }
     lastMoveMade = Some(System.currentTimeMillis)
     if (!checkWinCondition()) {
-      send(PossibleMoves(possibleMoves(), 0, 0))
+      println()
+      send(PossibleMoves(possibleMoves(), undoHelper.historyQueue.size, undoHelper.undoneQueue.size))
     }
   }
 
