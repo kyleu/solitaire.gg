@@ -13,7 +13,7 @@ import scala.concurrent.Future
 @javax.inject.Singleton
 class ProfileController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def profile = withSession("profile") { implicit request =>
-    if(request.identity.isGuest) {
+    if (request.identity.isGuest) {
       Future.successful(Redirect(controllers.routes.AuthenticationController.signInForm()))
     } else {
       Database.query(ProfileQueries.FindProfilesByUser(request.identity.id)).map { profiles =>

@@ -72,7 +72,8 @@ trait SolitaireVictoryHelper extends SolitaireStatisticsHelper {
   protected def onWin() = {
     val gs = gameState.getOrElse(throw new IllegalStateException())
     val completed = lastMoveMade.getOrElse(0L)
-    val stats = registerGame(win = true,
+    val stats = registerGame(
+      win = true,
       gs.rules, gs.seed, moveCount,
       undoHelper.undoCount, undoHelper.redoCount,
       firstMoveMade.map(x => completed - x).getOrElse(0L), completed
@@ -83,7 +84,8 @@ trait SolitaireVictoryHelper extends SolitaireStatisticsHelper {
   protected def onLoss() = {
     val gs = gameState.getOrElse(throw new IllegalStateException())
     val completed = lastMoveMade.getOrElse(0L)
-    val stats = registerGame(win = false,
+    val stats = registerGame(
+      win = false,
       gs.rules, gs.seed, moveCount,
       undoHelper.undoCount, undoHelper.redoCount,
       firstMoveMade.map(x => completed - x).getOrElse(0L), completed

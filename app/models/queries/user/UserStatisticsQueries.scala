@@ -23,7 +23,6 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
   def getById(id: UUID) = getBySingleId(id)
   def removeById(userId: UUID) = RemoveById(Seq(userId))
 
-
   override protected def fromRow(row: Row) = UserStatistics(
     userId = row.as[UUID]("id"),
     joined = DateUtils.toMillis(row.as[LocalDateTime]("joined")),

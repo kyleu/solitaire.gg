@@ -5,7 +5,7 @@ import models._
 trait SolitaireMoveHelper extends SolitaireVictoryHelper {
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean): Unit
 
-  protected def send(rms: Seq[ResponseMessage], registerUndoResponse: Boolean): Unit = if(rms.size == 1){
+  protected def send(rms: Seq[ResponseMessage], registerUndoResponse: Boolean): Unit = if (rms.size == 1) {
     val msg = rms.headOption.getOrElse(throw new IllegalStateException())
     send(msg, registerUndoResponse)
   } else {
@@ -25,7 +25,7 @@ trait SolitaireMoveHelper extends SolitaireVictoryHelper {
     if (pile.canSelectCard(card, gs)) {
       val messages = pile.onSelectCard(card, gs)
       send(messages, registerUndoResponse = true)
-      if(messages.size != 1 || messages.headOption.map {
+      if (messages.size != 1 || messages.headOption.map {
         case _: CardRevealed => false
         case _ => true
       }.getOrElse(true)) {

@@ -9,7 +9,7 @@ trait SolitairePreferenceHelper {
   def handleSetPreference(name: String, value: String, gameState: GameState) = {
     dom.localStorage.setItem("preferences." + name, value)
     preferences = preferences.withNewValue(name, value)
-    if(name == "auto-flip") {
+    if (name == "auto-flip") {
       gameState.setAutoFlipOption(value.toBoolean)
     }
   }
@@ -41,13 +41,12 @@ trait SolitairePreferenceHelper {
 
       val colorIndexStart = cn.indexOf("btn-")
       var colorIndexEnd = cn.indexOf(" ", colorIndexStart)
-      if(colorIndexEnd == -1) {
+      if (colorIndexEnd == -1) {
         colorIndexEnd = cn.length
       }
       val className = cn.substring(0, colorIndexStart) + "btn-" + preferences.color + cn.substring(colorIndexEnd)
       btn.attributes.getNamedItem("class").value = className
     }
-
 
     val elements = dom.document.getElementsByClassName("game-option")
     (0 until elements.length).foreach { i =>
@@ -58,8 +57,8 @@ trait SolitairePreferenceHelper {
       def setActive() = element.attributes.getNamedItem("class").value = "game-option active"
       def setInactive() = element.attributes.getNamedItem("class").value = "game-option"
 
-      def tagBooleanEl(b: Boolean) = if((b && v == "true") || ((!b) && v == "false")) { setActive() } else { setInactive() }
-      def tagStringEl(s: String) = if(s == v) { setActive() } else { setInactive() }
+      def tagBooleanEl(b: Boolean) = if ((b && v == "true") || ((!b) && v == "false")) { setActive() } else { setInactive() }
+      def tagStringEl(s: String) = if (s == v) { setActive() } else { setInactive() }
 
       c match {
         case "background-color" => tagStringEl(preferences.color)

@@ -59,7 +59,7 @@ object Solitaire extends js.JSApp with SolitaireHelper {
   }
 
   private[this] def handleStartGame(rules: String, seed: Option[Int]): Unit = {
-    if(gameState.isDefined) {
+    if (gameState.isDefined) {
       onLoss()
     }
 
@@ -79,7 +79,13 @@ object Solitaire extends js.JSApp with SolitaireHelper {
   }
 
   private[this] def handleDebugInfo(data: String) = data match {
-    case "cheat win" => send(GameWon(gameId.getOrElse(throw new IllegalStateException()), firstForRules = false, firstForSeed = false, getResult, readStatistics()))
+    case "cheat win" => send(GameWon(
+      gameId.getOrElse(throw new IllegalStateException()),
+      firstForRules = false,
+      firstForSeed = false,
+      getResult,
+      readStatistics()
+    ))
     case _ => throw new IllegalStateException("Debug: " + data)
   }
 }

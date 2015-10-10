@@ -31,6 +31,5 @@ object AnalyticsService {
     list <- Database.query(AnalyticsEventQueries.search(q, orderBy, Some(page)))
   } yield count -> list
 
-
   def remove(id: UUID) = Database.execute(AnalyticsEventQueries.removeById(id))
 }

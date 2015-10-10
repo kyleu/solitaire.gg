@@ -22,16 +22,14 @@ trait SolitaireNetworkHelper {
     val headers = Map("Accept" -> "application/json")
 
     val f = Ajax("post", url, body, timeout, headers, withCredentials = true, "application/json")
-    f.onSuccess { case x =>
-      println(x)
-      savedId.foreach { id =>
+    f.onSuccess {
+      case x => savedId.foreach { id =>
         val newPendingEvents = removePendingEvent(id)
         newPendingEvents.headOption.foreach(pe => sendNetworkPost(pe.path, pe.body, Some(pe.id)))
       }
     }
-    f.onFailure { case x =>
-      println(x)
-      savedId match {
+    f.onFailure {
+      case x => savedId match {
         case Some(id) => incrementFailureCount(id)
         case None => savePendingEvent(path, body)
       }

@@ -36,7 +36,7 @@ class SandboxController @javax.inject.Inject() (override val ctx: ApplicationCon
 
   def sandbox(key: String) = withAdminSession(key) { implicit request =>
     val sandbox = SandboxController.sandboxes.find(_.id == key).getOrElse(throw new IllegalStateException())
-    if(sandbox == HtmlSandbox) {
+    if (sandbox == HtmlSandbox) {
       Future.successful(Ok(views.html.admin.test.sandbox(java.util.UUID.randomUUID())))
     } else {
       sandbox.run(ctx).map { result =>

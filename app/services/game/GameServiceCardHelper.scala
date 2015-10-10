@@ -14,7 +14,7 @@ trait GameServiceCardHelper { this: GameService =>
     if (pile.canSelectCard(card, gameState)) {
       val messages = pile.onSelectCard(card, gameState)
       sendToAll("SelectCard", messages)
-      if(messages.size != 1 || messages.headOption.map {
+      if (messages.size != 1 || messages.headOption.map {
         case _: CardRevealed => false
         case _ => true
       }.getOrElse(true)) {

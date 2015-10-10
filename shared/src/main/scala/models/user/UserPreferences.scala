@@ -9,12 +9,12 @@ case class CardPreferences(
 )
 
 case class UserPreferences(
-  avatar: String = "guest",
-  color: String = "greyblue",
-  cards: CardPreferences = CardPreferences(),
-  autoFlip: Boolean = true,
-  audio: Boolean = false,
-  gamepad: Boolean = false
+    avatar: String = "guest",
+    color: String = "greyblue",
+    cards: CardPreferences = CardPreferences(),
+    autoFlip: Boolean = true,
+    audio: Boolean = false,
+    gamepad: Boolean = false
 ) {
   def withNewValue(name: String, value: String) = name match {
     case "card-back" => copy(cards = cards.copy(back = value))
