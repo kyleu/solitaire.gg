@@ -29,7 +29,6 @@ object Klondike extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/klondike.htm"),
     Link("dogMelon", "www.dogmelon.com.au/solhelp/Klondike%20Solitaire.shtml"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/klondike.html"),
-    Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/klondike_by_threes.html"),
     Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#canfield"),
     Link("An 1897 description", "howtoplaysolitaire.blogspot.com/2010/06/canfield-or-klondike-single-deck.html"),
     Link("Robert Abbott's Strategy Guide", "www.logicmazes.com/sol/"),

@@ -4,6 +4,9 @@
   var activeColor = '';
   var currentUsername;
 
+  var online = document.location.href.indexOf('http') > -1;
+  var storage = window.localStorage;
+
   function selectColor(color) {
     for(var elIndex in elements.colors) {
       if(elements.colors.hasOwnProperty(elIndex)) {
@@ -32,13 +35,19 @@
     }
 
     activeColor = color;
+
+    if((!online) && (storage !== undefined)) {
+      storage.setItem('preferences.background-color', color);
+    }
   }
 
   function setColor(color) {
-    var url = '/options/set/color/' + encodeURIComponent(color);
-    var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.send();
+    if(online) {
+      var url = '/options/set/color/' + encodeURIComponent(color);
+      var request = new XMLHttpRequest();
+      request.open('GET', url, true);
+      request.send();
+    }
   }
 
   function usernameEditStart() {
@@ -54,32 +63,33 @@
     if(newName === currentUsername || newName === '') {
       usernameEditCancel();
     } else {
-      console.log('Saving new username [' + newName + '].');
-      var url = '/options/set/username/' + encodeURIComponent(newName);
-      var request = new XMLHttpRequest();
-      request.onreadystatechange = function() {
-        if (request.readyState === 4) {
-          switch(request.responseText) {
-            case 'OK':
-              elements.profileLink.textContent = newName;
-              elements.usernameLabel.textContent = newName;
-              elements.usernameEdit.style.display = 'none';
-              elements.usernameLabel.style.display = 'inline-block';
-              break;
-            case '':
-              break;
-            default:
-              if(request.responseText.indexOf('ERROR:') === 0) {
-                elements.usernameEditError.textContent = request.responseText.substr(6);
-              } else {
-                throw request.responseText;
-              }
-              break;
+      if(online) {
+        var url = '/options/set/username/' + encodeURIComponent(newName);
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+          if(request.readyState === 4) {
+            switch(request.responseText) {
+              case 'OK':
+                elements.profileLink.textContent = newName;
+                elements.usernameLabel.textContent = newName;
+                elements.usernameEdit.style.display = 'none';
+                elements.usernameLabel.style.display = 'inline-block';
+                break;
+              case '':
+                break;
+              default:
+                if(request.responseText.indexOf('ERROR:') === 0) {
+                  elements.usernameEditError.textContent = request.responseText.substr(6);
+                } else {
+                  throw request.responseText;
+                }
+                break;
+            }
           }
-        }
-      };
-      request.open('GET', url, true);
-      request.send();
+        };
+        request.open('GET', url, true);
+        request.send();
+      }
     }
   }
 
@@ -90,13 +100,15 @@
   }
 
   function saveUsername() {
-    var url = '/options/set/username/' + elements.usernameInput.value;
-    var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.send();
+    if(online) {
+      var url = '/options/set/username/' + elements.usernameInput.value;
+      var request = new XMLHttpRequest();
+      request.open('GET', url, true);
+      request.send();
+    }
   }
 
-  function init() {
+  function loadElements() {
     elements.optionsButton = document.getElementById('btn-game-options');
     elements.optionsPanel = document.getElementById('static-options-panel');
     elements.confirmButton = document.getElementById('btn-confirm');
@@ -110,6 +122,10 @@
       elements.usernameEditConfirm = document.getElementById('username-edit-confirm');
       elements.usernameEditCancel = document.getElementById('username-edit-cancel');
     }
+  }
+
+  function init() {
+    loadElements();
 
     elements.optionsButton.onclick = function() {
       if(elements.optionsPanel.style.display === 'block') {
@@ -159,6 +175,13 @@
       elements.usernameEditConfirm.onclick = saveUsername;
       elements.usernameEditConfirm.onclick = usernameEditConfirm;
       elements.usernameEditCancel.onclick = usernameEditCancel;
+    }
+
+    if((!online) && (storage !== undefined)) {
+      var prefColor = storage.getItem('preferences.background-color');
+      if(prefColor !== null) {
+        selectColor(prefColor);
+      }
     }
   }
 

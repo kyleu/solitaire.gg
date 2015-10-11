@@ -14,10 +14,10 @@ define([], function() {
 
       request.onreadystatechange = function() {
         if(request.readyState === XMLHttpRequest.DONE) {
-          if(request.status === 200) {
+          if(request.status === 200 || request.status === 0) {
             successCallback(url, request.responseText);
           } else {
-            failureCallback(url, request.responseText);
+            failureCallback(url, request.status, request.responseText);
           }
         }
       };

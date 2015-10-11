@@ -49,7 +49,7 @@ object ExportStatic extends SandboxTask {
     ).toString())
 
     GameRulesSet.completed.map { rules =>
-      render(s"help/${rules._1}.html", views.html.help.helpPage(offlineUser, rules._2).toString(), prefix = Some("../"))
+      render(s"help/${rules._1}.html", views.html.help.helpInline(rules._2, "greyblue").toString(), prefix = Some("../"))
     }
 
     Future.successful("Ok!")

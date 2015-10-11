@@ -1,6 +1,8 @@
 /* global define:false */
 /* global _:false */
 define(['ui/Modal'], function(Modal) {
+  var online = document.location.href.indexOf('http') > -1;
+
   var Help = function(game) {
     this.game = game;
   };
@@ -9,12 +11,24 @@ define(['ui/Modal'], function(Modal) {
     var postLoad = function() {
       _.each(document.getElementsByClassName('help-link'), function(helpLink) {
         helpLink.onclick = function() {
-          Modal.show('GET', helpLink.href + '?inline=true', {}, postLoad);
+          var href;
+          if(online) {
+            href = helpLink.href + '?inline=true';
+          } else {
+            href = helpLink.href.substr(1) + '.html';
+          }
+          Modal.show('GET', href, {}, postLoad);
           return false;
         };
       });
     };
-    Modal.show('GET', '/help/' + this.game.rules + '?inline=true', {}, postLoad);
+    var url;
+    if(online) {
+      url = '/help/' + this.game.rules + '?inline=true';
+    } else {
+      url = 'help/' + this.game.rules + '.html';
+    }
+    Modal.show('GET', url, {}, postLoad);
   };
 
   Help.prototype.toggleFeedback = function() {
