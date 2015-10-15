@@ -17,11 +17,16 @@ trait SolitaireNetworkHelper {
   protected def sendPendingEvents() = getPendingEvents.headOption.foreach(pe => sendNetworkPost(pe.path, pe.body, Some(pe.id)))
 
   protected[this] def sendNetworkPost(path: String, body: String, savedId: Option[UUID] = None): Unit = {
-    val url = "http://localhost:9000" + path
+    val protocol = "http"
+    val domain = "solitaire.dev"
+    val url = protocol + "://" + domain + path
     val timeout = 20 * 1000 // ms
-    val headers = Map("Accept" -> "application/json")
+    val headers = Map(
+      "Content-Type" -> "application/json",
+      "Accept" -> "application/json"
+    )
 
-    val f = Ajax("post", url, body, timeout, headers, withCredentials = true, "application/json")
+    val f = Ajax("post", url, body, timeout, headers, withCredentials = true, "json")
     f.onSuccess {
       case x => savedId.foreach { id =>
         val newPendingEvents = removePendingEvent(id)

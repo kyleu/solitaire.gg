@@ -4,7 +4,7 @@ import models._
 import models.game.GameState
 import models.rules.GameRules
 
-trait SolitaireVictoryHelper extends SolitaireStatisticsHelper {
+trait SolitaireVictoryHelper extends SolitaireStatisticsHelper with SolitaireAnalyticsHelper {
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit
   protected def getResult: GameResult
 
@@ -79,6 +79,8 @@ trait SolitaireVictoryHelper extends SolitaireStatisticsHelper {
       undoHelper.undoCount, undoHelper.redoCount,
       firstMoveMade.map(x => completed - x).getOrElse(0L), completed
     )
+    onGameWon("{ \"occurred\": " + System.currentTimeMillis + " }")
+
     send(GameWon(gameId.getOrElse(throw new IllegalStateException()), firstForRules = false, firstForSeed = false, getResult, stats))
   }
 
@@ -91,6 +93,7 @@ trait SolitaireVictoryHelper extends SolitaireStatisticsHelper {
       undoHelper.undoCount, undoHelper.redoCount,
       firstMoveMade.map(x => completed - x).getOrElse(0L), completed
     )
-    //send(GameLost(gameId.getOrElse(throw new IllegalStateException()), getResult, stats))
+    onGameResigned("{ \"occurred\": " + System.currentTimeMillis + " }")
+    send(GameLost(gameId.getOrElse(throw new IllegalStateException()), getResult, stats))
   }
 }

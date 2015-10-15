@@ -13,10 +13,11 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class AnalyticsController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
-  def install(device: UUID) = analyticsAction(EventType.Install, device, AnalyticsService.gameStart)
+  def install(device: UUID) = analyticsAction(EventType.Install, device, AnalyticsService.install)
+  def open(device: UUID) = analyticsAction(EventType.Open, device, AnalyticsService.open)
   def gameStart(device: UUID) = analyticsAction(EventType.GameStart, device, AnalyticsService.gameStart)
-  def gameWon(device: UUID) = analyticsAction(EventType.GameWon, device, AnalyticsService.gameStart)
-  def gameResigned(device: UUID) = analyticsAction(EventType.GameResigned, device, AnalyticsService.gameStart)
+  def gameWon(device: UUID) = analyticsAction(EventType.GameWon, device, AnalyticsService.gameWon)
+  def gameResigned(device: UUID) = analyticsAction(EventType.GameResigned, device, AnalyticsService.gameResigned)
 
   private[this] def analyticsAction(
     eventType: EventType,
@@ -25,9 +26,12 @@ class AnalyticsController @javax.inject.Inject() (override val ctx: ApplicationC
   ) = withSession(eventType.id) { implicit request =>
     request.body.asJson match {
       case Some(json) => f(device, json).map { result =>
-        Ok(Json.toJson(Map("status" -> "ok", "id" -> result.id.toString)))
+        val ret = Json.toJson(Map("status" -> "ok", "id" -> result.id.toString))
+        Ok(ret).withHeaders("Access-Control-Allow-Origin" -> "*/*")
       }
-      case None => Future.successful(BadRequest(Json.toJson(Map("status" -> "error", "message" -> "A valid json request body is required."))))
+      case None =>
+        val ret = Json.toJson(Map("status" -> "error", "message" -> "A valid json request body is required."))
+        Future.successful(BadRequest(ret).withHeaders("Access-Control-Allow-Origin" -> "*/*"))
     }
   }
 }

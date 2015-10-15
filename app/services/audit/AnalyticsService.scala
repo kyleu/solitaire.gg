@@ -11,6 +11,7 @@ import utils.DateUtils
 
 object AnalyticsService {
   def install(device: UUID, data: JsValue) = log(AnalyticsEvent.EventType.Install, device, data)
+  def open(device: UUID, data: JsValue) = log(AnalyticsEvent.EventType.GameStart, device, data)
   def gameStart(device: UUID, data: JsValue) = log(AnalyticsEvent.EventType.GameStart, device, data)
   def gameWon(device: UUID, data: JsValue) = log(AnalyticsEvent.EventType.GameWon, device, data)
   def gameResigned(device: UUID, data: JsValue) = log(AnalyticsEvent.EventType.GameResigned, device, data)

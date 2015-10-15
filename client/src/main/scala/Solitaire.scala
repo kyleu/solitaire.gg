@@ -75,6 +75,8 @@ object Solitaire extends js.JSApp with SolitaireHelper {
     gs.addPlayer(userId, "Offline Player", autoFlipOption = preferences.autoFlip)
     InitialMoves.performInitialMoves(gameRules.getOrElse(throw new IllegalStateException()), gs)
 
+    onGameStart("{ \"occurred\": " + System.currentTimeMillis + " }")
+
     send(GameJoined(gameId.getOrElse(throw new IllegalStateException()), gs.view(userId), 0, possibleMoves(), preferences))
   }
 

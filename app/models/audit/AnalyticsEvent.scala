@@ -10,12 +10,13 @@ object AnalyticsEvent {
 
   object EventType {
     case object Install extends EventType("install")
+    case object Open extends EventType("open")
     case object GameStart extends EventType("game-start")
     case object GameWon extends EventType("game-won")
     case object GameResigned extends EventType("game-start")
     case class Unknown(override val id: String) extends EventType(id)
 
-    val all = Seq(Install, GameStart)
+    val all = Seq(Install, Open, GameStart, GameWon, GameResigned)
     def fromString(s: String) = all.find(_.id == s).getOrElse(Unknown(s))
   }
 }
