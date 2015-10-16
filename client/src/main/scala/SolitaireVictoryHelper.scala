@@ -79,8 +79,8 @@ trait SolitaireVictoryHelper extends SolitaireStatisticsHelper with SolitaireAna
       undoHelper.undoCount, undoHelper.redoCount,
       firstMoveMade.map(x => completed - x).getOrElse(0L), completed
     )
-    onGameWon("{ \"occurred\": " + System.currentTimeMillis + " }")
 
+    onGameWon(System.currentTimeMillis)
     send(GameWon(gameId.getOrElse(throw new IllegalStateException()), firstForRules = false, firstForSeed = false, getResult, stats))
   }
 
@@ -93,7 +93,8 @@ trait SolitaireVictoryHelper extends SolitaireStatisticsHelper with SolitaireAna
       undoHelper.undoCount, undoHelper.redoCount,
       firstMoveMade.map(x => completed - x).getOrElse(0L), completed
     )
-    onGameResigned("{ \"occurred\": " + System.currentTimeMillis + " }")
+
+    onGameResigned(System.currentTimeMillis)
     send(GameLost(gameId.getOrElse(throw new IllegalStateException()), getResult, stats))
   }
 }

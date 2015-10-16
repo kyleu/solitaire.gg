@@ -13,7 +13,6 @@ import scala.util.Random
 object Solitaire extends js.JSApp with SolitaireHelper {
   override def main(): Unit = {}
 
-  private[this] val userId = UUID.randomUUID
   private[this] val rng = new Random()
 
   override protected val undoHelper = new UndoHelper()
@@ -30,9 +29,9 @@ object Solitaire extends js.JSApp with SolitaireHelper {
       case "GetVersion" => send(VersionResponse("0.0"))
       case "Ping" => send(Pong(JsonUtils.getLong(v.timestamp)))
       case "StartGame" => handleStartGame(v.rules.toString, JsonUtils.getIntOption(v.seed))
-      case "SelectCard" => handleSelectCard(userId, UUID.fromString(v.card.toString), v.pile.toString)
-      case "SelectPile" => handleSelectPile(userId, v.pile.toString)
-      case "MoveCards" => handleMoveCards(userId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString)
+      case "SelectCard" => handleSelectCard(deviceId, UUID.fromString(v.card.toString), v.pile.toString)
+      case "SelectPile" => handleSelectPile(deviceId, v.pile.toString)
+      case "MoveCards" => handleMoveCards(deviceId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString)
       case "Undo" => handleUndo()
       case "Redo" => handleRedo()
       case "SetPreference" => handleSetPreference(v.name.toString, v.value.toString, gameState.getOrElse(throw new IllegalStateException()))
@@ -69,15 +68,17 @@ object Solitaire extends js.JSApp with SolitaireHelper {
     val gr = GameRulesSet.allByIdWithAliases(rules)
     gameRules = Some(gr)
 
-    val gs = gr.newGame(id, seed.getOrElse(Math.abs(rng.nextInt())), rules)
+    val actualSeed = seed.getOrElse(Math.abs(rng.nextInt()))
+
+    val gs = gr.newGame(id, actualSeed, rules)
 
     gameState = Some(gs)
-    gs.addPlayer(userId, "Offline Player", autoFlipOption = preferences.autoFlip)
+    gs.addPlayer(deviceId, "Offline Player", autoFlipOption = preferences.autoFlip)
     InitialMoves.performInitialMoves(gameRules.getOrElse(throw new IllegalStateException()), gs)
 
-    onGameStart("{ \"occurred\": " + System.currentTimeMillis + " }")
+    onGameStart(id, gr.id, actualSeed, System.currentTimeMillis)
 
-    send(GameJoined(gameId.getOrElse(throw new IllegalStateException()), gs.view(userId), 0, possibleMoves(), preferences))
+    send(GameJoined(gameId.getOrElse(throw new IllegalStateException()), gs.view(deviceId), 0, possibleMoves(), preferences))
   }
 
   private[this] def handleDebugInfo(data: String) = data match {

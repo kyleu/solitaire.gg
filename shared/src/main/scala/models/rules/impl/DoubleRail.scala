@@ -13,7 +13,7 @@ import models.rules._
  */
 object DoubleRail extends GameRules(
   id = "doublerail",
-  completed = false,
+  completed = true,
   title = "Double Rail",
   like = Some("singlerail"),
   links = Seq(
@@ -25,7 +25,7 @@ object DoubleRail extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/double_rail.htm")
   ),
   description = "A ^fortythieves^ variation where we build regardless of suit and can move stacks.",
-  layout = "swf|t",
+  layout = "swf|:::t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

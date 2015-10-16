@@ -15,7 +15,7 @@ import models.rules._
  */
 object Harp extends GameRules(
   id = "harp",
-  completed = false,
+  completed = true,
   title = "Harp",
   related = Seq("tripleharp"),
   links = Seq(
@@ -27,7 +27,7 @@ object Harp extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/harp.html")
   ),
   description = "A two-deck ^klondike^ variation.",
-  layout = "swf|t",
+  layout = "swf|:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

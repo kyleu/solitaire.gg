@@ -27,7 +27,7 @@ import models.rules._
  */
 object PuttPutt extends GameRules(
   id = "puttputt",
-  completed = false,
+  completed = true,
   title = "Putt Putt",
   like = Some("golf"),
   related = Seq("lincolngreens"),
@@ -38,7 +38,7 @@ object PuttPutt extends GameRules(
     Link("Jan Wolter's Experiments", "/article/golf.html")
   ),
   description = "An easier variation of ^golf^ where wrapping from King to Ace is allowed.",
-  layout = "sf|t",
+  layout = "s:::::f|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(
     StockRules(
