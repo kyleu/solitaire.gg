@@ -14,6 +14,8 @@ define(['utils/Config', 'card/Rank', 'card/Suit', 'card/CardInput', 'card/Tweens
     this.animation = null;
     this.tweening = false;
 
+    this.originalWidth = game.cardSet.cardWidth;
+
     var initialX = (game.width / 2) / game.playmat.scale.x;
     var initialY = game.height / game.playmat.scale.y;
 

@@ -20,6 +20,7 @@ define([], function() {
           if(emitWhenComplete) {
             card.game.playmat.emitter.emitFor(card);
           }
+          card.width = card.originalWidth;
         }, card);
         xTween.start();
 
