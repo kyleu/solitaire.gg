@@ -8,6 +8,7 @@ object Build extends Build with UniversalKeys {
   lazy val sharedJvm = Shared.sharedJvm
   lazy val server = Server.server
 
+  lazy val benchmarking = Utilities.benchmarking
   lazy val iconCreator = Utilities.iconCreator
   lazy val screenshotCreator = Utilities.screenshotCreator
 }

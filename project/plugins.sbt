@@ -26,6 +26,9 @@ addSbtPlugin("com.vmunier" % "sbt-play-scalajs" % "0.2.8")
 // Source Control
 addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.8.4")
 
+// Benchmarking
+addSbtPlugin("pl.project13.scala" % "sbt-jmh" % "0.2.4")
+
 // Code Quality
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.7.0") // scalastyle
 

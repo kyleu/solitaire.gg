@@ -4,8 +4,21 @@ import sbt.Keys._
 
 import net.virtualvoid.sbt.graph.Plugin.graphSettings
 import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, defaultScalariformSettings}
+import pl.project13.scala.sbt.JmhPlugin
 
 object Utilities {
+  lazy val benchmarking = (project in file("util/benchmarking")).settings(
+    name := "benchmarking",
+    ScalariformKeys.preferences := ScalariformKeys.preferences.value
+  )
+    .aggregate(Server.server)
+    .enablePlugins(GitVersioning)
+    .enablePlugins(GitBranchPrompt)
+    .enablePlugins(JmhPlugin)
+    .settings(Shared.commonSettings: _*)
+    .settings(graphSettings: _*)
+    .settings(defaultScalariformSettings: _*)
+
   lazy val iconCreator = (project in file("util/iconCreator")).settings(
     name := "icon-creator",
     ScalariformKeys.preferences := ScalariformKeys.preferences.value

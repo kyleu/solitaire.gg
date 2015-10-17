@@ -58,9 +58,7 @@ object Solitaire extends js.JSApp with SolitaireHelper {
   }
 
   private[this] def handleStartGame(rules: String, seed: Option[Int]): Unit = {
-    if (gameState.isDefined) {
-      onLoss()
-    }
+    gameState.foreach(x => onLoss())
 
     val id = UUID.randomUUID
     gameId = Some(id)
