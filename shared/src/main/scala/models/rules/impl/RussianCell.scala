@@ -18,12 +18,12 @@ import models.rules._
  */
 object RussianCell extends GameRules(
   id = "russiancell",
-  completed = false,
+  completed = true,
   title = "Russian Cell",
   like = Some("russian"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/russian_cell.htm")),
   description = "Thomas Warfield's variant of ^russian^ Solitaire adds a couple cells.",
-  layout = "f|c|t",
+  layout = "f:c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

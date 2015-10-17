@@ -17,7 +17,7 @@ import models.rules._
  */
 object Hypotenuse extends GameRules(
   id = "hypotenuse",
-  completed = false,
+  completed = true,
   title = "Hypotenuse",
   like = Some("eternaltriangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/hypotenuse.htm")),

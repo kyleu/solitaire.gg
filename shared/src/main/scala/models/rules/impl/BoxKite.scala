@@ -26,7 +26,7 @@ import models.rules._
  */
 object BoxKite extends GameRules(
   id = "boxkite",
-  completed = false,
+  completed = true,
   title = "Box Kite",
   links = Seq(
     Link("Wikipedia", "en.wikipedia.org/wiki/Box_Kite_(solitaire)"),
@@ -37,7 +37,7 @@ object BoxKite extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/BoxKite.htm")
   ),
   description = "Tableaus build up or down, half the foundations build up, half build down.",
-  layout = "ff|t",
+  layout = ":.f:f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

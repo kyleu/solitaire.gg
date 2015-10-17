@@ -49,14 +49,14 @@ trait SolitaireAnalyticsHelper extends SolitaireNetworkHelper {
     sendNetworkPost("/a/game-start/" + deviceId, JSON.stringify(event))
   }
 
-  protected[this] def onGameWon(occurred: Long) = {
+  protected[this] def onGameWon(gameId: UUID, occurred: Long) = {
     val event = scalajs.js.Dynamic.literal(
       "occurred" -> System.currentTimeMillis
     )
     sendNetworkPost("/a/game-won/" + deviceId, JSON.stringify(event))
   }
 
-  protected[this] def onGameResigned(occurred: Long) = {
+  protected[this] def onGameResigned(gameId: UUID, occurred: Long) = {
     val event = scalajs.js.Dynamic.literal(
       "occurred" -> System.currentTimeMillis
     )

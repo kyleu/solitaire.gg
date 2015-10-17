@@ -25,7 +25,7 @@ import models.rules._
  */
 object BlondesAndBrunettes extends GameRules(
   id = "blondesandbrunettes",
-  completed = false,
+  completed = true,
   title = "Blondes and Brunettes",
   like = Some("signora"),
   links = Seq(
@@ -33,7 +33,7 @@ object BlondesAndBrunettes extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/blondes_and_brunettes.html")
   ),
   description = "A variation of ^signora^ where the foundation base card is determined by a card dealt in.",
-  layout = "swf|r|t",
+  layout = "swf|r:t",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

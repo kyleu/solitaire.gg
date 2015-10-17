@@ -16,7 +16,7 @@ import models.rules._
  */
 object RowsOfFour extends GameRules(
   id = "rowsoffour",
-  completed = false,
+  completed = true,
   title = "Rows of Four",
   like = Some("diplomat"),
   links = Seq(
@@ -24,7 +24,7 @@ object RowsOfFour extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/rows_of_four.htm")
   ),
   description = "An easier version of Diplomat, allowing some redeals.",
-  layout = "swf|t",
+  layout = "swf|.:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

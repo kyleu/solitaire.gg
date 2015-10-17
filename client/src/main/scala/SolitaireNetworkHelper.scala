@@ -14,7 +14,9 @@ trait SolitaireNetworkHelper {
 
   private[this] val st = org.scalajs.dom.localStorage
 
-  protected def sendPendingEvents() = getPendingEvents.headOption.foreach(pe => sendNetworkPost(pe.path, pe.body, Some(pe.id)))
+  protected def sendPendingEvents() = getPendingEvents.headOption.foreach { pe =>
+    sendNetworkPost(pe.path, pe.body, Some(pe.id))
+  }
 
   protected[this] def sendNetworkPost(path: String, body: String, savedId: Option[UUID] = None): Unit = {
     val protocol = "http"

@@ -20,7 +20,7 @@ import models.rules._
  */
 object Scorpion extends GameRules(
   id = "scorpion",
-  completed = false,
+  completed = true,
   title = "Scorpion",
   related = Seq("chelicera", "chinese"),
   links = Seq(
@@ -40,7 +40,7 @@ object Scorpion extends GameRules(
   ),
   description = "A game with a seven-by-seven tableau, where three cards in the first four piles start face down. Unsorted stacks of cards can be m" +
     "oved around, as in ^yukon^, but cards cannot be moved to the foundation until they form complete sequences, as in ^spider^.",
-  layout = "sf|t",
+  layout = "s.f|t",
   stock = Some(
     StockRules(
       name = "Reserve",
