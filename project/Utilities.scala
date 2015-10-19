@@ -11,7 +11,8 @@ object Utilities {
     name := "benchmarking",
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
-    .aggregate(Server.server)
+    .dependsOn(Shared.sharedJvm)
+    .dependsOn(Server.server)
     .enablePlugins(GitVersioning)
     .enablePlugins(GitBranchPrompt)
     .enablePlugins(JmhPlugin)
