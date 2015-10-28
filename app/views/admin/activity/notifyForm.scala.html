@@ -1,4 +1,5 @@
-@()(implicit session: Session, flash: Flash)@views.html.admin.layout.base("Send Notification", "activity") {
+@()(implicit session: Session, flash: Flash, identity: models.user.User)
+@views.html.admin.layout.base("Send Notification", "activity") {
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">

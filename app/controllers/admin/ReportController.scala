@@ -27,12 +27,14 @@ class ReportController @javax.inject.Inject() (override val ctx: ApplicationCont
   }
 
   def trend() = withAdminSession("trend") { implicit request =>
+    implicit val identity = request.identity
     DailyMetricService.getAllMetrics.map { metrics =>
       Ok(views.html.admin.report.trend(metrics, toChartData(metrics)))
     }
   }
 
   def requests() = withAdminSession("requests") { implicit request =>
+    implicit val identity = request.identity
     for {
       userCounts <- Database.query(RequestLogQueries.GetUserCounts)
       userAgentCounts <- Database.query(RequestLogQueries.GetCounts("user_agent"))
@@ -50,10 +52,12 @@ class ReportController @javax.inject.Inject() (override val ctx: ApplicationCont
     val pre = "[\n"
     val post = "\n]\n"
     val content = DailyMetric.all.map { metric =>
-      s"""  {
-    "values": [ ${toChartDataValues(metric)} ],
-    "key": "${metric.title}"
-  }"""
+      s"""
+      |  {
+      |    "values": [ ${toChartDataValues(metric)} ],
+      |    "key": "${metric.title}"
+      |  }
+      """.stripMargin
     }.mkString(",\n")
     pre + content + post
   }

@@ -1,6 +1,5 @@
-@(user: models.user.User, gameCount: Int, requestCount: Int, self: java.util.UUID)(
-  implicit session: Session, flash: Flash
-)@views.html.admin.layout.base(s"${utils.Config.projectName} User Detail", "explore") {
+@(user: models.user.User, gameCount: Int, requestCount: Int, self: java.util.UUID)(implicit session: Session, flash: Flash, identity: models.user.User)
+@views.html.admin.layout.base(s"${utils.Config.projectName} User Detail", "explore") {
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="pull-right">

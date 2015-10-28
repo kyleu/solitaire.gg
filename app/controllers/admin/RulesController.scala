@@ -13,6 +13,7 @@ import scala.concurrent.Future
 @javax.inject.Singleton
 class RulesController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def rulesList(q: String, sortBy: String) = withAdminSession("list") { implicit request =>
+    implicit val identity = request.identity
     Database.query(GameSeedQueries.GetCounts(None)).map { seedCounts =>
       val statuses = GameRulesSet.all.map { r =>
         val seedCount = seedCounts.getOrElse(r.id, GameSeed.emptyCount)
@@ -29,10 +30,12 @@ class RulesController @javax.inject.Inject() (override val ctx: ApplicationConte
   }
 
   def rulesData = withAdminSession("data") { implicit request =>
+    implicit val identity = request.identity
     Future.successful(Ok(views.html.admin.rules.rulesDataList(GameRulesSet.all)))
   }
 
   def rulesDetail(id: String) = withAdminSession("detail") { implicit request =>
+    implicit val identity = request.identity
     val rules = GameRulesSet.allByIdWithAliases(id)
     Database.query(GameSeedQueries.GetCounts(Some(s"rules = '$id'"))).map { seedCounts =>
       val cnt = seedCounts.getOrElse(id, GameSeed.emptyCount)

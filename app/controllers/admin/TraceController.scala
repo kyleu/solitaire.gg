@@ -31,6 +31,7 @@ class TraceController @javax.inject.Inject() (override val ctx: ApplicationConte
   }
 
   def traceGame(gameId: UUID) = withAdminSession("game") { implicit request =>
+    implicit val identity = request.identity
     (ctx.supervisor ask GameTrace(gameId)).map {
       case tr: TraceResponse =>
         val buttons = Seq("Observe As Admin" -> controllers.admin.routes.AdminController.observeGameAsAdmin(gameId).url)

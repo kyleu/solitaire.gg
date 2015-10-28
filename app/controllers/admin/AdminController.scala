@@ -23,6 +23,7 @@ class AdminController @javax.inject.Inject() (override val ctx: ApplicationConte
   implicit val timeout = Timeout(10.seconds)
 
   def index = withAdminSession("index") { implicit request =>
+    implicit val identity = request.identity
     Future.successful(Ok(views.html.admin.index()))
   }
 
@@ -38,12 +39,14 @@ class AdminController @javax.inject.Inject() (override val ctx: ApplicationConte
   }
 
   def status = withAdminSession("status") { implicit request =>
+    implicit val identity = request.identity
     (ctx.supervisor ask GetSystemStatus).map {
       case x: SystemStatus => Ok(views.html.admin.activity.status(x))
     }
   }
 
   def notifyAllForm = withAdminSession("notfy-all") { implicit request =>
+    implicit val identity = request.identity
     Future.successful(Ok(views.html.admin.activity.notifyForm()))
   }
 

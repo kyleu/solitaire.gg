@@ -1,4 +1,4 @@
-@(event: models.audit.AnalyticsEvent)(implicit session: Session, flash: Flash)
+@(event: models.audit.AnalyticsEvent)(implicit session: Session, flash: Flash, identity: models.user.User)
 @views.html.admin.layout.base(s"${utils.Config.projectName} Event Detail", "explore") {
   <div class="panel panel-default">
     <div class="panel-body">

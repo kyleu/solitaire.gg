@@ -1,4 +1,4 @@
-@(status: (models.rules.GameRules, models.leaderboard.GameSeed.SeedCount))(implicit session: Session, flash: Flash)
+@(status: (models.rules.GameRules, models.leaderboard.GameSeed.SeedCount))(implicit session: Session, flash: Flash, identity: models.user.User)
 @views.html.admin.layout.base(status._1.title + " Overview", "tests") {
   <div class="row">
     <div class="col-md-12">

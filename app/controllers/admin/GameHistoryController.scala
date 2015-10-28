@@ -12,12 +12,14 @@ import scala.concurrent.Future
 @javax.inject.Singleton
 class GameHistoryController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def gameList(q: String, sortBy: String, page: Int) = withAdminSession("list") { implicit request =>
+    implicit val identity = request.identity
     GameHistoryService.searchGames(q, sortBy, page).map { games =>
       Ok(views.html.admin.game.gameList(q, sortBy, games._1, page, games._2))
     }
   }
 
   def gameDetail(id: UUID) = withAdminSession("detail") { implicit request =>
+    implicit val identity = request.identity
     GameHistoryService.getGameHistory(id).flatMap {
       case Some(game) => Future.successful(Ok(views.html.admin.game.gameDetail(game)))
       case None => Future.successful(NotFound(s"Game [$id] not found."))

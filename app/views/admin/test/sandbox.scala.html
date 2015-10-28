@@ -1,4 +1,5 @@
-@(id: java.util.UUID)(implicit session: Session, flash: Flash)@views.html.admin.layout.base("Sandbox", "") {
+@(id: java.util.UUID)(implicit session: Session, flash: Flash, identity: models.user.User)
+@views.html.admin.layout.base("Sandbox", "") {
   <h3>Sandbox</h3>
   <script>
     var url = "@controllers.routes.AnalyticsController.install(id)";

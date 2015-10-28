@@ -9,11 +9,13 @@ import scala.concurrent.Future
 @javax.inject.Singleton
 class LogController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def list() = withAdminSession("log.list") { implicit request =>
+    implicit val identity = request.identity
     val files = LogService.listFiles()
     Future.successful(Ok(views.html.admin.log.logList(files)))
   }
 
   def view(name: String) = withAdminSession("log.view") { implicit request =>
+    implicit val identity = request.identity
     val logs = LogService.getLogs(name)
     Future.successful(Ok(views.html.admin.log.logView(name, logs)))
   }

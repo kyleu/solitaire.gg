@@ -17,6 +17,7 @@ import scala.concurrent.Future
 @javax.inject.Singleton
 class UserController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def userList(q: String, sortBy: String, page: Int) = withAdminSession("list") { implicit request =>
+    implicit val identity = request.identity
     for {
       count <- Database.query(UserQueries.searchCount(q))
       users <- Database.query(UserQueries.search(q, getOrderClause(sortBy), Some(page)))
@@ -27,6 +28,7 @@ class UserController @javax.inject.Inject() (override val ctx: ApplicationContex
   }
 
   def userDetail(id: UUID) = withAdminSession("detail") { implicit request =>
+    implicit val identity = request.identity
     ctx.env.identityService.retrieve(id).flatMap {
       case Some(user) => for {
         gameCount <- GameHistoryService.getCountByUser(id)

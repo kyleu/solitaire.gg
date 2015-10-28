@@ -46,9 +46,11 @@ object Server {
     // Sbt-Web
     JsEngineKeys.engineType := JsEngineKeys.EngineType.Node,
     pipelineStages := Seq(scalaJSProd, rjs, digest, gzip),
+
     includeFilter in (Assets, LessKeys.less) := "*.less",
     excludeFilter in (Assets, LessKeys.less) := "_*.less",
     LessKeys.compress in Assets := true,
+
     JshintKeys.config := Some(new java.io.File("conf/.jshintrc")),
 
     // Code Quality

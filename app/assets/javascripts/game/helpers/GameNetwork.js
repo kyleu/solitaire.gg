@@ -8,6 +8,7 @@ define(['utils/Config'], function (config) {
 
   return {
     setGame: function(g) { game = g; },
+
     onMessage: function(c, v) {
       //if(c !== 'Pong') {
       //  console.log('Message [' + c + '] received with content [' + JSON.stringify(v) + '].');
@@ -26,6 +27,7 @@ define(['utils/Config'], function (config) {
           game.state.getCurrentState().onMessage(c, v);
       }
     },
+
     autoMove: function() {
       var idx = 0;
       var move = null;
@@ -49,6 +51,7 @@ define(['utils/Config'], function (config) {
         game.sendMove(move);
       }
     },
+
     sendMove: function(move) {
       game.movesMade += 1;
       if(game.timer.started === undefined) {
@@ -71,6 +74,7 @@ define(['utils/Config'], function (config) {
           throw 'Unknown move [' + move.moveType + '].';
       }
     },
+
     send: function(c, v) {
       if(config.offline) {
         game.offlineService.receive(c, v);

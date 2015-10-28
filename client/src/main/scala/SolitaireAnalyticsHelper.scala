@@ -20,7 +20,7 @@ trait SolitaireAnalyticsHelper extends SolitaireNetworkHelper {
     case None => newId
   }
 
-  if(newAccount) {
+  if (newAccount) {
     onInstall(System.currentTimeMillis)
   } else {
     onOpen(System.currentTimeMillis)

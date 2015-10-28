@@ -1,4 +1,4 @@
-@(ruleSet: Seq[models.rules.GameRules])(implicit session: Session, flash: Flash)
+@(ruleSet: Seq[models.rules.GameRules])(implicit session: Session, flash: Flash, identity: models.user.User)
 
 @import utils.json.GameRulesSerializers._
 

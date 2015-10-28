@@ -10,12 +10,14 @@ import utils.ApplicationContext
 @javax.inject.Singleton
 class ClientTraceController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def traceList(q: String, sortBy: String, page: Int) = withAdminSession("list") { implicit request =>
+    implicit val identity = request.identity
     for {
       (count, traces) <- ClientTraceService.searchTraces(q, sortBy, page)
     } yield Ok(views.html.admin.clientTrace.traceList(q, sortBy, count, page, traces))
   }
 
   def traceDetail(id: UUID) = withAdminSession("detail") { implicit request =>
+    implicit val identity = request.identity
     ClientTraceService.getTrace(id).map {
       case Some(trace) => Ok(views.html.admin.clientTrace.traceDetail(trace))
       case None => NotFound(s"User [$id] not found.")

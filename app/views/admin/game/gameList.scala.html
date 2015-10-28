@@ -1,4 +1,4 @@
-@(q: String, sortBy: String, count: Int, page: Int, games: Seq[models.history.GameHistory])(implicit session: Session, flash: Flash)
+@(q: String, sortBy: String, count: Int, page: Int, games: Seq[models.history.GameHistory])(implicit session: Session, flash: Flash, identity: models.user.User)
 @views.html.admin.layout.list(
   "game", "Games", "explore", count, page, games.size, q,
   searchAction = controllers.admin.routes.GameHistoryController.gameList(),

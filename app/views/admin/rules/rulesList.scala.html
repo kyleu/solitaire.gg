@@ -4,7 +4,7 @@
   count: Int,
   page: Int,
   statuses: Seq[(models.rules.GameRules, models.leaderboard.GameSeed.SeedCount, Boolean)]
-)(implicit session: Session, flash: Flash)
+)(implicit session: Session, flash: Flash, identity: models.user.User)
 @views.html.admin.layout.list(
   "game rule", "Game Rules", "explore", count, page, statuses.size, q,
   searchAction = controllers.admin.routes.RulesController.rulesList()

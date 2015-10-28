@@ -10,10 +10,12 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 @javax.inject.Singleton
 class TestController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def tests = withAdminSession("list") { implicit request =>
+    implicit val identity = request.identity
     Future.successful(Ok(views.html.admin.test.tests()))
   }
 
   def runTest(test: String) = withAdminSession("run." + test) { implicit request =>
+    implicit val identity = request.identity
     Future {
       val testTree = test match {
         case "all" => new AllTests(ctx.supervisor).all

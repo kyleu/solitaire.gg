@@ -13,6 +13,7 @@ import scala.concurrent.Future
 @javax.inject.Singleton
 class FeedbackController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def feedbackList(q: String, sortBy: String, page: Int) = withAdminSession("list") { implicit request =>
+    implicit val identity = request.identity
     for {
       count <- Database.query(UserFeedbackQueries.searchCount(q))
       feedbacks <- Database.query(UserFeedbackQueries.search(q, getOrderClause(sortBy), Some(page)))

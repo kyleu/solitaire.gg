@@ -9,7 +9,7 @@
   searchAction: Call,
   prevLink: Call = Call("GET", "/"),
   nextLink: Call = Call("GET", "/")
-)(table: Html)(implicit session: Session, flash: Flash)
+)(table: Html)(implicit session: Session, flash: Flash, identity: models.user.User)
 @views.html.admin.layout.base(s"${utils.Config.projectName} $modelProper", section) {
   <div class="panel panel-default">
     <div class="panel-body">

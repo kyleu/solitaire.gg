@@ -8,6 +8,7 @@ import utils.ApplicationContext
 @javax.inject.Singleton
 class RequestLogController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def requestList(q: String, sortBy: String, page: Int) = withAdminSession("list") { implicit request =>
+    implicit val identity = request.identity
     RequestHistoryService.searchRequests(q, getOrderClause(sortBy), page).map { result =>
       Ok(views.html.admin.request.requestList(q, sortBy, result._1, page, result._2))
     }

@@ -1,4 +1,4 @@
-@(files: Seq[(String, Int)])(implicit session: Session, flash: Flash)
+@(files: Seq[(String, Int)])(implicit session: Session, flash: Flash, identity: models.user.User)
 @views.html.admin.layout.base(s"${utils.Config.projectName} Logs", "explore") {
   <div class="panel panel-default">
     <div class="panel-body">

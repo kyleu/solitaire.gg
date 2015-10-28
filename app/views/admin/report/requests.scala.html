@@ -4,7 +4,7 @@
   pathCounts: Seq[(String, Int)],
   referrerCounts: Seq[(String, Int)],
   hostname: String
-)(implicit session: Session, flash: Flash)
+)(implicit session: Session, flash: Flash, identity: models.user.User)
 
 @renderTable(label: String, counts: Seq[(String, Int)]) = {
   <h5>Top 10 @{label}s</h5>
