@@ -53,12 +53,13 @@ object Dependencies {
   }
 
   object Akka {
-    val actor = "com.typesafe.akka" %% "akka-actor" % "2.3.14"
-    val cluster = "com.typesafe.akka" %% "akka-cluster" % "2.3.14"
-    val contrib = "com.typesafe.akka" %% "akka-contrib" % "2.3.14"
-    val persistence = "com.typesafe.akka" %% "akka-persistence-experimental" % "2.3.14"
-    val remoting = "com.typesafe.akka" %% "akka-remote" % "2.3.14"
-    val testkit = "com.typesafe.akka" %% "akka-testkit" % "2.3.14"
+    val actor = "com.typesafe.akka" %% "akka-actor" % "2.4.0"
+    val cluster = "com.typesafe.akka" %% "akka-cluster" % "2.4.0"
+    val contrib = "com.typesafe.akka" %% "akka-contrib" % "2.4.0"
+    val persistence = "com.typesafe.akka" %% "akka-persistence-experimental" % "2.4.0"
+    val remoting = "com.typesafe.akka" %% "akka-remote" % "2.4.0"
+    val log4j = "com.typesafe.akka" %% "akka-slf4j" % "2.4.0"
+    val testkit = "com.typesafe.akka" %% "akka-testkit" % "2.4.0"
   }
 
   object Utils {
