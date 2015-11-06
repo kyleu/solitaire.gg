@@ -14,7 +14,7 @@ import models.rules._
  */
 object Corona extends GameRules(
   id = "corona",
-  completed = false,
+  completed = true,
   title = "Corona",
   related = Seq("quadrangle"),
   links = Seq(

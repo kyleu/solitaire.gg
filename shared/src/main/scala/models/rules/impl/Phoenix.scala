@@ -17,7 +17,7 @@ import models.rules._
  */
 object Phoenix extends GameRules(
   id = "phoenix",
-  completed = false,
+  completed = true,
   title = "Phoenix",
   like = Some("arizona"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/phoenix.htm")),

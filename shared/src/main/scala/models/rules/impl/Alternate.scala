@@ -31,7 +31,7 @@ import models.rules._
  */
 object Alternate extends GameRules(
   id = "alternate",
-  completed = false,
+  completed = true,
   title = "Alternate",
   like = Some("sirtommy"),
   links = Seq(
@@ -39,7 +39,7 @@ object Alternate extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/alternate.php")
   ),
   description = "A variation of ^sirtommy^ where the foundations are built in alternate color, half upwards, half downwards.",
-  layout = "sff|t",
+  layout = "sff|.t",
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Manually,

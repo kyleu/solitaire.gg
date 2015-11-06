@@ -17,7 +17,7 @@ import models.rules._
  */
 object Quadrangle extends GameRules(
   id = "quadrangle",
-  completed = false,
+  completed = true,
   title = "Quadrangle",
   like = Some("corona"),
   links = Seq(
