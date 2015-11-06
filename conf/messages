@@ -51,6 +51,7 @@ options.background.color = Background Color
 # Feedback
 feedback.prompt = Feedback is always appreciated. Thanks for sharing yours.
 feedback.submit = Submit Feedback
+feedback.cancel = Cancel
 
 # Profile
 profile.set.username = Set username

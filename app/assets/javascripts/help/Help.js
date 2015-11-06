@@ -37,6 +37,7 @@ define(['ui/Modal'], function(Modal) {
     var postLoad = function() {
       var textarea = document.getElementById('feedback-input');
       var button = document.getElementById('feedback-submit');
+      var cancel = document.getElementById('feedback-cancel');
 
       textarea.onfocus = function() {
         console.log('off');
@@ -54,6 +55,11 @@ define(['ui/Modal'], function(Modal) {
         } else {
           Modal.show('POST', '/feedback', { 'feedback': text });
         }
+      };
+
+      cancel.onclick = function() {
+        Modal.hide();
+        return false;
       };
     };
     Modal.show('GET', '/feedback', {}, postLoad);

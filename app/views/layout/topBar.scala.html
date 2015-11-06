@@ -1,19 +1,20 @@
-@(user: models.user.User)(implicit messages: Messages)
+@(user: models.user.User, showProfileLink: Boolean)(implicit messages: Messages)
 <div id="menu-container" class="fixed">
   <div class="menu-left">
     <div id="btn-menu" title="@Messages("menu.title")" class="btn btn-@user.preferences.color menu invisible"></div>
-    <div id="btn-game-options" title="@Messages("menu.game.options")" class="game-options btn btn-@user.preferences.color invisible"></div>
-    <div id="btn-card-options" title="@Messages("menu.card.options")" class="card-options btn btn-@user.preferences.color invisible"></div>
   </div>
   <div class="menu-right">
-    @defining(if(user.preferences.avatar == "guest" || user.preferences.avatar == "default") {
-      routes.Assets.versioned("images/avatar/default.png")
+    @if(showProfileLink) {
+      @defining(if(user.preferences.avatar == "guest" || user.preferences.avatar == "default") {
+        routes.Assets.versioned("images/avatar/default.png")
+      } else {
+        user.preferences.avatar
+      }) { av =>
+        <a href="@controllers.routes.ProfileController.profile().url"><img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@av" /></a>
+      }
     } else {
-      user.preferences.avatar
-    }) { av =>
-      <a href="@controllers.routes.ProfileController.profile().url"><img title="Profile for [@user.username.getOrElse("Guest")]" class="avatar-small" src="@av" /></a>
+      &nbsp;
     }
-    <a id="profile-link" class="link" href="@controllers.routes.ProfileController.profile().url">@user.username.getOrElse(Messages("guest.name"))</a>
   </div>
   <div class="logo">
     <a href="@controllers.routes.HomeController.index().url">@utils.Config.projectName</a>
