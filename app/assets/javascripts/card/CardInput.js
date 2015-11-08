@@ -32,7 +32,7 @@ define(['card/Tweens'], function (Tweens) {
 
   function click(card) {
     if(canSelectCard(card)) {
-      card.pile.cardSelected(card);
+      card.game.sendMove({ moveType: 'select-card', cards: [card.id], src: card.pile.id });
     } else {
       var now = new Date().getTime();
       if(card.lastClicked !== undefined && (now - card.lastClicked) < doubleClickThresholdMs) {

@@ -4,6 +4,7 @@ define(['utils/Network'], function(Network) {
   var modalElement = document.getElementById('gameplay-modal');
   var backdropElement = document.getElementById('gameplay-modal-backdrop');
   var contentElement = document.getElementById('gameplay-modal-content');
+  var closeElement = document.getElementById('gameplay-modal-close');
   var loadingElement = document.getElementById('gameplay-modal-loading');
   var dataElement = document.getElementById('gameplay-modal-data');
 
@@ -37,11 +38,12 @@ define(['utils/Network'], function(Network) {
 
     hide: function() {
       modalElement.className = 'off';
-    },
-
-    isVisible: function() {
-      return modalElement.className === 'on';
     }
+  };
+
+  closeElement.onclick = function() {
+    Modal.hide();
+    return true;
   };
 
   backdropElement.onclick = function() {

@@ -54,21 +54,20 @@ define(['utils/Config'], function (config) {
 
     sendMove: function(move) {
       game.movesMade += 1;
-      if(game.timer.started === undefined) {
+      if(game.timer.started === undefined || game.timer.started === null) {
         game.timer.start();
       }
-
       switch(move.moveType) {
         case 'move-cards':
           game.send('MoveCards', { cards: move.cards, src: move.sourcePile, tgt: move.targetPile });
           break;
         case 'select-card':
           var selectedCard = game.cards[move.cards[0]];
-          game.cardSelected(selectedCard);
+          game.send('SelectCard', { card: selectedCard.id, pile: selectedCard.pile.id });
           break;
         case 'select-pile':
           var selectedPile = game.piles[move.sourcePile];
-          game.pileSelected(selectedPile);
+          game.send('SelectPile', { pile: selectedPile.id } );
           break;
         default:
           throw 'Unknown move [' + move.moveType + '].';

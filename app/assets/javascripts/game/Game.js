@@ -12,9 +12,6 @@ function (config, Playmat, gameInit, GameNetwork, Sandbox) {
   Game.prototype = Phaser.Game.prototype;
   Game.prototype.constructor = Game;
 
-  Game.prototype.cardSelected = function(card) { this.send('SelectCard', { card: card.id, pile: card.pile.id }); };
-  Game.prototype.pileSelected = function(pile) { this.send('SelectPile', { pile: pile.id } ); };
-
   Game.prototype.addCard = function(c) { this.cards[c.id] = c; };
   Game.prototype.addPile = function(p) { this.piles[p.id] = p; };
 

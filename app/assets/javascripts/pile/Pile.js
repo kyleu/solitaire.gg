@@ -34,7 +34,7 @@ define(['pile/PileLayout', 'pile/PileHelpers', 'pile/DragFromConstraints'], func
     this.empty.events.onInputUp.add(function() {
       this.game.options.hidePanels();
       if(canSelectPile(this)) {
-        this.pileSelected();
+        this.game.sendMove('select-pile', { pile: this.id });
       }
     }, this);
     this.empty.anchor.setTo(0.5, 0.5);
@@ -82,14 +82,6 @@ define(['pile/PileLayout', 'pile/PileHelpers', 'pile/DragFromConstraints'], func
     });
 
     PileLayout.cardRemoved(this, card);
-  };
-
-  Pile.prototype.pileSelected = function(pile, p) {
-    this.game.pileSelected(this, p);
-  };
-
-  Pile.prototype.cardSelected = function(card) {
-    this.game.cardSelected(card);
   };
 
   Pile.prototype.startDrag = PileHelpers.dragSlice;
