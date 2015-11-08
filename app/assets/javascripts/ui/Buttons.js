@@ -60,13 +60,14 @@ define([], function() {
 
     var hintLastClicked;
     buttons.hint.onclick = function() {
-      var now = new Date().getMilliseconds();
-      if(hintLastClicked === undefined || (now - hintLastClicked) > 5000) {
+      var now = new Date().getTime();
+      var timeSinceLastClick = now - hintLastClicked;
+      if(hintLastClicked === undefined || timeSinceLastClick > 5000) {
         game.autoMove();
-        buttons.hint.addClass('disabled');
+        buttons.hint.className += ' disabled';
         hintLastClicked = now;
         setTimeout(function() {
-          buttons.hint.removeClass('disabled');
+          buttons.hint.className = buttons.hint.className.replace(' disabled', '');
         }, 5000);
       } else {
         console.log('Too soon for a new hint.'); // TODO alert?
@@ -85,15 +86,21 @@ define([], function() {
       game.options.hidePanels();
       game.redeal(seed);
     }
-    buttons.specificSeed.onclick = specificSeed;
-    buttons.specificSeedResults.onclick = specificSeed;
+
+    if(buttons.specificSeed !== undefined && buttons.specificSeed !== null) {
+      buttons.specificSeed.onclick = specificSeed;
+      buttons.specificSeedResults.onclick = specificSeed;
+    }
 
     function winnableGame() {
       game.options.hidePanels();
       game.redeal(-1);
     }
-    buttons.winnableGame.onclick = winnableGame;
-    buttons.winnableGameResults.onclick = winnableGame;
+
+    if(buttons.winnableGame !== undefined && buttons.winnableGame !== null) {
+      buttons.winnableGame.onclick = winnableGame;
+      buttons.winnableGameResults.onclick = winnableGame;
+    }
 
     function chooseGame() {
       game.options.hidePanels();

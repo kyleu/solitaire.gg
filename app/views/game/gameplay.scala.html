@@ -15,8 +15,8 @@
   url = Some(if(offline) { "/offline/" + rulesId } else { "/play/" + rulesId }),
   description = Some(rulesDescription)
 ) {
-  @views.html.layout.topBar(user, !offline)
-  @views.html.game.menuPanel(user)
+  @views.html.layout.topBar(user, offline)
+  @views.html.game.menuPanel(user, offline)
   @views.html.game.gameOptionsPanel(user)
 
   @views.html.layout.bottomBar(user)

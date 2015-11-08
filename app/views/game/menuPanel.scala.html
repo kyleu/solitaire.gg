@@ -1,10 +1,12 @@
-@(user: models.user.User)(implicit messages: Messages)
+@(user: models.user.User, offline: Boolean)(implicit messages: Messages)
 <div id="gameplay-menu" class="display-none">
   <ul class="game-links">
-    <li><div id="btn-redeal" title="@Messages("menu.redeal.description")" class="menu-link">@Messages("menu.redeal")</div></li>
-    <li><div id="btn-winnable-game" title="@Messages("menu.winnable.game.description")" class="menu-link">@Messages("menu.winnable.game")</div></li>
-    <li><div id="btn-specific-seed" title="@Messages("menu.specific.seed.description")" class="menu-link">@Messages("menu.specific.seed")</div></li>
     <li><div id="btn-choose-game" title="@Messages("menu.different.game.description")" class="menu-link">@Messages("menu.different.game")</div></li>
+    <li><div id="btn-redeal" title="@Messages("menu.redeal.description")" class="menu-link">@Messages("menu.redeal")</div></li>
+    @if(!offline) {
+      <li><div id="btn-winnable-game" title="@Messages("menu.winnable.game.description")" class="menu-link">@Messages("menu.winnable.game")</div></li>
+      <li><div id="btn-specific-seed" title="@Messages("menu.specific.seed.description")" class="menu-link">@Messages("menu.specific.seed")</div></li>
+    }
     <li><div id="btn-give-up" title="@Messages("menu.give.up.description")" class="menu-link">@Messages("menu.give.up")</div></li>
   </ul>
 </div>
