@@ -21,7 +21,7 @@ define([], function() {
   }
 
   function show(result, stats) {
-    var timeSeconds = parseInt(result.durationSeconds) / 1000;
+    var timeSeconds = parseInt(result.durationSeconds);
     var time = Math.round(timeSeconds / 60) + 'm ' + Math.round(timeSeconds % 60) + 's';
 
     cells.score.innerText = result.score;

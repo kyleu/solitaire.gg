@@ -5,6 +5,7 @@ GET         /*path/                              controllers.HomeController.untr
 GET         /link                                controllers.HomeController.externalLink(url: String)
 GET         /robots.txt                          controllers.HomeController.robots
 GET         /ping                                controllers.HomeController.ping(timestamp: Long)
+GET         /privacy                             controllers.HomeController.privacy()
 
 # Feedback
 GET         /feedback                            controllers.FeedbackController.feedbackForm

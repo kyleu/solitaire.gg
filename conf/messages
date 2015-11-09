@@ -69,6 +69,7 @@ email.welcome.body.text = Welcome to Solitaire.gg! We're so glad you're here.
 # Help
 help.title = {0} Help
 help.about = This is {0}.
+help.privacy.policy = {0} Privacy Policy
 help.general = Help for {0}.
 help.play.now = Play Now
 help.also.known.as = Also Known As

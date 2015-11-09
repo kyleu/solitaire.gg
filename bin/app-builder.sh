@@ -25,7 +25,6 @@ cp -R "../public/images/" "build/web/assets/images"
 cp -R "build/templates/" "build/web/"
 
 cp "../target/web/rjs/build/javascripts/main.js" "build/web/assets/javascripts/main.js"
-cp "../target/web/rjs/build/javascripts/static.js" "build/web/assets/javascripts/static.js"
 cp "../target/web/rjs/build/client-opt.js" "build/web/assets/client-opt.js"
 cp "../target/web/less/main/stylesheets/solitaire.gg.min.css" "build/web/assets/stylesheets"
 

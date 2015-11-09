@@ -30,4 +30,8 @@ class HomeController @javax.inject.Inject() (override val ctx: ApplicationContex
   def ping(timestamp: Long) = withSession("ping") { implicit request =>
     Future.successful(Ok(timestamp.toString))
   }
+
+  def privacy() = withSession("privacy") { implicit request =>
+    Future.successful(Ok(views.html.privacy(request.identity)))
+  }
 }
