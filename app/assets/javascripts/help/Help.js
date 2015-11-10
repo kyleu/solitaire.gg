@@ -39,11 +39,6 @@ define(['ui/Modal'], function(Modal) {
       var button = document.getElementById('feedback-submit');
       var cancel = document.getElementById('feedback-cancel');
 
-      var url = '/feedback';
-      if(!online) {
-        url = 'http://solitaire.gg/feedback';
-      }
-
       textarea.onfocus = function() {
         console.log('off');
         g.keyboard.disable();
@@ -58,7 +53,11 @@ define(['ui/Modal'], function(Modal) {
         if(text === '') {
           alert('Please enter some feedback first.');
         } else {
-          Modal.show('POST', url, { 'feedback': text });
+          var postUrl = '/feedback';
+          if(!online) {
+            postUrl = 'http://solitaire.gg/feedback';
+          }
+          Modal.show('POST', postUrl, { 'feedback': text });
         }
       };
 
@@ -67,7 +66,11 @@ define(['ui/Modal'], function(Modal) {
         return false;
       };
     };
-    Modal.show('GET', url, {}, postLoad);
+    var getUrl = '/feedback';
+    if(!online) {
+      getUrl = 'http://solitaire.gg/feedback';
+    }
+    Modal.show('GET', getUrl, {}, postLoad);
   };
 
   return Help;
