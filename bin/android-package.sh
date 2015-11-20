@@ -16,7 +16,7 @@ cp build/cordova/platforms/android/build/outputs/apk/*.apk bin/android
 
 rm -f bin/android/Solitaire.gg.apk
 
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../conf/android-release-key.keystore bin/android/android-release-unsigned.apk solitaire.gg
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../conf/certs/android-release-key.keystore bin/android/android-release-unsigned.apk solitaire.gg
 
 zipalign -v 4 bin/android/android-release-unsigned.apk bin/android/Solitaire.gg.apk
 
