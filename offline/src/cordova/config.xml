@@ -7,7 +7,7 @@
 
   <!-- Whitelist -->
   <access origin="*://solitaire.gg/*" />
-  <access origin="*://solitaire.dev/*" />
+  <access origin="*://solitaire.local/*" />
 
   <!-- Display Preferences -->
   <preference name="Orientation" value="default" />

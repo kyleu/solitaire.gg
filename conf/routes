@@ -1,113 +1,49 @@
-GET         /                                    controllers.HomeController.index
+GET         /                                  controllers.HomeController.index
 
 # Utility
-GET         /*path/                              controllers.HomeController.untrail(path: String)
-GET         /link                                controllers.HomeController.externalLink(url: String)
-GET         /robots.txt                          controllers.HomeController.robots
-GET         /ping                                controllers.HomeController.ping(timestamp: Long)
-GET         /privacy                             controllers.HomeController.privacy()
+GET         /*path/                            controllers.HomeController.untrail(path: String)
+GET         /link                              controllers.HomeController.externalLink(url: String)
+GET         /robots.txt                        controllers.HomeController.robots
+GET         /ping                              controllers.HomeController.ping(timestamp: Long)
+GET         /privacy                           controllers.HomeController.privacy()
 
 # Feedback
-GET         /feedback                            controllers.FeedbackController.feedbackForm
-POST        /feedback                            controllers.FeedbackController.submitFeedback
+GET         /feedback                          controllers.FeedbackController.feedbackForm
+POST        /feedback                          controllers.FeedbackController.submitFeedback
 
 # Authentication
-GET         /signin                              controllers.AuthenticationController.signInForm
-GET         /signin/:provider                    controllers.AuthenticationController.authenticateSocial(provider)
-GET         /signout                             controllers.AuthenticationController.signOut
+GET         /signin                            controllers.AuthenticationController.signInForm
+GET         /signin/:provider                  controllers.AuthenticationController.authenticateSocial(provider)
+GET         /signout                           controllers.AuthenticationController.signOut
 
 # Profile
-GET         /profile                             controllers.ProfileController.profile
-GET         /options/set/:option/:value          controllers.ProfileController.setOption(option, value)
+GET         /profile                           controllers.ProfileController.profile
+GET         /options/set/:option/:value        controllers.ProfileController.setOption(option, value)
 
 # Game
-GET         /help/:id                            controllers.GameController.help(id, inline: Boolean ?= false)
-GET         /about                               controllers.HomeController.about()
+GET         /help/:id                          controllers.GameController.help(id, inline: Boolean ?= false)
+GET         /about                             controllers.HomeController.about()
 
-GET         /play/:rules                         controllers.GameController.newGame(rules)
-GET         /play/:rules/:seed                   controllers.GameController.newGameWithSeed(rules, seed: Int)
+GET         /play/:rules                       controllers.GameController.newGame(rules)
+GET         /play/:rules/:seed                 controllers.GameController.newGameWithSeed(rules, seed: Int)
 
-GET         /offline/:rules                      controllers.GameController.newOfflineGame(rules)
-GET         /offline/:rules/:seed                controllers.GameController.newOfflineGameWithSeed(rules, seed: Int)
+GET         /offline/:rules                    controllers.GameController.newOfflineGame(rules)
+GET         /offline/:rules/:seed              controllers.GameController.newOfflineGameWithSeed(rules, seed: Int)
 
-GET         /websocket                           controllers.WebsocketController.connect()
+GET         /websocket                         controllers.WebsocketController.connect()
 
 # Offline analytics
-POST        /a/install/:id                       controllers.AnalyticsController.install(id: java.util.UUID)
-POST        /a/open/:id                          controllers.AnalyticsController.open(id: java.util.UUID)
-POST        /a/game-start/:id                    controllers.AnalyticsController.gameStart(id: java.util.UUID)
-POST        /a/game-won/:id                      controllers.AnalyticsController.gameWon(id: java.util.UUID)
-POST        /a/game-resigned/:id                 controllers.AnalyticsController.gameResigned(id: java.util.UUID)
+POST        /a/install/:id                     controllers.AnalyticsController.install(id: java.util.UUID)
+POST        /a/open/:id                        controllers.AnalyticsController.open(id: java.util.UUID)
+POST        /a/game-start/:id                  controllers.AnalyticsController.gameStart(id: java.util.UUID)
+POST        /a/game-won/:id                    controllers.AnalyticsController.gameWon(id: java.util.UUID)
+POST        /a/game-resigned/:id               controllers.AnalyticsController.gameResigned(id: java.util.UUID)
 
 # Admin
-GET         /admin                               controllers.admin.AdminController.index()
-GET         /admin/enable                        controllers.admin.AdminController.enable()
-GET         /admin/unfinished                    controllers.admin.AdminController.unfinished()
-
-GET         /admin/sandbox                       controllers.admin.SandboxController.defaultSandbox()
-GET         /admin/sandbox/:key                  controllers.admin.SandboxController.sandbox(key)
-
-GET         /admin/wipe                          controllers.admin.AdminController.wipeSchema(key)
-
-GET         /admin/status                        controllers.admin.AdminController.status
-
-GET         /admin/notify                        controllers.admin.AdminController.notifyAllForm
-POST        /admin/notify/:recipient             controllers.admin.AdminController.notification(recipient)
-
-GET         /admin/trace/connection/:id          controllers.admin.TraceController.traceConnection(id: java.util.UUID)
-GET         /admin/trace/client/:id              controllers.admin.TraceController.traceClient(id: java.util.UUID)
-GET         /admin/trace/game/:id                controllers.admin.TraceController.traceGame(id: java.util.UUID)
-
-GET         /admin/observe/random                controllers.admin.AdminController.observeRandomGame()
-GET         /admin/observe/:id                   controllers.admin.AdminController.observeGameAsAdmin(id: java.util.UUID)
-GET         /admin/observe/:id/:as               controllers.admin.AdminController.observeGameAs(id: java.util.UUID, as: java.util.UUID)
-
-GET         /admin/test                          controllers.admin.TestController.tests
-GET         /admin/test/:test                    controllers.admin.TestController.runTest(test)
-
-GET         /admin/rules                         controllers.admin.RulesController.rulesList(q ?= "", sortBy ?= "title")
-GET         /admin/rules/data                    controllers.admin.RulesController.rulesData
-GET         /admin/rules/:id                     controllers.admin.RulesController.rulesDetail(id: String)
-GET         /admin/rules/:id/screenshot          controllers.admin.RulesController.rulesScreenshot(id: String)
-
-GET         /admin/users                         controllers.admin.UserController.userList(q ?= "", sortBy ?= "created", page: Int ?= 0)
-GET         /admin/users/:id                     controllers.admin.UserController.userDetail(id: java.util.UUID)
-GET         /admin/users/:id/make-admin          controllers.admin.UserController.makeAdmin(id: java.util.UUID)
-GET         /admin/users/:id/remove-admin        controllers.admin.UserController.removeAdmin(id: java.util.UUID)
-GET         /admin/users/:id/remove              controllers.admin.UserController.removeUser(id: java.util.UUID)
-
-GET         /admin/games                         controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created", page: Int ?= 0)
-GET         /admin/games/:id                     controllers.admin.GameHistoryController.gameDetail(id: java.util.UUID)
-GET         /admin/games/:id/remove              controllers.admin.GameHistoryController.removeGame(id: java.util.UUID)
-
-GET         /admin/traces                        controllers.admin.ClientTraceController.traceList(q ?= "", sortBy ?= "created", page: Int ?= 0)
-GET         /admin/traces/:id                    controllers.admin.ClientTraceController.traceDetail(id: java.util.UUID)
-GET         /admin/traces/:id/remove             controllers.admin.ClientTraceController.removeTrace(id: java.util.UUID)
-
-GET         /admin/analytics                     controllers.admin.AnalyticsEventController.eventList(q ?= "", sortBy ?= "created", page: Int ?= 0)
-GET         /admin/analytics/:id                 controllers.admin.AnalyticsEventController.eventDetail(id: java.util.UUID)
-GET         /admin/analytics/:id/remove          controllers.admin.AnalyticsEventController.removeEvent(id: java.util.UUID)
-
-GET         /admin/requests                      controllers.admin.RequestLogController.requestList(q ?= "", sortBy ?= "started", page: Int ?= 0)
-
-GET         /admin/feedback                      controllers.admin.FeedbackController.feedbackList(q ?= "", sortBy ?= "occurred", page: Int ?= 0)
-GET         /admin/feedback/:id/note             controllers.admin.FeedbackController.feedbackNoteForm(id: java.util.UUID)
-GET         /admin/feedback/:id/remove           controllers.admin.FeedbackController.removeFeedback(id: java.util.UUID)
-
-GET         /admin/logs                          controllers.admin.LogController.list()
-GET         /admin/logs/:name                    controllers.admin.LogController.view(name)
-
-GET         /admin/archive/list                  controllers.admin.DataArchiveController.list()
-GET         /admin/archive/process               controllers.admin.DataArchiveController.process()
-
-GET         /admin/report/trend                  controllers.admin.ReportController.trend()
-GET         /admin/report/requests               controllers.admin.ReportController.requests()
-GET         /admin/report/email                  controllers.admin.ReportController.email(d: org.joda.time.LocalDate ?= utils.DateUtils.today)
-GET         /admin/report/ad-hoc                 controllers.admin.AdHocQueryController.queryList(query: Option[java.util.UUID] ?= None, action: Option[String] ?= None)
-POST        /admin/report/ad-hoc/run             controllers.admin.AdHocQueryController.run()
+->          /admin                             admin.Routes
 
 # Assets
-GET         /favicon.ico                         controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.ico")
-GET         /apple-touch-icon.png                controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.png")
+GET         /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.ico")
+GET         /apple-touch-icon.png              controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.png")
 
-GET         /assets/*file                        controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file                      controllers.Assets.versioned(path="/public", file: Asset)

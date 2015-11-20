@@ -6,7 +6,7 @@ import models.rules.GameRulesSet
 
 object ScreenshotCreator {
   val outDir = Paths.get(".", "offline", "build", "screenshots")
-  val baseUrl = "http://solitaire.dev/play/"
+  val baseUrl = "http://solitaire.local/play/"
 
   if(!Files.exists(outDir)) {
     throw new IllegalStateException(s"Directory [$outDir] does not exist.")
