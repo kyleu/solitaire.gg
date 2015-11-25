@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="gg.solitaire" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="gg.solitaire" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Solitaire.gg</name>
   <description>Solitaire.gg</description>
   <author email="dev@solitaire.gg" href="http://solitaire.gg">The Solitaire.gg Team</author>
@@ -7,7 +7,6 @@
 
   <!-- Whitelist -->
   <access origin="*://solitaire.gg/*" />
-  <access origin="*://solitaire.local/*" />
 
   <!-- Display Preferences -->
   <preference name="Orientation" value="default" />
