@@ -36,7 +36,7 @@ object ExportStatic extends SandboxTask {
     implicit val flash = request.flash
     implicit val messages = mApi.preferred(request)
 
-    render("index.html", views.html.index(offlineUser).toString())
+    render("index.html", views.html.index(offlineUser, true).toString())
     render("gameplay.html", views.html.game.gameplay(
       title = "Solitaire.gg",
       user = offlineUser,

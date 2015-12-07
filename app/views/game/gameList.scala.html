@@ -1,11 +1,5 @@
 @()(implicit messages: Messages)
 <div class="module">
-  <div class="play-now">
-    <a href="@controllers.routes.GameController.newGame("klondike").url" role="button">@Messages("index.play.now")</a>
-  </div>
-</div>
-
-<div class="module">
   <div class="header">@Messages("index.games.popular")</div>
   <ul class="game-links">@for(r <- models.rules.GameRulesSet.favorites) {
     <li><a href="@controllers.routes.GameController.newGame(r.id).url">@r.title</a></li>}

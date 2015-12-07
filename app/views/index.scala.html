@@ -1,6 +1,26 @@
-@(user: models.user.User)(
+@(user: models.user.User, offline: Boolean)(
   implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
 )@layout.static(user = user, title = utils.Config.projectName, button = "about") {
+  <div class="module">
+    <div class="play-now">
+      <a href="@controllers.routes.GameController.newGame("klondike").url" role="button">@Messages("index.play.now")</a>
+    </div>
+  </div>
+
+  @if(!offline) {
+    <div id="platforms">
+      <div>
+        <a id="link-ios" href="https://itunes.apple.com/us/app/solitaire.gg/id1056989640"><img src="@routes.Assets.versioned("images/logo/ios.png")" /></a>
+        <a id="link-android" href="https://play.google.com/store/apps/details?id=gg.solitaire"><img src="@routes.Assets.versioned("images/logo/android.png")" /></a>
+      </div>
+      <div class="desktop-platforms">
+        <a class="link-platform" href="https://s3.amazonaws.com/solitaire.gg/windows/Solitaire.gg.zip">Download for Windows</a>
+        <a class="link-platform" href="https://s3.amazonaws.com/solitaire.gg/osx/Solitaire.gg.zip">Download for OS X</a>
+        <a class="link-platform" href="https://s3.amazonaws.com/solitaire.gg/linux/Solitaire.gg.x64.zip">Download for Linux x64</a>
+      </div>
+    </div>
+  }
+
   @utils.web.ViewUtils.cachedTemplate("gameList", views.html.game.gameList())
 
   @if(user.isAdmin) {
