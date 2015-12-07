@@ -1,7 +1,5 @@
 package services.game
 
-import java.util.UUID
-
 import utils.Logging
 import utils.metrics.InstrumentedActor
 

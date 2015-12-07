@@ -10,7 +10,6 @@ import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.history.GameHistoryService
-import utils.DateUtils
 
 import scala.concurrent.Future
 

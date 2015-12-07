@@ -8,7 +8,6 @@ define([
   };
 
   GameplayLoadHelper.prototype.load = function() {
-    this.game.stage.disableVisibilityChange = true;
   };
 
   GameplayLoadHelper.prototype.loadCardImages = function() {

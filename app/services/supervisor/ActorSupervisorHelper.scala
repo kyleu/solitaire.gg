@@ -3,6 +3,7 @@ package services.supervisor
 import java.util.UUID
 
 import akka.actor.ActorRef
+import models.ConnectionStopped
 import models.user.User
 import services.supervisor.ActorSupervisor.ConnectionRecord
 import utils.DateUtils
@@ -19,6 +20,9 @@ trait ActorSupervisorHelper extends InstrumentedActor with ActorSupervisorGameHe
     connections.remove(id) match {
       case Some(conn) =>
         connectionsCounter.dec()
+        conn.activeGame.foreach { gId =>
+          games(gId).actorRef ! ConnectionStopped(id)
+        }
         log.debug(s"Connection [$id] [${conn.actorRef.path}] stopped.")
       case None => log.warn(s"Connection [$id] stopped but is not registered.")
     }
