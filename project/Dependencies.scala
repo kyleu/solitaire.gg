@@ -59,11 +59,16 @@ object Dependencies {
     val persistence = "com.typesafe.akka" %% "akka-persistence-experimental" % "2.4.0"
     val remoting = "com.typesafe.akka" %% "akka-remote" % "2.4.0"
     val log4j = "com.typesafe.akka" %% "akka-slf4j" % "2.4.0"
-    val testkit = "com.typesafe.akka" %% "akka-testkit" % "2.4.0"
   }
 
   object Utils {
     val core = "com.twitter" %% "util-core" % "6.28.0"
     val collection = "com.twitter" %% "util-collection" % "6.28.0"
+  }
+
+  object Testing {
+    val testkit = "com.typesafe.akka" %% "akka-testkit" % "2.4.0"
+    val gatlingCore = "io.gatling" % "gatling-test-framework" % "2.1.7" % "test"
+    val gatlingCharts = "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.1.7" % "test"
   }
 }

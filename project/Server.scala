@@ -9,6 +9,7 @@ import com.typesafe.sbt.less.Import._
 import com.typesafe.sbt.rjs.Import._
 import com.typesafe.sbt.web.Import._
 import com.typesafe.sbt.web.SbtWeb
+
 import net.virtualvoid.sbt.graph.Plugin.graphSettings
 import play.routes.compiler.InjectedRoutesGenerator
 import play.sbt.routes.RoutesKeys.{ routesGenerator, routesImport }
@@ -22,12 +23,12 @@ object Server {
   private[this] val dependencies = {
     import Dependencies._
     Seq(
-      Cache.ehCache, Database.postgresAsync, Mail.mailer, Authentication.silhouette,
-      Play.playFilters, Play.playWs, Play.playTest,
+      Cache.ehCache, Database.postgresAsync, Mail.mailer,
+      Akka.actor, Akka.log4j, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */
+      Play.playFilters, Play.playWs, Play.playTest, Authentication.silhouette,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap, WebJars.underscore, WebJars.d3, WebJars.nvd3,
-      Akka.actor, Akka.testkit, Akka.log4j, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */
-      Utils.core, Utils.collection
+      Utils.core, Utils.collection, Testing.testkit, Testing.gatlingCore, Testing.gatlingCharts
     )
   }
 
@@ -74,9 +75,9 @@ object Server {
     id = Shared.projectId,
     base = file(".")
   )
+    .enablePlugins(GitVersioning)
     .enablePlugins(SbtWeb)
     .enablePlugins(play.sbt.PlayScala)
-    .enablePlugins(GitVersioning)
     .settings(Shared.commonSettings: _*)
     .settings(serverSettings: _*)
     .settings(defaultScalariformSettings: _*)

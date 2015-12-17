@@ -1,4 +1,5 @@
 import com.typesafe.sbt.{ GitBranchPrompt, GitVersioning }
+import io.gatling.sbt.GatlingPlugin
 import sbt._
 import sbt.Keys._
 
@@ -9,12 +10,17 @@ import pl.project13.scala.sbt.JmhPlugin
 object Utilities {
   lazy val benchmarking = (project in file("util/benchmarking")).settings(
     name := "benchmarking",
+    libraryDependencies ++= Seq(
+      Dependencies.Testing.gatlingCore,
+      Dependencies.Testing.gatlingCharts
+    ),
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
     .dependsOn(Shared.sharedJvm)
     .dependsOn(Server.server)
     .enablePlugins(GitVersioning)
     .enablePlugins(GitBranchPrompt)
+    .enablePlugins(GatlingPlugin)
     .enablePlugins(JmhPlugin)
     .settings(Shared.commonSettings: _*)
     .settings(graphSettings: _*)

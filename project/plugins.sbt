@@ -29,6 +29,8 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.8.4")
 // Benchmarking
 addSbtPlugin("pl.project13.scala" % "sbt-jmh" % "0.2.4")
 
+addSbtPlugin("io.gatling" % "gatling-sbt" % "2.1.7")
+
 // Code Quality
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.7.0") // scalastyle
 
