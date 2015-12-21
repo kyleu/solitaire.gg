@@ -34,7 +34,8 @@ trait ActorSupervisorGameHelper { this: ActorSupervisor =>
     s.map { finalSeed =>
       val started = DateUtils.now
       val pr = PlayerRecord(c.userId, c.name, Some(connectionId), Some(c.actorRef), preferences)
-      val actor = context.actorOf(Props(new GameService(id, rules, finalSeed, started, pr, testGame)), s"game:$id")
+      val callback: (String) => Unit = ctx.notificationService.alert(_, "#production-games")
+      val actor = context.actorOf(Props(new GameService(id, rules, finalSeed, started, pr, testGame, callback)), s"game:$id")
 
       c.activeGame = Some(id)
       games(id) = GameRecord(List((connectionId, c.name)), actor, started)

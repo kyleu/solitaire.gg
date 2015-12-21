@@ -9,7 +9,13 @@ import models.user.PlayerRecord
 import org.joda.time.LocalDateTime
 
 case class GameService(
-    id: UUID, rules: String, seed: Int, started: LocalDateTime, protected val player: PlayerRecord, protected val testGame: Boolean
+    id: UUID,
+    rules: String,
+    seed: Int,
+    started: LocalDateTime,
+    protected val player: PlayerRecord,
+    protected val testGame: Boolean,
+    notificationCallback: (String) => Unit
 ) extends GameServiceHelper {
   log.info(s"Started game [$rules] for user [${player.userId}: ${player.name}] with seed [$seed].")
 
@@ -42,6 +48,9 @@ case class GameService(
 
     player.connectionActor.foreach(_ ! GameStarted(id, self, started))
     player.connectionActor.foreach(_ ! GameJoined(id, gameState.view(player.userId), 0, possibleMoves(Some(player.userId)), player.preferences))
+
+    val msg = s"Game `$id` started with seed `$seed` using rules `$rules` for player `${player.userId} (${player.name})`."
+    notificationCallback(msg)
   }
 
   override def receiveRequest = {

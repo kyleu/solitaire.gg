@@ -34,6 +34,10 @@ class Config @javax.inject.Inject() (cnf: play.api.Configuration) {
   // Admin
   val adminEmail = cnf.getString("game.admin.email").getOrElse("admin@localhost")
 
+  // Notifications
+  val slackEnabled = cnf.getBoolean("slack.enabled").getOrElse(false)
+  val slackUrl = cnf.getString("slack.url").getOrElse("no_url_provided")
+
   // Metrics
   val jmxEnabled = cnf.getBoolean("metrics.jmx.enabled").getOrElse(false)
   val graphiteEnabled = cnf.getBoolean("metrics.graphite.enabled").getOrElse(false)

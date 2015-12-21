@@ -9,6 +9,7 @@ import play.api.inject.ApplicationLifecycle
 import play.api.libs.concurrent.Akka
 import play.api.mvc.{ Action, RequestHeader, Results }
 import play.api.routing.Router
+import services.audit.NotificationService
 import services.supervisor.ActorSupervisor
 
 object ApplicationContext {
@@ -29,7 +30,8 @@ class ApplicationContext @javax.inject.Inject() (
     val env: AuthenticationEnvironment,
     val config: utils.Config,
     val messagesApi: MessagesApi,
-    val lifecycle: ApplicationLifecycle
+    val lifecycle: ApplicationLifecycle,
+    val notificationService: NotificationService
 ) extends ApplicationContextHelper with Logging {
   start()
 
