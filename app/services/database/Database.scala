@@ -15,7 +15,7 @@ import scala.concurrent.{ Await, Future }
 
 object Database extends Logging with Instrumented with FutureMetrics {
   private[this] var factory: PostgreSQLConnectionFactory = _
-  private[this] val poolConfig = new PoolConfiguration(maxObjects = 50, maxIdle = 10, maxQueueSize = 1000)
+  private[this] val poolConfig = new PoolConfiguration(maxObjects = 20, maxIdle = 10, maxQueueSize = 1000)
   private[this] var pool: ConnectionPool[PostgreSQLConnection] = _
   private[this] def prependComment(name: String, sql: String) = s"/* $name */ $sql"
 
