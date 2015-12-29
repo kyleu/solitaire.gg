@@ -1,9 +1,10 @@
+import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
 import com.typesafe.sbt.{ GitBranchPrompt, GitVersioning }
 import sbt._
 import sbt.Keys._
 
 import net.virtualvoid.sbt.graph.Plugin.graphSettings
-import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, defaultScalariformSettings}
+import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, scalariformSettings}
 
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 
@@ -44,15 +45,19 @@ object Shared {
     .settings(commonSettings: _*)
     .settings(
       sourceMapsBase := baseDirectory.value / "..",
-      scalaJSStage in Global := FastOptStage
-    ).js
+      scalaJSStage in Global := FastOptStage,
+      scapegoatIgnoredFiles := Seq(".*"),
+      scapegoatVersion := "1.1.0"
+    )
+    .js
 
   lazy val sharedJvm = (project in file("shared")).settings(
+    scapegoatVersion := "1.1.0",
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
     .enablePlugins(GitVersioning)
     .enablePlugins(GitBranchPrompt)
     .settings(commonSettings: _*)
     .settings(graphSettings: _*)
-    .settings(defaultScalariformSettings: _*)
+    .settings(scalariformSettings: _*)
 }

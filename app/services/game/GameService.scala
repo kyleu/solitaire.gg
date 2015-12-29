@@ -7,6 +7,7 @@ import models.rules.GameRulesSet
 import models.rules.moves.InitialMoves
 import models.user.PlayerRecord
 import org.joda.time.LocalDateTime
+import utils.Config
 
 case class GameService(
     id: UUID,
@@ -49,7 +50,12 @@ case class GameService(
     player.connectionActor.foreach(_ ! GameStarted(id, self, started))
     player.connectionActor.foreach(_ ! GameJoined(id, gameState.view(player.userId), 0, possibleMoves(Some(player.userId)), player.preferences))
 
-    val msg = s"Game `$id` started with seed `$seed` using rules `$rules` for player `${player.userId} (${player.name})`."
+    val msg = s"Game `$id` started on `${Config.hostname}` with seed `$seed` using rules `$rules` for player `${player.userId} (${player.name})`."
+    notificationCallback(msg)
+  }
+
+  override def postStop() = {
+    val msg = s"Game completion report for `$id` with status `$status`: ${player.userId} (${player.name}) performed $moveCount moves."
     notificationCallback(msg)
   }
 

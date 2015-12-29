@@ -5,7 +5,7 @@ resolvers += "Typesafe repository" at "https://repo.typesafe.com/typesafe/releas
 resolvers += Resolver.url("jetbrains-bintray", url("http://dl.bintray.com/jetbrains/sbt-plugins/"))(Resolver.ivyStylePatterns)
 
 // The Play plugin
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.4.3")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.4.6")
 
 // SBT-Web plugins
 addSbtPlugin("com.typesafe.sbt" % "sbt-less" % "1.0.0")
@@ -34,7 +34,7 @@ addSbtPlugin("io.gatling" % "gatling-sbt" % "2.1.7")
 // Code Quality
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.7.0") // scalastyle
 
-addSbtPlugin("com.sksamuel.scapegoat" %% "sbt-scapegoat" % "1.0.0")
+addSbtPlugin("com.sksamuel.scapegoat" %% "sbt-scapegoat" % "1.0.3")
 
 addSbtPlugin("com.orrsella" % "sbt-stats" % "1.0.5") // stats
 

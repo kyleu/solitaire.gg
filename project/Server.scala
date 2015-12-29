@@ -1,6 +1,6 @@
 import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
 import com.typesafe.sbt.GitVersioning
-import com.typesafe.sbt.SbtScalariform.{ ScalariformKeys, defaultScalariformSettings }
+import com.typesafe.sbt.SbtScalariform.{ ScalariformKeys, scalariformSettings }
 import com.typesafe.sbt.digest.Import._
 import com.typesafe.sbt.gzip.Import._
 import com.typesafe.sbt.jse.JsEngineImport.JsEngineKeys
@@ -57,6 +57,7 @@ object Server {
     // Code Quality
     scapegoatIgnoredFiles := Seq(".*/Row.scala", ".*/Routes.scala", ".*/ReverseRoutes.scala", ".*/JavaScriptReverseRoutes.scala", ".*/*.template.scala"),
     scapegoatDisabledInspections := Seq("DuplicateImport"),
+    scapegoatVersion := "1.1.0",
     ScalariformKeys.preferences := ScalariformKeys.preferences.value,
 
     // SBT Output
@@ -80,7 +81,7 @@ object Server {
     .enablePlugins(play.sbt.PlayScala)
     .settings(Shared.commonSettings: _*)
     .settings(serverSettings: _*)
-    .settings(defaultScalariformSettings: _*)
+    .settings(scalariformSettings: _*)
     .settings(graphSettings: _*)
     .aggregate(projectToRef(Client.client))
     .aggregate(Shared.sharedJvm)

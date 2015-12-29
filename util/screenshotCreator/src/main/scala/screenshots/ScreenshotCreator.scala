@@ -8,7 +8,7 @@ object ScreenshotCreator {
   val outDir = Paths.get(".", "offline", "build", "screenshots")
   val baseUrl = "http://solitaire.local/play/"
 
-  if(!Files.exists(outDir)) {
+  if (!Files.exists(outDir)) {
     throw new IllegalStateException(s"Directory [$outDir] does not exist.")
   }
 
@@ -16,8 +16,8 @@ object ScreenshotCreator {
     val startMs = System.currentTimeMillis
     val set = GameRulesSet.all
     println(s"Creating [${set.size}] screenshots...")
-    for(rules <- set) {
-      if(hasAllScreenshots(rules.id)) {
+    for (rules <- set) {
+      if (hasAllScreenshots(rules.id)) {
         println(s"Skipping already-generated screenshots for [${rules.id}].")
       } else {
         processRules(rules.id)
