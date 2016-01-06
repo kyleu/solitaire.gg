@@ -4,7 +4,7 @@ import models._
 import models.game.GameState
 import models.rules.GameRules
 
-trait SolitaireVictoryHelper extends SolitaireStatisticsHelper with SolitaireAnalyticsHelper {
+trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit
   protected def getResult: GameResult
 

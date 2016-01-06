@@ -2,7 +2,7 @@ import models.game.GameState
 import models.user.{ CardPreferences, UserPreferences }
 import org.scalajs.dom
 
-trait SolitairePreferenceHelper {
+trait PreferenceHelper {
   protected[this] var preferences = readPreferences()
   setUi()
 

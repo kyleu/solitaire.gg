@@ -1,6 +1,6 @@
 import java.util.UUID
 
-import json.{ JsonUtils, JsonSerializers }
+import json.{ BaseSerializers, ResponseMessageSerializers, JsonUtils }
 import models.rules.GameRulesSet
 import models._
 import models.rules.moves.InitialMoves
@@ -25,6 +25,7 @@ object Solitaire extends js.JSApp with SolitaireHelper {
 
   @JSExport
   def receive(c: String, v: js.Dynamic): Unit = {
+    messageReceived(c, v)
     c match {
       case "GetVersion" => send(VersionResponse("0.0"))
       case "Ping" => send(Pong(JsonUtils.getLong(v.timestamp)))
@@ -53,8 +54,8 @@ object Solitaire extends js.JSApp with SolitaireHelper {
     if (registerUndoResponse) {
       undoHelper.registerResponse(rm)
     }
-    val json = JsonSerializers.write(rm)
-    sendCallback(JsonSerializers.write(json))
+    val json = ResponseMessageSerializers.write(rm)
+    sendCallback(BaseSerializers.write(json))
   }
 
   private[this] def handleStartGame(rules: String, seed: Option[Int]): Unit = {

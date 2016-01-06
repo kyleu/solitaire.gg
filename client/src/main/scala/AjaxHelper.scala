@@ -4,12 +4,12 @@ import org.scalajs.dom.ext.Ajax
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-object SolitaireNetworkHelper {
+object AjaxHelper {
   case class PendingEvent(id: UUID, path: String, body: String, failureCount: Int = 1)
 }
 
-trait SolitaireNetworkHelper {
-  import SolitaireNetworkHelper.PendingEvent
+trait AjaxHelper {
+  import AjaxHelper.PendingEvent
   import upickle.default._
 
   private[this] val st = org.scalajs.dom.localStorage

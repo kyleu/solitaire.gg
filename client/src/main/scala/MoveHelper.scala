@@ -2,7 +2,7 @@ import java.util.UUID
 
 import models._
 
-trait SolitaireMoveHelper extends SolitaireVictoryHelper {
+trait MoveHelper extends VictoryHelper {
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean): Unit
 
   protected def send(rms: Seq[ResponseMessage], registerUndoResponse: Boolean): Unit = if (rms.size == 1) {

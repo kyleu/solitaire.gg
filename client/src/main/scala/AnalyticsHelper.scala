@@ -2,7 +2,7 @@ import java.util.UUID
 
 import scala.scalajs.js.JSON
 
-trait SolitaireAnalyticsHelper extends SolitaireNetworkHelper {
+trait AnalyticsHelper extends AjaxHelper {
   private[this] val st = org.scalajs.dom.localStorage
 
   private[this] def newId = {

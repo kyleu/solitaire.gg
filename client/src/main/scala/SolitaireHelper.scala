@@ -1,4 +1,5 @@
 trait SolitaireHelper
   extends SolitaireUndoHelper
-  with SolitaireMoveHelper
-  with SolitairePreferenceHelper
+  with MoveHelper
+  with PreferenceHelper
+  with NetworkHelper

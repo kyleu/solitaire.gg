@@ -2,12 +2,12 @@ import models.user.UserStatistics
 import org.scalajs.dom
 import upickle.legacy._
 
-object SolitaireStatisticsHelper {
+object StatisticsHelper {
   lazy val defaultStats = UserStatistics(java.util.UUID.randomUUID(), 0L, UserStatistics.Games.empty)
 }
 
-trait SolitaireStatisticsHelper {
-  import SolitaireStatisticsHelper._
+trait StatisticsHelper {
+  import StatisticsHelper._
 
   private var statistics = readStatistics()
 
