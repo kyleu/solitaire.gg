@@ -13,6 +13,10 @@ import services.history.GameHistoryService
 
 import scala.concurrent.Future
 
+object GameServicePersistenceHelper {
+  val persistCardsAndMoves = false
+}
+
 trait GameServicePersistenceHelper { this: GameService =>
   private[this] var cardsPersisted = false
   private[this] var originalCards = Seq.empty[Card]
@@ -41,7 +45,7 @@ trait GameServicePersistenceHelper { this: GameService =>
       ))
       gameHistory.map(gh => GameHistoryService.setCounts(gh.id, gh.moves, gh.undos, gh.redos))
 
-      if (movesPersisted < moveCount) {
+      if (GameServicePersistenceHelper.persistCardsAndMoves && movesPersisted < moveCount) {
         val persist = if (cardsPersisted) {
           Future.successful(false)
         } else if (testGame) {

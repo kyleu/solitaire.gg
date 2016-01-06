@@ -46,7 +46,9 @@ trait GameServiceMessageHelper { this: GameService =>
     //log.debug("Handling [" + gr.message.getClass.getSimpleName.stripSuffix("$") + "] message from user [" + gr.userId + "] for game [" + id + "].")
     try {
       val time = DateUtils.now
-      gameMessages += ((gr.message, gr.userId, time))
+      if (GameServicePersistenceHelper.persistCardsAndMoves) {
+        gameMessages += ((gr.message, gr.userId, time))
+      }
       if (firstMoveMade.isEmpty) {
         firstMoveMade = Some(time)
         GameHistoryService.setFirstMove(id, time)

@@ -17,7 +17,7 @@ import models.rules._
  */
 object Russian extends GameRules(
   id = "russian",
-  completed = false,
+  completed = true,
   title = "Russian",
   related = Seq("doublerussian", "triplerussian", "ukrainian", "russiancell", "odessa", "tenacross"),
   links = Seq(

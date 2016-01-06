@@ -4,7 +4,7 @@ import models.rules.impl._
 
 // scalastyle:off
 object GameRulesSet {
-  lazy val favorites = Seq(Klondike, FreeCell, Pyramid, Canfield, Spider)
+  lazy val favorites = Seq(Klondike, KlondikeOneCard, FreeCell, Pyramid, Spider)
   lazy val completed = allSortedByTitle.filter(_._2.completed)
   lazy val unfinished = GameRulesSet.all.filterNot(r => completed.exists(_._2 == r))
 
