@@ -31,10 +31,12 @@ define(['pile/PileLayout', 'pile/PileHelpers', 'pile/DragFromConstraints'], func
 
     this.empty = new Phaser.Sprite(game, 0, 0, 'empty-piles', 0);
     this.empty.inputEnabled = true;
-    this.empty.events.onInputUp.add(function() {
-      this.game.options.hidePanels();
-      if(canSelectPile(this)) {
-        this.game.sendMove({ 'moveType': 'select-pile', sourcePile: this.id });
+    this.empty.events.onInputUp.add(function(e, p) {
+      if(p.button === 0 || p.button === null) {
+        this.game.options.hidePanels();
+        if(canSelectPile(this)) {
+          this.game.sendMove({'moveType': 'select-pile', sourcePile: this.id});
+        }
       }
     }, this);
     this.empty.anchor.setTo(0.5, 0.5);

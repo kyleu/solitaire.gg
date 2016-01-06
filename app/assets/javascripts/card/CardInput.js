@@ -50,6 +50,32 @@ define(['card/Tweens'], function (Tweens) {
     }
   }
 
+  function getAngle(card, xDelta) {
+    var now = card.game.time.now;
+    while(card.inertiaHistory.length > 0 && now - card.inertiaHistory[0][0] > 300) {
+      card.inertiaHistory.shift();
+    }
+    card.inertiaHistory.push([now, xDelta]);
+
+    var totalDelta = 0;
+    _.each(card.inertiaHistory, function(inertiaHist) {
+      totalDelta += inertiaHist[1];
+    });
+    var angle = totalDelta / card.inertiaHistory.length / 2;
+    var maxAngle = 15 + (3 * card.dragIndex);
+    if(angle > maxAngle) {
+      angle = maxAngle;
+    }
+    if(angle < -maxAngle) {
+      angle = -maxAngle;
+    }
+    if(card.anchorPointY > 0) {
+      angle = -angle;
+    }
+
+    return angle;
+  }
+
   return {
     startDrag: function(p, dragIndex, card) {
       card.dragging = true;
@@ -111,24 +137,8 @@ define(['card/Tweens'], function (Tweens) {
           var newX = ((card.game.input.x - card.game.playmat.x) / card.game.playmat.scale.x) - card.anchorPointX;
           var xDelta = newX - card.actualX;
 
-          var now = card.game.time.now;
-          while(card.inertiaHistory.length > 0 && now - card.inertiaHistory[0][0] > 300) {
-            card.inertiaHistory.shift();
-          }
-          card.inertiaHistory.push([now, xDelta]);
+          var angle = getAngle(card, xDelta);
 
-          var totalDelta = 0;
-          _.each(card.inertiaHistory, function(inertiaHist) {
-            totalDelta += inertiaHist[1];
-          });
-          var angle = totalDelta / card.inertiaHistory.length / 2;
-          var maxAngle = 15 + (3 * card.dragIndex);
-          if(angle > maxAngle) {
-            angle = maxAngle;
-          }
-          if(angle < -maxAngle) {
-            angle = -maxAngle;
-          }
           card.angle = angle;
           card.actualX = newX;
 

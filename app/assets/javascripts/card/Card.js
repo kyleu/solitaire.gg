@@ -52,9 +52,11 @@ define(['utils/Config', 'card/Rank', 'card/Suit', 'card/CardInput', 'card/Tweens
   };
 
   Card.prototype.onInputDown = function(e, p) {
-    if(!this.tweening) {
-      if(this.pile.canDragFrom(this)) {
-        this.pile.startDrag(this, p);
+    if(p.button === 0 || p.button === null) {
+      if(!this.tweening) {
+        if(this.pile.canDragFrom(this)) {
+          this.pile.startDrag(this, p);
+        }
       }
     }
   };
@@ -64,7 +66,9 @@ define(['utils/Config', 'card/Rank', 'card/Suit', 'card/CardInput', 'card/Tweens
   };
 
   Card.prototype.onInputUp = function(e, p) {
-    CardInput.onInputUp(e, p, this);
+    if(p.button === 0 || p.button === null) {
+      CardInput.onInputUp(e, p, this);
+    }
   };
 
   Card.prototype.cancelDrag = function() {
