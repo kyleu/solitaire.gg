@@ -1,10 +1,12 @@
 /* global define:false */
 /* global _:false */
-define(['utils/Config'], function (config) {
+define(['utils/Config', 'ui/Prompts'], function (config, Prompts) {
   'use strict';
 
   var game;
   var recentMoves = [];
+
+  var maxAcceptableLatency = 500;
 
   return {
     setGame: function(g) { game = g; },
@@ -15,7 +17,12 @@ define(['utils/Config'], function (config) {
       //}
       switch(c) {
         case 'Pong':
-          game.status.latency = (new Date().getTime() - v.timestamp);
+          var latency = (new Date().getTime() - v.timestamp);
+          game.status.latency = latency;
+          if(latency > maxAcceptableLatency) {
+            console.log('Latency: ' + latency + 'ms');
+            Prompts.offerOffline();
+          }
           break;
         case 'VersionResponse':
           game.status.version = v.version;

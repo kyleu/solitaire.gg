@@ -49,13 +49,12 @@ options.gamepad = Gamepad
 options.background.color = Background Color
 
 # Feedback
-feedback.prompt = Feedback is always appreciated. Thanks for sharing yours.
+feedback.prompt = Feedback is always appreciated. Thanks for sharing yours. Leave your email address if you'd like a reply.
 feedback.submit = Submit Feedback
 feedback.cancel = Cancel
 
 # Profile
 profile.set.username = Set username
-profile.create.account = Create a local account
 profile.sign.out = Sign Out
 profile.use.image.as.avatar = Use your {0} profile image as your avatar
 profile.connect.account = Connect your {0} account
