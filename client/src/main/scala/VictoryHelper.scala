@@ -1,11 +1,14 @@
 import java.util.UUID
 
+import json.{ BaseSerializers, ResponseMessageSerializers }
 import models._
 import models.game.GameState
 import models.rules.GameRules
 
 trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit
+  protected def sendJson(json: String)
+
   protected def getResult: GameResult
 
   protected def undoHelper: UndoHelper
@@ -30,7 +33,6 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
     }
     lastMoveMade = Some(System.currentTimeMillis)
     if (!checkWinCondition()) {
-      println()
       send(PossibleMoves(possibleMoves(), undoHelper.historyQueue.size, undoHelper.undoneQueue.size))
     }
   }
@@ -80,8 +82,11 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
       firstMoveMade.map(x => completed - x).getOrElse(0L), completed
     )
 
-    onGameWon(gameId.getOrElse(throw new IllegalStateException()), System.currentTimeMillis)
-    send(GameWon(gameId.getOrElse(throw new IllegalStateException()), firstForRules = false, firstForSeed = false, getResult, stats))
+    val msg = GameWon(gameId.getOrElse(throw new IllegalStateException()), firstForRules = false, firstForSeed = false, getResult, stats)
+    val json = ResponseMessageSerializers.write(msg)
+    val jsonString = BaseSerializers.write(json)
+    onGameWon(jsonString)
+    sendJson(jsonString)
   }
 
   protected def onLoss() = {
@@ -93,8 +98,10 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
       undoHelper.undoCount, undoHelper.redoCount,
       firstMoveMade.map(x => completed - x).getOrElse(0L), completed
     )
-
-    onGameResigned(gameId.getOrElse(throw new IllegalStateException()), System.currentTimeMillis)
-    send(GameLost(gameId.getOrElse(throw new IllegalStateException()), getResult, stats))
+    val msg = GameLost(gameId.getOrElse(throw new IllegalStateException()), getResult, stats)
+    val json = ResponseMessageSerializers.write(msg)
+    val jsonString = BaseSerializers.write(json)
+    onGameResigned(jsonString)
+    sendJson(jsonString)
   }
 }

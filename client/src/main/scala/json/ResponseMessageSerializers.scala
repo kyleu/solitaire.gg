@@ -21,6 +21,7 @@ object ResponseMessageSerializers {
         case cm: CardsMoved => writeJs(cm)
         case pm: PossibleMoves => writeJs(pm)
         case gw: GameWon => writeJs(gw)
+        case gw: GameLost => writeJs(gw)
         case ms: MessageSet => writeJs(ms)
         case _ => throw new IllegalStateException(s"Invalid Message [${rm.getClass.getName}].")
       }

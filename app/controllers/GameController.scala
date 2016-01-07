@@ -26,11 +26,11 @@ class GameController @javax.inject.Inject() (override val ctx: ApplicationContex
   }
 
   def newGame(rules: String) = withSession(s"new.$rules") { implicit request =>
-    startGame(rules)
+    startGame(rules, offline = true)
   }
 
   def newGameWithSeed(rules: String, seed: Int) = withSession(s"new.$rules.withseed") { implicit request =>
-    startGame(rules, seed = Some(seed))
+    startGame(rules, seed = Some(seed), offline = true)
   }
 
   def newOfflineGame(rules: String) = withSession(s"new.$rules.offline") { implicit request =>

@@ -1,4 +1,27 @@
 @()(implicit messages: Messages)
 <div id="game-prompts">
-  PROMPTS!
+  <div class="prompt-panel" id="prompt-panel-offline">
+    <div class="title">We seem to be having trouble communicating with the server.</div>
+    <p>
+      Solitaire.gg uses client/server communication to provide you the best experience possible.
+      If you're seeing lag issues or internet problems, you can play offline, which should correct the issue.
+    </p>
+    <div class="query">Would you like to play offline?</div>
+    <div class="choices">
+      <button class="choice-button" id="offline-no">Stay Online</button>
+      <button class="choice-button" id="offline-yes">Play Offline</button>
+    </div>
+  </div>
+  <div class="prompt-panel" id="prompt-panel-lowres">
+    <div class="title">We're having trouble running the game at peak performance.</div>
+    <p>
+      Solitaire.gg tries to be the best-looking card game on the market, but it looks like your device is having trouble keeping up.
+      We can load a smaller version of the game that should improve performance, at the cost of graphics quality and some animations.
+    </p>
+    <div class="query">Would you like to use lower quality graphics?</div>
+    <div class="choices">
+      <button class="choice-button" id="lowres-no"></button>
+      <button class="choice-button" id="lowres-yes"></button>
+    </div>
+  </div>
 </div>

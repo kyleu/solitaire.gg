@@ -13,7 +13,7 @@ object AnalyticsEvent {
     case object Open extends EventType("open")
     case object GameStart extends EventType("game-start")
     case object GameWon extends EventType("game-won")
-    case object GameResigned extends EventType("game-start")
+    case object GameResigned extends EventType("game-resigned")
     case class Unknown(override val id: String) extends EventType(id)
 
     val all = Seq(Install, Open, GameStart, GameWon, GameResigned)

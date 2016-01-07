@@ -43,6 +43,10 @@ class ReportController @javax.inject.Inject() (override val ctx: ApplicationCont
     } yield Ok(views.html.admin.report.requests(userCounts, userAgentCounts, pathCounts, referrerCounts, ctx.config.hostname))
   }
 
+  def analytics() = withAdminSession("analytics") { implicit request =>
+    Future.successful(Ok("Analytics report!"))
+  }
+
   private[this] def toChartData(metrics: Seq[(org.joda.time.LocalDate, Map[models.audit.DailyMetric.Metric, Long])]) = {
     def toChartDataValues(metric: DailyMetric.Metric) = metrics.map(x => x._1 -> x._2.getOrElse(metric, 0L)).reverse.map { row =>
       val ms = utils.DateUtils.toMillis(row._1.toLocalDateTime(org.joda.time.LocalTime.MIDNIGHT).plusDays(1))

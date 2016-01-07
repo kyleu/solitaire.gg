@@ -50,12 +50,17 @@ object Solitaire extends js.JSApp with SolitaireHelper {
     leaderboardRanking = 0
   )
 
-  protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit = {
+  protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true) = {
     if (registerUndoResponse) {
       undoHelper.registerResponse(rm)
     }
     val json = ResponseMessageSerializers.write(rm)
-    sendCallback(BaseSerializers.write(json))
+    val s = BaseSerializers.write(json)
+    sendJson(s)
+  }
+
+  protected def sendJson(json: String) = {
+    sendCallback(json)
   }
 
   private[this] def handleStartGame(rules: String, seed: Option[Int]): Unit = {

@@ -113,10 +113,12 @@ define([], function() {
     buttons.chooseGame.onclick = chooseGame;
     buttons.chooseGameResults.onclick = chooseGame;
 
-    buttons.giveUp.onclick = function() {
-      game.options.hidePanels();
-      game.resign();
-    };
+    if(buttons.giveUp !== undefined && buttons.giveUp !== null) {
+      buttons.giveUp.onclick = function() {
+        game.options.hidePanels();
+        game.resign();
+      };
+    }
 
     return buttons;
   };

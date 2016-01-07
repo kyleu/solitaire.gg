@@ -1,12 +1,24 @@
 /* global define:false */
 /* global _:false */
-define(['utils/Config', 'ui/Prompts'], function (config, Prompts) {
+define(['utils/Config'], function (config) {
   'use strict';
 
   var game;
   var recentMoves = [];
 
   var maxAcceptableLatency = 500;
+  var numLatePackets = 0;
+
+  function recordLatency(latency) {
+    game.status.latency = latency;
+    if(latency > maxAcceptableLatency) {
+      console.log('Latency: ' + latency + 'ms');
+      //if((numLatePackets % 10) === 0) {
+        //Prompts.offerOffline();
+      //}
+      numLatePackets += 1;
+    }
+  }
 
   return {
     setGame: function(g) { game = g; },
@@ -17,12 +29,7 @@ define(['utils/Config', 'ui/Prompts'], function (config, Prompts) {
       //}
       switch(c) {
         case 'Pong':
-          var latency = (new Date().getTime() - v.timestamp);
-          game.status.latency = latency;
-          if(latency > maxAcceptableLatency) {
-            console.log('Latency: ' + latency + 'ms');
-            Prompts.offerOffline();
-          }
+          recordLatency(new Date().getTime() - v.timestamp);
           break;
         case 'VersionResponse':
           game.status.version = v.version;

@@ -13,6 +13,10 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class AnalyticsController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+  def preflightCheck(path: String) = withSession("preflight") { request =>
+    Future.successful(Ok("OK").withHeaders("Access-Control-Allow-Origin" -> "*"))
+  }
+
   def install(device: UUID) = analyticsAction(EventType.Install, device, AnalyticsService.install)
   def open(device: UUID) = analyticsAction(EventType.Open, device, AnalyticsService.open)
   def gameStart(device: UUID) = analyticsAction(EventType.GameStart, device, AnalyticsService.gameStart)

@@ -40,11 +40,9 @@ define(['ui/Modal'], function(Modal) {
       var cancel = document.getElementById('feedback-cancel');
 
       textarea.onfocus = function() {
-        console.log('off');
         g.keyboard.disable();
       };
       textarea.onblur = function() {
-        console.log('on');
         g.keyboard.enable();
       };
 

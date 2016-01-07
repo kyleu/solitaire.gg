@@ -1,5 +1,8 @@
 import java.util.UUID
 
+import json.{ BaseSerializers, ResponseMessageSerializers }
+import models.GameWon
+
 import scala.scalajs.js.JSON
 
 trait AnalyticsHelper extends AjaxHelper {
@@ -49,14 +52,11 @@ trait AnalyticsHelper extends AjaxHelper {
     sendNetworkPost("/a/game-start/" + deviceId, JSON.stringify(event))
   }
 
-  protected[this] def onGameWon(gameId: UUID, occurred: Long) = {
-    val event = scalajs.js.Dynamic.literal(
-      "occurred" -> System.currentTimeMillis
-    )
-    sendNetworkPost("/a/game-won/" + deviceId, JSON.stringify(event))
+  protected[this] def onGameWon(resultJson: String) = {
+    sendNetworkPost("/a/game-won/" + deviceId, resultJson)
   }
 
-  protected[this] def onGameResigned(gameId: UUID, occurred: Long) = {
+  protected[this] def onGameResigned(resultJson: String) = {
     val event = scalajs.js.Dynamic.literal(
       "occurred" -> System.currentTimeMillis
     )

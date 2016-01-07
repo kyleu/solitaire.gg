@@ -43,7 +43,7 @@ define([
   };
 
   Playmat.prototype.lose = function() {
-    alert('You lose.');
+    //alert('You lose.');
   };
 
   return Playmat;
