@@ -19,8 +19,8 @@ trait AjaxHelper {
   }
 
   protected[this] def sendNetworkPost(path: String, body: String, savedId: Option[UUID] = None): Unit = {
-    val protocol = "http"
-    val domain = "solitaire.dev"
+    val protocol = "https"
+    val domain = "solitaire.gg"
     val url = protocol + "://" + domain + path
     val timeout = 20 * 1000 // ms
     val headers = Map(

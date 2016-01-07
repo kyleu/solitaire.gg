@@ -6,6 +6,7 @@ import models.audit.AnalyticsEvent
 import models.audit.AnalyticsEvent.EventType
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.{ JsValue, Json }
+import play.api.mvc.Action
 import services.audit.AnalyticsService
 import utils.ApplicationContext
 
@@ -13,7 +14,7 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class AnalyticsController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
-  def preflightCheck(path: String) = withSession("preflight") { request =>
+  def preflightCheck(path: String) = Action.async { request =>
     Future.successful(Ok("OK").withHeaders("Access-Control-Allow-Origin" -> "*"))
   }
 
