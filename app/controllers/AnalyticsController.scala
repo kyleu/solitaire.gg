@@ -8,7 +8,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.{ JsValue, Json }
 import play.api.mvc.Action
 import services.audit.AnalyticsService
-import utils.ApplicationContext
+import utils.{ Config, ApplicationContext }
 
 import scala.concurrent.Future
 
@@ -37,12 +37,22 @@ class AnalyticsController @javax.inject.Inject() (override val ctx: ApplicationC
   ) = withSession(eventType.id) { implicit request =>
     request.body.asJson match {
       case Some(json) => f(device, json).map { result =>
+        notify(eventType, result)
         val ret = Json.toJson(Map("status" -> "ok", "id" -> result.id.toString))
-        Ok(ret).withHeaders("Access-Control-Allow-Origin" -> "*/*")
+        Ok(ret)
       }
       case None =>
         val ret = Json.toJson(Map("status" -> "error", "message" -> "A valid json request body is required."))
-        Future.successful(BadRequest(ret).withHeaders("Access-Control-Allow-Origin" -> "*/*"))
+        Future.successful(BadRequest(ret))
     }
+  }
+
+  private[this] def notify(eventType: EventType, result: AnalyticsEvent) = eventType match {
+    case EventType.Install => ctx.notificationService.alert("Install!", "#production-installs")
+    case EventType.Open => ctx.notificationService.alert("Open!", "#production-installs")
+    case EventType.GameStart => ctx.notificationService.alert("Start!", "#production-games")
+    case EventType.GameWon => ctx.notificationService.alert("Won!", "#production-games")
+    case EventType.GameResigned => ctx.notificationService.alert("Resigned!", "#production-games")
+    case _ => log.warn(s"Unhandled event type [$eventType].")
   }
 }

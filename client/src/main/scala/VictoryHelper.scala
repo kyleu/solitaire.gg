@@ -7,7 +7,6 @@ import models.rules.GameRules
 
 trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit
-  protected def sendJson(json: String)
 
   protected def getResult: GameResult
 
@@ -73,6 +72,7 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
   }
 
   protected def onWin() = {
+    gameStatus = "won"
     val gs = gameState.getOrElse(throw new IllegalStateException())
     val completed = lastMoveMade.getOrElse(0L)
     val stats = registerGame(
@@ -83,13 +83,11 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
     )
 
     val msg = GameWon(gameId.getOrElse(throw new IllegalStateException()), firstForRules = false, firstForSeed = false, getResult, stats)
-    val json = ResponseMessageSerializers.write(msg)
-    val jsonString = BaseSerializers.write(json)
-    onGameWon(jsonString)
-    sendJson(jsonString)
+    onGameWon(msg, System.currentTimeMillis)
+    send(msg)
   }
 
-  protected def onLoss() = {
+  protected def onLoss() = if (gameStatus != "won") {
     val gs = gameState.getOrElse(throw new IllegalStateException())
     val completed = lastMoveMade.getOrElse(0L)
     val stats = registerGame(
@@ -99,9 +97,8 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
       firstMoveMade.map(x => completed - x).getOrElse(0L), completed
     )
     val msg = GameLost(gameId.getOrElse(throw new IllegalStateException()), getResult, stats)
-    val json = ResponseMessageSerializers.write(msg)
-    val jsonString = BaseSerializers.write(json)
-    onGameResigned(jsonString)
-    sendJson(jsonString)
+    gameStatus = "lost"
+    onGameResigned(msg, System.currentTimeMillis)
+    send(msg)
   }
 }

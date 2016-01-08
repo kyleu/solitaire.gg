@@ -76,6 +76,7 @@ object Solitaire extends js.JSApp with SolitaireHelper {
 
     val gs = gr.newGame(id, actualSeed, rules)
 
+    gameStatus = "started"
     gameState = Some(gs)
     gs.addPlayer(deviceId, "Offline Player", autoFlipOption = preferences.autoFlip)
     InitialMoves.performInitialMoves(gameRules.getOrElse(throw new IllegalStateException()), gs)

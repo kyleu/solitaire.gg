@@ -1,11 +1,16 @@
 import java.util.UUID
 
-import json.{ BaseSerializers, ResponseMessageSerializers }
-import models.GameWon
+import json.BaseSerializers
+import models.{ GameLost, GameWon }
+import models.analytics._
 
-import scala.scalajs.js.JSON
+import upickle.legacy._
+
+import json.BaseSerializers._
 
 trait AnalyticsHelper extends AjaxHelper {
+  protected var gameStatus = "init"
+
   private[this] val st = org.scalajs.dom.localStorage
 
   private[this] def newId = {
@@ -29,37 +34,49 @@ trait AnalyticsHelper extends AjaxHelper {
     onOpen(System.currentTimeMillis)
   }
 
+  private[this] def getDeviceInfo = Map.empty[String, String]
+
   protected[this] def onInstall(occurred: Long) = {
-    val event = scalajs.js.Dynamic.literal(
-      "occurred" -> System.currentTimeMillis
-    )
-    sendNetworkPost("/a/install/" + deviceId, JSON.stringify(event))
+    val event = InstallEvent(deviceId = deviceId, deviceInfo = getDeviceInfo, occurred = occurred)
+    val json = BaseSerializers.write(writeJs(event))
+    sendNetworkPost("/a/install/" + deviceId, json)
   }
 
   protected[this] def onOpen(occurred: Long) = {
-    val event = scalajs.js.Dynamic.literal(
-      "occurred" -> System.currentTimeMillis
-    )
-    sendNetworkPost("/a/open/" + deviceId, JSON.stringify(event))
+    val event = OpenEvent(deviceId = deviceId, deviceInfo = getDeviceInfo, occurred = occurred)
+    val json = BaseSerializers.write(writeJs(event))
+    sendNetworkPost("/a/open/" + deviceId, json)
   }
 
   protected[this] def onGameStart(gameId: UUID, rules: String, seed: Int, occurred: Long) = {
-    val event = scalajs.js.Dynamic.literal(
-      "gameId" -> gameId.toString,
-      "rules" -> rules,
-      "occurred" -> System.currentTimeMillis
+    val event = GameStartEvent(
+      deviceId = deviceId,
+      deviceInfo = getDeviceInfo,
+      gameId = gameId,
+      rules = rules,
+      occurred = occurred
     )
-    sendNetworkPost("/a/game-start/" + deviceId, JSON.stringify(event))
+    val json = BaseSerializers.write(writeJs(event))
+    sendNetworkPost("/a/game-start/" + deviceId, json)
   }
 
-  protected[this] def onGameWon(resultJson: String) = {
-    sendNetworkPost("/a/game-won/" + deviceId, resultJson)
+  protected[this] def onGameWon(message: GameWon, occurred: Long) = {
+    val event = GameWonEvent(
+      deviceId = deviceId,
+      message = message,
+      occurred = occurred
+    )
+    val json = BaseSerializers.write(writeJs(event))
+    sendNetworkPost("/a/game-won/" + deviceId, json)
   }
 
-  protected[this] def onGameResigned(resultJson: String) = {
-    val event = scalajs.js.Dynamic.literal(
-      "occurred" -> System.currentTimeMillis
+  protected[this] def onGameResigned(message: GameLost, occurred: Long) = {
+    val event = GameResignedEvent(
+      deviceId = deviceId,
+      message = message,
+      occurred = occurred
     )
-    sendNetworkPost("/a/game-resigned/" + deviceId, JSON.stringify(event))
+    val json = BaseSerializers.write(writeJs(event))
+    sendNetworkPost("/a/game-resigned/" + deviceId, json)
   }
 }
