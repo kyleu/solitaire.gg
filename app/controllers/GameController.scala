@@ -2,7 +2,7 @@ package controllers
 
 import models.rules.GameRulesSet
 import play.api.i18n.Messages
-import play.api.mvc.AnyContent
+import play.api.mvc.{ Request, AnyContent }
 import utils.{ Config, ApplicationContext }
 
 import scala.concurrent.Future
@@ -41,6 +41,11 @@ class GameController @javax.inject.Inject() (override val ctx: ApplicationContex
     startGame(rules, seed = Some(seed), offline = true)
   }
 
+  private[this] def shouldWorkaround(r: Request[AnyContent]) = {
+    val ua = r.headers.get("User-Agent").getOrElse("")
+    ua.contains("Chrome") && ua.contains("OS X")
+  }
+
   private[this] def startGame(
     rulesId: String,
     initialAction: Seq[String] = Seq("start"),
@@ -50,7 +55,9 @@ class GameController @javax.inject.Inject() (override val ctx: ApplicationContex
     Future.successful(GameRulesSet.allByIdWithAliases.get(rulesId) match {
       case Some(rules) =>
         val title = if (rulesId == rules.id) { rules.title } else { rules.aka(rulesId) }
-        Ok(views.html.game.gameplay(title, request.identity, rulesId, rules.description, initialAction, seed, offline, ctx.config.debug))
+        Ok(views.html.game.gameplay(
+          title, request.identity, rulesId, rules.description, initialAction, seed, offline, ctx.config.debug, shouldWorkaround(request)
+        ))
       case None => NotFound(Messages("invalid.game.rules", rulesId))
     })
   }
