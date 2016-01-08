@@ -15,7 +15,13 @@ import scala.concurrent.Future
 @javax.inject.Singleton
 class AnalyticsController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def preflightCheck(path: String) = Action.async { request =>
-    Future.successful(Ok("OK").withHeaders("Access-Control-Allow-Origin" -> "*"))
+    val origin = request.headers.get("Origin").getOrElse("http://solitaire.gg")
+    Future.successful(Ok("OK").withHeaders(
+      "Access-Control-Allow-Origin" -> origin,
+      "Access-Control-Allow-Credentials" -> "true",
+      "Access-Control-Allow-Methods" -> "POST",
+      "Access-Control-Allow-Headers" -> "Origin, X-Requested-With, Content-Type, Accept"
+    ))
   }
 
   def install(device: UUID) = analyticsAction(EventType.Install, device, AnalyticsService.install)

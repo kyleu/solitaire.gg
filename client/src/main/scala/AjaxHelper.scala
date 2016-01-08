@@ -18,10 +18,13 @@ trait AjaxHelper {
     sendNetworkPost(pe.path, pe.body, Some(pe.id))
   }
 
+  private[this] val urlBase = {
+    val loc = org.scalajs.dom.document.location
+    loc.protocol + "//" + loc.host
+  }
+
   protected[this] def sendNetworkPost(path: String, body: String, savedId: Option[UUID] = None): Unit = {
-    val protocol = "https"
-    val domain = "solitaire.gg"
-    val url = protocol + "://" + domain + path
+    val url = urlBase + path
     val timeout = 20 * 1000 // ms
     val headers = Map(
       "Content-Type" -> "application/json",
