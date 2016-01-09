@@ -14,6 +14,8 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class AnalyticsController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+  private[this] val notifications = new AnalyticsNotifications(ctx.notificationService)
+
   def preflightCheck(path: String) = Action.async { request =>
     val origin = request.headers.get("Origin").getOrElse("http://solitaire.gg")
     Future.successful(Ok("OK").withHeaders(
@@ -37,7 +39,7 @@ class AnalyticsController @javax.inject.Inject() (override val ctx: ApplicationC
   ) = withSession(eventType.id) { implicit request =>
     request.body.asJson match {
       case Some(json) => f(device, json).map { result =>
-        notify(eventType, result)
+        notifications.notify(eventType, result)
         val ret = Json.toJson(Map("status" -> "ok", "id" -> result.id.toString))
         Ok(ret)
       }
@@ -45,14 +47,5 @@ class AnalyticsController @javax.inject.Inject() (override val ctx: ApplicationC
         val ret = Json.toJson(Map("status" -> "error", "message" -> "A valid json request body is required."))
         Future.successful(BadRequest(ret))
     }
-  }
-
-  private[this] def notify(eventType: EventType, result: AnalyticsEvent) = eventType match {
-    case EventType.Install => ctx.notificationService.alert("Install!", "#production-installs")
-    case EventType.Open => ctx.notificationService.alert("Open!", "#production-installs")
-    case EventType.GameStart => ctx.notificationService.alert("Start!", "#production-games")
-    case EventType.GameWon => ctx.notificationService.alert("Won!", "#production-games")
-    case EventType.GameResigned => ctx.notificationService.alert("Resigned!", "#production-games")
-    case _ => log.warn(s"Unhandled event type [$eventType].")
   }
 }

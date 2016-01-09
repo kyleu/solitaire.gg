@@ -3,6 +3,7 @@ import java.util.UUID
 import json.BaseSerializers
 import models.{ GameLost, GameWon }
 import models.analytics._
+import upickle.Js
 
 import upickle.legacy._
 
@@ -60,13 +61,27 @@ trait AnalyticsHelper extends AjaxHelper {
     sendNetworkPost("/a/game-start/" + deviceId, json)
   }
 
+  private[this] def trimMessage(key: String, json: Js.Value) = json match {
+    case o: Js.Obj => Js.Obj(o.value.map { x =>
+      if (x._1 == key) {
+        x._1 -> (x._2 match {
+          case a: Js.Arr if a.value.length == 2 => a.value(1)
+          case _ => throw new IllegalStateException(x.toString)
+        })
+      } else {
+        x
+      }
+    }: _*)
+    case _ => throw new IllegalStateException(json.toString)
+  }
+
   protected[this] def onGameWon(message: GameWon, occurred: Long) = {
     val event = GameWonEvent(
       deviceId = deviceId,
       message = message,
       occurred = occurred
     )
-    val json = BaseSerializers.write(writeJs(event))
+    val json = BaseSerializers.write(trimMessage("message", writeJs(event)))
     sendNetworkPost("/a/game-won/" + deviceId, json)
   }
 
@@ -76,7 +91,7 @@ trait AnalyticsHelper extends AjaxHelper {
       message = message,
       occurred = occurred
     )
-    val json = BaseSerializers.write(writeJs(event))
+    val json = BaseSerializers.write(trimMessage("message", writeJs(event)))
     sendNetworkPost("/a/game-resigned/" + deviceId, json)
   }
 }
