@@ -4,6 +4,7 @@ import java.util.UUID
 
 case class OpenEvent(
   deviceId: UUID,
-  deviceInfo: Map[String, String],
+  sessionId: UUID,
+  deviceInfo: Map[String, Boolean],
   occurred: Long
 )

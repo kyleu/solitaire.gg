@@ -8,7 +8,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.{ JsValue, Json }
 import play.api.mvc.Action
 import services.audit.AnalyticsService
-import utils.{ Config, ApplicationContext }
+import utils.ApplicationContext
 
 import scala.concurrent.Future
 

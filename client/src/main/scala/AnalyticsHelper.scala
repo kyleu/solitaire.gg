@@ -12,6 +12,8 @@ import json.BaseSerializers._
 trait AnalyticsHelper extends AjaxHelper {
   protected var gameStatus = "init"
 
+  private[this] val sessionId = UUID.randomUUID
+
   private[this] val st = org.scalajs.dom.localStorage
 
   private[this] def newId = {
@@ -35,16 +37,14 @@ trait AnalyticsHelper extends AjaxHelper {
     onOpen(System.currentTimeMillis)
   }
 
-  private[this] def getDeviceInfo = Map.empty[String, String]
-
   protected[this] def onInstall(occurred: Long) = {
-    val event = InstallEvent(deviceId = deviceId, deviceInfo = getDeviceInfo, occurred = occurred)
+    val event = InstallEvent(deviceId = deviceId, sessionId = sessionId, deviceInfo = deviceInfo, occurred = occurred)
     val json = BaseSerializers.write(writeJs(event))
     sendNetworkPost("/a/install/" + deviceId, json)
   }
 
   protected[this] def onOpen(occurred: Long) = {
-    val event = OpenEvent(deviceId = deviceId, deviceInfo = getDeviceInfo, occurred = occurred)
+    val event = OpenEvent(deviceId = deviceId, sessionId = sessionId, deviceInfo = deviceInfo, occurred = occurred)
     val json = BaseSerializers.write(writeJs(event))
     sendNetworkPost("/a/open/" + deviceId, json)
   }
@@ -52,7 +52,7 @@ trait AnalyticsHelper extends AjaxHelper {
   protected[this] def onGameStart(gameId: UUID, rules: String, seed: Int, occurred: Long) = {
     val event = GameStartEvent(
       deviceId = deviceId,
-      deviceInfo = getDeviceInfo,
+      sessionId = sessionId,
       gameId = gameId,
       rules = rules,
       occurred = occurred
@@ -78,6 +78,7 @@ trait AnalyticsHelper extends AjaxHelper {
   protected[this] def onGameWon(message: GameWon, occurred: Long) = {
     val event = GameWonEvent(
       deviceId = deviceId,
+      sessionId = sessionId,
       message = message,
       occurred = occurred
     )
@@ -88,10 +89,24 @@ trait AnalyticsHelper extends AjaxHelper {
   protected[this] def onGameResigned(message: GameLost, occurred: Long) = {
     val event = GameResignedEvent(
       deviceId = deviceId,
+      sessionId = sessionId,
       message = message,
       occurred = occurred
     )
     val json = BaseSerializers.write(trimMessage("message", writeJs(event)))
     sendNetworkPost("/a/game-resigned/" + deviceId, json)
+  }
+
+  private[this] lazy val deviceInfo = {
+    import scala.scalajs.js.Dynamic.global
+
+    val device = global.Phaser.Device.asInstanceOf[scalajs.js.Dictionary[Any]]
+
+    device.keys.flatMap { k =>
+      device.get(k) match {
+        case Some(x: Boolean) => Some(k -> x)
+        case _ => None
+      }
+    }.toMap
   }
 }

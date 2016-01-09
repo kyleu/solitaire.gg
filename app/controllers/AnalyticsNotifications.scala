@@ -2,18 +2,23 @@ package controllers
 
 import models.audit.AnalyticsEvent
 import models.audit.AnalyticsEvent.EventType
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.JsObject
 import services.audit.NotificationService
 import utils.Logging
 
+import scala.concurrent.Future
+
 class AnalyticsNotifications(notificationService: NotificationService) extends Logging {
-  def notify(eventType: EventType, result: AnalyticsEvent) = eventType match {
-    case EventType.Install => notificationService.alert(installMessage(result), "#production-installs")
-    case EventType.Open => notificationService.alert(openMessage(result), "#production-installs")
-    case EventType.GameStart => notificationService.alert(gameStartMessage(result), "#production-games")
-    case EventType.GameWon => notificationService.alert(gameWonMessage(result), "#production-games")
-    case EventType.GameResigned => notificationService.alert(gameResignedMessage(result), "#production-games")
-    case _ => log.warn(s"Unhandled event type [$eventType].")
+  def notify(eventType: EventType, result: AnalyticsEvent) = Future {
+    eventType match {
+      case EventType.Install => notificationService.alert(installMessage(result), "#production-installs")
+      case EventType.Open => notificationService.alert(openMessage(result), "#production-installs")
+      case EventType.GameStart => notificationService.alert(gameStartMessage(result), "#production-games")
+      case EventType.GameWon => notificationService.alert(gameWonMessage(result), "#production-games")
+      case EventType.GameResigned => notificationService.alert(gameResignedMessage(result), "#production-games")
+      case _ => log.warn(s"Unhandled event type [$eventType].")
+    }
   }
 
   def installMessage(result: AnalyticsEvent) = {

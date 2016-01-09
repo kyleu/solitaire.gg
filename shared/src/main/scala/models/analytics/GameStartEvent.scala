@@ -4,7 +4,7 @@ import java.util.UUID
 
 case class GameStartEvent(
   deviceId: UUID,
-  deviceInfo: Map[String, String],
+  sessionId: UUID,
   gameId: UUID,
   rules: String,
   occurred: Long

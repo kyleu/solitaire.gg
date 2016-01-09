@@ -1,5 +1,4 @@
 /* global requirejs:false */
-
 requirejs.config({
   baseUrl: '/assets/javascripts',
   paths: {

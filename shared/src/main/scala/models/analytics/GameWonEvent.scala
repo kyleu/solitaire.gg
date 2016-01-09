@@ -6,6 +6,7 @@ import models.GameWon
 
 case class GameWonEvent(
   deviceId: UUID,
+  sessionId: UUID,
   message: GameWon,
   occurred: Long
 )
