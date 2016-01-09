@@ -3,9 +3,9 @@ package models.queries.audit
 import java.util.UUID
 
 import models.audit.AnalyticsEvent
-import models.database.Row
+import models.database.{ Query, Row }
 import models.queries.BaseQueries
-import org.joda.time.LocalDateTime
+import org.joda.time.{ LocalDate, LocalDateTime }
 import play.api.libs.json.{ JsObject, Json }
 
 object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
@@ -18,6 +18,16 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
   def removeById(id: UUID) = RemoveById(Seq(id))
   val search = Search
   def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
+
+  case object GetDateCounts extends Query[Seq[(LocalDate, Int)]] {
+    override def sql = s"""
+      select date_trunc('day', created) as d, count(*) as c
+      from $tableName
+      group by date_trunc('day', created)
+      order by date_trunc('day', created) desc
+    """
+    override def reduce(rows: Iterator[Row]) = rows.map(r => r.as[LocalDateTime]("d").toLocalDate -> r.as[Long]("c").toInt).toSeq
+  }
 
   override protected def fromRow(row: Row) = {
     val id = row.as[UUID]("id")

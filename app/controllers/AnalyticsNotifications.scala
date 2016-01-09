@@ -2,7 +2,7 @@ package controllers
 
 import models.audit.AnalyticsEvent
 import models.audit.AnalyticsEvent.EventType
-import play.api.libs.json.{ JsValue, JsObject }
+import play.api.libs.json.JsObject
 import services.audit.NotificationService
 import utils.Logging
 
@@ -27,7 +27,7 @@ class AnalyticsNotifications(notificationService: NotificationService) extends L
   def gameStartMessage(result: AnalyticsEvent) = {
     val gameId = (result.data \ "gameId").asOpt[String].getOrElse("?")
     val rules = (result.data \ "rules").asOpt[String].getOrElse("?")
-    s"Started [$rules] game [$gameId] with for device [${result.device}]."
+    s"Started [$rules] game [$gameId] for device [${result.device}]."
   }
 
   def gameWonMessage(result: AnalyticsEvent) = {
