@@ -3,6 +3,11 @@ import java.util.UUID
 import models._
 
 trait MoveHelper extends VictoryHelper {
+  private[this] val requests = collection.mutable.ArrayBuffer.empty[Seq[String]]
+  protected def registerRequest(stack: String*) = requests += stack
+  protected def clearRequests() = requests.clear()
+  override protected def getRequests = requests.toSeq
+
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean): Unit
 
   protected def send(rms: Seq[ResponseMessage], registerUndoResponse: Boolean): Unit = if (rms.size == 1) {
@@ -23,6 +28,7 @@ trait MoveHelper extends VictoryHelper {
       throw new IllegalStateException(s"SelectCard for game [$gameId]: Card [${card.toString}] is not part of the [$pileId] pile.")
     }
     if (pile.canSelectCard(card, gs)) {
+      registerRequest("select-card", pileId, cardId.toString)
       val messages = pile.onSelectCard(card, gs)
       send(messages, registerUndoResponse = true)
       if (messages.size != 1 || messages.headOption.map {
@@ -40,9 +46,12 @@ trait MoveHelper extends VictoryHelper {
     if (pile.cards.nonEmpty) {
       throw new IllegalStateException(s"SelectPile [$pileId] called on a non-empty deck.")
     }
-    val messages = if (pile.canSelectPile(gs)) { pile.onSelectPile(gs) } else { Nil }
-    send(messages, registerUndoResponse = true)
-    registerMove()
+    if (pile.canSelectPile(gs)) {
+      registerRequest("select-pile", pileId)
+      val messages = pile.onSelectPile(gs)
+      send(messages, registerUndoResponse = true)
+      registerMove()
+    }
   }
 
   protected[this] def handleMoveCards(userId: UUID, cardIds: Seq[UUID], source: String, target: String) = {
@@ -57,6 +66,7 @@ trait MoveHelper extends VictoryHelper {
     }
     if (sourcePile.canDragFrom(cards, gs)) {
       if (targetPile.canDragTo(sourcePile, cards, gs)) {
+        registerRequest("move-cards", source, target) ++ cardIds.map(_.toString)
         val messages = targetPile.onDragTo(sourcePile, cards, gs)
         send(messages, registerUndoResponse = true)
         registerMove()

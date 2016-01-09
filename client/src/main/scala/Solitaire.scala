@@ -10,7 +10,7 @@ import scala.scalajs.js.annotation.JSExport
 
 import scala.util.Random
 
-object Solitaire extends js.JSApp with SolitaireHelper {
+object Solitaire extends js.JSApp with SolitaireUndoHelper with PreferenceHelper with NetworkHelper {
   override def main(): Unit = {}
 
   private[this] val rng = new Random()
@@ -24,21 +24,18 @@ object Solitaire extends js.JSApp with SolitaireHelper {
   }
 
   @JSExport
-  def receive(c: String, v: js.Dynamic): Unit = {
-    messageReceived(c, v)
-    c match {
-      case "GetVersion" => send(VersionResponse("0.0"))
-      case "Ping" => send(Pong(JsonUtils.getLong(v.timestamp)))
-      case "StartGame" => handleStartGame(v.rules.toString, JsonUtils.getIntOption(v.seed))
-      case "SelectCard" => handleSelectCard(deviceId, UUID.fromString(v.card.toString), v.pile.toString)
-      case "SelectPile" => handleSelectPile(deviceId, v.pile.toString)
-      case "MoveCards" => handleMoveCards(deviceId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString)
-      case "Undo" => handleUndo()
-      case "Redo" => handleRedo()
-      case "SetPreference" => handleSetPreference(v.name.toString, v.value.toString, gameState.getOrElse(throw new IllegalStateException()))
-      case "DebugInfo" => handleDebugInfo(v.data.toString)
-      case _ => throw new IllegalStateException(s"Invalid message [$c].")
-    }
+  def receive(c: String, v: js.Dynamic): Unit = c match {
+    case "GetVersion" => send(VersionResponse("0.0"))
+    case "Ping" => send(Pong(JsonUtils.getLong(v.timestamp)))
+    case "StartGame" => handleStartGame(v.rules.toString, JsonUtils.getIntOption(v.seed))
+    case "SelectCard" => handleSelectCard(deviceId, UUID.fromString(v.card.toString), v.pile.toString)
+    case "SelectPile" => handleSelectPile(deviceId, v.pile.toString)
+    case "MoveCards" => handleMoveCards(deviceId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString)
+    case "Undo" => handleUndo()
+    case "Redo" => handleRedo()
+    case "SetPreference" => handleSetPreference(v.name.toString, v.value.toString, gameState.getOrElse(throw new IllegalStateException()))
+    case "DebugInfo" => handleDebugInfo(v.data.toString)
+    case _ => throw new IllegalStateException(s"Invalid message [$c].")
   }
 
   protected[this] def getResult = GameResult(
@@ -65,6 +62,7 @@ object Solitaire extends js.JSApp with SolitaireHelper {
 
   private[this] def handleStartGame(rules: String, seed: Option[Int]): Unit = {
     gameState.foreach(x => onLoss())
+    clearRequests()
 
     val id = UUID.randomUUID
     gameId = Some(id)

@@ -11,17 +11,15 @@ import json.BaseSerializers._
 
 trait AnalyticsHelper extends AjaxHelper {
   protected var gameStatus = "init"
+  protected def getRequests: Seq[Seq[String]]
 
   private[this] val sessionId = UUID.randomUUID
-
   private[this] val st = org.scalajs.dom.localStorage
-
   private[this] def newId = {
     val id = UUID.randomUUID
     st.setItem("device", id.toString)
     id -> true
   }
-
   protected[this] val (deviceId, newAccount) = Option(st.getItem("device")) match {
     case Some(deviceIdString) => try {
       UUID.fromString(deviceIdString) -> false
@@ -80,6 +78,7 @@ trait AnalyticsHelper extends AjaxHelper {
       deviceId = deviceId,
       sessionId = sessionId,
       message = message,
+      requests = getRequests,
       occurred = occurred
     )
     val json = BaseSerializers.write(trimMessage("message", writeJs(event)))
@@ -91,6 +90,7 @@ trait AnalyticsHelper extends AjaxHelper {
       deviceId = deviceId,
       sessionId = sessionId,
       message = message,
+      requests = getRequests,
       occurred = occurred
     )
     val json = BaseSerializers.write(trimMessage("message", writeJs(event)))

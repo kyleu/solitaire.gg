@@ -30,11 +30,6 @@ trait NetworkHelper {
 
   setTimeout(1000)(sendPing())
 
-  protected[this] def messageReceived(c: String, v: js.Dynamic) = this.socket match {
-    case Some(sock) => sock.send(s"""{"c": "$c", "v": ${JSON.stringify(v)} }""")
-    case None => // noop, used to be throw new IllegalStateException()
-  }
-
   protected[this] def send(rm: ResponseMessage): Unit = {
     val json = ResponseMessageSerializers.write(rm)
     val s = BaseSerializers.write(json)
