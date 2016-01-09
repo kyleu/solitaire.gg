@@ -18,7 +18,7 @@ import models.rules._
  */
 object Linus extends GameRules(
   id = "linus",
-  completed = false,
+  completed = true,
   title = "Linus",
   like = Some("labellelucie"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/linus.htm")),

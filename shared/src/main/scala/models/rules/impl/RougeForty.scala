@@ -35,12 +35,12 @@ import models.rules._
  */
 object RougeForty extends GameRules(
   id = "rougeforty",
-  completed = false,
+  completed = true,
   title = "Rouge Forty",
   like = Some("rougeetnoir"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rouge_forty.htm")),
   description = "A variation of ^rougeetnoir^ with a rectangular tableau. Invented by Thomas Warfield.",
-  layout = "sfff|t",
+  layout = "s:f:f:f|:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

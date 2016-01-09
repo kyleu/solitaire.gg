@@ -13,7 +13,7 @@ import models.rules._
  */
 object Alternations extends GameRules(
   id = "alternations",
-  completed = false,
+  completed = true,
   title = "Alternations",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/alternations.htm"),
@@ -24,7 +24,7 @@ object Alternations extends GameRules(
   ),
   description = "A variation of ^interchange^ that has the same 7 by 7 tableau with alternate cards face down, but where you build in alternate col" +
     "ors.",
-  layout = "swf|t",
+  layout = "swf|::t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

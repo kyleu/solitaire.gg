@@ -15,14 +15,14 @@ import models.rules._
  */
 object ThreeCell extends GameRules(
   id = "threecell",
-  completed = false,
+  completed = true,
   title = "ThreeCell",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_cells.htm"),
     Link("Swoop Software", "www.swoopsoftware.com/solitaire_rules/threecell.html")
   ),
   description = "A variation of ^freecell^ with only three cells.",
-  layout = "f|c|t",
+  layout = "f:c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

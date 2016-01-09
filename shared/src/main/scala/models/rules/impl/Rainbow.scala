@@ -22,7 +22,7 @@ import models.rules._
  */
 object Rainbow extends GameRules(
   id = "rainbow",
-  completed = false,
+  completed = true,
   title = "Rainbow",
   like = Some("canfield"),
   related = Seq("kansas"),
@@ -36,7 +36,7 @@ object Rainbow extends GameRules(
     Link("Swoop Solitaire", "www.swoopsoftware.com/solitaire_rules/rainbow.html")
   ),
   description = "A variation of ^canfield^ in which you can build regardless of suit.",
-  layout = "swf|r|t",
+  layout = "swf|r::t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

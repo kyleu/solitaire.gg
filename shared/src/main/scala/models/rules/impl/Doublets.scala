@@ -20,7 +20,7 @@ import models.rules._
  */
 object Doublets extends GameRules(
   id = "doublets",
-  completed = false,
+  completed = true,
   title = "Doublets",
   like = Some("simplepairs"),
   links = Seq(
@@ -33,7 +33,7 @@ object Doublets extends GameRules(
   ),
   description = "A similar game to ^simplepairs^. You remove pairs of cards of the same rank. The only way to bring any strategy into the game is b" +
     "y using the undo button.",
-  layout = "sf|t",
+  layout = ".:s.:f|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(
     StockRules(

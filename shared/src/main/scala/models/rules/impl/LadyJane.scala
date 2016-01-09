@@ -15,12 +15,12 @@ import models.rules._
  */
 object LadyJane extends GameRules(
   id = "ladyjane",
-  completed = false,
+  completed = true,
   title = "Lady Jane",
   related = Seq("inquisitor"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lady_jane.htm")),
   description = "An easy two-deck ^spider^/^klondike^ blend by Thomas Warfield.",
-  layout = "swf|t",
+  layout = "swf|.t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

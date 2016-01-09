@@ -19,12 +19,12 @@ import models.rules._
  */
 object DoubleRussian extends GameRules(
   id = "doublerussian",
-  completed = false,
+  completed = true,
   title = "Double Russian",
   like = Some("russian"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_russian.htm")),
   description = "A two-deck version of ^russian^ solitaire.",
-  layout = "f|t",
+  layout = ":f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

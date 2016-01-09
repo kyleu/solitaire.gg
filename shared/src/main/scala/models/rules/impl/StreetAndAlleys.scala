@@ -16,7 +16,7 @@ import models.rules._
  */
 object StreetAndAlleys extends GameRules(
   id = "streetsandalleys",
-  completed = false,
+  completed = true,
   title = "Street and Alleys",
   like = Some("beleagueredcastle"),
   related = Seq("stronghold", "penelopesweb", "privatelane"),
@@ -33,7 +33,7 @@ object StreetAndAlleys extends GameRules(
     Link("Swoop", "www.swoopsoftware.com/solitaire_rules/streets_and_alleys.html")
   ),
   description = "A more difficult variation of ^beleagueredcastle^ that starts with no cards dealt into the foundation.",
-  layout = "f|t",
+  layout = "::f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

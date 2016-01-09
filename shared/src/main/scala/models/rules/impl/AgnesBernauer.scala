@@ -20,7 +20,7 @@ import models.rules._
  */
 object AgnesBernauer extends GameRules(
   id = "agnesbernauer",
-  completed = false,
+  completed = true,
   title = "Agnes Bernauer",
   links = Seq(
     Link("Solitaire Central", "www.solitairecentral.com/rules/AgnesBernauer.html"),
@@ -29,7 +29,7 @@ object AgnesBernauer extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/agnes.html")
   ),
   description = "A variation on ^klondike^ with seven reserves.",
-  layout = "sf|r|t",
+  layout = "s:f|r|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown
   ),

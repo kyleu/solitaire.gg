@@ -16,7 +16,7 @@ import models.rules._
  */
 object Diplomat extends GameRules(
   id = "diplomat",
-  completed = false,
+  completed = true,
   title = "Diplomat",
   like = Some("congress"),
   related = Seq("rowsoffour"),
@@ -31,7 +31,7 @@ object Diplomat extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/diplomat.html")
   ),
   description = "A variation on ^congress^ or ^fortyandeight^.",
-  layout = "swf|t",
+  layout = "swf|.:t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

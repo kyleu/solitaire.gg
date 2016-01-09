@@ -24,7 +24,7 @@ import models.rules._
  */
 object SpiderOneSuit extends GameRules(
   id = "spideronesuit",
-  completed = false,
+  completed = true,
   title = "Spider One Suit",
   like = Some("spider"),
   links = Seq(

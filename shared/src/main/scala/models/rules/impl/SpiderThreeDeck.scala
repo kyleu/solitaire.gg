@@ -22,12 +22,12 @@ import models.rules._
  */
 object SpiderThreeDeck extends GameRules(
   id = "spiderthreedeck",
-  completed = false,
+  completed = true,
   title = "Spider Three Deck",
   like = Some("bigspider"),
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Spider_Three_Decks.html.en")),
   description = "This three-deck version of ^spider^ is a bit easier than ^bigspider^.",
-  layout = "sf|t",
+  layout = "sf|.t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 3

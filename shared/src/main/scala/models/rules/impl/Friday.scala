@@ -23,11 +23,11 @@ import models.rules._
  */
 object Friday extends GameRules(
   id = "friday",
-  completed = false,
+  completed = true,
   title = "Friday",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/friday.htm")),
   description = "A pair removal game with a two part tableau, only one of which is autofilled from the stock.",
-  layout = "sf|tt",
+  layout = "sf::t|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(
     StockRules(

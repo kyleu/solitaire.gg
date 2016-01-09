@@ -25,13 +25,13 @@ import models.rules._
  */
 object DoubleSignora extends GameRules(
   id = "doublesignora",
-  completed = false,
+  completed = true,
   title = "Double Signora",
   like = Some("signora"),
   related = Seq("empressofitaly"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_signora.htm")),
   description = "A four-deck version of ^signora^ invented by Thomas Warfield.",
-  layout = "swf|r|t",
+  layout = "swf|r:::t",
   deckOptions = DeckOptions(
     numDecks = 4,
     lowRank = Rank.Unknown

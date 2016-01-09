@@ -20,7 +20,7 @@ import models.rules._
  */
 object DoubleScorpion extends GameRules(
   id = "doublescorpion",
-  completed = false,
+  completed = true,
   title = "Double Scorpion",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_scorpion.htm"),

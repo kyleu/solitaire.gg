@@ -27,12 +27,12 @@ import models.rules._
  */
 object LincolnGreens extends GameRules(
   id = "lincolngreens",
-  completed = false,
+  completed = true,
   title = "Lincoln Greens",
   like = Some("puttputt"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lincoln_greens.htm")),
   description = "A four-deck variation of ^puttputt^, or a version of ^panthercreek^ that allows wrapping.",
-  layout = "sf|t",
+  layout = "s::::.f|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   deckOptions = DeckOptions(
     numDecks = 4

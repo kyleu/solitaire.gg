@@ -17,7 +17,7 @@ import models.rules._
  */
 object Arizona extends GameRules(
   id = "arizona",
-  completed = false,
+  completed = true,
   title = "Arizona",
   related = Seq("phoenix"),
   links = Seq(

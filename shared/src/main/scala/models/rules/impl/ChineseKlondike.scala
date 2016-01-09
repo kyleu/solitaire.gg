@@ -19,7 +19,7 @@ import models.rules._
  */
 object ChineseKlondike extends GameRules(
   id = "chineseklondike",
-  completed = false,
+  completed = true,
   title = "Chinese Klondike",
   like = Some("klondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinese_klondike.htm")),

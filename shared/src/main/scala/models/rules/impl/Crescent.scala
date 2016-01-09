@@ -36,7 +36,7 @@ import models.rules._
  */
 object Crescent extends GameRules(
   id = "crescent",
-  completed = false,
+  completed = true,
   title = "Crescent",
   like = Some("rainbowfan"),
   related = Seq("crescentfour"),
@@ -51,7 +51,7 @@ object Crescent extends GameRules(
     Link("Lena Games", "www.lenagames.com/bp_files/rul/crescent.htm")
   ),
   description = "A bidirectional building game where you can rotate cards in the stacks three times.",
-  layout = "ff|t",
+  layout = "::f::::f|t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

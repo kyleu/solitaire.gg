@@ -11,7 +11,7 @@ import models.rules._
  */
 object Whitehead extends GameRules(
   id = "whitehead",
-  completed = false,
+  completed = true,
   title = "Whitehead",
   links = Seq(
     Link("Solitaire Whizz", "www.solitairewhizz.com/how-to-play/whitehead.shtml"),

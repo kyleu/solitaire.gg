@@ -24,12 +24,12 @@ import models.rules._
  */
 object ChineseSpider extends GameRules(
   id = "chinesespider",
-  completed = false,
+  completed = true,
   title = "Chinese Spider",
   like = Some("spider"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinese_spider.htm")),
   description = "A three-suit version of ^spider^.",
-  layout = "sf|t",
+  layout = "s:f|:::t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(
     numDecks = 4,

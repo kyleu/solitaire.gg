@@ -21,7 +21,7 @@ import models.rules._
  */
 object PatientPairs extends GameRules(
   id = "patientpairs",
-  completed = false,
+  completed = true,
   title = "Patient Pairs",
   like = Some("simplepairs"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/patient_pairs.htm")),

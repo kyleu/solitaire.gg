@@ -16,14 +16,14 @@ import models.rules._
  */
 object Tuxedo extends GameRules(
   id = "tuxedo",
-  completed = false,
+  completed = true,
   title = "Tuxedo",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/tuxedo.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/tuxedo.htm")
   ),
   description = "An easier variant of ^penguin^ where all cards start on the tableau.",
-  layout = "f|c|t",
+  layout = ":.f|c|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
