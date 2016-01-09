@@ -9,7 +9,7 @@ trait GameServiceVictoryHelper { this: GameService =>
     if (completed.isEmpty && ret) {
       log.debug(s"Processing winning [$rules] game with seed [$seed].")
       completeGame(true).map {
-        case (firstForRules, firstForSeed, stats) => sendToAll("GameWon", GameWon(id, firstForRules, firstForSeed, getResult, stats))
+        case (firstForRules, firstForSeed, stats) => sendToAll("GameWon", GameWon(id, rules, firstForRules, firstForSeed, getResult, stats))
       }
     }
     ret

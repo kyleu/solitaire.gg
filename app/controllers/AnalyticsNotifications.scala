@@ -2,6 +2,7 @@ package controllers
 
 import models.audit.AnalyticsEvent
 import models.audit.AnalyticsEvent.EventType
+import play.api.libs.json.{ JsValue, JsObject }
 import services.audit.NotificationService
 import utils.Logging
 
@@ -16,22 +17,36 @@ class AnalyticsNotifications(notificationService: NotificationService) extends L
   }
 
   def installMessage(result: AnalyticsEvent) = {
-    s"[Install] for device [${result.device}]."
+    s"Installed on device [${result.device}]."
   }
 
   def openMessage(result: AnalyticsEvent) = {
-    s"[Open] by device [${result.device}]."
+    s"Opened by device [${result.device}]."
   }
 
   def gameStartMessage(result: AnalyticsEvent) = {
-    s"[Game Started] for device [${result.device}]."
+    val gameId = (result.data \ "gameId").asOpt[String].getOrElse("?")
+    val rules = (result.data \ "rules").asOpt[String].getOrElse("?")
+    s"Started [$rules] game [$gameId] with for device [${result.device}]."
   }
 
   def gameWonMessage(result: AnalyticsEvent) = {
-    s"[Game Won] for device [${result.device}]."
+    val message = (result.data \ "message").as[JsObject]
+    val gameId = (message \ "id").asOpt[String].getOrElse("?")
+    val rules = (message \ "rules").asOpt[String].getOrElse("?")
+    val gameResult = (message \ "result").asOpt[JsObject].getOrElse(throw new IllegalStateException())
+    val moves = (gameResult \ "moves").asOpt[Int].getOrElse(-1)
+    val duration = (gameResult \ "durationSeconds").asOpt[Int].getOrElse(-1)
+    s"Won [$rules] game [$gameId] in [$duration] seconds and [$moves] moves for device [${result.device}]."
   }
 
   def gameResignedMessage(result: AnalyticsEvent) = {
-    s"[Game Resigned] for device [${result.device}]."
+    val message = (result.data \ "message").as[JsObject]
+    val gameId = (message \ "id").asOpt[String].getOrElse("?")
+    val rules = (message \ "rules").asOpt[String].getOrElse("?")
+    val gameResult = (message \ "result").asOpt[JsObject].getOrElse(throw new IllegalStateException())
+    val moves = (gameResult \ "moves").asOpt[Int].getOrElse(-1)
+    val duration = (gameResult \ "durationSeconds").asOpt[Int].getOrElse(-1)
+    s"Resigned [$rules] game [$gameId] after [$duration] seconds and [$moves] moves for device [${result.device}]."
   }
 }

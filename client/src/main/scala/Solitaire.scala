@@ -88,7 +88,8 @@ object Solitaire extends js.JSApp with SolitaireHelper {
 
   private[this] def handleDebugInfo(data: String) = data match {
     case "cheat win" => send(GameWon(
-      gameId.getOrElse(throw new IllegalStateException()),
+      id = gameId.getOrElse(throw new IllegalStateException()),
+      rules = gameState.map(_.rules).getOrElse("?"),
       firstForRules = false,
       firstForSeed = false,
       getResult,

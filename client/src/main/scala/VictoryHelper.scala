@@ -82,7 +82,14 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
       firstMoveMade.map(x => completed - x).getOrElse(0L), completed
     )
 
-    val msg = GameWon(gameId.getOrElse(throw new IllegalStateException()), firstForRules = false, firstForSeed = false, getResult, stats)
+    val msg = GameWon(
+      id = gameId.getOrElse(throw new IllegalStateException()),
+      rules = gameState.map(_.rules).getOrElse("?"),
+      firstForRules = false,
+      firstForSeed = false,
+      getResult,
+      stats
+    )
     onGameWon(msg, System.currentTimeMillis)
     send(msg)
   }
@@ -96,7 +103,12 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
       undoHelper.undoCount, undoHelper.redoCount,
       firstMoveMade.map(x => completed - x).getOrElse(0L), completed
     )
-    val msg = GameLost(gameId.getOrElse(throw new IllegalStateException()), getResult, stats)
+    val msg = GameLost(
+      id = gameId.getOrElse(throw new IllegalStateException()),
+      rules = gameState.map(_.rules).getOrElse("?"),
+      getResult,
+      stats
+    )
     gameStatus = "lost"
     onGameResigned(msg, System.currentTimeMillis)
     send(msg)
