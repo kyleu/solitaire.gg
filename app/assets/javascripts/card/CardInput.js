@@ -32,13 +32,13 @@ define(['card/Tweens'], function (Tweens) {
 
   function click(card) {
     if(canSelectCard(card)) {
-      card.game.sendMove({ moveType: 'select-card', cards: [card.id], src: card.pile.id });
+      card.game.sendMove({ moveType: 'select-card', cards: [card.id], src: card.pile.id, auto: false });
     } else {
       var now = new Date().getTime();
       if(card.lastClicked !== undefined && (now - card.lastClicked) < doubleClickThresholdMs) {
         var moveTarget = getMoveTarget(card);
         if(moveTarget !== null && moveTarget !== undefined) {
-          card.game.sendMove({ moveType: 'move-cards', cards: [card.id], sourcePile: card.pile.id, targetPile: moveTarget.targetPile });
+          card.game.sendMove({ moveType: 'move-cards', cards: [card.id], sourcePile: card.pile.id, targetPile: moveTarget.targetPile, auto: false });
         }
         card.lastClicked = undefined;
       } else {

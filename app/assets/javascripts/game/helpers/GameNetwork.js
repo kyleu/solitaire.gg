@@ -62,6 +62,7 @@ define(['utils/Config'], function (config) {
             recentMoves = recentMoves.splice(recentMoves.length - 50, 0);
           }
         }
+        move.auto = true;
         game.sendMove(move);
       }
     },
@@ -73,15 +74,15 @@ define(['utils/Config'], function (config) {
       }
       switch(move.moveType) {
         case 'move-cards':
-          game.send('MoveCards', { cards: move.cards, src: move.sourcePile, tgt: move.targetPile });
+          game.send('MoveCards', { cards: move.cards, src: move.sourcePile, tgt: move.targetPile, auto: move.auto });
           break;
         case 'select-card':
           var selectedCard = game.cards[move.cards[0]];
-          game.send('SelectCard', { card: selectedCard.id, pile: selectedCard.pile.id });
+          game.send('SelectCard', { card: selectedCard.id, pile: selectedCard.pile.id, auto: move.auto });
           break;
         case 'select-pile':
           var selectedPile = game.piles[move.sourcePile];
-          game.send('SelectPile', { pile: selectedPile.id } );
+          game.send('SelectPile', { pile: selectedPile.id, auto: move.auto } );
           break;
         default:
           throw 'Unknown move [' + move.moveType + '].';

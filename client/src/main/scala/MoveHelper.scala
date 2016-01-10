@@ -19,16 +19,15 @@ trait MoveHelper extends VictoryHelper {
 
   protected def getResult: GameResult
 
-  protected[this] def handleSelectCard(userId: UUID, cardId: UUID, pileId: String) = {
-    val gs = gameState.getOrElse(throw new IllegalStateException())
-
+  protected[this] def handleSelectCard(userId: UUID, cardId: UUID, pileId: String, auto: Boolean) = {
     val card = gs.cardsById(cardId)
     val pile = gs.pilesById(pileId)
     if (!pile.cards.contains(card)) {
       throw new IllegalStateException(s"SelectCard for game [$gameId]: Card [${card.toString}] is not part of the [$pileId] pile.")
     }
     if (pile.canSelectCard(card, gs)) {
-      registerRequest("select-card", pileId, cardId.toString)
+      val args = Seq("select-card", pileId, cardId.toString) ++ (if (auto) { Seq("true") } else { Seq.empty })
+      registerRequest(args: _*)
       val messages = pile.onSelectCard(card, gs)
       send(messages, registerUndoResponse = true)
       if (messages.size != 1 || messages.headOption.map {
@@ -40,22 +39,21 @@ trait MoveHelper extends VictoryHelper {
     }
   }
 
-  protected[this] def handleSelectPile(userId: UUID, pileId: String) = {
-    val gs = gameState.getOrElse(throw new IllegalStateException())
+  protected[this] def handleSelectPile(userId: UUID, pileId: String, auto: Boolean) = {
     val pile = gs.pilesById(pileId)
     if (pile.cards.nonEmpty) {
       throw new IllegalStateException(s"SelectPile [$pileId] called on a non-empty deck.")
     }
     if (pile.canSelectPile(gs)) {
-      registerRequest("select-pile", pileId)
+      val args = Seq("select-pile", pileId) ++ (if (auto) { Seq("true") } else { Seq.empty })
+      registerRequest(args: _*)
       val messages = pile.onSelectPile(gs)
       send(messages, registerUndoResponse = true)
       registerMove()
     }
   }
 
-  protected[this] def handleMoveCards(userId: UUID, cardIds: Seq[UUID], source: String, target: String) = {
-    val gs = gameState.getOrElse(throw new IllegalStateException())
+  protected[this] def handleMoveCards(userId: UUID, cardIds: Seq[UUID], source: String, target: String, auto: Boolean) = {
     val cards = cardIds.map(gs.cardsById)
     val sourcePile = gs.pilesById(source)
     val targetPile = gs.pilesById(target)
@@ -66,7 +64,8 @@ trait MoveHelper extends VictoryHelper {
     }
     if (sourcePile.canDragFrom(cards, gs)) {
       if (targetPile.canDragTo(sourcePile, cards, gs)) {
-        registerRequest("move-cards", source, target) ++ cardIds.map(_.toString)
+        val args = Seq("move-cards", source, target) ++ cardIds.map(_.toString) ++ (if (auto) { Seq("true") } else { Seq.empty })
+        registerRequest(args: _*)
         val messages = targetPile.onDragTo(sourcePile, cards, gs)
         send(messages, registerUndoResponse = true)
         registerMove()

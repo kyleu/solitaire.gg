@@ -85,7 +85,7 @@ define(['card/Tweens'], function(Tweens) {
           cardIds.push(dragCard.id);
         });
 
-        this.game.sendMove({ moveType: 'move-cards', cards: cardIds, sourcePile: this.id, targetPile: dropTarget.id });
+        this.game.sendMove({ moveType: 'move-cards', cards: cardIds, sourcePile: this.id, targetPile: dropTarget.id, auto: false });
       }
       this.dragCards = [];
     }

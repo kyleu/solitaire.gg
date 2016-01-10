@@ -15,6 +15,7 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
   protected var gameId: Option[UUID] = None
   protected var gameRules: Option[GameRules] = None
   protected var gameState: Option[GameState] = None
+  protected def gs = gameState.getOrElse(throw new IllegalStateException())
 
   protected[this] var moveCount = 0
   protected[this] var firstMoveMade: Option[Long] = None
@@ -38,14 +39,25 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
 
   protected def possibleMoves() = {
     val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
-    val gs = gameState.getOrElse(throw new IllegalStateException())
+    val awesomeMoves = collection.mutable.ArrayBuffer.empty[PossibleMove]
+    val boringMoves = collection.mutable.ArrayBuffer.empty[PossibleMove]
     gs.piles.foreach { source =>
+      val sourceBehavior = source.pileSet.map(_.behavior).getOrElse(throw new IllegalStateException())
       source.cards.zipWithIndex.foreach { c =>
         val cards = source.cards.drop(c._2)
+        val remainingCards = source.cards.take(c._2)
         if (source.canDragFrom(cards, gs)) {
-          gs.piles.filterNot(_.id == source.id).foreach { target =>
+          gs.piles.filter(p => p.id != source.id).foreach { target =>
+            val targetBehavior = target.pileSet.map(_.behavior).getOrElse(throw new IllegalStateException())
             if (target.canDragTo(source, cards, gs)) {
-              ret += PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
+              val move = PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
+              if (sourceBehavior == "tableau" && targetBehavior == "tableau" && remainingCards.isEmpty && target.cards.isEmpty) {
+                boringMoves += move
+              } else if (targetBehavior == "foundation" && sourceBehavior != "foundation") {
+                awesomeMoves += move
+              } else {
+                ret += move
+              }
             }
           }
         }
@@ -57,7 +69,8 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
         ret += PossibleMove("select-pile", Nil, source.id)
       }
     }
-    ret
+    awesomeMoves ++ ret ++ boringMoves
+
   }
 
   private[this] def checkWinCondition() = {

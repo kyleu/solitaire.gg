@@ -37,7 +37,7 @@ class KnownGameTests(supervisor: ActorRef) {
   })
 
   private[this] def moveCardsA() = Test("move-cards-a", () => {
-    val action = MoveCards(moves.find(_.sourcePile == "tableau-4").getOrElse(throw new IllegalStateException()).cards, "tableau-4", "foundation-1")
+    val action = MoveCards(moves.find(_.sourcePile == "tableau-4").getOrElse(throw new IllegalStateException()).cards, "tableau-4", "foundation-1", auto = true)
     conn ! action
     val cardMoved = testProbe.expectMsgClass(classOf[CardsMoved])
     moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
@@ -45,7 +45,7 @@ class KnownGameTests(supervisor: ActorRef) {
   })
 
   private[this] def moveCardsB() = Test("move-cards-b", () => {
-    val action = SelectCard(moves.find(_.sourcePile == "tableau-4").getOrElse(throw new IllegalStateException()).cards.last, "tableau-4")
+    val action = SelectCard(moves.find(_.sourcePile == "tableau-4").getOrElse(throw new IllegalStateException()).cards.last, "tableau-4", auto = true)
     conn ! action
     val cardMoved = testProbe.expectMsgClass(classOf[CardRevealed])
     moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves
@@ -53,7 +53,7 @@ class KnownGameTests(supervisor: ActorRef) {
   })
 
   private[this] def moveCardsC() = Test("move-cards-c", () => {
-    val action = MoveCards(moves.find(_.sourcePile == "tableau-4").getOrElse(throw new IllegalStateException()).cards, "tableau-4", "tableau-2")
+    val action = MoveCards(moves.find(_.sourcePile == "tableau-4").getOrElse(throw new IllegalStateException()).cards, "tableau-4", "tableau-2", auto = true)
     conn ! action
     val cardMoved = testProbe.expectMsgClass(classOf[CardsMoved])
     moves = testProbe.expectMsgClass(classOf[PossibleMoves]).moves

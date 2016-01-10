@@ -28,12 +28,12 @@ object Solitaire extends js.JSApp with SolitaireUndoHelper with PreferenceHelper
     case "GetVersion" => send(VersionResponse("0.0"))
     case "Ping" => send(Pong(JsonUtils.getLong(v.timestamp)))
     case "StartGame" => handleStartGame(v.rules.toString, JsonUtils.getIntOption(v.seed))
-    case "SelectCard" => handleSelectCard(deviceId, UUID.fromString(v.card.toString), v.pile.toString)
-    case "SelectPile" => handleSelectPile(deviceId, v.pile.toString)
-    case "MoveCards" => handleMoveCards(deviceId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString)
+    case "SelectCard" => handleSelectCard(deviceId, UUID.fromString(v.card.toString), v.pile.toString, v.auto.toString == "true")
+    case "SelectPile" => handleSelectPile(deviceId, v.pile.toString, v.auto.toString == "true")
+    case "MoveCards" => handleMoveCards(deviceId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString, v.auto.toString == "true")
     case "Undo" => handleUndo()
     case "Redo" => handleRedo()
-    case "SetPreference" => handleSetPreference(v.name.toString, v.value.toString, gameState.getOrElse(throw new IllegalStateException()))
+    case "SetPreference" => handleSetPreference(v.name.toString, v.value.toString, gs)
     case "DebugInfo" => handleDebugInfo(v.data.toString)
     case _ => throw new IllegalStateException(s"Invalid message [$c].")
   }
@@ -42,7 +42,7 @@ object Solitaire extends js.JSApp with SolitaireUndoHelper with PreferenceHelper
     moves = moveCount,
     undos = undoHelper.undoCount,
     redos = undoHelper.redoCount,
-    score = gameState.getOrElse(throw new IllegalStateException()).calculateScore(moveCount, undoHelper.undoCount, elapsed),
+    score = gs.calculateScore(moveCount, undoHelper.undoCount, elapsed),
     durationSeconds = elapsed,
     leaderboardRanking = 0
   )

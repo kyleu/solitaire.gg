@@ -58,20 +58,8 @@ define([], function() {
       }
     };
 
-    var hintLastClicked;
     buttons.hint.onclick = function() {
-      var now = new Date().getTime();
-      var timeSinceLastClick = now - hintLastClicked;
-      if(hintLastClicked === undefined || timeSinceLastClick > 5000) {
-        game.autoMove();
-        buttons.hint.className += ' disabled';
-        hintLastClicked = now;
-        setTimeout(function() {
-          buttons.hint.className = buttons.hint.className.replace(' disabled', '');
-        }, 5000);
-      } else {
-        console.log('Too soon for a new hint.'); // TODO alert?
-      }
+      game.autoMove();
     };
 
     function redeal() {

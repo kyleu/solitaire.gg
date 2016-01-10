@@ -35,7 +35,7 @@ define(['pile/PileLayout', 'pile/PileHelpers', 'pile/DragFromConstraints'], func
       if(p.button === 0 || p.button === null) {
         this.game.options.hidePanels();
         if(canSelectPile(this)) {
-          this.game.sendMove({'moveType': 'select-pile', sourcePile: this.id});
+          this.game.sendMove({'moveType': 'select-pile', sourcePile: this.id, auto: false});
         }
       }
     }, this);
