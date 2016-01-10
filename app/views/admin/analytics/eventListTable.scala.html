@@ -5,6 +5,7 @@
       @utils.web.ViewUtils.th("event-id", "Trace ID", sortBy)
       @utils.web.ViewUtils.th("event-type", "Event Type", sortBy)
       @utils.web.ViewUtils.th("device", "Device", sortBy)
+      @utils.web.ViewUtils.th("source", "Source", sortBy)
       @utils.web.ViewUtils.th("data", "Data", sortBy)
       @utils.web.ViewUtils.th("created", "Created", sortBy)
       <th></th>
@@ -19,8 +20,8 @@
         </td>
       }
       <td>@e.eventType</td>
-      <td title="@e.device">@e.device.toString.substring(0, 8)</a>
-      </td>
+      <td title="@e.device">@e.device.toString.substring(0, 8)</td>
+      <td>@e.sourceAddress</td>
       <td><pre>@play.api.libs.json.Json.prettyPrint(e.data)</pre></td>
       <td>@e.created.toString("yyyy-MM-dd HH:mm:ss")</td>
       <td><a href="@controllers.admin.routes.AnalyticsEventController.removeEvent(e.id)"><span class="glyphicon glyphicon-remove"></span></a></td>

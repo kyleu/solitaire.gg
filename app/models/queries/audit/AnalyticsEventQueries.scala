@@ -10,8 +10,8 @@ import play.api.libs.json.{ JsObject, Json }
 
 object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
   override protected val tableName = "analytics_events"
-  override protected val columns = Seq("id", "event_type", "device", "data", "created")
-  override protected val searchColumns = Seq("id::text", "event_type", "device::text", "data::text")
+  override protected val columns = Seq("id", "event_type", "device", "source_address", "data", "created")
+  override protected val searchColumns = Seq("id::text", "event_type", "device::text")
 
   def getById(id: UUID) = getBySingleId(id)
   val insert = Insert
@@ -39,10 +39,11 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
     val id = row.as[UUID]("id")
     val eventType = AnalyticsEvent.EventType.fromString(row.as[String]("event_type"))
     val device = row.as[UUID]("device")
+    val sourceAddress = row.asOpt[String]("source_address")
     val data = Json.parse(row.as[String]("data")).as[JsObject]
     val created = row.as[LocalDateTime]("created")
-    AnalyticsEvent(id, eventType, device, data, created)
+    AnalyticsEvent(id, eventType, device, sourceAddress, data, created)
   }
 
-  override protected def toDataSeq(ae: AnalyticsEvent) = Seq(ae.id, ae.eventType.id, ae.device, Json.prettyPrint(ae.data), ae.created)
+  override protected def toDataSeq(ae: AnalyticsEvent) = Seq(ae.id, ae.eventType.id, ae.device, ae.sourceAddress, Json.prettyPrint(ae.data), ae.created)
 }

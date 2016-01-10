@@ -25,6 +25,7 @@ case class AnalyticsEvent(
   id: UUID,
   eventType: AnalyticsEvent.EventType,
   device: UUID,
+  sourceAddress: Option[String],
   data: JsValue,
   created: LocalDateTime
 )

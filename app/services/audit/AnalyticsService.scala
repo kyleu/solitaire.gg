@@ -10,17 +10,18 @@ import services.database.Database
 import utils.DateUtils
 
 object AnalyticsService {
-  def install(device: UUID, data: JsValue) = log(AnalyticsEvent.EventType.Install, device, data)
-  def open(device: UUID, data: JsValue) = log(AnalyticsEvent.EventType.Open, device, data)
-  def gameStart(device: UUID, data: JsValue) = log(AnalyticsEvent.EventType.GameStart, device, data)
-  def gameWon(device: UUID, data: JsValue) = log(AnalyticsEvent.EventType.GameWon, device, data)
-  def gameResigned(device: UUID, data: JsValue) = log(AnalyticsEvent.EventType.GameResigned, device, data)
+  def install(device: UUID, sourceAddress: String, data: JsValue) = log(AnalyticsEvent.EventType.Install, device, sourceAddress, data)
+  def open(device: UUID, sourceAddress: String, data: JsValue) = log(AnalyticsEvent.EventType.Open, device, sourceAddress, data)
+  def gameStart(device: UUID, sourceAddress: String, data: JsValue) = log(AnalyticsEvent.EventType.GameStart, device, sourceAddress, data)
+  def gameWon(device: UUID, sourceAddress: String, data: JsValue) = log(AnalyticsEvent.EventType.GameWon, device, sourceAddress, data)
+  def gameResigned(device: UUID, sourceAddress: String, data: JsValue) = log(AnalyticsEvent.EventType.GameResigned, device, sourceAddress, data)
 
-  private[this] def log(eventType: AnalyticsEvent.EventType, device: UUID, data: JsValue) = {
+  private[this] def log(eventType: AnalyticsEvent.EventType, device: UUID, sourceAddress: String, data: JsValue) = {
     val event = AnalyticsEvent(
       id = UUID.randomUUID(),
       eventType = eventType,
       device = device,
+      sourceAddress = Some(sourceAddress),
       data = data,
       created = DateUtils.now
     )
