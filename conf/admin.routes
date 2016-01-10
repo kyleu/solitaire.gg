@@ -44,6 +44,8 @@ GET         /traces/:id/remove             controllers.admin.ClientTraceControll
 
 GET         /export/status                 controllers.admin.AnalyticsExportController.exportStatus()
 GET         /export/:d/cache               controllers.admin.AnalyticsExportController.cacheFiles(d: org.joda.time.LocalDate)
+GET         /export/:d/download/:name      controllers.admin.AnalyticsExportController.downloadFile(d: org.joda.time.LocalDate, name: String)
+GET         /export/:d/remove              controllers.admin.AnalyticsExportController.removeFiles(d: org.joda.time.LocalDate)
 GET         /export/:d/wipe                controllers.admin.AnalyticsExportController.wipeDatabase(d: org.joda.time.LocalDate)
 
 GET         /analytics/list                controllers.admin.AnalyticsEventController.eventList(q ?= "", sortBy ?= "created", page: Int ?= 0)

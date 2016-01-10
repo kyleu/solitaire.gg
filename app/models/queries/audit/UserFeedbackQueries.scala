@@ -14,7 +14,7 @@ object UserFeedbackQueries extends BaseQueries[UserFeedback] {
 
   val insert = Insert
   def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
-  def getById(id: UUID) = GetById(Seq(id))
+  def getById(id: UUID) = getBySingleId(id)
   val search = Search
   val remove = RemoveById
 

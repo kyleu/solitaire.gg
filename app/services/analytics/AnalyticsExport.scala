@@ -32,4 +32,20 @@ class AnalyticsExport @javax.inject.Inject() (cfg: Config) {
       ld -> sizes
     }
   }
+
+  def dirFor(d: LocalDate) = {
+    val f = FileUtils.getChildDir(rootDir, s"${d.getYear}/${d.getMonthOfYear}/${d.getDayOfMonth}")
+    if (!f.exists()) {
+      f.mkdirs()
+    }
+    f
+  }
+
+  def removeFiles(d: LocalDate) = {
+    val files = FileUtils.listFiles(dirFor(d))
+    files.foreach(_.delete())
+    files.size
+  }
+
+  def getLogFile(d: LocalDate, filename: String) = new File(dirFor(d), filename)
 }

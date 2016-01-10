@@ -14,6 +14,8 @@ dist
 /RUNNING_PID
 /.settings
 
+/cache
+
 _resized/
 x-large/
 large/
