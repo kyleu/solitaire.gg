@@ -40,7 +40,7 @@ class AnalyticsExportController @javax.inject.Inject() (override val ctx: Applic
   }
 
   def cacheFiles(d: LocalDate) = withAdminSession("cache") { implicit request =>
-    val existing = FileUtils.listFiles(export.dirFor(d))
+    val existing = FileUtils.listFiles(export.fileService.dirFor(d))
     if (existing.isEmpty) {
       cacheEvents(d).map(x => Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("success" -> s"[$x] files cached for [$d]."))
     } else {
@@ -51,21 +51,21 @@ class AnalyticsExportController @javax.inject.Inject() (override val ctx: Applic
 
   def removeFiles(d: LocalDate) = withAdminSession("remove-files") { implicit request =>
     Future.successful {
-      val num = export.removeFiles(d)
+      val num = export.fileService.removeFiles(d)
       Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("success" -> s"Removed [$num] files for [$d].")
     }
   }
 
   def removeAllFiles() = withAdminSession("remove-all-files") { implicit request =>
     Future.successful {
-      val num = export.removeAllFiles()
+      val num = export.fileService.removeAllFiles()
       Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("success" -> s"Removed [${num.sum}] files.")
     }
   }
 
   def downloadFile(d: LocalDate, name: String) = withAdminSession("download-file") { implicit request =>
     Future.successful {
-      val f = export.getLogFile(d, name)
+      val f = export.fileService.getLogFile(d, name)
       if (!f.exists()) {
         throw new IllegalStateException(s"File [${f.getPath}] does not exist.")
       }
@@ -88,7 +88,7 @@ class AnalyticsExportController @javax.inject.Inject() (override val ctx: Applic
     Database.query(AnalyticsEventQueries.GetByDate(d)).map { result =>
       result.foreach { event =>
         val json = Json.toJson(event.data)
-        val file = files.getOrElseUpdate(event.eventType.id, new FileOutputStream(export.getLogFile(d, event.eventType.id + ".log")))
+        val file = files.getOrElseUpdate(event.eventType.id, new FileOutputStream(export.fileService.getLogFile(d, event.eventType.id + ".log")))
         file.write(Json.stringify(json).getBytes())
         file.write("\n".getBytes())
       }
