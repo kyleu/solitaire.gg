@@ -7,8 +7,8 @@
       <tr>
         <th>Date</th>
         <th>Rows</th>
-        <th>Files</th>
-        <th>Sizes</th>
+        <th>Filename</th>
+        <th>Size</th>
         <th>Status</th>
         <th>Actions</th>
       </tr>
@@ -18,12 +18,27 @@
         <tr>
           <td>@s._1</td>
           <td>@s._2</td>
-          <td>@s._3.map(_._1).mkString(", ")</td>
-          <td>@s._3.map(_._2).mkString(", ")</td>
+          <td>@s._3.map { x => <a href="">@x._1</a><br> }</td>
+          <td>@s._3.map { x => @x._2<br> }</td>
           <td>Ok</td>
-          <td style="width: 80px;">
-            <button class="btn btn-default btn-xs"><span title="Remove Day From Database" class="glyphicon glyphicon-fire"></span></button>
-            <button class="btn btn-default btn-xs"><span title="Cache Files" class="glyphicon glyphicon-file"></span></button>
+          <td style="width: 120px;">
+            @if(s._2 > 0) {
+              @defining(controllers.admin.routes.AnalyticsExportController.wipeDatabase(s._1)) { url =>
+                <a href="@url" class="btn btn-default btn-xs"><span title="Remove Day From Database" class="glyphicon glyphicon-fire"></span></a>
+              }
+            }
+            @if(s._3.nonEmpty) {
+              <a href="" class="btn btn-default btn-xs"><span title="Upload Files To Database" class="glyphicon glyphicon-upload"></span></a>
+            }
+            @if(s._2 > 0 && s._3.isEmpty) {
+              @defining(controllers.admin.routes.AnalyticsExportController.cacheFiles(s._1)) { url =>
+                <a href="@url" class="btn btn-default btn-xs"><span title="Cache Files" class="glyphicon glyphicon-hdd"></span></a>
+              }
+            }
+            @if(s._3.nonEmpty) {
+              <a href="" class="btn btn-default btn-xs"><span title="Download All Files Locally" class="glyphicon glyphicon-download"></span></a>
+              <a href="" class="btn btn-default btn-xs"><span title="Remove Files" class="glyphicon glyphicon-remove"></span></a>
+            }
           </td>
         </tr>
       }
