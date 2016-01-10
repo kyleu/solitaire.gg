@@ -3,7 +3,6 @@ package controllers.admin
 import java.io.FileOutputStream
 
 import controllers.BaseController
-import models.audit.AnalyticsEvent.EventType
 import models.queries.audit.AnalyticsEventQueries
 import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -13,8 +12,6 @@ import play.api.mvc.{ ResponseHeader, Result }
 import services.analytics.AnalyticsExport
 import services.database.Database
 import utils.{ FileUtils, ApplicationContext }
-import utils.DateUtils._
-import utils.json.AnalyticsSerializers._
 
 import scala.concurrent.Future
 
@@ -24,57 +21,28 @@ class AnalyticsExportController @javax.inject.Inject() (override val ctx: Applic
 
   def exportStatus() = withAdminSession("status") { implicit request =>
     implicit val identity = request.identity
-    val persistedDates = export.getPersistedDateCounts
-
-    persistedDates.map { persisted =>
-      val fsd = export.getFileSystemDetails
-
-      val combinedDates = (fsd.map(_._1) ++ persisted.map(_._1)).distinct.sorted
-      val messages = combinedDates.map { d =>
-        val p = persisted.find(_._1 == d)
-        val f = fsd.find(_._1 == d)
-
-        (d, p.map(_._2).getOrElse(0), f.map(_._2).getOrElse(Nil))
-      }
-
+    export.getStatus.map { messages =>
       Ok(views.html.admin.analytics.exportStatus(messages))
+    }
+  }
+
+  def cacheMissingFiles() = withAdminSession("cache-all") { implicit request =>
+    export.getStatus.flatMap { s =>
+      val futures = s.filter(x => x._2 > 0 && x._3.isEmpty).map { x =>
+        cacheEvents(x._1)
+      }
+      val future = Future.sequence(futures)
+      future.map { result =>
+        val msg = s"[${result.sum}] files cached for [${result.size}] days."
+        Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("success" -> msg)
+      }
     }
   }
 
   def cacheFiles(d: LocalDate) = withAdminSession("cache") { implicit request =>
     val existing = FileUtils.listFiles(export.dirFor(d))
     if (existing.isEmpty) {
-      Database.query(AnalyticsEventQueries.GetByDate(d)).map { result =>
-        val installFile = new FileOutputStream(export.getLogFile(d, "install.log"))
-        val openFile = new FileOutputStream(export.getLogFile(d, "open.log"))
-        val startFile = new FileOutputStream(export.getLogFile(d, "start.log"))
-        val wonFile = new FileOutputStream(export.getLogFile(d, "won.log"))
-        val resignedFile = new FileOutputStream(export.getLogFile(d, "resigned.log"))
-
-        result.foreach { event =>
-          val json = Json.toJson(event.data)
-          val f = event.eventType match {
-            case EventType.Install => Some(installFile)
-            case EventType.Open => Some(openFile)
-            case EventType.GameStart => Some(startFile)
-            case EventType.GameWon => Some(wonFile)
-            case EventType.GameResigned => Some(resignedFile)
-            case _ => None
-          }
-          f.foreach { file =>
-            file.write(Json.stringify(json).getBytes())
-            file.write("\n".getBytes())
-          }
-        }
-
-        installFile.close()
-        openFile.close()
-        startFile.close()
-        wonFile.close()
-        resignedFile.close()
-
-        Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("success" -> s"[0] files cached for [$d].")
-      }
+      cacheEvents(d).map(x => Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("success" -> s"[$x] files cached for [$d]."))
     } else {
       val msg = s"There are already [${existing.size}] existing files for [$d]."
       Future.successful(Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("error" -> msg))
@@ -85,6 +53,13 @@ class AnalyticsExportController @javax.inject.Inject() (override val ctx: Applic
     Future.successful {
       val num = export.removeFiles(d)
       Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("success" -> s"Removed [$num] files for [$d].")
+    }
+  }
+
+  def removeAllFiles() = withAdminSession("remove-all-files") { implicit request =>
+    Future.successful {
+      val num = export.removeAllFiles()
+      Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("success" -> s"Removed [${num.sum}] files.")
     }
   }
 
@@ -107,4 +82,19 @@ class AnalyticsExportController @javax.inject.Inject() (override val ctx: Applic
       Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("error" -> s"No.")
     }
   }
+
+  private[this] def cacheEvents(d: LocalDate) = {
+    val files = collection.mutable.HashMap.empty[String, FileOutputStream]
+    Database.query(AnalyticsEventQueries.GetByDate(d)).map { result =>
+      result.foreach { event =>
+        val json = Json.toJson(event.data)
+        val file = files.getOrElseUpdate(event.eventType.id, new FileOutputStream(export.getLogFile(d, event.eventType.id + ".log")))
+        file.write(Json.stringify(json).getBytes())
+        file.write("\n".getBytes())
+      }
+      files.mapValues(_.close())
+      files.size
+    }
+  }
+
 }

@@ -4,8 +4,10 @@ import java.io.File
 
 import models.queries.audit.AnalyticsEventQueries
 import org.joda.time.LocalDate
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import utils.{ FileUtils, Config }
+import utils.DateUtils._
+import utils.{ Config, FileUtils }
 
 @javax.inject.Singleton
 class AnalyticsExport @javax.inject.Inject() (cfg: Config) {
@@ -18,6 +20,7 @@ class AnalyticsExport @javax.inject.Inject() (cfg: Config) {
   }
 
   def getPersistedDateCounts = Database.query(AnalyticsEventQueries.GetDateCounts)
+
   def getFileSystemDetails = {
     val years = FileUtils.listDirectories(rootDir)
     val months = years.flatMap { yearDir =>
@@ -30,6 +33,16 @@ class AnalyticsExport @javax.inject.Inject() (cfg: Config) {
       val ld = new LocalDate(s"${d._1}-${d._2}-${d._3.getName}")
       val sizes = FileUtils.listFiles(d._3).map(f => f.getName -> f.length)
       ld -> sizes
+    }
+  }
+
+  def getStatus = getPersistedDateCounts.map { persisted =>
+    val fsd = getFileSystemDetails
+    val combinedDates = (fsd.map(_._1) ++ persisted.map(_._1)).distinct.sorted
+    combinedDates.map { d =>
+      val p = persisted.find(_._1 == d)
+      val f = fsd.find(_._1 == d)
+      (d, p.map(_._2).getOrElse(0), f.map(_._2).getOrElse(Nil))
     }
   }
 
@@ -46,6 +59,8 @@ class AnalyticsExport @javax.inject.Inject() (cfg: Config) {
     files.foreach(_.delete())
     files.size
   }
+
+  def removeAllFiles() = getFileSystemDetails.map(d => removeFiles(d._1))
 
   def getLogFile(d: LocalDate, filename: String) = new File(dirFor(d), filename)
 }

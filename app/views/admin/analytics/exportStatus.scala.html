@@ -1,6 +1,10 @@
 @(status: Seq[(org.joda.time.LocalDate, Int, Seq[(String, Long)])])(implicit session: Session, flash: Flash, identity: models.user.User)
 @views.html.admin.layout.base("Analytics Export", "analytics") {
-  <h3>Analytics Export Status</h3>
+  <div class="pull-right">
+    <a class="btn btn-default btn-xs" href="@controllers.admin.routes.AnalyticsExportController.removeAllFiles()" onclick="return confirm('Yeah?');">Remove File Cache</a>
+    <a class="btn btn-default btn-xs" href="@controllers.admin.routes.AnalyticsExportController.cacheMissingFiles()">Process Missing Files</a>
+  </div>
+  <h3 style="margin-top: 0;">Analytics Export Status</h3>
 
   <table class="table table-bordered table-striped">
     <thead>
