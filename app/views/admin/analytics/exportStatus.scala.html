@@ -21,9 +21,9 @@
           <td>@s._3.map { x =>
             <a href="@controllers.admin.routes.AnalyticsExportController.downloadFile(s._1, x._1)">@x._1</a><br>
           }</td>
-          <td>@s._3.map { x => @x._2<br> }</td>
+          <td style="text-align: right;">@s._3.map { x => @utils.Formatter.withCommas(x._2)<br> }</td>
           <td>Ok</td>
-          <td style="width: 100px;">
+          <td style="text-align: right; width: 100px;">
             @if(s._2 > 0) {
               @defining(controllers.admin.routes.AnalyticsExportController.wipeDatabase(s._1)) { url =>
                 <a href="@url" class="btn btn-default btn-xs"><span title="Remove Day From Database" class="glyphicon glyphicon-fire"></span></a>

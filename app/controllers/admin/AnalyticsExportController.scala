@@ -3,15 +3,18 @@ package controllers.admin
 import java.io.FileOutputStream
 
 import controllers.BaseController
+import models.audit.AnalyticsEvent.EventType
 import models.queries.audit.AnalyticsEventQueries
 import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.iteratee.Enumerator
+import play.api.libs.json.Json
 import play.api.mvc.{ ResponseHeader, Result }
 import services.analytics.AnalyticsExport
 import services.database.Database
 import utils.{ FileUtils, ApplicationContext }
 import utils.DateUtils._
+import utils.json.AnalyticsSerializers._
 
 import scala.concurrent.Future
 
@@ -42,13 +45,34 @@ class AnalyticsExportController @javax.inject.Inject() (override val ctx: Applic
     val existing = FileUtils.listFiles(export.dirFor(d))
     if (existing.isEmpty) {
       Database.query(AnalyticsEventQueries.GetByDate(d)).map { result =>
+        val installFile = new FileOutputStream(export.getLogFile(d, "install.log"))
         val openFile = new FileOutputStream(export.getLogFile(d, "open.log"))
+        val startFile = new FileOutputStream(export.getLogFile(d, "start.log"))
+        val wonFile = new FileOutputStream(export.getLogFile(d, "won.log"))
+        val resignedFile = new FileOutputStream(export.getLogFile(d, "resigned.log"))
+
         result.foreach { event =>
-          println("!!!")
-          openFile.write(event.id.toString.getBytes())
-          openFile.write("\n".getBytes())
+          val json = Json.toJson(event.data)
+          val f = event.eventType match {
+            case EventType.Install => Some(installFile)
+            case EventType.Open => Some(openFile)
+            case EventType.GameStart => Some(startFile)
+            case EventType.GameWon => Some(wonFile)
+            case EventType.GameResigned => Some(resignedFile)
+            case _ => None
+          }
+          f.foreach { file =>
+            file.write(Json.stringify(json).getBytes())
+            file.write("\n".getBytes())
+          }
         }
+
+        installFile.close()
         openFile.close()
+        startFile.close()
+        wonFile.close()
+        resignedFile.close()
+
         Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("success" -> s"[0] files cached for [$d].")
       }
     } else {
