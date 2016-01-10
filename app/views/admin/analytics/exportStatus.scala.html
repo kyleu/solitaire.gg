@@ -1,0 +1,32 @@
+@(status: Seq[(org.joda.time.LocalDate, Int, Seq[(String, Long)])])(implicit session: Session, flash: Flash, identity: models.user.User)
+@views.html.admin.layout.base("Analytics Export", "analytics") {
+  <h3>Analytics Export Status</h3>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Rows</th>
+        <th>Files</th>
+        <th>Sizes</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @status.map { s =>
+        <tr>
+          <td>@s._1</td>
+          <td>@s._2</td>
+          <td>@s._3.map(_._1).mkString(", ")</td>
+          <td>@s._3.map(_._2).mkString(", ")</td>
+          <td>Ok</td>
+          <td style="width: 80px;">
+            <button class="btn btn-default btn-xs"><span title="Remove Day From Database" class="glyphicon glyphicon-fire"></span></button>
+            <button class="btn btn-default btn-xs"><span title="Cache Files" class="glyphicon glyphicon-file"></span></button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

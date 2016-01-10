@@ -42,7 +42,8 @@ GET         /traces                        controllers.admin.ClientTraceControll
 GET         /traces/:id                    controllers.admin.ClientTraceController.traceDetail(id: java.util.UUID)
 GET         /traces/:id/remove             controllers.admin.ClientTraceController.removeTrace(id: java.util.UUID)
 
-GET         /analytics                     controllers.admin.AnalyticsEventController.eventList(q ?= "", sortBy ?= "created", page: Int ?= 0)
+GET         /analytics/status              controllers.admin.AnalyticsEventController.exportStatus()
+GET         /analytics/list                controllers.admin.AnalyticsEventController.eventList(q ?= "", sortBy ?= "created", page: Int ?= 0)
 GET         /analytics/:id                 controllers.admin.AnalyticsEventController.eventDetail(id: java.util.UUID)
 GET         /analytics/:id/remove          controllers.admin.AnalyticsEventController.removeEvent(id: java.util.UUID)
 
