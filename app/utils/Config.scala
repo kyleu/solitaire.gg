@@ -18,7 +18,7 @@ class Config @javax.inject.Inject() (cnf: play.api.Configuration) {
   lazy val debug = !Play.isProd(Play.current)
 
   val hostname = cnf.getString("host").getOrElse("localhost")
-  val fileCacheDir = cnf.getString("cache.dir")
+  val fileCacheDir = cnf.getString("cache.dir").getOrElse("./cache")
 
   // Database
   val databaseConfiguration = new DbConfig(
