@@ -1,0 +1,11 @@
+@(feedback: models.audit.UserFeedback)(implicit session: Session, flash: Flash, identity: models.user.User)
+@views.html.admin.layout.base("Explore", "") {
+  <h3>Note for feedback [@feedback.id]</h3>
+  <form action="" method="post">
+    <textarea name="content"></textarea><br>
+    <button>Add Note</button>
+  </form>
+  <ul>
+    <li>To close this feedback, start your comment with "Close".</li>
+  </ul>
+}

@@ -50,6 +50,7 @@ GET         /requests                      controllers.admin.RequestLogControlle
 
 GET         /feedback                      controllers.admin.FeedbackController.feedbackList(q ?= "", sortBy ?= "occurred", page: Int ?= 0)
 GET         /feedback/:id/note             controllers.admin.FeedbackController.feedbackNoteForm(id: java.util.UUID)
+POST        /feedback/:id/note             controllers.admin.FeedbackController.feedbackNotePost(id: java.util.UUID)
 GET         /feedback/:id/remove           controllers.admin.FeedbackController.removeFeedback(id: java.util.UUID)
 
 GET         /logs                          controllers.admin.LogController.list()

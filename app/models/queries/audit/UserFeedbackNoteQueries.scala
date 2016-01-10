@@ -6,7 +6,6 @@ import models.audit.UserFeedback
 import models.queries.BaseQueries
 import models.database.{ Query, Row }
 import org.joda.time.LocalDateTime
-import utils.DateUtils
 
 object UserFeedbackNoteQueries extends BaseQueries[UserFeedback.FeedbackNote] {
   override protected val tableName = "user_feedback_notes"
@@ -28,11 +27,11 @@ object UserFeedbackNoteQueries extends BaseQueries[UserFeedback.FeedbackNote] {
   override protected def fromRow(row: Row) = {
     val id = row.as[UUID]("id")
     val feedbackId = row.as[UUID]("feedback_id")
-    val userId = row.as[UUID]("user_id")
+    val authorId = row.as[UUID]("author_id")
     val content = row.as[String]("content")
     val occurred = row.as[LocalDateTime]("occurred")
-    UserFeedback.FeedbackNote(id, feedbackId, userId, content, occurred)
+    UserFeedback.FeedbackNote(id, feedbackId, authorId, content, occurred)
   }
 
-  override protected def toDataSeq(f: UserFeedback.FeedbackNote) = Seq[Any](f.id, f.authorId, f.content, f.occurred)
+  override protected def toDataSeq(f: UserFeedback.FeedbackNote) = Seq[Any](f.id, f.feedbackId, f.authorId, f.content, f.occurred)
 }

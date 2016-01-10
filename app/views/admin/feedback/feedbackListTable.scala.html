@@ -1,4 +1,4 @@
-@(sortBy: String, feedbacks: Seq[models.audit.UserFeedback], notes: Seq[models.audit.UserFeedback.FeedbackNote])
+@(sortBy: String, feedbacks: Seq[(models.audit.UserFeedback, Seq[models.audit.UserFeedback.FeedbackNote])])
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -13,28 +13,38 @@
   <tbody>
   @for(f <- feedbacks) {
     <tr>
-      <td title="@f.id">@f.id.toString.substring(0, 8)</td>
-      <td title="@f.userId"><a href="@controllers.admin.routes.UserController.userDetail(f.userId)">@f.userId.toString.substring(0, 8)</a></td>
-      <td>@f.activeGameId</td>
+      <td style="width: 75px;" title="@f._1.id">@f._1.id.toString.substring(0, 8)</td>
+      <td style="width: 75px;" title="@f._1.userId"><a href="@controllers.admin.routes.UserController.userDetail(f._1.userId)">@f._1.userId.toString.substring(0, 8)</a></td>
+      <td style="width: 75px;">@f._1.activeGameId</td>
       <td>
-        <div>@f.feedback</div>
-        @defining(notes.filter(_.feedbackId == f.id)) { n =>
-          @if(n.nonEmpty) {
-            <strong>Notes</strong>
-            <ul>
-            @n.map { note =>
-              <li class="feedback-note">
-                @note
-              </li>
+        <pre>@f._1.feedback</pre>
+        @if(f._2.nonEmpty) {
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 75px;">Id</th>
+                <th style="width: 75px;">Author</th>
+                <th>Note</th>
+                <th style="width: 75px;">Occurred</th>
+              </tr>
+            </thead>
+            <tbody>
+            @f._2.map { note =>
+              <tr>
+                <td title="@note.id">@note.id.toString.substring(0, 8)</td>
+                <td title="@note.authorId">@note.authorId.toString.substring(0, 8)</td>
+                <td>@note.content</td>
+                <td title="@utils.Formatter.niceDateTime(note.occurred)">@note.occurred.toLocalDate.toString</td>
+              </tr>
             }
-            </ul>
-          }
+            </tbody>
+          </table>
         }
       </td>
-      <td>@f.occurred.toString("yyyy-MM-dd HH:mm:ss")</td>
-      <td>
-        <a href="@controllers.admin.routes.FeedbackController.feedbackNoteForm(f.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
-        <a href="@controllers.admin.routes.FeedbackController.removeFeedback(f.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+      <td style="width: 75px;" title="@utils.Formatter.niceDateTime(f._1.occurred)">@f._1.occurred.toLocalDate.toString</td>
+      <td style="width: 50px;">
+        <a href="@controllers.admin.routes.FeedbackController.feedbackNoteForm(f._1.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="@controllers.admin.routes.FeedbackController.removeFeedback(f._1.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
       </td>
     </tr>
   }
