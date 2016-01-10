@@ -10,7 +10,7 @@ import com.mohiva.play.silhouette.impl.authenticators.CookieAuthenticator
 import models.user.{ Role, User, UserPreferences }
 import nl.grons.metrics.scala.FutureMetrics
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.mvc.{ AnyContent, RequestHeader, Result }
+import play.api.mvc.{ Request, AnyContent, RequestHeader, Result }
 import utils.metrics.Instrumented
 import utils.{ ApplicationContext, DateUtils, Logging }
 
@@ -22,18 +22,17 @@ abstract class BaseController() extends Silhouette[User, CookieAuthenticator] wi
   override protected def env = ctx.env
   override def messagesApi = ctx.messagesApi
 
-  def withAdminSession(action: String)(block: (SecuredRequest[AnyContent]) => Future[Result]) = SecuredAction.async { implicit request =>
+  def req(action: String)(block: (Request[AnyContent]) => Future[Result]) = UserAwareAction.async { implicit request =>
     timing(action) {
       val startTime = System.currentTimeMillis
-      if (request.identity.roles.contains(Role.Admin)) {
+      val response = {
         block(request).map { r =>
           val duration = (System.currentTimeMillis - startTime).toInt
-          logRequest(request, request.identity.id, request.authenticator.loginInfo, duration, r.header.status)
+          logRequest(request, None, None, duration, r.header.status)
           r
         }
-      } else {
-        Future.successful(NotFound("404 Not Found"))
       }
+      response
     }
   }
 
@@ -45,7 +44,7 @@ abstract class BaseController() extends Silhouette[User, CookieAuthenticator] wi
           val secured = SecuredRequest(user, request.authenticator.getOrElse(throw new IllegalStateException()), request)
           block(secured).map { r =>
             val duration = (System.currentTimeMillis - startTime).toInt
-            logRequest(secured, secured.identity.id, secured.authenticator.loginInfo, duration, r.header.status)
+            logRequest(secured, Some(secured.identity.id), Some(secured.authenticator.loginInfo), duration, r.header.status)
             r
           }
         case None =>
@@ -67,7 +66,7 @@ abstract class BaseController() extends Silhouette[User, CookieAuthenticator] wi
             ctx.env.eventBus.publish(SignUpEvent(user, request, request2Messages))
             ctx.env.eventBus.publish(LoginEvent(user, request, request2Messages))
             val duration = (System.currentTimeMillis - startTime).toInt
-            logRequest(request, user.id, authenticator.loginInfo, duration, authedResponse.header.status)
+            logRequest(request, Some(user.id), Some(authenticator.loginInfo), duration, authedResponse.header.status)
             authedResponse
           }
       }
@@ -75,8 +74,26 @@ abstract class BaseController() extends Silhouette[User, CookieAuthenticator] wi
     }
   }
 
-  private[this] def logRequest(request: RequestHeader, userId: UUID, loginInfo: LoginInfo, duration: Int, status: Int) = {
-    val log = RequestLog(request, userId, loginInfo, duration, status)
+  def withAdminSession(action: String)(block: (SecuredRequest[AnyContent]) => Future[Result]) = SecuredAction.async { implicit request =>
+    timing(action) {
+      val startTime = System.currentTimeMillis
+      if (request.identity.roles.contains(Role.Admin)) {
+        block(request).map { r =>
+          val duration = (System.currentTimeMillis - startTime).toInt
+          logRequest(request, Some(request.identity.id), Some(request.authenticator.loginInfo), duration, r.header.status)
+          r
+        }
+      } else {
+        Future.successful(NotFound("404 Not Found"))
+      }
+    }
+  }
+
+  val anonymousId = UUID.fromString("00000000-0000-0000-0000-000000000000")
+  val anonymousLoginInfo = LoginInfo("anonymous", "guest")
+
+  private[this] def logRequest(request: RequestHeader, userId: Option[UUID], loginInfo: Option[LoginInfo], duration: Int, status: Int) = {
+    val log = RequestLog(request, userId.getOrElse(anonymousId), loginInfo.getOrElse(anonymousLoginInfo), duration, status)
     RequestHistoryService.insert(log)
   }
 }

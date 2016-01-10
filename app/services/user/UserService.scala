@@ -41,10 +41,10 @@ object UserService extends Logging {
 
   def save(user: User, update: Boolean = false): Future[User] = {
     val statement = if (update) {
-      log.info(s"Updating user [$user].")
+      log.info(s"Updating user [${user.id}].")
       UserQueries.UpdateUser(user)
     } else {
-      log.info(s"Creating new user [$user].")
+      log.info(s"Creating new user [${user.id}].")
       UserQueries.insert(user)
     }
     Database.execute(statement).map { i =>
