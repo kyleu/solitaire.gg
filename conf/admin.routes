@@ -56,7 +56,7 @@ GET         /analytics/:id/remove            controllers.admin.AnalyticsEventCon
 
 GET         /requests                        controllers.admin.RequestLogController.requestList(q ?= "", sortBy ?= "started", page: Int ?= 0)
 
-GET         /feedback/all                    controllers.admin.FeedbackController.list(key, q ?= "", sortBy ?= "occurred", page: Int ?= 0)
+GET         /feedback/:key                   controllers.admin.FeedbackController.list(key, q ?= "", sortBy ?= "occurred", page: Int ?= 0)
 GET         /feedback/:id/note               controllers.admin.FeedbackController.feedbackNoteForm(id: java.util.UUID)
 POST        /feedback/:id/note               controllers.admin.FeedbackController.feedbackNotePost(id: java.util.UUID)
 GET         /feedback/:id/remove             controllers.admin.FeedbackController.removeFeedback(id: java.util.UUID)

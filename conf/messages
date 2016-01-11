@@ -9,7 +9,8 @@ authentication.invalid.provider = Cannot authenticate with unknown social provid
 authentication.service.error = Couldn''t authenticate with provider [{0}].
 
 # Index Page
-index.play.now = Play Solitaire
+index.play.now = Play Solitaire Now
+index.download = Download App
 
 index.games.popular = Popular Games
 index.games.completed= All Games
