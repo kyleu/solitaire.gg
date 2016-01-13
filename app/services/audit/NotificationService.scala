@@ -9,9 +9,9 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class NotificationService @javax.inject.Inject() (ws: WSClient, config: Config) extends Logging {
-  private[this] val defaultIcon = "https://pbs.twimg.com/profile_images/635681866180227073/jtiU5PPb.jpg"
+  private[this] val defaultIcon = "http://solitaire.gg/assets/images/ui/favicon/favicon.png"
 
-  def alert(msg: String, channel: String = "#general", username: String = "Reverse Giraffe", iconUrl: String = defaultIcon) = if (config.slackEnabled) {
+  def alert(msg: String, channel: String = "#general", username: String = "Solitaire.gg", iconUrl: String = defaultIcon) = if (config.slackEnabled) {
     val body = JsObject(Seq(
       "channel" -> JsString(channel),
       "username" -> JsString(username),

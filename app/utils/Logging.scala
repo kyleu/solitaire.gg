@@ -65,7 +65,7 @@ object Logging extends Instrumented {
 
 trait Logging {
   protected[this] val log = {
-    val name = s"solitaire.gg.${this.getClass.getSimpleName.stripSuffix("$")}"
+    val name = s"solitaire.gg.${utils.Formatter.className(this)}"
     Logging.CustomLogger(name)
   }
 }

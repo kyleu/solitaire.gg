@@ -57,7 +57,7 @@ object ResponseMessageSerializers {
 
       case _ => throw new IllegalArgumentException(s"Unhandled ResponseMessage type [${r.getClass.getSimpleName}].")
     }
-    JsObject(Seq("c" -> JsString(r.getClass.getSimpleName.stripSuffix("$")), "v" -> json))
+    JsObject(Seq("c" -> JsString(utils.Formatter.className(r)), "v" -> json))
   }
 
   val messageSetWrites = Writes[MessageSet] { ms: MessageSet =>
