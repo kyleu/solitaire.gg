@@ -9,8 +9,5 @@ case object CreateClientTraceTable extends CreateTableStatement("client_trace") 
       data json not null,
       created timestamp not null
     ) with (oids=false);
-
-    alter table $tableName add constraint ${tableName}_${CreateUsersTable.tableName}_fk
-      foreign key (player) references ${CreateUsersTable.tableName} (id) on update no action on delete no action;
   """
 }

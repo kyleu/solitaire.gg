@@ -1,33 +1,21 @@
-@(sortBy: String, statuses: Seq[(models.rules.GameRules, models.leaderboard.GameSeed.SeedCount, Boolean)])
+@(sortBy: String, statuses: Seq[(models.rules.GameRules, Boolean)])
 @icon(i: String, t: String) = { <span title="@t" class="glyphicon glyphicon-@i"></span> }
 <table class="table table-bordered">
   <thead>
     <tr>
       @utils.web.ViewUtils.th("title", "Rules", sortBy)
       @utils.web.ViewUtils.th("status", "Status", sortBy)
-      @utils.web.ViewUtils.th("seeds", "Seeds", sortBy)
-      @utils.web.ViewUtils.th("games", "Games", sortBy)
-      @utils.web.ViewUtils.th("wins", "Wins", sortBy)
-      @utils.web.ViewUtils.th("max-moves", "Max Moves", sortBy)
-      @utils.web.ViewUtils.th("avg-moves", "Avg Moves", sortBy)
-      @utils.web.ViewUtils.th("min-moves", "Min Moves", sortBy)
     </tr>
   </thead>
   <tbody>
   @for(rs <- statuses) {
     <tr>
       <td><a href="@controllers.admin.routes.RulesController.rulesDetail(rs._1.id)">@rs._1.title</a></td>
-      <td>@if(rs._3) {
+      <td>@if(rs._2) {
         @icon("ok", "Complete")
       } else {
         @icon("remove", "Not Started")
       }</td>
-      <td>@utils.Formatter.withCommas(rs._2.seeds)</td>
-      <td>@utils.Formatter.withCommas(rs._2.games)</td>
-      <td>@utils.Formatter.withCommas(rs._2.wins)</td>
-      <td>@rs._2.maxMoves.map(utils.Formatter.withCommas).getOrElse(0)</td>
-      <td>@rs._2.avgMoves.map(utils.Formatter.withCommas).getOrElse(0)</td>
-      <td>@rs._2.minMoves.map(utils.Formatter.withCommas).getOrElse(0)</td>
     </tr>
   }
   </tbody>
@@ -35,18 +23,6 @@
     <tr>
       <th>Total</th>
       <th></th>
-      <th>@utils.Formatter.withCommas(statuses.map(_._2.seeds).sum)</th>
-      <th>@utils.Formatter.withCommas(statuses.map(_._2.games).sum)</th>
-      <th>@utils.Formatter.withCommas(statuses.map(_._2.wins).sum)</th>
-      @if(statuses.flatMap(_._2.minMoves).isEmpty) {
-        <th>0</th>
-        <th>0</th>
-        <th>0</th>
-      } else {
-        <th>@utils.Formatter.withCommas(statuses.flatMap(_._2.maxMoves).max)</th>
-        <th>@utils.Formatter.withCommas(statuses.flatMap(_._2.avgMoves).sum / statuses.size)</th>
-        <th>@utils.Formatter.withCommas(statuses.flatMap(_._2.minMoves).min)</th>
-      }
     </tr>
   </tfoot>
 </table>

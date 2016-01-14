@@ -10,7 +10,6 @@ import utils.{ ApplicationContext, DateUtils }
 class DataArchiveController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
 
   def list() = withAdminSession("data.archive.list") { implicit request =>
-    implicit val identity = request.identity
     DataArchiveService.getAll.map { archives =>
       val startDate = new LocalDate("2015-07-01")
       val days = (0 to Days.daysBetween(startDate, DateUtils.today).getDays).map { i =>

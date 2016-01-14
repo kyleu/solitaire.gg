@@ -16,11 +16,8 @@ object SandboxController {
     ScreenshotCreator,
     ExportStatic,
     RunScheduledTask,
-    SolverStressTest,
     SendErrorEmail,
-    BackfillGames,
     BackfillMetrics,
-    RemoveUsers,
     HtmlSandbox
   )
 }
@@ -35,7 +32,6 @@ class SandboxController @javax.inject.Inject() (override val ctx: ApplicationCon
   ExportStatic.messagesApi = Some(messagesApi)
 
   def sandbox(key: String) = withAdminSession(key) { implicit request =>
-    implicit val identity = request.identity
     val sandbox = SandboxController.sandboxes.find(_.id == key).getOrElse(throw new IllegalStateException())
     if (sandbox == HtmlSandbox) {
       Future.successful(Ok(views.html.admin.test.sandbox(java.util.UUID.randomUUID())))
@@ -51,7 +47,6 @@ class SandboxController @javax.inject.Inject() (override val ctx: ApplicationCon
       "Error Message",
       "Test Context",
       Some(new Exception("Text Exception")),
-      None,
       DateUtils.now
     )
   )

@@ -1,4 +1,4 @@
-@(results: Seq[(Int, models.test.TestResult)])(implicit session: Session, flash: Flash, identity: models.user.User)
+@(results: Seq[(Int, models.test.TestResult)])(implicit session: Session, flash: Flash)
 @views.html.admin.layout.base(utils.Config.projectName + " Test Results", "tests") {
   <h4>@utils.Config.projectName Test Results</h4>
   <table class="table table-bordered">

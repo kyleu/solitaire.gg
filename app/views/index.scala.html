@@ -1,6 +1,6 @@
-@(user: models.user.User, offline: Boolean)(
+@(offline: Boolean, isAdmin: Boolean)(
   implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
-)@layout.static(user = user, title = utils.Config.projectName, button = "about") {
+)@layout.static(title = utils.Config.projectName, button = "about") {
   <div class="module">
     <div class="play-now">
       <a href="@controllers.routes.GameController.newGame("klondike").url" role="button">@Messages("index.play.now")</a>
@@ -40,16 +40,16 @@
           <a class="platform-link" href="https://s3.amazonaws.com/solitaire.gg/linux/Solitaire.gg.arm.zip">Linux ARM</a>
         </li>
       </ul>
-      <div>
+      <div class="app-store-links">
         <a id="link-ios" href="https://itunes.apple.com/us/app/solitaire.gg/id1056989640"><img src="@routes.Assets.versioned("images/logo/ios.png")" /></a>
         <a id="link-android" href="https://play.google.com/store/apps/details?id=gg.solitaire"><img src="@routes.Assets.versioned("images/logo/android.png")" /></a>
       </div>
     </div>
   }
 
-  @utils.web.ViewUtils.cachedTemplate("gameList", views.html.game.gameList())
+  @views.html.game.gameList()
 
-  @if(user.isAdmin) {
+  @if(isAdmin) {
     <div class="module">
       <div class="header">@Messages("index.games.unstarted")</div>
       <ul class="game-links">@for(r <- models.rules.GameRulesSet.unfinished) {

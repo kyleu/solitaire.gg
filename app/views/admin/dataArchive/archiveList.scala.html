@@ -1,4 +1,4 @@
-@(days: Seq[org.joda.time.LocalDate], archives: Seq[models.history.DataArchiveCount])(implicit session: Session, flash: Flash, identity: models.user.User)
+@(days: Seq[org.joda.time.LocalDate], archives: Seq[models.history.DataArchiveCount])(implicit session: Session, flash: Flash)
 @views.html.admin.layout.base("Data Archive", "explore") {
   <div class="row">
     <div class="col-md-12">

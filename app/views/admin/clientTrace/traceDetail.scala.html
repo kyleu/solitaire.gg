@@ -1,8 +1,0 @@
-@(clientTrace: models.audit.ClientTraceResult)(implicit session: Session, flash: Flash, identity: models.user.User)
-@views.html.admin.layout.base(s"${utils.Config.projectName} Trace Detail", "explore") {
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <pre>@clientTrace</pre>
-    </div>
-  </div>
-}

@@ -3,18 +3,10 @@ package models
 import java.util.UUID
 
 import akka.actor.ActorRef
-import models.user.{ UserPreferences, User }
+import models.user.UserPreferences
 import org.joda.time.LocalDateTime
 
 sealed trait InternalMessage
-
-case class ConnectionStarted(user: User, connectionId: UUID, conn: ActorRef) extends InternalMessage
-case class ConnectionStopped(connectionId: UUID) extends InternalMessage
-
-case class AddPlayer(userId: UUID, name: String, preferences: UserPreferences, connectionId: UUID, connectionActor: ActorRef) extends InternalMessage
-case class AddObserver(
-  userId: UUID, name: String, preferences: UserPreferences, connectionId: UUID, connectionActor: ActorRef, as: Option[UUID]
-) extends InternalMessage
 
 case class CreateGame(rules: String, connectionId: UUID, seed: Option[Int], testGame: Boolean, preferences: UserPreferences) extends InternalMessage
 case class GameStarted(id: UUID, gameService: ActorRef, started: LocalDateTime) extends InternalMessage

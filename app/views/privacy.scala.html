@@ -1,6 +1,6 @@
-@(user: models.user.User)(
+@()(
   implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
-)@layout.static(user = user, title = s"${utils.Config.projectName} Privacy Policy", button = "menu") {
+)@layout.static(title = s"${utils.Config.projectName} Privacy Policy", button = "menu") {
   <div class="module">
     @Messages("help.privacy.policy", utils.Config.projectName)
   </div>

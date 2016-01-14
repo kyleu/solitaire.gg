@@ -35,9 +35,15 @@ trait PreferenceHelper {
 
     val buttons = dom.document.getElementsByClassName("btn")
 
+    println(buttons.length)
+    (0 until buttons.length).foreach { i =>
+      println(buttons(i).attributes.getNamedItem("id").value)
+    }
+
     (0 until buttons.length).foreach { i =>
       val btn = buttons(i)
-      var cn = btn.attributes.getNamedItem("class").value
+
+      val cn = btn.attributes.getNamedItem("class").value
 
       val colorIndexStart = cn.indexOf("btn-")
       var colorIndexEnd = cn.indexOf(" ", colorIndexStart)

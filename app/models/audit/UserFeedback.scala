@@ -16,7 +16,7 @@ object UserFeedback {
 
 case class UserFeedback(
   id: UUID,
-  userId: UUID,
+  deviceId: UUID,
   activeGameId: Option[UUID],
   feedback: String,
   occurred: LocalDateTime

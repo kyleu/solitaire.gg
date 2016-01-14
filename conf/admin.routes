@@ -1,5 +1,4 @@
 GET         /                                controllers.admin.AdminController.index()
-GET         /enable                          controllers.admin.AdminController.enable()
 GET         /unfinished                      controllers.admin.AdminController.unfinished()
 
 GET         /sandbox                         controllers.admin.SandboxController.defaultSandbox()
@@ -7,18 +6,6 @@ GET         /sandbox/:key                    controllers.admin.SandboxController
 
 GET         /wipe                            controllers.admin.AdminController.wipeSchema(key)
 
-GET         /status                          controllers.admin.AdminController.status
-
-GET         /notify                          controllers.admin.AdminController.notifyAllForm
-POST        /notify/:recipient               controllers.admin.AdminController.notification(recipient)
-
-GET         /trace/connection/:id            controllers.admin.TraceController.traceConnection(id: java.util.UUID)
-GET         /trace/client/:id                controllers.admin.TraceController.traceClient(id: java.util.UUID)
-GET         /trace/game/:id                  controllers.admin.TraceController.traceGame(id: java.util.UUID)
-
-GET         /observe/random                  controllers.admin.AdminController.observeRandomGame()
-GET         /observe/:id                     controllers.admin.AdminController.observeGameAsAdmin(id: java.util.UUID)
-GET         /observe/:id/:as                 controllers.admin.AdminController.observeGameAs(id: java.util.UUID, as: java.util.UUID)
 
 GET         /test                            controllers.admin.TestController.tests
 GET         /test/:test                      controllers.admin.TestController.runTest(test)
@@ -27,20 +14,6 @@ GET         /rules                           controllers.admin.RulesController.r
 GET         /rules/data                      controllers.admin.RulesController.rulesData
 GET         /rules/:id                       controllers.admin.RulesController.rulesDetail(id: String)
 GET         /rules/:id/screenshot            controllers.admin.RulesController.rulesScreenshot(id: String)
-
-GET         /users                           controllers.admin.UserController.userList(q ?= "", sortBy ?= "created", page: Int ?= 0)
-GET         /users/:id                       controllers.admin.UserController.userDetail(id: java.util.UUID)
-GET         /users/:id/make-admin            controllers.admin.UserController.makeAdmin(id: java.util.UUID)
-GET         /users/:id/remove-admin          controllers.admin.UserController.removeAdmin(id: java.util.UUID)
-GET         /users/:id/remove                controllers.admin.UserController.removeUser(id: java.util.UUID)
-
-GET         /games                           controllers.admin.GameHistoryController.gameList(q ?= "", sortBy ?= "created", page: Int ?= 0)
-GET         /games/:id                       controllers.admin.GameHistoryController.gameDetail(id: java.util.UUID)
-GET         /games/:id/remove                controllers.admin.GameHistoryController.removeGame(id: java.util.UUID)
-
-GET         /traces                          controllers.admin.ClientTraceController.traceList(q ?= "", sortBy ?= "created", page: Int ?= 0)
-GET         /traces/:id                      controllers.admin.ClientTraceController.traceDetail(id: java.util.UUID)
-GET         /traces/:id/remove               controllers.admin.ClientTraceController.removeTrace(id: java.util.UUID)
 
 GET         /export/status                   controllers.admin.AnalyticsExportController.exportStatus()
 GET         /export/cache                    controllers.admin.AnalyticsExportController.cacheMissingFiles()

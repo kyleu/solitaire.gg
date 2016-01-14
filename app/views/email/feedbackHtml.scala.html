@@ -1,10 +1,8 @@
-@(fb: models.audit.UserFeedback, user: models.user.User)<html>
+@(fb: models.audit.UserFeedback)<html>
   <head>
   </head>
   <body>
     <h3>Feedback [@fb.id]</h3>
-
-    <div>From <strong>@user.username</strong> [@user.id]</div>
     <div><em>Sent at @fb.occurred</em></div>
     <pre>@fb.feedback</pre>
   </body>

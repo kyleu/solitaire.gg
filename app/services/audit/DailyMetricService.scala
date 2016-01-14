@@ -60,13 +60,9 @@ object DailyMetricService {
   }
 
   private[this] def getSql(metric: Metric) = metric match {
-    case GamesStarted => Some("select count(*) as c from games where created >= ? and created < ?")
-    case GamesWon => Some("select count(*) as c from games where created >= ? and created < ? and status = 'win'")
-    case GamesAdandoned => Some("select count(*) as c from games where created >= ? and created < ? and status = 'abandoned'")
-
-    case OfflineGamesStarted => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-start'")
-    case OfflineGamesWon => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-resigned'")
-    case OfflineGamesAdandoned => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-won'")
+    case GamesStarted => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-start'")
+    case GamesWon => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-resigned'")
+    case GamesAdandoned => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-won'")
 
     case Signups => Some("select count(*) as c from users where created >= ? and created < ?")
     case Requests => Some("select count(*) as c from requests where started >= ? and started < ?")

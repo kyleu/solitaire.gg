@@ -36,7 +36,7 @@ class AnalyticsController @javax.inject.Inject() (override val ctx: ApplicationC
     eventType: EventType,
     device: UUID,
     f: (UUID, String, JsValue) => Future[AnalyticsEvent]
-  ) = withSession(eventType.id) { implicit request =>
+  ) = req(eventType.id) { implicit request =>
     val sourceAddress = request.remoteAddress
     request.body.asJson match {
       case Some(json) => f(device, sourceAddress, json).map { result =>

@@ -1,51 +1,36 @@
-GET         /                                  controllers.HomeController.index
+GET            /                            controllers.HomeController.index
 
 # Utility
-GET         /*path/                            controllers.HomeController.untrail(path: String)
-GET         /link                              controllers.HomeController.externalLink(url: String)
-GET         /robots.txt                        controllers.HomeController.robots
-GET         /ping                              controllers.HomeController.ping(timestamp: Long)
-GET         /privacy                           controllers.HomeController.privacy()
+GET            /*path/                      controllers.HomeController.untrail(path: String)
+GET            /link                        controllers.HomeController.externalLink(url: String)
+GET            /robots.txt                  controllers.HomeController.robots
+GET            /ping                        controllers.HomeController.ping(timestamp: Long)
+GET            /privacy                     controllers.HomeController.privacy()
 
 # Feedback
-GET         /feedback                          controllers.FeedbackController.feedbackForm
-POST        /feedback                          controllers.FeedbackController.submitFeedback
-
-# Authentication
-GET         /signin                            controllers.AuthenticationController.signInForm
-GET         /signin/:provider                  controllers.AuthenticationController.authenticateSocial(provider)
-GET         /signout                           controllers.AuthenticationController.signOut
-
-# Profile
-GET         /profile                           controllers.ProfileController.profile
-GET         /options/set/:option/:value        controllers.ProfileController.setOption(option, value)
+GET            /feedback                    controllers.FeedbackController.feedbackForm
+POST           /feedback                    controllers.FeedbackController.submitFeedback
 
 # Game
-GET         /help/:id                          controllers.GameController.help(id, inline: Boolean ?= false)
-GET         /about                             controllers.HomeController.about()
+GET            /help/:id                    controllers.GameController.help(id, inline: Boolean ?= false)
+GET            /about                       controllers.HomeController.about()
 
-GET         /play/:rules                       controllers.GameController.newGame(rules)
-GET         /play/:rules/:seed                 controllers.GameController.newGameWithSeed(rules, seed: Int)
-
-GET         /offline/:rules                    controllers.GameController.newOfflineGame(rules)
-GET         /offline/:rules/:seed              controllers.GameController.newOfflineGameWithSeed(rules, seed: Int)
-
-GET         /websocket                         controllers.WebsocketController.connect()
+GET            /play/:rules                 controllers.GameController.newGame(rules)
+GET            /play/:rules/:seed           controllers.GameController.newGameWithSeed(rules, seed: Int)
 
 # Offline analytics
-POST        /a/install/:id                     controllers.AnalyticsController.install(id: java.util.UUID)
-POST        /a/open/:id                        controllers.AnalyticsController.open(id: java.util.UUID)
-POST        /a/game-start/:id                  controllers.AnalyticsController.gameStart(id: java.util.UUID)
-POST        /a/game-won/:id                    controllers.AnalyticsController.gameWon(id: java.util.UUID)
-POST        /a/game-resigned/:id               controllers.AnalyticsController.gameResigned(id: java.util.UUID)
-
-OPTIONS     /a/*path                           controllers.AnalyticsController.preflightCheck(path)
+OPTIONS        /a/*path                     controllers.AnalyticsController.preflightCheck(path)
+POST           /a/install/:id               controllers.AnalyticsController.install(id: java.util.UUID)
+POST           /a/open/:id                  controllers.AnalyticsController.open(id: java.util.UUID)
+POST           /a/game-start/:id            controllers.AnalyticsController.gameStart(id: java.util.UUID)
+POST           /a/game-won/:id              controllers.AnalyticsController.gameWon(id: java.util.UUID)
+POST           /a/game-resigned/:id         controllers.AnalyticsController.gameResigned(id: java.util.UUID)
 
 # Admin
-->          /admin                             admin.Routes
+->             /admin                       admin.Routes
 
 # Assets
-GET         /favicon.ico                       controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.ico")
-GET         /apple-touch-icon.png              controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.png")
+GET            /favicon.ico                 controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.ico")
+GET            /apple-touch-icon.png        controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.png")
 
-GET         /assets/*file                      controllers.Assets.versioned(path="/public", file: Asset)
+GET            /assets/*file                controllers.Assets.versioned(path="/public", file: Asset)

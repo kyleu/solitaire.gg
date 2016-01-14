@@ -8,7 +8,6 @@ import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.DailyMetricService
 import services.database.Database
-import services.history.GameHistoryService
 import utils.{ ApplicationContext, DateUtils }
 
 import scala.concurrent.Future
@@ -21,26 +20,23 @@ class ReportController @javax.inject.Inject() (override val ctx: ApplicationCont
       tables <- Database.query(RowCountQueries.ListTables)
       metrics <- DailyMetricService.recalculateMetrics(d)
       totals <- DailyMetricService.getTotals(d)
-      wins <- GameHistoryService.getWins(d)
       counts <- Future.sequence(tables.map(table => Database.query(RowCountQueries.CountTable(table))))
-    } yield Ok(views.html.admin.report.emailReport(d, request.identity.preferences.color, metrics._2._1, totals, wins, counts))
+    } yield Ok(views.html.admin.report.emailReport(d, metrics._2._1, totals, counts))
   }
 
   def trend() = withAdminSession("trend") { implicit request =>
-    implicit val identity = request.identity
     DailyMetricService.getAllMetrics.map { metrics =>
       Ok(views.html.admin.report.trend(metrics, toChartData(metrics)))
     }
   }
 
   def requests() = withAdminSession("requests") { implicit request =>
-    implicit val identity = request.identity
     for {
-      userCounts <- Database.query(RequestLogQueries.GetUserCounts)
+      total <- Database.query(RequestLogQueries.count)
       userAgentCounts <- Database.query(RequestLogQueries.GetCounts("user_agent"))
       pathCounts <- Database.query(RequestLogQueries.GetCounts("path"))
       referrerCounts <- Database.query(RequestLogQueries.GetCounts("referrer"))
-    } yield Ok(views.html.admin.report.requests(userCounts, userAgentCounts, pathCounts, referrerCounts, ctx.config.hostname))
+    } yield Ok(views.html.admin.report.requests(total, userAgentCounts, pathCounts, referrerCounts, ctx.config.hostname))
   }
 
   def analytics() = withAdminSession("analytics") { implicit request =>

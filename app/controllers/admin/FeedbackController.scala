@@ -12,8 +12,6 @@ import utils.{ DateUtils, ApplicationContext }
 @javax.inject.Singleton
 class FeedbackController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def list(key: String, q: String, sortBy: String, page: Int) = withAdminSession("list-" + key) { implicit request =>
-    implicit val identity = request.identity
-
     val feedbackList = for {
       count <- Database.query(UserFeedbackQueries.searchCount(q))
       feedbacks <- Database.query(UserFeedbackQueries.search(q, getOrderClause(sortBy), Some(page)))
@@ -41,18 +39,16 @@ class FeedbackController @javax.inject.Inject() (override val ctx: ApplicationCo
   }
 
   def feedbackNoteForm(feedbackId: UUID) = withAdminSession("note.form") { implicit request =>
-    implicit val identity = request.identity
     Database.query(UserFeedbackQueries.getById(feedbackId)).map { feedback =>
       Ok(views.html.admin.feedback.feedbackForm(feedback.getOrElse(throw new IllegalStateException())))
     }
   }
 
   def feedbackNotePost(feedbackId: UUID) = withAdminSession("note.post") { implicit request =>
-    implicit val identity = request.identity
     val body = request.body.asFormUrlEncoded.getOrElse(throw new IllegalStateException())
     val contentField = body.get("content")
     val content = contentField.flatMap(_.headOption).getOrElse(throw new IllegalStateException())
-    val note = UserFeedback.FeedbackNote(UUID.randomUUID, feedbackId, identity.id, content, DateUtils.now)
+    val note = UserFeedback.FeedbackNote(UUID.randomUUID, feedbackId, UUID.randomUUID, content, DateUtils.now)
     Database.execute(UserFeedbackNoteQueries.insert(note)).map { unused =>
       Redirect(controllers.admin.routes.FeedbackController.list("all"))
     }
@@ -64,7 +60,5 @@ class FeedbackController @javax.inject.Inject() (override val ctx: ApplicationCo
     }
   }
 
-  private[this] def getOrderClause(orderBy: String) = orderBy match {
-    case x => x
-  }
+  private[this] def getOrderClause(orderBy: String) = orderBy
 }

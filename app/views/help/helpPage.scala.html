@@ -1,13 +1,12 @@
-@(user: models.user.User, rules: models.rules.GameRules)(
+@(rules: models.rules.GameRules)(
   implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
 )@layout.static(
-  user = user,
   title = Messages("help.title", rules.title) + " - " + utils.Config.projectName,
   button = "menu",
   url = Some("/help/" + rules.id),
   description = Some("Solitaire.gg help for " + rules.title + ". " + rules.description)
 ) {
   <div class="static-help">
-    @utils.web.ViewUtils.cachedTemplate("help." + rules.id, helpContent(rules, user.preferences.color))
+    @helpContent(rules)
   </div>
 }

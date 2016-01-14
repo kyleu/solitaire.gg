@@ -1,12 +1,12 @@
-@(rules: models.rules.GameRules, color: String)(implicit messages: Messages)
+@(rules: models.rules.GameRules)(implicit messages: Messages)
 @rulesLink(rulesId: String, rulesTitle: String) = {
-            <a class="help-link color-@color" href="@controllers.routes.GameController.help(rulesId).url">@rulesTitle</a>
-            <a class="play-link color-@color" href="@controllers.routes.GameController.newGame(rulesId)" data-rules="@rulesId" title="Play @rulesTitle Now">&#9654;</a>
+  <a class="help-link" href="@controllers.routes.GameController.help(rulesId).url">@rulesTitle</a>
+  <a class="play-link" href="@controllers.routes.GameController.newGame(rulesId)" data-rules="@rulesId" title="Play @rulesTitle Now">&#9654;</a>
 }
     <div class="rules-help">
       <h2>
         @rules.title
-        <a class="play-link color-@color" href="@controllers.routes.GameController.newGame(rules.id).url" title="@Messages("help.play.now")">&#9654;</a>
+        <a class="play-link" href="@controllers.routes.GameController.newGame(rules.id).url" title="@Messages("help.play.now")">&#9654;</a>
       </h2>
       <div class="description"><em>@Html(services.help.GameRulesHelpService.description(rules.description))</em></div>
 
@@ -76,7 +76,7 @@
       <ul>
         @rules.links.map { l =>
         <li>
-          <a class="color-@color" target="_blank" href="@routes.HomeController.externalLink(l.url)">@l.title</a>
+          <a target="_blank" href="@routes.HomeController.externalLink(l.url)">@l.title</a>
         </li>
         }
       </ul>

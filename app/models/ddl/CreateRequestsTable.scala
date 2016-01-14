@@ -25,8 +25,5 @@ case object CreateRequestsTable extends CreateTableStatement("requests") {
     ) with (oids=false);
 
     create index ${tableName}_account_idx on $tableName using btree (user_id);
-
-    alter table $tableName add constraint ${tableName}_${CreateUsersTable.tableName}_fk
-      foreign key (user_id) references ${CreateUsersTable.tableName} (id) on update no action on delete no action;
   """
 }

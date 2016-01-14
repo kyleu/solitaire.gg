@@ -9,7 +9,7 @@ import org.joda.time.LocalDateTime
 
 object UserFeedbackQueries extends BaseQueries[UserFeedback] {
   override protected val tableName = "user_feedback"
-  override protected val columns = Seq("id", "user_id", "active_game_id", "feedback", "occurred")
+  override protected val columns = Seq("id", "device_id", "active_game_id", "feedback", "occurred")
   override protected val searchColumns = Seq("id::text", "user_id::text", "active_game_id::text", "feedback")
 
   val insert = Insert
@@ -26,12 +26,12 @@ object UserFeedbackQueries extends BaseQueries[UserFeedback] {
 
   override protected def fromRow(row: Row) = {
     val id = row.as[UUID]("id")
-    val userId = row.as[UUID]("user_id")
+    val deviceId = row.as[UUID]("device_id")
     val activeGameId = row.asOpt[UUID]("active_game_id")
     val feedback = row.as[String]("feedback")
     val occurred = row.as[LocalDateTime]("occurred")
-    UserFeedback(id, userId, activeGameId, feedback, occurred)
+    UserFeedback(id, deviceId, activeGameId, feedback, occurred)
   }
 
-  override protected def toDataSeq(f: UserFeedback) = Seq[Any](f.id, f.userId, f.activeGameId, f.feedback, f.occurred)
+  override protected def toDataSeq(f: UserFeedback) = Seq[Any](f.id, f.deviceId, f.activeGameId, f.feedback, f.occurred)
 }

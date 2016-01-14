@@ -15,8 +15,5 @@ case object CreateGameSeedsTable extends CreateTableStatement("game_seeds") {
     ) with (oids=false);
 
     create index ${tableName}_rules_idx on $tableName using btree (rules);
-
-    alter table $tableName add constraint ${tableName}_${CreateUsersTable.tableName}_fk
-      foreign key (player) references ${CreateUsersTable.tableName} (id) on update no action on delete no action;
   """
 }

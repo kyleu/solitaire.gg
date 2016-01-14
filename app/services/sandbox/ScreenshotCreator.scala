@@ -1,8 +1,5 @@
 package services.sandbox
 
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.history.GameHistoryService
-import services.user.UserStatisticsService
 import utils.ApplicationContext
 
 import scala.concurrent.Future

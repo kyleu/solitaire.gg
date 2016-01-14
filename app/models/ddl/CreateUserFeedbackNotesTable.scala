@@ -13,9 +13,6 @@ object CreateUserFeedbackNotesTable extends CreateTableStatement("user_feedback_
     alter table $tableName add constraint ${tableName}_${CreateUserFeedbackTable.tableName}_fk
       foreign key (feedback_id) references ${CreateUserFeedbackTable.tableName} (id) on update no action on delete no action;
 
-    alter table $tableName add constraint ${tableName}_${CreateUsersTable.tableName}_fk
-      foreign key (author_id) references ${CreateUsersTable.tableName} (id) on update no action on delete no action;
-
     create index ${tableName}_feedback_id_idx on $tableName using btree (feedback_id);
   """
 }

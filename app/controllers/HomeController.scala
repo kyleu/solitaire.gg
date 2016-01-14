@@ -7,15 +7,15 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class HomeController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
-  def index() = withSession("index") { implicit request =>
-    Future.successful(Ok(views.html.index(request.identity, false)))
+  def index() = req("index") { implicit request =>
+    Future.successful(Ok(views.html.index(offline = false, isAdmin = false)))
   }
 
   def untrail(path: String) = Action.async {
     Future.successful(MovedPermanently(s"/$path"))
   }
 
-  def externalLink(url: String) = withSession("external.link") { implicit request =>
+  def externalLink(url: String) = req("external.link") { implicit request =>
     Future.successful(Redirect(if (url.startsWith("http")) { url } else { "http://" + url }))
   }
 
@@ -23,15 +23,15 @@ class HomeController @javax.inject.Inject() (override val ctx: ApplicationContex
     Future.successful(Ok("User-agent: *\nDisallow:\n"))
   }
 
-  def about = withSession("about") { implicit request =>
-    Future.successful(Ok(views.html.about(request.identity)))
+  def about = req("about") { implicit request =>
+    Future.successful(Ok(views.html.about()))
   }
 
-  def ping(timestamp: Long) = withSession("ping") { implicit request =>
+  def ping(timestamp: Long) = req("ping") { implicit request =>
     Future.successful(Ok(timestamp.toString))
   }
 
-  def privacy() = withSession("privacy") { implicit request =>
-    Future.successful(Ok(views.html.privacy(request.identity)))
+  def privacy() = req("privacy") { implicit request =>
+    Future.successful(Ok(views.html.privacy()))
   }
 }

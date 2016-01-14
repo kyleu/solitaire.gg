@@ -35,10 +35,6 @@ object Dependencies {
     val mailer = "com.typesafe.play" %% "play-mailer" % "3.0.1"
   }
 
-  object Authentication {
-    val silhouette = "com.mohiva" %% "play-silhouette" % "3.0.4"
-  }
-
   object Metrics {
     val metrics = "nl.grons" %% "metrics-scala" % "3.5.2" withSources()
     val jvm = "io.dropwizard.metrics" % "metrics-jvm" % "3.1.2" withSources()

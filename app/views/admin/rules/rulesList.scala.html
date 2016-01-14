@@ -3,8 +3,8 @@
   sortBy: String,
   count: Int,
   page: Int,
-  statuses: Seq[(models.rules.GameRules, models.leaderboard.GameSeed.SeedCount, Boolean)]
-)(implicit session: Session, flash: Flash, identity: models.user.User)
+  statuses: Seq[(models.rules.GameRules, Boolean)]
+)(implicit session: Session, flash: Flash)
 @views.html.admin.layout.list(
   "game rule", "Game Rules", "explore", count, page, statuses.size, q,
   searchAction = controllers.admin.routes.RulesController.rulesList()
@@ -15,8 +15,7 @@
         <a href="@controllers.admin.routes.RulesController.rulesData()">Raw Data</a>
       </div>
       <div>
-        @utils.Formatter.withCommas(models.rules.GameRulesSet.completed.size) completed games,
-        @utils.Formatter.withCommas(statuses.count(_._2.seeds > 0)) solved games.
+        @utils.Formatter.withCommas(models.rules.GameRulesSet.completed.size) completed games
       </div>
     </div>
   </div>

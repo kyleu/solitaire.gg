@@ -1,16 +1,8 @@
-@(
-  user: models.user.User,
-  title: String,
-  button: String,
-  url: Option[String] = None,
-  description: Option[String] = None
-)(content: Html)(
+@(title: String, button: String, url: Option[String] = None, description: Option[String] = None)(content: Html)(
   implicit request: Request[AnyContent], session: Session, flash: Flash
 )@layout.basic(
   title = title,
   stylesheets = Seq(routes.Assets.versioned("stylesheets/solitaire.gg.min.css").url),
-  bodyClass = Some(s"background-${user.preferences.color}"),
-  faviconColor = Some(user.preferences.color),
   url = url,
   description = description
 ) {
@@ -22,4 +14,5 @@
 
   <div id="page-content">
   @content
-  </div> }
+  </div>
+}

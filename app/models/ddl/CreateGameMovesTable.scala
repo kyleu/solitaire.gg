@@ -20,9 +20,6 @@ object CreateGameMovesTable extends CreateTableStatement("game_moves") {
 
     create index ${tableName}_game_idx on $tableName using btree (game_id);
 
-    alter table ${tableName}s add constraint ${tableName}_${CreateUsersTable.tableName}_fk
-      foreign key (player_id) references ${CreateUsersTable.tableName} (id) on update no action on delete no action;
-
     create index ${tableName}_player_idx on $tableName using btree (player_id);
   """
 }

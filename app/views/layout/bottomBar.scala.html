@@ -1,14 +1,14 @@
-@(user: models.user.User)(implicit messages: Messages)
+@()(implicit messages: Messages)
 <div id="status-container" class="fixed">
   <div id="status-container-left" class="menu-left invisible">
-    <div id="btn-help" title="@Messages("menu.help")" class="help btn btn-@user.preferences.color"></div>
-    <div id="btn-feedback" title="@Messages("menu.feedback")" class="feedback btn btn-@user.preferences.color"></div>
-    <div id="btn-game-options" title="@Messages("menu.game.options")" class="game-options btn btn-@user.preferences.color invisible"></div>
+    <div id="btn-help" title="@Messages("menu.help")" class="help btn btn-greyblue"></div>
+    <div id="btn-feedback" title="@Messages("menu.feedback")" class="feedback btn btn-greyblue"></div>
+    <div id="btn-game-options" title="@Messages("menu.game.options")" class="game-options btn btn-greyblue invisible"></div>
   </div>
   <div id="status-container-right" class="menu-right invisible">
-    <div id="btn-redo" title="@Messages("menu.redos")" class="redo btn btn-@user.preferences.color disabled"></div>
-    <div id="btn-hint" title="@Messages("menu.hint")" class="hint btn btn-@user.preferences.color"></div>
-    <div id="btn-undo" title="@Messages("menu.undos")" class="undo btn btn-@user.preferences.color disabled"></div>
+    <div id="btn-redo" title="@Messages("menu.redos")" class="redo btn btn-greyblue disabled"></div>
+    <div id="btn-hint" title="@Messages("menu.hint")" class="hint btn btn-greyblue"></div>
+    <div id="btn-undo" title="@Messages("menu.undos")" class="undo btn btn-greyblue disabled"></div>
   </div>
 
   <div id="game-name-container">

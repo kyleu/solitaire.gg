@@ -10,7 +10,7 @@ import scala.scalajs.js.annotation.JSExport
 
 import scala.util.Random
 
-object Solitaire extends js.JSApp with SolitaireUndoHelper with PreferenceHelper with NetworkHelper {
+object Solitaire extends js.JSApp with SolitaireUndoHelper with PreferenceHelper {
   override def main(): Unit = {}
 
   private[this] val rng = new Random()

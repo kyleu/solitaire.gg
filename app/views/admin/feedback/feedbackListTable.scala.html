@@ -3,7 +3,7 @@
   <thead>
     <tr>
       @utils.web.ViewUtils.th("feedback-id", "ID", sortBy)
-      @utils.web.ViewUtils.th("feedback-user", "User", sortBy)
+      @utils.web.ViewUtils.th("feedback-device", "Device", sortBy)
       @utils.web.ViewUtils.th("feedback-game", "Game", sortBy)
       @utils.web.ViewUtils.th("feedback-feedback", "Feedback", sortBy)
       @utils.web.ViewUtils.th("feedback-occurred", "Occurred", sortBy)
@@ -14,7 +14,7 @@
   @for(f <- feedbacks) {
     <tr>
       <td style="width: 75px;" title="@f._1.id">@f._1.id.toString.substring(0, 8)</td>
-      <td style="width: 75px;" title="@f._1.userId"><a href="@controllers.admin.routes.UserController.userDetail(f._1.userId)">@f._1.userId.toString.substring(0, 8)</a></td>
+      <td style="width: 75px;" title="@f._1.deviceId">@f._1.deviceId.toString.substring(0, 8)</td>
       <td style="width: 75px;">@f._1.activeGameId</td>
       <td>
         <pre>@f._1.feedback</pre>

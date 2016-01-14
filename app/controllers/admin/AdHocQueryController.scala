@@ -31,7 +31,6 @@ class AdHocQueryController @javax.inject.Inject() (override val ctx: Application
   implicit val timeout = Timeout(10.seconds)
 
   def queryList(query: Option[UUID], action: Option[String]) = withAdminSession("list") { implicit request =>
-    implicit val identity = request.identity
     if (action.contains("load")) {
       Database.query(AdHocQueries.search("", "title", None)).map { queries =>
         val q = query.flatMap(x => queries.find(_.id == x))
@@ -49,14 +48,13 @@ class AdHocQueryController @javax.inject.Inject() (override val ctx: Application
   }
 
   def run() = withAdminSession("run") { implicit request =>
-    implicit val identity = request.identity
     import DateUtils._
 
     executionForm.bindFromRequest.fold(
       formWithErrors => Future.successful(BadRequest("Couldn't process form:\n  " + formWithErrors.errors.mkString("  \n"))),
       form => form.action match {
         case "save" => if (form.id.isEmpty || form.id.getOrElse("").isEmpty) {
-          val q = AdHocQuery(UUID.randomUUID, form.title, request.identity.id, form.sql, new LocalDateTime, new LocalDateTime)
+          val q = AdHocQuery(UUID.randomUUID, form.title, form.sql, new LocalDateTime, new LocalDateTime)
           Database.execute(AdHocQueries.insert(q)).flatMap { ok =>
             Database.query(AdHocQueries.search("", "title", None)).map { queries =>
               val newId = queries.sortBy(_.created).headOption.map(_.id)
@@ -65,7 +63,7 @@ class AdHocQueryController @javax.inject.Inject() (override val ctx: Application
           }
         } else {
           val queryId = form.id.map(UUID.fromString)
-          val q = AdHocQueries.UpdateAdHocQuery(queryId.getOrElse(throw new IllegalStateException()), form.title, request.identity.id, form.sql)
+          val q = AdHocQueries.UpdateAdHocQuery(queryId.getOrElse(throw new IllegalStateException()), form.title, form.sql)
           Database.execute(q).flatMap { ok =>
             Database.query(AdHocQueries.search("", "title", None)).map { queries =>
               Ok(views.html.admin.report.adhoc(queryId, form.sql, Seq.empty -> Seq.empty, 0, queries))

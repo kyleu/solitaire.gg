@@ -20,7 +20,6 @@ class AnalyticsExportController @javax.inject.Inject() (override val ctx: Applic
   val export = new AnalyticsExport(ctx.config)
 
   def exportStatus() = withAdminSession("status") { implicit request =>
-    implicit val identity = request.identity
     export.getStatus.map { messages =>
       Ok(views.html.admin.analytics.exportStatus(messages))
     }

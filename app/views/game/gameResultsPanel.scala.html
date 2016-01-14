@@ -1,13 +1,9 @@
-@(offline: Boolean)(implicit messages: Messages)
+@()(implicit messages: Messages)
 <div id="game-results-panel">
   <div class="content">
     <div id="game-results-title">You Win!</div>
     <ul class="game-links">
       <li><div id="btn-results-redeal" title="@Messages("menu.redeal.description")" class="menu-link">@Messages("menu.redeal")</div></li>
-      @if(!offline) {
-        <li><div id="btn-results-winnable-game" title="@Messages("menu.winnable.game.description")" class="menu-link">@Messages("menu.winnable.game")</div></li>
-        <li><div id="btn-results-specific-seed" title="@Messages("menu.specific.seed.description")" class="menu-link">@Messages("menu.specific.seed")</div></li>
-      }
       <li><div id="btn-results-choose-game" title="@Messages("menu.different.game.description")" class="menu-link">@Messages("menu.different.game")</div></li>
     </ul>
 

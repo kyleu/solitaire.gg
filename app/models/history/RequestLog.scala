@@ -2,17 +2,13 @@ package models.history
 
 import java.util.UUID
 
-import com.mohiva.play.silhouette.api.LoginInfo
 import org.joda.time.LocalDateTime
 import play.api.mvc.RequestHeader
 import utils.DateUtils
 
 object RequestLog {
-  def apply(r: RequestHeader, userId: UUID, loginInfo: LoginInfo, duration: Int, status: Int): RequestLog = RequestLog(
+  def apply(r: RequestHeader, duration: Int, status: Int): RequestLog = RequestLog(
     id = UUID.randomUUID,
-    userId = userId,
-    authProvider = loginInfo.providerID,
-    authKey = loginInfo.providerKey,
     remoteAddress = r.remoteAddress,
 
     method = r.method,
@@ -33,9 +29,6 @@ object RequestLog {
 
 case class RequestLog(
   id: UUID,
-  userId: UUID,
-  authProvider: String,
-  authKey: String,
   remoteAddress: String,
 
   method: String,

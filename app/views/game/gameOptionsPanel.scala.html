@@ -1,49 +1,20 @@
-@(user: models.user.User)(implicit messages: Messages)
-<div id="gameplay-options" class="display-none">
-  <!--
-  <div id="audio-list" class="options-list">
-    <div class="options-label">@Messages("options.audio")</div>
-    <div class="game-options">
-      <div class="game-option@{ if(user.preferences.audio) { " active" } else { "" } }" data-option-class="audio" data-option-value="true">
-        <div id="audio-true" class="option-image"></div>
-      </div>
-      <div class="game-option@{ if(!user.preferences.audio) { " active" } else { "" } }" data-option-class="audio" data-option-value="false">
-        <div id="audio-false" class="option-image"></div>
-      </div>
-    </div>
-  </div>
-  -->
-
+@()(implicit messages: Messages)<div id="gameplay-options" class="display-none">
   <div id="auto-flip-list" class="options-list">
     <div class="options-label">@Messages("options.auto.flip")</div>
     <div class="game-options">
-      <div class="game-option@{ if(user.preferences.autoFlip) { " active" } else { "" } }" data-option-class="auto-flip" data-option-value="true">
+      <div class="game-option" data-option-class="auto-flip" data-option-value="true">
         <div id="auto-flip-true" class="option-image"></div>
       </div>
-      <div class="game-option@{ if(!user.preferences.autoFlip) { " active" } else { "" } }" data-option-class="auto-flip" data-option-value="false">
+      <div class="game-option" data-option-class="auto-flip" data-option-value="false">
         <div id="auto-flip-false" class="option-image"></div>
       </div>
     </div>
   </div>
 
-  <!--
-  <div id="gamepad-list" class="options-list">
-    <div class="options-label">@Messages("options.gamepad")</div>
-    <div class="game-options">
-      <div class="game-option@{ if(user.preferences.gamepad) { " active" } else { "" } }" data-option-class="gamepad" data-option-value="true">
-        <div id="gamepad-true" class="option-image"></div>
-      </div>
-      <div class="game-option@{ if(!user.preferences.gamepad) { " active" } else { "" } }" data-option-class="gamepad" data-option-value="false">
-        <div id="gamepad-false" class="option-image"></div>
-      </div>
-    </div>
-  </div>
-  -->
-
   <div id="card-layout-list" class="options-list">
     <div class="options-label">@Messages("options.cards.layout")</div>
     <div class="game-options">@for(idx <- Seq("a", "b")) {
-      <div class="game-option@{ if(idx == user.preferences.cards.layout) { " active" } else { "" } }" data-option-class="card-layout" data-option-value="@idx">
+      <div class="game-option" data-option-class="card-layout" data-option-value="@idx">
         <div id="card-layout-@idx" class="option-image"></div>
       </div>}
     </div>
@@ -52,7 +23,7 @@
   <div id="card-back-list" class="options-list">
     <div class="options-label">@Messages("options.cards.back")</div>
     <div class="game-options">@for(idx <- Seq("a", "b", "c")) {
-      <div class="game-option@{ if(idx == user.preferences.cards.back) { " active" } else { "" } }" data-option-class="card-back" data-option-value="@idx">
+      <div class="game-option" data-option-class="card-back" data-option-value="@idx">
         <div id="card-back-@idx" class="option-image"></div>
       </div>}
     </div>
@@ -61,7 +32,7 @@
   <div id="card-face-list" class="options-list">
     <div class="options-label">@Messages("options.cards.face.cards")</div>
     <div class="game-options">@for(idx <- Seq("a", "b")) {
-      <div class="game-option@{ if(idx == user.preferences.cards.faceCards) { " active" } else { "" } }" data-option-class="card-face" data-option-value="@idx">
+      <div class="game-option" data-option-class="card-face" data-option-value="@idx">
         <div id="card-face-@idx" class="option-image"></div>
       </div>}
     </div>
@@ -70,7 +41,7 @@
   <div id="card-suit-list" class="options-list">
     <div class="options-label">@Messages("options.cards.suits")</div>
     <div class="game-options">@for(idx <- Seq("a", "b")) {
-      <div class="game-option@{ if(idx == user.preferences.cards.suits) { " active" } else { "" } }" data-option-class="card-suit" data-option-value="@idx">
+      <div class="game-option" data-option-class="card-suit" data-option-value="@idx">
         <div id="card-suit-@idx" class="option-image"></div>
       </div>}
     </div>
@@ -79,7 +50,7 @@
   <div id="card-rank-list" class="options-list">
     <div class="options-label">@Messages("options.cards.ranks")</div>
     <div class="game-options">@for(idx <- Seq("a", "b")) {
-      <div class="game-option@{ if(idx == user.preferences.cards.ranks) { " active" } else { "" } }" data-option-class="card-rank" data-option-value="@idx">
+      <div class="game-option" data-option-class="card-rank" data-option-value="@idx">
         <div id="card-rank-@idx" class="option-image"></div>
       </div>}
     </div>
@@ -89,7 +60,7 @@
   <div id="color-list" class="options-list">
     <div class="options-label">@Messages("options.background.color")</div>
     <div class="game-options">@for(color <- ui.Colors.all) {
-        <div class="game-option@{ if(color._1 == user.preferences.color) { " active" } else { "" } }" data-option-class="background-color" data-option-value="@color._1"><div class="background-@color._1"></div></div>}
+        <div class="game-option" data-option-class="background-color" data-option-value="@color._1"><div class="background-@color._1"></div></div>}
     </div>
   </div>
 

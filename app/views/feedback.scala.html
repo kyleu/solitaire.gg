@@ -1,9 +1,9 @@
-@(user: models.user.User)(implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages)
+@()(implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages)
 @if(flash.get("success").isDefined) {
   <div class="feedback-success">
     @flash.get("success")
   </div>
-  <div class="feedback-modal-close modal-close background-@user.preferences.color">Resume</div>
+  <div class="feedback-modal-close modal-close">Resume</div>
 } else {
   @if(flash.get("error").isDefined) {
     <div class="feedback-error">
@@ -12,6 +12,6 @@
   }
   <p class="feedback-prompt">@Messages("feedback.prompt")</p>
   <textarea id="feedback-input"></textarea>
-  <button id="feedback-submit" class="background-@user.preferences.color">@Messages("feedback.submit")</button>
-  <div style="text-align: center; margin-top: 10px;"><a href="#" id="feedback-cancel" class="color-@user.preferences.color">@Messages("feedback.cancel")</a></div>
+  <button id="feedback-submit">@Messages("feedback.submit")</button>
+  <div style="text-align: center; margin-top: 10px;"><a href="#" id="feedback-cancel">@Messages("feedback.cancel")</a></div>
 }

@@ -1,6 +1,6 @@
 package models.queries
 
-import models.database.{ Row, FlatSingleRowQuery, Statement, Query }
+import models.database._
 
 object BaseQueries {
   val pageSize = 100
@@ -71,6 +71,11 @@ trait BaseQueries[T] {
     override val sql = getSql(whereClause, groupBy, Some(orderBy), limit, offset)
     override val values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(c => s"%$q%") }
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
+  }
+
+  protected case class CountWhere(whereClause: Option[String]) extends SingleRowQuery[Int] {
+    override def sql = s"select count(*) as c from $tableName${whereClause.map(" where " + _)}"
+    override def map(row: Row) = row.as[Int]("c")
   }
 
   private def idWhereClause = idColumns.map(c => s"$c = ?").mkString(" and ")

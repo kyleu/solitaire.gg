@@ -3,7 +3,7 @@ package services.sandbox
 import java.nio.file.{ Files, Paths }
 
 import models.rules.GameRulesSet
-import models.user.{ User, UserPreferences }
+import models.user.UserPreferences
 import play.api.i18n.MessagesApi
 import play.api.test.FakeRequest
 import services.test.TestService
@@ -14,8 +14,6 @@ import scala.concurrent.Future
 object ExportStatic extends SandboxTask {
   private[this] val outPath = Paths.get(".", "offline", "build", "templates")
   private[this] val helpPath = outPath.resolve("help")
-
-  private[this] val offlineUser = User(TestService.testUserId, Some("Offline"), UserPreferences(), Nil, created = DateUtils.now)
 
   var messagesApi: Option[MessagesApi] = None
 
@@ -36,20 +34,18 @@ object ExportStatic extends SandboxTask {
     implicit val flash = request.flash
     implicit val messages = mApi.preferred(request)
 
-    render("index.html", views.html.index(offlineUser, true).toString())
+    render("index.html", views.html.index(offline = true, isAdmin = false).toString())
     render("gameplay.html", views.html.game.gameplay(
       title = "Solitaire.gg",
-      user = offlineUser,
       rulesId = "klondike",
       rulesDescription = "",
       initialAction = Seq("start"),
       seed = None,
-      offline = true,
       debug = false
     ).toString())
 
     GameRulesSet.completed.map { rules =>
-      render(s"help/${rules._1}.html", views.html.help.helpInline(rules._2, "greyblue").toString(), prefix = Some("../"))
+      render(s"help/${rules._1}.html", views.html.help.helpInline(rules._2).toString(), prefix = Some("../"))
     }
 
     Future.successful("Ok!")

@@ -17,16 +17,6 @@ object DailyMetric {
     override val title = "Abandoned"
   }
 
-  case object OfflineGamesStarted extends Metric {
-    override val title = "OfflineGames"
-  }
-  case object OfflineGamesWon extends Metric {
-    override val title = "OfflineWon"
-  }
-  case object OfflineGamesAdandoned extends Metric {
-    override val title = "OfflineAbandoned"
-  }
-
   case object Signups extends Metric {
     override val title = "Signups"
   }
@@ -49,7 +39,6 @@ object DailyMetric {
 
   val all = Seq[Metric](
     GamesStarted, GamesWon, GamesAdandoned,
-    OfflineGamesStarted, OfflineGamesWon, OfflineGamesAdandoned,
     Signups, Requests, Feedbacks,
     ServerFreeSpace,
     ReportSent

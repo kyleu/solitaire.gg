@@ -3,7 +3,6 @@ package services.database
 import models.database.Statement
 import models.ddl.DdlQueries
 import models.ddl._
-import models.queries.user.UserQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import utils.Logging
 
@@ -11,14 +10,7 @@ import scala.concurrent.Future
 
 object Schema extends Logging {
   val tables = Seq(
-    CreateUsersTable,
     CreateUserStatisticsTable,
-
-    CreateUserProfilesTable,
-    CreateOAuth1InfoTable,
-    CreateOAuth2InfoTable,
-    CreateOpenIdInfoTable,
-    CreateSessionInfoTable,
 
     CreateRequestsTable,
     CreateClientTraceTable,
@@ -51,12 +43,6 @@ object Schema extends Logging {
             Database.execute(t).map(x => Unit)
           }
         }
-      }
-    }
-
-    tableFuture.flatMap { ok =>
-      createUser(Database.query(UserQueries.DoesUserExist(DdlQueries.adminId)), DdlQueries.InsertTestUser).flatMap { stillOk =>
-        createUser(Database.query(UserQueries.DoesUserExist(services.test.TestService.testUserId)), DdlQueries.InsertAdminUser)
       }
     }
   }

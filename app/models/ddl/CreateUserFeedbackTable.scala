@@ -4,7 +4,7 @@ object CreateUserFeedbackTable extends CreateTableStatement("user_feedback") {
   override def sql: String = s"""
     create table $tableName (
       id uuid not null primary key,
-      user_id uuid not null,
+      device_id uuid,
       active_game_id uuid,
       feedback text not null,
       occurred timestamp without time zone not null

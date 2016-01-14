@@ -1,7 +1,6 @@
 package utils.web
 
 import play.twirl.api.Html
-import utils.cache.TemplateCache
 
 object ViewUtils {
   def th(key: String, label: String, selected: String = "", link: Boolean = true) = {
@@ -13,10 +12,5 @@ object ViewUtils {
       s"""<a href="?sortBy=$key">$label</a></th>"""
     }
     Html(s"""<th nowrap="nowrap" class="th-$key">$ret</th>""")
-  }
-
-  def cachedTemplate(key: String, html: => Html) = TemplateCache.getTemplate(key) match {
-    case Some(x) => x
-    case None => TemplateCache.cacheTemplate(key, html)
   }
 }

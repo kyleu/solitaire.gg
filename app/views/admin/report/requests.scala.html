@@ -1,10 +1,10 @@
 @(
-  userCounts: Seq[(java.util.UUID, Option[String], Int)],
+  totalCount: Int,
   userAgentCounts: Seq[(String, Int)],
   pathCounts: Seq[(String, Int)],
   referrerCounts: Seq[(String, Int)],
   hostname: String
-)(implicit session: Session, flash: Flash, identity: models.user.User)
+)(implicit session: Session, flash: Flash)
 
 @renderTable(label: String, counts: Seq[(String, Int)]) = {
   <h5>Top 10 @{label}s</h5>
@@ -34,33 +34,13 @@
 ) {
 
   <h3>@utils.Config.projectName Request Report</h3>
-  <h4>Displaying metrics for @utils.Formatter.withCommas(userCounts.map(_._3).sum) requests.</h4>
+  <h4>Displaying metrics for @utils.Formatter.withCommas(totalCount) requests.</h4>
 
   @renderTable("Path", pathCounts)
 
   @renderTable("Referrer", referrerCounts)
 
   @renderTable("External Referrer", referrerCounts.filter(!_._1.contains(hostname)))
-
-  <h5>Top 10 Users</h5>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>User ID</th>
-        <th>Username</th>
-        <th>Requests</th>
-      </tr>
-    </thead>
-    <tbody>
-    @for(u <- userCounts.take(10)) {
-      <tr>
-        <td><a href="@controllers.admin.routes.UserController.userDetail(u._1)">@u._1</a></td>
-        <td>@u._2</td>
-        <td>@utils.Formatter.withCommas(u._3)</td>
-      </tr>
-    }
-    </tbody>
-  </table>
 
   @renderTable("User Agent", userAgentCounts)
 }
