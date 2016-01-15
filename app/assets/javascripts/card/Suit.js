@@ -54,7 +54,7 @@ define(function () {
         case '?':
           return unknown;
         default:
-          throw 'Invalid suit [' + c + '].';
+          throw new Error('Invalid suit [' + c + '].');
       }
     }
   };

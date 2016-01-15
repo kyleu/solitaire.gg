@@ -82,7 +82,7 @@ define(function () {
 
   GameInput.prototype.onInput = function(command) {
     if(this.game === undefined) {
-      throw 'Input not started.';
+      throw new Error('Input not started.');
     }
 
     if(!this.inputVisible) {

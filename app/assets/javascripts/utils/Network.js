@@ -37,7 +37,7 @@ define([], function() {
         request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         request.send(query.join('&'));
       } else {
-        throw 'Unsupported method [' + method + '].';
+        throw new Error('Unsupported method [' + method + '].');
       }
     }
   };

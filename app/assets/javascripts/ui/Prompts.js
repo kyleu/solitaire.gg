@@ -14,7 +14,7 @@ define([], function() {
 
     activePanel = document.getElementById('prompt-panel-' + key);
     if(activePanel === null) {
-      throw key;
+      throw new Error(key.toString);
     }
 
     activePanel.style.display = 'block';

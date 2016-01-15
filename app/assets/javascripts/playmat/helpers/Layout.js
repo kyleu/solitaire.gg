@@ -76,7 +76,7 @@ define(['playmat/helpers/Dimensions'], function (getDimensions) {
           break;
         default:
           if(pileSet === undefined) {
-            throw 'Unable to find set matching [' + c + ']';
+            throw new Error('Unable to find set matching [' + c + ']');
           }
           remainingPileSets = _.without(remainingPileSets, pileSet);
           pileSet.position = [xOffset - 0.5, yOffset - 0.5];

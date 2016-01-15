@@ -9,7 +9,7 @@ define(['card/Rank', 'card/Suit'], function(Rank, Suit) {
   var blank, suitImages, blackRankImages, redRankImages, faceCardImages;
 
   function init(game, preferences) {
-    if(cardTextures.length > 0) { throw 'Double initialize.'; }
+    if(cardTextures.length > 0) { throw new Error('Double initialize.'); }
     blank = new Phaser.Image(game, 0, 0, 'card-blank', 0);
     rerender(game, preferences);
   }
@@ -109,7 +109,7 @@ define(['card/Rank', 'card/Suit'], function(Rank, Suit) {
 
         break;
       default:
-        throw '?: ' + layout;
+        throw new Error('?: ' + layout);
     }
 
     return tex;

@@ -37,7 +37,7 @@ define([], function() {
             elements.colors.push(layoutOption);
             break;
           default:
-            throw optionClass;
+            throw new Error('oc: ' + optionClass);
         }
 
         if(layoutOption.className.indexOf('active') > -1) {

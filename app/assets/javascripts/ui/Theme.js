@@ -83,7 +83,7 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
         selectedElements = elements.colors;
         break;
       default:
-        throw optionClass;
+        throw new Error(optionClass);
     }
 
     if(preferences[optionClass] !== optionValue) {
@@ -122,7 +122,7 @@ define(['card/CardImages', 'ui/ThemeStartup'], function(CardImages, ThemeStartup
         reloadTexture(game.load.spritesheet('card-ranks', assetRoot + 'images/cards/ranks-' + optionValue + '.png', 200, 200));
         break;
       default:
-        throw optionClass;
+        throw new Error(optionClass);
     }
 
     _.each(selectedElements, function(el) {

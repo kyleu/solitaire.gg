@@ -1,8 +1,8 @@
 /* global define:false */
 define([], function () {
   function sandbox(game) {
-    game.onMessage('SendDebugInfo', {});
-    return 'Ok: ' + game.id;
+    throw new Error('Intentional!');
+    //return 'Ok: ' + game.id;
   }
 
   return {

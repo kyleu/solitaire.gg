@@ -4,7 +4,7 @@ define(function () {
 
   var c = document.getElementById('solitaire-gg-config');
   if(c === undefined || c === null) {
-    throw 'NoConfigurationException';
+    throw new Error('NoConfigurationException');
   }
   var cfg = JSON.parse(c.textContent);
 

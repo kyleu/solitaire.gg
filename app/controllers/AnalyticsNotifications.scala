@@ -12,6 +12,7 @@ import scala.concurrent.Future
 class AnalyticsNotifications(notificationService: NotificationService) extends Logging {
   def notify(eventType: EventType, result: AnalyticsEvent) = Future {
     eventType match {
+      case EventType.Error => notificationService.alert(errorMessage(result), "#production-errors")
       case EventType.Install => notificationService.alert(installMessage(result), "#production-installs")
       case EventType.Open => notificationService.alert(openMessage(result), "#production-installs")
       case EventType.GameStart => notificationService.alert(gameStartMessage(result), "#production-games")
@@ -19,6 +20,10 @@ class AnalyticsNotifications(notificationService: NotificationService) extends L
       case EventType.GameResigned => notificationService.alert(gameResignedMessage(result), "#production-games")
       case _ => log.warn(s"Unhandled event type [$eventType].")
     }
+  }
+
+  def errorMessage(result: AnalyticsEvent) = {
+    s"Error encoutered on device [${result.device}]."
   }
 
   def installMessage(result: AnalyticsEvent) = {

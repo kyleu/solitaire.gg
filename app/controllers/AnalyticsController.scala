@@ -26,6 +26,7 @@ class AnalyticsController @javax.inject.Inject() (override val ctx: ApplicationC
     ))
   }
 
+  def error(device: UUID) = analyticsAction(EventType.Error, device, AnalyticsService.error)
   def install(device: UUID) = analyticsAction(EventType.Install, device, AnalyticsService.install)
   def open(device: UUID) = analyticsAction(EventType.Open, device, AnalyticsService.open)
   def gameStart(device: UUID) = analyticsAction(EventType.GameStart, device, AnalyticsService.gameStart)

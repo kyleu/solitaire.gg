@@ -7,7 +7,7 @@ define(['pile/PileLayout', 'pile/PileHelpers', 'pile/DragFromConstraints'], func
   function getConstraint(key) {
     var ret = DragFromConstraints[key === undefined ? 'never' : key];
     if(ret === undefined) {
-      throw 'Invalid dragFrom constraint [' + key + '].';
+      throw new Error('Invalid dragFrom constraint [' + key + '].');
     } else {
       return ret;
     }
@@ -70,7 +70,7 @@ define(['pile/PileLayout', 'pile/PileHelpers', 'pile/DragFromConstraints'], func
 
   Pile.prototype.removeCard = function(card) {
     if(card.pile !== this) {
-      throw 'Provided card is not a part of this pile.';
+      throw new Error('Provided card is not a part of this pile.');
     }
 
     card.pile = null;

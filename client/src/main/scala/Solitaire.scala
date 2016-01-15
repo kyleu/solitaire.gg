@@ -24,6 +24,11 @@ object Solitaire extends js.JSApp with SolitaireUndoHelper with PreferenceHelper
   }
 
   @JSExport
+  def jsError(e: js.Dynamic) = {
+    onError(e, new java.util.Date().getTime)
+  }
+
+  @JSExport
   def receive(c: String, v: js.Dynamic): Unit = c match {
     case "GetVersion" => send(VersionResponse("0.0"))
     case "Ping" => send(Pong(JsonUtils.getLong(v.timestamp)))

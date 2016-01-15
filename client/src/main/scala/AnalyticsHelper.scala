@@ -9,6 +9,8 @@ import upickle.legacy._
 
 import json.BaseSerializers._
 
+import scala.scalajs.js
+
 trait AnalyticsHelper extends AjaxHelper {
   protected var gameStatus = "init"
   protected def getRequests: Seq[Seq[String]]
@@ -33,6 +35,22 @@ trait AnalyticsHelper extends AjaxHelper {
     onInstall(System.currentTimeMillis)
   } else {
     onOpen(System.currentTimeMillis)
+  }
+
+  protected[this] def onError(error: js.Dynamic, occurred: Long) = {
+    val event = ErrorEvent(
+      deviceId = deviceId,
+      sessionId = sessionId,
+      message = error.message.toString,
+      url = error.url.toString,
+      line = try { error.line.toString.toInt } catch { case x: Exception => -1 },
+      col = try { error.col.toString.toInt } catch { case x: Exception => -1 },
+      stack = Option(error.stack).map(_.toString),
+      deviceInfo = deviceInfo,
+      occurred = occurred
+    )
+    val json = BaseSerializers.write(writeJs(event))
+    sendNetworkPost("/a/error/" + deviceId, json)
   }
 
   protected[this] def onInstall(occurred: Long) = {

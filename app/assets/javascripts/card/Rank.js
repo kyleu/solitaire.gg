@@ -115,7 +115,7 @@ define(function () {
       case '?':
         return Rank.unknown;
       default:
-        throw 'Invalid rank [' + c + '].';
+        throw new Error('Invalid rank [' + c + '].');
     }
   };
 

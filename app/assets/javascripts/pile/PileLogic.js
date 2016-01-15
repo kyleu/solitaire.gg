@@ -12,7 +12,7 @@ define(['card/Rank'], function(Rank) {
         case 4:
           return r === Rank.five;
         default:
-          throw '?';
+          throw new Error('?');
       }
     } else {
       return l.value === r.value - i;
@@ -31,7 +31,7 @@ define(['card/Rank'], function(Rank) {
         case 4:
           return r === Rank.ten;
         default:
-          throw '?';
+          throw new Error('?');
       }
     } else {
       return l.value === r.value + i;
@@ -65,11 +65,11 @@ define(['card/Rank'], function(Rank) {
         case 'DownBy4':
           return downBy(4, l, r, lowRank);
         case 'UpByPileIndex':
-          throw '?';
+          throw new Error('?');
         case 'Any':
           return true;
         default:
-          throw '?';
+          throw new Error('?');
       }
     },
 
@@ -88,7 +88,7 @@ define(['card/Rank'], function(Rank) {
         case 'Any':
           return true;
         default:
-          throw '?';
+          throw new Error('?');
       }
     }
   };

@@ -122,7 +122,7 @@ define(['card/Tweens'], function (Tweens) {
         card.actualX = null;
         card.inputOriginalPosition = null;
       } else {
-        throw '!1';
+        throw new Error('!1');
       }
     },
 

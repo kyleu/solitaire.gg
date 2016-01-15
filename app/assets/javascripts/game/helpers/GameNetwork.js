@@ -85,7 +85,7 @@ define(['utils/Config'], function (config) {
           game.send('SelectPile', { pile: selectedPile.id, auto: move.auto } );
           break;
         default:
-          throw 'Unknown move [' + move.moveType + '].';
+          throw new Error('Unknown move [' + move.moveType + '].');
       }
     },
 

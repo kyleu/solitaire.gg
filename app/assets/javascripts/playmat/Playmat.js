@@ -25,7 +25,7 @@ define([
   Playmat.prototype.addPile = function(pile) {
     var pileLocation = this.layout.locations[pile.id];
     if(pileLocation === undefined) {
-      throw 'Cannot find location for pile [' + pile.id + '].';
+      throw new Error('Cannot find location for pile [' + pile.id + '].');
     }
     pile.x = pileLocation.x * this.game.cardSet.cardWidth;
     pile.y = pileLocation.y * this.game.cardSet.cardHeight;

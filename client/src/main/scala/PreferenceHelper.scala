@@ -35,11 +35,6 @@ trait PreferenceHelper {
 
     val buttons = dom.document.getElementsByClassName("btn")
 
-    println(buttons.length)
-    (0 until buttons.length).foreach { i =>
-      println(buttons(i).attributes.getNamedItem("id").value)
-    }
-
     (0 until buttons.length).foreach { i =>
       val btn = buttons(i)
 

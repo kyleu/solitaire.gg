@@ -6,6 +6,7 @@ GET            /link                        controllers.HomeController.externalL
 GET            /robots.txt                  controllers.HomeController.robots
 GET            /ping                        controllers.HomeController.ping(timestamp: Long)
 GET            /privacy                     controllers.HomeController.privacy()
+GET            /websocket                   controllers.HomeController.noop()
 
 # Feedback
 GET            /feedback                    controllers.FeedbackController.feedbackForm
@@ -20,6 +21,7 @@ GET            /play/:rules/:seed           controllers.GameController.newGameWi
 
 # Offline analytics
 OPTIONS        /a/*path                     controllers.AnalyticsController.preflightCheck(path)
+POST           /a/error/:id                 controllers.AnalyticsController.error(id: java.util.UUID)
 POST           /a/install/:id               controllers.AnalyticsController.install(id: java.util.UUID)
 POST           /a/open/:id                  controllers.AnalyticsController.open(id: java.util.UUID)
 POST           /a/game-start/:id            controllers.AnalyticsController.gameStart(id: java.util.UUID)

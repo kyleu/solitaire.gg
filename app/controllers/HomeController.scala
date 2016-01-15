@@ -27,6 +27,10 @@ class HomeController @javax.inject.Inject() (override val ctx: ApplicationContex
     Future.successful(Ok(views.html.about()))
   }
 
+  def noop = Action { request =>
+    Ok("Please refresh the page, this url is no longer used.")
+  }
+
   def ping(timestamp: Long) = req("ping") { implicit request =>
     Future.successful(Ok(timestamp.toString))
   }

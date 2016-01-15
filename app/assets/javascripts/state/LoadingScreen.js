@@ -6,7 +6,7 @@ define(['utils/Config', 'state/Gameplay', 'state/GameState', 'ui/Theme'], functi
     GameState.call(this, 'loading', game);
 
     if(cfg.assetRoot === undefined) {
-      throw 'No asset root.';
+      throw new Error('No asset root.');
     }
     this.assetRoot = cfg.assetRoot;
     Theme.setAssetRoot(this.assetRoot);
