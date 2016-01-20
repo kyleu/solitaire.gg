@@ -30,7 +30,9 @@ trait AjaxHelper {
   }
 
   protected[this] def sendNetworkPost(path: String, body: String, savedId: Option[UUID] = None): Unit = {
-    if (!requestInFlight) {
+    if (requestInFlight) {
+      savePendingEvent(path, body)
+    } else {
       val url = urlBase + path
       val timeout = 20 * 1000 // ms
       val headers = Map(
@@ -56,6 +58,7 @@ trait AjaxHelper {
             case Some(id) => incrementFailureCount(id)
             case None => savePendingEvent(path, body)
           }
+          sendPendingEvents()
       }
     }
   }
