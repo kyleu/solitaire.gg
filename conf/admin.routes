@@ -23,6 +23,8 @@ GET         /export/remove                   controllers.admin.AnalyticsExportCo
 GET         /export/:d/remove                controllers.admin.AnalyticsExportController.removeFiles(d: org.joda.time.LocalDate)
 GET         /export/:d/wipe                  controllers.admin.AnalyticsExportController.wipeDatabase(d: org.joda.time.LocalDate)
 
+GET         /files/overview                  controllers.admin.AnalyticsFileController.overview()
+
 GET         /analytics/list                  controllers.admin.AnalyticsEventController.eventList(q ?= "", sortBy ?= "created", page: Int ?= 0)
 GET         /analytics/:id                   controllers.admin.AnalyticsEventController.eventDetail(id: java.util.UUID)
 GET         /analytics/:id/remove            controllers.admin.AnalyticsEventController.removeEvent(id: java.util.UUID)

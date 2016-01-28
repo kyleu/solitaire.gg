@@ -95,5 +95,4 @@ class AnalyticsExportController @javax.inject.Inject() (override val ctx: Applic
       files.size
     }
   }
-
 }

@@ -5,6 +5,8 @@ import java.io.File
 import org.joda.time.LocalDate
 import utils.{ Config, FileUtils }
 
+import scala.io.Source
+
 class AnalyticsFileService(cfg: Config) {
   private[this] lazy val rootDir = {
     val cacheDir = new File(cfg.fileCacheDir)
@@ -29,6 +31,17 @@ class AnalyticsFileService(cfg: Config) {
     }
   }
 
+  def lineCounts(d: LocalDate) = {
+    val installs = getLines(d, "install.log").size
+    val opens = getLines(d, "open.log").size
+    val gamesStarted = getLines(d, "game-start.log").size
+    val gamesResigned = getLines(d, "game-resigned.log").size
+    val gamesWon = getLines(d, "game-won.log").size
+    val errors = getLines(d, "error.log").size
+
+    (installs, opens, gamesStarted, gamesResigned, gamesWon, errors)
+  }
+
   def dirFor(d: LocalDate) = {
     val f = FileUtils.getChildDir(rootDir, s"${d.getYear}/${d.getMonthOfYear}/${d.getDayOfMonth}")
     if (!f.exists()) {
@@ -46,4 +59,13 @@ class AnalyticsFileService(cfg: Config) {
   def removeAllFiles() = getFileSystemDetails.map(d => removeFiles(d._1))
 
   def getLogFile(d: LocalDate, filename: String) = new File(dirFor(d), filename)
+
+  def getLines(d: LocalDate, filename: String) = {
+    val f = getLogFile(d, filename)
+    if (f.exists) {
+      Source.fromFile(f).getLines
+    } else {
+      Seq.empty
+    }
+  }
 }

@@ -1,0 +1,42 @@
+@(x: Seq[(org.joda.time.LocalDate, (Int, Int, Int, Int, Int, Int))])(implicit session: Session, flash: Flash)
+@views.html.admin.layout.base("Analytics File Cache Overview", "analytics") {
+  <h3 style="margin-top: 0;">Analytics File Cache Overview</h3>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th style="width: 140px; text-align: right;">Installs</th>
+        <th style="width: 140px; text-align: right;">Opens</th>
+        <th style="width: 140px; text-align: right;">Games Started</th>
+        <th style="width: 140px; text-align: right;">Games Resigned</th>
+        <th style="width: 140px; text-align: right;">Games Won</th>
+        <th style="width: 140px; text-align: right;">Errors</th>
+      </tr>
+    </thead>
+    <tbody>
+      @x.map { r =>
+        <tr>
+          <td>@r._1</td>
+          <td style="width: 140px; text-align: right;">@utils.Formatter.withCommas(r._2._1)</td>
+          <td style="width: 140px; text-align: right;">@utils.Formatter.withCommas(r._2._2)</td>
+          <td style="width: 140px; text-align: right;">@utils.Formatter.withCommas(r._2._3)</td>
+          <td style="width: 140px; text-align: right;">@utils.Formatter.withCommas(r._2._4)</td>
+          <td style="width: 140px; text-align: right;">@utils.Formatter.withCommas(r._2._5)</td>
+          <td style="width: 140px; text-align: right;">@utils.Formatter.withCommas(r._2._6)</td>
+        </tr>
+      }
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Totals</th>
+        <th style="width: 140px; text-align: right;">@utils.Formatter.withCommas(x.map(_._2._1).sum)</th>
+        <th style="width: 140px; text-align: right;">@utils.Formatter.withCommas(x.map(_._2._2).sum)</th>
+        <th style="width: 140px; text-align: right;">@utils.Formatter.withCommas(x.map(_._2._3).sum)</th>
+        <th style="width: 140px; text-align: right;">@utils.Formatter.withCommas(x.map(_._2._4).sum)</th>
+        <th style="width: 140px; text-align: right;">@utils.Formatter.withCommas(x.map(_._2._5).sum)</th>
+        <th style="width: 140px; text-align: right;">@utils.Formatter.withCommas(x.map(_._2._6).sum)</th>
+      </tr>
+    </tfoot>
+  </table>
+}
