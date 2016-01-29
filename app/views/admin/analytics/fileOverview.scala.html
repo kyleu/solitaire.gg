@@ -6,24 +6,62 @@
     <thead>
       <tr>
         <th>Date</th>
-        <th style="width: 140px; text-align: right;">Installs</th>
-        <th style="width: 140px; text-align: right;">Opens</th>
-        <th style="width: 140px; text-align: right;">Games Started</th>
-        <th style="width: 140px; text-align: right;">Games Resigned</th>
-        <th style="width: 140px; text-align: right;">Games Won</th>
-        <th style="width: 140px; text-align: right;">Errors</th>
+        <th style="width: 140px; text-align: right;">
+          <a href="@controllers.admin.routes.AnalyticsFileController.trends("install.log")">Installs</a>
+        </th>
+        <th style="width: 140px; text-align: right;">
+          <a href="@controllers.admin.routes.AnalyticsFileController.trends("open.log")">Opens</a>
+        </th>
+        <th style="width: 140px; text-align: right;">
+          <a href="@controllers.admin.routes.AnalyticsFileController.trends("game-won.log")">Games Started</a>
+        </th>
+        <th style="width: 140px; text-align: right;">
+          <a href="@controllers.admin.routes.AnalyticsFileController.trends("game-resigned.log")">Games Resigned</a>
+        </th>
+        <th style="width: 140px; text-align: right;">
+          <a href="@controllers.admin.routes.AnalyticsFileController.trends("game-won.log")">Games Won</a>
+        </th>
+        <th style="width: 140px; text-align: right;">
+          <a href="@controllers.admin.routes.AnalyticsFileController.trends("error.log")">Errors</a>
+        </th>
       </tr>
     </thead>
     <tbody>
       @x.map { r =>
         <tr>
-          <td>@r._1</td>
-          <td style="width: 140px; text-align: right;">@utils.Formatter.withCommas(r._2._1)</td>
-          <td style="width: 140px; text-align: right;">@utils.Formatter.withCommas(r._2._2)</td>
-          <td style="width: 140px; text-align: right;">@utils.Formatter.withCommas(r._2._3)</td>
-          <td style="width: 140px; text-align: right;">@utils.Formatter.withCommas(r._2._4)</td>
-          <td style="width: 140px; text-align: right;">@utils.Formatter.withCommas(r._2._5)</td>
-          <td style="width: 140px; text-align: right;">@utils.Formatter.withCommas(r._2._6)</td>
+          <td>
+            <a href="@controllers.admin.routes.AnalyticsFileController.summary(r._1)">@r._1</a>
+          </td>
+          <td style="width: 140px; text-align: right;">
+            @if(r._2._1 > 0) {
+              <a href="@controllers.admin.routes.AnalyticsFileController.detail(r._1, "install.log")">@utils.Formatter.withCommas(r._2._1)</a>
+            }
+          </td>
+          <td style="width: 140px; text-align: right;">
+          @if(r._2._2 > 0) {
+            <a href="@controllers.admin.routes.AnalyticsFileController.detail(r._1, "open.log")">@utils.Formatter.withCommas(r._2._2)</a>
+          }
+          </td>
+          <td style="width: 140px; text-align: right;">
+          @if(r._2._3 > 0) {
+            <a href="@controllers.admin.routes.AnalyticsFileController.detail(r._1, "game-start.log")">@utils.Formatter.withCommas(r._2._3)</a>
+          }
+          </td>
+          <td style="width: 140px; text-align: right;">
+          @if(r._2._4 > 0) {
+            <a href="@controllers.admin.routes.AnalyticsFileController.detail(r._1, "game-resigned.log")">@utils.Formatter.withCommas(r._2._4)</a>
+          }
+          </td>
+          <td style="width: 140px; text-align: right;">
+          @if(r._2._5 > 0) {
+            <a href="@controllers.admin.routes.AnalyticsFileController.detail(r._1, "game-won.log")">@utils.Formatter.withCommas(r._2._5)</a>
+          }
+          </td>
+          <td style="width: 140px; text-align: right;">
+          @if(r._2._6 > 0) {
+            <a href="@controllers.admin.routes.AnalyticsFileController.detail(r._1, "error.log")">@utils.Formatter.withCommas(r._2._6)</a>
+          }
+          </td>
         </tr>
       }
     </tbody>

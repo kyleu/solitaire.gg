@@ -24,6 +24,9 @@ GET         /export/:d/remove                controllers.admin.AnalyticsExportCo
 GET         /export/:d/wipe                  controllers.admin.AnalyticsExportController.wipeDatabase(d: org.joda.time.LocalDate)
 
 GET         /files/overview                  controllers.admin.AnalyticsFileController.overview()
+GET         /files/trend/:key                controllers.admin.AnalyticsFileController.trends(key)
+GET         /files/summary/:d                controllers.admin.AnalyticsFileController.summary(d: org.joda.time.LocalDate)
+GET         /files/detail/:d/:key            controllers.admin.AnalyticsFileController.detail(d: org.joda.time.LocalDate, key)
 
 GET         /analytics/list                  controllers.admin.AnalyticsEventController.eventList(q ?= "", sortBy ?= "created", page: Int ?= 0)
 GET         /analytics/:id                   controllers.admin.AnalyticsEventController.eventDetail(id: java.util.UUID)

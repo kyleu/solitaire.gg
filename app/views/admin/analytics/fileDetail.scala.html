@@ -1,0 +1,6 @@
+@(d: org.joda.time.LocalDate, key: String, lines: Seq[String])(implicit session: Session, flash: Flash)
+@views.html.admin.layout.base(s"File Detail for $d/$key", "analytics") {
+  <h3 style="margin-top: 0;">File Detail for @d/@key</h3>
+
+  <pre style="word-wrap: normal; white-space: pre;overflow: auto;">@lines.mkString("\n")</pre>
+}
