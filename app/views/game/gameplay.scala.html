@@ -4,8 +4,7 @@
   rulesDescription: String,
   initialAction: Seq[String],
   seed: Option[Int] = None,
-  debug: Boolean = false,
-  bullshitChromeWorkaround: Boolean = false
+  debug: Boolean = false
 )(implicit session: Session, flash: Flash, messages: Messages)@layout.basic(
   s"$title - ${utils.Config.projectName}",
   stylesheets = Seq(routes.Assets.versioned("stylesheets/solitaire.gg.min.css").url),
@@ -50,20 +49,12 @@
   }
 
   @if(debug) {
-    @if(bullshitChromeWorkaround) {
-      <script src="@routes.Assets.versioned("lib/phaser/js/phaser-arcade-physics-workaround.js")"></script>
-    } else {
-      <script src="@routes.Assets.versioned("lib/phaser/js/phaser-arcade-physics.js")"></script>
-    }
+    <script src="@routes.Assets.versioned("lib/phaser/js/phaser-arcade-physics.js")"></script>
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/phaser-debug.min.css").url" />
     <script src="@routes.Assets.versioned("lib/phaser/js/phaser-debug.js")"></script>
     <script src="@routes.Assets.versioned("lib/underscorejs/underscore.js").url"></script>
   } else {
-    @if(bullshitChromeWorkaround) {
-      <script src="@routes.Assets.versioned("lib/phaser/js/phaser-arcade-physics-workaround.min.js")"></script>
-    } else {
-      <script src="@routes.Assets.versioned("lib/phaser/js/phaser-arcade-physics.min.js")"></script>
-    }
+    <script src="@routes.Assets.versioned("lib/phaser/js/phaser-arcade-physics.min.js")"></script>
     <script src="@routes.Assets.versioned("lib/underscorejs/underscore-min.js").url"></script>
   }
   <script data-main="@routes.Assets.versioned("javascripts/main.js")" src="@routes.Assets.versioned("lib/requirejs/require.min.js").url"></script>

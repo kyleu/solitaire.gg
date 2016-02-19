@@ -36,34 +36,35 @@ object Dependencies {
   }
 
   object Metrics {
+    private[this] val version = "3.1.2"
+    val jvm = "io.dropwizard.metrics" % "metrics-jvm" % version withSources()
+    val ehcache = "io.dropwizard.metrics" % "metrics-ehcache" % version withSources() intransitive()
+    val healthChecks = "io.dropwizard.metrics" % "metrics-healthchecks" % version withSources() intransitive()
+    val json = "io.dropwizard.metrics" % "metrics-json" % version withSources()
+    val servlets = "io.dropwizard.metrics" % "metrics-servlets" % version withSources() intransitive()
+    val graphite = "io.dropwizard.metrics" % "metrics-graphite" % version withSources() intransitive()
     val metrics = "nl.grons" %% "metrics-scala" % "3.5.2" withSources()
-    val jvm = "io.dropwizard.metrics" % "metrics-jvm" % "3.1.2" withSources()
-    val ehcache = "io.dropwizard.metrics" % "metrics-ehcache" % "3.1.2" withSources() intransitive()
-    val healthChecks = "io.dropwizard.metrics" % "metrics-healthchecks" % "3.1.2" withSources() intransitive()
-
-    val json = "io.dropwizard.metrics" % "metrics-json" % "3.1.2" withSources()
-
     val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.3.6.v20151106" withSources()
-    val servlets = "io.dropwizard.metrics" % "metrics-servlets" % "3.1.2" withSources() intransitive()
-    val graphite = "io.dropwizard.metrics" % "metrics-graphite" % "3.1.2" withSources() intransitive()
   }
 
   object Akka {
-    val actor = "com.typesafe.akka" %% "akka-actor" % "2.4.1"
-    val cluster = "com.typesafe.akka" %% "akka-cluster" % "2.4.1"
-    val contrib = "com.typesafe.akka" %% "akka-contrib" % "2.4.1"
-    val persistence = "com.typesafe.akka" %% "akka-persistence-experimental" % "2.4.1"
-    val remoting = "com.typesafe.akka" %% "akka-remote" % "2.4.1"
-    val log4j = "com.typesafe.akka" %% "akka-slf4j" % "2.4.1"
+    private[this] val version = "2.4.2"
+    val actor = "com.typesafe.akka" %% "akka-actor" % version
+    val cluster = "com.typesafe.akka" %% "akka-cluster" % version
+    val contrib = "com.typesafe.akka" %% "akka-contrib" % version
+    val persistence = "com.typesafe.akka" %% "akka-persistence-experimental" % version
+    val remoting = "com.typesafe.akka" %% "akka-remote" % version
+    val log4j = "com.typesafe.akka" %% "akka-slf4j" % version
+    val testkit = "com.typesafe.akka" %% "akka-testkit" % version
   }
 
   object Utils {
-    val core = "com.twitter" %% "util-core" % "6.30.0"
-    val collection = "com.twitter" %% "util-collection" % "6.30.0"
+    private[this] val version = "6.30.0"
+    val core = "com.twitter" %% "util-core" % version
+    val collection = "com.twitter" %% "util-collection" % version
   }
 
   object Testing {
-    val testkit = "com.typesafe.akka" %% "akka-testkit" % "2.4.1"
     val gatlingCore = "io.gatling" % "gatling-test-framework" % "2.1.7" % "test"
     val gatlingCharts = "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.1.7" % "test"
   }

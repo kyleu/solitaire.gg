@@ -24,11 +24,11 @@ object Server {
     import Dependencies._
     Seq(
       Cache.ehCache, Database.postgresAsync, Mail.mailer,
-      Akka.actor, Akka.log4j, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */
+      Akka.actor, Akka.log4j, Akka.testkit, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */
       Play.playFilters, Play.playWs, Play.playTest,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap, WebJars.underscore, WebJars.d3, WebJars.nvd3,
-      Utils.core, Utils.collection, Testing.testkit, Testing.gatlingCore, Testing.gatlingCharts
+      Utils.core, Utils.collection, Testing.gatlingCore, Testing.gatlingCharts
     )
   }
 

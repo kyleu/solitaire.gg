@@ -33,11 +33,6 @@ class GameController @javax.inject.Inject() (override val ctx: ApplicationContex
     startGame(rules, seed = Some(seed))
   }
 
-  private[this] def shouldWorkaround(r: Request[AnyContent]) = {
-    val ua = r.headers.get("User-Agent").getOrElse("")
-    ua.contains("Chrome") && ua.contains("OS X")
-  }
-
   private[this] def startGame(
     rulesId: String,
     initialAction: Seq[String] = Seq("start"),
@@ -46,7 +41,7 @@ class GameController @javax.inject.Inject() (override val ctx: ApplicationContex
     Future.successful(GameRulesSet.allByIdWithAliases.get(rulesId) match {
       case Some(rules) =>
         val title = if (rulesId == rules.id) { rules.title } else { rules.aka(rulesId) }
-        Ok(views.html.game.gameplay(title, rulesId, rules.description, initialAction, seed, ctx.config.debug, shouldWorkaround(request)))
+        Ok(views.html.game.gameplay(title, rulesId, rules.description, initialAction, seed, ctx.config.debug))
       case None => NotFound(Messages("invalid.game.rules", rulesId))
     })
   }
