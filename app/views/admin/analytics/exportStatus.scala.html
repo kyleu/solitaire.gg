@@ -23,9 +23,11 @@
           <td>@s._1</td>
           <td>@s._2</td>
           <td>@s._3.map { x =>
-            <a href="@controllers.admin.routes.AnalyticsExportController.downloadFile(s._1, x._1)">@x._1</a><br>
+            <a href="@controllers.admin.routes.AnalyticsFileController.detail(s._1, x._1)">@x._1</a><br>
           }</td>
-          <td style="text-align: right;">@s._3.map { x => @utils.Formatter.withCommas(x._2)<br> }</td>
+          <td style="text-align: right;">@s._3.map { x =>
+            <a href="@controllers.admin.routes.AnalyticsExportController.downloadFile(s._1, x._1)">@utils.Formatter.withCommas(x._2)</a><br>
+          }</td>
           <td>Ok</td>
           <td style="text-align: right; width: 100px;">
             @if(s._2 > 0) {

@@ -37,15 +37,19 @@ object DailyMetric {
     override val title = "Mailed"
   }
 
+  case object Unknown extends Metric {
+    override val title = "Unknown"
+  }
+
   val all = Seq[Metric](
     GamesStarted, GamesWon, GamesAdandoned,
     Signups, Requests, Feedbacks,
     ServerFreeSpace,
-    ReportSent
+    ReportSent, Unknown
   )
 
   private[this] val allMap = all.map(m => m.toString -> m).toMap
-  def fromString(s: String) = allMap(s)
+  def fromString(s: String) = allMap.getOrElse(s, Unknown)
 }
 
 case class DailyMetric(date: LocalDate, metric: DailyMetric.Metric, value: Long, measured: LocalDateTime)

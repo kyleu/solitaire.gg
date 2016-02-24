@@ -83,10 +83,12 @@ class AnalyticsExportController @javax.inject.Inject() (override val ctx: Applic
   }
 
   private[this] def cacheEvents(d: LocalDate) = {
+    import utils.json.AdminSerializers._
+
     val files = collection.mutable.HashMap.empty[String, FileOutputStream]
     Database.query(AnalyticsEventQueries.GetByDate(d)).map { result =>
       result.foreach { event =>
-        val json = Json.toJson(event.data)
+        val json = Json.toJson(event)
         val file = files.getOrElseUpdate(event.eventType.id, new FileOutputStream(export.fileService.getLogFile(d, event.eventType.id + ".log")))
         file.write(Json.stringify(json).getBytes())
         file.write("\n".getBytes())

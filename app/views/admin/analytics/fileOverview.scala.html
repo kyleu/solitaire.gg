@@ -68,12 +68,24 @@
     <tfoot>
       <tr>
         <th>Totals</th>
-        <th style="width: 140px; text-align: right;">@utils.Formatter.withCommas(x.map(_._2._1).sum)</th>
-        <th style="width: 140px; text-align: right;">@utils.Formatter.withCommas(x.map(_._2._2).sum)</th>
-        <th style="width: 140px; text-align: right;">@utils.Formatter.withCommas(x.map(_._2._3).sum)</th>
-        <th style="width: 140px; text-align: right;">@utils.Formatter.withCommas(x.map(_._2._4).sum)</th>
-        <th style="width: 140px; text-align: right;">@utils.Formatter.withCommas(x.map(_._2._5).sum)</th>
-        <th style="width: 140px; text-align: right;">@utils.Formatter.withCommas(x.map(_._2._6).sum)</th>
+        <th style="width: 140px; text-align: right;">
+          @utils.Formatter.withCommas(x.map(_._2._1).sum)
+        </th>
+        <th style="width: 140px; text-align: right;">
+          @utils.Formatter.withCommas(x.map(_._2._2).sum)
+        </th>
+        <th style="width: 140px; text-align: right;">
+          @utils.Formatter.withCommas(x.map(_._2._3).sum)
+        </th>
+        <th style="width: 140px; text-align: right;">
+          @utils.Formatter.withCommas(x.map(_._2._4).sum)
+        </th>
+        <th style="width: 140px; text-align: right;">
+          @utils.Formatter.withCommas(x.map(_._2._5).sum)
+        </th>
+        <th style="width: 140px; text-align: right;">
+          @utils.Formatter.withCommas(x.map(_._2._6).sum)
+        </th>
       </tr>
     </tfoot>
   </table>

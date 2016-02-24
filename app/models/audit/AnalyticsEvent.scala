@@ -18,7 +18,8 @@ object AnalyticsEvent {
     case class Unknown(override val id: String) extends EventType(id)
 
     val all = Seq(Error, Install, Open, GameStart, GameWon, GameResigned)
-    def fromString(s: String) = all.find(_.id == s).getOrElse(Unknown(s))
+    def keyMap = (all.map(x => x.id -> x) ++ all.map(x => x.toString -> x)).toMap
+    def fromString(s: String) = keyMap.getOrElse(s, Unknown(s))
   }
 }
 
