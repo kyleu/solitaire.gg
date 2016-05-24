@@ -28,6 +28,9 @@ POST           /a/game-start/:id            controllers.AnalyticsController.game
 POST           /a/game-won/:id              controllers.AnalyticsController.gameWon(id: java.util.UUID)
 POST           /a/game-resigned/:id         controllers.AnalyticsController.gameResigned(id: java.util.UUID)
 
+#SSL Verification
+GET            /.well-known/*file           controllers.SslVerificationController.at(file)
+
 # Admin
 ->             /admin                       admin.Routes
 

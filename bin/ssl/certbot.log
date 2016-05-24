@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/share/letsencrypt/bin/letsencrypt", line 11, in <module>
+    sys.exit(main())
+  File "/home/ubuntu/.local/share/letsencrypt/local/lib/python2.7/site-packages/certbot/main.py", line 649, in main
+    args = cli.prepare_and_parse_args(plugins, cli_args)
+  File "/home/ubuntu/.local/share/letsencrypt/local/lib/python2.7/site-packages/certbot/cli.py", line 779, in prepare_and_parse_args
+    return helpful.parse_args()
+  File "/home/ubuntu/.local/share/letsencrypt/local/lib/python2.7/site-packages/certbot/cli.py", line 330, in parse_args
+    parsed_args = self.parser.parse_args(self.args)
+  File "/home/ubuntu/.local/share/letsencrypt/local/lib/python2.7/site-packages/configargparse.py", line 216, in parse_args
+    env_vars = env_vars)
+  File "/home/ubuntu/.local/share/letsencrypt/local/lib/python2.7/site-packages/configargparse.py", line 349, in parse_known_args
+    self, args=args, namespace=namespace)
+  File "/usr/lib/python2.7/argparse.py", line 1722, in parse_known_args
+    namespace, args = self._parse_known_args(args, namespace)
+  File "/usr/lib/python2.7/argparse.py", line 1928, in _parse_known_args
+    start_index = consume_optional(start_index)
+  File "/usr/lib/python2.7/argparse.py", line 1868, in consume_optional
+    take_action(action, args, option_string)
+  File "/usr/lib/python2.7/argparse.py", line 1796, in take_action
+    action(self, namespace, argument_values, option_string)
+  File "/home/ubuntu/.local/share/letsencrypt/local/lib/python2.7/site-packages/certbot/plugins/webroot.py", line 283, in __call__
+    namespace.webroot_path.append(_validate_webroot(webroot_path))
+  File "/home/ubuntu/.local/share/letsencrypt/local/lib/python2.7/site-packages/certbot/plugins/webroot.py", line 296, in _validate_webroot
+    raise errors.PluginError(webroot_path + " does not exist or is not a directory")
+PluginError: /home/ubuntu/ssl/certs does not exist or is not a directory
