@@ -1,6 +1,6 @@
 package models.history
 
-import org.joda.time.{ LocalDateTime, LocalDate }
+import org.joda.time.{LocalDateTime, LocalDate}
 
 case class DataArchiveCount(
   table: String,

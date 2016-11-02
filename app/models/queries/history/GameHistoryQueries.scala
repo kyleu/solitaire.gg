@@ -3,9 +3,9 @@ package models.queries.history
 import java.util.UUID
 
 import models.queries.BaseQueries
-import models.database.{ Query, Row, Statement }
+import models.database.{Query, Row, Statement}
 import models.history.GameHistory
-import org.joda.time.{ LocalDate, LocalDateTime }
+import org.joda.time.{LocalDate, LocalDateTime}
 
 object GameHistoryQueries extends BaseQueries[GameHistory] {
   override protected val tableName = "games"

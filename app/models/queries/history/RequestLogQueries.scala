@@ -3,9 +3,9 @@ package models.queries.history
 import java.util.UUID
 
 import models.queries.BaseQueries
-import models.database.{ Query, Row, Statement }
+import models.database.{Query, Row, Statement}
 import models.history.RequestLog
-import org.joda.time.{ LocalDate, LocalDateTime }
+import org.joda.time.{LocalDate, LocalDateTime}
 
 object RequestLogQueries extends BaseQueries[RequestLog] {
   override protected val tableName = "requests"

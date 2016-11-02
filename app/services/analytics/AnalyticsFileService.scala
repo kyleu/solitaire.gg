@@ -3,7 +3,7 @@ package services.analytics
 import java.io.File
 
 import org.joda.time.LocalDate
-import utils.{ Config, FileUtils }
+import utils.{Config, FileUtils}
 
 import scala.io.Source
 

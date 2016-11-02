@@ -1,11 +1,11 @@
 package services.email
 
-import models.audit.{ DailyMetric, UserFeedback }
+import models.audit.{DailyMetric, UserFeedback}
 import org.joda.time.LocalDate
 import play.api.i18n.Messages
 import play.api.libs.mailer._
 import services.audit.DailyMetricService
-import utils.{ Config, DateUtils }
+import utils.{Config, DateUtils}
 
 @javax.inject.Singleton
 class EmailService @javax.inject.Inject() (mailerClient: MailerClient, config: Config) {

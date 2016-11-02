@@ -2,8 +2,8 @@ package utils
 
 import java.net.InetAddress
 
-import com.github.mauricio.async.db.{ Configuration => DbConfig }
-import play.api.Play
+import com.github.mauricio.async.db.{Configuration => DbConfig}
+import play.api.{Environment, Mode}
 
 object Config {
   val projectId = "solitaire-gg"
@@ -14,8 +14,8 @@ object Config {
 }
 
 @javax.inject.Singleton
-class Config @javax.inject.Inject() (cnf: play.api.Configuration) {
-  lazy val debug = !Play.isProd(Play.current)
+class Config @javax.inject.Inject() (cnf: play.api.Configuration, env: Environment) {
+  val debug = env.mode == Mode.Dev
 
   val hostname = cnf.getString("host").getOrElse("localhost")
   val fileCacheDir = cnf.getString("cache.dir").getOrElse("./cache")

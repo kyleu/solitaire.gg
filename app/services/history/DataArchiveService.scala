@@ -2,7 +2,7 @@ package services.history
 
 import models.queries.history.DataArchiveQueries
 import models.history.DataArchiveCount
-import org.joda.time.{ LocalDateTime, LocalDate }
+import org.joda.time.{LocalDateTime, LocalDate}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import utils.DateUtils

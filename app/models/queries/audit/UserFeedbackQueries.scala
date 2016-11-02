@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models.audit.UserFeedback
 import models.queries.BaseQueries
-import models.database.{ Query, Row }
+import models.database.{Query, Row}
 import org.joda.time.LocalDateTime
 
 object UserFeedbackQueries extends BaseQueries[UserFeedback] {

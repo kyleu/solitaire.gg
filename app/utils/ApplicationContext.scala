@@ -1,11 +1,13 @@
 package utils
 
+import akka.actor.ActorSystem
 import play.api.http.HttpRequestHandler
 import play.api.i18n.MessagesApi
 import play.api.inject.ApplicationLifecycle
-import play.api.mvc.{ Action, RequestHeader, Results }
+import play.api.mvc.{Action, RequestHeader, Results}
 import play.api.routing.Router
 import services.audit.NotificationService
+import services.scheduled.ScheduledTask
 
 object ApplicationContext {
   var initialized = false
@@ -25,7 +27,9 @@ class ApplicationContext @javax.inject.Inject() (
     val config: utils.Config,
     val messagesApi: MessagesApi,
     val lifecycle: ApplicationLifecycle,
-    val notificationService: NotificationService
+    val notificationService: NotificationService,
+    val system: ActorSystem,
+    val task: ScheduledTask
 ) extends ApplicationContextHelper with Logging {
   start()
 }

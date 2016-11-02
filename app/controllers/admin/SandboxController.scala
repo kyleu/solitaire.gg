@@ -5,7 +5,7 @@ import controllers.BaseController
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.sandbox._
 import services.scheduled.ScheduledTask
-import utils.{ ApplicationContext, DateUtils }
+import utils.{ApplicationContext, DateUtils}
 
 import scala.concurrent.Future
 import scala.concurrent.duration._

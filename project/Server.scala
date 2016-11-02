@@ -10,7 +10,7 @@ import com.typesafe.sbt.rjs.Import._
 import com.typesafe.sbt.web.Import._
 import com.typesafe.sbt.web.SbtWeb
 
-import net.virtualvoid.sbt.graph.Plugin.graphSettings
+import net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings
 import play.routes.compiler.InjectedRoutesGenerator
 import play.sbt.routes.RoutesKeys.{ routesGenerator, routesImport }
 import playscalajs.PlayScalaJS.autoImport._
@@ -57,7 +57,7 @@ object Server {
     // Code Quality
     scapegoatIgnoredFiles := Seq(".*/Row.scala", ".*/Routes.scala", ".*/ReverseRoutes.scala", ".*/JavaScriptReverseRoutes.scala", ".*/*.template.scala"),
     scapegoatDisabledInspections := Seq("DuplicateImport"),
-    scapegoatVersion := "1.1.0",
+    scapegoatVersion := "1.2.1",
     ScalariformKeys.preferences := ScalariformKeys.preferences.value,
 
     // SBT Output

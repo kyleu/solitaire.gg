@@ -4,10 +4,10 @@ import java.util.UUID
 
 import controllers.BaseController
 import models.audit.UserFeedback
-import models.queries.audit.{ UserFeedbackNoteQueries, UserFeedbackQueries }
+import models.queries.audit.{UserFeedbackNoteQueries, UserFeedbackQueries}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import utils.{ DateUtils, ApplicationContext }
+import utils.{DateUtils, ApplicationContext}
 
 @javax.inject.Singleton
 class FeedbackController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {

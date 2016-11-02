@@ -2,8 +2,8 @@ package controllers
 
 import models.rules.GameRulesSet
 import play.api.i18n.Messages
-import play.api.mvc.{ Request, AnyContent }
-import utils.{ Config, ApplicationContext }
+import play.api.mvc.{Request, AnyContent}
+import utils.{Config, ApplicationContext}
 
 import scala.concurrent.Future
 

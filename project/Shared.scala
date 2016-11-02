@@ -3,7 +3,7 @@ import com.typesafe.sbt.{ GitBranchPrompt, GitVersioning }
 import sbt._
 import sbt.Keys._
 
-import net.virtualvoid.sbt.graph.Plugin.graphSettings
+import net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings
 import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, scalariformSettings}
 
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
@@ -21,7 +21,7 @@ object Shared {
 
   object Versions {
     val app = "0.1-SNAPSHOT"
-    val scala = "2.11.7"
+    val scala = "2.11.8"
   }
 
   val commonSettings = Seq(
@@ -44,15 +44,14 @@ object Shared {
     .enablePlugins(ScalaJSPlay)
     .settings(commonSettings: _*)
     .settings(
-      sourceMapsBase := baseDirectory.value / "..",
       scalaJSStage in Global := FastOptStage,
       scapegoatIgnoredFiles := Seq(".*"),
-      scapegoatVersion := "1.1.0"
+      scapegoatVersion := "1.2.1"
     )
     .js
 
   lazy val sharedJvm = (project in file("shared")).settings(
-    scapegoatVersion := "1.1.0",
+    scapegoatVersion := "1.2.1",
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
     .enablePlugins(GitVersioning)

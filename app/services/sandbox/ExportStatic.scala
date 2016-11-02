@@ -1,13 +1,13 @@
 package services.sandbox
 
-import java.nio.file.{ Files, Paths }
+import java.nio.file.{Files, Paths}
 
 import models.rules.GameRulesSet
 import models.user.UserPreferences
 import play.api.i18n.MessagesApi
 import play.api.test.FakeRequest
 import services.test.TestService
-import utils.{ ApplicationContext, DateUtils }
+import utils.{ApplicationContext, DateUtils}
 
 import scala.concurrent.Future
 

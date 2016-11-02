@@ -11,7 +11,7 @@ import utils.Logging
 
 import scala.concurrent._
 
-class PlayErrorHandler @Inject() (
+class ErrorHandler @Inject() (
     env: Environment,
     playConfig: Configuration,
     appConfig: utils.Config,

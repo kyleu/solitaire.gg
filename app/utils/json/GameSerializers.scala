@@ -1,11 +1,11 @@
 package utils.json
 
-import models.card.{ Card, Deck, Rank, Suit }
-import models.game.{ GamePlayer, GameState }
+import models.card.{Card, Deck, Rank, Suit}
+import models.game.{GamePlayer, GameState}
 import models.pile.Pile
-import models.pile.options.{ ClientPileOptions, PileOptions }
+import models.pile.options.{ClientPileOptions, PileOptions}
 import models.pile.set.PileSet
-import models.user.{ CardPreferences, UserPreferences }
+import models.user.{CardPreferences, UserPreferences}
 import play.api.libs.json._
 
 object GameSerializers {

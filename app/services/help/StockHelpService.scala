@@ -1,6 +1,6 @@
 package services.help
 
-import models.rules.{ StockCardsDealt, StockDealTo, StockRules }
+import models.rules.{StockCardsDealt, StockDealTo, StockRules}
 import play.api.i18n.Messages
 import utils.NumberUtils
 

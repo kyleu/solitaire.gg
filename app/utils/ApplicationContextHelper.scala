@@ -3,12 +3,10 @@ package utils
 import akka.actor.ActorSystem
 import com.codahale.metrics.SharedMetricRegistries
 import org.joda.time.DateTimeZone
-import play.api.Mode
 import java.util.TimeZone
-import services.database.{ Database, Schema }
+import services.database.{Database, Schema}
 import services.scheduled.ScheduledTask
 import utils.metrics.Instrumented
-import utils.web.PlayGlobalSettings
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 import scala.concurrent.Future
@@ -31,9 +29,9 @@ trait ApplicationContextHelper { this: ApplicationContext =>
     Database.open(config.databaseConfiguration)
     Schema.update()
 
-    scheduleTask()
-
-    PlayGlobalSettings.hostname = config.hostname
+    if (config.debug) {
+      scheduleTask(task, system)
+    }
 
     lifecycle.addStopHook(() => Future.successful(stop()))
   }
@@ -43,18 +41,9 @@ trait ApplicationContextHelper { this: ApplicationContext =>
     SharedMetricRegistries.remove("default")
   }
 
-  private[this] def scheduleTask() = {
-    import play.api.Play.{ current => app }
-
+  private[this] def scheduleTask(task: ScheduledTask, system: ActorSystem) = {
     import scala.concurrent.duration._
-
-    if (app.mode == Mode.Dev) {
-      log.info("Dev mode, so not starting scheduled task.")
-    } else {
-      log.info("Scheduling task to run every minute, after five minutes.")
-      val task = app.injector.instanceOf[ScheduledTask]
-      val system = app.injector.instanceOf[ActorSystem]
-      system.scheduler.schedule(5.minutes, 1.minute, task)
-    }
+    log.info("Scheduling task to run every minute, after five minutes.")
+    system.scheduler.schedule(5.minutes, 1.minute, task)
   }
 }

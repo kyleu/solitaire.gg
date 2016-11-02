@@ -1,7 +1,7 @@
 package utils.json
 
 import models.user.UserStatistics
-import models.{ GameWon, GameLost, GameResult }
+import models.{GameWon, GameLost, GameResult}
 import models.analytics._
 import models.audit.AnalyticsEvent
 import models.audit.AnalyticsEvent.EventType

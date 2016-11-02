@@ -3,7 +3,7 @@ package services.test
 import java.util.UUID
 
 import models.rules.GameRulesSet
-import models.test.{ Test, Tree }
+import models.test.{Test, Tree}
 
 class RulesTests {
   val all = Tree(Test("rules"), GameRulesSet.all.map(x => testGameRules(x.id).toTree))

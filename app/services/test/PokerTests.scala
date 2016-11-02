@@ -1,8 +1,8 @@
 package services.test
 
-import models.card.{ Card, Rank, Suit }
+import models.card.{Card, Rank, Suit}
 import models.rules.PokerRules
-import models.test.{ Test, Tree }
+import models.test.{Test, Tree}
 
 class PokerTests {
   private[this] def cardFrom(s: String) = Card(r = Rank.allByChar(s.toCharArray()(0)), s = Suit.fromChar(s.toCharArray()(1)))

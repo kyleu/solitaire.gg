@@ -1,6 +1,6 @@
 package models.audit
 
-import org.joda.time.{ LocalDateTime, LocalDate }
+import org.joda.time.{LocalDateTime, LocalDate}
 
 object DailyMetric {
   sealed trait Metric {

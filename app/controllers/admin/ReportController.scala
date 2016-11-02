@@ -8,7 +8,7 @@ import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.DailyMetricService
 import services.database.Database
-import utils.{ ApplicationContext, DateUtils }
+import utils.{ApplicationContext, DateUtils}
 
 import scala.concurrent.Future
 

@@ -1,5 +1,8 @@
 package utils.web
 
+import javax.inject.Inject
+
+import akka.stream.Materializer
 import com.codahale.metrics.Meter
 import play.api.http.Status
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -9,8 +12,8 @@ import utils.metrics.Instrumented
 
 import scala.concurrent.Future
 
-object PlayLoggingFilter extends Filter with Logging with Instrumented {
-  val prefix = "solitaire-gg.requests."
+class LoggingFilter @Inject() (override implicit val mat: Materializer) extends Filter with Logging with Instrumented {
+  val prefix = "martiandawn.requests."
 
   val knownStatuses = Seq(
     Status.OK, Status.BAD_REQUEST, Status.FORBIDDEN, Status.NOT_FOUND,
@@ -29,7 +32,7 @@ object PlayLoggingFilter extends Filter with Logging with Instrumented {
     val context = requestsTimer.time()
     activeRequests.inc()
 
-    def logCompleted(request: RequestHeader, result: Result): Unit = {
+    def logCompleted(result: Result): Unit = {
       activeRequests.dec()
       context.stop()
       statusCodes.getOrElse(result.header.status, otherStatuses).mark()
@@ -37,7 +40,7 @@ object PlayLoggingFilter extends Filter with Logging with Instrumented {
 
     nextFilter(request).transform(
       result => {
-        logCompleted(request, result)
+        logCompleted(result)
         if (request.path.startsWith("/assets")) {
           result
         } else {
@@ -48,7 +51,7 @@ object PlayLoggingFilter extends Filter with Logging with Instrumented {
         }
       },
       exception => {
-        logCompleted(request, Results.InternalServerError)
+        logCompleted(Results.InternalServerError)
         exception
       }
     )

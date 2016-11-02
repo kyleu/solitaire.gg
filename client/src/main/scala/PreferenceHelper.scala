@@ -1,5 +1,5 @@
 import models.game.GameState
-import models.user.{ CardPreferences, UserPreferences }
+import models.user.{CardPreferences, UserPreferences}
 import org.scalajs.dom
 
 trait PreferenceHelper {
@@ -7,7 +7,7 @@ trait PreferenceHelper {
   setUi()
 
   def handleSetPreference(name: String, value: String, gameState: GameState) = {
-    dom.localStorage.setItem("preferences." + name, value)
+    dom.window.localStorage.setItem("preferences." + name, value)
     preferences = preferences.withNewValue(name, value)
     if (name == "auto-flip") {
       gameState.setAutoFlipOption(value.toBoolean)
@@ -15,17 +15,17 @@ trait PreferenceHelper {
   }
 
   def readPreferences() = UserPreferences(
-    color = Option(dom.localStorage.getItem("preferences.background-color")).getOrElse("greyblue"),
+    color = Option(dom.window.localStorage.getItem("preferences.background-color")).getOrElse("greyblue"),
     cards = CardPreferences(
-      back = Option(dom.localStorage.getItem("preferences.card-back")).getOrElse("a"),
-      layout = Option(dom.localStorage.getItem("preferences.card-layout")).getOrElse("a"),
-      ranks = Option(dom.localStorage.getItem("preferences.card-rank")).getOrElse("a"),
-      suits = Option(dom.localStorage.getItem("preferences.card-suit")).getOrElse("a"),
-      faceCards = Option(dom.localStorage.getItem("preferences.card-face")).getOrElse("a")
+      back = Option(dom.window.localStorage.getItem("preferences.card-back")).getOrElse("a"),
+      layout = Option(dom.window.localStorage.getItem("preferences.card-layout")).getOrElse("a"),
+      ranks = Option(dom.window.localStorage.getItem("preferences.card-rank")).getOrElse("a"),
+      suits = Option(dom.window.localStorage.getItem("preferences.card-suit")).getOrElse("a"),
+      faceCards = Option(dom.window.localStorage.getItem("preferences.card-face")).getOrElse("a")
     ),
-    autoFlip = Option(dom.localStorage.getItem("preferences.auto-flip")).map(_.toBoolean).getOrElse(true),
-    audio = Option(dom.localStorage.getItem("preferences.audio")).exists(_.toBoolean),
-    gamepad = Option(dom.localStorage.getItem("preferences.gamepad")).exists(_.toBoolean)
+    autoFlip = Option(dom.window.localStorage.getItem("preferences.auto-flip")).forall(_.toBoolean),
+    audio = Option(dom.window.localStorage.getItem("preferences.audio")).exists(_.toBoolean),
+    gamepad = Option(dom.window.localStorage.getItem("preferences.gamepad")).exists(_.toBoolean)
   )
 
   def setUi() = {

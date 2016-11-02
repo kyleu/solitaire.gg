@@ -50,7 +50,7 @@ options.gamepad = Gamepad
 options.background.color = Background Color
 
 # Feedback
-feedback.prompt = Feedback is always appreciated. Thanks for sharing yours. Leave your email address if you'd like a reply.
+feedback.prompt = Feedback is always appreciated. Thanks for sharing yours. Leave your email address if you''d like a reply.
 feedback.submit = Submit Feedback
 feedback.cancel = Cancel
 
@@ -63,8 +63,8 @@ profile.connect.account = Connect your {0} account
 # Email
 email.from = Solitaire.gg <solitaire@solitaire.gg>
 email.welcome.subject = Welcome to {0}!
-email.welcome.body.html = <em>Welcome to <strong>Solitaire.gg</strong>!</em><br>We're so glad you're here.
-email.welcome.body.text = Welcome to Solitaire.gg! We're so glad you're here.
+email.welcome.body.html = <em>Welcome to <strong>Solitaire.gg</strong>!</em><br>We''re so glad you''re here.
+email.welcome.body.text = Welcome to Solitaire.gg! We''re so glad you''re here.
 
 # Help
 help.title = {0} Help

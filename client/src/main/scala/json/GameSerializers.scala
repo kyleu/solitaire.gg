@@ -1,10 +1,10 @@
 package json
 
 import models._
-import models.card.{ Card, Rank, Suit }
+import models.card.{Card, Rank, Suit}
 import models.game.GameState
 import models.pile.Pile
-import models.pile.options.{ ClientPileOptions, PileOptions }
+import models.pile.options.{ClientPileOptions, PileOptions}
 import upickle._
 import upickle.legacy._
 

@@ -2,8 +2,8 @@ package models.queries.audit
 
 import models.audit.DailyMetric
 import models.queries.BaseQueries
-import models.database.{ FlatSingleRowQuery, Query, Row, SingleRowQuery, Statement }
-import org.joda.time.{ LocalDate, LocalDateTime }
+import models.database.{FlatSingleRowQuery, Query, Row, SingleRowQuery, Statement}
+import org.joda.time.{LocalDate, LocalDateTime}
 
 object DailyMetricQueries extends BaseQueries[DailyMetric] {
   override protected val tableName = "daily_metrics"

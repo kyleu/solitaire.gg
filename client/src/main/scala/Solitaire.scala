@@ -1,6 +1,6 @@
 import java.util.UUID
 
-import json.{ BaseSerializers, ResponseMessageSerializers, JsonUtils }
+import json.{BaseSerializers, ResponseMessageSerializers, JsonUtils}
 import models.rules.GameRulesSet
 import models._
 import models.rules.moves.InitialMoves

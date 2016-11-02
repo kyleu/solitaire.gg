@@ -3,10 +3,10 @@ package models.queries.audit
 import java.util.UUID
 
 import models.audit.AnalyticsEvent
-import models.database.{ Query, Row }
+import models.database.{Query, Row}
 import models.queries.BaseQueries
-import org.joda.time.{ LocalDate, LocalDateTime }
-import play.api.libs.json.{ JsObject, Json }
+import org.joda.time.{LocalDate, LocalDateTime}
+import play.api.libs.json.{JsObject, Json}
 
 object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
   override protected val tableName = "analytics_events"

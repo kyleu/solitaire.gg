@@ -3,7 +3,7 @@ package models.queries.adhoc
 import java.util.UUID
 
 import com.github.mauricio.async.db.general.ArrayRowData
-import models.database.{ Row, Query, Statement }
+import models.database.{Row, Query, Statement}
 import models.queries.BaseQueries
 import org.joda.time.LocalDateTime
 import utils.DateUtils

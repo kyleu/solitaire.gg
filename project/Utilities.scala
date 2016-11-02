@@ -3,7 +3,7 @@ import io.gatling.sbt.GatlingPlugin
 import sbt._
 import sbt.Keys._
 
-import net.virtualvoid.sbt.graph.Plugin.graphSettings
+import net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings
 import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, scalariformSettings}
 import pl.project13.scala.sbt.JmhPlugin
 

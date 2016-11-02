@@ -1,7 +1,7 @@
 package models.queries.report
 
 import models.queries.BaseQueries
-import models.database.{ Query, Row, SingleRowQuery }
+import models.database.{Query, Row, SingleRowQuery}
 
 object RowCountQueries {
   case object ListTables extends Query[List[String]] {

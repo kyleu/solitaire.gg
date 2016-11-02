@@ -4,13 +4,13 @@ import java.util.UUID
 
 import akka.util.Timeout
 import controllers.BaseController
-import models.queries.adhoc.{ AdHocQueries, AdHocQuery }
+import models.queries.adhoc.{AdHocQueries, AdHocQuery}
 import org.joda.time.LocalDateTime
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import utils.{ ApplicationContext, DateUtils }
+import utils.{ApplicationContext, DateUtils}
 
 import scala.concurrent.Future
 import scala.concurrent.duration._

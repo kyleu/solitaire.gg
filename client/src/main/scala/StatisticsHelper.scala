@@ -47,7 +47,7 @@ trait StatisticsHelper {
   }
 
   def readStatistics() = {
-    Option(dom.localStorage.getItem("user.statistics")) match {
+    Option(dom.window.localStorage.getItem("user.statistics")) match {
       case Some(statsText) => try {
         read[UserStatistics](statsText)
       } catch {
@@ -62,6 +62,6 @@ trait StatisticsHelper {
   }
 
   def saveStatistics(s: UserStatistics) = {
-    dom.localStorage.setItem("user.statistics", write(s))
+    dom.window.localStorage.setItem("user.statistics", write(s))
   }
 }

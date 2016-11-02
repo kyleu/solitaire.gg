@@ -2,7 +2,7 @@ package models.queries.report
 
 import java.util.UUID
 
-import models.database.{ Query, Row }
+import models.database.{Query, Row}
 
 object ReportQueries {
   private[this] def playerClause(name: String, userIds: Seq[UUID]) = if (userIds.isEmpty) {

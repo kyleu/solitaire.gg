@@ -6,7 +6,7 @@ import models.audit.ClientTraceResult
 import models.database.Row
 import models.queries.BaseQueries
 import org.joda.time.LocalDateTime
-import play.api.libs.json.{ JsObject, Json }
+import play.api.libs.json.{JsObject, Json}
 
 object ClientTraceQueries extends BaseQueries[ClientTraceResult] {
   override protected val tableName = "client_trace"

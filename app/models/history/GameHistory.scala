@@ -2,7 +2,7 @@ package models.history
 
 import java.util.UUID
 
-import models.card.{ Rank, Suit }
+import models.card.{Rank, Suit}
 import org.joda.time.LocalDateTime
 import utils.DateUtils
 

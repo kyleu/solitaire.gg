@@ -8,10 +8,10 @@ import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.iteratee.Enumerator
 import play.api.libs.json.Json
-import play.api.mvc.{ ResponseHeader, Result }
+import play.api.mvc.{ResponseHeader, Result}
 import services.analytics.AnalyticsExport
 import services.database.Database
-import utils.{ FileUtils, ApplicationContext }
+import utils.{FileUtils, ApplicationContext}
 
 import scala.concurrent.Future
 
@@ -68,11 +68,7 @@ class AnalyticsExportController @javax.inject.Inject() (override val ctx: Applic
       if (!f.exists()) {
         throw new IllegalStateException(s"File [${f.getPath}] does not exist.")
       }
-      val fileContent: Enumerator[Array[Byte]] = Enumerator.fromFile(f)
-      Result(
-        header = ResponseHeader(200),
-        body = fileContent
-      )
+      Ok.sendFile(f)
     }
   }
 

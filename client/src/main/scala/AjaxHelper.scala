@@ -12,7 +12,7 @@ trait AjaxHelper {
   import AjaxHelper.PendingEvent
   import upickle.default._
 
-  private[this] val st = org.scalajs.dom.localStorage
+  private[this] val st = org.scalajs.dom.window.localStorage
   private[this] var pendingEvents = Option(st.getItem("pending-events")) match {
     case Some(pe) => read[Seq[PendingEvent]](pe)
     case None => Seq.empty[PendingEvent]

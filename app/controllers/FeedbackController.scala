@@ -7,7 +7,7 @@ import models.queries.audit.UserFeedbackQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.email.EmailService
-import utils.{ ApplicationContext, DateUtils }
+import utils.{ApplicationContext, DateUtils}
 
 import scala.concurrent.Future
 

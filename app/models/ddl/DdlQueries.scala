@@ -1,6 +1,6 @@
 package models.ddl
 
-import models.database.{ Row, Statement, SingleRowQuery }
+import models.database.{Row, Statement, SingleRowQuery}
 
 object DdlQueries {
   case class DoesTableExist(tableName: String) extends SingleRowQuery[Boolean] {

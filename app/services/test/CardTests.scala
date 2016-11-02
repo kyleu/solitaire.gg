@@ -2,7 +2,7 @@ package services.test
 
 import java.util.UUID
 
-import models.card.{ Card, Rank, Suit }
+import models.card.{Card, Rank, Suit}
 import models.test.Test
 
 class CardTests {

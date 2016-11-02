@@ -1,7 +1,7 @@
 import java.util.UUID
 
 import json.BaseSerializers
-import models.{ GameLost, GameWon }
+import models.{GameLost, GameWon}
 import models.analytics._
 import upickle.Js
 
@@ -16,7 +16,7 @@ trait AnalyticsHelper extends AjaxHelper {
   protected def getRequests: Seq[Seq[String]]
 
   private[this] val sessionId = UUID.randomUUID
-  private[this] val st = org.scalajs.dom.localStorage
+  private[this] val st = org.scalajs.dom.window.localStorage
   private[this] def newId = {
     val id = UUID.randomUUID
     st.setItem("device", id.toString)

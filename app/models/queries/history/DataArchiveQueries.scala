@@ -3,9 +3,9 @@ package models.queries.history
 import java.util.UUID
 
 import models.queries.BaseQueries
-import models.database.{ Statement, Query, Row }
+import models.database.{Statement, Query, Row}
 import models.history.DataArchiveCount
-import org.joda.time.{ LocalDateTime, LocalDate }
+import org.joda.time.{LocalDateTime, LocalDate}
 
 object DataArchiveQueries extends BaseQueries[DataArchiveCount] {
   override protected val tableName = "data_archive"
