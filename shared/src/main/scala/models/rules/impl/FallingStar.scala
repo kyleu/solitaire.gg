@@ -1,6 +1,6 @@
 package models.rules.impl
 
-import models.card.{ Rank, Suit }
+import models.card.{Rank, Suit}
 import models.rules._
 
 /**

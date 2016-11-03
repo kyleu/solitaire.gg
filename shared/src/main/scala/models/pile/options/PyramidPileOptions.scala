@@ -1,9 +1,9 @@
 package models.pile.options
 
 import models.card.Rank
-import models.pile.actions.{ DragToActions, SelectCardActions }
+import models.pile.actions.{DragToActions, SelectCardActions}
 import models.pile.constraints.Constraint
-import models.rules.{ CardRemovalMethod, PyramidRules }
+import models.rules.{CardRemovalMethod, PyramidRules}
 
 object PyramidPileOptions {
   def apply(rules: PyramidRules, crm: CardRemovalMethod) = {

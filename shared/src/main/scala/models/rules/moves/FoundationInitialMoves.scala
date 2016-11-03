@@ -1,8 +1,8 @@
 package models.rules.moves
 
-import models.card.{ Color, Rank, Suit }
+import models.card.{Color, Rank, Suit}
 import models.game.GameState
-import models.rules.{ FoundationInitialCardRestriction, FoundationLowRank, GameRules }
+import models.rules.{FoundationInitialCardRestriction, FoundationLowRank, GameRules}
 
 object FoundationInitialMoves {
   def performInitialMoves(rules: GameRules, gameState: GameState) = {

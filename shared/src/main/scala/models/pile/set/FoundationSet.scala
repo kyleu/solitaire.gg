@@ -2,7 +2,7 @@ package models.pile.set
 
 import models.pile.Pile
 import models.pile.options.FoundationPileOptions
-import models.rules.{ DeckOptions, FoundationRules }
+import models.rules.{DeckOptions, FoundationRules}
 
 object FoundationSet {
   def apply(foundationRules: FoundationRules, deckOptions: DeckOptions): FoundationSet = {

@@ -1,7 +1,7 @@
 package models.rules.moves
 
 import models.game.GameState
-import models.rules.{ GameRules, InitialCards, TableauFaceDownCards }
+import models.rules.{GameRules, InitialCards, TableauFaceDownCards}
 
 object TableauInitialMoves {
   def performInitialMoves(rules: GameRules, gameState: GameState) = {

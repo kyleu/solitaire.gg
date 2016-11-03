@@ -2,7 +2,7 @@ package models.rules
 
 import java.util.UUID
 
-import models.card.{ Deck, Rank, Suit }
+import models.card.{Deck, Rank, Suit}
 import models.game.GameState
 import models.pile.set._
 

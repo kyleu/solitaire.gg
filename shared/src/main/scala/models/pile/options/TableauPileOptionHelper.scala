@@ -1,6 +1,6 @@
 package models.pile.options
 
-import models.card.{ Card, Rank }
+import models.card.{Card, Rank}
 import models.pile.constraints.Constraint
 import models.rules._
 

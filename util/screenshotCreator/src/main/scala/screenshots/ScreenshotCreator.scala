@@ -1,6 +1,6 @@
 package screenshots
 
-import java.nio.file.{ Files, Paths }
+import java.nio.file.{Files, Paths}
 
 import models.rules.GameRulesSet
 

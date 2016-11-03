@@ -3,7 +3,7 @@ package models.pile.set
 import models.card.Rank
 import models.pile.Pile
 import models.pile.options.PyramidPileOptions
-import models.rules.{ CardRemovalMethod, PyramidRules }
+import models.rules.{CardRemovalMethod, PyramidRules}
 
 object PyramidSet {
   def apply(pyramidRules: PyramidRules, crm: CardRemovalMethod): PyramidSet = {

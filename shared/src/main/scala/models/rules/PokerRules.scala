@@ -1,6 +1,6 @@
 package models.rules
 
-import models.card.{ Card, Rank, Suit }
+import models.card.{Card, Rank, Suit}
 
 object PokerRules {
   sealed abstract class Hand(rank: Int)

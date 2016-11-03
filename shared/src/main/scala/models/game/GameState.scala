@@ -2,7 +2,7 @@ package models.game
 
 import java.util.UUID
 
-import models.card.{ Suit, Rank, Card, Deck }
+import models.card.{Suit, Rank, Card, Deck}
 import models.pile.set.PileSet
 
 case class GameState(

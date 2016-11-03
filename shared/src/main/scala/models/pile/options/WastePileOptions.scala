@@ -2,7 +2,7 @@ package models.pile.options
 
 import models.pile.actions.SelectCardActions
 import models.pile.constraints.Constraint
-import models.rules.{ CardRemovalMethod, WastePlayableCards, WasteRules }
+import models.rules.{CardRemovalMethod, WastePlayableCards, WasteRules}
 
 object WastePileOptions {
   def apply(rules: WasteRules, crm: CardRemovalMethod) = {

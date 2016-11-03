@@ -1,8 +1,8 @@
 package models.pile.options
 
-import models.pile.actions.{ SelectCardActions, SelectPileActions }
+import models.pile.actions.{SelectCardActions, SelectPileActions}
 import models.pile.constraints.Constraint
-import models.rules.{ StockRules, StockCardsDealt, StockDealTo }
+import models.rules.{StockRules, StockCardsDealt, StockDealTo}
 
 object StockPileOptions {
   def apply(rules: StockRules, pileIdsByType: Map[String, Seq[String]]) = {

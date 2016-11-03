@@ -3,7 +3,7 @@ package models.game
 import java.util.UUID
 
 import models.card.Card
-import models.{ CardHidden, CardRevealed }
+import models.{CardHidden, CardRevealed}
 
 trait GameStateHelper { this: GameState =>
   def addCard(card: Card, pile: String, reveal: Boolean = false): Unit = {

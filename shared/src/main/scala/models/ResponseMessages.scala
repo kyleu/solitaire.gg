@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models.card.Card
 import models.game.GameState
-import models.user.{ UserPreferences, UserStatistics }
+import models.user.{UserPreferences, UserStatistics}
 
 sealed trait ResponseMessage
 trait ReversibleResponseMessage extends ResponseMessage

@@ -1,6 +1,6 @@
 package models.pile.constraints
 
-import models.card.{ Card, Rank }
+import models.card.{Card, Rank}
 import models.game.GameState
 import models.pile.Pile
 import models.rules.CardRemovalMethod

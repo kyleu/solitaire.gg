@@ -3,7 +3,7 @@ package models.pile.actions
 import models.card.Card
 import models.game.GameState
 import models.pile.Pile
-import models.{ CardMoved, ResponseMessage }
+import models.{CardMoved, ResponseMessage}
 
 case class SelectCardAction(id: String, f: (Pile, Card, GameState) => Seq[ResponseMessage])
 

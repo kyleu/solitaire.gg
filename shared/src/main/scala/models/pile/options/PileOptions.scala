@@ -1,6 +1,6 @@
 package models.pile.options
 
-import models.pile.actions.{ DragToAction, SelectCardAction, SelectPileAction }
+import models.pile.actions.{DragToAction, SelectCardAction, SelectPileAction}
 import models.pile.constraints.Constraint
 
 object ClientPileOptions {

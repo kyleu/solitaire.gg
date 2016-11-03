@@ -1,6 +1,6 @@
 package models.rules.impl
 
-import models.card.{ Red, Black }
+import models.card.{Red, Black}
 
 import models.rules._
 

@@ -2,7 +2,7 @@ package models.analytics
 
 import java.util.UUID
 
-import models.{ GameWon, GameLost }
+import models.{GameWon, GameLost}
 
 sealed trait ClientEvent {
   def deviceId: UUID

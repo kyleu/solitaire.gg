@@ -2,7 +2,7 @@ package models.pile.set
 
 import models.pile.Pile
 import models.pile.options.WastePileOptions
-import models.rules.{ CardRemovalMethod, WasteRules }
+import models.rules.{CardRemovalMethod, WasteRules}
 
 object WasteSet {
   def apply(rules: WasteRules, crm: CardRemovalMethod) = {

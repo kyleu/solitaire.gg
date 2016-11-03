@@ -2,7 +2,7 @@ package models.pile.set
 
 import models.pile.Pile
 import models.pile.options.TableauPileOptions
-import models.rules.{ CardRemovalMethod, DeckOptions, TableauRules }
+import models.rules.{CardRemovalMethod, DeckOptions, TableauRules}
 
 object TableauSet {
   def apply(tableauRules: TableauRules, deckOptions: DeckOptions, cardRemovalMethod: CardRemovalMethod): TableauSet = {
