@@ -6,7 +6,6 @@ GET         /sandbox/:key                    controllers.admin.SandboxController
 
 GET         /wipe                            controllers.admin.AdminController.wipeSchema(key)
 
-
 GET         /test                            controllers.admin.TestController.tests
 GET         /test/:test                      controllers.admin.TestController.runTest(test)
 

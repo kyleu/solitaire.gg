@@ -6,7 +6,9 @@ import models.audit.AnalyticsEvent
 import models.database.{Query, Row}
 import models.queries.BaseQueries
 import org.joda.time.{LocalDate, LocalDateTime}
-import play.api.libs.json.{JsObject, Json}
+import play.api.libs.json.{JsObject, JsString, Json}
+
+import scala.util.control.NonFatal
 
 object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
   override protected val tableName = "analytics_events"
@@ -40,9 +42,18 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
     val eventType = AnalyticsEvent.EventType.fromString(row.as[String]("event_type"))
     val device = row.as[UUID]("device")
     val sourceAddress = row.asOpt[String]("source_address")
-    val data = Json.parse(row.as[String]("data")).as[JsObject]
+    val data = row.as[String]("data")
+    val dataObj = try {
+      Json.parse(data).as[JsObject]
+    } catch {
+      case NonFatal(x) => JsObject(Seq(
+        "status" -> JsString("error"),
+        "message" -> JsString(x.getMessage),
+        "data" -> JsString(data)
+      ))
+    }
     val created = row.as[LocalDateTime]("created")
-    AnalyticsEvent(id, eventType, device, sourceAddress, data, created)
+    AnalyticsEvent(id, eventType, device, sourceAddress, dataObj, created)
   }
 
   override protected def toDataSeq(ae: AnalyticsEvent) = Seq(ae.id, ae.eventType.id, ae.device, ae.sourceAddress, Json.prettyPrint(ae.data), ae.created)
