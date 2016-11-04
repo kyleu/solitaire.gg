@@ -32,9 +32,9 @@ object Shared {
     scalacOptions in Test ++= Seq("-Yrangepos"),
 
     // Prevent Scaladoc
-    doc in Compile <<= target.map(_ / "none"),
-    sources in (Compile, doc) := Seq.empty,
     publishArtifact in (Compile, packageDoc) := false,
+    publishArtifact in packageDoc := false,
+    sources in (Compile,doc) := Seq.empty,
 
     // Resolvers
     resolvers += Resolver.jcenterRepo
