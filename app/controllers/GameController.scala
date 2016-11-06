@@ -33,6 +33,15 @@ class GameController @javax.inject.Inject() (override val ctx: ApplicationContex
     startGame(rules, seed = Some(seed))
   }
 
+  def newVrGame(rules: String) = req(s"new.$rules.vr") { implicit request =>
+    Future.successful(GameRulesSet.allByIdWithAliases.get(rules) match {
+      case Some(r) =>
+        val title = if (rules == r.id) { r.title } else { r.aka(rules) }
+        Ok(views.html.vr.vr(title, rules, r.description, None, ctx.config.debug))
+      case None => NotFound(Messages("invalid.game.rules", rules))
+    })
+  }
+
   private[this] def startGame(
     rulesId: String,
     initialAction: Seq[String] = Seq("start"),
