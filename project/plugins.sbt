@@ -51,6 +51,11 @@ addSbtPlugin("com.github.xuwei-k" % "sbt-class-diagram" % "0.1.7")
 
 addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.1.0")
 
+// App Packaging
+addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.1.4")
+
+addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.3")
+
 // IDE Integration
 addSbtPlugin("org.jetbrains" % "sbt-ide-settings" % "0.1.1")
 

@@ -13,6 +13,7 @@ import playscalajs.ScalaJSPlay.autoImport._
 
 object Shared {
   val projectId = "solitaire-gg"
+  val projectName = "Solitaire.gg"
 
   val compileOptions = Seq(
     "-encoding", "UTF-8", "-feature", "-deprecation", "-unchecked", "–Xcheck-null", "-Xfatal-warnings", "-Xlint",

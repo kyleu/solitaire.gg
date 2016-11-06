@@ -10,6 +10,15 @@ import com.typesafe.sbt.rjs.Import._
 import com.typesafe.sbt.web.Import._
 import com.typesafe.sbt.web.SbtWeb
 
+import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
+import com.typesafe.sbt.packager.debian.DebianPlugin
+import com.typesafe.sbt.packager.docker.DockerPlugin
+import com.typesafe.sbt.packager.jdkpackager.JDKPackagerPlugin
+import com.typesafe.sbt.packager.linux.LinuxPlugin
+import com.typesafe.sbt.packager.rpm.RpmPlugin
+import com.typesafe.sbt.packager.universal.UniversalPlugin
+import com.typesafe.sbt.packager.windows.WindowsPlugin
+
 import net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings
 import play.routes.compiler.InjectedRoutesGenerator
 import play.sbt.routes.RoutesKeys.{ routesGenerator, routesImport }
@@ -76,9 +85,10 @@ object Server {
     id = Shared.projectId,
     base = file(".")
   )
-    .enablePlugins(GitVersioning)
-    .enablePlugins(SbtWeb)
-    .enablePlugins(play.sbt.PlayScala)
+    .enablePlugins(
+      GitVersioning, SbtWeb, play.sbt.PlayScala, JavaAppPackaging,
+      UniversalPlugin, LinuxPlugin, DebianPlugin, RpmPlugin, DockerPlugin, WindowsPlugin, JDKPackagerPlugin
+    )
     .settings(Shared.commonSettings: _*)
     .settings(serverSettings: _*)
     .settings(scalariformSettings: _*)
