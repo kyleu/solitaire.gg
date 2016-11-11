@@ -15,7 +15,7 @@ object Client {
     unmanagedSourceDirectories in Compile := Seq((scalaSource in Compile).value),
     libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom" % "0.9.1",
-      "com.lihaoyi" %%% "upickle" % "0.4.3"
+      "com.lihaoyi" %%% "upickle" % "0.4.4"
     ),
     scalaJSStage in Global := FastOptStage,
     scapegoatIgnoredFiles := Seq(".*/JsonUtils.scala", ".*/JsonSerializers.scala"),

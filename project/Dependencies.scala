@@ -70,7 +70,8 @@ object Dependencies {
   }
 
   object Testing {
-    val gatlingCore = "io.gatling" % "gatling-test-framework" % "2.2.2" % "test"
-    val gatlingCharts = "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.2.2" % "test"
+    val gatlingVersion = "2.2.3"
+    val gatlingCore = "io.gatling" % "gatling-test-framework" % gatlingVersion % "test"
+    val gatlingCharts = "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test"
   }
 }
