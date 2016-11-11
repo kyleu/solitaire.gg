@@ -17,7 +17,7 @@ abstract class BaseController() extends Controller with I18nSupport with Instrum
 
   def req(action: String)(block: (Request[AnyContent]) => Future[Result]) = Action.async { implicit request =>
     val startTime = System.currentTimeMillis
-    val response = {
+    val response = metrics.timer(action).timeFuture {
       block(request).map { r =>
         val duration = (System.currentTimeMillis - startTime).toInt
         logRequest(request, duration, r.header.status)
@@ -31,10 +31,12 @@ abstract class BaseController() extends Controller with I18nSupport with Instrum
     val startTime = System.currentTimeMillis
     val cookie = request.cookies.get("role").map(_.value)
     if (cookie.contains("admin")) {
-      block(request).map { r =>
-        val duration = (System.currentTimeMillis - startTime).toInt
-        logRequest(request, duration, r.header.status)
-        r
+      metrics.timer(action).timeFuture {
+        block(request).map { r =>
+          val duration = (System.currentTimeMillis - startTime).toInt
+          logRequest(request, duration, r.header.status)
+          r
+        }
       }
     } else {
       Future.successful(NotFound("404 Not Found"))
