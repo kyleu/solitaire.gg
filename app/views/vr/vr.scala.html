@@ -22,14 +22,14 @@
 ) {
   <a-scene>
     <a-assets>
-      <audio id="click-sound" src="@routes.Assets.versioned("audio/sandbox/click.ogg")"></audio>
+      <audio id="click-sound" src="@routes.Assets.versioned("vr/click.ogg")"></audio>
 
-      <img id="city" src="@routes.Assets.versioned("images/sandbox/city.jpg")">
-      <img id="city-thumb" src="@routes.Assets.versioned("images/sandbox/thumb-city.jpg")">
-      <img id="cubes" src="@routes.Assets.versioned("images/sandbox/cubes.jpg")">
-      <img id="cubes-thumb" src="@routes.Assets.versioned("images/sandbox/thumb-cubes.jpg")">
-      <img id="sechelt" src="@routes.Assets.versioned("images/sandbox/sechelt.jpg")">
-      <img id="sechelt-thumb" src="@routes.Assets.versioned("images/sandbox/thumb-sechelt.jpg")">
+      <img id="city" src="@routes.Assets.versioned("vr/city.jpg")">
+      <img id="city-thumb" src="@routes.Assets.versioned("vr/thumb-city.jpg")">
+      <img id="cubes" src="@routes.Assets.versioned("vr/cubes.jpg")">
+      <img id="cubes-thumb" src="@routes.Assets.versioned("vr/thumb-cubes.jpg")">
+      <img id="sechelt" src="@routes.Assets.versioned("vr/sechelt.jpg")">
+      <img id="sechelt-thumb" src="@routes.Assets.versioned("vr/thumb-sechelt.jpg")">
 
       <script id="link" type="text/nunjucks">
         <a-plane class="link" height="1" width="1"
@@ -42,6 +42,9 @@
           sound="on: click; src: #click-sound"
           update-raycaster="#cursor"></a-plane>
       </script>
+
+      <a-asset-item id="tree-obj" src="@routes.Assets.versioned("vr/table.obj")"></a-asset-item>
+      <a-asset-item id="tree-mtl" src="@routes.Assets.versioned("vr/table.mtl")"></a-asset-item>
     </a-assets>
 
     <a-sky id="image-360" radius="10" src="#city"></a-sky>
@@ -51,6 +54,8 @@
       <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
       <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
     </a-entity>
+
+    <a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl"></a-entity>
 
     <a-entity camera look-controls>
       <a-cursor

@@ -1,8 +1,23 @@
 import sbt._
 
 object Dependencies {
-  object Cache {
-    val ehCache = "net.sf.ehcache" % "ehcache-core" % "2.6.11"
+  object Play {
+    val version = "2.5.10"
+    val playFilters = play.sbt.PlayImport.filters
+    val playWs = play.sbt.PlayImport.ws
+    val playJson = play.sbt.PlayImport.json
+    val playTest = "com.typesafe.play" %% "play-test" % version
+  }
+
+  object Akka {
+    private[this] val version = "2.4.13"
+    val actor = "com.typesafe.akka" %% "akka-actor" % version
+    val cluster = "com.typesafe.akka" %% "akka-cluster" % version
+    val contrib = "com.typesafe.akka" %% "akka-contrib" % version
+    val persistence = "com.typesafe.akka" %% "akka-persistence-experimental" % version
+    val remoting = "com.typesafe.akka" %% "akka-remote" % version
+    val log4j = "com.typesafe.akka" %% "akka-slf4j" % version
+    val testkit = "com.typesafe.akka" %% "akka-testkit" % version
   }
 
   object Database {
@@ -12,11 +27,8 @@ object Dependencies {
     val graph = "com.assembla.scala-incubator" %% "graph-core" % "1.9.4"
   }
 
-  object Play {
-    val playFilters = play.sbt.PlayImport.filters
-    val playWs = play.sbt.PlayImport.ws
-    val playJson = play.sbt.PlayImport.json
-    val playTest = "com.typesafe.play" %% "play-test" % "2.5.9"
+  object Cache {
+    val ehCache = "net.sf.ehcache" % "ehcache-core" % "2.6.11"
   }
 
   object Spark {
@@ -45,17 +57,6 @@ object Dependencies {
     val graphite = "io.dropwizard.metrics" % "metrics-graphite" % version withSources() intransitive()
     val metrics = "nl.grons" %% "metrics-scala" % "3.5.5" withSources()
     val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.3.6.v20151106" withSources()
-  }
-
-  object Akka {
-    private[this] val version = "2.4.12"
-    val actor = "com.typesafe.akka" %% "akka-actor" % version
-    val cluster = "com.typesafe.akka" %% "akka-cluster" % version
-    val contrib = "com.typesafe.akka" %% "akka-contrib" % version
-    val persistence = "com.typesafe.akka" %% "akka-persistence-experimental" % version
-    val remoting = "com.typesafe.akka" %% "akka-remote" % version
-    val log4j = "com.typesafe.akka" %% "akka-slf4j" % version
-    val testkit = "com.typesafe.akka" %% "akka-testkit" % version
   }
 
   object ScalaJS {

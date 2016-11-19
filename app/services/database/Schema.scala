@@ -40,16 +40,7 @@ object Schema extends Logging {
 
   def wipe() = {
     log.warn("Wiping database schema.")
-    val tableNames = tables.reverse.map(_.tableName)
+    val tableNames = tables.reverseMap(_.tableName)
     Database.execute(DdlQueries.TruncateTables(tableNames)).map(x => tableNames)
-  }
-
-  private[this] def createUser(q: Future[Boolean], insert: Statement) = q.flatMap { exists =>
-    if (exists) {
-      Future.successful(Unit)
-    } else {
-      log.info(s"Creating user [${insert.getClass.getSimpleName}].")
-      Database.execute(insert).map(x => x == 1)
-    }
   }
 }

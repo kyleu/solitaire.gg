@@ -18,7 +18,14 @@ object Client {
       "com.lihaoyi" %%% "upickle" % "0.4.4"
     ),
     scalaJSStage in Global := FastOptStage,
-    scapegoatIgnoredFiles := Seq(".*/JsonUtils.scala", ".*/JsonSerializers.scala"),
+    scapegoatIgnoredFiles := Seq(
+      ".*/AnalyticsHelper.scala",
+      ".*/GameSerializers.scala",
+      ".*/RequestMessageSerializers.scala",
+      ".*/ResponseMessageSerializers.scala",
+      ".*/JsonUtils.scala",
+      ".*/JsonSerializers.scala"
+    ),
     scapegoatVersion := "1.2.1",
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )

@@ -5,6 +5,8 @@ import java.util.UUID
 import models.test.{Test, TestResult, Tree}
 import utils.Logging
 
+import scala.util.control.NonFatal
+
 object TestService extends Logging {
   val testGameId = UUID.fromString("00000000-0000-0000-0000-000000000000")
 
@@ -20,11 +22,11 @@ object TestService extends Logging {
       val result = test.run()
       TestResult(test.id, (System.currentTimeMillis - startMs).toInt, Some(result))
     } catch {
-      case x: Exception =>
-        log.warn(s"Exception encountered processing test [${test.id}].", x)
-        TestResult(test.id, (System.currentTimeMillis - startMs).toInt, None, Some(x))
       case x: Error =>
         log.warn(s"Error encountered processing test [${test.id}].", x)
+        TestResult(test.id, (System.currentTimeMillis - startMs).toInt, None, Some(x))
+      case NonFatal(x) =>
+        log.warn(s"Exception encountered processing test [${test.id}].", x)
         TestResult(test.id, (System.currentTimeMillis - startMs).toInt, None, Some(x))
     }
   }

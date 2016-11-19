@@ -2,6 +2,8 @@ import models.user.UserStatistics
 import org.scalajs.dom
 import upickle.legacy._
 
+import scala.util.control.NonFatal
+
 object StatisticsHelper {
   lazy val defaultStats = UserStatistics(java.util.UUID.randomUUID(), 0L, UserStatistics.Games.empty)
 }
@@ -51,7 +53,7 @@ trait StatisticsHelper {
       case Some(statsText) => try {
         read[UserStatistics](statsText)
       } catch {
-        case x: Exception =>
+        case NonFatal(x) =>
           saveStatistics(defaultStats)
           defaultStats
       }

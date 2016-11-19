@@ -28,7 +28,7 @@ class EmailReport(emailService: EmailService) extends ScheduledTask.Task {
             yesterdayMetrics <- DailyMetricService.getMetrics(yesterday)
             totals <- DailyMetricService.getTotals(yesterday)
             counts <- Future.sequence(tables.map(table => Database.query(RowCountQueries.CountTable(table))))
-            report <- emailService.sendDailyReport(yesterday, "greyblue", yesterdayMetrics._2._1, totals, counts)
+            report <- emailService.sendDailyReport(yesterday, yesterdayMetrics._2._1, totals, counts)
           } yield {
             "report" -> Some(s"Sent report for [$yesterdayAndBuffer]")
           }

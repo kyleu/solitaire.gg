@@ -34,7 +34,7 @@ class FeedbackController @javax.inject.Inject() (override val ctx: ApplicationCo
         })
         case _ => throw new IllegalStateException()
       }
-      Ok(views.html.admin.feedback.feedbackList(key, q, sortBy, if (key == "all") { fn._1 } else { filtered.size }, page, filtered))
+      Ok(views.html.admin.feedback.feedbackList(key, q, sortBy, if (key == "all") { fn._1 } else { filtered.length }, page, filtered))
     }
   }
 

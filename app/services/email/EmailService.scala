@@ -28,7 +28,6 @@ class EmailService @javax.inject.Inject() (mailerClient: MailerClient, config: C
 
   def sendDailyReport(
     d: LocalDate,
-    color: String,
     metrics: Map[DailyMetric.Metric, Long],
     totals: Map[DailyMetric.Metric, Long],
     tableCounts: Seq[(String, Long)]

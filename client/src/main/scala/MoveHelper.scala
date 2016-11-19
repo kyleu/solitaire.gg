@@ -2,7 +2,7 @@ import java.util.UUID
 
 import models._
 
-trait MoveHelper extends VictoryHelper {
+trait MoveHelper extends VictoryHelper with StartGameHelper {
   private[this] val requests = collection.mutable.ArrayBuffer.empty[Seq[String]]
   protected def registerRequest(stack: String*) = requests += stack
   protected def clearRequests() = requests.clear()
@@ -30,10 +30,10 @@ trait MoveHelper extends VictoryHelper {
       registerRequest(args: _*)
       val messages = pile.onSelectCard(card, gs)
       send(messages, registerUndoResponse = true)
-      if (messages.size != 1 || messages.headOption.map {
+      if (messages.size != 1 || messages.headOption.forall {
         case _: CardRevealed => false
         case _ => true
-      }.getOrElse(true)) {
+      }) {
         registerMove()
       }
     }

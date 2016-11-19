@@ -18,12 +18,12 @@ class AnalyticsEventController @javax.inject.Inject() (override val ctx: Applica
   }
 
   def eventDetail(id: UUID) = withAdminSession("detail") { implicit request =>
-    Future.successful(Ok("TODO"))
+    Future.successful(Ok(s"TODO: $id"))
   }
 
   def removeEvent(id: UUID) = withAdminSession("remove") { implicit request =>
     AnalyticsService.remove(id).map { ok =>
-      Redirect(controllers.admin.routes.AnalyticsEventController.eventList(""))
+      Redirect(controllers.admin.routes.AnalyticsEventController.eventList(s"TODO: $id"))
     }
   }
 }

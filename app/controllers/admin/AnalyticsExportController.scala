@@ -6,9 +6,7 @@ import controllers.BaseController
 import models.queries.audit.AnalyticsEventQueries
 import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.libs.iteratee.Enumerator
 import play.api.libs.json.Json
-import play.api.mvc.{ResponseHeader, Result}
 import services.analytics.AnalyticsExport
 import services.database.Database
 import utils.{FileUtils, ApplicationContext}
@@ -74,7 +72,7 @@ class AnalyticsExportController @javax.inject.Inject() (override val ctx: Applic
 
   def wipeDatabase(d: LocalDate) = withAdminSession("wipe") { implicit request =>
     Future.successful {
-      Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("error" -> s"No.")
+      Redirect(controllers.admin.routes.AnalyticsExportController.exportStatus()).flashing("error" -> s"$d: Not ready yet.")
     }
   }
 
