@@ -10,7 +10,7 @@ object Dependencies {
   }
 
   object Akka {
-    private[this] val version = "2.4.13"
+    private[this] val version = "2.4.14"
     val actor = "com.typesafe.akka" %% "akka-actor" % version
     val cluster = "com.typesafe.akka" %% "akka-cluster" % version
     val contrib = "com.typesafe.akka" %% "akka-contrib" % version
@@ -56,7 +56,7 @@ object Dependencies {
     val servlets = "io.dropwizard.metrics" % "metrics-servlets" % version withSources() intransitive()
     val graphite = "io.dropwizard.metrics" % "metrics-graphite" % version withSources() intransitive()
     val metrics = "nl.grons" %% "metrics-scala" % "3.5.5" withSources()
-    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.3.6.v20151106" withSources()
+    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.3.14.v20161028" withSources()
   }
 
   object ScalaJS {
