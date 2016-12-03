@@ -66,8 +66,6 @@ object Server {
     // Code Quality
     scapegoatIgnoredFiles := Seq(".*/Row.scala", ".*/Routes.scala", ".*/ReverseRoutes.scala", ".*/JavaScriptReverseRoutes.scala", ".*/*.template.scala"),
     scapegoatDisabledInspections := Seq("DuplicateImport"),
-    scapegoatVersion := "1.2.1",
-    ScalariformKeys.preferences := ScalariformKeys.preferences.value,
 
     // SBT Output
     ivyLoggingLevel := UpdateLogging.Quiet,

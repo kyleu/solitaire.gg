@@ -53,7 +53,7 @@
     <div class="module">
       <div class="header">@Messages("index.games.unstarted")</div>
       <ul class="game-links">@for(r <- models.rules.GameRulesSet.unfinished) {
-        <li><a href="@controllers.routes.GameController.newGame(r.id).url">@r.title</a></li>}
+        <li><a href="@controllers.routes.GameController.newGame(r._1).url">@if(r._1 == r._2.id) { @r._2.title } else { @r._2.aka(r._1) }</a></li>}
       </ul>
     </div>
   }

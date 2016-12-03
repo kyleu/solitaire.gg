@@ -38,23 +38,24 @@ object Shared {
     sources in (Compile,doc) := Seq.empty,
 
     // Resolvers
-    resolvers += Resolver.jcenterRepo
+    resolvers += Resolver.jcenterRepo,
+
+    // Code Quality
+    scapegoatVersion := "1.3.0",
+    ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
 
   lazy val sharedJs = (crossProject.crossType(CrossType.Pure) in file("shared"))
     .enablePlugins(ScalaJSPlay)
+    .settings(scalariformSettings: _*)
     .settings(commonSettings: _*)
     .settings(
       scalaJSStage in Global := FastOptStage,
-      scapegoatIgnoredFiles := Seq(".*"),
-      scapegoatVersion := "1.2.1"
+      scapegoatIgnoredFiles := Seq(".*")
     )
     .js
 
-  lazy val sharedJvm = (project in file("shared")).settings(
-    scapegoatVersion := "1.3.0",
-    ScalariformKeys.preferences := ScalariformKeys.preferences.value
-  )
+  lazy val sharedJvm = (project in file("shared"))
     .enablePlugins(GitVersioning)
     .enablePlugins(GitBranchPrompt)
     .settings(commonSettings: _*)

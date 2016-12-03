@@ -5,8 +5,7 @@ import models.rules.impl._
 // scalastyle:off
 object GameRulesSet {
   lazy val favorites = Seq(Klondike, KlondikeOneCard, FreeCell, Pyramid, Spider)
-  lazy val completed = allSortedByTitle.filter(_._2.completed)
-  lazy val unfinished = GameRulesSet.all.filterNot(r => completed.exists(_._2 == r))
+  lazy val (completed, unfinished) = allSortedByTitle.partition(_._2.completed)
 
   lazy val allByIdWithAliases = all.map(x => x.id -> x).toMap ++ all.flatMap(x => x.aka.map(aka => aka._1 -> x)).toMap
   lazy val allSortedByTitle = allByIdWithAliases.toSeq.sortBy { row =>

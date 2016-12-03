@@ -20,7 +20,7 @@ class AdminController @javax.inject.Inject() (override val ctx: ApplicationConte
   }
 
   def unfinished = withAdminSession("unfinished") { implicit request =>
-    val rules = GameRulesSet.unfinished(Random.nextInt(GameRulesSet.unfinished.size))
+    val rules = GameRulesSet.unfinished(Random.nextInt(GameRulesSet.unfinished.size))._2
     Future.successful(Redirect(controllers.routes.GameController.newGame(rules.id)))
   }
 
