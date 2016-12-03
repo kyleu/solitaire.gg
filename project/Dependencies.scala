@@ -65,7 +65,7 @@ object Dependencies {
   }
 
   object Utils {
-    private[this] val version = "6.38.0"
+    private[this] val version = "6.39.0"
     val core = "com.twitter" %% "util-core" % version
     val collection = "com.twitter" %% "util-collection" % version
   }

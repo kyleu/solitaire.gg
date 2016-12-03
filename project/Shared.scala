@@ -52,7 +52,7 @@ object Shared {
     .js
 
   lazy val sharedJvm = (project in file("shared")).settings(
-    scapegoatVersion := "1.2.1",
+    scapegoatVersion := "1.3.0",
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
     .enablePlugins(GitVersioning)
