@@ -1,3 +1,5 @@
+package client.game
+
 import java.util.UUID
 
 import models._

@@ -22,7 +22,7 @@ import models.rules._
  */
 object PerseveranceB extends GameRules(
   id = "perseveranceb",
-  completed = false,
+  completed = true,
   title = "Perseverance B",
   like = Some("perseverancea"),
   links = Seq(
@@ -31,7 +31,7 @@ object PerseveranceB extends GameRules(
   ),
   description = "An alternate version of ^perseverancea^ where there are only two redeals, the redeal method is different, and kings are automatica" +
     "lly moved to the bottoms of their stacks.",
-  layout = "f|t",
+  layout = "::::f|t",
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

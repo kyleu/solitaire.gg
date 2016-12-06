@@ -1,3 +1,5 @@
+package client.user
+
 import models.user.UserStatistics
 import org.scalajs.dom
 import upickle.legacy._

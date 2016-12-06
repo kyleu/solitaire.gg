@@ -1,4 +1,4 @@
-package json
+package client.json
 
 import models._
 import upickle._

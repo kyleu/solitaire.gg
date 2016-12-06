@@ -17,11 +17,11 @@ import models.rules._
  */
 object Skippy extends GameRules(
   id = "skippy",
-  completed = false,
+  completed = true,
   title = "Skippy",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/skippy.htm")),
   description = "A game invented by Lillian Davies and Christa Baran.",
-  layout = "swf|c|t",
+  layout = "::.swf|::::::c|t",
   deckOptions = DeckOptions(
     numDecks = 2,
     lowRank = Rank.Unknown

@@ -16,7 +16,7 @@ import models.rules._
  */
 object MovingLeft extends GameRules(
   id = "movingleft",
-  completed = false,
+  completed = true,
   title = "Moving Left",
   related = Seq("tripleleft", "singleleft"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/moving_left.htm")),

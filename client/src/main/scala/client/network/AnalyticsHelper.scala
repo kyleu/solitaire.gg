@@ -1,9 +1,12 @@
+package client.network
+
 import java.util.UUID
 
-import json.BaseSerializers
+import client.json.BaseSerializers
 import models.analytics._
 import models.{GameLost, GameWon}
 import upickle.legacy._
+import client.user.DataHelper
 
 import scala.scalajs.js
 import scala.util.control.NonFatal

@@ -1,5 +1,8 @@
+package client.game
+
 import java.util.UUID
 
+import client.user.DataHelper
 import models.GameJoined
 import models.rules.GameRulesSet
 import models.rules.moves.InitialMoves

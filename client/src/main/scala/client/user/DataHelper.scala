@@ -1,3 +1,5 @@
+package client.user
+
 import java.util.UUID
 
 import scala.util.control.NonFatal

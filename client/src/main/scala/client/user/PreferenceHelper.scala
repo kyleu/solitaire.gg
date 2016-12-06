@@ -1,3 +1,5 @@
+package client.user
+
 import models.game.GameState
 import models.user.{CardPreferences, UserPreferences}
 import org.scalajs.dom

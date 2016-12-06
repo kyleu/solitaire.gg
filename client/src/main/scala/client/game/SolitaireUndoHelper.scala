@@ -1,3 +1,5 @@
+package client.game
+
 import models._
 import models.game.GameState
 

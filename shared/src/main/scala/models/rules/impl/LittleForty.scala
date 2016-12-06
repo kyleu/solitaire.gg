@@ -14,7 +14,7 @@ import models.rules._
  */
 object LittleForty extends GameRules(
   id = "littleforty",
-  completed = false,
+  completed = true,
   title = "Little Forty",
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/little_forty.htm"),
@@ -25,7 +25,7 @@ object LittleForty extends GameRules(
   ),
   description = "Like ^fortythieves^, but we build in regardless of color, can move sequences, and can make three passes through the deck, dealing " +
     "three cards at a time.",
-  layout = "swf|t",
+  layout = "swf|.t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

@@ -15,12 +15,12 @@ import models.rules._
  */
 object Outback extends GameRules(
   id = "outback",
-  completed = false,
+  completed = true,
   title = "Outback",
   related = Seq("adelaide"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/outback.htm")),
   description = "A two-deck version of Australian Solitaire.",
-  layout = "swf|t",
+  layout = "swf|:.t",
   deckOptions = DeckOptions(
     numDecks = 2
   ),

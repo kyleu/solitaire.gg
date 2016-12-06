@@ -1,3 +1,5 @@
+package client.network
+
 import java.util.UUID
 
 import org.scalajs.dom.ext.Ajax
@@ -41,7 +43,7 @@ trait AjaxHelper {
       )
 
       requestInFlight = true
-      val f = Ajax("post", url, body, timeout, headers, withCredentials = true, "json")
+      val f = Ajax("post", url, body, timeout, headers, withCredentials = true, "client/json")
       f.onSuccess {
         case x =>
           requestInFlight = false

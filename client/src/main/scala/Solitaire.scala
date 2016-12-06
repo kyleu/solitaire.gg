@@ -1,6 +1,8 @@
 import java.util.UUID
 
-import json.{BaseSerializers, ResponseMessageSerializers, JsonUtils}
+import client.json.{BaseSerializers, JsonUtils, ResponseMessageSerializers}
+import client.game.{SolitaireUndoHelper, StartGameHelper}
+import client.user.{DataHelper, PreferenceHelper}
 import models._
 
 import scala.scalajs.js

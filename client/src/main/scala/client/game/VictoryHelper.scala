@@ -1,9 +1,13 @@
+package client.game
+
 import java.util.UUID
 
-import json.{BaseSerializers, ResponseMessageSerializers}
+import client.user.StatisticsHelper
+
 import models._
 import models.game.GameState
 import models.rules.GameRules
+import client.network.AnalyticsHelper
 
 trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit

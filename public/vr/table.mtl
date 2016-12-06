@@ -1,0 +1,24 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl Clear_window
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.614902 0.665098 0.724706
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.750000
+illum 2
+
+newmtl standart_metal
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.326275 0.326275 0.326275
+Ks 0.449020 0.449020 0.449020
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd glass-table/METAL 6.JPG
+map_Bump glass-table/METAL 6.JPG
