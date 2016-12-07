@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models._
 
-trait MoveHelper extends VictoryHelper with StartGameHelper {
+trait MoveHelper extends PossibleMoveHelper with StartGameHelper {
   private[this] val requests = collection.mutable.ArrayBuffer.empty[Seq[String]]
   protected def registerRequest(stack: String*) = requests += stack
   protected def clearRequests() = requests.clear()

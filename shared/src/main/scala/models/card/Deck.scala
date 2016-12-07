@@ -3,13 +3,7 @@ package models.card
 import java.util.UUID
 
 object Deck {
-  def freshCards(ranks: Seq[Rank], suits: Seq[Suit]) = {
-    val cards = for {
-      suit <- suits
-      rank <- ranks.reverse
-    } yield Card(r = rank, s = suit, u = false)
-    cards.toList
-  }
+  def freshCards(ranks: Seq[Rank], suits: Seq[Suit]) = suits.flatMap(suit => ranks.reverseMap(rank => Card(r = rank, s = suit))).toList
 }
 
 case class Deck(var cards: Seq[Card], lowRank: Rank, highRank: Rank, originalOrder: Seq[UUID]) {
