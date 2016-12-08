@@ -33,6 +33,19 @@ define(['card/Rank'], function(Rank) {
         default:
           throw new Error('?');
       }
+    } else if (lowRank === Rank.ace.value && l === Rank.two) {
+      switch(i) {
+        case 1:
+          return r === Rank.ace;
+        case 2:
+          return r === Rank.king;
+        case 3:
+          return r === Rank.queen;
+        case 4:
+          return r === Rank.jack;
+        default:
+          throw new Error('?');
+      }
     } else {
       return l.value === r.value + i;
     }

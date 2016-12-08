@@ -24,7 +24,7 @@ define(['card/Rank', 'pile/PileLogic'], function(Rank, PileLogic) {
 
       var rankRule = opts.r;
       var suitRule = opts.s;
-      var lowRank = opts.lr;
+      var lowRank = parseInt(opts.lr);
 
       var valid = true;
       var lastCard;

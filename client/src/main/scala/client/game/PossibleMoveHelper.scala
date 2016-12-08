@@ -53,7 +53,6 @@ trait PossibleMoveHelper extends VictoryHelper {
       }
     }
     awesomeMoves ++ ret ++ boringMoves
-
   }
 
   private[this] def checkWinCondition() = {
