@@ -1,2 +1,0 @@
-#!/bin/sh
-./certbot-auto certonly --manual -d solitaire.gg -d www.solitaire.gg

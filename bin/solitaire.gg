@@ -1,3 +1,0 @@
-pushd ~/Projects/Personal/solitaire.gg
-/Users/kyle/bin/sbt -Dhttp.port=9000 -Dhttps.port=9443 "$@"
-popd

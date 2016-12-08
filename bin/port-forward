@@ -1,1 +1,0 @@
-sudo pfctl -evf /Users/kyle/.pf/pf.conf
