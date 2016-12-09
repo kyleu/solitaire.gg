@@ -1,4 +1,4 @@
-@(offline: Boolean, isAdmin: Boolean)(
+@(isAdmin: Boolean)(
   implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
 )@layout.static(title = utils.Config.projectName, button = "about") {
   <div class="module">
@@ -13,39 +13,6 @@
       <li><a href="@controllers.routes.GameController.newGame(r.id).url">@r.title</a></li>}
     </ul>
   </div>
-
-  @if(!offline) {
-    <div id="platforms" class="module">
-      <div class="header">@Messages("index.download")</div>
-      <ul class="platform-links">
-        <li>
-          <a class="platform-link" href="https://s3.amazonaws.com/solitaire.gg/windows/Solitaire.gg.zip">Windows 64-bit</a>
-        </li>
-        <li>
-          <a class="platform-link" href="https://s3.amazonaws.com/solitaire.gg/windows/Solitaire.gg.x32.zip">Windows 32-bit</a>
-        </li>
-        <li>
-          <a class="platform-link" href="https://s3.amazonaws.com/solitaire.gg/osx/Solitaire.gg.zip">macOS</a>
-          <!-- Coming Soon To The Mac App Store! -->
-        </li>
-      </ul>
-      <ul class="platform-links">
-        <li>
-          <a class="platform-link" href="https://s3.amazonaws.com/solitaire.gg/linux/Solitaire.gg.zip">Linux 64-bit</a>
-        </li>
-        <li>
-          <a class="platform-link" href="https://s3.amazonaws.com/solitaire.gg/linux/Solitaire.gg.x32.zip">Linux 32-bit</a>
-        </li>
-        <li>
-          <a class="platform-link" href="https://s3.amazonaws.com/solitaire.gg/linux/Solitaire.gg.arm.zip">Linux ARM</a>
-        </li>
-      </ul>
-      <div class="app-store-links">
-        <a id="link-ios" href="https://itunes.apple.com/us/app/solitaire.gg/id1056989640"><img src="@routes.Assets.versioned("images/logo/ios.png")" /></a>
-        <a id="link-android" href="https://play.google.com/store/apps/details?id=gg.solitaire"><img src="@routes.Assets.versioned("images/logo/android.png")" /></a>
-      </div>
-    </div>
-  }
 
   @views.html.game.gameList()
 

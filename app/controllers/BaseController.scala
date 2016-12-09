@@ -10,6 +10,13 @@ import utils.{ApplicationContext, Logging}
 
 import scala.concurrent.Future
 
+object BaseController extends Logging {
+  val adminKey = Option(System.getenv("ADMIN_KEY")).getOrElse {
+    log.warn("Using default admin key. This installation is not secure.")
+    "admin"
+  }
+}
+
 abstract class BaseController() extends Controller with I18nSupport with Instrumented with Logging {
   def ctx: ApplicationContext
 
@@ -30,7 +37,7 @@ abstract class BaseController() extends Controller with I18nSupport with Instrum
   def withAdminSession(action: String)(block: (Request[AnyContent]) => Future[Result]) = Action.async { implicit request =>
     val startTime = System.currentTimeMillis
     val cookie = request.cookies.get("role").map(_.value)
-    if (cookie.contains("admin")) {
+    if (cookie.contains(BaseController.adminKey)) {
       metrics.timer(action).timeFuture {
         block(request).map { r =>
           val duration = (System.currentTimeMillis - startTime).toInt

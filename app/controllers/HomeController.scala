@@ -8,7 +8,7 @@ import scala.concurrent.Future
 @javax.inject.Singleton
 class HomeController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
   def index() = req("index") { implicit request =>
-    Future.successful(Ok(views.html.index(offline = false, isAdmin = false)))
+    Future.successful(Ok(views.html.index(isAdmin = false)))
   }
 
   def untrail(path: String) = Action.async {

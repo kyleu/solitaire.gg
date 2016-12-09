@@ -14,7 +14,6 @@ object SandboxController {
   val sandboxes = Seq(
     Scratchpad,
     ScreenshotCreator,
-    ExportStatic,
     RunScheduledTask,
     SendErrorEmail,
     BackfillMetrics,
@@ -29,7 +28,6 @@ class SandboxController @javax.inject.Inject() (override val ctx: ApplicationCon
   def defaultSandbox() = sandbox("list")
 
   RunScheduledTask.scheduledTask = Some(scheduledTask)
-  ExportStatic.messagesApi = Some(messagesApi)
 
   def sandbox(key: String) = withAdminSession(key) { implicit request =>
     val sandbox = SandboxController.sandboxes.find(_.id == key).getOrElse(throw new IllegalStateException())
@@ -41,13 +39,4 @@ class SandboxController @javax.inject.Inject() (override val ctx: ApplicationCon
       }
     }
   }
-
-  private[this] def runErrorMail() = Future.successful(
-    views.html.email.severeErrorHtml(
-      "Error Message",
-      "Test Context",
-      Some(new Exception("Text Exception")),
-      DateUtils.now
-    )
-  )
 }
