@@ -41,7 +41,7 @@ object Shared {
     resolvers += Resolver.jcenterRepo,
 
     // Code Quality
-    scapegoatVersion := "1.3.0",
+    scapegoatVersion := Dependencies.Utils.scapegoatVersion,
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
 

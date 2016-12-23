@@ -1,6 +1,5 @@
 package controllers.admin
 
-import com.twitter.util.NonFatal
 import controllers.BaseController
 import controllers.admin.AnalyticsFileController.Detail
 import models.analytics._
@@ -11,6 +10,7 @@ import services.analytics.AnalyticsFileService
 import utils.ApplicationContext
 
 import scala.concurrent.Future
+import scala.util.control.NonFatal
 
 object AnalyticsFileController {
   case class Detail(

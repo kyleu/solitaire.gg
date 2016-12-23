@@ -11,7 +11,7 @@ object Dependencies {
   }
 
   object Akka {
-    private[this] val version = "2.4.14"
+    private[this] val version = "2.4.16"
     val actor = "com.typesafe.akka" %% "akka-actor" % version
     val cluster = "com.typesafe.akka" %% "akka-cluster" % version
     val contrib = "com.typesafe.akka" %% "akka-contrib" % version
@@ -62,9 +62,11 @@ object Dependencies {
   }
 
   object Utils {
-    private[this] val version = "6.39.0"
+    private[this] val version = "6.40.0"
+    val scapegoatVersion = "1.3.0"
     val core = "com.twitter" %% "util-core" % version
     val collection = "com.twitter" %% "util-collection" % version
+
   }
 
   object Testing {

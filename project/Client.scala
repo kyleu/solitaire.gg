@@ -26,7 +26,7 @@ object Client {
       ".*/JsonUtils.scala",
       ".*/JsonSerializers.scala"
     ),
-    scapegoatVersion := "1.2.1",
+    scapegoatVersion := Dependencies.Utils.scapegoatVersion,
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
 
