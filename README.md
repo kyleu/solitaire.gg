@@ -1,15 +1,13 @@
 # Solitaire.gg
 
-Almost certainly the web's finest card games.
+https://solitaire.gg
 
 ## Running the app
-
-Create a DNS or hosts entry for "solitaire.dev", pointing to your server.
 
 ```shell
 $ sbt
 > run
-$ open http://solitaire.dev
+$ open http://localhost:9000
 ```
 
 ## Projects
@@ -17,7 +15,7 @@ $ open http://solitaire.dev
 * `solitaire-gg` Main web application. Handles online games.
 * `sharedJvm` Core game logic and rules definitions, for JVM projects.
 * `sharedJs` Shared classes, compiled to Scala.js JavaScript.
-* `client` Barebones Scala.js app to support offline play.
+* `client` Scala.js app to support offline play.
 * `util` Various utility projects, mainly for batch processing.
 
 
@@ -32,6 +30,7 @@ shared code and provides an in-browser server, communicating with the client via
 Rendering is handled by Phaser.io using a simple message-passing interface.
 You can sign in with Facebook, Google, or Twitter thanks to Play Silhouette.
 A general Solitaire solver is included, supporting backtracking and propagation.
+
 
 ## Metrics
 
@@ -53,5 +52,4 @@ Inline styles and scripts are prohibited.
 
 ## License
 
-Copyright 2015 Kyle Unverferth
-All rights reserved, for now.
+Solitaire.gg is free, open-source software under the [MIT license](LICENSE.md).
