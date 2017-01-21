@@ -29,7 +29,7 @@ trait ApplicationContextHelper { this: ApplicationContext =>
     Database.open(config.databaseConfiguration)
     Schema.update()
 
-    if (config.debug) {
+    if (!config.debug) {
       scheduleTask(task, system)
     }
 
