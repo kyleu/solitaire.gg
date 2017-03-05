@@ -11,7 +11,7 @@ object Dependencies {
   }
 
   object Akka {
-    private[this] val version = "2.4.16"
+    private[this] val version = "2.4.17"
     val actor = "com.typesafe.akka" %% "akka-actor" % version
     val cluster = "com.typesafe.akka" %% "akka-cluster" % version
     val contrib = "com.typesafe.akka" %% "akka-contrib" % version
@@ -22,7 +22,7 @@ object Dependencies {
   }
 
   object Database {
-    val postgresAsync = "com.github.mauricio" %% "postgresql-async" % "0.2.20" exclude("io.netty", "netty-all")
+    val postgresAsync = "com.github.mauricio" %% "postgresql-async" % "0.2.21" exclude("io.netty", "netty-all")
     val reactiveMongo = "org.reactivemongo" %% "reactivemongo" % "0.11.6"
     val playMongo = "org.reactivemongo" %% "play2-reactivemongo" % "0.11.6.play24"
     val graph = "com.assembla.scala-incubator" %% "graph-core" % "1.9.4"
@@ -45,15 +45,15 @@ object Dependencies {
   }
 
   object Metrics {
-    private[this] val version = "3.1.2"
+    private[this] val version = "3.2.0"
     val jvm = "io.dropwizard.metrics" % "metrics-jvm" % version withSources()
     val ehcache = "io.dropwizard.metrics" % "metrics-ehcache" % version withSources() intransitive()
     val healthChecks = "io.dropwizard.metrics" % "metrics-healthchecks" % version withSources() intransitive()
     val json = "io.dropwizard.metrics" % "metrics-json" % version withSources()
     val servlets = "io.dropwizard.metrics" % "metrics-servlets" % version withSources() intransitive()
     val graphite = "io.dropwizard.metrics" % "metrics-graphite" % version withSources() intransitive()
-    val metrics = "nl.grons" %% "metrics-scala" % "3.5.5" withSources()
-    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.3.14.v20161028" withSources()
+    val metrics = "nl.grons" %% "metrics-scala" % "3.5.6" withSources()
+    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.3.16.v20170120" withSources()
   }
 
   object ScalaJS {
@@ -62,7 +62,7 @@ object Dependencies {
   }
 
   object Utils {
-    private[this] val version = "6.40.0"
+    private[this] val version = "6.41.0"
     val scapegoatVersion = "1.3.0"
     val core = "com.twitter" %% "util-core" % version
     val collection = "com.twitter" %% "util-collection" % version
