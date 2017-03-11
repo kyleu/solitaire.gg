@@ -45,7 +45,7 @@ object Dependencies {
   }
 
   object Metrics {
-    private[this] val version = "3.2.0"
+    private[this] val version = "3.2.1"
     val jvm = "io.dropwizard.metrics" % "metrics-jvm" % version withSources()
     val ehcache = "io.dropwizard.metrics" % "metrics-ehcache" % version withSources() intransitive()
     val healthChecks = "io.dropwizard.metrics" % "metrics-healthchecks" % version withSources() intransitive()
