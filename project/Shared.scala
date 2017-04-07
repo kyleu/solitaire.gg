@@ -22,7 +22,7 @@ object Shared {
 
   object Versions {
     val app = "0.1-SNAPSHOT"
-    val scala = "2.11.8"
+    val scala = "2.11.9"
   }
 
   val commonSettings = Seq(
