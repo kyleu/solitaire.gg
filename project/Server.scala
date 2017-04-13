@@ -1,6 +1,5 @@
 import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
 import com.typesafe.sbt.GitVersioning
-import com.typesafe.sbt.SbtScalariform.{ ScalariformKeys, scalariformSettings }
 import com.typesafe.sbt.digest.Import._
 import com.typesafe.sbt.gzip.Import._
 import com.typesafe.sbt.jse.JsEngineImport.JsEngineKeys
@@ -19,7 +18,6 @@ import com.typesafe.sbt.packager.rpm.RpmPlugin
 import com.typesafe.sbt.packager.universal.UniversalPlugin
 import com.typesafe.sbt.packager.windows.WindowsPlugin
 
-import net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings
 import play.routes.compiler.InjectedRoutesGenerator
 import play.sbt.routes.RoutesKeys.{ routesGenerator, routesImport }
 import playscalajs.PlayScalaJS.autoImport._
@@ -79,20 +77,12 @@ object Server {
     )
   )
 
-  lazy val server = Project(
-    id = Shared.projectId,
-    base = file(".")
-  )
+  lazy val server = Project(id = Shared.projectId, base = file("."))
     .enablePlugins(
       GitVersioning, SbtWeb, play.sbt.PlayScala, JavaAppPackaging,
       UniversalPlugin, LinuxPlugin, DebianPlugin, RpmPlugin, DockerPlugin, WindowsPlugin, JDKPackagerPlugin
     )
-    .settings(Shared.commonSettings: _*)
-    .settings(serverSettings: _*)
-    .settings(scalariformSettings: _*)
-    .settings(graphSettings: _*)
-    .aggregate(projectToRef(Client.client))
-    .aggregate(Shared.sharedJvm)
-    .dependsOn(Shared.sharedJvm)
-    .dependsOn(Utilities.screenshotCreator)
+    .settings(Shared.commonSettings ++ serverSettings: _*)
+    .aggregate(projectToRef(Client.client), Shared.sharedJvm)
+    .dependsOn(Shared.sharedJvm, Utilities.screenshotCreator)
 }

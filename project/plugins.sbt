@@ -19,9 +19,17 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.1.1")
 addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % "1.0.0")
 
 // Scala.js
-addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.14")
+addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.15")
 
 addSbtPlugin("com.vmunier" % "sbt-play-scalajs" % "0.3.1" exclude("org.scala-js", "sbt-scalajs"))
+
+// Scala Native
+addSbtPlugin("org.scala-native" % "sbt-scala-native" % "0.1.0")
+
+// Cross Project Builds
+addSbtPlugin("org.scala-native" % "sbt-crossproject" % "0.1.0")
+
+addSbtPlugin("org.scala-native" % "sbt-scalajs-crossproject" % "0.1.0")
 
 // Source Control
 addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.8.4")

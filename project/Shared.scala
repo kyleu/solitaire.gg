@@ -6,10 +6,10 @@ import sbt.Keys._
 import net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings
 import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, scalariformSettings}
 
-import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
-
-import playscalajs.ScalaJSPlay
-import playscalajs.ScalaJSPlay.autoImport._
+import sbtcrossproject.CrossPlugin.autoImport._
+import scalajscrossproject.ScalaJSCrossPlugin.autoImport._
+import scala.scalanative.sbtplugin.NativePlatform
+import scala.scalanative.sbtplugin.ScalaNativePlugin.autoImport._
 
 object Shared {
   val projectId = "solitaire-gg"
@@ -22,7 +22,7 @@ object Shared {
 
   object Versions {
     val app = "0.1-SNAPSHOT"
-    val scala = "2.11.10"
+    val scala = "2.11.8"
   }
 
   val commonSettings = Seq(
@@ -43,22 +43,14 @@ object Shared {
     // Code Quality
     scapegoatVersion := Dependencies.Utils.scapegoatVersion,
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
-  )
+  ) ++ graphSettings ++ scalariformSettings
 
-  lazy val sharedJs = (crossProject.crossType(CrossType.Pure) in file("shared"))
-    .enablePlugins(ScalaJSPlay)
-    .settings(scalariformSettings: _*)
-    .settings(commonSettings: _*)
-    .settings(
-      scalaJSStage in Global := FastOptStage,
-      scapegoatIgnoredFiles := Seq(".*")
-    )
-    .js
 
-  lazy val sharedJvm = (project in file("shared"))
-    .enablePlugins(GitVersioning)
-    .enablePlugins(GitBranchPrompt)
-    .settings(commonSettings: _*)
-    .settings(graphSettings: _*)
-    .settings(scalariformSettings: _*)
+  lazy val shared = (crossProject(JSPlatform, JVMPlatform, NativePlatform).crossType(CrossType.Pure) in file("shared")).settings(commonSettings: _*)
+
+  lazy val sharedJs = shared.js
+
+  lazy val sharedJvm = shared.jvm
+
+  lazy val sharedNative = shared.native
 }
