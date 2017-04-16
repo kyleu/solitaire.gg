@@ -9,6 +9,10 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class GameController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+  def solitaire = req("solitaire") { implicit request =>
+    Future.successful(Ok(views.html.solitaire()))
+  }
+
   def help(id: String, inline: Boolean) = req("help." + id) { implicit request =>
     Future.successful {
       id match {

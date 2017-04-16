@@ -16,6 +16,7 @@ POST           /feedback                    controllers.FeedbackController.submi
 GET            /help/:id                    controllers.GameController.help(id, inline: Boolean ?= false)
 GET            /about                       controllers.HomeController.about()
 
+GET            /play                        controllers.GameController.solitaire()
 GET            /play/:rules                 controllers.GameController.newGame(rules)
 GET            /play/:rules/vr              controllers.GameController.newVrGame(rules)
 GET            /play/:rules/:seed           controllers.GameController.newGameWithSeed(rules, seed: Int)
