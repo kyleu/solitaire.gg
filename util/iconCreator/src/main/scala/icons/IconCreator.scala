@@ -76,15 +76,14 @@ object IconCreator extends App {
       s"convert -resize 500x500 -background none ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color-500.png".!
       s"convert -resize 64x64 -background none ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color@2x.png".!
       s"convert -resize 32x32 -background none ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color.png".!
+    } else if(icon == "hint") {
+      s"convert -extent 500x500 -background none ./tmp/icons/$icon-$color-500.png ./tmp/icons/$icon-$color-500.png".!
+      s"convert -extent 64x64 -background none ./tmp/icons/$icon-$color@2x.png ./tmp/icons/$icon-$color@2x.png".!
+      s"convert -extent 32x32 -background none ./tmp/icons/$icon-$color.png ./tmp/icons/$icon-$color.png".!
     } else {
       s"convert -resize 500x500 -background none -trim ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color-500.png".!
       s"convert -resize 64x64 -background none -trim ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color@2x.png".!
       s"convert -resize 32x32 -background none -trim ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color.png".!
-    }
-    if(icon == "hint") {
-      s"convert -extent 500x500 -background none ./tmp/icons/$icon-$color-500.png ./tmp/icons/$icon-$color-500.png".!
-      s"convert -extent 64x64 -background none ./tmp/icons/$icon-$color@2x.png ./tmp/icons/$icon-$color@2x.png".!
-      s"convert -extent 32x32 -background none ./tmp/icons/$icon-$color.png ./tmp/icons/$icon-$color.png".!
     }
   }
 
