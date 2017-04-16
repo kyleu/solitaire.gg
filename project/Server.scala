@@ -84,5 +84,5 @@ object Server {
     )
     .settings(Shared.commonSettings ++ serverSettings: _*)
     .aggregate(projectToRef(Client.client), Shared.sharedJvm)
-    .dependsOn(Shared.sharedJvm, Utilities.screenshotCreator)
+    .dependsOn(Shared.sharedJvm, Utilities.screenshotCreator, Utilities.metrics)
 }

@@ -14,4 +14,6 @@ lazy val commandLine = Utilities.commandLine
 
 lazy val iconCreator = Utilities.iconCreator
 
+lazy val metrics = Utilities.metrics
+
 lazy val screenshotCreator = Utilities.screenshotCreator

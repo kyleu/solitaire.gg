@@ -3,6 +3,7 @@ import sbt._
 object Dependencies {
   object Play {
     val version = "2.5.14"
+    val playLib = "com.typesafe.play" %% "play" % version
     val playFilters = play.sbt.PlayImport.filters
     val playWs = play.sbt.PlayImport.ws
     val playJson = play.sbt.PlayImport.json
