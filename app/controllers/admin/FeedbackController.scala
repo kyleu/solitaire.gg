@@ -7,10 +7,10 @@ import models.audit.UserFeedback
 import models.queries.audit.{UserFeedbackNoteQueries, UserFeedbackQueries}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
-import utils.{DateUtils, ApplicationContext}
+import utils.{DateUtils, Application}
 
 @javax.inject.Singleton
-class FeedbackController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+class FeedbackController @javax.inject.Inject() (override val app: Application) extends BaseController {
   def list(key: String, q: String, sortBy: String, page: Int) = withAdminSession("list-" + key) { implicit request =>
     val feedbackList = for {
       count <- Database.query(UserFeedbackQueries.searchCount(q))

@@ -1,12 +1,12 @@
 package controllers
 
 import play.api.mvc.Action
-import utils.ApplicationContext
+import utils.Application
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class HomeController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+class HomeController @javax.inject.Inject() (override val app: Application) extends BaseController {
   def index() = req("index") { implicit request =>
     Future.successful(Ok(views.html.index(isAdmin = false)))
   }

@@ -23,9 +23,6 @@ object Dependencies {
 
   object Database {
     val postgresAsync = "com.github.mauricio" %% "postgresql-async" % "0.2.21" exclude("io.netty", "netty-all")
-    val reactiveMongo = "org.reactivemongo" %% "reactivemongo" % "0.11.6"
-    val playMongo = "org.reactivemongo" %% "play2-reactivemongo" % "0.11.6.play24"
-    val graph = "com.assembla.scala-incubator" %% "graph-core" % "1.9.4"
   }
 
   object Cache {

@@ -7,7 +7,7 @@ import models.audit.AnalyticsEvent
 import org.joda.time.LocalDate
 import play.api.libs.json._
 import services.analytics.AnalyticsFileService
-import utils.ApplicationContext
+import utils.Application
 
 import scala.concurrent.Future
 import scala.util.control.NonFatal
@@ -23,8 +23,8 @@ object AnalyticsFileController {
 }
 
 @javax.inject.Singleton
-class AnalyticsFileController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
-  val fileService = new AnalyticsFileService(ctx.config)
+class AnalyticsFileController @javax.inject.Inject() (override val app: Application) extends BaseController {
+  val fileService = new AnalyticsFileService(app.config)
 
   def overview() = withAdminSession("overview") { implicit request =>
     import utils.DateUtils._

@@ -7,12 +7,12 @@ import models.queries.audit.UserFeedbackQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import services.email.EmailService
-import utils.{ApplicationContext, DateUtils}
+import utils.{Application, DateUtils}
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class FeedbackController @javax.inject.Inject() (override val ctx: ApplicationContext, emailService: EmailService) extends BaseController {
+class FeedbackController @javax.inject.Inject() (override val app: Application, emailService: EmailService) extends BaseController {
   def feedbackForm = req("form") { implicit request =>
     Future.successful(Ok(views.html.feedback()))
   }

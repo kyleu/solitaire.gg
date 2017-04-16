@@ -9,7 +9,7 @@ import play.api.routing.Router
 import services.audit.NotificationService
 import services.scheduled.ScheduledTask
 
-object ApplicationContext {
+object Application {
   var initialized = false
 
   class SimpleHttpRequestHandler @javax.inject.Inject() (router: Router) extends HttpRequestHandler {
@@ -23,13 +23,13 @@ object ApplicationContext {
 }
 
 @javax.inject.Singleton
-class ApplicationContext @javax.inject.Inject() (
+class Application @javax.inject.Inject() (
     val config: utils.Config,
     val messagesApi: MessagesApi,
     val lifecycle: ApplicationLifecycle,
     val notificationService: NotificationService,
     val system: ActorSystem,
     val task: ScheduledTask
-) extends ApplicationContextHelper with Logging {
+) extends ApplicationHelper with Logging {
   start()
 }

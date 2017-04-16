@@ -2,12 +2,12 @@ package controllers.admin
 
 import controllers.BaseController
 import services.audit.LogService
-import utils.ApplicationContext
+import utils.Application
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class LogController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+class LogController @javax.inject.Inject() (override val app: Application) extends BaseController {
   def list() = withAdminSession("log.list") { implicit request =>
     val files = LogService.listFiles()
     Future.successful(Ok(views.html.admin.log.logList(files)))

@@ -3,14 +3,14 @@ package controllers
 import models.rules.GameRulesSet
 import play.api.i18n.Messages
 import play.api.mvc.{Request, AnyContent}
-import utils.{Config, ApplicationContext}
+import utils.{Config, Application}
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class GameController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+class GameController @javax.inject.Inject() (override val app: Application) extends BaseController {
   def solitaire = req("solitaire") { implicit request =>
-    Future.successful(Ok(views.html.solitaire(ctx.config.debug)))
+    Future.successful(Ok(views.html.solitaire(app.config.debug)))
   }
 
   def help(id: String, inline: Boolean) = req("help." + id) { implicit request =>
@@ -41,7 +41,7 @@ class GameController @javax.inject.Inject() (override val ctx: ApplicationContex
     Future.successful(GameRulesSet.allByIdWithAliases.get(rules) match {
       case Some(r) =>
         val title = if (rules == r.id) { r.title } else { r.aka(rules) }
-        Ok(views.html.vr.vr(title, rules, r.description, None, ctx.config.debug))
+        Ok(views.html.vr.vr(title, rules, r.description, None, app.config.debug))
       case None => NotFound(Messages("invalid.game.rules", rules))
     })
   }
@@ -54,7 +54,7 @@ class GameController @javax.inject.Inject() (override val ctx: ApplicationContex
     Future.successful(GameRulesSet.allByIdWithAliases.get(rulesId) match {
       case Some(rules) =>
         val title = if (rulesId == rules.id) { rules.title } else { rules.aka(rulesId) }
-        Ok(views.html.game.gameplay(title, rulesId, rules.description, initialAction, seed, ctx.config.debug))
+        Ok(views.html.game.gameplay(title, rulesId, rules.description, initialAction, seed, app.config.debug))
       case None => NotFound(Messages("invalid.game.rules", rulesId))
     })
   }

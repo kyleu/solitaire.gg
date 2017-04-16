@@ -8,12 +8,12 @@ import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.DailyMetricService
 import services.database.Database
-import utils.{ApplicationContext, DateUtils}
+import utils.{Application, DateUtils}
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class ReportController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+class ReportController @javax.inject.Inject() (override val app: Application) extends BaseController {
 
   def email(d: LocalDate = DateUtils.today) = withAdminSession("email") { implicit request =>
     for {
@@ -36,7 +36,7 @@ class ReportController @javax.inject.Inject() (override val ctx: ApplicationCont
       userAgentCounts <- Database.query(RequestLogQueries.GetCounts("user_agent"))
       pathCounts <- Database.query(RequestLogQueries.GetCounts("path"))
       referrerCounts <- Database.query(RequestLogQueries.GetCounts("referrer"))
-    } yield Ok(views.html.admin.report.requests(total, userAgentCounts, pathCounts, referrerCounts, ctx.config.hostname))
+    } yield Ok(views.html.admin.report.requests(total, userAgentCounts, pathCounts, referrerCounts, app.config.hostname))
   }
 
   def analytics() = withAdminSession("analytics") { implicit request =>

@@ -4,10 +4,10 @@ import controllers.BaseController
 import org.joda.time.{Days, LocalDate}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.history.DataArchiveService
-import utils.{ApplicationContext, DateUtils}
+import utils.{Application, DateUtils}
 
 @javax.inject.Singleton
-class DataArchiveController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+class DataArchiveController @javax.inject.Inject() (override val app: Application) extends BaseController {
 
   def list() = withAdminSession("data.archive.list") { implicit request =>
     DataArchiveService.getAll.map { archives =>

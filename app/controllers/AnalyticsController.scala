@@ -8,13 +8,13 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.Action
 import services.audit.AnalyticsService
-import utils.ApplicationContext
+import utils.Application
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class AnalyticsController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
-  private[this] val notifications = new AnalyticsNotifications(ctx.notificationService)
+class AnalyticsController @javax.inject.Inject() (override val app: Application) extends BaseController {
+  private[this] val notifications = new AnalyticsNotifications(app.notificationService)
 
   def preflightCheck(path: String) = Action.async { request =>
     val origin = request.headers.get("Origin").getOrElse("http://solitaire.gg")

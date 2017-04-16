@@ -11,12 +11,12 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 import scala.concurrent.Future
 
-trait ApplicationContextHelper { this: ApplicationContext =>
+trait ApplicationHelper { this: Application =>
   protected[this] def start() = {
-    if (ApplicationContext.initialized) {
+    if (Application.initialized) {
       throw new IllegalStateException("ApplicationContext is already initialized.")
     }
-    ApplicationContext.initialized = true
+    Application.initialized = true
 
     log.info(s"${Config.projectName} is starting on [${config.hostname}].")
 

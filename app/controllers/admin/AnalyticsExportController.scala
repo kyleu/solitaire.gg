@@ -9,13 +9,13 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.Json
 import services.analytics.AnalyticsExport
 import services.database.Database
-import utils.{FileUtils, ApplicationContext}
+import utils.{FileUtils, Application}
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class AnalyticsExportController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
-  val export = new AnalyticsExport(ctx.config)
+class AnalyticsExportController @javax.inject.Inject() (override val app: Application) extends BaseController {
+  val export = new AnalyticsExport(app.config)
 
   def exportStatus() = withAdminSession("status") { implicit request =>
     export.getStatus.map { messages =>

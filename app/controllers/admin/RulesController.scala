@@ -2,12 +2,12 @@ package controllers.admin
 
 import controllers.BaseController
 import models.rules.{GameRules, GameRulesSet}
-import utils.ApplicationContext
+import utils.Application
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class RulesController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+class RulesController @javax.inject.Inject() (override val app: Application) extends BaseController {
   def rulesList(q: String, sortBy: String) = withAdminSession("list") { implicit request =>
     val statuses = GameRulesSet.all.map(getStatus)
     val filtered = if (q.nonEmpty) {

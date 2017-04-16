@@ -5,7 +5,7 @@ import controllers.BaseController
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.sandbox._
 import services.scheduled.ScheduledTask
-import utils.{ApplicationContext, DateUtils}
+import utils.{Application, DateUtils}
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -22,7 +22,7 @@ object SandboxController {
 }
 
 @javax.inject.Singleton
-class SandboxController @javax.inject.Inject() (override val ctx: ApplicationContext, scheduledTask: ScheduledTask) extends BaseController {
+class SandboxController @javax.inject.Inject() (override val app: Application, scheduledTask: ScheduledTask) extends BaseController {
   implicit val timeout = Timeout(10.seconds)
 
   def defaultSandbox() = sandbox("list")
@@ -34,7 +34,7 @@ class SandboxController @javax.inject.Inject() (override val ctx: ApplicationCon
     if (sandbox == HtmlSandbox) {
       Future.successful(Ok(views.html.admin.test.sandbox(java.util.UUID.randomUUID())))
     } else {
-      sandbox.run(ctx).map { result =>
+      sandbox.run(app).map { result =>
         Ok(result)
       }
     }

@@ -5,14 +5,14 @@ import controllers.BaseController
 import models.rules.GameRulesSet
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Schema
-import utils.ApplicationContext
+import utils.Application
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
 import scala.util.Random
 
 @javax.inject.Singleton
-class AdminController @javax.inject.Inject() (override val ctx: ApplicationContext) extends BaseController {
+class AdminController @javax.inject.Inject() (override val app: Application) extends BaseController {
   implicit val timeout = Timeout(10.seconds)
 
   def index = withAdminSession("index") { implicit request =>

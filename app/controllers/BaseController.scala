@@ -6,7 +6,7 @@ import services.history.RequestHistoryService
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc._
 import utils.metrics.Instrumented
-import utils.{ApplicationContext, Logging}
+import utils.{Application, Logging}
 
 import scala.concurrent.Future
 
@@ -18,9 +18,9 @@ object BaseController extends Logging {
 }
 
 abstract class BaseController() extends Controller with I18nSupport with Instrumented with Logging {
-  def ctx: ApplicationContext
+  def app: Application
 
-  override def messagesApi = ctx.messagesApi
+  override def messagesApi = app.messagesApi
 
   def req(action: String)(block: (Request[AnyContent]) => Future[Result]) = Action.async { implicit request =>
     val startTime = System.currentTimeMillis

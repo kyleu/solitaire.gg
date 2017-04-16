@@ -1,13 +1,13 @@
 package services.sandbox
 
-import utils.ApplicationContext
+import utils.Application
 
 import scala.concurrent.Future
 
 object SendErrorEmail extends SandboxTask {
   override def id = "error-mail"
   override def description = "Send the error email."
-  override def run(ctx: ApplicationContext) = {
+  override def run(ctx: Application) = {
     Future.successful("Ok!")
   }
 }
