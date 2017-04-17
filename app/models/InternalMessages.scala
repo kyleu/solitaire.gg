@@ -8,6 +8,9 @@ import org.joda.time.LocalDateTime
 
 sealed trait InternalMessage
 
+case class SocketStarted(userId: UUID, username: Option[String], socketId: UUID, conn: ActorRef) extends InternalMessage
+case class SocketStopped(socketId: UUID) extends InternalMessage
+
 case class CreateGame(rules: String, connectionId: UUID, seed: Option[Int], testGame: Boolean, preferences: UserPreferences) extends InternalMessage
 case class GameStarted(id: UUID, gameService: ActorRef, started: LocalDateTime) extends InternalMessage
 case class ConnectionGameJoin(id: UUID, connectionId: UUID, preferences: UserPreferences) extends InternalMessage
@@ -20,9 +23,9 @@ case object StopGameIfEmpty extends InternalMessage
 case class GameRequest(userId: UUID, message: GameMessage) extends InternalMessage
 
 case object GetSystemStatus extends InternalMessage
-case class SystemStatus(games: Seq[(UUID, Seq[(UUID, String)])], connections: Seq[(UUID, String)]) extends InternalMessage
+case class SystemStatus(games: Seq[(UUID, Seq[(UUID, String)])], connections: Seq[(UUID, Option[String])]) extends InternalMessage
 
-case class ConnectionTrace(id: UUID) extends InternalMessage
-case class ClientTrace(id: UUID) extends InternalMessage
-case class GameTrace(id: UUID) extends InternalMessage
+case class SendConnectionTrace(id: UUID) extends InternalMessage
+case class SendClientTrace(id: UUID) extends InternalMessage
+case class SendSocketTrace(id: UUID) extends InternalMessage
 case class TraceResponse(id: UUID, data: Seq[(String, Any)]) extends InternalMessage

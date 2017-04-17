@@ -16,6 +16,8 @@ case class VersionResponse(version: String) extends ResponseMessage
 case object SendDebugInfo extends ResponseMessage
 case class Disconnected(reason: String) extends ResponseMessage
 
+case class UserSettings(userId: UUID, username: Option[String], email: Option[String], preferences: UserPreferences) extends ResponseMessage
+
 case class GameJoined(id: UUID, state: GameState, elapsedMs: Int, moves: Seq[PossibleMove], preferences: UserPreferences) extends ResponseMessage
 
 case class GameResult(moves: Int, undos: Int, redos: Int, score: Int, durationSeconds: Int, leaderboardRanking: Int)

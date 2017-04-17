@@ -4,6 +4,7 @@ import java.net.InetAddress
 
 import com.github.mauricio.async.db.{Configuration => DbConfig}
 import play.api.{Environment, Mode}
+import utils.metrics.MetricsConfig
 
 object Config {
   val projectId = "solitaire-gg"
@@ -20,7 +21,15 @@ class Config @javax.inject.Inject() (cnf: play.api.Configuration, env: Environme
   val hostname = cnf.getString("host").getOrElse("localhost")
   val fileCacheDir = cnf.getString("cache.dir").getOrElse("./cache")
 
-  // Database
+  val metrics: MetricsConfig = MetricsConfig(
+    jmxEnabled = cnf.getBoolean("metrics.jmx.enabled").getOrElse(true),
+    graphiteEnabled = cnf.getBoolean("metrics.graphite.enabled").getOrElse(false),
+    graphiteServer = cnf.getString("metrics.graphite.server").getOrElse("127.0.0.1"),
+    graphitePort = cnf.getInt("metrics.graphite.port").getOrElse(2003),
+    servletEnabled = cnf.getBoolean("metrics.servlet.enabled").getOrElse(true),
+    servletPort = cnf.getInt("metrics.servlet.port").getOrElse(9001)
+  )
+
   val databaseConfiguration = new DbConfig(
     host = cnf.getString("database.host").getOrElse("localhost"),
     port = 5432,
@@ -29,7 +38,6 @@ class Config @javax.inject.Inject() (cnf: play.api.Configuration, env: Environme
     password = cnf.getString("database.password")
   )
 
-  // Spark
   val sparkEnabled = cnf.getBoolean("spark.enabled").getOrElse(false)
   val sparkMaster = cnf.getString("spark.master").getOrElse("local[8]")
   val sparkPort = cnf.getInt("spark.uiport").getOrElse(4040)
