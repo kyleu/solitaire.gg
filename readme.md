@@ -15,6 +15,7 @@ $ open http://localhost:9000
 * `solitaire-gg` Main web application. Handles online games.
 * `sharedJvm` Core game logic and rules definitions, for JVM projects.
 * `sharedJs` Shared classes, compiled to Scala.js JavaScript.
+* `sharedNative` Shared classes, compiled to native code.
 * `client` Scala.js app to support offline play.
 * `util` Various utility projects, mainly for batch processing.
 
@@ -28,7 +29,6 @@ Serialization is handled by Play Json, and all database communication runs via p
 shared code and provides an in-browser server, communicating with the client via JavaScript interop.
 
 Rendering is handled by Phaser.io using a simple message-passing interface.
-You can sign in with Facebook, Google, or Twitter thanks to Play Silhouette.
 A general Solitaire solver is included, supporting backtracking and propagation.
 
 

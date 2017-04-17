@@ -1,5 +1,5 @@
 @(debug: Boolean)(implicit session: Session, flash: Flash, messages: Messages)@layout.basic(
-  utils.Config.projectName,
+  title = utils.Config.projectName,
   stylesheets = Seq(routes.Assets.versioned("stylesheets/solitaire/gg.min.css").url),
   url = Some("/play")
 ) {
@@ -11,7 +11,7 @@
         <path d="M798.599,302.878c-0.127-1.431-0.382-2.575-0.731-3.465c-0.444-0.921-1.621-1.621-3.528-2.098l-17.45-4.705 c-1.812-0.508-3.18-0.508-3.975,0c-0.857,0.541-1.685,1.367-2.447,2.512l-49.525,77.243c-0.984,1.494-1.239,2.384-0.984,2.956 c0.223,0.509,0.858,0.89,1.906,1.176l15.354,4.164c1.336,0.35,2.416,0.318,3.307-0.063c0.858-0.318,1.748-1.112,2.606-2.479 l9.536-15.576l27.56,7.438l0.159,17.737c0,1.558,0.222,2.83,0.572,3.624c0.381,0.858,1.335,1.494,2.956,1.939l17.165,4.642 c1.018,0.286,1.716,0.159,2.034-0.382c0.318-0.477,0.509-1.271,0.509-2.479L798.599,302.878z M761.885,347.062l8.328-14.399 l9.123-15.544l0.636,0.191l-0.096,18.119l-0.031,16.498L761.885,347.062z"/>
       </g>
     </svg>
-    <div class="content">Loading Solitaire.gg</div>
+    <div class="content">Loading @utils.Config.projectName</div>
   </div>
 
   @if(debug) {
@@ -23,4 +23,9 @@
     <script src="@routes.Assets.versioned("lib/phaser/js/phaser-arcade-physics.min.js")" type="text/javascript" defer="defer"></script>
     <script src="@routes.Assets.versioned("client-opt.js")" type="text/javascript" defer="defer"></script>
   }
+
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() { SolitaireGG.init(); });
+  </script>
+
 }
