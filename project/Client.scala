@@ -11,6 +11,8 @@ object Client {
     unmanagedSourceDirectories in Compile := Seq((scalaSource in Compile).value),
     libraryDependencies ++= Seq(
       "com.definitelyscala" %%% "scala-js-phaser" % Dependencies.ScalaJS.definitelyScalaVersion,
+      "com.definitelyscala" %%% "scala-js-jquery" % Dependencies.ScalaJS.definitelyScalaVersion,
+      "com.definitelyscala" %%% "scala-js-materializecss" % Dependencies.ScalaJS.definitelyScalaVersion,
       "org.scala-js" %%% "scalajs-dom" % "0.9.1",
       "com.lihaoyi" %%% "upickle" % "0.4.4"
     ),
