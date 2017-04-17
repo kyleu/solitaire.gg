@@ -1,6 +1,5 @@
 package services.database
 
-import models.database.Statement
 import models.ddl.DdlQueries
 import models.ddl._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -20,18 +19,25 @@ object Schema extends Logging {
     CreateDailyMetricsTable,
 
     CreateDataArchiveTable,
-    CreateAdHocQueriesTable
+    CreateAdHocQueriesTable,
+
+    CreateUsersTable,
+
+    CreateGamesTable,
+    CreateGameSeedsTable
   )
 
-  def update() = {
-    val tableFuture = tables.foldLeft(Future.successful(Unit)) { (f, t) =>
-      f.flatMap { u =>
-        Database.query(DdlQueries.DoesTableExist(t.tableName)).flatMap { exists =>
-          if (exists) {
-            Future.successful(Unit)
-          } else {
-            log.info(s"Creating missing table [${t.tableName}].")
-            Database.execute(t).map(x => Unit)
+  def update() = tables.foldLeft(Future.successful(Unit)) { (f, t) =>
+    f.flatMap { u =>
+      Database.query(DdlQueries.DoesTableExist(t.tableName)).flatMap { exists =>
+        if (exists) {
+          Future.successful(Unit)
+        } else {
+          log.info(s"Creating missing table [${t.tableName}].")
+          t.statements.foldLeft(Future.successful(Unit)) { (x, y) =>
+            x.flatMap { _ =>
+              Database.execute(y).map(x => Unit)
+            }
           }
         }
       }

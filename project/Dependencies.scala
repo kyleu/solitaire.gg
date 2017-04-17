@@ -40,6 +40,8 @@ object Dependencies {
     val underscore = "org.webjars" % "underscorejs" % "1.8.3"
     val d3 = "org.webjars" % "d3js" % "3.5.17"
     val nvd3 = "org.webjars" % "nvd3-community" % "1.7.0"
+    val jquery = "org.webjars" % "jquery" % "2.2.4"
+    val materialize = "org.webjars" % "materializecss" % "0.98.0"
   }
 
   object Metrics {
