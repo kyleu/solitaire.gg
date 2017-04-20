@@ -1,15 +1,13 @@
 import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
-import com.typesafe.sbt.{ GitBranchPrompt, GitVersioning }
 import sbt._
 import sbt.Keys._
+
+import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
+import playscalajs.ScalaJSPlay
 
 import net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings
 import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, scalariformSettings}
 
-import sbtcrossproject.CrossPlugin.autoImport._
-import scalajscrossproject.ScalaJSCrossPlugin.autoImport._
-import scala.scalanative.sbtplugin.NativePlatform
-import scala.scalanative.sbtplugin.ScalaNativePlugin.autoImport._
 
 object Shared {
   val projectId = "solitaire-gg"
@@ -45,12 +43,16 @@ object Shared {
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   ) ++ graphSettings ++ scalariformSettings
 
+  lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(commonSettings: _*).jsSettings(
+    libraryDependencies ++= Seq(
+      "com.lihaoyi" %%% "upickle" % Dependencies.Serialization.version,
+      "com.beachape" %%% "enumeratum-upickle" % Dependencies.Utils.enumeratumVersion
+    )
+  ).jvmSettings(
+    libraryDependencies ++= Seq(Dependencies.Serialization.uPickle, Dependencies.Utils.enumeratum)
+  )
 
-  lazy val shared = (crossProject(JSPlatform, JVMPlatform, NativePlatform).crossType(CrossType.Pure) in file("shared")).settings(commonSettings: _*)
-
-  lazy val sharedJs = shared.js
+  lazy val sharedJs = shared.js.enablePlugins(ScalaJSPlay).settings(scalaJSStage in Global := FastOptStage)
 
   lazy val sharedJvm = shared.jvm
-
-  lazy val sharedNative = shared.native
 }

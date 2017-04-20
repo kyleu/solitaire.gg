@@ -1,20 +1,15 @@
 import Dependencies.{Akka, Metrics, Play}
 import io.gatling.sbt.GatlingPlugin
 import pl.project13.scala.sbt.JmhPlugin
-import sbt.Keys._
-import sbt._
 
-import scala.scalanative.sbtplugin.ScalaNativePlugin
+import sbt._
+import sbt.Keys._
 
 object Utilities {
   lazy val benchmarking = (project in file("util/benchmarking")).settings(
     name := "benchmarking",
     libraryDependencies ++= Seq(Dependencies.Testing.gatlingCore, Dependencies.Testing.gatlingCharts)
   ).settings(Shared.commonSettings: _*).dependsOn(Shared.sharedJvm, Server.server).enablePlugins(GatlingPlugin, JmhPlugin)
-
-  lazy val commandLine = (project in file("util/commandLine")).settings(
-    name := "command-line"
-  ).settings(Shared.commonSettings: _*).enablePlugins(ScalaNativePlugin).dependsOn(Shared.sharedNative)
 
   lazy val iconCreator = (project in file("util/iconCreator")).settings(
     name := "icon-creator"

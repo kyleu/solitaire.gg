@@ -2,7 +2,7 @@ package client.network
 
 import java.util.UUID
 
-import client.json.BaseSerializers
+import utils.json.BaseSerializers
 import models.analytics._
 import models.{GameLost, GameWon}
 import upickle.legacy._

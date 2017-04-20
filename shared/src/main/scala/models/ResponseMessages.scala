@@ -7,7 +7,7 @@ import models.game.GameState
 import models.user.{UserPreferences, UserStatistics}
 
 sealed trait ResponseMessage
-trait ReversibleResponseMessage extends ResponseMessage
+sealed trait ReversibleResponseMessage extends ResponseMessage
 
 case class ServerError(reason: String, content: String) extends ResponseMessage
 case class Notification(recipient: Option[UUID], message: String) extends ResponseMessage

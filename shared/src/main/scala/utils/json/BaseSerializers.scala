@@ -1,4 +1,4 @@
-package client.json
+package utils.json
 
 import java.util.UUID
 

@@ -1,4 +1,4 @@
-package gg.utils
+package utils
 
 object NullUtils {
   val inst = None.orNull

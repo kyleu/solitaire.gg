@@ -1,4 +1,4 @@
-package gg.utils
+package utils
 
 import org.scalajs.dom
 import org.scalajs.dom.raw.Event

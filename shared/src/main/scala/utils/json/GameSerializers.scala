@@ -1,4 +1,4 @@
-package client.json
+package utils.json
 
 import models._
 import models.card.{Card, Rank, Suit}

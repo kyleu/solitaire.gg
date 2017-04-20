@@ -16,7 +16,7 @@ case class StartGame(rules: String, seed: Option[Int] = None, testGame: Option[B
 case class JoinGame(id: UUID) extends RequestMessage
 case class ObserveGame(id: UUID, as: Option[UUID]) extends RequestMessage
 
-trait GameMessage extends RequestMessage
+sealed trait GameMessage extends RequestMessage
 
 case object GetPossibleMoves extends GameMessage
 

@@ -23,14 +23,6 @@ addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.15")
 
 addSbtPlugin("com.vmunier" % "sbt-play-scalajs" % "0.3.1" exclude("org.scala-js", "sbt-scalajs"))
 
-// Scala Native
-addSbtPlugin("org.scala-native" % "sbt-scala-native" % "0.1.0")
-
-// Cross Project Builds
-addSbtPlugin("org.scala-native" % "sbt-crossproject" % "0.1.0")
-
-addSbtPlugin("org.scala-native" % "sbt-scalajs-crossproject" % "0.1.0")
-
 // Source Control
 addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.8.4")
 
@@ -57,7 +49,7 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-scalariform" % "1.3.0") // scalariformFor
 
 addSbtPlugin("com.github.xuwei-k" % "sbt-class-diagram" % "0.1.7")
 
-addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.1.0")
+addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.3.2")
 
 // App Packaging
 addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.1.5")
