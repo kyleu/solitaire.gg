@@ -13,10 +13,12 @@ GET            /feedback                    controllers.FeedbackController.feedb
 POST           /feedback                    controllers.FeedbackController.submitFeedback
 
 # Game
-GET            /help/:id                    controllers.GameController.help(id, inline: Boolean ?= false)
 GET            /about                       controllers.HomeController.about()
 
-GET            /play                        controllers.GameController.solitaire()
+GET            /play                        controllers.SolitaireController.play()
+GET            /connect                     controllers.SolitaireController.connect()
+
+GET            /help/:id                    controllers.GameController.help(id, inline: Boolean ?= false)
 GET            /play/:rules                 controllers.GameController.newGame(rules)
 GET            /play/:rules/vr              controllers.GameController.newVrGame(rules)
 GET            /play/:rules/:seed           controllers.GameController.newGameWithSeed(rules, seed: Int)

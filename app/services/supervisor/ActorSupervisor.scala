@@ -3,7 +3,7 @@ package services.supervisor
 import java.util.UUID
 
 import akka.actor.SupervisorStrategy.Stop
-import akka.actor.{ActorRef, OneForOneStrategy, Props, SupervisorStrategy}
+import akka.actor.{ActorRef, OneForOneStrategy, SupervisorStrategy}
 import models._
 import org.joda.time.LocalDateTime
 import utils.metrics.{InstrumentedActor, MetricsServletActor}
@@ -20,7 +20,7 @@ class ActorSupervisor(val app: Application) extends InstrumentedActor with Loggi
   protected[this] val socketsCounter = metrics.counter("active-connections")
 
   override def preStart() {
-    context.actorOf(Props(classOf[MetricsServletActor], app.config), "metrics-servlet")
+    context.actorOf(MetricsServletActor.props(app.config.metrics), "metrics-servlet")
   }
 
   override def supervisorStrategy: SupervisorStrategy = OneForOneStrategy() {
