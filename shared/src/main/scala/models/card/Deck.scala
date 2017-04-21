@@ -1,12 +1,12 @@
 package models.card
 
+import java.util.UUID
+
 object Deck {
-  def freshCards(ranks: Seq[Rank], suits: Seq[Suit]) = {
-    suits.flatMap(s => ranks.reverse.map(s -> _)).zipWithIndex.map(x => Card(idx = x._2, r = x._1._2, s = x._1._1)).toList
-  }
+  def freshCards(ranks: Seq[Rank], suits: Seq[Suit]) = suits.flatMap(suit => ranks.reverseMap(rank => Card(r = rank, s = suit))).toList
 }
 
-case class Deck(var cards: Seq[Card], lowRank: Rank, highRank: Rank, originalOrder: Seq[Int]) {
+case class Deck(var cards: Seq[Card], lowRank: Rank, highRank: Rank, originalOrder: Seq[UUID]) {
   def getCards(
     numCards: Int = this.cards.size,
     turnFaceUp: Boolean = false,

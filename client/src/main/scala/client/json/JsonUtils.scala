@@ -1,4 +1,4 @@
-package utils
+package client.json
 
 import java.util.UUID
 
@@ -21,9 +21,5 @@ object JsonUtils {
       idx += 1
     }
     ret.toSeq
-  }
-
-  def getIntSeq(o: js.Dynamic) = {
-    o.asInstanceOf[js.Array[Int]].toSeq
   }
 }

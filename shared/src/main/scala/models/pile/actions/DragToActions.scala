@@ -12,7 +12,7 @@ object DragToActions {
     val cardIds = cards.map { card =>
       src.removeCard(card)
       tgt.addCard(card)
-      card.idx
+      card.id
     }
     val reveals = cards.filterNot(_.u).flatMap { c =>
       c.u = true
@@ -43,7 +43,7 @@ object DragToActions {
       tgt.removeCard(targetCard)
       gy.addCard(targetCard)
 
-      Seq(CardMoved(card.idx, src.id, "foundation-1"), CardMoved(targetCard.idx, tgt.id, "foundation-1"))
+      Seq(CardMoved(card.id, src.id, "foundation-1"), CardMoved(targetCard.id, tgt.id, "foundation-1"))
     }
   })
 }

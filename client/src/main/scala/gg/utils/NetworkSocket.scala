@@ -1,4 +1,4 @@
-package utils
+package gg.utils
 
 import org.scalajs.dom.raw._
 

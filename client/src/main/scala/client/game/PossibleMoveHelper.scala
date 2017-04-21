@@ -33,7 +33,7 @@ trait PossibleMoveHelper extends VictoryHelper {
           gs.piles.filter(p => p.id != source.id).foreach { target =>
             val targetBehavior = target.pileSet.map(_.behavior).getOrElse(throw new IllegalStateException())
             if (target.canDragTo(source, cards, gs)) {
-              val move = PossibleMove("move-cards", cards.map(_.idx).toList, source.id, Some(target.id))
+              val move = PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
               if (sourceBehavior == "tableau" && targetBehavior == "tableau" && remainingCards.isEmpty && target.cards.isEmpty) {
                 boringMoves += move
               } else if (targetBehavior == "foundation" && sourceBehavior != "foundation") {
@@ -45,7 +45,7 @@ trait PossibleMoveHelper extends VictoryHelper {
           }
         }
         if (source.canSelectCard(c._1, gs)) {
-          ret += PossibleMove("select-card", Seq(c._1.idx), source.id)
+          ret += PossibleMove("select-card", Seq(c._1.id), source.id)
         }
       }
       if (source.canSelectPile(gs)) {

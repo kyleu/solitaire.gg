@@ -1,4 +1,4 @@
-package gg
+package gg.phaser
 
 import com.definitelyscala.phaser.Game
 
@@ -6,5 +6,5 @@ import scala.scalajs.js.annotation.ScalaJSDefined
 
 @ScalaJSDefined
 class PhaserGame extends Game {
-  utils.Logging.info("Phaser is phasering.")
+  println("Phaser is phasering.")
 }

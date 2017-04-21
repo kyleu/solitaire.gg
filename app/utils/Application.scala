@@ -36,7 +36,7 @@ class Application @javax.inject.Inject() (
   }
 
   val supervisor = system.actorOf(Props(classOf[ActorSupervisor], this), "supervisor")
-  log.info(s"Actor Supervisor [${supervisor.path}] started for [${utils.Config.projectId}].")
+  log.debug(s"Actor Supervisor [${supervisor.path}] started for [${utils.Config.projectId}].")
 
   protected[this] def start() = {
     if (Application.initialized) {

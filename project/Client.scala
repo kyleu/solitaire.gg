@@ -1,4 +1,5 @@
 import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
+import com.typesafe.sbt.SbtScalariform.ScalariformKeys
 import org.scalajs.sbtplugin.ScalaJSPlugin
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import playscalajs.ScalaJSPlay
@@ -12,7 +13,8 @@ object Client {
       "com.definitelyscala" %%% "scala-js-phaser" % Dependencies.ScalaJS.definitelyScalaVersion,
       "com.definitelyscala" %%% "scala-js-jquery" % Dependencies.ScalaJS.definitelyScalaVersion,
       "com.definitelyscala" %%% "scala-js-materializecss" % Dependencies.ScalaJS.definitelyScalaVersion,
-      "org.scala-js" %%% "scalajs-dom" % Dependencies.ScalaJS.domVersion
+      "org.scala-js" %%% "scalajs-dom" % "0.9.1",
+      "com.lihaoyi" %%% "upickle" % "0.4.4"
     ),
     scalaJSStage in Global := FastOptStage,
     scapegoatIgnoredFiles := Seq(
@@ -22,7 +24,9 @@ object Client {
       ".*/ResponseMessageSerializers.scala",
       ".*/JsonUtils.scala",
       ".*/JsonSerializers.scala"
-    )
+    ),
+    scapegoatVersion := Dependencies.Utils.scapegoatVersion,
+    ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
 
   lazy val client = (project in file("client"))

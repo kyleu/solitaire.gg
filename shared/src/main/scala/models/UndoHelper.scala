@@ -43,7 +43,7 @@ class UndoHelper() {
     case cm: CardMoved =>
       val src = gameState.pilesById(cm.source)
       val tgt = gameState.pilesById(cm.target)
-      tgt.cards.find(_.idx == cm.card) match {
+      tgt.cards.find(_.id == cm.card) match {
         case Some(card) =>
           tgt.removeCard(card)
           src.addCard(card)
@@ -53,7 +53,7 @@ class UndoHelper() {
     case cm: CardsMoved =>
       val src = gameState.pilesById(cm.source)
       val tgt = gameState.pilesById(cm.target)
-      val cards = cm.cards.map(x => tgt.cards.find(_.idx == x).getOrElse(throw new IllegalStateException(s"Can't find card [$x].")))
+      val cards = cm.cards.map(x => tgt.cards.find(_.id == x).getOrElse(throw new IllegalStateException(s"Can't find card [$x].")))
       cards.foreach { card =>
         tgt.removeCard(card)
         src.addCard(card)

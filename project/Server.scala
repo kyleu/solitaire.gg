@@ -32,7 +32,7 @@ object Server {
     Seq(
       Cache.ehCache, Database.postgresAsync,
       Akka.actor, Akka.log4j, Akka.testkit, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */
-      Play.playFilters, Play.playWs, Play.playTest, Play.mailer, Serialization.uPickle,
+      Play.playFilters, Play.playWs, Play.playTest, Play.mailer,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap, WebJars.underscore, WebJars.d3, WebJars.nvd3, WebJars.materialize, WebJars.jquery,
       Utils.core, Utils.collection, Testing.gatlingCore, Testing.gatlingCharts
@@ -83,6 +83,6 @@ object Server {
       UniversalPlugin, LinuxPlugin, DebianPlugin, RpmPlugin, DockerPlugin, WindowsPlugin, JDKPackagerPlugin
     )
     .settings(Shared.commonSettings ++ serverSettings: _*)
-    .aggregate(projectToRef(Client.client))
+    .aggregate(projectToRef(Client.client), Shared.sharedJvm)
     .dependsOn(Shared.sharedJvm, Utilities.metrics, Utilities.screenshotCreator)
 }

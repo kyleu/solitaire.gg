@@ -1,16 +1,13 @@
 package models.card
 
-import enumeratum.values.{IntEnum, IntEnumEntry, IntUPickleEnum}
-
-sealed trait Rank extends IntEnumEntry {
+sealed trait Rank {
   def value: Int
   def toChar: Char
-  override def toString = toChar.toString
   lazy val previous = Rank.allByValue(value - 1)
   lazy val next = Rank.allByValue(value + 1)
 }
 
-object Rank extends IntEnum[Rank] with IntUPickleEnum[Rank] {
+object Rank {
   val all: Seq[Rank] = Seq(Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace)
   val allByChar = all.map(r => r.toChar -> r).toMap
   val allByValue = all.map(r => r.value -> r).toMap + (1 -> Ace)
@@ -88,6 +85,4 @@ object Rank extends IntEnum[Rank] with IntUPickleEnum[Rank] {
     override lazy val previous = Unknown
     override lazy val next = Unknown
   }
-
-  override val values = findValues
 }
