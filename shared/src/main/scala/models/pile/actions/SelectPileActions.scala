@@ -18,7 +18,7 @@ object SelectPileActions {
       cards.map { card =>
         targetPile.removeCard(card)
         pile.addCard(card)
-        CardMoved(card.id, target, pile.id, turn = Some(false))
+        CardMoved(card.idx, target, pile.id, turn = Some(false))
       }
     }
   })
@@ -29,7 +29,7 @@ object SelectPileActions {
     cards.map { card =>
       targetPile.removeCard(card)
       pile.addCard(card)
-      CardMoved(card.id, target, pile.id, turn = Some(false))
+      CardMoved(card.idx, target, pile.id, turn = Some(false))
     }
   })
 }

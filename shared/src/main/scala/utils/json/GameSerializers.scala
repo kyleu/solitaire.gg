@@ -8,16 +8,12 @@ import models.pile.options.{ClientPileOptions, PileOptions}
 import upickle._
 import upickle.legacy._
 
-import BaseSerializers._
-
 object GameSerializers {
   // Card
   implicit val rankReader = Reader[Rank] { case Js.Str(x) => Rank.allByChar(x.head) }
   implicit val rankWriter = Writer[Rank] { case r => Js.Str(r.toChar.toString) }
   implicit val suitReader = Reader[Suit] { case Js.Str(x) => Suit.fromChar(x.head) }
   implicit val suitWriter = Writer[Suit] { case s => Js.Str(s.toChar.toString) }
-  implicit val cardReader = Reader[Card] { case o: Js.Obj => Card(r = Rank.Ace, s = Suit.Hearts) }
-  implicit val cardWriter = Writer[Card] { case c => writeJs(c) }
 
   // GameState
   implicit val clientPileOptionsWriter = Writer[ClientPileOptions] {

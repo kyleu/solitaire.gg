@@ -1,5 +1,7 @@
 package models.card
 
+import enumeratum._
+
 sealed trait Color
 
 case object Red extends Color
@@ -9,15 +11,15 @@ case object Blue extends Color
 case object Colorless extends Color
 case object UnknownColor extends Color
 
-sealed trait Suit extends Ordered[Suit] {
+sealed trait Suit extends EnumEntry with Ordered[Suit] {
   def color: Color
   def toChar: Char
   def value: Int
-
+  override def toString = toChar.toString
   override def compare(that: Suit) = -(that.value * 13 - this.value * 13)
 }
 
-object Suit {
+object Suit extends Enum[Suit] {
   val standard: Seq[Suit] = Seq(Hearts, Spades, Diamonds, Clubs)
 
   def fromChar(c: Char) = c match {
@@ -87,4 +89,6 @@ object Suit {
     override val toChar = '?'
     override val value = -1
   }
+
+  override val values = findValues
 }

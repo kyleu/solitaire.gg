@@ -1,6 +1,4 @@
-import java.util.UUID
-
-import utils.json.{BaseSerializers, ResponseMessageSerializers}
+import utils.json.ResponseMessageSerializers
 import client.game.{SolitaireUndoHelper, StartGameHelper}
 import client.user.{DataHelper, PreferenceHelper}
 import models._
@@ -30,9 +28,9 @@ object Solitaire extends js.JSApp with StartGameHelper with SolitaireUndoHelper 
     case "GetVersion" => send(VersionResponse("0.0"))
     case "Ping" => send(Pong(JsonUtils.getLong(v.timestamp)))
     case "StartGame" => handleStartGame(v.rules.toString, JsonUtils.getIntOption(v.seed), preferences)
-    case "SelectCard" => handleSelectCard(DataHelper.deviceId, UUID.fromString(v.card.toString), v.pile.toString, v.auto.toString == "true")
+    case "SelectCard" => handleSelectCard(DataHelper.deviceId, v.card.toString.toInt, v.pile.toString, v.auto.toString == "true")
     case "SelectPile" => handleSelectPile(DataHelper.deviceId, v.pile.toString, v.auto.toString == "true")
-    case "MoveCards" => handleMoveCards(DataHelper.deviceId, JsonUtils.getUuidSeq(v.cards), v.src.toString, v.tgt.toString, v.auto.toString == "true")
+    case "MoveCards" => handleMoveCards(DataHelper.deviceId, JsonUtils.getIntSeq(v.cards), v.src.toString, v.tgt.toString, v.auto.toString == "true")
     case "Undo" => handleUndo()
     case "Redo" => handleRedo()
     case "SetPreference" => handleSetPreference(v.name.toString, v.value.toString, gs)
@@ -50,11 +48,12 @@ object Solitaire extends js.JSApp with StartGameHelper with SolitaireUndoHelper 
   )
 
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true) = {
+    import upickle.default._
     if (registerUndoResponse) {
       undoHelper.registerResponse(rm)
     }
     val json = ResponseMessageSerializers.write(rm)
-    val s = BaseSerializers.write(json)
+    val s = write(json)
     sendJson(s)
   }
 

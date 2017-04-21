@@ -7,7 +7,7 @@ import models.{CardHidden, CardRevealed}
 
 trait GameStateHelper { this: GameState =>
   def addCard(card: Card, pile: String, reveal: Boolean = false): Unit = {
-    this.cardsById(card.id) = card
+    this.cardsByIdx(card.idx) = card
     this.pilesById.get(pile) match {
       case Some(p) => p.addCard(card)
       case None =>
@@ -34,8 +34,8 @@ trait GameStateHelper { this: GameState =>
 
   def revealCardToPlayer(card: Card, player: UUID) = {
     val existing = playerKnownIds(player)
-    if (!existing.contains(card.id)) {
-      existing += card.id
+    if (!existing.contains(card.idx)) {
+      existing += card.idx
       true
     } else {
       false
@@ -43,15 +43,15 @@ trait GameStateHelper { this: GameState =>
   }
 
   def hideCardFromAll(card: Card) = if (playerKnownIds.keys.exists(p => hideCardFromPlayer(card, p))) {
-    Seq(CardHidden(card.id))
+    Seq(CardHidden(card.idx))
   } else {
     Nil
   }
 
   def hideCardFromPlayer(card: Card, player: UUID) = {
     val existing = playerKnownIds(player)
-    if (existing.contains(card.id)) {
-      existing -= card.id
+    if (existing.contains(card.idx)) {
+      existing -= card.idx
       true
     } else {
       false

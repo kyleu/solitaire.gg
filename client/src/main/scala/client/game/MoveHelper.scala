@@ -8,7 +8,7 @@ trait MoveHelper extends PossibleMoveHelper with StartGameHelper {
   private[this] val requests = collection.mutable.ArrayBuffer.empty[Seq[String]]
   protected def registerRequest(stack: String*) = requests += stack
   protected def clearRequests() = requests.clear()
-  override protected def getRequests = requests.toSeq
+  override protected def getRequests = requests
 
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean): Unit
 
@@ -21,14 +21,14 @@ trait MoveHelper extends PossibleMoveHelper with StartGameHelper {
 
   protected def getResult: GameResult
 
-  protected[this] def handleSelectCard(userId: UUID, cardId: UUID, pileId: String, auto: Boolean) = {
-    val card = gs.cardsById(cardId)
+  protected[this] def handleSelectCard(userId: UUID, cardIdx: Int, pileId: String, auto: Boolean) = {
+    val card = gs.cardsByIdx(cardIdx)
     val pile = gs.pilesById(pileId)
     if (!pile.cards.contains(card)) {
       throw new IllegalStateException(s"SelectCard for game [$gameId]: Card [${card.toString}] is not part of the [$pileId] pile.")
     }
     if (pile.canSelectCard(card, gs)) {
-      val args = Seq("select-card", pileId, cardId.toString) ++ (if (auto) { Seq("true") } else { Seq.empty })
+      val args = Seq("select-card", pileId, cardIdx.toString) ++ (if (auto) { Seq("true") } else { Seq.empty })
       registerRequest(args: _*)
       val messages = pile.onSelectCard(card, gs)
       send(messages, registerUndoResponse = true)
@@ -55,8 +55,8 @@ trait MoveHelper extends PossibleMoveHelper with StartGameHelper {
     }
   }
 
-  protected[this] def handleMoveCards(userId: UUID, cardIds: Seq[UUID], source: String, target: String, auto: Boolean) = {
-    val cards = cardIds.map(gs.cardsById)
+  protected[this] def handleMoveCards(userId: UUID, cardIds: Seq[Int], source: String, target: String, auto: Boolean) = {
+    val cards = cardIds.map(gs.cardsByIdx)
     val sourcePile = gs.pilesById(source)
     val targetPile = gs.pilesById(target)
     for (c <- cards) {

@@ -2,7 +2,6 @@ package client.network
 
 import java.util.UUID
 
-import utils.json.BaseSerializers
 import models.analytics._
 import models.{GameLost, GameWon}
 import upickle.legacy._
@@ -33,19 +32,19 @@ trait AnalyticsHelper extends AjaxHelper {
       deviceInfo = DataHelper.deviceInfo,
       occurred = occurred
     )
-    val json = BaseSerializers.write(writeJs(event))
+    val json = write(writeJs(event))
     sendNetworkPost("/a/error/" + DataHelper.deviceId, json)
   }
 
   protected[this] def onInstall(occurred: Long) = {
     val event = InstallEvent(deviceId = DataHelper.deviceId, sessionId = DataHelper.sessionId, deviceInfo = DataHelper.deviceInfo, occurred = occurred)
-    val json = BaseSerializers.write(writeJs(event))
+    val json = write(writeJs(event))
     sendNetworkPost("/a/install/" + DataHelper.deviceId, json)
   }
 
   protected[this] def onOpen(occurred: Long) = {
     val event = OpenEvent(deviceId = DataHelper.deviceId, sessionId = DataHelper.sessionId, deviceInfo = DataHelper.deviceInfo, occurred = occurred)
-    val json = BaseSerializers.write(writeJs(event))
+    val json = write(writeJs(event))
     sendNetworkPost("/a/open/" + DataHelper.deviceId, json)
   }
 
@@ -57,7 +56,7 @@ trait AnalyticsHelper extends AjaxHelper {
       rules = rules,
       occurred = occurred
     )
-    val json = BaseSerializers.write(writeJs(event))
+    val json = write(writeJs(event))
     sendNetworkPost("/a/game-start/" + DataHelper.deviceId, json)
   }
 
@@ -69,7 +68,7 @@ trait AnalyticsHelper extends AjaxHelper {
       requests = getRequests,
       occurred = occurred
     )
-    val json = BaseSerializers.write(writeJs(event))
+    val json = write(writeJs(event))
     sendNetworkPost("/a/game-won/" + DataHelper.deviceId, json)
   }
 
@@ -81,7 +80,7 @@ trait AnalyticsHelper extends AjaxHelper {
       requests = getRequests,
       occurred = occurred
     )
-    val json = BaseSerializers.write(writeJs(event))
+    val json = write(writeJs(event))
     sendNetworkPost("/a/game-resigned/" + DataHelper.deviceId, json)
   }
 }

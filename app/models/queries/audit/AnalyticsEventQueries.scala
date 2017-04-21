@@ -44,7 +44,7 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
     val sourceAddress = row.asOpt[String]("source_address")
     val data = row.as[String]("data")
     val dataObj = try {
-      Json.parse(data).as[JsObject]
+      Json.parse(data)
     } catch {
       case NonFatal(x) => JsObject(Seq(
         "status" -> JsString("error"),

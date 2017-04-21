@@ -18,8 +18,8 @@ case class GameState(
     var players: Seq[GamePlayer] = Nil
 ) extends GameStateHelper {
 
-  protected[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[UUID]]
-  val cardsById = collection.mutable.HashMap[UUID, Card]()
+  protected[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[Int]]
+  val cardsByIdx = collection.mutable.HashMap[Int, Card]()
 
   val piles = pileSets.flatMap(_.piles)
   val pilesById = piles.map(p => p.id -> p).toMap
@@ -40,22 +40,22 @@ case class GameState(
 
   def setAutoFlipOption(autoFlip: Boolean) = players = players.map(p => p.copy(autoFlipOption = autoFlip))
 
-  def getCard(id: UUID) = piles.flatMap(_.cards.find(_.id == id)).headOption.getOrElse(throw new IllegalStateException(s"Invalid card [$id]."))
+  def getCard(idx: Int) = piles.flatMap(_.cards.find(_.idx == idx)).headOption.getOrElse(throw new IllegalStateException(s"Invalid card [$idx]."))
 
   def view(userId: UUID) = {
     val knownCards = playerKnownIds(userId)
     this.copy(
-      deck = deck.copy(cards = deck.cards.map(c => if (knownCards.contains(c.id)) { c } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) })),
+      deck = deck.copy(cards = deck.cards.map(c => if (knownCards.contains(c.idx)) { c } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) })),
       pileSets = pileSets.map { ps =>
-        new PileSet(ps.behavior, ps.piles.map(p => p.copy(cards = p.cards.map { c =>
-          if (knownCards.contains(c.id)) { c } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) }
+        PileSet(ps.behavior, ps.piles.map(p => p.copy(cards = p.cards.map { c =>
+          if (knownCards.contains(c.idx)) { c } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) }
         })), visible = ps.visible)
       }
     )
   }
 
   def calculateScore(moveCount: Int, undoCount: Int, elapsed: Int) = {
-    val baseScore = cardsById.size * 50
+    val baseScore = cardsByIdx.size * 50
     val moveDebit = moveCount * 10
     val undoDebit = undoCount * 100
     val timeDebit = elapsed

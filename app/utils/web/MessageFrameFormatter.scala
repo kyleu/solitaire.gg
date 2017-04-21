@@ -17,12 +17,11 @@ class MessageFrameFormatter(debug: Boolean) extends Logging {
 
   private[this] def responseToJsValue(r: ResponseMessage): Js.Value = ResponseMessageSerializers.write(r)
 
-  private[this] def jsValueToString(v: Js.Value) =
-    if (debug) {
-      upickle.json.write(v, indent = 2)
-    } else {
-      upickle.json.write(v)
-    }
+  private[this] def jsValueToString(v: Js.Value) = if (debug) {
+    upickle.json.write(v, indent = 2)
+  } else {
+    upickle.json.write(v)
+  }
 
   private[this] def jsValueFromString(s: String) = {
     try {

@@ -22,4 +22,8 @@ object JsonUtils {
     }
     ret.toSeq
   }
+
+  def getIntSeq(o: js.Dynamic) = {
+    o.asInstanceOf[js.Array[Int]].toSeq
+  }
 }
