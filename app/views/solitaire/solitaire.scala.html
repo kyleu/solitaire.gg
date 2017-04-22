@@ -4,17 +4,12 @@
   url = Some("/play")
 ) {
   <div id="section-panels">
-    <div id="panel-menu" class="section-panel">@views.html.solitaire.panel.menu()</div>
-
-    <div id="panel-list" class="section-panel">@views.html.solitaire.panel.list()</div>
-
-    <div id="panel-help" class="section-panel">@views.html.solitaire.panel.help()</div>
-
-    <div id="panel-game" class="section-panel">@views.html.solitaire.panel.game()</div>
-
-    <div id="panel-status" class="section-panel">@views.html.solitaire.panel.status()</div>
-
-    <div id="panel-loading" class="section-panel">@views.html.solitaire.panel.loading()</div>
+    @views.html.solitaire.panel.list()
+    @views.html.solitaire.panel.help()
+    @views.html.solitaire.panel.status()
+    @views.html.solitaire.panel.game()
+    @views.html.solitaire.panel.menu()
+    @views.html.solitaire.panel.loading()
   </div>
 
   @if(debug) {

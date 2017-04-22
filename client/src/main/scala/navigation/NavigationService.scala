@@ -38,7 +38,7 @@ class NavigationService(onStateChange: (State, State) => Unit) {
   }
 
   def navigate(state: State) = if (state == currentState) {
-    utils.Logging.info(s"State transition to self [$currentState].")
+    utils.Logging.warn(s"State transition to self [$currentState].")
   } else {
     utils.Logging.info(s"State transitioned from [$currentState] to [$state].")
     onStateChange(currentState, state)

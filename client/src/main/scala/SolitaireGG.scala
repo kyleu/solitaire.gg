@@ -34,7 +34,7 @@ class SolitaireGG(val debug: Boolean) {
     Logging.installErrorHandler()
     js.Dynamic.global.PhaserGlobal = js.Dynamic.literal("hideBanner" -> true)
 
-    navigation.navigate(NavigationService.State.Menu)
+    navigation.navigate(NavigationService.State.Game)
 
     testbed()
   }
