@@ -8,7 +8,7 @@ trait MoveHelper extends PossibleMoveHelper with StartGameHelper {
   private[this] val requests = collection.mutable.ArrayBuffer.empty[Seq[String]]
   protected def registerRequest(stack: String*) = requests += stack
   protected def clearRequests() = requests.clear()
-  override protected def getRequests = requests.toSeq
+  override protected def getRequests = requests
 
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean): Unit
 
@@ -21,7 +21,7 @@ trait MoveHelper extends PossibleMoveHelper with StartGameHelper {
 
   protected def getResult: GameResult
 
-  protected[this] def handleSelectCard(userId: UUID, cardId: UUID, pileId: String, auto: Boolean) = {
+  protected[this] def handleSelectCard(userId: UUID, cardId: Int, pileId: String, auto: Boolean) = {
     val card = gs.cardsById(cardId)
     val pile = gs.pilesById(pileId)
     if (!pile.cards.contains(card)) {
@@ -55,7 +55,7 @@ trait MoveHelper extends PossibleMoveHelper with StartGameHelper {
     }
   }
 
-  protected[this] def handleMoveCards(userId: UUID, cardIds: Seq[UUID], source: String, target: String, auto: Boolean) = {
+  protected[this] def handleMoveCards(userId: UUID, cardIds: Seq[Int], source: String, target: String, auto: Boolean) = {
     val cards = cardIds.map(gs.cardsById)
     val sourcePile = gs.pilesById(source)
     val targetPile = gs.pilesById(target)

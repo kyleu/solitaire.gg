@@ -12,6 +12,17 @@ object JsonUtils {
 
   def getLong(o: js.Dynamic) = o.toString.toLong
 
+  def getIntSeq(o: js.Dynamic) = {
+    val a = o.asInstanceOf[js.Array[Int]] // Unavoidable
+    var idx = 0
+    val ret = collection.mutable.ArrayBuffer.empty[Int]
+    while (idx < a.length) {
+      ret += a(idx)
+      idx += 1
+    }
+    ret.toSeq
+  }
+
   def getUuidSeq(o: js.Dynamic) = {
     val a = o.asInstanceOf[js.Array[String]] // Unavoidable
     var idx = 0

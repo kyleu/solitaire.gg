@@ -25,7 +25,7 @@ trait GameRulesHelper { this: GameRules =>
   }
 
   protected[this] def newShuffledDecks(seed: Int, rng: Random, numDecks: Int = 1, ranks: Seq[Rank], suits: Seq[Suit], lowRank: Rank, highRank: Rank) = {
-    val cards = (0 to numDecks - 1).flatMap(i => Deck.freshCards(ranks, suits))
+    val cards = (0 until numDecks).flatMap(i => Deck.freshCards(ranks, suits))
     if (seed == 0) {
       Deck(cards, lowRank, highRank, cards.map(_.id))
     } else {

@@ -37,7 +37,7 @@ class UndoHelper() {
       cr.card.u = false
       gameState.hideCardFromAll(cr.card).headOption.getOrElse(throw new IllegalStateException("No hide response."))
     case ch: CardHidden =>
-      val card = gameState.getCard(ch.id)
+      val card = gameState.getCard(ch.idx)
       card.u = true
       gameState.revealCardToAll(card).headOption.getOrElse(throw new IllegalStateException("No reveal response."))
     case cm: CardMoved =>
