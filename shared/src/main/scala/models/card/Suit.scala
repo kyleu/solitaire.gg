@@ -2,21 +2,12 @@ package models.card
 
 import enumeratum._
 
-sealed trait Color
-
-case object Red extends Color
-case object Black extends Color
-case object Green extends Color
-case object Blue extends Color
-case object Colorless extends Color
-case object UnknownColor extends Color
-
 sealed trait Suit extends EnumEntry with Ordered[Suit] {
   def color: Color
   def toChar: Char
-  def value: Int
+  def index: Int
 
-  override def compare(that: Suit) = -(that.value * 13 - this.value * 13)
+  override def compare(that: Suit) = -(that.index * 13 - this.index * 13)
   override def toString = toChar.toString
 }
 
@@ -40,55 +31,55 @@ object Suit extends Enum[Suit] {
   case object Hearts extends Suit {
     override val color = Red
     override val toChar = 'H'
-    override val value = 0
+    override val index = 0
   }
   case object Spades extends Suit {
     override val color = Black
     override val toChar = 'S'
-    override val value = 1
+    override val index = 1
   }
   case object Diamonds extends Suit {
     override val color = Red
     override val toChar = 'D'
-    override val value = 2
+    override val index = 2
   }
   case object Clubs extends Suit {
     override val color = Black
     override val toChar = 'C'
-    override val value = 3
+    override val index = 3
   }
 
   case object Horseshoes extends Suit {
     override val color = Black
     override val toChar = 'O'
-    override val value = 4
+    override val index = 4
   }
   case object Stars extends Suit {
     override val color = Red
     override val toChar = 'R'
-    override val value = 5
+    override val index = 5
   }
   case object Tridents extends Suit {
     override val color = Green
     override val toChar = 'T'
-    override val value = 6
+    override val index = 6
   }
   case object Moons extends Suit {
     override val color = Blue
     override val toChar = 'M'
-    override val value = 7
+    override val index = 7
   }
 
   case object Suitless extends Suit {
     override val color = Colorless
     override val toChar = 'X'
-    override val value = 8
+    override val index = 8
   }
 
   case object Unknown extends Suit {
     override val color = UnknownColor
     override val toChar = '?'
-    override val value = -1
+    override val index = -1
   }
 
   override val values = findValues

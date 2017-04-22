@@ -76,20 +76,20 @@ object CardRemovalMethod {
     override def canRemove(l: Card, r: Card) = checkTotal(18, l.r, r.r) // TODO Any three adding to 18
   }
   case object RemoveConsecutiveRankPairs extends CardRemovalMethod {
-    override def canRemove(l: Card, r: Card) = l.r.value == (r.r.value + 1) || l.r.value == (r.r.value - 1)
+    override def canRemove(l: Card, r: Card) = l.r.index == (r.r.index + 1) || l.r.index == (r.r.index - 1)
   }
   case object RemoveConsecutiveRankPairsOrAK extends CardRemovalMethod {
     override def canRemove(l: Card, r: Card) = {
-      l.r.value == (r.r.value + 1) || l.r.value == (r.r.value - 1) // TODO A-K
+      l.r.index == (r.r.index + 1) || l.r.index == (r.r.index - 1) // TODO A-K
     }
   }
   case object RemoveConsecutiveOrEqualRankPairs extends CardRemovalMethod {
-    override def canRemove(l: Card, r: Card) = l.r == r.r || l.r.value == (r.r.value + 1) || l.r.value == (r.r.value - 1)
+    override def canRemove(l: Card, r: Card) = l.r == r.r || l.r.index == (r.r.index + 1) || l.r.index == (r.r.index - 1)
   }
 
   def checkTotal(i: Int, l: Rank, r: Rank, aceHigh: Boolean = false) = {
-    val lValue = if (l == Rank.Ace && !aceHigh) { 1 } else { l.value }
-    val rValue = if (r == Rank.Ace && !aceHigh) { 1 } else { r.value }
+    val lValue = if (l == Rank.Ace && !aceHigh) { 1 } else { l.index }
+    val rValue = if (r == Rank.Ace && !aceHigh) { 1 } else { r.index }
     val totalValue = lValue + rValue
     totalValue == i
   }

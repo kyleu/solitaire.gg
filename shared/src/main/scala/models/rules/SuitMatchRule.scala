@@ -11,10 +11,10 @@ object SuitMatchRule {
     override def check(l: Suit, r: Suit) = false
   }
   case object SameSuit extends SuitMatchRule {
-    override def check(l: Suit, r: Suit) = l.value == r.value
+    override def check(l: Suit, r: Suit) = l.index == r.index
   }
   case object DifferentSuits extends SuitMatchRule {
-    override def check(l: Suit, r: Suit) = l.value != r.value
+    override def check(l: Suit, r: Suit) = l.index != r.index
   }
   case object SameColor extends SuitMatchRule {
     override def check(l: Suit, r: Suit) = l.color == r.color

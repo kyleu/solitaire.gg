@@ -52,7 +52,7 @@ object RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = downBy(1, l, r, lowRank, wrap)
   }
   case object Equal extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = l.value == r.value
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = l.index == r.index
   }
   case object UpOrDown extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = {

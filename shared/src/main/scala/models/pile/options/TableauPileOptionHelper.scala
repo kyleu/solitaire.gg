@@ -29,7 +29,7 @@ trait TableauPileOptionHelper {
           }
           valid
         }
-      }, Some(Map("r" -> rmr.toString, "s" -> smr.toString, "lr" -> lowRank.value.toString)))
+      }, Some(Map("r" -> rmr.toString, "s" -> smr.toString, "lr" -> lowRank.index.toString)))
     }
   }
 

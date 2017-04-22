@@ -1,7 +1,7 @@
 package phaser.state
 
 import com.definitelyscala.phaser.State
-import phaser.CardSet
+import phaser.card.CardSet
 import settings.PlayerSettings
 
 import scala.scalajs.js.annotation.ScalaJSDefined
@@ -24,6 +24,6 @@ class LoadingState extends State {
   }
 
   override def create() = {
-    utils.Logging.info("Loaded!")
+    game.state.start("gameplay", clearWorld = false, clearCache = false)
   }
 }

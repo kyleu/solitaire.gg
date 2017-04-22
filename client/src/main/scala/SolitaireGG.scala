@@ -4,6 +4,7 @@ import network.{MessageHandler, NetworkService}
 import org.scalajs.dom
 import org.scalajs.dom.BeforeUnloadEvent
 import phaser.PhaserGame
+import settings.SettingsService
 import utils.{Logging, NullUtils}
 
 import scala.scalajs.js
@@ -24,7 +25,8 @@ class SolitaireGG(val debug: Boolean) {
   val navigation = new NavigationService(onStateChange)
   val network = new NetworkService()
   val messageHandler = new MessageHandler()
-  val phaser = new PhaserGame()
+  val settings = new SettingsService()
+  val phaser = new PhaserGame(settings)
 
   var game: Option[GameState] = None
 

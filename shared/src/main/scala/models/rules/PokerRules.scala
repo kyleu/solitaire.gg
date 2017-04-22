@@ -30,12 +30,12 @@ object PokerRules {
 
     val isFlush = suits.size == 1
     val straight = if (ranks.length == 5) {
-      val ranksSorted = ranks.map(_._1).sortBy(-_.value)
+      val ranksSorted = ranks.map(_._1).sortBy(-_.index)
       val first = ranksSorted.headOption.getOrElse(throw new IllegalStateException())
       val second = ranksSorted(1)
       val last = ranksSorted.lastOption.getOrElse(throw new IllegalStateException())
 
-      if (first.value == (last.value + 4)) {
+      if (first.index == (last.index + 4)) {
         Some(first)
       } else if (first == Rank.Ace && second == Rank.Five) {
         Some(Rank.Five)

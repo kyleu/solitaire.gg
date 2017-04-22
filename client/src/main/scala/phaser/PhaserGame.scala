@@ -3,7 +3,8 @@ package phaser
 import com.definitelyscala.phaser._
 import org.scalajs.dom
 import org.scalajs.dom.raw.UIEvent
-import phaser.state.{InitialState, LoadingState}
+import phaser.state.{Gameplay, InitialState, LoadingState}
+import settings.{PlayerSettings, SettingsService}
 import utils.JsUtils
 
 import scala.scalajs.js
@@ -21,14 +22,15 @@ object PhaserGame {
   ))
 }
 @ScalaJSDefined
-class PhaserGame extends Game(PhaserGame.options) {
-  def start() = {
-    state.add("initialState", new InitialState(), autoStart = false)
-    state.add("loading", new LoadingState(), autoStart = false)
+class PhaserGame(settingsService: SettingsService) extends Game(PhaserGame.options) {
+  val gameplay = new Gameplay(this, settingsService.getSettings)
 
-    dom.window.onresize = (e: UIEvent) => {
-      utils.Logging.info("Resize!")
-    }
+  def start() = {
+    state.add("initialState", new InitialState())
+    state.add("loading", new LoadingState())
+    state.add("gameplay", gameplay)
+
+    dom.window.onresize = (e: UIEvent) => utils.Logging.info("Resize!")
 
     state.start("initialState", clearWorld = false, clearCache = false)
   }
