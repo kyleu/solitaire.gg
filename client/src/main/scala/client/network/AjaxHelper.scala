@@ -43,7 +43,7 @@ trait AjaxHelper {
       )
 
       requestInFlight = true
-      val f = Ajax("post", url, body, timeout, headers, withCredentials = true, "client/json")
+      val f = Ajax("post", url, body, timeout, headers, withCredentials = true, "")
       f.onSuccess {
         case x =>
           requestInFlight = false

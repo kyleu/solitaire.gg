@@ -35,17 +35,22 @@ object Dependencies {
   }
 
   object WebJars {
-    val requireJs = "org.webjars" % "requirejs" % "2.3.2"
+    val requireJs = "org.webjars" % "requirejs" % "2.3.3"
     val bootstrap = "org.webjars" % "bootstrap" % "3.3.7"
     val underscore = "org.webjars" % "underscorejs" % "1.8.3"
     val d3 = "org.webjars" % "d3js" % "3.5.17"
     val nvd3 = "org.webjars" % "nvd3-community" % "1.7.0"
     val jquery = "org.webjars" % "jquery" % "2.2.4"
-    val materialize = "org.webjars" % "materializecss" % "0.98.0"
+    val materialize = "org.webjars" % "materializecss" % "0.98.2"
+  }
+
+  object Serialization {
+    val version = "0.4.4"
+    val uPickle = "com.lihaoyi" %% "upickle" % version
   }
 
   object Metrics {
-    private[this] val version = "3.2.1"
+    private[this] val version = "3.2.2"
     val jvm = "io.dropwizard.metrics" % "metrics-jvm" % version withSources()
     val ehcache = "io.dropwizard.metrics" % "metrics-ehcache" % version withSources() intransitive()
     val healthChecks = "io.dropwizard.metrics" % "metrics-healthchecks" % version withSources() intransitive()
@@ -59,19 +64,23 @@ object Dependencies {
   object ScalaJS {
     val jQueryVersion = "0.9.1"
     val scalaTagsVersion = "0.6.2"
+    val domVersion = "0.9.1"
     val definitelyScalaVersion = "1.0.0"
   }
 
   object Utils {
-    private[this] val version = "6.41.0"
-    val scapegoatVersion = "1.3.0"
+    private[this] val version = "6.42.0"
     val core = "com.twitter" %% "util-core" % version
     val collection = "com.twitter" %% "util-collection" % version
 
+    val enumeratumVersion = "1.5.10"
+    val enumeratum = "com.beachape" %% "enumeratum-upickle" % enumeratumVersion
+
+    val scapegoatVersion = "1.3.0"
   }
 
   object Testing {
-    val gatlingVersion = "2.2.3"
+    val gatlingVersion = "2.2.4"
     val gatlingCore = "io.gatling" % "gatling-test-framework" % gatlingVersion % "test"
     val gatlingCharts = "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test"
   }

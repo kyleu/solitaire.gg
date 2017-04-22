@@ -7,7 +7,7 @@ import sbt.Keys._
 import sbt._
 
 object Client {
-  private[this] val clientSettings = Seq(
+  private[this] val clientSettings = Shared.commonSettings ++ Seq(
     unmanagedSourceDirectories in Compile := Seq((scalaSource in Compile).value),
     libraryDependencies ++= Seq(
       "com.definitelyscala" %%% "scala-js-phaser" % Dependencies.ScalaJS.definitelyScalaVersion,
@@ -29,9 +29,5 @@ object Client {
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
 
-  lazy val client = (project in file("client"))
-    .enablePlugins(ScalaJSPlugin, ScalaJSPlay)
-    .settings(Shared.commonSettings: _*)
-    .settings(clientSettings: _*)
-    .dependsOn(Shared.sharedJs)
+  lazy val client = (project in file("client")).enablePlugins(ScalaJSPlugin, ScalaJSPlay).settings(clientSettings: _*).dependsOn(Shared.sharedJs)
 }
