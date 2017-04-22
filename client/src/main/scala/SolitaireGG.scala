@@ -18,17 +18,23 @@ object SolitaireGG {
 }
 
 class SolitaireGG(val debug: Boolean) {
-  val navigation = new NavigationService()
+  val navigation = new NavigationService(onStateChange)
   val network = new NetworkService()
   val messageHandler = new MessageHandler()
   val game = new PhaserGame()
 
   init()
 
+  private[this] def onStateChange(o: NavigationService.State, n: NavigationService.State) = {
+    utils.Logging.info("OK")
+  }
+
   private[this] def init() = {
     utils.Logging.info("Solitaire.gg, v2.0.0")
     Logging.installErrorHandler()
     js.Dynamic.global.PhaserGlobal = js.Dynamic.literal("hideBanner" -> true)
+
+    navigation.navigate(NavigationService.State.Menu)
 
     testbed()
   }

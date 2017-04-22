@@ -11,7 +11,7 @@ object PhaserGame {
     "width" -> "100%",
     "height" -> "100%",
     "renderer" -> Phaser.AUTO,
-    "parent" -> "game-container",
+    "parent" -> "panel-game",
     //"state" -> "initialState",
     "transparent" -> true,
     "resolution" -> 2
