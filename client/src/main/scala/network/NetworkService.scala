@@ -1,7 +1,7 @@
-package gg.network
+package network
 
 import models.{Ping, RequestMessage}
-import gg.utils.{Logging, NetworkMessage}
+import utils.{Logging, NetworkMessage}
 
 import scala.scalajs.js.timers.setTimeout
 

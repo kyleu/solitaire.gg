@@ -1,7 +1,7 @@
-package gg.phaser
+package phaser
 
 import com.definitelyscala.phaser.{Game, IGameConfig, Phaser}
-import gg.utils.JsUtils
+import utils.JsUtils
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.ScalaJSDefined

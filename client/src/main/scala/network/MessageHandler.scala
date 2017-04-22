@@ -1,7 +1,7 @@
-package gg.network
+package network
 
 import models._
-import gg.utils.{Logging, NetworkMessage}
+import utils.{Logging, NetworkMessage}
 
 class MessageHandler {
   def handleMessage(rm: ResponseMessage) = rm match {

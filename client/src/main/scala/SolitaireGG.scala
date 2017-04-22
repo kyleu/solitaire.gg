@@ -1,8 +1,6 @@
-package gg
-
-import gg.navigation.NavigationService
-import gg.network.{MessageHandler, NetworkService}
-import gg.phaser.PhaserGame
+import navigation.NavigationService
+import network.{MessageHandler, NetworkService}
+import phaser.PhaserGame
 import utils.Logging
 
 import scala.scalajs.js

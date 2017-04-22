@@ -1,5 +1,7 @@
-import client.json.{BaseSerializers, JsonUtils, ResponseMessageSerializers}
+package client
+
 import client.game.{SolitaireUndoHelper, StartGameHelper}
+import client.json.{BaseSerializers, JsonUtils, ResponseMessageSerializers}
 import client.user.{DataHelper, PreferenceHelper}
 import models._
 

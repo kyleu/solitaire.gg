@@ -1,4 +1,4 @@
-package gg.network
+package network
 
 import org.scalajs.dom.raw._
 

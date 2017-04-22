@@ -1,4 +1,4 @@
-package gg.utils
+package utils
 
 import models.RequestMessage
 

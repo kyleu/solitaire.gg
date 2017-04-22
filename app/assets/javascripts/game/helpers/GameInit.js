@@ -1,6 +1,6 @@
 /* global define:false */
 /* global Phaser:false */
-/* global Solitaire:false */
+/* global client:false */
 define(['utils/Config', 'ui/Options', 'game/helpers/GameInput', 'game/helpers/GameNetwork', 'game/helpers/GameTimer', 'state/InitialState', 'help/Help'],
 function (config, Options, GameInput, GameNetwork, GameTimer, InitialState, Help) {
   'use strict';
@@ -50,7 +50,7 @@ function (config, Options, GameInput, GameNetwork, GameTimer, InitialState, Help
         self.onMessage(ret.c, ret.v);
       };
 
-      game.offlineService = new Solitaire();
+      game.offlineService = new client.Solitaire();
       game.offlineService.register(callback);
     } else {
       game.ws = ws;
