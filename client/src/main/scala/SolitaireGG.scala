@@ -1,3 +1,4 @@
+import game.ActiveGame
 import models.game.GameState
 import navigation.NavigationService
 import network.{MessageHandler, NetworkService}
@@ -26,9 +27,10 @@ class SolitaireGG(val debug: Boolean) {
   val network = new NetworkService()
   val messageHandler = new MessageHandler()
   val settings = new SettingsService()
-  val phaser = new PhaserGame(settings)
 
-  var game: Option[GameState] = None
+  val phaser = new PhaserGame(settings, onPhaserLoadComplete)
+
+  var game: Option[ActiveGame] = None
 
   init()
 
@@ -48,11 +50,13 @@ class SolitaireGG(val debug: Boolean) {
       }
     }
 
-    testbed()
+    phaser.start()
   }
 
-  private[this] def testbed() = {
+  def onPhaserLoadComplete() = {
+    utils.Logging.info("Load complete")
     navigation.navigate(NavigationService.State.Game)
-    phaser.start()
+
+    game = Some(ActiveGame())
   }
 }

@@ -3,6 +3,7 @@ package phaser
 import com.definitelyscala.phaser._
 import org.scalajs.dom
 import org.scalajs.dom.raw.UIEvent
+import phaser.card.CardImages
 import phaser.state.{Gameplay, InitialState, LoadingState}
 import settings.{PlayerSettings, SettingsService}
 import utils.JsUtils
@@ -22,8 +23,12 @@ object PhaserGame {
   ))
 }
 @ScalaJSDefined
-class PhaserGame(settingsService: SettingsService) extends Game(PhaserGame.options) {
-  val gameplay = new Gameplay(this, settingsService.getSettings)
+class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) extends Game(PhaserGame.options) {
+  val gameplay = new Gameplay(this, settingsService.getSettings, onLoadComplete: () => Unit)
+
+  private[this] var images: Option[CardImages] = None
+  def setImages(i: CardImages) = Some(i)
+  def getImages = images.getOrElse(throw new IllegalStateException("Images not loaded."))
 
   def start() = {
     state.add("initialState", new InitialState())

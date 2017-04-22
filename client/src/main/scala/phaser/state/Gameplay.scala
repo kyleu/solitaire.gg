@@ -8,14 +8,14 @@ import settings.PlayerSettings
 import scala.scalajs.js.annotation.ScalaJSDefined
 
 @ScalaJSDefined
-class Gameplay(g: PhaserGame, settings: PlayerSettings) extends State {
+class Gameplay(g: PhaserGame, settings: PlayerSettings, onLoadComplete: () => Unit) extends State {
   override def preload() = {
     game.physics.startSystem(PhysicsObj.ARCADE)
 
-    val images = new CardImages(g, settings)
+    g.setImages(new CardImages(g, settings))
   }
 
   override def create() = {
-    utils.Logging.info("Running!")
+    onLoadComplete()
   }
 }
