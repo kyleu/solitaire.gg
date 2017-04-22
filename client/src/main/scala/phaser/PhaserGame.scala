@@ -1,6 +1,9 @@
 package phaser
 
-import com.definitelyscala.phaser.{Game, IGameConfig, Phaser}
+import com.definitelyscala.phaser._
+import org.scalajs.dom
+import org.scalajs.dom.raw.UIEvent
+import phaser.state.{InitialState, LoadingState}
 import utils.JsUtils
 
 import scala.scalajs.js
@@ -19,5 +22,14 @@ object PhaserGame {
 }
 @ScalaJSDefined
 class PhaserGame extends Game(PhaserGame.options) {
-  println("Phaser is phasering.")
+  def start() = {
+    state.add("initialState", new InitialState(), autoStart = false)
+    state.add("loading", new LoadingState(), autoStart = false)
+
+    dom.window.onresize = (e: UIEvent) => {
+      utils.Logging.info("Resize!")
+    }
+
+    state.start("initialState", clearWorld = false, clearCache = false)
+  }
 }
