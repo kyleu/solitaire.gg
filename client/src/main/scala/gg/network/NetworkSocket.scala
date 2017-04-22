@@ -1,4 +1,4 @@
-package gg.utils
+package gg.network
 
 import org.scalajs.dom.raw._
 
@@ -11,6 +11,9 @@ class NetworkSocket(onConnect: () => Unit, onMessage: (String) => Unit, onError:
 
   private[this] var ws: Option[WebSocket] = None
 
+  private[this] var sentMessageCount = 0
+  private[this] var receivedMessageCount = 0
+
   def open(url: String) = if (connected) {
     throw new IllegalStateException("Already connected.")
   } else if (connecting) {
@@ -21,7 +24,7 @@ class NetworkSocket(onConnect: () => Unit, onMessage: (String) => Unit, onError:
 
   def send(s: String): Unit = ws match {
     case Some(socket) =>
-      NetworkMessage.sentMessageCount += 1
+      sentMessageCount += 1
       socket.send(s)
     case None => throw new IllegalStateException("No available socket connection.")
   }
@@ -54,7 +57,7 @@ class NetworkSocket(onConnect: () => Unit, onMessage: (String) => Unit, onError:
 
   private[this] def onMessageEvent(event: MessageEvent) = {
     val msg = event.data.toString
-    NetworkMessage.receivedMessageCount += 1
+    receivedMessageCount += 1
     onMessage(msg)
     event
   }
