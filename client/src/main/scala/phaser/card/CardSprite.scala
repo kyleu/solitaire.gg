@@ -18,6 +18,9 @@ class CardSprite(
     initialX: Int,
     initialY: Int
 ) extends Sprite(phaser, initialX.toDouble, initialY.toDouble) {
+  var anchorPointX = 0.0
+  var anchorPointY = 0.0
+
   if (faceUp) {
     val tex = phaser.getImages.textures(rank.toChar.toString + suit.toChar)
     loadTexture(tex)
