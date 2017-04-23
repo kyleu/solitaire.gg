@@ -22,6 +22,9 @@ GET            /play/:rules                 controllers.GameController.newGame(r
 GET            /play/:rules/vr              controllers.GameController.newVrGame(rules)
 GET            /play/:rules/:seed           controllers.GameController.newGameWithSeed(rules, seed: Int)
 
+# i18n
+GET            /strings.js                  controllers.MessagesController.strings()
+
 # Offline analytics
 OPTIONS        /a/*path                     controllers.AnalyticsController.preflightCheck(path)
 POST           /a/error/:id                 controllers.AnalyticsController.error(id: java.util.UUID)

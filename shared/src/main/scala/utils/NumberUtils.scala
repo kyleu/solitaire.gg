@@ -1,9 +1,15 @@
 package utils
 
-import play.api.i18n.Messages
-
 object NumberUtils {
-  def toWords(i: Int, properCase: Boolean = false)(implicit messages: Messages) = if (messages.lang.language == "en") {
+  def withCommas(i: Int): String = i.toString.reverse.grouped(3).mkString(",").reverse
+  def withCommas(l: Long): String = l.toString.reverse.grouped(3).mkString(",").reverse
+  def withCommas(d: Double): String = d.toString.split('.').toList match {
+    case h :: t :: Nil => withCommas(h.toLong) + "." + t
+    case h :: Nil => withCommas(h.toLong)
+    case _ => d.toString
+  }
+
+  def toWords(i: Int, properCase: Boolean = false) = {
     val ret = i match {
       case 0 => "zero"
       case 1 => "one"
@@ -25,7 +31,5 @@ object NumberUtils {
     } else {
       ret
     }
-  } else {
-    i.toString
   }
 }
