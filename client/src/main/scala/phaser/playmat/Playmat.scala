@@ -18,4 +18,6 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
 
   var w: Double = 0.0
   var h: Double = 0.0
+
+  phaser.add.existing(this)
 }

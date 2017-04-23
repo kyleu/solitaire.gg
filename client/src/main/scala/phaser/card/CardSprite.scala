@@ -3,6 +3,7 @@ package phaser.card
 import com.definitelyscala.phaser.{Pointer, Sprite}
 import models.card.{Rank, Suit}
 import phaser.PhaserGame
+import phaser.pile.PileGroup
 import utils.NullUtils
 
 import scala.scalajs.js.annotation.ScalaJSDefined
@@ -32,6 +33,9 @@ class CardSprite(
   var dragging = false
   var tweening = false
   var inertiaHistory = Seq.empty[Double]
+
+  var pile: PileGroup = NullUtils.inst
+  var pileIndex = -1
 
   events.onInputDown.add(onInputDown _, this, 0.0)
   events.onInputUp.add(onInputUp _, this, 0.0)

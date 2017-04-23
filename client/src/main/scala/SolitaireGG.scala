@@ -1,11 +1,9 @@
 import game.ActiveGame
-import models.card.{Rank, Suit}
-import navigation.NavigationService
+import navigation.{MenuService, NavigationService}
 import network.{MessageHandler, NetworkService}
 import org.scalajs.dom
 import org.scalajs.dom.BeforeUnloadEvent
 import phaser.PhaserGame
-import phaser.card.CardSprite
 import settings.SettingsService
 import utils.{Logging, NullUtils}
 
@@ -30,6 +28,7 @@ class SolitaireGG(val debug: Boolean) {
   val settings = new SettingsService()
 
   val phaser = new PhaserGame(settings, onPhaserLoadComplete)
+  val menu = new MenuService(settings, navigation)
 
   var game: Option[ActiveGame] = None
 

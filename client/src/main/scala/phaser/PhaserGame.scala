@@ -37,6 +37,9 @@ class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) e
 
   def getSettings = settingsService.getSettings
 
+  private[this] var playmat: Option[Playmat] = None
+  def getPlaymat = playmat.getOrElse(throw new IllegalStateException("Playmat not loaded."))
+
   def start() = {
     state.add("initialState", new InitialState())
     state.add("loading", new LoadingState())
@@ -50,6 +53,6 @@ class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) e
   def setActiveGame(ag: ActiveGame) = {
     utils.Logging.info(s"Game [${ag.gameRules.title}] started.")
     activeGame = Some(ag)
-    val playmat = new Playmat(this, ag.gameState.pileSets, ag.gameRules.layout)
+    playmat = Some(new Playmat(this, ag.gameState.pileSets, ag.gameRules.layout))
   }
 }

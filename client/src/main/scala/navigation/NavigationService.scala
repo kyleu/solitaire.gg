@@ -30,6 +30,7 @@ object NavigationService {
 
 class NavigationService(onStateChange: (State, State) => Unit) {
   private[this] var currentState: State = State.Loading
+  private[this] val delay = 500
   def getState = currentState
 
   State.values.foreach {
@@ -42,8 +43,11 @@ class NavigationService(onStateChange: (State, State) => Unit) {
   } else {
     utils.Logging.info(s"State transitioned from [$currentState] to [$state].")
     onStateChange(currentState, state)
-    currentState.element.fadeOut(1000)
-    state.element.fadeIn(1000)
+    if (currentState == State.Loading) {
+      $("#menu-toggle").fadeIn(delay)
+    }
+    currentState.element.fadeOut(delay)
+    state.element.fadeIn(delay)
     currentState = state
   }
 }

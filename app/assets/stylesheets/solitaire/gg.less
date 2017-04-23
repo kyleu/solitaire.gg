@@ -15,30 +15,6 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-#section-panels {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+@import "_panels";
 
-.section-panel {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-#panel-loading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  .content {
-    font-size: 200%;
-    font-size: 3.5vw;
-  }
-}
-
+@import "_menu";
