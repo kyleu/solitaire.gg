@@ -27,7 +27,7 @@ class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) e
   val gameplay = new Gameplay(this, settingsService.getSettings, onLoadComplete: () => Unit)
 
   private[this] var images: Option[CardImages] = None
-  def setImages(i: CardImages) = Some(i)
+  def setImages(i: CardImages) = images = Some(i)
   def getImages = images.getOrElse(throw new IllegalStateException("Images not loaded."))
 
   def start() = {

@@ -1,10 +1,11 @@
 import game.ActiveGame
-import models.game.GameState
+import models.card.{Rank, Suit}
 import navigation.NavigationService
 import network.{MessageHandler, NetworkService}
 import org.scalajs.dom
 import org.scalajs.dom.BeforeUnloadEvent
 import phaser.PhaserGame
+import phaser.card.CardSprite
 import settings.SettingsService
 import utils.{Logging, NullUtils}
 
@@ -53,10 +54,14 @@ class SolitaireGG(val debug: Boolean) {
     phaser.start()
   }
 
-  def onPhaserLoadComplete() = {
+  def onPhaserLoadComplete(): Unit = {
     utils.Logging.info("Load complete")
     navigation.navigate(NavigationService.State.Game)
 
-    game = Some(ActiveGame())
+    val ag = ActiveGame()
+    game = Some(ag)
+
+    val cs = new CardSprite(phaser, 0, Rank.Ace, Suit.Hearts, faceUp = true, 0, 0)
+    phaser.stage.addChild(cs)
   }
 }
