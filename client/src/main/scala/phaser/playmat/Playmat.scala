@@ -15,6 +15,7 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
   var layout: (Double, Double, Map[String, (Double, Double)]) = (0.0, 0.0, Map.empty)
 
   val resizer = new PlaymatResizer(this)
+  val emitter = new PlaymatEmitter(this)
 
   var w: Double = 0.0
   var h: Double = 0.0

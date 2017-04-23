@@ -5,7 +5,7 @@ import com.definitelyscala.phaser.Easing.Easing
 import scala.scalajs.js
 
 object CardTweens {
-  def tweenCardTo(card: CardSprite, x: Double, y: Double, angle: Double, emitWhenComplete: Boolean) {
+  def tweenCardTo(card: CardSprite, x: Double, y: Double, angle: Double, emitWhenComplete: Boolean = false) {
     val time = 500
 
     val scaleTween = card.game.add.tween(card.scale)

@@ -10,8 +10,8 @@ import scala.scalajs.js.annotation.ScalaJSDefined
 
 @ScalaJSDefined
 class CardSprite(
-    phaser: PhaserGame,
-    id: Int,
+    val phaser: PhaserGame,
+    val id: Int,
     var rank: Rank,
     var suit: Suit,
     var faceUp: Boolean,

@@ -9,8 +9,8 @@ import phaser.card.CardSprite
 import scala.scalajs.js.annotation.ScalaJSDefined
 
 @ScalaJSDefined
-class PileGroup(val phaser: PhaserGame, val id: String, pileSet: PileSet, pileSetIndex: Int, options: PileOptions) extends Group {
-  private[this] var cards: Array[CardSprite] = Array.empty
+class PileGroup(val phaser: PhaserGame, val id: String, val pileSet: PileSet, val pileSetIndex: Int, val options: PileOptions) extends Group {
+  var cards: Array[CardSprite] = Array.empty
 
   val empty = {
     val ret = new Sprite(game, 0, 0, "empty-piles", 0)
@@ -28,15 +28,15 @@ class PileGroup(val phaser: PhaserGame, val id: String, pileSet: PileSet, pileSe
     ret
   }
 
-  val intersectWidth = empty.width
-  val intersectHeight = empty.height
+  var intersectWidth = empty.width
+  var intersectHeight = empty.height
 
   def addCard(card: CardSprite, cardPileIndex: Option[Int]) = {
     card.pile = this
     card.pileIndex = cardPileIndex.getOrElse(cards.length)
     cards(card.pileIndex) = card
 
-    //PileLayout.cardAdded(this, card)
+    PileLayout.cardAdded(this, card)
 
     if (phaser.initialized) {
       phaser.getPlaymat.resizer.refreshLayout()
