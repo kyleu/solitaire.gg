@@ -1,7 +1,7 @@
 package phaser.pile
 
 import com.definitelyscala.phaser.{Group, Pointer, Sprite}
-import models.MoveCards
+import models.{MoveCards, SelectPile}
 import models.pile.options.PileOptions
 import models.pile.set.PileSet
 import phaser.PhaserGame
@@ -15,14 +15,19 @@ class PileGroup(val phaser: PhaserGame, val id: String, val pileSet: PileSet, va
   var cards: Array[CardSprite] = Array.empty
   var dragCards: Array[CardSprite] = Array.empty
 
+  def canSelectPile() = phaser.possibleMoves.moves.exists { move =>
+    move.moveType == "select-pile" && move.sourcePile == id;
+  }
+
   val empty = {
     val ret = new Sprite(game, 0, 0, "empty-piles", 0)
     ret.inputEnabled = true
     ret.events.onInputUp.add((e: Any, p: Pointer) => {
       if (p.button.toString.toInt == 0) {
-        //if(canSelectPile(this)) {
-        //game.sendMove({'moveType': 'select-pile', sourcePile: this.id, auto: false});
-        //}
+        if (canSelectPile()) {
+          val msg = SelectPile(id, auto = false)
+          phaser.sendMove(msg)
+        }
       }
     }, this, 0.0)
     ret.anchor.x = 0.5
@@ -89,8 +94,8 @@ class PileGroup(val phaser: PhaserGame, val id: String, val pileSet: PileSet, va
       }
       var cardIds = dragCards.map(_.id)
       val dropId = dropTarget.map(_.id).getOrElse("?")
-      MoveCards(cardIds.toSeq, id, dropId, auto = false)
-      // TODO this.game.sendMove({ moveType: 'move-cards', cards: cardIds, sourcePile: this.id, targetPile: dropTarget.id, auto: false });
+      val msg = MoveCards(cardIds.toSeq, id, dropId, auto = false)
+      phaser.sendMove(msg)
     }
     dragCards = Array.empty
   }

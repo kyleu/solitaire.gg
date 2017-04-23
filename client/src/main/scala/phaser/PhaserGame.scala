@@ -2,7 +2,7 @@ package phaser
 
 import com.definitelyscala.phaser._
 import game.ActiveGame
-import models.{PossibleMove, PossibleMoves}
+import models.{MoveCards, PossibleMove, PossibleMoves, RequestMessage}
 import org.scalajs.dom
 import org.scalajs.dom.raw.UIEvent
 import phaser.card.CardImages
@@ -27,7 +27,6 @@ object PhaserGame {
 }
 @ScalaJSDefined
 class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) extends Game(PhaserGame.options) {
-
   var initialized = false
 
   val gameplay = new Gameplay(this, settingsService.getSettings, onLoadComplete: () => Unit)
@@ -57,5 +56,9 @@ class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) e
     utils.Logging.info(s"Game [${ag.gameRules.title}] started.")
     activeGame = Some(ag)
     playmat = Some(new Playmat(this, ag.gameState.pileSets, ag.gameRules.layout))
+  }
+
+  def sendMove(msg: RequestMessage) = {
+    utils.Logging.info(s"Sending [$msg].")
   }
 }
