@@ -29,9 +29,9 @@ class CardSprite(
 
   inputEnabled = true
 
-  private[this] var dragging = false
-  private[this] var tweening = false
-  private[this] var inertiaHistory = Seq.empty[Double]
+  var dragging = false
+  var tweening = false
+  var inertiaHistory = Seq.empty[Double]
 
   events.onInputDown.add(onInputDown _, this, 0.0)
   events.onInputUp.add(onInputUp _, this, 0.0)

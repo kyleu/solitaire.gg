@@ -24,6 +24,8 @@ object PhaserGame {
 }
 @ScalaJSDefined
 class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) extends Game(PhaserGame.options) {
+  var initialized = false
+
   val gameplay = new Gameplay(this, settingsService.getSettings, onLoadComplete: () => Unit)
 
   private[this] var images: Option[CardImages] = None
