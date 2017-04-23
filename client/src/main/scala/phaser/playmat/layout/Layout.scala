@@ -97,7 +97,7 @@ object Layout {
     }
     newRow()
 
-    (maxWidth - margin + padding, yOffset - 0.5, locations)
+    (maxWidth - margin + padding, yOffset - 0.5, locations.toMap)
   }
 
 }

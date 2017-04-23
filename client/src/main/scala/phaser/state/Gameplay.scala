@@ -3,6 +3,7 @@ package phaser.state
 import com.definitelyscala.phaser.{PhysicsObj, State}
 import phaser.PhaserGame
 import phaser.card.CardImages
+import phaser.playmat.Playmat
 import settings.PlayerSettings
 
 import scala.scalajs.js.annotation.ScalaJSDefined

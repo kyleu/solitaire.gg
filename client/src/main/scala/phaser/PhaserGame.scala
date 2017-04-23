@@ -1,11 +1,13 @@
 package phaser
 
 import com.definitelyscala.phaser._
+import game.ActiveGame
 import org.scalajs.dom
 import org.scalajs.dom.raw.UIEvent
 import phaser.card.CardImages
+import phaser.playmat.Playmat
 import phaser.state.{Gameplay, InitialState, LoadingState}
-import settings.{PlayerSettings, SettingsService}
+import settings.SettingsService
 import utils.JsUtils
 
 import scala.scalajs.js
@@ -27,10 +29,13 @@ class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) e
   var initialized = false
 
   val gameplay = new Gameplay(this, settingsService.getSettings, onLoadComplete: () => Unit)
+  var activeGame: Option[ActiveGame] = None
 
   private[this] var images: Option[CardImages] = None
   def setImages(i: CardImages) = images = Some(i)
   def getImages = images.getOrElse(throw new IllegalStateException("Images not loaded."))
+
+  def getSettings = settingsService.getSettings
 
   def start() = {
     state.add("initialState", new InitialState())
@@ -40,5 +45,11 @@ class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) e
     dom.window.onresize = (e: UIEvent) => utils.Logging.info("Resize!")
 
     state.start("initialState", clearWorld = false, clearCache = false)
+  }
+
+  def setActiveGame(ag: ActiveGame) = {
+    utils.Logging.info(s"Game [${ag.gameRules.title}] started.")
+    activeGame = Some(ag)
+    val playmat = new Playmat(this, ag.gameState.pileSets, ag.gameRules.layout)
   }
 }

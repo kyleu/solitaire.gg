@@ -46,7 +46,7 @@ class SolitaireGG(val debug: Boolean) {
 
     dom.window.onbeforeunload = (e: BeforeUnloadEvent) => {
       game match {
-        case Some(_) => "You're playing a game. Are you sure you'd like to resign?"
+        case Some(_) => NullUtils.inst //"You're playing a game. Are you sure you'd like to resign?"
         case _ => NullUtils.inst
       }
     }
@@ -60,8 +60,6 @@ class SolitaireGG(val debug: Boolean) {
 
     val ag = ActiveGame()
     game = Some(ag)
-
-    val cs = new CardSprite(phaser, 0, Rank.Ace, Suit.Hearts, faceUp = true, 0, 0)
-    phaser.stage.addChild(cs)
+    phaser.setActiveGame(ag)
   }
 }

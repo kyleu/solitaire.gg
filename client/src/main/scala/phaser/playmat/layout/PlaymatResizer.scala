@@ -10,10 +10,10 @@ class PlaymatResizer(p: Playmat) {
   def refreshLayout() = {
     var originalSize = p.w -> p.h
 
-    // TODO p.layout = Layout.calculateLayout(p.pileSets, p.layoutString, p.game.world.width / p.game.world.height, p.game.menusVisible);
+    p.layout = Layout.calculateLayout(p.pileSets, p.layoutString)
 
-    // TODO p.w = p.layout.width * p.game.cardSet.cardWidth
-    // TODO p.h = (p.layout.height - 0.1) * p.game.cardSet.cardHeight
+    p.w = p.layout._1 * p.phaser.getSettings.cardSet.cardWidth
+    p.h = (p.layout._2 - 0.1) * p.phaser.getSettings.cardSet.cardHeight
 
     if (p.w != originalSize._1 || p.h != originalSize._2) {
       this.resize()
