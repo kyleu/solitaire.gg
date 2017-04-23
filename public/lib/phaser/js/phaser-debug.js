@@ -1285,19 +1285,13 @@ function typeToString () {
 
     // If no phaser type defined, try to guess
     if (node.type === undefined) {
-        if (node instanceof PIXI.Stage) {
-            return 'PIXI Stage';
-        }
-        else if (node instanceof PIXI.Sprite) {
+        if (node instanceof PIXI.Sprite) {
             return 'PIXI Sprite';
-        }
-        else if (node instanceof PIXI.DisplayObjectContainer) {
+        } else if (node instanceof PIXI.DisplayObjectContainer) {
             return 'PIXI DisplayObjectContainer';
-        }
-        else if (node instanceof PIXI.DisplayObject) {
+        } else if (node instanceof PIXI.DisplayObject) {
             return 'PIXI DisplayObject';
-        }
-        else {
+        } else {
             return 'Unknown';
         }
     }

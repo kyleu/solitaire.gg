@@ -88,7 +88,7 @@ define(['utils/Config', 'card/Rank', 'card/Suit', 'card/CardInput', 'card/Tweens
   };
 
   Card.prototype.toString = function() {
-    return this.rank.char + this.suit.char + (this.faceUp ? '+' : '-') +': ' + this.id.substring(0, 8);
+    return this.id + ':' + this.rank.char + this.suit.char + (this.faceUp ? '+' : '-');
   };
 
   return Card;
