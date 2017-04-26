@@ -21,13 +21,13 @@ object CardTweens {
         // TODO card.actualX = x;
         card.tweening = false
         if (emitWhenComplete) {
-          // TODO card.game.playmat.emitter.emitFor(card);
+          card.phaser.getPlaymat.emitter.emitFor(card)
         }
         // TODO card.width = card.originalWidth;
       }, card, 0.0)
       xTween.start()
 
-      var bounce = (y == card.y) && (Math.abs(card.x - x) > card.width)
+      val bounce = (y == card.y) && (Math.abs(card.x - x) > card.width)
       if (bounce) {
         var targetY = y - (card.height * 0.05)
         var yTween = card.game.add.tween(card)
@@ -43,10 +43,10 @@ object CardTweens {
   }
 
   def tweenRemove(card: CardSprite) = {
-    var tween = card.game.add.tween(card)
+    val tween = card.game.add.tween(card)
     tween.to(js.Dynamic.literal("alpha" -> 0), 400, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
     tween.onComplete.add(() => {
-      //card.game.playmat.remove(card)
+      card.phaser.getPlaymat.remove(card)
     }, card, 0.0)
     card.tweening = true
     tween.start()
@@ -57,7 +57,7 @@ object CardTweens {
     var tween = card.game.add.tween(card)
     tween.to(js.Dynamic.literal("alpha" -> 1), 400, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
     tween.onComplete.add(() => {
-      //card.destroy();
+      card.destroy()
     }, card, 0.0)
     card.tweening = true
     tween.start()

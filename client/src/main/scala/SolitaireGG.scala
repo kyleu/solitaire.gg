@@ -1,4 +1,6 @@
+import client.user.DataHelper
 import game.ActiveGame
+import models.rules.moves.InitialMoves
 import navigation.{MenuService, NavigationService}
 import network.{MessageHandler, NetworkService}
 import org.scalajs.dom
@@ -58,6 +60,10 @@ class SolitaireGG(val debug: Boolean) {
     navigation.navigate(NavigationService.State.Game)
 
     val ag = ActiveGame()
+
+    ag.gameState.addPlayer(DataHelper.deviceId, "Offline Player", autoFlipOption = /* TODO */ true)
+    InitialMoves.performInitialMoves(ag.gameRules, ag.gameState)
+
     game = Some(ag)
     phaser.setActiveGame(ag)
   }

@@ -6,14 +6,17 @@ import models.pile.options.PileOptions
 import models.pile.set.PileSet
 import phaser.PhaserGame
 import phaser.card.{CardSprite, CardTweens}
-import utils.NullUtils
 
 import scala.scalajs.js.annotation.ScalaJSDefined
 
 @ScalaJSDefined
-class PileGroup(val phaser: PhaserGame, val id: String, val pileSet: PileSet, val pileSetIndex: Int, val options: PileOptions) extends Group {
-  var cards: Array[CardSprite] = Array.empty
-  var dragCards: Array[CardSprite] = Array.empty
+class PileGroup(
+    val phaser: PhaserGame, val id: String, val pileSet: PileSet, val pileSetIndex: Int, val options: PileOptions
+) extends Group(game = phaser, parent = phaser.getPlaymat) {
+  this.name = "pile-" + id
+
+  var cards = Seq.empty[CardSprite]
+  var dragCards = Seq.empty[CardSprite]
 
   def canSelectPile() = phaser.possibleMoves.moves.exists { move =>
     move.moveType == "select-pile" && move.sourcePile == id;
@@ -40,9 +43,9 @@ class PileGroup(val phaser: PhaserGame, val id: String, val pileSet: PileSet, va
   var intersectHeight = empty.height
 
   def addCard(card: CardSprite, cardPileIndex: Option[Int]) = {
-    card.pile = this
+    card.pileOption = Some(this)
     card.pileIndex = cardPileIndex.getOrElse(cards.length)
-    cards(card.pileIndex) = card
+    cards = (cards :+ card).sortBy(_.pileIndex)
 
     PileLayout.cardAdded(this, card)
 
@@ -58,10 +61,9 @@ class PileGroup(val phaser: PhaserGame, val id: String, val pileSet: PileSet, va
       throw new IllegalStateException("Provided card is not a part of this pile.")
     }
 
-    card.pile = NullUtils.inst
-    card.pileIndex = 0
+    card.pileOption = None
+    card.pileIndex = -1
 
-    var index = cards.indexOf(card)
     cards = cards.filterNot(_ == card)
     cards.zipWithIndex.foreach { c =>
       c._1.pileIndex = c._2
@@ -70,7 +72,11 @@ class PileGroup(val phaser: PhaserGame, val id: String, val pileSet: PileSet, va
     PileLayout.cardRemoved(this, card)
   }
 
-  def dragSlice(card: CardSprite, p: Pointer) = {
+  def canDragFrom(sprite: CardSprite) = {
+    true
+  }
+
+  def startDrag(card: CardSprite, p: Pointer) = {
     dragCards = cards.drop(card.pileIndex)
     dragCards.zipWithIndex.foreach { x =>
       val (c, idx) = x
@@ -84,19 +90,19 @@ class PileGroup(val phaser: PhaserGame, val id: String, val pileSet: PileSet, va
 
     if (dropTarget.isEmpty) {
       this.dragCards.foreach { cancelCard =>
-        cancelCard.dragging = false
+        cancelCard.dragIndex = None
         cancelCard.cancelDrag()
       }
     } else {
       // console.log('Moving [' + this.dragCards + '] to [' + dropTarget.id + '].');
       dragCards.foreach { moveCard =>
-        moveCard.dragging = false
+        moveCard.dragIndex = None
       }
       var cardIds = dragCards.map(_.id)
       val dropId = dropTarget.map(_.id).getOrElse("?")
-      val msg = MoveCards(cardIds.toSeq, id, dropId, auto = false)
+      val msg = MoveCards(cardIds, id, dropId, auto = false)
       phaser.sendMove(msg)
     }
-    dragCards = Array.empty
+    dragCards = Seq.empty
   }
 }

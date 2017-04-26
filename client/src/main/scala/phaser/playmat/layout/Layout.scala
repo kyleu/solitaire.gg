@@ -34,6 +34,7 @@ object Layout {
         case 'c' => remainingPileSets.find(_.behavior == "cell")
         case 'r' => remainingPileSets.find(_.behavior == "reserve")
         case 'p' => remainingPileSets.find(_.behavior == "pyramid")
+        case _ => None
       }
       c match {
         case ':' => xOffset += 1 + padding

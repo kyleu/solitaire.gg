@@ -24,4 +24,6 @@ class PlaymatEmitter(playmat: Playmat) {
     e.emitY = card.y
     e.start(explode = true, 1000, 0, 40)
   }
+
+  def bringToTop() = suitEmitter.foreach(playmat.bringToTop)
 }

@@ -1,7 +1,11 @@
 package phaser.pile
 
+import com.definitelyscala.phaser.Pointer
+import models.MoveCards
+import phaser.card.{CardSprite, CardTweens}
+
 object PileHelpers {
-  def isValidMove(src: PileGroup, tgt: PileGroup) = {
+  private[this] def isValidMove(src: PileGroup, tgt: PileGroup) = {
     var valid = false
 
     def check(c: Int, idx: Int) = if (c != src.dragCards(idx).id) {
@@ -21,21 +25,21 @@ object PileHelpers {
   }
 
   def getDropTarget(pile: PileGroup) = {
-    var firstCard = pile.dragCards.head
+    val firstCard = pile.dragCards.head
 
-    var multiplier = 0.9; // Adjust for growth while being dragged.
+    val multiplier = 0.9; // Adjust for growth while being dragged.
 
-    var minX = firstCard.x
-    var maxX = firstCard.x + (firstCard.width * multiplier)
-    var xPoint = firstCard.x + (firstCard.anchorPointX * multiplier)
-    var minY = firstCard.y
-    var maxY = firstCard.y + (firstCard.height * multiplier)
-    var yPoint = firstCard.y + (firstCard.anchorPointY * multiplier)
+    val minX = firstCard.x
+    val maxX = firstCard.x + (firstCard.width * multiplier)
+    val xPoint = firstCard.x + (firstCard.anchorPointX * multiplier)
+    val minY = firstCard.y
+    val maxY = firstCard.y + (firstCard.height * multiplier)
+    val yPoint = firstCard.y + (firstCard.anchorPointY * multiplier)
 
     var dropTarget: Option[PileGroup] = None
     var dropDistance = 65536
 
-    /* TODO pile.phaser.piles */ Seq.empty[PileGroup].foreach { p =>
+    pile.phaser.getPlaymat.getPiles.values.foreach { p =>
       if (p.id != pile.id) {
         var overlapX = 0
         if ((minX >= p.x && minX <= p.x + p.intersectWidth) || (maxX >= p.x && maxX <= p.x + p.intersectWidth)) {
@@ -54,5 +58,30 @@ object PileHelpers {
     }
     //console.log('Choosing [' + (dropTarget === null ? 'none' : dropTarget.id) + '] as drop target with distance [' + dropDistance + '].');
     dropTarget
+  }
+
+  def dragSlice(pile: PileGroup, card: CardSprite, p: Pointer) {
+    pile.dragCards = pile.cards.drop(card.pileIndex)
+    pile.dragCards.zipWithIndex.foreach { x =>
+      val (c, idx) = x
+      CardTweens.tweenPickUp(c)
+      c.startDrag(p, idx)
+    }
+  }
+
+  def endDrag(pile: PileGroup) {
+    getDropTarget(pile) match {
+      case None => pile.dragCards.foreach { cancelCard =>
+        cancelCard.dragIndex = None
+        cancelCard.cancelDrag()
+      }
+      case Some(dropTarget) =>
+        // console.log('Moving [' + this.dragCards + '] to [' + dropTarget.id + '].');
+        pile.dragCards.foreach { moveCard =>
+          moveCard.dragIndex = None
+        }
+        pile.phaser.sendMove(MoveCards(cards = pile.dragCards.map(_.id), src = pile.id, tgt = dropTarget.id, auto = false))
+    }
+    pile.dragCards = Seq.empty
   }
 }

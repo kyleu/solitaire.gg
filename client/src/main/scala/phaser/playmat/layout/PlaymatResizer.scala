@@ -7,8 +7,10 @@ import phaser.playmat.Playmat
 import scala.scalajs.js
 
 class PlaymatResizer(p: Playmat) {
+  private[this] var lastSize = p.phaser.width -> p.phaser.height
+
   def refreshLayout() = {
-    var originalSize = p.w -> p.h
+    val originalSize = 0.0 -> 0.0
 
     p.layout = Layout.calculateLayout(p.pileSets, p.layoutString)
 
@@ -20,23 +22,33 @@ class PlaymatResizer(p: Playmat) {
     }
   }
 
+  def resizeIfChanged() = if (lastSize._1 != p.phaser.width || this.lastSize._2 != p.phaser.height) {
+    resize()
+  }
+
   def resize() = {
-    var totalHeight = p.game.world.height
-    var widthRatio = p.game.world.width / p.w
-    var heightRatio = totalHeight / p.h
+    utils.Logging.info("Playmat resize...")
+
+    val totalWidth = p.game.world.width
+    val widthRatio = totalWidth / p.w
+
+    val totalHeight = p.game.world.height
+    val heightRatio = totalHeight / p.h
+
+    this.lastSize = totalWidth -> totalHeight
 
     var newPosition = p.position
     var newScale = p.scale
 
     if (widthRatio < heightRatio) {
       newScale = new Point(widthRatio, widthRatio)
-      var yOffset = (totalHeight - (p.h * widthRatio)) / 2
+      val yOffset = (totalHeight - (p.h * widthRatio)) / 2
       if (yOffset > 0 || p.y != 0) {
         newPosition = new Point(0, 0 /* yOffset */ )
       }
     } else {
       newScale = new Point(heightRatio, heightRatio)
-      var xOffset = (p.game.world.width - (p.w * heightRatio)) / 2
+      val xOffset = (p.game.world.width - (p.w * heightRatio)) / 2
       if (xOffset > 0 || p.x != 0) {
         newPosition = new Point(xOffset, 0)
       }
