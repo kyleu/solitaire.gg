@@ -1,7 +1,10 @@
 package navigation
 
+import help.HelpTemplate
+import models.rules.GameRulesSet
 import settings.SettingsService
 import org.scalajs.jquery.{JQueryEventObject, jQuery => $}
+import utils.TemplateUtils
 
 class MenuService(settings: SettingsService, navigation: NavigationService) {
   private[this] var menuShown = false
@@ -11,13 +14,23 @@ class MenuService(settings: SettingsService, navigation: NavigationService) {
     throw new IllegalStateException(s"Found [${toggle.length}] menu toggles.")
   }
 
-  toggle.on("click", (e: JQueryEventObject) => {
-    menuShown = !menuShown
-    if (menuShown) {
+  TemplateUtils.clickHandler($("#menu-link-help"), jq => {
+    val rules = GameRulesSet.allByIdWithAliases("klondike")
+    val html = HelpTemplate.help(rules)
+    $("#help-content").html(html.toString)
+    navigation.navigate(NavigationService.State.Help)
+  })
+
+  TemplateUtils.clickHandler($("#menu-link-play"), jq => {
+    navigation.navigate(NavigationService.State.Game)
+  })
+
+  TemplateUtils.clickHandler(toggle, jq => {
+    if (navigation.getState == NavigationService.State.Menu) {
+      navigation.navigate(priorState)
+    } else {
       priorState = navigation.getState
       navigation.navigate(NavigationService.State.Menu)
-    } else {
-      navigation.navigate(priorState)
     }
   })
 }
