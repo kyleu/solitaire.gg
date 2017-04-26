@@ -22,6 +22,7 @@ object NavigationService {
     case object List extends State("list")
     case object Help extends State("help")
     case object Game extends State("game")
+    case object Settings extends State("settings")
     case object Status extends State("status")
 
     override val values = findValues

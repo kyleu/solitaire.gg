@@ -21,16 +21,14 @@ class MenuService(settings: SettingsService, navigation: NavigationService) {
     navigation.navigate(NavigationService.State.Help)
   })
 
-  TemplateUtils.clickHandler($("#menu-link-play"), jq => {
-    navigation.navigate(NavigationService.State.Game)
-  })
+  TemplateUtils.clickHandler($("#menu-link-play"), jq => navigation.navigate(NavigationService.State.Game))
+  TemplateUtils.clickHandler($("#menu-link-settings"), jq => navigation.navigate(NavigationService.State.Settings))
+  TemplateUtils.clickHandler($("#menu-link-list"), jq => navigation.navigate(NavigationService.State.List))
 
-  TemplateUtils.clickHandler(toggle, jq => {
-    if (navigation.getState == NavigationService.State.Menu) {
-      navigation.navigate(priorState)
-    } else {
-      priorState = navigation.getState
-      navigation.navigate(NavigationService.State.Menu)
-    }
+  TemplateUtils.clickHandler(toggle, jq => if (navigation.getState == NavigationService.State.Menu) {
+    navigation.navigate(priorState)
+  } else {
+    priorState = navigation.getState
+    navigation.navigate(NavigationService.State.Menu)
   })
 }

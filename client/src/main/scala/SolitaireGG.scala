@@ -1,5 +1,5 @@
 import client.user.DataHelper
-import game.ActiveGame
+import game.{ActiveGame, GameListService}
 import models.rules.moves.InitialMoves
 import navigation.{MenuService, NavigationService}
 import network.{MessageHandler, NetworkService}
@@ -37,6 +37,7 @@ class SolitaireGG(val debug: Boolean) {
   init()
 
   private[this] def onStateChange(o: NavigationService.State, n: NavigationService.State) = n match {
+    case NavigationService.State.List => GameListService.initIfNeeded()
     case _ => utils.Logging.warn(s"Unhandled state change to [$n].")
   }
 
