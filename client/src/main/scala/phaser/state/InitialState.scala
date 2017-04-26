@@ -13,7 +13,7 @@ class InitialState extends State {
     game.time.advancedTiming = true
     game.scale.scaleMode = ScaleManager.NO_SCALE
 
-    if (Option(js.Dynamic.global.Phaser.Plugin.Debug).isDefined) {
+    if (js.Dynamic.global.Phaser.Plugin.Debug.toString != "undefined") {
       game.add.plugin(JsUtils.as[PluginObj](js.Dynamic.global.Phaser.Plugin.Debug))
     }
 
