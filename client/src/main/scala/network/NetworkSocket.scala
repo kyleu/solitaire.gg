@@ -31,7 +31,9 @@ class NetworkSocket(onConnect: () => Unit, onMessage: (String) => Unit, onError:
 
   def send(c: String, v: js.Dynamic): Unit = send(s"""{"c": "$c", "v": ${JSON.stringify(v)} }""")
 
-  def isConnected = connected
+  def isConnected = {
+    connected
+  }
 
   private[this] def openSocket(url: String) = {
     connecting = true

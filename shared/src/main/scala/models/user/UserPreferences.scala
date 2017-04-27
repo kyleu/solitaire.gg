@@ -1,5 +1,9 @@
 package models.user
 
+object UserPreferences {
+  val default = UserPreferences()
+}
+
 case class CardPreferences(
   back: String = "a",
   layout: String = "a",

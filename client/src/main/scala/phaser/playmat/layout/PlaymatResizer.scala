@@ -27,8 +27,6 @@ class PlaymatResizer(p: Playmat) {
   }
 
   def resize() = {
-    utils.Logging.info("Playmat resize...")
-
     val totalWidth = p.game.world.width
     val widthRatio = totalWidth / p.w
 

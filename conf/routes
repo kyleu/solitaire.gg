@@ -17,6 +17,7 @@ GET            /help/:id                    controllers.GameController.help(id, 
 GET            /about                       controllers.HomeController.about()
 
 GET            /play                        controllers.SolitaireController.solitaire()
+GET            /socket                      controllers.SolitaireController.connect()
 
 GET            /play/:rules                 controllers.GameController.newGame(rules)
 GET            /play/:rules/vr              controllers.GameController.newVrGame(rules)

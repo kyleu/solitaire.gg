@@ -1,16 +1,16 @@
 package network
 
-import models.{Ping, RequestMessage}
-import utils.{Logging, NetworkMessage}
+import msg.{Hello, SocketMessage}
+import utils.{JsonSerializers, Logging}
 
 import scala.scalajs.js.timers.setTimeout
 
-class NetworkService {
+class NetworkService(debug: Boolean, handleMessage: (SocketMessage) => Unit) {
   private[this] val loc = org.scalajs.dom.document.location
 
   private[this] val socketUrl = {
     val wsProtocol = if (loc.protocol == "https:") { "wss" } else { "ws" }
-    s"$wsProtocol://${loc.host}/connect"
+    s"$wsProtocol://${loc.host}/socket"
   }
 
   private[this] var latencyMs: Option[Int] = None
@@ -19,16 +19,14 @@ class NetworkService {
   socket.open(socketUrl)
 
   private def sendPing(): Unit = {
-    if (socket.isConnected) {
-      NetworkMessage.sendMessage(Ping(System.currentTimeMillis))
-    }
+    sendMessage(Hello("!"))
     setTimeout(10000)(sendPing())
   }
 
   setTimeout(1000)(sendPing())
 
   protected[this] def onSocketConnect(): Unit = {
-    Logging.debug("Socket connected.")
+    Logging.info(s"Socket [$socketUrl] connected.")
   }
 
   protected[this] def onSocketError(error: String): Unit = {
@@ -36,6 +34,7 @@ class NetworkService {
   }
 
   protected[this] def onSocketClose(): Unit = {
+    utils.Logging.info("Socket closed. Skipping reconnect.")
     /*
     val callback = () => {
       Logging.info("Attempting to reconnect Websocket.")
@@ -48,17 +47,17 @@ class NetworkService {
     */
   }
 
-  def sendMessage(rm: RequestMessage): Unit = {
+  def sendMessage(sm: SocketMessage): Unit = {
     if (socket.isConnected) {
-      //val json = JsonSerializers.writeRequestMessage(rm, debug)
-      //socket.send(json)
+      val json = JsonSerializers.writeMessage(sm, debug)
+      socket.send(json)
     } else {
-      throw new IllegalStateException("Not connected.")
+      utils.Logging.info(s"Not connected, skipping message [${sm.getClass.getSimpleName}] send.")
     }
   }
 
   protected[this] def onSocketMessage(json: String): Unit = {
-    //val msg = JsonSerializers.readResponseMessage(json)
-    //handleMessage(msg)
+    val msg = JsonSerializers.readMessage(json)
+    handleMessage(msg)
   }
 }

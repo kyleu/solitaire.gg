@@ -1,5 +1,6 @@
 import client.user.DataHelper
 import game.{ActiveGame, GameListService}
+import msg.SocketMessage
 import models.rules.moves.InitialMoves
 import navigation.{MenuService, NavigationService}
 import network.{MessageHandler, NetworkService}
@@ -25,7 +26,7 @@ object SolitaireGG {
 
 class SolitaireGG(val debug: Boolean) {
   val navigation = new NavigationService(onStateChange)
-  val network = new NetworkService()
+  val network = new NetworkService(debug, handleMessage)
   val messageHandler = new MessageHandler()
   val settings = new SettingsService()
 
@@ -54,6 +55,10 @@ class SolitaireGG(val debug: Boolean) {
     }
 
     phaser.start()
+  }
+
+  private[this] def handleMessage(msg: SocketMessage) = {
+    utils.Logging.info(s"Message: [$msg].")
   }
 
   def onPhaserLoadComplete(): Unit = {
