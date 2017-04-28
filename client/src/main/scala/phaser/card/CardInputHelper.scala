@@ -45,7 +45,8 @@ trait CardInputHelper {
   }
 
   protected[this] def getAngle(card: CardSprite, xDelta: Double) = {
-    card.inertiaHistory = card.inertiaHistory.filter(_._1 <= 300) :+ (card.game.time.now -> xDelta)
+    val threshold = card.game.time.now - 300
+    card.inertiaHistory = card.inertiaHistory.filter(_._1 >= threshold) :+ (card.game.time.now -> xDelta)
 
     var totalDelta = 0.0
     card.inertiaHistory.foreach { inertiaHist =>

@@ -65,7 +65,7 @@ object CardTweens {
 
   def tweenPickUp(card: CardSprite) = {
     var tween = card.game.add.tween(card.scale)
-    tween.to(js.Dynamic.literal("x" -> 1.05, "y" -> 1.05), 200, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
+    tween.to(js.Dynamic.literal("x" -> 1.05, "y" -> 1.05), 100, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
     tween.start()
   }
 

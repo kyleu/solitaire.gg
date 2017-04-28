@@ -1,5 +1,9 @@
 package settings
 
+object SettingsService {
+
+}
+
 class SettingsService {
   private[this] var settings: Option[PlayerSettings] = None
 

@@ -45,7 +45,7 @@ class NavigationService(onStateChange: (State, State) => Unit) {
     utils.Logging.info(s"State transitioned from [$currentState] to [$state].")
     onStateChange(currentState, state)
     if (currentState == State.Loading) {
-      $("#menu-toggle").fadeIn(delay)
+      $("#menu-nav").fadeIn(delay)
     }
     currentState.element.fadeOut(delay)
     state.element.fadeIn(delay)

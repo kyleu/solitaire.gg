@@ -55,16 +55,16 @@ object CardInput extends CardInputHelper {
         if (card.actualX.isEmpty) {
           card.actualX = Some(card.x)
         }
-        var newX = ((card.game.input.x - card.phaser.getPlaymat.x) / card.phaser.getPlaymat.scale.x) - card.anchorPointX
-        var xDelta = newX - card.actualX.get
+        val newX = ((card.game.input.x - card.phaser.getPlaymat.x) / card.phaser.getPlaymat.scale.x) - card.anchorPointX
+        val xDelta = newX - card.actualX.get
 
-        var angle = getAngle(card, xDelta)
+        val angle = getAngle(card, xDelta)
 
         card.angle = angle
         card.actualX = Some(newX)
 
-        var swayX = newX - (di * angle * 0.9)
-        var newY = ((card.game.input.y - card.phaser.getPlaymat.y) / card.phaser.getPlaymat.scale.y) - card.anchorPointY
+        val swayX = newX - (di * angle * 0.9)
+        val newY = ((card.game.input.y - card.phaser.getPlaymat.y) / card.phaser.getPlaymat.scale.y) - card.anchorPointY
 
         card.x = swayX
         card.y = newY
