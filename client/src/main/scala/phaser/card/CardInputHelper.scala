@@ -10,7 +10,7 @@ trait CardInputHelper {
   protected[this] def canSelectCard(card: CardSprite) = {
     var valid = false
     card.phaser.possibleMoves.moves.foreach { move =>
-      if (move.moveType == "select-card" && move.sourcePile == card.pile.id) {
+      if (move.moveType == "select-card" && move.sourcePile == card.pileGroup.id) {
         if (move.cards.length == 1 && move.cards.headOption.contains(card.id)) {
           valid = true
         }
@@ -20,18 +20,18 @@ trait CardInputHelper {
   }
 
   protected[this] def getMoveTarget(card: CardSprite) = card.phaser.possibleMoves.moves.find { move =>
-    move.moveType == "move-cards" && move.sourcePile == card.pile.id && move.cards.length == 1 && move.cards.headOption.contains(card.id)
+    move.moveType == "move-cards" && move.sourcePile == card.pileGroup.id && move.cards.length == 1 && move.cards.headOption.contains(card.id)
   }
 
   protected[this] def click(card: CardSprite) = {
     if (canSelectCard(card)) {
-      card.phaser.sendMove(SelectCard(card = card.id, pile = card.pile.id, auto = false))
+      card.phaser.sendMove(SelectCard(card = card.id, pile = card.pileGroup.id, auto = false))
     } else {
       var now = new Date().getTime()
       if (card.lastClicked.isDefined && (now - card.lastClicked.get) < CardInput.doubleClickThresholdMs) {
         getMoveTarget(card).foreach { moveTarget =>
           val tgt = moveTarget.targetPile.getOrElse(throw new IllegalStateException("Move has no target pile."))
-          card.phaser.sendMove(MoveCards(cards = Seq(card.id), src = card.pile.id, tgt = tgt, auto = false))
+          card.phaser.sendMove(MoveCards(cards = Seq(card.id), src = card.pileGroup.id, tgt = tgt, auto = false))
         }
         card.lastClicked = None
       } else {

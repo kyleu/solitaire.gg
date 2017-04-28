@@ -20,7 +20,7 @@ object CardInput extends CardInputHelper {
 
   def onInputUp(e: js.Any, p: Pointer, card: CardSprite) = {
     if (card.dragIndex.isDefined) {
-      PileHelpers.endDrag(card.pile)
+      PileHelpers.endDrag(card.pileGroup)
       card.phaser.getPlaymat.emitter.bringToTop()
     } else {
       val deltaX = Math.abs(p.positionDown.x - p.positionUp.x)

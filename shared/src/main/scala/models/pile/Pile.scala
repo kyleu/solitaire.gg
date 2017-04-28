@@ -31,15 +31,6 @@ object Pile {
 case class Pile(id: String, options: PileOptions, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) {
   var pileSet: Option[PileSet] = None
 
-  val pileIndex = {
-    val idx = id.lastIndexOf('-')
-    if (idx == -1) {
-      0
-    } else {
-      id.substring(idx + 1).toInt
-    }
-  }
-
   def addCards(cs: Seq[Card]) = cs.foreach(addCard)
 
   def addCard(c: Card) = {
@@ -78,7 +69,7 @@ case class Pile(id: String, options: PileOptions, cards: collection.mutable.Arra
     case left :: Nil => true
     case left :: xs =>
       val right = xs.headOption.getOrElse(throw new IllegalStateException())
-      val rankMatch = rmr.check(left.r, right.r, lowRank, wrap, pileIndex)
+      val rankMatch = rmr.check(left.r, right.r, lowRank, wrap)
       val suitMatch = smr.check(left.s, right.s)
       rankMatch && suitMatch && isSorted(xs, rmr, smr, lowRank, wrap)
   }

@@ -5,7 +5,7 @@ import models.pile.constraints.Constraint
 import models.rules._
 
 object FoundationPileOptions {
-  private[this] def getConstraints(lowRank: Rank, numRanks: Int, rules: FoundationRules, pileIndex: Int) = {
+  private[this] def getConstraints(lowRank: Rank, numRanks: Int, rules: FoundationRules) = {
     val dragFromConstraint = rules.canMoveFrom match {
       case FoundationCanMoveFrom.Always => Some(Constraint.topCardOnly)
       case FoundationCanMoveFrom.EmptyStock => Some(Constraint.pilesEmpty("stock"))
@@ -51,7 +51,7 @@ object FoundationPileOptions {
             } else {
               val target = tgt.cards.last
               val s = rules.suitMatchRule.check(target.s, firstCard.s)
-              val r = rules.rankMatchRule.check(target.r, firstCard.r, lowRank, rules.wrap, pileIndex)
+              val r = rules.rankMatchRule.check(target.r, firstCard.r, lowRank, rules.wrap)
               s && r
             }
           }
@@ -70,7 +70,7 @@ object FoundationPileOptions {
     if (rules.lowRank == FoundationLowRank.Ascending) {
       (1 to rules.numPiles).map { i =>
         val nextRank = if (i == 1) { 14 } else { i }
-        val (dragFromConstraint, dragToConstraint) = getConstraints(Rank.allByValue(nextRank), deckOptions.ranks.size, rules, i)
+        val (dragFromConstraint, dragToConstraint) = getConstraints(Rank.allByValue(nextRank), deckOptions.ranks.size, rules)
         PileOptions(
           cardsShown = Some(rules.cardsShown),
           dragFromConstraint = dragFromConstraint,
@@ -86,7 +86,7 @@ object FoundationPileOptions {
         case FoundationLowRank.SpecificRank(r) => r
       }
 
-      val (dragFromConstraint, dragToConstraint) = getConstraints(lowRank, deckOptions.ranks.size, rules, 0)
+      val (dragFromConstraint, dragToConstraint) = getConstraints(lowRank, deckOptions.ranks.size, rules)
       Seq(PileOptions(
         cardsShown = Some(rules.cardsShown),
         dragFromConstraint = dragFromConstraint,

@@ -39,7 +39,7 @@ class CardSprite(
   var animation: Option[() => Unit] = None
 
   var pileOption: Option[PileGroup] = None
-  def pile = pileOption.getOrElse(throw new IllegalStateException("Card [] is missing a pile assignment."))
+  def pileGroup = pileOption.getOrElse(throw new IllegalStateException("Card [] is missing a pile assignment."))
   var pileIndex = -1
 
   if (faceUp) {
@@ -65,8 +65,8 @@ class CardSprite(
   def onInputDown(e: Any, p: Pointer) = {
     if (p.button == NullUtils.inst || p.button.toString.toInt == 0) {
       if (!tweening) {
-        if (pile.canDragFrom(this)) {
-          pile.startDrag(this, p)
+        if (pileGroup.canDragFrom(this)) {
+          pileGroup.startDrag(this, p)
         }
       }
     }

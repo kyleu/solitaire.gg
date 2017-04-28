@@ -1,25 +1,24 @@
 package phaser.pile
 
 import com.definitelyscala.phaser.{Group, Pointer, Sprite}
+import models.pile.Pile
 import models.{MoveCards, SelectPile}
-import models.pile.options.PileOptions
-import models.pile.set.PileSet
 import phaser.PhaserGame
 import phaser.card.{CardSprite, CardTweens}
 
 import scala.scalajs.js.annotation.ScalaJSDefined
 
 @ScalaJSDefined
-class PileGroup(
-    val phaser: PhaserGame, val id: String, val pileSet: PileSet, val pileSetIndex: Int, val options: PileOptions
-) extends Group(game = phaser, parent = phaser.getPlaymat) {
-  this.name = "pile-" + id
+class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = phaser, parent = phaser.getPlaymat) {
+  this.name = "pile-" + pile.id
 
   var cards = Seq.empty[CardSprite]
   var dragCards = Seq.empty[CardSprite]
 
+  def id = pile.id
+
   def canSelectPile() = phaser.possibleMoves.moves.exists { move =>
-    move.moveType == "select-pile" && move.sourcePile == id;
+    move.moveType == "select-pile" && move.sourcePile == pile.id;
   }
 
   val empty = {
@@ -28,7 +27,7 @@ class PileGroup(
     ret.events.onInputUp.add((e: Any, p: Pointer) => {
       if (p.button.toString.toInt == 0) {
         if (canSelectPile()) {
-          val msg = SelectPile(id, auto = false)
+          val msg = SelectPile(pile.id, auto = false)
           phaser.sendMove(msg)
         }
       }
@@ -57,7 +56,7 @@ class PileGroup(
   }
 
   def removeCard(card: CardSprite) = {
-    if (card.pile != this) {
+    if (card.pileGroup != this) {
       throw new IllegalStateException("Provided card is not a part of this pile.")
     }
 
@@ -86,22 +85,22 @@ class PileGroup(
   }
 
   def endDrag() = {
-    var dropTarget = PileHelpers.getDropTarget(this)
+    val dropTarget = PileHelpers.getDropTarget(this)
 
-    if (dropTarget.isEmpty) {
-      this.dragCards.foreach { cancelCard =>
+    dropTarget match {
+      case None => dragCards.foreach { cancelCard =>
         cancelCard.dragIndex = None
         cancelCard.cancelDrag()
       }
-    } else {
-      // console.log('Moving [' + this.dragCards + '] to [' + dropTarget.id + '].');
-      dragCards.foreach { moveCard =>
-        moveCard.dragIndex = None
-      }
-      var cardIds = dragCards.map(_.id)
-      val dropId = dropTarget.map(_.id).getOrElse("?")
-      val msg = MoveCards(cardIds, id, dropId, auto = false)
-      phaser.sendMove(msg)
+      case Some(dt) =>
+        // console.log('Moving [' + this.dragCards + '] to [' + dropTarget.id + '].');
+        dragCards.foreach { moveCard =>
+          moveCard.dragIndex = None
+        }
+        val cardIds = dragCards.map(_.id)
+        val dropId = dropTarget.map(_.pile.id).getOrElse("?")
+        val msg = MoveCards(cardIds, pile.id, dropId, auto = false)
+        phaser.sendMove(msg)
     }
     dragCards = Seq.empty
   }

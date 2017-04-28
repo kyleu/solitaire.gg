@@ -34,11 +34,11 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
   def getPiles = piles
   def getPile(id: String) = piles.getOrElse(id, throw new IllegalStateException(s"Pile group [$id] not found."))
 
-  def addPile(pile: PileGroup) = {
-    piles(pile.id) = pile
-    val pileLocation = this.layout._3.getOrElse(pile.id, throw new IllegalStateException(s"Missing layout for [${pile.id}]."))
-    pile.x = pileLocation._1 * phaser.getSettings.cardSet.cardWidth
-    pile.y = pileLocation._2 * phaser.getSettings.cardSet.cardHeight
+  def addPile(pileGroup: PileGroup) = {
+    piles(pileGroup.id) = pileGroup
+    val pileLocation = this.layout._3.getOrElse(pileGroup.id, throw new IllegalStateException(s"Missing layout for [${pileGroup.pile.id}]."))
+    pileGroup.x = pileLocation._1 * phaser.getSettings.cardSet.cardWidth
+    pileGroup.y = pileLocation._2 * phaser.getSettings.cardSet.cardHeight
   }
 
   def initialMovesComplete() = {

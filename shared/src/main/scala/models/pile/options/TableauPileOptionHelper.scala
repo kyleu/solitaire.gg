@@ -18,7 +18,7 @@ trait TableauPileOptionHelper {
           for (c <- cards) {
             if (valid) {
               lastCard.foreach { lc =>
-                if (!rmr.check(lc.r, c.r, lowRank, wrap, 0)) {
+                if (!rmr.check(lc.r, c.r, lowRank, wrap)) {
                   valid = false
                 } else if (!smr.check(lc.s, c.s)) {
                   valid = false
@@ -59,7 +59,7 @@ trait TableauPileOptionHelper {
           } else {
             crm match {
               case CardRemovalMethod.BuildSequencesOnFoundation => if (smr.check(topCard.s, firstDraggedCard.s)) {
-                rmr.check(topCard.r, firstDraggedCard.r, lowRank, rules.wrap, 0)
+                rmr.check(topCard.r, firstDraggedCard.r, lowRank, rules.wrap)
               } else {
                 false
               }

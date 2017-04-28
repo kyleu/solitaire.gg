@@ -3,7 +3,7 @@ package models.rules
 import models.card.Rank
 
 sealed trait RankMatchRule {
-  def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int): Boolean
+  def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean): Boolean
 }
 
 object RankMatchRule {
@@ -43,44 +43,44 @@ object RankMatchRule {
   }
 
   case object None extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = false
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = false
   }
   case object Up extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = upBy(1, l, r, lowRank, wrap)
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = upBy(1, l, r, lowRank, wrap)
   }
   case object Down extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = downBy(1, l, r, lowRank, wrap)
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = downBy(1, l, r, lowRank, wrap)
   }
   case object Equal extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = l.index == r.index
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = l.index == r.index
   }
   case object UpOrDown extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = {
-      Up.check(l, r, lowRank, wrap, pileIndex) || Down.check(l, r, lowRank, wrap, pileIndex)
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
+      Up.check(l, r, lowRank, wrap) || Down.check(l, r, lowRank, wrap)
     }
   }
   case object UpBy2 extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = upBy(2, l, r, lowRank, wrap)
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = upBy(2, l, r, lowRank, wrap)
   }
   case object DownBy2 extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = downBy(2, l, r, lowRank, wrap)
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = downBy(2, l, r, lowRank, wrap)
   }
   case object UpBy3 extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = upBy(3, l, r, lowRank, wrap)
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = upBy(3, l, r, lowRank, wrap)
   }
   case object DownBy3 extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = downBy(3, l, r, lowRank, wrap)
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = downBy(3, l, r, lowRank, wrap)
   }
   case object UpBy4 extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = upBy(4, l, r, lowRank, wrap)
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = upBy(4, l, r, lowRank, wrap)
   }
   case object DownBy4 extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = downBy(4, l, r, lowRank, wrap)
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = downBy(4, l, r, lowRank, wrap)
   }
   case object UpByPileIndex extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = upBy(pileIndex, l, r, lowRank, wrap)
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = upBy(1, l, r, lowRank, wrap)
   }
   case object Any extends RankMatchRule {
-    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean, pileIndex: Int) = true
+    override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = true
   }
 }

@@ -37,9 +37,8 @@ class Gameplay(g: PhaserGame, settings: PlayerSettings, onLoadComplete: () => Un
 
   private[this] def loadPileSets(pileSets: Seq[PileSet]) = {
     pileSets.foreach { pileSet =>
-      pileSet.piles.zipWithIndex.foreach { x =>
-        val (pile, pileSetIndex) = x
-        var pileObj = new PileGroup(g, pile.id, pileSet, pileSetIndex, pile.options)
+      pileSet.piles.foreach { pile =>
+        var pileObj = new PileGroup(g, pile)
         g.getPlaymat.addPile(pileObj)
       }
     }

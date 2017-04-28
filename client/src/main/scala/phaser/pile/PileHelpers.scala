@@ -13,7 +13,7 @@ object PileHelpers {
     }
 
     src.phaser.possibleMoves.moves.foreach { move =>
-      if (move.moveType == "move-cards" && move.sourcePile == src.id && move.targetPile.contains(tgt.id)) {
+      if (move.moveType == "move-cards" && move.sourcePile == src.pile.id && move.targetPile.contains(tgt.pile.id)) {
         if (src.dragCards.length == move.cards.length) {
           valid = true
           move.cards.zipWithIndex.foreach(c => check(c._1, c._2))
@@ -24,8 +24,8 @@ object PileHelpers {
     valid
   }
 
-  def getDropTarget(pile: PileGroup) = {
-    val firstCard = pile.dragCards.head
+  def getDropTarget(pileGroup: PileGroup) = {
+    val firstCard = pileGroup.dragCards.head
 
     val multiplier = 0.9; // Adjust for growth while being dragged.
 
@@ -39,8 +39,8 @@ object PileHelpers {
     var dropTarget: Option[PileGroup] = None
     var dropDistance = 65536
 
-    pile.phaser.getPlaymat.getPiles.values.foreach { p =>
-      if (p.id != pile.id) {
+    pileGroup.phaser.getPlaymat.getPiles.values.foreach { p =>
+      if (p.pile.id != pileGroup.id) {
         var overlapX = 0
         if ((minX >= p.x && minX <= p.x + p.intersectWidth) || (maxX >= p.x && maxX <= p.x + p.intersectWidth)) {
           overlapX = Math.abs((p.x - xPoint).toInt)
@@ -49,7 +49,7 @@ object PileHelpers {
         if ((minY >= p.y && minY <= p.y + p.intersectHeight) || (maxY >= p.y && maxY <= p.y + p.intersectHeight)) {
           overlapY = Math.abs((p.y - yPoint).toInt)
         }
-        if ((overlapX > 0 && overlapY > 0) && (overlapX + overlapY < dropDistance) && isValidMove(pile, p)) {
+        if ((overlapX > 0 && overlapY > 0) && (overlapX + overlapY < dropDistance) && isValidMove(pileGroup, p)) {
           dropDistance = overlapX + overlapY
           dropTarget = Some(p)
         }
@@ -69,19 +69,19 @@ object PileHelpers {
     }
   }
 
-  def endDrag(pile: PileGroup) {
-    getDropTarget(pile) match {
-      case None => pile.dragCards.foreach { cancelCard =>
+  def endDrag(pileGroup: PileGroup) {
+    getDropTarget(pileGroup) match {
+      case None => pileGroup.dragCards.foreach { cancelCard =>
         cancelCard.dragIndex = None
         cancelCard.cancelDrag()
       }
       case Some(dropTarget) =>
         // console.log('Moving [' + this.dragCards + '] to [' + dropTarget.id + '].');
-        pile.dragCards.foreach { moveCard =>
+        pileGroup.dragCards.foreach { moveCard =>
           moveCard.dragIndex = None
         }
-        pile.phaser.sendMove(MoveCards(cards = pile.dragCards.map(_.id), src = pile.id, tgt = dropTarget.id, auto = false))
+        pileGroup.phaser.sendMove(MoveCards(cards = pileGroup.dragCards.map(_.id), src = pileGroup.id, tgt = dropTarget.pile.id, auto = false))
     }
-    pile.dragCards = Seq.empty
+    pileGroup.dragCards = Seq.empty
   }
 }
