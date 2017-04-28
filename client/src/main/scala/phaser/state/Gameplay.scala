@@ -52,7 +52,7 @@ class Gameplay(g: PhaserGame, settings: PlayerSettings, onLoadComplete: () => Un
         val pileObj = g.getPlaymat.getPile(pile.id)
         pile.cards.zipWithIndex.foreach { x =>
           val (card, cardIndex) = x
-          var cardObj = new CardSprite(g, card.id, card.r, card.s, card.u, 0, 0)
+          var cardObj = new CardSprite(g, card, 0, 0)
           cards(card.id) = (cardObj, pileObj, cardIndex);
         }
       }

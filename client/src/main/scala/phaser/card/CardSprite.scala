@@ -1,7 +1,7 @@
 package phaser.card
 
 import com.definitelyscala.phaser.{Point, Pointer, Sprite}
-import models.card.{Rank, Suit}
+import models.card.Card
 import phaser.PhaserGame
 import phaser.pile.PileGroup
 import utils.NullUtils
@@ -12,13 +12,14 @@ import scala.scalajs.js.annotation.ScalaJSDefined
 @ScalaJSDefined
 class CardSprite(
     val phaser: PhaserGame,
-    val id: Int,
-    var rank: Rank,
-    var suit: Suit,
-    var faceUp: Boolean,
+    val card: Card,
     initialX: Int,
     initialY: Int
 ) extends Sprite(phaser, initialX.toDouble, initialY.toDouble) {
+  val (id, rank, suit) = (card.id, card.r, card.s)
+
+  name = card.toString
+
   inputEnabled = true
 
   anchor.x = 0.5
@@ -42,7 +43,7 @@ class CardSprite(
   def pileGroup = pileOption.getOrElse(throw new IllegalStateException("Card [] is missing a pile assignment."))
   var pileIndex = -1
 
-  if (faceUp) {
+  if (card.u) {
     val tex = phaser.getImages.textures(rank.toChar.toString + suit.toChar)
     loadTexture(tex)
   } else {
@@ -52,13 +53,13 @@ class CardSprite(
   events.onInputDown.add(onInputDown _, this, 0.0)
   events.onInputUp.add(onInputUp _, this, 0.0)
 
-  def updateSprite(fu: Boolean = faceUp) {
-    this.faceUp = fu
-    if (this.faceUp) {
+  def updateSprite(fu: Boolean = card.u) {
+    card.u = fu
+    if (card.u) {
       val tex = phaser.getImages.textures(rank.toChar.toString + suit.toChar)
-      this.loadTexture(tex)
+      loadTexture(tex)
     } else {
-      this.loadTexture("card-back")
+      loadTexture("card-back")
     }
   }
 
