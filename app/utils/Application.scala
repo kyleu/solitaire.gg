@@ -56,7 +56,7 @@ class Application @javax.inject.Inject() (
     Schema.update()
 
     if (!config.debug) {
-      scheduleTask(task, system)
+      //scheduleTask(task, system)
     }
 
     lifecycle.addStopHook(() => Future.successful(stop()))
