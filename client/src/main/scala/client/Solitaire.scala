@@ -4,6 +4,7 @@ import client.game.{SolitaireUndoHelper, StartGameHelper}
 import client.json.{BaseSerializers, JsonUtils, ResponseMessageSerializers}
 import client.user.{DataHelper, PreferenceHelper}
 import models._
+import models.game.UndoHelper
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport

@@ -1,7 +1,7 @@
 package client.game
 
 import models._
-import models.game.GameState
+import models.game.{GameState, UndoHelper}
 
 trait SolitaireUndoHelper extends MoveHelper {
   protected def undoHelper: UndoHelper

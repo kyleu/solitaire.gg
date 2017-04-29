@@ -1,21 +1,30 @@
+package game
+
+import java.util.UUID
+
 import client.user.DataHelper
-import game.{ActiveGame, GameListService}
-import msg.SocketMessage
+import input.{GamepadHandler, KeyboardHandler}
+import models.{GameJoined, ResponseMessage}
 import models.rules.moves.InitialMoves
+import models.user.UserPreferences
+import msg.SocketMessage
 import navigation.{MenuService, NavigationService}
 import network.{MessageHandler, NetworkService}
 import org.scalajs.dom
-import org.scalajs.dom.BeforeUnloadEvent
+import org.scalajs.dom.raw.BeforeUnloadEvent
 import phaser.PhaserGame
 import settings.SettingsService
 import utils.{Logging, NullUtils}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
+import scala.util.Random
 
 @JSExportTopLevel("SolitaireGG")
 object SolitaireGG {
   private[this] var active: Option[SolitaireGG] = None
+
+  def getActive = active.getOrElse(throw new IllegalStateException("No active application."))
 
   @JSExport
   def go(debug: Boolean): Unit = active match {
@@ -26,7 +35,7 @@ object SolitaireGG {
 
 class SolitaireGG(val debug: Boolean) {
   val navigation = new NavigationService(onStateChange)
-  val network = new NetworkService(debug, handleMessage)
+  val network = new NetworkService(debug, handleSocketMessage)
   val messageHandler = new MessageHandler()
   val settings = new SettingsService()
 
@@ -57,20 +66,39 @@ class SolitaireGG(val debug: Boolean) {
     phaser.start()
   }
 
-  private[this] def handleMessage(msg: SocketMessage) = {
-    utils.Logging.info(s"Message: [$msg].")
+  private[this] def handleSocketMessage(msg: SocketMessage) = {
+    utils.Logging.info(s"SocketMessage: [$msg].")
+  }
+
+  private[this] def handleResponseMessage(msg: ResponseMessage) = {
+    utils.Logging.info(s"ResponseMessage: [$msg].")
+  }
+
+  private[this] def startGame(id: UUID = UUID.randomUUID, rulesId: String = "klondike", seed: Int = Random.nextInt) = {
+    val ag = ActiveGame(id = id, rulesId = rulesId, seed = seed)
+    ag.state.addPlayer(DataHelper.deviceId, "Offline Player", autoFlipOption = /* TODO */ true)
+    InitialMoves.performInitialMoves(ag.rules, ag.state)
+    val moves = ag.state.possibleMoves()
+    val prefs = UserPreferences() // TODO settings.getSettings
+    handleResponseMessage(GameJoined(ag.id, ag.state.view(DataHelper.deviceId), 0, moves, prefs))
+    game = Some(ag)
+    phaser.setActiveGame(ag)
   }
 
   def onPhaserLoadComplete(): Unit = {
     utils.Logging.info("Load complete")
+
+    new KeyboardHandler(phaser, onInput)
+    new GamepadHandler(phaser, onInput)
+
     navigation.navigate(NavigationService.State.Game)
 
-    val ag = ActiveGame()
-
-    ag.gameState.addPlayer(DataHelper.deviceId, "Offline Player", autoFlipOption = /* TODO */ true)
-    InitialMoves.performInitialMoves(ag.gameRules, ag.gameState)
-
-    game = Some(ag)
-    phaser.setActiveGame(ag)
+    val act = navigation.initialAction()
+    act match {
+      case ("play", rules) => startGame(rulesId = rules)
+      case (x, y) => throw new IllegalStateException(s"Unhandled initital action [$x:$y].")
+    }
   }
+
+  def onInput(i: String) = utils.Logging.info(s"Input message [$i].")
 }

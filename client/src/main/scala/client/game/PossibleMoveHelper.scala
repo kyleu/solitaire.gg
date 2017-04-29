@@ -1,6 +1,7 @@
 package client.game
 
 import models._
+import models.game.UndoHelper
 
 trait PossibleMoveHelper extends VictoryHelper {
   protected def send(rm: ResponseMessage, registerUndoResponse: Boolean = true): Unit
@@ -52,7 +53,7 @@ trait PossibleMoveHelper extends VictoryHelper {
         ret += PossibleMove("select-pile", Nil, source.id)
       }
     }
-    awesomeMoves ++ ret ++ boringMoves
+    (awesomeMoves ++ ret ++ boringMoves).toIndexedSeq
   }
 
   private[this] def checkWinCondition() = {

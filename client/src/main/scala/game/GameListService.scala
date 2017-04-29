@@ -11,19 +11,18 @@ object GameListService {
   def initIfNeeded() = if (!initialized) {
     val content = div(
       h4("Available Games"),
-      ul(cls := "collapsible")(GameRulesSet.completed.map { rules =>
-        li(
-          div(cls := "collapsible-header")(rules._2.title),
-          div(cls := "collapsible-body")(
+      table(tbody(GameRulesSet.completed.map { rules =>
+        tr(
+          td(rules._2.title),
+          td(
             div(rules._2.description)
           )
         )
-      })
+      }))
     )
 
     val panel = $("#panel-list-games")
     panel.html(content.toString)
-    scalajs.js.Dynamic.global.$(".collapsible", panel).collapsible()
 
     initialized = true
   }

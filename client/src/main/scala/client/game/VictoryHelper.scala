@@ -3,9 +3,8 @@ package client.game
 import java.util.UUID
 
 import client.user.StatisticsHelper
-
 import models._
-import models.game.GameState
+import models.game.{GameState, UndoHelper}
 import models.rules.GameRules
 import client.network.AnalyticsHelper
 
