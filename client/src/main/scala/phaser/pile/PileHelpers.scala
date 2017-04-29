@@ -12,7 +12,7 @@ object PileHelpers {
       valid = false
     }
 
-    src.phaser.possibleMoves.moves.foreach { move =>
+    src.phaser.possibleMoves.foreach { move =>
       if (move.moveType == "move-cards" && move.sourcePile == src.pile.id && move.targetPile.contains(tgt.pile.id)) {
         if (src.dragCards.length == move.cards.length) {
           valid = true

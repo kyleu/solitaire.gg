@@ -1,14 +1,15 @@
 package phaser
 
+import client.user.DataHelper
 import com.definitelyscala.phaser._
-import game.ActiveGame
-import models.{PossibleMoves, RequestMessage}
+import game.SolitaireGG
+import models.{PossibleMove, RequestMessage}
 import org.scalajs.dom
 import org.scalajs.dom.raw.UIEvent
 import phaser.card.CardImages
+import phaser.gameplay.Gameplay
 import phaser.playmat.Playmat
-import phaser.state.{Gameplay, InitialState, LoadingState}
-import settings.SettingsService
+import phaser.state.{InitialState, LoadingState}
 import utils.JsUtils
 
 import scala.scalajs.js
@@ -26,20 +27,20 @@ object PhaserGame {
   ))
 }
 @ScalaJSDefined
-class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) extends Game(PhaserGame.options) {
+class PhaserGame(val gg: SolitaireGG) extends Game(PhaserGame.options) {
   var initialized = false
 
-  val gameplay = new Gameplay(this, settingsService.getSettings, onLoadComplete: () => Unit)
-  var activeGame: Option[ActiveGame] = None
-  def getGameState = activeGame.getOrElse(throw new IllegalStateException("No active game.")).state
+  val gameplay = new Gameplay(this, gg.settings.getSettings, gg.onPhaserLoadComplete)
 
-  var possibleMoves: PossibleMoves = PossibleMoves(Nil, 0, 0)
+  var possibleMoves: Seq[PossibleMove] = Nil
 
   private[this] var images: Option[CardImages] = None
   def setImages(i: CardImages) = images = Some(i)
   def getImages = images.getOrElse(throw new IllegalStateException("Images not loaded."))
 
-  def getSettings = settingsService.getSettings
+  def getSettings = gg.settings.getSettings
+
+  def getState = gg.game.getOrElse(throw new IllegalStateException("No active game.")).state
 
   private[this] var playmat: Option[Playmat] = None
   def setPlaymat(p: Playmat) = playmat = Some(p)
@@ -59,12 +60,6 @@ class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) e
 
     dom.window.onresize = resize _
     state.start("initialState", clearWorld = false, clearCache = false)
-  }
-
-  def setActiveGame(ag: ActiveGame) = {
-    utils.Logging.info(s"Game [${ag.rules.title}] started.")
-    activeGame = Some(ag)
-    gameplay.start(ag)
   }
 
   def sendMove(msg: RequestMessage) = {

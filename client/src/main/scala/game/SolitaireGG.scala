@@ -34,15 +34,15 @@ object SolitaireGG {
 }
 
 class SolitaireGG(val debug: Boolean) {
+  var game: Option[ActiveGame] = None
+
   val navigation = new NavigationService(onStateChange)
   val network = new NetworkService(debug, handleSocketMessage)
   val messageHandler = new MessageHandler()
   val settings = new SettingsService()
 
-  val phaser = new PhaserGame(settings, onPhaserLoadComplete)
   val menu = new MenuService(settings, navigation)
-
-  var game: Option[ActiveGame] = None
+  val phaser = new PhaserGame(this)
 
   init()
 
@@ -70,8 +70,9 @@ class SolitaireGG(val debug: Boolean) {
     utils.Logging.info(s"SocketMessage: [$msg].")
   }
 
-  private[this] def handleResponseMessage(msg: ResponseMessage) = {
-    utils.Logging.info(s"ResponseMessage: [$msg].")
+  private[this] def handleResponseMessage(msg: ResponseMessage) = game match {
+    case Some(ag) => phaser.gameplay.handleResponseMessage(msg)
+    case None => throw new IllegalStateException(s"Response Message [$msg] received without active game.")
   }
 
   private[this] def startGame(id: UUID = UUID.randomUUID, rulesId: String = "klondike", seed: Int = Random.nextInt) = {
@@ -80,9 +81,8 @@ class SolitaireGG(val debug: Boolean) {
     InitialMoves.performInitialMoves(ag.rules, ag.state)
     val moves = ag.state.possibleMoves()
     val prefs = UserPreferences() // TODO settings.getSettings
-    handleResponseMessage(GameJoined(ag.id, ag.state.view(DataHelper.deviceId), 0, moves, prefs))
     game = Some(ag)
-    phaser.setActiveGame(ag)
+    handleResponseMessage(GameJoined(ag.id, ag.state.view(DataHelper.deviceId), 0, moves, prefs))
   }
 
   def onPhaserLoadComplete(): Unit = {

@@ -17,7 +17,7 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
 
   def id = pile.id
 
-  def canSelectPile() = phaser.possibleMoves.moves.exists { move =>
+  def canSelectPile() = phaser.possibleMoves.exists { move =>
     move.moveType == "select-pile" && move.sourcePile == pile.id;
   }
 
@@ -73,7 +73,7 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
 
   def canDragFrom(sprite: CardSprite) = {
     val stripe = cards.drop(sprite.pileIndex).map(_.card)
-    pile.canDragFrom(stripe, phaser.getGameState)
+    pile.canDragFrom(stripe, phaser.getState)
   }
 
   def startDrag(card: CardSprite, p: Pointer) = {

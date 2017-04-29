@@ -9,7 +9,7 @@ import scala.scalajs.js.Date
 trait CardInputHelper {
   protected[this] def canSelectCard(card: CardSprite) = {
     var valid = false
-    card.phaser.possibleMoves.moves.foreach { move =>
+    card.phaser.possibleMoves.foreach { move =>
       if (move.moveType == "select-card" && move.sourcePile == card.pileGroup.id) {
         if (move.cards.length == 1 && move.cards.headOption.contains(card.id)) {
           valid = true
@@ -19,7 +19,7 @@ trait CardInputHelper {
     valid
   }
 
-  protected[this] def getMoveTarget(card: CardSprite) = card.phaser.possibleMoves.moves.find { move =>
+  protected[this] def getMoveTarget(card: CardSprite) = card.phaser.possibleMoves.find { move =>
     move.moveType == "move-cards" && move.sourcePile == card.pileGroup.id && move.cards.length == 1 && move.cards.headOption.contains(card.id)
   }
 
