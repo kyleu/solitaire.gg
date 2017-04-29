@@ -24,15 +24,15 @@ class Gameplay(g: PhaserGame, settings: PlayerSettings, onLoadComplete: () => Un
   }
 
   def start(ag: ActiveGame) = {
-    val playmat = new Playmat(g, ag.gameState.pileSets, ag.gameRules.layout)
+    val playmat = new Playmat(g, ag.state.pileSets, ag.rules.layout)
     g.setPlaymat(playmat)
 
-    loadPileSets(ag.gameState.pileSets)
+    loadPileSets(ag.state.pileSets)
 
-    val cards = loadCards(ag.gameState.pileSets, ag.gameState.deck.originalOrder)
+    val cards = loadCards(ag.state.pileSets, ag.state.deck.originalOrder)
     playmat.setCards(cards)
 
-    utils.Logging.info(s"Started game [${ag.id}] with rules [${ag.rules}].")
+    utils.Logging.info(s"Started game [${ag.id}] with rules [${ag.rulesId}].")
   }
 
   private[this] def loadPileSets(pileSets: Seq[PileSet]) = {

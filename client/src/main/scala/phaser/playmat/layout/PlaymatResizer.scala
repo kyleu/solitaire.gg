@@ -3,6 +3,7 @@ package phaser.playmat.layout
 import com.definitelyscala.phaser.Easing.Easing
 import com.definitelyscala.phaser.Point
 import phaser.playmat.Playmat
+import settings.MenuPosition
 
 import scala.scalajs.js
 
@@ -30,7 +31,12 @@ class PlaymatResizer(p: Playmat) {
     val totalWidth = p.game.world.width
     val widthRatio = totalWidth / p.w
 
-    val totalHeight = p.game.world.height
+    val (totalHeight, menuHeight) = if (p.phaser.getSettings.menuPosition != MenuPosition.Hidden) {
+      (p.game.world.height - 112) -> 56
+    } else {
+      p.game.world.height -> 0
+    }
+
     val heightRatio = totalHeight / p.h
 
     this.lastSize = totalWidth -> totalHeight
@@ -41,14 +47,14 @@ class PlaymatResizer(p: Playmat) {
     if (widthRatio < heightRatio) {
       newScale = new Point(widthRatio, widthRatio)
       val yOffset = (totalHeight - (p.h * widthRatio)) / 2
-      if (yOffset > 0 || p.y != 0) {
-        newPosition = new Point(0, 0 /* yOffset */ )
+      if (yOffset > 0 || p.y != menuHeight) {
+        newPosition = new Point(0, menuHeight.toDouble /* + yOffset */ )
       }
     } else {
       newScale = new Point(heightRatio, heightRatio)
       val xOffset = (p.game.world.width - (p.w * heightRatio)) / 2
       if (xOffset > 0 || p.x != 0) {
-        newPosition = new Point(xOffset, 0)
+        newPosition = new Point(xOffset, menuHeight.toDouble)
       }
     }
 

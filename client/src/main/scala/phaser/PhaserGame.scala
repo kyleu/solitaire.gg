@@ -31,6 +31,8 @@ class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) e
 
   val gameplay = new Gameplay(this, settingsService.getSettings, onLoadComplete: () => Unit)
   var activeGame: Option[ActiveGame] = None
+  def getGameState = activeGame.getOrElse(throw new IllegalStateException("No active game.")).state
+
   var possibleMoves: PossibleMoves = PossibleMoves(Nil, 0, 0)
 
   private[this] var images: Option[CardImages] = None
@@ -60,7 +62,7 @@ class PhaserGame(settingsService: SettingsService, onLoadComplete: () => Unit) e
   }
 
   def setActiveGame(ag: ActiveGame) = {
-    utils.Logging.info(s"Game [${ag.gameRules.title}] started.")
+    utils.Logging.info(s"Game [${ag.rules.title}] started.")
     activeGame = Some(ag)
     gameplay.start(ag)
   }

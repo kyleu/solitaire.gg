@@ -13,5 +13,6 @@ case class PlayerSettings(
   cardFaces: CardFaces = CardFaces.A,
   cardLayout: CardLayout = CardLayout.A,
   cardRanks: CardRanks = CardRanks.A,
-  cardSuits: CardSuits = CardSuits.A
+  cardSuits: CardSuits = CardSuits.A,
+  menuPosition: MenuPosition = MenuPosition.Top
 )

@@ -1,6 +1,6 @@
-package models
+package models.game
 
-import models.game.GameState
+import models._
 
 class UndoHelper() {
   var undoCount = 0

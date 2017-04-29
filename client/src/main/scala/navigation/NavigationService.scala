@@ -30,6 +30,10 @@ object NavigationService {
 }
 
 class NavigationService(onStateChange: (State, State) => Unit) {
+  def initialAction() = {
+    "play" -> "klondike"
+  }
+
   private[this] var currentState: State = State.Loading
   private[this] val delay = 500
   def getState = currentState

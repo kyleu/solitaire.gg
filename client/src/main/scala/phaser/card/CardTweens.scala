@@ -1,6 +1,7 @@
 package phaser.card
 
 import com.definitelyscala.phaser.Easing.Easing
+import utils.PhaserUtils
 
 import scala.scalajs.js
 
@@ -17,14 +18,14 @@ object CardTweens {
       val xTween = card.game.add.tween(card)
       val xProps = js.Dynamic.literal("x" -> x, "angle" -> angle)
       xTween.to(xProps, time.toDouble, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
-      xTween.onComplete.add(() => {
-        // TODO card.actualX = x;
+      PhaserUtils.addToSignal(xTween.onComplete, {
+        card.actualX = Some(x)
         card.tweening = false
         if (emitWhenComplete) {
           card.phaser.getPlaymat.emitter.emitFor(card)
         }
         // TODO card.width = card.originalWidth;
-      }, card, 0.0)
+      })
       xTween.start()
 
       val bounce = (y == card.y) && (Math.abs(card.x - x) > card.width)
@@ -45,9 +46,7 @@ object CardTweens {
   def tweenRemove(card: CardSprite) = {
     val tween = card.game.add.tween(card)
     tween.to(js.Dynamic.literal("alpha" -> 0), 400, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
-    tween.onComplete.add(() => {
-      card.phaser.getPlaymat.remove(card)
-    }, card, 0.0)
+    PhaserUtils.addToSignal(tween.onComplete, card.phaser.getPlaymat.remove(card))
     card.tweening = true
     tween.start()
   }
@@ -56,9 +55,7 @@ object CardTweens {
     //card.game.playmat.add(card)
     var tween = card.game.add.tween(card)
     tween.to(js.Dynamic.literal("alpha" -> 1), 400, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
-    tween.onComplete.add(() => {
-      card.destroy()
-    }, card, 0.0)
+    PhaserUtils.addToSignal(tween.onComplete, card.destroy())
     card.tweening = true
     tween.start()
   }
@@ -73,16 +70,16 @@ object CardTweens {
     var origWidth = card.width
     var hideTween = card.game.add.tween(card)
     hideTween.to(js.Dynamic.literal("width" -> origWidth / 5), 100, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
-    hideTween.onComplete.add(() => {
+    PhaserUtils.addToSignal(hideTween.onComplete, {
       card.updateSprite(faceUp)
       var showTween = card.game.add.tween(card)
       showTween.to(js.Dynamic.literal("width" -> origWidth), 100, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
-      showTween.onComplete.add(() => {
+      PhaserUtils.addToSignal(showTween.onComplete, {
         card.tweening = false
         card.width = origWidth
-      }, card, 0.0)
+      })
       showTween.start()
-    }, card, 0.0)
+    })
     hideTween.start()
 
     card.tweening = true
