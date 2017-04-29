@@ -1,8 +1,8 @@
 @()(implicit session: Session, flash: Flash, messages: Messages)<div id="panel-settings" class="section-panel">
-  <ul class="collapsible">
+  <ul>
     <li>
-      <div class="collapsible-header">Background</div>
-      <div class="collapsible-body">
+      <div>Background</div>
+      <div>
         <div id="color-list" class="options-list">
           <div class="options-label">@Messages("options.background.color")</div>
           <div class="game-options">@for(color <- ui.Colors.all) {
@@ -14,8 +14,8 @@
       </div>
     </li>
     <li>
-      <div class="collapsible-header">Cards</div>
-      <div class="collapsible-body">
+      <div>Cards</div>
+      <div>
         <div id="card-background-list" class="options-list">
           <div class="options-label">@Messages("options.cards.background")</div>
           <div class="game-options">@for(idx <- Seq("a", "b", "c")) {
@@ -72,9 +72,9 @@
       </div>
     </li>
     <li>
-      <div class="collapsible-header">Options</div>
+      <div>Options</div>
 
-      <div class="collapsible-body">
+      <div>
         <div id="auto-flip-list" class="options-list">
           <div class="options-label">@Messages("options.auto.flip")</div>
           <div class="game-options">

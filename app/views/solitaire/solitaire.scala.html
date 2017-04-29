@@ -1,7 +1,6 @@
 @(debug: Boolean)(implicit session: Session, flash: Flash, messages: Messages)@layout.basic(
   title = utils.Config.projectName,
   stylesheets = Seq(
-    routes.Assets.versioned("lib/materializecss/css/materialize.min.css").url,
     routes.Assets.versioned("stylesheets/solitaire/gg.min.css").url
   ),
   url = Some("/play")
@@ -29,18 +28,13 @@
 
   @if(debug) {
   <script src="@routes.Assets.versioned("lib/jquery/jquery.js")" type="text/javascript" defer="defer"></script>
-  <script src="@routes.Assets.versioned("lib/materializecss/js/materialize.js")" type="text/javascript" defer="defer"></script>
   <script src="@routes.Assets.versioned("lib/phaser/js/phaser-arcade-physics.js")" type="text/javascript" defer="defer"></script>
   <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/phaser-debug.min.css").url" />
   <script src="@routes.Assets.versioned("lib/phaser/js/phaser-debug.js")" type="text/javascript" defer="defer"></script>
   <script src="@routes.Assets.versioned("client-fastopt.js")" type="text/javascript" defer="defer"></script>
   } else {
   <script src="@routes.Assets.versioned("lib/jquery/jquery.min.js")" type="text/javascript" defer="defer"></script>
-  <script src="@routes.Assets.versioned("lib/materializecss/js/materialize.min.js")" type="text/javascript" defer="defer"></script>
   <script src="@routes.Assets.versioned("lib/phaser/js/phaser-arcade-physics.min.js")" type="text/javascript" defer="defer"></script>
-  <!-- Todo: Remove -->
-  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/phaser-debug.min.css").url" />
-  <script src="@routes.Assets.versioned("lib/phaser/js/phaser-debug.js")" type="text/javascript" defer="defer"></script>
   <script src="@routes.Assets.versioned("client-opt.js")" type="text/javascript" defer="defer"></script>
   }
 
