@@ -3,7 +3,8 @@ package phaser.gameplay
 import java.util.UUID
 
 import com.definitelyscala.phaser.{PhysicsObj, State}
-import models.game.{GameState, MoveHelper, RequestMessageHandler}
+import models.PossibleMoves
+import models.game.{GameState, MoveHelper, RequestMessageHandler, UndoHelper}
 import models.rules.GameRulesSet
 import phaser.PhaserGame
 import phaser.card.CardImages
@@ -16,6 +17,8 @@ import scala.scalajs.js.annotation.ScalaJSDefined
 class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: () => Unit) extends State {
   private[this] var gameState: Option[GameState] = None
   def getState = gameState.getOrElse(throw new IllegalStateException("No game state available."))
+
+  private[this] val undoHelper = new UndoHelper()
 
   private[this] var moveHelper: Option[MoveHelper] = None
   def getMoveHelper = moveHelper.getOrElse(throw new IllegalStateException("No move helper available."))
@@ -38,7 +41,7 @@ class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: 
   private[this] def postMove() = {
     utils.Logging.info("Post move!")
     //if (!checkWinCondition()) {
-    //  send(PossibleMoves(possibleMoves(), undoHelper.historyQueue.size, undoHelper.undoneQueue.size))
+    getResponseMessageHandler.handle(PossibleMoves(getMoveHelper.possibleMoves(), undoHelper.historyQueue.size, undoHelper.undoneQueue.size))
     //}
   }
 

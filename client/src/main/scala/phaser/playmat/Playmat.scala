@@ -52,6 +52,6 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
     phaser.initialized = true
   }
 
-  def win(gw: GameWon) = ???
-  def lose() = ???
+  def win(gw: GameWon) = utils.Logging.info("Win!")
+  def lose() = utils.Logging.info("Lose!")
 }
