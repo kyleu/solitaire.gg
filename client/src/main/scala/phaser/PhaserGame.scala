@@ -21,13 +21,12 @@ object PhaserGame {
     "height" -> "100%",
     "renderer" -> Phaser.AUTO,
     "parent" -> "panel-game",
-    //"state" -> "initialState",
     "transparent" -> true,
     "resolution" -> 2
   ))
 }
 @ScalaJSDefined
-class PhaserGame(val gg: SolitaireGG) extends Game(PhaserGame.options) {
+class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   var initialized = false
 
   val gameplay = new Gameplay(this, gg.settings.getSettings, gg.onPhaserLoadComplete)
@@ -39,8 +38,6 @@ class PhaserGame(val gg: SolitaireGG) extends Game(PhaserGame.options) {
   def getImages = images.getOrElse(throw new IllegalStateException("Images not loaded."))
 
   def getSettings = gg.settings.getSettings
-
-  def getState = gg.game.getOrElse(throw new IllegalStateException("No active game.")).state
 
   private[this] var playmat: Option[Playmat] = None
   def setPlaymat(p: Playmat) = playmat = Some(p)
@@ -64,5 +61,6 @@ class PhaserGame(val gg: SolitaireGG) extends Game(PhaserGame.options) {
 
   def sendMove(msg: RequestMessage) = {
     utils.Logging.info(s"Sending [$msg].")
+    gameplay.getMessageHandler.handle(DataHelper.deviceId, msg)
   }
 }

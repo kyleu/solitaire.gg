@@ -3,7 +3,7 @@ package models.game
 import java.util.UUID
 
 import models.card.Card
-import models.{CardHidden, CardRevealed, PossibleMove}
+import models.{CardHidden, CardRevealed}
 
 trait GameStateHelper { this: GameState =>
   def addCard(card: Card, pile: String, reveal: Boolean = false): Unit = {
@@ -56,40 +56,5 @@ trait GameStateHelper { this: GameState =>
     } else {
       false
     }
-  }
-
-  def possibleMoves() = {
-    val ret = collection.mutable.ArrayBuffer.empty[PossibleMove]
-    val awesomeMoves = collection.mutable.ArrayBuffer.empty[PossibleMove]
-    val boringMoves = collection.mutable.ArrayBuffer.empty[PossibleMove]
-    piles.foreach { source =>
-      val sourceBehavior = source.pileSet.map(_.behavior).getOrElse(throw new IllegalStateException())
-      source.cards.zipWithIndex.foreach { c =>
-        val cards = source.cards.drop(c._2)
-        val remainingCards = source.cards.take(c._2)
-        if (source.canDragFrom(cards, this)) {
-          piles.filter(p => p.id != source.id).foreach { target =>
-            val targetBehavior = target.pileSet.map(_.behavior).getOrElse(throw new IllegalStateException())
-            if (target.canDragTo(source, cards, this)) {
-              val move = PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
-              if (sourceBehavior == "tableau" && targetBehavior == "tableau" && remainingCards.isEmpty && target.cards.isEmpty) {
-                boringMoves += move
-              } else if (targetBehavior == "foundation" && sourceBehavior != "foundation") {
-                awesomeMoves += move
-              } else {
-                ret += move
-              }
-            }
-          }
-        }
-        if (source.canSelectCard(c._1, this)) {
-          ret += PossibleMove("select-card", Seq(c._1.id), source.id)
-        }
-      }
-      if (source.canSelectPile(this)) {
-        ret += PossibleMove("select-pile", Nil, source.id)
-      }
-    }
-    (awesomeMoves ++ ret ++ boringMoves).toIndexedSeq
   }
 }

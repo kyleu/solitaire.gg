@@ -33,7 +33,11 @@ object CardTweens {
         var targetY = y - (card.height * 0.05)
         var yTween = card.game.add.tween(card)
         yTween.to(js.Dynamic.literal("y" -> targetY), time * 0.5, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
-        yTween.to(js.Dynamic.literal("y" -> y), time * 0.5, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
+        PhaserUtils.addToSignal(yTween.onComplete, {
+          var yTween2 = card.game.add.tween(card)
+          yTween2.to(js.Dynamic.literal("y" -> y), time * 0.5, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
+          yTween2.start()
+        })
         yTween.start()
       } else {
         card.game.add.tween(card).to(js.Dynamic.literal("y" -> y), time.toDouble, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)

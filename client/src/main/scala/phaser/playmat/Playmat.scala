@@ -1,6 +1,7 @@
 package phaser.playmat
 
 import com.definitelyscala.phaser.Group
+import models.GameWon
 import models.pile.set.PileSet
 import phaser.PhaserGame
 import phaser.card.CardSprite
@@ -18,6 +19,7 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
   var h: Double = 0.0
 
   private[this] var cards = Map.empty[Int, (CardSprite, PileGroup, Int)]
+  def getCardSprite(id: Int) = cards(id)._1
   def getCards = cards.values.toSeq
   def setCards(c: Map[Int, (CardSprite, PileGroup, Int)]) = cards = c
 
@@ -32,7 +34,7 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
   private[this] val piles = collection.mutable.HashMap.empty[String, PileGroup]
 
   def getPiles = piles
-  def getPile(id: String) = piles.getOrElse(id, throw new IllegalStateException(s"Pile group [$id] not found."))
+  def getPileGroup(id: String) = piles.getOrElse(id, throw new IllegalStateException(s"Pile group [$id] not found."))
 
   def addPile(pileGroup: PileGroup) = {
     piles(pileGroup.id) = pileGroup
@@ -49,4 +51,7 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
     }
     phaser.initialized = true
   }
+
+  def win(gw: GameWon) = ???
+  def lose() = ???
 }

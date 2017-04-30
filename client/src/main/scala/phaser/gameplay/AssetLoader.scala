@@ -22,7 +22,7 @@ object AssetLoader {
 
     pileSets.foreach { pileSet =>
       pileSet.piles.foreach { pile =>
-        val pileObj = g.getPlaymat.getPile(pile.id)
+        val pileObj = g.getPlaymat.getPileGroup(pile.id)
         pile.cards.zipWithIndex.foreach { x =>
           val (card, cardIndex) = x
           var cardObj = new CardSprite(g, card, 0, 0)
