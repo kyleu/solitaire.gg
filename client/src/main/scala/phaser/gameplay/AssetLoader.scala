@@ -25,7 +25,9 @@ object AssetLoader {
         val pileObj = g.getPlaymat.getPileGroup(pile.id)
         pile.cards.zipWithIndex.foreach { x =>
           val (card, cardIndex) = x
-          val cardObj = new CardSprite(g, card.id, card.r, card.s, card.u, 0, 0)
+          var initialX = (g.width / 2) / g.getPlaymat.scale.x
+          var initialY = g.height / g.getPlaymat.scale.y
+          val cardObj = new CardSprite(g, card.id, card.r, card.s, card.u, initialX.toInt, initialY.toInt)
           cards(card.id) = (cardObj, pileObj, cardIndex)
         }
       }

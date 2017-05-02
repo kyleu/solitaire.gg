@@ -24,7 +24,7 @@ object CardTweens {
         if (emitWhenComplete) {
           card.phaser.getPlaymat.emitter.emitFor(card)
         }
-        // TODO card.width = card.originalWidth;
+        card.width = card.originalWidth
       })
       xTween.start()
 

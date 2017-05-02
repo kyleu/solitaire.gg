@@ -7,7 +7,7 @@ class PlaymatEmitter(playmat: Playmat) {
   val suitEmitter = Seq(makeEmitter(0), makeEmitter(1), makeEmitter(2), makeEmitter(3))
 
   def makeEmitter(frame: Int) = {
-    var ret = new Emitter(playmat.game, 0, 0, 50)
+    val ret = new Emitter(playmat.game, 0, 0, 50)
     ret.makeParticles("card-suits", frame)
     ret.gravity = 0
     ret.minParticleSpeed.setTo(-400, -400)
@@ -19,7 +19,7 @@ class PlaymatEmitter(playmat: Playmat) {
   }
 
   def emitFor(card: CardSprite) = {
-    var e = this.suitEmitter(card.suit.index)
+    val e = this.suitEmitter(card.getSuit.index)
     e.emitX = card.x
     e.emitY = card.y
     e.start(explode = true, 1000, 0, 40)

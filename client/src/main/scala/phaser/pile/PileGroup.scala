@@ -73,7 +73,7 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
 
   def canDragFrom(sprite: CardSprite) = {
     val stripe = pile.cards.drop(sprite.pileIndex)
-    pile.canDragFrom(stripe, phaser.gameplay.getState)
+    pile.canDragFrom(stripe, phaser.gameplay.services.state)
   }
 
   def startDrag(card: CardSprite, p: Pointer) = {

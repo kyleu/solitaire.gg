@@ -18,7 +18,7 @@ object LayoutDimensions {
         }
       case "reserve" | "tableau" =>
         def len(pile: Pile) = {
-          var cardsShown = pile.options.cardsShown.getOrElse(0)
+          val cardsShown = pile.options.cardsShown.getOrElse(0)
           if (cardsShown > 0 && cardsShown < pile.cards.length) {
             cardsShown
           } else {

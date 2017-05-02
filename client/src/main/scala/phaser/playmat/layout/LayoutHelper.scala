@@ -2,11 +2,11 @@ package phaser.playmat.layout
 
 import models.pile.set.PileSet
 
-object Layout {
+class LayoutHelper(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) {
   var margin = 0.7
   var padding = 0.2
 
-  def calculateLayout(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) = {
+  def calculate() = {
     val locations = collection.mutable.HashMap.empty[String, (Double, Double)]
     var xOffset = margin
     var yOffset = 0.6
@@ -17,9 +17,7 @@ object Layout {
     var currentDivisor = 0
 
     def newRow() = {
-      if (xOffset > maxWidth) {
-        maxWidth = xOffset
-      }
+      if (xOffset > maxWidth) { maxWidth = xOffset }
       xOffset = margin
       yOffset += currentRowMaxHeight
       currentRowMaxHeight = 1
@@ -47,7 +45,7 @@ object Layout {
         case _ =>
           val ps = pileSet.getOrElse(throw new IllegalStateException(s"Unable to find set matching [$c]"))
           remainingPileSets = remainingPileSets.filterNot(_ == ps)
-          // TODO ps.position = (xOffset - 0.5, yOffset - 0.5)
+          //ps.position = (xOffset - 0.5, yOffset - 0.5)
           var pileSetDimensions = LayoutDimensions.getDimensions(ps, currentDivisor.toDouble)
           if (!ps.visible) { // Hide this pile
             ps.piles.zipWithIndex.foreach { p =>
@@ -60,12 +58,12 @@ object Layout {
             if (ps.behavior == "pyramid") {
               var currentRow = 1
               var rowCounter = 0
-              // TODO xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding)
+              //xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding)
               ps.piles.foreach { pile =>
                 if (rowCounter == currentRow) {
                   currentRow += 1
                   rowCounter -= rowCounter
-                  // TODO xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding)
+                  //xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding)
                 }
 
                 locations(pile.id) = (xOffset, yOffset + ((currentRow - 1) * 0.5))

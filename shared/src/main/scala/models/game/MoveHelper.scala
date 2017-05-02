@@ -1,8 +1,9 @@
 package models.game
 
 import models.PossibleMove
+import models.rules.GameRules
 
-class MoveHelper(gs: GameState, postMove: () => Unit) {
+class MoveHelper(gs: GameState, gr: GameRules, postMove: () => Unit) {
   protected[this] var moveCount = 0
   protected[this] var firstMoveMade: Option[Long] = None
   protected[this] var lastMoveMade: Option[Long] = None

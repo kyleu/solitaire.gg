@@ -59,8 +59,5 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
     state.start("initialState", clearWorld = false, clearCache = false)
   }
 
-  def sendMove(msg: RequestMessage) = {
-    utils.Logging.info(s"Sending [$msg].")
-    gameplay.getMessageHandler.handle(DataHelper.deviceId, msg)
-  }
+  def sendMove(msg: RequestMessage) = gameplay.services.requests.handle(DataHelper.deviceId, msg)
 }

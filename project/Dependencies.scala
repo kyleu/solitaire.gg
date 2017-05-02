@@ -63,24 +63,24 @@ object Dependencies {
 
   object ScalaJS {
     val jQueryVersion = "0.9.1"
-    val scalaTagsVersion = "0.6.2"
+    val scalaTagsVersion = "0.6.5"
     val domVersion = "0.9.1"
     val definitelyScalaVersion = "1.0.0"
   }
 
   object Utils {
-    private[this] val version = "6.42.0"
+    private[this] val version = "6.43.0"
     val core = "com.twitter" %% "util-core" % version
     val collection = "com.twitter" %% "util-collection" % version
 
-    val enumeratumVersion = "1.5.10"
+    val enumeratumVersion = "1.5.11"
     val enumeratum = "com.beachape" %% "enumeratum-upickle" % enumeratumVersion
 
     val scapegoatVersion = "1.3.0"
   }
 
   object Testing {
-    val gatlingVersion = "2.2.4"
+    val gatlingVersion = "2.2.5"
     val gatlingCore = "io.gatling" % "gatling-test-framework" % gatlingVersion % "test"
     val gatlingCharts = "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test"
   }

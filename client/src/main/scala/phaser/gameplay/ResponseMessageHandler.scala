@@ -41,13 +41,6 @@ class ResponseMessageHandler(g: PhaserGame) {
 
   private[this] def cardRevealed(cr: CardRevealed) = {
     val existing = g.getPlaymat.getCardSprite(cr.card.id)
-    var wasFaceUp = existing.faceUp
-    existing.rank = cr.card.r
-    existing.suit = cr.card.s
-    if (cr.card.u && (!wasFaceUp)) {
-      existing.turnFaceUp()
-    } else {
-      utils.Logging.warn(s"Reveal received for already revealed card [${cr.card}].")
-    }
+    existing.reveal(cr.card.r, cr.card.s, cr.card.u)
   }
 }

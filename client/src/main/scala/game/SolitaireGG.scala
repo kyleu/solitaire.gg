@@ -73,7 +73,7 @@ class SolitaireGG(val debug: Boolean) {
     ag.state.addPlayer(DataHelper.deviceId, "Offline Player", autoFlipOption = /* TODO */ true)
     InitialMoves.performInitialMoves(ag.rules, ag.state)
     game = Some(ag)
-    phaser.gameplay.start(ag.id, ag.state)
+    phaser.gameplay.start(ag.id, ag.state.view(DataHelper.deviceId))
   }
 
   def onPhaserLoadComplete(): Unit = {
