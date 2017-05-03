@@ -1,8 +1,8 @@
-package models.ui
+package utils.web
 
 import scala.util.Random
 
-object Colors {
+object WebColors {
   val all = Seq(
     "red" -> "f44336",
     "maroon" -> "e91e63",

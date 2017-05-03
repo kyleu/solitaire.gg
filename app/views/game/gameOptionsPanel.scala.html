@@ -59,7 +59,7 @@
 
   <div id="color-list" class="options-list">
     <div class="options-label">@Messages("options.background.color")</div>
-    <div class="game-options">@for(color <- ui.Colors.all) {
+    <div class="game-options">@for(color <- utils.web.WebColors.all) {
         <div class="game-option" data-option-class="background-color" data-option-value="@color._1"><div class="background-@color._1"></div></div>}
     </div>
   </div>

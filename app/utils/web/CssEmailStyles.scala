@@ -1,9 +1,7 @@
 package utils.web
 
-import models.ui.Colors
-
 case class CssEmailStyles(colorId: String) {
-  val colorHex = Colors.allById(colorId)
+  val colorHex = WebColors.allById(colorId)
   val alignRight = "text-align: right;"
 
   val body = s"background-color: #$colorHex; text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;"
