@@ -1,13 +1,14 @@
 package models.rules
 
+import enumeratum._
 import models.game.GameState
 import models.pile.Pile
 
-sealed trait VictoryCondition {
+sealed trait VictoryCondition extends EnumEntry {
   def check(rules: GameRules, gs: GameState): Boolean
 }
 
-object VictoryCondition {
+object VictoryCondition extends Enum[VictoryCondition] {
   val default = AllOnFoundation
 
   case object AllOnFoundation extends VictoryCondition {
@@ -52,4 +53,5 @@ object VictoryCondition {
       allTableauSorted && eligibleEmpty
     }
   }
+  override val values = findValues
 }

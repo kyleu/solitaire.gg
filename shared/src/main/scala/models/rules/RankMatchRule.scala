@@ -1,12 +1,13 @@
 package models.rules
 
+import enumeratum._
 import models.card.Rank
 
-sealed trait RankMatchRule {
+sealed trait RankMatchRule extends EnumEntry {
   def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean): Boolean
 }
 
-object RankMatchRule {
+object RankMatchRule extends Enum[RankMatchRule] {
   private[this] def upBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
     val highRank = lowRank.previous
     val target = (0 until i).foldLeft[Rank](l)((rank, i) => {
@@ -83,4 +84,6 @@ object RankMatchRule {
   case object Any extends RankMatchRule {
     override def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = true
   }
+
+  override val values = findValues
 }

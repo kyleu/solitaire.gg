@@ -1,7 +1,6 @@
 package models.rules.impl
 
-import models.card.{Red, Black}
-
+import models.card.Color
 import models.rules._
 
 /**
@@ -39,7 +38,7 @@ object AlexanderTheGreat extends GameRules(
     FoundationRules(
       name = "Red Foundation",
       numPiles = 2,
-      initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(Red)),
+      initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(Color.Red)),
       initialCards = 2,
       autoMoveCards = true
     ),
@@ -48,7 +47,7 @@ object AlexanderTheGreat extends GameRules(
       setNumber = 1,
       numPiles = 2,
       lowRank = FoundationLowRank.DeckHighRank,
-      initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(Black)),
+      initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(Color.Black)),
       initialCards = 2,
       rankMatchRule = RankMatchRule.Down,
       autoMoveCards = true

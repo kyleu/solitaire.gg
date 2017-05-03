@@ -1,15 +1,18 @@
 package models.rules
 
-sealed trait TableauFaceDownCards
-object TableauFaceDownCards {
+import enumeratum._
+
+sealed trait TableauFaceDownCards extends EnumEntry
+object TableauFaceDownCards extends Enum[TableauFaceDownCards] {
   case class Count(n: Int) extends TableauFaceDownCards
   case object AllButOne extends TableauFaceDownCards
   case object EvenNumbered extends TableauFaceDownCards
   case object OddNumbered extends TableauFaceDownCards
+  override val values = findValues
 }
 
-sealed trait TableauAutoFillEmptyFrom
-object TableauAutoFillEmptyFrom {
+sealed trait TableauAutoFillEmptyFrom extends EnumEntry
+object TableauAutoFillEmptyFrom extends Enum[TableauAutoFillEmptyFrom] {
   case object Nowhere extends TableauAutoFillEmptyFrom
   case object Reserve extends TableauAutoFillEmptyFrom
   case object Stock extends TableauAutoFillEmptyFrom
@@ -17,10 +20,11 @@ object TableauAutoFillEmptyFrom {
   case object WasteThenStock extends TableauAutoFillEmptyFrom
   case object StockThenWaste extends TableauAutoFillEmptyFrom
   case object NextPile extends TableauAutoFillEmptyFrom
+  override val values = findValues
 }
 
-sealed trait PileAction
-object PileAction {
+sealed trait PileAction extends EnumEntry
+object PileAction extends Enum[PileAction] {
   case object None extends PileAction
   case object MoveKingsToBottom extends PileAction
   case object MoveToFoundation extends PileAction
@@ -28,6 +32,7 @@ object PileAction {
   case object MoveToEmptyFoundation extends PileAction
   case object MoveToEmptyFoundationAndReplace extends PileAction
   case object LimitToTwoJacks extends PileAction
+  override val values = findValues
 }
 
 case class TableauRules(

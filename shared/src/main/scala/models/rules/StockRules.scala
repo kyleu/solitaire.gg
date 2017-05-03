@@ -1,7 +1,9 @@
 package models.rules
 
-sealed trait StockDealTo
-object StockDealTo {
+import enumeratum._
+
+sealed trait StockDealTo extends EnumEntry
+object StockDealTo extends Enum[StockDealTo] {
   case object Waste extends StockDealTo
   case object WasteOrPairManually extends StockDealTo
   case object Tableau extends StockDealTo
@@ -13,12 +15,14 @@ object StockDealTo {
   case object Reserve extends StockDealTo
   case object Manually extends StockDealTo
   case object Never extends StockDealTo
+  override val values = findValues
 }
 
-sealed trait StockCardsDealt
-object StockCardsDealt {
+sealed trait StockCardsDealt extends EnumEntry
+object StockCardsDealt extends Enum[StockCardsDealt] {
   case class Count(n: Int) extends StockCardsDealt
   case object FewerEachTime extends StockCardsDealt
+  override val values = findValues
 }
 
 case class StockRules(

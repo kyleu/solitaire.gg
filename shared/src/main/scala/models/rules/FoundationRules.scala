@@ -1,29 +1,33 @@
 package models.rules
 
-import models.card.{Rank, Suit, Color}
+import enumeratum._
+import models.card.{Color, Rank, Suit}
 
-sealed trait FoundationInitialCardRestriction
-object FoundationInitialCardRestriction {
+sealed trait FoundationInitialCardRestriction extends EnumEntry
+object FoundationInitialCardRestriction extends Enum[FoundationInitialCardRestriction] {
   case object UniqueColors extends FoundationInitialCardRestriction
   case object UniqueSuits extends FoundationInitialCardRestriction
   case class SpecificColorUniqueSuits(c: Color) extends FoundationInitialCardRestriction
   case class SpecificSuit(s: Suit) extends FoundationInitialCardRestriction
+  override val values = findValues
 }
 
-sealed trait FoundationLowRank
-object FoundationLowRank {
+sealed trait FoundationLowRank extends EnumEntry
+object FoundationLowRank extends Enum[FoundationLowRank] {
   case object AnyCard extends FoundationLowRank
   case object DeckLowRank extends FoundationLowRank
   case object DeckHighRank extends FoundationLowRank
   case object Ascending extends FoundationLowRank
   case class SpecificRank(r: Rank) extends FoundationLowRank
+  override val values = findValues
 }
 
-sealed trait FoundationCanMoveFrom
-object FoundationCanMoveFrom {
+sealed trait FoundationCanMoveFrom extends EnumEntry
+object FoundationCanMoveFrom extends Enum[FoundationCanMoveFrom] {
   case object Never extends FoundationCanMoveFrom
   case object Always extends FoundationCanMoveFrom
   case object EmptyStock extends FoundationCanMoveFrom
+  override val values = findValues
 }
 
 case class FoundationRules(

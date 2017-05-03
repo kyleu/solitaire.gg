@@ -1,12 +1,13 @@
 package models.rules
 
+import enumeratum._
 import models.card.Suit
 
-sealed trait SuitMatchRule {
+sealed trait SuitMatchRule extends EnumEntry {
   def check(l: Suit, r: Suit): Boolean
 }
 
-object SuitMatchRule {
+object SuitMatchRule extends Enum[SuitMatchRule] {
   case object None extends SuitMatchRule {
     override def check(l: Suit, r: Suit) = false
   }
@@ -25,4 +26,5 @@ object SuitMatchRule {
   case object Any extends SuitMatchRule {
     override def check(l: Suit, r: Suit) = true
   }
+  override val values = findValues
 }

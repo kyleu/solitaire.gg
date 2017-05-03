@@ -1,9 +1,12 @@
 package models.rules
 
-sealed trait WastePlayableCards
-object WastePlayableCards {
+import enumeratum._
+
+sealed trait WastePlayableCards extends EnumEntry
+object WastePlayableCards extends Enum[WastePlayableCards] {
   case object TopCardOnly extends WastePlayableCards
   case object All extends WastePlayableCards
+  override val values = findValues
 }
 
 case class WasteRules(

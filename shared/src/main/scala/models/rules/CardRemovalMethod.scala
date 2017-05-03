@@ -1,13 +1,14 @@
 package models.rules
 
+import enumeratum._
 import models.card.{Card, Rank}
 
-sealed trait CardRemovalMethod {
+sealed trait CardRemovalMethod extends EnumEntry {
   def canRemove(l: Card, r: Card): Boolean = false
   def canSelect(c: Card): Boolean = false
 }
 
-object CardRemovalMethod {
+object CardRemovalMethod extends Enum[CardRemovalMethod] {
   val default = BuildSequencesOnFoundation
 
   case object BuildSequencesOnFoundation extends CardRemovalMethod
@@ -93,4 +94,6 @@ object CardRemovalMethod {
     val totalValue = lValue + rValue
     totalValue == i
   }
+
+  override val values = findValues
 }
