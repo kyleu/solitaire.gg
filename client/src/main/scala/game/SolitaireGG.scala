@@ -3,7 +3,8 @@ package game
 import java.util.UUID
 
 import client.user.DataHelper
-import input.{GamepadHandler, KeyboardHandler}
+import input.{GamepadHandler, InputMessage, KeyboardHandler}
+import models.game.GameStateDebug
 import models.rules.moves.InitialMoves
 import msg.SocketMessage
 import navigation.{MenuService, NavigationService}
@@ -91,5 +92,8 @@ class SolitaireGG(val debug: Boolean) {
     }
   }
 
-  def onInput(i: String) = utils.Logging.info(s"Input message [$i].")
+  def onInput(i: InputMessage) = i match {
+    case InputMessage.Sandbox => utils.Logging.info(GameStateDebug.toString(phaser.gameplay.services.state))
+    case _ => utils.Logging.info(s"Unhandled input message [$i].")
+  }
 }
