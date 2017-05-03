@@ -29,7 +29,7 @@ object PhaserGame {
 class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   var initialized = false
 
-  val gameplay = new Gameplay(this, gg.settings.getSettings, gg.onPhaserLoadComplete)
+  val gameplay = new Gameplay(this, gg.settings.getSettings, gg.onPhaserLoadComplete, gg.debug)
 
   var possibleMoves: Seq[PossibleMove] = Nil
 
@@ -59,5 +59,8 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
     state.start("initialState", clearWorld = false, clearCache = false)
   }
 
-  def sendMove(msg: RequestMessage) = gameplay.services.requests.handle(DataHelper.deviceId, msg)
+  def sendMove(msg: RequestMessage) = {
+    if (gg.debug) { utils.Logging.info(s"Sending request message [$msg].") }
+    gameplay.services.requests.handle(DataHelper.deviceId, msg)
+  }
 }

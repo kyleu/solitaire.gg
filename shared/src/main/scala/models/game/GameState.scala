@@ -17,7 +17,6 @@ case class GameState(
     var stockCounter: Int = 0,
     var players: Seq[GamePlayer] = Nil
 ) extends GameStateHelper {
-
   protected[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[Int]]
   val cardsById = collection.mutable.HashMap[Int, Card]()
 
@@ -38,20 +37,27 @@ case class GameState(
       playerKnownIds(userId) = collection.mutable.HashSet.empty
   }
 
+  def refreshCaches() = {
+    cardsById.clear()
+    pileSets.foreach(_.piles.foreach(_.cards.foreach(c => cardsById(c.id) = c)))
+  }
+
   def setAutoFlipOption(autoFlip: Boolean) = players = players.map(p => p.copy(autoFlipOption = autoFlip))
 
-  def getCard(idx: Int) = piles.flatMap(_.cards.find(_.id == idx)).headOption.getOrElse(throw new IllegalStateException(s"Invalid card [$idx]."))
+  def getCard(id: Int) = piles.flatMap(_.cards.find(_.id == id)).headOption.getOrElse(throw new IllegalStateException(s"Invalid card [$id]."))
 
   def view(userId: UUID) = {
     val knownCards = playerKnownIds(userId)
-    this.copy(
+    val ret = this.copy(
       deck = deck.copy(cards = deck.cards.map(c => if (knownCards.contains(c.id)) { c } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) })),
       pileSets = pileSets.map { ps =>
         PileSet(ps.behavior, ps.piles.map(p => p.copy(cards = p.cards.map { c =>
-          if (knownCards.contains(c.id)) { c } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) }
+          if (knownCards.contains(c.id)) { c.copy() } else { c.copy(r = Rank.Unknown, s = Suit.Unknown) }
         })), visible = ps.visible)
       }
     )
+    ret.refreshCaches()
+    ret
   }
 
   def calculateScore(moveCount: Int, undoCount: Int, elapsed: Int) = {

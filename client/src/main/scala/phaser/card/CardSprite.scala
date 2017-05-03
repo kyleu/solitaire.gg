@@ -3,7 +3,7 @@ package phaser.card
 import com.definitelyscala.phaser.{Point, Pointer, Sprite}
 import models.card.{Rank, Suit}
 import phaser.PhaserGame
-import phaser.pile.PileGroup
+import phaser.pile.{PileGroup, PileHelpers}
 import utils.NullUtils
 
 import scala.scalajs.js
@@ -15,7 +15,7 @@ class CardSprite(
     val id: Int,
     initialRank: Rank,
     initialSuit: Suit,
-    var faceUp: Boolean = false,
+    initialFaceUp: Boolean = false,
     initialX: Int,
     initialY: Int
 ) extends Sprite(phaser, initialX.toDouble, initialY.toDouble) {
@@ -23,6 +23,8 @@ class CardSprite(
   def getRank = rank
   private[this] var suit = initialSuit
   def getSuit = suit
+  private[this] var faceUp = initialFaceUp
+  def isFaceUp = faceUp
 
   var anchorPointX = 0.0
   var anchorPointY = 0.0
@@ -79,8 +81,8 @@ class CardSprite(
   def onInputDown(e: Any, p: Pointer) = {
     if (p.button == NullUtils.inst || p.button.toString.toInt == 0) {
       if (!tweening) {
-        if (pileGroup.canDragFrom(this)) {
-          pileGroup.startDrag(this, p)
+        if (PileHelpers.canDragFrom(pileGroup, this)) {
+          PileHelpers.startDrag(pileGroup, this, p)
         }
       }
     }

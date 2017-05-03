@@ -1,6 +1,7 @@
 package phaser.pile
 
 import com.definitelyscala.phaser.{Group, Pointer, Sprite}
+import models.card.Card
 import models.pile.Pile
 import models.{MoveCards, SelectPile}
 import phaser.PhaserGame
@@ -41,17 +42,17 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
   var intersectWidth = empty.width
   var intersectHeight = empty.height
 
-  def addCard(card: CardSprite, cardPileIndex: Option[Int]) = {
-    card.pileOption = Some(this)
-    card.pileIndex = cardPileIndex.getOrElse(cards.length)
-    cards = (cards :+ card).sortBy(_.pileIndex)
+  def addCard(sprite: CardSprite, cardPileIndex: Option[Int]) = {
+    sprite.pileOption = Some(this)
+    sprite.pileIndex = cardPileIndex.getOrElse(cards.length)
+    cards = (cards :+ sprite).sortBy(_.pileIndex)
 
-    PileLayout.cardAdded(this, card)
+    PileLayout.cardAdded(this, sprite)
 
     if (phaser.initialized) {
       phaser.getPlaymat.resizer.refreshLayout()
     } else {
-      phaser.getPlaymat.add(card)
+      phaser.getPlaymat.add(sprite)
     }
   }
 
@@ -69,42 +70,5 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
     }
 
     PileLayout.cardRemoved(this, card)
-  }
-
-  def canDragFrom(sprite: CardSprite) = {
-    val stripe = pile.cards.drop(sprite.pileIndex)
-    pile.canDragFrom(stripe, phaser.gameplay.services.state)
-  }
-
-  def startDrag(card: CardSprite, p: Pointer) = {
-    dragCards = cards.drop(card.pileIndex)
-    dragCards.zipWithIndex.foreach { x =>
-      val (c, idx) = x
-      CardTweens.tweenPickUp(c)
-      c.startDrag(p, idx)
-    }
-  }
-
-  def endDrag() = {
-    val dropTarget = PileHelpers.getDropTarget(this)
-
-    println(dropTarget)
-
-    dropTarget match {
-      case None => dragCards.foreach { cancelCard =>
-        cancelCard.dragIndex = None
-        cancelCard.cancelDrag()
-      }
-      case Some(dt) =>
-        // console.log('Moving [' + this.dragCards + '] to [' + dropTarget.id + '].');
-        dragCards.foreach { moveCard =>
-          moveCard.dragIndex = None
-        }
-        val cardIds = dragCards.map(_.id)
-        val dropId = dropTarget.map(_.pile.id).getOrElse("?")
-        val msg = MoveCards(cardIds, pile.id, dropId, auto = false)
-        phaser.sendMove(msg)
-    }
-    dragCards = Seq.empty
   }
 }

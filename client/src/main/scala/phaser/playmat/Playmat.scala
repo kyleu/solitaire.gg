@@ -33,7 +33,7 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
 
   private[this] val piles = collection.mutable.HashMap.empty[String, PileGroup]
 
-  def getPiles = piles
+  def getPileGroups = piles
   def getPileGroup(id: String) = piles.getOrElse(id, throw new IllegalStateException(s"Pile group [$id] not found."))
 
   def addPile(pileGroup: PileGroup) = {

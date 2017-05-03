@@ -39,7 +39,7 @@ object PileHelpers {
     var dropTarget: Option[PileGroup] = None
     var dropDistance = 65536
 
-    pileGroup.phaser.getPlaymat.getPiles.values.foreach { p =>
+    pileGroup.phaser.getPlaymat.getPileGroups.values.foreach { p =>
       if (p.pile.id != pileGroup.id) {
         var overlapX = 0
         if ((minX >= p.x && minX <= p.x + p.intersectWidth) || (maxX >= p.x && maxX <= p.x + p.intersectWidth)) {
@@ -63,6 +63,20 @@ object PileHelpers {
   def dragSlice(pile: PileGroup, card: CardSprite, p: Pointer) {
     pile.dragCards = pile.cards.drop(card.pileIndex)
     pile.dragCards.zipWithIndex.foreach { x =>
+      val (c, idx) = x
+      CardTweens.tweenPickUp(c)
+      c.startDrag(p, idx)
+    }
+  }
+
+  def canDragFrom(group: PileGroup, sprite: CardSprite) = {
+    val stripe = group.pile.cards.drop(sprite.pileIndex)
+    group.pile.canDragFrom(stripe, group.phaser.gameplay.services.state)
+  }
+
+  def startDrag(group: PileGroup, sprite: CardSprite, p: Pointer) = {
+    group.dragCards = group.cards.drop(sprite.pileIndex)
+    group.dragCards.zipWithIndex.foreach { x =>
       val (c, idx) = x
       CardTweens.tweenPickUp(c)
       c.startDrag(p, idx)

@@ -53,7 +53,8 @@ object PileLayout {
     if (pileGroup.cards.length > pileGroup.pile.options.cardsShown.getOrElse(0)) {
       additionalWidth = pileGroup.pile.options.cardsShown.getOrElse(0) - 1
     }
-    pileGroup.intersectWidth = pileGroup.phaser.getSettings.cardSet.cardWidth.toDouble + (additionalWidth * pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset)
+    val additional = additionalWidth * pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset
+    pileGroup.intersectWidth = pileGroup.phaser.getSettings.cardSet.cardWidth.toDouble + additional
   }
 
   def cardAdded(pileGroup: PileGroup, card: CardSprite) {
@@ -61,17 +62,19 @@ object PileLayout {
       CardTweens.tweenRemove(card)
       card.phaser.getPlaymat.emitter.emitFor(card)
     } else {
-      var emitFor = pileGroup.pile.pileSet.exists(_.behavior == "foundation")
+      val emitFor = pileGroup.pile.pileSet.exists(_.behavior == "foundation")
       if (pileGroup.pile.options.cardsShown.isEmpty) {
-        var offsetCount = if (pileGroup.cards.isEmpty) { 0 } else { pileGroup.cards.length - 1 }
+        val offsetCount = if (pileGroup.cards.isEmpty) { 0 } else { pileGroup.cards.length - 1 }
         if (pileGroup.pile.options.direction.contains("d")) {
-          var newY = pileGroup.y + (offsetCount * pileGroup.phaser.getSettings.cardSet.cardVerticalOffset)
+          val newY = pileGroup.y + (offsetCount * pileGroup.phaser.getSettings.cardSet.cardVerticalOffset)
           CardTweens.tweenCardTo(card, pileGroup.x, newY, 0, emitFor)
-          pileGroup.intersectHeight = pileGroup.phaser.getSettings.cardSet.cardHeight.toDouble + (offsetCount * pileGroup.phaser.getSettings.cardSet.cardVerticalOffset)
+          val offsetWidth = offsetCount * pileGroup.phaser.getSettings.cardSet.cardVerticalOffset
+          pileGroup.intersectHeight = pileGroup.phaser.getSettings.cardSet.cardHeight.toDouble + offsetWidth
         } else if (pileGroup.pile.options.direction.contains("r")) {
-          var newX = pileGroup.y + ((pileGroup.cards.length - 1) * pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset)
+          val newX = pileGroup.y + ((pileGroup.cards.length - 1) * pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset)
           CardTweens.tweenCardTo(card, newX, pileGroup.y, 0, emitFor)
-          pileGroup.intersectWidth = pileGroup.phaser.getSettings.cardSet.cardWidth.toDouble + (offsetCount * pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset)
+          val offsetWidth = offsetCount * pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset
+          pileGroup.intersectWidth = pileGroup.phaser.getSettings.cardSet.cardWidth.toDouble + offsetWidth
         } else {
           throw new IllegalStateException(s"Invalid direction [${pileGroup.pile.options.direction.getOrElse("?")}].")
         }
@@ -88,11 +91,13 @@ object PileLayout {
       CardTweens.tweenRestore(card)
     } else {
       if (pileGroup.pile.options.cardsShown.isEmpty) {
-        var offsetCount = if (pileGroup.cards.isEmpty) { 0 } else { pileGroup.cards.length - 1 }
+        val offsetCount = if (pileGroup.cards.isEmpty) { 0 } else { pileGroup.cards.length - 1 }
         if (pileGroup.pile.options.direction.contains("d")) {
-          pileGroup.intersectHeight = pileGroup.phaser.getSettings.cardSet.cardHeight.toDouble + (offsetCount * pileGroup.phaser.getSettings.cardSet.cardVerticalOffset)
+          val offsetWidth = offsetCount * pileGroup.phaser.getSettings.cardSet.cardVerticalOffset
+          pileGroup.intersectHeight = pileGroup.phaser.getSettings.cardSet.cardHeight.toDouble + offsetWidth
         } else if (pileGroup.pile.options.direction.contains("r")) {
-          pileGroup.intersectWidth = pileGroup.phaser.getSettings.cardSet.cardWidth.toDouble + (offsetCount * pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset)
+          val offsetWidth = offsetCount * pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset
+          pileGroup.intersectWidth = pileGroup.phaser.getSettings.cardSet.cardWidth.toDouble + offsetWidth
         } else {
           throw new IllegalStateException(s"Invalid direction [${pileGroup.pile.options.direction.getOrElse("?")}].")
         }

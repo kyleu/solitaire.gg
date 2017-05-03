@@ -31,17 +31,16 @@ object Pile {
 case class Pile(id: String, options: PileOptions, cards: collection.mutable.ArrayBuffer[Card] = ArrayBuffer.empty[Card]) {
   var pileSet: Option[PileSet] = None
 
-  def addCards(cs: Seq[Card]) = cs.foreach(addCard)
+  def addCard(c: Card) = cards += c
 
-  def addCard(c: Card) = {
-    cards += c
-  }
+  def removeCardById(id: Int) = cards.find(_.id == id).map(removeCard).getOrElse(throw new IllegalStateException(s"This pile does not contain card [$id]."))
 
   def removeCard(card: Card) = {
     if (!cards.contains(card)) {
       throw new IllegalArgumentException(s"Provided card [$card] is not included in pile [$id].")
     }
     cards -= card
+    card
   }
 
   def canSelectCard(card: Card, gameState: GameState) = options.selectCardConstraint.exists(_.f(this, this, Seq(card), gameState))

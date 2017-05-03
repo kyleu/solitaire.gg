@@ -1,9 +1,13 @@
 package models.card
 
+import scala.util.Random
+
 object Deck {
-  def freshCards(numDecks: Int, ranks: Seq[Rank], suits: Seq[Suit]) = (0 until numDecks).flatMap { i =>
-    suits.flatMap(s => ranks.reverse.map(s -> _))
-  }.zipWithIndex.map(x => Card(id = x._2, r = x._1._2, s = x._1._1))
+  def freshCards(numDecks: Int, ranks: Seq[Rank], suits: Seq[Suit]) = {
+    val cards = (0 until numDecks).flatMap(i => suits.flatMap(s => ranks.reverse.map(s -> _)))
+    val ids = Random.shuffle(cards.indices.toList)
+    cards.zip(ids).map(x => Card(id = x._2, r = x._1._2, s = x._1._1))
+  }
 }
 
 case class Deck(var cards: Seq[Card], lowRank: Rank, highRank: Rank, originalOrder: Seq[Int]) {
