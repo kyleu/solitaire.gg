@@ -1,4 +1,4 @@
-package phaser.playmat.layout
+package models.layout
 
 import models.pile.set.PileSet
 
@@ -26,7 +26,7 @@ object Layout {
     }
 
     def processCharacter(c: Char) = {
-      val pileSet = c match {
+      val pile = c match {
         case 's' => remainingPileSets.find(_.behavior == "stock")
         case 'w' => remainingPileSets.find(_.behavior == "waste")
         case 'f' => remainingPileSets.find(_.behavior == "foundation")
@@ -45,27 +45,28 @@ object Layout {
         case '4' => currentDivisor = 4
         case '5' => currentDivisor = 5
         case _ =>
-          val ps = pileSet.getOrElse(throw new IllegalStateException(s"Unable to find set matching [$c]"))
-          remainingPileSets = remainingPileSets.filterNot(_ == ps)
-          // TODO ps.position = (xOffset - 0.5, yOffset - 0.5)
-          var pileSetDimensions = LayoutDimensions.getDimensions(ps, currentDivisor.toDouble)
-          if (!ps.visible) { // Hide this pile
-            ps.piles.zipWithIndex.foreach { p =>
+          val pileSet = pile.getOrElse(throw new IllegalStateException(s"Unable to find set matching [$c]"))
+          remainingPileSets = remainingPileSets.filterNot(_ == pileSet)
+          pileSet.position = (xOffset - 0.5) -> (yOffset - 0.5)
+
+          var pileSetDimensions = LayoutDimensions.getDimensions(pileSet, currentDivisor.toDouble)
+          if (!pileSet.visible) { // Hide this pile
+            pileSet.piles.zipWithIndex.foreach { p =>
               locations(p._1.id) = ((p._2 * (1 + padding)) + 0.5, -10)
             }
           } else {
             if (pileSetDimensions._2 > currentRowMaxHeight) {
               currentRowMaxHeight = pileSetDimensions._2
             }
-            if (ps.behavior == "pyramid") {
+            if (pileSet.behavior == "pyramid") {
               var currentRow = 1
               var rowCounter = 0
-              // TODO xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding)
-              ps.piles.foreach { pile =>
+              xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding)
+              pileSet.piles.foreach { pile =>
                 if (rowCounter == currentRow) {
                   currentRow += 1
                   rowCounter -= rowCounter
-                  // TODO xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding)
+                  xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding)
                 }
 
                 locations(pile.id) = (xOffset, yOffset + ((currentRow - 1) * 0.5))
@@ -74,11 +75,11 @@ object Layout {
               }
             } else {
               val originalXOffset = xOffset
-              var groupSize = ps.piles.length
+              var groupSize = pileSet.piles.length
               if (currentDivisor > 0) {
-                groupSize = ps.piles.length / currentDivisor
+                groupSize = pileSet.piles.length / currentDivisor
               }
-              ps.piles.zipWithIndex.foreach { p =>
+              pileSet.piles.zipWithIndex.foreach { p =>
                 if (p._2 > 0 && p._2 % groupSize == 0) {
                   newRow()
                   currentRowMaxHeight = pileSetDimensions._2
@@ -100,5 +101,4 @@ object Layout {
 
     (maxWidth - margin + padding, yOffset - 0.5, locations.toMap)
   }
-
 }

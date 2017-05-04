@@ -2,7 +2,8 @@ package models.game
 
 import java.util.UUID
 
-import models.card.{Suit, Rank, Card, Deck}
+import models.ResponseMessage
+import models.card.{Card, Deck, Rank, Suit}
 import models.pile.set.PileSet
 
 case class GameState(
@@ -14,21 +15,24 @@ case class GameState(
     deck: Deck,
     pileSets: Seq[PileSet],
     layout: String,
-    var stockCounter: Int = 0,
-    var players: Seq[GamePlayer] = Nil
+    var stockCounter: Int = 0
 ) extends GameStateHelper {
+  var players: Seq[GamePlayer] = Nil
+
   protected[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[Int]]
   val cardsById = collection.mutable.HashMap[Int, Card]()
 
   val piles = pileSets.flatMap(_.piles)
   val pilesById = piles.map(p => p.id -> p).toMap
 
+  def apply(msg: ResponseMessage) = GameStateApply.applyMessage(this, msg)
+
   def addPlayer(userId: UUID, name: String, autoFlipOption: Boolean) = players.find(_.userId == userId) match {
     case Some(p) =>
-    //log.info("Reconnecting to game [" + gameId + "] from user [" + name + ": " + userId + "]")
-    // TODO Reconnect
+      //println("Reconnecting to game [" + gameId + "] from user [" + name + ": " + userId + "]")
+      // TODO Reconnect
     case None =>
-      //log.info("Adding player [" + userId + ": " + name + "] to game [" + gameId + "].")
+      //println("Adding player [" + userId + ": " + name + "] to game [" + gameId + "].")
       val playerIndex = playerKnownIds.size
       if (playerIndex == maxPlayers) {
         throw new IllegalArgumentException("Too many players.")

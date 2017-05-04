@@ -1,4 +1,4 @@
-package phaser.playmat.layout
+package models.layout
 
 import models.pile.Pile
 import models.pile.set.PileSet
@@ -44,13 +44,13 @@ object LayoutDimensions {
 
           rowCounter += 1
         }
-        // TODO pileSet.rows = rows
+        pileSet.rows = rows
         ret = (rows * (1 + padding), (rows * 0.5) + 0.5 + padding)
       case _ => // noop
     }
 
-    // TODO pileSet.dimensions = ret
-    // TODO pileSet.divisor = divisor
+    pileSet.dimensions = ret
+    pileSet.divisor = divisor
 
     ret
   }

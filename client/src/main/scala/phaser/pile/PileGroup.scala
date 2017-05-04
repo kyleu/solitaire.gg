@@ -1,17 +1,16 @@
 package phaser.pile
 
 import com.definitelyscala.phaser.{Group, Pointer, Sprite}
-import models.card.Card
+import models.SelectPile
 import models.pile.Pile
-import models.{MoveCards, SelectPile}
 import phaser.PhaserGame
-import phaser.card.{CardSprite, CardTweens}
+import phaser.card.CardSprite
 
 import scala.scalajs.js.annotation.ScalaJSDefined
 
 @ScalaJSDefined
 class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = phaser, parent = phaser.getPlaymat) {
-  this.name = "pile-" + pile.id
+  name = "pile-" + pile.id
 
   var cards = Seq.empty[CardSprite]
   var dragCards = Seq.empty[CardSprite]

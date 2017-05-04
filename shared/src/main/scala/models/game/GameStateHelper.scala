@@ -26,11 +26,11 @@ trait GameStateHelper { this: GameState =>
     addCards(deck.getCards(numCards, reveal), pile, reveal)
   }
 
-  // def revealInPlace(card: Card, player: UUID) = {
-  //   val p = pileSets.flatMap(_.piles).find(_.cards.exists(_.id == card.id)).getOrElse(throw new IllegalStateException(s"No pile with card [$card]."))
-  //   p.cards(p.cards.indexWhere(_.id == card.id)) = card
-  //   revealCardToPlayer(card, player)
-  // }
+  def revealInPlace(card: Card) = {
+    val p = pileSets.flatMap(_.piles).find(_.cards.exists(_.id == card.id)).getOrElse(throw new IllegalStateException(s"No pile with card [$card]."))
+    p.cards(p.cards.indexWhere(_.id == card.id)) = card
+    players.map(_.userId).exists(player => revealCardToPlayer(card, player))
+  }
 
   def revealCardToAll(card: Card) = if (playerKnownIds.keys.exists(p => revealCardToPlayer(card, p))) {
     Seq(CardRevealed(card))

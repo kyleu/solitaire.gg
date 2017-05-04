@@ -2,8 +2,9 @@ package phaser.gameplay
 
 import java.util.UUID
 
+import client.user.DataHelper
 import com.definitelyscala.phaser.{PhysicsObj, State}
-import models.PossibleMoves
+import models.{GameWon, PossibleMoves}
 import models.game.{GameState, MoveHelper, RequestMessageHandler, UndoHelper}
 import models.rules.{GameRules, GameRulesSet}
 import phaser.PhaserGame
@@ -35,18 +36,18 @@ class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: 
 
   def checkWinCondition() = services.rules.victoryCondition.check(services.rules, services.state)
 
-  private[this] def postMove() = {
-    utils.Logging.info("Post move!")
-    if (!checkWinCondition()) {
-      services.responses.handle(PossibleMoves(services.moves.possibleMoves(), services.undo.historyQueue.size, services.undo.undoneQueue.size))
-    }
+  private[this] def postMove() = if (checkWinCondition()) {
+    utils.Logging.info("Winner!")
+  } else {
+    services.responses.handle(PossibleMoves(services.moves.possibleMoves(), services.undo.historyQueue.size, services.undo.undoneQueue.size))
   }
 
-  def start(id: UUID, state: GameState) = {
+  def start(id: UUID, coreState: GameState) = {
+    val state = coreState.view(DataHelper.deviceId)
     val rules = GameRulesSet.allByIdWithAliases(state.rules)
     val moves = new MoveHelper(state, rules, postMove)
     val responses = new ResponseMessageHandler(g, debug)
-    val requests = new RequestMessageHandler(state, responses.handle, moves.registerMove)
+    val requests = new RequestMessageHandler(coreState, responses.handle, moves.registerMove)
     activeServices = Some(Gameplay.GameServices(state, rules, new UndoHelper(), moves, responses, requests))
 
     val playmat = new Playmat(g, state.pileSets, rules.layout)

@@ -58,7 +58,7 @@ object SelectCardActions {
     src.removeCard(card)
     tgt.addCard(card)
     val msg = CardMoved(card.id, src.id, tgt.id, turn = turn)
-    if (turn.exists(x => x) && !card.u) {
+    if ((turn.isEmpty || turn.exists(x => x)) && !card.u) {
       card.u = true
       gameState.revealCardToAll(card) :+ msg
     } else {

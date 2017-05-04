@@ -1,8 +1,7 @@
-package phaser.playmat.layout
+package phaser.playmat
 
-import com.definitelyscala.phaser.Easing.Easing
 import com.definitelyscala.phaser.Point
-import phaser.playmat.Playmat
+import models.layout.Layout
 import settings.MenuPosition
 
 import scala.scalajs.js
@@ -60,10 +59,10 @@ class PlaymatResizer(p: Playmat) {
 
     if (p.phaser.initialized) {
       val scaleProps = js.Dynamic.literal("x" -> newScale.x, "y" -> newScale.y)
-      p.game.add.tween(p.scale).to(scaleProps, 500, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
+      p.game.add.tween(p.scale).to(scaleProps, 500, "Quad.easeInOut", autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
 
       val posProps = js.Dynamic.literal("x" -> newPosition.x, "y" -> newPosition.y)
-      p.game.add.tween(p.position).to(posProps, 500, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
+      p.game.add.tween(p.position).to(posProps, 500, "Quad.easeInOut", autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
     } else {
       p.scale = newScale
       p.position = newPosition

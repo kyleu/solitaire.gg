@@ -76,5 +76,4 @@ class RequestMessageHandler(gs: GameState, send: (ResponseMessage, Boolean) => U
       send(CardMoveCancelled(cardIds, source), false)
     }
   }
-
 }
