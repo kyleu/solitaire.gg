@@ -20,7 +20,9 @@ class SolitaireController @javax.inject.Inject() (
 ) extends BaseController {
   private[this] implicit val t = new MessageFrameFormatter(app.config.debug).transformer
 
-  def solitaire = req("solitaire") { implicit request =>
+  def start() = startArgs("")
+
+  def startArgs(path: String) = req("solitaire") { implicit request =>
     Future.successful(Ok(views.html.solitaire.solitaire(app.config.debug)))
   }
 
