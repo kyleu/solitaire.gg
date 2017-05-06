@@ -18,10 +18,8 @@ class RequestMessageHandler(gs: GameState, send: (ResponseMessage, Boolean) => U
     case sc: SelectCard => handleSelectCard(player, sc.card, sc.pile, sc.auto)
     case sp: SelectPile => handleSelectPile(player, sp.pile, sp.auto)
     case mc: MoveCards => handleMoveCards(player, mc.cards, mc.src, mc.tgt, mc.auto)
-    case Undo => ??? // handleUndo()
-    case Redo => ??? // handleRedo()
-    case sp: SetPreference => ??? // handleSetPreference(sp.name, sp.value, gs)
-    case di: DebugInfo => ??? // handleDebugInfo(di.data)
+    case Undo => handleUndo()
+    case Redo => handleRedo()
     case _ => throw new IllegalStateException(s"Unhandled request message [$msg].")
   }
 
@@ -75,5 +73,13 @@ class RequestMessageHandler(gs: GameState, send: (ResponseMessage, Boolean) => U
     } else {
       send(CardMoveCancelled(cardIds, source), false)
     }
+  }
+
+  def handleUndo() = {
+    println("UNDO!")
+  }
+
+  def handleRedo() = {
+    println("REDO!")
   }
 }

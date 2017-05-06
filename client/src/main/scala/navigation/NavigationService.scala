@@ -1,58 +1,58 @@
 package navigation
 
-import enumeratum._
-import NavigationService.State
+import org.scalajs.dom
 import org.scalajs.jquery.{jQuery => $}
 
-object NavigationService {
-  sealed abstract class State(val id: String) extends EnumEntry {
-    override def toString = id
-    lazy val element = {
-      val el = $(s"#panel-$id")
-      if (el.length == 0) {
-        throw new IllegalStateException(s"Missing dom element [panel-$id].")
-      }
-      el
-    }
-  }
-
-  object State extends Enum[State] {
-    case object Loading extends State("loading")
-    case object Menu extends State("menu")
-    case object List extends State("list")
-    case object Help extends State("help")
-    case object Game extends State("game")
-    case object Settings extends State("settings")
-    case object Status extends State("status")
-
-    override val values = findValues
-  }
-}
-
-class NavigationService(onStateChange: (State, State) => Unit) {
+class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[String]) => Unit) {
   def initialAction() = {
-    "play" -> "klondike"
+    val args = dom.window.location.pathname.stripPrefix("/beta").stripPrefix("/").split("/").map(_.trim).filter(_.nonEmpty)
+    val state = NavigationState.fromString(args.headOption.getOrElse("menu"))
+    navigate(state, args.drop(1))
   }
 
-  private[this] var currentState: State = State.Loading
+  private[this] var currentState: NavigationState = NavigationState.Loading
   private[this] val delay = 500
   def getState = currentState
 
-  State.values.foreach {
+  NavigationState.values.foreach {
     case s if s != currentState => s.element.hide()
     case _ => // noop
   }
 
-  def navigate(state: State) = if (state == currentState) {
+  def navigate(state: NavigationState, args: Seq[String] = Nil) = if (state == currentState) {
     utils.Logging.warn(s"State transition to self [$currentState].")
   } else {
-    utils.Logging.info(s"State transitioned from [$currentState] to [$state].")
-    onStateChange(currentState, state)
-    if (currentState == State.Loading) {
-      $("#menu-nav").fadeIn(delay)
-    }
+    utils.Logging.info(s"State transitioning from [$currentState] to [$state] with args [${args.mkString(", ")}].")
+    onStateChange(currentState, state, args)
     currentState.element.fadeOut(delay)
     state.element.fadeIn(delay)
     currentState = state
+  }
+
+  private[this] var navPosition: Option[Boolean] = None
+
+  def setNavPosition(shown: Boolean, top: Boolean) = {
+    val b = $("body")
+    val m = $("#menu-nav")
+    navPosition match {
+      case None => if (shown && top) {
+        b.addClass("top-nav")
+        m.fadeIn(delay)
+      } else if (shown && !top) {
+        b.addClass("bottom-nav")
+        m.fadeIn(delay)
+      }
+      case Some(true) => if (!shown) {
+        b.removeClass("top-nav")
+      } else if (shown && !top) {
+        b.removeClass("top-nav").addClass("bottom-nav")
+      }
+      case Some(false) => if (!shown) {
+        b.removeClass("bottom-nav")
+      } else if (shown && top) {
+        b.removeClass("bottom-nav").addClass("top-nav")
+      }
+    }
+    navPosition = if (shown && top) { Some(true) } else if (shown && !top) { Some(false) } else { None }
   }
 }

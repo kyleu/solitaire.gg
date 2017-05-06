@@ -1,13 +1,20 @@
 package phaser.gameplay
 
 import models._
+import models.game.UndoHelper
 import phaser.PhaserGame
 
-class ResponseMessageHandler(g: PhaserGame, debug: Boolean) {
+class ResponseMessageHandler(g: PhaserGame, undo: UndoHelper, debug: Boolean) {
   def handle(msg: ResponseMessage, registerUndo: Boolean = false): Unit = {
+    if (debug) { utils.Logging.info(s"Received response message (undo: $registerUndo) - [$msg].") }
+
+    if (registerUndo) {
+      undo.registerResponse(msg)
+    }
     val p = g.getPlaymat
-    if (debug) { utils.Logging.info(s"Received response message [$msg].") }
-    g.gameplay.services.state(msg)
+
+    g.gameplay.services.state.apply(msg)
+
     msg match {
       case ms: MessageSet => ms.messages.foreach(m => handle(m))
       case gj: GameJoined => throw new IllegalStateException("Received unexpected GameJoined message.")

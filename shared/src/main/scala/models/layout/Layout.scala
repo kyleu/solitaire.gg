@@ -6,6 +6,17 @@ object Layout {
   var margin = 0.7
   var padding = 0.2
 
+  def pileSetsForChar(remainingPileSets: Seq[PileSet], c: Char) = c match {
+    case 's' => remainingPileSets.find(_.behavior == "stock")
+    case 'w' => remainingPileSets.find(_.behavior == "waste")
+    case 'f' => remainingPileSets.find(_.behavior == "foundation")
+    case 't' => remainingPileSets.find(_.behavior == "tableau")
+    case 'c' => remainingPileSets.find(_.behavior == "cell")
+    case 'r' => remainingPileSets.find(_.behavior == "reserve")
+    case 'p' => remainingPileSets.find(_.behavior == "pyramid")
+    case _ => None
+  }
+
   def calculateLayout(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) = {
     val locations = collection.mutable.HashMap.empty[String, (Double, Double)]
     var xOffset = margin
@@ -17,25 +28,14 @@ object Layout {
     var currentDivisor = 0
 
     def newRow() = {
-      if (xOffset > maxWidth) {
-        maxWidth = xOffset
-      }
+      if (xOffset > maxWidth) { maxWidth = xOffset }
       xOffset = margin
       yOffset += currentRowMaxHeight
       currentRowMaxHeight = 1
     }
 
     def processCharacter(c: Char) = {
-      val pile = c match {
-        case 's' => remainingPileSets.find(_.behavior == "stock")
-        case 'w' => remainingPileSets.find(_.behavior == "waste")
-        case 'f' => remainingPileSets.find(_.behavior == "foundation")
-        case 't' => remainingPileSets.find(_.behavior == "tableau")
-        case 'c' => remainingPileSets.find(_.behavior == "cell")
-        case 'r' => remainingPileSets.find(_.behavior == "reserve")
-        case 'p' => remainingPileSets.find(_.behavior == "pyramid")
-        case _ => None
-      }
+      val pile = pileSetsForChar(remainingPileSets, c)
       c match {
         case ':' => xOffset += 1 + padding
         case '.' => xOffset += (1 + padding) / 2
@@ -61,12 +61,12 @@ object Layout {
             if (pileSet.behavior == "pyramid") {
               var currentRow = 1
               var rowCounter = 0
-              xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding)
+              xOffset = margin + ((pileSet.rows.toDouble - currentRow) / 2) * (1 + padding)
               pileSet.piles.foreach { pile =>
                 if (rowCounter == currentRow) {
                   currentRow += 1
                   rowCounter -= rowCounter
-                  xOffset = margin + ((pileSet.rows - currentRow) / 2) * (1 + padding)
+                  xOffset = margin + ((pileSet.rows.toDouble - currentRow) / 2) * (1 + padding)
                 }
 
                 locations(pile.id) = (xOffset, yOffset + ((currentRow - 1) * 0.5))

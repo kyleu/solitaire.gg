@@ -4,7 +4,7 @@ import java.util.UUID
 
 import client.user.DataHelper
 import com.definitelyscala.phaser.{PhysicsObj, State}
-import models.{GameWon, PossibleMoves}
+import models.PossibleMoves
 import models.game.{GameState, MoveHelper, RequestMessageHandler, UndoHelper}
 import models.rules.{GameRules, GameRulesSet}
 import phaser.PhaserGame
@@ -16,7 +16,13 @@ import scala.scalajs.js.annotation.ScalaJSDefined
 
 object Gameplay {
   case class GameServices(
-    state: GameState, rules: GameRules, undo: UndoHelper, moves: MoveHelper, responses: ResponseMessageHandler, requests: RequestMessageHandler
+    state: GameState,
+    rules: GameRules,
+    moves: MoveHelper,
+    undo: UndoHelper,
+    input: InputHelper,
+    responses: ResponseMessageHandler,
+    requests: RequestMessageHandler
   )
 }
 
@@ -46,12 +52,14 @@ class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: 
     val state = coreState.view(DataHelper.deviceId)
     val rules = GameRulesSet.allByIdWithAliases(state.rules)
     val moves = new MoveHelper(state, rules, postMove)
-    val responses = new ResponseMessageHandler(g, debug)
+    val undo = new UndoHelper()
+    val input = new InputHelper(g)
+    val responses = new ResponseMessageHandler(g, undo, debug)
     val requests = new RequestMessageHandler(coreState, responses.handle, moves.registerMove)
-    activeServices = Some(Gameplay.GameServices(state, rules, new UndoHelper(), moves, responses, requests))
+    activeServices = Some(Gameplay.GameServices(state, rules, moves, undo, input, responses, requests))
 
     val playmat = new Playmat(g, state.pileSets, rules.layout)
-    g.setPlaymat(playmat)
+    g.setPlaymat(Some(playmat))
 
     AssetLoader.loadPileSets(g, state.pileSets)
 

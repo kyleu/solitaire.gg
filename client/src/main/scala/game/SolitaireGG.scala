@@ -3,12 +3,11 @@ package game
 import java.util.UUID
 
 import client.user.DataHelper
-import input.{GamepadHandler, InputMessage, KeyboardHandler}
-import models.game.GameStateDebug
+import help.HelpService
 import models.rules.moves.InitialMoves
 import msg.SocketMessage
-import navigation.{MenuService, NavigationService}
-import network.{MessageHandler, NetworkService}
+import navigation.{MenuService, NavigationService, NavigationState}
+import network.NetworkService
 import org.scalajs.dom
 import org.scalajs.dom.raw.BeforeUnloadEvent
 import phaser.PhaserGame
@@ -22,7 +21,6 @@ import scala.util.Random
 @JSExportTopLevel("SolitaireGG")
 object SolitaireGG {
   private[this] var active: Option[SolitaireGG] = None
-
   def getActive = active.getOrElse(throw new IllegalStateException("No active application."))
 
   @JSExport
@@ -37,17 +35,24 @@ class SolitaireGG(val debug: Boolean) {
 
   val navigation = new NavigationService(onStateChange)
   val network = new NetworkService(debug, handleSocketMessage)
-  val messageHandler = new MessageHandler()
   val settings = new SettingsService()
-
   val menu = new MenuService(settings, navigation)
+
   val phaser = new PhaserGame(this)
 
   init()
 
-  private[this] def onStateChange(o: NavigationService.State, n: NavigationService.State) = n match {
-    case NavigationService.State.List => GameListService.initIfNeeded()
-    case _ => utils.Logging.warn(s"Unhandled state change to [$n].")
+  private[this] def onStateChange(o: NavigationState, n: NavigationState, args: Seq[String]): Unit = {
+    o match {
+      case NavigationState.Loading => navigation.setNavPosition(shown = true, top = true)
+      case _ => // noop
+    }
+    n match {
+      case NavigationState.List => GameListService.initIfNeeded()
+      case NavigationState.Game => onGameStateChange(args)
+      case NavigationState.Help => HelpService.show("klondike")
+      case _ => // noop
+    }
   }
 
   private[this] def init() = {
@@ -69,7 +74,16 @@ class SolitaireGG(val debug: Boolean) {
     utils.Logging.info(s"SocketMessage: [$msg].")
   }
 
-  private[this] def startGame(id: UUID = UUID.randomUUID, rulesId: String = "klondike", seed: Int = Random.nextInt) = {
+  private[this] def onGameStateChange(args: Seq[String]) = args.toList match {
+    case Nil if game.isDefined => // noop
+    case Nil => startGame(UUID.randomUUID, "klondike", Math.abs(Random.nextInt))
+    case r :: Nil => startGame(UUID.randomUUID, r, Math.abs(Random.nextInt))
+    case r :: s :: Nil => startGame(UUID.randomUUID, r, Math.abs(s.toInt))
+    case _ => throw new IllegalStateException(s"Unhandled initial arguments [${args.mkString(", ")}].")
+  }
+
+  private[this] def startGame(id: UUID, rulesId: String, seed: Int) = {
+    game.foreach(g => throw new IllegalStateException(s"Called [startGame] before destroying active [${g.rulesId}] game [${g.id}]."))
     val ag = ActiveGame(id = id, rulesId = rulesId, seed = seed)
     ag.state.addPlayer(DataHelper.deviceId, "Offline Player", autoFlipOption = /* TODO */ true)
     InitialMoves.performInitialMoves(ag.rules, ag.state)
@@ -77,23 +91,5 @@ class SolitaireGG(val debug: Boolean) {
     phaser.gameplay.start(ag.id, ag.state)
   }
 
-  def onPhaserLoadComplete(): Unit = {
-    utils.Logging.info("Load complete")
-
-    new KeyboardHandler(phaser, onInput)
-    new GamepadHandler(phaser, onInput)
-
-    navigation.navigate(NavigationService.State.Game)
-
-    val act = navigation.initialAction()
-    act match {
-      case ("play", rules) => startGame(rulesId = rules)
-      case (x, y) => throw new IllegalStateException(s"Unhandled initital action [$x:$y].")
-    }
-  }
-
-  def onInput(i: InputMessage) = i match {
-    case InputMessage.Sandbox => utils.Logging.info(GameStateDebug.toString(phaser.gameplay.services.state))
-    case _ => utils.Logging.info(s"Unhandled input message [$i].")
-  }
+  def onPhaserLoadComplete(): Unit = navigation.initialAction()
 }

@@ -9,11 +9,14 @@ class UndoHelper() {
   val historyQueue = collection.mutable.Stack[ReversibleResponseMessage]()
   val undoneQueue = collection.mutable.Stack[ReversibleResponseMessage]()
 
-  def registerResponse(message: ResponseMessage) = message match {
-    case rrm: ReversibleResponseMessage =>
-      historyQueue.push(rrm)
-      undoneQueue.clear()
-    case _ => // no-op
+  def registerResponse(message: ResponseMessage) = {
+    message match {
+      case rrm: ReversibleResponseMessage =>
+        historyQueue.push(rrm)
+        undoneQueue.clear()
+      case _ => // no-op
+    }
+    println(s"Undo [registerResponse]: [${historyQueue.size} / ${undoneQueue.size}], [$undoCount / $redoCount]")
   }
 
   def undo(gameState: GameState) = {

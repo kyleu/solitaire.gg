@@ -1,0 +1,12 @@
+package help
+
+import models.rules.GameRulesSet
+import org.scalajs.jquery.{jQuery => $}
+
+object HelpService {
+  def show(rulesId: String) = {
+    val rules = GameRulesSet.allByIdWithAliases(rulesId)
+    val html = HelpTemplate.help(rules)
+    $("#help-content").html(html.toString)
+  }
+}

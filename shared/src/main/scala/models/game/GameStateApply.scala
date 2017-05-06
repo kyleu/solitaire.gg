@@ -3,7 +3,7 @@ package models.game
 import models._
 
 object GameStateApply {
-  def applyMessage(gs: GameState, msg: ResponseMessage) = msg match {
+  def applyMessage(gs: GameState, msg: ResponseMessage): Unit = msg match {
     case cr: CardRevealed => cardRevealed(gs, cr)
     case ch: CardHidden => gs.getCard(ch.id).u = false
     case cm: CardMoved => moveCard(gs, cm.card, cm.source, cm.target, cm.turn)
