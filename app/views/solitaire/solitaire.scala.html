@@ -1,11 +1,8 @@
-@(debug: Boolean)(implicit session: Session, flash: Flash, messages: Messages)@layout.basic(
+@(debug: Boolean)(implicit session: Session, flash: Flash, messages: Messages)@views.html.layout.basic(
   title = utils.Config.projectName,
-  stylesheets = Seq(
-    routes.Assets.versioned("stylesheets/solitaire/gg.min.css").url
-  ),
-  url = Some("/play")
+  stylesheets = Seq(routes.Assets.versioned("stylesheets/solitaire/gg.min.css").url)
 ) {
-  <main id="section-panels">
+  <main class="top-nav" id="section-panels">
     @views.html.solitaire.panel.list()
     @views.html.solitaire.panel.help()
     @views.html.solitaire.panel.status()
