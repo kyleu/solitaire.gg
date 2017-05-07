@@ -18,7 +18,7 @@ object CardInput extends CardInputHelper {
     card.bringToTop()
   }
 
-  def onInputUp(e: js.Any, p: Pointer, card: CardSprite) = {
+  def onInputUp(e: js.Any, p: Pointer, card: CardSprite): Unit = {
     if (card.dragIndex.isDefined) {
       PileDragHelper.endDrag(card.pileGroup)
       card.phaser.getPlaymat.emitter.bringToTop()
@@ -56,7 +56,7 @@ object CardInput extends CardInputHelper {
           card.actualX = Some(card.x)
         }
         val newX = ((card.game.input.x - card.phaser.getPlaymat.x) / card.phaser.getPlaymat.scale.x) - card.anchorPointX
-        val xDelta = newX - card.actualX.get
+        val xDelta = newX - card.actualX.getOrElse(throw new IllegalStateException())
 
         val angle = getAngle(card, xDelta)
 

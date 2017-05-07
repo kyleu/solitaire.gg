@@ -56,7 +56,7 @@ class Application @javax.inject.Inject() (
     Schema.update()
 
     if (!config.debug) {
-      //scheduleTask(task, system)
+      scheduleTask(task, system)
     }
 
     lifecycle.addStopHook(() => Future.successful(stop()))
@@ -70,6 +70,6 @@ class Application @javax.inject.Inject() (
   private[this] def scheduleTask(task: ScheduledTask, system: ActorSystem) = {
     import scala.concurrent.duration._
     log.info("Scheduling task to run every minute, after five minutes.")
-    system.scheduler.schedule(5.minutes, 1.minute, task)
+    //system.scheduler.schedule(5.minutes, 1.minute, task)
   }
 }

@@ -10,7 +10,7 @@ object LayoutDimensions {
     var ret = (pileSet.piles.length * (1 + padding), 1 + padding)
     pileSet.behavior match {
       case "waste" =>
-        val wasteCardsShown = pileSet.piles.head.options.cardsShown
+        val wasteCardsShown = pileSet.piles.headOption.getOrElse(throw new IllegalStateException).options.cardsShown
         if (wasteCardsShown.contains(3)) {
           ret = (2 * (1 + padding), ret._2)
         } else {

@@ -14,7 +14,7 @@ class LoadingState extends State {
 
     game.load.spritesheet("empty-piles", assetRoot + "images/cards/empty-a.png", cardSet.cardWidth.toDouble, cardSet.cardHeight.toDouble)
 
-    var settings = PlayerSettings.default
+    val settings = PlayerSettings.default
 
     game.load.image("card-blank", assetRoot + "images/cards/blank.png")
     game.load.image("card-back", assetRoot + "images/cards/back-" + "a" + ".png")

@@ -22,8 +22,8 @@ object CardAnimation {
         card.x += driftX
         card.y += driftY
 
-        var scaleX = card.scale.x + growthDelta
-        var scaleY = card.scale.y + growthDelta
+        val scaleX = card.scale.x + growthDelta
+        val scaleY = card.scale.y + growthDelta
         if (scaleX > 1.5 || scaleX < 0.5) {
           growthDelta = -growthDelta
         }

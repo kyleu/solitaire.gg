@@ -13,7 +13,7 @@ class PlaymatResizer(p: Playmat) {
 
   var layout: (Double, Double, Map[String, (Double, Double)]) = layoutHelper.calculateLayout()
 
-  def refreshLayout() = {
+  def refreshLayout(): Unit = {
     val originalSize = 0.0 -> 0.0
 
     layout = layoutHelper.calculateLayout()
@@ -30,7 +30,7 @@ class PlaymatResizer(p: Playmat) {
     resize()
   }
 
-  def resize() = {
+  def resize(): Unit = {
     val totalWidth = p.game.world.width
     val widthRatio = totalWidth / p.w
 

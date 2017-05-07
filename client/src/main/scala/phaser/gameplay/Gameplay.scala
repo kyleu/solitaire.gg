@@ -73,7 +73,7 @@ class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: 
   }
 
   def stop(onComplete: () => Unit) = {
-    activeServices.getOrElse(throw new IllegalStateException(s"Called [stop] with no active game."))
+    activeServices.getOrElse(throw new IllegalStateException("Called [stop] with no active game."))
     g.getPlaymat.destroy(destroyChildren = true)
     g.setPlaymat(None)
     activeServices = None

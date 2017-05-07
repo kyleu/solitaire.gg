@@ -22,7 +22,7 @@ object PileDragHelper {
   }
 
   def getDropTarget(pileGroup: PileGroup) = {
-    val firstCard = pileGroup.dragCards.head
+    val firstCard = pileGroup.dragCards.headOption.getOrElse(throw new IllegalStateException)
 
     val multiplier = 0.9; // Adjust for growth while being dragged.
 

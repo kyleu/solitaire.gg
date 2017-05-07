@@ -41,7 +41,7 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
   var intersectWidth = empty.width
   var intersectHeight = empty.height
 
-  def addCard(sprite: CardSprite, cardPileIndex: Option[Int]) = {
+  def addCard(sprite: CardSprite, cardPileIndex: Option[Int]): Unit = {
     sprite.pileOption = Some(this)
     sprite.pileIndex = cardPileIndex.getOrElse(cards.length)
     cards = (cards :+ sprite).sortBy(_.pileIndex)

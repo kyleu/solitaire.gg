@@ -28,7 +28,7 @@ trait CardInputHelper {
       card.phaser.sendMove(SelectCard(card = card.id, pile = card.pileGroup.id, auto = false))
     } else {
       val now = new Date().getTime()
-      if (card.lastClicked.isDefined && (now - card.lastClicked.get) < CardInput.doubleClickThresholdMs) {
+      if (card.lastClicked.isDefined && (now - card.lastClicked.getOrElse(throw new IllegalStateException())) < CardInput.doubleClickThresholdMs) {
         getMoveTarget(card).foreach { moveTarget =>
           val tgt = moveTarget.targetPile.getOrElse(throw new IllegalStateException("Move has no target pile."))
           card.phaser.sendMove(MoveCards(cards = Seq(card.id), src = card.pileGroup.id, tgt = tgt, auto = false))
