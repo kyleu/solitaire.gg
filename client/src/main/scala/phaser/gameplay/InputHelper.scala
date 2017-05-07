@@ -9,7 +9,7 @@ class InputHelper(phaser: PhaserGame) {
   new GamepadHandler(phaser, onInput)
 
   def onInput(i: InputMessage) = i match {
-    case InputMessage.Sandbox => utils.Logging.info(GameStateDebug.toString(phaser.gameplay.services.state))
+    case InputMessage.Sandbox => phaser.gameplay.onSandbox()
     case InputMessage.Undo => utils.Logging.info("Undo!")
     case InputMessage.Redo => utils.Logging.info("Redo!")
     case _ => utils.Logging.info(s"Unhandled input message [$i].")

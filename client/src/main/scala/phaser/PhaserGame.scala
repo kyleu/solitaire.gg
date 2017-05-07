@@ -22,7 +22,7 @@ object PhaserGame {
     "renderer" -> Phaser.AUTO,
     "parent" -> "panel-game",
     "transparent" -> true,
-    "resolution" -> 1 // TODO Detect
+    "resolution" -> 2 // TODO Detect
   ))
 }
 @ScalaJSDefined

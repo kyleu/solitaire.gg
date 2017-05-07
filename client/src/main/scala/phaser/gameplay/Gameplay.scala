@@ -5,7 +5,7 @@ import java.util.UUID
 import client.user.DataHelper
 import com.definitelyscala.phaser.{PhysicsObj, State}
 import models.PossibleMoves
-import models.game.{GameState, MoveHelper, RequestMessageHandler, UndoHelper}
+import models.game._
 import models.rules.{GameRules, GameRulesSet}
 import phaser.PhaserGame
 import phaser.card.CardImages
@@ -49,6 +49,7 @@ class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: 
   }
 
   def start(id: UUID, coreState: GameState) = {
+    activeServices.foreach(_ => throw new IllegalStateException(s"Game [${services.state.gameId}] already active. Stop it first."))
     val state = coreState.view(DataHelper.deviceId)
     val rules = GameRulesSet.allByIdWithAliases(state.rules)
     val moves = new MoveHelper(state, rules, postMove)
@@ -69,5 +70,17 @@ class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: 
     g.possibleMoves = services.moves.possibleMoves()
 
     utils.Logging.info(s"Started game [$id] with rules [${rules.id}].")
+  }
+
+  def stop() = {
+    activeServices.getOrElse(throw new IllegalStateException(s"Called [stop] with no active game."))
+    g.getPlaymat.destroy(destroyChildren = true)
+    g.setPlaymat(None)
+    activeServices = None
+  }
+
+  def onSandbox() = {
+    utils.Logging.info(GameStateDebug.toString(services.state))
+    stop()
   }
 }
