@@ -72,15 +72,11 @@ class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: 
     utils.Logging.info(s"Started game [$id] with rules [${rules.id}].")
   }
 
-  def stop() = {
+  def stop(onComplete: () => Unit) = {
     activeServices.getOrElse(throw new IllegalStateException(s"Called [stop] with no active game."))
     g.getPlaymat.destroy(destroyChildren = true)
     g.setPlaymat(None)
     activeServices = None
-  }
-
-  def onSandbox() = {
-    utils.Logging.info(GameStateDebug.toString(services.state))
-    stop()
+    onComplete()
   }
 }

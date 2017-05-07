@@ -4,6 +4,7 @@ import java.util.UUID
 
 import client.user.DataHelper
 import help.HelpService
+import models.game.GameStateDebug
 import models.rules.moves.InitialMoves
 import msg.SocketMessage
 import navigation.{MenuService, NavigationService, NavigationState}
@@ -32,6 +33,7 @@ object SolitaireGG {
 
 class SolitaireGG(val debug: Boolean) {
   private[this] var game: Option[ActiveGame] = None
+  def getGame = game.getOrElse(throw new IllegalStateException("No active game."))
 
   val navigation = new NavigationService(onStateChange)
   val network = new NetworkService(debug, handleSocketMessage)
@@ -89,6 +91,18 @@ class SolitaireGG(val debug: Boolean) {
     InitialMoves.performInitialMoves(ag.rules, ag.state)
     game = Some(ag)
     phaser.gameplay.start(ag.id, ag.state)
+  }
+
+  private[this] def endGame(id: UUID, win: Boolean) = {
+    phaser.gameplay.stop(() => {
+      game = None
+      startGame(UUID.randomUUID, "klondike", 0)
+    })
+  }
+
+  def onSandbox() = {
+    utils.Logging.info(GameStateDebug.toString(phaser.gameplay.services.state))
+    endGame(phaser.gameplay.services.state.gameId, win = true)
   }
 
   def onPhaserLoadComplete(): Unit = navigation.initialAction()

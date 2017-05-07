@@ -22,7 +22,7 @@ object PhaserGame {
     "renderer" -> Phaser.AUTO,
     "parent" -> "panel-game",
     "transparent" -> true,
-    "resolution" -> 2 // TODO Detect
+    "resolution" -> dom.window.devicePixelRatio
   ))
 }
 @ScalaJSDefined
@@ -57,13 +57,6 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
 
     dom.window.onresize = resize _
     state.start("initialState", clearWorld = false, clearCache = false)
-  }
-
-  def resign() = playmat match {
-    case None => throw new IllegalStateException("No active game available to resign.")
-    case Some(p) =>
-      stage.removeChild(p)
-      setPlaymat(None)
   }
 
   def sendMove(msg: RequestMessage) = {
