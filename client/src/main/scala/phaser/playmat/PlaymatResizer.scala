@@ -7,16 +7,14 @@ import settings.MenuPosition
 import scala.scalajs.js
 
 class PlaymatResizer(p: Playmat) {
-  private[this] val layoutHelper = new LayoutHelper(p.pileSets, p.layoutString)
-
   private[this] var lastSize = p.phaser.width -> p.phaser.height
 
-  var layout: (Double, Double, Map[String, (Double, Double)]) = layoutHelper.calculateLayout()
+  var layout: (Double, Double, Map[String, (Double, Double)]) = (0.0, 0.0, Map.empty)
 
   def refreshLayout(): Unit = {
     val originalSize = 0.0 -> 0.0
 
-    layout = layoutHelper.calculateLayout()
+    layout = new LayoutHelper(p.pileSets, p.layoutString).result
 
     p.w = layout._1 * p.phaser.getSettings.cardSet.cardWidth
     p.h = (layout._2 - 0.1) * p.phaser.getSettings.cardSet.cardHeight

@@ -3,6 +3,7 @@ package models.layout
 import models.pile.set.PileSet
 
 class LayoutHelper(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) {
+  println("Layout Calculation!")
   var margin = 0.7
   var padding = 0.2
 
@@ -91,7 +92,7 @@ class LayoutHelper(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) 
     lastChar = c
   }
 
-  def calculateLayout() = {
+  val result = {
     layout.foreach(processCharacter)
     newRow()
     (maxWidth - margin + padding, yOffset - 0.5, locations.toMap)
