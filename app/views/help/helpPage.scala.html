@@ -1,12 +1,12 @@
 @(rules: models.rules.GameRules)(
   implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
-)@layout.static(
+)@views.html.layout.static(
   title = Messages("help.title", rules.title) + " - " + utils.Config.projectName,
   button = "menu",
   url = Some("/help/" + rules.id),
   description = Some("Solitaire.gg help for " + rules.title + ". " + rules.description)
 ) {
   <div class="static-help">
-    @helpContent(rules)
+    @views.html.help.helpContent(rules)
   </div>
 }

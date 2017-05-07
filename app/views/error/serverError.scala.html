@@ -1,4 +1,4 @@
-@(path: String, ex: Option[Throwable], debug: Boolean)(implicit session: Session, flash: Flash)@layout.basic("Server Error") {
+@(path: String, ex: Option[Throwable], debug: Boolean)(implicit session: Session, flash: Flash)@views.html.layout.basic("Server Error") {
   <div class="text-centered">
     <h1>@path</h1>
     <div class="text-large"><em>Exception Encountered</em></div>

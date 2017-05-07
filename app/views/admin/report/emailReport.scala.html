@@ -44,7 +44,7 @@
   </table>
 }
 
-@layout.email(utils.Config.projectName + " Report") {
+@views.html.layout.email(utils.Config.projectName + " Report") {
   @defining(utils.web.CssEmailStyles("greyblue")) { css =>
   <div style="@css.title">@utils.Config.projectName</div>
   <div style="@css.subtitle">Daily Report for @d</div>
