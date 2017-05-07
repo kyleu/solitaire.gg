@@ -56,7 +56,7 @@ class SolitaireGG(val debug: Boolean) {
         phaser.gameplay.activeGame.foreach { gameId =>
           GameStartService.endGame(this, gameId, win = false)
         }
-        GameStartService.onGameStateChange(this, Seq(rules))
+        navigation.navigate(NavigationState.Game, rules)
       })
       case NavigationState.Game => GameStartService.onGameStateChange(this, args)
       case NavigationState.Help => HelpService.show("klondike")
