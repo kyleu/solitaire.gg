@@ -3,9 +3,8 @@ package models.layout
 import models.pile.set.PileSet
 
 class LayoutHelper(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) {
-  println("Layout Calculation!")
-  var margin = 0.7
-  var padding = 0.2
+  private[this] val margin = 0.7
+  private[this] val padding = 0.2
 
   def pileSetsForChar(remainingPileSets: Seq[PileSet], c: Char) = c match {
     case 's' => remainingPileSets.find(_.behavior == "stock")
@@ -18,23 +17,23 @@ class LayoutHelper(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) 
     case _ => None
   }
 
-  val locations = collection.mutable.HashMap.empty[String, (Double, Double)]
-  var xOffset = margin
-  var yOffset = 0.6
-  var remainingPileSets = pileSets
-  var currentRowMaxHeight = 1.0
-  var maxWidth = 0.0
-  var lastChar = ' '
-  var currentDivisor = 0
+  private[this] val locations = collection.mutable.HashMap.empty[String, (Double, Double)]
+  private[this] var xOffset = margin
+  private[this] var yOffset = 0.6
+  private[this] var remainingPileSets = pileSets
+  private[this] var currentRowMaxHeight = 1.0
+  private[this] var maxWidth = 0.0
+  private[this] var lastChar = ' '
+  private[this] var currentDivisor = 0
 
-  def newRow() = {
+  private[this] def newRow() = {
     if (xOffset > maxWidth) { maxWidth = xOffset }
     xOffset = margin
     yOffset += currentRowMaxHeight
     currentRowMaxHeight = 1
   }
 
-  def processCharacter(c: Char) = {
+  private[this] def processCharacter(c: Char) = {
     val pile = pileSetsForChar(remainingPileSets, c)
     c match {
       case ':' => xOffset += 1 + padding

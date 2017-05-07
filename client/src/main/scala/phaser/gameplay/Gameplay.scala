@@ -20,7 +20,6 @@ object Gameplay {
     rules: GameRules,
     moves: MoveHelper,
     undo: UndoHelper,
-    input: InputHelper,
     responses: ResponseMessageHandler,
     requests: RequestMessageHandler
   )
@@ -30,6 +29,7 @@ object Gameplay {
 class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: () => Unit, debug: Boolean) extends State {
   private[this] var activeServices: Option[Gameplay.GameServices] = None
   def services = activeServices.getOrElse(throw new IllegalStateException("No game services available."))
+  def activeGame = activeServices.map(_.state.gameId)
 
   override def preload() = {
     game.physics.startSystem(PhysicsObj.ARCADE)
@@ -54,10 +54,9 @@ class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: 
     val rules = GameRulesSet.allByIdWithAliases(state.rules)
     val moves = new MoveHelper(state, postMove)
     val undo = new UndoHelper()
-    val input = new InputHelper(g)
     val responses = new ResponseMessageHandler(g, undo, debug)
     val requests = new RequestMessageHandler(coreState, responses.handle, moves.registerMove)
-    activeServices = Some(Gameplay.GameServices(state, rules, moves, undo, input, responses, requests))
+    activeServices = Some(Gameplay.GameServices(state, rules, moves, undo, responses, requests))
 
     val playmat = new Playmat(g, state.pileSets, rules.layout)
     g.setPlaymat(Some(playmat))
@@ -72,8 +71,10 @@ class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: 
     utils.Logging.info(s"Started game [$id] with rules [${rules.id}].")
   }
 
-  def stop(onComplete: () => Unit) = {
+  def stop(id: UUID, win: Boolean, onComplete: () => Unit) = {
     activeServices.getOrElse(throw new IllegalStateException("Called [stop] with no active game."))
+    if (services.state.gameId != id) { throw new IllegalStateException(s"Called [stop] with game [$id], not expected [${services.state.gameId}].") }
+    utils.Logging.info(s"Stopping game [$id]. Win: [$win]")
     g.getPlaymat.destroy(destroyChildren = true)
     g.setPlaymat(None)
     activeServices = None

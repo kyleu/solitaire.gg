@@ -25,7 +25,7 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
   val emitter = new PlaymatEmitter(this)
 
   val resizer = new PlaymatResizer(this)
-  resizer.refreshLayout()
+  resizer.refreshLayout(animate = false)
 
   phaser.add.existing(this)
 
@@ -47,7 +47,6 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
         card.bringToTop()
       }
     }
-    phaser.initialized = true
   }
 
   def win(gw: GameWon) = utils.Logging.info("Win!")

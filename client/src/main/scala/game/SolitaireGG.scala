@@ -2,16 +2,15 @@ package game
 
 import java.util.UUID
 
-import client.user.DataHelper
 import help.HelpService
 import models.game.GameStateDebug
-import models.rules.moves.InitialMoves
 import msg.SocketMessage
 import navigation.{MenuService, NavigationService, NavigationState}
 import network.NetworkService
 import org.scalajs.dom
 import org.scalajs.dom.raw.BeforeUnloadEvent
 import phaser.PhaserGame
+import phaser.gameplay.InputHelper
 import settings.SettingsService
 import utils.{Logging, NullUtils}
 
@@ -35,7 +34,8 @@ class SolitaireGG(val debug: Boolean) {
   private[this] var game: Option[ActiveGame] = None
   def hasGame = game.isDefined
   def getGame = game.getOrElse(throw new IllegalStateException("No active game."))
-  def setGame(g: Option[ActiveGame]) = game = g
+  def clearGame() = game = None
+  def setGame(g: ActiveGame) = game = Some(g)
 
   val navigation = new NavigationService(onStateChange)
   val network = new NetworkService(debug, handleSocketMessage)
@@ -52,7 +52,12 @@ class SolitaireGG(val debug: Boolean) {
       case _ => // noop
     }
     n match {
-      case NavigationState.List => GameListService.initIfNeeded()
+      case NavigationState.List => GameListService.initIfNeeded(rules => {
+        phaser.gameplay.activeGame.foreach { gameId =>
+          GameStartService.endGame(this, gameId, win = false)
+        }
+        GameStartService.onGameStateChange(this, Seq(rules))
+      })
       case NavigationState.Game => GameStartService.onGameStateChange(this, args)
       case NavigationState.Help => HelpService.show("klondike")
       case _ => // noop
@@ -80,8 +85,14 @@ class SolitaireGG(val debug: Boolean) {
 
   def onSandbox() = {
     utils.Logging.info(GameStateDebug.toString(phaser.gameplay.services.state))
-    GameStartService.endGame(this, phaser.gameplay.services.state.gameId, win = true)
+    phaser.gameplay.activeGame.foreach { gameId =>
+      GameStartService.endGame(this, gameId, win = true)
+    }
+    GameStartService.startGame(this, UUID.randomUUID, "klondike", Math.abs(Random.nextInt))
   }
 
-  def onPhaserLoadComplete(): Unit = navigation.initialAction()
+  def onPhaserLoadComplete(): Unit = {
+    new InputHelper(phaser)
+    navigation.initialAction()
+  }
 }

@@ -39,7 +39,7 @@ object AssetLoader {
       val cardObj = c._1
       val pileObj = c._2
       val cardPileIndex = c._3
-      setTimeout(30.0 * cardIndex)(pileObj.addCard(cardObj, Some(cardPileIndex)))
+      setTimeout(30.0 * cardIndex)(pileObj.addCard(cardObj, Some(cardPileIndex), animate = false))
     }
 
     setTimeout((30.0 * (originalOrder.length - 1)) + 500)(g.getPlaymat.initialMovesComplete())

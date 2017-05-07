@@ -44,7 +44,7 @@ class ResponseMessageHandler(g: PhaserGame, undo: UndoHelper, debug: Boolean) {
 
     movedCard.bringToTop()
     source.removeCard(movedCard)
-    target.addCard(movedCard, None)
+    target.addCard(movedCard, None, animate = true)
   }
 
   private[this] def cardRevealed(cr: CardRevealed) = {

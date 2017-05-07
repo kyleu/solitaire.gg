@@ -41,15 +41,15 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
   var intersectWidth = empty.width
   var intersectHeight = empty.height
 
-  def addCard(sprite: CardSprite, cardPileIndex: Option[Int]): Unit = {
+  def addCard(sprite: CardSprite, cardPileIndex: Option[Int], animate: Boolean): Unit = {
     sprite.pileOption = Some(this)
     sprite.pileIndex = cardPileIndex.getOrElse(cards.length)
     cards = (cards :+ sprite).sortBy(_.pileIndex)
 
     PileCardHelper.cardAdded(this, sprite)
 
-    if (phaser.initialized) {
-      phaser.getPlaymat.resizer.refreshLayout()
+    if (animate) {
+      phaser.getPlaymat.resizer.refreshLayout(animate)
     } else {
       phaser.getPlaymat.add(sprite)
     }

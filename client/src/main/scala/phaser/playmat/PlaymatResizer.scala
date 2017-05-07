@@ -11,7 +11,7 @@ class PlaymatResizer(p: Playmat) {
 
   var layout: (Double, Double, Map[String, (Double, Double)]) = (0.0, 0.0, Map.empty)
 
-  def refreshLayout(): Unit = {
+  def refreshLayout(animate: Boolean): Unit = {
     val originalSize = 0.0 -> 0.0
 
     layout = new LayoutHelper(p.pileSets, p.layoutString).result
@@ -20,15 +20,15 @@ class PlaymatResizer(p: Playmat) {
     p.h = (layout._2 - 0.1) * p.phaser.getSettings.cardSet.cardHeight
 
     if (p.w != originalSize._1 || p.h != originalSize._2) {
-      this.resize()
+      this.resize(animate)
     }
   }
 
-  def resizeIfChanged() = if (lastSize._1 != p.phaser.width || this.lastSize._2 != p.phaser.height) {
-    resize()
+  def resizeIfChanged(animate: Boolean) = if (lastSize._1 != p.phaser.width || this.lastSize._2 != p.phaser.height) {
+    resize(animate)
   }
 
-  def resize(): Unit = {
+  private[this] def resize(animate: Boolean): Unit = {
     val totalWidth = p.game.world.width
     val widthRatio = totalWidth / p.w
 
@@ -59,7 +59,7 @@ class PlaymatResizer(p: Playmat) {
       }
     }
 
-    if (p.phaser.initialized) {
+    if (animate) {
       val scaleProps = js.Dynamic.literal("x" -> newScale.x, "y" -> newScale.y)
       p.game.add.tween(p.scale).to(scaleProps, 500, "Quad.easeInOut", autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
 

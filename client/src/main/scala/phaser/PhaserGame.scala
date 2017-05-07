@@ -27,8 +27,6 @@ object PhaserGame {
 }
 @ScalaJSDefined
 class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
-  var initialized = false
-
   val gameplay = new Gameplay(this, gg.settings.getSettings, gg.onPhaserLoadComplete, gg.debug)
 
   var possibleMoves: Seq[PossibleMove] = Nil
@@ -46,7 +44,7 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   def resize(e: UIEvent): Unit = playmat match {
     case Some(p) =>
       scale.setGameSize(dom.window.innerWidth, dom.window.innerHeight)
-      p.resizer.resizeIfChanged()
+      p.resizer.resizeIfChanged(animate = true)
     case None => // noop
   }
 
