@@ -12,11 +12,14 @@ object GameStateApply {
   }
 
   private[this] def cardRevealed(gs: GameState, cr: CardRevealed) = {
-    gs.revealInPlace(cr.card)
+    val p = gs.pileSets.flatMap(_.piles).find(_.cards.exists(_.id == cr.card.id)).getOrElse(throw new IllegalStateException(s"No pile with card [${cr.card}]."))
+    p.cards(p.cards.indexWhere(_.id == cr.card.id)) = cr.card
+    gs.players.map(_.userId).exists(player => gs.revealCardToPlayer(cr.card, player))
   }
 
   private[this] def moveCard(gs: GameState, card: Int, src: String, tgt: String, turn: Option[Boolean]) = {
     val removed = gs.pilesById(src).removeCardById(card)
+    turn.foreach(gs.cardsById(card).u = _)
     gs.pilesById(tgt).addCard(removed)
   }
 }

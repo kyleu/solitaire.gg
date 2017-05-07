@@ -4,13 +4,10 @@ import com.definitelyscala.phaser.Pointer
 import models.MoveCards
 import phaser.card.{CardSprite, CardTweens}
 
-object PileHelpers {
+object PileDragHelper {
   private[this] def isValidMove(src: PileGroup, tgt: PileGroup) = {
     var valid = false
-
-    def check(c: Int, idx: Int) = if (c != src.dragCards(idx).id) {
-      valid = false
-    }
+    def check(c: Int, idx: Int) = if (c != src.dragCards(idx).id) { valid = false }
 
     src.phaser.possibleMoves.foreach { move =>
       if (move.moveType == "move-cards" && move.sourcePile == src.pile.id && move.targetPile.contains(tgt.pile.id)) {
@@ -53,10 +50,8 @@ object PileHelpers {
           dropDistance = overlapX + overlapY
           dropTarget = Some(p)
         }
-        //console.log('Pile [' + p.id + '] overlaps [' + overlapX + ', ' + overlapY + ']');
       }
     }
-    //console.log('Choosing [' + (dropTarget === null ? 'none' : dropTarget.id) + '] as drop target with distance [' + dropDistance + '].');
     dropTarget
   }
 
@@ -69,10 +64,7 @@ object PileHelpers {
     }
   }
 
-  def canDragFrom(group: PileGroup, sprite: CardSprite) = {
-    val stripe = group.pile.cards.drop(sprite.pileIndex)
-    group.pile.canDragFrom(stripe, group.phaser.gameplay.services.state)
-  }
+  def canDragFrom(group: PileGroup, sprite: CardSprite) = group.pile.canDragFrom(group.pile.cards.drop(sprite.pileIndex), group.phaser.gameplay.services.state)
 
   def startDrag(group: PileGroup, sprite: CardSprite, p: Pointer) = {
     group.dragCards = group.cards.drop(sprite.pileIndex)

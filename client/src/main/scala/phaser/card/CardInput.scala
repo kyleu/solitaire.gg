@@ -1,7 +1,7 @@
 package phaser.card
 
 import com.definitelyscala.phaser.{Point, Pointer}
-import phaser.pile.PileHelpers
+import phaser.pile.PileDragHelper
 
 import scala.scalajs.js
 
@@ -20,7 +20,7 @@ object CardInput extends CardInputHelper {
 
   def onInputUp(e: js.Any, p: Pointer, card: CardSprite) = {
     if (card.dragIndex.isDefined) {
-      PileHelpers.endDrag(card.pileGroup)
+      PileDragHelper.endDrag(card.pileGroup)
       card.phaser.getPlaymat.emitter.bringToTop()
     } else {
       val deltaX = Math.abs(p.positionDown.x - p.positionUp.x)

@@ -33,7 +33,9 @@ object SolitaireGG {
 
 class SolitaireGG(val debug: Boolean) {
   private[this] var game: Option[ActiveGame] = None
+  def hasGame = game.isDefined
   def getGame = game.getOrElse(throw new IllegalStateException("No active game."))
+  def setGame(g: Option[ActiveGame]) = game = g
 
   val navigation = new NavigationService(onStateChange)
   val network = new NetworkService(debug, handleSocketMessage)
@@ -51,7 +53,7 @@ class SolitaireGG(val debug: Boolean) {
     }
     n match {
       case NavigationState.List => GameListService.initIfNeeded()
-      case NavigationState.Game => onGameStateChange(args)
+      case NavigationState.Game => GameStartService.onGameStateChange(this, args)
       case NavigationState.Help => HelpService.show("klondike")
       case _ => // noop
     }
@@ -76,33 +78,9 @@ class SolitaireGG(val debug: Boolean) {
     utils.Logging.info(s"SocketMessage: [$msg].")
   }
 
-  private[this] def onGameStateChange(args: Seq[String]) = args.toList match {
-    case Nil if game.isDefined => // noop
-    case Nil => startGame(UUID.randomUUID, "klondike", Math.abs(Random.nextInt))
-    case r :: Nil => startGame(UUID.randomUUID, r, Math.abs(Random.nextInt))
-    case r :: s :: Nil => startGame(UUID.randomUUID, r, Math.abs(s.toInt))
-    case _ => throw new IllegalStateException(s"Unhandled initial arguments [${args.mkString(", ")}].")
-  }
-
-  private[this] def startGame(id: UUID, rulesId: String, seed: Int) = {
-    game.foreach(g => throw new IllegalStateException(s"Called [startGame] before destroying active [${g.rulesId}] game [${g.id}]."))
-    val ag = ActiveGame(id = id, rulesId = rulesId, seed = seed)
-    ag.state.addPlayer(DataHelper.deviceId, "Offline Player", autoFlipOption = /* TODO */ true)
-    InitialMoves.performInitialMoves(ag.rules, ag.state)
-    game = Some(ag)
-    phaser.gameplay.start(ag.id, ag.state)
-  }
-
-  private[this] def endGame(id: UUID, win: Boolean) = {
-    phaser.gameplay.stop(() => {
-      game = None
-      startGame(UUID.randomUUID, "klondike", 0)
-    })
-  }
-
   def onSandbox() = {
     utils.Logging.info(GameStateDebug.toString(phaser.gameplay.services.state))
-    endGame(phaser.gameplay.services.state.gameId, win = true)
+    GameStartService.endGame(this, phaser.gameplay.services.state.gameId, win = true)
   }
 
   def onPhaserLoadComplete(): Unit = navigation.initialAction()

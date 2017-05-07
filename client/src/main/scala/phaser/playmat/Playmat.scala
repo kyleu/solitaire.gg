@@ -2,7 +2,6 @@ package phaser.playmat
 
 import com.definitelyscala.phaser.Group
 import models.GameWon
-import models.layout.Layout
 import models.pile.set.PileSet
 import phaser.PhaserGame
 import phaser.card.CardSprite
@@ -25,7 +24,6 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
 
   val emitter = new PlaymatEmitter(this)
 
-  var layout: (Double, Double, Map[String, (Double, Double)]) = Layout.calculateLayout(pileSets, layoutString)
   val resizer = new PlaymatResizer(this)
   resizer.refreshLayout()
 
@@ -38,7 +36,7 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
 
   def addPile(pileGroup: PileGroup) = {
     pileGroups(pileGroup.id) = pileGroup
-    val pileLocation = this.layout._3.getOrElse(pileGroup.id, throw new IllegalStateException(s"Missing layout for [${pileGroup.pile.id}]."))
+    val pileLocation = resizer.layout._3.getOrElse(pileGroup.id, throw new IllegalStateException(s"Missing layout for [${pileGroup.pile.id}]."))
     pileGroup.x = pileLocation._1 * phaser.getSettings.cardSet.cardWidth
     pileGroup.y = pileLocation._2 * phaser.getSettings.cardSet.cardHeight
   }

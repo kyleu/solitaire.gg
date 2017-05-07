@@ -52,7 +52,7 @@ class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: 
     activeServices.foreach(_ => throw new IllegalStateException(s"Game [${services.state.gameId}] already active. Stop it first."))
     val state = coreState.view(DataHelper.deviceId)
     val rules = GameRulesSet.allByIdWithAliases(state.rules)
-    val moves = new MoveHelper(state, rules, postMove)
+    val moves = new MoveHelper(state, postMove)
     val undo = new UndoHelper()
     val input = new InputHelper(g)
     val responses = new ResponseMessageHandler(g, undo, debug)

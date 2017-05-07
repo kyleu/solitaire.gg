@@ -3,7 +3,7 @@ package phaser.card
 import com.definitelyscala.phaser.{Point, Pointer, Sprite}
 import models.card.{Rank, Suit}
 import phaser.PhaserGame
-import phaser.pile.{PileGroup, PileHelpers}
+import phaser.pile.{PileGroup, PileDragHelper}
 import utils.NullUtils
 
 import scala.scalajs.js
@@ -11,13 +11,7 @@ import scala.scalajs.js.annotation.ScalaJSDefined
 
 @ScalaJSDefined
 class CardSprite(
-    val phaser: PhaserGame,
-    val id: Int,
-    initialRank: Rank,
-    initialSuit: Suit,
-    initialFaceUp: Boolean = false,
-    initialX: Int,
-    initialY: Int
+    val phaser: PhaserGame, val id: Int, initialRank: Rank, initialSuit: Suit, initialFaceUp: Boolean = false, initialX: Int, initialY: Int
 ) extends Sprite(phaser, initialX.toDouble, initialY.toDouble) {
   private[this] var rank = initialRank
   def getRank = rank
@@ -78,39 +72,21 @@ class CardSprite(
     name = s"$id:${rank.toChar}${suit.toChar}${if (faceUp) { "+" } else { "-" }}"
   }
 
-  def onInputDown(e: Any, p: Pointer) = {
-    if (p.button == NullUtils.inst || p.button.toString.toInt == 0) {
-      if (!tweening) {
-        if (PileHelpers.canDragFrom(pileGroup, this)) {
-          PileHelpers.startDrag(pileGroup, this, p)
-        }
+  def onInputDown(e: Any, p: Pointer) = if (p.button == NullUtils.inst || p.button.toString.toInt == 0) {
+    if (!tweening) {
+      if (PileDragHelper.canDragFrom(pileGroup, this)) {
+        PileDragHelper.startDrag(pileGroup, this, p)
       }
     }
   }
 
-  def startDrag(p: Pointer, dragIndex: Int) = {
-    CardInput.startDrag(p, dragIndex, this)
+  def onInputUp(e: js.Any, p: Pointer) = if (p.button == NullUtils.inst || p.button.toString.toInt == 0) {
+    CardInput.onInputUp(e, p, this)
   }
 
-  def onInputUp(e: js.Any, p: Pointer) = {
-    if (p.button == NullUtils.inst || p.button.toString.toInt == 0) {
-      CardInput.onInputUp(e, p, this)
-    }
-  }
-
-  def cancelDrag() = {
-    CardInput.cancelDrag(this)
-  }
-
-  override def update() = {
-    CardInput.update(this)
-  }
-
-  def turnFaceUp() = {
-    CardTweens.tweenFlip(this, faceUp = true)
-  }
-
-  def turnFaceDown() = {
-    CardTweens.tweenFlip(this, faceUp = false)
-  }
+  def startDrag(p: Pointer, dragIndex: Int) = CardInput.startDrag(p, dragIndex, this)
+  def cancelDrag() = CardInput.cancelDrag(this)
+  override def update() = CardInput.update(this)
+  def turnFaceUp() = CardTweens.tweenFlip(this, faceUp = true)
+  def turnFaceDown() = CardTweens.tweenFlip(this, faceUp = false)
 }

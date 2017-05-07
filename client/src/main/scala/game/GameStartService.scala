@@ -1,0 +1,34 @@
+package game
+
+import java.util.UUID
+
+import client.user.DataHelper
+import models.rules.moves.InitialMoves
+
+import scala.util.Random
+
+object GameStartService {
+  def onGameStateChange(gg: SolitaireGG, args: Seq[String]) = args.toList match {
+    case Nil if gg.hasGame => // noop
+    case Nil => startGame(gg, UUID.randomUUID, "klondike", Math.abs(Random.nextInt))
+    case r :: Nil => startGame(gg, UUID.randomUUID, r, Math.abs(Random.nextInt))
+    case r :: s :: Nil => startGame(gg, UUID.randomUUID, r, Math.abs(s.toInt))
+    case _ => throw new IllegalStateException(s"Unhandled initial arguments [${args.mkString(", ")}].")
+  }
+
+  def endGame(gg: SolitaireGG, id: UUID, win: Boolean) = {
+    gg.phaser.gameplay.stop(() => {
+      gg.setGame(None)
+      startGame(gg, UUID.randomUUID, "klondike", 0)
+    })
+  }
+
+  private[this] def startGame(gg: SolitaireGG, id: UUID, rulesId: String, seed: Int) = {
+    if (gg.hasGame) { throw new IllegalStateException(s"Called [startGame] before destroying active [${gg.getGame.rulesId}] game [${gg.getGame.id}].") }
+    val ag = ActiveGame(id = id, rulesId = rulesId, seed = seed)
+    ag.state.addPlayer(DataHelper.deviceId, "Offline Player", autoFlipOption = /* TODO */ true)
+    InitialMoves.performInitialMoves(ag.rules, ag.state)
+    gg.setGame(Some(ag))
+    gg.phaser.gameplay.start(ag.id, ag.state)
+  }
+}

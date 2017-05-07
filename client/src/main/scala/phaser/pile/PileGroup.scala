@@ -46,7 +46,7 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
     sprite.pileIndex = cardPileIndex.getOrElse(cards.length)
     cards = (cards :+ sprite).sortBy(_.pileIndex)
 
-    PileLayout.cardAdded(this, sprite)
+    PileCardHelper.cardAdded(this, sprite)
 
     if (phaser.initialized) {
       phaser.getPlaymat.resizer.refreshLayout()
@@ -68,6 +68,6 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
       c._1.pileIndex = c._2
     }
 
-    PileLayout.cardRemoved(this, card)
+    PileCardHelper.cardRemoved(this, card)
   }
 }
