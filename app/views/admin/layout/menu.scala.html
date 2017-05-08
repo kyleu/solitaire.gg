@@ -17,8 +17,6 @@
         <li><a href="@controllers.admin.routes.DataArchiveController.list()">Data Archive</a></li>
         <li class="divider"></li>
         <li><a href="@controllers.admin.routes.RulesController.rulesList()">Rules</a></li>
-        <li class="divider"></li>
-        <li><a href="@controllers.admin.routes.RequestLogController.requestList()">Requests</a></li>
       </ul>
     </li>
     <li @if(section == "analytics") { class="active" }>
@@ -47,7 +45,6 @@
       <ul class="dropdown-menu" role="menu">
         <li><a href="@controllers.admin.routes.ReportController.analytics()">Analytics</a></li>
         <li><a href="@controllers.admin.routes.ReportController.trend()">Trend</a></li>
-        <li><a href="@controllers.admin.routes.ReportController.requests()">Requests</a></li>
         <li><a href="@controllers.admin.routes.ReportController.email()">Email</a></li>
         <li class="divider"></li>
         <li><a href="@controllers.admin.routes.AdHocQueryController.queryList(None)">Ad-Hoc</a></li>

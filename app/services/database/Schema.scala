@@ -9,8 +9,6 @@ import scala.concurrent.Future
 
 object Schema extends Logging {
   val tables = Seq(
-    CreateRequestsTable,
-
     CreateAnalyticsEventsTable,
 
     CreateUserFeedbackTable,
@@ -18,10 +16,10 @@ object Schema extends Logging {
 
     CreateDailyMetricsTable,
 
-    CreateDataArchiveTable,
     CreateAdHocQueriesTable,
 
     CreateUsersTable,
+    CreateUserStatisticsTable,
 
     CreateGamesTable,
     CreateGameSeedsTable

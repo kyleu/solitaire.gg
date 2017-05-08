@@ -21,6 +21,11 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
   val search = Search
   def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
 
+  case object GetEarliestDay extends Query[LocalDate] {
+    override val sql = s"select min(created::date) as d from $tableName"
+    override def reduce(rows: Iterator[Row]) = rows.next().as[LocalDate]("d")
+  }
+
   case object GetDateCounts extends Query[Seq[(LocalDate, Int)]] {
     override def sql = s"""
       select date_trunc('day', created) as d, count(*) as c

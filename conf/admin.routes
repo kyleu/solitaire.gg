@@ -31,8 +31,6 @@ GET         /analytics/list                  controllers.admin.AnalyticsEventCon
 GET         /analytics/:id                   controllers.admin.AnalyticsEventController.eventDetail(id: java.util.UUID)
 GET         /analytics/:id/remove            controllers.admin.AnalyticsEventController.removeEvent(id: java.util.UUID)
 
-GET         /requests                        controllers.admin.RequestLogController.requestList(q ?= "", sortBy ?= "started", page: Int ?= 0)
-
 GET         /feedback/:key                   controllers.admin.FeedbackController.list(key, q ?= "", sortBy ?= "occurred", page: Int ?= 0)
 GET         /feedback/:id/note               controllers.admin.FeedbackController.feedbackNoteForm(id: java.util.UUID)
 POST        /feedback/:id/note               controllers.admin.FeedbackController.feedbackNotePost(id: java.util.UUID)
@@ -45,7 +43,6 @@ GET         /archive/list                    controllers.admin.DataArchiveContro
 GET         /archive/process                 controllers.admin.DataArchiveController.process()
 
 GET         /report/trend                    controllers.admin.ReportController.trend()
-GET         /report/requests                 controllers.admin.ReportController.requests()
 GET         /report/analytics                controllers.admin.ReportController.analytics()
 GET         /report/email                    controllers.admin.ReportController.email(d: org.joda.time.LocalDate ?= utils.DateUtils.today)
 GET         /report/ad-hoc                   controllers.admin.AdHocQueryController.queryList(query: Option[java.util.UUID] ?= None, action: Option[String] ?= None)

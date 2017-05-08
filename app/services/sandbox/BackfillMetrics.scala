@@ -1,6 +1,6 @@
 package services.sandbox
 
-import models.queries.history.RequestLogQueries
+import models.queries.audit.AnalyticsEventQueries
 import org.joda.time.LocalDate
 import services.audit.DailyMetricService
 import services.database.Database
@@ -22,7 +22,7 @@ object BackfillMetrics extends SandboxTask {
     }
 
     for {
-      startDay <- Database.query(RequestLogQueries.GetEarliestDay)
+      startDay <- Database.query(AnalyticsEventQueries.GetEarliestDay)
       days <- getDays(startDay)
       result <- Future.sequence(days.map(d => DailyMetricService.getMetrics(d)))
     } yield result.map(x => s"${x._1}: ${x._2._1.size} metrics, ${x._2._2} calculated.").mkString("\n")

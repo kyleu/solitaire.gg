@@ -2,7 +2,6 @@ package controllers.admin
 
 import controllers.BaseController
 import models.audit.DailyMetric
-import models.queries.history.RequestLogQueries
 import models.queries.report.RowCountQueries
 import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -28,15 +27,6 @@ class ReportController @javax.inject.Inject() (override val app: Application) ex
     DailyMetricService.getAllMetrics.map { metrics =>
       Ok(views.html.admin.report.trend(metrics, toChartData(metrics)))
     }
-  }
-
-  def requests() = withAdminSession("requests") { implicit request =>
-    for {
-      total <- Database.query(RequestLogQueries.count)
-      userAgentCounts <- Database.query(RequestLogQueries.GetCounts("user_agent"))
-      pathCounts <- Database.query(RequestLogQueries.GetCounts("path"))
-      referrerCounts <- Database.query(RequestLogQueries.GetCounts("referrer"))
-    } yield Ok(views.html.admin.report.requests(total, userAgentCounts, pathCounts, referrerCounts, app.config.hostname))
   }
 
   def analytics() = withAdminSession("analytics") { implicit request =>
