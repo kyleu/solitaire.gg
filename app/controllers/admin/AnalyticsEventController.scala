@@ -6,7 +6,7 @@ import controllers.BaseController
 import models.audit.AnalyticsEvent
 import models.queries.audit.AnalyticsEventQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.analytics.AnalyticsService
+import services.audit.AnalyticsService
 import services.database.Database
 import utils.Application
 
