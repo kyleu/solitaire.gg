@@ -1,0 +1,24 @@
+@(
+    start: Long,
+    events: Seq[(models.audit.AnalyticsEvent, String)],
+    queryTime: Long,
+    resetTime: Option[Long],
+    processingTime: Long
+)(implicit session: Session, flash: Flash) @views.html.admin.layout.base(s"${utils.Config.projectName} Analytics Events", "analytics") {
+  <h4>@utils.Formatter.withCommas(events.size) analytics events.</h4>
+  <ul>
+    <li>Queries ran in [@{queryTime}ms].</li>
+    @resetTime.map { time =>
+      <li>Database reset in [@{time.toString}ms].</li>
+    }
+    <li>Processed [@events.size] events in [@{processingTime}ms].</li>
+  </ul>
+  <h4>Event Details</h4>
+  @events.map { ev =>
+    <div style="float: right;">@ev._1.id</div>
+    <strong>@ev._1.eventType</strong>
+    <div>@ev._2</div>
+    <hr/>
+  }
+}
+

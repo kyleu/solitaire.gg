@@ -11,12 +11,14 @@ trait BaseQueries[T] {
   protected def tableName: String = "_invalid_"
   protected def idColumns = Seq("id")
   protected def columns: Seq[String]
+  protected def columnString = columns.mkString(", ")
+  protected def columnPlaceholders = columns.map(_ => "?").mkString(", ")
   protected def searchColumns: Seq[String]
 
   protected def fromRow(row: Row): T
   protected def toDataSeq(t: T): Seq[Any]
 
-  protected lazy val insertSql = s"insert into $tableName (${columns.mkString(", ")}) values (${columns.map(x => "?").mkString(", ")})"
+  protected lazy val insertSql = s"insert into $tableName ($columnString) values ($columnPlaceholders)"
 
   protected def updateSql(updateColumns: Seq[String], additionalUpdates: Option[String] = None) = BaseQueries.trim(s"""
     update $tableName set ${updateColumns.map(x => s"$x = ?").mkString(", ")}${additionalUpdates.map(x => s", $x").getOrElse("")} where $idWhereClause
@@ -25,16 +27,13 @@ trait BaseQueries[T] {
   protected def getSql(
     whereClause: Option[String] = None, groupBy: Option[String] = None, orderBy: Option[String] = None, limit: Option[Int] = None, offset: Option[Int] = None
   ) = BaseQueries.trim(s"""
-    select ${columns.mkString(", ")} from $tableName
-    ${whereClause.map(x => s" where $x").getOrElse("")}
-    ${groupBy.map(x => s" group by $x").getOrElse("")}
-    ${orderBy.map(x => s" order by $x").getOrElse("")}
-    ${limit.map(x => s" limit $x").getOrElse("")}
-    ${offset.map(x => s" offset $x").getOrElse("")}
+    select $columnString from $tableName ${whereClause.map(x => s" where $x").getOrElse("")}
+    ${groupBy.map(x => s" group by $x").getOrElse("")} ${orderBy.map(x => s" order by $x").getOrElse("")}
+    ${limit.map(x => s" limit $x").getOrElse("")} ${offset.map(x => s" offset $x").getOrElse("")}
   """)
 
   protected case class GetById(override val values: Seq[Any]) extends FlatSingleRowQuery[T] {
-    override val sql = s"select ${columns.mkString(", ")} from $tableName where $idWhereClause"
+    override val sql = s"select $columnString from $tableName where $idWhereClause"
     override def flatMap(row: Row) = Some(fromRow(row))
   }
 
@@ -46,8 +45,8 @@ trait BaseQueries[T] {
   }
 
   protected case class InsertBatch(models: Seq[T]) extends Statement {
-    private[this] val valuesClause = models.map(m => s"(${columns.map(x => "?").mkString(", ")})").mkString(", ")
-    override val sql = s"insert into $tableName (${columns.mkString(", ")}) values $valuesClause"
+    private[this] val valuesClause = models.map(m => s"($columnPlaceholders)").mkString(", ")
+    override val sql = s"insert into $tableName ($columnString) values $valuesClause"
     override val values = models.flatMap(toDataSeq)
   }
 

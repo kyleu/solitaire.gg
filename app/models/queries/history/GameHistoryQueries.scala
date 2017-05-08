@@ -54,7 +54,7 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     override def reduce(rows: Iterator[Row]) = rows.map(_.as[UUID]("id")).toList
   }
 
-  def getGameHistoryCountForUser(userId: UUID) = new Count(s"select count(*) as c from $tableName where player = ?", Seq(userId))
+  def getGameHistoryCountForUser(userId: UUID) = Count(s"select count(*) as c from $tableName where player = ?", Seq(userId))
 
   override protected def fromRow(row: Row) = {
     val id = row.as[UUID]("id")

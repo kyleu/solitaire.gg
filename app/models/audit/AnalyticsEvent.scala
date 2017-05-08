@@ -3,7 +3,7 @@ package models.audit
 import java.util.UUID
 
 import org.joda.time.LocalDateTime
-import play.api.libs.json.JsValue
+import play.api.libs.json.JsObject
 
 object AnalyticsEvent {
   sealed abstract class EventType(val id: String)
@@ -28,6 +28,6 @@ case class AnalyticsEvent(
   eventType: AnalyticsEvent.EventType,
   device: UUID,
   sourceAddress: Option[String],
-  data: JsValue,
+  data: JsObject,
   created: LocalDateTime
 )

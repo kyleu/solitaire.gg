@@ -1,4 +1,4 @@
-package services.audit
+package services.analytics
 
 import java.util.UUID
 
@@ -6,7 +6,7 @@ import models.audit.AnalyticsEvent
 import models.audit.AnalyticsEvent.EventType
 import models.queries.audit.AnalyticsEventQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.libs.json.JsValue
+import play.api.libs.json.{JsObject, JsValue}
 import services.database.Database
 import utils.DateUtils
 
@@ -24,7 +24,7 @@ object AnalyticsService {
       eventType = eventType,
       device = device,
       sourceAddress = Some(sourceAddress),
-      data = data,
+      data = data.as[JsObject],
       created = DateUtils.now
     )
     Database.execute(AnalyticsEventQueries.insert(event)).map(x => event)

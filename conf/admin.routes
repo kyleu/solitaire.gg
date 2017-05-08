@@ -28,6 +28,7 @@ GET         /files/summary/:d                controllers.admin.AnalyticsFileCont
 GET         /files/detail/:d/:key            controllers.admin.AnalyticsFileController.detail(d: org.joda.time.LocalDate, key)
 
 GET         /analytics/list                  controllers.admin.AnalyticsEventController.eventList(q ?= "", sortBy ?= "created", page: Int ?= 0)
+GET         /analytics/sandbox               controllers.admin.AnalyticsEventController.sandbox(reset: Boolean ?= false)
 GET         /analytics/:id                   controllers.admin.AnalyticsEventController.eventDetail(id: java.util.UUID)
 GET         /analytics/:id/remove            controllers.admin.AnalyticsEventController.removeEvent(id: java.util.UUID)
 
@@ -38,9 +39,6 @@ GET         /feedback/:id/remove             controllers.admin.FeedbackControlle
 
 GET         /logs                            controllers.admin.LogController.list()
 GET         /logs/:name                      controllers.admin.LogController.view(name)
-
-GET         /archive/list                    controllers.admin.DataArchiveController.list()
-GET         /archive/process                 controllers.admin.DataArchiveController.process()
 
 GET         /report/trend                    controllers.admin.ReportController.trend()
 GET         /report/analytics                controllers.admin.ReportController.analytics()

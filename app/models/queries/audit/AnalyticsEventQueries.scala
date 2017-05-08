@@ -26,6 +26,11 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
     override def reduce(rows: Iterator[Row]) = rows.next().as[LocalDate]("d")
   }
 
+  case class GetEvents(limit: Int = 100, offset: Int = 0) extends Query[Seq[AnalyticsEvent]] {
+    override def sql = s"select $columnString from $tableName order by created asc limit $limit offset $offset"
+    override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toSeq
+  }
+
   case object GetDateCounts extends Query[Seq[(LocalDate, Int)]] {
     override def sql = s"""
       select date_trunc('day', created) as d, count(*) as c
@@ -37,7 +42,7 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
   }
 
   case class GetByDate(d: LocalDate) extends Query[Iterator[AnalyticsEvent]] {
-    override def sql = s"select ${columns.mkString(", ")} from $tableName where created >= ? and created < ?"
+    override def sql = s"select $columnString from $tableName where created >= ? and created < ?"
     override def values = Seq(d, d.plusDays(1))
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow)
   }
