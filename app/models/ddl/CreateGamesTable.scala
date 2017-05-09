@@ -4,8 +4,8 @@ case object CreateGamesTable extends CreateTableStatement("games") {
   override val sql = s"""
     create table $tableName (
       id uuid not null primary key,
-      seed int not null,
       rules character varying(128) not null,
+      seed int not null,
       status character varying(128) not null,
       player uuid not null,
       cards integer not null default 0,

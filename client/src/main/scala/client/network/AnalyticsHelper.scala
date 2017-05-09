@@ -55,6 +55,7 @@ trait AnalyticsHelper extends AjaxHelper {
       sessionId = DataHelper.sessionId,
       gameId = gameId,
       rules = rules,
+      seed = seed,
       occurred = occurred
     )
     val json = BaseSerializers.write(writeJs(event))

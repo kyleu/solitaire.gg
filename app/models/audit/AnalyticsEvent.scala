@@ -2,13 +2,14 @@ package models.audit
 
 import java.util.UUID
 
+import enumeratum._
 import org.joda.time.LocalDateTime
-import play.api.libs.json.JsObject
+import play.api.libs.json.JsValue
 
 object AnalyticsEvent {
-  sealed abstract class EventType(val id: String)
+  sealed abstract class EventType(val id: String) extends EnumEntry
 
-  object EventType {
+  object EventType extends Enum[EventType] {
     case object Error extends EventType("error")
     case object Install extends EventType("install")
     case object Open extends EventType("open")
@@ -20,6 +21,8 @@ object AnalyticsEvent {
     val all = Seq(Error, Install, Open, GameStart, GameWon, GameResigned)
     def keyMap = (all.map(x => x.id -> x) ++ all.map(x => x.toString -> x)).toMap
     def fromString(s: String) = keyMap.getOrElse(s, Unknown(s))
+
+    override def values = findValues
   }
 }
 
@@ -28,6 +31,6 @@ case class AnalyticsEvent(
   eventType: AnalyticsEvent.EventType,
   device: UUID,
   sourceAddress: Option[String],
-  data: JsObject,
+  data: JsValue,
   created: LocalDateTime
 )

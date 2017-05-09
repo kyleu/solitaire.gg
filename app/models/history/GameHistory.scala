@@ -29,8 +29,8 @@ object GameHistory {
 
 case class GameHistory(
     id: UUID,
-    seed: Int,
     rules: String,
+    seed: Int,
     status: String,
     player: UUID,
     cards: Int,

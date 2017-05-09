@@ -26,8 +26,8 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
     override def reduce(rows: Iterator[Row]) = rows.next().as[LocalDate]("d")
   }
 
-  case class GetEvents(limit: Int = 100, offset: Int = 0) extends Query[Seq[AnalyticsEvent]] {
-    override def sql = s"select $columnString from $tableName order by created asc limit $limit offset $offset"
+  case class GetEvents(limit: Int = 100, offset: Int = 0, whereClause: String = "1 = 1", orderBy: String = "created asc") extends Query[Seq[AnalyticsEvent]] {
+    override def sql = s"select $columnString from $tableName where $whereClause order by $orderBy limit $limit offset $offset"
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toSeq
   }
 
@@ -54,7 +54,7 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
     val sourceAddress = row.asOpt[String]("source_address")
     val data = row.as[String]("data")
     val dataObj = try {
-      Json.parse(data).as[JsObject]
+      Json.parse(data)
     } catch {
       case NonFatal(x) => JsObject(Seq(
         "status" -> JsString("error"),

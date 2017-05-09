@@ -7,6 +7,7 @@ import utils.DateUtils
 
 object User {
   val placeholder = User()
+  val defaultId = UUID.fromString("00000000-0000-0000-0000-000000000000")
 }
 
 case class User(

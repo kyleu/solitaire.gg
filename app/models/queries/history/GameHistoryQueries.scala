@@ -10,17 +10,18 @@ import org.joda.time.{LocalDate, LocalDateTime}
 object GameHistoryQueries extends BaseQueries[GameHistory] {
   override protected val tableName = "games"
   override protected val columns = Seq(
-    "id", "seed", "rules", "status", "player",
+    "id", "rules", "seed", "status", "player",
     "cards", "moves", "undos", "redos",
     "created", "first_move", "completed", "logged"
   )
-  override protected val searchColumns = Seq("id::text", "seed::text", "rules", "status", "player::text")
+  override protected val searchColumns = Seq("id::text", "rules", "seed::text", "status", "player::text")
 
   def getById(id: UUID) = getBySingleId(id)
   val insert = Insert
   def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
   val search = Search
   val removeById = RemoveById
+  val truncate = Truncate
 
   case class SetCounts(id: UUID, moves: Int, undos: Int, redos: Int) extends Statement {
     override val sql = updateSql(Seq("moves", "undos", "redos"))
@@ -58,8 +59,8 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
 
   override protected def fromRow(row: Row) = {
     val id = row.as[UUID]("id")
-    val seed = row.as[Int]("seed")
     val rules = row.as[String]("rules")
+    val seed = row.as[Int]("seed")
     val status = row.as[String]("status")
     val player = row.as[UUID]("player")
     val cards = row.as[Int]("cards")
@@ -70,12 +71,10 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     val firstMove = row.asOpt[LocalDateTime]("first_move")
     val completed = row.asOpt[LocalDateTime]("completed")
     val logged = row.asOpt[LocalDateTime]("logged")
-    GameHistory(id, seed, rules, status, player, cards, moves, undos, redos, created, firstMove, completed, logged)
+    GameHistory(id, rules, seed, status, player, cards, moves, undos, redos, created, firstMove, completed, logged)
   }
 
   override protected def toDataSeq(gh: GameHistory) = Seq[Any](
-    gh.id, gh.seed, gh.rules, gh.status, gh.player,
-    gh.cards, gh.moves, gh.undos, gh.redos,
-    gh.created, gh.firstMove, gh.completed, gh.logged
+    gh.id, gh.rules, gh.seed, gh.status, gh.player, gh.cards, gh.moves, gh.undos, gh.redos, gh.created, gh.firstMove, gh.completed, gh.logged
   )
 }

@@ -44,6 +44,10 @@ trait BaseQueries[T] {
     override val values = toDataSeq(model)
   }
 
+  protected case object Truncate extends Statement {
+    override val sql = s"truncate $tableName"
+  }
+
   protected case class InsertBatch(models: Seq[T]) extends Statement {
     private[this] val valuesClause = models.map(m => s"($columnPlaceholders)").mkString(", ")
     override val sql = s"insert into $tableName ($columnString) values $valuesClause"

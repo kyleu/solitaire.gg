@@ -43,6 +43,7 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
     val msg = GameWon(
       id = gameId.getOrElse(throw new IllegalStateException()),
       rules = gameState.map(_.rules).getOrElse("?"),
+      seed = gameState.map(_.seed).getOrElse(-1),
       firstForRules = false,
       firstForSeed = false,
       getResult,
@@ -64,6 +65,7 @@ trait VictoryHelper extends StatisticsHelper with AnalyticsHelper {
     val msg = GameLost(
       id = gameId.getOrElse(throw new IllegalStateException()),
       rules = gameState.map(_.rules).getOrElse("?"),
+      seed = gameState.map(_.seed).getOrElse(-1),
       getResult,
       stats
     )

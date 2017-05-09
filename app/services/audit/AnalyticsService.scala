@@ -24,7 +24,7 @@ object AnalyticsService {
       eventType = eventType,
       device = device,
       sourceAddress = Some(sourceAddress),
-      data = data.as[JsObject],
+      data = data,
       created = DateUtils.now
     )
     Database.execute(AnalyticsEventQueries.insert(event)).map(x => event)

@@ -66,6 +66,7 @@ object Solitaire extends js.JSApp with StartGameHelper with SolitaireUndoHelper 
     case "cheat win" => send(GameWon(
       id = gameId.getOrElse(throw new IllegalStateException()),
       rules = gameState.map(_.rules).getOrElse("?"),
+      seed = gameState.map(_.seed).getOrElse(-1),
       firstForRules = false,
       firstForSeed = false,
       getResult,

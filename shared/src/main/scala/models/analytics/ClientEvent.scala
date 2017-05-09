@@ -35,6 +35,7 @@ case class GameStartEvent(
   override val sessionId: UUID,
   gameId: UUID,
   rules: String,
+  seed: Int,
   override val occurred: Long
 ) extends ClientEvent
 

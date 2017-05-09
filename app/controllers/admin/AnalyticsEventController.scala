@@ -5,8 +5,10 @@ import java.util.UUID
 import controllers.BaseController
 import models.audit.AnalyticsEvent
 import models.queries.audit.AnalyticsEventQueries
+import models.queries.history.{GameHistoryQueries, InstallHistoryQueries, OpenHistoryQueries}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.AnalyticsService
+import services.audit.data.AnalyticsDataInsert
 import services.database.Database
 import utils.Application
 
@@ -30,40 +32,43 @@ class AnalyticsEventController @javax.inject.Inject() (override val app: Applica
     }
   }
 
-  def sandbox(reset: Boolean) = withAdminSession("analytics.sandbox") { implicit request =>
-    val limit = 1000
+  def sandbox(reset: Boolean, limit: Int) = withAdminSession("analytics.sandbox") { implicit request =>
     val offset = 0
 
     val startMs = System.currentTimeMillis
-    Database.query(AnalyticsEventQueries.GetEvents(limit = limit, offset = offset)).map { events =>
-      val queryTime = System.currentTimeMillis - startMs
+
+    val wipe = if (reset) {
+      Database.execute(OpenHistoryQueries.truncate).flatMap { _ =>
+        Database.execute(InstallHistoryQueries.truncate).flatMap { _ =>
+          Database.execute(GameHistoryQueries.truncate)
+        }
+      }
+    } else {
+      Future.successful(0)
+    }
+
+    val resetStartMs = System.currentTimeMillis
+    wipe.flatMap { _ =>
       val resetTime = if (reset) {
-        val resetStartMs = System.currentTimeMillis
-        // TODO Wipe
         Some(System.currentTimeMillis - resetStartMs)
       } else {
         None
       }
-      val processingStart = System.currentTimeMillis
+      val queryStartMs = System.currentTimeMillis
+      Database.query(AnalyticsEventQueries.GetEvents(limit = limit, offset = offset)).flatMap { events =>
+        val queryTime = System.currentTimeMillis - queryStartMs
+        val processingStart = System.currentTimeMillis
+        val result = events.foldLeft(Future.successful(Seq.empty[(AnalyticsEvent, String)])) { (x, y) =>
+          x.flatMap { ret =>
+            AnalyticsDataInsert.process(y).map(x => ret :+ x)
+          }
+        }
+        val processingTime = System.currentTimeMillis - processingStart
 
-      val processingTime = System.currentTimeMillis - processingStart
-
-      val result = events.map(process)
-
-      Ok(views.html.admin.analytics.sandbox(startMs, result, queryTime, resetTime, processingTime))
+        result.map { r =>
+          Ok(views.html.admin.analytics.sandbox(startMs, r, queryTime, resetTime, processingTime))
+        }
+      }
     }
-  }
-
-  private[this] def process(event: AnalyticsEvent) = {
-    val msg = event.eventType match {
-      case AnalyticsEvent.EventType.Error => None
-      case AnalyticsEvent.EventType.Install => None
-      case AnalyticsEvent.EventType.Open => None
-      case AnalyticsEvent.EventType.GameStart => None
-      case AnalyticsEvent.EventType.GameWon => None
-      case AnalyticsEvent.EventType.GameResigned => None
-      case u: AnalyticsEvent.EventType.Unknown => None
-    }
-    event -> msg.toString
   }
 }

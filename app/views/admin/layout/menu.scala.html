@@ -19,6 +19,7 @@
       </ul>
     </li>
     <li @if(section == "analytics") { class="active" }>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Analytics <span class="caret"></span></a>
       <ul class="dropdown-menu" role="menu">
         <li><a href="@controllers.admin.routes.AnalyticsEventController.eventList()">Browse Events</a></li>
         <li><a href="@controllers.admin.routes.AnalyticsEventController.sandbox()">Sandbox</a></li>

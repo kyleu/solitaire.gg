@@ -10,6 +10,7 @@ case object CreateUsersTable extends CreateTableStatement("users") {
       created timestamp not null
     ) with (oids=false);
 
-    create index ${tableName}_username_idx on $tableName using btree (username collate pg_catalog."default");
+    create index ${tableName}_username_idx on $tableName using btree (username);
+    create index ${tableName}_email_idx on $tableName using btree (email);
   """
 }

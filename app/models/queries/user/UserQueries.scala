@@ -19,6 +19,7 @@ object UserQueries extends BaseQueries[User] {
   def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
   val search = Search
   val removeById = RemoveById
+  def count(id: UUID) = Count(s"select count(*) c from $tableName where id = ?", Seq(id))
 
   case class DoesUserExist(id: UUID) extends SingleRowQuery[Boolean] {
     override def sql = s"select count(*) as c from users where id = ?"
@@ -47,9 +48,15 @@ object UserQueries extends BaseQueries[User] {
     override val values = Seq(write(userPreferences), userId)
   }
 
-  case class FindUserByUsername(username: String) extends FlatSingleRowQuery[User] {
+  case class GetByUsername(username: String) extends FlatSingleRowQuery[User] {
     override val sql = getSql(Some("username = ?"))
     override val values = Seq(username)
+    override def flatMap(row: Row) = Some(fromRow(row))
+  }
+
+  case class GetByEmail(email: String) extends FlatSingleRowQuery[User] {
+    override val sql = getSql(Some("email = ?"))
+    override val values = Seq(email)
     override def flatMap(row: Row) = Some(fromRow(row))
   }
 

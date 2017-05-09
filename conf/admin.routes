@@ -15,7 +15,7 @@ GET         /rules/:id                       controllers.admin.RulesController.r
 GET         /rules/:id/screenshot            controllers.admin.RulesController.rulesScreenshot(id: String)
 
 GET         /analytics/list                  controllers.admin.AnalyticsEventController.eventList(q ?= "", sortBy ?= "created", page: Int ?= 0)
-GET         /analytics/sandbox               controllers.admin.AnalyticsEventController.sandbox(reset: Boolean ?= false)
+GET         /analytics/sandbox               controllers.admin.AnalyticsEventController.sandbox(reset: Boolean ?= false, limit: Int ?= 100)
 GET         /analytics/:id                   controllers.admin.AnalyticsEventController.eventDetail(id: java.util.UUID)
 GET         /analytics/:id/remove            controllers.admin.AnalyticsEventController.removeEvent(id: java.util.UUID)
 

@@ -11,9 +11,6 @@ object Schema extends Logging {
   val tables = Seq(
     CreateAnalyticsEventsTable,
 
-    CreateUserFeedbackTable,
-    CreateUserFeedbackNotesTable,
-
     CreateDailyMetricsTable,
 
     CreateAdHocQueriesTable,
@@ -21,8 +18,14 @@ object Schema extends Logging {
     CreateUsersTable,
     CreateUserStatisticsTable,
 
+    CreateUserFeedbackTable,
+    CreateUserFeedbackNotesTable,
+
     CreateGamesTable,
-    CreateGameSeedsTable
+    CreateGameSeedsTable,
+
+    CreateOpensTable,
+    CreateInstallsTable
   )
 
   def update() = tables.foldLeft(Future.successful(Unit)) { (f, t) =>
