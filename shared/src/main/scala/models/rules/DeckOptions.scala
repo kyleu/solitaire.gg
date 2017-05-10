@@ -9,4 +9,5 @@ case class DeckOptions(
     lowRank: Rank = Rank.Ace
 ) {
   val highRank: Rank = lowRank.previous
+  val cardCount = numDecks * suits.size * ranks.size
 }

@@ -6,8 +6,10 @@ import models.audit.AnalyticsEvent
 import models.database.{Query, Row}
 import models.queries.BaseQueries
 import org.joda.time.{LocalDate, LocalDateTime}
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.{JsObject, JsString, Json}
 
+import scala.concurrent.Future
 import scala.util.control.NonFatal
 
 object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
@@ -29,6 +31,17 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
   case class GetEvents(limit: Int = 100, offset: Int = 0, whereClause: String = "1 = 1", orderBy: String = "created asc") extends Query[Seq[AnalyticsEvent]] {
     override def sql = s"select $columnString from $tableName where $whereClause order by $orderBy limit $limit offset $offset"
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toSeq
+  }
+
+  case class ProcessEvents[T](
+      f: AnalyticsEvent => Future[T], limit: Int = 100, offset: Int = 0, whereClause: String = "1 = 1", orderBy: String = "created asc"
+  ) extends Query[Future[Seq[T]]] {
+    override def sql = s"select $columnString from $tableName where $whereClause order by $orderBy limit $limit offset $offset"
+    override def reduce(rows: Iterator[Row]) = rows.foldLeft(Future.successful(Seq.empty[T])) { (x, y) =>
+      x.flatMap { res =>
+        f(fromRow(y)).map(r => res :+ r)
+      }
+    }
   }
 
   case object GetDateCounts extends Query[Seq[(LocalDate, Int)]] {

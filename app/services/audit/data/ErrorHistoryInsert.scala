@@ -2,21 +2,17 @@ package services.audit.data
 
 import java.util.UUID
 
-import models.history.InstallHistory
-import models.queries.history.InstallHistoryQueries
 import models.user.User
 import org.joda.time.LocalDateTime
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.JsValue
-import services.database.Database
 import utils.DateUtils
 
 import scala.concurrent.Future
 
-object InstallHistoryInsert {
+object ErrorHistoryInsert {
   def test(id: UUID, data: JsValue): String = {
     parse(id, data)
-    "Install: Parsed"
+    "Error: Parsed"
   }
 
   def insert(id: UUID, data: JsValue): Future[String] = {
@@ -35,9 +31,6 @@ object InstallHistoryInsert {
   }
 
   private[this] def queries(id: UUID, deviceId: UUID, userId: UUID, deviceInfo: Seq[String], client: String, occurred: LocalDateTime): Future[String] = {
-    AnalyticsDataInsert.confirmUser(userId, occurred).flatMap { _ =>
-      val q = InstallHistoryQueries.insert(InstallHistory(id, userId, deviceId, deviceInfo, client, occurred))
-      Database.execute(q).map(_ => "Install: Inserted")
-    }
+    Future.successful("Error: Inserted")
   }
 }

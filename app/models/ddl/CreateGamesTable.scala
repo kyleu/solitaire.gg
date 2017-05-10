@@ -12,6 +12,8 @@ case object CreateGamesTable extends CreateTableStatement("games") {
       moves integer not null default 0,
       undos integer not null default 0,
       redos integer not null default 0,
+      score integer not null default 0,
+      duration_ms integer not null default 0,
       created timestamp not null default now(),
       first_move timestamp,
       completed timestamp,

@@ -11,7 +11,7 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   override protected val tableName = "games"
   override protected val columns = Seq(
     "id", "rules", "seed", "status", "player",
-    "cards", "moves", "undos", "redos",
+    "cards", "moves", "undos", "redos", "score",
     "created", "first_move", "completed", "logged"
   )
   override protected val searchColumns = Seq("id::text", "rules", "seed::text", "status", "player::text")
@@ -20,12 +20,17 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   val insert = Insert
   def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
   val search = Search
-  val removeById = RemoveById
+  def removeById(id: UUID) = RemoveById(Seq(id))
   val truncate = Truncate
 
-  case class SetCounts(id: UUID, moves: Int, undos: Int, redos: Int) extends Statement {
-    override val sql = updateSql(Seq("moves", "undos", "redos"))
-    override val values = Seq[Any](moves, undos, redos, id)
+  case class SetCounts(id: UUID, moves: Int, undos: Int, redos: Int, score: Int) extends Statement {
+    override val sql = updateSql(Seq("moves", "undos", "redos", "score"))
+    override val values = Seq[Any](moves, undos, redos, score, id)
+  }
+
+  case class SetCountsAndCompleted(id: UUID, moves: Int, undos: Int, redos: Int, score: Int, completed: LocalDateTime, status: String) extends Statement {
+    override val sql = updateSql(Seq("moves", "undos", "redos", "score", "completed", "status"))
+    override val values = Seq[Any](moves, undos, redos, score, completed, status, id)
   }
 
   case class SetFirstMove(id: UUID, firstMove: LocalDateTime) extends Statement {
@@ -67,14 +72,15 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     val moves = row.as[Int]("moves")
     val undos = row.as[Int]("undos")
     val redos = row.as[Int]("redos")
+    val score = row.as[Int]("score")
     val created = row.as[LocalDateTime]("created")
     val firstMove = row.asOpt[LocalDateTime]("first_move")
     val completed = row.asOpt[LocalDateTime]("completed")
     val logged = row.asOpt[LocalDateTime]("logged")
-    GameHistory(id, rules, seed, status, player, cards, moves, undos, redos, created, firstMove, completed, logged)
+    GameHistory(id, rules, seed, status, player, cards, moves, undos, redos, score, created, firstMove, completed, logged)
   }
 
   override protected def toDataSeq(gh: GameHistory) = Seq[Any](
-    gh.id, gh.rules, gh.seed, gh.status, gh.player, gh.cards, gh.moves, gh.undos, gh.redos, gh.created, gh.firstMove, gh.completed, gh.logged
+    gh.id, gh.rules, gh.seed, gh.status, gh.player, gh.cards, gh.moves, gh.undos, gh.redos, gh.score, gh.created, gh.firstMove, gh.completed, gh.logged
   )
 }

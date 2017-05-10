@@ -32,41 +32,20 @@ class AnalyticsEventController @javax.inject.Inject() (override val app: Applica
     }
   }
 
-  def sandbox(reset: Boolean, limit: Int) = withAdminSession("analytics.sandbox") { implicit request =>
-    val offset = 0
-
-    val startMs = System.currentTimeMillis
-
-    val wipe = if (reset) {
-      Database.execute(OpenHistoryQueries.truncate).flatMap { _ =>
-        Database.execute(InstallHistoryQueries.truncate).flatMap { _ =>
-          Database.execute(GameHistoryQueries.truncate)
-        }
+  def wipe() = {
+    Database.execute(OpenHistoryQueries.truncate).flatMap { _ =>
+      Database.execute(InstallHistoryQueries.truncate).flatMap { _ =>
+        Database.execute(GameHistoryQueries.truncate)
       }
-    } else {
-      Future.successful(0)
     }
+  }
 
-    val resetStartMs = System.currentTimeMillis
-    wipe.flatMap { _ =>
-      val resetTime = if (reset) {
-        Some(System.currentTimeMillis - resetStartMs)
-      } else {
-        None
-      }
-      val queryStartMs = System.currentTimeMillis
-      Database.query(AnalyticsEventQueries.GetEvents(limit = limit, offset = offset)).flatMap { events =>
-        val queryTime = System.currentTimeMillis - queryStartMs
-        val processingStart = System.currentTimeMillis
-        val result = events.foldLeft(Future.successful(Seq.empty[(AnalyticsEvent, String)])) { (x, y) =>
-          x.flatMap { ret =>
-            AnalyticsDataInsert.process(y).map(x => ret :+ x)
-          }
-        }
-        val processingTime = System.currentTimeMillis - processingStart
-
-        result.map { r =>
-          Ok(views.html.admin.analytics.sandbox(startMs, r, queryTime, resetTime, processingTime))
+  def sandbox(test: Boolean, reset: Boolean, limit: Int, offset: Int) = withAdminSession("analytics.sandbox") { implicit request =>
+    val f = if (test) { AnalyticsDataInsert.test _ } else { AnalyticsDataInsert.process _ }
+    wipe().flatMap { _ =>
+      Database.query(AnalyticsEventQueries.ProcessEvents(f = f, limit = limit, offset = offset)).flatMap { events =>
+        events.map { r =>
+          Ok(views.html.admin.analytics.sandbox(test, r))
         }
       }
     }

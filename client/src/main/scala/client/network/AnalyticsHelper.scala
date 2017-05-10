@@ -7,6 +7,7 @@ import models.analytics._
 import models.{GameLost, GameWon}
 import upickle.legacy._
 import client.user.DataHelper
+import models.rules.GameRulesSet
 
 import scala.scalajs.js
 import scala.util.control.NonFatal
@@ -55,6 +56,7 @@ trait AnalyticsHelper extends AjaxHelper {
       sessionId = DataHelper.sessionId,
       gameId = gameId,
       rules = rules,
+      cards = GameRulesSet.allByIdWithAliases.get(rules).map(_.deckOptions.cardCount).getOrElse(0),
       seed = seed,
       occurred = occurred
     )

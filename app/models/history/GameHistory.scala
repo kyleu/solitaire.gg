@@ -37,6 +37,7 @@ case class GameHistory(
     moves: Int,
     undos: Int,
     redos: Int,
+    score: Int,
     created: LocalDateTime,
     firstMove: Option[LocalDateTime],
     completed: Option[LocalDateTime],

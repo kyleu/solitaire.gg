@@ -1,18 +1,6 @@
-@(
-    start: Long,
-    events: Seq[(models.audit.AnalyticsEvent, String)],
-    queryTime: Long,
-    resetTime: Option[Long],
-    processingTime: Long
-)(implicit session: Session, flash: Flash) @views.html.admin.layout.base(s"Analytics Events", "analytics") {
+@(showData: Boolean, events: Seq[(models.audit.AnalyticsEvent, String)])(implicit session: Session, flash: Flash) @views.html.admin.layout.base(s"Analytics Events", "analytics") {
   <h4>@utils.Formatter.withCommas(events.size) analytics events.</h4>
-  <ul>
-    <li>@events.size records processed in [@{queryTime}ms].</li>
-    @resetTime.map { time =>
-      <li>Database reset in [@{time.toString}ms].</li>
-    }
-    <li>Processed [@events.size] events in [@{processingTime}ms].</li>
-  </ul>
+  <em>@events.size records processed.</em>
   <h4>Event Details</h4>
   @events.map { ev =>
     <div style="float: right;">@ev._1.id</div>
@@ -21,8 +9,10 @@
       <div style="float: right;">@utils.Formatter.niceDateTime(ev._1.created)</div>
       <div>@ev._2</div>
     </div>
-    <pre>@play.api.libs.json.Json.prettyPrint(ev._1.data)</pre>
-    <hr/>
+    @if(showData) {
+      <pre>@play.api.libs.json.Json.prettyPrint(ev._1.data)</pre>
+      <hr/>
+    }
   }
 }
 
