@@ -12,6 +12,7 @@ import org.scalajs.dom
 import org.scalajs.dom.raw.BeforeUnloadEvent
 import phaser.PhaserGame
 import phaser.gameplay.InputHelper
+import settings.SettingsPanel
 import utils.{Logging, NullUtils}
 
 import scala.scalajs.js
@@ -58,6 +59,7 @@ class SolitaireGG(val debug: Boolean) {
         }
         navigation.navigate(NavigationState.Play, rules)
       })
+      case NavigationState.Settings => SettingsPanel.initIfNeeded(settings.getSettings)
       case NavigationState.Play => GameStartService.onGameStateChange(this, args)
       case NavigationState.Help => HelpService.show("klondike")
       case _ => // noop
