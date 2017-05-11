@@ -1,40 +1,40 @@
 package models.rules
 
-import enumeratum._
+import enumeratum.values._
 import models.game.GameState
 import models.pile.Pile
 
-sealed trait VictoryCondition extends EnumEntry {
+sealed abstract class VictoryCondition(val value: String) extends StringEnumEntry {
   def check(rules: GameRules, gs: GameState): Boolean
 }
 
-object VictoryCondition extends Enum[VictoryCondition] {
+object VictoryCondition extends StringEnum[VictoryCondition] with StringUPickleEnum[VictoryCondition] {
   val default = AllOnFoundation
 
-  case object AllOnFoundation extends VictoryCondition {
+  case object AllOnFoundation extends VictoryCondition("all-on-foundation") {
     override def check(rules: GameRules, gs: GameState) = !gs.pileSets.exists(ps => ps.behavior != "foundation" && ps.piles.exists(_.cards.nonEmpty))
   }
-  case object AllButFourCardsOnFoundation extends VictoryCondition {
+  case object AllButFourCardsOnFoundation extends VictoryCondition("all-but-four-cards-on-foundation") {
     override def check(rules: GameRules, gs: GameState) = gs.pileSets.flatMap(ps => if (ps.behavior == "foundation") {
       Nil
     } else {
       ps.piles.flatMap(_.cards)
     }).length == 4
   }
-  case object AllOnFoundationOrStock extends VictoryCondition {
+  case object AllOnFoundationOrStock extends VictoryCondition("all-on-foundation-or-stock") {
     override def check(rules: GameRules, gs: GameState) = {
       !gs.pileSets.exists(ps => ps.behavior != "foundation" && ps.behavior != "stock" && ps.piles.exists(_.cards.nonEmpty))
     }
   }
-  case object NoneInStock extends VictoryCondition {
+  case object NoneInStock extends VictoryCondition("none-in-stock") {
     override def check(rules: GameRules, gs: GameState) =
       gs.pileSets.exists(ps => ps.behavior == "stock" && ps.piles.forall(_.cards.isEmpty)) &&
         !gs.pileSets.exists(ps => ps.behavior == "waste" && !ps.piles.forall(_.cards.isEmpty))
   }
-  case object NoneInPyramid extends VictoryCondition {
+  case object NoneInPyramid extends VictoryCondition("none-in-pyramid") {
     override def check(rules: GameRules, gs: GameState) = gs.pileSets.exists(ps => ps.behavior == "pyramid" && ps.piles.forall(_.cards.isEmpty))
   }
-  case object AllOnTableauSorted extends VictoryCondition {
+  case object AllOnTableauSorted extends VictoryCondition("all-on-tableau-sorted") {
     override def check(rules: GameRules, gs: GameState) = {
       val tableauRules = rules.tableaus.toList match {
         case h :: Nil => h

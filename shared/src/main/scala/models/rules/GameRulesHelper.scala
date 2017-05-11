@@ -13,7 +13,7 @@ trait GameRulesHelper { this: GameRules =>
     val rng = new Random(new java.util.Random(seed.toLong))
     val maxPlayers = 1
     val lowRank = if (deckOptions.lowRank == Rank.Unknown) {
-      deckOptions.ranks(rng.nextInt(Rank.all.length))
+      deckOptions.ranks(rng.nextInt(deckOptions.ranks.length))
     } else {
       deckOptions.lowRank
     }

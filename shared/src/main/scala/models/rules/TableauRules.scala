@@ -1,37 +1,37 @@
 package models.rules
 
-import enumeratum._
+import enumeratum.values._
 
-sealed trait TableauFaceDownCards extends EnumEntry
-object TableauFaceDownCards extends Enum[TableauFaceDownCards] {
-  case class Count(n: Int) extends TableauFaceDownCards
-  case object AllButOne extends TableauFaceDownCards
-  case object EvenNumbered extends TableauFaceDownCards
-  case object OddNumbered extends TableauFaceDownCards
+sealed abstract class TableauFaceDownCards(val value: String) extends StringEnumEntry
+object TableauFaceDownCards extends StringEnum[TableauFaceDownCards] with StringUPickleEnum[TableauFaceDownCards] {
+  case class Count(n: Int) extends TableauFaceDownCards("count")
+  case object AllButOne extends TableauFaceDownCards("all-but-one")
+  case object EvenNumbered extends TableauFaceDownCards("even-numbered")
+  case object OddNumbered extends TableauFaceDownCards("odd-numbered")
   override val values = findValues
 }
 
-sealed trait TableauAutoFillEmptyFrom extends EnumEntry
-object TableauAutoFillEmptyFrom extends Enum[TableauAutoFillEmptyFrom] {
-  case object Nowhere extends TableauAutoFillEmptyFrom
-  case object Reserve extends TableauAutoFillEmptyFrom
-  case object Stock extends TableauAutoFillEmptyFrom
-  case object Waste extends TableauAutoFillEmptyFrom
-  case object WasteThenStock extends TableauAutoFillEmptyFrom
-  case object StockThenWaste extends TableauAutoFillEmptyFrom
-  case object NextPile extends TableauAutoFillEmptyFrom
+sealed abstract class TableauAutoFillEmptyFrom(val value: String) extends StringEnumEntry
+object TableauAutoFillEmptyFrom extends StringEnum[TableauAutoFillEmptyFrom] with StringUPickleEnum[TableauAutoFillEmptyFrom] {
+  case object Nowhere extends TableauAutoFillEmptyFrom("nowhere")
+  case object Reserve extends TableauAutoFillEmptyFrom("reserve")
+  case object Stock extends TableauAutoFillEmptyFrom("stock")
+  case object Waste extends TableauAutoFillEmptyFrom("waste")
+  case object WasteThenStock extends TableauAutoFillEmptyFrom("waste-then-stock")
+  case object StockThenWaste extends TableauAutoFillEmptyFrom("stock-then-waste")
+  case object NextPile extends TableauAutoFillEmptyFrom("next-pile")
   override val values = findValues
 }
 
-sealed trait PileAction extends EnumEntry
-object PileAction extends Enum[PileAction] {
-  case object None extends PileAction
-  case object MoveKingsToBottom extends PileAction
-  case object MoveToFoundation extends PileAction
-  case object MoveToFoundationAndReplace extends PileAction
-  case object MoveToEmptyFoundation extends PileAction
-  case object MoveToEmptyFoundationAndReplace extends PileAction
-  case object LimitToTwoJacks extends PileAction
+sealed abstract class PileAction(val value: String) extends StringEnumEntry
+object PileAction extends StringEnum[PileAction] with StringUPickleEnum[PileAction] {
+  case object None extends PileAction("none")
+  case object MoveKingsToBottom extends PileAction("move-kings-to-bottom")
+  case object MoveToFoundation extends PileAction("move-to-foundation")
+  case object MoveToFoundationAndReplace extends PileAction("move-to-foundation-and-replace")
+  case object MoveToEmptyFoundation extends PileAction("move-to-empty-foundation")
+  case object MoveToEmptyFoundationAndReplace extends PileAction("move-to-empty-foundation-and-replace")
+  case object LimitToTwoJacks extends PileAction("limit-to-two-jacks")
   override val values = findValues
 }
 

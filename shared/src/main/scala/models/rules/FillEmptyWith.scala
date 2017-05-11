@@ -1,17 +1,17 @@
 package models.rules
 
-import enumeratum._
+import enumeratum.values._
 
-sealed trait FillEmptyWith extends EnumEntry
+sealed abstract class FillEmptyWith(val value: String) extends StringEnumEntry
 
-object FillEmptyWith extends Enum[FillEmptyWith] {
-  case object Any extends FillEmptyWith
-  case object None extends FillEmptyWith
-  case object LowRank extends FillEmptyWith
-  case object HighRank extends FillEmptyWith
-  case object HighRankUntilStockEmpty extends FillEmptyWith
-  case object HighRankOrLowRank extends FillEmptyWith
-  case object Sevens extends FillEmptyWith
+object FillEmptyWith extends StringEnum[FillEmptyWith] with StringUPickleEnum[FillEmptyWith] {
+  case object Any extends FillEmptyWith("any")
+  case object None extends FillEmptyWith("none")
+  case object LowRank extends FillEmptyWith("low-rank")
+  case object HighRank extends FillEmptyWith("high-rank")
+  case object HighRankUntilStockEmpty extends FillEmptyWith("high-rank-until-stock-empty")
+  case object HighRankOrLowRank extends FillEmptyWith("high-rank-or-low-rank")
+  case object Sevens extends FillEmptyWith("sevens")
 
   override val values = findValues
 }

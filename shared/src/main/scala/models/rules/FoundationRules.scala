@@ -1,32 +1,32 @@
 package models.rules
 
-import enumeratum._
+import enumeratum.values._
 import models.card.{Color, Rank, Suit}
 
-sealed trait FoundationInitialCardRestriction extends EnumEntry
-object FoundationInitialCardRestriction extends Enum[FoundationInitialCardRestriction] {
-  case object UniqueColors extends FoundationInitialCardRestriction
-  case object UniqueSuits extends FoundationInitialCardRestriction
-  case class SpecificColorUniqueSuits(c: Color) extends FoundationInitialCardRestriction
-  case class SpecificSuit(s: Suit) extends FoundationInitialCardRestriction
+sealed abstract class FoundationInitialCardRestriction(val value: String) extends StringEnumEntry
+object FoundationInitialCardRestriction extends StringEnum[FoundationInitialCardRestriction] with StringUPickleEnum[FoundationInitialCardRestriction] {
+  case object UniqueColors extends FoundationInitialCardRestriction("unique-colors")
+  case object UniqueSuits extends FoundationInitialCardRestriction("unique-suits")
+  case class SpecificColorUniqueSuits(c: Color) extends FoundationInitialCardRestriction("specific-color-unique-suits")
+  case class SpecificSuit(s: Suit) extends FoundationInitialCardRestriction("specific-suit")
   override val values = findValues
 }
 
-sealed trait FoundationLowRank extends EnumEntry
-object FoundationLowRank extends Enum[FoundationLowRank] {
-  case object AnyCard extends FoundationLowRank
-  case object DeckLowRank extends FoundationLowRank
-  case object DeckHighRank extends FoundationLowRank
-  case object Ascending extends FoundationLowRank
-  case class SpecificRank(r: Rank) extends FoundationLowRank
+sealed abstract class FoundationLowRank(val value: String) extends StringEnumEntry
+object FoundationLowRank extends StringEnum[FoundationLowRank] with StringUPickleEnum[FoundationLowRank] {
+  case object AnyCard extends FoundationLowRank("any-card")
+  case object DeckLowRank extends FoundationLowRank("deck-low-rank")
+  case object DeckHighRank extends FoundationLowRank("deck-high-rank")
+  case object Ascending extends FoundationLowRank("ascending")
+  case class SpecificRank(r: Rank) extends FoundationLowRank("specific-rank")
   override val values = findValues
 }
 
-sealed trait FoundationCanMoveFrom extends EnumEntry
-object FoundationCanMoveFrom extends Enum[FoundationCanMoveFrom] {
-  case object Never extends FoundationCanMoveFrom
-  case object Always extends FoundationCanMoveFrom
-  case object EmptyStock extends FoundationCanMoveFrom
+sealed abstract class FoundationCanMoveFrom(val value: String) extends StringEnumEntry
+object FoundationCanMoveFrom extends StringEnum[FoundationCanMoveFrom] with StringUPickleEnum[FoundationCanMoveFrom] {
+  case object Never extends FoundationCanMoveFrom("never")
+  case object Always extends FoundationCanMoveFrom("always")
+  case object EmptyStock extends FoundationCanMoveFrom("empty-stock")
   override val values = findValues
 }
 

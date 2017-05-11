@@ -1,117 +1,100 @@
 package models.card
 
-import enumeratum._
+import enumeratum.values._
 
-sealed trait Rank extends EnumEntry {
+sealed abstract class Rank(val value: Char) extends CharEnumEntry {
   def index: Int
   def name: String
-  def toChar: Char
   lazy val previous = Rank.allByValue(index - 1)
   lazy val next = Rank.allByValue(index + 1)
   val locs: Seq[(Double, Double)] = Nil
 }
 
-object Rank extends Enum[Rank] {
-  val all: Seq[Rank] = Seq(Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace)
-  val allByChar = all.map(r => r.toChar -> r).toMap
-  val allByValue = all.map(r => r.index -> r).toMap + (1 -> Ace)
-
-  case object Two extends Rank {
+object Rank extends CharEnum[Rank] with CharUPickleEnum[Rank] {
+  case object Two extends Rank('2') {
     override val index = 2
     override val name = "Two"
-    override val toChar = '2'
     override lazy val previous = Ace
     override val locs = Seq((0.5, 0.3), (0.5, 0.7))
   }
 
-  case object Three extends Rank {
+  case object Three extends Rank('3') {
     override val index = 3
     override val name = "Three"
-    override val toChar = '3'
     override val locs = Seq((0.2, 0.7), (0.5, 0.5), (0.8, 0.3))
   }
 
-  case object Four extends Rank {
+  case object Four extends Rank('4') {
     override val index = 4
     override val name = "Four"
-    override val toChar = '4'
     override val locs = Seq((0.2, 0.5), (0.5, 0.3), (0.5, 0.7), (0.8, 0.5))
   }
 
-  case object Five extends Rank {
+  case object Five extends Rank('5') {
     override val index = 5
     override val name = "Five"
-    override val toChar = '5'
     override val locs = Seq((0.2, 0.3), (0.8, 0.3), (0.5, 0.5), (0.2, 0.7), (0.8, 0.7))
   }
 
-  case object Six extends Rank {
+  case object Six extends Rank('6') {
     override val index = 6
     override val name = "Six"
-    override val toChar = '6'
     override val locs = Seq((0.2, 0.4), (0.2, 0.6), (0.5, 0.3), (0.5, 0.7), (0.8, 0.4), (0.8, 0.6))
   }
 
-  case object Seven extends Rank {
+  case object Seven extends Rank('7') {
     override val index = 7
     override val name = "Seven"
-    override val toChar = '7'
     override val locs = Seq((0.2, 0.4), (0.2, 0.6), (0.5, 0.3), (0.5, 0.5), (0.5, 0.7), (0.8, 0.4), (0.8, 0.6))
   }
 
-  case object Eight extends Rank {
+  case object Eight extends Rank('8') {
     override val index = 8
     override val name = "Eight"
-    override val toChar = '8'
     override val locs = Seq((0.2, 0.3), (0.2, 0.5), (0.2, 0.7), (0.5, 0.4), (0.5, 0.6), (0.8, 0.3), (0.8, 0.5), (0.8, 0.7))
   }
 
-  case object Nine extends Rank {
+  case object Nine extends Rank('9') {
     override val index = 9
     override val name = "Nine"
-    override val toChar = '9'
     override val locs = Seq((0.2, 0.4), (0.2, 0.6), (0.2, 0.8), (0.5, 0.3), (0.5, 0.5), (0.5, 0.7), (0.8, 0.2), (0.8, 0.4), (0.8, 0.6))
   }
 
-  case object Ten extends Rank {
+  case object Ten extends Rank('X') {
     override val index = 10
     override val name = "Ten"
-    override val toChar = 'X'
     override val locs = Seq((0.2, 0.3), (0.2, 0.5), (0.2, 0.7), (0.5, 0.2), (0.5, 0.4), (0.5, 0.6), (0.5, 0.8), (0.8, 0.3), (0.8, 0.5), (0.8, 0.7))
   }
 
-  case object Jack extends Rank {
+  case object Jack extends Rank('J') {
     override val index = 11
     override val name = "Jack"
-    override val toChar = 'J'
   }
 
-  case object Queen extends Rank {
+  case object Queen extends Rank('Q') {
     override val index = 12
     override val name = "Queen"
-    override val toChar = 'Q'
   }
 
-  case object King extends Rank {
+  case object King extends Rank('K') {
     override val index = 13
     override val name = "King"
-    override val toChar = 'K'
   }
 
-  case object Ace extends Rank {
+  case object Ace extends Rank('A') {
     override val index = 14
     override val name = "Ace"
-    override val toChar = 'A'
     override lazy val next = Two
   }
 
-  case object Unknown extends Rank {
+  case object Unknown extends Rank('?') {
     override val index = 0
     override val name = "Unknown"
-    override val toChar = '?'
     override lazy val previous = Unknown
     override lazy val next = Unknown
   }
 
   override val values = findValues
+  val all = values.filterNot(_ == Unknown)
+  val allByValue = all.map(r => r.index -> r).toMap + (1 -> Ace)
 }

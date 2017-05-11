@@ -1,20 +1,20 @@
 package models.rules
 
-import enumeratum._
+import enumeratum.values._
 
-sealed trait PyramidType extends EnumEntry
-object PyramidType extends Enum[PyramidType] {
-  case object Standard extends PyramidType
-  case object Inverted extends PyramidType
+sealed abstract class PyramidType(val value: String) extends StringEnumEntry
+object PyramidType extends StringEnum[PyramidType] with StringUPickleEnum[PyramidType] {
+  case object Standard extends PyramidType("standard")
+  case object Inverted extends PyramidType("inverted")
   override val values = findValues
 }
 
-sealed trait PyramidFaceDownCards extends EnumEntry
-object PyramidFaceDownCards extends Enum[PyramidFaceDownCards] {
-  case class Count(n: Int) extends PyramidFaceDownCards
-  case object AllButLastRow extends PyramidFaceDownCards
-  case object EvenNumbered extends PyramidFaceDownCards
-  case object OddNumbered extends PyramidFaceDownCards
+sealed abstract class PyramidFaceDownCards(val value: String) extends StringEnumEntry
+object PyramidFaceDownCards extends StringEnum[PyramidFaceDownCards] with StringUPickleEnum[PyramidFaceDownCards] {
+  case class Count(n: Int) extends PyramidFaceDownCards("count")
+  case object AllButLastRow extends PyramidFaceDownCards("all-but-last-row")
+  case object EvenNumbered extends PyramidFaceDownCards("even-numbered")
+  case object OddNumbered extends PyramidFaceDownCards("odd-numbered")
   override val values = findValues
 }
 

@@ -1,27 +1,27 @@
 package models.rules
 
-import enumeratum._
+import enumeratum.values._
 
-sealed trait StockDealTo extends EnumEntry
-object StockDealTo extends Enum[StockDealTo] {
-  case object Waste extends StockDealTo
-  case object WasteOrPairManually extends StockDealTo
-  case object Tableau extends StockDealTo
-  case object TableauFirstSet extends StockDealTo
-  case object TableauIfNoneEmpty extends StockDealTo
-  case object TableauEmpty extends StockDealTo
-  case object TableauNonEmpty extends StockDealTo
-  case object Foundation extends StockDealTo
-  case object Reserve extends StockDealTo
-  case object Manually extends StockDealTo
-  case object Never extends StockDealTo
+sealed abstract class StockDealTo(val value: String) extends StringEnumEntry
+object StockDealTo extends StringEnum[StockDealTo] with StringUPickleEnum[StockDealTo] {
+  case object Waste extends StockDealTo("waste")
+  case object WasteOrPairManually extends StockDealTo("waste-or-pair-manually")
+  case object Tableau extends StockDealTo("tableau")
+  case object TableauFirstSet extends StockDealTo("tableau-first-set")
+  case object TableauIfNoneEmpty extends StockDealTo("tableau-if-none-empty")
+  case object TableauEmpty extends StockDealTo("tableau-empty")
+  case object TableauNonEmpty extends StockDealTo("tableau-non-empty")
+  case object Foundation extends StockDealTo("foundation")
+  case object Reserve extends StockDealTo("reserve")
+  case object Manually extends StockDealTo("manually")
+  case object Never extends StockDealTo("never")
   override val values = findValues
 }
 
-sealed trait StockCardsDealt extends EnumEntry
-object StockCardsDealt extends Enum[StockCardsDealt] {
-  case class Count(n: Int) extends StockCardsDealt
-  case object FewerEachTime extends StockCardsDealt
+sealed abstract class StockCardsDealt(val value: String) extends StringEnumEntry
+object StockCardsDealt extends StringEnum[StockCardsDealt] with StringUPickleEnum[StockCardsDealt] {
+  case class Count(n: Int) extends StockCardsDealt("count")
+  case object FewerEachTime extends StockCardsDealt("fewer-each-time")
   override val values = findValues
 }
 

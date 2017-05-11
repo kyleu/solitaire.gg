@@ -1,11 +1,11 @@
 package models.rules
 
-import enumeratum._
+import enumeratum.values._
 
-sealed trait WastePlayableCards extends EnumEntry
-object WastePlayableCards extends Enum[WastePlayableCards] {
-  case object TopCardOnly extends WastePlayableCards
-  case object All extends WastePlayableCards
+sealed abstract class WastePlayableCards(val value: String) extends StringEnumEntry
+object WastePlayableCards extends StringEnum[WastePlayableCards] with StringUPickleEnum[WastePlayableCards] {
+  case object TopCardOnly extends WastePlayableCards("top-card-only")
+  case object All extends WastePlayableCards("all")
   override val values = findValues
 }
 
