@@ -8,6 +8,7 @@ import models.queries.BaseQueries
 import org.joda.time.{LocalDate, LocalDateTime}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.{JsObject, JsString, Json}
+import utils.Logging
 
 import scala.concurrent.Future
 import scala.util.control.NonFatal
@@ -33,13 +34,16 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toSeq
   }
 
-  case class ProcessEvents[T](
-      f: AnalyticsEvent => Future[T], limit: Int = 100, offset: Int = 0, whereClause: String = "1 = 1", orderBy: String = "created asc"
-  ) extends Query[Future[Seq[T]]] {
+  case class ProcessEvents(
+      f: AnalyticsEvent => Future[String], limit: Int = 100, offset: Int = 0, whereClause: String = "1 = 1", orderBy: String = "created asc"
+  ) extends Query[Future[Int]] with Logging {
     override def sql = s"select $columnString from $tableName where $whereClause order by $orderBy limit $limit offset $offset"
-    override def reduce(rows: Iterator[Row]) = rows.foldLeft(Future.successful(Seq.empty[T])) { (x, y) =>
-      x.flatMap { res =>
-        f(fromRow(y)).map(r => res :+ r)
+    override def reduce(rows: Iterator[Row]) = rows.zipWithIndex.foldLeft(Future.successful(0)) { (x, y) =>
+      x.flatMap { xc =>
+        if (y._2 % 1000 == 0) {
+          log.info(s"Processed [${y._2}] records...")
+        }
+        f(fromRow(y._1)).map(_ => y._2)
       }
     }
   }
@@ -79,5 +83,5 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
     AnalyticsEvent(id, eventType, device, sourceAddress, dataObj, created)
   }
 
-  override protected def toDataSeq(ae: AnalyticsEvent) = Seq(ae.id, ae.eventType.id, ae.device, ae.sourceAddress, Json.prettyPrint(ae.data), ae.created)
+  override protected def toDataSeq(ae: AnalyticsEvent) = Seq(ae.id, ae.eventType.value, ae.device, ae.sourceAddress, Json.prettyPrint(ae.data), ae.created)
 }

@@ -37,8 +37,8 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
   def addPile(pileGroup: PileGroup) = {
     pileGroups(pileGroup.id) = pileGroup
     val pileLocation = resizer.layout._3.getOrElse(pileGroup.id, throw new IllegalStateException(s"Missing layout for [${pileGroup.pile.id}]."))
-    pileGroup.x = pileLocation._1 * phaser.getSettings.cardSet.cardWidth
-    pileGroup.y = pileLocation._2 * phaser.getSettings.cardSet.cardHeight
+    pileGroup.x = pileLocation._1 * phaser.getSettings.cardSet.w
+    pileGroup.y = pileLocation._2 * phaser.getSettings.cardSet.h
   }
 
   def initialMovesComplete() = {

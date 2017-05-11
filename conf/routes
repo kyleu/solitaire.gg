@@ -1,28 +1,12 @@
-GET            /                            controllers.HomeController.index
-
 # Utility
-GET            /*path/                      controllers.HomeController.untrail(path: String)
-GET            /link                        controllers.HomeController.externalLink(url: String)
-GET            /robots.txt                  controllers.HomeController.robots
-GET            /ping                        controllers.HomeController.ping(timestamp: Long)
-GET            /privacy                     controllers.HomeController.privacy()
-GET            /websocket                   controllers.HomeController.noop()
+GET            /*path/                      controllers.UtilController.untrail(path: String)
+GET            /link                        controllers.UtilController.externalLink(url: String)
+GET            /robots.txt                  controllers.UtilController.robots
+GET            /websocket                   controllers.UtilController.noop()
 
 # Feedback
 GET            /feedback                    controllers.FeedbackController.feedbackForm
 POST           /feedback                    controllers.FeedbackController.submitFeedback
-
-# Game
-GET            /help/:id                    controllers.GameController.help(id, inline: Boolean ?= false)
-GET            /about                       controllers.HomeController.about()
-
-GET            /beta                        controllers.SolitaireController.start()
-GET            /beta/*path                  controllers.SolitaireController.startArgs(path)
-GET            /socket                      controllers.SolitaireController.connect()
-
-GET            /play/:rules                 controllers.GameController.newGame(rules)
-GET            /play/:rules/vr              controllers.GameController.newVrGame(rules)
-GET            /play/:rules/:seed           controllers.GameController.newGameWithSeed(rules, seed: Int)
 
 # i18n
 GET            /strings.js                  controllers.MessagesController.strings()
@@ -44,3 +28,7 @@ GET            /favicon.ico                 controllers.Assets.at(path = "/publi
 GET            /apple-touch-icon.png        controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.png")
 
 GET            /assets/*file                controllers.Assets.versioned(path="/public", file: Asset)
+
+GET            /                            controllers.SolitaireController.start()
+GET            /socket                      controllers.SolitaireController.connect()
+GET            /*path                       controllers.SolitaireController.startArgs(path)

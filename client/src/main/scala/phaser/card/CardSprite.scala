@@ -64,12 +64,12 @@ class CardSprite(
   def updateSprite(fu: Boolean = faceUp) {
     faceUp = fu
     if (faceUp) {
-      val tex = phaser.getImages.textures(rank.toChar.toString + suit.toChar)
+      val tex = phaser.getImages.textures(rank.value.toString + suit.value)
       loadTexture(tex)
     } else {
       loadTexture("card-back")
     }
-    name = s"$id:${rank.toChar}${suit.toChar}${if (faceUp) { "+" } else { "-" }}"
+    name = s"$id:${rank.value}${suit.value}${if (faceUp) { "+" } else { "-" }}"
   }
 
   def onInputDown(e: Any, p: Pointer) = if (p.button == NullUtils.inst || p.button.toString.toInt == 0) {

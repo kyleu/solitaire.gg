@@ -7,7 +7,6 @@ import com.codahale.metrics.SharedMetricRegistries
 import org.joda.time.DateTimeZone
 import play.api.i18n.MessagesApi
 import play.api.inject.ApplicationLifecycle
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.audit.NotificationService
 import services.database.{Database, Schema}
 import services.scheduled.ScheduledTask
@@ -68,7 +67,8 @@ class Application @javax.inject.Inject() (
   }
 
   private[this] def scheduleTask(task: ScheduledTask, system: ActorSystem) = {
-    import scala.concurrent.duration._
+    //import play.api.libs.concurrent.Execution.Implicits.defaultContext
+    //import scala.concurrent.duration._
     log.info("Scheduling task to run every minute, after five minutes.")
     //system.scheduler.schedule(5.minutes, 1.minute, task)
   }

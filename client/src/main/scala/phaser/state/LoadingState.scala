@@ -1,8 +1,7 @@
 package phaser.state
 
 import com.definitelyscala.phaser.State
-import phaser.card.CardSet
-import settings.PlayerSettings
+import models.settings.CardSet
 
 import scala.scalajs.js.annotation.ScalaJSDefined
 
@@ -10,11 +9,9 @@ import scala.scalajs.js.annotation.ScalaJSDefined
 class LoadingState extends State {
   override def preload() = {
     val assetRoot = "/assets/"
-    val cardSet = CardSet.default
+    val cardSet = CardSet.Default
 
-    game.load.spritesheet("empty-piles", assetRoot + "images/cards/empty-a.png", cardSet.cardWidth.toDouble, cardSet.cardHeight.toDouble)
-
-    val settings = PlayerSettings.default
+    game.load.spritesheet("empty-piles", assetRoot + "images/cards/empty-a.png", cardSet.w.toDouble, cardSet.h.toDouble)
 
     game.load.image("card-blank", assetRoot + "images/cards/blank.png")
     game.load.image("card-back", assetRoot + "images/cards/back-" + "a" + ".png")

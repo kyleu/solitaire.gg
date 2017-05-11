@@ -2,13 +2,13 @@ package models.rules
 
 import enumeratum.values._
 
-sealed abstract class InitialCards(val value: String) extends StringEnumEntry
+sealed abstract class InitialCards(val value: Int) extends IntEnumEntry
 
-object InitialCards extends StringEnum[InitialCards] with StringUPickleEnum[InitialCards] {
-  case class Count(n: Int) extends InitialCards("count")
-  case object PileIndex extends InitialCards("pile-index")
-  case object RestOfDeck extends InitialCards("rest-of-deck")
-  case object Custom extends InitialCards("custom")
+object InitialCards extends IntEnum[InitialCards] with IntUPickleEnum[InitialCards] {
+  case object PileIndex extends InitialCards(1)
+  case object RestOfDeck extends InitialCards(2)
+  case object Custom extends InitialCards(3)
+  case class Count(n: Int) extends InitialCards(4)
 
   override val values = findValues
 }

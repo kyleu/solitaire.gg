@@ -12,15 +12,15 @@ object PileCardHelper {
       if (pileGroup.pile.options.cardsShown.isEmpty) {
         val offsetCount = if (pileGroup.cards.isEmpty) { 0 } else { pileGroup.cards.length - 1 }
         if (pileGroup.pile.options.direction.contains("d")) {
-          val newY = pileGroup.y + (offsetCount * pileGroup.phaser.getSettings.cardSet.cardVerticalOffset)
+          val newY = pileGroup.y + (offsetCount * pileGroup.phaser.getSettings.cardSet.vOffset)
           CardTweens.tweenCardTo(card, pileGroup.x, newY, 0, emitFor)
-          val offsetWidth = offsetCount * pileGroup.phaser.getSettings.cardSet.cardVerticalOffset
-          pileGroup.intersectHeight = pileGroup.phaser.getSettings.cardSet.cardHeight.toDouble + offsetWidth
+          val offsetWidth = offsetCount * pileGroup.phaser.getSettings.cardSet.vOffset
+          pileGroup.intersectHeight = pileGroup.phaser.getSettings.cardSet.h.toDouble + offsetWidth
         } else if (pileGroup.pile.options.direction.contains("r")) {
-          val newX = pileGroup.y + ((pileGroup.cards.length - 1) * pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset)
+          val newX = pileGroup.y + ((pileGroup.cards.length - 1) * pileGroup.phaser.getSettings.cardSet.hOffset)
           CardTweens.tweenCardTo(card, newX, pileGroup.y, 0, emitFor)
-          val offsetWidth = offsetCount * pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset
-          pileGroup.intersectWidth = pileGroup.phaser.getSettings.cardSet.cardWidth.toDouble + offsetWidth
+          val offsetWidth = offsetCount * pileGroup.phaser.getSettings.cardSet.hOffset
+          pileGroup.intersectWidth = pileGroup.phaser.getSettings.cardSet.w.toDouble + offsetWidth
         } else {
           throw new IllegalStateException(s"Invalid direction [${pileGroup.pile.options.direction.getOrElse("?")}].")
         }
@@ -39,11 +39,11 @@ object PileCardHelper {
       if (pileGroup.pile.options.cardsShown.isEmpty) {
         val offsetCount = if (pileGroup.cards.isEmpty) { 0 } else { pileGroup.cards.length - 1 }
         if (pileGroup.pile.options.direction.contains("d")) {
-          val offsetWidth = offsetCount * pileGroup.phaser.getSettings.cardSet.cardVerticalOffset
-          pileGroup.intersectHeight = pileGroup.phaser.getSettings.cardSet.cardHeight.toDouble + offsetWidth
+          val offsetWidth = offsetCount * pileGroup.phaser.getSettings.cardSet.vOffset
+          pileGroup.intersectHeight = pileGroup.phaser.getSettings.cardSet.h.toDouble + offsetWidth
         } else if (pileGroup.pile.options.direction.contains("r")) {
-          val offsetWidth = offsetCount * pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset
-          pileGroup.intersectWidth = pileGroup.phaser.getSettings.cardSet.cardWidth.toDouble + offsetWidth
+          val offsetWidth = offsetCount * pileGroup.phaser.getSettings.cardSet.hOffset
+          pileGroup.intersectWidth = pileGroup.phaser.getSettings.cardSet.w.toDouble + offsetWidth
         } else {
           throw new IllegalStateException(s"Invalid direction [${pileGroup.pile.options.direction.getOrElse("?")}].")
         }

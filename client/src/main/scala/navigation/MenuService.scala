@@ -1,6 +1,6 @@
 package navigation
 
-import settings.SettingsService
+import models.settings.SettingsService
 import org.scalajs.jquery.{jQuery => $}
 import utils.TemplateUtils
 

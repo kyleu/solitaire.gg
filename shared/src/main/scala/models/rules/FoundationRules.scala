@@ -3,30 +3,30 @@ package models.rules
 import enumeratum.values._
 import models.card.{Color, Rank, Suit}
 
-sealed abstract class FoundationInitialCardRestriction(val value: String) extends StringEnumEntry
-object FoundationInitialCardRestriction extends StringEnum[FoundationInitialCardRestriction] with StringUPickleEnum[FoundationInitialCardRestriction] {
-  case object UniqueColors extends FoundationInitialCardRestriction("unique-colors")
-  case object UniqueSuits extends FoundationInitialCardRestriction("unique-suits")
-  case class SpecificColorUniqueSuits(c: Color) extends FoundationInitialCardRestriction("specific-color-unique-suits")
-  case class SpecificSuit(s: Suit) extends FoundationInitialCardRestriction("specific-suit")
+sealed abstract class FoundationInitialCardRestriction(val value: Int) extends IntEnumEntry
+object FoundationInitialCardRestriction extends IntEnum[FoundationInitialCardRestriction] with IntUPickleEnum[FoundationInitialCardRestriction] {
+  case object UniqueColors extends FoundationInitialCardRestriction(1)
+  case object UniqueSuits extends FoundationInitialCardRestriction(2)
+  case class SpecificColorUniqueSuits(c: Color) extends FoundationInitialCardRestriction(3)
+  case class SpecificSuit(s: Suit) extends FoundationInitialCardRestriction(4)
   override val values = findValues
 }
 
-sealed abstract class FoundationLowRank(val value: String) extends StringEnumEntry
-object FoundationLowRank extends StringEnum[FoundationLowRank] with StringUPickleEnum[FoundationLowRank] {
-  case object AnyCard extends FoundationLowRank("any-card")
-  case object DeckLowRank extends FoundationLowRank("deck-low-rank")
-  case object DeckHighRank extends FoundationLowRank("deck-high-rank")
-  case object Ascending extends FoundationLowRank("ascending")
-  case class SpecificRank(r: Rank) extends FoundationLowRank("specific-rank")
+sealed abstract class FoundationLowRank(val value: Int) extends IntEnumEntry
+object FoundationLowRank extends IntEnum[FoundationLowRank] with IntUPickleEnum[FoundationLowRank] {
+  case object AnyCard extends FoundationLowRank(1)
+  case object DeckLowRank extends FoundationLowRank(2)
+  case object DeckHighRank extends FoundationLowRank(3)
+  case object Ascending extends FoundationLowRank(4)
+  case class SpecificRank(r: Rank) extends FoundationLowRank(5)
   override val values = findValues
 }
 
-sealed abstract class FoundationCanMoveFrom(val value: String) extends StringEnumEntry
-object FoundationCanMoveFrom extends StringEnum[FoundationCanMoveFrom] with StringUPickleEnum[FoundationCanMoveFrom] {
-  case object Never extends FoundationCanMoveFrom("never")
-  case object Always extends FoundationCanMoveFrom("always")
-  case object EmptyStock extends FoundationCanMoveFrom("empty-stock")
+sealed abstract class FoundationCanMoveFrom(val value: Int) extends IntEnumEntry
+object FoundationCanMoveFrom extends IntEnum[FoundationCanMoveFrom] with IntUPickleEnum[FoundationCanMoveFrom] {
+  case object Never extends FoundationCanMoveFrom(1)
+  case object Always extends FoundationCanMoveFrom(2)
+  case object EmptyStock extends FoundationCanMoveFrom(3)
   override val values = findValues
 }
 

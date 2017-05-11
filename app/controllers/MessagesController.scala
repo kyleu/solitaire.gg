@@ -13,7 +13,7 @@ class MessagesController @javax.inject.Inject() (override val app: Application) 
   private[this] def parseMsgs(url: URL) = Messages.parse(Messages.UrlMessageSource(url), url.toString).fold(e => throw e, identity)
 
   private[this] lazy val msgs = Language.values.map { x =>
-    val l = x.code
+    val l = x.value
     val filename = if (l == "en") { "client/messages" } else { s"client/messages.$l" }
     val resource = Option(getClass.getClassLoader.getResource(filename)) match {
       case Some(r) => r

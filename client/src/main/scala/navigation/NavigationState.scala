@@ -4,20 +4,20 @@ import java.util.NoSuchElementException
 
 import org.scalajs.jquery.{jQuery => $}
 
-import enumeratum._
+import enumeratum.values._
 
-sealed abstract class NavigationState(val id: String) extends EnumEntry {
-  override def toString = id
+sealed abstract class NavigationState(val value: String) extends StringEnumEntry {
+  override def toString = value
   lazy val element = {
-    val el = $(s"#panel-$id")
+    val el = $(s"#panel-$value")
     if (el.length == 0) {
-      throw new IllegalStateException(s"Missing dom element [panel-$id].")
+      throw new IllegalStateException(s"Missing dom element [panel-$value].")
     }
     el
   }
 }
 
-object NavigationState extends Enum[NavigationState] {
+object NavigationState extends StringEnum[NavigationState] with StringUPickleEnum[NavigationState] {
   case object Loading extends NavigationState("loading")
   case object Menu extends NavigationState("menu")
   case object List extends NavigationState("list")
@@ -29,7 +29,7 @@ object NavigationState extends Enum[NavigationState] {
   override val values = findValues
 
   def fromString(s: String) = try {
-    NavigationState.withNameInsensitive(s)
+    NavigationState.withValue(s)
   } catch {
     case _: NoSuchElementException => NavigationState.Game
   }

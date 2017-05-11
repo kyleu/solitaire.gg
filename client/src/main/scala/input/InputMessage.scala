@@ -1,28 +1,28 @@
 package input
 
-import enumeratum._
+import enumeratum.values._
 
-sealed trait InputMessage extends EnumEntry
+sealed abstract class InputMessage(val value: String) extends StringEnumEntry
 
-object InputMessage extends Enum[InputMessage] {
-  case object Help extends InputMessage
+object InputMessage extends StringEnum[InputMessage] with StringUPickleEnum[InputMessage] {
+  case object Help extends InputMessage("help")
 
-  case object Undo extends InputMessage
-  case object Redo extends InputMessage
+  case object Undo extends InputMessage("undo")
+  case object Redo extends InputMessage("redo")
 
-  case object ToggleMenu extends InputMessage
-  case object ToggleDebug extends InputMessage
-  case object Sandbox extends InputMessage
+  case object ToggleMenu extends InputMessage("toggle-menu")
+  case object ToggleDebug extends InputMessage("toggle-debug")
+  case object Sandbox extends InputMessage("sandbox")
 
-  case object PreviousCard extends InputMessage
-  case object NextCard extends InputMessage
-  case object PreviousPile extends InputMessage
-  case object NextPile extends InputMessage
+  case object PreviousCard extends InputMessage("previous-card")
+  case object NextCard extends InputMessage("next-card")
+  case object PreviousPile extends InputMessage("previous-pile")
+  case object NextPile extends InputMessage("next-pile")
 
-  case object GamepadA extends InputMessage
-  case object GamepadB extends InputMessage
-  case object GamepadX extends InputMessage
-  case object GamepadY extends InputMessage
+  case object GamepadA extends InputMessage("gamepad-a")
+  case object GamepadB extends InputMessage("gamepad-b")
+  case object GamepadX extends InputMessage("gamepad-x")
+  case object GamepadY extends InputMessage("gamepad-y")
 
   override val values = findValues
 }

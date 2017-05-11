@@ -2,6 +2,7 @@ package models.user
 
 import java.util.UUID
 
+import models.settings.Settings
 import org.joda.time.LocalDateTime
 import utils.DateUtils
 
@@ -14,6 +15,6 @@ case class User(
   id: UUID = UUID.randomUUID,
   username: Option[String] = None,
   email: Option[String] = None,
-  preferences: UserPreferences = UserPreferences.default,
+  settings: Settings = Settings.default,
   created: LocalDateTime = DateUtils.now
 )

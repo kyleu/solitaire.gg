@@ -21,7 +21,7 @@ class AdminController @javax.inject.Inject() (override val app: Application) ext
 
   def unfinished = withAdminSession("unfinished") { implicit request =>
     val rules = GameRulesSet.unfinished(Random.nextInt(GameRulesSet.unfinished.size))._2
-    Future.successful(Redirect(controllers.routes.GameController.newGame(rules.id)))
+    Future.successful(Redirect(controllers.routes.SolitaireController.startArgs(rules.id)))
   }
 
   def wipeSchema(key: String) = withAdminSession("wipe.schema") { implicit request =>

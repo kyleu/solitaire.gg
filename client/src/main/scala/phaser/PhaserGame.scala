@@ -1,8 +1,8 @@
 package phaser
 
-import client.user.DataHelper
 import com.definitelyscala.phaser._
 import game.SolitaireGG
+import models.settings.SettingsService
 import models.{PossibleMove, RequestMessage}
 import org.scalajs.dom
 import org.scalajs.dom.raw.UIEvent
@@ -27,6 +27,8 @@ object PhaserGame {
 }
 @ScalaJSDefined
 class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
+  this.antialias = true
+
   val gameplay = new Gameplay(this, gg.settings.getSettings, gg.onPhaserLoadComplete, gg.debug)
 
   var possibleMoves: Seq[PossibleMove] = Nil
@@ -59,6 +61,6 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
 
   def sendMove(msg: RequestMessage) = {
     if (gg.debug) { utils.Logging.info(s"Sending request message [$msg].") }
-    gameplay.services.requests.handle(DataHelper.deviceId, msg)
+    gameplay.services.requests.handle(SettingsService.userId, msg)
   }
 }

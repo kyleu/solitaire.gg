@@ -25,30 +25,28 @@ object AnalyticsDataInsert {
   )
   def process(event: AnalyticsEvent) = {
     val data = clean(event.data)
-    val msg = event.eventType match {
+    event.eventType match {
       case AnalyticsEvent.EventType.Error => ErrorHistoryInsert.insert(event.id, data)
       case AnalyticsEvent.EventType.Install => InstallHistoryInsert.insert(event.id, data)
       case AnalyticsEvent.EventType.Open => OpenHistoryInsert.insert(event.id, data)
       case AnalyticsEvent.EventType.GameStart => GameHistoryInsert.insert(event.id, data)
       case AnalyticsEvent.EventType.GameWon => GameWonHistoryInsert.insert(event.id, data)
       case AnalyticsEvent.EventType.GameResigned => GameResignedHistoryInsert.insert(event.id, data)
-      case u: AnalyticsEvent.EventType.Unknown => throw new IllegalStateException(s"Unhandled event [$event].")
+      case _: AnalyticsEvent.EventType.Unknown => throw new IllegalStateException(s"Unhandled event [$event].")
     }
-    msg.map(event -> _)
   }
 
   def test(event: AnalyticsEvent) = {
     val data = clean(event.data)
-    val msg = event.eventType match {
+    Future.successful(event.eventType match {
       case AnalyticsEvent.EventType.Error => ErrorHistoryInsert.test(event.id, data)
       case AnalyticsEvent.EventType.Install => InstallHistoryInsert.test(event.id, data)
       case AnalyticsEvent.EventType.Open => OpenHistoryInsert.test(event.id, data)
       case AnalyticsEvent.EventType.GameStart => GameHistoryInsert.test(event.id, data)
       case AnalyticsEvent.EventType.GameWon => GameWonHistoryInsert.test(event.id, data)
       case AnalyticsEvent.EventType.GameResigned => GameResignedHistoryInsert.test(event.id, data)
-      case u: AnalyticsEvent.EventType.Unknown => throw new IllegalStateException(s"Unhandled event [$event].")
-    }
-    Future.successful(event.copy(data = data) -> msg)
+      case _: AnalyticsEvent.EventType.Unknown => throw new IllegalStateException(s"Unhandled event [$event].")
+    })
   }
 
   @scala.annotation.tailrec

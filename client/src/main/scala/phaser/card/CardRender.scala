@@ -2,7 +2,7 @@ package phaser.card
 
 import com.definitelyscala.phaser.{BitmapData, Image}
 import models.card.{Color, Rank, Suit}
-import settings.CardLayout
+import models.settings.CardLayout
 
 class CardRender(layout: CardLayout, blank: Image, suitImages: Seq[Image], redRankImages: Seq[Image], blackRankImages: Seq[Image], faceCardImages: Seq[Image]) {
   private[this] val rankWidths = IndexedSeq(0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.0, 0.9, 0.9, 0.9, 0.9)
@@ -11,7 +11,9 @@ class CardRender(layout: CardLayout, blank: Image, suitImages: Seq[Image], redRa
     tex.draw(blank, 0, 0)
 
     val suitImage = suitImages(s.index)
-    val rankImage = if (s.color == Color.Red) {
+    val rankImage = if (r == Rank.Unknown) {
+      throw new IllegalStateException(s"Attempt to render unknown rank for card [$r$s].")
+    } else if (s.color == Color.Red) {
       redRankImages(r.index - 2)
     } else {
       blackRankImages(r.index - 2)

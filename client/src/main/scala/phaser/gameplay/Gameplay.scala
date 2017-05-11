@@ -2,15 +2,14 @@ package phaser.gameplay
 
 import java.util.UUID
 
-import client.user.DataHelper
 import com.definitelyscala.phaser.{PhysicsObj, State}
 import models.PossibleMoves
 import models.game._
 import models.rules.{GameRules, GameRulesSet}
+import models.settings.{Settings, SettingsService}
 import phaser.PhaserGame
 import phaser.card.CardImages
 import phaser.playmat.Playmat
-import settings.PlayerSettings
 
 import scala.scalajs.js.annotation.ScalaJSDefined
 
@@ -26,7 +25,7 @@ object Gameplay {
 }
 
 @ScalaJSDefined
-class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: () => Unit, debug: Boolean) extends State {
+class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => Unit, debug: Boolean) extends State {
   private[this] var activeServices: Option[Gameplay.GameServices] = None
   def services = activeServices.getOrElse(throw new IllegalStateException("No game services available."))
   def activeGame = activeServices.map(_.state.gameId)
@@ -50,7 +49,7 @@ class Gameplay(val g: PhaserGame, var settings: PlayerSettings, onLoadComplete: 
 
   def start(id: UUID, coreState: GameState) = {
     activeServices.foreach(_ => throw new IllegalStateException(s"Game [${services.state.gameId}] already active. Stop it first."))
-    val state = coreState.view(DataHelper.deviceId)
+    val state = coreState.view(SettingsService.userId)
     val rules = GameRulesSet.allByIdWithAliases(state.rules)
     val moves = new MoveHelper(state, postMove)
     val undo = new UndoHelper()

@@ -4,6 +4,7 @@ import java.util.UUID
 
 import help.HelpService
 import models.game.GameStateDebug
+import models.settings.SettingsService
 import msg.SocketMessage
 import navigation.{MenuService, NavigationService, NavigationState}
 import network.NetworkService
@@ -11,7 +12,6 @@ import org.scalajs.dom
 import org.scalajs.dom.raw.BeforeUnloadEvent
 import phaser.PhaserGame
 import phaser.gameplay.InputHelper
-import settings.SettingsService
 import utils.{Logging, NullUtils}
 
 import scala.scalajs.js

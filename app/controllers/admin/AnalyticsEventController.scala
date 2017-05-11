@@ -3,10 +3,10 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
-import models.audit.AnalyticsEvent
 import models.queries.audit.AnalyticsEventQueries
 import models.queries.history.{GameHistoryQueries, InstallHistoryQueries, OpenHistoryQueries}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.twirl.api.Html
 import services.audit.AnalyticsService
 import services.audit.data.AnalyticsDataInsert
 import services.database.Database
@@ -45,7 +45,7 @@ class AnalyticsEventController @javax.inject.Inject() (override val app: Applica
     wipe().flatMap { _ =>
       Database.query(AnalyticsEventQueries.ProcessEvents(f = f, limit = limit, offset = offset)).flatMap { events =>
         events.map { r =>
-          Ok(views.html.admin.analytics.sandbox(test, r))
+          Ok(Html(s"${utils.Formatter.withCommas(r)} analytics events processed."))
         }
       }
     }

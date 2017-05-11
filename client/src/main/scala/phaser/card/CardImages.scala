@@ -2,10 +2,10 @@ package phaser.card
 
 import com.definitelyscala.phaser.Image
 import models.card.{Rank, Suit}
+import models.settings.Settings
 import phaser.PhaserGame
-import settings.PlayerSettings
 
-class CardImages(game: PhaserGame, settings: PlayerSettings) {
+class CardImages(game: PhaserGame, settings: Settings) {
   private[this] val rankWidths = IndexedSeq(0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.0, 0.9, 0.9, 0.9, 0.9)
 
   private[this] val blank = new Image(game, 0, 0, "card-blank", 0)
@@ -44,8 +44,8 @@ class CardImages(game: PhaserGame, settings: PlayerSettings) {
 
   val textures = Suit.standard.flatMap { s =>
     Rank.all.map { r =>
-      val tex = game.add.bitmapData(settings.cardSet.cardWidth.toDouble, settings.cardSet.cardHeight.toDouble)
-      r.toChar.toString + s.toChar -> renderer.renderCard(s, r, tex)
+      val tex = game.add.bitmapData(settings.cardSet.w.toDouble, settings.cardSet.h.toDouble)
+      r.value.toString + s.value -> renderer.renderCard(s, r, tex)
     }
   }.toMap
 }

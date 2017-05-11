@@ -4,9 +4,9 @@ import java.util.UUID
 
 import models.queries.BaseQueries
 import models.database.{FlatSingleRowQuery, Row, SingleRowQuery, Statement}
-import models.user.{User, UserPreferences}
+import models.settings.Settings
+import models.user.User
 import org.joda.time.LocalDateTime
-
 import upickle.default._
 
 object UserQueries extends BaseQueries[User] {
@@ -29,7 +29,7 @@ object UserQueries extends BaseQueries[User] {
 
   case class UpdateUser(u: User) extends Statement {
     override val sql = updateSql(Seq("username", "email", "prefs"))
-    override val values = Seq(u.username, u.email, write(u.preferences), u.id)
+    override val values = Seq(u.username, u.email, write(u.settings), u.id)
   }
 
   case class GetCreatedDate(id: UUID) extends FlatSingleRowQuery[LocalDateTime] {
@@ -43,9 +43,9 @@ object UserQueries extends BaseQueries[User] {
     override val values = Seq(username, userId)
   }
 
-  case class SetPreferences(userId: UUID, userPreferences: UserPreferences) extends Statement {
+  case class SetSettings(userId: UUID, settings: Settings) extends Statement {
     override val sql = updateSql(Seq("prefs"))
-    override val values = Seq(write(userPreferences), userId)
+    override val values = Seq(write(settings), userId)
   }
 
   case class GetByUsername(username: String) extends FlatSingleRowQuery[User] {
@@ -64,10 +64,10 @@ object UserQueries extends BaseQueries[User] {
     val id = row.as[UUID]("id")
     val email = row.asOpt[String]("email")
     val username = row.asOpt[String]("username")
-    val preferences = read[UserPreferences](row.as[String]("prefs"))
+    val settings = read[Settings](row.as[String]("prefs"))
     val created = row.as[LocalDateTime]("created")
-    User(id, email, username, preferences, created)
+    User(id, email, username, settings, created)
   }
 
-  override protected def toDataSeq(u: User) = Seq(u.id, u.email, u.username, write(u.preferences), u.created)
+  override protected def toDataSeq(u: User) = Seq(u.id, u.email, u.username, write(u.settings), u.created)
 }

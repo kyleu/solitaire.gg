@@ -11,9 +11,9 @@ object PileRedrawHelper {
         var smallY = 0.0
         if (pileGroup.pile.options.direction.contains("d")) {
           smallX = pileGroup.x
-          smallY = pileGroup.y + (pileGroup.phaser.getSettings.cardSet.cardVerticalOffset * smallIndex)
+          smallY = pileGroup.y + (pileGroup.phaser.getSettings.cardSet.vOffset * smallIndex)
         } else if (pileGroup.pile.options.direction.contains("r")) {
-          smallX = pileGroup.x + (pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset * smallIndex)
+          smallX = pileGroup.x + (pileGroup.phaser.getSettings.cardSet.hOffset * smallIndex)
           smallY = pileGroup.y
         } else {
           throw new IllegalStateException(s"Invalid direction [${pileGroup.pile.options.direction.getOrElse("?")}].")
@@ -37,9 +37,9 @@ object PileRedrawHelper {
         }
         if (pileGroup.pile.options.direction.contains("d")) {
           largeX = pileGroup.x
-          largeY = pileGroup.y + (pileGroup.phaser.getSettings.cardSet.cardVerticalOffset * offset)
+          largeY = pileGroup.y + (pileGroup.phaser.getSettings.cardSet.vOffset * offset)
         } else if (pileGroup.pile.options.direction.contains("r")) {
-          largeX = pileGroup.x + (pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset * offset)
+          largeX = pileGroup.x + (pileGroup.phaser.getSettings.cardSet.hOffset * offset)
           largeY = pileGroup.y
         } else {
           throw new IllegalStateException(s"Invalid direction [${pileGroup.pile.options.direction.getOrElse("?")}].")
@@ -53,7 +53,7 @@ object PileRedrawHelper {
     if (pileGroup.cards.length > pileGroup.pile.options.cardsShown.getOrElse(0)) {
       additionalWidth = pileGroup.pile.options.cardsShown.getOrElse(0) - 1
     }
-    val additional = additionalWidth * pileGroup.phaser.getSettings.cardSet.cardHorizontalOffset
-    pileGroup.intersectWidth = pileGroup.phaser.getSettings.cardSet.cardWidth.toDouble + additional
+    val additional = additionalWidth * pileGroup.phaser.getSettings.cardSet.hOffset
+    pileGroup.intersectWidth = pileGroup.phaser.getSettings.cardSet.w.toDouble + additional
   }
 }
