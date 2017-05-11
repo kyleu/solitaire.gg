@@ -20,7 +20,7 @@ object PhaserGame {
     "width" -> "100%",
     "height" -> "100%",
     "renderer" -> Phaser.AUTO,
-    "parent" -> "panel-game",
+    "parent" -> "panel-play",
     "transparent" -> true,
     "resolution" -> dom.window.devicePixelRatio
   ))

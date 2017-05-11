@@ -20,17 +20,11 @@ sealed abstract class NavigationState(val value: String) extends StringEnumEntry
 object NavigationState extends StringEnum[NavigationState] with StringUPickleEnum[NavigationState] {
   case object Loading extends NavigationState("loading")
   case object Menu extends NavigationState("menu")
-  case object List extends NavigationState("list")
+  case object List extends NavigationState("games")
   case object Help extends NavigationState("help")
-  case object Game extends NavigationState("game")
+  case object Play extends NavigationState("play")
   case object Settings extends NavigationState("settings")
   case object Status extends NavigationState("status")
 
   override val values = findValues
-
-  def fromString(s: String) = try {
-    NavigationState.withValue(s)
-  } catch {
-    case _: NoSuchElementException => NavigationState.Game
-  }
 }
