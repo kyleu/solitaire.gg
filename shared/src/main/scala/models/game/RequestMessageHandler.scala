@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models._
 
-class RequestMessageHandler(gs: GameState, send: (ResponseMessage, Boolean) => Unit, registerMove: () => Unit) {
+class RequestMessageHandler(gs: GameState, undo: UndoHelper, send: (ResponseMessage, Boolean) => Unit, registerMove: () => Unit) {
   private[this] def sendSeq(rms: Seq[ResponseMessage], registerUndoResponse: Boolean): Unit = if (rms.size == 1) {
     val msg = rms.headOption.getOrElse(throw new IllegalStateException())
     send(msg, registerUndoResponse)
@@ -18,8 +18,8 @@ class RequestMessageHandler(gs: GameState, send: (ResponseMessage, Boolean) => U
     case sc: SelectCard => handleSelectCard(player, sc.card, sc.pile, sc.auto)
     case sp: SelectPile => handleSelectPile(player, sp.pile, sp.auto)
     case mc: MoveCards => handleMoveCards(player, mc.cards, mc.src, mc.tgt, mc.auto)
-    case Undo => handleUndo()
-    case Redo => handleRedo()
+    case Undo => send(undo.undo(gs), false)
+    case Redo => send(undo.redo(gs), true)
     case _ => throw new IllegalStateException(s"Unhandled request message [$msg].")
   }
 
@@ -73,13 +73,5 @@ class RequestMessageHandler(gs: GameState, send: (ResponseMessage, Boolean) => U
     } else {
       send(CardMoveCancelled(cardIds, source), false)
     }
-  }
-
-  def handleUndo() = {
-    println("UNDO!")
-  }
-
-  def handleRedo() = {
-    println("REDO!")
   }
 }

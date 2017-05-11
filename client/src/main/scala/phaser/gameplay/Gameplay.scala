@@ -3,7 +3,7 @@ package phaser.gameplay
 import java.util.UUID
 
 import com.definitelyscala.phaser.{PhysicsObj, State}
-import models.PossibleMoves
+import models.{PossibleMoves, Redo, Undo}
 import models.game._
 import models.rules.{GameRules, GameRulesSet}
 import models.settings.{Settings, SettingsService}
@@ -41,6 +41,13 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
 
   def checkWinCondition() = services.rules.victoryCondition.check(services.rules, services.state)
 
+  def undo() = if (services.undo.historyQueue.nonEmpty) {
+    services.requests.handle(SettingsService.userId, Undo)
+  }
+  def redo() = if (services.undo.undoneQueue.nonEmpty) {
+    services.requests.handle(SettingsService.userId, Redo)
+  }
+
   private[this] def postMove() = if (checkWinCondition()) {
     utils.Logging.info("Winner!")
   } else {
@@ -54,7 +61,7 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
     val moves = new MoveHelper(state, postMove)
     val undo = new UndoHelper()
     val responses = new ResponseMessageHandler(g, undo, debug)
-    val requests = new RequestMessageHandler(coreState, responses.handle, moves.registerMove)
+    val requests = new RequestMessageHandler(coreState, undo, responses.handle, moves.registerMove)
     activeServices = Some(Gameplay.GameServices(state, rules, moves, undo, responses, requests))
 
     val playmat = new Playmat(g, state.pileSets, rules.layout)
