@@ -20,7 +20,7 @@ sealed abstract class NavigationState(val value: String) extends StringEnumEntry
 object NavigationState extends StringEnum[NavigationState] with StringUPickleEnum[NavigationState] {
   case object Loading extends NavigationState("loading")
   case object Menu extends NavigationState("menu")
-  case object List extends NavigationState("games")
+  case object Games extends NavigationState("games")
   case object Help extends NavigationState("help")
   case object Play extends NavigationState("play")
   case object Settings extends NavigationState("settings")

@@ -21,7 +21,7 @@ object GameStartService {
   def startGame(gg: SolitaireGG, id: UUID, rulesId: String, seed: Int) = {
     if (gg.hasGame) { throw new IllegalStateException(s"Called [startGame] before destroying active [${gg.getGame.rulesId}] game [${gg.getGame.id}].") }
     val ag = ActiveGame(id = id, rulesId = rulesId, seed = seed)
-    ag.state.addPlayer(SettingsService.userId, "Offline Player", autoFlipOption = /* TODO */ true)
+    ag.state.addPlayer(SettingsService.userId, "Offline Player", autoFlipOption = gg.settings.getSettings.autoFlip)
     InitialMoves.performInitialMoves(ag.rules, ag.state)
     gg.setGame(ag)
     gg.phaser.gameplay.start(ag.id, ag.state)

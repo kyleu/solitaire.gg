@@ -53,7 +53,7 @@ class SolitaireGG(val debug: Boolean) {
       case _ => // noop
     }
     n match {
-      case NavigationState.List => GameListService.initIfNeeded(rules => {
+      case NavigationState.Games => GameListService.initIfNeeded(rules => {
         phaser.gameplay.activeGame.foreach { gameId =>
           GameStartService.endGame(this, gameId, win = false)
         }

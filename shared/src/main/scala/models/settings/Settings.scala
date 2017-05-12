@@ -14,7 +14,6 @@ case class Settings(
   cardLayout: CardLayout = CardLayout.A,
   cardRanks: CardRanks = CardRanks.A,
   cardSuits: CardSuits = CardSuits.A,
-  menuPosition: MenuPosition = MenuPosition.Top
-) {
-  def backgroundUrl = backgroundPattern.map(p => s"/assets/images/background/$p.png")
-}
+  menuPosition: MenuPosition = MenuPosition.Top,
+  autoFlip: Boolean = true
+)

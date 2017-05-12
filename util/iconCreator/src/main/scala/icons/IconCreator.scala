@@ -1,6 +1,6 @@
 package icons
 
-import java.nio.file.{ Files, Path, Paths }
+import java.nio.file.{Files, Path, Paths}
 import scala.sys.process._
 
 object IconCreator extends App {
@@ -43,8 +43,8 @@ object IconCreator extends App {
   def go() = {
     wipeTarget()
 
-    for(color <- colors) {
-      for(icon <- icons) {
+    for (color <- colors) {
+      for (icon <- icons) {
         val src = srcDir.resolve(icon + ".svg")
         val tgt = tmpDir.resolve(s"$icon-${color._1}.svg")
         colorizeSvg(src, tgt, color._2)
@@ -58,7 +58,7 @@ object IconCreator extends App {
   private[this] def colorizeSvg(src: Path, tgt: Path, colorHex: String) = {
     val lines = readFileAsString(src)
     val output = lines.map { line =>
-      if(line.startsWith("\t<path")) {
+      if (line.startsWith("\t<path")) {
         line.replaceAllLiterally(
           "\t<path",
           s"""\t<path stroke="none" stroke-opacity="0.0" fill="#$colorHex" fill-opacity="1.0""""
@@ -72,11 +72,11 @@ object IconCreator extends App {
 
   private[this] def convert(icon: String, color: String) = {
     println(s"Converting [$icon:$color]")
-    if(icon == "cards" || icon == "check" || icon == "error") {
+    if (icon == "cards" || icon == "check" || icon == "error") {
       s"convert -resize 500x500 -background none ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color-500.png".!
       s"convert -resize 64x64 -background none ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color@2x.png".!
       s"convert -resize 32x32 -background none ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color.png".!
-    } else if(icon == "hint") {
+    } else if (icon == "hint") {
       s"convert -extent 500x500 -background none ./tmp/icons/$icon-$color-500.png ./tmp/icons/$icon-$color-500.png".!
       s"convert -extent 64x64 -background none ./tmp/icons/$icon-$color@2x.png ./tmp/icons/$icon-$color@2x.png".!
       s"convert -extent 32x32 -background none ./tmp/icons/$icon-$color.png ./tmp/icons/$icon-$color.png".!
@@ -89,7 +89,6 @@ object IconCreator extends App {
 
   private[this] def stitch(color: String) = {
     println(s"Stitching icons for [$color]")
-
 
     val activeIconNames = icons.map(x => s"./tmp/icons/$x-white.png").mkString(" ")
     val inactiveIconNames = icons.map(x => s"./tmp/icons/$x-$color.png").mkString(" ")
@@ -121,7 +120,7 @@ object IconCreator extends App {
   private[this] def wipeTarget() = {
     val tgtStream = Files.newDirectoryStream(tmpDir)
     val tgtItr = collection.JavaConverters.asScalaIteratorConverter(tgtStream.iterator()).asScala
-    for(p <- tgtItr) {
+    for (p <- tgtItr) {
       Files.delete(p)
     }
   }
