@@ -4,7 +4,7 @@ import java.util.UUID
 
 import help.HelpService
 import models.game.GameStateDebug
-import models.settings.{MenuPosition, SettingsService}
+import models.settings.SettingsService
 import msg.SocketMessage
 import navigation.{MenuService, NavigationService, NavigationState}
 import network.NetworkService
@@ -49,7 +49,7 @@ class SolitaireGG(val debug: Boolean) {
 
   private[this] def onStateChange(o: NavigationState, n: NavigationState, args: Seq[String]): Unit = {
     o match {
-      case NavigationState.Loading => navigation.setNavPosition(shown = true, top = settings.getSettings.menuPosition == MenuPosition.Top)
+      case NavigationState.Loading => navigation.setMenuPosition(settings.getSettings.menuPosition)
       case _ => // noop
     }
     n match {

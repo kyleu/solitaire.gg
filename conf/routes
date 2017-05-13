@@ -1,34 +1,45 @@
 # Utility
-GET            /*path/                      controllers.UtilController.untrail(path: String)
-GET            /link                        controllers.UtilController.externalLink(url: String)
-GET            /robots.txt                  controllers.UtilController.robots
-GET            /websocket                   controllers.UtilController.noop()
+GET            /*path/                                  controllers.UtilController.untrail(path: String)
+GET            /link                                    controllers.UtilController.externalLink(url: String)
+GET            /robots.txt                              controllers.UtilController.robots
+GET            /websocket                               controllers.UtilController.noop()
 
 # Feedback
-GET            /feedback                    controllers.FeedbackController.feedbackForm
-POST           /feedback                    controllers.FeedbackController.submitFeedback
+GET            /feedback                                controllers.FeedbackController.feedbackForm
+POST           /feedback                                controllers.FeedbackController.submitFeedback
 
 # i18n
-GET            /strings.js                  controllers.MessagesController.strings()
+GET            /strings.js                              controllers.MessagesController.strings()
 
 # Offline analytics
-OPTIONS        /a/*path                     controllers.AnalyticsController.preflightCheck(path)
-POST           /a/error/:id                 controllers.AnalyticsController.error(id: java.util.UUID)
-POST           /a/install/:id               controllers.AnalyticsController.install(id: java.util.UUID)
-POST           /a/open/:id                  controllers.AnalyticsController.open(id: java.util.UUID)
-POST           /a/game-start/:id            controllers.AnalyticsController.gameStart(id: java.util.UUID)
-POST           /a/game-won/:id              controllers.AnalyticsController.gameWon(id: java.util.UUID)
-POST           /a/game-resigned/:id         controllers.AnalyticsController.gameResigned(id: java.util.UUID)
+OPTIONS        /a/*path                                 controllers.AnalyticsController.preflightCheck(path)
+POST           /a/error/:id                             controllers.AnalyticsController.error(id: java.util.UUID)
+POST           /a/install/:id                           controllers.AnalyticsController.install(id: java.util.UUID)
+POST           /a/open/:id                              controllers.AnalyticsController.open(id: java.util.UUID)
+POST           /a/game-start/:id                        controllers.AnalyticsController.gameStart(id: java.util.UUID)
+POST           /a/game-won/:id                          controllers.AnalyticsController.gameWon(id: java.util.UUID)
+POST           /a/game-resigned/:id                     controllers.AnalyticsController.gameResigned(id: java.util.UUID)
 
 # Admin
-->             /admin                       admin.Routes
+->             /admin                                   admin.Routes
 
 # Assets
-GET            /favicon.ico                 controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.ico")
-GET            /apple-touch-icon.png        controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.png")
+GET            /android-chrome-192x192.png              controllers.Assets.at(path = "/public", file = "images/ui/favicon/android-chrome-192x192.png")
+GET            /android-chrome-512x512.png              controllers.Assets.at(path = "/public", file = "images/ui/favicon/android-chrome-512x512.png")
+GET            /apple-touch-icon-precomposed.png        controllers.Assets.at(path = "/public", file = "images/ui/favicon/apple-touch-icon-precomposed.png")
+GET            /apple-touch-icon.png                    controllers.Assets.at(path = "/public", file = "images/ui/favicon/apple-touch-icon.png")
+GET            /favicon-16x16.png                       controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon-16x16.png")
+GET            /favicon-32x32.png                       controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon-32x32.png")
+GET            /favicon.ico                             controllers.Assets.at(path = "/public", file = "images/ui/favicon/favicon.ico")
+GET            /mstile-144x144.png                      controllers.Assets.at(path = "/public", file = "images/ui/favicon/mstile-144x144.png")
+GET            /mstile-150x150.png                      controllers.Assets.at(path = "/public", file = "images/ui/favicon/mstile-150x150.png")
+GET            /mstile-310x150.png                      controllers.Assets.at(path = "/public", file = "images/ui/favicon/mstile-310x150.png")
+GET            /mstile-310x310.png                      controllers.Assets.at(path = "/public", file = "images/ui/favicon/mstile-310x310.png")
+GET            /mstile-70x70.png                        controllers.Assets.at(path = "/public", file = "images/ui/favicon/mstile-70x70.png")
+GET            /safari-pinned-tab.svg                   controllers.Assets.at(path = "/public", file = "images/ui/favicon/safari-pinned-tab.svg")
 
-GET            /assets/*file                controllers.Assets.versioned(path="/public", file: Asset)
+GET            /assets/*file                            controllers.Assets.versioned(path="/public", file: Asset)
 
-GET            /                            controllers.SolitaireController.start()
-GET            /socket                      controllers.SolitaireController.connect()
-GET            /*path                       controllers.SolitaireController.startArgs(path)
+GET            /                                        controllers.SolitaireController.start()
+GET            /socket                                  controllers.SolitaireController.connect()
+GET            /*path                                   controllers.SolitaireController.startArgs(path)

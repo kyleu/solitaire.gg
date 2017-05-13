@@ -52,7 +52,7 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
 
   def start() = {
     state.add("initialState", new InitialState())
-    state.add("loading", new LoadingState())
+    state.add("loading", new LoadingState(getSettings))
     state.add("gameplay", gameplay)
 
     dom.window.onresize = resize _

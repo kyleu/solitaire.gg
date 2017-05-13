@@ -1,5 +1,6 @@
 package navigation
 
+import models.settings.MenuPosition
 import org.scalajs.dom
 import org.scalajs.jquery.{jQuery => $}
 
@@ -39,30 +40,29 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
     currentState = state
   }
 
-  private[this] var navPosition: Option[Boolean] = None
+  private[this] var menuPosition: MenuPosition = MenuPosition.Hidden
 
-  def setNavPosition(shown: Boolean, top: Boolean) = {
+  def setMenuPosition(pos: MenuPosition) = {
     val b = $("body")
     val m = $("#menu-nav")
-    navPosition match {
-      case None => if (shown && top) {
-        b.addClass("top-nav")
-        m.fadeIn(delay)
-      } else if (shown && !top) {
-        b.addClass("bottom-nav")
-        m.fadeIn(delay)
-      }
-      case Some(true) => if (!shown) {
-        b.removeClass("top-nav")
-      } else if (shown && !top) {
-        b.removeClass("top-nav").addClass("bottom-nav")
-      }
-      case Some(false) => if (!shown) {
-        b.removeClass("bottom-nav")
-      } else if (shown && top) {
+    pos match {
+      case _ if pos == menuPosition => // noop
+      case MenuPosition.Top =>
         b.removeClass("bottom-nav").addClass("top-nav")
-      }
+        if (menuPosition == MenuPosition.Hidden) {
+          m.fadeIn(delay)
+        }
+      case MenuPosition.Bottom =>
+        b.removeClass("top-nav").addClass("bottom-nav")
+        if (menuPosition == MenuPosition.Hidden) {
+          m.fadeIn(delay)
+        }
+      case MenuPosition.Hidden =>
+        if (menuPosition != MenuPosition.Hidden) {
+          m.fadeOut(delay)
+        }
+      case _ => throw new IllegalStateException(s"Unhandled menu position [$pos].")
     }
-    navPosition = if (shown && top) { Some(true) } else if (shown && !top) { Some(false) } else { None }
+    menuPosition = pos
   }
 }

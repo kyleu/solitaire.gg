@@ -55,8 +55,8 @@ object GameSerializers {
   implicit val cardBackWrites = new Writes[CardBack] {
     override def writes(x: CardBack) = JsString(x.value)
   }
-  implicit val cardBackgroundWrites = new Writes[CardBackground] {
-    override def writes(x: CardBackground) = JsString(x.value)
+  implicit val cardBackgroundWrites = new Writes[CardBlank] {
+    override def writes(x: CardBlank) = JsString(x.value)
   }
   implicit val cardFacesWrites = new Writes[CardFaces] {
     override def writes(x: CardFaces) = JsString(x.value)
@@ -69,6 +69,9 @@ object GameSerializers {
   }
   implicit val cardSuitsWrites = new Writes[CardSuits] {
     override def writes(x: CardSuits) = JsString(x.value)
+  }
+  implicit val emptyPileWrites = new Writes[EmptyPile] {
+    override def writes(x: EmptyPile) = JsString(x.value)
   }
   implicit val menuPositionWrites = new Writes[MenuPosition] {
     override def writes(x: MenuPosition) = JsString(x.value)

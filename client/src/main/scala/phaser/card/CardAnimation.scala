@@ -13,7 +13,7 @@ object CardAnimation {
 
     playmat.getCards.foreach { x =>
       val (card, _, _) = x
-      var spin = Math.random() * 3
+      val spin = Math.random() * 3
       var driftX = (Math.random() * (driftMax * 2)) - driftMax
       var driftY = (Math.random() * (driftMax * 2)) - driftMax
       var growthDelta = (Math.random() * (growthMax * 2)) - growthMax

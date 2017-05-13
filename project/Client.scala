@@ -13,7 +13,7 @@ object Client {
       "com.definitelyscala" %%% "scala-js-phaser" % Dependencies.ScalaJS.definitelyScalaVersion,
       "be.doeraene" %%% "scalajs-jquery" % Dependencies.ScalaJS.jQueryVersion,
       "com.lihaoyi" %%% "scalatags" % Dependencies.ScalaJS.scalaTagsVersion,
-      "org.scala-js" %%% "scalajs-dom" % "0.9.1",
+      "org.scala-js" %%% "scalajs-dom" % Dependencies.ScalaJS.domVersion,
       "com.lihaoyi" %%% "upickle" % "0.4.4"
     ),
     scalaJSStage in Global := FastOptStage,

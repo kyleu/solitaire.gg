@@ -7,7 +7,7 @@ object ThemeService {
   private[this] var lastColor = ""
   private[this] var lastPattern = ""
 
-  def applyColor(color: String) = {
+  def applyColor(color: String): Unit = {
     val hex = if (color.startsWith("#")) { color } else { "#" + color }
     if (lastColor != hex) {
       lastColor = hex
@@ -15,16 +15,14 @@ object ThemeService {
     }
   }
 
-  def applyPattern(pattern: String) = {
-    if (lastPattern != pattern) {
-      lastPattern = pattern
-      updateStyle()
-    }
+  def applyPattern(pattern: String): Unit = if (lastPattern != pattern) {
+    lastPattern = pattern
+    updateStyle()
   }
 
   private[this] def styleBlock() = Seq(
     s"body { background-color: $lastColor; }",
-    if (lastPattern == "none") { "" } else { s"body { background-image: url(/assets/images/background/$lastPattern.png); }" },
+    if (lastPattern == "none" || lastPattern == "") { "" } else { s"body { background-image: url(/assets/images/background/$lastPattern.png); }" },
     s".theme { background-color: $lastColor; }",
     s".theme-text { color: $lastColor; }"
   ).mkString("\n")

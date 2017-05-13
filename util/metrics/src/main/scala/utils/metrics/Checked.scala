@@ -10,6 +10,6 @@ object Checked {
 }
 
 trait Checked extends CheckedBuilder {
-  override lazy val metricBaseName = MetricName("boilerplay")
+  override lazy val metricBaseName = MetricName("solitaire")
   override val registry = Checked.healthCheckRegistry
 }
