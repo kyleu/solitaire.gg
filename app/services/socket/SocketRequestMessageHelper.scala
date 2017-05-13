@@ -1,13 +1,13 @@
 package services.socket
 
 import models.InternalMessage
-import msg.req.Hello
-import msg.rsp.Howdy
+import msg.req.Ping
+import msg.rsp.Pong
 import utils.metrics.InstrumentedActor
 
 trait SocketRequestMessageHelper extends InstrumentedActor { this: SocketService =>
   override def receiveRequest = {
-    case h: Hello => out ! Howdy(h.s.hashCode)
+    case p: Ping => out ! Pong(p.ts)
     case im: InternalMessage => handleInternalMessage(im)
     case x => throw new IllegalArgumentException(s"Unhandled request message [${x.getClass.getSimpleName}].")
   }

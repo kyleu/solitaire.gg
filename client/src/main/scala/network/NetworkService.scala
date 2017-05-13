@@ -1,6 +1,6 @@
 package network
 
-import msg.req.{Hello, SocketRequestMessage}
+import msg.req.{Ping, SocketRequestMessage}
 import msg.rsp.SocketResponseMessage
 import utils.{JsonSerializers, Logging}
 
@@ -20,7 +20,7 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
   socket.open(socketUrl)
 
   private def sendPing(): Unit = {
-    sendMessage(Hello("!"))
+    sendMessage(Ping(System.currentTimeMillis))
     setTimeout(10000)(sendPing())
   }
 

@@ -20,6 +20,15 @@ object ThemeService {
     updateStyle()
   }
 
+  def applyColorAndPattern(color: String, pattern: Option[String]): Unit = {
+    val hex = if (color.startsWith("#")) { color } else { "#" + color }
+    if (lastColor != hex || lastPattern != pattern) {
+      lastColor = hex
+      lastPattern = pattern
+      updateStyle()
+    }
+  }
+
   private[this] def styleBlock() = Seq(
     s"body { background-color: $lastColor; }",
     lastPattern.map(p => s"body { background-image: url(/assets/images/background/$p.png); }").getOrElse(""),

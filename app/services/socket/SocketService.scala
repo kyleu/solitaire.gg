@@ -5,7 +5,7 @@ import java.util.UUID
 import akka.actor.{ActorRef, Props}
 import models.{SocketStarted, SocketStopped}
 import models.user.User
-import msg.rsp.Howdy
+import msg.rsp.Profile
 import utils.Logging
 import utils.metrics.InstrumentedActor
 
@@ -24,7 +24,7 @@ case class SocketService(
   override def preStart() = {
     log.info(s"Starting connection for user [${user.id}: ${user.username.getOrElse("-")}].")
     supervisor ! SocketStarted(user.id, user.username, id, self)
-    out ! Howdy(0) // TODO UserSettings(user.id, user.username, user.email, user.preferences)
+    out ! Profile(user.id, user.username, user.email, user.settings)
   }
 
   override def postStop() = {

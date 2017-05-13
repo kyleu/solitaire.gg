@@ -13,8 +13,6 @@ class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send:
   }
 
   def handle(msg: RequestMessage) = msg match {
-    case GetVersion => send(VersionResponse("0.0"), false)
-    case p: Ping => send(Pong(p.timestamp), false)
     case sc: SelectCard => handleSelectCard(userId, sc.card, sc.pile, sc.auto)
     case sp: SelectPile => handleSelectPile(userId, sp.pile, sp.auto)
     case mc: MoveCards => handleMoveCards(userId, mc.cards, mc.src, mc.tgt, mc.auto)

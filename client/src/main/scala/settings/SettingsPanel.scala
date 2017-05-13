@@ -38,9 +38,8 @@ object SettingsPanel {
       "change" -> colorChange _
     ))
 
-    ThemeService.applyColor(settings.backgroundColor)
     picker.spectrum("set", settings.backgroundColor)
-    ThemeService.applyPattern(settings.backgroundPattern)
+    ThemeService.applyColorAndPattern(settings.backgroundColor, settings.backgroundPattern)
 
     show(settings)
     initialized = true
