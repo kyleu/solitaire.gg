@@ -1,6 +1,6 @@
 package phaser.gameplay
 
-import game.SolitaireGG
+import client.SolitaireGG
 import input.{GamepadHandler, InputMessage, KeyboardHandler}
 import phaser.PhaserGame
 

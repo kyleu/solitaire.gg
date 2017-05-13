@@ -1,7 +1,7 @@
 package phaser
 
+import client.SolitaireGG
 import com.definitelyscala.phaser._
-import game.SolitaireGG
 import models.{PossibleMove, RequestMessage}
 import org.scalajs.dom
 import org.scalajs.dom.raw.UIEvent

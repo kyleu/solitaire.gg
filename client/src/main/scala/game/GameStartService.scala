@@ -2,13 +2,14 @@ package game
 
 import java.util.UUID
 
+import client.SolitaireGG
 import models.rules.moves.InitialMoves
 
 import scala.util.Random
 
 object GameStartService {
   def onGameStateChange(gg: SolitaireGG, args: Seq[String]) = args.toList match {
-    case Nil if gg.hasGame => // noop
+    case Nil if gg.hasGame => gg.phaser.getPlaymat.resizer.resizeIfChanged(false)
     case Nil => startGame(gg, UUID.randomUUID, "klondike", Math.abs(Random.nextInt))
     case r :: Nil => startGame(gg, UUID.randomUUID, r, Math.abs(Random.nextInt))
     case r :: s :: Nil => startGame(gg, UUID.randomUUID, r, Math.abs(s.toInt))

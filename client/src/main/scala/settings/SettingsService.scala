@@ -10,7 +10,7 @@ object SettingsService {
   val settingsKey = "solitaire.gg.settings"
 }
 
-class SettingsService {
+class SettingsService(onSave: Settings => Unit) {
   private[this] var settings = loadSettings()
 
   def getSettings = settings
@@ -23,6 +23,7 @@ class SettingsService {
     val json = JsonSerializers.writeSettings(settings)
     utils.Logging.info(s"Persisting settings [$json].")
     dom.window.localStorage.setItem(SettingsService.settingsKey, json)
+    onSave(settings)
   }
 
   def applyAndSave(s: Settings) = {

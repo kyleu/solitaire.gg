@@ -1,7 +1,5 @@
 @(ruleSet: Seq[models.rules.GameRules])(implicit session: Session, flash: Flash)
 
-@import utils.json.GameRulesSerializers._
-
 @views.html.admin.layout.base(utils.Config.projectName + " Rules", "rules") {
   <div class="panel panel-default">
     <div class="panel-body">
@@ -17,7 +15,7 @@
       <div class="panel-body">
         <div class="text-large">@rules.title (@rules.id)</div>
         <div class="game-description"><em>@rules.description</em></div>
-        <pre>@play.api.libs.json.Json.prettyPrint(play.api.libs.json.Json.toJson(rules))</pre>
+        <pre>@upickle.default.write(rules, 2)</pre>
       </div>
     </div>
   }
