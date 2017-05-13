@@ -2,7 +2,6 @@ package phaser
 
 import com.definitelyscala.phaser._
 import game.SolitaireGG
-import models.settings.SettingsService
 import models.{PossibleMove, RequestMessage}
 import org.scalajs.dom
 import org.scalajs.dom.raw.UIEvent
@@ -37,6 +36,7 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   def setImages(i: CardImages) = images = Some(i)
   def getImages = images.getOrElse(throw new IllegalStateException("Images not loaded."))
 
+  def getUserId = gg.userId
   def getSettings = gg.settings.getSettings
 
   private[this] var playmat: Option[Playmat] = None
@@ -61,6 +61,6 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
 
   def sendMove(msg: RequestMessage) = {
     if (gg.debug) { utils.Logging.info(s"Sending request message [$msg].") }
-    gameplay.services.requests.handle(SettingsService.userId, msg)
+    gameplay.services.requests.handle(msg)
   }
 }

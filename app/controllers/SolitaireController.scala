@@ -4,7 +4,7 @@ import java.util.UUID
 
 import akka.actor.ActorSystem
 import akka.stream.Materializer
-import models.settings.{BackgroundPattern, SettingsService}
+import models.settings.BackgroundPattern
 import msg.SocketMessage
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.streams.ActorFlow

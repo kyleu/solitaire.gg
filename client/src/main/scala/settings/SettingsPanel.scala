@@ -8,6 +8,9 @@ import scala.scalajs.js
 
 object SettingsPanel {
   private[this] var initialized = false
+  private[this] var originalSettings = Settings.default
+  private[this] var currentSettings = originalSettings
+  def getCurrentSettings = currentSettings
 
   def initIfNeeded(settings: Settings) = if (!initialized) {
     val panel = $("#settings-content")
@@ -15,7 +18,12 @@ object SettingsPanel {
     panel.html(content.toString)
 
     TemplateUtils.clickHandler($(".pattern-option", panel), jq => {
-      ThemeService.applyPattern(jq.data("pattern").toString)
+      val p = jq.data("pattern").toString match {
+        case "none" => None
+        case x => Some(x)
+      }
+      ThemeService.applyPattern(p)
+      currentSettings = currentSettings.copy(backgroundPattern = p)
     })
 
     val picker = js.Dynamic.global.$("#settings-color-picker")
@@ -32,13 +40,21 @@ object SettingsPanel {
 
     ThemeService.applyColor(settings.backgroundColor)
     picker.spectrum("set", settings.backgroundColor)
-    ThemeService.applyPattern(settings.backgroundPattern.getOrElse("none"))
+    ThemeService.applyPattern(settings.backgroundPattern)
 
+    show(settings)
     initialized = true
   }
 
+  def show(settings: Settings) = {
+    originalSettings = settings
+    currentSettings = originalSettings
+  }
+
   private[this] def colorChange(color: js.Dynamic) = {
-    ThemeService.applyColor(color.toHexString().toString)
+    val hex = color.toHexString().toString
+    ThemeService.applyColor(hex)
+    currentSettings = currentSettings.copy(backgroundColor = hex)
     true
   }
 }

@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models._
 
-class RequestMessageHandler(gs: GameState, undo: UndoHelper, send: (ResponseMessage, Boolean) => Unit, registerMove: () => Unit) {
+class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send: (ResponseMessage, Boolean) => Unit, registerMove: () => Unit) {
   private[this] def sendSeq(rms: Seq[ResponseMessage], registerUndoResponse: Boolean): Unit = if (rms.size == 1) {
     val msg = rms.headOption.getOrElse(throw new IllegalStateException())
     send(msg, registerUndoResponse)
@@ -12,12 +12,12 @@ class RequestMessageHandler(gs: GameState, undo: UndoHelper, send: (ResponseMess
     send(MessageSet(rms), registerUndoResponse)
   }
 
-  def handle(player: UUID, msg: RequestMessage) = msg match {
+  def handle(msg: RequestMessage) = msg match {
     case GetVersion => send(VersionResponse("0.0"), false)
     case p: Ping => send(Pong(p.timestamp), false)
-    case sc: SelectCard => handleSelectCard(player, sc.card, sc.pile, sc.auto)
-    case sp: SelectPile => handleSelectPile(player, sp.pile, sp.auto)
-    case mc: MoveCards => handleMoveCards(player, mc.cards, mc.src, mc.tgt, mc.auto)
+    case sc: SelectCard => handleSelectCard(userId, sc.card, sc.pile, sc.auto)
+    case sp: SelectPile => handleSelectPile(userId, sp.pile, sp.auto)
+    case mc: MoveCards => handleMoveCards(userId, mc.cards, mc.src, mc.tgt, mc.auto)
     case Undo => send(undo.undo(gs), false)
     case Redo => send(undo.redo(gs), true)
     case _ => throw new IllegalStateException(s"Unhandled request message [$msg].")

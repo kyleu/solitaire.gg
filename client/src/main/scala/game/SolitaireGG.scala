@@ -4,7 +4,6 @@ import java.util.UUID
 
 import help.HelpService
 import models.game.GameStateDebug
-import models.settings.SettingsService
 import msg.SocketMessage
 import navigation.{MenuService, NavigationService, NavigationState}
 import network.NetworkService
@@ -12,7 +11,7 @@ import org.scalajs.dom
 import org.scalajs.dom.raw.BeforeUnloadEvent
 import phaser.PhaserGame
 import phaser.gameplay.InputHelper
-import settings.SettingsPanel
+import settings.{SettingsPanel, SettingsService}
 import utils.{Logging, NullUtils}
 
 import scala.scalajs.js
@@ -32,6 +31,8 @@ object SolitaireGG {
 }
 
 class SolitaireGG(val debug: Boolean) {
+  val userId = UUID.randomUUID
+
   private[this] var game: Option[ActiveGame] = None
   def hasGame = game.isDefined
   def getGame = game.getOrElse(throw new IllegalStateException("No active game."))
@@ -50,6 +51,7 @@ class SolitaireGG(val debug: Boolean) {
   private[this] def onStateChange(o: NavigationState, n: NavigationState, args: Seq[String]): Unit = {
     o match {
       case NavigationState.Loading => navigation.setMenuPosition(settings.getSettings.menuPosition)
+      case NavigationState.Settings => settings.applyAndSave(SettingsPanel.getCurrentSettings)
       case _ => // noop
     }
     n match {

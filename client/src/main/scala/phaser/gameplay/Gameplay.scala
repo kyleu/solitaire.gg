@@ -6,7 +6,7 @@ import com.definitelyscala.phaser.{PhysicsObj, State}
 import models.{PossibleMoves, Redo, Undo}
 import models.game._
 import models.rules.{GameRules, GameRulesSet}
-import models.settings.{Settings, SettingsService}
+import models.settings.Settings
 import phaser.PhaserGame
 import phaser.card.CardImages
 import phaser.playmat.Playmat
@@ -42,10 +42,10 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
   def checkWinCondition() = services.rules.victoryCondition.check(services.rules, services.state)
 
   def undo() = if (services.undo.historyQueue.nonEmpty) {
-    services.requests.handle(SettingsService.userId, Undo)
+    services.requests.handle(Undo)
   }
   def redo() = if (services.undo.undoneQueue.nonEmpty) {
-    services.requests.handle(SettingsService.userId, Redo)
+    services.requests.handle(Redo)
   }
 
   private[this] def postMove() = if (checkWinCondition()) {
@@ -56,12 +56,12 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
 
   def start(id: UUID, coreState: GameState) = {
     activeServices.foreach(_ => throw new IllegalStateException(s"Game [${services.state.gameId}] already active. Stop it first."))
-    val state = coreState.view(SettingsService.userId)
+    val state = coreState.view(g.getUserId)
     val rules = GameRulesSet.allByIdWithAliases(state.rules)
     val moves = new MoveHelper(state, postMove)
     val undo = new UndoHelper()
     val responses = new ResponseMessageHandler(g, undo, debug)
-    val requests = new RequestMessageHandler(coreState, undo, responses.handle, moves.registerMove)
+    val requests = new RequestMessageHandler(g.getUserId, coreState, undo, responses.handle, moves.registerMove)
     activeServices = Some(Gameplay.GameServices(state, rules, moves, undo, responses, requests))
 
     val playmat = new Playmat(g, state.pileSets, rules.layout)

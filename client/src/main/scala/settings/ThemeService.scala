@@ -5,7 +5,7 @@ import org.scalajs.jquery.{jQuery => $}
 
 object ThemeService {
   private[this] var lastColor = ""
-  private[this] var lastPattern = ""
+  private[this] var lastPattern: Option[String] = None
 
   def applyColor(color: String): Unit = {
     val hex = if (color.startsWith("#")) { color } else { "#" + color }
@@ -15,14 +15,14 @@ object ThemeService {
     }
   }
 
-  def applyPattern(pattern: String): Unit = if (lastPattern != pattern) {
+  def applyPattern(pattern: Option[String]): Unit = if (lastPattern != pattern) {
     lastPattern = pattern
     updateStyle()
   }
 
   private[this] def styleBlock() = Seq(
     s"body { background-color: $lastColor; }",
-    if (lastPattern == "none" || lastPattern == "") { "" } else { s"body { background-image: url(/assets/images/background/$lastPattern.png); }" },
+    lastPattern.map(p => s"body { background-image: url(/assets/images/background/$p.png); }").getOrElse(""),
     s".theme { background-color: $lastColor; }",
     s".theme-text { color: $lastColor; }"
   ).mkString("\n")
