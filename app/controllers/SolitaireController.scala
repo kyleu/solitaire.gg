@@ -4,8 +4,8 @@ import java.util.UUID
 
 import akka.actor.ActorSystem
 import akka.stream.Materializer
-import models.settings.BackgroundPattern
-import msg.SocketMessage
+import msg.req.SocketRequestMessage
+import msg.rsp.SocketResponseMessage
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.streams.ActorFlow
 import play.api.mvc.{RequestHeader, WebSocket}
@@ -41,7 +41,7 @@ class SolitaireController @javax.inject.Inject() (
     }
   }
 
-  def connect() = WebSocket.acceptOrResult[SocketMessage, SocketMessage] { implicit request =>
+  def connect() = WebSocket.acceptOrResult[SocketRequestMessage, SocketResponseMessage] { implicit request =>
     def messages(key: String, args: Seq[Any]) = messagesApi.apply(key, args: _*)
     getUser(request).map { user =>
       Right(ActorFlow.actorRef { out =>

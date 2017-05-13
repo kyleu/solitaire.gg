@@ -5,7 +5,7 @@ import java.util.UUID
 import akka.actor.{ActorRef, Props}
 import models.{SocketStarted, SocketStopped}
 import models.user.User
-import msg.Howdy
+import msg.rsp.Howdy
 import utils.Logging
 import utils.metrics.InstrumentedActor
 
@@ -19,7 +19,7 @@ object SocketService {
 
 case class SocketService(
     id: UUID, supervisor: ActorRef, user: User, out: ActorRef, sourceAddress: String
-) extends InstrumentedActor with SocketMessageHelper with Logging {
+) extends InstrumentedActor with SocketRequestMessageHelper with Logging {
 
   override def preStart() = {
     log.info(s"Starting connection for user [${user.id}: ${user.username.getOrElse("-")}].")

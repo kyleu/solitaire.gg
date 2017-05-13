@@ -49,6 +49,9 @@ object SettingsPanel {
   def show(settings: Settings) = {
     originalSettings = settings
     currentSettings = originalSettings
+
+    val picker = js.Dynamic.global.$("#settings-color-picker")
+    picker.spectrum("set", settings.backgroundColor)
   }
 
   private[this] def colorChange(color: js.Dynamic) = {

@@ -1,10 +1,11 @@
 package services.socket
 
 import models.InternalMessage
-import msg.{Hello, Howdy}
+import msg.req.Hello
+import msg.rsp.Howdy
 import utils.metrics.InstrumentedActor
 
-trait SocketMessageHelper extends InstrumentedActor { this: SocketService =>
+trait SocketRequestMessageHelper extends InstrumentedActor { this: SocketService =>
   override def receiveRequest = {
     case h: Hello => out ! Howdy(h.s.hashCode)
     case im: InternalMessage => handleInternalMessage(im)

@@ -1,11 +1,12 @@
 package network
 
-import msg.{Hello, SocketMessage}
+import msg.req.{Hello, SocketRequestMessage}
+import msg.rsp.SocketResponseMessage
 import utils.{JsonSerializers, Logging}
 
 import scala.scalajs.js.timers.setTimeout
 
-class NetworkService(debug: Boolean, handleMessage: (SocketMessage) => Unit) {
+class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => Unit) {
   private[this] val loc = org.scalajs.dom.document.location
 
   private[this] val socketUrl = {
@@ -15,7 +16,7 @@ class NetworkService(debug: Boolean, handleMessage: (SocketMessage) => Unit) {
 
   private[this] var latencyMs: Option[Int] = None
 
-  private[this] val socket = new NetworkSocket(onSocketConnect, onSocketMessage, onSocketError, onSocketClose)
+  private[this] val socket = new NetworkSocket(onSocketConnect, onSocketResponseMessage, onSocketError, onSocketClose)
   socket.open(socketUrl)
 
   private def sendPing(): Unit = {
@@ -47,17 +48,17 @@ class NetworkService(debug: Boolean, handleMessage: (SocketMessage) => Unit) {
     */
   }
 
-  def sendMessage(sm: SocketMessage): Unit = {
+  def sendMessage(sm: SocketRequestMessage): Unit = {
     if (socket.isConnected) {
-      val json = JsonSerializers.writeMessage(sm, debug)
+      val json = JsonSerializers.writeRequestMessage(sm, debug)
       socket.send(json)
     } else {
       utils.Logging.info(s"Not connected, skipping message [${sm.getClass.getSimpleName}] send.")
     }
   }
 
-  protected[this] def onSocketMessage(json: String): Unit = {
-    val msg = JsonSerializers.readMessage(json)
+  protected[this] def onSocketResponseMessage(json: String): Unit = {
+    val msg = JsonSerializers.readResponseMessage(json)
     handleMessage(msg)
   }
 }

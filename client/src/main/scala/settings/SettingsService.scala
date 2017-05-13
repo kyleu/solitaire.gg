@@ -1,9 +1,8 @@
 package settings
 
-import java.util.UUID
-
 import models.settings.Settings
 import org.scalajs.dom
+import utils.JsonSerializers
 
 import scala.util.control.NonFatal
 
@@ -21,7 +20,7 @@ class SettingsService {
   }
 
   def save() = {
-    val json = upickle.default.write(settings)
+    val json = JsonSerializers.writeSettings(settings)
     utils.Logging.info(s"Persisting settings [$json].")
     dom.window.localStorage.setItem(SettingsService.settingsKey, json)
   }
@@ -33,7 +32,7 @@ class SettingsService {
 
   def loadSettings() = Option(dom.window.localStorage.getItem(SettingsService.settingsKey)) match {
     case Some(json) => try {
-      upickle.default.read[Settings](json)
+      JsonSerializers.readSettings(json)
     } catch {
       case NonFatal(x) => Settings.default
     }

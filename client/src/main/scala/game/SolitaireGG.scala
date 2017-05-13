@@ -4,7 +4,7 @@ import java.util.UUID
 
 import help.HelpService
 import models.game.GameStateDebug
-import msg.SocketMessage
+import msg.rsp.SocketResponseMessage
 import navigation.{MenuService, NavigationService, NavigationState}
 import network.NetworkService
 import org.scalajs.dom
@@ -30,9 +30,7 @@ object SolitaireGG {
   }
 }
 
-class SolitaireGG(val debug: Boolean) {
-  val userId = UUID.randomUUID
-
+class SolitaireGG(val debug: Boolean, val userId: UUID = UUID.randomUUID) {
   private[this] var game: Option[ActiveGame] = None
   def hasGame = game.isDefined
   def getGame = game.getOrElse(throw new IllegalStateException("No active game."))
@@ -40,7 +38,7 @@ class SolitaireGG(val debug: Boolean) {
   def setGame(g: ActiveGame) = game = Some(g)
 
   val navigation = new NavigationService(onStateChange)
-  val network = new NetworkService(debug, handleSocketMessage)
+  val network = new NetworkService(debug, handleSocketResponseMessage)
   val settings = new SettingsService()
   val menu = new MenuService(settings, navigation)
 
@@ -83,8 +81,8 @@ class SolitaireGG(val debug: Boolean) {
     phaser.start()
   }
 
-  private[this] def handleSocketMessage(msg: SocketMessage) = {
-    utils.Logging.info(s"SocketMessage: [$msg].")
+  private[this] def handleSocketResponseMessage(msg: SocketResponseMessage) = {
+    utils.Logging.info(s"SocketResponseMessage: [$msg].")
   }
 
   def onSandbox() = {
