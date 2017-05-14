@@ -9,14 +9,10 @@ import models.settings.Settings
 import msg.rsp.SocketResponseMessage
 import navigation.{MenuService, NavigationService, NavigationState}
 import network.NetworkService
-import org.scalajs.dom
-import org.scalajs.dom.raw.BeforeUnloadEvent
 import phaser.PhaserGame
 import phaser.gameplay.InputHelper
-import settings.{SettingsPanel, SettingsService, ThemeService}
-import utils.{Logging, NullUtils}
+import settings.{SettingsPanel, SettingsService}
 
-import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
 import scala.util.Random
 
@@ -63,7 +59,7 @@ class SolitaireGG(val debug: Boolean, val userId: UUID = UUID.randomUUID) extend
       })
       case NavigationState.Settings => SettingsPanel.initIfNeeded(settings.getSettings)
       case NavigationState.Play => GameStartService.onGameStateChange(this, args)
-      case NavigationState.Help => HelpService.show("klondike")
+      case NavigationState.Help => HelpService.show(game.map(_.rulesId))
       case _ => // noop
     }
   }

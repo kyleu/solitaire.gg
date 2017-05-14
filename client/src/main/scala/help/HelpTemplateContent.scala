@@ -1,14 +1,15 @@
 package help
 
 import models.rules.GameRules
+import navigation.NavigationUrls
 import utils.Messages
 
 import scalatags.Text.all._
 
 object HelpTemplateContent {
   def rulesLink(rulesId: String, rulesTitle: String) = div(
-    a(cls := "help-link", href := "")(rulesTitle),
-    a(cls := "play-link", href := "", data("rules") := rulesId, title := s"Play $rulesTitle Now")("play")
+    a(cls := "help-link", href := NavigationUrls.rules(rulesId))(rulesTitle),
+    a(cls := "play-link", href := NavigationUrls.play(rulesId), data("rules") := rulesId, title := s"Play $rulesTitle Now")("play")
   )
 
   def getTitleDiv(rules: GameRules) = div(cls := "rules-help")(h2(

@@ -1,6 +1,7 @@
 package game
 
 import models.rules.{GameRules, GameRulesSet}
+import navigation.NavigationUrls
 
 import scalatags.Text.all._
 import org.scalajs.jquery.{jQuery => $}
@@ -9,7 +10,7 @@ import utils.TemplateUtils
 object GameListService {
   private[this] var initialized = false
 
-  private[this] def rulesLink(k: String, v: GameRules) = a(href := s"/play/$k", cls := "rules-link", data("rules") := k)(v.title)
+  private[this] def rulesLink(k: String, v: GameRules) = a(href := NavigationUrls.play(k), cls := "rules-link", data("rules") := k)(v.title)
 
   private[this] val descriptionLinkPattern = """\^([a-z0-9]+)\^""".r
 
@@ -18,7 +19,6 @@ object GameListService {
     val linked = links.foldLeft(desc) { (desc, id) =>
       val rules = GameRulesSet.allByIdWithAliases(id)
       if (link) {
-        val url = s"/play/${rules.id}"
         desc.replaceAllLiterally(s"^$id^", rulesLink(id, rules).toString)
       } else {
         desc.replaceAllLiterally(s"^$id^", rules.title)

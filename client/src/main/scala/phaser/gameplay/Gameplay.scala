@@ -8,7 +8,7 @@ import models.game._
 import models.rules.{GameRules, GameRulesSet}
 import models.settings.Settings
 import phaser.PhaserGame
-import phaser.card.CardImages
+import phaser.card.{CardAnimation, CardImages}
 import phaser.playmat.Playmat
 
 import scala.scalajs.js.annotation.ScalaJSDefined
@@ -48,8 +48,12 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
     services.requests.handle(Redo)
   }
 
+  private[this] def onWin() = {
+    CardAnimation.win(g.getPlaymat)
+  }
+
   private[this] def postMove() = if (checkWinCondition()) {
-    utils.Logging.info("Winner!")
+    onWin()
   } else {
     services.responses.handle(PossibleMoves(services.moves.possibleMoves(), services.undo.historyQueue.size, services.undo.undoneQueue.size))
   }
