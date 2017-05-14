@@ -1,6 +1,7 @@
 package phaser.card
 
 import com.definitelyscala.phaser.Easing.Easing
+import models.game.PossibleMove
 import models.{MoveCards, SelectCard}
 
 import scala.scalajs.js
@@ -10,7 +11,7 @@ trait CardInputHelper {
   protected[this] def canSelectCard(card: CardSprite) = {
     var valid = false
     card.phaser.possibleMoves.foreach { move =>
-      if (move.moveType == "select-card" && move.sourcePile == card.pileGroup.id) {
+      if (move.t == PossibleMove.Type.SelectCard && move.sourcePile == card.pileGroup.id) {
         if (move.cards.length == 1 && move.cards.headOption.contains(card.id)) {
           valid = true
         }
@@ -20,7 +21,7 @@ trait CardInputHelper {
   }
 
   protected[this] def getMoveTarget(card: CardSprite) = card.phaser.possibleMoves.find { move =>
-    move.moveType == "move-cards" && move.sourcePile == card.pileGroup.id && move.cards.length == 1 && move.cards.headOption.contains(card.id)
+    move.t == PossibleMove.Type.MoveCards && move.sourcePile == card.pileGroup.id && move.cards.length == 1 && move.cards.headOption.contains(card.id)
   }
 
   protected[this] def click(card: CardSprite) = {

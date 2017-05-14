@@ -1,7 +1,5 @@
 package models.game
 
-import models.PossibleMove
-
 class MoveHelper(gs: GameState, postMove: () => Unit) {
   protected[this] var moveCount = 0
   protected[this] var firstMoveMade: Option[Long] = None
@@ -29,7 +27,7 @@ class MoveHelper(gs: GameState, postMove: () => Unit) {
           gs.piles.filterNot(p => p.id == source.id).foreach { target =>
             val targetBehavior = target.pileSet.map(_.behavior).getOrElse(throw new IllegalStateException())
             if (target.canDragTo(source, cards, gs)) {
-              val move = PossibleMove("move-cards", cards.map(_.id).toList, source.id, Some(target.id))
+              val move = PossibleMove(PossibleMove.Type.MoveCards, cards.map(_.id).toList, source.id, Some(target.id))
               if (sourceBehavior == "tableau" && targetBehavior == "tableau" && remainingCards.isEmpty && target.cards.isEmpty) {
                 boringMoves += move
               } else if (targetBehavior == "foundation" && sourceBehavior != "foundation") {
@@ -41,11 +39,11 @@ class MoveHelper(gs: GameState, postMove: () => Unit) {
           }
         }
         if (source.canSelectCard(c._1, gs)) {
-          ret += PossibleMove("select-card", Seq(c._1.id), source.id)
+          ret += PossibleMove(PossibleMove.Type.SelectCard, Seq(c._1.id), source.id)
         }
       }
       if (source.canSelectPile(gs)) {
-        ret += PossibleMove("select-pile", Nil, source.id)
+        ret += PossibleMove(PossibleMove.Type.SelectPile, Nil, source.id)
       }
     }
     (awesomeMoves ++ ret ++ boringMoves).toIndexedSeq

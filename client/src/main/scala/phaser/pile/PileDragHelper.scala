@@ -2,6 +2,7 @@ package phaser.pile
 
 import com.definitelyscala.phaser.Pointer
 import models.MoveCards
+import models.game.PossibleMove
 import phaser.card.{CardSprite, CardTweens}
 
 object PileDragHelper {
@@ -10,7 +11,7 @@ object PileDragHelper {
     def check(c: Int, idx: Int) = if (c != src.dragCards(idx).id) { valid = false }
 
     src.phaser.possibleMoves.foreach { move =>
-      if (move.moveType == "move-cards" && move.sourcePile == src.pile.id && move.targetPile.contains(tgt.pile.id)) {
+      if (move.t == PossibleMove.Type.MoveCards && move.sourcePile == src.pile.id && move.targetPile.contains(tgt.pile.id)) {
         if (src.dragCards.length == move.cards.length) {
           valid = true
           move.cards.zipWithIndex.foreach(c => check(c._1, c._2))

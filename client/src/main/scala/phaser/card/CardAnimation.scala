@@ -11,12 +11,12 @@ object CardAnimation {
     val animationDimensions = (playmat.game.world.width / playmat.scale.x) -> (playmat.game.world.height / playmat.scale.y)
     val playmatOrigin = (playmat.x / playmat.scale.x) -> (playmat.y / playmat.scale.y)
 
-    playmat.getCards.foreach { x =>
-      val (card, _, _) = x
+    playmat.getCards.map(_._1).foreach { card =>
       val spin = Math.random() * 3
       var driftX = (Math.random() * (driftMax * 2)) - driftMax
       var driftY = (Math.random() * (driftMax * 2)) - driftMax
       var growthDelta = (Math.random() * (growthMax * 2)) - growthMax
+      card.width = card.originalWidth
       card.animation = Some(() => {
         card.angle += spin
         card.x += driftX

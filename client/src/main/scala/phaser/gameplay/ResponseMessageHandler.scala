@@ -17,7 +17,6 @@ class ResponseMessageHandler(g: PhaserGame, undo: UndoHelper, debug: Boolean) {
 
     msg match {
       case ms: MessageSet => ms.messages.foreach(m => handle(m))
-      case gj: GameJoined => throw new IllegalStateException("Received unexpected GameJoined message.")
       case pm: PossibleMoves => g.possibleMoves = pm.moves
       case cr: CardRevealed => cardRevealed(cr)
       case ch: CardHidden => p.getCardSprite(ch.id).turnFaceDown()

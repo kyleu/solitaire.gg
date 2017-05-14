@@ -2,7 +2,8 @@ package phaser
 
 import client.SolitaireGG
 import com.definitelyscala.phaser._
-import models.{PossibleMove, RequestMessage}
+import models.RequestMessage
+import models.game.PossibleMove
 import org.scalajs.dom
 import org.scalajs.dom.raw.UIEvent
 import phaser.card.CardImages

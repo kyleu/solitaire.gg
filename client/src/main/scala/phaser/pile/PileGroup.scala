@@ -2,6 +2,7 @@ package phaser.pile
 
 import com.definitelyscala.phaser.{Group, Pointer, Sprite}
 import models.SelectPile
+import models.game.PossibleMove
 import models.pile.Pile
 import phaser.PhaserGame
 import phaser.card.CardSprite
@@ -18,7 +19,7 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
   def id = pile.id
 
   def canSelectPile() = phaser.possibleMoves.exists { move =>
-    move.moveType == "select-pile" && move.sourcePile == pile.id;
+    move.t == PossibleMove.Type.SelectPile && move.sourcePile == pile.id;
   }
 
   val empty = {

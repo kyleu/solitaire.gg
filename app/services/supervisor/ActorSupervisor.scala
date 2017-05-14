@@ -32,8 +32,6 @@ class ActorSupervisor(val app: Application) extends InstrumentedActor with Loggi
     case ss: SocketStopped => timeReceive(ss) { handleSocketStopped(ss.socketId) }
 
     case GetSystemStatus => timeReceive(GetSystemStatus) { handleGetSystemStatus() }
-    case ct: SendSocketTrace => timeReceive(ct) { handleSendSocketTrace(ct) }
-    case ct: SendClientTrace => timeReceive(ct) { handleSendClientTrace(ct) }
 
     case im: InternalMessage => log.warn(s"Unhandled internal message [${im.getClass.getSimpleName}] received.")
     case x => log.warn(s"ActorSupervisor encountered unknown message: ${x.toString}")
@@ -41,17 +39,7 @@ class ActorSupervisor(val app: Application) extends InstrumentedActor with Loggi
 
   private[this] def handleGetSystemStatus() = {
     val connectionStatuses = ActorSupervisor.sockets.toList.sortBy(_._2.username).map(x => x._1 -> x._2.username)
-    sender() ! SystemStatus(Nil, connectionStatuses)
-  }
-
-  private[this] def handleSendSocketTrace(ct: SendSocketTrace) = ActorSupervisor.sockets.find(_._1 == ct.id) match {
-    case Some(c) => c._2.actorRef forward ct
-    case None => sender() ! ServerError("Unknown Socket", ct.id.toString)
-  }
-
-  private[this] def handleSendClientTrace(ct: SendClientTrace) = ActorSupervisor.sockets.find(_._1 == ct.id) match {
-    case Some(c) => c._2.actorRef forward ct
-    case None => sender() ! ServerError("Unknown Client Socket", ct.id.toString)
+    sender() ! SystemStatus(connectionStatuses)
   }
 
   protected[this] def handleSocketStarted(userId: UUID, username: Option[String], socketId: UUID, socket: ActorRef) {
