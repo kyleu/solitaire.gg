@@ -5,8 +5,7 @@ import java.util.UUID
 import game.{ActiveGame, GameListService, GameStartService}
 import help.HelpService
 import models.game.GameStateDebug
-import models.settings.Settings
-import msg.rsp.SocketResponseMessage
+import msg.req.SaveSettings
 import navigation.{MenuService, NavigationService, NavigationState}
 import network.NetworkService
 import phaser.PhaserGame
@@ -28,7 +27,7 @@ object SolitaireGG {
   }
 }
 
-class SolitaireGG(val debug: Boolean, val userId: UUID = UUID.randomUUID) extends InitHelper {
+class SolitaireGG(val debug: Boolean, val userId: UUID = UUID.randomUUID) extends InitHelper with MessageHelper {
   protected[this] var game: Option[ActiveGame] = None
   def hasGame = game.isDefined
   def getGame = game.getOrElse(throw new IllegalStateException("No active game."))
@@ -37,7 +36,7 @@ class SolitaireGG(val debug: Boolean, val userId: UUID = UUID.randomUUID) extend
 
   val navigation = new NavigationService(onStateChange)
   val network = new NetworkService(debug, handleSocketResponseMessage)
-  val settings = new SettingsService(onSave = onSaveSettings)
+  val settings = new SettingsService(onSave = s => network.sendMessage(SaveSettings(s)))
   val menu = new MenuService(settings, navigation)
 
   val phaser = new PhaserGame(this)
@@ -62,14 +61,6 @@ class SolitaireGG(val debug: Boolean, val userId: UUID = UUID.randomUUID) extend
       case NavigationState.Help => HelpService.show(game.map(_.rulesId))
       case _ => // noop
     }
-  }
-
-  private[this] def handleSocketResponseMessage(msg: SocketResponseMessage) = {
-    utils.Logging.info(s"SocketResponseMessage: [$msg].")
-  }
-
-  def onSaveSettings(settings: Settings) = {
-
   }
 
   def onSandbox() = {

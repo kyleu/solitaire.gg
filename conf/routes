@@ -2,16 +2,11 @@
 GET            /*path/                                  controllers.UtilController.untrail(path: String)
 GET            /link                                    controllers.UtilController.externalLink(url: String)
 GET            /robots.txt                              controllers.UtilController.robots
-GET            /websocket                               controllers.UtilController.noop()
-
-# Feedback
-GET            /feedback                                controllers.FeedbackController.feedbackForm
-POST           /feedback                                controllers.FeedbackController.submitFeedback
 
 # i18n
 GET            /strings.js                              controllers.MessagesController.strings()
 
-# Offline analytics
+# Legacy analytics
 OPTIONS        /a/*path                                 controllers.AnalyticsController.preflightCheck(path)
 POST           /a/error/:id                             controllers.AnalyticsController.error(id: java.util.UUID)
 POST           /a/install/:id                           controllers.AnalyticsController.install(id: java.util.UUID)

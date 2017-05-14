@@ -69,14 +69,16 @@ object Dependencies {
   }
 
   object Utils {
-    private[this] val version = "6.43.0"
-    val core = "com.twitter" %% "util-core" % version
-    val collection = "com.twitter" %% "util-collection" % version
+    val scapegoatVersion = "1.3.0"
+
+    private[this] val twitterVersion = "6.43.0"
+    val core = "com.twitter" %% "util-core" % twitterVersion
+    val collection = "com.twitter" %% "util-collection" % twitterVersion
 
     val enumeratumVersion = "1.5.11"
     val enumeratum = "com.beachape" %% "enumeratum-upickle" % enumeratumVersion
 
-    val scapegoatVersion = "1.3.0"
+    val betterFiles = "com.github.pathikrit" %% "better-files" % "2.17.1"
   }
 
   object Testing {
