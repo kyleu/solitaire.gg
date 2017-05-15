@@ -22,7 +22,11 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
 
   def setPath(state: NavigationState, args: Seq[String]) = {
     val url = if (args.isEmpty) {
-      s"/${state.value}"
+      if (state == NavigationState.Menu) {
+        "/"
+      } else {
+        s"/${state.value}"
+      }
     } else {
       s"/${state.value}/${args.mkString("/")}"
     }

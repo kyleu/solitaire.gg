@@ -4,9 +4,10 @@ import java.util.UUID
 
 import game.{ActiveGame, GameListService, GameStartService}
 import help.HelpService
+import menu.MenuService
 import models.game.GameStateDebug
 import msg.req.SaveSettings
-import navigation.{MenuService, NavigationService, NavigationState}
+import navigation.{NavigationService, NavigationState}
 import network.NetworkService
 import phaser.PhaserGame
 import phaser.gameplay.InputHelper

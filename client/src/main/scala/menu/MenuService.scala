@@ -1,5 +1,6 @@
-package navigation
+package menu
 
+import navigation.{NavigationService, NavigationState}
 import org.scalajs.jquery.{jQuery => $}
 import settings.SettingsService
 import utils.TemplateUtils
