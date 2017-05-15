@@ -10,7 +10,7 @@ import navigation.{MenuService, NavigationService, NavigationState}
 import network.NetworkService
 import phaser.PhaserGame
 import phaser.gameplay.InputHelper
-import settings.{SettingsPanel, SettingsService}
+import settings.{ProfileService, SettingsPanel, SettingsService}
 
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
 import scala.util.Random
@@ -27,7 +27,7 @@ object SolitaireGG {
   }
 }
 
-class SolitaireGG(val debug: Boolean, val userId: UUID = UUID.randomUUID) extends InitHelper with MessageHelper {
+class SolitaireGG(val debug: Boolean) extends InitHelper with MessageHelper {
   protected[this] var game: Option[ActiveGame] = None
   def hasGame = game.isDefined
   def getGame = game.getOrElse(throw new IllegalStateException("No active game."))
@@ -37,6 +37,7 @@ class SolitaireGG(val debug: Boolean, val userId: UUID = UUID.randomUUID) extend
   val navigation = new NavigationService(onStateChange)
   val network = new NetworkService(debug, handleSocketResponseMessage)
   val settings = new SettingsService(onSave = s => network.sendMessage(SaveSettings(s)))
+  val profile = new ProfileService(settings)
   val menu = new MenuService(settings, navigation)
 
   val phaser = new PhaserGame(this)

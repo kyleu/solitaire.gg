@@ -20,7 +20,9 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
   socket.open(socketUrl)
 
   private def sendPing(): Unit = {
-    sendMessage(Ping(System.currentTimeMillis))
+    if (socket.isConnected) {
+      sendMessage(Ping(System.currentTimeMillis))
+    }
     setTimeout(10000)(sendPing())
   }
 

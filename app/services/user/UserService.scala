@@ -3,6 +3,7 @@ package services.user
 import java.util.UUID
 
 import models.queries.user.UserQueries
+import models.settings.Settings
 import models.user.User
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
@@ -29,4 +30,6 @@ object UserService extends Logging {
       user
     }
   }
+
+  def saveSettings(userId: UUID, settings: Settings) = Database.execute(UserQueries.SetSettings(userId, settings))
 }

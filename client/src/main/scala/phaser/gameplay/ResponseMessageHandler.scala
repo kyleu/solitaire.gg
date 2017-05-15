@@ -4,9 +4,11 @@ import models._
 import models.game.UndoHelper
 import phaser.PhaserGame
 
-class ResponseMessageHandler(g: PhaserGame, undo: UndoHelper, debug: Boolean) {
+class ResponseMessageHandler(g: PhaserGame, undo: UndoHelper) {
+  val debugMessages = false
+
   def handle(msg: ResponseMessage, registerUndo: Boolean = false): Unit = {
-    if (debug) { utils.Logging.info(s"Received response message (undo: $registerUndo) - [$msg].") }
+    if (debugMessages) { utils.Logging.info(s"Received response message (undo: $registerUndo) - [$msg].") }
 
     if (registerUndo) {
       undo.registerResponse(msg)

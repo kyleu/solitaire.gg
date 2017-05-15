@@ -29,7 +29,7 @@ object PhaserGame {
 class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   this.antialias = true
 
-  val gameplay = new Gameplay(this, gg.settings.getSettings, gg.onPhaserLoadComplete, gg.debug)
+  val gameplay = new Gameplay(this, gg.settings.getSettings, gg.onPhaserLoadComplete)
 
   var possibleMoves: Seq[PossibleMove] = Nil
 
@@ -37,7 +37,8 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   def setImages(i: CardImages) = images = Some(i)
   def getImages = images.getOrElse(throw new IllegalStateException("Images not loaded."))
 
-  def getUserId = gg.userId
+  def getUserId = gg.profile.getUserId
+  def getDeviceId = gg.profile.deviceId
   def getSettings = gg.settings.getSettings
 
   private[this] var playmat: Option[Playmat] = None
@@ -60,8 +61,5 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
     state.start("initialState", clearWorld = false, clearCache = false)
   }
 
-  def sendMove(msg: RequestMessage) = {
-    if (gg.debug) { utils.Logging.info(s"Sending request message [$msg].") }
-    gameplay.services.requests.handle(msg)
-  }
+  def sendMove(msg: RequestMessage) = gameplay.services.requests.handle(msg)
 }

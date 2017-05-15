@@ -13,7 +13,7 @@ object SettingsPanel {
   def getCurrentSettings = currentSettings
 
   def initIfNeeded(settings: Settings) = if (!initialized) {
-    val panel = $("#settings-content")
+    val panel = $("#settings-content .content")
     val content = SettingsTemplate.forSettings(settings)
     panel.html(content.toString)
 

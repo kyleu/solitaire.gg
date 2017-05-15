@@ -25,7 +25,7 @@ object Gameplay {
 }
 
 @ScalaJSDefined
-class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => Unit, debug: Boolean) extends State {
+class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => Unit) extends State {
   private[this] var activeServices: Option[Gameplay.GameServices] = None
   def services = activeServices.getOrElse(throw new IllegalStateException("No game services available."))
   def activeGame = activeServices.map(_.state.gameId)
@@ -64,7 +64,7 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
     val rules = GameRulesSet.allByIdWithAliases(state.rules)
     val moves = new MoveHelper(state, postMove)
     val undo = new UndoHelper()
-    val responses = new ResponseMessageHandler(g, undo, debug)
+    val responses = new ResponseMessageHandler(g, undo)
     val requests = new RequestMessageHandler(g.getUserId, coreState, undo, responses.handle, moves.registerMove)
     activeServices = Some(Gameplay.GameServices(state, rules, moves, undo, responses, requests))
 

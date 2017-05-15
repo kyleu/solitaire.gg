@@ -38,7 +38,7 @@ object GameListService {
       }))
     )
 
-    val panel = $("#panel-list-games")
+    val panel = $("#panel-list-games .content")
     panel.html(content.toString)
 
     TemplateUtils.clickHandler($(".rules-link", panel), jq => onNewGame(Seq(jq.data("rules").toString)))
