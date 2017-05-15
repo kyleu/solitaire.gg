@@ -2,6 +2,7 @@ package models.settings
 
 object BackgroundPattern {
   val all = Seq(
+    "none",
     "3px-tile", "45-degree-fabric-dark", "45-degree-fabric-light",
     "always-grey", "arabesque", "arches", "argyle", "asfalt-dark", "axiom-pattern", "az-subtle",
     "back-pattern", "basketball", "black-felt", "black-linen", "black-lozenge", "black-scales", "black-thread-light",

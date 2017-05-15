@@ -19,7 +19,7 @@ object BackgroundPatternCreator {
       s"convert -size 32x32 -background none tile:./public/images/background/${f.getName} ./tmp/patterns/${f.getName}".!
     }
 
-    val names = files.map("./tmp/patterns/" + _.getName).sorted.mkString(" ")
-    s"montage -mode concatenate -background none -tile x1 -geometry +0+0 -size 32x32 $names ./tmp/patterns.png".!
+    val names = files.filterNot(_.getName == "none.png").map("./tmp/patterns/" + _.getName).sorted.mkString(" ")
+    s"montage -mode concatenate -background none -tile x1 -geometry +0+0 -size 32x32 ./tmp/patterns/none.png $names ./tmp/patterns.png".!
   }
 }
