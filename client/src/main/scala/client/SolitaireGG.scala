@@ -73,7 +73,7 @@ class SolitaireGG(val debug: Boolean) extends InitHelper with MessageHelper {
   }
 
   def onPhaserLoadComplete(): Unit = {
-    new InputHelper(phaser)
+    new InputHelper(this)
     navigation.initialAction()
   }
 }

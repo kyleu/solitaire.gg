@@ -2,18 +2,17 @@ package phaser.gameplay
 
 import client.SolitaireGG
 import input.{GamepadHandler, InputMessage, KeyboardHandler}
-import phaser.PhaserGame
 
-class InputHelper(phaser: PhaserGame) {
-  new KeyboardHandler(phaser, onInput)
-  new GamepadHandler(phaser, onInput)
+class InputHelper(gg: SolitaireGG) {
+  new KeyboardHandler(gg.phaser, onInput)
+  new GamepadHandler(gg.phaser, onInput)
 
   def onInput(i: InputMessage): Unit = i match {
     case InputMessage.Sandbox => SolitaireGG.getActive.onSandbox()
-    case InputMessage.Undo => phaser.gameplay.undo()
-    case InputMessage.Redo => phaser.gameplay.redo()
+    case InputMessage.Undo => gg.phaser.gameplay.undo()
+    case InputMessage.Redo => gg.phaser.gameplay.redo()
     case InputMessage.ToggleDebug => toggleDebug()
-    case InputMessage.ToggleMenu => // TODO
+    case InputMessage.ToggleMenu => gg.menu.toggleMenu()
     case _ => utils.Logging.info(s"Unhandled input message [$i].")
   }
 
