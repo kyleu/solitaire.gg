@@ -63,12 +63,12 @@ class CardSprite(
 
   def updateSprite(fu: Boolean = faceUp) {
     faceUp = fu
-    if (faceUp) {
-      val tex = phaser.getImages.textures(rank.value.toString + suit.value)
-      loadTexture(tex)
+    val tex = if (faceUp) {
+      phaser.getImages.textures(rank.value.toString + suit.value)
     } else {
-      loadTexture("card-back")
+      phaser.getImages.cardBack
     }
+    loadTexture(tex)
     name = s"$id:${rank.value}${suit.value}${if (faceUp) { "+" } else { "-" }}"
   }
 

@@ -23,7 +23,8 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
   }
 
   val empty = {
-    val ret = new Sprite(game, 0, 0, "empty-piles", 0)
+    val ret = new Sprite(game, 0, 0, phaser.getImages.emptyPile, 0)
+    ret.alpha = 0.3
     ret.inputEnabled = true
     ret.events.onInputUp.add((e: Any, p: Pointer) => {
       if (p.button.toString.toInt == 0) {

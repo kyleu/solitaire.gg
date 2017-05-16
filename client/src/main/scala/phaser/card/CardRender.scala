@@ -7,6 +7,17 @@ import models.settings.CardLayout
 class CardRender(layout: CardLayout, blank: Image, suitImages: Seq[Image], redRankImages: Seq[Image], blackRankImages: Seq[Image], faceCardImages: Seq[Image]) {
   private[this] val rankWidths = IndexedSeq(0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.0, 0.9, 0.9, 0.9, 0.9)
 
+  def renderEmptyPile(back: Image, tex: BitmapData, opaque: BitmapData) = {
+    tex.fill(0, 0, 0, 0)
+    tex.alphaMask(opaque, blank)
+  }
+
+  def renderCardBack(back: Image, tex: BitmapData) = {
+    tex.fill(0, 0, 0, 0)
+    tex.draw(blank, 0, 0)
+    tex.draw(back, 0, 0)
+  }
+
   def renderCard(s: Suit, r: Rank, tex: BitmapData) = {
     tex.draw(blank, 0, 0)
 
@@ -65,8 +76,7 @@ class CardRender(layout: CardLayout, blank: Image, suitImages: Seq[Image], redRa
         tex.draw(suitImage, 365, 515, 50, 50)
         rankImage.angle = 0
         suitImage.angle = 0
-      case _ =>
-        throw new IllegalStateException("?: " + layout)
+      case _ => throw new IllegalStateException("?: " + layout)
     }
     tex
   }

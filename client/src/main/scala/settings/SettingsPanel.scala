@@ -1,6 +1,6 @@
 package settings
 
-import models.settings.{MenuPosition, Settings}
+import models.settings._
 import org.scalajs.jquery.{JQueryEventObject, jQuery => $}
 import utils.TemplateUtils
 
@@ -9,20 +9,25 @@ import scala.scalajs.js
 object SettingsPanel {
   private[this] var initialized = false
   private[this] var originalSettings = Settings.default
-  private[this] var currentSettings = originalSettings
-  def getCurrentSettings = currentSettings
+  private[this] var current = originalSettings
+  def getCurrentSettings = current
 
   private[this] val panel = $("#settings-content .content")
 
   def show(settings: Settings) = {
     originalSettings = settings
-    currentSettings = originalSettings
+    current = originalSettings
 
     val picker = js.Dynamic.global.$("#settings-color-picker")
     picker.spectrum("set", settings.backgroundColor)
 
-    $("#settings-menu-position-top").prop("checked", settings.menuPosition == MenuPosition.Top)
-    $("#settings-menu-position-bottom").prop("checked", settings.menuPosition == MenuPosition.Bottom)
+    MenuPosition.values.foreach(p => $(s"#settings-menu-position-${p.value}").prop("checked", settings.menuPosition == p))
+    CardBack.values.foreach(cb => $(s"#settings-card-back-${cb.value}").prop("checked", settings.cardBack == cb))
+    CardBlank.values.foreach(cb => $(s"#settings-card-blank-${cb.value}").prop("checked", settings.cardBlank == cb))
+    CardFaces.values.foreach(cf => $(s"#settings-card-faces-${cf.value}").prop("checked", settings.cardFaces == cf))
+    CardLayout.values.foreach(cl => $(s"#settings-card-layout-${cl.value}").prop("checked", settings.cardLayout == cl))
+    CardRanks.values.foreach(cr => $(s"#settings-card-ranks-${cr.value}").prop("checked", settings.cardRanks == cr))
+    CardSuits.values.foreach(cs => $(s"#settings-card-suits-${cs.value}").prop("checked", settings.cardSuits == cs))
   }
 
   def initIfNeeded(settings: Settings) = if (!initialized) {
@@ -30,6 +35,14 @@ object SettingsPanel {
     panel.html(content.toString)
 
     initMenuPosition()
+
+    CardBack.values.foreach(cb => radioChange("card-back", cb.value, () => current = current.copy(cardBack = cb)))
+    CardBlank.values.foreach(cb => radioChange("card-blank", cb.value, () => current = current.copy(cardBlank = cb)))
+    CardFaces.values.foreach(cf => radioChange("card-faces", cf.value, () => current = current.copy(cardFaces = cf)))
+    CardLayout.values.foreach(cl => radioChange("card-layout", cl.value, () => current = current.copy(cardLayout = cl)))
+    CardRanks.values.foreach(cr => radioChange("card-ranks", cr.value, () => current = current.copy(cardRanks = cr)))
+    CardSuits.values.foreach(cs => radioChange("card-suits", cs.value, () => current = current.copy(cardSuits = cs)))
+
     initBackgroundColor()
     initBackgroundPattern()
 
@@ -40,13 +53,13 @@ object SettingsPanel {
   }
 
   private[this] def initMenuPosition() = {
-    $("#settings-menu-position-top", panel).change((jq: JQueryEventObject) => {
+    radioChange("menu-position", "top", () => {
       $("body").removeClass("bottom-nav").addClass("top-nav")
-      currentSettings = currentSettings.copy(menuPosition = MenuPosition.Top)
+      current = current.copy(menuPosition = MenuPosition.Top)
     })
-    $("#settings-menu-position-bottom", panel).change((jq: JQueryEventObject) => {
+    radioChange("menu-position", "bottom", () => {
       $("body").removeClass("top-nav").addClass("bottom-nav")
-      currentSettings = currentSettings.copy(menuPosition = MenuPosition.Bottom)
+      current = current.copy(menuPosition = MenuPosition.Bottom)
     })
   }
 
@@ -66,13 +79,15 @@ object SettingsPanel {
       case x => Some(x)
     }
     ThemeService.applyPattern(p)
-    currentSettings = currentSettings.copy(backgroundPattern = p)
+    current = current.copy(backgroundPattern = p)
   })
+
+  private[this] def radioChange(k: String, v: String, onSelect: () => Unit) = $(s"#settings-$k-$v", panel).change((jq: JQueryEventObject) => onSelect())
 
   private[this] def colorChange(color: js.Dynamic) = {
     val hex = color.toHexString().toString
     ThemeService.applyColor(hex)
-    currentSettings = currentSettings.copy(backgroundColor = hex)
+    current = current.copy(backgroundColor = hex)
     true
   }
 }

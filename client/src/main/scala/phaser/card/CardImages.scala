@@ -6,9 +6,8 @@ import models.settings.Settings
 import phaser.PhaserGame
 
 class CardImages(game: PhaserGame, settings: Settings) {
-  private[this] val rankWidths = IndexedSeq(0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.0, 0.9, 0.9, 0.9, 0.9)
-
   private[this] val blank = new Image(game, 0, 0, "card-blank", 0)
+  private[this] val back = new Image(game, 0, 0, "card-back", 0)
 
   private[this] val suitImages = Seq(0, 1, 2, 3).map { i =>
     val ret = new Image(game, 0, 0, "card-suits", i)
@@ -48,4 +47,19 @@ class CardImages(game: PhaserGame, settings: Settings) {
       r.value.toString + s.value -> renderer.renderCard(s, r, tex)
     }
   }.toMap
+
+  val cardBack = {
+    val tex = game.add.bitmapData(settings.cardSet.w.toDouble, settings.cardSet.h.toDouble)
+    renderer.renderCardBack(back, tex)
+    tex
+  }
+
+  val emptyPile = {
+    val tex = game.add.bitmapData(settings.cardSet.w.toDouble, settings.cardSet.h.toDouble)
+    val opaque = game.add.bitmapData(settings.cardSet.w.toDouble, settings.cardSet.h.toDouble)
+    opaque.fill(0, 0, 0, 1)
+    renderer.renderEmptyPile(blank, tex, opaque)
+    tex
+  }
+
 }

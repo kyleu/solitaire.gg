@@ -14,7 +14,6 @@ case class Settings(
   cardLayout: CardLayout = CardLayout.A,
   cardRanks: CardRanks = CardRanks.A,
   cardSuits: CardSuits = CardSuits.A,
-  emptyPile: EmptyPile = EmptyPile.A,
   menuPosition: MenuPosition = MenuPosition.Top,
   autoFlip: Boolean = true
 )

@@ -1,6 +1,7 @@
 package icons
 
 import better.files._
+import scala.sys.process._
 
 object CardImageCreator {
   val srcDir = "public/images/cards".toFile
@@ -25,6 +26,7 @@ object CardImageCreator {
       sd.list.filter(_.name.endsWith(".png")).foreach { f =>
         f.copyTo(dd / f.name)
       }
+      s"mogrify -resize $percentage% ${dd.path}/*.png".!
     }
   }
 }

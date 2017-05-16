@@ -17,10 +17,6 @@ class LoadingState(settings: Settings) extends State {
       case _ => throw new IllegalStateException(s"Unhandled size [$size].")
     }
 
-    val emptyVariant = "a"
-    game.load.spritesheet("empty-piles", assetRoot + s"images/cards/$size/empty/$emptyVariant.png", cardSize._1, cardSize._2)
-
-    val blankVariant = "a"
     game.load.image("card-blank", assetRoot + s"images/cards/$size/blank/${settings.cardBlank.value}.png")
     game.load.image("card-back", assetRoot + s"images/cards/$size/back/${settings.cardBack.value}.png")
 

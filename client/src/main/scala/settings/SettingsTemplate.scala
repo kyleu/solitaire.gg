@@ -1,6 +1,6 @@
 package settings
 
-import models.settings.{BackgroundPattern, Settings}
+import models.settings._
 import utils.Messages
 
 import scalatags.Text.all._
@@ -14,6 +14,13 @@ object SettingsTemplate {
       radioFor("menu-position", "bottom", "Bottom")
     )
 
+    val cardBack = div(cls := "settings-section theme")(CardBack.values.map(cb => radioFor("card-back", cb.value, cb.title)))
+    val cardBlank = div(cls := "settings-section theme")(CardBlank.values.map(cb => radioFor("card-blank", cb.value, cb.title)))
+    val cardFaces = div(cls := "settings-section theme")(CardFaces.values.map(cf => radioFor("card-faces", cf.value, cf.title)))
+    val cardLayout = div(cls := "settings-section theme")(CardLayout.values.map(cl => radioFor("card-layout", cl.value, cl.title)))
+    val cardRanks = div(cls := "settings-section theme")(CardRanks.values.map(cr => radioFor("card-ranks", cr.value, cr.title)))
+    val cardSuits = div(cls := "settings-section theme")(CardSuits.values.map(cs => radioFor("card-suits", cs.value, cs.title)))
+
     val backgroundColor = div(cls := "settings-section theme")(
       input(`type` := "text", id := "settings-color-picker", value := settings.backgroundColor)
     )
@@ -25,7 +32,7 @@ object SettingsTemplate {
       }
     )
 
-    div(title, menuPosition, backgroundColor, backgroundPattern)
+    div(title, menuPosition, cardBack, cardBlank, cardFaces, cardLayout, cardRanks, cardSuits, backgroundColor, backgroundPattern)
   }
 
   private[this] def radioFor(k: String, v: String, title: String) = div(cls := "settings-input")(
