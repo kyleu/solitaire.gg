@@ -8,7 +8,7 @@ import utils.TemplateUtils
 class MenuService(settings: SettingsService, navigation: NavigationService) {
   private[this] var priorState: NavigationState = NavigationState.Loading
 
-  private[this] val title = $("#menu-title")
+  private[this] val title = $("#nav-title")
   if (title.length != 1) {
     throw new IllegalStateException(s"Found [${title.length}] menu titles.")
   }
