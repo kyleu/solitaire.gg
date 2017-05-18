@@ -34,7 +34,6 @@ object Boulevard extends GameRules(
   title = "Boulevard",
   related = Seq("evenandodd"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/boulevard.htm")),
-  description = "No building on the tableau, three reserve piles, and foundations that build up by twos.",
   layout = "sw.ff|rt",
   deckOptions = DeckOptions(
     numDecks = 2

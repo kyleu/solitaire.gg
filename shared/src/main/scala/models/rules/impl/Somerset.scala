@@ -25,7 +25,6 @@ object Somerset extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Somerset.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/somerset.htm")
   ),
-  description = "A ^klondike^ variant without stock or waste. Unlike ^usk^, moves of stacks are not allowed, but spaces can be filled by any card.",
   layout = ":::f|t",
   foundations = Seq(
     FoundationRules(

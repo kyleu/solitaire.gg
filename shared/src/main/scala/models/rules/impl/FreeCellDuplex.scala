@@ -22,7 +22,6 @@ object FreeCellDuplex extends GameRules(
   title = "FreeCell Duplex",
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/freecell_duplex.htm")),
-  description = "An easy two-deck version of ^freecell^. Requires a large screen.",
   layout = "::f|::c|t",
   deckOptions = DeckOptions(
     numDecks = 2

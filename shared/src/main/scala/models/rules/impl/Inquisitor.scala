@@ -22,7 +22,6 @@ object Inquisitor extends GameRules(
   like = Some("ladyjane"),
   related = Seq("quizzie"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/inquisitor.htm")),
-  description = "This ^ladyjane^ variation by Thomas Warfield requires you to build in suit, but gives you an extra redeal.",
   layout = "swf|.t",
   deckOptions = DeckOptions(
     numDecks = 2

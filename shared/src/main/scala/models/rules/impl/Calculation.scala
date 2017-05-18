@@ -33,7 +33,6 @@ object Calculation extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/calculation.html"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Hopscotch.html.en")
   ),
-  description = "Basically similar to ^sirtommy^, but much more complex to play because each foundation pile advances by a different increment.",
   layout = "sf|t",
   stock = Some(
     StockRules(

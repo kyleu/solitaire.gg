@@ -22,7 +22,6 @@ object Cromwell extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cromwell.htm"),
     Link("Solavant Solitaire", "www.solavant.com/solitaire/cromwell.php")
   ),
-  description = "A two-deck game with 26 tableau piles and a draw. Requires planning.",
   layout = "f|t",
   deckOptions = DeckOptions(
     numDecks = 2

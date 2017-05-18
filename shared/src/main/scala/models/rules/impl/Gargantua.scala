@@ -24,8 +24,6 @@ object Gargantua extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/gargantua.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/gargantua.htm")
   ),
-  description = "A two-deck version of ^klondike^ invented by Albert Morehead and Geoffrey Mott-Smith. You get two passes through the deck, dealing" +
-    " cards one at a time.",
   layout = "swf|:t",
   deckOptions = DeckOptions(
     numDecks = 2

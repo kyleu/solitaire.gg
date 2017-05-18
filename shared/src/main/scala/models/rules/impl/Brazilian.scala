@@ -19,7 +19,6 @@ object Brazilian extends GameRules(
   completed = true,
   title = "Brazilian",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/brazilian_patience.htm")),
-  description = "In this two-deck ^klondike^ variant from Brazil you deal to the tableau instead of to a waste pile.",
   layout = "s.f|t",
   deckOptions = DeckOptions(
     numDecks = 2

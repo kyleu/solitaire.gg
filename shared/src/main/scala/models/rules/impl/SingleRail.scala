@@ -22,7 +22,6 @@ object SingleRail extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/single-rail.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SingleRail.htm")
   ),
-  description = "A one-deck version of ^doublerail^. A good little game for small screens.",
   layout = "swf|t",
   stock = Some(
     StockRules(

@@ -27,7 +27,6 @@ object Giant extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/giant.htm"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Giant.html.en")
   ),
-  description = "A ^missmilligan^ variant without a pocket but in which any card can be played to an empty space.",
   layout = "sf|.t",
   deckOptions = DeckOptions(
     numDecks = 2

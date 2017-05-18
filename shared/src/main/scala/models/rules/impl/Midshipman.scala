@@ -24,8 +24,6 @@ object Midshipman extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/midshipman.php"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Midshipman.htm")
   ),
-  description = "A slightly easier variation of ^maria^ where we build by different suits instead of alternate colors and where some cards start ou" +
-    "t face down.",
   layout = "swf|:t",
   deckOptions = DeckOptions(
     numDecks = 2

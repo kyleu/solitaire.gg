@@ -28,7 +28,6 @@ object Needle extends GameRules(
   title = "Needle",
   like = Some("haystack"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/needle.htm")),
-  description = "A game with a U-shaped tableau and a reserve you can store cards in.",
   layout = "f|tt",
   foundations = Seq(
     FoundationRules(

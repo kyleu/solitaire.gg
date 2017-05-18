@@ -24,7 +24,6 @@ object Steve extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/steve.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/steve.htm")
   ),
-  description = "A two-deck ^klondike^ variant where we build regardless of suit, but can only move same-suit sequences.",
   layout = "sf|t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -25,8 +25,6 @@ object Congress extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/congress.html"),
     Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#congress")
   ),
-  description = "This has similarities to ^fortyandeight^, but spaces in the tableau may only be filled from the waste. This gives the game a very " +
-    "different feel.",
   layout = "sw|f|t",
   deckOptions = DeckOptions(
     numDecks = 2

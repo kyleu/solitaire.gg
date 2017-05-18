@@ -19,7 +19,6 @@ object TenByOne extends GameRules(
   title = "Ten By One",
   like = Some("vineyard"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/ten_by_one.htm")),
-  description = "Ten tableau piles and one cell make a game with similarities to ^freecell^ and ^vineyard^.",
   layout = "f|c|t",
   foundations = Seq(
     FoundationRules(

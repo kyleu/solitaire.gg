@@ -28,7 +28,6 @@ object Westcliff extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Westhaven.html.en"),
     Link("John Welford on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-westcliff-solitaire-28948/")
   ),
-  description = "An very easy ^klondike^ variant where you have ten tableau piles.",
   layout = "swf|t",
   stock = Some(
     StockRules(

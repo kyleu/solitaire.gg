@@ -25,7 +25,6 @@ object Bunker extends GameRules(
   title = "Bunker",
   like = Some("trustytwelve"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bunker.htm")),
-  description = "Build up regardless of suit to try to get all cards onto the tableau.",
   layout = "s:::w|t",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(

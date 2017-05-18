@@ -20,7 +20,6 @@ object Isabel extends GameRules(
   completed = true,
   title = "Isabel",
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Isabel.html.en")),
-  description = "Remove pairs of cards of equal rank from a 13x4 tableau.",
   layout = ".::::f|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   foundations = Seq(

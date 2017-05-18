@@ -24,7 +24,6 @@ object SuitElevens extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/suit_elevens.htm"),
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
-  description = "A variation of ^elevens^ where you can only remove sets of cards if they are all of the same suit.",
   layout = "sf|t",
   cardRemovalMethod = CardRemovalMethod.RemoveSameSuitPairsAddingToElevenOrJQK,
   stock = Some(

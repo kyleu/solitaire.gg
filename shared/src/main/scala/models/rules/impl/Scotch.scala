@@ -24,7 +24,6 @@ object Scotch extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/ScotchPatience.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/scotch_patience.html")
   ),
-  description = "Foundations build in alternate colors, tableau builds regardless of suit.",
   layout = "f|t",
   foundations = Seq(
     FoundationRules(

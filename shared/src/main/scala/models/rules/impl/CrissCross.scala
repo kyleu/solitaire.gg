@@ -27,7 +27,6 @@ object CrissCross extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/criss_cross.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/CrissCross.htm")
   ),
-  description = "A variation of ^simplepairs^ that requires a very large dose of pure luck to win.",
   layout = "swf|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(

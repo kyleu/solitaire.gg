@@ -33,7 +33,6 @@ object GolfRush extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/golf_rush.htm"),
     Link("Jan Wolter's Experiments", "/article/golf.html")
   ),
-  description = "A variant of ^golf^ played on with a ^klondike^-style tableau.",
   layout = "sf|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(

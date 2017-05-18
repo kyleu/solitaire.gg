@@ -27,7 +27,6 @@ object Bristol extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/bristol.php"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Bristol.html.en")
   ),
-  description = "A game with three waste piles invented by Albert Morehead and Geoffrey Mott-Smith.",
   layout = "sw::f|.t",
   stock = Some(
     StockRules(

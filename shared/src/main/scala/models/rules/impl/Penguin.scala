@@ -31,8 +31,6 @@ object Penguin extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/penguin.htm"),
     Link("Solitaire Central", "www.solitairecentral.com/articles/HowToPlayPenguinSolitaire.html")
   ),
-  description = "A satisfying game with seven cells developed by David Parlett where one of the cards you need to start the foundation is always bu" +
-    "ried at the bottom of the first tableau pile.",
   layout = ":.f|c|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

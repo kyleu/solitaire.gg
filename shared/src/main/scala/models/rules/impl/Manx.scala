@@ -26,8 +26,6 @@ object Manx extends GameRules(
     Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/Manx.html"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/manx.html")
   ),
-  description = "Build complete sequences by rearranging four piles regardless of suit in this game invented by Rick Holzgrafe of Solitaire Til Daw" +
-    "n.",
   layout = "sf|ct",
   stock = Some(
     StockRules(

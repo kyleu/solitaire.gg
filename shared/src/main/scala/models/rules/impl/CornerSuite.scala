@@ -16,7 +16,6 @@ object CornerSuite extends GameRules(
   completed = true,
   title = "Corner Suite",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/corner_suite.htm")),
-  description = "This rather easy game resembles a one deck version of ^congress^, except that the tableau starts empty.",
   layout = "sw::f|t",
   stock = Some(
     StockRules(

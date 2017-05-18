@@ -25,7 +25,6 @@ object Gypsy extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Gypsy.html.en"),
     Link("KPatience", "docs.kde.org/stable/en/kdegames/kpat/rules-specific.html#gypsy")
   ),
-  description = "A cross between ^spider^ and ^klondike^.",
   layout = "sf|:t",
   deckOptions = DeckOptions(
     numDecks = 2

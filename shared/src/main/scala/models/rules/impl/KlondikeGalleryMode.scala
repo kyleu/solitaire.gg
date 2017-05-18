@@ -25,8 +25,6 @@ object KlondikeGalleryMode extends GameRules(
     Link("Wikipedia", "en.wikipedia.org/wiki/Klondike_(solitaire)"),
     Link("Robert Abbott's Strategy Guide", "www.logicmazes.com/sol/")
   ),
-  description = "The world's most famous solitaire game played in gallery mode so all stock cards are always visible and the playable ones are rais" +
-    "ed",
   layout = "swf|t",
   stock = Some(
     StockRules(

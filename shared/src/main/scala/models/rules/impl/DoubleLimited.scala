@@ -17,7 +17,6 @@ object DoubleLimited extends GameRules(
   title = "Double Limited",
   like = Some("limited"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_limited.htm")),
-  description = "A four-deck version of ^limited^. A large screen will be needed.",
   layout = "swf|.:t",
   deckOptions = DeckOptions(
     numDecks = 4

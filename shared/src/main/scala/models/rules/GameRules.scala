@@ -11,7 +11,6 @@ case class GameRules(
   completed: Boolean = false,
   title: String,
   aka: Map[String, String] = Map.empty,
-  description: String,
   layout: String,
   like: Option[String] = None,
   related: Seq[String] = Nil,

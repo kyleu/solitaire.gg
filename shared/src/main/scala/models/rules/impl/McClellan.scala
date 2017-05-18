@@ -19,7 +19,6 @@ object McClellan extends GameRules(
   title = "McClellan",
   like = Some("littlenapoleon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/mcclellan.htm")),
-  description = "A harder variation of ^littlenapoleon^ where you need to build in suit.",
   layout = "swf|.:t",
   deckOptions = DeckOptions(
     numDecks = 2

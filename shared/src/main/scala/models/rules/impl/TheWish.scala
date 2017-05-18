@@ -24,7 +24,6 @@ object TheWish extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/the_wish.htm"),
     Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/TheWish.html")
   ),
-  description = "This easy pair-removal game uses a short deck and no stock, but is otherwise similar to ^doublets^.",
   layout = "f|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   deckOptions = DeckOptions(

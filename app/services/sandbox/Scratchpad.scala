@@ -9,6 +9,7 @@ object Scratchpad extends SandboxTask {
   override def description = "A one-off I don't feel like putting anwhere else."
 
   override def run(ctx: Application) = {
-    Future.successful("Ok!")
+    val ret = "OK"
+    Future.successful(ret)
   }
 }

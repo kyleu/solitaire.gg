@@ -28,8 +28,6 @@ object FourSeasons extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/four_seasons.htm"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Royal_East.html.en")
   ),
-  description = "A simple game of luck and skill where you move cards one at a time, stacking regardless of suit. The five tableau piles are suppos" +
-    "ed to be arranged in a cross with the foundation piles in the four corners, but Politaire is still too stupid to do that.",
   layout = "swf|:t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

@@ -25,8 +25,6 @@ object ThreesCompany extends GameRules(
   like = Some("deuces"),
   related = Seq("foursup"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/threes_company.htm")),
-  description = "A rather difficult variation of ^deuces^ or ^busyaces^ with still fewer tableau piles but stack moves are allowed. Invented by Tho" +
-    "mas Warfield.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2,

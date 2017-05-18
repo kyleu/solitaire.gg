@@ -25,7 +25,6 @@ object YukonKings extends GameRules(
   title = "Yukon Kings",
   like = Some("yukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukon_kings.htm")),
-  description = "A difficult version of ^yukon^ without foundations.",
   layout = "|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(

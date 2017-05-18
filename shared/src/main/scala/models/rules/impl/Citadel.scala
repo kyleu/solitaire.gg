@@ -28,7 +28,6 @@ object Citadel extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Citadel.htm"),
     Link("Solavant Solitaire", "www.solavant.com/solitaire/citadel.php")
   ),
-  description = "An easier variation of ^beleagueredcastle^ where cards are moved to the foundation during the deal.",
   layout = "f|t",
   foundations = Seq(
     FoundationRules(

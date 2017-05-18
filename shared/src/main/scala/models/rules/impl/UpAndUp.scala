@@ -25,7 +25,6 @@ object UpAndUp extends GameRules(
   title = "Up and Up",
   like = Some("trustytwelve"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/up_and_up.htm")),
-  description = "A variation of ^trustytwelve^ where you can build kings on aces.",
   layout = ":::s|t",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(

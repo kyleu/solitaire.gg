@@ -18,7 +18,6 @@ object WaxingMoon extends GameRules(
   id = "waxingmoon",
   completed = true,
   title = "Waxing Moon",
-  description = "A very difficult ^fortythieves^ variant by Thomas Warfield.",
   layout = "swf|t",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/waxing_moon.htm")),
   deckOptions = DeckOptions(

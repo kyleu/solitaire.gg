@@ -23,7 +23,6 @@ object Fan extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fan.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/fan.htm")
   ),
-  description = "The original Fan game involves building in suit on eighteen tableau piles.",
   layout = ".::f|2t",
   foundations = Seq(
     FoundationRules(

@@ -29,7 +29,6 @@ object SimpleSimon extends GameRules(
     Link("Solitaire Whizz", "www.solitairewhizz.com/how-to-play/simple-simon.shtml"),
     Link("kPatience", "docs.kde.org/stable/en/kdegames/kpat/rules-specific.html#simple-simon")
   ),
-  description = "Like a one-deck ^spider^ where all cards start face up in a triangular tableau and there are no further cards to deal.",
   layout = "f|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   foundations = Seq(

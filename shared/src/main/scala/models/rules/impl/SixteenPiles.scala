@@ -22,7 +22,6 @@ object SixteenPiles extends GameRules(
   completed = true,
   title = "Sixteen Piles",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sixteen_piles.htm")),
-  description = "An unusual game where you stack cards of equal ranks to uncover cards to move to the foundation.",
   layout = "::::::f|t",
   foundations = Seq(
     FoundationRules(

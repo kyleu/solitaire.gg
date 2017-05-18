@@ -32,7 +32,6 @@ object BlockTen extends GameRules(
     Link("L. Schaffer on HobbyHow", "www.hobbyhub360.com/index.php/how-to-play-block-ten-solitaire-14362/"),
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
-  description = "A game of pure luck where you can remove pairs that add to ten, or pairs of face cards, but not tens.",
   layout = "sf|t",
   victoryCondition = VictoryCondition.AllButFourCardsOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOr10JQK,

@@ -22,7 +22,6 @@ object LadyPalk extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/beleaguered_castle/lady_palk.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/avenue.htm")
   ),
-  description = "Similar to ^diplomat^, but allows stacks to be moved and spaces can only be filled by kings.",
   layout = "swf|.:t",
   deckOptions = DeckOptions(
     numDecks = 2

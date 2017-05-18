@@ -33,7 +33,6 @@ object Cruel extends GameRules(
     Link("Jan Wolter's Analysis", "/article/cruel.html"),
     Link("An 1898 Description of a game called \"Perseverance\".", "howtoplaysolitaire.blogspot.com/2010/06/perseverance-single-deck-solitaire-game.html")
   ),
-  description = "A game where you can redeal the tableau as often as you like, so long as you can take off at least one card between deals.",
   layout = "::f|2t",
   foundations = Seq(
     FoundationRules(

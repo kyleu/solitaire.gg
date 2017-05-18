@@ -19,7 +19,6 @@ object Tripleharp extends GameRules(
   title = "Tripleharp",
   like = Some("harp"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_harp.htm")),
-  description = "A three-deck version of ^harp^ invented by Thomas Warfield.",
   layout = "swf|.:t",
   deckOptions = DeckOptions(
     numDecks = 3

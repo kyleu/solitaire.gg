@@ -27,7 +27,6 @@ object ThumbAndPouch extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Thumb_And_Pouch.html.en"),
     Link("Elton Gahr on HobbyHub", "www.hobbyhub360.com/index.php/solitaire-how-to-play-thumb-and-pouch-13658/")
   ),
-  description = "Like ^klondike^, but easier, because cards can be played on tableau cards of any different suit.",
   layout = "swf|t",
   stock = Some(
     StockRules(

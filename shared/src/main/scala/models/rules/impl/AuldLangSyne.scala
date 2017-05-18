@@ -28,8 +28,6 @@ object AuldLangSyne extends GameRules(
     Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/auld_lang_syne.htm"),
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/auld_lang_syne.htm")
   ),
-  description = "An old solitaire game in which no building is allowed on the tableau. The secret to winning is to get extremely lucky before you a" +
-    "bandon the game out of shear boredom or to play a more skill-dependent variation like ^sirtommy^ instead.",
   layout = "sf|.t",
   stock = Some(
     StockRules(

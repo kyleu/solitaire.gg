@@ -29,8 +29,6 @@ object SeaTowers extends GameRules(
     Link("Super Solitaire", "supersolitaire.weisswo.com/Games+Rules/Entries/2010/11/12_Seahaven_Towers.html"),
     Link("Bicycle", "www.bicyclecards.com/card-games/rule/seahaven-towers")
   ),
-  description = "A popular ^freecell^ variation invented in 1988 by Art Cabral. The initial layout is different, and we must build down in suit ins" +
-    "tead of in alternating colors.",
   layout = "f::c|t",
   foundations = Seq(
     FoundationRules(

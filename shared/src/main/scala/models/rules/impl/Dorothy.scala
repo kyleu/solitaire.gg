@@ -29,7 +29,6 @@ object Dorothy extends GameRules(
   completed = false,
   title = "Dorothy",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/dorothy.htm")),
-  description = "Another brainless variation of ^captivequeens^ and ^sixesandsevens^ with separate foundations for odds, evens and face cards.",
   layout = "swfff",
   stock = Some(
     StockRules(

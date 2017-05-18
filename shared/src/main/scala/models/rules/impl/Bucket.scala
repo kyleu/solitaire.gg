@@ -19,8 +19,6 @@ object Bucket extends GameRules(
   title = "Bucket",
   like = Some("canister"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bucket.htm")),
-  description = "A ^canister^ variation which ends up looking rather like ^freecell^ without the cells. Naturally, it ends up being rather difficul" +
-    "t.",
   layout = "f|t",
   foundations = Seq(
     FoundationRules(

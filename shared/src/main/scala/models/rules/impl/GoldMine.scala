@@ -23,7 +23,6 @@ object GoldMine extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gold_mine.htm"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Gold_Mine.html.en")
   ),
-  description = "A ^klondike^ variation that starts with an empty tableau.",
   layout = "swf|t",
   stock = Some(
     StockRules(

@@ -25,7 +25,6 @@ object Bastion extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bastion.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/bastion.htm")
   ),
-  description = "^fortress^ with cells.",
   layout = ":.f:c|t",
   foundations = Seq(
     FoundationRules(

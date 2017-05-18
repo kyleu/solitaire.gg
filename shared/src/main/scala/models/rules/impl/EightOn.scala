@@ -22,7 +22,6 @@ object EightOn extends GameRules(
   title = "Eight On",
   like = Some("eightoff"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eight_on.htm")),
-  description = "A harder variation of ^eightoff^ where the aces start on the bottoms of the piles. Invented by Thomas Warfield.",
   layout = "::f|c|t",
   foundations = Seq(
     FoundationRules(

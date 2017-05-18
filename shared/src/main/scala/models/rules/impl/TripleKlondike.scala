@@ -19,7 +19,6 @@ object TripleKlondike extends GameRules(
   completed = true,
   title = "Triple Klondike",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_klondike.htm")),
-  description = "A three deck version of ^klondike^ invented by Thomas Warfield.",
   layout = "swf|:t",
   deckOptions = DeckOptions(
     numDecks = 3

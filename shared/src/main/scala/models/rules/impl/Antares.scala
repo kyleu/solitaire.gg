@@ -32,8 +32,6 @@ object Antares extends GameRules(
   title = "Antares",
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/antares.htm")),
-  description = "Thomas Warfield's combination of ^freecell^ and ^scorpion^ divides the tableau into two halves, one where we build in alternate co" +
-    "lors and move cards by FreeCell rules, one where we build in the same suit and move by Scorpion rules.",
   layout = "fc|tt",
   foundations = Seq(
     FoundationRules(

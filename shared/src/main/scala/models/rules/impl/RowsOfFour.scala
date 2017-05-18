@@ -23,7 +23,6 @@ object RowsOfFour extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rows_of_four.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/rows_of_four.htm")
   ),
-  description = "An easier version of Diplomat, allowing some redeals.",
   layout = "swf|.:t",
   deckOptions = DeckOptions(
     numDecks = 2

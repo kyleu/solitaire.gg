@@ -35,7 +35,6 @@ object Stalactites extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/stalactites.htm"),
     Link("PySol", "pysolfc.sourceforge.net/doc/rules/stalactites.html")
   ),
-  description = "This suitless game with no building requires you to clear the tableau with only two cells you help you.",
   layout = "f::c|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

@@ -27,7 +27,6 @@ object PileUp extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fifteen_puzzle.htm"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Pileon.html.en")
   ),
-  description = "A game where you must sort the cards by rank rather than suit.",
   layout = "|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(

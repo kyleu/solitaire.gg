@@ -26,7 +26,6 @@ object Harp extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/harp.php"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/harp.html")
   ),
-  description = "A two-deck ^klondike^ variation.",
   layout = "swf|:t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -26,7 +26,6 @@ object Gloucestershire extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/gloucestershire.html"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Gloucestershire.htm")
   ),
-  description = "A two-deck variation of ^flowergarden^.",
   layout = "wf|t",
   deckOptions = DeckOptions(
     numDecks = 2

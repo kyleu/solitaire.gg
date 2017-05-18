@@ -24,7 +24,6 @@ object Arizona extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/arizona.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/arizona.htm")
   ),
-  description = "An easier varition of ^wildflower^ where you can move sequences regardless of suit.",
   layout = "wf|t",
   waste = Some(
     WasteRules(

@@ -31,7 +31,6 @@ object Fifteens extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/fifteens.php"),
     Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/fifteens.htm")
   ),
-  description = "A simple game where you remove sets that add to 15 or sets of four tens, four jacks, four queens, or four kings.",
   layout = ":::::s:f|t",
   cardRemovalMethod = CardRemovalMethod.RemoveSetsAddingToFifteenOrFour10JQK,
   stock = Some(

@@ -19,8 +19,6 @@ object FortyNine extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/forty-nine.php"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/FortyNine.htm")
   ),
-  description = "This ^fortyandeight^ variation has forty-nine cards in a seven by seven tableau. You build down regardless of suit, moving cards o" +
-    "ne at a time.",
   layout = "swf|::t",
   deckOptions = DeckOptions(
     numDecks = 2

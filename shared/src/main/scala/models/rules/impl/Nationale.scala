@@ -40,7 +40,6 @@ object Nationale extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Nationale.htm"),
     Link("Solavant Solitaire", "www.solavant.com/solitaire/nationale.php")
   ),
-  description = "Like ^caprice^ without a stock.",
   layout = "ff|t",
   deckOptions = DeckOptions(
     numDecks = 2

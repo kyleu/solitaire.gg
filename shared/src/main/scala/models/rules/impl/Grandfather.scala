@@ -31,8 +31,6 @@ object Grandfather extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/grandfather.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/grandfather.htm")
   ),
-  description = "A game with twenty tableau piles, each of which can hold any two cards. You build up on half the foundations and down on the other" +
-    "s.",
   layout = "::::sw|.f:f|2t",
   deckOptions = DeckOptions(
     numDecks = 2

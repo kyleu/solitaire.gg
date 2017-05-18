@@ -39,7 +39,6 @@ object Diavolo extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/diavolo.htm"),
     Link("Elton Gahr at HobbyHub", "www.hobbyhub360.com/index.php/view-article/1879401/")
   ),
-  description = "A ^klondike^ variant with four foundation piles that are built one card at a time, while the other four need completed sequences.",
   layout = "sw|f.f.f|t",
   deckOptions = DeckOptions(
     numDecks = 2

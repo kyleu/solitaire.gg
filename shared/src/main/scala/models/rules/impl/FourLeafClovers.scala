@@ -26,8 +26,6 @@ object FourLeafClovers extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/four-leaf-clovers.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/FourLeafClovers.htm")
   ),
-  description = "A single foundation pile is built regardless of suit from ace to king and then from ace to king again with the help of a tableau w" +
-    "here you can build both up and down.",
   layout = "::::::f|t",
   foundations = Seq(
     FoundationRules(

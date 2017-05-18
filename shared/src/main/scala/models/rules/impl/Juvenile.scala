@@ -32,7 +32,6 @@ object Juvenile extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/juvenile.htm"),
     Link("Solavant Solitaire", "www.solavant.com/solitaire/juvenile.php")
   ),
-  description = "A two-deck game where you remove pairs that add to fourteen.",
   layout = ":::.t|2tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(

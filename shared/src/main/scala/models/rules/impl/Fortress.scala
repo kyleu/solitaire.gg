@@ -31,7 +31,6 @@ object Fortress extends GameRules(
     Link("Jan Wolter's Experimental Analysis", "/article/fortress.html"),
     Link("Michael Keller's Strategy Guide", "solitairelaboratory.com/fortress.html")
   ),
-  description = "A classic and usually insolvable ancestor of ^beleagueredcastle^ where you can build both up and down in the tableau.",
   layout = ":::f|t",
   foundations = Seq(
     FoundationRules(

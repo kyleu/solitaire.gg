@@ -23,7 +23,6 @@ object TripleScorpion extends GameRules(
   completed = true,
   title = "Triple Scorpion",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_scorpion.htm")),
-  description = "A three-deck variation of ^scorpion^ with no reserve.",
   layout = "f|t",
   deckOptions = DeckOptions(
     numDecks = 3

@@ -31,7 +31,6 @@ object Caprice extends GameRules(
   title = "Caprice",
   related = Seq("chequers", "cicely", "nationale"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/caprice.htm")),
-  description = "Build up or down in suit and stock deals to the tableau.",
   layout = ".s:f:f|t",
   deckOptions = DeckOptions(
     numDecks = 2

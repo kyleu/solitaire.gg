@@ -30,7 +30,6 @@ object Floradora extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/floradora.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/floradora.htm")
   ),
-  description = "A two-deck variation of ^thirtysix^ with an extra foundation pile for kings, but no stack moves.",
   layout = "swff|t",
   deckOptions = DeckOptions(
     numDecks = 2

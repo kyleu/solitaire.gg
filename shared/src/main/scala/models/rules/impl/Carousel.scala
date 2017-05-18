@@ -34,7 +34,6 @@ object Carousel extends GameRules(
   completed = true,
   title = "Carousel",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/carousel.htm")),
-  description = "A two-deck game with separate foundations for aces, evens and odds.",
   layout = "sw.f|f|f|t",
   deckOptions = DeckOptions(
     numDecks = 2,

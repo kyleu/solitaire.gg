@@ -6,19 +6,10 @@ object Nestor extends GameRules(
   id = "nestor",
   completed = true,
   title = "Nestor",
-  description = """
-    Discard any pair of cards of the same rank, regardless of suit (for example, two Aces, two Fives, etc.).
-    Only the top cards are available for play. Spaces can't be filled.
-  """,
   layout = "t|::tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
 
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 1,
-      visible = false
-    )
-  ),
+  foundations = Seq(FoundationRules(visible = false)),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,

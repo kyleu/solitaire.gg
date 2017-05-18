@@ -31,7 +31,6 @@ object FortunesFavor extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/fortunes_favor.php"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/fortunes_favor.htm")
   ),
-  description = "An extremely easy, one-deck version of ^busyaces^.",
   layout = "sw:f|t",
   stock = Some(
     StockRules(

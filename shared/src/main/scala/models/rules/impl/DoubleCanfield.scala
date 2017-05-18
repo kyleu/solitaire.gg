@@ -31,7 +31,6 @@ object DoubleCanfield extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/double_canfield.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/DoubleCanfield.htm")
   ),
-  description = "An two-deck version of ^canfield^, much much easier than the original game.",
   layout = "swf|r:::.t",
   deckOptions = DeckOptions(
     numDecks = 2,

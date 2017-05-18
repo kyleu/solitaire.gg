@@ -26,8 +26,6 @@ object ImperialGuards extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/imperial-guards.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/ImperialGuards.htm")
   ),
-  description = "A version of ^missmilligan^ where empty tableau spaces can be filled with any card instead of Kings only. Since empty spaces are c" +
-    "ommon in these games, this greatly simplifies the game.",
   layout = "sf|.t",
   deckOptions = DeckOptions(
     numDecks = 2

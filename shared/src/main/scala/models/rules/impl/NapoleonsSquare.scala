@@ -30,7 +30,6 @@ object NapoleonsSquare extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/napoleons_square.html"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/NapoleonsSquare.htm")
   ),
-  description = "This French game, first described by Lady Adelaide Cadogen in the early 1900's, is an easy variant of ^fortythieves^.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -27,8 +27,6 @@ object Dieppe extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Dieppe.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/dieppe.htm")
   ),
-  description = "A variation on ^congress^ where stacks may be moved, blanks can be filled by any card, and three rows of cards are dealt initially" +
-    ". Almost every game seems winnable without any great difficulty.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

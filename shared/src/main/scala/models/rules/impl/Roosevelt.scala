@@ -14,7 +14,6 @@ object Roosevelt extends GameRules(
   completed = false,
   title = "Roosevelt",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/roosevelt.htm")),
-  description = "A very hard ^fortythieves^ variant where we build by alternate colors on only seven tableau piles.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

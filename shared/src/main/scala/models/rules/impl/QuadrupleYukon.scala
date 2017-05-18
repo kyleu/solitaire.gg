@@ -22,7 +22,6 @@ object QuadrupleYukon extends GameRules(
   title = "Quadruple Yukon",
   like = Some("doubleyukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_yukon.htm")),
-  description = "A four-deck variation of ^yukon^",
   layout = "f|t",
   deckOptions = DeckOptions(
     numDecks = 4

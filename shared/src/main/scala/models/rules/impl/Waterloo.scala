@@ -15,7 +15,6 @@ object Waterloo extends GameRules(
   completed = true,
   title = "Waterloo",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/waterloo.htm")),
-  description = "A ^fortythieves^ variant with ^spider^-like building rules.",
   layout = "swf|.::t",
   deckOptions = DeckOptions(
     numDecks = 2

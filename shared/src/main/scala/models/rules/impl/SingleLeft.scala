@@ -20,7 +20,6 @@ object SingleLeft extends GameRules(
   title = "Single Left",
   like = Some("movingleft"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/single_left.htm")),
-  description = "Thomas Warfield's one-deck version of ^movingleft^.",
   layout = "swf|t",
   stock = Some(
     StockRules(

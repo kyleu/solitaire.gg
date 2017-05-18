@@ -24,8 +24,6 @@ object Wood extends GameRules(
   completed = false,
   title = "Wood",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/wood.htm")),
-  description = "A game where we build both the foundation and the tableau in alternate colors. The big problem is the ten-card reserve, which can " +
-    "be played only to the foundation, which generally requires some advanced planning to achieve.",
   layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2,

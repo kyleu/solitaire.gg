@@ -29,7 +29,6 @@ object Trillium extends GameRules(
   like = Some("spider"),
   related = Seq("lily"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trillium.htm")),
-  description = "A ^spider^ variant with a 13x4 tableau where you build down by alternate color.",
   layout = "s::f|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

@@ -23,7 +23,6 @@ object EndlessHarp extends GameRules(
   like = Some("klondike"),
   related = Seq("bigharp"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/endless_harp.htm")),
-  description = "A variation of Big Harp which allows unlimited redeals.",
   layout = "swf|.t",
   deckOptions = DeckOptions(
     numDecks = 2

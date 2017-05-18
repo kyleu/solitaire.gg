@@ -17,7 +17,6 @@ object Alexandria extends GameRules(
   completed = false,
   title = "Alexandria",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/alexandria.htm")),
-  description = "A three-deck version of ^thievesofegypt^ invented by Thomas Warfield.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 3

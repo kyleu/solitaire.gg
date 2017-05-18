@@ -17,7 +17,6 @@ object FourByTen extends GameRules(
   completed = false,
   title = "Four by Ten",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/four_by_ten.htm")),
-  description = "A ^freecell^ variation with lots of cells and not so many tableau piles.",
   layout = "f|c|t",
   foundations = Seq(
     FoundationRules(

@@ -26,7 +26,6 @@ object RankAndFile extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/rank_and_file.php"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/rank_and_file.htm")
   ),
-  description = "Like ^numberten^, but three cards in each stack are dealt face down.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

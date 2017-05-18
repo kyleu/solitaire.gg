@@ -26,8 +26,6 @@ object Usk extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/usk.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/usk.html")
   ),
-  description = "A ^klondike^ variant without stock or waste. Unlike ^somerset^, moves of stacks are allowed and there is a redeal, but spaces can " +
-    "only be filled by kings.",
   layout = "f|t",
   foundations = Seq(
     FoundationRules(

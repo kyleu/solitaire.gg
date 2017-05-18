@@ -22,7 +22,6 @@ object Linus extends GameRules(
   title = "Linus",
   like = Some("labellelucie"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/linus.htm")),
-  description = "An easier variation of ^labellelucie^ where you build in alternate colors.",
   layout = "f|t",
   foundations = Seq(
     FoundationRules(

@@ -38,7 +38,6 @@ object Alternate extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/alternate.html"),
     Link("Solavant Solitaire", "www.solavant.com/solitaire/alternate.php")
   ),
-  description = "A variation of ^sirtommy^ where the foundations are built in alternate color, half upwards, half downwards.",
   layout = "sff|.t",
   stock = Some(
     StockRules(

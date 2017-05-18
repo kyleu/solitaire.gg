@@ -21,7 +21,6 @@ object ThreeCell extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_cells.htm"),
     Link("Swoop Software", "www.swoopsoftware.com/solitaire_rules/threecell.html")
   ),
-  description = "A variation of ^freecell^ with only three cells.",
   layout = "f:c|t",
   foundations = Seq(
     FoundationRules(

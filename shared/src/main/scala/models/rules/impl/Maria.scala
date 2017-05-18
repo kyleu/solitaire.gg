@@ -25,7 +25,6 @@ object Maria extends GameRules(
     Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/maria.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/maria.htm")
   ),
-  description = "Like ^fortythieves^, but with a 9 by 4 tableau where you build in alternating colors.",
   layout = "swf|:t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -32,7 +32,6 @@ object WillOTheWisp extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Will_O_The_Wisp.html.en"),
     Link("L. Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-will-o-the-wisp-solitaire-14333/")
   ),
-  description = "A one-deck version of ^spider^, with a rectangular 7x3 tableau.",
   layout = "sf|t",
   stock = Some(
     StockRules(

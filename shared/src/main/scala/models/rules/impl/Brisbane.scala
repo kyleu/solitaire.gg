@@ -24,7 +24,6 @@ object Brisbane extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/brisbane.htm"),
     Link("dogMelon", "www.dogmelon.com.au/solhelp/Brisbane%20Solitaire.shtml")
   ),
-  description = "Just like ^yukon^, but the starting layout is a bit different and you build regardless of suit.",
   layout = ":.f|t",
   foundations = Seq(
     FoundationRules(

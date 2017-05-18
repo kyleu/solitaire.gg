@@ -23,7 +23,6 @@ object Stronghold extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/stronghold.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Stronghold.htm")
   ),
-  description = "A variation of ^beleagueredcastle^ with one ^freecell^ style cell added.",
   layout = "f|c|t",
   foundations = Seq(
     FoundationRules(

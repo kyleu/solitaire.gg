@@ -28,7 +28,6 @@ object Quadrangle extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/quadrangle.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Quadrangle.htm")
   ),
-  description = "A variation of ^corona^ where the base card is determined by a card dealt into the foundation.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2,

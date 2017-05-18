@@ -22,8 +22,6 @@ object EphemeralFreeCell extends GameRules(
   title = "Ephemeral FreeCell",
   like = Some("freecell"),
   links = Seq(Link("Michael Keller's amazing FreeCell FAQ", "solitairelaboratory.com/fcfaq.html#Ephemeral")),
-  description = "Ephemeral FreeCell is like standard ^freecell^, except that one of the cells will vanish after it's first use. Michael Keller inve" +
-    "nted this idea. You can experiment with different numbers of ephemeral cells.",
   layout = "f|c|t",
   foundations = Seq(
     FoundationRules(

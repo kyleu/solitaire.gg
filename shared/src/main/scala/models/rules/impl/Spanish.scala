@@ -26,7 +26,6 @@ object Spanish extends GameRules(
   like = Some("bakersdozen"),
   related = Seq("castlesinspain", "portuguese"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/spanish_patience.htm")),
-  description = "A variant of ^bakersdozen^ that allows filling in spaces.",
   layout = ".:f|t|.t",
   foundations = Seq(
     FoundationRules(

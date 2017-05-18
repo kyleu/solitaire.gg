@@ -20,7 +20,6 @@ object PrivateLane extends GameRules(
   title = "Private Lane",
   like = Some("streetsandalleys"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/private_lane.htm")),
-  description = "A variation of ^beleagueredcastle^ with two ^freecell^-style cells added.",
   layout = "f::c|t",
   foundations = Seq(
     FoundationRules(

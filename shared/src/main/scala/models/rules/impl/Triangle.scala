@@ -21,7 +21,6 @@ object Triangle extends GameRules(
   title = "Triangle",
   related = Seq("eleventriangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triangle.htm")),
-  description = "A very hard inverted version of ^pyramid^.",
   layout = "::swf|p",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,

@@ -18,7 +18,6 @@ object Lower48 extends GameRules(
   title = "Lower 48",
   like = Some("fortyandeight"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lower_48.htm")),
-  description = "A variation of ^fortyandeight^ where you build in alternate colors instead of in the same suit.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

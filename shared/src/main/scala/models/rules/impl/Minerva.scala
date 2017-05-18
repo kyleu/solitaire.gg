@@ -25,7 +25,6 @@ object Minerva extends GameRules(
   like = Some("athena"),
   related = Seq("doubleminerva", "tripleminerva", "munger", "mystique"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/minerva.htm")),
-  description = "^athena^ with a ^canfield^-style reserve added.",
   layout = "swf|r|t",
   stock = Some(
     StockRules(

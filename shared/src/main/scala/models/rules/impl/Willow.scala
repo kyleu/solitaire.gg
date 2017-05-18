@@ -23,7 +23,6 @@ object Willow extends GameRules(
   completed = true,
   title = "Willow",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/willow.htm")),
-  description = "A ^klondike^ variation with four fan piles where we can build with cards of equal rank. Invented by Thomas Warfield.",
   layout = ".:::f|tt",
   foundations = Seq(
     FoundationRules(

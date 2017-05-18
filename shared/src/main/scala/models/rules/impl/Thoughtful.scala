@@ -25,7 +25,6 @@ object Thoughtful extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/saratoga.htm"),
     Link("Wikipedia", "en.wikipedia.org/wiki/Klondike_(solitaire)")
   ),
-  description = "^klondike^ with all cards in the tableau starting face up. Also known as \"Saratoga\".",
   layout = "swf|t",
   stock = Some(
     StockRules(

@@ -26,7 +26,6 @@ object Athena extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Athena.html.en"),
     Link("Elton Gahr on HobbyHub", "www.solitairelaboratory.com/buildingranks.html")
   ),
-  description = "A ^klondike^ variation with a rectangular starting tableau in which cards alternate face-up and face-down.",
   layout = "swf|t",
   stock = Some(
     StockRules(

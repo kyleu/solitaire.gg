@@ -22,7 +22,6 @@ object MilliganCell extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/milligan_cell.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/milligan_cell.htm")
   ),
-  description = "A ^freecell^ish variation of ^missmilligan^.",
   layout = "sf|::.c|.t",
   deckOptions = DeckOptions(
     numDecks = 2

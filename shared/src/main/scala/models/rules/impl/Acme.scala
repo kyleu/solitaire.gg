@@ -29,9 +29,6 @@ object Acme extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/acme.htm"),
     Link("Jan Wolter's Experiments", "/article/acme.html")
   ),
-  description = "A difficult variation of ^canfield^ where you build in suit, can't move sequences, and only get two passes through the stock. \"Ac" +
-    "me,\" the greek word for the zenith, was a popular name for companies who wanted to be listed first in the phone book until the ^c" +
-    "oyote^ and Roadrunner ruined it.",
   layout = "swf|r::t",
   stock = Some(
     StockRules(

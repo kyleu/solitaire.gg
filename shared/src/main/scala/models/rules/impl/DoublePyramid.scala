@@ -24,7 +24,6 @@ object DoublePyramid extends GameRules(
   like = Some("pyramid"),
   related = Seq("anubis"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_pyramid.htm")),
-  description = "Thomas Warfield's two-deck version of ^pyramid^.",
   layout = "p|:::.swf",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,

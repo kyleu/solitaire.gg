@@ -21,7 +21,6 @@ object CircleEight extends GameRules(
   completed = false,
   title = "Circle Eight",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/circle_eight.htm")),
-  description = "Move all cards to the tableau to win this game, but you can't move a card once it is on the tableau.",
   layout = "sw|t",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(

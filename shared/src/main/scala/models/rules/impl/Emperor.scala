@@ -25,7 +25,6 @@ object Emperor extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/emperor.htm"),
     Link("Bicycle", "www.bicyclecards.ca/game-rules/emperor/184.php?page_id=32")
   ),
-  description = "A more difficult version of ^rankandfile^ where only single cards can be moved..",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

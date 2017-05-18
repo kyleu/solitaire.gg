@@ -21,7 +21,6 @@ object BakersTwoDeck extends GameRules(
   title = "Baker's Two-Deck",
   like = Some("bakers"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/bakersgame2.htm")),
-  description = "A two-deck version of ^bakers^ games.",
   layout = "f|c|t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -31,7 +31,6 @@ object GoodMeasure extends GameRules(
     Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/GoodMeasure.html"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/good_measure.html")
   ),
-  description = "A much more difficult variation of ^bakersdozen^ with fewer tableau piles.",
   layout = ".f|2t",
   foundations = Seq(
     FoundationRules(

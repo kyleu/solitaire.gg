@@ -18,7 +18,6 @@ object Chateau extends GameRules(
   completed = true,
   title = "Chateau",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chateau.htm")),
-  description = "A two-deck ^beleagueredcastle^ variant.",
   layout = "::f|t",
   deckOptions = DeckOptions(
     numDecks = 2

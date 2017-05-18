@@ -28,7 +28,6 @@ object Roman extends GameRules(
   title = "Roman",
   like = Some("signora"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/roman_patience.htm")),
-  description = "A variation of ^signora^ where we build regardless of suit. Invented by Thomas Warfield.",
   layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2,

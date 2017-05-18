@@ -22,7 +22,6 @@ object DoubleYukon extends GameRules(
   title = "Double Yukon",
   related = Seq("quadrupleyukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/doubleyukon.htm")),
-  description = "A two-deck variation of ^yukon^",
   layout = ":f|t",
   deckOptions = DeckOptions(
     numDecks = 2

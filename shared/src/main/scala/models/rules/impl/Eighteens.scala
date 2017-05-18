@@ -27,7 +27,6 @@ object Eighteens extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/eighteens.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Eighteens.htm")
   ),
-  description = "A game where you remove singleton aces, or sets consisting of a face card with three other cards that add to eighteen.",
   layout = "s:::f|t",
   cardRemovalMethod = CardRemovalMethod.RemoveSetsOfOneFaceCardAnd3ThatAddToEighteen,
   stock = Some(

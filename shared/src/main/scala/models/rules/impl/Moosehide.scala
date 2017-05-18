@@ -19,7 +19,6 @@ object Moosehide extends GameRules(
   completed = true,
   title = "Moosehide",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/moosehide.htm")),
-  description = "A variant of ^yukon^ where you build down in non-matching suits",
   layout = ":.f|t",
   foundations = Seq(
     FoundationRules(

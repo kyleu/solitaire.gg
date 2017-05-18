@@ -28,7 +28,6 @@ object Beehive extends GameRules(
   title = "Beehive",
   related = Seq("beehivegallery"),
   links = Seq(Link("Michael Keller's Description", "www.solitairelaboratory.com/buildingranks.html")),
-  description = "In this ^storehouse^ variant, we build and remove stacks of four cards of equal rank.",
   layout = "f|.:t:rsw",
   stock = Some(
     StockRules(

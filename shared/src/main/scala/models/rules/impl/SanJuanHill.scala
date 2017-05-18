@@ -23,7 +23,6 @@ object SanJuanHill extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/san_juan_hill.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SanJuanHill.htm")
   ),
-  description = "An easier variant of ^fortythieves^ in which aces are already on the foundation.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

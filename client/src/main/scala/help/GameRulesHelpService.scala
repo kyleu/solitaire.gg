@@ -1,11 +1,13 @@
 package help
 
 import models.rules._
+import utils.Messages
 
 object GameRulesHelpService {
   private[this] val descriptionLinkPattern = """\^([a-z0-9]+)\^""".r
 
-  def description(desc: String, link: Boolean = true) = {
+  def description(id: String, link: Boolean = true) = {
+    val desc = Messages(s"rules.$id.description")
     val links = descriptionLinkPattern.findAllIn(desc).matchData.map(_.group(1))
     val linked = links.foldLeft(desc) { (desc, id) =>
       val rules = GameRulesSet.allByIdWithAliases(id)

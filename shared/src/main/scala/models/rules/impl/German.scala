@@ -30,7 +30,6 @@ object German extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/german_patience.php"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/german_patience.html")
   ),
-  description = "A strange and difficult game where you must build sequences on the tableau, regardless of suit.",
   layout = "sw|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

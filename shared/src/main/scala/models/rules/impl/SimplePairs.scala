@@ -29,7 +29,6 @@ object SimplePairs extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SimplePairs.htm"),
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
-  description = "A game where you remove pairs of cards of the same rank. Bring your luck, not your brain, to this game.",
   layout = "sf|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(

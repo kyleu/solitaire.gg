@@ -35,7 +35,6 @@ object Rainbow extends GameRules(
     Link("PySol", "pysolfc.sourceforge.net/doc/rules/rainbow.html"),
     Link("Swoop Solitaire", "www.swoopsoftware.com/solitaire_rules/rainbow.html")
   ),
-  description = "A variation of ^canfield^ in which you can build regardless of suit.",
   layout = "swf|r::t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

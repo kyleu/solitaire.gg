@@ -35,7 +35,6 @@ object Fly extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/fly.htm"),
     Link("Wikipedia", "en.wikipedia.org/wiki/Frog_(game)")
   ),
-  description = "A variation of ^frog^ where the aces start on the foundation.",
   layout = "sf|r.:t",
   deckOptions = DeckOptions(
     numDecks = 2

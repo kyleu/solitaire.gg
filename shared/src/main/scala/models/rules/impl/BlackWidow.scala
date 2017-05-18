@@ -31,7 +31,6 @@ object BlackWidow extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/black_widow.php"),
     Link("Bryan Cohen on eHow", "www.ehow.com/list_6702718_black-widow-card-game-rules.html")
   ),
-  description = "An easier variation of ^spider^ where you are allowed to move sequences even if they aren't all of one suit.",
   layout = "s.f|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

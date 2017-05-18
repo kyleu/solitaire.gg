@@ -32,8 +32,6 @@ object BakersDozen extends GameRules(
     Link("Solitaire Central", "www.solitairecentral.com/rules/BakersDozen.html"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Bakers_Dozen.html.en")
   ),
-  description = "Rearrange the thirteen tableau piles to free up cards for the foundation by moving one card at a time. Often winnable, but takes s" +
-    "ome planning.",
   layout = ":.f|t|.t",
   foundations = Seq(
     FoundationRules(

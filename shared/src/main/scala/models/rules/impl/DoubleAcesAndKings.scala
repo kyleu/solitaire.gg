@@ -33,7 +33,6 @@ object DoubleAcesAndKings extends GameRules(
   title = "Double Aces and Kings",
   like = Some("acesandkings"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_aces_and_kings.htm")),
-  description = "A four-deck version of ^acesandkings^ invented by Thomas Warfield.",
   layout = "swf|:::f|:.t|:::.r",
   deckOptions = DeckOptions(
     numDecks = 4

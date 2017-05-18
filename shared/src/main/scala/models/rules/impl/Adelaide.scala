@@ -20,8 +20,6 @@ object Adelaide extends GameRules(
   title = "Adelaide",
   like = Some("outback"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/adelaide.htm")),
-  description = "This two-deck solitaire allows moving unsorted stacks, as in ^yukon^. It is exactly like ^outback^, but you get to do two passes t" +
-    "hrough the deck.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

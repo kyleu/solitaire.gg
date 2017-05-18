@@ -26,8 +26,6 @@ object NumberTen extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/number_ten.php"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/number_ten.htm")
   ),
-  description = "Like ^fortythieves^, but two cards in each tableau stack are dealt face down, we build in alternating colors, and can move stacks " +
-    "as a whole.",
   layout = "swf|.t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -27,8 +27,6 @@ object Alaska extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/alaska.html"),
     Link("Elton Gahr on HobbyHub", "www.hobbyhub360.com/index.php/solitaire-how-to-play-alaska-13672/")
   ),
-  description = "A somewhat more difficult variation of ^yukon^ in which you can build up or down, but must build in the same suit. I think they ca" +
-    "ll it \"Alaska\" because it is so cool when things work out.",
   layout = "f|t",
   foundations = Seq(
     FoundationRules(

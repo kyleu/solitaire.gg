@@ -24,8 +24,6 @@ object PasSeul extends GameRules(
     Link("PySol", "pysolfc.sourceforge.net/doc/rules/passeul.html"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Passeul.htm")
   ),
-  description = "A ^klondike^ variant with a rectangular tableau, differing from ^blindalleys^ only in the number of passes through the deck allowe" +
-    "d. The name refers to a dance sequence for one person.",
   layout = "swf|.t",
   stock = Some(
     StockRules(

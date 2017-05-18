@@ -24,7 +24,6 @@ object RippleFan extends GameRules(
   title = "Ripple Fan",
   like = Some("cruel"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/ripple_fan.htm")),
-  description = "An easier variation of ^cruel^ with one more tableau pile.",
   layout = ".::::f|t",
   foundations = Seq(
     FoundationRules(

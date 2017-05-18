@@ -27,7 +27,6 @@ object Courtyard extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Courtyard.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/courtyard.html")
   ),
-  description = "A variation of ^busyaces^ which increases the difficulty by autofilling empty tableau spaces the waste and stock.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

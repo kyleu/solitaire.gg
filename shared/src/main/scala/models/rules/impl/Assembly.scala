@@ -16,7 +16,6 @@ object Assembly extends GameRules(
   completed = false,
   title = "Assembly",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/assembly.htm")),
-  description = "Suits don't matter at all in this simple little solitaire game.",
   layout = "swf|t",
   stock = Some(
     StockRules(

@@ -37,7 +37,6 @@ object PuttPutt extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Puttputt.htm"),
     Link("Jan Wolter's Experiments", "/article/golf.html")
   ),
-  description = "An easier variation of ^golf^ where wrapping from King to Ace is allowed.",
   layout = "s:::::f|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   stock = Some(

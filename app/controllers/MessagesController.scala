@@ -2,7 +2,6 @@ package controllers
 
 import java.net.URL
 
-import models.user.Language
 import play.api.i18n.Messages
 import utils.Application
 
@@ -10,27 +9,33 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class MessagesController @javax.inject.Inject() (override val app: Application) extends BaseController {
-  private[this] def parseMsgs(url: URL) = Messages.parse(Messages.UrlMessageSource(url), url.toString).fold(e => throw e, identity)
+  private[this] val acceptedLanguages = Set("en")
 
-  private[this] lazy val msgs = Language.values.map { x =>
-    val l = x.value
-    val filename = if (l == "en") { "client/messages" } else { s"client/messages.$l" }
+  private[this] def parseMsgs(url: URL) = Messages.parse(Messages.UrlMessageSource(url), url.toString).fold(e => throw e, identity).toSeq.sortBy(_._1)
+
+  private[this] lazy val enMsgs = {
+    val filename = "client/messages"
     val resource = Option(getClass.getClassLoader.getResource(filename)) match {
       case Some(r) => r
-      case None => getClass.getClassLoader.getResource("client/messages")
+      case None => throw new IllegalStateException("Missing [client/messages].")
     }
-    l -> parseMsgs(resource)
-  }.toMap
+    parseMsgs(resource)
+  }
 
-  private[this] val responses = msgs.map { ms =>
-    val vals = ms._2.map { m =>
-      s""""${m._1}": "${m._2}""""
+  private[this] val enResponse = {
+    val vals = enMsgs.map { m =>
+      s""""${m._1}": "${m._2.replaceAllLiterally("\"", "\\\"")}""""
     }.mkString(",\n  ")
-    ms._1 -> s"""window.messages = {\n  $vals\n}"""
+    s"""window.messages = {\n  $vals\n}"""
+  }
+
+  private[this] def getResponse(lang: String) = lang match {
+    case "en" => enResponse
+    case _ => enResponse
   }
 
   def strings() = req("strings") { implicit request =>
-    val lang = request.acceptLanguages.find(l => msgs.keySet.contains(l.code)).map(_.code).getOrElse("en")
-    Future.successful(Ok(responses(lang)).as("application/javascript"))
+    val lang = request.acceptLanguages.find(l => acceptedLanguages.contains(l.code)).map(_.code).getOrElse("en")
+    Future.successful(Ok(getResponse(lang)).as("application/javascript"))
   }
 }

@@ -28,7 +28,6 @@ object ThreeShufflesAndADraw extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/ThreeShufflesandaDraw.htm"),
     Link("Wikipedia", "en.wikipedia.org/wiki/Three_Shuffles_and_a_Draw_(solitaire)")
   ),
-  description = "A variation of ^labellelucie^ that adds a draw.",
   layout = "::.f|2t",
   foundations = Seq(
     FoundationRules(

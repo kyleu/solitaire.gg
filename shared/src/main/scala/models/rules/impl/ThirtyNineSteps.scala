@@ -24,7 +24,6 @@ object ThirtyNineSteps extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/thirty_nine_steps.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/thirty-nine-steps.htm")
   ),
-  description = "^waningmoon^ with fewer cards in the initial tableau.",
   layout = "sw:.f|t",
   stock = Some(
     StockRules(

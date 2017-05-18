@@ -28,7 +28,6 @@ object Pyramid extends GameRules(
     Link("Erik Arneson's Rules at About.com", "boardgames.about.com/od/solitaire/a/pyramid.htm"),
     Link("Dan Fletcher's Strategy Guide at Solitaire Central", "www.solitairecentral.com/articles/PyramidSolitaireAStrategyGuideForBeginners.html")
   ),
-  description = "A classic pair-removal game with a triangular tableau.",
   layout = "p|::.swf",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,

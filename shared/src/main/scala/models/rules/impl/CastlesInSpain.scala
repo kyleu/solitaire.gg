@@ -32,7 +32,6 @@ object CastlesInSpain extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/CastlesinSpain.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/castles_in_spain.htm")
   ),
-  description = "A variant of ^bakersdozen^ that allows filling in spaces with any card and where we build in alternate colors.",
   layout = "f|tt",
   foundations = Seq(
     FoundationRules(

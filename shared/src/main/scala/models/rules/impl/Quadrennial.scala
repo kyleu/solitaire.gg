@@ -28,7 +28,6 @@ object Quadrennial extends GameRules(
   title = "Quadrennial",
   like = Some("acquaintance"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadrennial.htm")),
-  description = "A version of ^leapyear^ with two redeals, or a version of ^acquaintance^ with four deck.",
   layout = "sf|t",
   deckOptions = DeckOptions(
     numDecks = 4

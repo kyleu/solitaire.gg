@@ -25,7 +25,6 @@ object WaningMoon extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/WaningMoon.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/waning_moon.htm")
   ),
-  description = "A ^fortythieves^ variant with more tableau piles.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2,

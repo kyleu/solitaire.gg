@@ -22,7 +22,6 @@ object ThievesOfEgypt extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/thieves_of_egypt.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/thieves-of-egypt.htm")
   ),
-  description = "A variant of ^fortythieves^ with a pyramid-shaped tableau.",
   layout = "swf|.t",
   deckOptions = DeckOptions(
     numDecks = 2

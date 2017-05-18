@@ -20,7 +20,6 @@ object Bobby extends GameRules(
   title = "Bobby",
   like = Some("robert"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bobby.htm")),
-  description = "A variation of ^robert^ with a second foundation pile to make it easier, but not much easier.",
   layout = "swf",
   stock = Some(
     StockRules(

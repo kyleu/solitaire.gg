@@ -24,7 +24,6 @@ object Portuguese extends GameRules(
   title = "Portuguese",
   like = Some("spanish"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/portuguese_solitaire.htm")),
-  description = "A variant of ^bakersdozen^ that allows filling in spaces with kings.",
   layout = "f|tt",
   foundations = Seq(
     FoundationRules(

@@ -22,7 +22,6 @@ object Pharaohs extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pharaohs.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Pharaohs.htm")
   ),
-  description = "A variation of ^pyramid^ with three pyramids.",
   layout = "f|ppp",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,

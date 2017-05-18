@@ -21,7 +21,6 @@ object KlondikeTerritory extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/klondike_territory.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/klondike_territory.html")
   ),
-  description = "A cross between ^flowergarden^ and ^klondike^, slightly more difficult than the similar Northwest Territory game.",
   layout = "wf|t",
   waste = Some(
     WasteRules(

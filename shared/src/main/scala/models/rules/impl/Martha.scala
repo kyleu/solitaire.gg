@@ -30,7 +30,6 @@ object Martha extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Martha.htm"),
     Link("dogMelon", "www.dogmelon.com.au/solhelp/Martha%20Solitaire.shtml")
   ),
-  description = "An easy game with no stock where half the cards start face down. Somewhat similar to ^bakersdozen^.",
   layout = "::::f|t",
   foundations = Seq(
     FoundationRules(

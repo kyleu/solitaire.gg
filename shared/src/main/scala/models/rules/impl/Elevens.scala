@@ -30,7 +30,6 @@ object Elevens extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/elevens.htm"),
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
-  description = "A set removal sets of cards adding to 15 or sets containing ten through king.",
   layout = "sf|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJQK,
   stock = Some(

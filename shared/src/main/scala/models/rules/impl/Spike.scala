@@ -21,7 +21,6 @@ object Spike extends GameRules(
   title = "Spike",
   like = Some("klondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/spike.htm")),
-  description = "^klondike^ with three waste piles.",
   layout = "swf|t",
   stock = Some(
     StockRules(

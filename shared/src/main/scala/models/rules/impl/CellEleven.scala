@@ -22,7 +22,6 @@ object CellEleven extends GameRules(
   title = "Cell Eleven",
   like = Some("triplefreecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cell_11.htm")),
-  description = "A three-deck version of ^freecell^.",
   layout = "f|.c|t",
   deckOptions = DeckOptions(
     numDecks = 3

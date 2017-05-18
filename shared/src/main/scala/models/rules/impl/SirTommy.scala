@@ -32,7 +32,6 @@ object SirTommy extends GameRules(
     Link("PySol", "pysolfc.sourceforge.net/doc/rules/numerica.html"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Sir_Tommy.html.en")
   ),
-  description = "A classic old solitaire game where cards may be placed anywhere on the tableau, but cannot be rearranged.",
   layout = "sf|t",
   stock = Some(
     StockRules(

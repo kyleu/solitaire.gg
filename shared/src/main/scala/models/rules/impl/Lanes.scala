@@ -18,7 +18,6 @@ object Lanes extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Lanes.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/lanes.htm")
   ),
-  description = "A six-by-three tableau played much like ^klondike^, but you can't move stacks.",
   layout = "swf|.t",
   stock = Some(
     StockRules(

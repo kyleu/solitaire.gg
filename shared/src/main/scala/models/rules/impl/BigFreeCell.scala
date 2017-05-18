@@ -22,7 +22,6 @@ object BigFreeCell extends GameRules(
   title = "Big FreeCell",
   like = Some("freecell"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/big-freecell.htm")),
-  description = "A straight-forward two-deck version of ^freecell^.",
   layout = ":f|:c|t",
   deckOptions = DeckOptions(
     numDecks = 2

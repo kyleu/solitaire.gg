@@ -35,8 +35,6 @@ object Tabbycat extends GameRules(
     Link("Wikipedia", "en.wikipedia.org/wiki/Tabby_Cat_(solitaire)"),
     Link("PySol", "pysolfc.sourceforge.net/doc/rules/tabbycat.html")
   ),
-  description = "An easier version of ^manx^ which allows a sequence to be parkted in the tail. Also invented by Rick Holzgrafe of Solitaire Til Da" +
-    "wn.",
   layout = "sf|tt",
   stock = Some(
     StockRules(

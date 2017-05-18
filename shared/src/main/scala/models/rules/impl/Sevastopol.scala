@@ -21,7 +21,6 @@ object Sevastopol extends GameRules(
   completed = true,
   title = "Sevastopol",
   like = Some("kiev"),
-  description = "An easier version of ^kiev^ where four tableau piles start with three cards instead of four.",
   layout = "s::f|t",
   stock = Some(
     StockRules(

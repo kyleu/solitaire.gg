@@ -40,7 +40,6 @@ object Intelligence extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Intelligence.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/intelligence.html")
   ),
-  description = "A two-deck version of ^labellelucie^.",
   layout = "s::::f|t",
   deckOptions = DeckOptions(
     numDecks = 2

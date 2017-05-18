@@ -32,7 +32,6 @@ object FortyDevils extends GameRules(
   title = "Forty Devils",
   like = Some("ladycadogan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/forty_devils.htm")),
-  description = "Thomas Warfield's difficult cross between ^rougeforty^ and ^ladycadogan^.",
   layout = "swff|t",
   deckOptions = DeckOptions(
     numDecks = 2

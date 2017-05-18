@@ -22,8 +22,6 @@ object Alternations extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/alternations.htm"),
     Link("Solitaire City", "www.solitairecity.com/Alternations.shtml")
   ),
-  description = "A variation of ^interchange^ that has the same 7 by 7 tableau with alternate cards face down, but where you build in alternate col" +
-    "ors.",
   layout = "swf|::t",
   deckOptions = DeckOptions(
     numDecks = 2

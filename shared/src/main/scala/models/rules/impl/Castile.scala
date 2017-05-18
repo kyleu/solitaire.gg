@@ -19,7 +19,6 @@ object Castile extends GameRules(
   completed = true,
   title = "Castile",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/castile.htm")),
-  description = "An open variant of ^bristol^ invented by Thomas Warfield.",
   layout = "::f|::r|t",
   foundations = Seq(
     FoundationRules(

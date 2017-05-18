@@ -28,8 +28,6 @@ object Chelicera extends GameRules(
   title = "Chelicera",
   like = Some("scorpion"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chelicera.htm")),
-  description = "A variation on ^scorpion^ invented by Erik den Hollander in which we fill spaces with three cards from the stock instead of dealin" +
-    "g from the stock.",
   layout = ":::s|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   stock = Some(

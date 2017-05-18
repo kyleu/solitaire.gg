@@ -26,7 +26,6 @@ object Coyote extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/coyote.htm"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Straight_Up.html.en")
   ),
-  description = "An slightly easier, but still difficult, variation of ^acme^ in which sequences can be moved. Named after Acme's best customer.",
   layout = "swf|r|t",
   stock = Some(
     StockRules(

@@ -28,7 +28,6 @@ object BigSpider extends GameRules(
   like = Some("spider"),
   related = Seq("spiderthreedeck"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/big_spider.htm")),
-  description = "A three-deck version of ^spider^. This is a bit more challenging than ^spiderthreedeck^.",
   layout = "sf|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

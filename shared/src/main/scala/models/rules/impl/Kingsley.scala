@@ -28,8 +28,6 @@ object Kingsley extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/kingsley.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Kingsley.htm")
   ),
-  description = "Reverse ^klondike^ which in theory is no more difficult, but which proves hard to wrap your head around if you are used to playing" +
-    " it the other way round.",
   layout = "swf|t",
   stock = Some(
     StockRules(

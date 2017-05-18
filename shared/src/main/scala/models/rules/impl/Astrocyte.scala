@@ -26,7 +26,6 @@ object Astrocyte extends GameRules(
   completed = false,
   title = "Astrocyte",
   like = Some("spider"),
-  description = "A compressed game of ^spider^ with four cells.",
   layout = "sf|c|t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -17,7 +17,6 @@ object FortyThieves4Deck extends GameRules(
   title = "Forty Thieves (4 deck)",
   like = Some("fortythieves"),
   links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/forty_thieves_four_decks.htm")),
-  description = "A four deck version of ^fortythieves^ with a 14 by 6 tableau.  You will need a large screen to play this game.",
   layout = "swf|.::t",
   deckOptions = DeckOptions(
     numDecks = 4

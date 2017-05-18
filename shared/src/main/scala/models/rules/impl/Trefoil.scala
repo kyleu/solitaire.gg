@@ -31,7 +31,6 @@ object Trefoil extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Trefoil.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/trefoil.html")
   ),
-  description = "A slightly easier variation of ^labellelucie^ where the aces start on the foundation and there are fewer tableau columns.",
   layout = "f|t",
   foundations = Seq(
     FoundationRules(

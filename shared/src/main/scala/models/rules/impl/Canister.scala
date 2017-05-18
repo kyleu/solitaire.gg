@@ -25,7 +25,6 @@ object Canister extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Canister.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/canister.htm")
   ),
-  description = "Yet another generic solitaire game, with all cards dealt face up and no stock. This is quite easy when it's not impossible.",
   layout = "::f|t",
   foundations = Seq(
     FoundationRules(

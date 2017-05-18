@@ -29,7 +29,6 @@ object EmpressOfItaly extends GameRules(
   title = "Empress of Italy",
   like = Some("doublesignora"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/empress_of_italy.htm")),
-  description = "A four-deck version of ^blondesandbrunettes^ invented by Thomas Warfield.",
   layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 4,

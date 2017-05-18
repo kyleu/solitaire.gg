@@ -20,7 +20,6 @@ object TripleYukon extends GameRules(
   completed = true,
   title = "Triple Yukon",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_yukon.htm")),
-  description = "A three-deck variation of ^yukon^",
   layout = "f|t",
   deckOptions = DeckOptions(
     numDecks = 3

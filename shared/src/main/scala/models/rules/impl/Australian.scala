@@ -22,7 +22,6 @@ object Australian extends GameRules(
     Link("Games for One", "mac.gamesforone.com/rules/au_patience.html"),
     Link("dogMelon", "www.dogmelon.com.au/solhelp/Australian%20Patience.shtml")
   ),
-  description = "A variation of ^klondike^ that allows non-top cards to be moved (with the cards on top of them) as in ^yukon^.",
   layout = "swf|t",
   stock = Some(
     StockRules(

@@ -20,7 +20,6 @@ object Titan extends GameRules(
   title = "Titan",
   like = Some("giant"),
   links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/titan.htm")),
-  description = "A version of ^giant^ that starts with more cards on the tableau.",
   layout = "sf|.t",
   deckOptions = DeckOptions(
     numDecks = 2

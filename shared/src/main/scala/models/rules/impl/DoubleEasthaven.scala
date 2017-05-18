@@ -25,7 +25,6 @@ object DoubleEasthaven extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/double_easthaven.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/double-easthaven.asp")
   ),
-  description = "A two-deck version of ^easthaven^.",
   layout = "sf|.t",
   deckOptions = DeckOptions(
     numDecks = 2

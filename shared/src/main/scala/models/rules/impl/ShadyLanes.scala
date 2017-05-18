@@ -23,7 +23,6 @@ object ShadyLanes extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/shady-lanes.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/ShadyLanes.htm")
   ),
-  description = "A difficult game with four reserve piles and four tableau piles.",
   layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2

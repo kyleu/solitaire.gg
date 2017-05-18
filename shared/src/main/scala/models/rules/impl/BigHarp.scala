@@ -24,7 +24,6 @@ object BigHarp extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/big_harp.htm"),
     Link("Lena Games", "www.lenagames.com/bp_files/rul/big-harp.htm")
   ),
-  description = "A two-deck ^klondike^ variation that is different than ^harp^ in several ways, without really being that much bigger.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -29,7 +29,6 @@ object Limited extends GameRules(
     Link("Battleline Games", "www.limitedsolitaire.com/LimitedSolitaireInstructions.html"),
     Link("Solitaire Central", "www.solitairecentral.com/rules/Limited.html")
   ),
-  description = "Like ^fortythieves^, but with a 12 by 3 tableau.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

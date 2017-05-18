@@ -38,7 +38,6 @@ object AllInARow extends GameRules(
     Link("Shlomi Fish's Solver", "www.shlomifish.org/open-source/projects/black-hole-solitaire-solver/"),
     Link("Jan Wolter's Experiments", "/article/blackhole.html")
   ),
-  description = "A variation of ^golf^ without a stock. Most deals are winnable, but require a lot of advance planning to win.",
   layout = "f|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(

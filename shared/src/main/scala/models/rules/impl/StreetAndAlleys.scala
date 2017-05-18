@@ -32,7 +32,6 @@ object StreetAndAlleys extends GameRules(
     Link("Elton Gahr on HobbyHub", "www.hobbyhub360.com/index.php/solitaire-how-to-play-streets-and-alleys-13643/"),
     Link("Swoop", "www.swoopsoftware.com/solitaire_rules/streets_and_alleys.html")
   ),
-  description = "A more difficult variation of ^beleagueredcastle^ that starts with no cards dealt into the foundation.",
   layout = "::f|t",
   foundations = Seq(
     FoundationRules(

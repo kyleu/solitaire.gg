@@ -22,7 +22,6 @@ object BlindAlleys extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/blind_alleys.html"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/blind_alleys.htm")
   ),
-  description = "A ^klondike^ variant with a square tableau, differing from ^passeul^ only in the number of passes through the deck allowed.",
   layout = "swf|t",
   stock = Some(
     StockRules(

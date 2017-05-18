@@ -26,7 +26,6 @@ object Carthage extends GameRules(
   title = "Carthage",
   related = Seq("algiers"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/carthage.htm")),
-  description = "A two-deck games where you deal to the reserves and build on the tableau. Empty reserves function as cells.",
   layout = "sf|.:t|.t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -9,7 +9,6 @@ object RacingAces extends GameRules(
   title = "Racing Aces",
   like = Some("acesandkings"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/racing_aces.htm")),
-  description = "A three-deck version of ^acesandkings^ invented by Thomas Warfield.",
   layout = "sw|ff|ff|:t|::.r",
   deckOptions = DeckOptions(
     numDecks = 3

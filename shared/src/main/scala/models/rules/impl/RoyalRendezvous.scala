@@ -16,8 +16,6 @@ object RoyalRendezvous extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/royal-rendezvous.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/RoyalRendezvous.htm")
   ),
-  description = "An odd Austrian game with four foundation sets, one normal, one for evens, one for odds, and one for kings. No building on the tab" +
-    "leau.",
   layout = "sw:ff|::::ff|t",
   deckOptions = DeckOptions(
     numDecks = 2

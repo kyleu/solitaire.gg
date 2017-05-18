@@ -25,7 +25,6 @@ object ChineseFreeCell extends GameRules(
   title = "Chinese FreeCell",
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinese_freecell.htm")),
-  description = "A version of ^freecell^ played with only three suits.",
   layout = "f:c|:t",
   deckOptions = DeckOptions(
     numDecks = 2,

@@ -30,7 +30,6 @@ object SixesAndSevens extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SixesandSevens.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/sixes-and-sevens.htm")
   ),
-  description = "No building on tableau, some foundation build up, some build down.",
   layout = "swff|t",
   deckOptions = DeckOptions(
     numDecks = 2

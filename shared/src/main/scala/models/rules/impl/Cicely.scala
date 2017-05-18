@@ -47,7 +47,6 @@ object Cicely extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cicely.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/cicely.htm")
   ),
-  description = "A variation of ^tournament^ and ^kingsdowneights^ where you can build up and down on the tableau.",
   layout = "sff|c|t",
   deckOptions = DeckOptions(
     numDecks = 2

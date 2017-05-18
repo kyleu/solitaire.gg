@@ -38,7 +38,6 @@ object Penta extends GameRules(
   completed = true,
   title = "Penta",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/penta.htm")),
-  description = "Another ^busyaces^ variation by Thomas Warfield, in this one, half the tabeau builds up, and half builds down.",
   layout = ":::.sw|f:f|:t:t",
   deckOptions = DeckOptions(
     numDecks = 2

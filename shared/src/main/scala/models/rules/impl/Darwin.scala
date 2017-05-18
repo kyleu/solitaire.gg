@@ -18,7 +18,6 @@ object Darwin extends GameRules(
   completed = false,
   title = "Darwin",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/darwin.htm")),
-  description = "A three-deck version of ^australian^ Solitaire, which is a cross between ^yukon^ and ^klondike^.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 3

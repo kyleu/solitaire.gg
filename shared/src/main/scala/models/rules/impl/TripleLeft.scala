@@ -20,7 +20,6 @@ object TripleLeft extends GameRules(
   title = "Triple Left",
   like = Some("movingleft"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_left.htm")),
-  description = "Thomas Warfield's three-deck version of ^movingleft^.",
   layout = "swf|.:t",
   deckOptions = DeckOptions(
     numDecks = 3

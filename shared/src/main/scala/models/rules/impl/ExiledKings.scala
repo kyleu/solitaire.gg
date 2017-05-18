@@ -24,7 +24,6 @@ object ExiledKings extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/exiled_kings.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/exiled-kings.htm")
   ),
-  description = "A more difficult variation of ^citadel^ where spaces can only be filled by kings.",
   layout = "::f|t",
   foundations = Seq(
     FoundationRules(

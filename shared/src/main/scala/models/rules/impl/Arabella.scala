@@ -18,7 +18,6 @@ object Arabella extends GameRules(
   title = "Arabella",
   related = Seq("doublejane"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/arabella.htm")),
-  description = "An three-deck ^spider^/^klondike^ blend similar to ^ladyjane^ by Thomas Warfield.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 3

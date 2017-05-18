@@ -25,7 +25,6 @@ object Carpet extends GameRules(
     Link("Solitaire Till Dawn", "www.semicolon.com/Solitaire/Rules/carpet.html"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/carpet.htm")
   ),
-  description = "An easy game with twenty reserve piles and no building.",
   layout = "swf|2t",
   stock = Some(
     StockRules(

@@ -26,7 +26,6 @@ object Trigon extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trigon.htm"),
     Link("Jan Wolter's Experiments", "/article/trigon.html")
   ),
-  description = "A variation of ^klondike^ where we build in suit instead of with alternating colors.",
   layout = "swf|t",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),

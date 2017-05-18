@@ -27,7 +27,6 @@ object EightOff extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Eight_Off.html.en"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/eight_off.htm")
   ),
-  description = "A ^freecell^ variation with more cells, but where you can only build down in the same suit",
   layout = "::f|c|t",
   foundations = Seq(
     FoundationRules(

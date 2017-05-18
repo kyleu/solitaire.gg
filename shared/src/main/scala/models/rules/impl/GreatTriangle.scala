@@ -15,7 +15,6 @@ object GreatTriangle extends GameRules(
   completed = false,
   title = "Great Triangle",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/great_triangle.htm")),
-  description = "An difficult three-deck ^klondike^ version by Thomas Warfield.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 3

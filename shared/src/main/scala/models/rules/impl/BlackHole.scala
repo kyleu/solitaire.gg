@@ -44,7 +44,6 @@ object BlackHole extends GameRules(
     Link("Computer Solvability of BlackHole", "ipg.host.cs.st-andrews.ac.uk/papers/AICommsBlackhole-revised.pdf"),
     Link("Jan Wolter's Experiments", "/article/blackhole.html")
   ),
-  description = "Like ^allinarow^, this is a variation of ^golf^ without a stock. Invented by David Parlett.",
   layout = "f|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   foundations = Seq(

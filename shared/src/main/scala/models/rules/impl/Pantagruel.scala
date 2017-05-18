@@ -17,7 +17,6 @@ object Pantagruel extends GameRules(
   completed = true,
   title = "Pantagruel",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pantagruel.htm")),
-  description = "This two-deck ^klondike^ variant is more difficult than ^gargantua^, but is still pretty easy.",
   layout = "swf|:t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -22,7 +22,6 @@ object Stewart extends GameRules(
   title = "Stewart",
   like = Some("martha"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/stewart.htm")),
-  description = "A more difficult variation of ^martha^ in which only single cards may be moved. It is similar to ^bakersdozen^.",
   layout = ":f|2t",
   foundations = Seq(
     FoundationRules(

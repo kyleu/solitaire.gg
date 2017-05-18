@@ -25,7 +25,6 @@ object Thirteens extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Helsinki.html.en"),
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
-  description = "Remove pairs that add the thirteen. Entirely a game of luck.",
   layout = "sf|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(

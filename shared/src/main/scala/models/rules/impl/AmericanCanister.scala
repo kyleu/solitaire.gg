@@ -22,7 +22,6 @@ object AmericanCanister extends GameRules(
     Link("Zonora", "www.zonora.com/games/a/american-canister.htm"),
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/american_canister.htm")
   ),
-  description = "A difficult variation of ^canister^ with building by alternate colors.",
   layout = "::f|t",
   foundations = Seq(
     FoundationRules(

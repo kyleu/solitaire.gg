@@ -22,8 +22,6 @@ object Queenie extends GameRules(
     Link("Solitaire Central", "www.solitairecentral.com/rules/Queenie.html"),
     Link("PySol", "pysolfc.sourceforge.net/doc/rules/queenie.html")
   ),
-  description = "Build stacks of cards in alternating colors as in ^klondike^, move arbitrary groups of cards as in ^yukon^, and deal waves of card" +
-    "s onto to the tableau, as in ^spider^.",
   layout = "s:f|t",
   stock = Some(
     StockRules(

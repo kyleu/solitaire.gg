@@ -20,7 +20,6 @@ object Junction extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/junction.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/junction.htm")
   ),
-  description = "A variation of ^singlerail^ or ^doublerail^ for four piquet decks.",
   layout = ":::::::sw|f|.::::t",
   deckOptions = DeckOptions(
     numDecks = 4,

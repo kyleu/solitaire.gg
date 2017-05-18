@@ -28,7 +28,6 @@ object Carlton extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Carlton.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/carlton.htm")
   ),
-  description = "A difficult two-deck ^klondike^ variation.",
   layout = "sf|.t",
   deckOptions = DeckOptions(
     numDecks = 2

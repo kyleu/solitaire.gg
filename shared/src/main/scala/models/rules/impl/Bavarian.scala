@@ -22,7 +22,6 @@ object Bavarian extends GameRules(
   title = "Bavarian",
   like = Some("german"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bavarian_patience.htm")),
-  description = "Thomas Warfield's easier version of ^german^ patience with a few extra tableau columns.",
   layout = "::::sw|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

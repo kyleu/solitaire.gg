@@ -40,8 +40,6 @@ object Chequers extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chequers.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/chequers.htm")
   ),
-  description = "This game has twenty-five tableau piles where you can build up or down, and you build up on half the foundations, and down on the " +
-    "others. It needs a large screen.",
   layout = "ff|r|t",
   deckOptions = DeckOptions(
     numDecks = 2

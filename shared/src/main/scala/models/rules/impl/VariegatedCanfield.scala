@@ -31,7 +31,6 @@ object VariegatedCanfield extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/VariegatedCanfield.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/canfield/variegated_canfield.htm")
   ),
-  description = "A difficult two-deck version of ^canfield^, with aces starting on the foundation and only three passes through the waste allowed.",
   layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2

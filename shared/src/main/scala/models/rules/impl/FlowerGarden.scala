@@ -32,8 +32,6 @@ object FlowerGarden extends GameRules(
     Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#flower"),
     Link("LenaGames", "www.lenagames.com/bp_files/rul/flower-garden.htm")
   ),
-  description = "The six stacks of six cards in the tableau are called \"flower beds\". You can build down on them in any suit.  Instead of stock a" +
-    "nd waste piles, you have a bouquet of 16 cards, any of which can be played at any time.",
   layout = ":f|t|w",
   waste = Some(
     WasteRules(

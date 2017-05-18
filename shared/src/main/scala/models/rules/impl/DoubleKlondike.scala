@@ -26,7 +26,6 @@ object DoubleKlondike extends GameRules(
     Link("Dan Fletcher's How To Play", "www.solitairecentral.com/articles/HowToPlayDoubleKlondike.html"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Jumbo.html.en")
   ),
-  description = "A two-deck version of ^klondike^. This game is almost always winnable.",
   layout = "swf|:t",
   deckOptions = DeckOptions(
     numDecks = 2

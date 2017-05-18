@@ -27,7 +27,6 @@ object AgnesSorel extends GameRules(
     Link("Michael Smoker on HobbyHub", "www.hobbyhub360.com/index.php/view-article/1937518/"),
     Link("Jan Wolter's Experiments", "/article/agnessorel.html")
   ),
-  description = "A variation on ^klondike^ where cards are dealt directly onto the tableau as in ^spider^.",
   layout = "s.f|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

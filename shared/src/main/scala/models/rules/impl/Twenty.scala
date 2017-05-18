@@ -38,7 +38,6 @@ object Twenty extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/twenty.php"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/fox.html")
   ),
-  description = "A somewhat mindless game with twenty reserve piles and no building.",
   layout = "sf:f|2t",
   deckOptions = DeckOptions(
     numDecks = 2

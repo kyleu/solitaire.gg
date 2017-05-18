@@ -26,7 +26,6 @@ object Chinese extends GameRules(
   like = Some("scorpion"),
   related = Seq("dragon"),
   links = Seq(Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/chinese_solitaire.html")),
-  description = "This ^scorpion^ variation has a different layout, a smaller stock, and allows cards to be moved to the foundation one at a time.",
   layout = "s.f|t",
   stock = Some(
     StockRules(

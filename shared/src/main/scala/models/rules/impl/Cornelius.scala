@@ -19,8 +19,6 @@ object Cornelius extends GameRules(
   completed = false,
   title = "Cornelius",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cornelius.htm")),
-  description = "A version of ^fortyandeight^ that allows non-top cards to be played (moving whatever cards are on top of them along with them) as " +
-    "in ^yukon^.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -26,7 +26,6 @@ object DoubleScorpion extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_scorpion.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/double-scorpion.htm")
   ),
-  description = "An easy two-deck variation of ^scorpion^ where all cards are already dealt in the beginning.",
   layout = "f|t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -35,7 +35,6 @@ object Chessboard extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Chessboard.html.en"),
     Link("L. Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-chessboard-solitaire-14077/")
   ),
-  description = "A more interesting variation of ^fortress^ where you choose the base card.",
   layout = ":::f|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

@@ -31,8 +31,6 @@ object SuperiorCanfield extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/superior-canfield.htm"),
     Link("Solavant Solitaire", "www.solavant.com/solitaire/superior_canfield.php")
   ),
-  description = "Canfield made a bit easier and a bit more strategic by dealing the reserve cards face up and not automatically filling spaces from" +
-    " the reserve.",
   layout = "swf|r|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

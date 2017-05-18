@@ -24,7 +24,6 @@ object Dragon extends GameRules(
   title = "Dragon",
   like = Some("chinese"),
   links = Seq(Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/dragon.html")),
-  description = "A variation of ^chinese^ where you build in the same suit.",
   layout = "s.f|t",
   stock = Some(
     StockRules(

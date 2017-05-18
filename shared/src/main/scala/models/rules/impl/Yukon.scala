@@ -29,7 +29,6 @@ object Yukon extends GameRules(
     Link("About Dot Com", "boardgames.about.com/od/solitaire/a/yukon.htm"),
     Link("Dan Fletcher's Strategy Guide", "www.solitairecentral.com/articles/YukonSolitaireStrategyGuide.html")
   ),
-  description = "A well-known game with no stock, in which stacks of cards can be moved even if they aren't in sequence.",
   layout = ":::f|t",
   foundations = Seq(
     FoundationRules(

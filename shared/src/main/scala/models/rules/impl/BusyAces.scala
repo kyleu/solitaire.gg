@@ -28,8 +28,6 @@ object BusyAces extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/busy_aces.htm"),
     Link("Amelia Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/view-article/1866274/")
   ),
-  description = "A fairly easy game dating back to 1939. Twelve tableau stacks of one card each mean you can easily get lots of empty spaces to wor" +
-    "k with.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

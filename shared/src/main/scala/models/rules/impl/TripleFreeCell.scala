@@ -20,7 +20,6 @@ object TripleFreeCell extends GameRules(
   title = "Triple FreeCell",
   related = Seq("celleleven", "freecellthreedeck"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_freecell.htm")),
-  description = "Thomas Warfield's three-deck version of ^freecell^.",
   layout = ".f|:.c|t",
   deckOptions = DeckOptions(
     numDecks = 3

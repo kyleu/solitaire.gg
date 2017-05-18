@@ -26,7 +26,6 @@ object MilliganHarp extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/MilliganHarp.htm"),
     Link("PySol", "pysolfc.sourceforge.net/doc/rules/milliganharp.html")
   ),
-  description = "A cross between ^missmilligan^ and the two-deck ^klondike^ variant known as Harp.",
   layout = "sf|.t",
   deckOptions = DeckOptions(
     numDecks = 2

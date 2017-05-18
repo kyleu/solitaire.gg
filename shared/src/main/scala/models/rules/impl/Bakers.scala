@@ -27,8 +27,6 @@ object Bakers extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Bakers_Game.html.en"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/bakers_game.htm")
   ),
-  description = "A predecessor of ^freecell^ invented by C. L. Baker. The rules are the same as FreeCell, except that you build down in suit instea" +
-    "d of in alternating colors.",
   layout = "fc|t",
   foundations = Seq(
     FoundationRules(

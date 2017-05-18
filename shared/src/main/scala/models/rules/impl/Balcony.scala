@@ -24,8 +24,6 @@ object Balcony extends GameRules(
   completed = true,
   title = "Balcony",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/balcony.htm")),
-  description = "Similar to ^canfield^, but foundations are built up in alternate colors, reserve cards can only be played to the foundation, and e" +
-    "mpty spaces are autofilled from the stock.",
   layout = ".swf|rt",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

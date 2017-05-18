@@ -28,7 +28,6 @@ object AgnesBernauer extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/agnes_bernauer.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/agnes.html")
   ),
-  description = "A variation on ^klondike^ with seven reserves.",
   layout = "s:f|r|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

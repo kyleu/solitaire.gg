@@ -21,7 +21,6 @@ object SingleInterchange extends GameRules(
   title = "Single Interchange",
   like = Some("unlimited"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/single_interchange.htm")),
-  description = "A difficult one-deck variant of ^interchange^ invented by Thomas Warfield.",
   layout = "swf|:t",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),

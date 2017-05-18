@@ -32,8 +32,6 @@ object Canfield extends GameRules(
     Link("Solitaire City", "www.solitairecity.com/Help/Demon.shtml"),
     Link("Jan Wolter's Experiments", "/article/canfield.html")
   ),
-  description = "An old Casino game where the house usually wins. It's distinctive features include a reserve and foundations built up from the val" +
-    "ue of one random card dealt into them.",
   layout = "swf|:r:t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

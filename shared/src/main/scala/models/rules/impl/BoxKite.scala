@@ -36,7 +36,6 @@ object BoxKite extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/box-kite.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/BoxKite.htm")
   ),
-  description = "Tableaus build up or down, half the foundations build up, half build down.",
   layout = ":.f:f|t",
   deckOptions = DeckOptions(
     numDecks = 2

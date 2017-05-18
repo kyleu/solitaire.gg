@@ -28,7 +28,6 @@ object Blockade extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/blockade.html"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/blockade.htm")
   ),
-  description = "A simple game that starts slow and ends with a flourish.",
   layout = ":s:f|t",
   deckOptions = DeckOptions(
     numDecks = 2

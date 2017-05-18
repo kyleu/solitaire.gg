@@ -24,7 +24,6 @@ object Breakwater extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/alternations.htm"),
     Link("Solitaire City", "www.solitairecity.com/Alternations.shtml")
   ),
-  description = "An easier variant of ^interchange^, in which we build regardless of suit.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

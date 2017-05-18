@@ -25,8 +25,6 @@ object FredsSpider extends GameRules(
   title = "Fred's Spider",
   like = Some("spider"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/freds_spider.htm")),
-  description = "In this easy variation on ^spider^, designed by Fred Lunde of Livonia, Michigan, cards are dealt face up and can be moved to the f" +
-    "oundation singly.",
   layout = "sf|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

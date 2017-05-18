@@ -32,7 +32,6 @@ object PerseveranceA extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/perseverance.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Perseverance.htm")
   ),
-  description = "A variation of ^cruel^ where stacks may be moved.",
   layout = "::::f|t",
   foundations = Seq(
     FoundationRules(

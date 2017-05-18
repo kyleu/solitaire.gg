@@ -25,8 +25,6 @@ object Whitehead extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Whitehead.htm"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Whitehead.html.en")
   ),
-  description = "Like ^klondike^, but with cards face up and you build in matching colors instead of alternating colors. You can move sequences, bu" +
-    "t only if the suits match.",
   layout = "swf|t",
   stock = Some(
     StockRules(

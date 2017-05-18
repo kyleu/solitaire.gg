@@ -22,7 +22,6 @@ object Countess extends GameRules(
   completed = false,
   title = "Countess",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/countess.htm")),
-  description = "A ^canfield^ variation with four reserves.",
   layout = "swf|r|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

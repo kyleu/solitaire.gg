@@ -28,7 +28,6 @@ object Backbone extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Backbone.html.en"),
     Link("L. Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-backbone-solitaire-14353/")
   ),
-  description = "A difficult game of Victorian origin with a forked reserve pile",
   layout = "swf|t|p",
   victoryCondition = VictoryCondition.NoneInPyramid,
   deckOptions = DeckOptions(

@@ -26,7 +26,6 @@ object Corners extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/corners.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/corners.htm")
   ),
-  description = "This completely mindless variation on ^czarina^ allows no building on the tableau, but allows three passes through the stock.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

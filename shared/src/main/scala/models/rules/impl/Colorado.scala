@@ -41,7 +41,6 @@ object Colorado extends GameRules(
     Link("dogMelon", "www.dogmelon.com.au/solhelp/Colorado.shtml"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/colorado.htm")
   ),
-  description = "A game where cards may be stacked arbitrarily on 20 tableau piles. Usually winnable, but requires some planning.",
   layout = "sff|t",
   deckOptions = DeckOptions(
     numDecks = 2

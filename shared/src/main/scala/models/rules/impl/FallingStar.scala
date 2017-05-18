@@ -38,7 +38,6 @@ object FallingStar extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/falling_star.html"),
     Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/falling_star.htm")
   ),
-  description = "A more difficult ^signora^ variation with one fewer tableau pile and a predetermined foundation base.",
   layout = "swf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2,

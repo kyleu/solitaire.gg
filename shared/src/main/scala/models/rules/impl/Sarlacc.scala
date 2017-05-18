@@ -20,7 +20,6 @@ object Sarlacc extends GameRules(
   id = "sarlacc",
   completed = true,
   title = "Sarlacc",
-  description = "A ^freecell^ variant with a tableau of interlocking columns.",
   layout = ":f|c|:p",
   foundations = Seq(
     FoundationRules(

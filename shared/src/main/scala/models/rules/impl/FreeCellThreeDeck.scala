@@ -22,7 +22,6 @@ object FreeCellThreeDeck extends GameRules(
   like = Some("triplefreecell"),
   related = Seq("freecellfourdeck"),
   links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/freecell_three_decks.htm")),
-  description = "Yet another three-deck version of ^freecell^.",
   layout = "f|c|t",
   deckOptions = DeckOptions(
     numDecks = 3

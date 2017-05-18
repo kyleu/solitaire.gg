@@ -24,8 +24,6 @@ object Corona extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/corona.htm"),
     Link("Solavant Solitaire", "www.solavant.com/solitaire/corona.php")
   ),
-  description = "A game similar to ^fortyandeight^ where spaces are autofilled from the waste and stock. The best way to win seems to be to get luc" +
-    "ky.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

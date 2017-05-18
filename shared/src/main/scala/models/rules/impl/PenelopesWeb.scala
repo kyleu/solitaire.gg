@@ -23,7 +23,6 @@ object PenelopesWeb extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/penelopes_web.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/penelope-web.htm")
   ),
-  description = "A very difficult variation of ^beleagueredcastle^ where spaces can only be filled by kings.",
   layout = "f|t",
   foundations = Seq(
     FoundationRules(

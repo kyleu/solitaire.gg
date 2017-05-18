@@ -21,7 +21,6 @@ object ThirtySix extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/ThirtySix.htm"),
     Link("Jan Wolter's Experiments", "/article/thirtysix.html")
   ),
-  description = "A six-by-six tableau where you build regardless of color.",
   layout = "swf|.t",
   stock = Some(
     StockRules(

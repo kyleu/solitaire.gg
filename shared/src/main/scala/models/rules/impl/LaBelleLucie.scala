@@ -28,7 +28,6 @@ object LaBelleLucie extends GameRules(
     Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/la_belle_lucie.htm"),
     Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#belle")
   ),
-  description = "A classic solitaire where you build down in suit on the tableau and can redeal twice. Rarely winnable.",
   layout = "f|t",
   foundations = Seq(
     FoundationRules(

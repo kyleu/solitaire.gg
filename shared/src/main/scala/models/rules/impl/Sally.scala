@@ -24,7 +24,6 @@ object Sally extends GameRules(
   title = "Sally",
   like = Some("doubleklondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sally.htm")),
-  description = "A version of ^doubleklondike^ where the base card of the foundation depends on a card dealt in.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2,

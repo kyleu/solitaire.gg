@@ -37,7 +37,6 @@ object Klondike extends GameRules(
     Link("Usman Latif's analysis of the number of Klondike cards in which no cards can be played.", "www.techuser.net/klondikeprob.html"),
     Link("Bill's Solitaire Tester", "www.roziturnbull.com/bill/Solitaire/solitaire.htm")
   ),
-  description = "The world's most famous solitaire game features a triangular tableau where you build down in alternating colors.",
   layout = "swf|t",
   stock = Some(
     StockRules(

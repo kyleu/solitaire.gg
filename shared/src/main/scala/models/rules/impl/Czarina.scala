@@ -28,7 +28,6 @@ object Czarina extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/czarina.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Czarina.htm")
   ),
-  description = "A variation on ^fourseasons^ where spaces are filled automatically from the stock.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

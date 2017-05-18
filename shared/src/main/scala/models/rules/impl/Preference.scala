@@ -21,7 +21,6 @@ object Preference extends GameRules(
   title = "Preference",
   like = Some("fortunesfavor"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/preference.htm")),
-  description = "A slightly more challenging version of ^fortunesfavor^ with fewer tableau piles.",
   layout = "sw:f|t",
   stock = Some(
     StockRules(

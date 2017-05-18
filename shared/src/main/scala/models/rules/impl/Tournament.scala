@@ -12,7 +12,6 @@ object Tournament extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/tournament.html"),
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/tournament.htm")
   ),
-  description = "A two-deck game where no building is allowed on the tableau, and you must rely on eight cells to move your cards to the foundation.",
   layout = "sff|:c|::t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -24,7 +24,6 @@ object Opus extends GameRules(
   title = "Opus",
   like = Some("penguin"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/opus.htm")),
-  description = "Thomas Warfield's much more difficult version of ^penguin^ has two fewer cells",
   layout = ".:f|:c|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Unknown

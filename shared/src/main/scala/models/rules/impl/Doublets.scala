@@ -31,8 +31,6 @@ object Doublets extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/doublet.html"),
     Link("Elton Gahr on HobbyHub", "www.hobbyhub360.com/index.php/solitaire-how-to-play-doublets-14100/")
   ),
-  description = "A similar game to ^simplepairs^. You remove pairs of cards of the same rank. The only way to bring any strategy into the game is b" +
-    "y using the undo button.",
   layout = ".:s.:f|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(

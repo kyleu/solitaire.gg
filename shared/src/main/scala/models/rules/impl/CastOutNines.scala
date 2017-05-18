@@ -22,8 +22,6 @@ object CastOutNines extends GameRules(
   title = "Cast Out Nines",
   like = Some("deuces"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cast_out_nines.htm")),
-  description = "A difficult variation of ^deuces^ or ^busyaces^ where no cards are already on the foundation and there are only seven tableau pile" +
-    "s. Invented by Thomas Warfield.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2,

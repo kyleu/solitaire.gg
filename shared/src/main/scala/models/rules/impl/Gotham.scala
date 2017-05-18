@@ -25,7 +25,6 @@ object Gotham extends GameRules(
   like = Some("newyork"),
   related = Seq("bigapple"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/gotham.htm")),
-  description = "An easier variation of ^newyork^ where we build regardless of suit and same-suit stacks can be moved.",
   layout = "::sw|f|t",
   deckOptions = DeckOptions(
     numDecks = 2,

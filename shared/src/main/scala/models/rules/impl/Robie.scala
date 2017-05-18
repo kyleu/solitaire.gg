@@ -17,7 +17,6 @@ object Robie extends GameRules(
   title = "Robie",
   like = Some("fortythieves"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/robie.htm")),
-  description = "Thomas Warfield's version of ^fortythieves^ in which the tableau starts empty.",
   layout = "swf|.t",
   deckOptions = DeckOptions(
     numDecks = 2

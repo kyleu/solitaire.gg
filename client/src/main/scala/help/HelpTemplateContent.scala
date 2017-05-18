@@ -44,7 +44,7 @@ object HelpTemplateContent {
           li(
             rulesLink(like.id, like.title),
             div(
-              em(GameRulesHelpService.description(like.description, link = false))
+              em(GameRulesHelpService.description(like.id, link = false))
             )
           )
         )
@@ -72,7 +72,7 @@ object HelpTemplateContent {
         ul(rels.map { rel =>
           li(
             HelpTemplateContent.rulesLink(rel._1, rel._2.title),
-            div(em(GameRulesHelpService.description(rel._2.description, link = false)))
+            div(em(GameRulesHelpService.description(rel._2.id, link = false)))
           )
         })
       )

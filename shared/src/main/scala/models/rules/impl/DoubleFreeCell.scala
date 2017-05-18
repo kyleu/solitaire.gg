@@ -29,7 +29,6 @@ object DoubleFreeCell extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_freecell.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/double_freecell.htm")
   ),
-  description = "Thomas Warfield's two-deck version of ^freecell^.",
   layout = "f:c|.t",
   deckOptions = DeckOptions(
     numDecks = 2

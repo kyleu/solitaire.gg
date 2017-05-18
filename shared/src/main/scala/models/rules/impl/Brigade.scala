@@ -26,7 +26,6 @@ object Brigade extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/brigade.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/brigade.html")
   ),
-  description = "An easier variation of ^flowergarden^ with more tableau piles of fewer cards, and aces starting on the foundation.",
   layout = "wf|t",
   waste = Some(
     WasteRules(

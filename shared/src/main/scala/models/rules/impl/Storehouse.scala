@@ -35,7 +35,6 @@ object Storehouse extends GameRules(
     Link("An 1898 description", "howtoplaysolitaire.blogspot.com/2010/06/storehouse-single-deck-solitaire-game.html"),
     Link("Jan Wolter's Experiments", "/article/storehouse.html")
   ),
-  description = "A old ^canfield^ variant first described in 1939. A pleasant game, but there is scarcely any strategy required.",
   layout = "swf|r|t",
   deckOptions = DeckOptions(
     lowRank = Rank.Two

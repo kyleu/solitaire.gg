@@ -25,7 +25,6 @@ object RedAndBlack extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/red_and_black.htm"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Zebra.html.en")
   ),
-  description = "A game where everything is built in alternate colors. Also known as \"Rouge et Noir\" or \"Zebra.\"",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

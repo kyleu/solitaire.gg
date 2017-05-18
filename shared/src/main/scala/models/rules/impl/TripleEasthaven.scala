@@ -20,7 +20,6 @@ object TripleEasthaven extends GameRules(
   title = "Triple Easthaven",
   like = Some("easthaven"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_easthaven.htm")),
-  description = "A three-deck version of ^easthaven^ by Thomas Warfield.",
   layout = "sf|.t",
   deckOptions = DeckOptions(
     numDecks = 3

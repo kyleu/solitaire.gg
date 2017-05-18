@@ -23,7 +23,6 @@ object Lafayette extends GameRules(
   completed = false,
   title = "Lafayette",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lafayette.htm")),
-  description = "A ^canfield^ variant with one foundation building up and one building down.",
   layout = "swff|r|t",
   stock = Some(
     StockRules(

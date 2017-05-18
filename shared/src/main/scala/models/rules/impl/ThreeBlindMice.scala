@@ -28,7 +28,6 @@ object ThreeBlindMice extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/three-blind-mice.htm"),
     Link("Wikipedia", "en.wikipedia.org/wiki/Scorpion_(solitaire)")
   ),
-  description = "A variation of ^scorpion^ with a 10 by 5 tableau and a two-card reserve.",
   layout = "wf|t",
   waste = Some(
     WasteRules(

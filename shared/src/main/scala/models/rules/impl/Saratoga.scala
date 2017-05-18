@@ -25,7 +25,6 @@ object Saratoga extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Saratoga.html.en"),
     Link("Elton Gahr on HobbyHub", "www.hobbyhub360.com/index.php/solitaire-how-to-play-saratoga-13682/")
   ),
-  description = "This is just ^klondike^ with the cards dealt face up.",
   layout = "swf|t",
   stock = Some(
     StockRules(

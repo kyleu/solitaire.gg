@@ -28,7 +28,6 @@ object BatsfordAgain extends GameRules(
   title = "Batsford Again",
   like = Some("batsford"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/batsford_again.htm")),
-  description = "A variation of ^batsford^ with a redeal.",
   layout = "swf|tt",
   deckOptions = DeckOptions(
     numDecks = 2

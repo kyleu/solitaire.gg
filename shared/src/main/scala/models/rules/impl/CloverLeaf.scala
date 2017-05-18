@@ -34,8 +34,6 @@ object CloverLeaf extends GameRules(
   like = Some("alexanderthegreat"),
   related = Seq("alternative"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/clover_leaf.htm")),
-  description = "An easy game invented by Thomas Warfield where you build up or down on the tableau, two foundation piles build up, and two build d" +
-    "own.",
   layout = "ff|t",
   foundations = Seq(
     FoundationRules(

@@ -27,7 +27,6 @@ object ChallengeFreeCell extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/challenge_freecell.htm"),
     Link("Michael Keller's amazing FreeCell FAQ", "solitairelaboratory.com/fcfaq.html#AceDepth")
   ),
-  description = "A version of ^freecell^ invented by Thomas Warfield where the aces and twos are always at the bottoms of the eight stacks.",
   layout = "f|c|t",
   foundations = Seq(
     FoundationRules(

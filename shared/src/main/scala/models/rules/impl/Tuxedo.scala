@@ -22,7 +22,6 @@ object Tuxedo extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/tuxedo.htm"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/tuxedo.htm")
   ),
-  description = "An easier variant of ^penguin^ where all cards start on the tableau.",
   layout = ":.f|c|t",
   foundations = Seq(
     FoundationRules(

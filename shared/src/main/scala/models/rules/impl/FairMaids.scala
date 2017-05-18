@@ -26,7 +26,6 @@ object FairMaids extends GameRules(
   title = "Fair Maids",
   like = Some("willothewisp"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fair_maids.htm")),
-  description = "A variation of ^willothewisp^ where we build in alternate colors.",
   layout = "s.f|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   stock = Some(

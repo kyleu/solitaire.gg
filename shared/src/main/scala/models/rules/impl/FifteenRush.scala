@@ -20,7 +20,6 @@ object FifteenRush extends GameRules(
   completed = true,
   title = "Fifteen Rush",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fifteen_rush.htm")),
-  description = "The layout is like ^klondike^, but you remove pairs that add to fifteen or pairs of aces.",
   layout = "swf|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFifteenOrAPair,
   stock = Some(

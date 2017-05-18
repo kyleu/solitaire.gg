@@ -25,7 +25,6 @@ object Josephine extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/josephine.php"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/josephine.htm")
   ),
-  description = "Similar to ^fortythieves^, except that you can move sequences.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

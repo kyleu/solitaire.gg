@@ -30,7 +30,6 @@ object Raglan extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/raglan.php"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/raglan.htm")
   ),
-  description = "This is ^kingalbert^ with a different tableau and Aces already on the foundation. It is a bit easier to solve.",
   layout = "wf|t",
   waste = Some(
     WasteRules(

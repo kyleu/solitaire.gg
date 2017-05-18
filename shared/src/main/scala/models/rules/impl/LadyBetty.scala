@@ -29,7 +29,6 @@ object LadyBetty extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/lady-betty.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/LadyBetty.htm")
   ),
-  description = "This cousin of ^sirtommy^ requires you to build the foundation in suit, but gives you two extra tableau piles to work with.",
   layout = "sf|t",
   stock = Some(
     StockRules(

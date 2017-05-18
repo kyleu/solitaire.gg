@@ -23,7 +23,6 @@ object Cheops extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cheops.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/cheops.htm")
   ),
-  description = "A variation of ^pyramid^ where you remove pairs of cards with equal or consecutive ranks",
   layout = "swf|p",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveOrEqualRankPairs,

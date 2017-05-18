@@ -20,7 +20,6 @@ object LuckyPiles extends GameRules(
   title = "Lucky Piles",
   like = Some("luckythirteen"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lucky_piles.htm")),
-  description = "A vastly easier varition of ^luckythirteen^ in which you can build up or down.",
   layout = "f|t",
   foundations = Seq(
     FoundationRules(

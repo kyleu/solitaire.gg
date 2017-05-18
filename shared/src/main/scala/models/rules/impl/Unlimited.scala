@@ -23,7 +23,6 @@ object Unlimited extends GameRules(
   like = Some("interchange"),
   related = Seq("singleinterchange"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/unlimited.htm")),
-  description = "An easier variant of ^interchange^, in which we are allowed unlimited redeals",
   layout = "swf|::t",
   deckOptions = DeckOptions(
     numDecks = 2

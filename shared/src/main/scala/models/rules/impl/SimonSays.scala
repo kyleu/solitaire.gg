@@ -23,7 +23,6 @@ object SimonSays extends GameRules(
   completed = false,
   title = "Simon Says",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/simon_says.htm")),
-  description = "A blend of ^simplesimon^ with ^freecell^ invented by Thomas Warfield.",
   layout = "|c|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   tableaus = Seq(

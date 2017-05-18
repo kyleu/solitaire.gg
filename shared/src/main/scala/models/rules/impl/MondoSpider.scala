@@ -27,7 +27,6 @@ object MondoSpider extends GameRules(
   completed = false,
   title = "Mondo Spider",
   like = Some("spider"),
-  description = "A rather arduous double-size eight-suit ^spider^ variant.",
   layout = ".::::sf|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

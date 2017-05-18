@@ -21,7 +21,6 @@ object Dimes extends GameRules(
   title = "Dimes",
   like = Some("busyaces"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/dimes.htm")),
-  description = "A variation on ^deuces^ with fewer tableau piles.",
   layout = "swf|.:t",
   deckOptions = DeckOptions(
     numDecks = 2,

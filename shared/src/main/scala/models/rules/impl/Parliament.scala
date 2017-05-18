@@ -20,7 +20,6 @@ object Parliament extends GameRules(
   title = "Parliament",
   like = Some("congress"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/parliament.htm")),
-  description = "An easier version of ^congress^, where the aces start on the foundation.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

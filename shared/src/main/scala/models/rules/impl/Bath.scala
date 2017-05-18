@@ -22,7 +22,6 @@ object Bath extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bath.htm"),
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/bath.html")
   ),
-  description = "A ^freecell^ variant where spaces can only be filled by kings and there are only two cells.",
   layout = "f|c|t",
   foundations = Seq(
     FoundationRules(

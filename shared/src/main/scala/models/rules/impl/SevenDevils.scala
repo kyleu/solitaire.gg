@@ -6,7 +6,6 @@ object SevenDevils extends GameRules(
   id = "sevendevils",
   completed = true,
   title = "Seven Devils",
-  description = "Seven Devils is arguably the most difficult of all solitaire games. Good luck!",
   layout = "swf|r:t",
   like = Some("klondike"),
   deckOptions = DeckOptions(numDecks = 2),

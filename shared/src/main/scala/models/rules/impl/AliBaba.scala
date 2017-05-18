@@ -24,9 +24,6 @@ object AliBaba extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/ali_baba.htm"),
     Link("Jan Wolter's Experiments", "/article/alibaba.html")
   ),
-  description = "A one-deck variation of ^fortyandeight^ where you can move sequences of cards together instead of just one at a time. With 40 card" +
-    "s in the tableau, you only have 12 cards in your deck which makes for a lot of unsolvable games. But with a bit of luck you can op" +
-    "en an empty space in your tableau and then things are likely to go smoothly.",
   layout = "swf|t",
   stock = Some(
     StockRules(

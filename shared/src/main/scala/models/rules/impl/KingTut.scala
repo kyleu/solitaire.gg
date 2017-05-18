@@ -25,7 +25,6 @@ object KingTut extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/king_tut.htm"),
     Link("Michael Keller's Discussion", "www.solitairelaboratory.com/pyramid.html")
   ),
-  description = "A pyramid variation where we deal three cards at once and have unlimited redeals.",
   layout = "swf|p",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,

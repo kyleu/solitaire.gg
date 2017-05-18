@@ -20,7 +20,6 @@ object MovingLeft extends GameRules(
   title = "Moving Left",
   related = Seq("tripleleft", "singleleft"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/moving_left.htm")),
-  description = "A variant of ^gargantua^ or ^doubleklondike^ where empty spaces are automatically filled from the next column.",
   layout = "swf|.t",
   deckOptions = DeckOptions(
     numDecks = 2

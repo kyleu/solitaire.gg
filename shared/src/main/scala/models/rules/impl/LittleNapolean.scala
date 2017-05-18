@@ -26,8 +26,6 @@ object LittleNapolean extends GameRules(
     Link("Super Solitaire", "supersolitaire.weisswo.com/Games+Rules/Entries/2009/2/15_Little_Napoleon_Solitaire.html"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/little_napoleon.htm")
   ),
-  description = "A ^fortythieves^ variant that shows some ^spider^ influences, because you can build regardless of suit, but only move same-suit se" +
-    "quences.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

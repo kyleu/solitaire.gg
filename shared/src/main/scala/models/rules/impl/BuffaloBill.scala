@@ -40,8 +40,6 @@ object BuffaloBill extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/buffalo_bill.html"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/BuffaloBill.htm")
   ),
-  description = "In this easy variation of ^littlebillie^, by David Parlett, there are more fans and the reserve cells start empty, but there are n" +
-    "o redeals.",
   layout = ":.f::f|::.c|2t",
   deckOptions = DeckOptions(
     numDecks = 2

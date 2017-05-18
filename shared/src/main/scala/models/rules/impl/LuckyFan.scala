@@ -22,7 +22,6 @@ object LuckyFan extends GameRules(
   title = "Lucky Fan",
   like = Some("freefan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lucky_fan.htm")),
-  description = "A version of ^freefan^ in which no fan may hold more than three cards.",
   layout = "f|c|t",
   foundations = Seq(
     FoundationRules(

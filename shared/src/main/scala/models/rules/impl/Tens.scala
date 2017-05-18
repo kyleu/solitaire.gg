@@ -29,8 +29,6 @@ object Tens extends GameRules(
     Link("Erik Arneson on About.com", "boardgames.about.com/od/solitaire/a/tens.htm"),
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
-  description = "A set removal game similar to ^simplepairs^ where you can take off pairs that add to 10 or a set four matching cards ten or higher" +
-    ". A game of pure luck.",
   layout = "sf|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOrFour10JQK,
   stock = Some(

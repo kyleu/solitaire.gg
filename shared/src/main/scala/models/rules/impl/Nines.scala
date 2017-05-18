@@ -26,7 +26,6 @@ object Nines extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Nines.htm"),
     Link("Jan Wolter's Experiments", "/article/simplepairs.html")
   ),
-  description = "A variation on ^simplepairs^ pairs that add to 9 or set of ten through king. Much luck required.",
   layout = "s.:f|t",
   cardRemovalMethod = CardRemovalMethod.RemoveNinesOrPairsAddingToNineOr10JQK,
   stock = Some(

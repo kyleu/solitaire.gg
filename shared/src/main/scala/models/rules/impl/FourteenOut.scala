@@ -28,7 +28,6 @@ object FourteenOut extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/take_fourteen.html"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Fourteen.html.en")
   ),
-  description = "An interesting game in which you remove pairs that add the fourteen.",
   layout = "2tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   foundations = Seq(

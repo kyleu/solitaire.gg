@@ -16,6 +16,6 @@ object HelpService {
   }
 
   private[this] def showGeneral() = {
-    $("#help-content").html("General Help for Solitaire.gg")
+    $("#help-content").html(HelpTemplate.generalHelp.toString)
   }
 }

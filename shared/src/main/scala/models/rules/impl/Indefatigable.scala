@@ -33,8 +33,6 @@ object Indefatigable extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/the_indefatigable.php"),
     Link("Jan Wolter's Experiments", "/article/indefatigable.html")
   ),
-  description = "This variation of ^royalfamily^ is basically the same, but the foundations build up from ace, and it is made even easier by a extr" +
-    "a redeal.",
   layout = "::::f|t",
   foundations = Seq(
     FoundationRules(

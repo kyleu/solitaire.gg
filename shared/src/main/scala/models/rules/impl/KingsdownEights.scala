@@ -24,7 +24,6 @@ object KingsdownEights extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/Kingsdown-Eights.htm"),
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kingsdown_eights.htm")
   ),
-  description = "This variation of ^tournament^ has a tableau where you can build by alternate color instead of cells.",
   layout = "sf|r|t",
   deckOptions = DeckOptions(
     numDecks = 2

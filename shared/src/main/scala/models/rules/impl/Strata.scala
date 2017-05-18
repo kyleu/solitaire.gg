@@ -20,7 +20,6 @@ object Strata extends GameRules(
   completed = true,
   title = "Strata",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/strata.htm")),
-  description = "An eight-by-eight square tableau, a short deck, and two redeals make this game interesting.",
   layout = "wf|:t",
   deckOptions = DeckOptions(
     numDecks = 2,

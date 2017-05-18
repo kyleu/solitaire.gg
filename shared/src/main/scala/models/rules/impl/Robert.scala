@@ -25,7 +25,6 @@ object Robert extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/robert.htm"),
     Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/robert.htm")
   ),
-  description = "An nearly unwinnable game with no tableau.",
   layout = "swf",
   stock = Some(
     StockRules(

@@ -20,7 +20,6 @@ object Stages extends GameRules(
   title = "Stages",
   like = Some("busyaces"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/stages.htm")),
-  description = "An easier variation of ^busyaces^ that allows stack moves.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

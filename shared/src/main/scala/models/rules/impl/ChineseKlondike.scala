@@ -23,7 +23,6 @@ object ChineseKlondike extends GameRules(
   title = "Chinese Klondike",
   like = Some("klondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinese_klondike.htm")),
-  description = "A three-suit version of ^klondike^.",
   layout = "swf|.:::t",
   deckOptions = DeckOptions(
     numDecks = 4,

@@ -25,7 +25,6 @@ object Wildflower extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/wildflower.htm"),
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/flower-garden.htm")
   ),
-  description = "A variation of ^flowergarden^ in which you may move sequences of cards of the same suit together.",
   layout = ":w|:f|t",
   waste = Some(
     WasteRules(

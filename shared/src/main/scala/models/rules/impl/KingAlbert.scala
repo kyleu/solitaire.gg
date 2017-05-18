@@ -27,8 +27,6 @@ object KingAlbert extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/king_albert.htm"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/King_Albert.html.en")
   ),
-  description = "This game, one of several games also known as \"Idiot's Delight,\" has a triangular tableau and seven reserve cards, all playable." +
-    " It's usually unsolvable.",
   layout = "w:f|t",
   waste = Some(
     WasteRules(

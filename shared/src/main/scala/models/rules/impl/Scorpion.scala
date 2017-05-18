@@ -38,8 +38,6 @@ object Scorpion extends GameRules(
     Link("dogMelon", "www.dogmelon.com.au/solhelp/Scorpion%20Solitaire.shtml"),
     Link("eHow", "www.ehow.com/how_2258258_play-scorpion-solitaire.html")
   ),
-  description = "A game with a seven-by-seven tableau, where three cards in the first four piles start face down. Unsorted stacks of cards can be m" +
-    "oved around, as in ^yukon^, but cards cannot be moved to the foundation until they form complete sequences, as in ^spider^.",
   layout = "s.f|t",
   stock = Some(
     StockRules(

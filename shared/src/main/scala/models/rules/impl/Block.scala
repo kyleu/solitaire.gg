@@ -18,7 +18,6 @@ object Block extends GameRules(
   completed = true,
   title = "Block",
   related = Seq("barricadeb"),
-  description = "A nearly unwinnably difficult two-deck game that gets its name from the fact that it routinely blocks.",
   layout = ":s:f|t",
   deckOptions = DeckOptions(
     numDecks = 2

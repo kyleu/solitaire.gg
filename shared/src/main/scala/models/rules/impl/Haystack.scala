@@ -28,7 +28,6 @@ object Haystack extends GameRules(
   title = "Haystack",
   related = Seq("needle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/haystack.htm")),
-  description = "A more difficult version of ^needle^ where only 8 cards can be stored in the reserve.",
   layout = ":::f|tt",
   foundations = Seq(
     FoundationRules(

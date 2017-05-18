@@ -28,7 +28,6 @@ object KnottyNines extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/KnottyNines.htm"),
     Link("Antonia Hoyland", "www.allreadable.com/4c9d6pdH")
   ),
-  description = "A more difficult variation of ^trustytwelve^.",
   layout = "s|t",
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(

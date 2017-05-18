@@ -33,7 +33,6 @@ object Frog extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/frog.htm"),
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/frog.htm")
   ),
-  description = "A relation of ^sirtommy^ with a reserve.",
   layout = "sf|r:t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -24,8 +24,6 @@ object BeleagueredCastle extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/beleaguered_castle.htm"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Beleaguered_Castle.html.en")
   ),
-  description = "A challenging game with simple rules. All cards start dealt face up and you build down regardless of suit, moving only single card" +
-    "s. Somewhat similar to ^bakersdozen^.",
   layout = "::f|t",
   foundations = Seq(
     FoundationRules(

@@ -36,8 +36,6 @@ object CaptiveQueens extends GameRules(
     Link("An analysis of Captive Queens", "www.somethinkodd.com/oddthinking/2013/05/30/analysis-of-captive-queens/"),
     Link("Jan Wolter's Experiments", "/article/captivequeens.html")
   ),
-  description = "An easy and brainless variation of ^sixesandsevens^ also known as \"Quadrille\". Automoves default mostly off to give you somethin" +
-    "g to do.",
   layout = ":sw|f|f|f",
   stock = Some(
     StockRules(

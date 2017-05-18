@@ -39,7 +39,6 @@ object EvenAndOdd extends GameRules(
   title = "Even and Odd",
   like = Some("boulevard"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/even-and-odd.htm")),
-  description = "A one-deck version of ^boulevard^.",
   layout = "sw.ff|rt",
   stock = Some(
     StockRules(

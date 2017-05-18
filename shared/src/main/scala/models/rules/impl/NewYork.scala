@@ -27,8 +27,6 @@ object NewYork extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/new-york.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/NewYork.htm")
   ),
-  description = "In this variation of ^dover^, you can choose which of the three waste piles you play cards from the stock onto, which is good beca" +
-    "use it's hard to rearrange things much on the tableau.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2,

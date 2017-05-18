@@ -24,7 +24,6 @@ object LucasLeaps extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lucas.htm"),
     Link("Solsuite Solitaire", "www.solsuite.com/games/lucas.htm")
   ),
-  description = "An easy ^fortythieves^ variant similar to ^waningmoon^ except that sequences can be moved.",
   layout = "sw::f|t",
   deckOptions = DeckOptions(
     numDecks = 2

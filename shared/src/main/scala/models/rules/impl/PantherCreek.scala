@@ -31,7 +31,6 @@ object PantherCreek extends GameRules(
   title = "Panther Creek",
   like = Some("golf"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/panther_creek.htm")),
-  description = "A four-deck ^golf^ variation.",
   layout = "sf|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   deckOptions = DeckOptions(

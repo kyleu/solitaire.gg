@@ -38,7 +38,6 @@ object CrescentFour extends GameRules(
   completed = false,
   title = "Crescent Four",
   like = Some("crescent"),
-  description = "An easier variation of ^crescent^ that allows one extra rotation.",
   layout = "::f::::f|t",
   deckOptions = DeckOptions(
     numDecks = 2

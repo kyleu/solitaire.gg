@@ -41,8 +41,6 @@ object LittleBillie extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/little_billee.html"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/LittleBillie.htm")
   ),
-  description = "In this game dating back to around 1900, no building is allowed, but you have some cells that can be used to uncover the cards you" +
-    " need. Two redeals are allowed.",
   layout = "::ff|::c|2t",
   deckOptions = DeckOptions(
     numDecks = 2

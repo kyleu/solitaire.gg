@@ -29,7 +29,6 @@ object Beetle extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/beetle.htm"),
     Link("Chet Carrie on eHow", "www.ehow.com/how_7215429_play-beetle-solitaire.html")
   ),
-  description = "A variation of ^spider^ where all cards are dealt face up.",
   layout = "sf|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

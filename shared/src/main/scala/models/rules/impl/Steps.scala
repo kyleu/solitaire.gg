@@ -26,7 +26,6 @@ object Steps extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/steps.php"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/steps.htm")
   ),
-  description = "A two-deck version of ^klondike^.",
   layout = "swf|t",
   deckOptions = DeckOptions(
     numDecks = 2

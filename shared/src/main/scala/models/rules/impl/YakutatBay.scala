@@ -21,7 +21,6 @@ object YakutatBay extends GameRules(
   completed = true,
   title = "Yakutat Bay",
   like = Some("yukon"),
-  description = "A cross between ^yukon^ and ^movingleft^.",
   layout = ".:f|t",
   foundations = Seq(
     FoundationRules(

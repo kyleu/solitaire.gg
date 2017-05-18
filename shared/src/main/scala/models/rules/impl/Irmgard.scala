@@ -22,7 +22,6 @@ object Irmgard extends GameRules(
   title = "Irmgard",
   like = Some("gypsy"),
   links = Seq(Link("PySol", "pysolfc.sourceforge.net/doc/rules/irmgard.html")),
-  description = "A variant of ^gypsy^ where you have an extra tableau pile, but you can only fill spaces with kings.",
   layout = "sf|t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -27,8 +27,6 @@ object Stonewall extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Stonewall.htm"),
     Link("Solavant Solitaire", "www.solavant.com/solitaire/stonewall.php")
   ),
-  description = "Similar to ^flowergarden^, except some cards start face down, you must build in alternate colors, and you can move sequences.  A h" +
-    "ard game to win.",
   layout = "wf|t",
   waste = Some(
     WasteRules(

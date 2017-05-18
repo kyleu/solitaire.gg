@@ -25,7 +25,6 @@ object Zerline extends GameRules(
   completed = true,
   title = "Zerline",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/zerline.htm")),
-  description = "A German game where queens are high and you have a four card storage area.",
   layout = "swf|.t:t",
   deckOptions = DeckOptions(
     numDecks = 2,

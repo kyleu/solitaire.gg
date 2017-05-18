@@ -33,8 +33,6 @@ object RoyalFamily extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/royal_family.php"),
     Link("Jan Wolter's Experiments", "/article/indefatigable.html")
   ),
-  description = "This game allows you to build up and down and fill spaces with any card, which makes the game so easy that you often don't need th" +
-    "e redeal that you are allowed.",
   layout = "::::f|t",
   foundations = Seq(
     FoundationRules(

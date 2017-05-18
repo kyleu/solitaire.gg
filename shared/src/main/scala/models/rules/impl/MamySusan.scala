@@ -22,7 +22,6 @@ object MamySusan extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/mamy_susan.htm"),
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/MamySusan.htm")
   ),
-  description = "A ^fortythieves^ variation from France with a five card reserve.",
   layout = "swf|r:t",
   deckOptions = DeckOptions(
     numDecks = 2

@@ -23,7 +23,6 @@ object QuadrupleCanfield extends GameRules(
   completed = true,
   title = "Quadruple Canfield",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_canfield.htm")),
-  description = "An easy four-deck version of ^canfield^ invented by Thomas Warfield.",
   layout = "swf|r::::::t",
   deckOptions = DeckOptions(
     numDecks = 4,

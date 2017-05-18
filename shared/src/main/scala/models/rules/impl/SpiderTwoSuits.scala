@@ -31,7 +31,6 @@ object SpiderTwoSuits extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/spider_(2_suits).html"),
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Spider.html.en")
   ),
-  description = "The name says it \"all\": ^spider^ with only two suits.",
   layout = "sf|.:::t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(

@@ -29,7 +29,6 @@ object Lucas extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/lucas.html"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/lucas.htm")
   ),
-  description = "A ^fortythieves^ variant with thirteen tableau piles and aces starting on the foundation.",
   layout = "sw:.f|t",
   stock = Some(
     StockRules(

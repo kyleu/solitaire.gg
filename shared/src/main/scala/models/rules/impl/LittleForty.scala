@@ -23,8 +23,6 @@ object LittleForty extends GameRules(
     Link("Solitaire Central", "www.solitairecentral.com/rules/LittleForty.html"),
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/little_forty.htm")
   ),
-  description = "Like ^fortythieves^, but we build in regardless of color, can move sequences, and can make three passes through the deck, dealing " +
-    "three cards at a time.",
   layout = "swf|.t",
   deckOptions = DeckOptions(
     numDecks = 2
