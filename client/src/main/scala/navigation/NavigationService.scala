@@ -7,7 +7,7 @@ import org.scalajs.jquery.{jQuery => $}
 class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[String]) => Unit) {
   def initialAction() = {
     val args = dom.window.location.pathname.stripPrefix("/beta").stripPrefix("/").split("/").map(_.trim).filter(_.nonEmpty)
-    val state = NavigationState.withValueOpt(args.headOption.getOrElse("menu")).getOrElse(NavigationState.Menu)
+    val state = NavigationState.withValueOpt(args.headOption.getOrElse("home")).getOrElse(NavigationState.Home)
     navigate(state, args.drop(1))
   }
 
@@ -22,7 +22,7 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
 
   def setPath(state: NavigationState, args: Seq[String]) = {
     val url = if (args.isEmpty) {
-      if (state == NavigationState.Menu) {
+      if (state == NavigationState.Home) {
         "/"
       } else {
         s"/${state.value}"

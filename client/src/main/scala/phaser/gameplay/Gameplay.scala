@@ -43,9 +43,11 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
 
   def undo() = if (services.undo.historyQueue.nonEmpty) {
     services.requests.handle(Undo)
+    postMove()
   }
   def redo() = if (services.undo.undoneQueue.nonEmpty) {
     services.requests.handle(Redo)
+    postMove()
   }
 
   private[this] def onWin() = {

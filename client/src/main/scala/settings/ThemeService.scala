@@ -36,13 +36,35 @@ object ThemeService {
     s".theme-text { color: $lastColor; }"
   ).mkString("\n")
 
+  private[this] def isBright = lastColor.stripPrefix("#") match {
+    case x if x.length == 6 =>
+      val rgb = Integer.parseInt(x, 16)
+      val r = (rgb >> 16) & 0xff
+      val g = (rgb >> 8) & 0xff
+      val b = (rgb >> 0) & 0xff
+      var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b
+      luma > 190
+    case _ =>
+      utils.Logging.warn(s"Invalid color [$lastColor].")
+      false
+  }
+
   private[this] def updateStyle() = {
-    utils.Logging.info(s"Updating style [$lastColor / $lastPattern}].")
+    //utils.Logging.info(s"Updating style [$lastColor / $lastPattern}].")
     val styleEl = $("#theme-style")
     if (styleEl.length > 0) {
       styleEl.remove()
     }
-
     $("<style id=\"theme-style\">" + styleBlock() + "</style>").appendTo(dom.document.head)
+    val body = $(dom.document.body)
+    if (isBright) {
+      if (body.hasClass("dark")) {
+        body.removeClass("dark").addClass("bright")
+      }
+    } else {
+      if (body.hasClass("bright")) {
+        $(dom.document.body).removeClass("bright").addClass("dark")
+      }
+    }
   }
 }

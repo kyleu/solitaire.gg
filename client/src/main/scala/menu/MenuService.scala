@@ -24,10 +24,10 @@ class MenuService(settings: SettingsService, navigation: NavigationService) {
     TemplateUtils.clickHandler($(s"#menu-link-$s"), jq => navigation.navigate(s))
   }
 
-  def toggleMenu() = if (navigation.getState == NavigationState.Menu) {
+  def toggleMenu() = if (navigation.getState == NavigationState.Home) {
     navigation.navigate(priorState)
   } else {
     priorState = navigation.getState
-    navigation.navigate(NavigationState.Menu)
+    navigation.navigate(NavigationState.Home)
   }
 }
