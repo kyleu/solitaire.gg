@@ -3,7 +3,7 @@ package models.rules
 import enumeratum.values._
 
 sealed abstract class StockDealTo(val value: String) extends StringEnumEntry
-object StockDealTo extends StringEnum[StockDealTo] with StringUPickleEnum[StockDealTo] {
+object StockDealTo extends StringEnum[StockDealTo] with StringCirceEnum[StockDealTo] {
   case object Waste extends StockDealTo("waste")
   case object WasteOrPairManually extends StockDealTo("waste-or-pair-manually")
   case object Tableau extends StockDealTo("tableau")
@@ -19,7 +19,7 @@ object StockDealTo extends StringEnum[StockDealTo] with StringUPickleEnum[StockD
 }
 
 sealed abstract class StockCardsDealt(val value: String) extends StringEnumEntry
-object StockCardsDealt extends StringEnum[StockCardsDealt] with StringUPickleEnum[StockCardsDealt] {
+object StockCardsDealt extends StringEnum[StockCardsDealt] with StringCirceEnum[StockCardsDealt] {
   case class Count(n: Int) extends StockCardsDealt("count")
   case object FewerEachTime extends StockCardsDealt("fewer-each-time")
   override val values = findValues

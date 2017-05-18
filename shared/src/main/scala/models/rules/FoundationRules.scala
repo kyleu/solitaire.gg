@@ -4,7 +4,7 @@ import enumeratum.values._
 import models.card.{Color, Rank, Suit}
 
 sealed abstract class FoundationInitialCardRestriction(val value: Int) extends IntEnumEntry
-object FoundationInitialCardRestriction extends IntEnum[FoundationInitialCardRestriction] with IntUPickleEnum[FoundationInitialCardRestriction] {
+object FoundationInitialCardRestriction extends IntEnum[FoundationInitialCardRestriction] with IntCirceEnum[FoundationInitialCardRestriction] {
   case object UniqueColors extends FoundationInitialCardRestriction(1)
   case object UniqueSuits extends FoundationInitialCardRestriction(2)
   case class SpecificColorUniqueSuits(c: Color) extends FoundationInitialCardRestriction(3)
@@ -13,7 +13,7 @@ object FoundationInitialCardRestriction extends IntEnum[FoundationInitialCardRes
 }
 
 sealed abstract class FoundationLowRank(val value: Int) extends IntEnumEntry
-object FoundationLowRank extends IntEnum[FoundationLowRank] with IntUPickleEnum[FoundationLowRank] {
+object FoundationLowRank extends IntEnum[FoundationLowRank] with IntCirceEnum[FoundationLowRank] {
   case object AnyCard extends FoundationLowRank(1)
   case object DeckLowRank extends FoundationLowRank(2)
   case object DeckHighRank extends FoundationLowRank(3)
@@ -23,7 +23,7 @@ object FoundationLowRank extends IntEnum[FoundationLowRank] with IntUPickleEnum[
 }
 
 sealed abstract class FoundationCanMoveFrom(val value: Int) extends IntEnumEntry
-object FoundationCanMoveFrom extends IntEnum[FoundationCanMoveFrom] with IntUPickleEnum[FoundationCanMoveFrom] {
+object FoundationCanMoveFrom extends IntEnum[FoundationCanMoveFrom] with IntCirceEnum[FoundationCanMoveFrom] {
   case object Never extends FoundationCanMoveFrom(1)
   case object Always extends FoundationCanMoveFrom(2)
   case object EmptyStock extends FoundationCanMoveFrom(3)

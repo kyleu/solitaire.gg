@@ -10,7 +10,7 @@ sealed abstract class Rank(val value: Char) extends CharEnumEntry {
   val locs: Seq[(Double, Double)] = Nil
 }
 
-object Rank extends CharEnum[Rank] with CharUPickleEnum[Rank] {
+object Rank extends CharEnum[Rank] with CharCirceEnum[Rank] {
   case object Two extends Rank('2') {
     override val index = 2
     override val name = "Two"

@@ -4,7 +4,7 @@ import enumeratum.values._
 
 sealed abstract class FillEmptyWith(val value: Int) extends IntEnumEntry
 
-object FillEmptyWith extends IntEnum[FillEmptyWith] with IntUPickleEnum[FillEmptyWith] {
+object FillEmptyWith extends IntEnum[FillEmptyWith] with IntCirceEnum[FillEmptyWith] {
   case object Any extends FillEmptyWith(1)
   case object None extends FillEmptyWith(2)
   case object LowRank extends FillEmptyWith(3)

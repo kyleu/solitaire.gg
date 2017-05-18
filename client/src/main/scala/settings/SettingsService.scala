@@ -2,7 +2,7 @@ package settings
 
 import models.settings.Settings
 import org.scalajs.dom
-import utils.JsonSettingsSerializers
+import utils.JsonSerializers
 
 import scala.util.control.NonFatal
 
@@ -20,7 +20,7 @@ class SettingsService(onSave: Settings => Unit) {
   }
 
   def save() = {
-    val json = JsonSettingsSerializers.writeSettings(settings)
+    val json = JsonSerializers.writeSettings(settings)
     utils.Logging.info(s"Persisting settings [$json].")
     dom.window.localStorage.setItem(SettingsService.settingsKey, json)
     onSave(settings)
@@ -33,7 +33,7 @@ class SettingsService(onSave: Settings => Unit) {
 
   def loadSettings() = Option(dom.window.localStorage.getItem(SettingsService.settingsKey)) match {
     case Some(json) => try {
-      JsonSettingsSerializers.readSettings(json)
+      JsonSerializers.readSettings(json)
     } catch {
       case NonFatal(x) => Settings.default
     }

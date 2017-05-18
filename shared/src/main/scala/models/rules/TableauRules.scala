@@ -3,7 +3,7 @@ package models.rules
 import enumeratum.values._
 
 sealed abstract class TableauFaceDownCards(val value: String) extends StringEnumEntry
-object TableauFaceDownCards extends StringEnum[TableauFaceDownCards] with StringUPickleEnum[TableauFaceDownCards] {
+object TableauFaceDownCards extends StringEnum[TableauFaceDownCards] with StringCirceEnum[TableauFaceDownCards] {
   case class Count(n: Int) extends TableauFaceDownCards("count")
   case object AllButOne extends TableauFaceDownCards("all-but-one")
   case object EvenNumbered extends TableauFaceDownCards("even-numbered")
@@ -12,7 +12,7 @@ object TableauFaceDownCards extends StringEnum[TableauFaceDownCards] with String
 }
 
 sealed abstract class TableauAutoFillEmptyFrom(val value: String) extends StringEnumEntry
-object TableauAutoFillEmptyFrom extends StringEnum[TableauAutoFillEmptyFrom] with StringUPickleEnum[TableauAutoFillEmptyFrom] {
+object TableauAutoFillEmptyFrom extends StringEnum[TableauAutoFillEmptyFrom] with StringCirceEnum[TableauAutoFillEmptyFrom] {
   case object Nowhere extends TableauAutoFillEmptyFrom("nowhere")
   case object Reserve extends TableauAutoFillEmptyFrom("reserve")
   case object Stock extends TableauAutoFillEmptyFrom("stock")
@@ -24,7 +24,7 @@ object TableauAutoFillEmptyFrom extends StringEnum[TableauAutoFillEmptyFrom] wit
 }
 
 sealed abstract class PileAction(val value: String) extends StringEnumEntry
-object PileAction extends StringEnum[PileAction] with StringUPickleEnum[PileAction] {
+object PileAction extends StringEnum[PileAction] with StringCirceEnum[PileAction] {
   case object None extends PileAction("none")
   case object MoveKingsToBottom extends PileAction("move-kings-to-bottom")
   case object MoveToFoundation extends PileAction("move-to-foundation")

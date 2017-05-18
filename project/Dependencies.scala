@@ -45,8 +45,10 @@ object Dependencies {
   }
 
   object Serialization {
-    val version = "0.4.4"
-    val uPickle = "com.lihaoyi" %% "upickle" % version
+    val circeVersion = "0.8.0"
+    val circeCore = "io.circe" %% "circe-core" % circeVersion
+    val circeGeneric = "io.circe" %% "circe-generic" % circeVersion
+    val circeParser = "io.circe" %% "circe-parser" % circeVersion
   }
 
   object Metrics {
@@ -76,7 +78,7 @@ object Dependencies {
     val collection = "com.twitter" %% "util-collection" % twitterVersion
 
     val enumeratumVersion = "1.5.11"
-    val enumeratum = "com.beachape" %% "enumeratum-upickle" % enumeratumVersion
+    val enumeratumCirce = "com.beachape" %% "enumeratum-circe" % enumeratumVersion
 
     val betterFiles = "com.github.pathikrit" %% "better-files" % "2.17.1"
   }

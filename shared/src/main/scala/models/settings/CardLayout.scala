@@ -6,7 +6,7 @@ sealed abstract class CardLayout(val value: String, val title: String) extends S
   override def toString = value
 }
 
-object CardLayout extends StringEnum[CardLayout] with StringUPickleEnum[CardLayout] {
+object CardLayout extends StringEnum[CardLayout] with StringCirceEnum[CardLayout] {
   case object A extends CardLayout("a", "Layout A")
   case object B extends CardLayout("b", "Layout B")
 

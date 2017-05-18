@@ -10,7 +10,7 @@ sealed abstract class Suit(val value: Char) extends CharEnumEntry with Ordered[S
   override def toString = value.toString
 }
 
-object Suit extends CharEnum[Suit] with CharUPickleEnum[Suit] {
+object Suit extends CharEnum[Suit] with CharCirceEnum[Suit] {
   val standard: Seq[Suit] = Seq(Hearts, Spades, Diamonds, Clubs)
 
   case object Hearts extends Suit('H') {

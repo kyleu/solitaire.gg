@@ -8,7 +8,7 @@ sealed abstract class VictoryCondition(val value: String) extends StringEnumEntr
   def check(rules: GameRules, gs: GameState): Boolean
 }
 
-object VictoryCondition extends StringEnum[VictoryCondition] with StringUPickleEnum[VictoryCondition] {
+object VictoryCondition extends StringEnum[VictoryCondition] with StringCirceEnum[VictoryCondition] {
   val default = AllOnFoundation
 
   case object AllOnFoundation extends VictoryCondition("all-on-foundation") {

@@ -3,7 +3,7 @@ package models.rules
 import enumeratum.values._
 
 sealed abstract class WastePlayableCards(val value: String) extends StringEnumEntry
-object WastePlayableCards extends StringEnum[WastePlayableCards] with StringUPickleEnum[WastePlayableCards] {
+object WastePlayableCards extends StringEnum[WastePlayableCards] with StringCirceEnum[WastePlayableCards] {
   case object TopCardOnly extends WastePlayableCards("top-card-only")
   case object All extends WastePlayableCards("all")
   override val values = findValues

@@ -2,7 +2,7 @@ package network
 
 import msg.req.{Ping, SocketRequestMessage}
 import msg.rsp.{Pong, SocketResponseMessage}
-import utils.{JsonMessageSerializers, Logging}
+import utils.{JsonSerializers, Logging}
 
 import scala.scalajs.js.timers.setTimeout
 
@@ -51,13 +51,13 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
   }
 
   def sendMessage(sm: SocketRequestMessage): Unit = if (socket.isConnected) {
-    val json = JsonMessageSerializers.writeRequestMessage(sm, debug)
+    val json = JsonSerializers.writeRequestMessage(sm, debug)
     socket.send(json)
   } else {
     utils.Logging.info(s"Not connected, skipping message [${sm.getClass.getSimpleName}] send.")
   }
 
-  protected[this] def onSocketResponseMessage(json: String): Unit = JsonMessageSerializers.readResponseMessage(json) match {
+  protected[this] def onSocketResponseMessage(json: String): Unit = JsonSerializers.readResponseMessage(json) match {
     case p: Pong => latencyMs = Some((System.currentTimeMillis - p.ts).toInt)
     case msg => handleMessage(msg)
   }

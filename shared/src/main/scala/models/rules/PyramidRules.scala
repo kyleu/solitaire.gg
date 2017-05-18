@@ -3,14 +3,14 @@ package models.rules
 import enumeratum.values._
 
 sealed abstract class PyramidType(val value: Int) extends IntEnumEntry
-object PyramidType extends IntEnum[PyramidType] with IntUPickleEnum[PyramidType] {
+object PyramidType extends IntEnum[PyramidType] with IntCirceEnum[PyramidType] {
   case object Standard extends PyramidType(1)
   case object Inverted extends PyramidType(2)
   override val values = findValues
 }
 
 sealed abstract class PyramidFaceDownCards(val value: Int) extends IntEnumEntry
-object PyramidFaceDownCards extends IntEnum[PyramidFaceDownCards] with IntUPickleEnum[PyramidFaceDownCards] {
+object PyramidFaceDownCards extends IntEnum[PyramidFaceDownCards] with IntCirceEnum[PyramidFaceDownCards] {
   case object AllButLastRow extends PyramidFaceDownCards(1)
   case object EvenNumbered extends PyramidFaceDownCards(2)
   case object OddNumbered extends PyramidFaceDownCards(3)

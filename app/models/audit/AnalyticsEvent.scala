@@ -9,7 +9,7 @@ import play.api.libs.json.JsValue
 object AnalyticsEvent {
   sealed abstract class EventType(val value: String) extends StringEnumEntry
 
-  object EventType extends StringEnum[EventType] with StringUPickleEnum[EventType] {
+  object EventType extends StringEnum[EventType] with StringCirceEnum[EventType] {
     case object Error extends EventType("error")
     case object Install extends EventType("install")
     case object Open extends EventType("open")

@@ -14,7 +14,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="text-large">@rules.title (@rules.id)</div>
-        <pre>@upickle.default.write(rules, 2)</pre>
+        <pre>@utils.JsonSerializers.writeRules(rules)</pre>
       </div>
     </div>
   }

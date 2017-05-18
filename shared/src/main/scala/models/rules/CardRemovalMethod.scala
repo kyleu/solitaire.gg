@@ -8,7 +8,7 @@ sealed abstract class CardRemovalMethod(val value: Int) extends IntEnumEntry {
   def canSelect(c: Card): Boolean = false
 }
 
-object CardRemovalMethod extends IntEnum[CardRemovalMethod] with IntUPickleEnum[CardRemovalMethod] {
+object CardRemovalMethod extends IntEnum[CardRemovalMethod] with IntCirceEnum[CardRemovalMethod] {
   val default = BuildSequencesOnFoundation
 
   case object BuildSequencesOnFoundation extends CardRemovalMethod(1)

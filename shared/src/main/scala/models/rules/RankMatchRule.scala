@@ -7,7 +7,7 @@ sealed abstract class RankMatchRule(val value: String) extends StringEnumEntry {
   def check(l: Rank, r: Rank, lowRank: Rank, wrap: Boolean): Boolean
 }
 
-object RankMatchRule extends StringEnum[RankMatchRule] with StringUPickleEnum[RankMatchRule] {
+object RankMatchRule extends StringEnum[RankMatchRule] with StringCirceEnum[RankMatchRule] {
   private[this] def upBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
     val highRank = lowRank.previous
     val target = (0 until i).foldLeft[Rank](l)((rank, i) => {

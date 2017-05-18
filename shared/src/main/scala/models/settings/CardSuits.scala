@@ -6,7 +6,7 @@ sealed abstract class CardSuits(val value: String, val title: String) extends St
   override def toString = value
 }
 
-object CardSuits extends StringEnum[CardSuits] with StringUPickleEnum[CardSuits] {
+object CardSuits extends StringEnum[CardSuits] with StringCirceEnum[CardSuits] {
   case object A extends CardSuits("a", "Suits A")
   case object B extends CardSuits("b", "Suits B")
   case object C extends CardSuits("c", "Suits C")

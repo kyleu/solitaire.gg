@@ -43,14 +43,14 @@ object Shared {
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   ) ++ graphSettings ++ scalariformSettings
 
-  lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(commonSettings: _*).jsSettings(
-    libraryDependencies ++= Seq(
-      "com.lihaoyi" %%% "upickle" % Dependencies.Serialization.version,
-      "com.beachape" %%% "enumeratum-upickle" % Dependencies.Utils.enumeratumVersion
-    )
-  ).jvmSettings(
-    libraryDependencies ++= Seq(Dependencies.Serialization.uPickle, Dependencies.Utils.enumeratum)
-  )
+  lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(commonSettings: _*).jsSettings(libraryDependencies ++= Seq(
+    "io.circe" %%% "circe-core" % Dependencies.Serialization.circeVersion,
+    "io.circe" %%% "circe-generic" % Dependencies.Serialization.circeVersion,
+    "io.circe" %%% "circe-parser" % Dependencies.Serialization.circeVersion,
+    "com.beachape" %%% "enumeratum-circe" % Dependencies.Utils.enumeratumVersion
+  )).jvmSettings(libraryDependencies ++= Seq(
+    Dependencies.Serialization.circeCore, Dependencies.Serialization.circeGeneric, Dependencies.Serialization.circeParser, Dependencies.Utils.enumeratumCirce
+  ))
 
   lazy val sharedJs = shared.js.enablePlugins(ScalaJSPlay).settings(scalaJSStage in Global := FastOptStage)
 

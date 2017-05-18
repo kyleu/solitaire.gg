@@ -4,7 +4,7 @@ import enumeratum.values._
 
 sealed abstract class InputMessage(val value: String) extends StringEnumEntry
 
-object InputMessage extends StringEnum[InputMessage] with StringUPickleEnum[InputMessage] {
+object InputMessage extends StringEnum[InputMessage] with StringCirceEnum[InputMessage] {
   case object Help extends InputMessage("help")
 
   case object Undo extends InputMessage("undo")

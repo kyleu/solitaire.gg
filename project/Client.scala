@@ -13,8 +13,7 @@ object Client {
       "com.definitelyscala" %%% "scala-js-phaser" % Dependencies.ScalaJS.definitelyScalaVersion,
       "be.doeraene" %%% "scalajs-jquery" % Dependencies.ScalaJS.jQueryVersion,
       "com.lihaoyi" %%% "scalatags" % Dependencies.ScalaJS.scalaTagsVersion,
-      "org.scala-js" %%% "scalajs-dom" % Dependencies.ScalaJS.domVersion,
-      "com.lihaoyi" %%% "upickle" % "0.4.4"
+      "org.scala-js" %%% "scalajs-dom" % Dependencies.ScalaJS.domVersion
     ),
     scalaJSStage in Global := FastOptStage,
     scapegoatIgnoredFiles := Seq(

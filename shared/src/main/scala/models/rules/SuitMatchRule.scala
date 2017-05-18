@@ -7,7 +7,7 @@ sealed abstract class SuitMatchRule(val value: String) extends StringEnumEntry {
   def check(l: Suit, r: Suit): Boolean
 }
 
-object SuitMatchRule extends StringEnum[SuitMatchRule] with StringUPickleEnum[SuitMatchRule] {
+object SuitMatchRule extends StringEnum[SuitMatchRule] with StringCirceEnum[SuitMatchRule] {
   case object None extends SuitMatchRule("none") {
     override def check(l: Suit, r: Suit) = false
   }
