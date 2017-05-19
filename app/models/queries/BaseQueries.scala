@@ -49,7 +49,7 @@ trait BaseQueries[T] {
   }
 
   protected case class InsertBatch(models: Seq[T]) extends Statement {
-    private[this] val valuesClause = models.map(m => s"($columnPlaceholders)").mkString(", ")
+    private[this] val valuesClause = models.map(_ => s"($columnPlaceholders)").mkString(", ")
     override val sql = s"insert into $tableName ($columnString) values $valuesClause"
     override val values = models.flatMap(toDataSeq)
   }
@@ -65,14 +65,14 @@ trait BaseQueries[T] {
   protected class SearchCount(q: String, groupBy: Option[String] = None) extends Count(sql = {
     val searchWhere = if (q.isEmpty) { "" } else { "where " + searchColumns.map(c => s"lower($c) like lower(?)").mkString(" or ") }
     s"select count(*) as c from $tableName $searchWhere ${groupBy.map(x => s" group by $x").getOrElse("")}"
-  }, values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(c => s"%$q%") })
+  }, values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(_ => s"%$q%") })
 
   protected case class Search(q: String, orderBy: String, page: Option[Int], /* TODO use */ groupBy: Option[String] = None) extends Query[List[T]] {
     private[this] val whereClause = if (q.isEmpty) { None } else { Some(searchColumns.map(c => s"lower($c) like lower(?)").mkString(" or ")) }
-    private[this] val limit = page.map(x => BaseQueries.pageSize)
+    private[this] val limit = page.map(_ => BaseQueries.pageSize)
     private[this] val offset = page.map(x => x * BaseQueries.pageSize)
     override val sql = getSql(whereClause, groupBy, Some(orderBy), limit, offset)
-    override val values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(c => s"%$q%") }
+    override val values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(_ => s"%$q%") }
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
   }
 

@@ -13,7 +13,7 @@ trait InitHelper { this: SolitaireGG =>
     Logging.installErrorHandler()
     js.Dynamic.global.PhaserGlobal = js.Dynamic.literal("hideBanner" -> true)
 
-    dom.window.onbeforeunload = (e: BeforeUnloadEvent) => {
+    dom.window.onbeforeunload = (_: BeforeUnloadEvent) => {
       game match {
         case Some(_) => NullUtils.inst //"You're playing a game. Are you sure you'd like to resign?"
         case _ => NullUtils.inst

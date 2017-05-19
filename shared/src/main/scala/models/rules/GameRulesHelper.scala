@@ -39,7 +39,7 @@ trait GameRulesHelper { this: GameRules =>
   }, ps.visible))
 
   protected[this] lazy val pileIdsByType = Map(
-    "stock" -> stock.map(s => Seq("stock")).getOrElse(Nil),
+    "stock" -> stock.map(_ => Seq("stock")).getOrElse(Nil),
     "waste" -> waste.map(w => (1 to w.numPiles).map(i => "waste-" + i)).getOrElse(Nil),
     "foundations" -> foundations.flatMap(fs => (1 to fs.numPiles).map { i =>
       if (fs.setNumber == 0) { s"foundation-$i" } else { s"foundation${fs.setNumber}-$i" }

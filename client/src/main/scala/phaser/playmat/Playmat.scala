@@ -1,7 +1,7 @@
 package phaser.playmat
 
 import com.definitelyscala.phaser.Group
-import models.GameWon
+import models.{GameLost, GameWon}
 import models.pile.set.PileSet
 import phaser.PhaserGame
 import phaser.card.CardSprite
@@ -41,14 +41,8 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
     pileGroup.y = pileLocation._2 * phaser.getSettings.cardSet.h
   }
 
-  def initialMovesComplete() = {
-    pileGroups.foreach { pile =>
-      pile._2.cards.foreach { card =>
-        card.bringToTop()
-      }
-    }
-  }
+  def initialMovesComplete() = pileGroups.foreach(_._2.cards.foreach(_.bringToTop()))
 
   def win(gw: GameWon) = utils.Logging.info("Win!")
-  def lose() = utils.Logging.info("Lose!")
+  def lose(gl: GameLost) = utils.Logging.info("Lose!")
 }

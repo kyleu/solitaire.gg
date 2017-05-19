@@ -30,7 +30,7 @@ object UserStatisticsService {
 
     Database.execute(update).flatMap {
       case affected if affected == 1 => Future.successful(Unit)
-      case _ => UserStatisticsService.getStatistics(player).flatMap { stats =>
+      case _ => UserStatisticsService.getStatistics(player).flatMap { _ =>
         registerHistory(gameId, isWin, duration, moves, undos, redos, completed, player)
       }
     }.flatMap(_ => getStatistics(player))

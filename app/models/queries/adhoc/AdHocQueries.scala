@@ -36,10 +36,7 @@ object AdHocQueries extends BaseQueries[AdHocQuery] {
         case s => s
       }
 
-      val result = rowsList.map { r =>
-        r.iterator.toSeq
-      }.toSeq
-      columns -> result
+      columns -> rowsList.map(_.iterator.toSeq).toIndexedSeq
     }
   }
 

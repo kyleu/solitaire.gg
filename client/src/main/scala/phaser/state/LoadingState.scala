@@ -12,11 +12,6 @@ class LoadingState(settings: Settings) extends State {
 
     val size = "hd"
 
-    val cardSize = size match {
-      case "hd" => settings.cardSet.w.toDouble -> settings.cardSet.h.toDouble
-      case _ => throw new IllegalStateException(s"Unhandled size [$size].")
-    }
-
     game.load.image("card-blank", assetRoot + s"images/cards/$size/blank/${settings.cardBlank.value}.png")
     game.load.image("card-back", assetRoot + s"images/cards/$size/back/${settings.cardBack.value}.png")
 

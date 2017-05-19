@@ -29,7 +29,7 @@ class SolitaireController @javax.inject.Inject() (
       case Some(user) => Future.successful(user)
       case None => UserService.newUser()
     }
-    case Some(id) => UserService.newUser()
+    case Some(_) => UserService.newUser()
     case None => UserService.newUser()
   }
 

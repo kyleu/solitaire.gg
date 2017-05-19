@@ -16,7 +16,7 @@ object UserFeedbackNoteQueries extends BaseQueries[UserFeedback.FeedbackNote] {
 
   case class GetUserFeedbackNotes(feedbackIds: Seq[UUID]) extends Query[List[UserFeedback.FeedbackNote]] {
     override val sql = getSql(whereClause = Some(if (feedbackIds.nonEmpty) {
-      s"feedback_id in (${feedbackIds.map(x => "?").mkString(", ")})"
+      s"feedback_id in (${feedbackIds.map(_ => "?").mkString(", ")})"
     } else {
       "1 = 1"
     }))

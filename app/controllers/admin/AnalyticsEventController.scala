@@ -27,7 +27,7 @@ class AnalyticsEventController @javax.inject.Inject() (override val app: Applica
   }
 
   def removeEvent(id: UUID) = withAdminSession("remove") { implicit request =>
-    AnalyticsService.remove(id).map { ok =>
+    AnalyticsService.remove(id).map { _ =>
       Redirect(controllers.admin.routes.AnalyticsEventController.eventList(s"TODO: $id"))
     }
   }

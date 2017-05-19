@@ -31,7 +31,7 @@ object GameHistoryService {
     })
   }
 
-  def insert(gh: GameHistory) = Database.execute(GameHistoryQueries.insert(gh)).map(ok => true)
+  def insert(gh: GameHistory) = Database.execute(GameHistoryQueries.insert(gh)).map(_ => true)
 
   def setCounts(id: UUID, moves: Int, undos: Int, redos: Int, score: Int) = {
     Database.execute(GameHistoryQueries.SetCounts(id, moves, undos, redos, score)).map(_ == 1)

@@ -29,7 +29,7 @@ object Schema extends Logging {
   )
 
   def update() = tables.foldLeft(Future.successful(Unit)) { (f, t) =>
-    f.flatMap { u =>
+    f.flatMap { _ =>
       Database.query(DdlQueries.DoesTableExist(t.tableName)).flatMap { exists =>
         if (exists) {
           Future.successful(Unit)
@@ -37,7 +37,7 @@ object Schema extends Logging {
           log.info(s"Creating missing table [${t.tableName}].")
           t.statements.foldLeft(Future.successful(Unit)) { (x, y) =>
             x.flatMap { _ =>
-              Database.execute(y).map(x => Unit)
+              Database.execute(y).map(_ => Unit)
             }
           }
         }
@@ -48,6 +48,6 @@ object Schema extends Logging {
   def wipe() = {
     log.warn("Wiping database schema.")
     val tableNames = tables.reverseMap(_.tableName)
-    Database.execute(DdlQueries.TruncateTables(tableNames)).map(x => tableNames)
+    Database.execute(DdlQueries.TruncateTables(tableNames)).map(_ => tableNames)
   }
 }

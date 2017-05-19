@@ -82,7 +82,7 @@ object SettingsPanel {
     current = current.copy(backgroundPattern = p)
   })
 
-  private[this] def radioChange(k: String, v: String, onSelect: () => Unit) = $(s"#settings-$k-$v", panel).change((jq: JQueryEventObject) => onSelect())
+  private[this] def radioChange(k: String, v: String, onSelect: () => Unit) = $(s"#settings-$k-$v", panel).change((_: JQueryEventObject) => onSelect())
 
   private[this] def colorChange(color: js.Dynamic) = {
     val hex = color.toHexString().toString

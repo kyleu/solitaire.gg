@@ -16,7 +16,7 @@ class UndoHelper() {
         undoneQueue.clear()
       case _ => // no-op
     }
-    println(s"Undo [registerResponse]: [${historyQueue.size} / ${undoneQueue.size}], [$undoCount / $redoCount]")
+    //println(s"Undo [registerResponse]: [${historyQueue.size} / ${undoneQueue.size}], [$undoCount / $redoCount]")
   }
 
   def undo(gameState: GameState) = {

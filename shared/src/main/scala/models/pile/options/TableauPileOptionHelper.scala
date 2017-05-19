@@ -9,7 +9,7 @@ trait TableauPileOptionHelper {
     if (rmr == RankMatchRule.None || smr == SuitMatchRule.None) {
       Constraint.topCardOnly
     } else {
-      Constraint("sequence", (src, tgt, cards, gameState) => {
+      Constraint("sequence", (_, _, cards, _) => {
         if (cards.exists(!_.u)) {
           false
         } else {

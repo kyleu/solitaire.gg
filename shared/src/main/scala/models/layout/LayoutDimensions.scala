@@ -36,7 +36,7 @@ object LayoutDimensions {
       case "pyramid" =>
         var rows = 1
         var rowCounter = 0
-        pileSet.piles.foreach { p =>
+        pileSet.piles.foreach { _ =>
           if (rowCounter == rows) {
             rows += 1
             rowCounter -= rowCounter

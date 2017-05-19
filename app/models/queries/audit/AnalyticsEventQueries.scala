@@ -39,7 +39,7 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
   ) extends Query[Future[Int]] with Logging {
     override def sql = s"select $columnString from $tableName where $whereClause order by $orderBy limit $limit offset $offset"
     override def reduce(rows: Iterator[Row]) = rows.zipWithIndex.foldLeft(Future.successful(0)) { (x, y) =>
-      x.flatMap { xc =>
+      x.flatMap { _ =>
         if (y._2 % 1000 == 0) {
           log.info(s"Processed [${y._2}] records...")
         }

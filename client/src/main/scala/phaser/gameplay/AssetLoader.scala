@@ -8,13 +8,15 @@ import phaser.pile.PileGroup
 import scala.scalajs.js.timers.setTimeout
 
 object AssetLoader {
-  def loadPileSets(g: PhaserGame, pileSets: Seq[PileSet]) = {
-    pileSets.foreach { pileSet =>
-      pileSet.piles.foreach { pile =>
-        var pileObj = new PileGroup(g, pile)
-        g.getPlaymat.addPile(pileObj)
-      }
-    }
+  def loadPileSets(g: PhaserGame, pileSets: Seq[PileSet]) = pileSets.foreach { pileSet =>
+    pileSet.piles.foreach(pile => g.getPlaymat.addPile(new PileGroup(g, pile)))
+  }
+
+  private[this] def error(g: PhaserGame, cardId: Int, cards: Iterable[(CardSprite, PileGroup, Int)]) = {
+    val cardIds = cards.map(_._1.id).toSeq.sorted.mkString(", ")
+    val deckSize = g.gameplay.services.state.deck.cards.size
+    val msg = s"Unknown card [$cardId]. [$deckSize] cards in deck. [${cards.size}] cards available: [$cardIds]."
+    throw new IllegalStateException(msg)
   }
 
   def loadCards(g: PhaserGame, pileSets: Seq[PileSet], originalOrder: Seq[Int]) = {
@@ -35,7 +37,7 @@ object AssetLoader {
 
     originalOrder.zipWithIndex.map { x =>
       val (cardId, cardIndex) = x
-      val c = cards.getOrElse(cardId, throw new IllegalStateException(s"Unknown card [$cardId]."))
+      val c = cards.getOrElse(cardId, error(g, cardId, cards.values))
       val cardObj = c._1
       val pileObj = c._2
       val cardPileIndex = c._3

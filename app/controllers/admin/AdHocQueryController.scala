@@ -37,7 +37,7 @@ class AdHocQueryController @javax.inject.Inject() (override val app: Application
         Ok(views.html.admin.report.adhoc(query, q.map(_.sql).getOrElse(""), Seq.empty -> Seq.empty, 0, queries))
       }
     } else if (action.contains("delete")) {
-      Database.execute(AdHocQueries.removeById(Seq(query.getOrElse(throw new IllegalStateException())))).map { ok =>
+      Database.execute(AdHocQueries.removeById(Seq(query.getOrElse(throw new IllegalStateException())))).map { _ =>
         Redirect(controllers.admin.routes.AdHocQueryController.queryList(query, Some("load")))
       }
     } else {
@@ -48,14 +48,14 @@ class AdHocQueryController @javax.inject.Inject() (override val app: Application
   }
 
   def run() = withAdminSession("run") { implicit request =>
-    import DateUtils._
+    import utils.DateUtils._
 
     executionForm.bindFromRequest.fold(
       formWithErrors => Future.successful(BadRequest("Couldn't process form:\n  " + formWithErrors.errors.mkString("  \n"))),
       form => form.action match {
         case "save" => if (form.id.isEmpty || form.id.getOrElse("").isEmpty) {
           val q = AdHocQuery(UUID.randomUUID, form.title, form.sql, new LocalDateTime, new LocalDateTime)
-          Database.execute(AdHocQueries.insert(q)).flatMap { ok =>
+          Database.execute(AdHocQueries.insert(q)).flatMap { _ =>
             Database.query(AdHocQueries.search("", "title", None)).map { queries =>
               val newId = queries.sortBy(_.created).headOption.map(_.id)
               Ok(views.html.admin.report.adhoc(newId, form.sql, Seq.empty -> Seq.empty, 0, queries))
@@ -64,7 +64,7 @@ class AdHocQueryController @javax.inject.Inject() (override val app: Application
         } else {
           val queryId = form.id.map(UUID.fromString)
           val q = AdHocQueries.UpdateAdHocQuery(queryId.getOrElse(throw new IllegalStateException()), form.title, form.sql)
-          Database.execute(q).flatMap { ok =>
+          Database.execute(q).flatMap { _ =>
             Database.query(AdHocQueries.search("", "title", None)).map { queries =>
               Ok(views.html.admin.report.adhoc(queryId, form.sql, Seq.empty -> Seq.empty, 0, queries))
             }

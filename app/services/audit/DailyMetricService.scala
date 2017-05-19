@@ -34,14 +34,14 @@ object DailyMetricService {
       if (rowsAffected == 1) {
         Future.successful(dm)
       } else {
-        Database.execute(DailyMetricQueries.insert(dm)).map(x => dm)
+        Database.execute(DailyMetricQueries.insert(dm)).map(_ => dm)
       }
     }
   }
 
   def getTotals(last: LocalDate) = Database.query(DailyMetricQueries.GetTotals(last))
 
-  def recalculateMetrics(d: LocalDate) = Database.execute(DailyMetricQueries.RemoveByDay(d)).flatMap { rowsDeleted =>
+  def recalculateMetrics(d: LocalDate) = Database.execute(DailyMetricQueries.RemoveByDay(d)).flatMap { _ =>
     getMetrics(d)
   }
 

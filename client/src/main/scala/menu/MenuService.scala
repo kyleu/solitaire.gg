@@ -12,16 +12,16 @@ class MenuService(settings: SettingsService, navigation: NavigationService) {
   if (title.length != 1) {
     throw new IllegalStateException(s"Found [${title.length}] menu titles.")
   }
-  TemplateUtils.clickHandler(title, jq => toggleMenu())
+  TemplateUtils.clickHandler(title, _ => toggleMenu())
 
   private[this] val toggle = $("#menu-toggle")
   if (toggle.length != 1) {
     throw new IllegalStateException(s"Found [${toggle.length}] menu toggles.")
   }
-  TemplateUtils.clickHandler(toggle, jq => toggleMenu())
+  TemplateUtils.clickHandler(toggle, _ => toggleMenu())
 
   NavigationState.values.foreach { s =>
-    TemplateUtils.clickHandler($(s"#menu-link-$s"), jq => navigation.navigate(s))
+    TemplateUtils.clickHandler($(s"#menu-link-$s"), _ => navigation.navigate(s))
   }
 
   def toggleMenu() = if (navigation.getState == NavigationState.Home) {

@@ -7,7 +7,7 @@ import models.{CardMoved, ResponseMessage}
 case class SelectPileAction(id: String, f: (Pile, GameState) => Seq[ResponseMessage])
 
 object SelectPileActions {
-  val none = SelectPileAction("none", (pile, gameState) => Nil)
+  val none = SelectPileAction("none", (_, _) => Nil)
 
   def moveAllFrom(targets: Seq[String], trigger: () => Unit) = SelectPileAction("move-all", (pile, gameState) => {
     gameState.stockCounter += 1

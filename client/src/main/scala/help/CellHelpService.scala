@@ -34,6 +34,6 @@ object CellHelpService {
     }
     ret += piles
 
-    rules.name -> ret.toSeq
+    rules.name -> ret.toIndexedSeq
   }
 }

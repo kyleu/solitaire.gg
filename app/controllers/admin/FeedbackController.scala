@@ -49,14 +49,14 @@ class FeedbackController @javax.inject.Inject() (override val app: Application) 
     val contentField = body.get("content")
     val content = contentField.flatMap(_.headOption).getOrElse(throw new IllegalStateException())
     val note = UserFeedback.FeedbackNote(UUID.randomUUID, feedbackId, UUID.randomUUID, content, DateUtils.now)
-    Database.execute(UserFeedbackNoteQueries.insert(note)).map { unused =>
+    Database.execute(UserFeedbackNoteQueries.insert(note)).map { _ =>
       Redirect(controllers.admin.routes.FeedbackController.list("all"))
     }
   }
 
   def removeFeedback(id: UUID) = withAdminSession("remove") { implicit request =>
-    Database.execute(UserFeedbackQueries.remove(Seq(id))).map { ok =>
-      Redirect(controllers.admin.routes.FeedbackController.list("all", "", "occurred", 0))
+    Database.execute(UserFeedbackQueries.remove(Seq(id))).map { _ =>
+      Redirect(controllers.admin.routes.FeedbackController.list("all", ""))
     }
   }
 

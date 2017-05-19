@@ -42,7 +42,7 @@ object ThemeService {
       val r = (rgb >> 16) & 0xff
       val g = (rgb >> 8) & 0xff
       val b = (rgb >> 0) & 0xff
-      var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b
+      val luma = 0.2126 * r + 0.7152 * g + 0.0722 * b
       luma > 190
     case _ =>
       utils.Logging.warn(s"Invalid color [$lastColor].")

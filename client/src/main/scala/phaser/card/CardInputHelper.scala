@@ -38,7 +38,7 @@ trait CardInputHelper {
       } else {
         card.lastClicked = Some(now)
       }
-      var scaleTween = card.game.add.tween(card.scale)
+      val scaleTween = card.game.add.tween(card.scale)
       val props = js.Dynamic.literal("x" -> 1.0, "y" -> 1.0)
       scaleTween.to(props, 200, Easing.Default, autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)
       scaleTween.start()

@@ -41,7 +41,7 @@ object LogService {
       }
     }
     pendingLog.foreach(ret += _)
-    ret.toSeq
+    ret.toIndexedSeq
   }
 
   private[this] def getLines(name: String) = Source.fromFile(new File(logDir, name)).getLines()

@@ -50,6 +50,9 @@ class CardSprite(
   events.onInputDown.add(onInputDown _, this, 0.0)
   events.onInputUp.add(onInputUp _, this, 0.0)
 
+  def highlight() = tint = 0xffffff * 0.8
+  def removeHighlight() = tint = 0xffffff
+
   def reveal(r: Rank, s: Suit, u: Boolean) = {
     rank = r
     suit = s

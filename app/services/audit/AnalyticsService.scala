@@ -27,7 +27,7 @@ object AnalyticsService {
       data = data,
       created = DateUtils.now
     )
-    Database.execute(AnalyticsEventQueries.insert(event)).map(x => event)
+    Database.execute(AnalyticsEventQueries.insert(event)).map(_ => event)
   }
 
   def searchEvents(q: String, orderBy: String, page: Int) = for {

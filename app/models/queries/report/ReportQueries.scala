@@ -8,7 +8,7 @@ object ReportQueries {
   private[this] def playerClause(name: String, userIds: Seq[UUID]) = if (userIds.isEmpty) {
     ""
   } else {
-    s" where $name in (${userIds.map(id => "?").mkString(", ")})"
+    s" where $name in (${userIds.map(_ => "?").mkString(", ")})"
   }
 
   case class GameCountForUsers(userIds: Seq[UUID]) extends Query[Map[UUID, Int]] {

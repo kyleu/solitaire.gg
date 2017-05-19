@@ -15,14 +15,6 @@ import utils.DateUtils
 import scala.concurrent.Future
 
 object AnalyticsDataInsert {
-  private[this] val tempMessage = AnalyticsEvent(
-    id = UUID.fromString("99999999-9999-9999-9999-999999999999"),
-    eventType = AnalyticsEvent.EventType.Unknown("skipped"),
-    device = UUID.fromString("99999999-9999-9999-9999-999999999999"),
-    sourceAddress = None,
-    data = JsObject(Seq.empty),
-    created = DateUtils.now
-  )
   def process(event: AnalyticsEvent) = {
     val data = clean(event.data)
     event.eventType match {

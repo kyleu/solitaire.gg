@@ -35,6 +35,6 @@ object DynamicHelpService {
 
     ret += "no-moves-available" -> "No more moves are available. You have lost. Sorry about that."
 
-    ret.toSeq
+    ret.toIndexedSeq
   }
 }

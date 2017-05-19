@@ -10,7 +10,7 @@ sealed abstract class RankMatchRule(val value: String) extends StringEnumEntry {
 object RankMatchRule extends StringEnum[RankMatchRule] with StringCirceEnum[RankMatchRule] {
   private[this] def upBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
     val highRank = lowRank.previous
-    val target = (0 until i).foldLeft[Rank](l)((rank, i) => {
+    val target = (0 until i).foldLeft[Rank](l)((rank, _) => {
       if (rank == Rank.Unknown) {
         Rank.Unknown
       } else if (rank == highRank) {
@@ -27,7 +27,7 @@ object RankMatchRule extends StringEnum[RankMatchRule] with StringCirceEnum[Rank
   }
 
   private[this] def downBy(i: Int, l: Rank, r: Rank, lowRank: Rank, wrap: Boolean) = {
-    val target = (0 until i).foldLeft[Rank](l)((rank, i) => {
+    val target = (0 until i).foldLeft[Rank](l)((rank, _) => {
       if (rank == Rank.Unknown) {
         Rank.Unknown
       } else if (rank == lowRank) {

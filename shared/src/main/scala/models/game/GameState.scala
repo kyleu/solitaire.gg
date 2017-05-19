@@ -28,11 +28,9 @@ case class GameState(
   def apply(msg: ResponseMessage) = GameStateApply.applyMessage(this, msg)
 
   def addPlayer(userId: UUID, name: String, autoFlipOption: Boolean) = players.find(_.userId == userId) match {
-    case Some(p) =>
-      //println("Reconnecting to game [" + gameId + "] from user [" + name + ": " + userId + "]")
+    case Some(_) =>
       // TODO Reconnect
     case None =>
-      //println("Adding player [" + userId + ": " + name + "] to game [" + gameId + "].")
       val playerIndex = playerKnownIds.size
       if (playerIndex == maxPlayers) {
         throw new IllegalArgumentException("Too many players.")

@@ -4,7 +4,7 @@ import scala.util.Random
 
 object Deck {
   def freshCards(numDecks: Int, ranks: Seq[Rank], suits: Seq[Suit]) = {
-    val cards = (0 until numDecks).flatMap(i => suits.flatMap(s => ranks.reverseMap(s -> _)))
+    val cards = (0 until numDecks).flatMap(_ => suits.flatMap(s => ranks.reverseMap(s -> _)))
     val ids = Random.shuffle(cards.indices.toList)
     cards.zip(ids).map(x => Card(id = x._2, r = x._1._2, s = x._1._1))
   }
@@ -25,7 +25,7 @@ case class Deck(var cards: Seq[Card], lowRank: Rank, highRank: Rank, originalOrd
       this.cards.take(numCards)
     } else {
       var cards = Seq.empty[Card]
-      (0 until numCards).map { i =>
+      (0 until numCards).map { _ =>
         val c = this.cards.find { c =>
           (!cards.contains(c)) && (!forbiddenRanks.contains(c.r)) && (!forbiddenSuits.contains(c.s)) &&
             rank.fold(true)(r => c.r == r) && suit.fold(true)(s => c.s == s) && color.fold(true)(clr => c.s.color == clr)
@@ -58,7 +58,7 @@ case class Deck(var cards: Seq[Card], lowRank: Rank, highRank: Rank, originalOrd
       } else {
         cards = cards.filterNot(_ == c)
         ret = ret :+ c
-        seekIndex == 0
+        seekIndex = 0
       }
       enough = ret.length == numCards
     }

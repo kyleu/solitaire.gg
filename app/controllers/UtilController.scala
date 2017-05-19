@@ -19,7 +19,7 @@ class UtilController @javax.inject.Inject() (override val app: Application) exte
     Future.successful(Ok("User-agent: *\nDisallow:\n"))
   }
 
-  def noop = Action { request =>
+  def noop = Action { _ =>
     Ok("Please refresh the page, this url is no longer used.")
   }
 }

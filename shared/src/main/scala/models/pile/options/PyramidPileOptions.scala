@@ -31,7 +31,7 @@ object PyramidPileOptions {
   }
 
   private[this] def dragToConstraint(crm: CardRemovalMethod, mayMoveToEmptyFrom: Seq[String]) = {
-    Constraint("pyramid", (src, tgt, cards, gameState) => tgt.cards.lastOption match {
+    Constraint("pyramid", (src, tgt, cards, _) => tgt.cards.lastOption match {
       case None => src.pileSet.exists(x => mayMoveToEmptyFrom.contains(x.behavior))
 
       case Some(topCard) =>

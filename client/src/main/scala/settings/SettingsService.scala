@@ -35,7 +35,7 @@ class SettingsService(onSave: Settings => Unit) {
     case Some(json) => try {
       JsonSerializers.readSettings(json)
     } catch {
-      case NonFatal(x) => Settings.default
+      case NonFatal(_) => Settings.default
     }
     case None => Settings.default
   }

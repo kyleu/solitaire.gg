@@ -5,7 +5,7 @@ import models.game.UndoHelper
 import phaser.PhaserGame
 
 class ResponseMessageHandler(g: PhaserGame, undo: UndoHelper) {
-  val debugMessages = true
+  val debugMessages = false
 
   def handle(msg: ResponseMessage, registerUndo: Boolean = false): Unit = {
     if (debugMessages) { utils.Logging.info(s"Received response message (undo: $registerUndo) - [$msg].") }
@@ -25,7 +25,7 @@ class ResponseMessageHandler(g: PhaserGame, undo: UndoHelper) {
       case cm: CardMoved => moveCard(cm.card, cm.source, cm.target, cm.turn)
       case cm: CardsMoved => cm.cards.foreach { movedCard => moveCard(movedCard, cm.source, cm.target, cm.turn) }
       case cmc: CardMoveCancelled => cmc.cards.foreach(c => p.getCardSprite(c).cancelDrag())
-      case gl: GameLost => p.lose()
+      case gl: GameLost => p.lose(gl)
       case gw: GameWon => p.win(gw)
       case _ => throw new IllegalStateException(s"Unhandled response message [$msg].")
     }

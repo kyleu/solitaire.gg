@@ -9,8 +9,8 @@ object HomePanel {
 
   def update(navigation: NavigationService) = {
     if (!initialized) {
-      TemplateUtils.clickHandler($("#home-link-play"), jq => navigation.navigate(NavigationState.Play))
-      TemplateUtils.clickHandler($("#home-link-games"), jq => navigation.navigate(NavigationState.Games))
+      TemplateUtils.clickHandler($("#home-link-play"), _ => navigation.navigate(NavigationState.Play))
+      TemplateUtils.clickHandler($("#home-link-games"), _ => navigation.navigate(NavigationState.Games))
       initialized = true
     }
   }

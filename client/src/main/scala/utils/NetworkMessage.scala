@@ -9,7 +9,7 @@ object NetworkMessage {
   def setLatencyCallback(f: Int => Unit) = latencyCallback = Some(f)
   def setLatencyMs(ms: Int) = {
     latencyMs = Some(ms)
-    latencyCallback.foreach(_(ms))
+    latencyCallback.foreach(c => c(ms))
   }
   def getLatency = latencyMs.getOrElse(-1)
 
@@ -19,7 +19,7 @@ object NetworkMessage {
   private[this] var sendF: Option[(RequestMessage) => Unit] = None
 
   def register(f: (RequestMessage) => Unit) = sendF match {
-    case Some(dbf) => throw new IllegalStateException("Double registration.")
+    case Some(_) => throw new IllegalStateException("Double registration.")
     case None => sendF = Some(f)
   }
 

@@ -38,7 +38,7 @@ object HelpTemplateContent {
   def getSimilarDiv(rules: GameRules) = {
     val like = models.rules.GameRulesSet.allByIdWithAliases(rules.id)
     rules.like match {
-      case Some(l) => div(
+      case Some(_) => div(
         h3(Messages("help.original.game")),
         ul(
           li(

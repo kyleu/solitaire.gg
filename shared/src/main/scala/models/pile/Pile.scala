@@ -65,7 +65,7 @@ case class Pile(id: String, options: PileOptions, cards: collection.mutable.Arra
   @tailrec
   private[this] def isSorted(l: List[Card], rmr: RankMatchRule, smr: SuitMatchRule, lowRank: Rank, wrap: Boolean): Boolean = l match {
     case Nil => true
-    case left :: Nil => true
+    case _ :: Nil => true
     case left :: xs =>
       val right = xs.headOption.getOrElse(throw new IllegalStateException())
       val rankMatch = rmr.check(left.r, right.r, lowRank, wrap)

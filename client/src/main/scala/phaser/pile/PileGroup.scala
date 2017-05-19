@@ -26,7 +26,7 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
     val ret = new Sprite(game, 0, 0, phaser.getImages.emptyPile, 0)
     ret.alpha = 0.3
     ret.inputEnabled = true
-    ret.events.onInputUp.add((e: Any, p: Pointer) => {
+    ret.events.onInputUp.add((_: Any, p: Pointer) => {
       if (p.button.toString.toInt == 0) {
         if (canSelectPile()) {
           val msg = SelectPile(pile.id, auto = false)

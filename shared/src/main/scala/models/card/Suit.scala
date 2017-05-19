@@ -12,6 +12,7 @@ sealed abstract class Suit(val value: Char) extends CharEnumEntry with Ordered[S
 
 object Suit extends CharEnum[Suit] with CharCirceEnum[Suit] {
   val standard: Seq[Suit] = Seq(Hearts, Spades, Diamonds, Clubs)
+  val all = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs, Suit.Horseshoes, Suit.Stars, Suit.Tridents, Suit.Moons)
 
   case object Hearts extends Suit('H') {
     override val color = Color.Red
