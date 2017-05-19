@@ -2,20 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation Sets (Fn): 0
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 8
- *   May move to non-empty tableau from (T0o): 2 (waste)
- *   Tableau rank match rule for building (T0r): 128 (Build up)
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Tableau wraps from king to ace (T0w): true
- *   Left mouse interface function (leftfunc): 0x2|0x20
- *   Maximum deals from stock (maxdeals): 2 (2)
- *   Touch interface function (touchfunc): 0x2|0x20
- *   Victory condition (victory): 2 (No cards left in stock)
- */
 object CircleEight extends GameRules(
   id = "circleeight",
   completed = false,
@@ -23,11 +9,7 @@ object CircleEight extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/circle_eight.htm")),
   layout = "sw|t",
   victoryCondition = VictoryCondition.NoneInStock,
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(2)
-    )
-  ),
+  stock = Some(StockRules(maximumDeals = Some(2))),
   waste = Some(WasteRules()),
   tableaus = Seq(
     TableauRules(

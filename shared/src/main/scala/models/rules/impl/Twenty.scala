@@ -39,9 +39,7 @@ object Twenty extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/fox.html")
   ),
   layout = "sf:f|2t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

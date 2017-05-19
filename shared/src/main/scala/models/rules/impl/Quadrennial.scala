@@ -29,9 +29,7 @@ object Quadrennial extends GameRules(
   like = Some("acquaintance"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadrennial.htm")),
   layout = "sf|t",
-  deckOptions = DeckOptions(
-    numDecks = 4
-  ),
+  deckOptions = DeckOptions(numDecks = 4),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

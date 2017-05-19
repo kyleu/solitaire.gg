@@ -34,9 +34,7 @@ object Juvenile extends GameRules(
   ),
   layout = ":::.t|2tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   foundations = Seq(
     FoundationRules(
       canMoveFrom = FoundationCanMoveFrom.Never,

@@ -11,7 +11,7 @@ import msg.rsp.SocketResponseMessage
 object JsonSerializers {
   def readSettings(s: String) = decode[Settings](s) match {
     case Right(x) => x
-    case Left(err) => Settings.default
+    case Left(_) => Settings.default
   }
   def writeSettings(s: Settings, indent: Boolean = true) = if(indent) { s.asJson.spaces2 } else { s.asJson.noSpaces }
 

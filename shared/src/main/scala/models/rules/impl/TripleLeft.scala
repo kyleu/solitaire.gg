@@ -21,9 +21,7 @@ object TripleLeft extends GameRules(
   like = Some("movingleft"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_left.htm")),
   layout = "swf|.:t",
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
+  deckOptions = DeckOptions(numDecks = 3),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

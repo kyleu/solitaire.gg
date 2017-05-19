@@ -21,23 +21,10 @@ object Skippy extends GameRules(
   title = "Skippy",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/skippy.htm")),
   layout = "::.swf|::::::c|t",
-  deckOptions = DeckOptions(
-    numDecks = 2,
-    lowRank = Rank.Unknown
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2, lowRank = Rank.Unknown),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      initialCards = 1,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 8, initialCards = 1, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 16,

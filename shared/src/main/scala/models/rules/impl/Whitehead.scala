@@ -2,13 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau initial cards (T0d): -1 (1 to n cards)
- *   Tableau piles (T0n): 7
- *   Tableau suit match rule for building (T0s): 3 (In same color)
- *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
- */
 object Whitehead extends GameRules(
   id = "whitehead",
   completed = true,
@@ -26,23 +19,12 @@ object Whitehead extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Whitehead.html.en")
   ),
   layout = "swf|t",
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
-  tableaus = Seq(
-    TableauRules(
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.SameColor,
-      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
-    )
-  )
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = Seq(TableauRules(
+    cardsFaceDown = TableauFaceDownCards.Count(0),
+    suitMatchRuleForBuilding = SuitMatchRule.SameColor,
+    suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
+  ))
 )

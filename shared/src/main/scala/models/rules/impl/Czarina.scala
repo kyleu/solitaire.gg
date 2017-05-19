@@ -3,19 +3,6 @@ package models.rules.impl
 import models.card.Rank
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Foundation initial cards (F0d): 1 (1 cards)
- *   Auto-fill an empty tableau from (T0af): 4 (Stock)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 5
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Similar to (like): fourseasons
- *   Low card (lowpip): -2 (?)
- *   Related games (related): corners
- *   Enable super moves, whatever those are (supermoves): 1
- */
 object Czarina extends GameRules(
   id = "czarina",
   completed = false,
@@ -29,22 +16,10 @@ object Czarina extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Czarina.htm")
   ),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      initialCards = 1,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 1, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 5,

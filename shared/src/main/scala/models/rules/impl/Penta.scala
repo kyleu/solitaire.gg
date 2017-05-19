@@ -39,9 +39,7 @@ object Penta extends GameRules(
   title = "Penta",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/penta.htm")),
   layout = ":::.sw|f:f|:t:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

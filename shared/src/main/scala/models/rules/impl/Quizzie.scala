@@ -21,9 +21,7 @@ object Quizzie extends GameRules(
   like = Some("inquisitor"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quizzie.htm")),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(3),

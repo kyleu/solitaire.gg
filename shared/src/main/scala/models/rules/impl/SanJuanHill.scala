@@ -24,9 +24,7 @@ object SanJuanHill extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SanJuanHill.htm")
   ),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

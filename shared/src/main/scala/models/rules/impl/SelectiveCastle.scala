@@ -25,9 +25,7 @@ object SelectiveCastle extends GameRules(
     Link("Wikipedia", "en.wikipedia.org/wiki/Beleaguered_Castle")
   ),
   layout = "::f|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

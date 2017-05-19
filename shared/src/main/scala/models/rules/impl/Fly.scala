@@ -2,26 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation initial cards (F0d): -1
- *   Foundation suit match rule (F0s): 5 (Regardless of suit)
- *   Reserve name (R0Nm): Fly
- *   Reserve initial cards (R0d): 13
- *   *R0dd (R0dd): 0
- *   Reserve cards face down (R0df): 0
- *   Number of reserve piles (R0n): 1
- *   Tableau initial cards (T0d): 0 (None)
- *   Empty tableau is filled from (T0fo): 1 (stock)
- *   Tableau piles (T0n): 5
- *   May move to non-empty tableau from (T0o): 1 (stock)
- *   Tableau rank match rule for building (T0r): 8191 (Regardless of rank)
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 7 (Manually)
- *   Similar to (like): frog
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object Fly extends GameRules(
   id = "fly",
   completed = true,
@@ -36,15 +16,8 @@ object Fly extends GameRules(
     Link("Wikipedia", "en.wikipedia.org/wiki/Frog_(game)")
   ),
   layout = "sf|r.:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      dealTo = StockDealTo.Manually,
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(dealTo = StockDealTo.Manually, maximumDeals = Some(1))),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -65,12 +38,5 @@ object Fly extends GameRules(
       mayMoveToEmptyFrom = Seq("stock")
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Fly",
-      numPiles = 1,
-      initialCards = 13,
-      cardsFaceDown = 0
-    )
-  )
+  reserves = Some(ReserveRules(name = "Fly", initialCards = 13))
 )

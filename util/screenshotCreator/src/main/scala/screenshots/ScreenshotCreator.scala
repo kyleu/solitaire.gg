@@ -12,10 +12,12 @@ object ScreenshotCreator {
     throw new IllegalStateException(s"Directory [$outDir] does not exist.")
   }
 
+  def log(s: String) = println(s)
+
   def processAll() = {
     val startMs = System.currentTimeMillis
     val set = GameRulesSet.all
-    println(s"Creating [${set.size}] screenshots...")
+    log(s"Creating [${set.size}] screenshots...")
     for (rules <- set) {
       if (hasAllScreenshots(rules.id)) {
         println(s"Skipping already-generated screenshots for [${rules.id}].")
@@ -23,14 +25,14 @@ object ScreenshotCreator {
         processRules(rules.id)
       }
     }
-    println(s"Screenshot creation complete in [${System.currentTimeMillis - startMs}ms].")
+    log(s"Screenshot creation complete in [${System.currentTimeMillis - startMs}ms].")
     s"Ok, rendered [${set.size}] screenshots."
   }
 
   def processRules(rules: String) = {
     import scala.sys.process._
 
-    println(s"  Creating screenshots for [$rules]...")
+    log(s"  Creating screenshots for [$rules]...")
     val startMs = System.currentTimeMillis
 
     "killall Safari".!
@@ -42,7 +44,7 @@ object ScreenshotCreator {
     Thread.sleep(7000)
 
     val windowId = "./util/screenshotCreator/bin/safari-window-id.sh".!!.trim
-    println(s"Using window id [$windowId].")
+    log(s"Using window id [$windowId].")
 
     s"./util/screenshotCreator/bin/safari-resize.sh 0 0 1280 782".!!
     Thread.sleep(1000)
@@ -59,7 +61,7 @@ object ScreenshotCreator {
     s"screencapture -l$windowId -o -x $outDir/$rules-portrait-browser.png".!!
     s"convert $outDir/$rules-portrait-browser.png -crop +0+124 +repage $outDir/$rules-portrait.png".!!
 
-    println(s"  Screenshots complete for [$rules] in [${System.currentTimeMillis - startMs}ms].")
+    log(s"  Screenshots complete for [$rules] in [${System.currentTimeMillis - startMs}ms].")
 
     s"Ok, rendered a screenshot for [$rules]."
   }

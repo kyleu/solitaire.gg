@@ -2,20 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Tableau initial cards (T0d): -1 (1 to n cards)
- *   Tableau cards face down (T0df): 100
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 9
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
- *   Deal cards from stock (dealchunk): 1 (One by one)
- *   Similar to (like): trigon
- *   Maximum deals from stock (maxdeals): 0
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object DoubleTrigon extends GameRules(
   id = "doubletrigon",
   completed = true,
@@ -23,23 +9,14 @@ object DoubleTrigon extends GameRules(
   like = Some("trigon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_trigon.htm")),
   layout = "swf|:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      autoMoveCards = true
-    )
-  ),
-  tableaus = Seq(
-    TableauRules(
-      numPiles = 9,
-      suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      emptyFilledWith = FillEmptyWith.HighRank
-    )
-  )
+  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = Seq(TableauRules(
+    numPiles = 9,
+    suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
+    suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
+    emptyFilledWith = FillEmptyWith.HighRank
+  ))
 )

@@ -2,14 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau initial cards (T0d): 3 (3 cards)
- *   Tableau cards face down (T0df): 100
- *   Tableau piles (T0n): 10
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
- */
 object Westcliff extends GameRules(
   id = "westcliff",
   completed = true,
@@ -29,22 +21,8 @@ object Westcliff extends GameRules(
     Link("John Welford on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-westcliff-solitaire-28948/")
   ),
   layout = "swf|t",
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
-  tableaus = Seq(
-    TableauRules(
-      numPiles = 10,
-      initialCards = InitialCards.Count(3)
-    )
-  )
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = Seq(TableauRules(numPiles = 10, initialCards = InitialCards.Count(3)))
 )

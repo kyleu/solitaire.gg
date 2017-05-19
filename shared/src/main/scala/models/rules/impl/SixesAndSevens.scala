@@ -31,9 +31,7 @@ object SixesAndSevens extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/sixes-and-sevens.htm")
   ),
   layout = "swff|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

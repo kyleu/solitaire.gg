@@ -2,19 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation Sets (Fn): 0
- *   Auto-fill an empty tableau from (T0af): 6 (First waste then stock)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 10
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
- *   Tableau wraps from king to ace (T0w): true
- *   Number of decks (ndecks): 2 (2 decks)
- *   Victory condition (victory): 3 (All cards on tableau sorted)
- */
 object BrownRecluse extends GameRules(
   id = "brownrecluse",
   completed = true,
@@ -22,14 +9,8 @@ object BrownRecluse extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/brown_recluse.htm")),
   layout = "sw|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
   tableaus = Seq(
     TableauRules(

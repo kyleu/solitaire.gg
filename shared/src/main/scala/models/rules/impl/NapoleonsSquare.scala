@@ -31,9 +31,7 @@ object NapoleonsSquare extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/NapoleonsSquare.htm")
   ),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

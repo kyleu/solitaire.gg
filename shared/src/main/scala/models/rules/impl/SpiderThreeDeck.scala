@@ -28,9 +28,7 @@ object SpiderThreeDeck extends GameRules(
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Spider_Three_Decks.html.en")),
   layout = "sf|.t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
+  deckOptions = DeckOptions(numDecks = 3),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.TableauIfNoneEmpty,

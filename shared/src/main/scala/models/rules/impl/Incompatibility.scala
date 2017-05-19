@@ -19,9 +19,7 @@ object Incompatibility extends GameRules(
   title = "Incompatibility",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/incompatibility.htm")),
   layout = "sf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.TableauNonEmpty,

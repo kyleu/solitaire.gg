@@ -23,12 +23,7 @@ object LuckyFan extends GameRules(
   like = Some("freefan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lucky_fan.htm")),
   layout = "f|c|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       name = "Fan",
@@ -41,9 +36,5 @@ object LuckyFan extends GameRules(
       maxCards = 3
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 2
-    )
-  )
+  cells = Some(CellRules(numPiles = 2))
 )

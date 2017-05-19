@@ -19,12 +19,7 @@ object TwoCell extends GameRules(
   title = "Two Cell",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/two_cells.htm")),
   layout = "c::f|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,
@@ -33,9 +28,5 @@ object TwoCell extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 2
-    )
-  )
+  cells = Some(CellRules(numPiles = 2))
 )

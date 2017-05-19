@@ -25,21 +25,10 @@ object TripleMinerva extends GameRules(
   like = Some("minerva"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_minerva.htm")),
   layout = "swf|r::t",
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(2)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 3),
+  stock = Some(StockRules(maximumDeals = Some(2))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 12,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 12, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 12,
@@ -48,12 +37,5 @@ object TripleMinerva extends GameRules(
       emptyFilledWith = FillEmptyWith.HighRank
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 15,
-      cardsFaceDown = 0
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 15))
 )

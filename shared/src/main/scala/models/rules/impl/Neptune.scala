@@ -28,10 +28,7 @@ object Neptune extends GameRules(
   layout = "sf|t",
   victoryCondition = VictoryCondition.AllButFourCardsOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemoveConsecutiveRankPairs,
-  deckOptions = DeckOptions(
-    numDecks = 4,
-    suits = Seq(Suit.Moons)
-  ),
+  deckOptions = DeckOptions(numDecks = 4, suits = Seq(Suit.Moons)),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Never,

@@ -21,9 +21,7 @@ object ThreeBears extends GameRules(
   title = "Three Bears",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_bears.htm")),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
+  deckOptions = DeckOptions(numDecks = 3),
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

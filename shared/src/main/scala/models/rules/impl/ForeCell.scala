@@ -2,18 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Card initially dealt into cells (C0d): 4 (4 cards)
- *   Number of cells (C0n): 4
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): 6 (6 cards)
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 8
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Number of waste piles (W0n): 0
- *   Enable super moves, whatever those are (supermoves): 1
- */
 object ForeCell extends GameRules(
   id = "forecell",
   completed = true,
@@ -24,12 +12,7 @@ object ForeCell extends GameRules(
     Link("PySol", "pysolfc.sourceforge.net/doc/rules/forecell.html")
   ),
   layout = "f:c|.t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,
@@ -39,9 +22,5 @@ object ForeCell extends GameRules(
       emptyFilledWith = FillEmptyWith.HighRank
     )
   ),
-  cells = Some(
-    CellRules(
-      initialCards = 4
-    )
-  )
+  cells = Some(CellRules(initialCards = 4))
 )

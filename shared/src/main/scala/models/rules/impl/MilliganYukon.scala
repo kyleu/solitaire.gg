@@ -23,9 +23,7 @@ object MilliganYukon extends GameRules(
   like = Some("milliganharp"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/milligan_yukon.htm")),
   layout = "sf|.t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

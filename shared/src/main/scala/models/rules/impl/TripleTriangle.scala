@@ -21,9 +21,7 @@ object TripleTriangle extends GameRules(
   like = Some("eternaltriangle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_triangle.htm")),
   layout = "sf|t",
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
+  deckOptions = DeckOptions(numDecks = 3),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

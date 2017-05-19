@@ -23,9 +23,7 @@ object Irmgard extends GameRules(
   like = Some("gypsy"),
   links = Seq(Link("PySol", "pysolfc.sourceforge.net/doc/rules/irmgard.html")),
   layout = "sf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

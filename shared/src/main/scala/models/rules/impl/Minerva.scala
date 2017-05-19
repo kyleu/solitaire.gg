@@ -26,18 +26,9 @@ object Minerva extends GameRules(
   related = Seq("doubleminerva", "tripleminerva", "munger", "mystique"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/minerva.htm")),
   layout = "swf|r|t",
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(2)
-    )
-  ),
+  stock = Some(StockRules(maximumDeals = Some(2))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Count(4),
@@ -45,12 +36,5 @@ object Minerva extends GameRules(
       emptyFilledWith = FillEmptyWith.HighRank
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 11,
-      cardsFaceDown = 0
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 11))
 )

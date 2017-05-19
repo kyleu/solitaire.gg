@@ -27,9 +27,7 @@ object MilliganHarp extends GameRules(
     Link("PySol", "pysolfc.sourceforge.net/doc/rules/milliganharp.html")
   ),
   layout = "sf|.t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

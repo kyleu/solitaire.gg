@@ -31,22 +31,10 @@ object Signora extends GameRules(
   related = Seq("doublesignora", "fallingstar", "blondesandbrunettes", "roman"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/signora.htm")),
   layout = "swf|r|t",
-  deckOptions = DeckOptions(
-    numDecks = 2,
-    lowRank = Rank.Unknown
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2, lowRank = Rank.Unknown),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      suitMatchRule = SuitMatchRule.AlternatingColors
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 8, suitMatchRule = SuitMatchRule.AlternatingColors)),
   tableaus = Seq(
     TableauRules(
       numPiles = 9,
@@ -58,12 +46,5 @@ object Signora extends GameRules(
       mayMoveToEmptyFrom = Seq("stock", "pyramid", "waste", "pocket", "cell", "foundation", "tableau")
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 11,
-      cardsFaceDown = 0
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 11))
 )

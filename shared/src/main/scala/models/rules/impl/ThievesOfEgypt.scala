@@ -23,9 +23,7 @@ object ThievesOfEgypt extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/thieves-of-egypt.htm")
   ),
   layout = "swf|.t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

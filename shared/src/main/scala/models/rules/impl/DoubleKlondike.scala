@@ -2,19 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau initial cards (T0d): -1 (1 to n cards)
- *   Tableau cards face down (T0df): 100
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 9
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
- *   Deal cards from stock (dealchunk): 3 (Three at a time)
- *   Maximum deals from stock (maxdeals): 0
- *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): sally, suittriangle
- */
 object DoubleKlondike extends GameRules(
   id = "doubleklondike",
   completed = true,
@@ -27,25 +14,9 @@ object DoubleKlondike extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Jumbo.html.en")
   ),
   layout = "swf|:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      cardsDealt = StockCardsDealt.Count(3)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      autoMoveCards = true
-    )
-  ),
-  tableaus = Seq(
-    TableauRules(
-      numPiles = 9,
-      emptyFilledWith = FillEmptyWith.HighRank
-    )
-  )
+  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = Seq(TableauRules(numPiles = 9, emptyFilledWith = FillEmptyWith.HighRank))
 )

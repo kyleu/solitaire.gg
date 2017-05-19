@@ -4,17 +4,6 @@ import models.card.Rank
 import models.game._
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Foundation initial cards (F0d): 1 (1 cards)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 5
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Low card (lowpip): -2 (?)
- *   Related games (related): czarina
- *   Enable super moves, whatever those are (supermoves): 1
- */
 object FourSeasons extends GameRules(
   id = "fourseasons",
   completed = true,
@@ -29,9 +18,7 @@ object FourSeasons extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Royal_East.html.en")
   ),
   layout = "swf|:t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

@@ -28,10 +28,7 @@ object NewYork extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/NewYork.htm")
   ),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2,
-    lowRank = Rank.Unknown
-  ),
+  deckOptions = DeckOptions(numDecks = 2, lowRank = Rank.Unknown),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Manually,

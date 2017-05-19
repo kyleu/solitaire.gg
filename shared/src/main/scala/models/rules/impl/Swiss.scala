@@ -22,9 +22,7 @@ object Swiss extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SwissPatience.htm")
   ),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Two
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Two),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

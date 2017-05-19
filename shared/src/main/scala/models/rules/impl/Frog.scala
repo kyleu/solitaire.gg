@@ -2,25 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation suit match rule (F0s): 5 (Regardless of suit)
- *   Reserve name (R0Nm): Frog
- *   Reserve initial cards (R0d): 13
- *   *R0dd (R0dd): 4
- *   Reserve cards face down (R0df): 0
- *   Number of reserve piles (R0n): 1
- *   Tableau initial cards (T0d): 0 (None)
- *   Empty tableau is filled from (T0fo): 1 (stock)
- *   Tableau piles (T0n): 5
- *   May move to non-empty tableau from (T0o): 1 (stock)
- *   Tableau rank match rule for building (T0r): 8191 (Regardless of rank)
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 7 (Manually)
- *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): fly
- */
 object Frog extends GameRules(
   id = "frog",
   completed = true,
@@ -34,15 +15,8 @@ object Frog extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/frog.htm")
   ),
   layout = "sf|r:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      dealTo = StockDealTo.Manually,
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(dealTo = StockDealTo.Manually, maximumDeals = Some(1))),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,
@@ -62,12 +36,5 @@ object Frog extends GameRules(
       mayMoveToEmptyFrom = Seq("stock")
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Frog",
-      numPiles = 1,
-      initialCards = 13,
-      cardsFaceDown = 0
-    )
-  )
+  reserves = Some(ReserveRules(name = "Frog", initialCards = 13))
 )

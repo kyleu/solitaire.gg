@@ -41,9 +41,7 @@ object Intelligence extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/intelligence.html")
   ),
   layout = "s::::f|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Never,

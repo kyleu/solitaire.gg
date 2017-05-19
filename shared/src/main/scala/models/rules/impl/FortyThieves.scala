@@ -2,15 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Tableau initial cards (T0d): 4 (4 cards)
- *   Tableau piles (T0n): 10
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): robie, napoleonsquadrilateral, famousfifty, fortybandits, limited, elba, threepi...
- */
 object FortyThieves extends GameRules(
   id = "fortythieves",
   completed = true,
@@ -37,9 +28,7 @@ object FortyThieves extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/forty_thieves.php")
   ),
   layout = "swf|.t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

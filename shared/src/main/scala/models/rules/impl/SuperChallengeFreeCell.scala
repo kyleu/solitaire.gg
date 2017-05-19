@@ -27,12 +27,7 @@ object SuperChallengeFreeCell extends GameRules(
     Link("Michael Keller's amazing FreeCell FAQ", "solitairelaboratory.com/fcfaq.html#AceDepth")
   ),
   layout = "f|c|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,

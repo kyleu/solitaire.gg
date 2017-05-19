@@ -2,21 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation low rank (F0b): 20 (Any Card)
- *   Maximum cards for foundation (F0m): 0
- *   Auto-fill an empty tableau from (T0af): 4 (Stock)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled with (T0f): 5 (No card)
- *   Tableau piles (T0n): 12
- *   Tableau suit match rule for building (T0s): 0 (May not build)
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 8 (Never)
- *   Left mouse interface function (leftfunc): 1
- *   Similar to (like): simplepairs
- *   Card removal method (pairs): 15 (Remove sets of 1 face card and 3 that add to 18)
- */
 object Eighteens extends GameRules(
   id = "eighteens",
   completed = true,
@@ -29,29 +14,15 @@ object Eighteens extends GameRules(
   ),
   layout = "s:::f|t",
   cardRemovalMethod = CardRemovalMethod.RemoveSetsOfOneFaceCardAnd3ThatAddToEighteen,
-  stock = Some(
-    StockRules(
-      dealTo = StockDealTo.Never,
-      maximumDeals = Some(1)
-    )
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      lowRank = FoundationLowRank.AnyCard,
-      maxCards = 0,
-      autoMoveCards = true
-    )
-  ),
-  tableaus = Seq(
-    TableauRules(
-      numPiles = 12,
-      initialCards = InitialCards.Count(1),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.None,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      emptyFilledWith = FillEmptyWith.None
-    )
-  )
+  stock = Some(StockRules(dealTo = StockDealTo.Never, maximumDeals = Some(1))),
+  foundations = Seq(FoundationRules(numPiles = 4, lowRank = FoundationLowRank.AnyCard, maxCards = 0, autoMoveCards = true)),
+  tableaus = Seq(TableauRules(
+    numPiles = 12,
+    initialCards = InitialCards.Count(1),
+    cardsFaceDown = TableauFaceDownCards.Count(0),
+    suitMatchRuleForBuilding = SuitMatchRule.None,
+    suitMatchRuleForMovingStacks = SuitMatchRule.None,
+    autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
+    emptyFilledWith = FillEmptyWith.None
+  ))
 )

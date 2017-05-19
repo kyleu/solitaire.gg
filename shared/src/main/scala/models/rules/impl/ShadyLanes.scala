@@ -24,21 +24,10 @@ object ShadyLanes extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/ShadyLanes.htm")
   ),
   layout = "swf|r|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 4,
@@ -48,12 +37,5 @@ object ShadyLanes extends GameRules(
       mayMoveToEmptyFrom = Seq("reserve")
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 4,
-      initialCards = 1,
-      cardsFaceDown = -1
-    )
-  )
+  reserves = Some(ReserveRules(numPiles = 4, cardsFaceDown = -1))
 )

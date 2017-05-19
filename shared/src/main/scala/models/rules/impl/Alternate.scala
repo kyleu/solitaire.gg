@@ -3,32 +3,6 @@ package models.rules.impl
 import models.card.Color
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation name (F0Nm): Red Foundation
- *   Foundation initial cards (F0d): -1
- *   Number of foundation piles (F0n): 2 (2 stacks)
- *   Foundation suit match rule (F0s): 4 (In alternating colors)
- *   Initial card restriction (F0u): 3 (Unique red suits)
- *   Foundation name (F1Nm): Black Foundation
- *   Foundation low rank (F1b): 22 (Deck's high card)
- *   Foundation initial cards (F1d): -1
- *   Number of foundation piles (F1n): 2 (2 stacks)
- *   Foundation rank match rule (F1r): 32 (Build down)
- *   Foundation suit match rule (F1s): 4 (In alternating colors)
- *   Initial card restriction (F1u): 4 (Unique black suits)
- *   Foundation Sets (Fn): 2
- *   Tableau name (T0Nm): Reserve
- *   Tableau initial cards (T0d): 0 (None)
- *   Empty tableau is filled from (T0fo): 1 (stock)
- *   Tableau piles (T0n): 4
- *   May move to non-empty tableau from (T0o): 1 (stock)
- *   Tableau rank match rule for building (T0r): 8191 (Regardless of rank)
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 7 (Manually)
- *   Similar to (like): sirtommy
- */
 object Alternate extends GameRules(
   id = "alternate",
   completed = true,
@@ -39,12 +13,7 @@ object Alternate extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/alternate.php")
   ),
   layout = "sff|.t",
-  stock = Some(
-    StockRules(
-      dealTo = StockDealTo.Manually,
-      maximumDeals = Some(1)
-    )
-  ),
+  stock = Some(StockRules(dealTo = StockDealTo.Manually, maximumDeals = Some(1))),
   foundations = Seq(
     FoundationRules(
       name = "Red Foundation",

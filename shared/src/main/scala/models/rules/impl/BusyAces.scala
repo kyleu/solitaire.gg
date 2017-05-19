@@ -2,17 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 12
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Left mouse interface function (leftfunc): 0x2|0x20
- *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): stages, courtyard, dimes, fortunesfavor, deuces
- *   Enable super moves, whatever those are (supermoves): 1
- */
 object BusyAces extends GameRules(
   id = "busyaces",
   completed = true,
@@ -29,21 +18,10 @@ object BusyAces extends GameRules(
     Link("Amelia Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/view-article/1866274/")
   ),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 12,

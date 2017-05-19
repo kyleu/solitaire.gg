@@ -21,17 +21,8 @@ object Sarlacc extends GameRules(
   completed = true,
   title = "Sarlacc",
   layout = ":f|c|:p",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
-  cells = Some(
-    CellRules(
-      numPiles = 6
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  cells = Some(CellRules(numPiles = 6)),
   pyramids = Seq(
     PyramidRules(
       name = "Tableau",

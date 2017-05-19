@@ -2,18 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation low rank (F0b): 20 (Any Card)
- *   Foundation initial cards (F0d): 1 (1 cards)
- *   Maximum cards for foundation (F0m): 0
- *   Number of foundation piles (F0n): 2 (2 stacks)
- *   Foundation rank match rule (F0r): 160 (Build up or down)
- *   Foundation suit match rule (F0s): 5 (Regardless of suit)
- *   Tableau sets (Tn): 0 (0 tableau sets)
- *   Similar to (like): robert
- *   Maximum deals from stock (maxdeals): 3 (3)
- */
 object Bobby extends GameRules(
   id = "bobby",
   completed = false,
@@ -21,11 +9,7 @@ object Bobby extends GameRules(
   like = Some("robert"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/bobby.htm")),
   layout = "swf",
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(3)
-    )
-  ),
+  stock = Some(StockRules(maximumDeals = Some(3))),
   waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(

@@ -24,9 +24,7 @@ object TripleInterchange extends GameRules(
   related = Seq("quadrupleinterchange"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_interchange.htm")),
   layout = ":::::sw|f|::t",
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
+  deckOptions = DeckOptions(numDecks = 3),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
   foundations = Seq(

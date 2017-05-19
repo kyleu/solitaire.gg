@@ -22,12 +22,7 @@ object ThreeCell extends GameRules(
     Link("Swoop Software", "www.swoopsoftware.com/solitaire_rules/threecell.html")
   ),
   layout = "f:c|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,
@@ -36,9 +31,5 @@ object ThreeCell extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 3
-    )
-  )
+  cells = Some(CellRules(numPiles = 3))
 )

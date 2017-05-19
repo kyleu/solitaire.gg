@@ -36,9 +36,7 @@ object Stalactites extends GameRules(
     Link("PySol", "pysolfc.sourceforge.net/doc/rules/stalactites.html")
   ),
   layout = "f::c|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,
@@ -58,9 +56,5 @@ object Stalactites extends GameRules(
       emptyFilledWith = FillEmptyWith.None
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 2
-    )
-  )
+  cells = Some(CellRules(numPiles = 2))
 )

@@ -3,18 +3,6 @@ package models.rules.impl
 import models.card.Rank
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation initial cards (F0d): 1 (1 cards)
- *   Tableau initial cards (T0d): -1 (1 to n cards)
- *   Tableau cards face down (T0df): 0
- *   Tableau piles (T0n): 7
- *   Tableau suit match rule for building (T0s): 3 (In same color)
- *   Tableau suit match rule for moving stacks (T0ts): 3 (In same color)
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 2 (To all tableau piles)
- *   Low card (lowpip): -2 (?)
- */
 object AgnesSorel extends GameRules(
   id = "agnessorel",
   completed = true,
@@ -28,15 +16,8 @@ object AgnesSorel extends GameRules(
     Link("Jan Wolter's Experiments", "/article/agnessorel.html")
   ),
   layout = "s.f|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
-  stock = Some(
-    StockRules(
-      dealTo = StockDealTo.Tableau,
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
+  stock = Some(StockRules(dealTo = StockDealTo.Tableau, maximumDeals = Some(1))),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

@@ -40,9 +40,7 @@ object RougeForty extends GameRules(
   like = Some("rougeetnoir"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rouge_forty.htm")),
   layout = "s:f:f:f|:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

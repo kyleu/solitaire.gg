@@ -22,9 +22,7 @@ object QuadrupleInterchange extends GameRules(
   like = Some("tripleinterchange"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_interchange.htm")),
   layout = "",
-  deckOptions = DeckOptions(
-    numDecks = 4
-  ),
+  deckOptions = DeckOptions(numDecks = 4),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
   foundations = Seq(

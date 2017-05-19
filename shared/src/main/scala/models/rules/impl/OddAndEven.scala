@@ -40,9 +40,7 @@ object OddAndEven extends GameRules(
     Link("Dick's Games of Solitaire (1898)", "howtoplaysolitaire.blogspot.com/2010/06/odd-and-even-double-deck-solitaire-game.html")
   ),
   layout = "swf:f|.:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(2)

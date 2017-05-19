@@ -2,19 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation initial cards (F0d): 2 (2 cards)
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): 5 (5 cards)
- *   Tableau piles (T0n): 10
- *   Tableau rank match rule for building (T0r): 160 (Build up or down)
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Number of waste piles (W0n): 0
- *   Similar to (like): fortress
- *   Allowed draws (ndraw): 1 (1)
- *   Enable super moves, whatever those are (supermoves): 1
- */
 object FortressOfMercy extends GameRules(
   id = "fortressofmercy",
   completed = false,

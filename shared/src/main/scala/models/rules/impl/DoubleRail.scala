@@ -2,15 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 5
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
- *   Similar to (like): singlerail
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object DoubleRail extends GameRules(
   id = "doublerail",
   completed = true,
@@ -25,28 +16,15 @@ object DoubleRail extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/double_rail.htm")
   ),
   layout = "swf|:::t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      autoMoveCards = true
-    )
-  ),
-  tableaus = Seq(
-    TableauRules(
-      numPiles = 5,
-      initialCards = InitialCards.Count(1),
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.Any,
-      suitMatchRuleForMovingStacks = SuitMatchRule.Any
-    )
-  )
+  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = Seq(TableauRules(
+    numPiles = 5,
+    initialCards = InitialCards.Count(1),
+    cardsFaceDown = TableauFaceDownCards.Count(0),
+    suitMatchRuleForBuilding = SuitMatchRule.Any,
+    suitMatchRuleForMovingStacks = SuitMatchRule.Any
+  ))
 )

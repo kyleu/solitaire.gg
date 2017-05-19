@@ -2,21 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Reserve initial cards (R0d): 2
- *   Reserve cards face down (R0df): 0
- *   Number of reserve piles (R0n): 1
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): 5 (5 cards)
- *   Empty tableau is filled with (T0f): 5 (No card)
- *   Tableau action after deal (T0fx): 2 (limit piles to two jacks)
- *   Tableau piles (T0n): 10
- *   Tableau suit match rule for building (T0s): 0 (May not build)
- *   Number of waste piles (W0n): 0
- *   Left mouse interface function (leftfunc): 1
- *   Card removal method (pairs): 23 (Remove pairs adding to 11, J-J or Q-K)
- */
 object GayGordons extends GameRules(
   id = "gaygordons",
   completed = false,
@@ -32,12 +17,7 @@ object GayGordons extends GameRules(
   ),
   layout = "f|r|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJPairOrQK,
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
@@ -49,12 +29,5 @@ object GayGordons extends GameRules(
       actionAfterDeal = PileAction.LimitToTwoJacks
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 2,
-      cardsFaceDown = 0
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 2))
 )

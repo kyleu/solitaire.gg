@@ -39,9 +39,7 @@ object RainbowFan extends GameRules(
   related = Seq("crescent"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/rainbow_fan.htm")),
   layout = "sff|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Never,

@@ -27,21 +27,10 @@ object Squadron extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/squadron.php")
   ),
   layout = "swf|::::c|.t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
@@ -51,10 +40,5 @@ object Squadron extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 3,
-      initialCards = 3
-    )
-  )
+  cells = Some(CellRules(numPiles = 3, initialCards = 3))
 )

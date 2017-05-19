@@ -20,12 +20,7 @@ object KingCell extends GameRules(
   title = "KingCell",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kingcell.htm")),
   layout = "f|c|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,

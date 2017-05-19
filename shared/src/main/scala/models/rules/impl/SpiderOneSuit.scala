@@ -34,10 +34,7 @@ object SpiderOneSuit extends GameRules(
   ),
   layout = "s|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  deckOptions = DeckOptions(
-    numDecks = 8,
-    suits = Seq(Suit.Spades)
-  ),
+  deckOptions = DeckOptions(numDecks = 8, suits = Seq(Suit.Spades)),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.TableauIfNoneEmpty,

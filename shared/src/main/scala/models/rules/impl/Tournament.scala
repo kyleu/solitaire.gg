@@ -13,16 +13,8 @@ object Tournament extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/tournament.htm")
   ),
   layout = "sff|:c|::t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      dealTo = StockDealTo.Tableau,
-      maximumDeals = Some(1),
-      cardsDealt = StockCardsDealt.Count(4)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(dealTo = StockDealTo.Tableau, maximumDeals = Some(1), cardsDealt = StockCardsDealt.Count(4))),
   foundations = Seq(
     FoundationRules(
       name = "Ace Foundation",
@@ -51,16 +43,6 @@ object Tournament extends GameRules(
       mayMoveToNonEmptyFrom = Seq("cell", "tableau")
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 8,
-      mayMoveToFrom = Seq("tableau"),
-      initialCards = 8
-    )
-  ),
-  special = Some(
-    SpecialRules(
-      redealsAllowed = 2
-    )
-  )
+  cells = Some(CellRules(numPiles = 8, mayMoveToFrom = Seq("tableau"), initialCards = 8)),
+  special = Some(SpecialRules(redealsAllowed = 2))
 )

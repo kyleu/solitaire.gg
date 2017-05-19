@@ -2,17 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation initial cards (F0d): -1
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): 6 (6 cards)
- *   Tableau piles (T0n): 8
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Number of waste piles (W0n): 0
- *   Related games (related): fortress, citadel, castlemount, castleofindolence, streetsandalleys, selectiveca...
- *   Enable super moves, whatever those are (supermoves): 1
- */
 object BeleagueredCastle extends GameRules(
   id = "beleagueredcastle",
   completed = true,

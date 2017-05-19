@@ -18,9 +18,7 @@ object Millie extends GameRules(
   title = "Millie",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/millie.htm")),
   layout = "sf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

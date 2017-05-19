@@ -27,9 +27,7 @@ object LittleNapolean extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/little_napoleon.htm")
   ),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

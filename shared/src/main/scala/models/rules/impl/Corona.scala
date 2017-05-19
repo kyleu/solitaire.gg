@@ -2,16 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Auto-fill an empty tableau from (T0af): 6 (First waste then stock)
- *   Tableau initial cards (T0d): 3 (3 cards)
- *   Tableau piles (T0n): 12
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): quadrangle
- */
 object Corona extends GameRules(
   id = "corona",
   completed = true,
@@ -25,21 +15,10 @@ object Corona extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/corona.php")
   ),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 12,

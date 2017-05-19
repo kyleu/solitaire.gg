@@ -21,10 +21,7 @@ object Junction extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/junction.htm")
   ),
   layout = ":::::::sw|f|.::::t",
-  deckOptions = DeckOptions(
-    numDecks = 4,
-    ranks = Seq(Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace)
-  ),
+  deckOptions = DeckOptions(numDecks = 4, ranks = Seq(Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace)),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

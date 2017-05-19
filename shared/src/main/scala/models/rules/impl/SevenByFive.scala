@@ -22,12 +22,7 @@ object SevenByFive extends GameRules(
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/seven_by_five.htm")),
   layout = "f|c|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.RestOfDeck,
@@ -35,9 +30,5 @@ object SevenByFive extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 5
-    )
-  )
+  cells = Some(CellRules(numPiles = 5))
 )

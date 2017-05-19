@@ -2,25 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 0 (Never)
- *   Number of foundation piles (F0n): 4 (4 stacks)
- *   Initial card restriction (F0u): 2 (Unique suits)
- *   Auto-move cards to foundation (F1a): 0 (Never)
- *   Foundation low rank (F1b): 22 (Deck's high card)
- *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 32 (Build down)
- *   Initial card restriction (F1u): 2 (Unique suits)
- *   Foundation Sets (Fn): 2
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): -3 (Fill rows with rest of deck)
- *   Tableau piles (T0n): 15
- *   Tableau rank match rule for building (T0r): 160 (Build up or down)
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Number of waste piles (W0n): 0
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object Fifteen extends GameRules(
   id = "fifteen",
   completed = true,
@@ -30,9 +11,7 @@ object Fifteen extends GameRules(
     Link("Lady Cadogan's Illustrated Games of Solitaire or Patience", "www.gutenberg.org/files/21642/21642-h/21642-h.htm#fifteen")
   ),
   layout = ":::f:f|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

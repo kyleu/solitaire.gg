@@ -2,17 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): -3 (Fill rows with rest of deck)
- *   Tableau piles (T0n): 8
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
- *   Number of waste piles (W0n): 0
- *   Number of decks (ndecks): 1 (1 deck)
- *   Related games (related): britishcanister, americancanister, bucket
- */
 object Canister extends GameRules(
   id = "canister",
   completed = true,
@@ -26,12 +15,7 @@ object Canister extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/canister.htm")
   ),
   layout = "::f|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,

@@ -29,21 +29,10 @@ object Roman extends GameRules(
   like = Some("signora"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/roman_patience.htm")),
   layout = "swf|r|t",
-  deckOptions = DeckOptions(
-    numDecks = 2,
-    lowRank = Rank.Unknown
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2, lowRank = Rank.Unknown),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 8)),
   tableaus = Seq(
     TableauRules(
       numPiles = 9,
@@ -56,12 +45,5 @@ object Roman extends GameRules(
       mayMoveToEmptyFrom = Seq("stock", "pyramid", "waste", "pocket", "cell", "foundation", "tableau")
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 11,
-      cardsFaceDown = 0
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 11))
 )

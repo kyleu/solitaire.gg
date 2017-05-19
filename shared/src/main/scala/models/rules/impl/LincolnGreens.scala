@@ -33,9 +33,7 @@ object LincolnGreens extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lincoln_greens.htm")),
   layout = "s::::.f|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
-  deckOptions = DeckOptions(
-    numDecks = 4
-  ),
+  deckOptions = DeckOptions(numDecks = 4),
   stock = Some(
     StockRules(
       cardsShown = 16,

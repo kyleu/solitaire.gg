@@ -20,9 +20,7 @@ object QuadrupleKlondike extends GameRules(
   title = "Quadruple Klondike",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_klondike.htm")),
   layout = "swf|:.t",
-  deckOptions = DeckOptions(
-    numDecks = 4
-  ),
+  deckOptions = DeckOptions(numDecks = 4),
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

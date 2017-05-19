@@ -26,23 +26,10 @@ object TripleCanfield extends GameRules(
   related = Seq("threedemons"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_canfield.htm")),
   layout = "swf|r::::.t",
-  deckOptions = DeckOptions(
-    numDecks = 3,
-    lowRank = Rank.Unknown
-  ),
-  stock = Some(
-    StockRules(
-      cardsDealt = StockCardsDealt.Count(3)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 3, lowRank = Rank.Unknown),
+  stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 12,
-      initialCards = 1,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 12, initialCards = 1, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Count(1),
@@ -50,12 +37,5 @@ object TripleCanfield extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 26,
-      cardsFaceDown = -1
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 26, cardsFaceDown = -1))
 )

@@ -24,9 +24,7 @@ object LeapYear extends GameRules(
   like = Some("auldlangsyne"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/leap_year.htm")),
   layout = "sf|t",
-  deckOptions = DeckOptions(
-    numDecks = 4
-  ),
+  deckOptions = DeckOptions(numDecks = 4),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

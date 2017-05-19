@@ -24,9 +24,7 @@ object Unlimited extends GameRules(
   related = Seq("singleinterchange"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/unlimited.htm")),
   layout = "swf|::t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
   foundations = Seq(

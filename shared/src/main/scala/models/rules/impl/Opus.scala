@@ -25,16 +25,8 @@ object Opus extends GameRules(
   like = Some("penguin"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/opus.htm")),
   layout = ".:f|:c|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      initialCards = 3,
-      autoMoveCards = true
-    )
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
+  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 3, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Count(7),
@@ -45,9 +37,5 @@ object Opus extends GameRules(
       pilesWithLowCardsAtBottom = 1
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 5
-    )
-  )
+  cells = Some(CellRules(numPiles = 5))
 )

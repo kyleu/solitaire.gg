@@ -26,9 +26,7 @@ object Unusual extends GameRules(
   like = Some("cruel"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/unusual.htm")),
   layout = "::f|2t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,

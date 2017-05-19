@@ -23,12 +23,7 @@ object RussianCell extends GameRules(
   like = Some("russian"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/russian_cell.htm")),
   layout = "f:c|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
@@ -48,9 +43,5 @@ object RussianCell extends GameRules(
       emptyFilledWith = FillEmptyWith.HighRank
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 2
-    )
-  )
+  cells = Some(CellRules(numPiles = 2))
 )

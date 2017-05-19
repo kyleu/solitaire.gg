@@ -2,20 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-fill an empty tableau from (T0af): 4 (Stock)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled with (T0f): 5 (No card)
- *   Tableau piles (T0n): 9
- *   Tableau suit match rule for building (T0s): 0 (May not build)
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 8 (Never)
- *   Left mouse interface function (leftfunc): 1
- *   Similar to (like): tens
- *   Card removal method (pairs): 8 (Remove pairs adding to 11 or J-Q-K)
- *   Related games (related): suitelevens
- */
 object Elevens extends GameRules(
   id = "elevens",
   completed = false,
@@ -32,18 +18,8 @@ object Elevens extends GameRules(
   ),
   layout = "sf|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJQK,
-  stock = Some(
-    StockRules(
-      dealTo = StockDealTo.Never,
-      maximumDeals = Some(1)
-    )
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  stock = Some(StockRules(dealTo = StockDealTo.Never, maximumDeals = Some(1))),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 9,

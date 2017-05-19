@@ -25,10 +25,7 @@ object Sally extends GameRules(
   like = Some("doubleklondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/sally.htm")),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2,
-    lowRank = Rank.Unknown
-  ),
+  deckOptions = DeckOptions(numDecks = 2, lowRank = Rank.Unknown),
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

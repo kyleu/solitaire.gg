@@ -27,9 +27,7 @@ object Lasker extends GameRules(
   like = Some("chessboard"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lasker.htm")),
   layout = ":::f|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
   foundations = Seq(
     FoundationRules(
       numPiles = 4,

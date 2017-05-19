@@ -2,16 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau initial cards (T0d): 3 (3 cards)
- *   Tableau cards face down (T0df): 100
- *   Tableau piles (T0n): 6
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
- *   Maximum deals from stock (maxdeals): 2 (2)
- *   Related games (related): passeul
- */
 object BlindAlleys extends GameRules(
   id = "blindalleys",
   completed = false,
@@ -23,22 +13,8 @@ object BlindAlleys extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/blind_alleys.htm")
   ),
   layout = "swf|t",
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(2)
-    )
-  ),
+  stock = Some(StockRules(maximumDeals = Some(2))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
-  tableaus = Seq(
-    TableauRules(
-      numPiles = 6,
-      initialCards = InitialCards.Count(3)
-    )
-  )
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = Seq(TableauRules(numPiles = 6, initialCards = InitialCards.Count(3)))
 )

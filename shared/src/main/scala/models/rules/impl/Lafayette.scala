@@ -24,11 +24,7 @@ object Lafayette extends GameRules(
   title = "Lafayette",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lafayette.htm")),
   layout = "swff|r|t",
-  stock = Some(
-    StockRules(
-      cardsDealt = StockCardsDealt.Count(3)
-    )
-  ),
+  stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
@@ -52,12 +48,5 @@ object Lafayette extends GameRules(
       emptyFilledWith = FillEmptyWith.Sevens
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 13,
-      cardsFaceDown = -1
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 13, cardsFaceDown = -1))
 )

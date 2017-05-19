@@ -23,10 +23,8 @@ object TripleRussian extends GameRules(
   title = "Triple Russian",
   like = Some("russian"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_russian.htm")),
-  layout = "f|t",
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
+  layout = ".f|t",
+  deckOptions = DeckOptions(numDecks = 3),
   foundations = Seq(
     FoundationRules(
       numPiles = 12,

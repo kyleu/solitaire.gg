@@ -29,10 +29,7 @@ object MondoSpider extends GameRules(
   like = Some("spider"),
   layout = ".::::sf|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  deckOptions = DeckOptions(
-    numDecks = 2,
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs, Suit.Horseshoes, Suit.Stars, Suit.Tridents, Suit.Moons)
-  ),
+  deckOptions = DeckOptions(numDecks = 2, suits = Suit.all),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.TableauIfNoneEmpty,

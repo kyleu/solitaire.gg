@@ -42,14 +42,8 @@ object RoyalCotillion extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/RoyalCotillion.htm")
   ),
   layout = "swff|r|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
@@ -78,12 +72,5 @@ object RoyalCotillion extends GameRules(
       emptyFilledWith = FillEmptyWith.None
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 4,
-      initialCards = 3,
-      cardsFaceDown = 0
-    )
-  )
+  reserves = Some(ReserveRules(numPiles = 4, initialCards = 3))
 )

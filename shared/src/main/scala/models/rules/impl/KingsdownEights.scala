@@ -25,22 +25,9 @@ object KingsdownEights extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/kingsdown_eights.htm")
   ),
   layout = "sf|r|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      dealTo = StockDealTo.Reserve,
-      maximumDeals = Some(1),
-      cardsDealt = StockCardsDealt.Count(4)
-    )
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      autoMoveCards = true
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(dealTo = StockDealTo.Reserve, maximumDeals = Some(1), cardsDealt = StockCardsDealt.Count(4))),
+  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,
@@ -49,12 +36,5 @@ object KingsdownEights extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 8,
-      initialCards = 4,
-      cardsFaceDown = 0
-    )
-  )
+  reserves = Some(ReserveRules(numPiles = 8, initialCards = 4))
 )

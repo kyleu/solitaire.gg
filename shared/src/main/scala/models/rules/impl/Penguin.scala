@@ -32,16 +32,8 @@ object Penguin extends GameRules(
     Link("Solitaire Central", "www.solitairecentral.com/articles/HowToPlayPenguinSolitaire.html")
   ),
   layout = ":.f|c|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      initialCards = 3,
-      autoMoveCards = true
-    )
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
+  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 3, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Count(7),
@@ -52,9 +44,5 @@ object Penguin extends GameRules(
       pilesWithLowCardsAtBottom = 1
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 7
-    )
-  )
+  cells = Some(CellRules(numPiles = 7))
 )

@@ -25,9 +25,7 @@ object LucasLeaps extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/lucas.htm")
   ),
   layout = "sw::f|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

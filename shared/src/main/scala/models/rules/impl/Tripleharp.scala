@@ -20,9 +20,7 @@ object Tripleharp extends GameRules(
   like = Some("harp"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_harp.htm")),
   layout = "swf|.:t",
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
+  deckOptions = DeckOptions(numDecks = 3),
   stock = Some(
     StockRules(
       maximumDeals = Some(4)

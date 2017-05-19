@@ -10,14 +10,8 @@ object RacingAces extends GameRules(
   like = Some("acesandkings"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/racing_aces.htm")),
   layout = "sw|ff|ff|:t|::.r",
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 3),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
@@ -61,12 +55,5 @@ object RacingAces extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 3,
-      initialCards = 13,
-      cardsFaceDown = 0
-    )
-  )
+  reserves = Some(ReserveRules(numPiles = 3, initialCards = 13))
 )

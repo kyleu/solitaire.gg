@@ -41,9 +41,7 @@ object Nationale extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/nationale.php")
   ),
   layout = "ff|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   foundations = Seq(
     FoundationRules(
       name = "Ace Foundation",

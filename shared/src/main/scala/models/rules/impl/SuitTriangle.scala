@@ -22,9 +22,7 @@ object SuitTriangle extends GameRules(
   like = Some("doubleklondike"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/suit_triangle.htm")),
   layout = "swf|.t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

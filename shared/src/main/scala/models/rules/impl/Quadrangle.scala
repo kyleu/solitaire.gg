@@ -29,10 +29,7 @@ object Quadrangle extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Quadrangle.htm")
   ),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2,
-    lowRank = Rank.Unknown
-  ),
+  deckOptions = DeckOptions(numDecks = 2, lowRank = Rank.Unknown),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

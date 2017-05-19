@@ -33,9 +33,7 @@ object LadyCadogan extends GameRules(
   related = Seq("fortydevils"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lady_cadogan.htm")),
   layout = "swf:f|:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
   foundations = Seq(

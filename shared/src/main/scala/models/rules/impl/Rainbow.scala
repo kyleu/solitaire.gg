@@ -36,22 +36,10 @@ object Rainbow extends GameRules(
     Link("Swoop Solitaire", "www.swoopsoftware.com/solitaire_rules/rainbow.html")
   ),
   layout = "swf|r::t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      initialCards = 1,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 1, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 4,
@@ -62,12 +50,5 @@ object Rainbow extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 13,
-      cardsFaceDown = -1
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 13, cardsFaceDown = -1))
 )

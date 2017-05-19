@@ -23,15 +23,8 @@ object Repair extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/Repair.htm")
   ),
   layout = "f|c|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      autoMoveCards = true
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
@@ -40,9 +33,5 @@ object Repair extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
-  cells = Some(
-    CellRules(
-      initialCards = 4
-    )
-  )
+  cells = Some(CellRules(initialCards = 4))
 )

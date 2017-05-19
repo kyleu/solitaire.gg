@@ -30,9 +30,7 @@ object Limited extends GameRules(
     Link("Solitaire Central", "www.solitairecentral.com/rules/Limited.html")
   ),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

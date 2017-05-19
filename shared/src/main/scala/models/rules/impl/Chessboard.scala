@@ -3,21 +3,6 @@ package models.rules.impl
 import models.card.Rank
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation initial cards (F0d): 0 (None)
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): -3 (Fill rows with rest of deck)
- *   Tableau piles (T0n): 10
- *   Tableau rank match rule for building (T0r): 160 (Build up or down)
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau wraps from king to ace (T0w): true
- *   Number of waste piles (W0n): 0
- *   Similar to (like): fortress
- *   Low card (lowpip): -2 (?)
- *   Related games (related): lasker, castlesend
- *   Enable super moves, whatever those are (supermoves): 1
- */
 object Chessboard extends GameRules(
   id = "chessboard",
   completed = true,
@@ -36,24 +21,15 @@ object Chessboard extends GameRules(
     Link("L. Schaffer on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-chessboard-solitaire-14077/")
   ),
   layout = ":::f|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
-  tableaus = Seq(
-    TableauRules(
-      numPiles = 10,
-      initialCards = InitialCards.RestOfDeck,
-      cardsFaceDown = TableauFaceDownCards.Count(0),
-      suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
-      rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
-      wrap = true,
-      suitMatchRuleForMovingStacks = SuitMatchRule.None
-    )
-  )
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = Seq(TableauRules(
+    numPiles = 10,
+    initialCards = InitialCards.RestOfDeck,
+    cardsFaceDown = TableauFaceDownCards.Count(0),
+    suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
+    rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
+    wrap = true,
+    suitMatchRuleForMovingStacks = SuitMatchRule.None
+  ))
 )

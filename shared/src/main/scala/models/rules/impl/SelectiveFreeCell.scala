@@ -24,15 +24,8 @@ object SelectiveFreeCell extends GameRules(
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/selective_freecell.htm")),
   layout = "f|c|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,

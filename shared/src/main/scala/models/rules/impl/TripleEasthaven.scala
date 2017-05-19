@@ -21,9 +21,7 @@ object TripleEasthaven extends GameRules(
   like = Some("easthaven"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_easthaven.htm")),
   layout = "sf|.t",
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
+  deckOptions = DeckOptions(numDecks = 3),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

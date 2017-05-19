@@ -24,16 +24,8 @@ object Pitchfork extends GameRules(
   title = "Pitchfork",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pitchfork.htm")),
   layout = "f|r|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      initialCards = 4,
-      autoMoveCards = true
-    )
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
+  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 9,
@@ -53,12 +45,5 @@ object Pitchfork extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 7,
-      cardsFaceDown = 0
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 7))
 )

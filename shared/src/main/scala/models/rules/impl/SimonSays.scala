@@ -35,9 +35,5 @@ object SimonSays extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 2
-    )
-  )
+  cells = Some(CellRules(numPiles = 2))
 )

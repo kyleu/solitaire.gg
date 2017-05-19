@@ -24,23 +24,10 @@ object QuadrupleCanfield extends GameRules(
   title = "Quadruple Canfield",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_canfield.htm")),
   layout = "swf|r::::::t",
-  deckOptions = DeckOptions(
-    numDecks = 4,
-    lowRank = Rank.Unknown
-  ),
-  stock = Some(
-    StockRules(
-      cardsDealt = StockCardsDealt.Count(3)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 4, lowRank = Rank.Unknown),
+  stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 16,
-      initialCards = 1,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 16, initialCards = 1, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,
@@ -49,12 +36,5 @@ object QuadrupleCanfield extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 39,
-      cardsFaceDown = -1
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 39, cardsFaceDown = -1))
 )

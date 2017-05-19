@@ -15,9 +15,7 @@ object Streets extends GameRules(
   title = "Streets",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/streets.htm")),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

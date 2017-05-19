@@ -23,9 +23,7 @@ object QuadrupleYukon extends GameRules(
   like = Some("doubleyukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_yukon.htm")),
   layout = "f|t",
-  deckOptions = DeckOptions(
-    numDecks = 4
-  ),
+  deckOptions = DeckOptions(numDecks = 4),
   foundations = Seq(
     FoundationRules(
       numPiles = 16,

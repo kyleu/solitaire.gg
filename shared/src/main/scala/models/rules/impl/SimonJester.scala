@@ -22,9 +22,7 @@ object SimonJester extends GameRules(
   title = "Simon Jester",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/simon_jester.htm")),
   layout = "f|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   foundations = Seq(
     FoundationRules(
       numPiles = 8,

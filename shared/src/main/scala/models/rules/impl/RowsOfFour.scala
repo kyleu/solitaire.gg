@@ -24,9 +24,7 @@ object RowsOfFour extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/rows_of_four.htm")
   ),
   layout = "swf|.:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(3)

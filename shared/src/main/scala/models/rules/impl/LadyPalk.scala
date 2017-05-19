@@ -23,9 +23,7 @@ object LadyPalk extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/avenue.htm")
   ),
   layout = "swf|.:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

@@ -3,24 +3,6 @@ package models.rules.impl
 import models.card.Rank
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation name (F0Nm): Main Foundation
- *   Maximum cards for foundation (F0m): 12
- *   Foundation name (F1Nm): Kings Foundation
- *   Auto-move cards to foundation (F1a): 1 (Whenever possible)
- *   Foundation low rank (F1b): 13
- *   Number of foundation piles (F1n): 1 (1 stack)
- *   Foundation rank match rule (F1r): 64 (Build equal)
- *   Foundation suit match rule (F1s): 5 (Regardless of suit)
- *   Foundation Sets (Fn): 2
- *   Tableau initial cards (T0d): 6 (6 cards)
- *   Tableau piles (T0n): 6
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Tableau suit match rule for moving stacks (T0ts): 0 (May not build)
- *   Similar to (like): takingsilk
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object Floradora extends GameRules(
   id = "floradora",
   completed = false,
@@ -31,9 +13,7 @@ object Floradora extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/floradora.htm")
   ),
   layout = "swff|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

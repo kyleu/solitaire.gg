@@ -23,12 +23,7 @@ object Tuxedo extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/tuxedo.htm")
   ),
   layout = ":.f|c|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,
@@ -47,9 +42,5 @@ object Tuxedo extends GameRules(
       emptyFilledWith = FillEmptyWith.HighRank
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 7
-    )
-  )
+  cells = Some(CellRules(numPiles = 7))
 )

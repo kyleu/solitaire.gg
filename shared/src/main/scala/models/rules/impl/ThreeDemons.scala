@@ -27,23 +27,10 @@ object ThreeDemons extends GameRules(
   like = Some("triplecanfield"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_demons.htm")),
   layout = "swf|r|t",
-  deckOptions = DeckOptions(
-    numDecks = 3,
-    lowRank = Rank.Unknown
-  ),
-  stock = Some(
-    StockRules(
-      cardsDealt = StockCardsDealt.Count(3)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 3, lowRank = Rank.Unknown),
+  stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 12,
-      initialCards = 1,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 12, initialCards = 1, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 9,
@@ -53,12 +40,5 @@ object ThreeDemons extends GameRules(
       emptyFilledWith = FillEmptyWith.HighRank
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 48,
-      cardsFaceDown = -1
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 48, cardsFaceDown = -1))
 )

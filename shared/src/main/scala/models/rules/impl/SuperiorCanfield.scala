@@ -32,22 +32,10 @@ object SuperiorCanfield extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/superior_canfield.php")
   ),
   layout = "swf|r|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Unknown
-  ),
-  stock = Some(
-    StockRules(
-      cardsDealt = StockCardsDealt.Count(3)
-    )
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Unknown),
+  stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      initialCards = 1,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 1, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 4,
@@ -55,12 +43,5 @@ object SuperiorCanfield extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0)
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 13,
-      cardsFaceDown = 0
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 13))
 )

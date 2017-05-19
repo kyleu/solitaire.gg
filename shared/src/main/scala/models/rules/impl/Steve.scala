@@ -25,9 +25,7 @@ object Steve extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/klondike/steve.htm")
   ),
   layout = "sf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

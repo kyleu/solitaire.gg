@@ -26,9 +26,7 @@ object RedAndBlack extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Zebra.html.en")
   ),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

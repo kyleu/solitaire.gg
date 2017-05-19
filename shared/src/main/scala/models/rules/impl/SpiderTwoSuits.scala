@@ -33,10 +33,7 @@ object SpiderTwoSuits extends GameRules(
   ),
   layout = "sf|.:::t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  deckOptions = DeckOptions(
-    numDecks = 4,
-    suits = Seq(Suit.Hearts, Suit.Spades)
-  ),
+  deckOptions = DeckOptions(numDecks = 4, suits = Seq(Suit.Hearts, Suit.Spades)),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.TableauIfNoneEmpty,

@@ -36,22 +36,10 @@ object Storehouse extends GameRules(
     Link("Jan Wolter's Experiments", "/article/storehouse.html")
   ),
   layout = "swf|r|t",
-  deckOptions = DeckOptions(
-    lowRank = Rank.Two
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(3)
-    )
-  ),
+  deckOptions = DeckOptions(lowRank = Rank.Two),
+  stock = Some(StockRules(maximumDeals = Some(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      initialCards = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 4,
@@ -62,12 +50,5 @@ object Storehouse extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Storehouse",
-      numPiles = 1,
-      initialCards = 13,
-      cardsFaceDown = -1
-    )
-  )
+  reserves = Some(ReserveRules(name = "Storehouse", initialCards = 13, cardsFaceDown = -1))
 )

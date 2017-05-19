@@ -25,22 +25,7 @@ object Muse extends GameRules(
   like = Some("kingalbert"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/muse.htm")),
   layout = "::.f|:c|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
-  tableaus = Seq(
-    TableauRules(
-      numPiles = 9,
-      cardsFaceDown = TableauFaceDownCards.Count(0)
-    )
-  ),
-  cells = Some(
-    CellRules(
-      numPiles = 7,
-      initialCards = 7
-    )
-  )
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = Seq(TableauRules(numPiles = 9, cardsFaceDown = TableauFaceDownCards.Count(0))),
+  cells = Some(CellRules(numPiles = 7, initialCards = 7))
 )

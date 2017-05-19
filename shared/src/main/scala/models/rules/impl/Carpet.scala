@@ -2,16 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau name (T0Nm): Reserve
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled with (T0f): 0 (Any card)
- *   Empty tableau is filled from (T0fo): 2 (waste)
- *   Tableau piles (T0n): 20
- *   Tableau rank match rule for building (T0r): 0 (May not build)
- *   Tableau suit match rule for building (T0s): 0 (May not build)
- */
 object Carpet extends GameRules(
   id = "carpet",
   completed = true,
@@ -26,18 +16,9 @@ object Carpet extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/carpet.htm")
   ),
   layout = "swf|2t",
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       name = "Reserve",

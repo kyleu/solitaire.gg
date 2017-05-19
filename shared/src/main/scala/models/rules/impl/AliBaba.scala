@@ -2,15 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Tableau initial cards (T0d): 4 (4 cards)
- *   Tableau piles (T0n): 10
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
- *   Related games (related): cassim
- */
 object AliBaba extends GameRules(
   id = "alibaba",
   completed = true,
@@ -25,11 +16,7 @@ object AliBaba extends GameRules(
     Link("Jan Wolter's Experiments", "/article/alibaba.html")
   ),
   layout = "swf|t",
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(

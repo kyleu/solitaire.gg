@@ -32,23 +32,10 @@ object VariegatedCanfield extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/canfield/variegated_canfield.htm")
   ),
   layout = "swf|r|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(3),
-      cardsDealt = StockCardsDealt.Count(3)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(maximumDeals = Some(3), cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      initialCards = 8,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 8, initialCards = 8, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 5,
@@ -57,12 +44,5 @@ object VariegatedCanfield extends GameRules(
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve
     )
   ),
-  reserves = Some(
-    ReserveRules(
-      name = "Reserve",
-      numPiles = 1,
-      initialCards = 13,
-      cardsFaceDown = -1
-    )
-  )
+  reserves = Some(ReserveRules(initialCards = 13, cardsFaceDown = -1))
 )

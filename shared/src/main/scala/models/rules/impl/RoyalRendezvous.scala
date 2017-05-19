@@ -17,9 +17,7 @@ object RoyalRendezvous extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/RoyalRendezvous.htm")
   ),
   layout = "sw:ff|::::ff|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

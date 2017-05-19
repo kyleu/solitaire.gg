@@ -21,15 +21,8 @@ object TripleFreeCell extends GameRules(
   related = Seq("celleleven", "freecellthreedeck"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_freecell.htm")),
   layout = ".f|:.c|t",
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 12,
-      autoMoveCards = true
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 3),
+  foundations = Seq(FoundationRules(numPiles = 12, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 13,
@@ -38,9 +31,5 @@ object TripleFreeCell extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 10
-    )
-  )
+  cells = Some(CellRules(numPiles = 10))
 )

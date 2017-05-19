@@ -23,9 +23,7 @@ object OldCarlton extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/old_carlton.php")
   ),
   layout = "sf|.t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

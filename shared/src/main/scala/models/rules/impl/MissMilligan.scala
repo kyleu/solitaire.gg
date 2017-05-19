@@ -33,9 +33,7 @@ object MissMilligan extends GameRules(
     Link("Solitaire Game Rules.com", "solitaire-game-rules.com/games/miss_milligan.htm")
   ),
   layout = "sf|:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

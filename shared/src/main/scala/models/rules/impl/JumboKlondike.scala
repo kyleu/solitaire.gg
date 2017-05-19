@@ -23,9 +23,7 @@ object JumboKlondike extends GameRules(
   title = "Jumbo Klondike",
   like = Some("klondike"),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs, Suit.Stars, Suit.Tridents)
-  ),
+  deckOptions = DeckOptions(suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs, Suit.Stars, Suit.Tridents)),
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)

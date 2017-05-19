@@ -21,9 +21,7 @@ object Kingdom extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/kingdom.php")
   ),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

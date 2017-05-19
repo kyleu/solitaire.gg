@@ -21,9 +21,7 @@ object TripleYukon extends GameRules(
   title = "Triple Yukon",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_yukon.htm")),
   layout = "f|t",
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
+  deckOptions = DeckOptions(numDecks = 3),
   foundations = Seq(
     FoundationRules(
       numPiles = 12,

@@ -25,9 +25,7 @@ object Interchange extends GameRules(
     Link("Michael Smoker's very confusing description", "www.hobbyhub360.com/index.php/interchange-solitaire-card-game-8745/")
   ),
   layout = "swf|::t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

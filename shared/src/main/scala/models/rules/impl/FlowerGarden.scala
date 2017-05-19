@@ -2,19 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau name (T0Nm): Flower Beds
- *   Tableau initial cards (T0d): 6 (6 cards)
- *   Tableau piles (T0n): 6
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Waste name (W0Nm): Bouquet
- *   Playable waste cards (W0a): true
- *   Number of cards shown (W0cardsShown): 20
- *   *W0s (W0s): true
- *   Related games (related): wildflower, brigade
- */
 object FlowerGarden extends GameRules(
   id = "flowergarden",
   completed = true,

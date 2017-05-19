@@ -47,9 +47,7 @@ object RougeEtNoir extends GameRules(
     Link("An 1898 description", "howtoplaysolitaire.blogspot.com/2010/06/rouge-et-noir-double-deck-solitaire.html")
   ),
   layout = "sfff|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.Tableau,

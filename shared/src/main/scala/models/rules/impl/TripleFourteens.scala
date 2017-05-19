@@ -25,9 +25,7 @@ object TripleFourteens extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_fourteens.htm")),
   layout = "3tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
-  deckOptions = DeckOptions(
-    numDecks = 3
-  ),
+  deckOptions = DeckOptions(numDecks = 3),
   foundations = Seq(
     FoundationRules(
       canMoveFrom = FoundationCanMoveFrom.Never,

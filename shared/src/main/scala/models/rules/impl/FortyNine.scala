@@ -2,13 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau initial cards (T0d): 7 (7 cards)
- *   Tableau piles (T0n): 7
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object FortyNine extends GameRules(
   id = "fortynine",
   completed = true,
@@ -20,9 +13,7 @@ object FortyNine extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/FortyNine.htm")
   ),
   layout = "swf|::t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

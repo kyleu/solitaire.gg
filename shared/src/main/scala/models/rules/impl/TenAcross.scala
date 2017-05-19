@@ -24,12 +24,7 @@ object TenAcross extends GameRules(
   like = Some("russian"),
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Ten_Across.html.en")),
   layout = ":.f:c|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 10,
@@ -53,10 +48,5 @@ object TenAcross extends GameRules(
       emptyFilledWith = FillEmptyWith.HighRank
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 2,
-      initialCards = 2
-    )
-  )
+  cells = Some(CellRules(numPiles = 2, initialCards = 2))
 )

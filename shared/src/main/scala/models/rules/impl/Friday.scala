@@ -2,25 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau name (T0Nm): Left Tableau
- *   Auto-fill an empty tableau from (T0af): 4 (Stock)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled with (T0f): 5 (No card)
- *   Tableau piles (T0n): 3
- *   Tableau suit match rule for building (T0s): 0 (May not build)
- *   Tableau name (T1Nm): Right Tableau
- *   Tableau initial cards (T1d): 3 (3 cards)
- *   Empty tableau is filled with (T1f): 5 (No card)
- *   Tableau piles (T1n): 10
- *   Tableau suit match rule for building (T1s): 0 (May not build)
- *   Tableau sets (Tn): 2 (2 tableau sets)
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 8 (Never)
- *   Left mouse interface function (leftfunc): 1
- *   Card removal method (pairs): 10 (Remove kings or pairs adding to 13)
- */
 object Friday extends GameRules(
   id = "friday",
   completed = true,

@@ -25,21 +25,9 @@ object Saxony extends GameRules(
   title = "Saxony",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/saxony.htm")),
   layout = "sf|.r|c:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      dealTo = StockDealTo.Reserve,
-      maximumDeals = Some(1)
-    )
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      initialCards = 8
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(dealTo = StockDealTo.Reserve, maximumDeals = Some(1))),
+  foundations = Seq(FoundationRules(numPiles = 8, initialCards = 8)),
   tableaus = Seq(
     TableauRules(
       name = "Reserve",
@@ -50,17 +38,6 @@ object Saxony extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None
     )
   ),
-  cells = Some(
-    CellRules(
-      initialCards = 4
-    )
-  ),
-  reserves = Some(
-    ReserveRules(
-      name = "Tableau",
-      numPiles = 8,
-      initialCards = 1,
-      cardsFaceDown = -1
-    )
-  )
+  cells = Some(CellRules(initialCards = 4)),
+  reserves = Some(ReserveRules(name = "Tableau", numPiles = 8, cardsFaceDown = -1))
 )

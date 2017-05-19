@@ -23,12 +23,7 @@ object ScorpionHead extends GameRules(
   title = "Scorpion Head",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/scorpion_head.htm")),
   layout = "f|c|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      moveCompleteSequencesOnly = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, moveCompleteSequencesOnly = true)),
   tableaus = Seq(
     TableauRules(
       initialCards = InitialCards.Custom,

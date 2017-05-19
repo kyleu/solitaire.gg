@@ -4,11 +4,7 @@ import models.game.GameState
 import models.rules.GameRules
 
 object InitialMoves {
-  def performInitialMoves(rules: GameRules, state: GameState) = {
-    val f = rules.id match {
-      case _ => performDefault(rules, state)
-    }
-  }
+  def performInitialMoves(rules: GameRules, state: GameState) = performDefault(rules, state)
 
   private[this] def performDefault(rules: GameRules, gameState: GameState) = {
     FoundationInitialMoves.performInitialMoves(rules, gameState)
@@ -47,9 +43,7 @@ object InitialMoves {
 
     TableauInitialMoves.performInitialMoves(rules, gameState)
 
-    rules.stock.foreach { s =>
-      gameState.addCards(gameState.deck.getCards().reverse, "stock")
-    }
+    rules.stock.foreach(_ => gameState.addCards(gameState.deck.getCards().reverse, "stock"))
 
     rules.waste.foreach { w =>
       val cardCount = if (w.maxCards.exists(x => x < gameState.deck.cards.length)) {

@@ -42,9 +42,7 @@ object LittleBillie extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/LittleBillie.htm")
   ),
   layout = "::ff|::c|2t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   foundations = Seq(
     FoundationRules(
       name = "Aces Foundation",
@@ -74,17 +72,6 @@ object LittleBillie extends GameRules(
       emptyFilledWith = FillEmptyWith.None
     )
   ),
-  cells = Some(
-    CellRules(
-      name = "Reserve",
-      pluralName = "Reserve",
-      numPiles = 8,
-      initialCards = 8
-    )
-  ),
-  special = Some(
-    SpecialRules(
-      redealsAllowed = 2
-    )
-  )
+  cells = Some(CellRules(name = "Reserve", pluralName = "Reserve", numPiles = 8, initialCards = 8)),
+  special = Some(SpecialRules(redealsAllowed = 2))
 )

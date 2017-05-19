@@ -18,9 +18,7 @@ object Pantagruel extends GameRules(
   title = "Pantagruel",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/pantagruel.htm")),
   layout = "swf|:t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(1)

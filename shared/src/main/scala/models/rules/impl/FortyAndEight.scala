@@ -2,16 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Tableau initial cards (T0d): 5 (5 cards)
- *   Tableau piles (T0n): 8
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Maximum deals from stock (maxdeals): 2 (2)
- *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): lower48
- */
 object FortyAndEight extends GameRules(
   id = "fortyandeight",
   completed = true,
@@ -26,9 +16,7 @@ object FortyAndEight extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/forty_thieves/forty_and_eight.htm")
   ),
   layout = ":::sw|f|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       maximumDeals = Some(2)

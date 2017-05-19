@@ -25,17 +25,8 @@ object TreviGarden extends GameRules(
   like = Some("stonewall"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trevi_garden.htm")),
   layout = "wf|c|t",
-  waste = Some(
-    WasteRules(
-      name = "Fountain"
-    )
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  waste = Some(WasteRules(name = "Fountain")),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       name = "Garden",
@@ -44,10 +35,5 @@ object TreviGarden extends GameRules(
       cardsFaceDown = TableauFaceDownCards.OddNumbered
     )
   ),
-  cells = Some(
-    CellRules(
-      numPiles = 2,
-      initialCards = 2
-    )
-  )
+  cells = Some(CellRules(numPiles = 2, initialCards = 2))
 )

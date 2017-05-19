@@ -23,9 +23,7 @@ object QuadrupleTrigon extends GameRules(
   like = Some("trigon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_trigon.htm")),
   layout = "swf|:.t",
-  deckOptions = DeckOptions(
-    numDecks = 4
-  ),
+  deckOptions = DeckOptions(numDecks = 4),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
   foundations = Seq(

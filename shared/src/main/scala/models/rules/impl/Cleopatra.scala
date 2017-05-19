@@ -2,36 +2,16 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Tableau initial cards (T0d): -2 (custom)
- *   Custom initial cards (T0ds): U DU UDU DUDU UDUDU DUDUDU UDUDUDU DUDUDU UDUDU DUDU UDU DU U
- *   Tableau piles (T0n): 13
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object Cleopatra extends GameRules(
   id = "cleopatra",
   completed = false,
   title = "Cleopatra",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/cleopatra.htm")),
   layout = "swf|t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      maximumDeals = Some(1)
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 13,

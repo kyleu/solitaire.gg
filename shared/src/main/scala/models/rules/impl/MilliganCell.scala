@@ -23,21 +23,9 @@ object MilliganCell extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/milligan_cell.htm")
   ),
   layout = "sf|::.c|.t",
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
-  stock = Some(
-    StockRules(
-      dealTo = StockDealTo.Tableau,
-      maximumDeals = Some(1)
-    )
-  ),
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 8,
-      autoMoveCards = true
-    )
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
+  stock = Some(StockRules(dealTo = StockDealTo.Tableau, maximumDeals = Some(1))),
+  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,

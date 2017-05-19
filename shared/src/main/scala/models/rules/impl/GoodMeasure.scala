@@ -2,23 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation initial cards (F0d): 2 (2 cards)
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): 5 (5 cards)
- *   Tableau action during deal (T0dd): 1 (Move kings to stack bottoms)
- *   Empty tableau is filled with (T0f): 5 (No card)
- *   Tableau piles (T0n): 10
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Tableau action during deal (T1dd): 1 (Move kings to stack bottoms)
- *   Empty tableau is filled with (T1f): 5 (No card)
- *   Tableau piles (T1n): 6
- *   Tableau suit match rule for building (T1s): 5 (Regardless of suit)
- *   Tableau sets (Tn): 1 (1 tableau set)
- *   Number of waste piles (W0n): 0
- *   Similar to (like): bakersdozen
- */
 object GoodMeasure extends GameRules(
   id = "goodmeasure",
   completed = false,

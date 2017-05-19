@@ -2,18 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Number of cells (C0n): 4
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): -3 (Fill rows with rest of deck)
- *   *T0db (T0db): 0
- *   Tableau piles (T0n): 8
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Number of waste piles (W0n): 0
- *   Related games (related): bakerstwodeck
- *   Enable super moves, whatever those are (supermoves): 1
- */
 object Bakers extends GameRules(
   id = "bakers",
   completed = true,
@@ -28,12 +16,7 @@ object Bakers extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/bakers_game.htm")
   ),
   layout = "fc|t",
-  foundations = Seq(
-    FoundationRules(
-      numPiles = 4,
-      autoMoveCards = true
-    )
-  ),
+  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   tableaus = Seq(
     TableauRules(
       numPiles = 8,

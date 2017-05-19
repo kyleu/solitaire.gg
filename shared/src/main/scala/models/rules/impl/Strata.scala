@@ -21,10 +21,7 @@ object Strata extends GameRules(
   title = "Strata",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/strata.htm")),
   layout = "wf|:t",
-  deckOptions = DeckOptions(
-    numDecks = 2,
-    ranks = Seq(Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace)
-  ),
+  deckOptions = DeckOptions(numDecks = 2, ranks = Seq(Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace)),
   waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(

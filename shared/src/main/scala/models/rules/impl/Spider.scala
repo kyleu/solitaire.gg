@@ -44,9 +44,7 @@ object Spider extends GameRules(
   ),
   layout = "s:f|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  deckOptions = DeckOptions(
-    numDecks = 2
-  ),
+  deckOptions = DeckOptions(numDecks = 2),
   stock = Some(
     StockRules(
       dealTo = StockDealTo.TableauIfNoneEmpty,
