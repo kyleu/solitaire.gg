@@ -13,7 +13,7 @@ import utils.metrics.Instrumented
 import scala.concurrent.Future
 
 class LoggingFilter @Inject() (override implicit val mat: Materializer) extends Filter with Logging with Instrumented {
-  val prefix = "martiandawn.requests."
+  val prefix = "solitaire-gg.requests."
 
   val knownStatuses = Seq(
     Status.OK, Status.BAD_REQUEST, Status.FORBIDDEN, Status.NOT_FOUND,

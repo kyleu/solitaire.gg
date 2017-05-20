@@ -10,16 +10,20 @@ import phaser.card.CardSprite
 import scala.scalajs.js.annotation.ScalaJSDefined
 
 @ScalaJSDefined
-class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = phaser, parent = phaser.getPlaymat) {
-  name = "pile-" + pile.id
+class PileGroup(val phaser: PhaserGame, p: Pile) extends Group(game = phaser, parent = phaser.getPlaymat) {
+  val id = p.id
+  val behavior = p.pileSet.map(_.behavior)
+  val options = p.options
+
+  def canDragFrom(sprite: CardSprite) = p.canDragFrom(p.cards.drop(sprite.pileIndex), phaser.gameplay.services.state)
+
+  name = "pile-" + id
 
   var cards = Seq.empty[CardSprite]
   var dragCards = Seq.empty[CardSprite]
 
-  def id = pile.id
-
   def canSelectPile() = phaser.possibleMoves.exists { move =>
-    move.t == PossibleMove.Type.SelectPile && move.sourcePile == pile.id;
+    move.t == PossibleMove.Type.SelectPile && move.sourcePile == id;
   }
 
   val empty = {
@@ -29,7 +33,7 @@ class PileGroup(val phaser: PhaserGame, val pile: Pile) extends Group(game = pha
     ret.events.onInputUp.add((_: Any, p: Pointer) => {
       if (p.button.toString.toInt == 0) {
         if (canSelectPile()) {
-          val msg = SelectPile(pile.id, auto = false)
+          val msg = SelectPile(id, auto = false)
           phaser.sendMove(msg)
         }
       }

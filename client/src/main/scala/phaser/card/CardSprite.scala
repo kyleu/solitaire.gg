@@ -76,10 +76,8 @@ class CardSprite(
   }
 
   def onInputDown(e: Any, p: Pointer) = if (p.button == NullUtils.inst || p.button.toString.toInt == 0) {
-    if (!tweening) {
-      if (PileDragHelper.canDragFrom(pileGroup, this)) {
-        PileDragHelper.startDrag(pileGroup, this, p)
-      }
+    if ((!tweening) && pileGroup.canDragFrom(this)) {
+      PileDragHelper.startDrag(pileGroup, this, p)
     }
   }
 

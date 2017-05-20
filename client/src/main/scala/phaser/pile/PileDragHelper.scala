@@ -11,7 +11,7 @@ object PileDragHelper {
     def check(c: Int, idx: Int) = if (c != src.dragCards(idx).id) { valid = false }
 
     src.phaser.possibleMoves.foreach { move =>
-      if (move.t == PossibleMove.Type.MoveCards && move.sourcePile == src.pile.id && move.targetPile.contains(tgt.pile.id)) {
+      if (move.t == PossibleMove.Type.MoveCards && move.sourcePile == src.id && move.targetPile.contains(tgt.id)) {
         if (src.dragCards.length == move.cards.length) {
           valid = true
           move.cards.zipWithIndex.foreach(c => check(c._1, c._2))
@@ -38,7 +38,7 @@ object PileDragHelper {
     var dropDistance = 65536
 
     pileGroup.phaser.getPlaymat.getPileGroups.values.foreach { p =>
-      if (p.pile.id != pileGroup.id) {
+      if (p.id != pileGroup.id) {
         var overlapX = 0
         if ((minX >= p.x && minX <= p.x + p.intersectWidth) || (maxX >= p.x && maxX <= p.x + p.intersectWidth)) {
           overlapX = Math.abs((p.x - xPoint).toInt)
@@ -65,8 +65,6 @@ object PileDragHelper {
     }
   }
 
-  def canDragFrom(group: PileGroup, sprite: CardSprite) = group.pile.canDragFrom(group.pile.cards.drop(sprite.pileIndex), group.phaser.gameplay.services.state)
-
   def startDrag(group: PileGroup, sprite: CardSprite, p: Pointer) = {
     group.dragCards = group.cards.drop(sprite.pileIndex)
     group.dragCards.zipWithIndex.foreach { x =>
@@ -87,7 +85,7 @@ object PileDragHelper {
         pileGroup.dragCards.foreach { moveCard =>
           moveCard.dragIndex = None
         }
-        pileGroup.phaser.sendMove(MoveCards(cards = pileGroup.dragCards.map(_.id), src = pileGroup.id, tgt = dropTarget.pile.id, auto = false))
+        pileGroup.phaser.sendMove(MoveCards(cards = pileGroup.dragCards.map(_.id), src = pileGroup.id, tgt = dropTarget.id, auto = false))
     }
     pileGroup.dragCards = Seq.empty
   }
