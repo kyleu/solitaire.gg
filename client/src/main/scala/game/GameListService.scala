@@ -29,14 +29,22 @@ object GameListService {
   }
 
   def initIfNeeded(onNewGame: Seq[String] => Unit) = if (!initialized) {
-    val content = div(
-      h4("Available Games"),
-      table(tbody(GameRulesSet.completed.map { rules =>
-        tr(
-          td(rulesLink(rules._1, rules._2)),
-          td(raw(rulesDescription(rules._2.id)))
-        )
-      }))
+    val content = div(cls := "theme striped with-margin")(
+      table(cls := "game-list-table")(
+        thead(tr(th("Title"), th(""), th(""))),
+        tbody(GameRulesSet.completed.flatMap { rules =>
+          Seq(
+            tr(cls := "title-row")(
+              td(rulesLink(rules._1, rules._2)),
+              td(a(href := "")("How To Play")),
+              td(a(href := "")("Play Now"))
+            ),
+            tr(
+              td(colspan := 3)(div(cls := "description")(em(raw(rulesDescription(rules._2.id)))))
+            )
+          )
+        })
+      )
     )
 
     val panel = $("#panel-list-games .content")

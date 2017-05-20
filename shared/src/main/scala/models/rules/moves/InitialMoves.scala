@@ -53,5 +53,9 @@ object InitialMoves {
       }
       gameState.addCards(gameState.deck.getCards(numCards = cardCount, turnFaceUp = true), "waste-1", reveal = true)
     }
+
+    if(gameState.deck.cards.nonEmpty) {
+      throw new IllegalStateException(s"[${gameState.deck.cards.size}] remaining in deck after initial moves.")
+    }
   }
 }
