@@ -2,18 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Keep foundation off-screen (F0i): true
- *   Number of foundation piles (F0n): 1 (1 stack)
- *   Number of pyramids (Pn): 1 (1 pyramid)
- *   Tableau sets (Tn): 0 (0 tableau sets)
- *   Deal cards from stock (dealto): 1 (To all waste piles)
- *   Left mouse interface function (leftfunc): 1
- *   Maximum deals from stock (maxdeals): 3 (3)
- *   Card removal method (pairs): 10 (Remove kings or pairs adding to 13)
- *   Related games (related): kingtut, giza, doublepyramid, darkpyramid, apophis, cheops
- */
 object Pyramid extends GameRules(
   id = "pyramid",
   completed = true,

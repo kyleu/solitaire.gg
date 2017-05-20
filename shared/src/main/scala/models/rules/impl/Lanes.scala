@@ -2,13 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation initial cards (F0d): -1
- *   Tableau initial cards (T0d): 3 (3 cards)
- *   Tableau piles (T0n): 6
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- */
 object Lanes extends GameRules(
   id = "lanes",
   completed = true,

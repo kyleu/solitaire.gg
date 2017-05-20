@@ -2,22 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation low rank (F1b): 22 (Deck's high card)
- *   Foundation rank match rule (F1r): 32 (Build down)
- *   Foundation Sets (Fn): 2
- *   Reserve initial cards (R0d): 13
- *   Number of reserve piles (R0n): 1
- *   Auto-fill an empty tableau from (T0af): 1
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled with (T0f): 8 (Sevens only)
- *   Tableau piles (T0n): 4
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
- *   Deal cards from stock (dealchunk): 3 (Three at a time)
- *   Maximum deals from stock (maxdeals): 0
- */
 object Lafayette extends GameRules(
   id = "lafayette",
   completed = false,

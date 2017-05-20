@@ -2,17 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau initial cards (T0d): -1 (1 to n cards)
- *   Tableau cards face down (T0df): 100
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 12
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Similar to (like): harp
- *   Maximum deals from stock (maxdeals): 4 (4)
- *   Number of decks (ndecks): 3 (3 decks)
- */
 object Tripleharp extends GameRules(
   id = "tripleharp",
   completed = true,

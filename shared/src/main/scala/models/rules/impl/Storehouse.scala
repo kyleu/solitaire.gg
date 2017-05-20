@@ -3,24 +3,6 @@ package models.rules.impl
 import models.card.Rank
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Foundation initial cards (F0d): -1
- *   Reserve name (R0Nm): Storehouse
- *   Reserve initial cards (R0d): 13
- *   Number of reserve piles (R0n): 1
- *   Auto-fill an empty tableau from (T0af): 1
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 4
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
- *   Deal cards from stock (dealchunk): 1 (One by one)
- *   Similar to (like): canfield
- *   Low card (lowpip): 2 (2)
- *   Maximum deals from stock (maxdeals): 3 (3)
- *   Related games (related): doublestorehouse
- */
 object Storehouse extends GameRules(
   id = "storehouse",
   completed = false,

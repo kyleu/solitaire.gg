@@ -3,22 +3,6 @@ package models.rules.impl
 import models.card.Rank
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation initial cards (F0d): 1 (1 cards)
- *   Reserve initial cards (R0d): 13
- *   Reserve cards face down (R0df): 0
- *   Number of reserve piles (R0n): 1
- *   Auto-fill an empty tableau from (T0af): 0 (Nowhere)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 4
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
- *   Deal cards from stock (dealchunk): 3 (Three at a time)
- *   Similar to (like): canfield
- *   Low card (lowpip): -2 (?)
- *   Maximum deals from stock (maxdeals): 0
- */
 object SuperiorCanfield extends GameRules(
   id = "superiorcanfield",
   completed = false,

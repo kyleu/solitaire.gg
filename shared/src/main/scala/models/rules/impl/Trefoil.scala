@@ -2,21 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation initial cards (F0d): -1
- *   Deal order (RDd): 9 (Columns, left to right, top to bottom)
- *   Allowed pick ups/redeals (RDn): 2 (2)
- *   Shuffle before redealing (RDs): 1 (Yes)
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): 3 (3 cards)
- *   Custom initial cards (T0ds): UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU U
- *   Empty tableau is filled with (T0f): 5 (No card)
- *   Tableau piles (T0n): 16
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Number of waste piles (W0n): 0
- *   Similar to (like): labellelucie
- */
 object Trefoil extends GameRules(
   id = "trefoil",
   completed = false,

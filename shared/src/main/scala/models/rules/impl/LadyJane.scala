@@ -2,17 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau initial cards (T0d): -1 (1 to n cards)
- *   Tableau piles (T0n): 10
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
- *   Deal cards from stock (dealchunk): 3 (Three at a time)
- *   Maximum deals from stock (maxdeals): 2 (2)
- *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): inquisitor
- */
 object LadyJane extends GameRules(
   id = "ladyjane",
   completed = true,

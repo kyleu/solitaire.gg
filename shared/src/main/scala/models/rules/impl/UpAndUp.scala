@@ -2,23 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation Sets (Fn): 0
- *   *S0cardsShown (S0cardsShown): 19
- *   Auto-fill an empty tableau from (T0af): 4 (Stock)
- *   Cards shown (T0cardsShown): 2
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 10
- *   Tableau rank match rule for building (T0r): 128 (Build up)
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Tableau wraps from king to ace (T0w): true
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 7 (Manually)
- *   Similar to (like): trustytwelve
- *   Number of decks (ndecks): 1 (1 deck)
- *   Victory condition (victory): 2 (No cards left in stock)
- */
 object UpAndUp extends GameRules(
   id = "upandup",
   completed = true,

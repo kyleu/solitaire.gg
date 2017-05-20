@@ -2,17 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Tableau initial cards (T0d): 5 (5 cards)
- *   Tableau piles (T0n): 12
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
- *   Similar to (like): malmaison
- *   Maximum deals from stock (maxdeals): 2 (2)
- *   Number of decks (ndecks): 3 (3 decks)
- */
 object Rueil extends GameRules(
   id = "rueil",
   completed = false,

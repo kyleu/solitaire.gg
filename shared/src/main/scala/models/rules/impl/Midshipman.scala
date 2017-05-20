@@ -2,15 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau initial cards (T0d): 4 (4 cards)
- *   Tableau cards face down (T0df): 2
- *   Tableau piles (T0n): 9
- *   Tableau suit match rule for building (T0s): 2 (In different suits)
- *   Similar to (like): maria
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object Midshipman extends GameRules(
   id = "midshipman",
   completed = true,

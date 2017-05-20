@@ -2,22 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Reserve initial cards (R0d): 11
- *   Reserve cards face down (R0df): 0
- *   Number of reserve piles (R0n): 1
- *   Tableau initial cards (T0d): 4 (4 cards)
- *   Tableau cards face down (T0df): 102
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 7
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
- *   Deal cards from stock (dealchunk): 1 (One by one)
- *   Similar to (like): athena
- *   Maximum deals from stock (maxdeals): 2 (2)
- *   Related games (related): doubleminerva, tripleminerva, munger, mystique
- */
 object Minerva extends GameRules(
   id = "minerva",
   completed = false,

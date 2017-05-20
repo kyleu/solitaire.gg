@@ -2,16 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau initial cards (T0d): 4 (4 cards)
- *   Tableau piles (T0n): 10
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
- *   Deal cards from stock (dealchunk): 3 (Three at a time)
- *   Maximum deals from stock (maxdeals): 3 (3)
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object LittleForty extends GameRules(
   id = "littleforty",
   completed = true,

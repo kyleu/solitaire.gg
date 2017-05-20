@@ -3,18 +3,6 @@ package models.rules.impl
 import models.card.Rank
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Foundation initial cards (F0d): 1 (1 cards)
- *   Auto-fill an empty tableau from (T0af): 6 (First waste then stock)
- *   Tableau initial cards (T0d): 3 (3 cards)
- *   Tableau piles (T0n): 12
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Similar to (like): corona
- *   Low card (lowpip): -2 (?)
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object Quadrangle extends GameRules(
   id = "quadrangle",
   completed = true,

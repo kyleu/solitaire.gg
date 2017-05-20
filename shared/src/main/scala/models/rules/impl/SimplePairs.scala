@@ -2,21 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation low rank (F0b): 20 (Any Card)
- *   Maximum cards for foundation (F0m): 0
- *   Auto-fill an empty tableau from (T0af): 4 (Stock)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled with (T0f): 5 (No card)
- *   Tableau piles (T0n): 9
- *   Tableau suit match rule for building (T0s): 0 (May not build)
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 8 (Never)
- *   Left mouse interface function (leftfunc): 1
- *   Card removal method (pairs): 1 (Remove pairs of same rank)
- *   Related games (related): crisscross, eighteens, straightfifteens, blockten, patientpairs, doubletcell, do...
- */
 object SimplePairs extends GameRules(
   id = "simplepairs",
   completed = false,

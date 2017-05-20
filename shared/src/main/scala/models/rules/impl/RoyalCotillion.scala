@@ -3,32 +3,6 @@ package models.rules.impl
 import models.card.Rank
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 0 (Never)
- *   Foundation initial cards (F0d): -1
- *   Number of foundation piles (F0n): 4 (4 stacks)
- *   Foundation rank match rule (F0r): 256 (Build up by 2)
- *   Initial card restriction (F0u): 2 (Unique suits)
- *   Auto-move cards to foundation (F1a): 0 (Never)
- *   Foundation low rank (F1b): 2 (2)
- *   Foundation initial cards (F1d): -1
- *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 256 (Build up by 2)
- *   Initial card restriction (F1u): 2 (Unique suits)
- *   Foundation Sets (Fn): 2
- *   Reserve initial cards (R0d): 3
- *   Reserve cards face down (R0df): 0
- *   Number of reserve piles (R0n): 4
- *   Auto-fill an empty tableau from (T0af): 6 (First waste then stock)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled with (T0f): 5 (No card)
- *   Tableau piles (T0n): 16
- *   Tableau suit match rule for building (T0s): 0 (May not build)
- *   Similar to (like): oddandeven
- *   Maximum deals from stock (maxdeals): 1 (1)
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object RoyalCotillion extends GameRules(
   id = "royalcotillion",
   completed = false,

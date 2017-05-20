@@ -2,21 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation initial cards (F0d): -1
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): -2 (custom)
- *   Custom initial cards (T0ds): UUUUUUU UUUUUUU UUUUUUU UUUUUU UUUUU UUUU UUU UU U
- *   Tableau piles (T0n): 9
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Waste name (W0Nm): Reserve
- *   Playable waste cards (W0a): true
- *   *W0s (W0s): true
- *   Similar to (like): kingalbert
- *   Enable super moves, whatever those are (supermoves): 1
- *   *unused (unused): temp_hack
- */
 object Raglan extends GameRules(
   id = "raglan",
   completed = false,

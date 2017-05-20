@@ -2,21 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Cells name (C0Nm): Tail
- *   Number of cells (C0n): 1
- *   Foundation add complete sequences only (F0cs): true
- *   Foundation suit match rule (F0s): 5 (Regardless of suit)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 4
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
- *   Tableau wraps from king to ace (T0w): true
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 2 (To all tableau piles)
- *   Related games (related): tabbycat
- */
 object Manx extends GameRules(
   id = "manx",
   completed = true,

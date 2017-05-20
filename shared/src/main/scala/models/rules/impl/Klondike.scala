@@ -2,18 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau initial cards (T0d): -1 (1 to n cards)
- *   Tableau cards face down (T0df): 100
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 7
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
- *   Deal cards from stock (dealchunk): 3 (Three at a time)
- *   Maximum deals from stock (maxdeals): 0
- *   Related games (related): whitehorse, kingsley, trigon, goldmine, thoughtful, klondikegallery, chineseklon...
- */
 object Klondike extends GameRules(
   id = "klondike",
   completed = true,

@@ -2,20 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Auto-fill an empty tableau from (T0af): 0 (Nowhere)
- *   Tableau initial cards (T0d): 4 (4 cards)
- *   Tableau piles (T0n): 12
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
- *   Number of waste piles (W0n): 1
- *   Deal cards from stock (dealto): 1 (To all waste piles)
- *   Similar to (like): blockade
- *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): napoleonsshoulder
- */
 object NapoleonsSquare extends GameRules(
   id = "napoleonssquare",
   completed = false,

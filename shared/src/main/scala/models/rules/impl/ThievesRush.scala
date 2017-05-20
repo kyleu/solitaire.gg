@@ -2,17 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Tableau initial cards (T0d): 4 (4 cards)
- *   Tableau piles (T0n): 10
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Deal cards from stock (dealchunk): -1 (Fewer in each pass)
- *   Similar to (like): fortythieves
- *   Maximum deals from stock (maxdeals): 3 (3)
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object ThievesRush extends GameRules(
   id = "thievesrush",
   completed = true,

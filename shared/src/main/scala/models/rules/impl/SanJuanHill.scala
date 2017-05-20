@@ -2,18 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation name (F0Nm): Hill
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Foundation initial cards (F0d): -1
- *   Tableau name (T0Nm): Rough Riders
- *   Tableau initial cards (T0d): 4 (4 cards)
- *   Tableau piles (T0n): 10
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Similar to (like): fortythieves
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object SanJuanHill extends GameRules(
   id = "sanjuanhill",
   completed = false,

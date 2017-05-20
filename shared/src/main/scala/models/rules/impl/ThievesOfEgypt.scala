@@ -2,16 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Tableau initial cards (T0d): -2 (custom)
- *   Custom initial cards (T0ds): U UUU UUUUU UUUUUUU UUUUUUUUU UUUUUUUUUU UUUUUUUU UUUUUU UUUU UU
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 10
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object ThievesOfEgypt extends GameRules(
   id = "thievesofegypt",
   completed = true,

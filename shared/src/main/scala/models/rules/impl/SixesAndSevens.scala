@@ -3,23 +3,6 @@ package models.rules.impl
 import models.card.Rank
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Foundation low rank (F0b): 6 (6)
- *   Foundation initial cards (F0d): -1
- *   Maximum cards for foundation (F0m): 6
- *   Foundation rank match rule (F0r): 32 (Build down)
- *   Auto-move cards to foundation (F1a): 1 (Whenever possible)
- *   Foundation low rank (F1b): 7 (7)
- *   Foundation initial cards (F1d): -1
- *   Maximum cards for foundation (F1m): 7
- *   Foundation Sets (Fn): 2
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Maximum cards per tableau (T0m): 1 (1 cards)
- *   Tableau piles (T0n): 9
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object SixesAndSevens extends GameRules(
   id = "sixesandsevens",
   completed = false,

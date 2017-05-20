@@ -2,18 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Number of cells (C0n): 7
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): -2 (custom)
- *   Custom initial cards (T0ds): UUUUUUUU UUUUUUU UUUUUUU UUUUUUUU UUUUUUU UUUUUUU UUUUUUUU
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 7
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
- *   Number of waste piles (W0n): 0
- */
 object Tuxedo extends GameRules(
   id = "tuxedo",
   completed = true,

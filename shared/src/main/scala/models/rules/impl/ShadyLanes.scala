@@ -2,17 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   *R0af (R0af): 6
- *   Reserve initial cards (R0d): 1
- *   Number of reserve piles (R0n): 4
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled from (T0fo): 64 (reserve)
- *   Tableau piles (T0n): 4
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object ShadyLanes extends GameRules(
   id = "shadylanes",
   completed = false,

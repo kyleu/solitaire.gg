@@ -2,23 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Card initially dealt into cells (C0d): 4 (4 cards)
- *   Number of cells (C0n): 4
- *   Auto-move cards to foundation (F0a): 0 (Never)
- *   Foundation initial cards (F0d): -1
- *   Reserve name (R0Nm): Tableau
- *   Reserve initial cards (R0d): 1
- *   Number of reserve piles (R0n): 8
- *   Tableau name (T0Nm): Reserve
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 4
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 5
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object Saxony extends GameRules(
   id = "saxony",
   completed = true,

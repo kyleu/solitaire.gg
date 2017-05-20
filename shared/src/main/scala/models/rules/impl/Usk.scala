@@ -2,21 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Deal order (RDd): 0 (Rows, left to right, bottom to top)
- *   Allowed pick ups/redeals (RDn): 1 (1)
- *   Pickup order (RDp): 1 (Columns, left to right, bottom to top)
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): -2 (custom)
- *   Custom initial cards (T0ds): UUUUUUUU UUUUUUUU UUUUUUUU UUUUUUU UUUUUU UUUUU UUUU UUU UU U
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 10
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
- *   Number of waste piles (W0n): 0
- *   Similar to (like): somerset
- */
 object Usk extends GameRules(
   id = "usk",
   completed = false,

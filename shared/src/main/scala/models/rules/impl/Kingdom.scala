@@ -2,15 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Foundation suit match rule (F0s): 5 (Regardless of suit)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 8
- *   Tableau suit match rule for building (T0s): 0 (May not build)
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object Kingdom extends GameRules(
   id = "kingdom",
   completed = false,

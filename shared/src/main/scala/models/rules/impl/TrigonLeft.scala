@@ -2,20 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Auto-fill an empty tableau from (T0af): -1 (Next tableau column)
- *   Tableau initial cards (T0d): -1 (1 to n cards)
- *   Tableau cards face down (T0df): 100
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 7
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
- *   Deal cards from stock (dealchunk): 1 (One by one)
- *   Similar to (like): trigon
- *   Maximum deals from stock (maxdeals): 0
- */
 object TrigonLeft extends GameRules(
   id = "trigonleft",
   completed = false,

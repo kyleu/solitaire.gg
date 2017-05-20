@@ -2,18 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Number of cells (C0n): 4
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 8
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Tableau suit match rule for moving stacks (T0ts): 4 (In alternating colors)
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 2 (To all tableau piles)
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object MilliganCell extends GameRules(
   id = "milligancell",
   completed = true,

@@ -2,19 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Keep foundation off-screen (F0i): true
- *   *P0ds (P0ds): ------
- *   *P0n (P0n): 7
- *   Number of pyramids (Pn): 1 (1 pyramid)
- *   Tableau sets (Tn): 0 (0 tableau sets)
- *   Number of waste piles (W0n): 2
- *   Deal cards from stock (dealto): 9
- *   Left mouse interface function (leftfunc): 1
- *   Card removal method (pairs): 10 (Remove kings or pairs adding to 13)
- *   Related games (related): eleventriangle
- */
 object Triangle extends GameRules(
   id = "triangle",
   completed = true,

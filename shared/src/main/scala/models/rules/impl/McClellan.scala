@@ -2,17 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Tableau initial cards (T0d): 4 (4 cards)
- *   Tableau cards face down (T0df): 100
- *   Tableau piles (T0n): 8
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau suit match rule for moving stacks (T0ts): 1 (In same suit)
- *   Similar to (like): littlenapoleon
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object McClellan extends GameRules(
   id = "mcclellan",
   completed = true,

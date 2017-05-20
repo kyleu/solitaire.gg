@@ -2,19 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): -2 (custom)
- *   Custom initial cards (T0ds): U DUUUUU DDUUUUU DDDUUUUU DDDDUUUUU DDDDDUUUUU DDDDDDUUUUU
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 7
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Tableau rank match rule for moving stacks (T0tr): 8191 (Regardless of rank)
- *   Tableau suit match rule for moving stacks (T0ts): 5 (Regardless of suit)
- *   Number of waste piles (W0n): 0
- *   Related games (related): doublerussian, triplerussian, ukrainian, russiancell, odessa, tenacross
- */
 object Russian extends GameRules(
   id = "russian",
   completed = true,

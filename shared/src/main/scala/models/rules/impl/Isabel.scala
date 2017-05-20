@@ -2,19 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation low rank (F0b): 20 (Any Card)
- *   Maximum cards for foundation (F0m): 0
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): 4 (4 cards)
- *   Empty tableau is filled with (T0f): 5 (No card)
- *   Tableau piles (T0n): 13
- *   Tableau suit match rule for building (T0s): 0 (May not build)
- *   Number of waste piles (W0n): 0
- *   Left mouse interface function (leftfunc): 1
- *   Card removal method (pairs): 1 (Remove pairs of same rank)
- */
 object Isabel extends GameRules(
   id = "isabel",
   completed = true,

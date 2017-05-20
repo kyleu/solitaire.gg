@@ -3,18 +3,6 @@ package models.rules.impl
 import models.card.Rank
 import models.rules._
 
-/**
- * Original Settings:
- *   Deal order (RDd): 0 (Rows, left to right, bottom to top)
- *   Allowed pick ups/redeals (RDn): 2 (2)
- *   Pickup order (RDp): 3 (Columns, right to left, bottom to top)
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau initial cards (T0d): 8 (8 cards)
- *   Tableau piles (T0n): 8
- *   Tableau suit match rule for building (T0s): 4 (In alternating colors)
- *   Number of decks (ndecks): 2 (2 decks)
- *   Ranks in use (ranks): 8129
- */
 object Strata extends GameRules(
   id = "strata",
   completed = true,

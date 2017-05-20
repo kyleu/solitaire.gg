@@ -3,20 +3,6 @@ package models.rules.impl
 import models.card.Rank
 import models.rules._
 
-/**
- * Original Settings:
- *   Number of cells (C0n): 4
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Foundation initial cards (F0d): -1
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 6
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Left mouse interface function (leftfunc): 0
- *   Similar to (like): deuces
- *   Low card (lowpip): 11 (J)
- *   Number of decks (ndecks): 2 (2 decks)
- *   Enable super moves, whatever those are (supermoves): 1
- */
 object JacksInTheBox extends GameRules(
   id = "jacksinthebox",
   completed = false,

@@ -2,18 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Keep foundation off-screen (F0i): true
- *   *P1ds (P1ds): +++++
- *   *P2ds (P2ds): +
- *   Number of pyramids (Pn): 3 (3 pyramids)
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau sets (Tn): 0 (0 tableau sets)
- *   Number of waste piles (W0n): 0
- *   Left mouse interface function (leftfunc): 1
- *   Card removal method (pairs): 10 (Remove kings or pairs adding to 13)
- */
 object Pharaohs extends GameRules(
   id = "pharaohs",
   completed = false,

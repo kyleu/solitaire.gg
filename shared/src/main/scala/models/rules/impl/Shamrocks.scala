@@ -2,21 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 0 (Never)
- *   Enable stock (Sn): 0 (No stock)
- *   Tableau name (T0Nm): Fan
- *   Tableau initial cards (T0d): -2 (custom)
- *   Tableau action during deal (T0dd): 1 (Move kings to stack bottoms)
- *   Custom initial cards (T0ds): UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU UUU U
- *   Empty tableau is filled with (T0f): 5 (No card)
- *   Maximum cards per tableau (T0m): 3 (3 cards)
- *   Tableau piles (T0n): 18
- *   Tableau rank match rule for building (T0r): 160 (Build up or down)
- *   Tableau suit match rule for building (T0s): 5 (Regardless of suit)
- *   Number of waste piles (W0n): 0
- */
 object Shamrocks extends GameRules(
   id = "shamrocks",
   completed = false,

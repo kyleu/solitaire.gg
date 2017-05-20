@@ -2,18 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Auto-move cards to foundation (F0a): 1 (Whenever possible)
- *   Foundation initial cards (F0d): -1
- *   Tableau initial cards (T0d): 4 (4 cards)
- *   Tableau action during deal (T0dd): 3 (Move cards to foundations)
- *   Empty tableau is filled with (T0f): 1 (Kings only)
- *   Tableau piles (T0n): 12
- *   Tableau suit match rule for building (T0s): 1 (In same suit)
- *   Similar to (like): fortythieves
- *   Number of decks (ndecks): 2 (2 decks)
- */
 object NapoleonsQuadrilateral extends GameRules(
   id = "napoleonsquadrilateral",
   completed = false,

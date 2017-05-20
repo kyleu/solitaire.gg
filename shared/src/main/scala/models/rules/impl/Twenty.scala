@@ -2,29 +2,6 @@ package models.rules.impl
 
 import models.rules._
 
-/**
- * Original Settings:
- *   Foundation name (F0Nm): Aces Foundation
- *   Foundation initial cards (F0d): -1
- *   Number of foundation piles (F0n): 4 (4 stacks)
- *   Initial card restriction (F0u): 2 (Unique suits)
- *   Foundation name (F1Nm): Kings Foundation
- *   Foundation low rank (F1b): 22 (Deck's high card)
- *   Foundation initial cards (F1d): -1
- *   Number of foundation piles (F1n): 4 (4 stacks)
- *   Foundation rank match rule (F1r): 32 (Build down)
- *   Initial card restriction (F1u): 2 (Unique suits)
- *   Foundation Sets (Fn): 2
- *   Auto-fill an empty tableau from (T0af): 4 (Stock)
- *   Tableau initial cards (T0d): 1 (1 card)
- *   Tableau piles (T0n): 20
- *   Tableau rank match rule for building (T0r): 0 (May not build)
- *   Tableau suit match rule for building (T0s): 0 (May not build)
- *   Number of waste piles (W0n): 0
- *   Deal cards from stock (dealto): 2 (To all tableau piles)
- *   Number of decks (ndecks): 2 (2 decks)
- *   Related games (related): colorado
- */
 object Twenty extends GameRules(
   id = "twenty",
   completed = true,
