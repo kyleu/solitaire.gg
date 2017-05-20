@@ -2,7 +2,7 @@ import sbt._
 
 object Dependencies {
   object Play {
-    val version = "2.5.14"
+    val version = "2.5.15"
     val playLib = "com.typesafe.play" %% "play" % version
     val playFilters = play.sbt.PlayImport.filters
     val playWs = play.sbt.PlayImport.ws
@@ -12,7 +12,7 @@ object Dependencies {
   }
 
   object Akka {
-    private[this] val version = "2.4.18"
+    private[this] val version = "2.5.1"
     val actor = "com.typesafe.akka" %% "akka-actor" % version
     val cluster = "com.typesafe.akka" %% "akka-cluster" % version
     val contrib = "com.typesafe.akka" %% "akka-contrib" % version
@@ -77,7 +77,7 @@ object Dependencies {
     val core = "com.twitter" %% "util-core" % twitterVersion
     val collection = "com.twitter" %% "util-collection" % twitterVersion
 
-    val enumeratumVersion = "1.5.11"
+    val enumeratumVersion = "1.5.14"
     val enumeratumCirce = "com.beachape" %% "enumeratum-circe" % enumeratumVersion
 
     val betterFiles = "com.github.pathikrit" %% "better-files" % "2.17.1"
