@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object Giza extends GameRules(
@@ -36,8 +37,8 @@ object Giza extends GameRules(
     PyramidRules(
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
-      mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
+      mayMoveToNonEmptyFrom = PileSet.Behavior.wtpf,
+      mayMoveToEmptyFrom = PileSet.Behavior.wtpf
     )
   )
 )

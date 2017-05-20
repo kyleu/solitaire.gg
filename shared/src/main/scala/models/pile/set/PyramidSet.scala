@@ -1,6 +1,5 @@
 package models.pile.set
 
-import models.card.Rank
 import models.pile.Pile
 import models.pile.options.PyramidPileOptions
 import models.rules.{CardRemovalMethod, PyramidRules}
@@ -20,4 +19,4 @@ object PyramidSet {
   }
 }
 
-class PyramidSet(piles: Seq[Pile]) extends PileSet("pyramid", piles, visible = true)
+class PyramidSet(piles: Seq[Pile]) extends PileSet(PileSet.Behavior.Pyramid, piles, visible = true)

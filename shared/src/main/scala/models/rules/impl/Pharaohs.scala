@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object Pharaohs extends GameRules(
@@ -25,24 +26,24 @@ object Pharaohs extends GameRules(
     PyramidRules(
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
-      mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
+      mayMoveToNonEmptyFrom = PileSet.Behavior.wtpf,
+      mayMoveToEmptyFrom = PileSet.Behavior.wtpf
     ),
     PyramidRules(
       setNumber = 1,
       height = 6,
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
-      mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
+      mayMoveToNonEmptyFrom = PileSet.Behavior.wtpf,
+      mayMoveToEmptyFrom = PileSet.Behavior.wtpf
     ),
     PyramidRules(
       setNumber = 2,
       height = 2,
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,
-      mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation")
+      mayMoveToNonEmptyFrom = PileSet.Behavior.wtpf,
+      mayMoveToEmptyFrom = PileSet.Behavior.wtpf
     )
   )
 )

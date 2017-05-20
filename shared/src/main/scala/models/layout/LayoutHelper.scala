@@ -6,15 +6,8 @@ class LayoutHelper(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) 
   private[this] val margin = 0.7
   private[this] val padding = 0.2
 
-  def pileSetsForChar(remainingPileSets: Seq[PileSet], c: Char) = c match {
-    case 's' => remainingPileSets.find(_.behavior == "stock")
-    case 'w' => remainingPileSets.find(_.behavior == "waste")
-    case 'f' => remainingPileSets.find(_.behavior == "foundation")
-    case 't' => remainingPileSets.find(_.behavior == "tableau")
-    case 'c' => remainingPileSets.find(_.behavior == "cell")
-    case 'r' => remainingPileSets.find(_.behavior == "reserve")
-    case 'p' => remainingPileSets.find(_.behavior == "pyramid")
-    case _ => None
+  def pileSetsForChar(remainingPileSets: Seq[PileSet], c: Char) = PileSet.Behavior.withValueOpt(c).flatMap { behavior =>
+    remainingPileSets.find(_.behavior == behavior)
   }
 
   private[this] val locations = collection.mutable.HashMap.empty[String, (Double, Double)]
@@ -57,7 +50,7 @@ class LayoutHelper(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) 
           if (pileSetDimensions._2 > currentRowMaxHeight) {
             currentRowMaxHeight = pileSetDimensions._2
           }
-          if (pileSet.behavior == "pyramid") {
+          if (pileSet.behavior == PileSet.Behavior.Pyramid) {
             var currentRow = 1
             var rowCounter = 0
             xOffset = margin + ((pileSet.rows.toDouble - currentRow) / 2) * (1 + padding)

@@ -1,6 +1,7 @@
 package models.rules.impl
 
 import models.card.Color
+import models.pile.set.PileSet
 import models.rules._
 
 object Alternate extends GameRules(
@@ -44,8 +45,8 @@ object Alternate extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToNonEmptyFrom = Seq("stock"),
-      mayMoveToEmptyFrom = Seq("stock")
+      mayMoveToNonEmptyFrom = Seq(PileSet.Behavior.Stock),
+      mayMoveToEmptyFrom = Seq(PileSet.Behavior.Stock)
     )
   )
 )

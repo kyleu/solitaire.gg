@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object Colorado extends GameRules(
@@ -46,7 +47,7 @@ object Colorado extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
       emptyFilledWith = FillEmptyWith.None,
-      mayMoveToNonEmptyFrom = Seq("stock")
+      mayMoveToNonEmptyFrom = Seq(PileSet.Behavior.Stock)
     )
   )
 )

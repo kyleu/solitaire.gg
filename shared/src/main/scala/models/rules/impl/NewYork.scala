@@ -1,6 +1,7 @@
 package models.rules.impl
 
 import models.card.Rank
+import models.pile.set.PileSet
 import models.rules._
 
 object NewYork extends GameRules(
@@ -40,7 +41,7 @@ object NewYork extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToEmptyFrom = Seq("stock", "waste")
+      mayMoveToEmptyFrom = Seq(PileSet.Behavior.Stock, PileSet.Behavior.Waste)
     )
   )
 )

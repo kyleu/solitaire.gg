@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object Congress extends GameRules(
@@ -26,7 +27,7 @@ object Congress extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToEmptyFrom = Seq("stock", "pyramid", "waste", "pocket", "reserve", "cell", "foundation")
+      mayMoveToEmptyFrom = PileSet.Behavior.allButReserve
     )
   )
 )

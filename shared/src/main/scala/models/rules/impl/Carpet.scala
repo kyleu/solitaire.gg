@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object Carpet extends GameRules(
@@ -28,7 +29,7 @@ object Carpet extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.None,
       rankMatchRuleForBuilding = RankMatchRule.None,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToEmptyFrom = Seq("waste")
+      mayMoveToEmptyFrom = Seq(PileSet.Behavior.Waste)
     )
   )
 )

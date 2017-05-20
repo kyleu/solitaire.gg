@@ -1,6 +1,7 @@
 package models.rules
 
 import enumeratum.values._
+import models.pile.set.PileSet
 
 sealed abstract class PyramidType(val value: Int) extends IntEnumEntry
 object PyramidType extends IntEnum[PyramidType] with IntCirceEnum[PyramidType] {
@@ -31,7 +32,7 @@ case class PyramidRules(
   suitMatchRuleForMovingStacks: SuitMatchRule = SuitMatchRule.None,
   rankMatchRuleForMovingStacks: RankMatchRule = RankMatchRule.None,
 
-  mayMoveToNonEmptyFrom: Seq[String] = GameRules.allSources,
-  mayMoveToEmptyFrom: Seq[String] = GameRules.allSources,
+  mayMoveToNonEmptyFrom: Seq[PileSet.Behavior] = PileSet.Behavior.values,
+  mayMoveToEmptyFrom: Seq[PileSet.Behavior] = PileSet.Behavior.values,
   emptyFilledWith: FillEmptyWith = FillEmptyWith.None
 )

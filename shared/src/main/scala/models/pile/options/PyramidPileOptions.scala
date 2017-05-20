@@ -1,8 +1,8 @@
 package models.pile.options
 
-import models.card.Rank
 import models.pile.actions.{DragToActions, SelectCardActions}
 import models.pile.constraints.Constraint
+import models.pile.set.PileSet
 import models.rules.{CardRemovalMethod, PyramidRules}
 
 object PyramidPileOptions {
@@ -11,7 +11,7 @@ object PyramidPileOptions {
       cardsShown = Some(1),
       direction = Some("d"),
       dragFromConstraint = Some(Constraint.topCardOnly),
-      dragToConstraint = Some(dragToConstraint(crm, rules.mayMoveToEmptyFrom)),
+      dragToConstraint = Some(dragToConstraint(crm, rules.mayMoveToEmptyFrom, rules.mayMoveToNonEmptyFrom)),
       selectCardConstraint = Some(Constraint.allOf("top-card-select", Constraint.topCardOnly, Constraint.forCardRemovalMethod(crm))),
       selectCardAction = Some(SelectCardActions.drawToPiles(() => 1, Seq("foundation-1"))),
       dragToAction = Some(DragToActions.remove())
@@ -30,7 +30,7 @@ object PyramidPileOptions {
     ret
   }
 
-  private[this] def dragToConstraint(crm: CardRemovalMethod, mayMoveToEmptyFrom: Seq[String]) = {
+  private[this] def dragToConstraint(crm: CardRemovalMethod, mayMoveToEmptyFrom: Seq[PileSet.Behavior], mayMoveToNonEmptyFrom: Seq[PileSet.Behavior]) = {
     Constraint("pyramid", (src, tgt, cards, _) => tgt.cards.lastOption match {
       case None => src.pileSet.exists(x => mayMoveToEmptyFrom.contains(x.behavior))
 
@@ -46,7 +46,7 @@ object PyramidPileOptions {
             }
           }
         }
-        ret //&& src.pileSet.exists(x => mayMoveToNonEmptyFrom.contains(x.behavior))
+        ret && src.pileSet.exists(x => mayMoveToNonEmptyFrom.contains(x.behavior))
     })
   }
 

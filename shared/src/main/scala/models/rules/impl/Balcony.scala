@@ -1,6 +1,7 @@
 package models.rules.impl
 
 import models.card.Rank
+import models.pile.set.PileSet
 import models.rules._
 
 object Balcony extends GameRules(
@@ -19,7 +20,7 @@ object Balcony extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.StockThenWaste,
-      mayMoveToNonEmptyFrom = Seq("stock", "pyramid", "waste", "pocket", "cell", "foundation", "tableau")
+      mayMoveToNonEmptyFrom = PileSet.Behavior.allButReserve
     )
   ),
   reserves = Some(ReserveRules(initialCards = 7))

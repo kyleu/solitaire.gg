@@ -15,7 +15,8 @@ object AssetLoader {
   private[this] def error(g: PhaserGame, cardId: Int, cards: Iterable[(CardSprite, PileGroup, Int)]) = {
     val cardIds = cards.map(_._1.id).toSeq.sorted.mkString(", ")
     val deckSize = g.gameplay.services.state.deck.cards.size
-    val msg = s"Unknown card [$cardId]. [$deckSize] cards in deck. [${cards.size}] cards available: [$cardIds]."
+    val inDeck = g.gameplay.services.state.deck.cards.exists(_.id == cardId)
+    val msg = s"Unknown card [$cardId] (in deck: $inDeck). [$deckSize] cards in deck. [${cards.size}] cards available: [$cardIds]."
     throw new IllegalStateException(msg)
   }
 

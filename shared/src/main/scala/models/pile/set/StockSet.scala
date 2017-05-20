@@ -12,4 +12,4 @@ object StockSet {
   }
 }
 
-class StockSet(piles: Seq[Pile]) extends PileSet("stock", piles, visible = true)
+class StockSet(piles: Seq[Pile]) extends PileSet(PileSet.Behavior.Stock, piles, visible = true)

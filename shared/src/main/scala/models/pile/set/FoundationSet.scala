@@ -23,4 +23,4 @@ object FoundationSet {
   }
 }
 
-class FoundationSet(piles: Seq[Pile], visible: Boolean) extends PileSet("foundation", piles, visible)
+class FoundationSet(piles: Seq[Pile], visible: Boolean) extends PileSet(PileSet.Behavior.Foundation, piles, visible)

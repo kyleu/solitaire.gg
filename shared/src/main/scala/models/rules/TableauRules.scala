@@ -1,6 +1,7 @@
 package models.rules
 
 import enumeratum.values._
+import models.pile.set.PileSet
 
 sealed abstract class TableauFaceDownCards(val value: String) extends StringEnumEntry
 object TableauFaceDownCards extends StringEnum[TableauFaceDownCards] with StringCirceEnum[TableauFaceDownCards] {
@@ -53,8 +54,8 @@ case class TableauRules(
   autoFillEmptyFrom: TableauAutoFillEmptyFrom = TableauAutoFillEmptyFrom.Nowhere,
   emptyFilledWith: FillEmptyWith = FillEmptyWith.Any,
 
-  mayMoveToNonEmptyFrom: Seq[String] = GameRules.allSources,
-  mayMoveToEmptyFrom: Seq[String] = GameRules.allSources,
+  mayMoveToNonEmptyFrom: Seq[PileSet.Behavior] = PileSet.Behavior.values,
+  mayMoveToEmptyFrom: Seq[PileSet.Behavior] = PileSet.Behavior.values,
 
   maxCards: Int = 0,
   actionDuringDeal: PileAction = PileAction.None,

@@ -1,9 +1,5 @@
 package models.rules
 
-object GameRules {
-  val allSources = Seq("stock", "pyramid", "waste", "pocket", "reserve", "cell", "foundation", "tableau")
-}
-
 case class Link(title: String, url: String)
 
 case class GameRules(

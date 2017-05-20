@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object LoveADuck extends GameRules(
@@ -21,8 +22,8 @@ object LoveADuck extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Down,
       suitMatchRuleForMovingStacks = SuitMatchRule.Any,
       rankMatchRuleForMovingStacks = RankMatchRule.Any,
-      mayMoveToNonEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
-      mayMoveToEmptyFrom = Seq("Waste", "Tableau", "Pyramid", "Foundation"),
+      mayMoveToNonEmptyFrom = PileSet.Behavior.wtpf,
+      mayMoveToEmptyFrom = PileSet.Behavior.wtpf,
       emptyFilledWith = FillEmptyWith.HighRank
     )
   )

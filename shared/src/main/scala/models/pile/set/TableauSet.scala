@@ -20,4 +20,4 @@ object TableauSet {
   }
 }
 
-class TableauSet(piles: Seq[Pile]) extends PileSet("tableau", piles, visible = true)
+class TableauSet(piles: Seq[Pile]) extends PileSet(PileSet.Behavior.Tableau, piles, visible = true)

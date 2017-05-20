@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object Crescent extends GameRules(
@@ -49,7 +50,7 @@ object Crescent extends GameRules(
       wrap = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.None,
-      mayMoveToNonEmptyFrom = Seq("tableau")
+      mayMoveToNonEmptyFrom = Seq(PileSet.Behavior.Tableau)
     )
   ),
   special = Some(SpecialRules(rotationsAllowed = 3, rotationTopToBottom = false))

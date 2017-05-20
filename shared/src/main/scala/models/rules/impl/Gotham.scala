@@ -1,7 +1,7 @@
 package models.rules.impl
 
 import models.card.Rank
-import models.game._
+import models.pile.set.PileSet
 import models.rules._
 
 object Gotham extends GameRules(
@@ -37,7 +37,7 @@ object Gotham extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      mayMoveToEmptyFrom = Seq("stock", "waste")
+      mayMoveToEmptyFrom = Seq(PileSet.Behavior.Stock, PileSet.Behavior.Waste)
     )
   )
 )

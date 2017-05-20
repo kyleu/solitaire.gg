@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object Grandfather extends GameRules(
@@ -43,7 +44,7 @@ object Grandfather extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
-      mayMoveToNonEmptyFrom = Seq("waste"),
+      mayMoveToNonEmptyFrom = Seq(PileSet.Behavior.Waste),
       maxCards = 2
     )
   )

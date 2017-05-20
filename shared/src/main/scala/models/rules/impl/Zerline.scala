@@ -1,6 +1,7 @@
 package models.rules.impl
 
 import models.card.Rank
+import models.pile.set.PileSet
 import models.rules._
 
 object Zerline extends GameRules(
@@ -31,7 +32,7 @@ object Zerline extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToNonEmptyFrom = Seq("tableau"),
+      mayMoveToNonEmptyFrom = Seq(PileSet.Behavior.Tableau),
       maxCards = 4
     )
   )

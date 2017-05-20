@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object Cicely extends GameRules(
@@ -40,8 +41,8 @@ object Cicely extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.UpOrDown,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.None,
-      mayMoveToNonEmptyFrom = Seq("cell", "tableau")
+      mayMoveToNonEmptyFrom = Seq(PileSet.Behavior.Cell, PileSet.Behavior.Tableau)
     )
   ),
-  cells = Some(CellRules(numPiles = 8, mayMoveToFrom = Seq("tableau"), initialCards = 8))
+  cells = Some(CellRules(numPiles = 8, mayMoveToFrom = Seq(PileSet.Behavior.Tableau), initialCards = 8))
 )

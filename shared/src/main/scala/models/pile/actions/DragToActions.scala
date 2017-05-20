@@ -3,6 +3,7 @@ package models.pile.actions
 import models.card.Card
 import models.game.GameState
 import models.pile.Pile
+import models.pile.set.PileSet
 import models.{CardMoved, CardsMoved, ResponseMessage}
 
 case class DragToAction(id: String, f: (Pile, Seq[Card], Pile, GameState) => Seq[ResponseMessage])
@@ -20,7 +21,7 @@ object DragToActions {
     }
     val moveMessage = CardsMoved(cardIds, src.id, tgt.id)
     if (src.cards.lastOption.exists(!_.u)) {
-      val isReserve = src.pileSet.exists(_.behavior == "reserve")
+      val isReserve = src.pileSet.exists(_.behavior == PileSet.Behavior.Reserve)
       if (isReserve || gameState.players.exists(_.autoFlipOption)) {
         val last = src.cards.lastOption.getOrElse(throw new IllegalStateException())
         last.u = true

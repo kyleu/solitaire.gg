@@ -1,6 +1,7 @@
 package models.rules.impl
 
 import models.card.Rank
+import models.pile.set.PileSet
 import models.rules._
 
 object BigApple extends GameRules(
@@ -20,7 +21,7 @@ object BigApple extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,
-      mayMoveToEmptyFrom = Seq("stock", "cell")
+      mayMoveToEmptyFrom = Seq(PileSet.Behavior.Stock, PileSet.Behavior.Cell)
     )
   ),
   cells = Some(CellRules(numPiles = 3))

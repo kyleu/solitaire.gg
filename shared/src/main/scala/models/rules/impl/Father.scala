@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object Father extends GameRules(
@@ -39,7 +40,7 @@ object Father extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToNonEmptyFrom = Seq("waste"),
+      mayMoveToNonEmptyFrom = Seq(PileSet.Behavior.Waste),
       maxCards = 2
     )
   )

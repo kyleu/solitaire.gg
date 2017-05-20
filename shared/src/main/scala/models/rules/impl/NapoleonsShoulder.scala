@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object NapoleonsShoulder extends GameRules(
@@ -29,7 +30,7 @@ object NapoleonsShoulder extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToEmptyFrom = Seq("waste")
+      mayMoveToEmptyFrom = Seq(PileSet.Behavior.Waste)
     )
   )
 )

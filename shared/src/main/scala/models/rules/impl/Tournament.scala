@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object Tournament extends GameRules(
@@ -40,9 +41,9 @@ object Tournament extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
       emptyFilledWith = FillEmptyWith.None,
-      mayMoveToNonEmptyFrom = Seq("cell", "tableau")
+      mayMoveToNonEmptyFrom = Seq(PileSet.Behavior.Cell, PileSet.Behavior.Tableau)
     )
   ),
-  cells = Some(CellRules(numPiles = 8, mayMoveToFrom = Seq("tableau"), initialCards = 8)),
+  cells = Some(CellRules(numPiles = 8, mayMoveToFrom = Seq(PileSet.Behavior.Tableau), initialCards = 8)),
   special = Some(SpecialRules(redealsAllowed = 2))
 )

@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object CircleEight extends GameRules(
@@ -20,7 +21,7 @@ object CircleEight extends GameRules(
       rankMatchRuleForBuilding = RankMatchRule.Up,
       wrap = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToNonEmptyFrom = Seq("waste")
+      mayMoveToNonEmptyFrom = Seq(PileSet.Behavior.Waste)
     )
   )
 )

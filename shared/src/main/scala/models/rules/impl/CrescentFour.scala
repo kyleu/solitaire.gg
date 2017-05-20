@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object CrescentFour extends GameRules(
@@ -38,7 +39,7 @@ object CrescentFour extends GameRules(
       wrap = true,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       emptyFilledWith = FillEmptyWith.None,
-      mayMoveToNonEmptyFrom = Seq("tableau")
+      mayMoveToNonEmptyFrom = Seq(PileSet.Behavior.Tableau)
     )
   ),
   special = Some(

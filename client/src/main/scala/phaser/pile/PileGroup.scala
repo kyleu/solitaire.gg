@@ -4,6 +4,7 @@ import com.definitelyscala.phaser.{Group, Pointer, Sprite}
 import models.SelectPile
 import models.game.PossibleMove
 import models.pile.Pile
+import models.pile.set.PileSet
 import phaser.PhaserGame
 import phaser.card.CardSprite
 
@@ -12,7 +13,7 @@ import scala.scalajs.js.annotation.ScalaJSDefined
 @ScalaJSDefined
 class PileGroup(val phaser: PhaserGame, p: Pile) extends Group(game = phaser, parent = phaser.getPlaymat) {
   val id = p.id
-  val behavior = p.pileSet.map(_.behavior)
+  val behavior = p.pileSet.map(_.behavior).getOrElse(throw new IllegalStateException(s"Missing pileset for pile [$id]."))
   val options = p.options
 
   def canDragFrom(sprite: CardSprite) = p.canDragFrom(p.cards.drop(sprite.pileIndex), phaser.gameplay.services.state)
@@ -43,6 +44,8 @@ class PileGroup(val phaser: PhaserGame, p: Pile) extends Group(game = phaser, pa
     add(ret)
     ret
   }
+
+  empty.visible = behavior != PileSet.Behavior.Pyramid
 
   var intersectWidth = empty.width
   var intersectHeight = empty.height

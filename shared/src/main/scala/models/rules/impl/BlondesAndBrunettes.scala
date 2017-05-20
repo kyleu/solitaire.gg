@@ -1,6 +1,7 @@
 package models.rules.impl
 
 import models.card.Rank
+import models.pile.set.PileSet
 import models.rules._
 
 object BlondesAndBrunettes extends GameRules(
@@ -24,8 +25,8 @@ object BlondesAndBrunettes extends GameRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.StockThenWaste,
-      mayMoveToNonEmptyFrom = Seq("stock", "pyramid", "waste", "pocket", "cell", "foundation", "tableau"),
-      mayMoveToEmptyFrom = Seq("stock", "pyramid", "waste", "pocket", "cell", "foundation", "tableau")
+      mayMoveToNonEmptyFrom = PileSet.Behavior.allButReserve,
+      mayMoveToEmptyFrom = PileSet.Behavior.allButReserve
     )
   ),
   reserves = Some(ReserveRules(initialCards = 10))

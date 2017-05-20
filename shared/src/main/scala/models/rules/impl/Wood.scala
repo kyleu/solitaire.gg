@@ -1,6 +1,7 @@
 package models.rules.impl
 
 import models.card.Rank
+import models.pile.set.PileSet
 import models.rules._
 
 object Wood extends GameRules(
@@ -19,8 +20,8 @@ object Wood extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToNonEmptyFrom = Seq("stock", "pyramid", "waste", "pocket", "cell", "foundation", "tableau"),
-      mayMoveToEmptyFrom = Seq("waste")
+      mayMoveToNonEmptyFrom = PileSet.Behavior.allButReserve,
+      mayMoveToEmptyFrom = Seq(PileSet.Behavior.Waste)
     )
   ),
   reserves = Some(ReserveRules(initialCards = 10))

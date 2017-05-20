@@ -2,6 +2,7 @@ package models.rules
 
 import enumeratum.values._
 import models.card.{Color, Rank, Suit}
+import models.pile.set.PileSet
 
 sealed abstract class FoundationInitialCardRestriction(val value: Int) extends IntEnumEntry
 object FoundationInitialCardRestriction extends IntEnum[FoundationInitialCardRestriction] with IntCirceEnum[FoundationInitialCardRestriction] {
@@ -44,8 +45,8 @@ case class FoundationRules(
   moveCompleteSequencesOnly: Boolean = false,
   maxCards: Int = -1,
   canMoveFrom: FoundationCanMoveFrom = FoundationCanMoveFrom.Always,
-  mayMoveToFrom: Seq[String] = GameRules.allSources,
+  mayMoveToFrom: Seq[PileSet.Behavior] = PileSet.Behavior.values,
   visible: Boolean = true,
   autoMoveCards: Boolean = false,
-  autoMoveFrom: Seq[String] = GameRules.allSources
+  autoMoveFrom: Seq[PileSet.Behavior] = PileSet.Behavior.values
 )

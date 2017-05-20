@@ -1,5 +1,6 @@
 package phaser.pile
 
+import models.pile.set.PileSet
 import phaser.card.{CardSprite, CardTweens}
 
 object PileCardHelper {
@@ -8,7 +9,7 @@ object PileCardHelper {
       CardTweens.tweenRemove(card)
       card.phaser.getPlaymat.emitter.emitFor(card)
     } else {
-      val emitFor = pileGroup.behavior.contains("foundation")
+      val emitFor = pileGroup.behavior == PileSet.Behavior.Foundation
       if (pileGroup.options.cardsShown.isEmpty) {
         val offsetCount = if (pileGroup.cards.isEmpty) { 0 } else { pileGroup.cards.length - 1 }
         if (pileGroup.options.direction.contains("d")) {

@@ -1,6 +1,7 @@
 package models.rules.impl
 
 import models.card.Rank
+import models.pile.set.PileSet
 import models.rules._
 
 object AmericanToad extends GameRules(
@@ -29,7 +30,7 @@ object AmericanToad extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Reserve,
-      mayMoveToEmptyFrom = Seq("stock", "pyramid", "waste", "pocket", "reserve", "cell", "foundation")
+      mayMoveToEmptyFrom = PileSet.Behavior.allButReserve
     )
   ),
   reserves = Some(ReserveRules(initialCards = 20, cardsFaceDown = -1))

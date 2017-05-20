@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object SirTommy extends GameRules(
@@ -41,8 +42,8 @@ object SirTommy extends GameRules(
       suitMatchRuleForBuilding = SuitMatchRule.Any,
       rankMatchRuleForBuilding = RankMatchRule.Any,
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToNonEmptyFrom = Seq("stock"),
-      mayMoveToEmptyFrom = Seq("stock")
+      mayMoveToNonEmptyFrom = Seq(PileSet.Behavior.Stock),
+      mayMoveToEmptyFrom = Seq(PileSet.Behavior.Stock)
     )
   )
 )

@@ -3,6 +3,7 @@ package models.pile.actions
 import models.card.Card
 import models.game.GameState
 import models.pile.Pile
+import models.pile.set.PileSet
 import models.{CardMoved, ResponseMessage}
 
 case class SelectCardAction(id: String, f: (Pile, Card, GameState) => Seq[ResponseMessage])
@@ -40,7 +41,7 @@ object SelectCardActions {
     })
   }
 
-  def drawToEmptyPiles(behavior: String) = SelectCardAction("draw-to-empty", (pile, _, gameState) => {
+  def drawToEmptyPiles(behavior: PileSet.Behavior) = SelectCardAction("draw-to-empty", (pile, _, gameState) => {
     val piles = gameState.pileSets.filter(_.behavior == behavior).flatMap(_.piles)
     piles.flatMap { p =>
       if (p.cards.isEmpty) {

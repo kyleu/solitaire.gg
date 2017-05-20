@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object RainbowFan extends GameRules(
@@ -45,7 +46,7 @@ object RainbowFan extends GameRules(
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
       autoFillEmptyFrom = TableauAutoFillEmptyFrom.Stock,
       emptyFilledWith = FillEmptyWith.None,
-      mayMoveToNonEmptyFrom = Seq("tableau")
+      mayMoveToNonEmptyFrom = Seq(PileSet.Behavior.Tableau)
     )
   ),
   special = Some(

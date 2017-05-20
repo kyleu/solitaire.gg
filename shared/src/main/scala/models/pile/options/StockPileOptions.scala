@@ -2,7 +2,8 @@ package models.pile.options
 
 import models.pile.actions.{SelectCardActions, SelectPileActions}
 import models.pile.constraints.Constraint
-import models.rules.{StockRules, StockCardsDealt, StockDealTo}
+import models.pile.set.PileSet
+import models.rules.{StockCardsDealt, StockDealTo, StockRules}
 
 object StockPileOptions {
   def apply(rules: StockRules, pileIdsByType: Map[String, Seq[String]]) = {
@@ -54,7 +55,7 @@ object StockPileOptions {
       if (rules.dealTo == StockDealTo.Manually) {
         None
       } else if (rules.dealTo == StockDealTo.TableauEmpty) {
-        Some(SelectCardActions.drawToEmptyPiles("tableau"))
+        Some(SelectCardActions.drawToEmptyPiles(PileSet.Behavior.Tableau))
       } else if (rules.dealTo == StockDealTo.TableauNonEmpty) {
         Some(SelectCardActions.drawToNonEmptyPiles(() => cardsToDraw, drawTo, Some(true)))
       } else {

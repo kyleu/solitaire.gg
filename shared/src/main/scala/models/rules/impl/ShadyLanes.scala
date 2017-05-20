@@ -1,5 +1,6 @@
 package models.rules.impl
 
+import models.pile.set.PileSet
 import models.rules._
 
 object ShadyLanes extends GameRules(
@@ -23,7 +24,7 @@ object ShadyLanes extends GameRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),
       suitMatchRuleForMovingStacks = SuitMatchRule.None,
-      mayMoveToEmptyFrom = Seq("reserve")
+      mayMoveToEmptyFrom = Seq(PileSet.Behavior.Reserve)
     )
   ),
   reserves = Some(ReserveRules(numPiles = 4, cardsFaceDown = -1))
