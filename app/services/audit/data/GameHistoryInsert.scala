@@ -51,17 +51,10 @@ object GameHistoryInsert {
           id = gameId,
           rules = rules,
           seed = seed,
-          status = "started",
+          status = GameHistory.Status.Started,
           player = userId,
           cards = cardCount,
-          moves = 0,
-          undos = 0,
-          redos = 0,
-          score = 0,
-          created = occurred,
-          firstMove = None,
-          completed = None,
-          logged = None
+          created = occurred
         ))
         Database.execute(q).map(_ => s"Start: Inserted")
       }

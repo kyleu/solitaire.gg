@@ -2,6 +2,7 @@ package models.history
 
 import java.util.UUID
 
+import enumeratum.values._
 import models.card.{Rank, Suit}
 import org.joda.time.LocalDateTime
 import utils.DateUtils
@@ -25,23 +26,32 @@ object GameHistory {
     tgt: Option[String] = None,
     occurred: LocalDateTime = DateUtils.now
   )
+
+  sealed abstract class Status(val value: Char) extends CharEnumEntry
+
+  object Status extends CharEnum[Status] with CharCirceEnum[Status] {
+    case object Started extends Status('s')
+    case object Won extends Status('w')
+    case object Lost extends Status('l')
+
+    override val values = findValues
+  }
 }
 
 case class GameHistory(
     id: UUID,
     rules: String,
     seed: Int,
-    status: String,
+    status: GameHistory.Status,
     player: UUID,
     cards: Int,
-    moves: Int,
-    undos: Int,
-    redos: Int,
-    score: Int,
-    created: LocalDateTime,
-    firstMove: Option[LocalDateTime],
-    completed: Option[LocalDateTime],
-    logged: Option[LocalDateTime]
+    moves: Int = 0,
+    undos: Int = 0,
+    redos: Int = 0,
+    score: Int = 0,
+    created: LocalDateTime = DateUtils.now,
+    firstMove: Option[LocalDateTime] = None,
+    completed: Option[LocalDateTime] = None
 ) {
   lazy val duration = {
     val createdMillis = DateUtils.toMillis(created)
@@ -51,7 +61,6 @@ case class GameHistory(
     }
     completedMillis - createdMillis
   }
-  val isWin = status == "win"
+  val isWon = status == GameHistory.Status.Won
   val isCompleted = completed.isDefined
-  val isLogged = logged.isDefined
 }

@@ -354,6 +354,7 @@ object GameRulesSet {
     Nines,
     NorthwestTerritory,
     NumberTen,
+    OctupleKlondike,
     OddAndEven,
     Odessa,
     OldCarlton,

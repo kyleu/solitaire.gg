@@ -2,12 +2,12 @@ package models.rules.impl
 
 import models.rules._
 
-object SextupleKlondike extends GameRules(
-  id = "sextupleklondike",
+object OctupleKlondike extends GameRules(
+  id = "octupleklondike",
   completed = true,
-  title = "Sextuple Klondike",
-  layout = "swf|::t",
-  deckOptions = DeckOptions(numDecks = 6),
+  title = "Octuple Klondike",
+  layout = "swf|::::.t",
+  deckOptions = DeckOptions(numDecks = 8),
   stock = Some(
     StockRules(
       cardsDealt = StockCardsDealt.Count(3)
@@ -16,13 +16,13 @@ object SextupleKlondike extends GameRules(
   waste = Some(WasteRules()),
   foundations = Seq(
     FoundationRules(
-      numPiles = 24,
+      numPiles = 32,
       autoMoveCards = true
     )
   ),
   tableaus = Seq(
     TableauRules(
-      numPiles = 23,
+      numPiles = 26,
       emptyFilledWith = FillEmptyWith.HighRank
     )
   )

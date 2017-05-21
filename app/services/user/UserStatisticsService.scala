@@ -16,8 +16,8 @@ import scala.concurrent.Future
 
 object UserStatisticsService {
   def registerGame(game: GameHistory) = {
-    val completed = game.completed.getOrElse(throw new IllegalStateException())
-    registerHistory(game.id, game.isWin, game.duration, game.moves, game.undos, game.redos, completed, game.player)
+    val completed = game.completed.getOrElse(throw new IllegalStateException(s"Game [${game.id}] has not been completed."))
+    registerHistory(game.id, game.isWon, game.duration, game.moves, game.undos, game.redos, completed, game.player)
   }
 
   def registerHistory(

@@ -12,7 +12,7 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   override protected val columns = Seq(
     "id", "rules", "seed", "status", "player",
     "cards", "moves", "undos", "redos", "score",
-    "created", "first_move", "completed", "logged"
+    "created", "first_move", "completed"
   )
   override protected val searchColumns = Seq("id::text", "rules", "seed::text", "status", "player::text")
 
@@ -66,7 +66,7 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     val id = row.as[UUID]("id")
     val rules = row.as[String]("rules")
     val seed = row.as[Int]("seed")
-    val status = row.as[String]("status")
+    val status = GameHistory.Status.withValue(row.as[String]("status").head)
     val player = row.as[UUID]("player")
     val cards = row.as[Int]("cards")
     val moves = row.as[Int]("moves")
@@ -76,11 +76,10 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     val created = row.as[LocalDateTime]("created")
     val firstMove = row.asOpt[LocalDateTime]("first_move")
     val completed = row.asOpt[LocalDateTime]("completed")
-    val logged = row.asOpt[LocalDateTime]("logged")
-    GameHistory(id, rules, seed, status, player, cards, moves, undos, redos, score, created, firstMove, completed, logged)
+    GameHistory(id, rules, seed, status, player, cards, moves, undos, redos, score, created, firstMove, completed)
   }
 
   override protected def toDataSeq(gh: GameHistory) = Seq[Any](
-    gh.id, gh.rules, gh.seed, gh.status, gh.player, gh.cards, gh.moves, gh.undos, gh.redos, gh.score, gh.created, gh.firstMove, gh.completed, gh.logged
+    gh.id, gh.rules, gh.seed, gh.status, gh.player, gh.cards, gh.moves, gh.undos, gh.redos, gh.score, gh.created, gh.firstMove, gh.completed
   )
 }
