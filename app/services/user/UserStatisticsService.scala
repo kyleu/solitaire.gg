@@ -15,6 +15,13 @@ import utils.DateUtils
 import scala.concurrent.Future
 
 object UserStatisticsService {
+  def gameStarted(id: UUID, rules: String, seed: Int, player: UUID) = Database.execute(UserStatisticsQueries.Increment(player, "played", 1)).flatMap {
+    case rows if rows == 0 => UserStatisticsService.getStatistics(player).flatMap { _ =>
+      Database.execute(UserStatisticsQueries.Increment(player, "played", 1)).map(_ => ())
+    }
+    case _ => Future.successful(())
+  }
+
   def registerGame(game: GameHistory) = {
     val completed = game.completed.getOrElse(throw new IllegalStateException(s"Game [${game.id}] has not been completed."))
     registerHistory(game.id, game.isWon, game.duration, game.moves, game.undos, game.redos, completed, game.player)

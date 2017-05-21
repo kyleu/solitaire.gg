@@ -2,7 +2,7 @@ package models.queries.user
 
 import java.util.UUID
 
-import models.database.Row
+import models.database.{Row, Statement}
 import models.queries.BaseQueries
 import models.user.UserStatistics
 import org.joda.time.LocalDateTime
@@ -12,7 +12,7 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
   override protected val tableName = "user_statistics"
   override protected val columns = Seq(
     "id", "joined",
-    "wins", "losses", "total_duration_ms", "total_moves", "total_undos", "total_redos",
+    "played", "wins", "losses", "total_duration_ms", "total_moves", "total_undos", "total_redos",
     "last_win", "last_loss",
     "current_win_streak", "max_win_streak",
     "current_loss_streak", "max_loss_streak"
@@ -27,6 +27,7 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
     userId = row.as[UUID]("id"),
     joined = DateUtils.toMillis(row.as[LocalDateTime]("joined")),
     games = UserStatistics.Games(
+      played = row.as[Int]("played"),
       wins = row.as[Int]("wins"),
       losses = row.as[Int]("losses"),
       totalDurationMs = row.as[Long]("total_duration_ms"),
@@ -44,7 +45,7 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
 
   override protected def toDataSeq(s: UserStatistics) = Seq(
     s.userId, DateUtils.fromMillis(s.joined),
-    s.games.wins, s.games.losses, s.games.totalDurationMs, s.games.totalMoves, s.games.totalUndos, s.games.totalRedos,
+    s.games.played, s.games.wins, s.games.losses, s.games.totalDurationMs, s.games.totalMoves, s.games.totalUndos, s.games.totalRedos,
     s.games.lastWin.map(DateUtils.fromMillis), s.games.lastLoss.map(DateUtils.fromMillis),
     s.games.currentWinStreak, s.games.maxWinStreak, s.games.currentLossStreak, s.games.maxLossStreak
   )
@@ -54,8 +55,7 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
     val multi = if (win) { "wins" } else { "losses" }
     val inverse = if (win) { "loss" } else { "win" }
     s"""
-      update user_statistics
-      set
+      update user_statistics set
         total_duration_ms = total_duration_ms + ?,
         total_moves = total_moves + ?,
         total_undos = total_undos + ?,
@@ -70,5 +70,10 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
         current_${inverse}_streak = 0
       where id = ?
     """
+  }
+
+  case class Increment(userId: UUID, col: String, v: Int) extends Statement {
+    override def sql = s"update $tableName set $col = $col + ? where id = ?"
+    override val values = Seq[Any](v, userId)
   }
 }

@@ -5,6 +5,7 @@ case object CreateUserStatisticsTable extends CreateTableStatement("user_statist
     create table $tableName (
       id uuid not null primary key,
       joined timestamp not null default now(),
+      played int not null default 0,
       wins int not null default 0,
       losses int not null default 0,
       total_duration_ms bigint not null default 0,
