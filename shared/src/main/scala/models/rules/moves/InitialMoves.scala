@@ -1,7 +1,7 @@
 package models.rules.moves
 
 import models.game.GameState
-import models.rules.GameRules
+import models.rules.{GameRules, StockDealTo}
 
 object InitialMoves {
   def performInitialMoves(rules: GameRules, state: GameState) = performDefault(rules, state)
@@ -43,7 +43,10 @@ object InitialMoves {
 
     TableauInitialMoves.performInitialMoves(rules, gameState)
 
-    rules.stock.foreach(_ => gameState.addCards(gameState.deck.getCards().reverse, "stock"))
+    rules.stock.foreach { p =>
+      val reveal = p.dealTo == StockDealTo.Manually || p.dealTo == StockDealTo.WasteOrPairManually
+      gameState.addCards(gameState.deck.getCards(gameState.deck.cards.size, reveal).reverse, "stock", reveal)
+    }
 
     rules.waste.foreach { w =>
       val cardCount = if (w.maxCards.exists(x => x < gameState.deck.cards.length)) {
