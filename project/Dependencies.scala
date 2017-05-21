@@ -46,9 +46,6 @@ object Dependencies {
 
   object Serialization {
     val circeVersion = "0.8.0"
-    val circeCore = "io.circe" %% "circe-core" % circeVersion
-    val circeGeneric = "io.circe" %% "circe-generic" % circeVersion
-    val circeParser = "io.circe" %% "circe-parser" % circeVersion
   }
 
   object Metrics {
@@ -78,12 +75,13 @@ object Dependencies {
     val collection = "com.twitter" %% "util-collection" % twitterVersion
 
     val enumeratumVersion = "1.5.14"
-    val enumeratumCirce = "com.beachape" %% "enumeratum-circe" % enumeratumVersion
 
     val betterFiles = "com.github.pathikrit" %% "better-files" % "2.17.1"
   }
 
   object Testing {
+    val uTestVersion = "0.4.7"
+
     val gatlingVersion = "2.2.5"
     val gatlingCore = "io.gatling" % "gatling-test-framework" % gatlingVersion % "test"
     val gatlingCharts = "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test"

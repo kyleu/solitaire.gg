@@ -10,4 +10,3 @@ case class Pong(ts: Long) extends SocketResponseMessage
 
 case class Profile(userId: UUID, username: Option[String], email: Option[String], settings: Settings) extends SocketResponseMessage
 
-

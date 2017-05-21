@@ -1,14 +1,17 @@
 package utils
 
-import models.settings.Settings
-import io.circe.generic.auto._
+import io.circe.generic.extras.Configuration
+import io.circe.generic.extras.auto._
 import io.circe.parser._
 import io.circe.syntax._
 import models.rules.GameRules
+import models.settings.Settings
 import msg.req.SocketRequestMessage
 import msg.rsp.SocketResponseMessage
 
 object JsonSerializers {
+  private[this] implicit val config = Configuration.default.withDefaults
+
   def readSettings(s: String) = decode[Settings](s) match {
     case Right(x) => x
     case Left(_) => Settings.default

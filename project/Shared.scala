@@ -8,6 +8,7 @@ import playscalajs.ScalaJSPlay
 import net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings
 import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, scalariformSettings}
 
+import Dependencies.Serialization._
 
 object Shared {
   val projectId = "solitaire-gg"
@@ -40,16 +41,18 @@ object Shared {
 
     // Code Quality
     scapegoatVersion := Dependencies.Utils.scapegoatVersion,
-    ScalariformKeys.preferences := ScalariformKeys.preferences.value
+    ScalariformKeys.preferences := ScalariformKeys.preferences.value,
+
+    testFrameworks += new TestFramework("utest.runner.Framework")
   ) ++ graphSettings ++ scalariformSettings
 
-  lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(commonSettings: _*).jsSettings(libraryDependencies ++= Seq(
-    "io.circe" %%% "circe-core" % Dependencies.Serialization.circeVersion,
-    "io.circe" %%% "circe-generic" % Dependencies.Serialization.circeVersion,
-    "io.circe" %%% "circe-parser" % Dependencies.Serialization.circeVersion,
-    "com.beachape" %%% "enumeratum-circe" % Dependencies.Utils.enumeratumVersion
-  )).jvmSettings(libraryDependencies ++= Seq(
-    Dependencies.Serialization.circeCore, Dependencies.Serialization.circeGeneric, Dependencies.Serialization.circeParser, Dependencies.Utils.enumeratumCirce
+  lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(commonSettings: _*).settings(libraryDependencies ++= Seq(
+    "io.circe" %%% "circe-core" % circeVersion,
+    "io.circe" %%% "circe-generic" % circeVersion,
+    "io.circe" %%% "circe-generic-extras" % circeVersion,
+    "io.circe" %%% "circe-parser" % circeVersion,
+    "com.beachape" %%% "enumeratum-circe" % Dependencies.Utils.enumeratumVersion,
+    "com.lihaoyi" %%% "utest" % Dependencies.Testing.uTestVersion % "test"
   ))
 
   lazy val sharedJs = shared.js.enablePlugins(ScalaJSPlay).settings(scalaJSStage in Global := FastOptStage)
