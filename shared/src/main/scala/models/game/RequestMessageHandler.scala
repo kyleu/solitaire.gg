@@ -17,7 +17,7 @@ class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send:
     case sp: SelectPile => handleSelectPile(userId, sp.pile, sp.auto)
     case mc: MoveCards => handleMoveCards(userId, mc.cards, mc.src, mc.tgt, mc.auto)
     case Undo => send(undo.undo(gs), false)
-    case Redo => send(undo.redo(gs), true)
+    case Redo => send(undo.redo(gs), false)
     case _ => throw new IllegalStateException(s"Unhandled request message [$msg].")
   }
 

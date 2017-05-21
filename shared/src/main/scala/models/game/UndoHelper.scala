@@ -16,10 +16,11 @@ class UndoHelper() {
         undoneQueue.clear()
       case _ => // no-op
     }
-    //println(s"Undo [registerResponse]: [${historyQueue.size} / ${undoneQueue.size}], [$undoCount / $redoCount]")
+    println(s"Undo [registerResponse]: [${historyQueue.size} / ${undoneQueue.size}], [$undoCount / $redoCount]")
   }
 
   def undo(gameState: GameState) = {
+    println("Undoin'")
     undoCount += 1
     val msg = historyQueue.pop()
     val reverse = getReverse(msg, gameState)
@@ -28,6 +29,7 @@ class UndoHelper() {
   }
 
   def redo(gameState: GameState) = {
+    println("Redoin'")
     redoCount += 1
     val msg = undoneQueue.pop()
     val reverse = getReverse(msg, gameState)
@@ -51,7 +53,7 @@ class UndoHelper() {
         tgt.removeCard(card)
         src.addCard(card)
       }
-      CardsMoved(cm.cards, source = cm.target, target = cm.source, turn = cm.turn.map(!_))
+      CardsMoved(cards = cm.cards, source = cm.target, target = cm.source, turn = cm.turn)
     case ms: MessageSet =>
       MessageSet(ms.messages.reverse.flatMap {
         case rrm: ReversibleResponseMessage => Some(getReverse(rrm, gameState))
