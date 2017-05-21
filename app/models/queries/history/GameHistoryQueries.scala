@@ -33,21 +33,6 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     override val values = Seq[Any](moves, undos, redos, score, completed, status, id)
   }
 
-  case class SetFirstMove(id: UUID, firstMove: LocalDateTime) extends Statement {
-    override def sql = updateSql(Seq("first_move"))
-    override def values = Seq(firstMove, id)
-  }
-
-  case class SetCompleted(id: UUID, completed: LocalDateTime, status: String) extends Statement {
-    override def sql = updateSql(Seq("completed", "status"))
-    override def values = Seq(completed, status, id)
-  }
-
-  case class SetLogged(id: UUID, logged: LocalDateTime) extends Statement {
-    override def sql = updateSql(Seq("logged"))
-    override def values = Seq(logged, id)
-  }
-
   case class GetGameHistoriesByDayAndStatus(d: LocalDate, status: String) extends Query[Seq[GameHistory]] {
     override def sql = getSql(whereClause = Some("completed >= ? and completed < ? and status = ?"), orderBy = Some("completed"))
     override def values = Seq(d, d.plusDays(1), status)
@@ -80,6 +65,6 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   }
 
   override protected def toDataSeq(gh: GameHistory) = Seq[Any](
-    gh.id, gh.rules, gh.seed, gh.status, gh.player, gh.cards, gh.moves, gh.undos, gh.redos, gh.score, gh.created, gh.firstMove, gh.completed
+    gh.id, gh.rules, gh.seed, gh.status.value, gh.player, gh.cards, gh.moves, gh.undos, gh.redos, gh.score, gh.created, gh.firstMove, gh.completed
   )
 }

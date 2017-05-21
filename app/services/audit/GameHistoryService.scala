@@ -6,7 +6,7 @@ import com.github.mauricio.async.db.Connection
 import models.queries.history.GameHistoryQueries
 import models.queries.user.UserQueries
 import models.history.GameHistory
-import org.joda.time.{LocalDate, LocalDateTime}
+import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 
@@ -36,8 +36,6 @@ object GameHistoryService {
   def setCounts(id: UUID, moves: Int, undos: Int, redos: Int, score: Int) = {
     Database.execute(GameHistoryQueries.SetCounts(id, moves, undos, redos, score)).map(_ == 1)
   }
-  def setFirstMove(id: UUID, firstMove: LocalDateTime) = Database.execute(GameHistoryQueries.SetFirstMove(id, firstMove)).map(_ == 1)
-  def setCompleted(id: UUID, completed: LocalDateTime, status: String) = Database.execute(GameHistoryQueries.SetCompleted(id, completed, status)).map(_ == 1)
 
   def removeGameHistory(id: UUID, conn: Option[Connection]) = Database.execute(GameHistoryQueries.removeById(id), conn).map(_ == 1).map { success =>
     (id, success)
