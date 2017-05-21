@@ -22,7 +22,6 @@ class ResponseMessageHandler(g: PhaserGame, undo: UndoHelper) {
       case pm: PossibleMoves => g.possibleMoves = pm.moves
       case cr: CardRevealed => cardRevealed(cr)
       case ch: CardHidden => p.getCardSprite(ch.id).turnFaceDown()
-      case cm: CardMoved => moveCard(cm.card, cm.source, cm.target, cm.turn)
       case cm: CardsMoved => cm.cards.foreach { movedCard => moveCard(movedCard, cm.source, cm.target, cm.turn) }
       case cmc: CardMoveCancelled => cmc.cards.foreach(c => p.getCardSprite(c).cancelDrag())
       case gl: GameLost => p.lose(gl)

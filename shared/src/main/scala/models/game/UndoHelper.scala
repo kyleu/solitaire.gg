@@ -43,16 +43,6 @@ class UndoHelper() {
       val card = gameState.getCard(ch.id)
       card.u = true
       gameState.revealCardToAll(card).headOption.getOrElse(throw new IllegalStateException("No reveal response."))
-    case cm: CardMoved =>
-      val src = gameState.pilesById(cm.source)
-      val tgt = gameState.pilesById(cm.target)
-      tgt.cards.find(_.id == cm.card) match {
-        case Some(card) =>
-          tgt.removeCard(card)
-          src.addCard(card)
-          CardMoved(cm.card, source = cm.target, target = cm.source, turn = cm.turn.map(!_))
-        case None => throw new IllegalStateException(s"Can't find card [${cm.card}].")
-      }
     case cm: CardsMoved =>
       val src = gameState.pilesById(cm.source)
       val tgt = gameState.pilesById(cm.target)

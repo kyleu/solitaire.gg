@@ -4,7 +4,7 @@ import models.card.Card
 import models.game.GameState
 import models.pile.Pile
 import models.pile.set.PileSet
-import models.{CardMoved, CardsMoved, ResponseMessage}
+import models.{CardsMoved, ResponseMessage}
 
 case class DragToAction(id: String, f: (Pile, Seq[Card], Pile, GameState) => Seq[ResponseMessage])
 
@@ -44,7 +44,7 @@ object DragToActions {
       tgt.removeCard(targetCard)
       gy.addCard(targetCard)
 
-      Seq(CardMoved(card.id, src.id, "foundation-1"), CardMoved(targetCard.id, tgt.id, "foundation-1"))
+      Seq(CardsMoved(Seq(card.id), src.id, "foundation-1"), CardsMoved(Seq(targetCard.id), tgt.id, "foundation-1"))
     }
   })
 }

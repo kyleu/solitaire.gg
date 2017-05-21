@@ -4,7 +4,7 @@ import models.card.Card
 import models.game.GameState
 import models.pile.Pile
 import models.pile.set.PileSet
-import models.{CardMoved, ResponseMessage}
+import models.{CardsMoved, ResponseMessage}
 
 case class SelectCardAction(id: String, f: (Pile, Card, GameState) => Seq[ResponseMessage])
 
@@ -58,7 +58,7 @@ object SelectCardActions {
   def moveCard(card: Card, src: Pile, tgt: Pile, gameState: GameState, turn: Option[Boolean] = None) = {
     src.removeCard(card)
     tgt.addCard(card)
-    val msg = CardMoved(card.id, src.id, tgt.id, turn = turn)
+    val msg = CardsMoved(Seq(card.id), src.id, tgt.id, turn = turn)
     if ((turn.isEmpty || turn.exists(x => x)) && !card.u) {
       card.u = true
       gameState.revealCardToAll(card) :+ msg

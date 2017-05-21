@@ -2,7 +2,7 @@ package models.pile.actions
 
 import models.game.GameState
 import models.pile.Pile
-import models.{CardMoved, ResponseMessage}
+import models.{CardsMoved, ResponseMessage}
 
 case class SelectPileAction(id: String, f: (Pile, GameState) => Seq[ResponseMessage])
 
@@ -18,7 +18,7 @@ object SelectPileActions {
       cards.map { card =>
         targetPile.removeCard(card)
         pile.addCard(card)
-        CardMoved(card.id, target, pile.id, turn = Some(false))
+        CardsMoved(Seq(card.id), target, pile.id, turn = Some(false))
       }
     }
   })
@@ -29,7 +29,7 @@ object SelectPileActions {
     cards.map { card =>
       targetPile.removeCard(card)
       pile.addCard(card)
-      CardMoved(card.id, target, pile.id, turn = Some(false))
+      CardsMoved(Seq(card.id), target, pile.id, turn = Some(false))
     }
   })
 }

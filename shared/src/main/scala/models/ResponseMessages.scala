@@ -24,7 +24,6 @@ case class CardRevealed(card: Card) extends ReversibleResponseMessage
 case class CardHidden(id: Int) extends ReversibleResponseMessage
 
 case class CardMoveCancelled(cards: Seq[Int], source: String) extends ResponseMessage
-case class CardMoved(card: Int, source: String, target: String, turn: Option[Boolean] = None) extends ReversibleResponseMessage
 case class CardsMoved(cards: Seq[Int], source: String, target: String, turn: Option[Boolean] = None) extends ReversibleResponseMessage
 
 case class MessageSet(messages: Seq[ResponseMessage]) extends ReversibleResponseMessage
