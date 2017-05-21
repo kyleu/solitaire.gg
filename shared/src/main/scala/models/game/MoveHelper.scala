@@ -2,6 +2,8 @@ package models.game
 
 class MoveHelper(gs: GameState, postMove: () => Unit) {
   protected[this] var moveCount = 0
+  def getMoveCount = moveCount
+
   protected[this] var firstMoveMade: Option[Long] = None
   protected[this] var lastMoveMade: Option[Long] = None
 

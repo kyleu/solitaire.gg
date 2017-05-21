@@ -33,6 +33,7 @@ object GameHistory {
     case object Started extends Status('s')
     case object Won extends Status('w')
     case object Lost extends Status('l')
+    case object Resigned extends Status('r')
 
     override val values = findValues
   }
@@ -62,5 +63,4 @@ case class GameHistory(
     completedMillis - createdMillis
   }
   val isWon = status == GameHistory.Status.Won
-  val isCompleted = completed.isDefined
 }

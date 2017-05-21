@@ -16,6 +16,9 @@
         <li><a href="@controllers.admin.routes.LogController.list()">Logs</a></li>
         <li class="divider"></li>
         <li><a href="@controllers.admin.routes.RulesController.rulesList()">Rules</a></li>
+        <li class="divider"></li>
+        <li><a href="@controllers.admin.routes.UserController.list()">Users</a></li>
+        <li><a href="@controllers.admin.routes.GameHistoryController.list()">Games</a></li>
       </ul>
     </li>
     <li @if(section == "analytics") { class="active" }>

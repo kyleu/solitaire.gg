@@ -64,7 +64,6 @@ object DailyMetricService {
     case GamesWon => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-resigned'")
     case GamesAdandoned => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-won'")
 
-    case Requests => Some("select count(*) as c from requests where started >= ? and started < ?")
     case Feedbacks => Some("select count(*) as c from user_feedback where occurred >= ? and occurred < ?")
     case _ => None
   }

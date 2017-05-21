@@ -1,0 +1,53 @@
+@(user: models.user.User, gameCount: Int)(implicit session: Session, flash: Flash)
+@views.html.admin.layout.base(s"${utils.Config.projectName} User Detail", "explore") {
+  <div class="panel panel-default">
+    <div class="panel-body">
+      @user.username.map { un => <h4>@un</h4> }
+      <h5>@user.id</h5>
+      <em>@utils.Formatter.withCommas(gameCount) games</em>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h5>Preferences</h5>
+      <table class="table">
+        <tr>
+          <td>Email</td>
+          <td>@user.email</td>
+        </tr>
+        <tr>
+          <td>Username</td>
+          <td>@user.username</td>
+        </tr>
+        <tr>
+          <td>Background Color</td>
+          <td>@user.settings.backgroundColor</td>
+        </tr>
+        <tr>
+          <td>Background Pattern</td>
+          <td>@user.settings.backgroundPattern.getOrElse("-")</td>
+        </tr>
+        <tr>
+          <td>Audio</td>
+          <td>@user.settings.audioEnabled</td>
+        </tr>
+        <tr>
+          <td>Auto Flip</td>
+          <td>@user.settings.autoFlip</td>
+        </tr>
+        <tr>
+          <td>Card Preferences</td>
+          <td>
+            Back: @user.settings.cardBack,
+            Blank: @user.settings.cardBlank,
+            Layout: @user.settings.cardLayout,
+            Ranks: @user.settings.cardRanks,
+            Suits: @user.settings.cardSuits,
+            Face Cards: @user.settings.cardFaces
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+}

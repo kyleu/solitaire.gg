@@ -13,19 +13,19 @@ class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send:
   }
 
   def handle(msg: RequestMessage) = msg match {
-    case sc: SelectCard => handleSelectCard(userId, sc.card, sc.pile, sc.auto)
-    case sp: SelectPile => handleSelectPile(userId, sp.pile, sp.auto)
-    case mc: MoveCards => handleMoveCards(userId, mc.cards, mc.src, mc.tgt, mc.auto)
+    case sc: SelectCard => handleSelectCard(userId, sc)
+    case sp: SelectPile => handleSelectPile(userId, sp)
+    case mc: MoveCards => handleMoveCards(userId, mc)
     case Undo => send(undo.undo(gs), false)
     case Redo => send(undo.redo(gs), false)
     case _ => throw new IllegalStateException(s"Unhandled request message [$msg].")
   }
 
-  private[this] def handleSelectCard(userId: UUID, cardId: Int, pileId: String, auto: Boolean) = {
-    val card = gs.cardsById(cardId)
-    val pile = gs.pilesById(pileId)
+  private[this] def handleSelectCard(userId: UUID, sc: SelectCard) = {
+    val card = gs.cardsById(sc.card)
+    val pile = gs.pilesById(sc.pile)
     if (!pile.cards.contains(card)) {
-      throw new IllegalStateException(s"SelectCard for game [${gs.gameId}]: Card [${card.toString}] is not part of the [$pileId] pile.")
+      throw new IllegalStateException(s"SelectCard for game [${gs.gameId}]: Card [${card.toString}] is not part of the [${sc.pile}] pile.")
     }
     if (pile.canSelectCard(card, gs)) {
       val messages = pile.onSelectCard(card, gs)
@@ -39,10 +39,10 @@ class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send:
     }
   }
 
-  private[this] def handleSelectPile(userId: UUID, pileId: String, auto: Boolean) = {
-    val pile = gs.pilesById(pileId)
+  private[this] def handleSelectPile(userId: UUID, sp: SelectPile) = {
+    val pile = gs.pilesById(sp.pile)
     if (pile.cards.nonEmpty) {
-      throw new IllegalStateException(s"SelectPile [$pileId] called on a non-empty deck.")
+      throw new IllegalStateException(s"SelectPile [${sp.pile}] called on a non-empty deck.")
     }
     if (pile.canSelectPile(gs)) {
       val messages = pile.onSelectPile(gs)
@@ -51,10 +51,10 @@ class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send:
     }
   }
 
-  private[this] def handleMoveCards(userId: UUID, cardIds: Seq[Int], source: String, target: String, auto: Boolean) = {
-    val cards = cardIds.map(gs.cardsById)
-    val sourcePile = gs.pilesById(source)
-    val targetPile = gs.pilesById(target)
+  private[this] def handleMoveCards(userId: UUID, mc: MoveCards) = {
+    val cards = mc.cards.map(gs.cardsById)
+    val sourcePile = gs.pilesById(mc.src)
+    val targetPile = gs.pilesById(mc.tgt)
     for (c <- cards) {
       if (!sourcePile.cards.contains(c)) {
         throw new IllegalArgumentException(s"Card [$c] is not a part of source pile [${sourcePile.id}].")
@@ -66,10 +66,10 @@ class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send:
         sendSeq(messages, registerUndoResponse = true)
         registerMove()
       } else {
-        send(CardMoveCancelled(cardIds, source), false)
+        send(CardMoveCancelled(mc.cards, mc.src), false)
       }
     } else {
-      send(CardMoveCancelled(cardIds, source), false)
+      send(CardMoveCancelled(mc.cards, mc.src), false)
     }
   }
 }

@@ -6,6 +6,7 @@ import models.queries.user.UserQueries
 import models.settings.Settings
 import models.user.User
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import services.audit.GameHistoryService
 import services.database.Database
 import utils.Logging
 
@@ -32,4 +33,12 @@ object UserService extends Logging {
   }
 
   def saveSettings(userId: UUID, settings: Settings) = Database.execute(UserQueries.SetSettings(userId, settings))
+
+  def remove(userId: UUID) = Database.transaction { conn =>
+    GameHistoryService.removeGameHistoriesByUser(userId).flatMap { _ =>
+      UserStatisticsService.removeStatisticsForUser(userId, Some(conn)).flatMap { _ =>
+        Database.execute(UserQueries.removeById(Seq(userId)), Some(conn))
+      }
+    }
+  }
 }

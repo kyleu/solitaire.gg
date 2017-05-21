@@ -1,0 +1,38 @@
+@(
+    q: String, sortBy: String, count: Int, page: Int, users: Seq[models.user.User],
+    gameCounts: Map[java.util.UUID, Int], winCounts: Map[java.util.UUID, Int]
+)(implicit session: Session, flash: Flash)@views.html.admin.layout.list(
+  "user", "Users", "explore", count, page, users.size, q,
+  searchAction = controllers.admin.routes.UserController.list(),
+  prevLink = controllers.admin.routes.UserController.list(q, sortBy, page - 1),
+  nextLink = controllers.admin.routes.UserController.list(q, sortBy, page + 1)
+) {
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        @utils.web.ViewUtils.th("id", "User ID", sortBy)
+        @utils.web.ViewUtils.th("username", "Username", sortBy)
+        @utils.web.ViewUtils.th("email", "Email", sortBy)
+        @utils.web.ViewUtils.th("games", "Games", sortBy)
+        @utils.web.ViewUtils.th("wins", "Wins", sortBy)
+        @utils.web.ViewUtils.th("created", "Created", sortBy)
+        @utils.web.ViewUtils.th("actions", "", sortBy)
+      </tr>
+    </thead>
+    <tbody>
+      @for(u <- users) {
+        <tr>
+          <td><a href="@controllers.admin.routes.UserController.detail(u.id)">@u.id</a></td>
+          <td>@u.email</td>
+          <td>@u.username</td>
+          <td>@utils.Formatter.withCommas(gameCounts.getOrElse(u.id, 0))</td>
+          <td>@utils.Formatter.withCommas(winCounts.getOrElse(u.id, 0))</td>
+          <td>@u.created.toString("yyyy-MM-dd HH:mm:ss")</td>
+          <td>
+            <a href="@controllers.admin.routes.UserController.remove(u.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

@@ -10,7 +10,6 @@ import org.scalajs.dom.raw.UIEvent
 import phaser.card.CardImages
 import phaser.gameplay.Gameplay
 import phaser.playmat.Playmat
-import phaser.state.{InitialState, LoadingState}
 import utils.JsUtils
 
 import scala.scalajs.js
@@ -60,14 +59,9 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
     case None => // noop
   }
 
-  def start() = {
-    state.add("initialState", new InitialState())
-    state.add("loading", new LoadingState(getSettings))
-    state.add("gameplay", gameplay)
-
-    dom.window.onresize = resize _
-    state.start("initialState", clearWorld = false, clearCache = false)
-  }
+  def start() = PhaserLifecycle.start(this)
+  def onWin() = gg.network.sendMessage(PhaserLifecycle.onWin(this))
+  def onLoss() = gg.network.sendMessage(PhaserLifecycle.onLoss(this))
 
   def sendMove(msg: RequestMessage) = gameplay.services.requests.handle(msg)
 }

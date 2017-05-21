@@ -14,6 +14,14 @@ GET         /rules/data                      controllers.admin.RulesController.r
 GET         /rules/:id                       controllers.admin.RulesController.rulesDetail(id: String)
 GET         /rules/:id/screenshot            controllers.admin.RulesController.rulesScreenshot(id: String)
 
+GET         /users                           controllers.admin.UserController.list(q ?= "", sortBy ?= "created", page: Int ?= 0)
+GET         /users/:id                       controllers.admin.UserController.detail(id: java.util.UUID)
+GET         /users/:id/remove                controllers.admin.UserController.remove(id: java.util.UUID)
+
+GET         /games                           controllers.admin.GameHistoryController.list(q ?= "", sortBy ?= "created", page: Int ?= 0)
+GET         /games/:id                       controllers.admin.GameHistoryController.detail(id: java.util.UUID)
+GET         /games/:id/remove                controllers.admin.GameHistoryController.remove(id: java.util.UUID)
+
 GET         /analytics/list                  controllers.admin.AnalyticsEventController.eventList(q ?= "", sortBy ?= "created", page: Int ?= 0)
 GET         /analytics/sandbox               controllers.admin.AnalyticsEventController.sandbox(test: Boolean ?= false, reset: Boolean ?= false, limit: Int ?= 100, offset: Int ?= 0)
 GET         /analytics/:id                   controllers.admin.AnalyticsEventController.eventDetail(id: java.util.UUID)
