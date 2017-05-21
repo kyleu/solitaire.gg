@@ -3,12 +3,12 @@ package models.game
 import enumeratum.values._
 
 object PossibleMove {
-  sealed abstract class Type(val value: String) extends StringEnumEntry
+  sealed abstract class Type(val value: Char) extends CharEnumEntry
 
-  object Type extends StringEnum[Type] {
-    case object MoveCards extends Type("mc")
-    case object SelectCard extends Type("sc")
-    case object SelectPile extends Type("sp")
+  object Type extends CharEnum[Type] with CharCirceEnum[Type] {
+    case object MoveCards extends Type('m')
+    case object SelectCard extends Type('c')
+    case object SelectPile extends Type('p')
 
     override def values = findValues
   }

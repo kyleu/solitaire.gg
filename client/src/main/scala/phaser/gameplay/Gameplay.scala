@@ -39,27 +39,6 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
     onLoadComplete()
   }
 
-  def checkWinCondition() = services.rules.victoryCondition.check(services.rules, services.state)
-
-  def undo() = if (services.undo.historyQueue.nonEmpty) {
-    services.requests.handle(Undo)
-    postMove()
-  }
-  def redo() = if (services.undo.undoneQueue.nonEmpty) {
-    services.requests.handle(Redo)
-    postMove()
-  }
-
-  private[this] def onWin() = {
-    CardAnimation.win(g.getPlaymat)
-  }
-
-  private[this] def postMove() = if (checkWinCondition()) {
-    onWin()
-  } else {
-    services.responses.handle(PossibleMoves(services.moves.possibleMoves(), services.undo.historyQueue.size, services.undo.undoneQueue.size))
-  }
-
   def start(id: UUID, coreState: GameState) = {
     activeServices.foreach(_ => throw new IllegalStateException(s"Game [${services.state.gameId}] already active. Stop it first."))
     val state = coreState.view(g.getUserId)
@@ -81,6 +60,27 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
     g.possibleMoves = services.moves.possibleMoves()
 
     utils.Logging.info(s"Started game [$id] with rules [${rules.id}].")
+  }
+
+  def checkWinCondition() = services.rules.victoryCondition.check(services.rules, services.state)
+
+  def undo() = if (services.undo.historyQueue.nonEmpty) {
+    services.requests.handle(Undo)
+    postMove()
+  }
+  def redo() = if (services.undo.undoneQueue.nonEmpty) {
+    services.requests.handle(Redo)
+    postMove()
+  }
+
+  private[this] def onWin() = {
+    CardAnimation.win(g.getPlaymat)
+  }
+
+  private[this] def postMove() = if (checkWinCondition()) {
+    onWin()
+  } else {
+    services.responses.handle(PossibleMoves(services.moves.possibleMoves(), services.undo.historyQueue.size, services.undo.undoneQueue.size))
   }
 
   def stop(id: UUID, win: Boolean, onComplete: () => Unit) = {
