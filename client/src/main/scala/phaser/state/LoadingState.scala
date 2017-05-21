@@ -12,6 +12,8 @@ class LoadingState(settings: Settings) extends State {
 
     val size = "hd"
 
+    game.load.audio("audio", assetRoot + s"audio/audio.ogg")
+
     game.load.image("card-blank", assetRoot + s"images/cards/$size/blank/${settings.cardBlank.value}.png")
     game.load.image("card-back", assetRoot + s"images/cards/$size/back/${settings.cardBack.value}.png")
 

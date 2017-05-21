@@ -14,12 +14,20 @@ object SettingsPanel {
 
   private[this] val panel = $("#settings-content .content")
 
+  private[this] def forBoolean(s: String, v: Boolean) = {
+    $(s"#settings-$s-true").prop("checked", v)
+    $(s"#settings-$s-false").prop("checked", !v)
+  }
+
   def show(settings: Settings) = {
     originalSettings = settings
     current = originalSettings
 
     val picker = js.Dynamic.global.$("#settings-color-picker")
     picker.spectrum("set", settings.backgroundColor)
+
+    forBoolean("auto-flip", settings.autoFlip)
+    forBoolean("audio", settings.audioEnabled)
 
     MenuPosition.values.foreach(p => $(s"#settings-menu-position-${p.value}").prop("checked", settings.menuPosition == p))
     CardBack.values.foreach(cb => $(s"#settings-card-back-${cb.value}").prop("checked", settings.cardBack == cb))
@@ -35,6 +43,12 @@ object SettingsPanel {
     panel.html(content.toString)
 
     initMenuPosition()
+
+    radioChange("auto-flip", "true", () => current = current.copy(autoFlip = true))
+    radioChange("auto-flip", "false", () => current = current.copy(autoFlip = false))
+
+    radioChange("audio", "true", () => current = current.copy(audioEnabled = true))
+    radioChange("ausio", "false", () => current = current.copy(audioEnabled = false))
 
     CardBack.values.foreach(cb => radioChange("card-back", cb.value, () => current = current.copy(cardBack = cb)))
     CardBlank.values.foreach(cb => radioChange("card-blank", cb.value, () => current = current.copy(cardBlank = cb)))

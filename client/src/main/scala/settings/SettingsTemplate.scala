@@ -14,6 +14,8 @@ object SettingsTemplate {
       radioFor("menu-position", "bottom", "Bottom")
     )
 
+    val autoFlip = div(cls := "settings-section theme")(radioFor("auto-flip", "true", "Auto Flip"), radioFor("auto-flip", "false", "No Auto Flip"))
+    val audio = div(cls := "settings-section theme")(radioFor("audio", "true", "Sound"), radioFor("audio", "false", "No Sound"))
     val cardBack = div(cls := "settings-section theme")(CardBack.values.map(cb => radioFor("card-back", cb.value, cb.title)))
     val cardBlank = div(cls := "settings-section theme")(CardBlank.values.map(cb => radioFor("card-blank", cb.value, cb.title)))
     val cardFaces = div(cls := "settings-section theme")(CardFaces.values.map(cf => radioFor("card-faces", cf.value, cf.title)))
@@ -32,7 +34,11 @@ object SettingsTemplate {
       }
     )
 
-    div(title, menuPosition, cardBack, cardBlank, cardFaces, cardLayout, cardRanks, cardSuits, backgroundColor, backgroundPattern)
+    div(
+      title, autoFlip, audio, menuPosition,
+      cardBack, cardBlank, cardFaces, cardLayout, cardRanks, cardSuits,
+      backgroundColor, backgroundPattern
+    )
   }
 
   private[this] def radioFor(k: String, v: String, title: String) = div(cls := "settings-input")(

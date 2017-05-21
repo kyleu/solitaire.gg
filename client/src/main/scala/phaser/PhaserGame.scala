@@ -1,5 +1,6 @@
 package phaser
 
+import audio.AudioService
 import client.SolitaireGG
 import com.definitelyscala.phaser._
 import models.RequestMessage
@@ -25,6 +26,7 @@ object PhaserGame {
     "resolution" -> dom.window.devicePixelRatio
   ))
 }
+
 @ScalaJSDefined
 class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   this.antialias = true
@@ -40,6 +42,12 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   def getUserId = gg.profile.getUserId
   def getDeviceId = gg.profile.deviceId
   def getSettings = gg.settings.getSettings
+
+  private[this] var audio: Option[AudioService] = None
+  def initAudio() = audio = Some(new AudioService(this))
+  def playAudio(key: String) = if (getSettings.audioEnabled) {
+    audio.map(_.play(key))
+  }
 
   private[this] var playmat: Option[Playmat] = None
   def setPlaymat(p: Option[Playmat]) = playmat = p

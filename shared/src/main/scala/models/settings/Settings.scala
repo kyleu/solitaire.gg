@@ -15,5 +15,6 @@ case class Settings(
   cardRanks: CardRanks = CardRanks.A,
   cardSuits: CardSuits = CardSuits.A,
   menuPosition: MenuPosition = MenuPosition.Top,
-  autoFlip: Boolean = true
+  autoFlip: Boolean = true,
+  audioEnabled: Boolean = false
 )

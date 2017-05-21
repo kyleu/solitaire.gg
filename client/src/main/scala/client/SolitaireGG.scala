@@ -1,11 +1,8 @@
 package client
 
-import java.util.UUID
-
 import game.{ActiveGame, GameListService, GameStartService}
 import help.HelpService
 import menu.MenuService
-import models.game.GameStateDebug
 import msg.req.SaveSettings
 import navigation.{NavigationService, NavigationState}
 import network.NetworkService
@@ -14,7 +11,6 @@ import phaser.gameplay.InputHelper
 import settings.{ProfileService, SettingsPanel, SettingsService}
 
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
-import scala.util.Random
 
 @JSExportTopLevel("SolitaireGG")
 object SolitaireGG {
@@ -67,15 +63,12 @@ class SolitaireGG(val debug: Boolean) extends InitHelper with MessageHelper {
   }
 
   def onSandbox() = {
-    utils.Logging.info(GameStateDebug.toString(phaser.gameplay.services.state))
-    phaser.gameplay.activeGame.foreach { gameId =>
-      GameStartService.endGame(this, gameId, win = true)
-    }
-    GameStartService.startGame(this, UUID.randomUUID, "klondike", Math.abs(Random.nextInt))
+    phaser.playAudio("deal01")
   }
 
   def onPhaserLoadComplete(): Unit = {
     new InputHelper(this)
+    phaser.initAudio()
     navigation.initialAction()
   }
 }
