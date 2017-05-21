@@ -1,6 +1,6 @@
 package phaser
 
-import msg.req.{OnGameLost, OnGameWon, SocketRequestMessage}
+import msg.req.OnGameComplete
 import org.scalajs.dom
 import phaser.card.CardAnimation
 import phaser.state.{InitialState, LoadingState}
@@ -17,25 +17,26 @@ object PhaserLifecycle {
 
   def onWin(g: PhaserGame) = {
     CardAnimation.win(g.getPlaymat)
-    OnGameWon(
-      id = g.gameplay.services.state.gameId,
-      duration = 0L,
-      moves = g.gameplay.services.moves.getMoveCount,
-      undos = g.gameplay.services.undo.undoCount,
-      redos = g.gameplay.services.undo.redoCount,
-      firstMove = 0L,
-      occurred = System.currentTimeMillis
-    )
+    onComplete('w', g)
   }
 
   def onLoss(g: PhaserGame) = {
     CardAnimation.loss(g.getPlaymat)
-    OnGameLost(
+    onComplete('l', g)
+  }
+
+  private[this] def onComplete(status: Char, g: PhaserGame) = {
+    val moves = g.gameplay.services.moves.getMoveCount
+    val undos = g.gameplay.services.undo.undoCount
+    val redos = g.gameplay.services.undo.redoCount
+    OnGameComplete(
       id = g.gameplay.services.state.gameId,
+      status = status,
       duration = 0L,
-      moves = g.gameplay.services.moves.getMoveCount,
-      undos = g.gameplay.services.undo.undoCount,
-      redos = g.gameplay.services.undo.redoCount,
+      moves = moves,
+      undos = undos,
+      redos = redos,
+      score = g.gameplay.services.state.calculateScore(moves, undos, redos),
       firstMove = 0L,
       occurred = System.currentTimeMillis
     )

@@ -23,7 +23,7 @@ object AnalyticsDataInsert {
       case AnalyticsEvent.EventType.Open => OpenHistoryInsert.insert(event.id, data)
       case AnalyticsEvent.EventType.GameStart => GameHistoryInsert.insert(event.id, data)
       case AnalyticsEvent.EventType.GameWon => GameWonHistoryInsert.insert(event.id, data)
-      case AnalyticsEvent.EventType.GameResigned => GameResignedHistoryInsert.insert(event.id, data)
+      case AnalyticsEvent.EventType.GameResigned => GameWonHistoryInsert.insert(event.id, data)
       case _: AnalyticsEvent.EventType.Unknown => throw new IllegalStateException(s"Unhandled event [$event].")
     }
   }
@@ -36,7 +36,7 @@ object AnalyticsDataInsert {
       case AnalyticsEvent.EventType.Open => OpenHistoryInsert.test(event.id, data)
       case AnalyticsEvent.EventType.GameStart => GameHistoryInsert.test(event.id, data)
       case AnalyticsEvent.EventType.GameWon => GameWonHistoryInsert.test(event.id, data)
-      case AnalyticsEvent.EventType.GameResigned => GameResignedHistoryInsert.test(event.id, data)
+      case AnalyticsEvent.EventType.GameResigned => GameWonHistoryInsert.test(event.id, data)
       case _: AnalyticsEvent.EventType.Unknown => throw new IllegalStateException(s"Unhandled event [$event].")
     })
   }

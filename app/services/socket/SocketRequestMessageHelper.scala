@@ -8,14 +8,14 @@ import msg.req._
 import msg.rsp.Pong
 import services.audit.GameHistoryService
 import services.user.{UserService, UserStatisticsService}
+import utils.DateUtils
 import utils.metrics.InstrumentedActor
 
 trait SocketRequestMessageHelper extends InstrumentedActor { this: SocketService =>
   override def receiveRequest = {
     case p: Ping => out ! Pong(p.ts)
     case gs: OnGameStart => onGameStart(gs)
-    case gw: OnGameWon => onGameWon(gw)
-    case gl: OnGameLost => onGameLost(gl)
+    case gc: OnGameComplete => onGameComplete(gc)
     case ss: SaveSettings => UserService.saveSettings(user.id, ss.settings)
     case im: InternalMessage => handleInternalMessage(im)
     case x => throw new IllegalArgumentException(s"Unhandled SocketRequestMessage [${x.getClass.getSimpleName}].")
@@ -32,11 +32,23 @@ trait SocketRequestMessageHelper extends InstrumentedActor { this: SocketService
     UserStatisticsService.gameStarted(gs.id, gs.rules, gs.seed, user.id)
   }
 
-  private[this] def onGameWon(gw: OnGameWon) = {
-    log.info(" ::: " + gw)
-  }
+  private[this] def onGameComplete(gc: OnGameComplete) = {
+    val gh = GameHistory(
+      id = gc.id,
+      rules = "",
+      seed = 0,
+      status = GameHistory.Status.withValue(gc.status),
+      player = user.id,
+      cards = 0,
+      moves = gc.moves,
+      undos = gc.undos,
+      redos = gc.redos,
+      score = gc.score,
+      firstMove = Some(DateUtils.fromMillis(gc.firstMove)),
+      completed = Some(DateUtils.fromMillis(gc.occurred))
+    )
 
-  private[this] def onGameLost(gl: OnGameLost) = {
-    log.info(" ::: " + gl)
+    GameHistoryService.onComplete(gh)
+    UserStatisticsService.registerGame(gh)
   }
 }

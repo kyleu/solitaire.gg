@@ -7,7 +7,6 @@ import models.database.Statement
 import models.history.GameHistory
 import models.queries.user.{UserQueries, UserStatisticsQueries}
 import models.user.UserStatistics
-import org.joda.time.LocalDateTime
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
 import utils.DateUtils
@@ -22,25 +21,19 @@ object UserStatisticsService {
     case _ => Future.successful(())
   }
 
-  def registerGame(game: GameHistory) = {
-    val completed = game.completed.getOrElse(throw new IllegalStateException(s"Game [${game.id}] has not been completed."))
-    registerHistory(game.id, game.isWon, game.duration, game.moves, game.undos, game.redos, completed, game.player)
-  }
-
-  def registerHistory(
-    gameId: UUID, isWin: Boolean, duration: Long, moves: Int, undos: Int, redos: Int, completed: LocalDateTime, player: UUID
-  ): Future[UserStatistics] = {
+  def registerGame(gh: GameHistory): Future[Unit] = {
+    val completed = gh.completed.getOrElse(throw new IllegalStateException(s"Game [${gh.id}] has not been completed."))
     val update = new Statement {
-      override def sql = UserStatisticsQueries.updateSql(isWin)
-      override def values = Seq[Any](duration, moves, undos, redos, completed, player)
+      override def sql = UserStatisticsQueries.updateSql(gh.isWon)
+      override def values = Seq[Any](gh.duration, gh.moves, gh.undos, gh.redos, completed, gh.player)
     }
 
     Database.execute(update).flatMap {
       case affected if affected == 1 => Future.successful(Unit)
-      case _ => UserStatisticsService.getStatistics(player).flatMap { _ =>
-        registerHistory(gameId, isWin, duration, moves, undos, redos, completed, player)
+      case _ => UserStatisticsService.getStatistics(gh.player).flatMap { _ =>
+        registerGame(gh)
       }
-    }.flatMap(_ => getStatistics(player))
+    }
   }
 
   def getStatistics(user: UUID) = Database.query(UserStatisticsQueries.getById(user)).flatMap {

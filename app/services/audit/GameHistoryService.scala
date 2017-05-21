@@ -33,8 +33,11 @@ object GameHistoryService {
 
   def insert(gh: GameHistory) = Database.execute(GameHistoryQueries.insert(gh)).map(_ => true)
 
-  def setCounts(id: UUID, moves: Int, undos: Int, redos: Int, score: Int) = {
-    Database.execute(GameHistoryQueries.SetCounts(id, moves, undos, redos, score)).map(_ == 1)
+  def onComplete(gh: GameHistory) = Database.execute(GameHistoryQueries.OnComplete(gh)).flatMap {
+    case 1 => Future.successful(true)
+    case _ => Database.execute(GameHistoryQueries.insert(gh)).flatMap { _ =>
+      Database.execute(GameHistoryQueries.OnComplete(gh)).map(_ == 1)
+    }
   }
 
   def removeGameHistory(id: UUID, conn: Option[Connection]) = Database.execute(GameHistoryQueries.removeById(id), conn).map(_ == 1).map { success =>

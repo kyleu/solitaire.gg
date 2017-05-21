@@ -23,14 +23,9 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   def removeById(id: UUID) = RemoveById(Seq(id))
   val truncate = Truncate
 
-  case class SetCounts(id: UUID, moves: Int, undos: Int, redos: Int, score: Int) extends Statement {
-    override val sql = updateSql(Seq("moves", "undos", "redos", "score"))
-    override val values = Seq[Any](moves, undos, redos, score, id)
-  }
-
-  case class SetCountsAndCompleted(id: UUID, moves: Int, undos: Int, redos: Int, score: Int, completed: LocalDateTime, status: String) extends Statement {
-    override val sql = updateSql(Seq("moves", "undos", "redos", "score", "completed", "status"))
-    override val values = Seq[Any](moves, undos, redos, score, completed, status, id)
+  case class OnComplete(gh: GameHistory) extends Statement {
+    override val sql = updateSql(Seq("moves", "undos", "redos", "score", "first_move", "completed", "status"))
+    override val values = Seq[Any](gh.moves, gh.undos, gh.redos, gh.score, gh.firstMove, gh.completed, gh.status, gh.id)
   }
 
   case class GetGameHistoriesByDayAndStatus(d: LocalDate, status: String) extends Query[Seq[GameHistory]] {
