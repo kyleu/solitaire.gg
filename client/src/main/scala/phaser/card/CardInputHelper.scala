@@ -20,8 +20,11 @@ trait CardInputHelper {
     valid
   }
 
-  protected[this] def getMoveTarget(card: CardSprite) = card.phaser.possibleMoves.find { move =>
-    move.t == PossibleMove.Type.MoveCards && move.sourcePile == card.pileGroup.id && move.cards.length == 1 && move.cards.headOption.contains(card.id)
+  protected[this] def getMoveTarget(card: CardSprite) = {
+    val candidates = card.phaser.possibleMoves.filter { move =>
+      move.t == PossibleMove.Type.MoveCards && move.sourcePile == card.pileGroup.id && move.cards.headOption.contains(card.id)
+    }
+    candidates.sortBy(x => -card.phaser.getPlaymat.getPileGroup(x.targetPile.getOrElse(throw new IllegalStateException())).behavior.weight).headOption
   }
 
   protected[this] def click(card: CardSprite) = {
@@ -29,14 +32,14 @@ trait CardInputHelper {
       card.phaser.sendMove(SelectCard(card = card.id, pile = card.pileGroup.id, auto = false))
     } else {
       val now = new Date().getTime()
-      if (card.lastClicked.isDefined && (now - card.lastClicked.getOrElse(throw new IllegalStateException())) < CardInput.doubleClickThresholdMs) {
-        getMoveTarget(card).foreach { moveTarget =>
-          val tgt = moveTarget.targetPile.getOrElse(throw new IllegalStateException("Move has no target pile."))
-          card.phaser.sendMove(MoveCards(cards = Seq(card.id), src = card.pileGroup.id, tgt = tgt, auto = false))
-        }
-        card.lastClicked = None
-      } else {
-        card.lastClicked = Some(now)
+      card.lastClicked match {
+        case Some(lc) if (now - lc) < CardInput.doubleClickThresholdMs =>
+          getMoveTarget(card).foreach { moveTarget =>
+            val tgt = moveTarget.targetPile.getOrElse(throw new IllegalStateException("Move has no target pile."))
+            card.phaser.sendMove(MoveCards(cards = Seq(card.id), src = card.pileGroup.id, tgt = tgt, auto = false))
+          }
+          card.lastClicked = None
+        case _ => card.lastClicked = Some(now)
       }
       val scaleTween = card.game.add.tween(card.scale)
       val props = js.Dynamic.literal("x" -> 1.0, "y" -> 1.0)

@@ -9,7 +9,7 @@ import scala.scalajs.js.timers.setTimeout
 
 object AssetLoader {
   def loadPileSets(g: PhaserGame, pileSets: Seq[PileSet]) = pileSets.foreach { pileSet =>
-    pileSet.piles.foreach(pile => g.getPlaymat.addPile(new PileGroup(g, pile)))
+    pileSet.piles.foreach(pile => g.getPlaymat.addPileGroup(new PileGroup(g, pile)))
   }
 
   private[this] def error(g: PhaserGame, cardId: Int, cards: Iterable[(CardSprite, PileGroup, Int)]) = {

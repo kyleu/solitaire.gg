@@ -4,17 +4,17 @@ import enumeratum.values._
 import models.pile.Pile
 
 object PileSet {
-  sealed abstract class Behavior(val value: Char) extends CharEnumEntry
+  sealed abstract class Behavior(val value: Char, val weight: Int) extends CharEnumEntry
 
   object Behavior extends CharEnum[Behavior] with CharCirceEnum[Behavior] {
-    case object Stock extends Behavior('s')
-    case object Waste extends Behavior('w')
-    case object Pocket extends Behavior('k')
-    case object Foundation extends Behavior('f')
-    case object Tableau extends Behavior('t')
-    case object Cell extends Behavior('c')
-    case object Reserve extends Behavior('r')
-    case object Pyramid extends Behavior('p')
+    case object Stock extends Behavior('s', 0)
+    case object Waste extends Behavior('w', 1)
+    case object Pocket extends Behavior('k', 0)
+    case object Foundation extends Behavior('f', 4)
+    case object Tableau extends Behavior('t', 3)
+    case object Cell extends Behavior('c', 2)
+    case object Reserve extends Behavior('r', 2)
+    case object Pyramid extends Behavior('p', 5)
 
     override val values = findValues
 
