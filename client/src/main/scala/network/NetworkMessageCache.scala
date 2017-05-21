@@ -9,6 +9,11 @@ import scala.util.control.NonFatal
 object NetworkMessageCache {
   private[this] val storageKey = "solitaire.gg.messages.pending"
 
+  def flush(send: SocketRequestMessage => Unit) = {
+    load().foreach(send)
+    save(Nil)
+  }
+
   def cache(msg: SocketRequestMessage) = {
     utils.Logging.info(s"Caching message [$msg].")
     save(load() :+ msg)
@@ -20,7 +25,7 @@ object NetworkMessageCache {
   }
 
   private[this] def load() = Option(dom.window.localStorage.getItem(storageKey)) match {
-    case Some(s) => s.split('\n').map(json => try {
+    case Some(s) => s.split('\n').filterNot(_.isEmpty).map(json => try {
       JsonSerializers.readSocketRequestMessage(json)
     } catch {
       case NonFatal(x) => ClientError("parse", "Could not parse SocketRequestMessage json.", json)

@@ -17,7 +17,7 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
   private[this] var latencyMs: Option[Int] = None
 
   private[this] val socket = new NetworkSocket(onSocketConnect, onSocketResponseMessage, onSocketError, onSocketClose)
-  //socket.open(socketUrl)
+  socket.open(socketUrl)
 
   private def sendPing(): Unit = {
     if (socket.isConnected) {
@@ -30,6 +30,7 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
 
   protected[this] def onSocketConnect(): Unit = {
     Logging.info(s"Socket [$socketUrl] connected.")
+    NetworkMessageCache.flush(sendMessage)
   }
 
   protected[this] def onSocketError(error: String): Unit = {
