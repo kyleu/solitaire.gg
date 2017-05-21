@@ -6,8 +6,8 @@ import models.pile.set.PileSet
 object LayoutDimensions {
   private[this] val padding = 0.2
 
-  def getDimensions(pileSet: PileSet, divisor: Double) = {
-    var ret = (pileSet.piles.length * (1 + padding), 1 + padding)
+  def getDimensions(pileSet: PileSet, divisor: Int) = {
+    var ret = ((pileSet.piles.length / divisor) * (1 + padding), 1 + padding)
     pileSet.behavior match {
       case PileSet.Behavior.Waste =>
         val wasteCardsShown = pileSet.piles.headOption.getOrElse(throw new IllegalStateException).options.cardsShown
@@ -50,7 +50,7 @@ object LayoutDimensions {
     }
 
     pileSet.dimensions = ret
-    pileSet.divisor = divisor
+    pileSet.divisor = divisor.toDouble
 
     ret
   }

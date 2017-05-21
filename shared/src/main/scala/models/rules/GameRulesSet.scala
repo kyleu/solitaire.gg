@@ -270,6 +270,7 @@ object GameRulesSet {
     Indefatigable,
     Indian,
     Inquisitor,
+    InsaneKlondike,
     Intelligence,
     Interchange,
     InvertedFreeCell,

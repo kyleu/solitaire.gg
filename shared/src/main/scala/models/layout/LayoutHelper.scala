@@ -17,7 +17,7 @@ class LayoutHelper(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) 
   private[this] var currentRowMaxHeight = 1.0
   private[this] var maxWidth = 0.0
   private[this] var lastChar = ' '
-  private[this] var currentDivisor = 0
+  private[this] var currentDivisor = 1
 
   private[this] def newRow() = {
     if (xOffset > maxWidth) { maxWidth = xOffset }
@@ -41,7 +41,7 @@ class LayoutHelper(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) 
         remainingPileSets = remainingPileSets.filterNot(_ == pileSet)
         pileSet.position = (xOffset - 0.5) -> (yOffset - 0.5)
 
-        val pileSetDimensions = LayoutDimensions.getDimensions(pileSet, currentDivisor.toDouble)
+        val pileSetDimensions = LayoutDimensions.getDimensions(pileSet, currentDivisor)
         if (!pileSet.visible) { // Hide this pile
           pileSet.piles.zipWithIndex.foreach { p =>
             locations(p._1.id) = ((p._2 * (1 + padding)) + 0.5, -10)
@@ -79,7 +79,7 @@ class LayoutHelper(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) 
             xOffset = originalXOffset + pileSetDimensions._1
           }
         }
-        currentDivisor = 0
+        currentDivisor = 1
     }
     lastChar = c
   }

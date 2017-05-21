@@ -4,10 +4,11 @@ import java.util.UUID
 
 object UserStatistics {
   object Games {
-    lazy val empty = Games(0, 0, 0L, 0, 0, 0, None, None, 0, 0, 0, 0)
+    lazy val empty = Games(0, 0, 0, 0L, 0, 0, 0, None, None, 0, 0, 0, 0)
   }
 
   case class Games(
+      played: Int,
       wins: Int,
       losses: Int,
       totalDurationMs: Long,
@@ -20,11 +21,7 @@ object UserStatistics {
       maxWinStreak: Int,
       currentLossStreak: Int,
       maxLossStreak: Int
-  ) {
-    val totalPlayed = wins + losses
-    val avgDuration = if (totalPlayed == 0) { 0 } else { totalDurationMs / totalPlayed }
-    val avgMoves = if (totalPlayed == 0) { 0 } else { totalMoves / totalPlayed }
-  }
+  )
 }
 
 case class UserStatistics(
