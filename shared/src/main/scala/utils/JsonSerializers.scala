@@ -15,18 +15,18 @@ object JsonSerializers {
   }
   def writeSettings(s: Settings, indent: Boolean = true) = if(indent) { s.asJson.spaces2 } else { s.asJson.noSpaces }
 
-  def writeRules(rules: GameRules) = rules.asJson.noSpaces
+  def writeRules(rules: GameRules) = rules.asJson.spaces2
 
-  def readRequestMessage(s: String) = decode[SocketRequestMessage](s) match {
+  def readSocketRequestMessage(s: String) = decode[SocketRequestMessage](s) match {
     case Right(x) => x
     case Left(err) => throw err
   }
-  def writeRequestMessage(sm: SocketRequestMessage, debug: Boolean = false) = if (debug) { sm.asJson.spaces2 } else { sm.asJson.noSpaces }
+  def writeSocketRequestMessage(sm: SocketRequestMessage, debug: Boolean = false) = if (debug) { sm.asJson.spaces2 } else { sm.asJson.noSpaces }
 
-  def readResponseMessage(s: String) = decode[SocketResponseMessage](s) match {
+  def readSocketResponseMessage(s: String) = decode[SocketResponseMessage](s) match {
     case Right(x) => x
     case Left(err) => throw err
   }
-  def writeResponseMessage(sm: SocketResponseMessage, debug: Boolean = false) = if (debug) { sm.asJson.spaces2 } else { sm.asJson.noSpaces }
+  def writeSocketResponseMessage(sm: SocketResponseMessage, debug: Boolean = false) = if (debug) { sm.asJson.spaces2 } else { sm.asJson.noSpaces }
 
 }

@@ -6,6 +6,6 @@ import utils.{JsonSerializers, Logging}
 
 class MessageFrameFormatter(debug: Boolean) extends Logging {
   val transformer = MessageFlowTransformer.stringMessageFlowTransformer.map { s =>
-    JsonSerializers.readRequestMessage(s)
-  }.contramap { m: SocketResponseMessage => JsonSerializers.writeResponseMessage(m, debug) }
+    JsonSerializers.readSocketRequestMessage(s)
+  }.contramap { m: SocketResponseMessage => JsonSerializers.writeSocketResponseMessage(m, debug) }
 }

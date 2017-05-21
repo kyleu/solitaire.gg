@@ -6,7 +6,7 @@ import models.pile.Pile
 object PileSet {
   sealed abstract class Behavior(val value: Char) extends CharEnumEntry
 
-  object Behavior extends CharEnum[Behavior] {
+  object Behavior extends CharEnum[Behavior] with CharCirceEnum[Behavior] {
     case object Stock extends Behavior('s')
     case object Waste extends Behavior('w')
     case object Pocket extends Behavior('k')

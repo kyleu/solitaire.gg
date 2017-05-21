@@ -17,7 +17,7 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
   private[this] var latencyMs: Option[Int] = None
 
   private[this] val socket = new NetworkSocket(onSocketConnect, onSocketResponseMessage, onSocketError, onSocketClose)
-  socket.open(socketUrl)
+  //socket.open(socketUrl)
 
   private def sendPing(): Unit = {
     if (socket.isConnected) {
@@ -51,13 +51,14 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
   }
 
   def sendMessage(sm: SocketRequestMessage): Unit = if (socket.isConnected) {
-    val json = JsonSerializers.writeRequestMessage(sm, debug)
+    val json = JsonSerializers.writeSocketRequestMessage(sm, debug)
     socket.send(json)
   } else {
     utils.Logging.info(s"Not connected, skipping message [${sm.getClass.getSimpleName}] send.")
+    NetworkMessageCache.cache(sm)
   }
 
-  protected[this] def onSocketResponseMessage(json: String): Unit = JsonSerializers.readResponseMessage(json) match {
+  protected[this] def onSocketResponseMessage(json: String): Unit = JsonSerializers.readSocketResponseMessage(json) match {
     case p: Pong => latencyMs = Some((System.currentTimeMillis - p.ts).toInt)
     case msg => handleMessage(msg)
   }

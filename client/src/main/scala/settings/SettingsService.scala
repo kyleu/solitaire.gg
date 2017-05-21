@@ -21,7 +21,6 @@ class SettingsService(onSave: Settings => Unit) {
 
   def save() = {
     val json = JsonSerializers.writeSettings(settings)
-    utils.Logging.info(s"Persisting settings [$json].")
     dom.window.localStorage.setItem(SettingsService.settingsKey, json)
     onSave(settings)
   }

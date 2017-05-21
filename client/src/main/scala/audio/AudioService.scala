@@ -27,10 +27,7 @@ object AudioService {
 class AudioService(p: PhaserGame) {
   private[this] val fx = p.add.audio("audio")
 
-  AudioService.keys.foreach { k =>
-    utils.Logging.info(s"Registering audio marker [${k._1}].")
-    fx.addMarker(k._1, k._2._1, k._2._2 - k._2._1)
-  }
+  AudioService.keys.foreach(k => fx.addMarker(k._1, k._2._1, k._2._2 - k._2._1))
 
   def play(key: String) = {
     fx.play(key)
