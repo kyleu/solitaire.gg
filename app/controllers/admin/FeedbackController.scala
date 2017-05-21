@@ -12,12 +12,12 @@ import utils.{DateUtils, Application}
 @javax.inject.Singleton
 class FeedbackController @javax.inject.Inject() (override val app: Application) extends BaseController {
   def list(key: String, q: String, sortBy: String, page: Int) = withAdminSession("list-" + key) { implicit request =>
-    val feedbackList = for {
-      count <- Database.query(UserFeedbackQueries.searchCount(q))
-      feedbacks <- Database.query(UserFeedbackQueries.search(q, getOrderClause(sortBy), Some(page)))
-      notes <- Database.query(UserFeedbackNoteQueries.GetUserFeedbackNotes(feedbacks.map(_.id)))
-    } yield {
-      count -> feedbacks.map(f => f -> notes.filter(_.feedbackId == f.id).sortBy(x => DateUtils.toMillis(x.occurred)))
+    val feedbackList = Database.query(UserFeedbackQueries.searchCount(q)).flatMap { count =>
+      Database.query(UserFeedbackQueries.search(q, getOrderClause(sortBy), Some(page))).flatMap { feedbacks =>
+        Database.query(UserFeedbackNoteQueries.GetUserFeedbackNotes(feedbacks.map(_.id))).map { notes =>
+          count -> feedbacks.map(f => f -> notes.filter(_.feedbackId == f.id).sortBy(x => DateUtils.toMillis(x.occurred)))
+        }
+      }
     }
 
     feedbackList.map { fn =>
@@ -56,7 +56,7 @@ class FeedbackController @javax.inject.Inject() (override val app: Application) 
 
   def removeFeedback(id: UUID) = withAdminSession("remove") { implicit request =>
     Database.execute(UserFeedbackQueries.remove(Seq(id))).map { _ =>
-      Redirect(controllers.admin.routes.FeedbackController.list("all", ""))
+      Redirect(controllers.admin.routes.FeedbackController.list("all"))
     }
   }
 

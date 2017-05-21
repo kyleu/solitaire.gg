@@ -1,52 +1,54 @@
-@(user: models.user.User, gameCount: Int)(implicit session: Session, flash: Flash)
+@(user: models.user.User, stats: models.user.UserStatistics)(implicit session: Session, flash: Flash)
+
+@tr(title: String, value: Any) = {
+  <tr><td style="width: 50%;">@title</td><td style="width: 50%;">@value</td></tr>
+}
+
 @views.html.admin.layout.base(s"${utils.Config.projectName} User Detail", "explore") {
   <div class="panel panel-default">
     <div class="panel-body">
-      @user.username.map { un => <h4>@un</h4> }
       <h5>@user.id</h5>
-      <em>@utils.Formatter.withCommas(gameCount) games</em>
+      <table class="table">
+        @tr("Email", user.email)
+        @tr("Username", user.username)
+      </table>
     </div>
   </div>
 
   <div class="panel panel-default">
     <div class="panel-body">
-      <h5>Preferences</h5>
+      <h5>Settings</h5>
       <table class="table">
-        <tr>
-          <td>Email</td>
-          <td>@user.email</td>
-        </tr>
-        <tr>
-          <td>Username</td>
-          <td>@user.username</td>
-        </tr>
-        <tr>
-          <td>Background Color</td>
-          <td>@user.settings.backgroundColor</td>
-        </tr>
-        <tr>
-          <td>Background Pattern</td>
-          <td>@user.settings.backgroundPattern.getOrElse("-")</td>
-        </tr>
-        <tr>
-          <td>Audio</td>
-          <td>@user.settings.audioEnabled</td>
-        </tr>
-        <tr>
-          <td>Auto Flip</td>
-          <td>@user.settings.autoFlip</td>
-        </tr>
-        <tr>
-          <td>Card Preferences</td>
-          <td>
-            Back: @user.settings.cardBack,
-            Blank: @user.settings.cardBlank,
-            Layout: @user.settings.cardLayout,
-            Ranks: @user.settings.cardRanks,
-            Suits: @user.settings.cardSuits,
-            Face Cards: @user.settings.cardFaces
-          </td>
-        </tr>
+        @tr("Background Color", user.settings.backgroundColor)
+        @tr("Background Pattern", user.settings.backgroundPattern.getOrElse("-"))
+        @tr("Audio", user.settings.audioEnabled)
+        @tr("Auto Flip", user.settings.autoFlip)
+        @tr("Card Back", user.settings.cardBack)
+        @tr("Card Blank", user.settings.cardBlank)
+        @tr("Card Layout", user.settings.cardLayout)
+        @tr("Card Ranks", user.settings.cardRanks)
+        @tr("Card Suits", user.settings.cardSuits)
+        @tr("Card Faces", user.settings.cardFaces)
+      </table>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h5>Stats</h5>
+      <table class="table">
+        @tr("Games", stats.games.played)
+        @tr("Wins", stats.games.wins)
+        @tr("Losses", stats.games.losses)
+        @tr("Total Duration (ms)", stats.games.totalDurationMs)
+        @tr("Total Moves", stats.games.totalMoves)
+        @tr("Total Undos", stats.games.totalUndos)
+        @tr("Total Redos", stats.games.totalRedos)
+        @tr("Last Win", stats.games.lastWin)
+        @tr("Last Loss", stats.games.lastLoss)
+        @tr("Current Win Streak", stats.games.currentWinStreak)
+        @tr("Max Win Streak", stats.games.maxWinStreak)
+        @tr("Current Loss Streak", stats.games.currentLossStreak)
+        @tr("Max Loss Streak", stats.games.maxLossStreak)
       </table>
     </div>
   </div>

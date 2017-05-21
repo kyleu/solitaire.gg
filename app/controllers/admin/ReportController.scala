@@ -15,12 +15,15 @@ import scala.concurrent.Future
 class ReportController @javax.inject.Inject() (override val app: Application) extends BaseController {
 
   def email(d: LocalDate = DateUtils.today) = withAdminSession("email") { implicit request =>
-    for {
-      tables <- Database.query(RowCountQueries.ListTables)
-      metrics <- DailyMetricService.recalculateMetrics(d)
-      totals <- DailyMetricService.getTotals(d)
-      counts <- Future.sequence(tables.map(table => Database.query(RowCountQueries.CountTable(table))))
-    } yield Ok(views.html.admin.report.emailReport(d, metrics._2._1, totals, counts))
+    Database.query(RowCountQueries.ListTables).flatMap { tables =>
+      DailyMetricService.recalculateMetrics(d).flatMap { metrics =>
+        DailyMetricService.getTotals(d).flatMap { totals =>
+          Future.sequence(tables.map(table => Database.query(RowCountQueries.CountTable(table)))).map { counts =>
+            Ok(views.html.admin.report.emailReport(d, metrics._2._1, totals, counts))
+          }
+        }
+      }
+    }
   }
 
   def trend() = withAdminSession("trend") { implicit request =>

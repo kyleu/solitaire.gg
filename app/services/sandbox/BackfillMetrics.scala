@@ -21,10 +21,12 @@ object BackfillMetrics extends SandboxTask {
       Future.successful((0 to numDays).map(i => today.minusDays(i)))
     }
 
-    for {
-      startDay <- Database.query(AnalyticsEventQueries.GetEarliestDay)
-      days <- getDays(startDay)
-      result <- Future.sequence(days.map(d => DailyMetricService.getMetrics(d)))
-    } yield result.map(x => s"${x._1}: ${x._2._1.size} metrics, ${x._2._2} calculated.").mkString("\n")
+    Database.query(AnalyticsEventQueries.GetEarliestDay).flatMap { startDay =>
+      getDays(startDay).flatMap { days =>
+        Future.sequence(days.map(d => DailyMetricService.getMetrics(d))).map { result =>
+          result.map(x => s"${x._1}: ${x._2._1.size} metrics, ${x._2._2} calculated.").mkString("\n")
+        }
+      }
+    }
   }
 }

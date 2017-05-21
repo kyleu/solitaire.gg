@@ -23,14 +23,16 @@ class EmailReport(emailService: EmailService) extends ScheduledTask.Task {
           Future.successful("report" -> None)
         } else {
           val yesterday = DateUtils.today.minusDays(1)
-          for {
-            tables <- Database.query(RowCountQueries.ListTables)
-            yesterdayMetrics <- DailyMetricService.getMetrics(yesterday)
-            totals <- DailyMetricService.getTotals(yesterday)
-            counts <- Future.sequence(tables.map(table => Database.query(RowCountQueries.CountTable(table))))
-            _ <- emailService.sendDailyReport(yesterday, yesterdayMetrics._2._1, totals, counts)
-          } yield {
-            "report" -> Some(s"Sent report for [$yesterdayAndBuffer]")
+          Database.query(RowCountQueries.ListTables).flatMap { tables =>
+            DailyMetricService.getMetrics(yesterday).flatMap { yesterdayMetrics =>
+              DailyMetricService.getTotals(yesterday).flatMap { totals =>
+                Future.sequence(tables.map(table => Database.query(RowCountQueries.CountTable(table)))).flatMap { counts =>
+                  emailService.sendDailyReport(yesterday, yesterdayMetrics._2._1, totals, counts).map { _ =>
+                    "report" -> Some(s"Sent report for [$yesterdayAndBuffer]")
+                  }
+                }
+              }
+            }
           }
         }
       }
