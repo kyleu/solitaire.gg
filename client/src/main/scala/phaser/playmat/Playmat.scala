@@ -41,7 +41,7 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
     pileGroup.y = pileLocation._2 * phaser.getSettings.cardSet.h
   }
 
-  def initialMovesComplete() = pileGroups.foreach(_._2.cards.foreach(_.bringToTop()))
+  def initialMovesComplete() = pileGroups.filterNot(_._2.behavior == PileSet.Behavior.Pyramid).foreach(_._2.cards.foreach(_.bringToTop()))
 
   def win(gw: GameWon) = utils.Logging.info("Win!")
   def lose(gl: GameLost) = utils.Logging.info("Lose!")
