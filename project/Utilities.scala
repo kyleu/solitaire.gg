@@ -1,4 +1,5 @@
 import Dependencies.{Akka, Metrics, Play, Utils}
+import com.typesafe.sbt.web.SbtWeb
 import io.gatling.sbt.GatlingPlugin
 import pl.project13.scala.sbt.JmhPlugin
 import sbt.Keys._
@@ -27,4 +28,10 @@ object Utilities {
   lazy val screenshotCreator = (project in file("util/screenshotCreator")).settings(
     name := "screenshot-creator"
   ).settings(Shared.commonSettings: _*).dependsOn(Shared.sharedJvm)
+
+  lazy val translation = (project in file("util/translation"))
+    .enablePlugins(SbtWeb, play.sbt.PlayScala)
+    .settings(libraryDependencies ++= Seq("com.beachape" %% "enumeratum-circe" % Utils.enumeratumVersion, Play.playWs))
+    .settings(Shared.commonSettings: _*)
+
 }

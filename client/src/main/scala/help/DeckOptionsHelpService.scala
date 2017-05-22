@@ -2,7 +2,7 @@ package help
 
 import models.card.Rank
 import models.rules.DeckOptions
-import utils.{Messages, NumberUtils}
+import utils.Messages
 
 object DeckOptionsHelpService {
   private[this] val defaultDeckOptions = DeckOptions()
@@ -16,14 +16,14 @@ object DeckOptionsHelpService {
         if (options.numDecks == 1) {
           ret += Messages("help.deck.single.standard", numCards)
         } else {
-          ret += Messages("help.deck.multiple.standard", NumberUtils.toWords(options.numDecks, properCase = true), numCards)
+          ret += Messages("help.deck.multiple.standard", Messages.numberAsString(options.numDecks, properCase = true), numCards)
         }
       } else {
         val ranks = options.ranks.mkString(", ")
         if (options.numDecks == 1) {
           ret += Messages("help.deck.single.oddranks", numCards, ranks)
         } else {
-          ret += Messages("help.deck.multiple.oddranks", NumberUtils.toWords(options.numDecks, properCase = true), numCards, ranks)
+          ret += Messages("help.deck.multiple.oddranks", Messages.numberAsString(options.numDecks, properCase = true), numCards, ranks)
         }
       }
     } else {
@@ -32,14 +32,14 @@ object DeckOptionsHelpService {
         if (options.numDecks == 1) {
           ret += Messages("help.deck.single.oddsuits", numCards, suits)
         } else {
-          ret += Messages("help.deck.multiple.oddsuits", NumberUtils.toWords(options.numDecks, properCase = true), numCards, suits)
+          ret += Messages("help.deck.multiple.oddsuits", Messages.numberAsString(options.numDecks, properCase = true), numCards, suits)
         }
       } else {
         val ranks = options.ranks.mkString(", ")
         if (options.numDecks == 1) {
           ret += Messages("help.deck.single.oddranksandsuits", numCards, ranks, suits)
         } else {
-          ret += Messages("help.deck.multiple.oddranksandsuits", NumberUtils.toWords(options.numDecks, properCase = true), numCards, ranks, suits)
+          ret += Messages("help.deck.multiple.oddranksandsuits", Messages.numberAsString(options.numDecks, properCase = true), numCards, ranks, suits)
         }
       }
     }

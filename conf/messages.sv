@@ -1,0 +1,1 @@
+settings.title = inställningar

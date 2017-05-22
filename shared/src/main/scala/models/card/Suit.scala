@@ -3,6 +3,7 @@ package models.card
 import enumeratum.values._
 
 sealed abstract class Suit(val value: Char) extends CharEnumEntry with Ordered[Suit] {
+  val title: String = getClass.getSimpleName.stripSuffix("$")
   def color: Color
   def index: Int
 

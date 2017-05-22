@@ -25,7 +25,7 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
 
   case class OnComplete(gh: GameHistory) extends Statement {
     override val sql = updateSql(Seq("moves", "undos", "redos", "score", "first_move", "completed", "status"))
-    override val values = Seq[Any](gh.moves, gh.undos, gh.redos, gh.score, gh.firstMove, gh.completed, gh.status, gh.id)
+    override val values = Seq[Any](gh.moves, gh.undos, gh.redos, gh.score, gh.firstMove, gh.completed, gh.status.value, gh.id)
   }
 
   case class GetGameHistoriesByDayAndStatus(d: LocalDate, status: String) extends Query[Seq[GameHistory]] {

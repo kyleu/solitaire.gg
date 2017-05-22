@@ -1,7 +1,7 @@
 package help
 
 import models.rules.{WastePlayableCards, WasteRules}
-import utils.{Messages, NumberUtils}
+import utils.Messages
 
 object WasteHelpService {
   def waste(rules: WasteRules) = {
@@ -10,7 +10,7 @@ object WasteHelpService {
 
     val piles = rules.numPiles match {
       case 1 => Messages("help.piles.single", loweredName)
-      case x => Messages("help.piles.multiple", NumberUtils.toWords(x, properCase = true), loweredName)
+      case x => Messages("help.piles.multiple", Messages.numberAsString(x, properCase = true), loweredName)
     }
     ret += piles
 

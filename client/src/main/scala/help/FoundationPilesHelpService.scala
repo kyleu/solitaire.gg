@@ -1,7 +1,7 @@
 package help
 
 import models.rules._
-import utils.{Messages, NumberUtils}
+import utils.Messages
 
 object FoundationPilesHelpService {
   def piles(rules: FoundationRules) = {
@@ -16,23 +16,23 @@ object FoundationPilesHelpService {
         Messages("help.piles.single.cards.multiple", loweredName, rules.initialCards)
       }
       case x => if (rules.initialCards == 0) {
-        Messages("help.piles.multiple.cards.empty", NumberUtils.toWords(x, properCase = true), loweredName)
+        Messages("help.piles.multiple.cards.empty", Messages.numberAsString(x, properCase = true), loweredName)
       } else if (rules.initialCards % rules.numPiles == 0) {
         if (rules.initialCards / rules.numPiles == 1) {
-          Messages("help.piles.multiple.cards.single.each", NumberUtils.toWords(x, properCase = true), loweredName)
+          Messages("help.piles.multiple.cards.single.each", Messages.numberAsString(x, properCase = true), loweredName)
         } else {
-          val init = NumberUtils.toWords(rules.initialCards / rules.numPiles)
-          Messages("help.piles.multiple.cards.multiple.each", NumberUtils.toWords(x, properCase = true), loweredName, init)
+          val init = Messages.numberAsString(rules.initialCards / rules.numPiles)
+          Messages("help.piles.multiple.cards.multiple.each", Messages.numberAsString(x, properCase = true), loweredName, init)
         }
       } else {
         if (rules.initialCards == 1) {
-          Messages("help.piles.multiple.cards.single", NumberUtils.toWords(x, properCase = true), loweredName)
+          Messages("help.piles.multiple.cards.single", Messages.numberAsString(x, properCase = true), loweredName)
         } else {
           Messages(
             "help.piles.multiple.cards.multiple",
-            NumberUtils.toWords(x, properCase = true),
+            Messages.numberAsString(x, properCase = true),
             loweredName,
-            NumberUtils.toWords(rules.initialCards)
+            Messages.numberAsString(rules.initialCards)
           )
         }
       }

@@ -1,7 +1,7 @@
 package help
 
 import models.rules._
-import utils.{Messages, NumberUtils}
+import utils.Messages
 
 object TableauHelpService {
   private[this] val defaults = TableauRules()
@@ -17,21 +17,21 @@ object TableauHelpService {
         } else if (i == 1) {
           Messages("help.piles.single.cards.single", loweredName)
         } else {
-          Messages("help.piles.single.cards.multiple", loweredName, NumberUtils.toWords(i))
+          Messages("help.piles.single.cards.multiple", loweredName, Messages.numberAsString(i))
         }
         case ic => throw new IllegalStateException(ic.toString)
       }
       case x => rules.initialCards match {
         case InitialCards.Count(i) => if (i == 0) {
-          Messages("help.piles.multiple.cards.empty", NumberUtils.toWords(x, properCase = true), loweredName)
+          Messages("help.piles.multiple.cards.empty", Messages.numberAsString(x, properCase = true), loweredName)
         } else if (i == 1) {
-          Messages("help.piles.multiple.cards.single.each", NumberUtils.toWords(x, properCase = true), loweredName)
+          Messages("help.piles.multiple.cards.single.each", Messages.numberAsString(x, properCase = true), loweredName)
         } else {
-          Messages("help.piles.multiple.cards.multiple.each", NumberUtils.toWords(x, properCase = true), loweredName, NumberUtils.toWords(i))
+          Messages("help.piles.multiple.cards.multiple.each", Messages.numberAsString(x, properCase = true), loweredName, Messages.numberAsString(i))
         }
-        case InitialCards.PileIndex => Messages("help.piles.multiple.cards.pile.index", NumberUtils.toWords(x, properCase = true), loweredName)
-        case InitialCards.RestOfDeck => Messages("help.piles.multiple.cards.rest.of.deck", NumberUtils.toWords(x, properCase = true), loweredName)
-        case InitialCards.Custom => Messages("help.piles.multiple.cards.custom", NumberUtils.toWords(x, properCase = true), loweredName)
+        case InitialCards.PileIndex => Messages("help.piles.multiple.cards.pile.index", Messages.numberAsString(x, properCase = true), loweredName)
+        case InitialCards.RestOfDeck => Messages("help.piles.multiple.cards.rest.of.deck", Messages.numberAsString(x, properCase = true), loweredName)
+        case InitialCards.Custom => Messages("help.piles.multiple.cards.custom", Messages.numberAsString(x, properCase = true), loweredName)
       }
     }
     ret += piles
@@ -45,7 +45,7 @@ object TableauHelpService {
       case TableauFaceDownCards.Count(i) => i match {
         case 0 => ret += Messages("help.tableau.cards.face.down.none")
         case 1 => ret += Messages("help.tableau.cards.face.down.single")
-        case _ => ret += Messages("help.tableau.cards.face.down.multiple", NumberUtils.toWords(i))
+        case _ => ret += Messages("help.tableau.cards.face.down.multiple", Messages.numberAsString(i))
       }
       case TableauFaceDownCards.EvenNumbered => ret += Messages("help.tableau.cards.face.down.even.numbered")
       case TableauFaceDownCards.OddNumbered => ret += Messages("help.tableau.cards.face.down.odd.numbered")
@@ -79,7 +79,7 @@ object TableauHelpService {
       rules.name
     } else {
       if (rules.name == defaults.name) {
-        s"${rules.name} ${NumberUtils.toWords(rules.setNumber + 1, properCase = true)}"
+        s"${rules.name} ${Messages.numberAsString(rules.setNumber + 1, properCase = true)}"
       } else {
         rules.name
       }

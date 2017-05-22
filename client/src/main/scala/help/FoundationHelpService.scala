@@ -2,7 +2,7 @@ package help
 
 import models.card.Rank
 import models.rules._
-import utils.{Messages, NumberUtils}
+import utils.Messages
 
 object FoundationHelpService {
   private[this] val defaults = FoundationRules()
@@ -38,7 +38,7 @@ object FoundationHelpService {
         case Some(FoundationInitialCardRestriction.SpecificColorUniqueSuits(c)) => ret += Messages(
           "help.foundation.initial.restriction.specific.color.unique.suits", c.toString.toLowerCase
         )
-        case Some(FoundationInitialCardRestriction.SpecificSuit(s)) => ret += Messages("help.foundation.initial.restriction.specific.suit", s.toString)
+        case Some(FoundationInitialCardRestriction.SpecificSuit(s)) => ret += Messages("help.foundation.initial.restriction.specific.suit", s.title)
         case Some(FoundationInitialCardRestriction.UniqueColors) => ret += Messages("help.foundation.initial.restriction.unique.colors")
         case Some(FoundationInitialCardRestriction.UniqueSuits) => ret += Messages("help.foundation.initial.restriction.unique.suits")
         case None => // no op
@@ -66,14 +66,14 @@ object FoundationHelpService {
     }
 
     if (rules.cardsShown > 1) {
-      ret += Messages("help.foundation.cards.shown", NumberUtils.toWords(rules.cardsShown, properCase = true))
+      ret += Messages("help.foundation.cards.shown", Messages.numberAsString(rules.cardsShown, properCase = true))
     }
 
     val name = if (rules.setNumber == 0) {
       rules.name
     } else {
       if (rules.name == defaults.name) {
-        s"${rules.name} ${NumberUtils.toWords(rules.setNumber + 1, properCase = true)}"
+        s"${rules.name} ${Messages.numberAsString(rules.setNumber + 1, properCase = true)}"
       } else {
         rules.name
       }

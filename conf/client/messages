@@ -1,3 +1,17 @@
+# General
+general.number.one = one
+general.number.two = two
+general.number.three = three
+general.number.four = four
+general.number.five = five
+general.number.six = six
+general.number.seven = seven
+general.number.eight = eight
+general.number.nine = nine
+general.number.ten = ten
+general.number.eleven = eleven
+general.number.twelve = twelve
+
 # Help
 help.title = {0} Help
 help.about = This is {0}.

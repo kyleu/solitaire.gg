@@ -1,7 +1,7 @@
 package help
 
 import models.rules.{StockCardsDealt, StockDealTo, StockRules}
-import utils.{Messages, NumberUtils}
+import utils.Messages
 
 object StockHelpService {
   def stock(rules: StockRules) = {
@@ -11,7 +11,7 @@ object StockHelpService {
       case StockCardsDealt.Count(i) => if (i == 1) {
         Messages("help.stock.cards.dealt.single")
       } else {
-        Messages("help.stock.cards.dealt.multiple", NumberUtils.toWords(i))
+        Messages("help.stock.cards.dealt.multiple", Messages.numberAsString(i))
       }
       case StockCardsDealt.FewerEachTime => Messages("help.stock.cards.dealt.fewer.each.time")
     }
@@ -33,13 +33,13 @@ object StockHelpService {
     rules.maximumDeals match {
       case Some(i) => i match {
         case 1 => ret += Messages("help.stock.max.deals.single")
-        case _ => ret += Messages("help.stock.max.deals.multiple", NumberUtils.toWords(i))
+        case _ => ret += Messages("help.stock.max.deals.multiple", Messages.numberAsString(i))
       }
       case None => ret += Messages("help.stock.max.deals.unlimited")
     }
 
     if (rules.cardsShown > 1) {
-      ret += Messages("help.stock.cards.shown", NumberUtils.toWords(rules.cardsShown, properCase = true))
+      ret += Messages("help.stock.cards.shown", Messages.numberAsString(rules.cardsShown, properCase = true))
     }
 
     rules.name -> ret

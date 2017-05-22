@@ -1,7 +1,7 @@
 package help
 
 import models.rules._
-import utils.{Messages, NumberUtils}
+import utils.Messages
 
 object PyramidHelpService {
   private[this] val defaults = PyramidRules()
@@ -52,7 +52,7 @@ object PyramidHelpService {
       rules.name
     } else {
       if (rules.name == defaults.name) {
-        s"${rules.name} ${NumberUtils.toWords(rules.setNumber + 1, properCase = true)}"
+        s"${rules.name} ${Messages.numberAsString(rules.setNumber + 1, properCase = true)}"
       } else {
         rules.name
       }
