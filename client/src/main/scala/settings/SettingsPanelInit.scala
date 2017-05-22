@@ -62,12 +62,11 @@ object SettingsPanelInit {
     })
   }
 
-  private[this] def onChange(hex: String, hsv: js.Any, rgb: js.Any, pickerCoordinate: js.Any, sliderCoordinate: js.Any) = {
-    ThemeService.applyColor(hex)
-  }
-
   private[this] def initBackgroundColor(c: String) = {
-    val cp = js.Dynamic.global.ColorPicker(dom.document.getElementById("colorpicker"), onChange _)
+    val cp = js.Dynamic.global.ColorPicker(dom.document.getElementById("colorpicker"), (hex: String) => {
+      ThemeService.applyColor(hex)
+      SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(backgroundColor = hex))
+    })
     colorPicker = Some(cp)
   }
 
@@ -79,13 +78,6 @@ object SettingsPanelInit {
     ThemeService.applyPattern(p)
     SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(backgroundPattern = p))
   })
-
-  private[this] def colorChange(color: js.Dynamic) = {
-    val hex = color.toHexString().toString
-    ThemeService.applyColor(hex)
-    SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(backgroundColor = hex))
-    true
-  }
 
   private[this] def radioChange(k: String, v: String, onSelect: () => Unit) = $(s"#settings-$k-$v", panel).change((_: JQueryEventObject) => onSelect())
 }
