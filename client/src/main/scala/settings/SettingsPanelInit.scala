@@ -1,6 +1,7 @@
 package settings
 
 import models.settings._
+import org.scalajs.dom
 import org.scalajs.jquery.{JQueryEventObject, jQuery => $}
 import utils.TemplateUtils
 
@@ -8,6 +9,8 @@ import scala.scalajs.js
 
 object SettingsPanelInit {
   private[this] val panel = $("#settings-content .content")
+
+  var colorPicker: Option[js.Dynamic] = None
 
   def init(settings: Settings) = {
     val content = SettingsTemplate.forSettings(settings)
@@ -40,7 +43,7 @@ object SettingsPanelInit {
       SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(cardSuits = cs))
     }))
 
-    initBackgroundColor()
+    initBackgroundColor(SettingsPanel.getCurrentSettings.backgroundColor)
     initBackgroundPattern()
 
     ThemeService.applyColorAndPattern(settings.backgroundColor, settings.backgroundPattern)
@@ -59,15 +62,14 @@ object SettingsPanelInit {
     })
   }
 
-  private[this] def initBackgroundColor() = js.Dynamic.global.$("#settings-color-picker", panel).spectrum(js.Dynamic.literal(
-    //"color" -> settings.backgroundColor,
-    "flat" -> true,
-    //"showInput" -> true,
-    "showButtons" -> false,
-    "preferredFormat" -> "hex3",
-    "move" -> colorChange _,
-    "change" -> colorChange _
-  ))
+  private[this] def onChange(hex: String, hsv: js.Any, rgb: js.Any, pickerCoordinate: js.Any, sliderCoordinate: js.Any) = {
+    ThemeService.applyColor(hex)
+  }
+
+  private[this] def initBackgroundColor(c: String) = {
+    val cp = js.Dynamic.global.ColorPicker(dom.document.getElementById("colorpicker"), onChange _)
+    colorPicker = Some(cp)
+  }
 
   private[this] def initBackgroundPattern() = TemplateUtils.clickHandler($(".pattern-option", panel), jq => {
     val p = jq.data("pattern").toString match {

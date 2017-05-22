@@ -21,8 +21,7 @@ object SettingsPanel {
     originalSettings = settings
     current = originalSettings
 
-    val picker = js.Dynamic.global.$("#settings-color-picker")
-    picker.spectrum("set", settings.backgroundColor)
+    SettingsPanelInit.colorPicker.foreach(_.setHex(settings.backgroundColor))
 
     forBoolean("auto-flip", settings.autoFlip)
     forBoolean("audio", settings.audioEnabled)

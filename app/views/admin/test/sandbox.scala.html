@@ -1,13 +1,10 @@
 @(id: java.util.UUID)(implicit session: Session, flash: Flash)
-@views.html.admin.layout.base("Sandbox", "") {
-  <h3>Sandbox</h3>
-  <script>
-    var url = "@controllers.routes.AnalyticsController.install(id)";
-    var data = { a: 1, b: 2 };
-    $.ajax(url, {
-      data : JSON.stringify(data),
-      contentType : 'application/json',
-      type : 'POST'
-    });
-  </script>
-}
+<html>
+  <head>
+    <style type="text/css">
+    </style>
+  </head>
+  <body>
+    Hello!
+  </body>
+</html>
