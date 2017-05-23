@@ -56,7 +56,7 @@ object PileDragHelper {
     dropTarget
   }
 
-  def dragSlice(pile: PileGroup, card: CardSprite, p: Pointer) {
+  def dragSlice(pile: PileGroup, card: CardSprite, p: Pointer) = {
     pile.dragCards = pile.cards.drop(card.pileIndex)
     pile.dragCards.zipWithIndex.foreach { x =>
       val (c, idx) = x
@@ -74,7 +74,7 @@ object PileDragHelper {
     }
   }
 
-  def endDrag(pileGroup: PileGroup) {
+  def endDrag(pileGroup: PileGroup) = {
     getDropTarget(pileGroup) match {
       case None => pileGroup.dragCards.foreach { cancelCard =>
         cancelCard.dragIndex = None

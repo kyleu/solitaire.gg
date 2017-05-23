@@ -17,9 +17,8 @@ object TemplateUtils {
     false
   }
 
-  def changeHandler(jq: JQuery, f: (JQuery) => Unit) = jq.change { e: JQueryEventObject =>
+  def changeHandler(jq: JQuery, f: (JQuery) => Boolean) = jq.change { e: JQueryEventObject =>
     f($(e.currentTarget))
-    false
   }
 
   @SuppressWarnings(Array("VarClosure"))

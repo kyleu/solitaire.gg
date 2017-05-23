@@ -5,7 +5,7 @@ import utils.PhaserUtils
 import scala.scalajs.js
 
 object CardTweens {
-  def tweenCardTo(card: CardSprite, x: Double, y: Double, angle: Double, emitWhenComplete: Boolean = false) {
+  def tweenCardTo(card: CardSprite, x: Double, y: Double, angle: Double, emitWhenComplete: Boolean = false) = {
     val time = 500
 
     val scaleTween = card.game.add.tween(card.scale)
@@ -69,7 +69,7 @@ object CardTweens {
     tween.start()
   }
 
-  def tweenFlip(card: CardSprite, faceUp: Boolean) {
+  def tweenFlip(card: CardSprite, faceUp: Boolean) = {
     val origWidth = card.width
     val hideTween = card.game.add.tween(card)
     hideTween.to(js.Dynamic.literal("width" -> origWidth / 5), 100, "Cubic.easeOut", autoStart = true, delay = 0.0, repeat = 0.0, yoyo = false)

@@ -19,7 +19,7 @@ class ActorSupervisor(val app: Application) extends InstrumentedActor with Loggi
 
   protected[this] val socketsCounter = metrics.counter("active-connections")
 
-  override def preStart() {
+  override def preStart() = {
     context.actorOf(Props(classOf[MetricsServletActor], app.config), "metrics-servlet")
   }
 
@@ -42,13 +42,13 @@ class ActorSupervisor(val app: Application) extends InstrumentedActor with Loggi
     sender() ! SystemStatus(connectionStatuses)
   }
 
-  protected[this] def handleSocketStarted(userId: UUID, username: Option[String], socketId: UUID, socket: ActorRef) {
+  protected[this] def handleSocketStarted(userId: UUID, username: Option[String], socketId: UUID, socket: ActorRef) = {
     log.debug(s"Socket [$socketId] registered to [$userId] with path [${socket.path}].")
     ActorSupervisor.sockets(socketId) = SocketRecord(userId, username, socket, DateUtils.now)
     socketsCounter.inc()
   }
 
-  protected[this] def handleSocketStopped(id: UUID) {
+  protected[this] def handleSocketStopped(id: UUID) = {
     ActorSupervisor.sockets.remove(id) match {
       case Some(sock) =>
         socketsCounter.dec()

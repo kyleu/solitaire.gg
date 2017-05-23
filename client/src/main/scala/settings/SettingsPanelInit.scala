@@ -63,9 +63,15 @@ object SettingsPanelInit {
   }
 
   private[this] def initBackgroundColor(c: String) = {
+    val hexInput = $("#colorpicker-hex", panel)
     val cp = js.Dynamic.global.ColorPicker(dom.document.getElementById("colorpicker"), (hex: String) => {
+      hexInput.value(hex)
       ThemeService.applyColor(hex)
       SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(backgroundColor = hex))
+    })
+    TemplateUtils.changeHandler(hexInput, jq => {
+      colorPicker.map(_.setHex(jq.value()))
+      true
     })
     colorPicker = Some(cp)
   }

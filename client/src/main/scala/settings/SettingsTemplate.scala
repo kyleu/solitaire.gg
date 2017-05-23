@@ -24,9 +24,10 @@ object SettingsTemplate {
     val cardSuits = div(cls := "settings-section theme")(CardSuits.values.map(cs => radioFor("card-suits", cs.value, cs.title)))
 
     val backgroundColor = div(cls := "settings-section theme")(
-      div(style := "margin: auto; width: 240px;")(
+      div(cls := "cp-wrapper")(
         div(id := "colorpicker", cls := "cp")(),
-        div(style := "clear: both;")()
+        div(style := "clear: both;")(),
+        div()(input(`type` := "text", id := "colorpicker-hex", value := ""))
       )
     )
 

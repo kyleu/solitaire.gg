@@ -15,8 +15,9 @@ object Shared {
   val projectName = "Solitaire.gg"
 
   val compileOptions = Seq(
-    "-encoding", "UTF-8", "-feature", "-deprecation", "-unchecked", "–Xcheck-null", "-Xfatal-warnings", "-Xlint",
-    "-Ywarn-adapted-args", "-Ywarn-dead-code", "-Ywarn-inaccessible", "-Ywarn-nullary-override", "-Ywarn-numeric-widen"
+    "-encoding", "UTF-8", "-feature", "-deprecation", "-explaintypes", "-feature", "-unchecked",
+    "–Xcheck-null", "-Xfatal-warnings", "-Xlint", "-Xcheckinit", "-Xfuture",
+    "-Ywarn-adapted-args", "-Ywarn-dead-code", "-Ywarn-inaccessible", "-Ywarn-nullary-override", "-Ywarn-numeric-widen", "-Ywarn-infer-any"
   )
 
   object Versions {
@@ -29,6 +30,10 @@ object Shared {
     scalaVersion := Versions.scala,
 
     scalacOptions ++= Shared.compileOptions,
+    scalacOptions in (Compile, console) ~= (_.filterNot(Set(
+      "-Ywarn-unused:imports",
+      "-Xfatal-warnings"
+    ))),
     scalacOptions in Test ++= Seq("-Yrangepos"),
 
     // Prevent Scaladoc

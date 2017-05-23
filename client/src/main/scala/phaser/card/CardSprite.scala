@@ -64,7 +64,7 @@ class CardSprite(
     updateSprite()
   }
 
-  def updateSprite(fu: Boolean = faceUp) {
+  def updateSprite(fu: Boolean = faceUp) = {
     faceUp = fu
     val tex = if (faceUp) {
       phaser.getImages.textures(rank.value.toString + suit.value)
