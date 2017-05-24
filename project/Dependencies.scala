@@ -57,7 +57,7 @@ object Dependencies {
     val servlets = "io.dropwizard.metrics" % "metrics-servlets" % version withSources() intransitive()
     val graphite = "io.dropwizard.metrics" % "metrics-graphite" % version withSources() intransitive()
     val metrics = "nl.grons" %% "metrics-scala" % "3.5.6" withSources()
-    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.3.16.v20170120" withSources()
+    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.4.5.v20170502" withSources()
   }
 
   object ScalaJS {

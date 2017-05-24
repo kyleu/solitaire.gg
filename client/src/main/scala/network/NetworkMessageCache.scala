@@ -19,7 +19,9 @@ object NetworkMessageCache {
     save(load() :+ msg)
   }
 
-  private[this] def save(msgs: Seq[SocketRequestMessage]) = {
+  private[this] def save(msgs: Seq[SocketRequestMessage]) = if (msgs.isEmpty) {
+    dom.window.localStorage.removeItem(storageKey)
+  } else {
     val content = msgs.take(1000).map(msg => JsonSerializers.writeSocketRequestMessage(msg)).mkString("\n")
     dom.window.localStorage.setItem(storageKey, content)
   }

@@ -41,7 +41,7 @@ object CardAnimation {
 
   def loss(playmat: Playmat) = playmat.getCards.map(_._1).foreach { card =>
     val spin = Math.random() * 3
-    var driftY = (Math.random() * driftMax) + 0.1
+    val driftY = (Math.random() * driftMax) + 0.1
 
     card.animation = Some(() => {
       card.angle += spin

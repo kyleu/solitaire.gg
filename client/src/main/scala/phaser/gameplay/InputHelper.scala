@@ -1,11 +1,13 @@
 package phaser.gameplay
 
 import client.SolitaireGG
-import input.{GamepadHandler, InputMessage, KeyboardHandler}
+import input.{GamepadHandler, InputContextService, InputMessage, KeyboardHandler}
 
 class InputHelper(gg: SolitaireGG) {
   new KeyboardHandler(gg.phaser, onInput)
   new GamepadHandler(gg.phaser, onInput)
+
+  val contextService = new InputContextService()
 
   def onInput(i: InputMessage): Unit = i match {
     case InputMessage.Sandbox => SolitaireGG.getActive.onSandbox()

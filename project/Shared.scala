@@ -15,9 +15,9 @@ object Shared {
   val projectName = "Solitaire.gg"
 
   val compileOptions = Seq(
-    "-encoding", "UTF-8", "-feature", "-deprecation", "-explaintypes", "-feature", "-unchecked",
+    "target:jvm-1.8", "-encoding", "UTF-8", "-feature", "-deprecation", "-explaintypes", "-feature", "-unchecked",
     "–Xcheck-null", "-Xfatal-warnings", "-Xlint", "-Xcheckinit", "-Xfuture",
-    "-Ywarn-adapted-args", "-Ywarn-dead-code", "-Ywarn-inaccessible", "-Ywarn-nullary-override", "-Ywarn-numeric-widen", "-Ywarn-infer-any"
+    "-Yno-adapted-args", "-Ywarn-dead-code", "-Ywarn-inaccessible", "-Ywarn-nullary-override", "-Ywarn-numeric-widen", "-Ywarn-infer-any"
   )
 
   object Versions {

@@ -5,8 +5,8 @@ object Settings {
 }
 
 case class Settings(
-  backgroundColor: String = "#607d8b",
-  backgroundPattern: Option[String] = None,
+  backgroundColor: String = "#356d88",
+  backgroundPattern: Option[String] = Some("black-felt"),
   cardSet: CardSet = CardSet.Default,
   cardBack: CardBack = CardBack.A,
   cardBlank: CardBlank = CardBlank.A,
