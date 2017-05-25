@@ -5,6 +5,7 @@ import models.{GameLost, GameWon}
 import models.pile.set.PileSet
 import phaser.PhaserGame
 import phaser.card.CardSprite
+import phaser.gameplay.HighlightService
 import phaser.pile.PileGroup
 import utils.NullUtils
 
@@ -26,6 +27,8 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
 
   val resizer = new PlaymatResizer(this)
   resizer.refreshLayout(animate = false)
+
+  val highlightService = new HighlightService(this)
 
   phaser.add.existing(this)
 

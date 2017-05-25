@@ -7,15 +7,13 @@ class InputHelper(gg: SolitaireGG) {
   new KeyboardHandler(gg.phaser, onInput)
   new GamepadHandler(gg.phaser, onInput)
 
-  val contextService = new InputContextService()
-
   def onInput(i: InputMessage): Unit = i match {
     case InputMessage.Sandbox => SolitaireGG.getActive.onSandbox()
-    case InputMessage.Undo => gg.phaser.gameplay.undo()
-    case InputMessage.Redo => gg.phaser.gameplay.redo()
     case InputMessage.ToggleDebug => toggleDebug()
     case InputMessage.ToggleMenu => gg.menu.toggleMenu()
-    case _ => utils.Logging.info(s"Unhandled input message [$i].")
+    case InputMessage.Undo => gg.phaser.gameplay.undo()
+    case InputMessage.Redo => gg.phaser.gameplay.redo()
+    case _ => gg.phaser.gameplay.onInput(i)
   }
 
   private[this] def toggleDebug() = {

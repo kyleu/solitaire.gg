@@ -3,6 +3,7 @@ package phaser.gameplay
 import java.util.UUID
 
 import com.definitelyscala.phaser.{PhysicsObj, State}
+import input.{InputContextService, InputMessage}
 import models.{PossibleMoves, Redo, Undo}
 import models.game._
 import models.rules.{GameRules, GameRulesSet}
@@ -30,6 +31,10 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
   def services = activeServices.getOrElse(throw new IllegalStateException("No game services available."))
   def activeGame = activeServices.map(_.state.gameId)
 
+  private[this] var inputContextService: Option[InputContextService] = None
+
+  def onInput(i: InputMessage) = inputContextService.foreach(_.onInput(i))
+
   override def preload() = {
     game.physics.startSystem(PhysicsObj.ARCADE)
     g.setImages(new CardImages(g, settings))
@@ -56,6 +61,8 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
 
     val cards = AssetLoader.loadCards(g, state.pileSets, state.deck.originalOrder)
     playmat.setCards(cards)
+
+    inputContextService = Some(new InputContextService(state, playmat.highlightService.highlight))
 
     g.possibleMoves = services.moves.possibleMoves()
 

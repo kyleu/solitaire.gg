@@ -19,10 +19,8 @@ object InputMessage extends StringEnum[InputMessage] with StringCirceEnum[InputM
   case object PreviousPile extends InputMessage("previous-pile")
   case object NextPile extends InputMessage("next-pile")
 
-  case object GamepadA extends InputMessage("gamepad-a")
-  case object GamepadB extends InputMessage("gamepad-b")
-  case object GamepadX extends InputMessage("gamepad-x")
-  case object GamepadY extends InputMessage("gamepad-y")
+  case object Select extends InputMessage("select")
+  case object Cancel extends InputMessage("cancel")
 
   override val values = findValues
 }

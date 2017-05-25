@@ -31,4 +31,7 @@ class KeyboardHandler(phaser: PhaserGame, onInput: InputMessage => Unit) {
   PhaserUtils.addToSignal(leftKey.onDown, onInput(InputMessage.PreviousPile))
   val rightKey = phaser.input.keyboard.addKey(Keyboard.RIGHT)
   PhaserUtils.addToSignal(rightKey.onDown, onInput(InputMessage.NextPile))
+
+  val spaceKey = phaser.input.keyboard.addKey(Keyboard.SPACEBAR)
+  PhaserUtils.addToSignal(spaceKey.onDown, onInput(InputMessage.Select))
 }

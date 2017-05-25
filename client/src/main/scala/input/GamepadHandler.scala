@@ -10,24 +10,31 @@ class GamepadHandler(phaser: PhaserGame, onInput: InputMessage => Unit) {
   phaser.input.gamepad.start()
 
   private[this] def onConnect(pad: SinglePad) = {
-    val buttonA = pad.getButton(Gamepad.XBOX360_A)
-    val buttonB = pad.getButton(Gamepad.XBOX360_B)
-    val buttonX = pad.getButton(Gamepad.XBOX360_X)
-    val buttonY = pad.getButton(Gamepad.XBOX360_Y)
+    val buttonStart = pad.getButton(Gamepad.XBOX360_START)
+    PhaserUtils.addToSignal(buttonStart.onDown, onInput(InputMessage.ToggleMenu))
 
-    PhaserUtils.addToSignal(buttonA.onDown, onInput(InputMessage.GamepadA))
-    PhaserUtils.addToSignal(buttonB.onDown, onInput(InputMessage.GamepadB))
-    PhaserUtils.addToSignal(buttonX.onDown, onInput(InputMessage.GamepadX))
-    PhaserUtils.addToSignal(buttonY.onDown, onInput(InputMessage.GamepadY))
+    val buttonA = pad.getButton(Gamepad.XBOX360_A)
+    PhaserUtils.addToSignal(buttonA.onDown, onInput(InputMessage.Select))
+
+    val buttonB = pad.getButton(Gamepad.XBOX360_B)
+    PhaserUtils.addToSignal(buttonB.onDown, onInput(InputMessage.Cancel))
+
+    //val buttonX = pad.getButton(Gamepad.XBOX360_X)
+    //PhaserUtils.addToSignal(buttonX.onDown, onInput(InputMessage.GamepadX))
+
+    //val buttonY = pad.getButton(Gamepad.XBOX360_Y)
+    //PhaserUtils.addToSignal(buttonY.onDown, onInput(InputMessage.GamepadY))
 
     val buttonDPadLeft = pad.getButton(Gamepad.XBOX360_DPAD_LEFT)
-    val buttonDPadRight = pad.getButton(Gamepad.XBOX360_DPAD_RIGHT)
-    val buttonDPadUp = pad.getButton(Gamepad.XBOX360_DPAD_UP)
-    val buttonDPadDown = pad.getButton(Gamepad.XBOX360_DPAD_DOWN)
-
     PhaserUtils.addToSignal(buttonDPadLeft.onDown, onInput(InputMessage.PreviousPile))
+
+    val buttonDPadRight = pad.getButton(Gamepad.XBOX360_DPAD_RIGHT)
     PhaserUtils.addToSignal(buttonDPadRight.onDown, onInput(InputMessage.NextPile))
+
+    val buttonDPadUp = pad.getButton(Gamepad.XBOX360_DPAD_UP)
     PhaserUtils.addToSignal(buttonDPadUp.onDown, onInput(InputMessage.PreviousCard))
+
+    val buttonDPadDown = pad.getButton(Gamepad.XBOX360_DPAD_DOWN)
     PhaserUtils.addToSignal(buttonDPadDown.onDown, onInput(InputMessage.NextCard))
   }
 
