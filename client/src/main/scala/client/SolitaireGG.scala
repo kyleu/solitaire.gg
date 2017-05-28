@@ -57,7 +57,7 @@ class SolitaireGG(val debug: Boolean) extends InitHelper with MessageHelper {
       })
       case NavigationState.Settings => SettingsPanel.initIfNeeded(settings.getSettings)
       case NavigationState.Play => GameStartService.onGameStateChange(this, args)
-      case NavigationState.Help => HelpService.show(game.map(_.rulesId))
+      case NavigationState.Help => HelpService.show(args.headOption)
       case _ => // noop
     }
   }

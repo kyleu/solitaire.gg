@@ -17,7 +17,10 @@ object HelpTemplate {
     val relDiv = HelpTemplateContent.getRelDiv(rules)
     val linksDiv = HelpTemplateContent.getLinksDiv(rules)
 
-    div(cls := "theme striped")(titleDiv, descriptionDiv, akaDiv, objectiveDiv, deckDiv, layoutDiv, similarDiv, relDiv, linksDiv)
+    val content = div(cls := "theme striped with-margin align-left")(
+      titleDiv, descriptionDiv, akaDiv, objectiveDiv, deckDiv, layoutDiv, similarDiv, relDiv, linksDiv
+    )
+    div(cls := "content")(content)
   }
 
   lazy val generalHelp = div(

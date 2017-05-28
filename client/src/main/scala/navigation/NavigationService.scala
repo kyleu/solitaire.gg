@@ -36,7 +36,7 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
   def navigate(state: NavigationState, args: Seq[String] = Nil) = if (state == currentState) {
     utils.Logging.warn(s"State transition to self [$currentState].")
   } else {
-    utils.Logging.info(s"State transitioning from [$currentState] to [$state] with args [${args.mkString(", ")}].")
+    utils.Logging.debug(s"State transitioning from [$currentState] to [$state] with args [${args.mkString(", ")}].")
     onStateChange(currentState, state, args)
     setPath(state, args)
     currentState.element.fadeOut(delay)

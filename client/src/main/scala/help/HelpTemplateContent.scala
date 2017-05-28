@@ -14,7 +14,7 @@ object HelpTemplateContent {
 
   def getTitleDiv(rules: GameRules) = div(cls := "rules-help")(h2(
     rules.title,
-    a(cls := "play-link", href := "", title := "Messages(\"help.play.now\")")("play")
+    a(cls := "play-link", href := NavigationUrls.play(rules.id), title := Messages("help.play.now"))("play")
   ))
 
   def getLayoutDiv(rules: GameRules) = div(
