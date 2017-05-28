@@ -3,7 +3,7 @@ package phaser
 import audio.AudioService
 import client.SolitaireGG
 import com.definitelyscala.phaser._
-import models.RequestMessage
+import models.{RequestMessage, SelectPile}
 import models.game.PossibleMove
 import org.scalajs.dom
 import org.scalajs.dom.raw.UIEvent
@@ -44,7 +44,8 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
 
   private[this] var audio: Option[AudioService] = None
   def initAudio() = audio = Some(new AudioService(this))
-  def playAudio(key: String) = if (getSettings.audioEnabled) {
+  def playAudio(key: String) = if (getSettings.audio) {
+    utils.Logging.info(s"Playing audio [$key].")
     audio.map(_.play(key))
   }
 
@@ -63,5 +64,8 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   def onWin() = gg.network.sendMessage(PhaserLifecycle.onWin(this))
   def onLoss() = gg.network.sendMessage(PhaserLifecycle.onLoss(this))
 
-  def sendMove(msg: RequestMessage) = gameplay.services.requests.handle(msg)
+  def sendMove(msg: RequestMessage) = {
+    audio.map(_.onMove(msg))
+    gameplay.services.requests.handle(msg)
+  }
 }

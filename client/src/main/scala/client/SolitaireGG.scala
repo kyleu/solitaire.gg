@@ -11,6 +11,7 @@ import phaser.gameplay.InputHelper
 import settings.{ProfileService, SettingsPanel, SettingsService}
 
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
+import scala.util.Random
 
 @JSExportTopLevel("SolitaireGG")
 object SolitaireGG {
@@ -63,7 +64,9 @@ class SolitaireGG(val debug: Boolean) extends InitHelper with MessageHelper {
   }
 
   def onSandbox() = {
-    phaser.playAudio("deal01")
+    val seq = Seq("draw", "shuffle", "playcard")
+    val key = seq(Random.nextInt(seq.length))
+    phaser.playAudio(key)
   }
 
   def onPhaserLoadComplete(): Unit = {

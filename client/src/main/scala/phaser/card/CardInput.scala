@@ -58,12 +58,16 @@ object CardInput extends CardInputHelper {
         val newX = ((card.game.input.x - card.phaser.getPlaymat.x) / card.phaser.getPlaymat.scale.x) - card.anchorPointX
         val xDelta = newX - card.actualX.getOrElse(throw new IllegalStateException())
 
-        val angle = getAngle(card, xDelta)
+        val swayX = if (card.phaser.getSettings.tilt) {
+          val angle = getAngle(card, xDelta)
+          card.angle = angle
+          newX - (di * angle * 0.9)
+        } else {
+          newX
+        }
 
-        card.angle = angle
         card.actualX = Some(newX)
 
-        val swayX = newX - (di * angle * 0.9)
         val newY = ((card.game.input.y - card.phaser.getPlaymat.y) / card.phaser.getPlaymat.scale.y) - card.anchorPointY
 
         card.x = swayX

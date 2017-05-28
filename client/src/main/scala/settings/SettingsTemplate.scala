@@ -14,6 +14,7 @@ object SettingsTemplate {
       radioFor("menu-position", "bottom", "Bottom")
     )
 
+    val tilt = div(cls := "settings-section theme")(radioFor("tilt", "true", "Card Tilt"), radioFor("tilt", "false", "No Card Tilt"))
     val autoFlip = div(cls := "settings-section theme")(radioFor("auto-flip", "true", "Auto Flip"), radioFor("auto-flip", "false", "No Auto Flip"))
     val audio = div(cls := "settings-section theme")(radioFor("audio", "true", "Sound"), radioFor("audio", "false", "No Sound"))
     val cardBack = div(cls := "settings-section theme")(CardBack.values.map(cb => radioFor("card-back", cb.value, cb.title)))
@@ -39,7 +40,7 @@ object SettingsTemplate {
     )
 
     div(
-      title, autoFlip, audio, menuPosition,
+      title, tilt, autoFlip, audio, menuPosition,
       cardBack, cardBlank, cardFaces, cardLayout, cardRanks, cardSuits,
       backgroundColor, backgroundPattern
     )

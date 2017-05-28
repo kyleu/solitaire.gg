@@ -66,6 +66,8 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
 
     g.possibleMoves = services.moves.possibleMoves()
 
+    g.playAudio("shuffle")
+
     utils.Logging.info(s"Started game [$id] with rules [${rules.id}].")
   }
 

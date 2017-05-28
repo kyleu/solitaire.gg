@@ -18,11 +18,14 @@ object SettingsPanelInit {
 
     initMenuPosition()
 
+    radioChange("tilt", "true", () => SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(tilt = true)))
+    radioChange("tilt", "false", () => SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(tilt = false)))
+
     radioChange("auto-flip", "true", () => SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(autoFlip = true)))
     radioChange("auto-flip", "false", () => SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(autoFlip = false)))
 
-    radioChange("audio", "true", () => SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(audioEnabled = true)))
-    radioChange("audio", "false", () => SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(audioEnabled = false)))
+    radioChange("audio", "true", () => SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(audio = true)))
+    radioChange("audio", "false", () => SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(audio = false)))
 
     CardBack.values.foreach(cb => radioChange("card-back", cb.value, () => {
       SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(cardBack = cb))

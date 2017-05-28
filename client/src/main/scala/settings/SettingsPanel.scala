@@ -23,8 +23,9 @@ object SettingsPanel {
 
     SettingsPanelInit.colorPicker.foreach(_.setHex(settings.backgroundColor))
 
+    forBoolean("tilt", settings.tilt)
     forBoolean("auto-flip", settings.autoFlip)
-    forBoolean("audio", settings.audioEnabled)
+    forBoolean("audio", settings.audio)
 
     MenuPosition.values.foreach(p => $(s"#settings-menu-position-${p.value}").prop("checked", settings.menuPosition == p))
     CardBack.values.foreach(cb => $(s"#settings-card-back-${cb.value}").prop("checked", settings.cardBack == cb))
