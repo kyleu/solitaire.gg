@@ -3,6 +3,7 @@ package phaser.playmat
 import com.definitelyscala.phaser.Group
 import models.{GameLost, GameWon}
 import models.pile.set.PileSet
+import org.scalajs.dom
 import phaser.PhaserGame
 import phaser.card.CardSprite
 import phaser.gameplay.HighlightService
@@ -31,6 +32,7 @@ class Playmat(val phaser: PhaserGame, val pileSets: Seq[PileSet], val layoutStri
   val highlightService = new HighlightService(this)
 
   phaser.add.existing(this)
+  phaser.resize(NullUtils.inst)
 
   private[this] val pileGroups = collection.mutable.HashMap.empty[String, PileGroup]
 

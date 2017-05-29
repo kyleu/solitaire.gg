@@ -10,7 +10,6 @@ object PhaserLifecycle {
     g.state.add("initialState", new InitialState())
     g.state.add("loading", new LoadingState(g.getSettings))
     g.state.add("gameplay", g.gameplay)
-
     dom.window.onresize = g.resize _
     g.state.start("initialState", clearWorld = false, clearCache = false)
   }

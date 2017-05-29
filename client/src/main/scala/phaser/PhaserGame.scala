@@ -53,11 +53,9 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   def setPlaymat(p: Option[Playmat]) = playmat = p
   def getPlaymat = playmat.getOrElse(throw new IllegalStateException("Playmat not loaded."))
 
-  def resize(e: UIEvent): Unit = playmat match {
-    case Some(p) =>
-      scale.setGameSize(dom.window.innerWidth, dom.window.innerHeight)
-      p.resizer.resizeIfChanged(animate = true)
-    case None => // noop
+  def resize(e: UIEvent): Unit = {
+    scale.setGameSize(dom.window.innerWidth, dom.window.innerHeight)
+    playmat.foreach(_.resizer.resizeIfChanged(animate = true))
   }
 
   def start() = PhaserLifecycle.start(this)
