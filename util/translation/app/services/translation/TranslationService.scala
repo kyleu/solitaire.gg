@@ -2,12 +2,12 @@ package services.translation
 
 import java.io.{File, PrintWriter}
 
+import models.settings.Language
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.translation.api.{BingApi, GoogleApi, YandexApi}
 
 import scala.concurrent.Future
 import scala.io.Source
-import utils.Language
 
 @javax.inject.Singleton()
 class TranslationService @javax.inject.Inject() (yandex: YandexApi, bing: BingApi, google: GoogleApi) {
@@ -40,17 +40,17 @@ class TranslationService @javax.inject.Inject() (yandex: YandexApi, bing: BingAp
     val mainFile = new java.io.File(root, "messages")
     val mainTranslations = parse(mainFile)
 
-    val files = Language.values.filterNot(_.code == "en").map { lang =>
-      val f = new java.io.File(root, "messages." + lang.code)
+    val files = Language.values.filterNot(_ == Language.English).map { lang =>
+      val f = new java.io.File(root, "messages." + lang.value)
       val current = parse(f).toMap
-      val ts = translate(api, mainTranslations, lang.code, current, force)
+      val ts = translate(api, mainTranslations, lang.value, current, force)
       val contents = ts.map(seq => seq.map(x => s"${x._1} = ${x._2.replaceAllLiterally("'", "''")}").mkString("\n"))
       contents.flatMap { c =>
         new PrintWriter(f) {
           write(c)
           close()
         }
-        ts.map(x => lang.code -> x)
+        ts.map(x => lang.value -> x)
       }
     }
     mainTranslations -> Future.sequence(files)

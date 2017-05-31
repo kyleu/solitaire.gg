@@ -17,5 +17,6 @@ case class Settings(
   menuPosition: MenuPosition = MenuPosition.Top,
   tilt: Boolean = true,
   autoFlip: Boolean = true,
-  audio: Boolean = false
+  audio: Boolean = false,
+  language: Language = Language.English
 )

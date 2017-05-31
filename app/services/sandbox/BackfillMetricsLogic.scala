@@ -9,10 +9,8 @@ import utils.{Application, DateUtils}
 
 import scala.concurrent.Future
 
-object BackfillMetrics extends SandboxTask {
-  override def id = "backfill-metrics"
-  override def description = "Backfill missing daily metrics."
-  override def run(ctx: Application) = {
+trait BackfillMetricsLogic {
+  def run(ctx: Application) = {
     def getDays(d: LocalDate) = {
       val today = DateUtils.today
       val start = (d.getYear * 365) + d.getDayOfYear

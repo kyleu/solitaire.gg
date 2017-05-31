@@ -32,6 +32,6 @@ object Utilities {
   lazy val translation = (project in file("util/translation"))
     .enablePlugins(SbtWeb, play.sbt.PlayScala)
     .settings(libraryDependencies ++= Seq("com.beachape" %% "enumeratum-circe" % Utils.enumeratumVersion, Play.playWs))
-    .settings(Shared.commonSettings: _*)
+    .settings(Shared.commonSettings: _*).dependsOn(Shared.sharedJvm)
 
 }

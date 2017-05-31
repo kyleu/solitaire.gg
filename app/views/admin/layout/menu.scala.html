@@ -66,8 +66,8 @@
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
       <ul class="dropdown-menu" role="menu">
         <li><a href="@controllers.admin.routes.SandboxController.defaultSandbox()"><strong>Sandboxes</strong></a></li>
-        @controllers.admin.SandboxController.sandboxes.map { sandbox =>
-          <li><a href="@controllers.admin.routes.SandboxController.sandbox(sandbox.id)" title="@sandbox.description">@sandbox.id</a></li>
+        @services.sandbox.SandboxTask.values.map { sandbox =>
+          <li><a href="@controllers.admin.routes.SandboxController.sandbox(sandbox.value)" title="@sandbox.description">@sandbox.value</a></li>
         }
         <li class="divider"></li>
         <li><a href="#">Sign Out</a></li>

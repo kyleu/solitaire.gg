@@ -1,10 +1,10 @@
-package utils
+package models.settings
 
-import enumeratum.{Enum, EnumEntry}
+import enumeratum.values._
 
-sealed abstract class Language(val code: String) extends EnumEntry
+sealed abstract class Language(val value: String) extends StringEnumEntry
 
-object Language extends Enum[Language] {
+object Language extends StringEnum[Language] {
   case object English extends Language("en")
   case object French extends Language("fr")
   case object German extends Language("de")

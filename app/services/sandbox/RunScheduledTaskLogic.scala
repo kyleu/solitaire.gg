@@ -1,0 +1,13 @@
+package services.sandbox
+
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import services.scheduled.ScheduledTask
+import utils.Application
+
+trait RunScheduledTaskLogic {
+  var scheduledTask: Option[ScheduledTask] = None
+
+  def run(ctx: Application) = scheduledTask.getOrElse(throw new IllegalStateException()).go(true).map { ret =>
+    ret.map(x => s"${x._1}: ${x._2.getOrElse("No progress")}").mkString("\n")
+  }
+}
