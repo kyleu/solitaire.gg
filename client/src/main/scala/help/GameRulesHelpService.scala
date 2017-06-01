@@ -46,7 +46,7 @@ object GameRulesHelpService {
         val pr = rules.pyramids(pyramidsProcessed)
         pyramidsProcessed += 1
         Some(PyramidHelpService.pyramid(pr, rules.deckOptions))
-      case x if x == '2' || x == '3' || x == '4' =>
+      case x if x == '2' || x == '3' || x == '4' || x == '5' || x == '6' || x == '7' || x == '8' =>
         None
       case x if x == '|' || x == ':' || x == '.' =>
         None

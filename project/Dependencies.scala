@@ -40,7 +40,7 @@ object Dependencies {
     val underscore = "org.webjars" % "underscorejs" % "1.8.3"
     val d3 = "org.webjars" % "d3js" % "3.5.17"
     val nvd3 = "org.webjars" % "nvd3-community" % "1.7.0"
-    val jquery = "org.webjars" % "jquery" % "3.2.0"
+    val jquery = "org.webjars" % "jquery" % "3.2.1"
     val materialize = "org.webjars" % "materializecss" % "0.98.2"
   }
 
@@ -56,7 +56,7 @@ object Dependencies {
     val json = "io.dropwizard.metrics" % "metrics-json" % version withSources()
     val servlets = "io.dropwizard.metrics" % "metrics-servlets" % version withSources() intransitive()
     val graphite = "io.dropwizard.metrics" % "metrics-graphite" % version withSources() intransitive()
-    val metrics = "nl.grons" %% "metrics-scala" % "3.5.6" withSources()
+    val metrics = "nl.grons" %% "metrics-scala" % "3.5.7" withSources()
     val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.4.5.v20170502" withSources()
   }
 

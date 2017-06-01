@@ -57,7 +57,7 @@ object HelpTemplateContent {
     div(
       h3(Messages("help.web.resources")),
       ul(rules.links.map { l =>
-        li(a(target := "_blank", href := "@routes.HomeController.externalLink(l.url)")(l.title))
+        li(a(target := "_blank", href := l.url)(l.title))
       })
     )
   } else {
