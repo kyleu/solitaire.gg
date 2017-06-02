@@ -18,6 +18,10 @@ object SettingsPanelInit {
 
     initMenuPosition()
 
+    Language.values.foreach(l => radioChange("language", l.value, () => {
+      SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(language = l))
+    }))
+
     radioChange("tilt", "true", () => SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(tilt = true)))
     radioChange("tilt", "false", () => SettingsPanel.setCurrentSettings(SettingsPanel.getCurrentSettings.copy(tilt = false)))
 

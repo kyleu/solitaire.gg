@@ -35,10 +35,10 @@ object HelpTemplateContent {
     )
   )
 
-  def getSimilarDiv(rules: GameRules) = {
-    val like = models.rules.GameRulesSet.allByIdWithAliases(rules.id)
-    rules.like match {
-      case Some(_) => div(
+  def getSimilarDiv(rules: GameRules) = rules.like match {
+    case Some(likeId) =>
+      val like = models.rules.GameRulesSet.allByIdWithAliases(likeId)
+      div(
         h3(Messages("help.original.game")),
         ul(
           li(
@@ -49,8 +49,7 @@ object HelpTemplateContent {
           )
         )
       )
-      case None => div()
-    }
+    case None => div()
   }
 
   def getLinksDiv(rules: GameRules) = if (rules.links.nonEmpty) {

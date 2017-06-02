@@ -9,6 +9,7 @@ import network.NetworkService
 import phaser.PhaserGame
 import phaser.gameplay.InputHelper
 import settings.{ProfileService, SettingsPanel, SettingsService}
+import msg.rsp.{Profile, SocketResponseMessage}
 
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
 import scala.util.Random
@@ -25,7 +26,7 @@ object SolitaireGG {
   }
 }
 
-class SolitaireGG(val debug: Boolean) extends InitHelper with MessageHelper {
+class SolitaireGG(val debug: Boolean) extends InitHelper {
   protected[this] var game: Option[ActiveGame] = None
   def hasGame = game.isDefined
   def getGame = game.getOrElse(throw new IllegalStateException("No active game."))
@@ -61,6 +62,11 @@ class SolitaireGG(val debug: Boolean) extends InitHelper with MessageHelper {
       case NavigationState.Help => HelpService.show(args.headOption)
       case _ => // noop
     }
+  }
+
+  private[this] def handleSocketResponseMessage(msg: SocketResponseMessage) = msg match {
+    case p: Profile => utils.Logging.info(s"Profile: $p")
+    case _ => utils.Logging.info(s"Unhandled SocketResponseMessage: [$msg].")
   }
 
   def onSandbox() = {

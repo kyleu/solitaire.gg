@@ -23,6 +23,8 @@ object SettingsPanel {
 
     SettingsPanelInit.colorPicker.foreach(_.setHex(settings.backgroundColor))
 
+    Language.values.foreach(l => $(s"#settings-language-${l.value}").prop("checked", settings.language == l))
+
     forBoolean("tilt", settings.tilt)
     forBoolean("auto-flip", settings.autoFlip)
     forBoolean("audio", settings.audio)

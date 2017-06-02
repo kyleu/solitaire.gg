@@ -43,74 +43,55 @@ class WikiRules(r: GameRules) {
     l(linked)
   }
 
+  private[this] def withTitle(title: String)(f: => Unit) = {
+    l("## " + messages(title))
+    l()
+    f
+    l()
+  }
+
   private[this] def processAka() = if (r.aka.nonEmpty) {
-    l("## " + messages("help.also.known.as"))
-    l()
-    r.aka.toSeq.foreach { aka =>
+    withTitle("help.also.known.as")(r.aka.toSeq.foreach { aka =>
       l(rulesLink(aka._1, aka._2))
+    })
+  }
+
+  private[this] def processObjective() = withTitle("help.objective")(r.aka.toSeq.foreach(aka => l(WikiObjective.objective(r))))
+
+  private[this] def processDeck() = withTitle("help.deck")(WikiDeckOptions.deck(r.deckOptions).foreach(l))
+
+  private[this] def processLayout() = withTitle("help.layout")(WikiLayout.layout(r).foreach { pileSet =>
+    l("### " + pileSet._1)
+    l()
+    pileSet._2.foreach { statement =>
+      l(statement)
     }
     l()
-  }
+  })
 
-  private[this] def processObjective() = {
-    l("## " + messages("help.objective"))
-    l()
-    l(WikiObjective.objective(r))
-    l()
-  }
-
-  private[this] def processDeck() = {
-    l("## " + messages("help.deck"))
-    l()
-    val deckStuff = WikiDeckOptions.deck(r.deckOptions)
-    if (deckStuff.nonEmpty) {
-      deckStuff.foreach(l)
-      l()
+  private[this] def processSimilar() = r.like.foreach { likeId =>
+    withTitle("help.original.game") {
+      val like = models.rules.GameRulesSet.allByIdWithAliases(likeId)
+      l(rulesLink(like.id, like.title))
+      processDescription(like, link = false)
     }
-  }
-
-  private[this] def processLayout() = {
-    l("## " + messages("help.layout"))
-    l()
-    WikiLayout.layout(r).foreach { pileSet =>
-      l("### " + pileSet._1)
-      l()
-      pileSet._2.foreach { statement =>
-        l(statement)
-      }
-      l()
-    }
-  }
-
-  private[this] def processSimilar() = r.like.foreach { _ =>
-    val like = models.rules.GameRulesSet.allByIdWithAliases(r.id)
-    l("## " + messages("help.original.game"))
-    l()
-    l(rulesLink(like.id, like.title))
-    l(messages(s"rules.${r.id}.description"))
-    processDescription(like, link = false)
-    l()
   }
 
   private[this] def processRelated() = {
     val rels = GameRulesSet.allByIdWithAliases.filter(x => r.related.contains(x._2.id)).toSeq
     if (rels.nonEmpty) {
-      l("## " + messages("help.related.games"))
-      l()
-      rels.foreach { rel =>
+      withTitle("help.related.games")(rels.foreach { rel =>
         l(rulesLink(rel._1, rel._2.title))
         processDescription(rel._2, link = false)
         l()
-      }
+      })
     }
   }
 
   private[this] def processLinks() = if (r.links.nonEmpty) {
-    l("## " + messages("help.web.resources"))
-    l()
-    r.links.foreach { link =>
+    withTitle("help.web.resources")(r.links.foreach { link =>
       l(s"[${link.title}](${link.url})")
       l()
-    }
+    })
   }
 }

@@ -8,7 +8,7 @@ import scalatags.Text.all._
 object HelpTemplate {
   def help(rules: GameRules) = {
     val titleDiv = HelpTemplateContent.getTitleDiv(rules)
-    val descriptionDiv = div(cls := "description")(em(GameRulesHelpService.description(rules.id)))
+    val descriptionDiv = div(cls := "description")(em(raw(GameRulesHelpService.description(rules.id))))
     val akaDiv = HelpTemplateContent.getAkaDiv(rules)
     val objectiveDiv = div(h3(Messages("help.objective")), div(cls := "objective")(ObjectiveHelpService.objective(rules)))
     val deckDiv = div(h3(Messages("help.deck")), div(cls := "deck")(DeckOptionsHelpService.deck(rules.deckOptions)))

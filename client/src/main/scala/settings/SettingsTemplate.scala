@@ -6,6 +6,7 @@ import utils.Messages
 import scalatags.Text.all._
 
 object SettingsTemplate {
+
   def forSettings(settings: Settings) = {
     val title = h4(Messages("settings.title"))
 
@@ -14,6 +15,7 @@ object SettingsTemplate {
       radioFor("menu-position", "bottom", "Bottom")
     )
 
+    val language = div(cls := "settings-section theme")(radiosFor("language", Language.values.map(l => l.value -> l.title)))
     val tilt = div(cls := "settings-section theme")(radioFor("tilt", "true", "Card Tilt"), radioFor("tilt", "false", "No Card Tilt"))
     val autoFlip = div(cls := "settings-section theme")(radioFor("auto-flip", "true", "Auto Flip"), radioFor("auto-flip", "false", "No Auto Flip"))
     val audio = div(cls := "settings-section theme")(radioFor("audio", "true", "Sound"), radioFor("audio", "false", "No Sound"))
@@ -40,11 +42,13 @@ object SettingsTemplate {
     )
 
     div(
-      title, tilt, autoFlip, audio, menuPosition,
+      title, language, tilt, autoFlip, audio, menuPosition,
       cardBack, cardBlank, cardFaces, cardLayout, cardRanks, cardSuits,
       backgroundColor, backgroundPattern
     )
   }
+
+  private[this] def radiosFor(k: String, v: Seq[(String, String)]) = v.map(r => radioFor(k, r._1, r._2))
 
   private[this] def radioFor(k: String, v: String, title: String) = div(cls := "settings-input")(
     input(`type` := "radio", name := k, id := s"settings-$k-$v", value := v),
