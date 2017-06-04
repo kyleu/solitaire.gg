@@ -8,7 +8,7 @@ object AceyAndKingsley extends GameRules(
   title = "Acey and Kingsley",
   like = Some("acesandkings"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/acey_and_kingsley.htm")),
-  layout = "swff|r|t",
+  layout = "swff|r:::t",
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
