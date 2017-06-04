@@ -56,7 +56,7 @@ class WikiRules(r: GameRules) {
     })
   }
 
-  private[this] def processObjective() = withTitle("help.objective")(r.aka.toSeq.foreach(aka => l(WikiObjective.objective(r))))
+  private[this] def processObjective() = withTitle("help.objective")(l(WikiObjective.objective(r)))
 
   private[this] def processDeck() = withTitle("help.deck")(WikiDeckOptions.deck(r.deckOptions).foreach(l))
 
