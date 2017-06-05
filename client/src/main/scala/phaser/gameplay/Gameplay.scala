@@ -64,7 +64,7 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
 
     inputContextService = Some(new InputContextService(state, playmat.highlightService.highlight))
 
-    g.possibleMoves = services.moves.possibleMoves()
+    g.possibleMoves = moves.possibleMoves()
 
     g.playAudio("shuffle")
 

@@ -1,43 +1,54 @@
 package services.test
 
+import java.util.UUID
+
 import models._
-import models.game.PossibleMove
+import models.game.{MoveHelper, PossibleMove, RequestMessageHandler, UndoHelper}
+import models.rules.GameRulesSet
 import utils.Logging
 
 import scala.util.Random
 
 object GameSolver {
   val moveLimit = 5000
+  val userId = UUID.fromString("00000000-0000-0000-0000-000000000000")
 }
 
-case class GameSolver(rules: String, testSeed: Int, gameSeed: Option[Int] = None) extends Logging {
+case class GameSolver(rules: String, testSeed: Int, gameSeed: Int) extends Logging {
   val rng = new Random(testSeed)
 
   var gameWon = false
 
-  // StartGame(rules, gameSeed, testGame = Some(true))
-  //val gameId = gameJoined.id
-  var moves = Seq.empty[PossibleMove]
+  val gameRules = GameRulesSet.allByIdWithAliases(rules)
+  val gameId = UUID.randomUUID
+  val gameState = gameRules.newGame(gameId, gameSeed, rules)
+
+  val moveHelper = new MoveHelper(gameState, () => ())
+  val undo = new UndoHelper()
+
+  def handle(msg: ResponseMessage, registerUndo: Boolean = false): Unit = {
+  }
+
+  val requests = new RequestMessageHandler(GameSolver.userId, gameState, undo, handle, moveHelper.registerMove)
+
+  var moves: Seq[PossibleMove] = moveHelper.possibleMoves()
   var undosAvailable = 0
 
   val exploredStates = collection.mutable.HashMap.empty[Seq[PossibleMove], collection.mutable.HashMap[PossibleMove, Seq[PossibleMove]]]
 
-  def onMsg(msg: ResponseMessage) = msg match {
-    case rm: ResponseMessage =>
-      rm match {
-        case cr: CardRevealed => true
-        case ch: CardHidden => true
-        case cm: CardsMoved => true
-        case ms: MessageSet => true
-        case gw: GameWon =>
-          gameWon = true
-          false
-        case pm: PossibleMoves =>
-          moves = pm.moves
-          undosAvailable = pm.undosAvailable
-          false
-        case _ => throw new IllegalStateException(rm.toString)
-      }
+  def onMsg(rm: ResponseMessage) = rm match {
+    case _: CardRevealed => true
+    case _: CardHidden => true
+    case _: CardsMoved => true
+    case _: MessageSet => true
+    case _: GameWon =>
+      gameWon = true
+      false
+    case pm: PossibleMoves =>
+      moves = pm.moves
+      undosAvailable = pm.undosAvailable
+      false
+    case _ => throw new IllegalStateException(rm.toString)
   }
 
   def pointless(move: PossibleMove) = {

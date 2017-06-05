@@ -1,5 +1,7 @@
 package models.game
 
+import models.pile.set.PileSet
+
 class MoveHelper(gs: GameState, postMove: () => Unit) {
   protected[this] var moveCount = 0
   def getMoveCount = moveCount
@@ -30,9 +32,9 @@ class MoveHelper(gs: GameState, postMove: () => Unit) {
             val targetBehavior = target.pileSet.map(_.behavior).getOrElse(throw new IllegalStateException())
             if (target.canDragTo(source, cards, gs)) {
               val move = PossibleMove(PossibleMove.Type.MoveCards, cards.map(_.id).toList, source.id, Some(target.id))
-              if (sourceBehavior == "tableau" && targetBehavior == "tableau" && remainingCards.isEmpty && target.cards.isEmpty) {
+              if (sourceBehavior == PileSet.Behavior.Tableau && targetBehavior == PileSet.Behavior.Tableau && remainingCards.isEmpty && target.cards.isEmpty) {
                 boringMoves += move
-              } else if (targetBehavior == "foundation" && sourceBehavior != "foundation") {
+              } else if (targetBehavior == PileSet.Behavior.Foundation && sourceBehavior != PileSet.Behavior.Foundation) {
                 awesomeMoves += move
               } else {
                 ret += move
