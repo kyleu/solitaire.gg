@@ -3,9 +3,9 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
-import services.audit.GameHistoryService
 import utils.Application
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import services.history.GameHistoryService
 
 import scala.concurrent.Future
 

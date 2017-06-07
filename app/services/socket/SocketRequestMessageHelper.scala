@@ -6,7 +6,7 @@ import models.rules.GameRulesSet
 import models.rules.impl.Sandbox
 import msg.req._
 import msg.rsp.Pong
-import services.audit.GameHistoryService
+import services.history.GameHistoryService
 import services.user.{UserService, UserStatisticsService}
 import utils.DateUtils
 import utils.metrics.InstrumentedActor

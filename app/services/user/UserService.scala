@@ -6,8 +6,8 @@ import models.queries.user.UserQueries
 import models.settings.Settings
 import models.user.User
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.audit.GameHistoryService
 import services.database.Database
+import services.history.GameHistoryService
 import utils.Logging
 
 import scala.concurrent.Future

@@ -21,6 +21,8 @@ class TestController @javax.inject.Inject() (override val app: Application) exte
 
         case "rules" => new RulesTests().all
         case x if x.startsWith("rules-") => new RulesTests().testGameRules(x.substring(6)).toTree
+
+        case "solver" => new SolverTests().all
         case x if x.startsWith("solve-") => new SolverTests().testSolver(x.substring(6)).toTree
 
         case _ => throw new IllegalArgumentException(s"Invalid test [$test].")

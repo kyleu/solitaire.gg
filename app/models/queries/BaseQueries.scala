@@ -67,7 +67,7 @@ trait BaseQueries[T] {
     s"select count(*) as c from $tableName $searchWhere ${groupBy.map(x => s" group by $x").getOrElse("")}"
   }, values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(_ => s"%$q%") })
 
-  protected case class Search(q: String, orderBy: String, page: Option[Int], /* TODO use */ groupBy: Option[String] = None) extends Query[List[T]] {
+  protected case class Search(q: String, orderBy: String, page: Option[Int] = None, /* TODO use */ groupBy: Option[String] = None) extends Query[List[T]] {
     private[this] val whereClause = if (q.isEmpty) { None } else { Some(searchColumns.map(c => s"lower($c) like lower(?)").mkString(" or ")) }
     private[this] val limit = page.map(_ => BaseQueries.pageSize)
     private[this] val offset = page.map(x => x * BaseQueries.pageSize)

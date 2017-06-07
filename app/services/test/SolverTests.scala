@@ -1,12 +1,16 @@
 package services.test
 
 import models.GameMessage
+import models.history.GameHistory
 import models.rules.GameRulesSet
 import models.test.{Test, Tree}
+import services.history.GameSeedService
+import utils.Logging
 
 import scala.util.Random
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-class SolverTests() {
+class SolverTests() extends Logging {
   val all = Tree(Test("solver"), GameRulesSet.all.map(x => testSolver(x.id).toTree))
 
   def testSolver(rules: String) = Test(s"solver-$rules", { () =>
@@ -23,7 +27,11 @@ class SolverTests() {
     }
 
     if (solver.gameWon) {
-      s"Won game [$rules] with seed [$seed] in [${movesPerformed.size}] moves."
+      val msg = s"Won game [$rules] with seed [$seed] in [${movesPerformed.size}] moves."
+      GameSeedService.onComplete(solver.getHistory(GameHistory.Status.Won)).map { x =>
+        log.info(msg)
+      }
+      msg
     } else {
       s"Unable to find a solution for [$rules] seed [$seed] in [${movesPerformed.size}] moves."
     }

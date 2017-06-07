@@ -1,0 +1,31 @@
+@(sortBy: String, seeds: Seq[models.history.GameSeed])
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      @utils.web.ViewUtils.th("rules", "Rules", sortBy)
+      @utils.web.ViewUtils.th("seed", "Seed", sortBy)
+      @utils.web.ViewUtils.th("games", "Games", sortBy)
+      @utils.web.ViewUtils.th("wins", "Wins", sortBy)
+      @utils.web.ViewUtils.th("player", "Player", sortBy)
+      @utils.web.ViewUtils.th("moves", "Moves", sortBy)
+      @utils.web.ViewUtils.th("elapsed_ms", "Elapsed", sortBy)
+      @utils.web.ViewUtils.th("completed", "Completed", sortBy)
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  @for(seed <- seeds) {
+    <tr>
+      <td>@seed.rules</td>
+      <td>@seed.seed</td>
+      <td>@utils.NumberUtils.withCommas(seed.games)</td>
+      <td>@utils.NumberUtils.withCommas(seed.wins)</td>
+      <td>@seed.player</td>
+      <td>@utils.NumberUtils.withCommas(seed.moves)</td>
+      <td>@{utils.NumberUtils.withCommas(seed.elapsedMs)}ms</td>
+      <td>@seed.completed.map(_.toString("yyyy-MM-dd HH:mm:ss"))</td>
+      <td><a href="@controllers.admin.routes.GameSeedController.remove(seed.rules, seed.seed)">X</a></td>
+    </tr>
+  }
+  </tbody>
+</table>

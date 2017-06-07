@@ -1,11 +1,11 @@
-package services.audit
+package services.history
 
 import java.util.UUID
 
 import com.github.mauricio.async.db.Connection
+import models.history.GameHistory
 import models.queries.history.GameHistoryQueries
 import models.queries.user.UserQueries
-import models.history.GameHistory
 import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.database.Database
@@ -15,7 +15,7 @@ import scala.concurrent.Future
 object GameHistoryService {
   def getGameHistory(id: UUID) = Database.query(GameHistoryQueries.getById(id))
 
-  def getAll = Database.query(GameHistoryQueries.search("", "created", None))
+  def getAll = Database.query(GameHistoryQueries.search("", "created"))
 
   def searchGames(q: String, orderBy: String, page: Int) = Database.query(GameHistoryQueries.searchCount(q)).flatMap { count =>
     Database.query(GameHistoryQueries.search(q, getOrderClause(orderBy), Some(page))).map { list =>
@@ -35,9 +35,10 @@ object GameHistoryService {
 
   def onComplete(gh: GameHistory) = Database.execute(GameHistoryQueries.OnComplete(gh)).flatMap {
     case 1 => Future.successful(true)
-    case _ => Database.execute(GameHistoryQueries.insert(gh)).flatMap { _ =>
+    case 0 => Database.execute(GameHistoryQueries.insert(gh)).flatMap { _ =>
       Database.execute(GameHistoryQueries.OnComplete(gh)).map(_ == 1)
     }
+    case x => throw new IllegalStateException(s"Invalid return value [$x].")
   }
 
   def removeGameHistory(id: UUID, conn: Option[Connection]) = Database.execute(GameHistoryQueries.removeById(id), conn).map(_ == 1).map { success =>

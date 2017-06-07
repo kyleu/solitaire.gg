@@ -1,0 +1,9 @@
+@(q: String, sortBy: String, count: Int, page: Int, seeds: Seq[models.history.GameSeed])(implicit session: Session, flash: Flash)
+@views.html.admin.layout.list(
+  "seed", "Seeds", "explore", count, page, seeds.size, q,
+  searchAction = controllers.admin.routes.GameHistoryController.list(),
+  prevLink = controllers.admin.routes.GameHistoryController.list(q, sortBy, page - 1),
+  nextLink = controllers.admin.routes.GameHistoryController.list(q, sortBy, page + 1)
+) {
+  @views.html.admin.seed.table(sortBy, seeds)
+}

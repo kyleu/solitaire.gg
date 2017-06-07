@@ -6,8 +6,8 @@ import controllers.BaseController
 import models.queries.report.ReportQueries
 import models.queries.user.UserQueries
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import services.audit.GameHistoryService
 import services.database.Database
+import services.history.GameHistoryService
 import services.user.{UserService, UserStatisticsService}
 import utils.Application
 

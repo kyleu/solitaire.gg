@@ -22,6 +22,9 @@ GET         /games                           controllers.admin.GameHistoryContro
 GET         /games/:id                       controllers.admin.GameHistoryController.detail(id: java.util.UUID)
 GET         /games/:id/remove                controllers.admin.GameHistoryController.remove(id: java.util.UUID)
 
+GET         /seeds                           controllers.admin.GameSeedController.list(q ?= "", sortBy ?= "completed", page: Int ?= 0)
+GET         /seeds/:rules/:seed/remove       controllers.admin.GameSeedController.remove(rules, seed: Int)
+
 GET         /analytics/list                  controllers.admin.AnalyticsEventController.eventList(q ?= "", sortBy ?= "created", page: Int ?= 0)
 GET         /analytics/sandbox               controllers.admin.AnalyticsEventController.sandbox(test: Boolean ?= false, reset: Boolean ?= false, limit: Int ?= 100, offset: Int ?= 0)
 GET         /analytics/:id                   controllers.admin.AnalyticsEventController.eventDetail(id: java.util.UUID)
