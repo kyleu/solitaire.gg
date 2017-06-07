@@ -7,7 +7,7 @@ import org.scalajs.jquery.{jQuery => $}
 class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[String]) => Unit) {
   def initialAction() = {
     val args = dom.window.location.pathname.stripPrefix("/beta").stripPrefix("/").split("/").map(_.trim).filter(_.nonEmpty)
-    val state = NavigationState.withValueOpt(args.headOption.getOrElse("home")).getOrElse(NavigationState.Home)
+    val state = NavigationState.withValueOpt(args.headOption.getOrElse("games")).getOrElse(NavigationState.Games)
     navigate(state, args.drop(1))
   }
 
@@ -22,11 +22,7 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
 
   def setPath(state: NavigationState, args: Seq[String]) = {
     val url = if (args.isEmpty) {
-      if (state == NavigationState.Home) {
-        "/"
-      } else {
-        s"/${state.value}"
-      }
+      if (state == NavigationState.Games) { "/" } else { s"/${state.value}" }
     } else {
       s"/${state.value}/${args.mkString("/")}"
     }
@@ -53,18 +49,13 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
       case _ if pos == menuPosition => // noop
       case MenuPosition.Top =>
         b.removeClass("bottom-nav").addClass("top-nav")
-        if (menuPosition == MenuPosition.Hidden) {
-          m.fadeIn(delay)
-        }
+        if (menuPosition == MenuPosition.Hidden) { m.fadeIn(delay) }
       case MenuPosition.Bottom =>
         b.removeClass("top-nav").addClass("bottom-nav")
-        if (menuPosition == MenuPosition.Hidden) {
-          m.fadeIn(delay)
-        }
-      case MenuPosition.Hidden =>
-        if (menuPosition != MenuPosition.Hidden) {
-          m.fadeOut(delay)
-        }
+        if (menuPosition == MenuPosition.Hidden) { m.fadeIn(delay) }
+      case MenuPosition.Hidden => if (menuPosition != MenuPosition.Hidden) {
+        m.fadeOut(delay)
+      }
       case _ => throw new IllegalStateException(s"Unhandled menu position [$pos].")
     }
     menuPosition = pos

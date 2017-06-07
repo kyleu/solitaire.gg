@@ -8,7 +8,7 @@ object GameListService {
   private[this] var initialized = false
 
   def initIfNeeded(onNewGame: Seq[String] => Unit) = if (!initialized) {
-    val content = GameListTemplate.list()
+    val content = GameListTemplate.panelContent()
 
     val panel = $("#panel-list-games .content")
     panel.html(content.toString)

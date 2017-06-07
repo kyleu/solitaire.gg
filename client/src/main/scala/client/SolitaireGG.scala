@@ -50,7 +50,6 @@ class SolitaireGG(val debug: Boolean) extends InitHelper {
       case _ => // noop
     }
     n match {
-      case NavigationState.Home => HomePanel.update(navigation)
       case NavigationState.Games => GameListService.initIfNeeded(rules => {
         phaser.gameplay.activeGame.foreach { gameId =>
           GameStartService.endGame(this, gameId, win = false)

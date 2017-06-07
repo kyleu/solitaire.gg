@@ -17,6 +17,7 @@ object VictoryCondition extends StringEnum[VictoryCondition] with StringCirceEnu
       ps.behavior != PileSet.Behavior.Foundation && ps.piles.exists(_.cards.nonEmpty)
     }
   }
+
   case object AllButFourCardsOnFoundation extends VictoryCondition("all-but-four-cards-on-foundation") {
     override def check(rules: GameRules, gs: GameState) = gs.pileSets.flatMap(ps => if (ps.behavior == PileSet.Behavior.Foundation) {
       Nil
@@ -24,19 +25,23 @@ object VictoryCondition extends StringEnum[VictoryCondition] with StringCirceEnu
       ps.piles.flatMap(_.cards)
     }).length == 4
   }
+
   case object AllOnFoundationOrStock extends VictoryCondition("all-on-foundation-or-stock") {
     override def check(rules: GameRules, gs: GameState) = {
       !gs.pileSets.exists(ps => ps.behavior != PileSet.Behavior.Foundation && ps.behavior != PileSet.Behavior.Stock && ps.piles.exists(_.cards.nonEmpty))
     }
   }
+
   case object NoneInStock extends VictoryCondition("none-in-stock") {
     override def check(rules: GameRules, gs: GameState) =
       gs.pileSets.exists(ps => ps.behavior == PileSet.Behavior.Stock && ps.piles.forall(_.cards.isEmpty)) &&
         !gs.pileSets.exists(ps => ps.behavior == PileSet.Behavior.Waste && !ps.piles.forall(_.cards.isEmpty))
   }
+
   case object NoneInPyramid extends VictoryCondition("none-in-pyramid") {
     override def check(rules: GameRules, gs: GameState) = gs.pileSets.exists(ps => ps.behavior == PileSet.Behavior.Pyramid && ps.piles.forall(_.cards.isEmpty))
   }
+
   case object AllOnTableauSorted extends VictoryCondition("all-on-tableau-sorted") {
     override def check(rules: GameRules, gs: GameState) = {
       val tableauRules = rules.tableaus.toList match {
@@ -56,5 +61,6 @@ object VictoryCondition extends StringEnum[VictoryCondition] with StringCirceEnu
       allTableauSorted && eligibleEmpty
     }
   }
+
   override val values = findValues
 }

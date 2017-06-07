@@ -31,7 +31,7 @@ class MoveHelper(gs: GameState, postMove: () => Unit) {
           gs.piles.filterNot(p => p.id == source.id).foreach { target =>
             val targetBehavior = target.pileSet.map(_.behavior).getOrElse(throw new IllegalStateException())
             if (target.canDragTo(source, cards, gs)) {
-              val move = PossibleMove(PossibleMove.Type.MoveCards, cards.map(_.id).toList, source.id, Some(target.id))
+              val move = PossibleMove(PossibleMove.Type.MoveCards, source.id, cards.map(_.id).toList, Some(target.id))
               if (sourceBehavior == PileSet.Behavior.Tableau && targetBehavior == PileSet.Behavior.Tableau && remainingCards.isEmpty && target.cards.isEmpty) {
                 boringMoves += move
               } else if (targetBehavior == PileSet.Behavior.Foundation && sourceBehavior != PileSet.Behavior.Foundation) {
@@ -43,11 +43,11 @@ class MoveHelper(gs: GameState, postMove: () => Unit) {
           }
         }
         if (source.canSelectCard(c._1, gs)) {
-          ret += PossibleMove(PossibleMove.Type.SelectCard, Seq(c._1.id), source.id)
+          ret += PossibleMove(PossibleMove.Type.SelectCard, source.id, Seq(c._1.id))
         }
       }
       if (source.canSelectPile(gs)) {
-        ret += PossibleMove(PossibleMove.Type.SelectPile, Nil, source.id)
+        ret += PossibleMove(PossibleMove.Type.SelectPile, source.id)
       }
     }
     (awesomeMoves ++ ret ++ boringMoves).toIndexedSeq

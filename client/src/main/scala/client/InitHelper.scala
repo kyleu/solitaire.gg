@@ -15,7 +15,7 @@ trait InitHelper { this: SolitaireGG =>
 
     dom.window.onbeforeunload = (_: BeforeUnloadEvent) => {
       game match {
-        case Some(_) => NullUtils.inst //"You're playing a game. Are you sure you'd like to resign?"
+        case Some(_) => NullUtils.inst // TODO "You're playing a game. Are you sure you'd like to resign?"
         case _ => NullUtils.inst
       }
     }

@@ -7,22 +7,17 @@ import utils.Messages
 import scalatags.Text.all._
 
 object GameListTemplate {
-  def list() = div(cls := "theme striped with-margin")(
-    table(cls := "game-list-table")(
-      thead(tr(th("Title"), th(""), th(""))),
-      tbody(GameRulesSet.completed.flatMap { rules =>
-        Seq(
-          tr(cls := "title-row")(
-            td(rulesLink(rules._1, rules._2)),
-            td(a(href := NavigationUrls.rules(rules._1), cls := "help-link", data("rules") := rules._1)("How To Play")),
-            td(a(href := NavigationUrls.play(rules._1), cls := "rules-link", data("rules") := rules._1)("Play Now"))
-          ),
-          tr(
-            td(colspan := 3)(div(cls := "description")(em(raw(rulesDescription(rules._2.id)))))
-          )
-        )
-      })
-    )
+  def panelContent = div(
+    div(cls := "theme striped with-margin")("Solitaire!"),
+    list("Favorite Games", GameRulesSet.favorites.map(x => x.id -> x)),
+    list("All Games", GameRulesSet.completed)
+  )
+
+  private[this] def list(title: String, ruleSet: Seq[(String, GameRules)]) = div(cls := "theme striped with-margin")(
+    div(title),
+    ul(cls := "game-links")(ruleSet.map { r =>
+      li(a(cls := "rules-link", href := s"/play/${r._1}", data("rules") := r._1)(r._2.title))
+    })
   )
 
   private[this] def rulesLink(k: String, v: GameRules) = a(href := NavigationUrls.play(k), cls := "rules-link", data("rules") := k)(v.title)
