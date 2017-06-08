@@ -2,9 +2,10 @@ package models.queries.history
 
 import java.util.UUID
 
-import models.database.{Row, Statement}
+import models.database.{Query, Row, Statement}
 import models.history.{GameHistory, GameSeed}
 import models.queries.BaseQueries
+import models.rules.{GameRules, GameRulesSet}
 import org.joda.time.LocalDateTime
 import services.test.GameSolver
 
@@ -24,6 +25,14 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
   case class RemoveByRules(rules: String) extends Statement {
     override val sql = s"delete from $tableName where rules = ?"
     override val values = Seq(rules)
+  }
+
+  case object SummaryReport extends Query[Seq[(GameRules, Int)]] {
+    override val sql = s"select rules, count(wins) c from $tableName group by rules"
+    override def reduce(rows: Iterator[Row]) = {
+      val r = rows.map(row => row.as[String]("rules") -> row.as[Long]("c").toInt).toMap
+      GameRulesSet.all.map(rules => rules -> r.getOrElse(rules.id, 0))
+    }
   }
 
   val truncate = Truncate

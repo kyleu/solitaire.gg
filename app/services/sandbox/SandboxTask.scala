@@ -20,6 +20,7 @@ object SandboxTask extends StringEnum[SandboxTask] {
   case object Scratchpad extends SandboxTask("scratchpad", "A one-off I don't feel like putting anywhere else.") with ScratchpadLogic
   case object ScreenshotCreator extends SandboxTask("screenshot-creator", "Generates screenshots for completed games.") with ScreenshotCreatorLogic
   case object SendErrorEmail extends SandboxTask("send-error-email", "Sends the error email, obviously.") with SendErrorEmailLogic
+  case object SolverStressTest extends SandboxTask("solver-stress-test", "Spins up a bunch of threads to solve games.") with SolverStressTestLogic
   case object Wiki extends SandboxTask("wiki", "Exports the solitaire.gg wiki.") {
     override def run(ctx: Application) = WikiService.run(ctx)
   }

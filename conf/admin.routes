@@ -38,6 +38,7 @@ GET         /feedback/:id/remove             controllers.admin.FeedbackControlle
 GET         /logs                            controllers.admin.LogController.list()
 GET         /logs/:name                      controllers.admin.LogController.view(name)
 
+GET         /report/seed                     controllers.admin.ReportController.seed()
 GET         /report/trend                    controllers.admin.ReportController.trend()
 GET         /report/analytics                controllers.admin.ReportController.analytics()
 GET         /report/email                    controllers.admin.ReportController.email(d: org.joda.time.LocalDate ?= utils.DateUtils.today)

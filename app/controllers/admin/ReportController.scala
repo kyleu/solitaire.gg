@@ -2,6 +2,7 @@ package controllers.admin
 
 import controllers.BaseController
 import models.audit.DailyMetric
+import models.queries.history.GameSeedQueries
 import models.queries.report.RowCountQueries
 import org.joda.time.LocalDate
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -29,6 +30,12 @@ class ReportController @javax.inject.Inject() (override val app: Application) ex
   def trend() = withAdminSession("trend") { implicit request =>
     DailyMetricService.getAllMetrics.map { metrics =>
       Ok(views.html.admin.report.trend(metrics, toChartData(metrics)))
+    }
+  }
+
+  def seed() = withAdminSession("seed") { implicit request =>
+    Database.query(GameSeedQueries.SummaryReport).map { report =>
+      Ok(views.html.admin.report.seed(report))
     }
   }
 
