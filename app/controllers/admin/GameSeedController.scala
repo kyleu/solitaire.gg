@@ -4,6 +4,12 @@ import controllers.BaseController
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.history.GameSeedService
 import utils.Application
+import io.circe.generic.extras.Configuration
+import io.circe.generic.extras.auto._
+import io.circe.parser._
+import io.circe.syntax._
+import models.history.GameSeed
+import utils.json.SeedSerializers
 
 @javax.inject.Singleton
 class GameSeedController @javax.inject.Inject() (override val app: Application) extends BaseController {
@@ -17,6 +23,13 @@ class GameSeedController @javax.inject.Inject() (override val app: Application) 
     GameSeedService.remove(rules, seed).map { ok =>
       val msg = s"Seed [$rules:$seed] removed."
       Redirect(controllers.admin.routes.GameSeedController.list()).flashing("success" -> msg)
+    }
+  }
+
+  def export() = withAdminSession("export") { implicit request =>
+    GameSeedService.getAll.map { seeds =>
+      val lines = seeds.map(SeedSerializers.writeSeed)
+      Ok(lines.mkString("\n"))
     }
   }
 }

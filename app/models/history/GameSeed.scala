@@ -2,8 +2,6 @@ package models.history
 
 import java.util.UUID
 
-import org.joda.time.LocalDateTime
-
 case class GameSeed(
   rules: String,
   seed: Int,
@@ -12,5 +10,5 @@ case class GameSeed(
   player: Option[UUID] = None,
   moves: Int = 0,
   elapsedMs: Int = 0,
-  completed: Option[LocalDateTime] = None
+  completed: Option[Long] = None
 )
