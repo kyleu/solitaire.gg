@@ -1,12 +1,35 @@
 @(report: Seq[(models.rules.GameRules, Int)])(implicit session: Session, flash: Flash)
+
+@foo(i: Int, t: String) = {
+  <li>@utils.NumberUtils.withCommas(i) @t</li>
+}
+
 @views.html.admin.layout.base(utils.Config.projectName + " Seed Report", "reports") {
   <h3>@utils.Config.projectName Seed Report</h3>
+  <ul>
+    @foo(report.size, "Total Games")
+    @foo(report.count(_._2 > 0), "Solved Games")
+    @foo(report.count(_._2 == 0), "Unsolved Games")
+    @foo(report.count(_._1.completed), "Completed Games")
+    @foo(report.count(!_._1.completed), "Incomplete Games")
+    @foo(report.count(r => r._2 > 0 && (!r._1.completed)), "Solved Incomplete Games")
+    @foo(report.count(r => r._2 == 0 && r._1.completed), "Unsolved Completed Games")
+  </ul>
   <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Completed</th>
+        <th>Count</th>
+      </tr>
+    </thead>
     <tbody>
     @report.map { x =>
       <tr>
         <td>@x._1.id</td>
         <td>@x._1.title</td>
+        <td>@x._1.completed</td>
         <td>@utils.NumberUtils.withCommas(x._2)</td>
       </tr>
     }
