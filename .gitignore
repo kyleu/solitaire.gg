@@ -16,6 +16,8 @@ dist
 
 /cache
 
+/build
+
 _resized/
 x-large/
 large/

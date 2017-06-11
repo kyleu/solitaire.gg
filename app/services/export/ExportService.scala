@@ -1,35 +1,18 @@
-package services.sandbox
+package services.export
 
 import better.files._
 import models.rules.GameRulesSet
 import models.user.User
-import play.api.libs.ws.WSClient
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.test.FakeRequest
 import utils.Application
 
-import scala.concurrent.Future
-
-trait ExportStaticLogic {
+object ExportService {
   private[this] val baseUrl = "http://localhost:5000/"
   private[this] val outPath = "./build/web".toFile
   private[this] val offlineUser = User(User.defaultId)
 
-  private[this] def crawlLocal(ws: WSClient) = {
-    def get(path: String) = ws.url(baseUrl + path).get().map {
-      case x if x.status != 200 => throw new IllegalStateException(s"Status [${x.status}:${x.statusText}] from [$path].")
-      case x => (outPath / path).writeByteArray(x.bodyAsBytes.toArray)
-    }
-
-    val assets = Seq("assets/stylesheets/gg.min.css")
-
-    assets.foldLeft(Future.successful(Seq.empty[File])) { (x, y) =>
-      x.flatMap { f =>
-        get(y).map(f :+ _)
-      }
-    }
-  }
-
-  def run(ctx: Application) = {
+  def go(ctx: Application) = {
     if (!outPath.exists) {
       outPath.createDirectory
     }
@@ -39,9 +22,9 @@ trait ExportStaticLogic {
     implicit val flash = request.flash
     implicit val messages = ctx.messagesApi.preferred(request)
 
-    render("index.html", views.html.solitaire.solitaire(offlineUser.settings, debug = true).toString())
+    render("index.html", views.html.solitaire.solitaire(offlineUser.settings, debug = false).toString())
 
-    crawlLocal(ctx.ws).map { result =>
+    ExportCrawler.crawlLocal(ctx.ws, baseUrl, outPath).map { result =>
       s"Ok: [${result.size}] files cached."
     }
   }
@@ -79,5 +62,5 @@ trait ExportStaticLogic {
     val url = prefix.getOrElse("") + "mobile.js"
     s.replaceAllLiterally("  </head>", "    <script src=\"" + url + "\" type=\"text/javascript\"></script>\n  </head>")
   }
-}
 
+}
