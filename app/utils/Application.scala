@@ -7,6 +7,7 @@ import com.codahale.metrics.SharedMetricRegistries
 import org.joda.time.DateTimeZone
 import play.api.i18n.MessagesApi
 import play.api.inject.ApplicationLifecycle
+import play.api.libs.ws.WSClient
 import services.audit.NotificationService
 import services.database.{Database, Schema}
 import services.scheduled.ScheduledTask
@@ -26,7 +27,8 @@ class Application @javax.inject.Inject() (
     val lifecycle: ApplicationLifecycle,
     val notificationService: NotificationService,
     val system: ActorSystem,
-    val task: ScheduledTask
+    val task: ScheduledTask,
+    val ws: WSClient
 ) extends Logging {
   if (Application.initialized) {
     log.info("Skipping initialization after failure.")

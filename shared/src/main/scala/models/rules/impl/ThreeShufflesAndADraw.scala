@@ -5,7 +5,7 @@ import models.rules._
 object ThreeShufflesAndADraw extends GameRules(
   id = "threeshufflesandadraw",
   completed = true,
-  title = "Three Shuffles and a Draw",
+  title = "Three Shuffles",
   like = Some("labellelucie"),
   links = Seq(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/three_shuffles_and_a_draw.htm"),

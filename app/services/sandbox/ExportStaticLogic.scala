@@ -1,22 +1,37 @@
 package services.sandbox
 
-import java.nio.file.{Files, Paths}
-
+import better.files._
 import models.rules.GameRulesSet
 import models.user.User
+import play.api.libs.ws.WSClient
 import play.api.test.FakeRequest
 import utils.Application
 
 import scala.concurrent.Future
 
 trait ExportStaticLogic {
-  private[this] val outPath = Paths.get(".", "build", "web")
-
+  private[this] val baseUrl = "http://localhost:5000/"
+  private[this] val outPath = "./build/web".toFile
   private[this] val offlineUser = User(User.defaultId)
 
+  private[this] def crawlLocal(ws: WSClient) = {
+    def get(path: String) = ws.url(baseUrl + path).get().map {
+      case x if x.status != 200 => throw new IllegalStateException(s"Status [${x.status}:${x.statusText}] from [$path].")
+      case x => (outPath / path).writeByteArray(x.bodyAsBytes.toArray)
+    }
+
+    val assets = Seq("assets/stylesheets/gg.min.css")
+
+    assets.foldLeft(Future.successful(Seq.empty[File])) { (x, y) =>
+      x.flatMap { f =>
+        get(y).map(f :+ _)
+      }
+    }
+  }
+
   def run(ctx: Application) = {
-    if (!Files.exists(outPath)) {
-      Files.createDirectory(outPath)
+    if (!outPath.exists) {
+      outPath.createDirectory
     }
 
     implicit val request = FakeRequest("GET", "/")
@@ -26,12 +41,14 @@ trait ExportStaticLogic {
 
     render("index.html", views.html.solitaire.solitaire(offlineUser.settings, debug = true).toString())
 
-    Future.successful("Ok!")
+    crawlLocal(ctx.ws).map { result =>
+      s"Ok: [${result.size}] files cached."
+    }
   }
 
   private[this] def render(filename: String, content: String, prefix: Option[String] = None) = {
     val out = replaceGameLinks(replaceStaticLinks(injectMobileScript(content, prefix), prefix), prefix)
-    Files.write(outPath.resolve(filename), out.getBytes("UTF-8"))
+    (outPath / filename).writeBytes(out.getBytes("UTF-8").iterator)
   }
 
   private[this] val staticReplacements = Seq(
