@@ -27,7 +27,7 @@
     <tbody>
     @report.map { x =>
       <tr>
-        <td>@x._1.id</td>
+        <td><a href="@controllers.routes.SolitaireController.startArgs(s"play/${x._1.id}")">@x._1.id</a></td>
         <td>@x._1.title</td>
         <td>@x._1.completed</td>
         <td>@utils.NumberUtils.withCommas(x._2)</td>

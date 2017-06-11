@@ -1,15 +1,14 @@
 package controllers.admin
 
+import better.files._
 import controllers.BaseController
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import services.history.GameSeedService
 import utils.Application
-import io.circe.generic.extras.Configuration
-import io.circe.generic.extras.auto._
-import io.circe.parser._
-import io.circe.syntax._
-import models.history.GameSeed
 import utils.json.SeedSerializers
+
+import scala.concurrent.Future
+import scala.util.control.NonFatal
 
 @javax.inject.Singleton
 class GameSeedController @javax.inject.Inject() (override val app: Application) extends BaseController {
@@ -26,10 +25,26 @@ class GameSeedController @javax.inject.Inject() (override val app: Application) 
     }
   }
 
-  def export() = withAdminSession("export") { implicit request =>
+  def exportSeeds() = withAdminSession("export") { implicit request =>
     GameSeedService.getAll.map { seeds =>
       val lines = seeds.map(SeedSerializers.writeSeed)
       Ok(lines.mkString("\n"))
+    }
+  }
+
+  def importSeeds() = withAdminSession("export") { implicit request =>
+    val seeds = "./tmp/seeds.txt".toFile.lines.map(SeedSerializers.readSeed)
+    val completed = seeds.foldLeft(Future.successful(Seq.empty[Boolean])) { (x, seed) =>
+      x.flatMap { ret =>
+        GameSeedService.insert(seed).recover {
+          case NonFatal(_) =>
+            log.warn(s"Attempted to insert duplicate seed [${seed.rules}:${seed.seed}].")
+            false
+        }.map(x => ret :+ x)
+      }
+    }
+    completed.map { ret =>
+      Ok(s"[${seeds.size}] seeds imported. [${ret.count(x => x)}] inserted, [${ret.count(x => !x)}] skipped.")
     }
   }
 }
