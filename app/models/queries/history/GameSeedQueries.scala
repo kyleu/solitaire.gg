@@ -8,7 +8,6 @@ import models.queries.BaseQueries
 import models.rules.{GameRules, GameRulesSet}
 import org.joda.time.LocalDateTime
 import services.test.GameSolver
-import utils.DateUtils
 
 object GameSeedQueries extends BaseQueries[GameSeed] {
   override protected val tableName = "game_seeds"
@@ -60,11 +59,9 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
     val player = row.asOpt[UUID]("player")
     val moves = row.as[Int]("moves")
     val elapsedMs = row.as[Int]("elapsed_ms")
-    val completed = row.asOpt[LocalDateTime]("completed").map(DateUtils.toMillis)
+    val completed = row.asOpt[LocalDateTime]("completed")
     GameSeed(rules, seed, games, wins, player, moves, elapsedMs, completed)
   }
 
-  override protected def toDataSeq(gs: GameSeed) = Seq[Any](
-    gs.rules, gs.seed, gs.games, gs.wins, gs.player, gs.moves, gs.elapsedMs, gs.completed.map(DateUtils.fromMillis)
-  )
+  override protected def toDataSeq(gs: GameSeed) = Seq[Any](gs.rules, gs.seed, gs.games, gs.wins, gs.player, gs.moves, gs.elapsedMs, gs.completed)
 }

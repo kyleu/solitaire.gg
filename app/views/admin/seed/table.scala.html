@@ -23,7 +23,7 @@
       <td>@seed.player</td>
       <td>@utils.NumberUtils.withCommas(seed.moves)</td>
       <td>@{utils.NumberUtils.withCommas(seed.elapsedMs)}ms</td>
-      <td>@seed.completed.map(x => utils.DateUtils.fromMillis(x).toString("yyyy-MM-dd HH:mm:ss"))</td>
+      <td>@seed.completed.map(_.toString("yyyy-MM-dd HH:mm:ss"))</td>
       <td><a href="@controllers.admin.routes.GameSeedController.remove(seed.rules, seed.seed)">X</a></td>
     </tr>
   }
