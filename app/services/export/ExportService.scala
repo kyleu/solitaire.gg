@@ -22,10 +22,10 @@ object ExportService {
     implicit val flash = request.flash
     implicit val messages = ctx.messagesApi.preferred(request)
 
-    render("index.html", views.html.solitaire.solitaire(offlineUser.settings, debug = false).toString())
+    render("index.html", views.html.solitaire.solitaire(offlineUser.settings, debug = ctx.config.debug).toString())
 
-    ExportCrawler.crawlLocal(ctx.ws, baseUrl, outPath).map { result =>
-      s"Ok: [${result.size}] files cached."
+    new ExportCrawler(ctx.ws, baseUrl, outPath, ctx.config.debug).crawlLocal().map { result =>
+      s"Ok: [${result.size}] files cached (debug == ${ctx.config.debug})."
     }
   }
 
