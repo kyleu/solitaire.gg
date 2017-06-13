@@ -16,6 +16,7 @@ object ExportService {
     if (!outPath.exists) {
       outPath.createDirectory
     }
+    outPath.children.foreach(_.delete(swallowIOExceptions = true))
 
     implicit val request = FakeRequest("GET", "/")
     implicit val session = request.session

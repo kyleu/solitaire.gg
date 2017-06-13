@@ -9,9 +9,10 @@ import scala.scalajs.js.timers.setTimeout
 class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => Unit) {
   private[this] val loc = org.scalajs.dom.document.location
 
-  private[this] val socketUrl = {
-    val wsProtocol = if (loc.protocol == "https:") { "wss" } else { "ws" }
-    s"$wsProtocol://${loc.host}/socket"
+  private[this] val socketUrl = if (loc.host == "localhost:5000") {
+    "ws://localhost:5000/socket"
+  } else {
+    "wss://beta.solitaire.gg/socket"
   }
 
   private[this] var latencyMs: Option[Int] = None

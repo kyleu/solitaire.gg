@@ -53,21 +53,16 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
     val responses = new ResponseMessageHandler(g, undo)
     val requests = new RequestMessageHandler(g.getUserId, coreState, undo, responses.handle, moves.registerMove)
     activeServices = Some(Gameplay.GameServices(state, rules, moves, undo, responses, requests))
-
     val playmat = new Playmat(g, state.pileSets, rules.layout)
     g.setPlaymat(Some(playmat))
-
     AssetLoader.loadPileSets(g, state.pileSets)
-
     val cards = AssetLoader.loadCards(g, state.pileSets, state.deck.originalOrder)
     playmat.setCards(cards)
 
     inputContextService = Some(new InputContextService(state, playmat.highlightService.highlight))
 
     g.possibleMoves = moves.possibleMoves()
-
     g.playAudio("shuffle")
-
     utils.Logging.info(s"Started game [$id] with rules [${rules.id}].")
   }
 

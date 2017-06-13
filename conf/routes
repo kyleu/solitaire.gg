@@ -4,7 +4,7 @@ GET            /link                                    controllers.UtilControll
 GET            /robots.txt                              controllers.UtilController.robots
 
 # i18n
-GET            /strings.js                              controllers.MessagesController.strings()
+GET            /strings.js                              controllers.MessagesController.strings(l: Option[String] ?= None)
 
 # Legacy analytics
 OPTIONS        /a/*path                                 controllers.AnalyticsController.preflightCheck(path)

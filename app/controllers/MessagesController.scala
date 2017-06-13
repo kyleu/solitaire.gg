@@ -2,6 +2,7 @@ package controllers
 
 import java.net.URL
 
+import models.settings.Language
 import play.api.i18n.Messages
 import utils.Application
 
@@ -35,7 +36,7 @@ class MessagesController @javax.inject.Inject() (override val app: Application) 
     val vals = parseMsgs(r).map { m =>
       s""""${m._1}": "${m._2.replaceAllLiterally("\"", "\\\"")}""""
     }.mkString(",\n  ")
-    s"""window.messages = {\n  $vals\n}"""
+    s"""window.messages = {\n  $vals\n};"""
   }.getOrElse(throw new IllegalStateException(s"Missing translation file for [$lang]."))
 
   private[this] def getResponse(lang: String) = lang match {
@@ -43,8 +44,11 @@ class MessagesController @javax.inject.Inject() (override val app: Application) 
     case _ => responses.getOrElseUpdate(lang, loadResponse(lang))
   }
 
-  def strings() = req("strings") { implicit request =>
-    val lang = request.acceptLanguages.find(l => acceptedLanguages.contains(l.code)).map(_.code).getOrElse("en")
+  def strings(l: Option[String]) = req("strings") { implicit request =>
+    val lang = l match {
+      case Some(x) => Language.withValueOpt(x).map(_.value).getOrElse("en")
+      case None => request.acceptLanguages.find(al => acceptedLanguages.contains(al.code)).map(_.code).getOrElse("en")
+    }
     Future.successful(Ok(getResponse(lang)).as("application/javascript"))
   }
 }
