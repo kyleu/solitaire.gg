@@ -1,10 +1,12 @@
 package utils
 
-import org.slf4j.LoggerFactory
+import org.slf4j.{LoggerFactory, MarkerFactory}
 import play.api.Logger
 import utils.metrics.Instrumented
 
 object Logging extends Instrumented {
+  implicit val mc = MarkerContext(MarkerFactory.getMarker("scala"))
+
   private[this] val traceMeter = metrics.meter("log.trace")
   private[this] val debugMeter = metrics.meter("log.debug")
   private[this] val infoMeter = metrics.meter("log.info")

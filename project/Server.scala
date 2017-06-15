@@ -29,7 +29,8 @@ object Server {
     import Dependencies._
     Seq(
       Cache.ehCache, Database.postgresAsync,
-      Akka.actor, Akka.log4j, Akka.testkit, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */ Play.filters, Play.ws, Play.mailer,
+      Akka.actor, Akka.log4j, Akka.testkit, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */
+      Play.filters, Play.ws, Play.test, Play.mailer, Play.json,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap, WebJars.underscore, WebJars.d3, WebJars.nvd3, WebJars.materialize, WebJars.jquery,
       Utils.core, Utils.collection, Utils.betterFiles, Testing.gatlingCore, Testing.gatlingCharts, Play.test
