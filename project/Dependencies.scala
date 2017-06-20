@@ -3,11 +3,12 @@ import sbt._
 object Dependencies {
   object Play {
     val version = "2.5.15"
-    val playLib = "com.typesafe.play" %% "play" % version
-    val playFilters = play.sbt.PlayImport.filters
-    val playWs = play.sbt.PlayImport.ws
-    val playJson = play.sbt.PlayImport.json
-    val playTest = "com.typesafe.play" %% "play-test" % version
+
+    val lib = "com.typesafe.play" %% "play" % version
+    val filters = play.sbt.PlayImport.filters
+    val ws = play.sbt.PlayImport.ws
+    val json = "com.typesafe.play" %% "play-json" % version
+    val test = "com.typesafe.play" %% "play-test" % version
     val mailer = "com.typesafe.play" %% "play-mailer" % "5.0.0"
   }
 
@@ -56,8 +57,9 @@ object Dependencies {
     val json = "io.dropwizard.metrics" % "metrics-json" % version withSources()
     val servlets = "io.dropwizard.metrics" % "metrics-servlets" % version withSources() intransitive()
     val graphite = "io.dropwizard.metrics" % "metrics-graphite" % version withSources() intransitive()
-    val metrics = "nl.grons" %% "metrics-scala" % "3.5.7" withSources()
-    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.4.5.v20170502" withSources()
+
+    val metrics = "nl.grons" %% "metrics-scala" % "3.5.8" withSources()
+    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.4.6.v20170531" withSources()
   }
 
   object ScalaJS {
@@ -70,7 +72,7 @@ object Dependencies {
   object Utils {
     val scapegoatVersion = "1.3.0"
 
-    private[this] val twitterVersion = "6.43.0"
+    private[this] val twitterVersion = "6.45.0"
     val core = "com.twitter" %% "util-core" % twitterVersion
     val collection = "com.twitter" %% "util-collection" % twitterVersion
 

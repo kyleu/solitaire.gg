@@ -18,7 +18,7 @@ object Utilities {
   ).settings(libraryDependencies ++= iconLibs).settings(Shared.commonSettings: _*)
 
   private[this] val metricsLibs = Seq(
-    Play.playLib, Akka.actor,
+    Play.lib, Akka.actor,
     Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite
   )
   lazy val metrics = (project in file("util/metrics"))
@@ -31,7 +31,7 @@ object Utilities {
 
   lazy val translation = (project in file("util/translation"))
     .enablePlugins(SbtWeb, play.sbt.PlayScala)
-    .settings(libraryDependencies ++= Seq("com.beachape" %% "enumeratum-circe" % Utils.enumeratumVersion, Play.playWs))
+    .settings(libraryDependencies ++= Seq("com.beachape" %% "enumeratum-circe" % Utils.enumeratumVersion, Play.ws))
     .settings(Shared.commonSettings: _*).dependsOn(Shared.sharedJvm)
 
 }

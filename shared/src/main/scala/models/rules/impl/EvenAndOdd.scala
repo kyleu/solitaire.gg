@@ -1,7 +1,6 @@
 package models.rules.impl
 
 import models.card.Rank
-import models.game._
 import models.rules._
 
 object EvenAndOdd extends GameRules(
