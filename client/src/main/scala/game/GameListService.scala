@@ -7,15 +7,23 @@ import utils.TemplateUtils
 object GameListService {
   private[this] var initialized = false
 
-  def initIfNeeded(onNewGame: Seq[String] => Unit) = if (!initialized) {
-    val content = GameListTemplate.panelContent()
-
+  def update(ag: Option[ActiveGame], onNewGame: Seq[String] => Unit) = {
     val panel = $("#panel-list-games .content")
-    panel.html(content.toString)
 
-    TemplateUtils.clickHandler($(".rules-link", panel), jq => onNewGame(Seq(jq.data("rules").toString)))
-    TemplateUtils.clickHandler($(".help-link", panel), jq => HelpService.show(Some(jq.data("rules").toString)))
+    if (!initialized) {
+      panel.html(GameListTemplate.panelContent().toString)
 
-    initialized = true
+      TemplateUtils.clickHandler($(".rules-link", panel), jq => onNewGame(Seq(jq.data("rules").toString)))
+      TemplateUtils.clickHandler($(".help-link", panel), jq => HelpService.show(Some(jq.data("rules").toString)))
+
+      initialized = true
+    }
+
+    val optionsEl = $(".options-el", panel)
+
+    ag match {
+      case Some(activeGame) => optionsEl.html(GameListTemplate.optionsContent(activeGame).toString)
+      case None => optionsEl.html($("#home-content").html())
+    }
   }
 }

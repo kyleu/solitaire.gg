@@ -8,9 +8,18 @@ import scalatags.Text.all._
 
 object GameListTemplate {
   def panelContent = div(
-    div(cls := "theme striped with-margin")("Solitaire!"),
+    div(cls := "theme striped with-margin options-el")("Solitaire.gg"),
     list("Favorite Games", GameRulesSet.favorites.map(x => x.id -> x)),
     list("All Games", GameRulesSet.completed)
+  )
+
+  def optionsContent(ag: ActiveGame) = div(
+    ul(cls := "game-links")(
+      li(a(cls := "rules-link", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.resign"))),
+      li(a(cls := "rules-link", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.redeal"))),
+      li(a(cls := "rules-link", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.same.deal"))),
+      li(a(cls := "rules-link", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.winnable")))
+    )
   )
 
   private[this] def list(title: String, ruleSet: Seq[(String, GameRules)]) = div(cls := "theme striped with-margin")(
