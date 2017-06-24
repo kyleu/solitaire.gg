@@ -27,6 +27,12 @@ object HelpTemplate {
     div(cls := "theme striped with-margin")(
       div("General Help for Solitaire.gg")
     ),
-    div(cls := "theme striped")("I need to write some help files...")
+    div(cls := "theme striped")(
+      "I need to write some help files...",
+      br(),
+      "Please send your feedback to ",
+      a(href := "mailto:feedback@solitaire.gg")("feedback@solitaire.gg"),
+      "."
+    )
   )
 }

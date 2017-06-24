@@ -38,7 +38,7 @@ object PhaserLifecycle {
       undos = undos,
       redos = redos,
       score = g.gameplay.services.state.calculateScore(moves, undos, redos),
-      firstMove = 0L,
+      firstMove = g.gameplay.services.moves.getFirstMove,
       occurred = System.currentTimeMillis
     )
   }

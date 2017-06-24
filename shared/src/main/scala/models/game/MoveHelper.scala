@@ -9,6 +9,8 @@ class MoveHelper(gs: GameState, postMove: () => Unit) {
   protected[this] var firstMoveMade: Option[Long] = None
   protected[this] var lastMoveMade: Option[Long] = None
 
+  def getFirstMove = firstMoveMade.getOrElse(0L)
+
   def registerMove() = {
     moveCount += 1
     if (firstMoveMade.isEmpty) {

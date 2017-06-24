@@ -42,11 +42,10 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
   case class OnComplete(gh: GameHistory) extends Statement {
     private[this] val pClause = "case when player is null then ? else player end"
     private[this] val player = if (gh.player == GameSolver.userId) { None } else { Some(gh.player) }
-    private[this] val eClause = "case when elapsed_ms is null then ? else elapsed_ms end"
     private[this] val cClause = "case when completed is null then ? else completed end"
 
     override val sql = s"""update $tableName
-      set games = games + 1, wins = wins + ?, player = $pClause, moves = moves + ?, elapsed_ms = $eClause, completed = $cClause
+      set games = games + 1, wins = wins + ?, player = $pClause, moves = moves + ?, elapsed_ms = ?, completed = $cClause
       where rules = ? and seed = ?"""
     override val values = Seq[Any](if (gh.isWon) { 1 } else { 0 }, player, gh.moves, gh.duration, gh.completed, gh.rules, gh.seed)
   }
