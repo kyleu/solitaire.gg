@@ -5,7 +5,7 @@ import java.util.UUID
 import models.history.GameHistory
 import models.queries.history.GameHistoryQueries
 import models.user.User
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.api.libs.json.{JsArray, JsObject, JsValue}
 import services.database.Database
 import services.user.UserStatisticsService

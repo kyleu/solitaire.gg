@@ -1,6 +1,6 @@
 package controllers
 
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.api.mvc.{Action, Controller}
 import services.translation.TranslationService
 

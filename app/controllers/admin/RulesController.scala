@@ -2,12 +2,14 @@ package controllers.admin
 
 import controllers.BaseController
 import models.rules.{GameRules, GameRulesSet}
+import play.api.http.FileMimeTypes
 import utils.Application
+import utils.FutureUtils.defaultContext
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
-class RulesController @javax.inject.Inject() (override val app: Application) extends BaseController {
+class RulesController @javax.inject.Inject() (override val app: Application, implicit val fmt: FileMimeTypes) extends BaseController {
   def rulesList(q: String, sortBy: String) = withAdminSession("list") { implicit request =>
     val statuses = GameRulesSet.all.map(getStatus)
     val filtered = if (q.nonEmpty) {

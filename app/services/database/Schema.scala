@@ -2,7 +2,7 @@ package services.database
 
 import models.ddl.DdlQueries
 import models.ddl._
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import utils.Logging
 
 import scala.concurrent.Future

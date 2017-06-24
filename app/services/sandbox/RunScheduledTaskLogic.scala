@@ -1,6 +1,6 @@
 package services.sandbox
 
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import services.scheduled.ScheduledTask
 import utils.Application
 

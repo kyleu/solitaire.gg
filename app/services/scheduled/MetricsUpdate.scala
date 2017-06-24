@@ -1,6 +1,6 @@
 package services.scheduled
 
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import services.audit.DailyMetricService
 import utils.DateUtils
 

@@ -1,6 +1,6 @@
 package services.audit
 
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.api.libs.json.{JsObject, JsString, Json}
 import play.api.libs.ws.WSClient
 import utils.{Config, Logging}
@@ -19,7 +19,7 @@ class NotificationService @javax.inject.Inject() (ws: WSClient, config: Config) 
       "text" -> JsString(msg)
     ))
 
-    val call = ws.url(config.slackUrl).withHeaders("Accept" -> "application/json")
+    val call = ws.url(config.slackUrl).withHttpHeaders("Accept" -> "application/json")
     val f = call.post(Json.prettyPrint(body))
     val ret = f.map { x =>
       if (x.status == 200) {
@@ -29,9 +29,7 @@ class NotificationService @javax.inject.Inject() (ws: WSClient, config: Config) 
         "ERROR"
       }
     }
-    ret.onFailure {
-      case x => log.warn("Unable to post to Slack.", x)
-    }
+    ret.failed.foreach(x => log.warn("Unable to post to Slack.", x))
     ret
   } else {
     Future.successful("Slack is not enabled.")

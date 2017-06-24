@@ -5,7 +5,7 @@ import com.github.mauricio.async.db.postgresql.PostgreSQLConnection
 import com.github.mauricio.async.db.postgresql.pool.PostgreSQLConnectionFactory
 import com.github.mauricio.async.db.{Configuration, Connection, QueryResult}
 import models.database.{RawQuery, Statement}
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import utils.Logging
 import utils.metrics.Instrumented
 
@@ -23,9 +23,6 @@ object Database extends Logging with Instrumented {
     pool = new ConnectionPool(factory, poolConfig)
 
     val healthCheck = pool.sendQuery("select now()")
-    healthCheck.onFailure {
-      case x => throw new IllegalStateException("Cannot connect to database.", x)
-    }
     Await.result(healthCheck.map(r => r.rowsAffected == 1.toLong), 5.seconds)
   }
 
@@ -37,9 +34,7 @@ object Database extends Logging with Instrumented {
     val ret = metrics.timer(s"execute.$name").timeFuture {
       conn.getOrElse(pool).sendPreparedStatement(prependComment(name, statement.sql), statement.values).map(_.rowsAffected.toInt)
     }
-    ret.onFailure {
-      case x: Throwable => log.error(s"Error [${x.getClass.getSimpleName}] encountered while executing statement [$name].", x)
-    }
+    ret.failed.foreach(x => log.error(s"Error [${x.getClass.getSimpleName}] encountered while executing statement [$name].", x))
     ret
   }
 
@@ -51,9 +46,7 @@ object Database extends Logging with Instrumented {
         query.handle(r.rows.getOrElse(throw new IllegalStateException()))
       }
     }
-    ret.onFailure {
-      case x: Throwable => log.error(s"Error [${x.getClass.getSimpleName}] encountered while executing query [$name].", x)
-    }
+    ret.failed.foreach(x => log.error(s"Error [${x.getClass.getSimpleName}] encountered while executing query [$name].", x))
     ret
   }
 
@@ -62,9 +55,7 @@ object Database extends Logging with Instrumented {
     val ret = metrics.timer(s"raw.$name").timeFuture {
       conn.getOrElse(pool).sendQuery(prependComment(name, sql))
     }
-    ret.onFailure {
-      case x: Throwable => log.error(s"Error [${x.getClass.getSimpleName}] encountered while executing raw query [$name].", x)
-    }
+    ret.failed.foreach(x => log.error(s"Error [${x.getClass.getSimpleName}] encountered while executing raw query [$name].", x))
     ret
   }
 

@@ -4,7 +4,7 @@ import java.util.UUID
 
 import controllers.BaseController
 import utils.Application
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import services.history.GameHistoryService
 
 import scala.concurrent.Future

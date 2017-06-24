@@ -5,7 +5,7 @@ import services.test._
 import utils.Application
 
 import scala.concurrent.Future
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 
 @javax.inject.Singleton
 class TestController @javax.inject.Inject() (override val app: Application) extends BaseController {

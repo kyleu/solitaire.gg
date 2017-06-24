@@ -6,7 +6,7 @@ import models.audit.AnalyticsEvent
 import models.database.{Query, Row}
 import models.queries.BaseQueries
 import org.joda.time.{LocalDate, LocalDateTime}
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.api.libs.json.{JsObject, JsString, Json}
 import utils.Logging
 

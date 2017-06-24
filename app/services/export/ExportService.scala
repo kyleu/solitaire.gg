@@ -3,7 +3,7 @@ package services.export
 import better.files._
 import models.rules.GameRulesSet
 import models.user.User
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.api.test.FakeRequest
 import utils.Application
 

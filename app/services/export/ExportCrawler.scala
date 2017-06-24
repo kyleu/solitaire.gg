@@ -2,7 +2,7 @@ package services.export
 
 import better.files._
 import models.settings.Language
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.api.libs.ws.WSClient
 
 import scala.concurrent.Future

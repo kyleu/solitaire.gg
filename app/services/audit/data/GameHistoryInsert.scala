@@ -7,7 +7,7 @@ import models.queries.history.GameHistoryQueries
 import models.rules.GameRulesSet
 import models.user.User
 import org.joda.time.LocalDateTime
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.api.libs.json.{JsNumber, JsValue}
 import services.database.Database
 import utils.DateUtils

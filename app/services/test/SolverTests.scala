@@ -8,7 +8,7 @@ import services.history.GameSeedService
 import utils.Logging
 
 import scala.util.Random
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 
 class SolverTests() extends Logging {
   val all = Tree(Test("solver"), GameRulesSet.all.map(x => testSolver(x.id).toTree))

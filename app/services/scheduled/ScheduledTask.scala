@@ -1,10 +1,11 @@
 package services.scheduled
 
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import services.email.EmailService
 import utils.Logging
 
 import scala.concurrent.Future
+import scala.util.{Failure, Success}
 
 object ScheduledTask {
   trait Task {
@@ -34,13 +35,11 @@ class ScheduledTask @javax.inject.Inject() (emailService: EmailService, config: 
       running = true
       val startMs = System.currentTimeMillis
       val f = Future.sequence(tasks.map(_.run()))
-      f.onFailure {
-        case t: Throwable =>
+      f.onComplete {
+        case Success(_) => running = false
+        case Failure(t) =>
           log.warn("Exception encountered running scheduled tasks.", t)
-          running = false;
-      }
-      f.onSuccess {
-        case _ => running = false
+          running = false
       }
       f.map { ret =>
         val duration = System.currentTimeMillis - startMs

@@ -4,7 +4,7 @@ import models.queries.audit.AnalyticsEventQueries
 import org.joda.time.LocalDate
 import services.audit.DailyMetricService
 import services.database.Database
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import utils.{Application, DateUtils}
 
 import scala.concurrent.Future

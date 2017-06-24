@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models.history.{GameHistory, GameSeed}
 import models.queries.history.GameSeedQueries
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import services.database.Database
 import utils.Logging
 

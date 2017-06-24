@@ -2,7 +2,7 @@ package controllers
 
 import models.audit.AnalyticsEvent
 import models.audit.AnalyticsEvent.EventType
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.api.libs.json.JsObject
 import services.audit.NotificationService
 import utils.Logging

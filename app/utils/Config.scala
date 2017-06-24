@@ -18,42 +18,42 @@ object Config {
 class Config @javax.inject.Inject() (cnf: play.api.Configuration, env: Environment) {
   val debug = env.mode == Mode.Dev
 
-  val hostname = cnf.getString("host").getOrElse("localhost")
-  val fileCacheDir = cnf.getString("cache.dir").getOrElse("./cache")
+  val hostname = cnf.get[Option[String]]("host").getOrElse("localhost")
+  val fileCacheDir = cnf.get[Option[String]]("cache.dir").getOrElse("./cache")
 
   val metrics: MetricsConfig = MetricsConfig(
-    jmxEnabled = cnf.getBoolean("metrics.jmx.enabled").getOrElse(true),
-    graphiteEnabled = cnf.getBoolean("metrics.graphite.enabled").getOrElse(false),
-    graphiteServer = cnf.getString("metrics.graphite.server").getOrElse("127.0.0.1"),
-    graphitePort = cnf.getInt("metrics.graphite.port").getOrElse(2003),
-    servletEnabled = cnf.getBoolean("metrics.servlet.enabled").getOrElse(true),
-    servletPort = cnf.getInt("metrics.servlet.port").getOrElse(9001)
+    jmxEnabled = cnf.get[Option[Boolean]]("metrics.jmx.enabled").getOrElse(true),
+    graphiteEnabled = cnf.get[Option[Boolean]]("metrics.graphite.enabled").getOrElse(false),
+    graphiteServer = cnf.get[Option[String]]("metrics.graphite.server").getOrElse("127.0.0.1"),
+    graphitePort = cnf.get[Option[Int]]("metrics.graphite.port").getOrElse(2003),
+    servletEnabled = cnf.get[Option[Boolean]]("metrics.servlet.enabled").getOrElse(true),
+    servletPort = cnf.get[Option[Int]]("metrics.servlet.port").getOrElse(9001)
   )
 
   val databaseConfiguration = new DbConfig(
-    host = cnf.getString("database.host").getOrElse("localhost"),
+    host = cnf.get[Option[String]]("database.host").getOrElse("localhost"),
     port = 5432,
-    database = cnf.getString("database.schema"),
-    username = cnf.getString("database.username").getOrElse(Config.projectId),
-    password = cnf.getString("database.password")
+    database = cnf.get[Option[String]]("database.schema"),
+    username = cnf.get[Option[String]]("database.username").getOrElse(Config.projectId),
+    password = cnf.get[Option[String]]("database.password")
   )
 
-  val sparkEnabled = cnf.getBoolean("spark.enabled").getOrElse(false)
-  val sparkMaster = cnf.getString("spark.master").getOrElse("local[8]")
-  val sparkPort = cnf.getInt("spark.uiport").getOrElse(4040)
+  val sparkEnabled = cnf.get[Option[Boolean]]("spark.enabled").getOrElse(false)
+  val sparkMaster = cnf.get[Option[String]]("spark.master").getOrElse("local[8]")
+  val sparkPort = cnf.get[Option[Int]]("spark.uiport").getOrElse(4040)
 
   // Admin
-  val adminEmail = cnf.getString("game.admin.email").getOrElse("admin@localhost")
+  val adminEmail = cnf.get[Option[String]]("game.admin.email").getOrElse("admin@localhost")
 
   // Notifications
-  val slackEnabled = cnf.getBoolean("slack.enabled").getOrElse(false)
-  val slackUrl = cnf.getString("slack.url").getOrElse("no_url_provided")
+  val slackEnabled = cnf.get[Option[Boolean]]("slack.enabled").getOrElse(false)
+  val slackUrl = cnf.get[Option[String]]("slack.url").getOrElse("no_url_provided")
 
   // Metrics
-  val jmxEnabled = cnf.getBoolean("metrics.jmx.enabled").getOrElse(false)
-  val graphiteEnabled = cnf.getBoolean("metrics.graphite.enabled").getOrElse(false)
-  val graphiteServer = cnf.getString("metrics.graphite.server").getOrElse("localhost")
-  val graphitePort = cnf.getInt("metrics.graphite.port").getOrElse(8080)
-  val servletEnabled = cnf.getBoolean("metrics.servlet.enabled").getOrElse(false)
-  val servletPort = cnf.getInt("metrics.servlet.port").getOrElse(9001)
+  val jmxEnabled = cnf.get[Option[Boolean]]("metrics.jmx.enabled").getOrElse(false)
+  val graphiteEnabled = cnf.get[Option[Boolean]]("metrics.graphite.enabled").getOrElse(false)
+  val graphiteServer = cnf.get[Option[String]]("metrics.graphite.server").getOrElse("localhost")
+  val graphitePort = cnf.get[Option[Int]]("metrics.graphite.port").getOrElse(8080)
+  val servletEnabled = cnf.get[Option[Boolean]]("metrics.servlet.enabled").getOrElse(false)
+  val servletPort = cnf.get[Option[Int]]("metrics.servlet.port").getOrElse(9001)
 }

@@ -4,7 +4,7 @@ import models.audit.DailyMetric
 import models.audit.DailyMetric._
 import models.queries.audit.DailyMetricQueries
 import org.joda.time.LocalDate
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import services.database.Database
 import utils.DateUtils
 

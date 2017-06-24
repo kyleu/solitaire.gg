@@ -5,7 +5,7 @@ import java.util.UUID
 import controllers.BaseController
 import models.audit.UserFeedback
 import models.queries.audit.{UserFeedbackNoteQueries, UserFeedbackQueries}
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import services.database.Database
 import utils.{DateUtils, Application}
 

@@ -30,7 +30,7 @@ case class GameSolver(rules: String, testSeed: Int, gameSeed: Int) extends Loggi
   val moveHelper = new MoveHelper(gameState, () => ())
   val undoHelper = new UndoHelper()
 
-  private[this] val requests = new RequestMessageHandler(GameSolver.userId, gameState, undoHelper, handle, moveHelper.registerMove)
+  private[this] val requests = new RequestMessageHandler(GameSolver.userId, gameState, undoHelper, handle, moveHelper.registerMove _)
 
   InitialMoves.performInitialMoves(gameRules, gameState)
 

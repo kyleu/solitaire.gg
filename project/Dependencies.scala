@@ -8,7 +8,9 @@ object Dependencies {
     val ws = play.sbt.PlayImport.ws
     val json = "com.typesafe.play" %% "play-json" % version
     val test = "com.typesafe.play" %% "play-test" % version
+
     val mailer = "com.typesafe.play" %% "play-mailer" % "6.0.0"
+    val mailerGuice = "com.typesafe.play" %% "play-mailer-guice" % "6.0.0"
   }
 
   object Akka {
@@ -23,7 +25,7 @@ object Dependencies {
   }
 
   object Database {
-    val postgresAsync = "com.github.mauricio" %% "postgresql-async" % "0.2.21" exclude("io.netty", "netty-all")
+    val postgresAsync = "com.github.mauricio" %% "postgresql-async" % "0.2.21" //exclude("io.netty", "netty-all")
   }
 
   object Cache {

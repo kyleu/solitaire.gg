@@ -6,7 +6,7 @@ import models.audit.AnalyticsEvent
 import models.queries.user.UserQueries
 import models.user.User
 import org.joda.time.LocalDateTime
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.api.libs.json._
 import services.database.Database
 import services.user.UserService

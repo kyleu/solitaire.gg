@@ -7,7 +7,7 @@ import models.database.Statement
 import models.history.GameHistory
 import models.queries.user.{UserQueries, UserStatisticsQueries}
 import models.user.UserStatistics
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import services.database.Database
 import utils.DateUtils
 

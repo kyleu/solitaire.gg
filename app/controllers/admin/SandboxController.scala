@@ -2,7 +2,7 @@ package controllers.admin
 
 import akka.util.Timeout
 import controllers.BaseController
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.twirl.api.Html
 import services.sandbox.SandboxTask.{HtmlSandbox, RunScheduledTask}
 import services.sandbox._

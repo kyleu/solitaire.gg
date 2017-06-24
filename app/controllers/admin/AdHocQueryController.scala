@@ -8,7 +8,7 @@ import models.queries.adhoc.{AdHocQueries, AdHocQuery}
 import org.joda.time.LocalDateTime
 import play.api.data.Form
 import play.api.data.Forms._
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import services.database.Database
 import utils.{Application, DateUtils}
 

@@ -6,7 +6,7 @@ import models.history.InstallHistory
 import models.queries.history.InstallHistoryQueries
 import models.user.User
 import org.joda.time.LocalDateTime
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.api.libs.json.JsValue
 import services.database.Database
 import utils.DateUtils

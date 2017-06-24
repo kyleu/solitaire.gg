@@ -1,7 +1,7 @@
 package controllers
 
 import play.api.i18n.I18nSupport
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.api.mvc._
 import utils.metrics.Instrumented
 import utils.{Application, Logging}
@@ -15,16 +15,16 @@ object BaseController extends Logging {
   }
 }
 
-abstract class BaseController() extends Controller with I18nSupport with Instrumented with Logging {
+abstract class BaseController() extends InjectedController with I18nSupport with Instrumented with Logging {
   def app: Application
 
-  override def messagesApi = app.messagesApi
+  override implicit val messagesApi = app.messagesApi
 
-  def req(action: String)(block: (Request[AnyContent]) => Future[Result]) = Action.async { implicit request =>
+  def req(action: String)(block: (Request[AnyContent]) => Future[Result]) = Action.async(parse.anyContent) { implicit request =>
     metrics.timer(action).timeFuture(block(request))
   }
 
-  def withAdminSession(action: String)(block: (Request[AnyContent]) => Future[Result]) = Action.async { implicit request =>
+  def withAdminSession(action: String)(block: (Request[AnyContent]) => Future[Result]) = Action.async(parse.anyContent) { implicit request =>
     val cookie = request.cookies.get("role").map(_.value)
     if (cookie.contains(BaseController.adminKey)) {
       metrics.timer(action).timeFuture(block(request))

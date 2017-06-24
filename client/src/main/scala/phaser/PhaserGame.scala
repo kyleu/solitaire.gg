@@ -30,7 +30,7 @@ object PhaserGame {
 class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   this.antialias = true
 
-  val gameplay = new Gameplay(this, gg.settings.getSettings, gg.onPhaserLoadComplete)
+  val gameplay = new Gameplay(this, gg.settings.getSettings, gg.onPhaserLoadComplete _)
 
   var possibleMoves: Seq[PossibleMove] = Nil
 

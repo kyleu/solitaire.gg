@@ -5,7 +5,7 @@ import java.util.UUID
 import controllers.BaseController
 import models.queries.audit.AnalyticsEventQueries
 import models.queries.history.{GameHistoryQueries, InstallHistoryQueries, OpenHistoryQueries}
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import play.twirl.api.Html
 import services.audit.AnalyticsService
 import services.audit.data.AnalyticsDataInsert

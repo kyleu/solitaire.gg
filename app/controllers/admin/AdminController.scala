@@ -3,7 +3,7 @@ package controllers.admin
 import akka.util.Timeout
 import controllers.BaseController
 import models.rules.GameRulesSet
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import utils.FutureUtils.defaultContext
 import services.database.Schema
 import utils.Application
 
