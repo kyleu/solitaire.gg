@@ -45,7 +45,7 @@ case class GameHistory(
     seed: Int,
     status: GameHistory.Status,
     player: UUID,
-    cards: Int,
+    cards: Int = 0,
     moves: Int = 0,
     undos: Int = 0,
     redos: Int = 0,

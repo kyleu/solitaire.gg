@@ -79,7 +79,7 @@ object Dependencies {
 
     val enumeratumVersion = "1.5.14"
 
-    val betterFiles = "com.github.pathikrit" %% "better-files" % "2.17.1"
+    val betterFiles = "com.github.pathikrit" %% "better-files" % "3.0.0"
   }
 
   object Testing {

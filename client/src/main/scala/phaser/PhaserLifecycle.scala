@@ -30,6 +30,8 @@ object PhaserLifecycle {
     val redos = g.gameplay.services.undo.redoCount
     OnGameComplete(
       id = g.gameplay.services.state.gameId,
+      rules = g.gameplay.services.state.rules,
+      seed = g.gameplay.services.state.seed,
       status = status,
       duration = 0L,
       moves = moves,

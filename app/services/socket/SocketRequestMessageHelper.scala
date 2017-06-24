@@ -6,7 +6,7 @@ import models.rules.GameRulesSet
 import models.rules.impl.Sandbox
 import msg.req._
 import msg.rsp.Pong
-import services.history.GameHistoryService
+import services.history.{GameHistoryService, GameSeedService}
 import services.user.{UserService, UserStatisticsService}
 import utils.DateUtils
 import utils.metrics.InstrumentedActor
@@ -35,11 +35,10 @@ trait SocketRequestMessageHelper extends InstrumentedActor { this: SocketService
   private[this] def onGameComplete(gc: OnGameComplete) = {
     val gh = GameHistory(
       id = gc.id,
-      rules = "",
-      seed = 0,
+      rules = gc.rules,
+      seed = gc.seed,
       status = GameHistory.Status.withValue(gc.status),
       player = user.id,
-      cards = 0,
       moves = gc.moves,
       undos = gc.undos,
       redos = gc.redos,
@@ -49,6 +48,9 @@ trait SocketRequestMessageHelper extends InstrumentedActor { this: SocketService
     )
 
     GameHistoryService.onComplete(gh)
+    GameSeedService.onComplete(gh)
     UserStatisticsService.registerGame(gh)
+
+    log.info(s"Game completed: $gh")
   }
 }
