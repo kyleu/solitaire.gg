@@ -1,12 +1,10 @@
 package utils
 
 import org.slf4j.{LoggerFactory, MarkerFactory}
-import play.api.Logger
+import play.api.{Logger, MarkerContext}
 import utils.metrics.Instrumented
 
 object Logging extends Instrumented {
-  implicit val mc = MarkerContext(MarkerFactory.getMarker("scala"))
-
   private[this] val traceMeter = metrics.meter("log.trace")
   private[this] val debugMeter = metrics.meter("log.debug")
   private[this] val infoMeter = metrics.meter("log.info")
@@ -18,57 +16,59 @@ object Logging extends Instrumented {
   def setCallback(f: (Int, String) => Unit) = callback = Some(f)
 
   case class CustomLogger(name: String) extends Logger(LoggerFactory.getLogger(name)) {
-    override def trace(message: => String) = {
+    implicit val mc = MarkerContext(MarkerFactory.getMarker(name))
+
+    override def trace(message: => String)(implicit mc: MarkerContext) = {
       traceMeter.mark()
       super.trace(message)
     }
-    override def trace(message: => String, error: => Throwable) = {
+    override def trace(message: => String, error: => Throwable)(implicit mc: MarkerContext) = {
       traceMeter.mark()
       super.trace(message, error)
     }
-    override def debug(message: => String) = {
+    override def debug(message: => String)(implicit mc: MarkerContext) = {
       debugMeter.mark()
       super.debug(message)
     }
-    override def debug(message: => String, error: => Throwable) = {
+    override def debug(message: => String, error: => Throwable)(implicit mc: MarkerContext) = {
       debugMeter.mark()
       super.debug(message, error)
     }
-    override def info(message: => String) = {
+    override def info(message: => String)(implicit mc: MarkerContext) = {
       callback.foreach(_(1, message))
       infoMeter.mark()
       super.info(message)
     }
-    override def info(message: => String, error: => Throwable) = {
+    override def info(message: => String, error: => Throwable)(implicit mc: MarkerContext) = {
       callback.foreach(_(1, message))
       infoMeter.mark()
       super.info(message, error)
     }
-    override def warn(message: => String) = {
+    override def warn(message: => String)(implicit mc: MarkerContext) = {
       callback.foreach(_(2, message))
       warnMeter.mark()
       super.warn(message)
     }
-    override def warn(message: => String, error: => Throwable) = {
+    override def warn(message: => String, error: => Throwable)(implicit mc: MarkerContext) = {
       callback.foreach(_(2, message))
       warnMeter.mark()
       super.warn(message, error)
     }
-    override def error(message: => String) = {
+    override def error(message: => String)(implicit mc: MarkerContext) = {
       callback.foreach(_(3, message))
       errorMeter.mark()
       super.error(message)
     }
-    override def error(message: => String, error: => Throwable) = {
+    override def error(message: => String, error: => Throwable)(implicit mc: MarkerContext) = {
       callback.foreach(_(3, message))
       errorMeter.mark()
       super.error(message, error)
     }
-    def errorThenThrow(message: => String) = {
+    def errorThenThrow(message: => String)(implicit mc: MarkerContext) = {
       this.error(message)
       throw new IllegalStateException(message)
     }
-    def errorThenThrow(message: => String, error: => Throwable) = {
+    def errorThenThrow(message: => String, error: => Throwable)(implicit mc: MarkerContext) = {
       this.error(message, error)
       throw error
     }
