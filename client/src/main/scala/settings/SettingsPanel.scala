@@ -3,8 +3,6 @@ package settings
 import models.settings._
 import org.scalajs.jquery.{jQuery => $}
 
-import scala.scalajs.js
-
 object SettingsPanel {
   private[this] var initialized = false
   private[this] var originalSettings = Settings.default

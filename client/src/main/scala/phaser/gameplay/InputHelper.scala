@@ -1,7 +1,7 @@
 package phaser.gameplay
 
 import client.SolitaireGG
-import input.{GamepadHandler, InputContextService, InputMessage, KeyboardHandler}
+import input.{GamepadHandler, InputMessage, KeyboardHandler}
 
 class InputHelper(gg: SolitaireGG) {
   new KeyboardHandler(gg.phaser, onInput)

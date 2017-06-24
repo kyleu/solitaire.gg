@@ -17,7 +17,7 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
 
   private[this] var latencyMs: Option[Int] = None
 
-  private[this] val socket = new NetworkSocket(onSocketConnect, onSocketResponseMessage, onSocketError, onSocketClose)
+  private[this] val socket = new NetworkSocket(onSocketConnect _, onSocketResponseMessage, onSocketError, onSocketClose _)
   socket.open(socketUrl)
 
   private def sendPing(): Unit = {

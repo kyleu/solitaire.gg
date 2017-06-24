@@ -1,7 +1,5 @@
 package navigation
 
-import java.util.NoSuchElementException
-
 import org.scalajs.jquery.{jQuery => $}
 
 import enumeratum.values._

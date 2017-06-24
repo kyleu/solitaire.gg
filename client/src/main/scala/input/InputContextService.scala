@@ -24,6 +24,7 @@ class InputContextService(state: GameState, highlight: (Seq[String], Seq[Int]) =
     utils.Logging.info("Input Message: " + inputMessage)
     inputMessage match {
       case InputMessage.NextCard => nextCard()
+      case InputMessage.PreviousCard => previousCard()
       case _ => utils.Logging.info(s"Unhandled input context message [$inputMessage].")
     }
     log()

@@ -3,7 +3,6 @@ package phaser.playmat
 import com.definitelyscala.phaser.Group
 import models.{GameLost, GameWon}
 import models.pile.set.PileSet
-import org.scalajs.dom
 import phaser.PhaserGame
 import phaser.card.CardSprite
 import phaser.gameplay.HighlightService
