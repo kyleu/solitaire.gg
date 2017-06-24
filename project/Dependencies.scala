@@ -13,7 +13,7 @@ object Dependencies {
   }
 
   object Akka {
-    private[this] val version = "2.5.2"
+    private[this] val version = "2.5.3"
     val actor = "com.typesafe.akka" %% "akka-actor" % version
     val cluster = "com.typesafe.akka" %% "akka-cluster" % version
     val contrib = "com.typesafe.akka" %% "akka-contrib" % version
@@ -70,7 +70,7 @@ object Dependencies {
   }
 
   object Utils {
-    val scapegoatVersion = "1.3.0"
+    val scapegoatVersion = "1.3.1"
 
     private[this] val twitterVersion = "6.45.0"
     val core = "com.twitter" %% "util-core" % twitterVersion
