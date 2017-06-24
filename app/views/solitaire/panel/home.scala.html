@@ -1,19 +1,17 @@
 @()<div id="panel-home" class="section-panel">
-      <div class="panel-content">
-        <div id="home-content" class="theme striped with-margin">
-          <p>Most web solitaire sucks. Most good solitaire apps are expensive. Free solitaire usually has ads.</p>
+  <div class="panel-content">
+    <div id="home-content" class="theme striped with-margin">
+      <p>Most web solitaire sucks. Most good solitaire apps are expensive. Free solitaire usually has ads.</p>
 
-          <p>
-            <a href="@controllers.routes.SolitaireController.start()">Solitaire.gg</a> is ad-free,
-            <a target="_blank" href="https://github.com/KyleU/solitaire.gg">open source</a>, and nice.
-            We're trying to be the <a target="_blank" href="https://lichess.org">lichess</a> of solitaire. Thanks for playing.
-          </p>
+      <p>
+        <a href="@controllers.routes.SolitaireController.start()">Solitaire.gg</a> is ad-free,
+        <a target="_blank" href="https://github.com/KyleU/solitaire.gg">open source</a>, and nice.
+        We're trying to be the <a target="_blank" href="https://lichess.org">lichess</a> of solitaire. Thanks for playing.
+      </p>
 
-          <p>
-            <a href="@controllers.routes.SolitaireController.startArgs("play")" id="home-link-play" class="btn-big">Play Solitaire Now</a>
-            <br />
-            <a href="@controllers.routes.SolitaireController.startArgs("games")" id="home-link-games">Show all games</a>
-          </p>
-        </div>
-      </div>
+      <p>
+        <a href="@controllers.routes.SolitaireController.startArgs("play")" class="home-link-play btn-big">Play Solitaire Now</a>
+      </p>
     </div>
+  </div>
+</div>

@@ -22,8 +22,18 @@ object GameListService {
     val optionsEl = $(".options-el", panel)
 
     ag match {
-      case Some(activeGame) => optionsEl.html(GameListTemplate.optionsContent(activeGame).toString)
-      case None => optionsEl.html($("#home-content").html())
+      case Some(activeGame) =>
+        optionsEl.html(GameListTemplate.optionsContent(activeGame).toString)
+      case None =>
+        utils.Logging.info("*")
+        optionsEl.html($("#home-content").html())
+        val playLink = $(".home-link-play", optionsEl)
+        if (playLink.length != 1) {
+          throw new IllegalStateException(s"Found [${playLink.length}] play links.")
+        }
+        TemplateUtils.clickHandler(playLink, jq => {
+          onNewGame(Nil)
+        })
     }
   }
 }
