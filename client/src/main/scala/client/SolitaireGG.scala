@@ -26,7 +26,7 @@ object SolitaireGG {
   }
 }
 
-class SolitaireGG(val debug: Boolean) extends InitHelper {
+class SolitaireGG(val debug: Boolean) extends InitHelper with NavigationHelper with MessageHelper {
   protected[this] var game: Option[ActiveGame] = None
   def hasGame = game.isDefined
   def getGame = game.getOrElse(throw new IllegalStateException("No active game."))
@@ -42,31 +42,6 @@ class SolitaireGG(val debug: Boolean) extends InitHelper {
   val phaser = new PhaserGame(this)
 
   init()
-
-  private[this] def onStateChange(o: NavigationState, n: NavigationState, args: Seq[String]): Unit = {
-    o match {
-      case NavigationState.Loading => navigation.setMenuPosition(settings.getSettings.menuPosition)
-      case NavigationState.Settings => settings.applyAndSave(SettingsPanel.getCurrentSettings)
-      case _ => // noop
-    }
-    n match {
-      case NavigationState.Games => GameListService.update(game, rules => {
-        phaser.gameplay.activeGame.foreach { gameId =>
-          GameStartService.endGame(this, gameId, win = false)
-        }
-        navigation.navigate(NavigationState.Play, rules)
-      })
-      case NavigationState.Settings => SettingsPanel.initIfNeeded(settings.getSettings)
-      case NavigationState.Play => GameStartService.onGameStateChange(this, args)
-      case NavigationState.Help => HelpService.show(args.headOption)
-      case _ => // noop
-    }
-  }
-
-  private[this] def handleSocketResponseMessage(msg: SocketResponseMessage) = msg match {
-    case p: Profile => utils.Logging.info(s"Profile: $p")
-    case _ => utils.Logging.info(s"Unhandled SocketResponseMessage: [$msg].")
-  }
 
   def onSandbox() = {
     val seq = Seq("draw", "shuffle", "playcard")

@@ -1,13 +1,14 @@
 package game
 
 import help.HelpService
+import navigation.{NavigationService, NavigationState}
 import org.scalajs.jquery.{jQuery => $}
 import utils.TemplateUtils
 
 object GameListService {
   private[this] var initialized = false
 
-  def update(ag: Option[ActiveGame], onNewGame: Seq[String] => Unit) = {
+  def update(ag: Option[ActiveGame], onNewGame: Seq[String] => Unit, navigation: NavigationService) = {
     val panel = $("#panel-list-games .content")
 
     if (!initialized) {
@@ -24,16 +25,12 @@ object GameListService {
     ag match {
       case Some(activeGame) =>
         optionsEl.html(GameListTemplate.optionsContent(activeGame).toString)
+        TemplateUtils.clickHandler($(".btn-resume", optionsEl), jq => navigation.navigate(NavigationState.Play))
+        TemplateUtils.clickHandler($(".btn-resign", optionsEl), jq => onNewGame(Seq("resign")))
+        TemplateUtils.clickHandler($(".btn-redeal", optionsEl), jq => onNewGame(Seq(activeGame.rulesId)))
       case None =>
-        utils.Logging.info("*")
         optionsEl.html($("#home-content").html())
-        val playLink = $(".home-link-play", optionsEl)
-        if (playLink.length != 1) {
-          throw new IllegalStateException(s"Found [${playLink.length}] play links.")
-        }
-        TemplateUtils.clickHandler(playLink, jq => {
-          onNewGame(Nil)
-        })
+        TemplateUtils.clickHandler($(".home-link-play", optionsEl), jq => onNewGame(Nil))
     }
   }
 }

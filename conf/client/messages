@@ -12,6 +12,16 @@ general.number.ten = ten
 general.number.eleven = eleven
 general.number.twelve = twelve
 
+# Options
+options.resume = Resume Game
+options.resign = Resign
+options.redeal = New Deal
+options.same.deal = Same Deal
+options.winnable = Winnable Deal
+
+# Settings
+settings.title = Settings
+
 # Help
 help.title = {0} Help
 help.about = This is {0}.

@@ -29,8 +29,14 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
     dom.window.history.replaceState("", state.value, url)
   }
 
-  def navigate(state: NavigationState, args: Seq[String] = Nil) = if (state == currentState) {
-    utils.Logging.warn(s"State transition to self [$currentState].")
+  def navigate(state: NavigationState, args: Seq[String] = Nil, allowSelf: Boolean = false) = if (state == currentState) {
+    if (allowSelf) {
+      utils.Logging.debug(s"State self-transition for [$currentState] with args [${args.mkString(", ")}].")
+      onStateChange(currentState, state, args)
+      setPath(state, args)
+    } else {
+      utils.Logging.warn(s"State transition to self [$currentState].")
+    }
   } else {
     utils.Logging.debug(s"State transitioning from [$currentState] to [$state] with args [${args.mkString(", ")}].")
     onStateChange(currentState, state, args)

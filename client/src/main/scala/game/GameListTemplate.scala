@@ -15,10 +15,11 @@ object GameListTemplate {
 
   def optionsContent(ag: ActiveGame) = div(
     ul(cls := "game-links")(
-      li(a(cls := "rules-link", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.resign"))),
-      li(a(cls := "rules-link", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.redeal"))),
-      li(a(cls := "rules-link", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.same.deal"))),
-      li(a(cls := "rules-link", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.winnable")))
+      li(a(cls := "rules-link btn-resume", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.resume"))),
+      li(a(cls := "rules-link btn-resign", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.resign"))),
+      li(a(cls := "rules-link btn-redeal", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.redeal"))),
+      li(a(cls := "rules-link btn-same-deal", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.same.deal"))),
+      li(a(cls := "rules-link btn-winnable", href := s"/play/${ag.rulesId}", data("rules") := ag.rulesId)(Messages("options.winnable")))
     )
   )
 
