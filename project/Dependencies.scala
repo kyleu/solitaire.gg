@@ -6,6 +6,7 @@ object Dependencies {
     val lib = "com.typesafe.play" %% "play" % version
     val filters = play.sbt.PlayImport.filters
     val ws = play.sbt.PlayImport.ws
+    val twirl = "com.typesafe.play" %% "twirl-api" % "1.3.3"
     val json = "com.typesafe.play" %% "play-json" % version
     val test = "com.typesafe.play" %% "play-test" % version
 
