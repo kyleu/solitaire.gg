@@ -7,7 +7,7 @@ object Dependencies {
     val filters = play.sbt.PlayImport.filters
     val ws = play.sbt.PlayImport.ws
     val twirl = "com.typesafe.play" %% "twirl-api" % "1.3.3"
-    val json = "com.typesafe.play" %% "play-json" % version
+    val json = "com.typesafe.play" %% "play-json" % "2.6.1"
     val test = "com.typesafe.play" %% "play-test" % version
 
     val mailer = "com.typesafe.play" %% "play-mailer" % "6.0.0"
@@ -52,7 +52,7 @@ object Dependencies {
   }
 
   object Metrics {
-    private[this] val version = "3.2.2"
+    private[this] val version = "3.2.3"
     val jvm = "io.dropwizard.metrics" % "metrics-jvm" % version withSources()
     val ehcache = "io.dropwizard.metrics" % "metrics-ehcache" % version withSources() intransitive()
     val healthChecks = "io.dropwizard.metrics" % "metrics-healthchecks" % version withSources() intransitive()
@@ -60,7 +60,7 @@ object Dependencies {
     val servlets = "io.dropwizard.metrics" % "metrics-servlets" % version withSources() intransitive()
     val graphite = "io.dropwizard.metrics" % "metrics-graphite" % version withSources() intransitive()
 
-    val metrics = "nl.grons" %% "metrics-scala" % "3.5.8" withSources()
+    val metrics = "nl.grons" %% "metrics-scala" % "3.5.9" withSources()
     val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.4.6.v20170531" withSources()
   }
 
