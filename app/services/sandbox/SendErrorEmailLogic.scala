@@ -5,7 +5,7 @@ import utils.Application
 import scala.concurrent.Future
 
 trait SendErrorEmailLogic {
-  def run(ctx: Application) = {
+  def call(ctx: Application) = {
     Future.successful("Ok!")
   }
 }

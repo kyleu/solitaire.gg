@@ -11,7 +11,7 @@ trait SolverStressTestLogic {
     runTest()
   }
 
-  def run(ctx: Application) = {
+  def call(ctx: Application) = {
     (0 to 4).foreach(_ => runTest())
     Future.successful("Stress testing!")
   }

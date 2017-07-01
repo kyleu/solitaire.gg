@@ -10,7 +10,7 @@ import utils.{Application, DateUtils}
 import scala.concurrent.Future
 
 trait BackfillMetricsLogic {
-  def run(ctx: Application) = {
+  def call(ctx: Application) = {
     def getDays(d: LocalDate) = {
       val today = DateUtils.today
       val start = (d.getYear * 365) + d.getDayOfYear

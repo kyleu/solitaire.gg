@@ -1,7 +1,7 @@
 GET         /                                controllers.admin.AdminController.index()
 GET         /unfinished                      controllers.admin.AdminController.unfinished()
 
-GET         /sandbox                         controllers.admin.SandboxController.defaultSandbox()
+GET         /sandbox                         controllers.admin.SandboxController.list()
 GET         /sandbox/:key                    controllers.admin.SandboxController.sandbox(key)
 
 GET         /wipe                            controllers.admin.AdminController.wipeSchema(key)

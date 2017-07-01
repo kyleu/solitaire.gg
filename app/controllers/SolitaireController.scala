@@ -25,15 +25,6 @@ class SolitaireController @javax.inject.Inject() (
 ) extends BaseController {
   private[this] implicit val t = new MessageFrameFormatter(app.config.debug).transformer
 
-  private[this] def getUser(request: RequestHeader) = request.session.get("userId") match {
-    case Some(id) if id.length == 36 => UserService.getById(UUID.fromString(id)).flatMap {
-      case Some(user) => Future.successful(user)
-      case None => UserService.newUser()
-    }
-    case Some(_) => UserService.newUser()
-    case None => UserService.newUser()
-  }
-
   def start() = startArgs("")
 
   def startArgs(path: String) = req("solitaire") { implicit request =>

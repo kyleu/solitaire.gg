@@ -2,10 +2,9 @@ package controllers.admin
 
 import akka.util.Timeout
 import controllers.BaseController
+import models.sandbox.SandboxTask
 import utils.FutureUtils.defaultContext
-import play.twirl.api.Html
-import services.sandbox.SandboxTask.{HtmlSandbox, RunScheduledTask}
-import services.sandbox._
+import models.sandbox.SandboxTask.RunScheduledTask
 import services.scheduled.ScheduledTask
 import utils.Application
 
@@ -14,19 +13,21 @@ import scala.concurrent.duration._
 
 @javax.inject.Singleton
 class SandboxController @javax.inject.Inject() (override val app: Application, scheduledTask: ScheduledTask) extends BaseController {
-  implicit val timeout = Timeout(10.seconds)
-
-  def defaultSandbox() = sandbox("list")
-
   RunScheduledTask.scheduledTask = Some(scheduledTask)
 
-  def sandbox(key: String) = withAdminSession(key) { implicit request =>
-    val sandbox = SandboxTask.withValue(key)
-    if (sandbox == HtmlSandbox) {
-      Future.successful(Ok(views.html.admin.test.sandbox(java.util.UUID.randomUUID())))
-    } else {
+  implicit val timeout = Timeout(10.seconds)
+
+  def list = withAdminSession("sandbox.list") { implicit request =>
+    getUser(request).map { u =>
+      Ok(views.html.admin.sandbox.list(u))
+    }
+  }
+
+  def sandbox(key: String) = withAdminSession("sandbox." + key) { implicit request =>
+    val sandbox = SandboxTask.withName(key)
+    getUser(request).flatMap { u =>
       sandbox.run(app).map { result =>
-        Ok(Html(result))
+        Ok(views.html.admin.sandbox.run(u, sandbox, result))
       }
     }
   }
