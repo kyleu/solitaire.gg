@@ -15,7 +15,6 @@ object SandboxSchema {
 
   val sandboxTaskType = ObjectType("SandboxTaskDetail", "Detailed information about sandbox tasks.", fields[Unit, SandboxTask](
     Field("id", StringType, Some("The  id for the sandbox task."), resolve = _.value.toString),
-    Field("key", StringType, Some("The name of the sandbox task."), resolve = _.value.key),
     Field("description", StringType, Some("The description of the sandbox task."), resolve = _.value.description)
   ))
 

@@ -8,7 +8,7 @@
         <ul class="collection">
         @models.sandbox.SandboxTask.values.map { s =>
           <li class="collection-item">
-            <a class="theme-text" href="@controllers.admin.routes.SandboxController.sandbox(s.key)">@s.key</a>
+            <a class="theme-text" href="@controllers.admin.routes.SandboxController.sandbox(s.toString)">@s</a>
             <div>@s.description</div>
           </li>
         }

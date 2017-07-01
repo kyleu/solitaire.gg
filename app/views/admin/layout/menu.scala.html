@@ -68,7 +68,7 @@
       <ul class="dropdown-menu" role="menu">
         <li><a href="@controllers.admin.routes.SandboxController.list()"><strong>Sandboxes</strong></a></li>
         @models.sandbox.SandboxTask.values.map { sandbox =>
-          <li><a href="@controllers.admin.routes.SandboxController.sandbox(sandbox.key)" title="@sandbox.description">@sandbox.key</a></li>
+          <li><a href="@controllers.admin.routes.SandboxController.sandbox(sandbox.toString)" title="@sandbox.description">@sandbox</a></li>
         }
         <li class="divider"></li>
         <li><a href="#">Sign Out</a></li>

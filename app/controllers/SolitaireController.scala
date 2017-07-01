@@ -1,21 +1,15 @@
 package controllers
 
-import java.util.UUID
-
 import akka.actor.ActorSystem
 import akka.stream.Materializer
 import msg.req.SocketRequestMessage
 import msg.rsp.SocketResponseMessage
-import play.api.i18n.Lang
-import utils.FutureUtils.defaultContext
 import play.api.libs.streams.ActorFlow
-import play.api.mvc.{RequestHeader, WebSocket}
+import play.api.mvc.WebSocket
 import services.socket.SocketService
-import services.user.UserService
 import utils.Application
+import utils.FutureUtils.defaultContext
 import utils.web.MessageFrameFormatter
-
-import scala.concurrent.Future
 
 @javax.inject.Singleton
 class SolitaireController @javax.inject.Inject() (

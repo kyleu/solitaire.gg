@@ -4,6 +4,15 @@ GET         /unfinished                      controllers.admin.AdminController.u
 GET         /sandbox                         controllers.admin.SandboxController.list()
 GET         /sandbox/:key                    controllers.admin.SandboxController.sandbox(key)
 
+# GraphQL
+GET         /schema                          controllers.admin.graphql.SchemaController.renderSchema()
+GET         /voyager                         controllers.admin.graphql.SchemaController.voyager()
+
+GET         /graphql                         controllers.admin.graphql.GraphQLController.graphql(query: Option[String] ?= None, dir: Option[String] ?= None, name: Option[String] ?= None, variables: Option[String] ?= None)
+POST        /graphql                         controllers.admin.graphql.GraphQLController.graphqlBody
+GET         /graphql/load                    controllers.admin.graphql.GraphQLQueryController.load(dir: Option[String], name)
+POST        /graphql/save                    controllers.admin.graphql.GraphQLQueryController.save
+
 GET         /wipe                            controllers.admin.AdminController.wipeSchema(key)
 
 GET         /test                            controllers.admin.TestController.tests
