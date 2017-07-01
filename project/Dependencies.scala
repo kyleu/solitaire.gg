@@ -29,8 +29,9 @@ object Dependencies {
     val postgresAsync = "com.github.mauricio" %% "postgresql-async" % "0.2.21" //exclude("io.netty", "netty-all")
   }
 
-  object Cache {
-    val ehCache = "net.sf.ehcache" % "ehcache-core" % "2.6.11"
+  object GraphQL {
+    val sangria = "org.sangria-graphql" %% "sangria" % "1.2.2"
+    val playJson = "org.sangria-graphql" %% "sangria-play-json" % "1.0.2"
   }
 
   object Spark {

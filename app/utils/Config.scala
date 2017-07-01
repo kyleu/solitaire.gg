@@ -19,7 +19,7 @@ class Config @javax.inject.Inject() (cnf: play.api.Configuration, env: Environme
   val debug = env.mode == Mode.Dev
 
   val hostname = cnf.get[Option[String]]("host").getOrElse("localhost")
-  val fileCacheDir = cnf.get[Option[String]]("cache.dir").getOrElse("./cache")
+  val fileCacheDir = new java.io.File(cnf.get[Option[String]]("cache.dir").getOrElse("./cache"))
 
   val metrics: MetricsConfig = MetricsConfig(
     jmxEnabled = cnf.get[Option[Boolean]]("metrics.jmx.enabled").getOrElse(true),

@@ -10,6 +10,7 @@ import play.api.inject.ApplicationLifecycle
 import play.api.libs.ws.WSClient
 import services.audit.NotificationService
 import services.database.{Database, Schema}
+import services.file.FileService
 import services.scheduled.ScheduledTask
 import services.supervisor.ActorSupervisor
 import utils.metrics.Instrumented
@@ -55,6 +56,8 @@ class Application @javax.inject.Inject() (
 
     Database.open(config.databaseConfiguration)
     Schema.update()
+
+    FileService.setRootDir(config.fileCacheDir)
 
     if (!config.debug) {
       scheduleTask(task, system)

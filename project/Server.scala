@@ -28,12 +28,13 @@ object Server {
   private[this] val dependencies = {
     import Dependencies._
     Seq(
-      Cache.ehCache, Database.postgresAsync,
+      Database.postgresAsync, GraphQL.sangria, GraphQL.playJson,
       Akka.actor, Akka.log4j, Akka.testkit, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */
       Play.filters, Play.ws, Play.test, Play.mailer, Play.mailerGuice, Play.json, Play.twirl,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap, WebJars.underscore, WebJars.d3, WebJars.nvd3, WebJars.materialize, WebJars.jquery,
-      Utils.core, Utils.collection, Utils.betterFiles, Testing.gatlingCore, Testing.gatlingCharts, Play.test
+      Utils.core, Utils.collection, Utils.betterFiles,
+      Testing.gatlingCore, Testing.gatlingCharts, Play.test
     )
   }
 
