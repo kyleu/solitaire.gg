@@ -32,7 +32,7 @@ class AdHocQueryController @javax.inject.Inject() (override val app: Application
 
   def queryList(query: Option[UUID], action: Option[String]) = withAdminSession("list") { implicit request =>
     if (action.contains("load")) {
-      Database.query(AdHocQueries.search("", "title", None)).map { queries =>
+      Database.query(AdHocQueries.search("", "title", None, None)).map { queries =>
         val q = query.flatMap(x => queries.find(_.id == x))
         Ok(views.html.admin.report.adhoc(query, q.map(_.sql).getOrElse(""), Seq.empty -> Seq.empty, 0, queries))
       }
@@ -41,7 +41,7 @@ class AdHocQueryController @javax.inject.Inject() (override val app: Application
         Redirect(controllers.admin.routes.AdHocQueryController.queryList(query, Some("load")))
       }
     } else {
-      Database.query(AdHocQueries.search("", "title", None)).map { queries =>
+      Database.query(AdHocQueries.search("", "title", None, None)).map { queries =>
         Ok(views.html.admin.report.adhoc(query, "", Seq.empty -> Seq.empty, 0, queries))
       }
     }
@@ -56,7 +56,7 @@ class AdHocQueryController @javax.inject.Inject() (override val app: Application
         case "save" => if (form.id.isEmpty || form.id.getOrElse("").isEmpty) {
           val q = AdHocQuery(UUID.randomUUID, form.title, form.sql, new LocalDateTime, new LocalDateTime)
           Database.execute(AdHocQueries.insert(q)).flatMap { _ =>
-            Database.query(AdHocQueries.search("", "title", None)).map { queries =>
+            Database.query(AdHocQueries.search("", "title", None, None)).map { queries =>
               val newId = queries.sortBy(_.created).headOption.map(_.id)
               Ok(views.html.admin.report.adhoc(newId, form.sql, Seq.empty -> Seq.empty, 0, queries))
             }
@@ -65,13 +65,13 @@ class AdHocQueryController @javax.inject.Inject() (override val app: Application
           val queryId = form.id.map(UUID.fromString)
           val q = AdHocQueries.UpdateAdHocQuery(queryId.getOrElse(throw new IllegalStateException()), form.title, form.sql)
           Database.execute(q).flatMap { _ =>
-            Database.query(AdHocQueries.search("", "title", None)).map { queries =>
+            Database.query(AdHocQueries.search("", "title", None, None)).map { queries =>
               Ok(views.html.admin.report.adhoc(queryId, form.sql, Seq.empty -> Seq.empty, 0, queries))
             }
           }
         }
         case "run" =>
-          Database.query(AdHocQueries.search("", "title", None)).flatMap { queries =>
+          Database.query(AdHocQueries.search("", "title", None, None)).flatMap { queries =>
             val startTime = System.currentTimeMillis
             Database.query(AdHocQueries.AdHocQueryExecute(form.sql, Seq.empty)).map { result =>
               val executionTime = (System.currentTimeMillis - startTime).toInt

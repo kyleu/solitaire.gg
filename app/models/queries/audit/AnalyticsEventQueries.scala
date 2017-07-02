@@ -30,14 +30,14 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
   }
 
   case class GetEvents(limit: Int = 100, offset: Int = 0, whereClause: String = "1 = 1", orderBy: String = "created asc") extends Query[Seq[AnalyticsEvent]] {
-    override def sql = s"select $columnString from $tableName where $whereClause order by $orderBy limit $limit offset $offset"
+    override def sql = s"select $quotedColumns from $tableName where $whereClause order by $orderBy limit $limit offset $offset"
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toSeq
   }
 
   case class ProcessEvents(
       f: AnalyticsEvent => Future[String], limit: Int = 100, offset: Int = 0, whereClause: String = "1 = 1", orderBy: String = "created asc"
   ) extends Query[Future[Int]] with Logging {
-    override def sql = s"select $columnString from $tableName where $whereClause order by $orderBy limit $limit offset $offset"
+    override def sql = s"select $quotedColumns from $tableName where $whereClause order by $orderBy limit $limit offset $offset"
     override def reduce(rows: Iterator[Row]) = rows.zipWithIndex.foldLeft(Future.successful(0)) { (x, y) =>
       x.flatMap { _ =>
         if (y._2 % 1000 == 0) {
@@ -59,7 +59,7 @@ object AnalyticsEventQueries extends BaseQueries[AnalyticsEvent] {
   }
 
   case class GetByDate(d: LocalDate) extends Query[Iterator[AnalyticsEvent]] {
-    override def sql = s"select $columnString from $tableName where created >= ? and created < ?"
+    override def sql = s"select $quotedColumns from $tableName where created >= ? and created < ?"
     override def values = Seq(d, d.plusDays(1))
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow)
   }

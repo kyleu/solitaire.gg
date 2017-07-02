@@ -4,6 +4,7 @@ import java.util.UUID
 
 import com.github.mauricio.async.db.Connection
 import models.history.GameHistory
+import models.queries.BaseQueries
 import models.queries.history.GameHistoryQueries
 import models.queries.user.UserQueries
 import org.joda.time.LocalDate
@@ -15,10 +16,10 @@ import scala.concurrent.Future
 object GameHistoryService {
   def getGameHistory(id: UUID) = Database.query(GameHistoryQueries.getById(id))
 
-  def getAll = Database.query(GameHistoryQueries.search("", "created"))
+  def getAll = Database.query(GameHistoryQueries.search("", "created", None, None))
 
   def searchGames(q: String, orderBy: String, page: Int) = Database.query(GameHistoryQueries.searchCount(q)).flatMap { count =>
-    Database.query(GameHistoryQueries.search(q, getOrderClause(orderBy), Some(page))).map { list =>
+    Database.query(GameHistoryQueries.search(q, getOrderClause(orderBy), Some(BaseQueries.pageSize), Some(page * BaseQueries.pageSize))).map { list =>
       count -> list
     }
   }

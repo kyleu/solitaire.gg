@@ -3,6 +3,7 @@ package services.history
 import java.util.UUID
 
 import models.history.{GameHistory, GameSeed}
+import models.queries.BaseQueries
 import models.queries.history.GameSeedQueries
 import utils.FutureUtils.defaultContext
 import services.database.Database
@@ -13,14 +14,14 @@ import scala.concurrent.Future
 object GameSeedService extends Logging {
   def getGameSeed(rules: String, seed: Int) = Database.query(GameSeedQueries.getByKey(rules, seed))
 
-  def getAll = Database.query(GameSeedQueries.search("", "completed desc"))
+  def getAll = Database.query(GameSeedQueries.search("", "completed desc", None, None))
 
   def getCountByUser(id: UUID) = Database.query(GameSeedQueries.getCountForUser(id))
 
   def insert(gs: GameSeed) = Database.execute(GameSeedQueries.insert(gs)).map(_ => true)
 
   def search(q: String, orderBy: String, page: Int) = Database.query(GameSeedQueries.searchCount(q)).flatMap { count =>
-    Database.query(GameSeedQueries.search(q, getOrderClause(orderBy), Some(page))).map { list =>
+    Database.query(GameSeedQueries.search(q, getOrderClause(orderBy), Some(BaseQueries.pageSize), Some(page * BaseQueries.pageSize))).map { list =>
       count -> list
     }
   }

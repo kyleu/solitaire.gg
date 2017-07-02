@@ -4,6 +4,7 @@ import java.util.UUID
 
 import models.audit.AnalyticsEvent
 import models.audit.AnalyticsEvent.EventType
+import models.queries.BaseQueries
 import models.queries.audit.AnalyticsEventQueries
 import utils.FutureUtils.defaultContext
 import play.api.libs.json.JsValue
@@ -31,7 +32,7 @@ object AnalyticsService {
   }
 
   def searchEvents(q: String, orderBy: String, page: Int) = Database.query(AnalyticsEventQueries.searchCount(q)).flatMap { count =>
-    Database.query(AnalyticsEventQueries.search(q, orderBy, Some(page))).map { list =>
+    Database.query(AnalyticsEventQueries.search(q, orderBy, Some(BaseQueries.pageSize), Some(page * BaseQueries.pageSize))).map { list =>
       count -> list
     }
   }

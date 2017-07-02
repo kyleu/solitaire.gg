@@ -75,13 +75,13 @@ class CardSprite(
     name = s"$id:${rank.value}${suit.value}${if (faceUp) { "+" } else { "-" }}"
   }
 
-  def onInputDown(e: Any, p: Pointer) = if (p.button == NullUtils.inst || p.button.toString.toInt == 0) {
+  def onInputDown(e: Any, p: Pointer) = if (Option(p.button).isEmpty || p.button.toString.toInt == 0) {
     if ((!tweening) && pileGroup.canDragFrom(this)) {
       PileDragHelper.startDrag(pileGroup, this, p)
     }
   }
 
-  def onInputUp(e: js.Any, p: Pointer) = if (p.button == NullUtils.inst || p.button.toString.toInt == 0) {
+  def onInputUp(e: js.Any, p: Pointer) = if (Option(p.button).isEmpty || p.button.toString.toInt == 0) {
     CardInput.onInputUp(e, p, this)
   }
 

@@ -3,6 +3,7 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
+import models.queries.BaseQueries
 import models.queries.report.ReportQueries
 import models.queries.user.UserQueries
 import utils.FutureUtils.defaultContext
@@ -17,7 +18,8 @@ import scala.concurrent.Future
 class UserController @javax.inject.Inject() (override val app: Application) extends BaseController {
   def list(q: String, sortBy: String, page: Int) = withAdminSession("user.list") { implicit request =>
     Database.query(UserQueries.searchCount(q)).flatMap { count =>
-      Database.query(UserQueries.search(q, getOrderClause(sortBy), Some(page))).flatMap { users =>
+      val searchQuery = UserQueries.search(q, getOrderClause(sortBy), Some(BaseQueries.pageSize), Some(page * BaseQueries.pageSize))
+      Database.query(searchQuery).flatMap { users =>
         Database.query(ReportQueries.GameCountForUsers(users.map(_.id))).flatMap { gameCounts =>
           Database.query(ReportQueries.WinCountForUsers(users.map(_.id))).map { winCounts =>
             Ok(views.html.admin.user.list(q, sortBy, count, page, users, gameCounts, winCounts))

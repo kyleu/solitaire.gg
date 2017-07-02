@@ -4,16 +4,18 @@ import java.util.UUID
 
 import controllers.BaseController
 import models.audit.UserFeedback
+import models.queries.BaseQueries
 import models.queries.audit.{UserFeedbackNoteQueries, UserFeedbackQueries}
 import utils.FutureUtils.defaultContext
 import services.database.Database
-import utils.{DateUtils, Application}
+import utils.{Application, DateUtils}
 
 @javax.inject.Singleton
 class FeedbackController @javax.inject.Inject() (override val app: Application) extends BaseController {
   def list(key: String, q: String, sortBy: String, page: Int) = withAdminSession("list-" + key) { implicit request =>
     val feedbackList = Database.query(UserFeedbackQueries.searchCount(q)).flatMap { count =>
-      Database.query(UserFeedbackQueries.search(q, getOrderClause(sortBy), Some(page))).flatMap { feedbacks =>
+      val offset = Some(page * BaseQueries.pageSize)
+      Database.query(UserFeedbackQueries.search(q, getOrderClause(sortBy), Some(BaseQueries.pageSize), offset)).flatMap { feedbacks =>
         Database.query(UserFeedbackNoteQueries.GetUserFeedbackNotes(feedbacks.map(_.id))).map { notes =>
           count -> feedbacks.map(f => f -> notes.filter(_.feedbackId == f.id).sortBy(x => DateUtils.toMillis(x.occurred)))
         }

@@ -19,6 +19,14 @@ object UserService extends Logging {
 
   def getByEmail(email: String) = Database.query(UserQueries.GetByEmail(email))
 
+  def getAll(limit: Option[Int], offset: Option[Int]) = Database.query(UserQueries.getAll(limit, offset))
+
+  def search(q: String, limit: Option[Int], offset: Option[Int]) = try {
+    getById(UUID.fromString(q)).map(_.toSeq)
+  } catch {
+    case _: NumberFormatException => Database.query(UserQueries.search(q, "id desc", limit, offset))
+  }
+
   def save(user: User, update: Boolean = false): Future[User] = {
     val statement = if (update) {
       log.info(s"Updating user [${user.id}].")
