@@ -61,6 +61,14 @@
         <li><a href="@controllers.admin.routes.FeedbackController.list("praise")">Praise</a></li>
       </ul>
     </li>
+    <li @if(section == "graphql") { class="active" }>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GraphQL <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="@controllers.admin.graphql.routes.GraphQLController.graphql()">GraphQL</a></li>
+        <li><a href="@controllers.admin.graphql.routes.SchemaController.renderSchema()">Schema</a></li>
+        <li><a href="@controllers.admin.graphql.routes.SchemaController.voyager()">Voyager</a></li>
+      </ul>
+    </li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
     <li class="dropdown">

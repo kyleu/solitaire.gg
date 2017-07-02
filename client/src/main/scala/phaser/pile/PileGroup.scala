@@ -32,7 +32,7 @@ class PileGroup(val phaser: PhaserGame, p: Pile) extends Group(game = phaser, pa
     ret.alpha = 0.3
     ret.inputEnabled = true
     ret.events.onInputUp.add((_: Any, p: Pointer) => {
-      if (p.button.toString.toInt == 0) {
+      if (Option(p.button).isEmpty || p.button.toString.toInt == 0) {
         if (canSelectPile()) {
           val msg = SelectPile(id, auto = false)
           phaser.sendMove(msg)
