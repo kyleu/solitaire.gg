@@ -27,13 +27,13 @@ object GameHistory {
     occurred: LocalDateTime = DateUtils.now
   )
 
-  sealed abstract class Status(val value: Char) extends CharEnumEntry
+  sealed abstract class Status(val value: String) extends StringEnumEntry
 
-  object Status extends CharEnum[Status] with CharCirceEnum[Status] {
-    case object Started extends Status('s')
-    case object Won extends Status('w')
-    case object Lost extends Status('l')
-    case object Resigned extends Status('r')
+  object Status extends StringEnum[Status] with StringCirceEnum[Status] {
+    case object Started extends Status("s")
+    case object Won extends Status("w")
+    case object Lost extends Status("l")
+    case object Resigned extends Status("r")
 
     override val values = findValues
   }

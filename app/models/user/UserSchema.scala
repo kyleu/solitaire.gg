@@ -1,5 +1,7 @@
 package models.user
 
+import java.util.UUID
+
 import models.graphql.{CommonSchema, GraphQLContext}
 import models.graphql.CommonSchema.uuidType
 import models.graphql.DateTimeSchema.localDateTimeType
@@ -14,7 +16,7 @@ object UserSchema {
   )
 
   val queryFields = fields[GraphQLContext, Unit](Field(
-    name = "user",
+    name = "users",
     description = Some("Returns a list of users."),
     arguments = CommonSchema.queryArg :: CommonSchema.limitArg :: CommonSchema.offsetArg :: Nil,
     fieldType = ListType(userType),
@@ -25,7 +27,7 @@ object UserSchema {
   ))
 
   class UserApi() {
-    def remove(id: Option[Int], email: Option[String]) = "TODO"
+    def remove(id: Option[UUID], email: Option[String]) = "TODO"
   }
 
   val mutationType = deriveObjectType[GraphQLContext, UserApi](
@@ -34,7 +36,7 @@ object UserSchema {
   )
 
   val mutationFields = fields[GraphQLContext, Unit](Field(
-    name = "user",
+    name = "users",
     fieldType = mutationType,
     description = Some("Allows mutation and removal of system users."),
     resolve = _ => new UserApi()

@@ -17,6 +17,8 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   override protected val searchColumns = Seq("id::text", "rules", "seed::text", "status", "player::text")
 
   def getById(id: UUID) = getBySingleId(id)
+  def getAll(limit: Option[Int], offset: Option[Int]) = GetAll(orderBy = Some("id desc"), limit, offset)
+
   val insert = Insert
   def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
   val search = Search
@@ -46,7 +48,7 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     val id = row.as[UUID]("id")
     val rules = row.as[String]("rules")
     val seed = row.as[Int]("seed")
-    val status = GameHistory.Status.withValue(row.as[String]("status").head)
+    val status = GameHistory.Status.withValue(row.as[String]("status").head.toString)
     val player = row.as[UUID]("player")
     val cards = row.as[Int]("cards")
     val moves = row.as[Int]("moves")

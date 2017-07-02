@@ -20,9 +20,9 @@ trait BaseQueries[T] {
 
   protected lazy val insertSql = s"insert into $tableName ($quotedColumns) values ($columnPlaceholders)"
 
-  protected def updateSql(updateColumns: Seq[String], additionalUpdates: Option[String] = None) = BaseQueries.trim(s"""
-    update $tableName set ${updateColumns.map(x => s"$x = ?").mkString(", ")}${additionalUpdates.map(x => s", $x").getOrElse("")} where $idWhereClause
-  """)
+  protected def updateSql(updateColumns: Seq[String], additionalUpdates: Option[String] = None) = {
+    s"""update $tableName set ${updateColumns.map(x => s"$x = ?").mkString(", ")}${additionalUpdates.map(x => s", $x").getOrElse("")} where $idWhereClause"""
+  }
 
   protected def getSql(
     whereClause: Option[String] = None, groupBy: Option[String] = None, orderBy: Option[String] = None, limit: Option[Int] = None, offset: Option[Int] = None

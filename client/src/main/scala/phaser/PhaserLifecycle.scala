@@ -16,15 +16,15 @@ object PhaserLifecycle {
 
   def onWin(g: PhaserGame) = {
     CardAnimation.win(g.getPlaymat)
-    onComplete('w', g)
+    onComplete("w", g)
   }
 
   def onLoss(g: PhaserGame) = {
     CardAnimation.loss(g.getPlaymat)
-    onComplete('l', g)
+    onComplete("l", g)
   }
 
-  private[this] def onComplete(status: Char, g: PhaserGame) = {
+  private[this] def onComplete(status: String, g: PhaserGame) = {
     val moves = g.gameplay.services.moves.getMoveCount
     val undos = g.gameplay.services.undo.undoCount
     val redos = g.gameplay.services.undo.redoCount

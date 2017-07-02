@@ -16,7 +16,15 @@ import scala.concurrent.Future
 object GameHistoryService {
   def getGameHistory(id: UUID) = Database.query(GameHistoryQueries.getById(id))
 
-  def getAll = Database.query(GameHistoryQueries.search("", "created", None, None))
+  def getById(id: UUID): Future[Option[GameHistory]] = Database.query(GameHistoryQueries.getById(id))
+
+  def getAll(limit: Option[Int], offset: Option[Int]) = Database.query(GameHistoryQueries.getAll(limit, offset))
+
+  def search(q: String, limit: Option[Int], offset: Option[Int]) = try {
+    getById(UUID.fromString(q)).map(_.toSeq)
+  } catch {
+    case _: NumberFormatException => Database.query(GameHistoryQueries.search(q, "id desc", limit, offset))
+  }
 
   def searchGames(q: String, orderBy: String, page: Int) = Database.query(GameHistoryQueries.searchCount(q)).flatMap { count =>
     Database.query(GameHistoryQueries.search(q, getOrderClause(orderBy), Some(BaseQueries.pageSize), Some(page * BaseQueries.pageSize))).map { list =>
