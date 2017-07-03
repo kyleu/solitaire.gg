@@ -27,13 +27,10 @@ object UserSchema {
   ))
 
   class UserApi() {
-    def remove(id: Option[UUID], email: Option[String]) = "TODO"
+    @GraphQLField def remove(id: Option[UUID], email: Option[String]) = "TODO"
   }
 
-  val mutationType = deriveObjectType[GraphQLContext, UserApi](
-    IncludeMethods("remove"),
-    DocumentField("remove", "Removes a user from the system.")
-  )
+  val mutationType = deriveObjectType[GraphQLContext, UserApi]()
 
   val mutationFields = fields[GraphQLContext, Unit](Field(
     name = "users",
@@ -41,5 +38,4 @@ object UserSchema {
     description = Some("Allows mutation and removal of system users."),
     resolve = _ => new UserApi()
   ))
-
 }
