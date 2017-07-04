@@ -39,7 +39,7 @@ class UserController @javax.inject.Inject() (override val app: Application) exte
   }
 
   def remove(id: UUID) = withAdminSession("remove") { implicit request =>
-    UserService.remove(id).map { result =>
+    UserService.remove(id).map { _ =>
       val msg = s"User [$id] removed."
       Redirect(controllers.admin.routes.UserController.list()).flashing("success" -> msg)
     }

@@ -20,7 +20,7 @@ object ScreenshotCreator {
     log(s"Creating [${set.size}] screenshots...")
     for (rules <- set) {
       if (hasAllScreenshots(rules.id)) {
-        println(s"Skipping already-generated screenshots for [${rules.id}].")
+        log(s"Skipping already-generated screenshots for [${rules.id}].")
       } else {
         processRules(rules.id)
       }

@@ -25,12 +25,12 @@ object GameListService {
     ag match {
       case Some(activeGame) =>
         optionsEl.html(GameListTemplate.optionsContent(activeGame).toString)
-        TemplateUtils.clickHandler($(".btn-resume", optionsEl), jq => navigation.navigate(NavigationState.Play))
-        TemplateUtils.clickHandler($(".btn-resign", optionsEl), jq => onNewGame(Seq("resign")))
-        TemplateUtils.clickHandler($(".btn-redeal", optionsEl), jq => onNewGame(Seq(activeGame.rulesId)))
+        TemplateUtils.clickHandler($(".btn-resume", optionsEl), _ => navigation.navigate(NavigationState.Play))
+        TemplateUtils.clickHandler($(".btn-resign", optionsEl), _ => onNewGame(Seq("resign")))
+        TemplateUtils.clickHandler($(".btn-redeal", optionsEl), _ => onNewGame(Seq(activeGame.rulesId)))
       case None =>
         optionsEl.html($("#home-content").html())
-        TemplateUtils.clickHandler($(".home-link-play", optionsEl), jq => onNewGame(Nil))
+        TemplateUtils.clickHandler($(".home-link-play", optionsEl), _ => onNewGame(Nil))
     }
   }
 }

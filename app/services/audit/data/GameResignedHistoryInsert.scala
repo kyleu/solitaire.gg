@@ -43,7 +43,6 @@ object GameResignedHistoryInsert {
         seed = 0,
         status = GameHistory.Status.Resigned,
         userId,
-        0,
         moves = resultObj.get("moves").map(_.as[Int]).getOrElse(0),
         undos = resultObj.get("undos").map(_.as[Int]).getOrElse(0),
         redos = resultObj.get("redos").map(_.as[Int]).getOrElse(0),

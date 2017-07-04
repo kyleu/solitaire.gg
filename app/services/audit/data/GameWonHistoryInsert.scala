@@ -34,7 +34,7 @@ object GameWonHistoryInsert {
       case o: JsObject => o
       case x => throw new IllegalStateException(s"Invalid message: [$x].")
     }
-    msgObj.value.get("id").map(_.as[UUID]).map { gameId =>
+    msgObj.value.get("id").map(_.as[UUID]).map { _ =>
       val resultObj = msgObj.value.get("result").map(_.as[Map[String, JsValue]]).getOrElse(Map.empty)
       val duration = resultObj.get("durationSeconds").map(x => (x.as[Double] * 1000).toInt).getOrElse(0)
       (id, deviceId, GameHistory(
@@ -43,7 +43,6 @@ object GameWonHistoryInsert {
         seed = 0,
         status = GameHistory.Status.Won,
         userId,
-        0,
         moves = resultObj.get("moves").map(_.as[Int]).getOrElse(0),
         undos = resultObj.get("undos").map(_.as[Int]).getOrElse(0),
         redos = resultObj.get("redos").map(_.as[Int]).getOrElse(0),

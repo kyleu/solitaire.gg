@@ -23,7 +23,7 @@ class PileGroup(val phaser: PhaserGame, p: Pile) extends Group(game = phaser, pa
   var cards = Seq.empty[CardSprite]
   var dragCards = Seq.empty[CardSprite]
 
-  def canSelectPile() = phaser.possibleMoves.exists { move =>
+  def canSelectPile = phaser.possibleMoves.exists { move =>
     move.t == PossibleMove.Type.SelectPile && move.sourcePile == id;
   }
 
@@ -33,7 +33,7 @@ class PileGroup(val phaser: PhaserGame, p: Pile) extends Group(game = phaser, pa
     ret.inputEnabled = true
     ret.events.onInputUp.add((_: Any, p: Pointer) => {
       if (Option(p.button).isEmpty || p.button.toString.toInt == 0) {
-        if (canSelectPile()) {
+        if (canSelectPile) {
           val msg = SelectPile(id, auto = false)
           phaser.sendMove(msg)
         }

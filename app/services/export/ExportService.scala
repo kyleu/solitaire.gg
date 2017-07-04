@@ -53,7 +53,7 @@ object ExportService {
 
   private[this] def replaceGameLinks(s: String, prefix: Option[String]) = GameRulesSet.completed.foldLeft(s) { (s, r) =>
     val swap = prefix match {
-      case Some(p) => s"""href="$prefix/play.html?game=${r._1}""""
+      case Some(_) => s"""href="$prefix/play.html?game=${r._1}""""
       case None => s"""href="gameplay.html?game=${r._1}""""
     }
     s.replaceAllLiterally(s"""href="/play/${r._1}"""", swap)

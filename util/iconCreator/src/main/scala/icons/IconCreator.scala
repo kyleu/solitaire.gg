@@ -4,6 +4,8 @@ import java.nio.file.{Files, Path, Paths}
 import scala.sys.process._
 
 object IconCreator extends App {
+  def log(msg: String) = println(msg)
+
   private val icons = Seq("back", "next", "hint", "options", "profile", "menu", "help", "edit", "cards", "check", "error")
   private val colors = Seq(
     "white" -> "ffffff",
@@ -36,9 +38,9 @@ object IconCreator extends App {
   val outDir = Paths.get(".", "out")
 
   private val startMs = System.currentTimeMillis
-  println("Creating icons...")
+  log("Creating icons...")
   go()
-  println(s"Icon creation complete in [${System.currentTimeMillis - startMs}ms].")
+  log(s"Icon creation complete in [${System.currentTimeMillis - startMs}ms].")
 
   def go() = {
     wipeTarget()
@@ -71,7 +73,7 @@ object IconCreator extends App {
   }
 
   private[this] def convert(icon: String, color: String) = {
-    println(s"Converting [$icon:$color]")
+    log(s"Converting [$icon:$color]")
     if (icon == "cards" || icon == "check" || icon == "error") {
       s"convert -resize 500x500 -background none ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color-500.png".!
       s"convert -resize 64x64 -background none ./tmp/icons/$icon-$color.svg ./tmp/icons/$icon-$color@2x.png".!
@@ -88,7 +90,7 @@ object IconCreator extends App {
   }
 
   private[this] def stitch(color: String) = {
-    println(s"Stitching icons for [$color]")
+    log(s"Stitching icons for [$color]")
 
     val activeIconNames = icons.map(x => s"./tmp/icons/$x-white.png").mkString(" ")
     val inactiveIconNames = icons.map(x => s"./tmp/icons/$x-$color.png").mkString(" ")
@@ -103,7 +105,7 @@ object IconCreator extends App {
 
   private[this] def logos(color: (String, String)) = {
     import scala.sys.process._
-    println(s"Creating logos for [${color._1}]")
+    log(s"Creating logos for [${color._1}]")
 
     s"convert -resize 1024x1024 -background #${color._2} ./tmp/icons/cards-white.svg ./tmp/icons/logo-${color._1}.png".!
     //s"convert ./tmp/icons/logo-${color._1}.png -gravity center -background #${color._2} -extent 600x600 ./tmp/icons/logo-${color._1}.png".!

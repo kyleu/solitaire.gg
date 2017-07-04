@@ -25,7 +25,7 @@ class GameHistoryController @javax.inject.Inject() (override val app: Applicatio
   }
 
   def remove(id: UUID) = withAdminSession("remove") { implicit request =>
-    GameHistoryService.removeGameHistory(id, None).map { ok =>
+    GameHistoryService.removeGameHistory(id, None).map { _ =>
       val msg = s"Game [$id] removed."
       Redirect(controllers.admin.routes.GameHistoryController.list()).flashing("success" -> msg)
     }

@@ -79,7 +79,7 @@ trait BaseQueries[T] {
   protected case class Search(q: String, orderBy: String, limit: Option[Int], offset: Option[Int]) extends SeqQuery("") {
     private[this] val whereClause = if (q.isEmpty) { None } else { Some(searchColumns.map(c => s"lower($c) like lower(?)").mkString(" or ")) }
     override val sql = getSql(whereClause, None, Some(orderBy), limit, offset)
-    override val values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(c => s"%$q%") }
+    override val values = if (q.isEmpty) { Seq.empty } else { searchColumns.map(_ => "%" + q + "%") }
   }
 
   protected case class CountWhere(whereClause: Option[String]) extends SingleRowQuery[Int] {

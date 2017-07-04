@@ -6,7 +6,7 @@ import io.circe.parser._
 import io.circe.syntax._
 import models.history.GameSeed
 
-import JodaSerializers.localDateTimeFormat
+import utils.json.JodaSerializers.localDateTimeFormat
 
 object SeedSerializers {
   private[this] implicit val config = Configuration.default.withDefaults

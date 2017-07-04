@@ -19,7 +19,7 @@ class GameSeedController @javax.inject.Inject() (override val app: Application) 
   }
 
   def remove(rules: String, seed: Int) = withAdminSession("remove") { implicit request =>
-    GameSeedService.remove(rules, seed).map { ok =>
+    GameSeedService.remove(rules, seed).map { _ =>
       val msg = s"Seed [$rules:$seed] removed."
       Redirect(controllers.admin.routes.GameSeedController.list()).flashing("success" -> msg)
     }

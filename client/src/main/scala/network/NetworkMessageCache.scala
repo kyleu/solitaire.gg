@@ -30,7 +30,7 @@ object NetworkMessageCache {
     case Some(s) => s.split('\n').filterNot(_.isEmpty).map(json => try {
       JsonSerializers.readSocketRequestMessage(json)
     } catch {
-      case NonFatal(x) => ClientError("parse", "Could not parse SocketRequestMessage json.", json)
+      case NonFatal(_) => ClientError("parse", "Could not parse SocketRequestMessage json.", json)
     }).toSeq
     case None => Nil
   }
