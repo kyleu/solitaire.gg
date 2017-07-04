@@ -48,23 +48,25 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
   case class OnComplete(gh: GameHistory) extends Statement {
     private[this] val player = if (gh.player == GameSolver.userId) { None } else { Some(gh.player) }
 
-    private[this] val firstPlayerClause = "case when first_player is null then ? else first_player end"
-    private[this] val firstMovesClause = "case when first_moves is null then ? else first_moves end"
-    private[this] val firstElapsedClause = "case when first_elaped_ms is null then ? else first_elapsed_ms end"
-    private[this] val firstOccurredClause = "case when first_occurred is null then ? else first_occurred end"
-    private[this] val firstSql = firstPlayerClause + firstMovesClause + firstElapsedClause + firstOccurredClause
+    private[this] val firstPlayerClause = "first_player = case when first_player is null then ? else first_player end"
+    private[this] val firstMovesClause = "first_moves = case when first_moves is null then ? else first_moves end"
+    private[this] val firstElapsedClause = "first_elapsed_ms = case when first_elapsed_ms is null then ? else first_elapsed_ms end"
+    private[this] val firstOccurredClause = "first_occurred = case when first_occurred is null then ? else first_occurred end"
+    private[this] val firstSql = Seq(firstPlayerClause, firstMovesClause, firstElapsedClause, firstOccurredClause).mkString(", ")
 
-    private[this] val fastestPlayerClause = s"case when fastest_elapsed_ms > ${gh.duration} then ? else fastest_player end"
-    private[this] val fastestMovesClause = s"case when fastest_elapsed_ms > ${gh.duration} then ? else fastest_moves end"
-    private[this] val fastestElapsedClause = s"case when fastest_elapsed_ms > ${gh.duration} then ? else fastest_elapsed_ms end"
-    private[this] val fastestOccurredClause = s"case when fastest_elapsed_ms > ${gh.duration} then ? else fastest_occurred end"
-    private[this] val fastestSql = fastestPlayerClause + fastestMovesClause + fastestElapsedClause + fastestOccurredClause
+    private[this] val fastestClause = s"(fastest_elapsed_ms is null or fastest_elapsed_ms > ${gh.duration})"
+    private[this] val fastestPlayerClause = s"fastest_player = case when $fastestClause then ? else fastest_player end"
+    private[this] val fastestMovesClause = s"fastest_moves = case when $fastestClause then ? else fastest_moves end"
+    private[this] val fastestElapsedClause = s"fastest_elapsed_ms = case when $fastestClause then ? else fastest_elapsed_ms end"
+    private[this] val fastestOccurredClause = s"fastest_occurred = case when $fastestClause then ? else fastest_occurred end"
+    private[this] val fastestSql = Seq(fastestPlayerClause, fastestMovesClause, fastestElapsedClause, fastestOccurredClause).mkString(", ")
 
     override val sql = s"update $tableName set games = games + 1, wins = wins + ?, moves = moves + ?, $firstSql, $fastestSql where rules = ? and seed = ?"
+
     override val values = Seq[Any](
       if (gh.isWon) { 1 } else { 0 }, gh.moves,
-      gh.player, gh.moves, gh.duration, gh.completed,
-      gh.player, gh.moves, gh.duration, gh.completed,
+      player, gh.moves, gh.duration, gh.completed,
+      player, gh.moves, gh.duration, gh.completed,
       gh.rules, gh.seed
     )
   }
