@@ -42,7 +42,13 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     override def reduce(rows: Iterator[Row]) = rows.map(_.as[UUID]("id")).toList
   }
 
-  def getGameHistoryCountForUser(userId: UUID) = Count(s"select count(*) as c from $tableName where player = ?", Seq(userId))
+  def getCountForUser(userId: UUID) = Count(s"select count(*) as c from $tableName where player = ?", Seq(userId))
+
+  private[this] def sqlGetByUser(userId: UUID, limit: Option[Int], offset: Option[Int]) = {
+    s"where player = ? order by created desc${limit.map(" limit " + _).getOrElse("")}${offset.map(" offset " + _).getOrElse("")}"
+  }
+
+  case class GetByUser(userId: UUID, limit: Option[Int], offset: Option[Int]) extends SeqQuery(sqlGetByUser(userId, limit, offset), Seq(userId))
 
   override protected def fromRow(row: Row) = {
     val id = row.as[UUID]("id")

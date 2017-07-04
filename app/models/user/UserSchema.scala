@@ -1,18 +1,33 @@
 package models.user
 
-import java.util.UUID
-
 import models.graphql.{CommonSchema, GraphQLContext}
 import models.graphql.CommonSchema.uuidType
 import models.graphql.DateTimeSchema.localDateTimeType
 import models.settings.SettingsSchema._
+import models.history.GameHistorySchema._
 import sangria.macros.derive._
 import sangria.schema._
+import services.history.GameHistoryService
 import services.user.UserService
 
 object UserSchema {
   implicit val userType: OutputType[User] = deriveObjectType[GraphQLContext, User](
-    ObjectTypeDescription("A user of the system.")
+    ObjectTypeDescription("A user of the system."),
+    AddFields(
+      Field(
+        name = "gameCount",
+        fieldType = IntType,
+        description = Some("Count of games played by this user"),
+        resolve = ctx => GameHistoryService.getCountByUser(ctx.value.id)
+      ),
+      Field(
+        name = "games",
+        fieldType = ListType(gameHistoryType),
+        arguments = CommonSchema.limitArg :: CommonSchema.offsetArg :: Nil,
+        description = Some("Games played by this user"),
+        resolve = ctx => GameHistoryService.getByUser(ctx.value.id, ctx.arg(CommonSchema.limitArg), ctx.arg(CommonSchema.offsetArg))
+      )
+    )
   )
 
   val queryFields = fields[GraphQLContext, Unit](Field(

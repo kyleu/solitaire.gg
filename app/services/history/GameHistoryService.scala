@@ -32,7 +32,9 @@ object GameHistoryService {
     }
   }
 
-  def getCountByUser(id: UUID) = Database.query(GameHistoryQueries.getGameHistoryCountForUser(id))
+  def getByUser(id: UUID, limit: Option[Int], offset: Option[Int]) = Database.query(GameHistoryQueries.GetByUser(id, limit, offset))
+
+  def getCountByUser(id: UUID) = Database.query(GameHistoryQueries.getCountForUser(id))
 
   def getWins(d: LocalDate) = Database.query(GameHistoryQueries.GetGameHistoriesByDayAndStatus(d, "win")).flatMap { histories =>
     Future.sequence(histories.map { h =>
