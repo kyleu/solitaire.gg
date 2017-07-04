@@ -8,6 +8,8 @@ import sangria.schema._
 import services.history.GameSeedService
 
 object GameSeedSchema {
+  implicit val gameSeedRecordType = deriveObjectType[GraphQLContext, GameSeed.Record]()
+
   implicit val gameSeedType = deriveObjectType[GraphQLContext, GameSeed](
     ObjectTypeDescription("The history for a particular game rule's seed.")
   )

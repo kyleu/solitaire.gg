@@ -31,7 +31,7 @@ GET         /games                           controllers.admin.GameHistoryContro
 GET         /games/:id                       controllers.admin.GameHistoryController.detail(id: java.util.UUID)
 GET         /games/:id/remove                controllers.admin.GameHistoryController.remove(id: java.util.UUID)
 
-GET         /seeds                           controllers.admin.GameSeedController.list(q ?= "", sortBy ?= "completed", page: Int ?= 0)
+GET         /seeds                           controllers.admin.GameSeedController.list(q ?= "", sortBy ?= "first_occurred desc", page: Int ?= 0)
 GET         /seeds/import                    controllers.admin.GameSeedController.importSeeds()
 GET         /seeds/export                    controllers.admin.GameSeedController.exportSeeds()
 GET         /seeds/:rules/:seed/remove       controllers.admin.GameSeedController.remove(rules, seed: Int)
