@@ -42,5 +42,4 @@ object GameHistorySchema {
     description = Some("Allows mutation and removal of recorded games."),
     resolve = _ => new GameHistoryApi()
   ))
-
 }

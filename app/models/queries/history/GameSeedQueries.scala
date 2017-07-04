@@ -15,6 +15,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
   override protected val searchColumns = Seq("rules", "seed::text", "player::text")
 
   def getByKey(rules: String, seed: Int) = GetById(Seq(rules, seed))
+  def getAll(limit: Option[Int], offset: Option[Int]) = GetAll(orderBy = Some("completed desc"), limit, offset)
 
   val insert = Insert
 

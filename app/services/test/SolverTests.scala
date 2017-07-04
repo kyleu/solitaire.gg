@@ -10,15 +10,12 @@ import utils.Logging
 import scala.util.Random
 import utils.FutureUtils.defaultContext
 
-class SolverTests() extends Logging {
+object SolverTests extends Logging {
   val all = Tree(Test("solver"), GameRulesSet.all.map(x => testSolver(x.id).toTree))
 
-  def testSolver(rules: String) = Test(s"solver-$rules", { () =>
-    val seed = Random.nextInt(1000000)
-    runSolver(rules, seed)
-  })
+  def testSolver(rules: String, seed: Option[Int] = None) = Test(s"solver-$rules", () => runSolver(rules, seed.getOrElse(Random.nextInt(1000000))))
 
-  private[this] def runSolver(rules: String, seed: Int) = {
+  def runSolver(rules: String, seed: Int) = {
     val solver = GameSolver(rules, 0, seed)
     val movesPerformed = collection.mutable.ArrayBuffer.empty[GameMessage]
     while (!solver.gameWon && movesPerformed.size < GameSolver.moveLimit) {

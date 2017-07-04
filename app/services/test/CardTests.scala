@@ -3,7 +3,7 @@ package services.test
 import models.card.{Card, Rank, Suit}
 import models.test.Test
 
-class CardTests {
+object CardTests {
   val aceHearts = Card(0, Rank.Ace, Suit.Hearts, u = true)
   val tenHearts = Card(1, Rank.Ten, Suit.Hearts)
   val aceSpades = Card(2, Rank.Ace, Suit.Spades, u = true)

@@ -14,7 +14,9 @@ import scala.concurrent.Future
 object GameSeedService extends Logging {
   def getGameSeed(rules: String, seed: Int) = Database.query(GameSeedQueries.getByKey(rules, seed))
 
-  def getAll = Database.query(GameSeedQueries.search("", "completed desc", None, None))
+  def getAll(limit: Option[Int], offset: Option[Int]) = Database.query(GameSeedQueries.getAll(limit, offset))
+
+  def search(q: String, limit: Option[Int], offset: Option[Int]) = Database.query(GameSeedQueries.search(q, "id desc", limit, offset))
 
   def getCountByUser(id: UUID) = Database.query(GameSeedQueries.getCountForUser(id))
 

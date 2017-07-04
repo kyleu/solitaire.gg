@@ -4,7 +4,7 @@ import models.card.{Card, Rank, Suit}
 import models.rules.PokerRules
 import models.test.{Test, Tree}
 
-class PokerTests {
+object PokerTests {
   private[this] def cardFrom(s: String) = Card(id = 0, r = Rank.withValue(s.toCharArray()(0)), s = Suit.withValue(s.toCharArray()(1)))
   private[this] def handFrom(s: String) = s.split(",").map(cardFrom).toSeq
   private[this] def testHand(name: String, hand: String) = {

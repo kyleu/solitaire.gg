@@ -12,6 +12,7 @@ import utils.FutureUtils.defaultContext
 import services.database.Database
 
 import scala.concurrent.Future
+import scala.util.control.NonFatal
 
 object GameHistoryService {
   def getGameHistory(id: UUID) = Database.query(GameHistoryQueries.getById(id))
@@ -23,7 +24,7 @@ object GameHistoryService {
   def search(q: String, limit: Option[Int], offset: Option[Int]) = try {
     getById(UUID.fromString(q)).map(_.toSeq)
   } catch {
-    case _: NumberFormatException => Database.query(GameHistoryQueries.search(q, "id desc", limit, offset))
+    case NonFatal(_) => Database.query(GameHistoryQueries.search(q, "id desc", limit, offset))
   }
 
   def searchGames(q: String, orderBy: String, page: Int) = Database.query(GameHistoryQueries.searchCount(q)).flatMap { count =>

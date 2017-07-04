@@ -1,12 +1,13 @@
 package models.graphql
 
-import models.history.GameHistorySchema
+import models.history.{GameHistorySchema, GameSeedSchema}
 import models.sandbox.SandboxSchema
+import models.test.TestSchema
 import models.user.UserSchema
 import sangria.schema._
 
 object Schema {
-  val queryFields = SandboxSchema.queryFields ++ UserSchema.queryFields ++ GameHistorySchema.queryFields
+  val queryFields = SandboxSchema.queryFields ++ UserSchema.queryFields ++ GameHistorySchema.queryFields ++ GameSeedSchema.queryFields
 
   val queryType = ObjectType(
     name = "Query",
@@ -14,7 +15,7 @@ object Schema {
     fields = queryFields
   )
 
-  val mutationFields = SandboxSchema.mutationFields ++ GameHistorySchema.mutationFields
+  val mutationFields = SandboxSchema.mutationFields ++ GameHistorySchema.mutationFields ++ TestSchema.mutationFields
 
   val mutationType = ObjectType(
     name = "Mutation",

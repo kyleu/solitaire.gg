@@ -16,14 +16,14 @@ class TestController @javax.inject.Inject() (override val app: Application) exte
   def runTest(test: String) = withAdminSession("run." + test) { implicit request =>
     Future {
       val testTree = test match {
-        case "all" => new AllTests().all
-        case "poker" => new PokerTests().all
+        case "all" => AllTests.all
+        case "poker" => PokerTests.all
 
-        case "rules" => new RulesTests().all
-        case x if x.startsWith("rules-") => new RulesTests().testGameRules(x.substring(6)).toTree
+        case "rules" => RulesTests.all
+        case x if x.startsWith("rules-") => RulesTests.testGameRules(x.substring(6)).toTree
 
-        case "solver" => new SolverTests().all
-        case x if x.startsWith("solve-") => new SolverTests().testSolver(x.substring(6)).toTree
+        case "solver" => SolverTests.all
+        case x if x.startsWith("solve-") => SolverTests.testSolver(x.substring(6)).toTree
 
         case _ => throw new IllegalArgumentException(s"Invalid test [$test].")
       }

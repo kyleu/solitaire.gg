@@ -5,7 +5,7 @@ import java.util.UUID
 import models.rules.GameRulesSet
 import models.test.{Test, Tree}
 
-class RulesTests {
+object RulesTests {
   val all = Tree(Test("rules"), GameRulesSet.all.map(x => testGameRules(x.id).toTree))
 
   def testGameRules(id: String) = Test(s"rules-$id", () => {

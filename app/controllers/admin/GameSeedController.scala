@@ -26,7 +26,7 @@ class GameSeedController @javax.inject.Inject() (override val app: Application) 
   }
 
   def exportSeeds() = withAdminSession("export") { implicit request =>
-    GameSeedService.getAll.map { seeds =>
+    GameSeedService.getAll(None, None).map { seeds =>
       val lines = seeds.map(SeedSerializers.writeSeed)
       Ok(lines.mkString("\n"))
     }
