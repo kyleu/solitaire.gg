@@ -25,17 +25,4 @@ object UserSchema {
       case _ => UserService.getAll(c.arg(CommonSchema.limitArg), c.arg(CommonSchema.offsetArg))
     }
   ))
-
-  class UserApi() {
-    @GraphQLField def remove(id: Option[UUID], email: Option[String]) = "TODO"
-  }
-
-  val mutationType = deriveObjectType[GraphQLContext, UserApi]()
-
-  val mutationFields = fields[GraphQLContext, Unit](Field(
-    name = "users",
-    fieldType = mutationType,
-    description = Some("Allows mutation and removal of system users."),
-    resolve = _ => new UserApi()
-  ))
 }

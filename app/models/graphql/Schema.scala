@@ -14,7 +14,7 @@ object Schema {
     fields = queryFields
   )
 
-  val mutationFields = SandboxSchema.mutationFields ++ UserSchema.mutationFields ++ GameHistorySchema.mutationFields
+  val mutationFields = SandboxSchema.mutationFields ++ GameHistorySchema.mutationFields
 
   val mutationType = ObjectType(
     name = "Mutation",
