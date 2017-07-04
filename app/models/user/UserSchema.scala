@@ -8,23 +8,32 @@ import models.history.GameHistorySchema._
 import sangria.macros.derive._
 import sangria.schema._
 import services.history.GameHistoryService
-import services.user.UserService
+import services.user.{UserService, UserStatisticsService}
 
 object UserSchema {
-  implicit val userType: OutputType[User] = deriveObjectType[GraphQLContext, User](
+  implicit val userStatisticsGamesType = deriveObjectType[GraphQLContext, UserStatistics.Games]()
+  implicit val userStatisticsType = deriveObjectType[GraphQLContext, UserStatistics]()
+
+  implicit val userType = deriveObjectType[GraphQLContext, User](
     ObjectTypeDescription("A user of the system."),
     AddFields(
       Field(
+        name = "statistics",
+        fieldType = userStatisticsType,
+        description = Some("User statistics, mostly about games played."),
+        resolve = ctx => UserStatisticsService.getStatistics(ctx.value.id)
+      ),
+      Field(
         name = "gameCount",
         fieldType = IntType,
-        description = Some("Count of games played by this user"),
+        description = Some("Count of games played by this user."),
         resolve = ctx => GameHistoryService.getCountByUser(ctx.value.id)
       ),
       Field(
         name = "games",
         fieldType = ListType(gameHistoryType),
         arguments = CommonSchema.limitArg :: CommonSchema.offsetArg :: Nil,
-        description = Some("Games played by this user"),
+        description = Some("Games played by this user."),
         resolve = ctx => GameHistoryService.getByUser(ctx.value.id, ctx.arg(CommonSchema.limitArg), ctx.arg(CommonSchema.offsetArg))
       )
     )
