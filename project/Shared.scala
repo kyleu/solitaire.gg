@@ -3,7 +3,7 @@ import sbt._
 import sbt.Keys._
 
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
-import playscalajs.ScalaJSPlay
+import webscalajs.ScalaJSWeb
 
 import net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings
 import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, scalariformSettings}
@@ -62,7 +62,7 @@ object Shared {
     "com.lihaoyi" %%% "utest" % Dependencies.Testing.uTestVersion % "test"
   ))
 
-  lazy val sharedJs = shared.js.enablePlugins(ScalaJSPlay).settings(scalaJSStage in Global := FastOptStage)
+  lazy val sharedJs = shared.js.enablePlugins(ScalaJSWeb).settings(scalaJSStage in Global := FastOptStage)
 
   lazy val sharedJvm = shared.jvm
 }

@@ -2,7 +2,7 @@ import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
 import com.typesafe.sbt.SbtScalariform.ScalariformKeys
 import org.scalajs.sbtplugin.ScalaJSPlugin
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
-import playscalajs.ScalaJSPlay
+import webscalajs.ScalaJSWeb
 import sbt.Keys._
 import sbt._
 
@@ -28,5 +28,5 @@ object Client {
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
 
-  lazy val client = (project in file("client")).enablePlugins(ScalaJSPlugin, ScalaJSPlay).settings(clientSettings: _*).dependsOn(Shared.sharedJs)
+  lazy val client = (project in file("client")).enablePlugins(ScalaJSPlugin, ScalaJSWeb).settings(clientSettings: _*).dependsOn(Shared.sharedJs)
 }
