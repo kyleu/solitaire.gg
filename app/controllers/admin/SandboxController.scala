@@ -24,7 +24,7 @@ class SandboxController @javax.inject.Inject() (override val app: Application, s
   }
 
   def sandbox(key: String) = withAdminSession("sandbox." + key) { implicit request =>
-    val sandbox = SandboxTask.withName(key)
+    val sandbox = SandboxTask.withValue(key)
     getUser(request).flatMap { u =>
       sandbox.run(app).map { result =>
         Ok(views.html.admin.sandbox.run(u, sandbox, result))

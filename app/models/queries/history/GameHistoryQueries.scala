@@ -17,6 +17,7 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
   override protected val searchColumns = Seq("id::text", "rules", "seed::text", "status", "player::text")
 
   def getById(id: UUID) = getBySingleId(id)
+  case class GetByIds(ids: Seq[UUID]) extends SeqQuery(s"where id in (${ids.map(_ => "?").mkString(", ")})", ids)
   def getAll(limit: Option[Int], offset: Option[Int]) = GetAll(orderBy = Some("id desc"), limit, offset)
 
   val insert = Insert
@@ -48,7 +49,16 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     s"where player = ? order by created desc${limit.map(" limit " + _).getOrElse("")}${offset.map(" offset " + _).getOrElse("")}"
   }
 
+  private[this] def sqlGetBySeed(rules: String, seed: Int, limit: Option[Int], offset: Option[Int]) = {
+    s"where rules = ? and seed = ? order by created desc${limit.map(" limit " + _).getOrElse("")}${offset.map(" offset " + _).getOrElse("")}"
+  }
+
   case class GetByUser(userId: UUID, limit: Option[Int], offset: Option[Int]) extends SeqQuery(sqlGetByUser(userId, limit, offset), Seq(userId))
+  case class GetByUserIds(userIds: Seq[UUID]) extends SeqQuery(s"where player in (${userIds.map(_ => "?").mkString(", ")})", userIds)
+
+  case class GetBySeed(rules: String, seed: Int, limit: Option[Int], offset: Option[Int]) extends SeqQuery(
+    sqlGetBySeed(rules, seed, limit, offset), Seq(rules, seed)
+  )
 
   override protected def fromRow(row: Row) = {
     val id = row.as[UUID]("id")

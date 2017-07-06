@@ -5,10 +5,8 @@ import sangria.macros.derive._
 import sangria.schema._
 
 object SandboxSchema {
-  implicit val sandboxTaskEnum = CommonSchema.deriveEnumeratumType(
-    name = "SandboxTask",
-    description = "One-off tests that don't deserve a UI of their own.",
-    values = SandboxTask.values.map(t => t -> t.description).toList
+  implicit val sandboxTaskEnum = CommonSchema.deriveStringEnumeratumType(
+    name = "SandboxTask", description = Some("One-off tests that don't deserve a UI of their own."), values = SandboxTask.values
   )
 
   val sandboxTaskArg = Argument("task", sandboxTaskEnum, description = "Filters the results to a provided SandboxTask.")

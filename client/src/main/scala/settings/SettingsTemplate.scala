@@ -1,45 +1,36 @@
 package settings
 
 import models.settings._
-import utils.Messages
+import utils.{EnumWithDescription, Messages}
 
 import scalatags.Text.all._
 
 object SettingsTemplate {
-
   def forSettings(settings: Settings) = {
     val title = h4(Messages("settings.title"))
 
-    val menuPosition = div(cls := "settings-section theme")(
-      radioFor("menu-position", "top", "Top"),
-      radioFor("menu-position", "bottom", "Bottom")
-    )
+    val language = radiosFor("language", Language.values)
+    val tilt = boolRadioFor("tilt", "Card Tilt", "No Card Tilt")
+    val autoFlip = boolRadioFor("auto-flip", "Auto Flip", "No Auto Flip")
+    val audio = boolRadioFor("audio", "Sound", "No Sound")
+    val menuPosition = radiosFor("menu-position", Seq(MenuPosition.Top, MenuPosition.Bottom))
+    val cardBack = radiosFor("card-back", CardBack.values)
+    val cardBlank = radiosFor("card-blank", CardBlank.values)
+    val cardFaces = radiosFor("card-faces", CardFaces.values)
+    val cardLayout = radiosFor("card-layout", CardLayout.values)
+    val cardRanks = radiosFor("card-ranks", CardRanks.values)
+    val cardSuits = radiosFor("card-suits", CardSuits.values)
 
-    val language = div(cls := "settings-section theme")(radiosFor("language", Language.values.map(l => l.value -> l.title)))
-    val tilt = div(cls := "settings-section theme")(radioFor("tilt", "true", "Card Tilt"), radioFor("tilt", "false", "No Card Tilt"))
-    val autoFlip = div(cls := "settings-section theme")(radioFor("auto-flip", "true", "Auto Flip"), radioFor("auto-flip", "false", "No Auto Flip"))
-    val audio = div(cls := "settings-section theme")(radioFor("audio", "true", "Sound"), radioFor("audio", "false", "No Sound"))
-    val cardBack = div(cls := "settings-section theme")(CardBack.values.map(cb => radioFor("card-back", cb.value, cb.title)))
-    val cardBlank = div(cls := "settings-section theme")(CardBlank.values.map(cb => radioFor("card-blank", cb.value, cb.title)))
-    val cardFaces = div(cls := "settings-section theme")(CardFaces.values.map(cf => radioFor("card-faces", cf.value, cf.title)))
-    val cardLayout = div(cls := "settings-section theme")(CardLayout.values.map(cl => radioFor("card-layout", cl.value, cl.title)))
-    val cardRanks = div(cls := "settings-section theme")(CardRanks.values.map(cr => radioFor("card-ranks", cr.value, cr.title)))
-    val cardSuits = div(cls := "settings-section theme")(CardSuits.values.map(cs => radioFor("card-suits", cs.value, cs.title)))
+    val backgroundColor = div(cls := "settings-section theme")(div(cls := "cp-wrapper")(
+      div(id := "colorpicker", cls := "cp")(),
+      div(style := "clear: both;")(),
+      div()(input(`type` := "text", id := "colorpicker-hex", value := ""))
+    ))
 
-    val backgroundColor = div(cls := "settings-section theme")(
-      div(cls := "cp-wrapper")(
-        div(id := "colorpicker", cls := "cp")(),
-        div(style := "clear: both;")(),
-        div()(input(`type` := "text", id := "colorpicker-hex", value := ""))
-      )
-    )
-
-    val backgroundPattern = div(cls := "settings-section theme")(
-      BackgroundPattern.all.zipWithIndex.map { pattern =>
-        val st = s"background-image: url(/assets/images/settings/patterns.png);background-position-x:-${pattern._2 * 32}px"
-        div(cls := "pattern-option", data("pattern") := pattern._1, style := st, attr("title") := pattern._1)
-      }
-    )
+    val backgroundPattern = div(cls := "settings-section theme")(BackgroundPattern.all.zipWithIndex.map { pattern =>
+      val st = s"background-image: url(/assets/images/settings/patterns.png);background-position-x:-${pattern._2 * 32}px"
+      div(cls := "pattern-option", data("pattern") := pattern._1, style := st, attr("title") := pattern._1)
+    })
 
     div(
       title, language, tilt, autoFlip, audio, menuPosition,
@@ -48,10 +39,21 @@ object SettingsTemplate {
     )
   }
 
-  private[this] def radiosFor(k: String, v: Seq[(String, String)]) = v.map(r => radioFor(k, r._1, r._2))
+  private[this] def radiosFor(k: String, v: Seq[EnumWithDescription]) = div(cls := "settings-section theme")(v.map(r => radioFor(k, r)))
 
-  private[this] def radioFor(k: String, v: String, title: String) = div(cls := "settings-input")(
-    input(`type` := "radio", name := k, id := s"settings-$k-$v", value := v),
-    label(`for` := s"settings-$k-$v")(title)
+  private[this] def boolRadioFor(k: String, t: String, f: String) = div(cls := "settings-section theme")(
+    div(cls := "settings-input")(
+      input(`type` := "radio", name := k, id := s"settings-$k-true", value := "true"),
+      label(`for` := s"settings-$k-true")(t)
+    ),
+    div(cls := "settings-input")(
+      input(`type` := "radio", name := k, id := s"settings-$k-false", value := "false"),
+      label(`for` := s"settings-$k-false")(f)
+    )
+  )
+
+  private[this] def radioFor(k: String, v: EnumWithDescription) = div(cls := "settings-input")(
+    input(`type` := "radio", name := v.value, id := s"settings-$k-${v.value}", value := v.value),
+    label(`for` := s"settings-$k-${v.value}")(v.description)
   )
 }

@@ -5,8 +5,12 @@
     <div class="col s12">
       <div class="card">
         <div class="card-content">
-          <span class="card-title">@s Result</span>
-          <div class="sandbox-result" style="margin: 20px 0;">@result</div>
+          <div>
+            <div style="float: right;">@result.status [@{result.elapsed}ms]</div>
+            @result.task.value
+          </div>
+          <div><em>@result.task.description</em></div>
+          <pre>@result.result</pre>
         </div>
       </div>
     </div>

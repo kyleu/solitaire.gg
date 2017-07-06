@@ -1,8 +1,9 @@
 package models.settings
 
 import enumeratum.values._
+import utils.EnumWithDescription
 
-sealed abstract class Language(val value: String, val title: String) extends StringEnumEntry
+sealed abstract class Language(override val value: String, override val description: String) extends EnumWithDescription
 
 object Language extends StringEnum[Language] {
   case object English extends Language("en", "English")

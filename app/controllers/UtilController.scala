@@ -1,6 +1,5 @@
 package controllers
 
-import play.api.mvc.Action
 import utils.Application
 
 import scala.concurrent.Future
@@ -19,7 +18,7 @@ class UtilController @javax.inject.Inject() (override val app: Application) exte
     Future.successful(Ok("User-agent: *\nDisallow:\n"))
   }
 
-  def noop = Action { _ =>
+  def noop = Action(parse.anyContent) { _ =>
     Ok("Please refresh the page, this url is no longer used.")
   }
 }

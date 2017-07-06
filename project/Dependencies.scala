@@ -32,6 +32,7 @@ object Dependencies {
   object GraphQL {
     val sangria = "org.sangria-graphql" %% "sangria" % "1.2.2"
     val playJson = "org.sangria-graphql" %% "sangria-play-json" % "1.0.2"
+    val circe = "org.sangria-graphql" %% "sangria-circe" % "1.1.0"
   }
 
   object Spark {
@@ -45,7 +46,7 @@ object Dependencies {
     val d3 = "org.webjars" % "d3js" % "3.5.17"
     val nvd3 = "org.webjars" % "nvd3-community" % "1.7.0"
     val jquery = "org.webjars" % "jquery" % "3.2.1"
-    val materialize = "org.webjars" % "materializecss" % "0.98.2"
+    val materialize = "org.webjars" % "materializecss" % "0.99.0"
   }
 
   object Serialization {

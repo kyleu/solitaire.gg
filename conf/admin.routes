@@ -36,11 +36,6 @@ GET         /seeds/import                    controllers.admin.GameSeedControlle
 GET         /seeds/export                    controllers.admin.GameSeedController.exportSeeds()
 GET         /seeds/:rules/:seed/remove       controllers.admin.GameSeedController.remove(rules, seed: Int)
 
-GET         /analytics/list                  controllers.admin.AnalyticsEventController.eventList(q ?= "", sortBy ?= "created", page: Int ?= 0)
-GET         /analytics/sandbox               controllers.admin.AnalyticsEventController.sandbox(test: Boolean ?= false, reset: Boolean ?= false, limit: Int ?= 100, offset: Int ?= 0)
-GET         /analytics/:id                   controllers.admin.AnalyticsEventController.eventDetail(id: java.util.UUID)
-GET         /analytics/:id/remove            controllers.admin.AnalyticsEventController.removeEvent(id: java.util.UUID)
-
 GET         /feedback/:key                   controllers.admin.FeedbackController.list(key, q ?= "", sortBy ?= "occurred", page: Int ?= 0)
 GET         /feedback/:id/note               controllers.admin.FeedbackController.feedbackNoteForm(id: java.util.UUID)
 POST        /feedback/:id/note               controllers.admin.FeedbackController.feedbackNotePost(id: java.util.UUID)

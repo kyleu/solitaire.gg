@@ -5,15 +5,32 @@ import java.util.UUID
 import models.graphql.{CommonSchema, GraphQLContext}
 import models.graphql.CommonSchema.uuidType
 import models.graphql.DateTimeSchema.localDateTimeType
+import models.user.UserSchema
+import sangria.execution.deferred.{Fetcher, HasId, Relation}
 import sangria.macros.derive._
 import sangria.schema._
 import services.history.GameHistoryService
+import services.user.UserService
 
 object GameHistorySchema {
-  implicit val gameStatusEnum = CommonSchema.deriveStringEnumeratumType(name = "GameStatus", values = GameHistory.Status.values.map(t => t -> t.value).toList)
+  implicit val gameStatusEnum = CommonSchema.deriveStringEnumeratumType(name = "GameStatus", values = GameHistory.Status.values)
 
   implicit val gameHistoryType: OutputType[GameHistory] = deriveObjectType[GraphQLContext, GameHistory](
-    ObjectTypeDescription("An instance of a game, played at some point.")
+    ObjectTypeDescription("An instance of a game, played at some point."),
+    AddFields(Field(
+      name = "user",
+      fieldType = OptionType(UserSchema.userType),
+      description = Some("The player responsible for this game."),
+      resolve = ctx => UserService.getById(ctx.value.player)
+    ))
+  )
+
+  implicit val gameHistoryId = HasId[GameHistory, UUID](_.id)
+  val gameHistoryByPlayer = Relation[GameHistory, UUID]("byPlayer", h => Seq(h.player))
+
+  val gameHistoryFetcher = Fetcher.rel[GraphQLContext, GameHistory, GameHistory, UUID](
+    (_, ids) => GameHistoryService.getByIds(ids),
+    (_, rels) => { GameHistoryService.getByUsers(rels(gameHistoryByPlayer)) }
   )
 
   val queryFields = fields[GraphQLContext, Unit](Field(

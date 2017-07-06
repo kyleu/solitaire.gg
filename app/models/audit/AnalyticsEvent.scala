@@ -1,10 +1,6 @@
 package models.audit
 
-import java.util.UUID
-
 import enumeratum.values._
-import org.joda.time.LocalDateTime
-import play.api.libs.json.JsValue
 
 object AnalyticsEvent {
   sealed abstract class EventType(val value: String) extends StringEnumEntry
@@ -25,12 +21,3 @@ object AnalyticsEvent {
     override def values = findValues
   }
 }
-
-case class AnalyticsEvent(
-  id: UUID,
-  eventType: AnalyticsEvent.EventType,
-  device: UUID,
-  sourceAddress: Option[String],
-  data: JsValue,
-  created: LocalDateTime
-)

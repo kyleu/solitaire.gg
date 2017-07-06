@@ -4,9 +4,14 @@ import models.history.{GameHistorySchema, GameSeedSchema}
 import models.sandbox.SandboxSchema
 import models.test.TestSchema
 import models.user.UserSchema
+import sangria.execution.deferred.DeferredResolver
 import sangria.schema._
 
 object Schema {
+  val resolver: DeferredResolver[GraphQLContext] = DeferredResolver.fetchers(
+    models.history.GameHistorySchema.gameHistoryFetcher
+  )
+
   val queryFields = SandboxSchema.queryFields ++ UserSchema.queryFields ++ GameHistorySchema.queryFields ++ GameSeedSchema.queryFields
 
   val queryType = ObjectType(

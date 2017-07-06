@@ -24,13 +24,6 @@
         <li><a href="@controllers.admin.routes.GameSeedController.list()">Seeds</a></li>
       </ul>
     </li>
-    <li @if(section == "analytics") { class="active" }>
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Analytics <span class="caret"></span></a>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="@controllers.admin.routes.AnalyticsEventController.eventList()">Browse Events</a></li>
-        <li><a href="@controllers.admin.routes.AnalyticsEventController.sandbox()">Sandbox</a></li>
-      </ul>
-    </li>
     <li @if(section == "tests") { class="active" }>
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tests <span class="caret"></span></a>
       <ul class="dropdown-menu" role="menu">
@@ -76,7 +69,7 @@
       <ul class="dropdown-menu" role="menu">
         <li><a href="@controllers.admin.routes.SandboxController.list()"><strong>Sandboxes</strong></a></li>
         @models.sandbox.SandboxTask.values.map { sandbox =>
-          <li><a href="@controllers.admin.routes.SandboxController.sandbox(sandbox.toString)" title="@sandbox.description">@sandbox</a></li>
+          <li><a href="@controllers.admin.routes.SandboxController.sandbox(sandbox.value)" title="@sandbox.description">@sandbox</a></li>
         }
         <li class="divider"></li>
         <li><a href="#">Sign Out</a></li>

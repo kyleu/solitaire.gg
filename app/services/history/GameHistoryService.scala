@@ -17,7 +17,8 @@ import scala.util.control.NonFatal
 object GameHistoryService {
   def getGameHistory(id: UUID) = Database.query(GameHistoryQueries.getById(id))
 
-  def getById(id: UUID): Future[Option[GameHistory]] = Database.query(GameHistoryQueries.getById(id))
+  def getById(id: UUID) = Database.query(GameHistoryQueries.getById(id))
+  def getByIds(ids: Seq[UUID]) = Database.query(GameHistoryQueries.GetByIds(ids))
 
   def getAll(limit: Option[Int], offset: Option[Int]) = Database.query(GameHistoryQueries.getAll(limit, offset))
 
@@ -33,9 +34,12 @@ object GameHistoryService {
     }
   }
 
+  def getCountByUser(id: UUID) = Database.query(GameHistoryQueries.getCountForUser(id))
   def getByUser(id: UUID, limit: Option[Int], offset: Option[Int]) = Database.query(GameHistoryQueries.GetByUser(id, limit, offset))
 
-  def getCountByUser(id: UUID) = Database.query(GameHistoryQueries.getCountForUser(id))
+  def getByUsers(userIds: Seq[UUID]) = Database.query(GameHistoryQueries.GetByUserIds(userIds))
+
+  def getBySeed(rules: String, seed: Int, limit: Option[Int], offset: Option[Int]) = Database.query(GameHistoryQueries.GetBySeed(rules, seed, limit, offset))
 
   def getWins(d: LocalDate) = Database.query(GameHistoryQueries.GetGameHistoriesByDayAndStatus(d, "win")).flatMap { histories =>
     Future.sequence(histories.map { h =>

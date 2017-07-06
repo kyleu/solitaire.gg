@@ -4,6 +4,7 @@ import java.util.UUID
 
 import sangria.schema._
 import sangria.validation.ValueCoercionViolation
+import utils.EnumWithDescription
 
 import scala.util.{Failure, Success, Try}
 
@@ -41,7 +42,13 @@ object CommonSchema {
     values = values.map(t => EnumValue(name = t._1.toString, value = t._1, description = Some(t._2))).toList
   )
 
-  def deriveStringEnumeratumType[T <: enumeratum.values.StringEnumEntry](name: String, description: Option[String] = None, values: Seq[(T, String)]) = EnumType(
+  def deriveStringEnumeratumType[T <: EnumWithDescription](name: String, description: Option[String] = None, values: Seq[T]) = {
+    deriveStringTypes(name, description, values.map(x => x -> x.description))
+  }
+
+  private[this] def deriveStringTypes[T <: enumeratum.values.StringEnumEntry](
+    name: String, description: Option[String] = None, values: Seq[(T, String)]
+  ) = EnumType(
     name = name,
     description = description,
     values = values.map(t => EnumValue(name = t._1.toString, value = t._1, description = Some(t._2))).toList

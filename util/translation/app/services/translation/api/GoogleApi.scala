@@ -4,7 +4,6 @@ import java.net.URLEncoder
 
 import utils.FutureUtils.defaultContext
 import play.api.libs.ws.WSClient
-import play.api.libs.json.{JsValue, Json}
 
 @javax.inject.Singleton
 class GoogleApi @javax.inject.Inject() (ws: WSClient) extends ApiProvider("Yandex") {
@@ -15,7 +14,7 @@ class GoogleApi @javax.inject.Inject() (ws: WSClient) extends ApiProvider("Yande
 
   override def translate(lang: String, key: String, text: String) = {
     ws.url(url(lang, text)).get().map { response =>
-      val content = response.body // [[["Bonjour, bon utilisateur.","Hello there, valued user.",null,null,3]],null,"en"]]
+      val content = response.body
       val startIndex = content.indexOf('"') + 1
       val result = content.substring(startIndex, content.indexOf('"', startIndex + 1))
       Some(key -> result)

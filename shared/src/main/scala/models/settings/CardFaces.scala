@@ -1,10 +1,9 @@
 package models.settings
 
 import enumeratum.values._
+import utils.EnumWithDescription
 
-sealed abstract class CardFaces(val value: String, val title: String) extends StringEnumEntry {
-  override def toString = value
-}
+sealed abstract class CardFaces(override val value: String, override val description: String) extends EnumWithDescription
 
 object CardFaces extends StringEnum[CardFaces] with StringCirceEnum[CardFaces] {
   case object A extends CardFaces("a", "Face A")

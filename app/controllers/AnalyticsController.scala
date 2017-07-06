@@ -2,12 +2,7 @@ package controllers
 
 import java.util.UUID
 
-import models.audit.AnalyticsEvent
 import models.audit.AnalyticsEvent.EventType
-import utils.FutureUtils.defaultContext
-import play.api.libs.json.{JsValue, Json}
-import play.api.mvc.Action
-import services.audit.AnalyticsService
 import utils.Application
 
 import scala.concurrent.Future
@@ -16,7 +11,7 @@ import scala.concurrent.Future
 class AnalyticsController @javax.inject.Inject() (override val app: Application) extends BaseController {
   private[this] val notifications = new AnalyticsNotifications(app.notificationService)
 
-  def preflightCheck(path: String) = Action.async { request =>
+  def preflightCheck(path: String) = Action.async(parse.anyContent) { request =>
     val origin = request.headers.get("Origin").getOrElse("http://solitaire.gg")
     Future.successful(Ok("OK").withHeaders(
       "Access-Control-Allow-Origin" -> origin,
@@ -26,28 +21,15 @@ class AnalyticsController @javax.inject.Inject() (override val app: Application)
     ))
   }
 
-  def error(device: UUID) = analyticsAction(EventType.Error, device, AnalyticsService.error)
-  def install(device: UUID) = analyticsAction(EventType.Install, device, AnalyticsService.install)
-  def open(device: UUID) = analyticsAction(EventType.Open, device, AnalyticsService.open)
-  def gameStart(device: UUID) = analyticsAction(EventType.GameStart, device, AnalyticsService.gameStart)
-  def gameWon(device: UUID) = analyticsAction(EventType.GameWon, device, AnalyticsService.gameWon)
-  def gameResigned(device: UUID) = analyticsAction(EventType.GameResigned, device, AnalyticsService.gameResigned)
+  def error(device: UUID) = analyticsAction(EventType.Error)
+  def install(device: UUID) = analyticsAction(EventType.Install)
+  def open(device: UUID) = analyticsAction(EventType.Open)
+  def gameStart(device: UUID) = analyticsAction(EventType.GameStart)
+  def gameWon(device: UUID) = analyticsAction(EventType.GameWon)
+  def gameResigned(device: UUID) = analyticsAction(EventType.GameResigned)
 
-  private[this] def analyticsAction(
-    eventType: EventType,
-    device: UUID,
-    f: (UUID, String, JsValue) => Future[AnalyticsEvent]
-  ) = req(eventType.value) { implicit request =>
-    val sourceAddress = request.remoteAddress
-    request.body.asJson match {
-      case Some(json) => f(device, sourceAddress, json).map { result =>
-        notifications.notify(eventType, result)
-        val ret = Json.toJson(Map("status" -> "ok", "id" -> result.id.toString))
-        Ok(ret)
-      }
-      case None =>
-        val ret = Json.toJson(Map("status" -> "error", "message" -> "A valid json request body is required."))
-        Future.successful(BadRequest(ret))
-    }
+  private[this] def analyticsAction(eventType: EventType) = req(eventType.value) { implicit request =>
+    log.info(s"Analytics event received of type [$eventType].")
+    Future.successful(Ok("{ \"status\": \"ok\" }").as("application/json"))
   }
 }

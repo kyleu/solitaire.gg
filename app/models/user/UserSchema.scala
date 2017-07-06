@@ -3,15 +3,17 @@ package models.user
 import models.graphql.{CommonSchema, GraphQLContext}
 import models.graphql.CommonSchema.uuidType
 import models.graphql.DateTimeSchema.localDateTimeType
-import models.settings.SettingsSchema._
-import models.history.GameHistorySchema._
+import models.settings.SettingsSchema.settingsType
+import models.history.GameHistorySchema
 import sangria.macros.derive._
 import sangria.schema._
 import services.history.GameHistoryService
 import services.user.{UserService, UserStatisticsService}
 
 object UserSchema {
-  implicit val userStatisticsGamesType = deriveObjectType[GraphQLContext, UserStatistics.Games]()
+  implicit val userStatisticsGamesType = deriveObjectType[GraphQLContext, UserStatistics.Games](
+    ObjectTypeName("GameStatistics")
+  )
   implicit val userStatisticsType = deriveObjectType[GraphQLContext, UserStatistics]()
 
   implicit val userType = deriveObjectType[GraphQLContext, User](
@@ -31,10 +33,10 @@ object UserSchema {
       ),
       Field(
         name = "games",
-        fieldType = ListType(gameHistoryType),
+        fieldType = ListType(GameHistorySchema.gameHistoryType),
         arguments = CommonSchema.limitArg :: CommonSchema.offsetArg :: Nil,
         description = Some("Games played by this user."),
-        resolve = ctx => GameHistoryService.getByUser(ctx.value.id, ctx.arg(CommonSchema.limitArg), ctx.arg(CommonSchema.offsetArg))
+        resolve = ctx => GameHistorySchema.gameHistoryFetcher.deferRelSeq(GameHistorySchema.gameHistoryByPlayer, ctx.value.id)
       )
     )
   )

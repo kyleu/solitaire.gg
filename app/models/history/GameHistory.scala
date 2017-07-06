@@ -5,7 +5,7 @@ import java.util.UUID
 import enumeratum.values._
 import models.card.{Rank, Suit}
 import org.joda.time.LocalDateTime
-import utils.DateUtils
+import utils.{DateUtils, EnumWithDescription}
 
 object GameHistory {
   case class Card(
@@ -27,13 +27,13 @@ object GameHistory {
     occurred: LocalDateTime = DateUtils.now
   )
 
-  sealed abstract class Status(val value: String) extends StringEnumEntry
+  sealed abstract class Status(override val value: String, override val description: String) extends EnumWithDescription
 
   object Status extends StringEnum[Status] with StringCirceEnum[Status] {
-    case object Started extends Status("s")
-    case object Won extends Status("w")
-    case object Lost extends Status("l")
-    case object Resigned extends Status("r")
+    case object Started extends Status("s", "Started")
+    case object Won extends Status("w", "Won")
+    case object Lost extends Status("l", "Lost")
+    case object Resigned extends Status("r", "Resigned")
 
     override val values = findValues
   }
