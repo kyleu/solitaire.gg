@@ -2,12 +2,11 @@ import sbt._
 
 object Dependencies {
   object Play {
-    val version = "2.6.0"
+    val version = "2.6.1"
     val lib = "com.typesafe.play" %% "play" % version
     val filters = play.sbt.PlayImport.filters
     val ws = play.sbt.PlayImport.ws
-    val twirl = "com.typesafe.play" %% "twirl-api" % "1.3.3"
-    val json = "com.typesafe.play" %% "play-json" % "2.6.1"
+    val json = "com.typesafe.play" %% "play-json" % "2.6.2"
     val test = "com.typesafe.play" %% "play-test" % version
 
     val mailer = "com.typesafe.play" %% "play-mailer" % "6.0.0"

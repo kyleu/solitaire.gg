@@ -30,7 +30,7 @@ object Server {
     Seq(
       Database.postgresAsync, GraphQL.sangria, GraphQL.playJson, GraphQL.circe,
       Akka.actor, Akka.log4j, Akka.testkit, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */
-      Play.filters, Play.ws, Play.test, Play.mailer, Play.mailerGuice, Play.twirl,
+      Play.filters, Play.ws, Play.test, Play.mailer, Play.mailerGuice,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap, WebJars.underscore, WebJars.d3, WebJars.nvd3, WebJars.materialize, WebJars.jquery,
       Utils.core, Utils.collection, Utils.betterFiles,
