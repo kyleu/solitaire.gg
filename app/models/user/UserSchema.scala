@@ -1,10 +1,13 @@
 package models.user
 
+import java.util.UUID
+
 import models.graphql.{CommonSchema, GraphQLContext}
 import models.graphql.CommonSchema.uuidType
 import models.graphql.DateTimeSchema.localDateTimeType
 import models.settings.SettingsSchema.settingsType
 import models.history.GameHistorySchema
+import sangria.execution.deferred.{Fetcher, HasId}
 import sangria.macros.derive._
 import sangria.schema._
 import services.history.GameHistoryService
@@ -16,15 +19,13 @@ object UserSchema {
   )
   implicit val userStatisticsType = deriveObjectType[GraphQLContext, UserStatistics]()
 
+  implicit val userId = HasId[User, UUID](_.id)
+
+  val userFetcherById = Fetcher((_: GraphQLContext, ids: Seq[UUID]) => UserService.getByIds(ids))
+
   implicit val userType = deriveObjectType[GraphQLContext, User](
     ObjectTypeDescription("A user of the system."),
     AddFields(
-      Field(
-        name = "statistics",
-        fieldType = userStatisticsType,
-        description = Some("User statistics, mostly about games played."),
-        resolve = ctx => UserStatisticsService.getStatistics(ctx.value.id)
-      ),
       Field(
         name = "gameCount",
         fieldType = IntType,
@@ -32,7 +33,13 @@ object UserSchema {
         resolve = ctx => GameHistoryService.getCountByUser(ctx.value.id)
       ),
       Field(
-        name = "games",
+        name = "statistics",
+        fieldType = userStatisticsType,
+        description = Some("User statistics, mostly about games played."),
+        resolve = ctx => UserStatisticsService.getStatistics(ctx.value.id)
+      ),
+      Field(
+        name = "histories",
         fieldType = ListType(GameHistorySchema.gameHistoryType),
         arguments = CommonSchema.limitArg :: CommonSchema.offsetArg :: Nil,
         description = Some("Games played by this user."),

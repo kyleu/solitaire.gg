@@ -9,20 +9,29 @@ import models.user.UserSchema
 import sangria.execution.deferred.{Fetcher, HasId, Relation}
 import sangria.macros.derive._
 import sangria.schema._
-import services.history.GameHistoryService
-import services.user.UserService
+import services.history.{GameHistoryService, GameSeedService}
 
 object GameHistorySchema {
   implicit val gameStatusEnum = CommonSchema.deriveStringEnumeratumType(name = "GameStatus", values = GameHistory.Status.values)
 
   implicit val gameHistoryType: OutputType[GameHistory] = deriveObjectType[GraphQLContext, GameHistory](
     ObjectTypeDescription("An instance of a game, played at some point."),
-    AddFields(Field(
-      name = "user",
-      fieldType = OptionType(UserSchema.userType),
-      description = Some("The player responsible for this game."),
-      resolve = ctx => UserService.getById(ctx.value.player)
-    ))
+    RenameField("player", "playerId"),
+    RenameField("seed", "seedId"),
+    AddFields(
+      Field(
+        name = "seed",
+        fieldType = OptionType(GameSeedSchema.gameSeedType),
+        description = Some("The seed record associated with this game."),
+        resolve = ctx => GameSeedService.getGameSeed(ctx.value.rules, ctx.value.seed)
+      ),
+      Field(
+        name = "player",
+        fieldType = OptionType(UserSchema.userType),
+        description = Some("The player responsible for this game."),
+        resolve = ctx => UserSchema.userFetcherById.defer(ctx.value.player)
+      )
+    )
   )
 
   implicit val gameHistoryId = HasId[GameHistory, UUID](_.id)

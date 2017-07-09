@@ -12,7 +12,8 @@ trait BaseQueries[T] {
   protected def idColumns = Seq("id")
   protected def columns: Seq[String]
   protected lazy val quotedColumns = columns.mkString(", ")
-  protected def columnPlaceholders = columns.map(_ => "?").mkString(", ")
+  protected lazy val columnPlaceholders = placeholdersFor(columns)
+  protected def placeholdersFor(columns: Seq[Any]) = columns.map(_ => "?").mkString(", ")
   protected def searchColumns: Seq[String]
 
   protected def fromRow(row: Row): T
@@ -43,6 +44,8 @@ trait BaseQueries[T] {
     override val sql = s"select $quotedColumns from $tableName $additionalSql"
     override def reduce(rows: Iterator[Row]) = rows.map(fromRow).toList
   }
+
+  protected class ColSeqQuery(column: String, vals: Seq[Any] = Nil) extends SeqQuery("where \"" + column + "\" in (" + placeholdersFor(vals) + ")", vals)
 
   protected case class GetAll(orderBy: Option[String] = None, limit: Option[Int] = None, offset: Option[Int] = None) extends SeqQuery(
     orderBy.map(" order by " + _).getOrElse("") + limit.map(" limit " + _).getOrElse("") + offset.map(" offset " + _).getOrElse("")

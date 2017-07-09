@@ -16,7 +16,10 @@ object UserQueries extends BaseQueries[User] {
 
   val insert = Insert
   def getById(id: UUID) = getBySingleId(id)
+  def getByIds(ids: Seq[UUID]) = new ColSeqQuery("id", ids)
+
   def getAll(limit: Option[Int], offset: Option[Int]) = GetAll(orderBy = Some("id desc"), limit, offset)
+
   def searchCount(q: String, groupBy: Option[String] = None) = new SearchCount(q, groupBy)
   val search = Search
   val removeById = RemoveById

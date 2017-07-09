@@ -15,7 +15,8 @@ import scala.concurrent.Future
 object UserService extends Logging {
   def newUser() = save(User(id = UUID.randomUUID))
 
-  def getById(id: UUID): Future[Option[User]] = Database.query(UserQueries.getById(id))
+  def getById(id: UUID) = Database.query(UserQueries.getById(id))
+  def getByIds(ids: Seq[UUID]) = Database.query(UserQueries.getByIds(ids))
 
   def getByEmail(email: String) = Database.query(UserQueries.GetByEmail(email))
 
