@@ -4,6 +4,7 @@ import controllers.BaseController
 import models.graphql.Schema
 import sangria.renderer.SchemaRenderer
 import utils.Application
+import utils.FutureUtils.defaultContext
 
 import scala.concurrent.Future
 
@@ -14,6 +15,8 @@ class SchemaController @javax.inject.Inject() (override val app: Application) ex
   }
 
   def voyager() = withAdminSession("schema.render") { implicit request =>
-    Future.successful(Ok(views.html.admin.graphql.voyager()))
+    getUser(request).map { user =>
+      Ok(views.html.admin.graphql.voyager(user))
+    }
   }
 }

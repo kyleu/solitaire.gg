@@ -20,7 +20,6 @@ object UserSchema {
   implicit val userStatisticsType = deriveObjectType[GraphQLContext, UserStatistics]()
 
   implicit val userId = HasId[User, UUID](_.id)
-
   val userFetcherById = Fetcher((_: GraphQLContext, ids: Seq[UUID]) => UserService.getByIds(ids))
 
   implicit val userType = deriveObjectType[GraphQLContext, User](
@@ -43,7 +42,7 @@ object UserSchema {
         fieldType = ListType(GameHistorySchema.gameHistoryType),
         arguments = CommonSchema.limitArg :: CommonSchema.offsetArg :: Nil,
         description = Some("Games played by this user."),
-        resolve = ctx => GameHistorySchema.gameHistoryFetcher.deferRelSeq(GameHistorySchema.gameHistoryByPlayer, ctx.value.id)
+        resolve = ctx => GameHistorySchema.gameHistoryByPlayerFetcher.deferRelSeq(GameHistorySchema.gameHistoryByPlayer, ctx.value.id)
       )
     )
   )

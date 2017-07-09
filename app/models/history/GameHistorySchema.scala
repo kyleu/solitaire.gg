@@ -14,6 +14,13 @@ import services.history.{GameHistoryService, GameSeedService}
 object GameHistorySchema {
   implicit val gameStatusEnum = CommonSchema.deriveStringEnumeratumType(name = "GameStatus", values = GameHistory.Status.values)
 
+  implicit val gameHistoryId = HasId[GameHistory, UUID](_.id)
+  val gameHistoryByPlayer = Relation[GameHistory, UUID]("byPlayer", h => Seq(h.player))
+  val gameHistoryByPlayerFetcher = Fetcher.rel[GraphQLContext, GameHistory, GameHistory, UUID](
+    (_, ids) => GameHistoryService.getByIds(ids),
+    (_, rels) => { GameHistoryService.getByUsers(rels(gameHistoryByPlayer)) }
+  )
+
   implicit val gameHistoryType: OutputType[GameHistory] = deriveObjectType[GraphQLContext, GameHistory](
     ObjectTypeDescription("An instance of a game, played at some point."),
     RenameField("player", "playerId"),
@@ -32,14 +39,6 @@ object GameHistorySchema {
         resolve = ctx => UserSchema.userFetcherById.defer(ctx.value.player)
       )
     )
-  )
-
-  implicit val gameHistoryId = HasId[GameHistory, UUID](_.id)
-  val gameHistoryByPlayer = Relation[GameHistory, UUID]("byPlayer", h => Seq(h.player))
-
-  val gameHistoryFetcher = Fetcher.rel[GraphQLContext, GameHistory, GameHistory, UUID](
-    (_, ids) => GameHistoryService.getByIds(ids),
-    (_, rels) => { GameHistoryService.getByUsers(rels(gameHistoryByPlayer)) }
   )
 
   val queryFields = fields[GraphQLContext, Unit](Field(

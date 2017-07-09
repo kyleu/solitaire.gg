@@ -9,7 +9,7 @@ import sangria.schema._
 
 object Schema {
   val resolver: DeferredResolver[GraphQLContext] = DeferredResolver.fetchers(
-    models.history.GameHistorySchema.gameHistoryFetcher,
+    models.history.GameHistorySchema.gameHistoryByPlayerFetcher,
     models.user.UserSchema.userFetcherById
   )
 
