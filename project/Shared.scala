@@ -8,8 +8,6 @@ import webscalajs.ScalaJSWeb
 import net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings
 import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, scalariformSettings}
 
-import Dependencies.Serialization._
-
 object Shared {
   val projectId = "solitaire-gg"
   val projectName = "Solitaire.gg"
@@ -53,10 +51,10 @@ object Shared {
   ) ++ graphSettings ++ scalariformSettings
 
   lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(commonSettings: _*).settings(libraryDependencies ++= Seq(
-    "io.circe" %%% "circe-core" % circeVersion,
-    "io.circe" %%% "circe-generic" % circeVersion,
-    "io.circe" %%% "circe-generic-extras" % circeVersion,
-    "io.circe" %%% "circe-parser" % circeVersion,
+    "io.circe" %%% "circe-core" % Dependencies.Serialization.circeVersion,
+    "io.circe" %%% "circe-generic" % Dependencies.Serialization.circeVersion,
+    "io.circe" %%% "circe-generic-extras" % Dependencies.Serialization.circeVersion,
+    "io.circe" %%% "circe-parser" % Dependencies.Serialization.circeVersion,
     "com.beachape" %%% "enumeratum-circe" % Dependencies.Utils.enumeratumVersion,
     "com.lihaoyi" %%% "utest" % Dependencies.Testing.uTestVersion % "test"
   ))
