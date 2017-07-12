@@ -13,8 +13,6 @@ object Schema extends Logging {
 
     CreateDailyMetricsTable,
 
-    CreateAdHocQueriesTable,
-
     CreateUsersTable,
     CreateUserStatisticsTable,
 

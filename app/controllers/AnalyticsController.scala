@@ -2,15 +2,12 @@ package controllers
 
 import java.util.UUID
 
-import models.audit.AnalyticsEvent.EventType
 import utils.Application
 
 import scala.concurrent.Future
 
 @javax.inject.Singleton
 class AnalyticsController @javax.inject.Inject() (override val app: Application) extends BaseController {
-  private[this] val notifications = new AnalyticsNotifications(app.notificationService)
-
   def preflightCheck(path: String) = Action.async(parse.anyContent) { request =>
     val origin = request.headers.get("Origin").getOrElse("http://solitaire.gg")
     Future.successful(Ok("OK").withHeaders(
@@ -21,14 +18,14 @@ class AnalyticsController @javax.inject.Inject() (override val app: Application)
     ))
   }
 
-  def error(device: UUID) = analyticsAction(EventType.Error)
-  def install(device: UUID) = analyticsAction(EventType.Install)
-  def open(device: UUID) = analyticsAction(EventType.Open)
-  def gameStart(device: UUID) = analyticsAction(EventType.GameStart)
-  def gameWon(device: UUID) = analyticsAction(EventType.GameWon)
-  def gameResigned(device: UUID) = analyticsAction(EventType.GameResigned)
+  def error(device: UUID) = analyticsAction("Error")
+  def install(device: UUID) = analyticsAction("Install")
+  def open(device: UUID) = analyticsAction("Open")
+  def gameStart(device: UUID) = analyticsAction("GameStart")
+  def gameWon(device: UUID) = analyticsAction("GameWon")
+  def gameResigned(device: UUID) = analyticsAction("GameResigned")
 
-  private[this] def analyticsAction(eventType: EventType) = req(eventType.value) { implicit request =>
+  private[this] def analyticsAction(eventType: String) = req(s"analytics.$eventType") { implicit request =>
     log.info(s"Analytics event received of type [$eventType].")
     Future.successful(Ok("{ \"status\": \"ok\" }").as("application/json"))
   }

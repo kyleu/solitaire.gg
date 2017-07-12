@@ -37,7 +37,7 @@ object GameHistoryService {
   def getCountByUser(id: UUID) = Database.query(GameHistoryQueries.getCountForUser(id))
   def getByUser(id: UUID, limit: Option[Int], offset: Option[Int]) = Database.query(GameHistoryQueries.GetByUser(id, limit, offset))
 
-  def getByUsers(userIds: Seq[UUID]) = Database.query(GameHistoryQueries.GetByUserIds(userIds))
+  def getByPlayers(userIds: Seq[UUID]) = Database.query(GameHistoryQueries.GetByUserIds(userIds))
 
   def getBySeed(rules: String, seed: Int, limit: Option[Int], offset: Option[Int]) = Database.query(GameHistoryQueries.GetBySeed(rules, seed, limit, offset))
 

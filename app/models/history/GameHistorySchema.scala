@@ -15,10 +15,11 @@ object GameHistorySchema {
   implicit val gameStatusEnum = CommonSchema.deriveStringEnumeratumType(name = "GameStatus", values = GameHistory.Status.values)
 
   implicit val gameHistoryId = HasId[GameHistory, UUID](_.id)
+
   val gameHistoryByPlayer = Relation[GameHistory, UUID]("byPlayer", h => Seq(h.player))
   val gameHistoryByPlayerFetcher = Fetcher.rel[GraphQLContext, GameHistory, GameHistory, UUID](
     (_, ids) => GameHistoryService.getByIds(ids),
-    (_, rels) => { GameHistoryService.getByUsers(rels(gameHistoryByPlayer)) }
+    (_, rels) => GameHistoryService.getByPlayers(rels(gameHistoryByPlayer))
   )
 
   implicit val gameHistoryType: OutputType[GameHistory] = deriveObjectType[GraphQLContext, GameHistory](
