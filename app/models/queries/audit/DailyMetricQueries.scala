@@ -49,13 +49,13 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
 
   case class GetMetricHistory(metric: Metric) extends Query[Seq[(LocalDate, Long)]] {
     override def sql = s"select day, value from $tableName where metric = ? order by day"
-    override def values = Seq(metric)
+    override def values = Seq(metric.toString)
     override def reduce(rows: Iterator[Row]) = rows.map(row => row.as[LocalDate]("day") -> row.as[Long]("value")).toSeq
   }
 
   case class UpdateMetric(dm: DailyMetric) extends Statement {
     override def sql: String = updateSql(Seq("value", "measured"))
-    override def values = Seq(dm.value, dm.measured, dm.date, dm.metric)
+    override def values = Seq(dm.value, dm.measured, dm.date, dm.metric.toString)
   }
 
   case class CalculateMetric(metric: Metric, override val sql: String, d: LocalDate) extends SingleRowQuery[Long] {
@@ -77,5 +77,5 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
     DailyMetric(day, metric, value, measured)
   }
 
-  override protected def toDataSeq(m: DailyMetric) = Seq(m.date, m.metric, m.value, m.measured)
+  override protected def toDataSeq(m: DailyMetric) = Seq(m.date, m.metric.toString, m.value, m.measured)
 }

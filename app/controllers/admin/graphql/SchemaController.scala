@@ -15,7 +15,7 @@ class SchemaController @javax.inject.Inject() (override val app: Application) ex
   }
 
   def voyager() = withAdminSession("schema.render") { implicit request =>
-    getUser(request).map { user =>
+    getAdminUser(request).map { user =>
       Ok(views.html.admin.graphql.voyager(user))
     }
   }

@@ -5,11 +5,11 @@ import models.queries.audit.DailyMetricQueries
 import org.joda.time.LocalDate
 import utils.FutureUtils.defaultContext
 import services.database.Database
-import utils.DateUtils
+import utils.{DateUtils, Logging}
 
 import scala.concurrent.Future
 
-object DailyMetricService {
+object DailyMetricService extends Logging {
   def getMetric(d: LocalDate, m: Metric) = Database.query(DailyMetricQueries.GetValue(d, m))
 
   def getMetrics(d: LocalDate) = Database.query(DailyMetricQueries.GetMetrics(d)).flatMap { m =>
@@ -19,6 +19,7 @@ object DailyMetricService {
       val missingMetrics = Metric.values.filterNot(m.keySet.contains)
       calculateMetrics(d, missingMetrics).map { metrics =>
         val models = metrics.map(x => DailyMetric(d, x._1, x._2, DateUtils.now)).toSeq
+        log.info(s"Inserting [${metrics.size}] missing daily metrics [${metrics.keys.toSeq.map(_.toString).sorted.mkString(", ")}].")
         Database.execute(DailyMetricQueries.insertBatch(models))
         (d, (m ++ metrics, metrics.size))
       }
@@ -29,12 +30,10 @@ object DailyMetricService {
 
   def setMetric(d: LocalDate, metric: Metric, value: Long) = {
     val dm = DailyMetric(d, metric, value, DateUtils.now)
-    Database.execute(DailyMetricQueries.UpdateMetric(dm)).flatMap { rowsAffected =>
-      if (rowsAffected == 1) {
-        Future.successful(dm)
-      } else {
-        Database.execute(DailyMetricQueries.insert(dm)).map(_ => dm)
-      }
+    Database.execute(DailyMetricQueries.UpdateMetric(dm)).flatMap {
+      case 1 => Future.successful(dm)
+      case 0 => Database.execute(DailyMetricQueries.insert(dm)).map(_ => dm)
+      case rowsAffected => throw new IllegalStateException(s"DailyMetric update [$dm] affected [$rowsAffected] rows.")
     }
   }
 

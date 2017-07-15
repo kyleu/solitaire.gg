@@ -18,14 +18,14 @@ class SandboxController @javax.inject.Inject() (override val app: Application, s
   implicit val timeout = Timeout(10.seconds)
 
   def list = withAdminSession("sandbox.list") { implicit request =>
-    getUser(request).map { u =>
+    getAdminUser(request).map { u =>
       Ok(views.html.admin.sandbox.list(u))
     }
   }
 
   def sandbox(key: String) = withAdminSession("sandbox." + key) { implicit request =>
     val sandbox = SandboxTask.withValue(key)
-    getUser(request).flatMap { u =>
+    getAdminUser(request).flatMap { u =>
       sandbox.run(app).map { result =>
         Ok(views.html.admin.sandbox.run(u, sandbox, result))
       }

@@ -18,7 +18,7 @@ import scala.concurrent.Future
 class GraphQLController @javax.inject.Inject() (override val app: Application) extends BaseController {
   def graphql(query: Option[String], variables: Option[String]) = {
     withAdminSession("graphql.ui") { implicit request =>
-      getUser(request).map { user =>
+      getAdminUser(request).map { user =>
         Ok(views.html.admin.graphql.graphiql(user))
       }
     }
@@ -38,7 +38,7 @@ class GraphQLController @javax.inject.Inject() (override val app: Application) e
       x.asString.map(GraphQLService.parseVariables).getOrElse(x)
     }
 
-    getUser(request).flatMap { user =>
+    getAdminUser(request).flatMap { user =>
       executeQuery(query, variables, operation, user)
     }
   }

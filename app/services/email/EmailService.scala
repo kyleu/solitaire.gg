@@ -1,14 +1,15 @@
 package services.email
 
-import models.audit.{DailyMetric, Metric, UserFeedback}
+import models.audit.{Metric, UserFeedback}
+import org.apache.commons.mail.EmailException
 import org.joda.time.LocalDate
 import play.api.i18n.Messages
 import play.api.libs.mailer._
 import services.audit.DailyMetricService
-import utils.{Config, DateUtils}
+import utils.{Config, DateUtils, Logging}
 
 @javax.inject.Singleton
-class EmailService @javax.inject.Inject() (mailerClient: MailerClient, config: Config) {
+class EmailService @javax.inject.Inject() (mailerClient: MailerClient, config: Config) extends Logging {
   private[this] val adminFrom = "Solitaire.gg <solitaire@solitaire.gg>"
   private[this] val adminTextMessage = "You should really use HTML mail."
 
@@ -53,6 +54,10 @@ class EmailService @javax.inject.Inject() (mailerClient: MailerClient, config: C
       bcc = Nil,
       attachments = Nil
     )
-    mailerClient.send(email)
+    try {
+      mailerClient.send(email)
+    } catch {
+      case e: EmailException => log.error("Could not send email.", e)
+    }
   }
 }
