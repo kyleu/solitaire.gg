@@ -15,7 +15,7 @@
     <thead>
       <tr>
         <th>Date</th>
-        @for(metric <- models.audit.DailyMetric.all) {
+        @for(metric <- models.audit.Metric.values) {
           <th>@metric.title</th>
         }
       </tr>
@@ -24,7 +24,7 @@
       @for(row <- metrics.reverse) {
         <tr>
           <td>@row._1</td>
-          @for(m <- models.audit.DailyMetric.all) {
+          @for(m <- models.audit.Metric.values) {
             <td>@utils.Formatter.withCommas(row._2.getOrElse(m, 0L))</td>
           }
         </tr>
@@ -33,7 +33,7 @@
     <tfoot>
       <tr>
         <th>Total</th>
-        @for(m <- models.audit.DailyMetric.all) {
+        @for(m <- models.audit.Metric.values) {
           <th>@utils.Formatter.withCommas(metrics.map(_._2.getOrElse(m, 0L)).sum)</th>
         }
       </tr>

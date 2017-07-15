@@ -32,7 +32,7 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
     override def reduce(rows: Iterator[Row]) = rows.map { row =>
       (row.as[LocalDate]("day"), row.as[String]("metric"), row.as[Long]("value"))
     }.toSeq.groupBy(_._1).map { x =>
-      x._1 -> x._2.map(y => DailyMetric.fromString(y._2) -> y._3).toMap
+      x._1 -> x._2.map(y => Metric.withNameInsensitive(y._2) -> y._3).toMap
     }.toSeq.sortBy(_._1).reverse
   }
 
@@ -67,11 +67,11 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
     override def map(row: Row) = row.as[Long]("c")
   }
 
-  private[this] def tupleFromRow(row: Row) = DailyMetric.fromString(row.as[String]("metric")) -> row.as[Long]("value")
+  private[this] def tupleFromRow(row: Row) = Metric.withNameInsensitive(row.as[String]("metric")) -> row.as[Long]("value")
 
   override protected def fromRow(row: Row) = {
     val day = row.as[LocalDate]("day")
-    val metric = DailyMetric.fromString(row.as[String]("metric"))
+    val metric = Metric.withNameInsensitive(row.as[String]("metric"))
     val value = row.as[Long]("value")
     val measured = row.as[LocalDateTime]("measured")
     DailyMetric(day, metric, value, measured)

@@ -1,13 +1,13 @@
 package controllers.admin
 
 import controllers.BaseController
-import models.audit.DailyMetric
+import models.audit.Metric
 import models.queries.history.GameSeedQueries
 import models.queries.report.RowCountQueries
 import org.joda.time.LocalDate
-import utils.FutureUtils.defaultContext
 import services.audit.DailyMetricService
 import services.database.Database
+import utils.FutureUtils.defaultContext
 import utils.{Application, DateUtils}
 
 import scala.concurrent.Future
@@ -47,7 +47,7 @@ class ReportController @javax.inject.Inject() (override val app: Application) ex
 
     val pre = "[\n"
     val post = "\n]\n"
-    val content = DailyMetric.all.map { metric =>
+    val content = Metric.values.map { metric =>
       s"""
       |  {
       |    "values": [ ${toChartDataValues(metric)} ],

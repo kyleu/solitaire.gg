@@ -13,10 +13,10 @@ object DailyMetricService {
   def getMetric(d: LocalDate, m: Metric) = Database.query(DailyMetricQueries.GetValue(d, m))
 
   def getMetrics(d: LocalDate) = Database.query(DailyMetricQueries.GetMetrics(d)).flatMap { m =>
-    if (m.size == DailyMetric.all.size) {
+    if (m.size == Metric.values.size) {
       Future.successful((d, (m, 0)))
     } else {
-      val missingMetrics = DailyMetric.all.filterNot(m.keySet.contains)
+      val missingMetrics = Metric.values.filterNot(m.keySet.contains)
       calculateMetrics(d, missingMetrics).map { metrics =>
         val models = metrics.map(x => DailyMetric(d, x._1, x._2, DateUtils.now)).toSeq
         Database.execute(DailyMetricQueries.insertBatch(models))
