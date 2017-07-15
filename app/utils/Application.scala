@@ -59,6 +59,10 @@ class Application @javax.inject.Inject() (
 
     FileService.setRootDir(config.fileCacheDir)
 
+    if (config.adminKey == "admin") {
+      log.warn("Using default admin key. This installation is not secure.")
+    }
+
     if (!config.debug) {
       scheduleTask(task, system)
     }

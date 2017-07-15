@@ -43,6 +43,7 @@ class Config @javax.inject.Inject() (cnf: play.api.Configuration, env: Environme
   val sparkPort = cnf.get[Option[Int]]("spark.uiport").getOrElse(4040)
 
   // Admin
+  val adminKey = cnf.get[Option[String]]("game.admin.key").getOrElse("admin@localhost")
   val adminEmail = cnf.get[Option[String]]("game.admin.email").getOrElse("admin@localhost")
 
   // Notifications
