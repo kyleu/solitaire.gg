@@ -1,7 +1,6 @@
 package services.audit
 
-import models.audit.DailyMetric
-import models.audit.DailyMetric._
+import models.audit.{DailyMetric, Metric}
 import models.queries.audit.DailyMetricQueries
 import org.joda.time.LocalDate
 import utils.FutureUtils.defaultContext
@@ -11,7 +10,7 @@ import utils.DateUtils
 import scala.concurrent.Future
 
 object DailyMetricService {
-  def getMetric(d: LocalDate, m: DailyMetric.Metric) = Database.query(DailyMetricQueries.GetValue(d, m))
+  def getMetric(d: LocalDate, m: Metric) = Database.query(DailyMetricQueries.GetValue(d, m))
 
   def getMetrics(d: LocalDate) = Database.query(DailyMetricQueries.GetMetrics(d)).flatMap { m =>
     if (m.size == DailyMetric.all.size) {
@@ -28,7 +27,7 @@ object DailyMetricService {
 
   def getAllMetrics = Database.query(DailyMetricQueries.GetAllMetrics)
 
-  def setMetric(d: LocalDate, metric: DailyMetric.Metric, value: Long) = {
+  def setMetric(d: LocalDate, metric: Metric, value: Long) = {
     val dm = DailyMetric(d, metric, value, DateUtils.now)
     Database.execute(DailyMetricQueries.UpdateMetric(dm)).flatMap { rowsAffected =>
       if (rowsAffected == 1) {
@@ -45,12 +44,12 @@ object DailyMetricService {
     getMetrics(d)
   }
 
-  private[this] def calculateMetrics(d: LocalDate, metrics: Seq[DailyMetric.Metric]) = {
+  private[this] def calculateMetrics(d: LocalDate, metrics: Seq[Metric]) = {
     val futures = metrics.map { metric =>
       val f = getSql(metric) match {
         case Some(sql) => Database.query(DailyMetricQueries.CalculateMetric(metric, sql, d))
         case None => metric match {
-          case DailyMetric.ServerFreeSpace => Future.successful(getFreeSpace)
+          case Metric.ServerFreeSpace => Future.successful(getFreeSpace)
           case _ => Future.successful(0L)
         }
       }
@@ -60,11 +59,11 @@ object DailyMetricService {
   }
 
   private[this] def getSql(metric: Metric) = metric match {
-    case GamesStarted => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-start'")
-    case GamesWon => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-resigned'")
-    case GamesAdandoned => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-won'")
+    case Metric.GamesStarted => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-start'")
+    case Metric.GamesWon => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-resigned'")
+    case Metric.GamesAdandoned => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-won'")
 
-    case Feedbacks => Some("select count(*) as c from user_feedback where occurred >= ? and occurred < ?")
+    case Metric.Feedbacks => Some("select count(*) as c from user_feedback where occurred >= ? and occurred < ?")
     case _ => None
   }
 

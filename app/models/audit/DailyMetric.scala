@@ -3,49 +3,10 @@ package models.audit
 import org.joda.time.{LocalDateTime, LocalDate}
 
 object DailyMetric {
-  sealed trait Metric {
-    def title: String
-  }
-
-  case object GamesStarted extends Metric {
-    override val title = "Games"
-  }
-  case object GamesWon extends Metric {
-    override val title = "Won"
-  }
-  case object GamesAdandoned extends Metric {
-    override val title = "Abandoned"
-  }
-
-  case object Signups extends Metric {
-    override val title = "Signups"
-  }
-
-  case object Feedbacks extends Metric {
-    override val title = "Feedbacks"
-  }
-
-  case object ServerFreeSpace extends Metric {
-    override val title = "Server Free Space"
-  }
-
-  case object ReportSent extends Metric {
-    override val title = "Mailed"
-  }
-
-  case object Unknown extends Metric {
-    override val title = "Unknown"
-  }
-
-  val all = Seq[Metric](
-    GamesStarted, GamesWon, GamesAdandoned,
-    Signups, Feedbacks,
-    ServerFreeSpace,
-    ReportSent, Unknown
-  )
+  val all = Metric.values
 
   private[this] val allMap = all.map(m => m.toString -> m).toMap
-  def fromString(s: String) = allMap.getOrElse(s, Unknown)
+  def fromString(s: String) = allMap.getOrElse(s, Metric.Unknown)
 }
 
-case class DailyMetric(date: LocalDate, metric: DailyMetric.Metric, value: Long, measured: LocalDateTime)
+case class DailyMetric(date: LocalDate, metric: Metric, value: Long, measured: LocalDateTime)

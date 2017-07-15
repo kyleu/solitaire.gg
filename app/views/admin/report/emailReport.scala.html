@@ -1,12 +1,12 @@
 @(
   d: org.joda.time.LocalDate,
-  metrics: Map[models.audit.DailyMetric.Metric, Long],
-  totals: Map[models.audit.DailyMetric.Metric, Long],
+  metrics: Map[models.audit.Metric, Long],
+  totals: Map[models.audit.Metric, Long],
   tableCounts: Seq[(String, Long)]
 )
-@import models.audit.DailyMetric._
+@import models.audit.Metric._
 
-@metricsTable(title: String, m: Map[models.audit.DailyMetric.Metric, Long], css: utils.web.CssEmailStyles, isTotals: Boolean = false) = {
+@metricsTable(title: String, m: Map[models.audit.Metric, Long], css: utils.web.CssEmailStyles, isTotals: Boolean = false) = {
   <table style="@css.table">
     <thead>
       <tr style="@css.tr">

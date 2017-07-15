@@ -1,6 +1,6 @@
 package services.email
 
-import models.audit.{DailyMetric, UserFeedback}
+import models.audit.{DailyMetric, Metric, UserFeedback}
 import org.joda.time.LocalDate
 import play.api.i18n.Messages
 import play.api.libs.mailer._
@@ -28,13 +28,13 @@ class EmailService @javax.inject.Inject() (mailerClient: MailerClient, config: C
 
   def sendDailyReport(
     d: LocalDate,
-    metrics: Map[DailyMetric.Metric, Long],
-    totals: Map[DailyMetric.Metric, Long],
+    metrics: Map[Metric, Long],
+    totals: Map[Metric, Long],
     tableCounts: Seq[(String, Long)]
   ) = {
     val html = views.html.admin.report.emailReport(d, metrics, totals, tableCounts).toString
     sendMessage(adminFrom, config.adminEmail, s"${Config.projectName} report for [$d]", adminTextMessage, html)
-    DailyMetricService.setMetric(d, DailyMetric.ReportSent, 1L)
+    DailyMetricService.setMetric(d, Metric.ReportSent, 1L)
   }
 
   def sendError(msg: String, ctx: String, ex: Option[Throwable]) = {

@@ -1,12 +1,12 @@
 package services.scheduled
 
-import models.audit.DailyMetric
+import models.audit.Metric
 import models.queries.report.RowCountQueries
-import utils.FutureUtils.defaultContext
 import services.audit.DailyMetricService
 import services.database.Database
 import services.email.EmailService
 import utils.DateUtils
+import utils.FutureUtils.defaultContext
 
 import scala.concurrent.Future
 
@@ -18,7 +18,7 @@ class EmailReport(emailService: EmailService) extends ScheduledTask.Task {
     if (DateUtils.today.minusDays(1) != yesterdayAndBuffer) {
       Future.successful("report" -> None)
     } else {
-      DailyMetricService.getMetric(yesterdayAndBuffer, DailyMetric.ReportSent).flatMap { reportSent =>
+      DailyMetricService.getMetric(yesterdayAndBuffer, Metric.ReportSent).flatMap { reportSent =>
         if (reportSent.contains(1L)) {
           Future.successful("report" -> None)
         } else {

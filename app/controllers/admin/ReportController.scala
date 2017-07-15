@@ -39,12 +39,8 @@ class ReportController @javax.inject.Inject() (override val app: Application) ex
     }
   }
 
-  def analytics() = withAdminSession("analytics") { implicit request =>
-    Future.successful(Ok("Analytics report!"))
-  }
-
-  private[this] def toChartData(metrics: Seq[(org.joda.time.LocalDate, Map[models.audit.DailyMetric.Metric, Long])]) = {
-    def toChartDataValues(metric: DailyMetric.Metric) = metrics.map(x => x._1 -> x._2.getOrElse(metric, 0L)).reverseMap { row =>
+  private[this] def toChartData(metrics: Seq[(org.joda.time.LocalDate, Map[models.audit.Metric, Long])]) = {
+    def toChartDataValues(metric: models.audit.Metric) = metrics.map(x => x._1 -> x._2.getOrElse(metric, 0L)).reverseMap { row =>
       val ms = utils.DateUtils.toMillis(row._1.toLocalDateTime(org.joda.time.LocalTime.MIDNIGHT).plusDays(1))
       s"""{ "x": $ms, "y": ${row._2} }"""
     }.mkString(", ")
