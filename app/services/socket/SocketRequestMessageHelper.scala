@@ -6,7 +6,7 @@ import models.rules.GameRulesSet
 import models.rules.impl.Sandbox
 import msg.req._
 import msg.rsp.Pong
-import services.history.{GameHistoryService, GameSeedService}
+import services.history.{GameHistoryService, GameSeedService, GameStatisticsService}
 import services.user.{UserService, UserStatisticsService}
 import utils.DateUtils
 import utils.metrics.InstrumentedActor
@@ -30,6 +30,7 @@ trait SocketRequestMessageHelper extends InstrumentedActor { this: SocketService
     val gh = GameHistory(gs.id, gs.rules, gs.seed, GameHistory.Status.Started, user.id, rules.deckOptions.cardCount)
     GameHistoryService.insert(gh)
     UserStatisticsService.gameStarted(gs.id, gs.rules, gs.seed, user.id)
+    GameStatisticsService.gameStarted(gs.rules, gs.seed)
   }
 
   private[this] def onGameComplete(gc: OnGameComplete) = {
@@ -50,6 +51,7 @@ trait SocketRequestMessageHelper extends InstrumentedActor { this: SocketService
     GameHistoryService.onComplete(gh)
     GameSeedService.onComplete(gh)
     UserStatisticsService.registerGame(gh)
+    GameStatisticsService.registerGame(gh)
 
     log.info(s"Game completed: $gh")
   }

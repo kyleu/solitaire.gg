@@ -3,6 +3,7 @@ package controllers.admin
 import controllers.BaseController
 import models.rules.{GameRules, GameRulesSet}
 import play.api.http.FileMimeTypes
+import services.history.GameStatisticsService
 import utils.Application
 import utils.FutureUtils.defaultContext
 
@@ -27,7 +28,9 @@ class RulesController @javax.inject.Inject() (override val app: Application, imp
 
   def rulesDetail(id: String) = withAdminSession("detail") { implicit request =>
     val rules = GameRulesSet.allByIdWithAliases(id)
-    Future.successful(Ok(views.html.admin.rules.rulesDetail(rules)))
+    GameStatisticsService.getStatistics(id).map { stats =>
+      Ok(views.html.admin.rules.rulesDetail(rules, stats))
+    }
   }
 
   def rulesScreenshot(id: String) = withAdminSession("screenshot") { implicit request =>

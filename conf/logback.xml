@@ -28,7 +28,7 @@
   <logger name="application" level="INFO" />
 
   <logger name="com.mohiva" level="INFO" />
-  <logger name="com.github.mauricio.async.db" level="WARN" />
+  <logger name="com.github.mauricio.async.db" level="OFF" />
   <logger name="akka.actor.ActorSystemImpl" level="ERROR" />
 
   <!-- Off these ones as they are annoying, and anyway we manage configuration ourselves -->

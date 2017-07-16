@@ -20,9 +20,11 @@ class MenuService(settings: SettingsService, navigation: NavigationService) {
   }
   TemplateUtils.clickHandler(toggle, _ => toggleMenu())
 
-  NavigationState.values.foreach { s =>
-    TemplateUtils.clickHandler($(s"#menu-link-$s"), _ => navigation.navigate(s))
-  }
+  private[this] val stateLinks = NavigationState.values.flatMap { s =>
+    val jq = $(s"#menu-link-$s")
+    TemplateUtils.clickHandler(jq, _ => navigation.navigate(s))
+    if(jq.length == 0) { None } else { Some(s -> jq) }
+  }.toMap
 
   def toggleMenu() = if (navigation.getState == NavigationState.Games) {
     navigation.navigate(priorState)
@@ -30,4 +32,9 @@ class MenuService(settings: SettingsService, navigation: NavigationService) {
     priorState = navigation.getState
     navigation.navigate(NavigationState.Games)
   }
+
+  def setTitle(t: String) = title.text(t)
+
+  def showAllLinks() = stateLinks.values.toSeq.map(_.show())
+  def hideLink(s: NavigationState) = stateLinks.get(s).map(_.hide())
 }

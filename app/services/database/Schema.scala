@@ -19,6 +19,7 @@ object Schema extends Logging {
 
     CreateGamesTable,
     CreateGameSeedsTable,
+    CreateGameStatisticsTable,
 
     CreateOpensTable,
     CreateInstallsTable

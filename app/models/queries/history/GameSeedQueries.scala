@@ -54,7 +54,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
     private[this] val firstOccurredClause = "first_occurred = case when first_occurred is null then ? else first_occurred end"
     private[this] val firstSql = Seq(firstPlayerClause, firstMovesClause, firstElapsedClause, firstOccurredClause).mkString(", ")
 
-    private[this] val fastestClause = s"(fastest_elapsed_ms is null or fastest_elapsed_ms > ${gh.duration})"
+    private[this] val fastestClause = s"(fastest_elapsed_ms is null or fastest_elapsed_ms > ${gh.duration.getOrElse(Int.MaxValue)})"
     private[this] val fastestPlayerClause = s"fastest_player = case when $fastestClause then ? else fastest_player end"
     private[this] val fastestMovesClause = s"fastest_moves = case when $fastestClause then ? else fastest_moves end"
     private[this] val fastestElapsedClause = s"fastest_elapsed_ms = case when $fastestClause then ? else fastest_elapsed_ms end"

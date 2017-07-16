@@ -3,6 +3,7 @@ package models.queries.user
 import java.util.UUID
 
 import models.database.{Row, Statement}
+import models.history.GameHistory
 import models.queries.BaseQueries
 import models.user.UserStatistics
 import org.joda.time.LocalDateTime
@@ -50,12 +51,22 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
     s.games.currentWinStreak, s.games.maxWinStreak, s.games.currentLossStreak, s.games.maxLossStreak
   )
 
-  def updateSql(win: Boolean) = {
+  case class Increment(userId: UUID, col: String, v: Int) extends Statement {
+    override def sql = s"update $tableName set $col = $col + ? where id = ?"
+    override val values = Seq[Any](v, userId)
+  }
+
+  case class OnFinish(gh: GameHistory) extends Statement {
+    override def sql = updateSql(gh.isWon)
+    override def values = Seq[Any](gh.duration, gh.moves, gh.undos, gh.redos, gh.completed, gh.player)
+  }
+
+  private[this] def updateSql(win: Boolean) = {
     val single = if (win) { "win" } else { "loss" }
     val multi = if (win) { "wins" } else { "losses" }
     val inverse = if (win) { "loss" } else { "win" }
     s"""
-      update user_statistics set
+      update $tableName set
         total_duration_ms = total_duration_ms + ?,
         total_moves = total_moves + ?,
         total_undos = total_undos + ?,
@@ -63,17 +74,9 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
         $multi = $multi + 1,
         last_$single = ?,
         current_${single}_streak = current_${single}_streak + 1,
-        max_${single}_streak = case
-          when max_${single}_streak > (current_${single}_streak + 1) then max_${single}_streak
-          else (current_${single}_streak + 1)
-        end,
+        max_${single}_streak = greatest(max_${single}_streak, current_${single}_streak + 1),
         current_${inverse}_streak = 0
       where id = ?
     """
-  }
-
-  case class Increment(userId: UUID, col: String, v: Int) extends Statement {
-    override def sql = s"update $tableName set $col = $col + ? where id = ?"
-    override val values = Seq[Any](v, userId)
   }
 }

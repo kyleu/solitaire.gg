@@ -1,5 +1,0 @@
-@()(implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages)@views.html.layout.static(title = s"About ${utils.Config.projectName}", button = "menu") {
-  <div class="module">
-    @Messages("help.about", utils.Config.projectName)
-  </div>
-}

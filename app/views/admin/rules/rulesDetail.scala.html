@@ -1,4 +1,4 @@
-@(rules: models.rules.GameRules)(implicit session: Session, flash: Flash)
+@(rules: models.rules.GameRules, stats: models.history.GameStatistics)(implicit session: Session, flash: Flash)
 @views.html.admin.layout.base(rules.title + " Overview", "tests") {
   <div class="row">
     <div class="col-md-12">
@@ -14,8 +14,8 @@
     <div class="col-md-3">
       <div class="panel panel-default">
         <div class="panel-body">
-          <a class="btn btn-default btn-block" target="_blank" href="@routes.SolitaireController.startArgs(rules.id).url">Play Now</a>
-          <a class="btn btn-default btn-block" target="_blank" href="@routes.SolitaireController.startArgs(rules.id + "/help").url">Help</a>
+          <a class="btn btn-default btn-block" target="_blank" href="@routes.SolitaireController.startArgs("play/" + rules.id).url">Play Now</a>
+          <a class="btn btn-default btn-block" target="_blank" href="@routes.SolitaireController.startArgs("help/" + rules.id).url">Help</a>
           <a class="btn btn-default btn-block" target="_blank" href="@controllers.admin.routes.TestController.runTest("solve-" + rules.id).url">Solver Test</a>
         </div>
       </div>
@@ -31,12 +31,64 @@
     <div class="col-md-9">
       <div class="panel panel-default">
         <div class="panel-body">
-          <img src="@controllers.admin.routes.RulesController.rulesScreenshot(rules.id)" class="rules-screenshot" /><br />
+          <!-- <img src="@controllers.admin.routes.RulesController.rulesScreenshot(rules.id)" class="rules-screenshot" /> -->
           <table class="table">
             <tbody>
               <tr>
-                <td class="rules-property-label">Completed</td>
+                <td>Completed</td>
                 <td>@models.rules.GameRulesSet.allByIdWithAliases(rules.id).completed</td>
+              </tr>
+              <tr>
+                <td>Games Played</td>
+                <td>@utils.NumberUtils.withCommas(stats.played)</td>
+              </tr>
+              <tr>
+                <td>Wins</td>
+                <td>@utils.NumberUtils.withCommas(stats.wins)</td>
+              </tr>
+              <tr>
+                <td>Losses</td>
+                <td>@utils.NumberUtils.withCommas(stats.losses)</td>
+              </tr>
+              <tr>
+                <td>Min Duration</td>
+                <td>@stats.minDurationMs.map(utils.NumberUtils.withCommas)</td>
+              </tr>
+              <tr>
+                <td>Max Duration</td>
+                <td>@stats.maxDurationMs.map(utils.NumberUtils.withCommas)</td>
+              </tr>
+              <tr>
+                <td>Total Duration</td>
+                <td>@utils.NumberUtils.withCommas(stats.totalDurationMs)</td>
+              </tr>
+              <tr>
+                <td>Min Moves</td>
+                <td>@stats.minMoves.map(utils.NumberUtils.withCommas)</td>
+              </tr>
+              <tr>
+                <td>Max Moves</td>
+                <td>@stats.maxMoves.map(utils.NumberUtils.withCommas)</td>
+              </tr>
+              <tr>
+                <td>Total Moves</td>
+                <td>@utils.NumberUtils.withCommas(stats.totalMoves)</td>
+              </tr>
+              <tr>
+                <td>Undos</td>
+                <td>@utils.NumberUtils.withCommas(stats.totalUndos)</td>
+              </tr>
+              <tr>
+                <td>Redos</td>
+                <td>@utils.NumberUtils.withCommas(stats.totalRedos)</td>
+              </tr>
+              <tr>
+                <td>Last Win</td>
+                <td>@stats.lastWin.map(utils.DateUtils.fromMillis)</td>
+              </tr>
+              <tr>
+                <td>Last Loss</td>
+                <td>@stats.lastLoss.map(utils.DateUtils.fromMillis)</td>
               </tr>
             </tbody>
           </table>
