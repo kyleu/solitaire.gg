@@ -55,12 +55,9 @@ case class GameHistory(
     completed: Option[LocalDateTime] = None
 ) {
   lazy val duration = {
-    val createdMillis = DateUtils.toMillis(created)
-    val completedMillis = completed match {
-      case Some(t) => DateUtils.toMillis(t)
-      case None => DateUtils.nowMillis
-    }
-    completedMillis - createdMillis
+    val createdMillis = DateUtils.toMillis(firstMove.getOrElse(created))
+    val completedMillis = completed.map(t => DateUtils.toMillis(t))
+    completedMillis.map(_ - createdMillis)
   }
   val isWon = status == GameHistory.Status.Won
 }
