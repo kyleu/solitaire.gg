@@ -51,7 +51,7 @@ object DailyMetricService extends Logging {
       val f = getSql(metric) match {
         case Some(sql) => Database.query(DailyMetricQueries.CalculateMetric(metric, sql, d))
         case None => metric match {
-          case Metric.ServerFreeSpace => Future.successful(getFreeSpace)
+          case Metric.StorageUsage => Future.successful(getFreeSpace)
           case _ => Future.successful(0L)
         }
       }

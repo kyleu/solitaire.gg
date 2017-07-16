@@ -11,7 +11,7 @@ object Metric extends Enum[Metric] {
   case object GamesAdandoned extends Metric("Abandoned")
   case object Signups extends Metric("Signups")
   case object Feedbacks extends Metric("Feedbacks")
-  case object ServerFreeSpace extends Metric("Server Free Space")
+  case object StorageUsage extends Metric("Storage Usage")
   case object ReportSent extends Metric("Mailed")
   case object Unknown extends Metric("Unknown")
 
