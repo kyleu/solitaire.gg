@@ -55,8 +55,7 @@ object Shared {
     "io.circe" %%% "circe-generic" % Dependencies.Serialization.circeVersion,
     "io.circe" %%% "circe-generic-extras" % Dependencies.Serialization.circeVersion,
     "io.circe" %%% "circe-parser" % Dependencies.Serialization.circeVersion,
-    "com.beachape" %%% "enumeratum-circe" % Dependencies.Utils.enumeratumVersion,
-    "com.lihaoyi" %%% "utest" % Dependencies.Testing.uTestVersion % "test"
+    "com.beachape" %%% "enumeratum-circe" % Dependencies.Utils.enumeratumVersion
   ))
 
   lazy val sharedJs = shared.js.enablePlugins(ScalaJSWeb).settings(scalaJSStage in Global := FastOptStage)
