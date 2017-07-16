@@ -27,15 +27,12 @@ class EmailService @javax.inject.Inject() (mailerClient: MailerClient, config: C
     sendMessage(Messages("email.from"), config.adminEmail, s"${Config.projectName} user feedback from [${fb.deviceId}]", text, html)
   }
 
-  def sendDailyReport(
-    d: LocalDate,
-    metrics: Map[Metric, Long],
-    totals: Map[Metric, Long],
-    tableCounts: Seq[(String, Long)]
-  ) = {
-    val html = views.html.admin.report.emailReport(d, metrics, totals, tableCounts).toString
+  def sendDailyReport(d: LocalDate, metrics: Map[Metric, Long], totals: Map[Metric, Long], counts: Seq[(String, Long)]) = {
+    val html = views.html.admin.report.emailReport(d, metrics, totals, counts).toString
     sendMessage(adminFrom, config.adminEmail, s"${Config.projectName} report for [$d]", adminTextMessage, html)
-    DailyMetricService.setMetric(d, Metric.ReportSent, 1L)
+    val ret = DailyMetricService.setMetric(d, Metric.ReportSent, 1L)
+    log.info(s"Sent email report for [$d] to [${config.adminEmail}].")
+    ret
   }
 
   def sendError(msg: String, ctx: String, ex: Option[Throwable]) = {
@@ -44,16 +41,7 @@ class EmailService @javax.inject.Inject() (mailerClient: MailerClient, config: C
   }
 
   def sendMessage(from: String, to: String, subject: String, textMessage: String, htmlMessage: String) = {
-    val email = Email(
-      subject = subject,
-      from = from,
-      to = Seq(to),
-      bodyText = Some(textMessage),
-      bodyHtml = Some(htmlMessage),
-      cc = Nil,
-      bcc = Nil,
-      attachments = Nil
-    )
+    val email = Email(subject = subject, from = from, to = Seq(to), bodyText = Some(textMessage), bodyHtml = Some(htmlMessage))
     try {
       mailerClient.send(email)
     } catch {

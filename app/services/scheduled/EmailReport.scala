@@ -5,12 +5,12 @@ import models.queries.report.RowCountQueries
 import services.audit.DailyMetricService
 import services.database.Database
 import services.email.EmailService
-import utils.DateUtils
+import utils.{DateUtils, Logging}
 import utils.FutureUtils.defaultContext
 
 import scala.concurrent.Future
 
-class EmailReport(emailService: EmailService) extends ScheduledTask.Task {
+class EmailReport(emailService: EmailService) extends ScheduledTask.Task with Logging {
   override def run() = sendReportIfNeeded()
 
   private[this] def sendReportIfNeeded() = {
@@ -22,6 +22,7 @@ class EmailReport(emailService: EmailService) extends ScheduledTask.Task {
         if (reportSent.contains(1L)) {
           Future.successful("report" -> None)
         } else {
+          log.info(s"Report sent is [$reportSent], sending report for [$yesterdayAndBuffer].")
           val yesterday = DateUtils.today.minusDays(1)
           Database.query(RowCountQueries.ListTables).flatMap { tables =>
             DailyMetricService.getMetrics(yesterday).flatMap { yesterdayMetrics =>

@@ -13,15 +13,18 @@ object DailyMetricService extends Logging {
   def getMetric(d: LocalDate, m: Metric) = Database.query(DailyMetricQueries.GetValue(d, m))
 
   def getMetrics(d: LocalDate) = Database.query(DailyMetricQueries.GetMetrics(d)).flatMap { m =>
+    log.info(s"Found [${m.toSeq.map(x => x._1.toString + ": " + x._2).sorted.mkString(", ")}] metrics for [$d].")
     if (m.size == Metric.values.size) {
       Future.successful((d, (m, 0)))
     } else {
       val missingMetrics = Metric.values.filterNot(m.keySet.contains)
-      calculateMetrics(d, missingMetrics).map { metrics =>
+      calculateMetrics(d, missingMetrics).flatMap { metrics =>
         val models = metrics.map(x => DailyMetric(d, x._1, x._2, DateUtils.now)).toSeq
-        log.info(s"Inserting [${metrics.size}] missing daily metrics [${metrics.keys.toSeq.map(_.toString).sorted.mkString(", ")}].")
-        Database.execute(DailyMetricQueries.insertBatch(models))
-        (d, (m ++ metrics, metrics.size))
+        log.info(s"Inserting [${metrics.size}] missing daily metrics [${metrics.keys.toSeq.map(_.toString).sorted.mkString(", ")}] for [$d].")
+        Database.execute(DailyMetricQueries.insertBatch(models)).map { _ =>
+          log.info(s"Updated [${metrics.size}] for [$d].")
+          (d, (m ++ metrics, metrics.size))
+        }
       }
     }
   }

@@ -13,7 +13,7 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
 
   case class GetValue(d: LocalDate, m: Metric) extends FlatSingleRowQuery[Long] {
     override val sql = s"select value from $tableName where day = ? and metric = ?"
-    override def values = Seq(d, m)
+    override def values = Seq(d, m.toString)
     override def flatMap(row: Row) = Some(row.as[Long]("value"))
   }
   val insert = Insert
@@ -42,9 +42,14 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
     override def reduce(rows: Iterator[Row]) = rows.map(tupleFromRow).toMap
   }
 
-  case class RemoveByDay(d: LocalDate) extends Statement {
-    override def sql = s"delete from $tableName where day = ?"
-    override def values = Seq(d)
+  case class RemoveByDay(d: LocalDate, except: Seq[Metric] = Nil) extends Statement {
+    val exceptClause = if (except.isEmpty) {
+      ""
+    } else {
+      s" and metric not in (${except.map(_ => "?").mkString(", ")})"
+    }
+    override def sql = s"delete from $tableName where day = ?$exceptClause"
+    override def values = d +: except.map(_.toString)
   }
 
   case class GetMetricHistory(metric: Metric) extends Query[Seq[(LocalDate, Long)]] {
