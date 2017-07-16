@@ -3,7 +3,7 @@ package controllers.admin
 import controllers.BaseController
 import models.audit.Metric
 import models.queries.history.GameSeedQueries
-import models.queries.report.RowCountQueries
+import models.queries.report.{LeaderboardQueries, RowCountQueries}
 import org.joda.time.LocalDate
 import services.audit.DailyMetricService
 import services.database.Database
@@ -14,6 +14,31 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class ReportController @javax.inject.Inject() (override val app: Application) extends BaseController {
+  def trend() = withAdminSession("trend") { implicit request =>
+    DailyMetricService.getAllMetrics.map { metrics =>
+      Ok(views.html.admin.report.trend(metrics, toChartData(metrics)))
+    }
+  }
+
+  def seed() = withAdminSession("seed") { implicit request =>
+    Database.query(GameSeedQueries.SummaryReport).map { report =>
+      Ok(views.html.admin.report.seed(report))
+    }
+  }
+
+  def leaderboards() = withAdminSession("leaderboards") { implicit request =>
+    val empty = Seq.empty[(String, Seq[(java.util.UUID, Option[String], Option[String], Int)])]
+    val result = LeaderboardQueries.values.foldLeft(Future.successful(empty)) { (x, y) =>
+      x.flatMap { ret =>
+        Database.query(y).map { games =>
+          ret :+ (y.getClass.getSimpleName.stripSuffix("$") -> games)
+        }
+      }
+    }
+    result.map { x =>
+      Ok(views.html.admin.report.leaderboards(x))
+    }
+  }
 
   def email(d: LocalDate = DateUtils.today) = withAdminSession("email") { implicit request =>
     Database.query(RowCountQueries.ListTables).flatMap { tables =>
@@ -24,18 +49,6 @@ class ReportController @javax.inject.Inject() (override val app: Application) ex
           }
         }
       }
-    }
-  }
-
-  def trend() = withAdminSession("trend") { implicit request =>
-    DailyMetricService.getAllMetrics.map { metrics =>
-      Ok(views.html.admin.report.trend(metrics, toChartData(metrics)))
-    }
-  }
-
-  def seed() = withAdminSession("seed") { implicit request =>
-    Database.query(GameSeedQueries.SummaryReport).map { report =>
-      Ok(views.html.admin.report.seed(report))
     }
   }
 

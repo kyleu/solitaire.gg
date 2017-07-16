@@ -1,0 +1,35 @@
+@(content: Seq[(String, Seq[(java.util.UUID, Option[String], Option[String], Int)])])(
+    implicit session: Session, flash: Flash
+)@views.html.admin.layout.base(utils.Config.projectName + " Leaderboards", "reports") {
+  <h3>@utils.Config.projectName Leaderboards</h3>
+
+  <ul class="list-group">
+    @content.map { rep =>
+      <li class="list-group-item">
+        <h4>@rep._1</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            @rep._2.zipWithIndex.map { entry =>
+              <tr>
+                <td>@{entry._2 + 1}</td>
+                <td><a href="@controllers.admin.routes.UserController.detail(entry._1._1)">@entry._1._1</a></td>
+                <td>@entry._1._2</td>
+                <td>@entry._1._3</td>
+                <td>@utils.NumberUtils.withCommas(entry._1._4)</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </li>
+    }
+  </ul>
+}
