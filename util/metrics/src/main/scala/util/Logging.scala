@@ -1,8 +1,8 @@
-package utils
+package util
 
 import org.slf4j.{LoggerFactory, MarkerFactory}
 import play.api.{Logger, MarkerContext}
-import utils.metrics.Instrumented
+import util.metrics.Instrumented
 
 object Logging extends Instrumented {
   private[this] val traceMeter = metrics.meter("log.trace")

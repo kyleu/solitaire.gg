@@ -5,10 +5,10 @@ import models.history.GameHistory
 import models.rules.GameRulesSet
 import models.test.{Test, Tree}
 import services.history.GameSeedService
-import utils.Logging
+import util.Logging
 
 import scala.util.Random
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 
 object SolverTests extends Logging {
   val all = Tree(Test("solver"), GameRulesSet.all.map(x => testSolver(x.id).toTree))

@@ -1,7 +1,7 @@
 package help
 
 import models.rules._
-import utils.Messages
+import util.Messages
 
 object GameRulesHelpService {
   private[this] val descriptionLinkPattern = """\^([a-z0-9]+)\^""".r

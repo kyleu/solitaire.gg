@@ -1,7 +1,7 @@
 package help
 
 import models.rules.{StockCardsDealt, StockDealTo, StockRules}
-import utils.Messages
+import util.Messages
 
 object StockHelpService {
   def stock(rules: StockRules) = {

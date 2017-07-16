@@ -7,7 +7,7 @@ import models.history.GameHistory
 import models.queries.BaseQueries
 import models.user.UserStatistics
 import org.joda.time.LocalDateTime
-import utils.DateUtils
+import util.DateUtils
 
 object UserStatisticsQueries extends BaseQueries[UserStatistics] {
   override protected val tableName = "user_statistics"

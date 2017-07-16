@@ -26,7 +26,7 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
   }
 
   case object GetAllMetrics extends Query[Seq[(LocalDate, Map[Metric, Long])]] {
-    import utils.DateUtils.localDateOrdering
+    import util.DateUtils.localDateOrdering
 
     override def sql = s"select day, metric, value from $tableName order by day, metric"
     override def reduce(rows: Iterator[Row]) = rows.map { row =>

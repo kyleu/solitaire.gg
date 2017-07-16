@@ -1,7 +1,7 @@
 package models.settings
 
 import enumeratum.values._
-import utils.EnumWithDescription
+import util.EnumWithDescription
 
 sealed abstract class CardSet(
   override val value: String, override val description: String, val w: Int, val h: Int, val hOffset: Int, val vOffset: Int

@@ -5,7 +5,7 @@ import java.util.UUID
 import enumeratum.values._
 import models.card.{Rank, Suit}
 import org.joda.time.LocalDateTime
-import utils.{DateUtils, EnumWithDescription}
+import util.{DateUtils, EnumWithDescription}
 
 object GameHistory {
   case class Card(

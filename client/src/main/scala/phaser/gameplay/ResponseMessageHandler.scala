@@ -8,7 +8,7 @@ class ResponseMessageHandler(g: PhaserGame, undo: UndoHelper) {
   val debugMessages = false
 
   def handle(msg: ResponseMessage, registerUndo: Boolean = false): Unit = {
-    if (debugMessages) { utils.Logging.info(s"Received response message (undo: $registerUndo) - [$msg].") }
+    if (debugMessages) { util.Logging.info(s"Received response message (undo: $registerUndo) - [$msg].") }
 
     if (registerUndo) {
       undo.registerResponse(msg)

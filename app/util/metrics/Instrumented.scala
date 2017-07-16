@@ -1,11 +1,11 @@
-package utils.metrics
+package util.metrics
 
 import java.lang.management.ManagementFactory
 
 import com.codahale.metrics.MetricRegistry
 import com.codahale.metrics.jvm._
 import nl.grons.metrics.scala.{MetricName, InstrumentedBuilder}
-import utils.Config
+import util.Config
 
 object Instrumented {
   val metricRegistry = new MetricRegistry()
@@ -18,6 +18,6 @@ object Instrumented {
 }
 
 trait Instrumented extends InstrumentedBuilder {
-  override lazy val metricBaseName = MetricName(s"${Config.projectId}.${utils.Formatter.className(this)}")
+  override lazy val metricBaseName = MetricName(s"${Config.projectId}.${util.Formatter.className(this)}")
   override val metricRegistry = Instrumented.metricRegistry
 }

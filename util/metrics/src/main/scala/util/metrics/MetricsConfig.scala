@@ -1,4 +1,4 @@
-package utils.metrics
+package util.metrics
 
 case class MetricsConfig(
   jmxEnabled: Boolean,

@@ -1,7 +1,7 @@
 package phaser.state
 
 import com.definitelyscala.phaser.{PluginObj, ScaleManager, State}
-import utils.JsUtils
+import util.JsUtils
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.ScalaJSDefined

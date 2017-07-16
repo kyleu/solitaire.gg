@@ -2,7 +2,7 @@ package input
 
 import com.definitelyscala.phaser.{Gamepad, SinglePad}
 import phaser.PhaserGame
-import utils.PhaserUtils
+import util.PhaserUtils
 
 import scala.scalajs.js
 

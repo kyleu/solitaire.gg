@@ -2,7 +2,7 @@ package help
 
 import models.rules.GameRules
 import navigation.NavigationUrls
-import utils.Messages
+import util.Messages
 
 import scalatags.Text.all._
 

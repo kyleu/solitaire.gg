@@ -2,7 +2,7 @@ package phaser.card
 
 import com.definitelyscala.phaser.Easing.Easing
 import models.game.PossibleMove
-import models.{MoveCards, SelectCard}
+import models.{MC, SC}
 
 import scala.scalajs.js
 import scala.scalajs.js.Date
@@ -29,14 +29,14 @@ trait CardInputHelper {
 
   protected[this] def click(card: CardSprite) = {
     if (canSelectCard(card)) {
-      card.phaser.sendMove(SelectCard(card = card.id, pile = card.pileGroup.id, auto = false))
+      card.phaser.sendMove(SC(card = card.id, pile = card.pileGroup.id, auto = false))
     } else {
       val now = new Date().getTime()
       card.lastClicked match {
         case Some(lc) if (now - lc) < CardInput.doubleClickThresholdMs =>
           getMoveTarget(card).foreach { moveTarget =>
             val tgt = moveTarget.targetPile.getOrElse(throw new IllegalStateException("Move has no target pile."))
-            card.phaser.sendMove(MoveCards(cards = Seq(card.id), src = card.pileGroup.id, tgt = tgt, auto = false))
+            card.phaser.sendMove(MC(cards = Seq(card.id), src = card.pileGroup.id, tgt = tgt, auto = false))
           }
           card.lastClicked = None
         case _ => card.lastClicked = Some(now)

@@ -6,9 +6,9 @@ import com.github.mauricio.async.db.Connection
 import models.history.GameHistory
 import models.queries.user.{UserQueries, UserStatisticsQueries}
 import models.user.UserStatistics
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import services.database.Database
-import utils.DateUtils
+import util.DateUtils
 
 import scala.concurrent.Future
 

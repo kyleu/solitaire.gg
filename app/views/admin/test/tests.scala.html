@@ -1,6 +1,6 @@
 @()(implicit session: Session, flash: Flash)
-@views.html.admin.layout.base(utils.Config.projectName + " Tests", "tests") {
-  <h3>@utils.Config.projectName Tests</h3>
+@views.html.admin.layout.base(util.Config.projectName + " Tests", "tests") {
+  <h3>@util.Config.projectName Tests</h3>
   <div class="row">
     <div class="col-md-4">
       <h4><a href="@controllers.admin.routes.TestController.runTest("all").url">All Tests</a></h4>

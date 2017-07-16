@@ -8,19 +8,19 @@
       <th></th>
     </tr>
     <tr>
-      @utils.web.ViewUtils.th("rules", "Rules", sortBy)
-      @utils.web.ViewUtils.th("seed", "Seed", sortBy)
-      @utils.web.ViewUtils.th("games", "Games", sortBy)
-      @utils.web.ViewUtils.th("wins", "Wins", sortBy)
-      @utils.web.ViewUtils.th("moves", "Moves", sortBy)
-      @utils.web.ViewUtils.th("first_player", "Player", sortBy)
-      @utils.web.ViewUtils.th("first_moves", "Moves", sortBy)
-      @utils.web.ViewUtils.th("first_elapsed_ms", "Elapsed", sortBy)
-      @utils.web.ViewUtils.th("first_occurred", "Occurred", sortBy)
-      @utils.web.ViewUtils.th("fastest_player", "Player", sortBy)
-      @utils.web.ViewUtils.th("fastest_moves", "Moves", sortBy)
-      @utils.web.ViewUtils.th("fastest_elapsed_ms", "Elapsed", sortBy)
-      @utils.web.ViewUtils.th("fastest_occurred", "Occurred", sortBy)
+      @util.web.ViewUtils.th("rules", "Rules", sortBy)
+      @util.web.ViewUtils.th("seed", "Seed", sortBy)
+      @util.web.ViewUtils.th("games", "Games", sortBy)
+      @util.web.ViewUtils.th("wins", "Wins", sortBy)
+      @util.web.ViewUtils.th("moves", "Moves", sortBy)
+      @util.web.ViewUtils.th("first_player", "Player", sortBy)
+      @util.web.ViewUtils.th("first_moves", "Moves", sortBy)
+      @util.web.ViewUtils.th("first_elapsed_ms", "Elapsed", sortBy)
+      @util.web.ViewUtils.th("first_occurred", "Occurred", sortBy)
+      @util.web.ViewUtils.th("fastest_player", "Player", sortBy)
+      @util.web.ViewUtils.th("fastest_moves", "Moves", sortBy)
+      @util.web.ViewUtils.th("fastest_elapsed_ms", "Elapsed", sortBy)
+      @util.web.ViewUtils.th("fastest_occurred", "Occurred", sortBy)
       <th></th>
     </tr>
   </thead>
@@ -29,16 +29,16 @@
     <tr>
       <td>@seed.rules</td>
       <td>@seed.seed</td>
-      <td>@utils.NumberUtils.withCommas(seed.games)</td>
-      <td>@utils.NumberUtils.withCommas(seed.wins)</td>
-      <td>@utils.NumberUtils.withCommas(seed.moves)</td>
+      <td>@util.NumberUtils.withCommas(seed.games)</td>
+      <td>@util.NumberUtils.withCommas(seed.wins)</td>
+      <td>@util.NumberUtils.withCommas(seed.moves)</td>
       <td>@seed.first.map(_.player.toString).getOrElse("-")</td>
       <td>@seed.first.map(_.moves).getOrElse("-")</td>
-      <td>@seed.first.map(f => utils.NumberUtils.withCommas(f.elapsed) + "ms").getOrElse("-")</td>
+      <td>@seed.first.map(f => util.NumberUtils.withCommas(f.elapsed) + "ms").getOrElse("-")</td>
       <td>@seed.first.map(_.occurred.toString("yyyy-MM-dd HH:mm:ss")).getOrElse("-")</td>
       <td>@seed.fastest.map(_.player.toString).getOrElse("-")</td>
       <td>@seed.fastest.map(_.moves).getOrElse("-")</td>
-      <td>@seed.fastest.map(f => utils.NumberUtils.withCommas(f.elapsed) + "ms").getOrElse("-")</td>
+      <td>@seed.fastest.map(f => util.NumberUtils.withCommas(f.elapsed) + "ms").getOrElse("-")</td>
       <td>@seed.fastest.map(_.occurred.toString("yyyy-MM-dd HH:mm:ss")).getOrElse("-")</td>
       <td><a href="@controllers.admin.routes.GameSeedController.remove(seed.rules, seed.seed)">X</a></td>
     </tr>

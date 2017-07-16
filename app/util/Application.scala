@@ -1,4 +1,4 @@
-package utils
+package util
 
 import java.util.TimeZone
 
@@ -13,7 +13,7 @@ import services.database.{Database, Schema}
 import services.file.FileService
 import services.scheduled.ScheduledTask
 import services.supervisor.ActorSupervisor
-import utils.metrics.Instrumented
+import util.metrics.Instrumented
 
 import scala.concurrent.Future
 
@@ -23,7 +23,7 @@ object Application {
 
 @javax.inject.Singleton
 class Application @javax.inject.Inject() (
-    val config: utils.Config,
+    val config: util.Config,
     val messagesApi: MessagesApi,
     val lifecycle: ApplicationLifecycle,
     val notificationService: NotificationService,
@@ -38,7 +38,7 @@ class Application @javax.inject.Inject() (
   }
 
   val supervisor = system.actorOf(Props(classOf[ActorSupervisor], this), "supervisor")
-  log.debug(s"Actor Supervisor [${supervisor.path}] started for [${utils.Config.projectId}].")
+  log.debug(s"Actor Supervisor [${supervisor.path}] started for [${util.Config.projectId}].")
 
   protected[this] def start() = {
     if (Application.initialized) {
@@ -76,7 +76,7 @@ class Application @javax.inject.Inject() (
   }
 
   private[this] def scheduleTask(task: ScheduledTask, system: ActorSystem) = {
-    import utils.FutureUtils.defaultContext
+    import util.FutureUtils.defaultContext
     import scala.concurrent.duration._
     log.info("Scheduling task to run every minute, after five minutes.")
     system.scheduler.schedule(5.minutes, 1.minute, task)

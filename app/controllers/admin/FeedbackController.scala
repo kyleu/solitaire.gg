@@ -6,9 +6,9 @@ import controllers.BaseController
 import models.audit.UserFeedback
 import models.queries.BaseQueries
 import models.queries.audit.{UserFeedbackNoteQueries, UserFeedbackQueries}
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import services.database.Database
-import utils.{Application, DateUtils}
+import util.{Application, DateUtils}
 
 @javax.inject.Singleton
 class FeedbackController @javax.inject.Inject() (override val app: Application) extends BaseController {

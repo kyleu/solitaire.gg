@@ -1,6 +1,6 @@
 package services.sandbox
 
-import utils.Application
+import util.Application
 
 import scala.concurrent.Future
 

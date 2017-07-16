@@ -3,11 +3,11 @@ package controllers
 import java.util.UUID
 
 import play.api.i18n.I18nSupport
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import play.api.mvc._
 import services.user.UserService
-import utils.metrics.Instrumented
-import utils.{Application, Logging}
+import util.metrics.Instrumented
+import util.{Application, Logging}
 
 import scala.concurrent.Future
 

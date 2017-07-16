@@ -1,4 +1,4 @@
-package utils.metrics
+package util.metrics
 
 import java.lang.management.ManagementFactory
 

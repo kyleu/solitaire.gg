@@ -1,11 +1,11 @@
-package utils.web
+package util.web
 
 import javax.inject.Inject
 
 import play.api.http._
 import play.api.mvc.RequestHeader
 import play.api.routing.Router
-import utils.Logging
+import util.Logging
 
 class RequestHandler @Inject() (
     errorHandler: HttpErrorHandler,

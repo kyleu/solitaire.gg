@@ -1,7 +1,7 @@
 @()(
   implicit request: Request[AnyContent], session: Session, flash: Flash, messages: Messages
-)@views.html.layout.static(title = s"${utils.Config.projectName} Privacy Policy", button = "menu") {
+)@views.html.layout.static(title = s"${util.Config.projectName} Privacy Policy", button = "menu") {
   <div class="module">
-    @Messages("help.privacy.policy", utils.Config.projectName)
+    @Messages("help.privacy.policy", util.Config.projectName)
   </div>
 }

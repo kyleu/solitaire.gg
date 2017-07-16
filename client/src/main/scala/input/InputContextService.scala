@@ -21,11 +21,11 @@ class InputContextService(state: GameState, highlight: (Seq[String], Seq[Int]) =
   }
 
   def onInput(inputMessage: InputMessage) = {
-    utils.Logging.info("Input Message: " + inputMessage)
+    util.Logging.info("Input Message: " + inputMessage)
     inputMessage match {
       case InputMessage.NextCard => nextCard()
       case InputMessage.PreviousCard => previousCard()
-      case _ => utils.Logging.info(s"Unhandled input context message [$inputMessage].")
+      case _ => util.Logging.info(s"Unhandled input context message [$inputMessage].")
     }
     log()
   }
@@ -57,6 +57,6 @@ class InputContextService(state: GameState, highlight: (Seq[String], Seq[Int]) =
   }
 
   private[this] def log() = {
-    utils.Logging.info(s"Active context: [${activePileSet.behavior}:${activePile.id} / ${activeCard.map(_.toString).getOrElse("none")}]")
+    util.Logging.info(s"Active context: [${activePileSet.behavior}:${activePile.id} / ${activeCard.map(_.toString).getOrElse("none")}]")
   }
 }

@@ -4,8 +4,8 @@ import enumeratum.values._
 import services.export.ExportService
 import services.sandbox._
 import services.wiki.WikiService
-import utils.{Application, EnumWithDescription, Logging}
-import utils.FutureUtils.defaultContext
+import util.{Application, EnumWithDescription, Logging}
+import util.FutureUtils.defaultContext
 
 import scala.concurrent.Future
 

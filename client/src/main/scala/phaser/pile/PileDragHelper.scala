@@ -1,7 +1,7 @@
 package phaser.pile
 
 import com.definitelyscala.phaser.Pointer
-import models.MoveCards
+import models.MC
 import models.game.PossibleMove
 import phaser.card.{CardSprite, CardTweens}
 
@@ -85,7 +85,7 @@ object PileDragHelper {
         pileGroup.dragCards.foreach { moveCard =>
           moveCard.dragIndex = None
         }
-        pileGroup.phaser.sendMove(MoveCards(cards = pileGroup.dragCards.map(_.id), src = pileGroup.id, tgt = dropTarget.id, auto = false))
+        pileGroup.phaser.sendMove(MC(cards = pileGroup.dragCards.map(_.id), src = pileGroup.id, tgt = dropTarget.id, auto = false))
     }
     pileGroup.dragCards = Seq.empty
   }

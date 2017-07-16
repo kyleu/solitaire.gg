@@ -1,10 +1,10 @@
-package utils.json
+package util.json
 
 import io.circe.Decoder.Result
 import io.circe.{Decoder, Encoder, HCursor, Json}
 import io.circe.generic.extras.Configuration
 import org.joda.time.LocalDateTime
-import utils.DateUtils
+import util.DateUtils
 
 object JodaSerializers {
   private[this] implicit val config = Configuration.default.withDefaults

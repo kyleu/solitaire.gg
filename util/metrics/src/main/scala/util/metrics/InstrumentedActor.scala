@@ -1,4 +1,4 @@
-package utils.metrics
+package util.metrics
 
 import akka.actor.Actor
 import nl.grons.metrics.scala.{Timer, Meter}

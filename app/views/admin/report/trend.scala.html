@@ -1,12 +1,12 @@
 @(metrics: Seq[(org.joda.time.LocalDate, Map[models.audit.Metric, Long])], chartData: String)(implicit session: Session, flash: Flash)
 @views.html.admin.layout.base(
-  utils.Config.projectName + " Trend Report",
+  util.Config.projectName + " Trend Report",
   "reports",
   scripts = Seq(routes.Assets.versioned("lib/d3js/d3.js").url, routes.Assets.versioned("lib/nvd3-community/nv.d3.js").url),
   stylesheets = Seq(routes.Assets.versioned("lib/nvd3-community/nv.d3.css").url)
 ) {
-  <h3>@utils.Config.projectName Trend Report</h3>
-  <h4>Displaying metrics for @utils.Formatter.withCommas(metrics.size) days.</h4>
+  <h3>@util.Config.projectName Trend Report</h3>
+  <h4>Displaying metrics for @util.Formatter.withCommas(metrics.size) days.</h4>
 
   <div id="trend-chart"><svg></svg></div>
   <pre id="trend-chart-data">@chartData</pre>
@@ -25,7 +25,7 @@
         <tr>
           <td>@row._1</td>
           @for(m <- models.audit.Metric.values) {
-            <td>@utils.Formatter.withCommas(row._2.getOrElse(m, 0L))</td>
+            <td>@util.Formatter.withCommas(row._2.getOrElse(m, 0L))</td>
           }
         </tr>
       }
@@ -34,7 +34,7 @@
       <tr>
         <th>Total</th>
         @for(m <- models.audit.Metric.values) {
-          <th>@utils.Formatter.withCommas(metrics.map(_._2.getOrElse(m, 0L)).sum)</th>
+          <th>@util.Formatter.withCommas(metrics.map(_._2.getOrElse(m, 0L)).sum)</th>
         }
       </tr>
     </tfoot>

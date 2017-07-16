@@ -10,7 +10,7 @@ import org.scalajs.dom.raw.UIEvent
 import phaser.card.CardImages
 import phaser.gameplay.Gameplay
 import phaser.playmat.Playmat
-import utils.JsUtils
+import util.JsUtils
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.ScalaJSDefined
@@ -45,7 +45,7 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   private[this] var audio: Option[AudioService] = None
   def initAudio() = audio = Some(new AudioService(this))
   def playAudio(key: String) = if (getSettings.audio) {
-    utils.Logging.info(s"Playing audio [$key].")
+    util.Logging.info(s"Playing audio [$key].")
     audio.map(_.play(key))
   }
 

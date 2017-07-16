@@ -2,10 +2,10 @@ package controllers.admin
 
 import controllers.BaseController
 import services.test._
-import utils.Application
+import util.Application
 
 import scala.concurrent.Future
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 
 @javax.inject.Singleton
 class TestController @javax.inject.Inject() (override val app: Application) extends BaseController {

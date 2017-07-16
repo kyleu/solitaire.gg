@@ -1,6 +1,6 @@
 package phaser.card
 
-import utils.PhaserUtils
+import util.PhaserUtils
 
 import scala.scalajs.js
 

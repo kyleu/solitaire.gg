@@ -1,4 +1,4 @@
-package utils
+package util
 
 import org.joda.time.{LocalDateTime, LocalTime, LocalDate}
 

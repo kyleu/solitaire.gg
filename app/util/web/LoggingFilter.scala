@@ -1,14 +1,14 @@
-package utils.web
+package util.web
 
 import javax.inject.Inject
 
 import akka.stream.Materializer
 import com.codahale.metrics.Meter
 import play.api.http.Status
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import play.api.mvc._
-import utils.Logging
-import utils.metrics.Instrumented
+import util.Logging
+import util.metrics.Instrumented
 
 import scala.concurrent.Future
 

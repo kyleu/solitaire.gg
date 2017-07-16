@@ -2,7 +2,7 @@ package settings
 
 import models.settings.Settings
 import org.scalajs.dom
-import utils.JsonSerializers
+import util.JsonSerializers
 
 import scala.util.control.NonFatal
 

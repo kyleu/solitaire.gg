@@ -6,7 +6,7 @@
 )
 @import models.audit.Metric._
 
-@metricsTable(title: String, m: Map[models.audit.Metric, Long], css: utils.web.CssEmailStyles, isTotals: Boolean = false) = {
+@metricsTable(title: String, m: Map[models.audit.Metric, Long], css: util.web.CssEmailStyles, isTotals: Boolean = false) = {
   <table style="@css.table">
     <thead>
       <tr style="@css.tr">
@@ -40,9 +40,9 @@
   </table>
 }
 
-@views.html.layout.email(utils.Config.projectName + " Report") {
-  @defining(utils.web.CssEmailStyles("greyblue")) { css =>
-  <div style="@css.title">@utils.Config.projectName</div>
+@views.html.layout.email(util.Config.projectName + " Report") {
+  @defining(util.web.CssEmailStyles("greyblue")) { css =>
+  <div style="@css.title">@util.Config.projectName</div>
   <div style="@css.subtitle">Daily Report for @d</div>
 
   <div style="@css.module">
@@ -65,7 +65,7 @@
       @for(table <- tableCounts) {
         <tr style="@css.tr">
           <td style="@css.td">@table._1</td>
-          <td style="@css.td@css.alignRight">@utils.Formatter.withCommas(table._2)</td>
+          <td style="@css.td@css.alignRight">@util.Formatter.withCommas(table._2)</td>
         </tr>
       }
       </tbody>

@@ -6,14 +6,20 @@ case class MalformedRequest(reason: String, content: String) extends RequestMess
 
 sealed trait GameMessage extends RequestMessage
 
+case object RefreshGameState extends GameMessage
 case object GetPossibleMoves extends GameMessage
 
-case class SelectCard(card: Int, pile: String, auto: Boolean) extends GameMessage
-case class SelectPile(pile: String, auto: Boolean) extends GameMessage
-case class MoveCards(cards: Seq[Int], src: String, tgt: String, auto: Boolean) extends GameMessage
+// Select Card
+case class SC(card: Int, pile: String, auto: Boolean) extends GameMessage
 
-case object RefreshGameState extends GameMessage
+// Select Pile
+case class SP(pile: String, auto: Boolean) extends GameMessage
 
-case object Undo extends GameMessage
-case object Redo extends GameMessage
+// Move Cards
+case class MC(cards: Seq[Int], src: String, tgt: String, auto: Boolean) extends GameMessage
 
+// Undo
+case object UN extends GameMessage
+
+// Redo
+case object RE extends GameMessage

@@ -47,7 +47,7 @@ function wireChart() {
       chart.yAxis.tickFormat(d3.format(',0f'));
 
       d3.select('#trend-chart svg').datum(chartData).call(chart);
-      nv.utils.windowResize(function() {
+      nv.util.windowResize(function() {
         chart.update();
       });
       return chart;

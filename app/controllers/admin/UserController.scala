@@ -6,11 +6,11 @@ import controllers.BaseController
 import models.queries.BaseQueries
 import models.queries.report.ReportQueries
 import models.queries.user.UserQueries
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import services.database.Database
 import services.history.GameHistoryService
 import services.user.{UserService, UserStatisticsService}
-import utils.Application
+import util.Application
 
 import scala.concurrent.Future
 

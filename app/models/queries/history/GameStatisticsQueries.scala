@@ -4,7 +4,7 @@ import models.database.{Row, Statement}
 import models.history.{GameHistory, GameStatistics}
 import models.queries.BaseQueries
 import org.joda.time.LocalDateTime
-import utils.DateUtils
+import util.DateUtils
 
 object GameStatisticsQueries extends BaseQueries[GameStatistics] {
   override protected val tableName = "game_statistics"

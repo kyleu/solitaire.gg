@@ -1,5 +1,6 @@
 package models.game
 
+import models.RequestMessage
 import models.pile.set.PileSet
 
 class MoveHelper(gs: GameState, postMove: () => Unit) {
@@ -9,14 +10,20 @@ class MoveHelper(gs: GameState, postMove: () => Unit) {
   protected[this] var firstMoveMade: Option[Long] = None
   protected[this] var lastMoveMade: Option[Long] = None
 
+  protected[this] val trackHistory = true
+  val history = collection.mutable.ArrayBuffer.empty[(RequestMessage, Long)]
+
   def getFirstMove = firstMoveMade.getOrElse(0L)
 
-  def registerMove() = {
+  def registerMove(msg: RequestMessage) = {
     moveCount += 1
     if (firstMoveMade.isEmpty) {
       firstMoveMade = Some(System.currentTimeMillis)
     }
     lastMoveMade = Some(System.currentTimeMillis)
+    if(trackHistory) {
+      history += (msg -> System.currentTimeMillis)
+    }
     postMove()
   }
 

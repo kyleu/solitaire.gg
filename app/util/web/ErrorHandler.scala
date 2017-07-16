@@ -1,4 +1,4 @@
-package utils.web
+package util.web
 
 import javax.inject._
 
@@ -7,14 +7,14 @@ import play.api.http.DefaultHttpErrorHandler
 import play.api.mvc.Results._
 import play.api.mvc._
 import play.api.routing.Router
-import utils.Logging
+import util.Logging
 
 import scala.concurrent._
 
 class ErrorHandler @Inject() (
     env: Environment,
     playConfig: Configuration,
-    appConfig: utils.Config,
+    appConfig: util.Config,
     sourceMapper: OptionalSourceMapper,
     router: Provider[Router]
 ) extends DefaultHttpErrorHandler(env, playConfig, sourceMapper, router) with Logging {

@@ -2,7 +2,7 @@ package network
 
 import msg.req.{Ping, SocketRequestMessage}
 import msg.rsp.{Pong, SocketResponseMessage}
-import utils.{JsonSerializers, Logging}
+import util.{JsonSerializers, Logging}
 
 import scala.scalajs.js.timers.setTimeout
 
@@ -39,7 +39,7 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
   }
 
   protected[this] def onSocketClose(): Unit = {
-    utils.Logging.info("Socket closed. Skipping reconnect.")
+    util.Logging.info("Socket closed. Skipping reconnect.")
     /*
     val callback = () => {
       Logging.info("Attempting to reconnect Websocket.")
@@ -56,7 +56,7 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
     val json = JsonSerializers.writeSocketRequestMessage(sm, debug)
     socket.send(json)
   } else {
-    utils.Logging.info(s"Not connected, skipping message [${sm.getClass.getSimpleName}] send.")
+    util.Logging.info(s"Not connected, skipping message [${sm.getClass.getSimpleName}] send.")
     NetworkMessageCache.cache(sm)
   }
 

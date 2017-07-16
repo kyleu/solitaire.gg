@@ -2,7 +2,7 @@ package help
 
 import models.card.Rank
 import models.rules.DeckOptions
-import utils.Messages
+import util.Messages
 
 object DeckOptionsHelpService {
   private[this] val defaultDeckOptions = DeckOptions()

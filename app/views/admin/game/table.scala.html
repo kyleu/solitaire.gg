@@ -2,18 +2,18 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      @utils.web.ViewUtils.th("game-id", "Game ID", sortBy)
-      @utils.web.ViewUtils.th("seed", "Seed", sortBy)
-      @utils.web.ViewUtils.th("rules", "Rules", sortBy)
-      @utils.web.ViewUtils.th("status", "Status", sortBy)
-      @utils.web.ViewUtils.th("player", "Player", sortBy)
-      @utils.web.ViewUtils.th("cards", "Cards", sortBy)
-      @utils.web.ViewUtils.th("moves", "Moves", sortBy)
-      @utils.web.ViewUtils.th("undos", "Undos", sortBy)
-      @utils.web.ViewUtils.th("redos", "Redos", sortBy)
-      @utils.web.ViewUtils.th("first-move", "First Move", sortBy)
-      @utils.web.ViewUtils.th("completed", "Completed", sortBy)
-      @utils.web.ViewUtils.th("duration", "Duration", sortBy)
+      @util.web.ViewUtils.th("game-id", "Game ID", sortBy)
+      @util.web.ViewUtils.th("seed", "Seed", sortBy)
+      @util.web.ViewUtils.th("rules", "Rules", sortBy)
+      @util.web.ViewUtils.th("status", "Status", sortBy)
+      @util.web.ViewUtils.th("player", "Player", sortBy)
+      @util.web.ViewUtils.th("cards", "Cards", sortBy)
+      @util.web.ViewUtils.th("moves", "Moves", sortBy)
+      @util.web.ViewUtils.th("undos", "Undos", sortBy)
+      @util.web.ViewUtils.th("redos", "Redos", sortBy)
+      @util.web.ViewUtils.th("first-move", "First Move", sortBy)
+      @util.web.ViewUtils.th("completed", "Completed", sortBy)
+      @util.web.ViewUtils.th("duration", "Duration", sortBy)
     </tr>
   </thead>
   <tbody>
@@ -32,7 +32,7 @@
       <td>@g.redos</td>
       <td>@g.firstMove.getOrElse(g.created).toString("yyyy-MM-dd HH:mm:ss")</td>
       <td>@g.completed.map(_.toString("yyyy-MM-dd HH:mm:ss"))</td>
-      <td>@g.duration.map(d => utils.NumberUtils.withCommas(d))</td>
+      <td>@g.duration.map(d => util.NumberUtils.withCommas(d))</td>
     </tr>
   }
   </tbody>

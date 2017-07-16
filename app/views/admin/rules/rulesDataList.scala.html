@@ -1,10 +1,10 @@
 @(ruleSet: Seq[models.rules.GameRules])(implicit session: Session, flash: Flash)
 
-@views.html.admin.layout.base(utils.Config.projectName + " Rules", "rules") {
+@views.html.admin.layout.base(util.Config.projectName + " Rules", "rules") {
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="text-large">
-        @utils.Formatter.withCommas(ruleSet.size) Available Rules
+        @util.Formatter.withCommas(ruleSet.size) Available Rules
       </div>
     </div>
   </div>
@@ -14,7 +14,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="text-large">@rules.title (@rules.id)</div>
-        <pre>@utils.JsonSerializers.writeRules(rules)</pre>
+        <pre>@util.JsonSerializers.writeRules(rules)</pre>
       </div>
     </div>
   }

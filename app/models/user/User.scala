@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models.settings.Settings
 import org.joda.time.LocalDateTime
-import utils.DateUtils
+import util.DateUtils
 
 object User {
   val placeholder = User()

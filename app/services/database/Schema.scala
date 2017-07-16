@@ -2,8 +2,8 @@ package services.database
 
 import models.ddl.DdlQueries
 import models.ddl._
-import utils.FutureUtils.defaultContext
-import utils.Logging
+import util.FutureUtils.defaultContext
+import util.Logging
 
 import scala.concurrent.Future
 

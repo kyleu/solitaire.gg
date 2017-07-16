@@ -1,9 +1,9 @@
-package utils.metrics
+package util.metrics
 
 import com.codahale.metrics.health.HealthCheckRegistry
 import com.codahale.metrics.health.jvm.ThreadDeadlockHealthCheck
 import nl.grons.metrics.scala.{MetricName, CheckedBuilder}
-import utils.Config
+import util.Config
 
 object Checked {
   val healthCheckRegistry = new HealthCheckRegistry()

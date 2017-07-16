@@ -4,7 +4,7 @@ import java.util.UUID
 
 import models._
 
-class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send: (ResponseMessage, Boolean) => Unit, registerMove: () => Unit) {
+class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send: (ResponseMessage, Boolean) => Unit, registerMove: RequestMessage => Unit) {
   private[this] def sendSeq(rms: Seq[ResponseMessage], registerUndoResponse: Boolean): Unit = if (rms.size == 1) {
     val msg = rms.headOption.getOrElse(throw new IllegalStateException())
     send(msg, registerUndoResponse)
@@ -13,15 +13,15 @@ class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send:
   }
 
   def handle(msg: RequestMessage) = msg match {
-    case sc: SelectCard => handleSelectCard(userId, sc)
-    case sp: SelectPile => handleSelectPile(userId, sp)
-    case mc: MoveCards => handleMoveCards(userId, mc)
-    case Undo => send(undo.undo(gs), false)
-    case Redo => send(undo.redo(gs), false)
+    case sc: SC => handleSelectCard(userId, sc)
+    case sp: SP => handleSelectPile(userId, sp)
+    case mc: MC => handleMoveCards(userId, mc)
+    case UN => send(undo.undo(gs), false)
+    case RE => send(undo.redo(gs), false)
     case _ => throw new IllegalStateException(s"Unhandled request message [$msg].")
   }
 
-  private[this] def handleSelectCard(userId: UUID, sc: SelectCard) = {
+  private[this] def handleSelectCard(userId: UUID, sc: SC) = {
     val card = gs.cardsById(sc.card)
     val pile = gs.pilesById(sc.pile)
     if (!pile.cards.contains(card)) {
@@ -34,12 +34,12 @@ class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send:
         case _: CardRevealed => false
         case _ => true
       }) {
-        registerMove()
+        registerMove(sc)
       }
     }
   }
 
-  private[this] def handleSelectPile(userId: UUID, sp: SelectPile) = {
+  private[this] def handleSelectPile(userId: UUID, sp: SP) = {
     val pile = gs.pilesById(sp.pile)
     if (pile.cards.nonEmpty) {
       throw new IllegalStateException(s"SelectPile [${sp.pile}] called on a non-empty deck.")
@@ -47,11 +47,11 @@ class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send:
     if (pile.canSelectPile(gs)) {
       val messages = pile.onSelectPile(gs)
       sendSeq(messages, registerUndoResponse = true)
-      registerMove()
+      registerMove(sp)
     }
   }
 
-  private[this] def handleMoveCards(userId: UUID, mc: MoveCards) = {
+  private[this] def handleMoveCards(userId: UUID, mc: MC) = {
     val cards = mc.cards.map(gs.cardsById)
     val sourcePile = gs.pilesById(mc.src)
     val targetPile = gs.pilesById(mc.tgt)
@@ -64,7 +64,7 @@ class RequestMessageHandler(userId: UUID, gs: GameState, undo: UndoHelper, send:
       if (targetPile.canDragTo(sourcePile, cards, gs)) {
         val messages = targetPile.onDragTo(sourcePile, cards, gs)
         sendSeq(messages, registerUndoResponse = true)
-        registerMove()
+        registerMove(mc)
       } else {
         send(CardMoveCancelled(mc.cards, mc.src), false)
       }

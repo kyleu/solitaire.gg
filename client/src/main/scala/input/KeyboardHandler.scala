@@ -2,7 +2,7 @@ package input
 
 import com.definitelyscala.phaser.Keyboard
 import phaser.PhaserGame
-import utils.PhaserUtils
+import util.PhaserUtils
 
 class KeyboardHandler(phaser: PhaserGame, onInput: InputMessage => Unit) {
   val helpKey = phaser.input.keyboard.addKey(Keyboard.H)

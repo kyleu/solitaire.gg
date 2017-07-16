@@ -1,7 +1,7 @@
 package models.settings
 
 import enumeratum.values._
-import utils.EnumWithDescription
+import util.EnumWithDescription
 
 sealed abstract class CardBlank(override val value: String, override val description: String) extends EnumWithDescription
 

@@ -2,7 +2,7 @@ package controllers.admin
 
 import controllers.BaseController
 import services.audit.LogService
-import utils.Application
+import util.Application
 
 import scala.concurrent.Future
 

@@ -1,8 +1,8 @@
 package services.audit
 
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import play.api.libs.ws.WSClient
-import utils.{Config, Logging}
+import util.{Config, Logging}
 
 import io.circe._
 

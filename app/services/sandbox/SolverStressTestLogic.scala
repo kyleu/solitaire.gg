@@ -1,8 +1,8 @@
 package services.sandbox
 
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import services.test.{SolverTests, TestService}
-import utils.Application
+import util.Application
 
 import scala.concurrent.Future
 

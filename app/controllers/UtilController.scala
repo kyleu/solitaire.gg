@@ -1,6 +1,6 @@
 package controllers
 
-import utils.Application
+import util.Application
 
 import scala.concurrent.Future
 

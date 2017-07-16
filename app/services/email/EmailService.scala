@@ -6,7 +6,7 @@ import org.joda.time.LocalDate
 import play.api.i18n.Messages
 import play.api.libs.mailer._
 import services.audit.DailyMetricService
-import utils.{Config, DateUtils, Logging}
+import util.{Config, DateUtils, Logging}
 
 @javax.inject.Singleton
 class EmailService @javax.inject.Inject() (mailerClient: MailerClient, config: Config) extends Logging {

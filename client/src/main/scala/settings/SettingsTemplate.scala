@@ -1,7 +1,7 @@
 package settings
 
 import models.settings._
-import utils.{EnumWithDescription, Messages}
+import util.{EnumWithDescription, Messages}
 
 import scalatags.Text.all._
 

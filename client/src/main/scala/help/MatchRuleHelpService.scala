@@ -2,7 +2,7 @@ package help
 
 import models.card.Rank
 import models.rules.{FillEmptyWith, RankMatchRule, SuitMatchRule}
-import utils.Messages
+import util.Messages
 
 object MatchRuleHelpService {
   def toWords(rmr: RankMatchRule) = rmr match {

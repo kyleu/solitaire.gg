@@ -2,7 +2,7 @@ package help
 
 import models.card.Rank
 import models.rules._
-import utils.Messages
+import util.Messages
 
 object FoundationHelpService {
   private[this] val defaults = FoundationRules()

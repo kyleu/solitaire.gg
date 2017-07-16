@@ -4,7 +4,7 @@ import java.util.UUID
 
 import sangria.schema._
 import sangria.validation.ValueCoercionViolation
-import utils.EnumWithDescription
+import util.EnumWithDescription
 
 import scala.util.{Failure, Success, Try}
 

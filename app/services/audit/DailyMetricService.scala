@@ -3,9 +3,9 @@ package services.audit
 import models.audit.{DailyMetric, Metric}
 import models.queries.audit.DailyMetricQueries
 import org.joda.time.LocalDate
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import services.database.Database
-import utils.{DateUtils, Logging}
+import util.{DateUtils, Logging}
 
 import scala.concurrent.Future
 
@@ -61,9 +61,10 @@ object DailyMetricService extends Logging {
   }
 
   private[this] def getSql(metric: Metric) = metric match {
-    case Metric.GamesStarted => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-start'")
-    case Metric.GamesWon => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-resigned'")
-    case Metric.GamesAdandoned => Some("select count(*) as c from analytics_events where created >= ? and created < ? and event_type = 'game-won'")
+    case Metric.GamesStarted => Some("select count(*) as c from games where created >= ? and created < ?")
+    case Metric.GamesWon => Some("select count(*) as c from games where created >= ? and created < ? and status in ('w', 'won')")
+    case Metric.GamesLost => Some("select count(*) as c from games where created >= ? and created < ? and status in ('l', 'lost')")
+    case Metric.GamesAdandoned => Some("select count(*) as c from games where created >= ? and created < ? and status in ('s', 'started')")
 
     case Metric.Feedbacks => Some("select count(*) as c from user_feedback where occurred >= ? and occurred < ?")
     case _ => None

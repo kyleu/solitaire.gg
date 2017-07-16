@@ -1,4 +1,4 @@
-package utils
+package util
 
 object NumberUtils {
   def withCommas(i: Int): String = i.toString.reverse.grouped(3).mkString(",").reverse

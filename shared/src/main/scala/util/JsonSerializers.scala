@@ -1,4 +1,4 @@
-package utils
+package util
 
 import io.circe.generic.extras.Configuration
 import io.circe.generic.extras.auto._

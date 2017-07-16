@@ -1,7 +1,7 @@
 package help
 
 import models.rules.{CardRemovalMethod, GameRules, VictoryCondition}
-import utils.Messages
+import util.Messages
 
 object ObjectiveHelpService {
   def objective(rules: GameRules) = rules.victoryCondition match {

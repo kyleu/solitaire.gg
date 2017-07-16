@@ -4,8 +4,8 @@ import controllers.BaseController
 import models.rules.{GameRules, GameRulesSet}
 import play.api.http.FileMimeTypes
 import services.history.GameStatisticsService
-import utils.Application
-import utils.FutureUtils.defaultContext
+import util.Application
+import util.FutureUtils.defaultContext
 
 import scala.concurrent.Future
 

@@ -3,7 +3,7 @@ package game
 import help.HelpService
 import navigation.{NavigationService, NavigationState}
 import org.scalajs.jquery.{jQuery => $}
-import utils.TemplateUtils
+import util.TemplateUtils
 
 object GameListService {
   private[this] var initialized = false
@@ -25,7 +25,9 @@ object GameListService {
     ag match {
       case Some(activeGame) =>
         optionsEl.html(GameListTemplate.optionsContent(activeGame).toString)
-        TemplateUtils.clickHandler($(".btn-resume", optionsEl), _ => navigation.navigate(NavigationState.Play))
+        TemplateUtils.clickHandler($(".btn-resume", optionsEl), _ => {
+          navigation.navigate(NavigationState.Play, Seq(activeGame.rulesId, activeGame.seed.toString))
+        })
         TemplateUtils.clickHandler($(".btn-resign", optionsEl), _ => onNewGame(Seq("resign")))
         TemplateUtils.clickHandler($(".btn-redeal", optionsEl), _ => onNewGame(Seq(activeGame.rulesId)))
       case None =>

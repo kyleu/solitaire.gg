@@ -1,10 +1,10 @@
-package utils
+package util
 
 import java.net.InetAddress
 
 import com.github.mauricio.async.db.{Configuration => DbConfig}
 import play.api.{Environment, Mode}
-import utils.metrics.MetricsConfig
+import util.metrics.MetricsConfig
 
 object Config {
   val projectId = "solitaire-gg"

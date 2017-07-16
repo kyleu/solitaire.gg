@@ -8,8 +8,8 @@ import msg.req._
 import msg.rsp.Pong
 import services.history.{GameHistoryService, GameSeedService, GameStatisticsService}
 import services.user.{UserService, UserStatisticsService}
-import utils.DateUtils
-import utils.metrics.InstrumentedActor
+import util.DateUtils
+import util.metrics.InstrumentedActor
 
 trait SocketRequestMessageHelper extends InstrumentedActor { this: SocketService =>
   override def receiveRequest = {

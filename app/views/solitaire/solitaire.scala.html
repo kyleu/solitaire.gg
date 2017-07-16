@@ -1,5 +1,5 @@
 @(settings: models.settings.Settings, debug: Boolean)(implicit session: Session, flash: Flash, messages: Messages)@views.html.layout.basic(
-  title = utils.Config.projectName,
+  title = util.Config.projectName,
   stylesheets = Seq(routes.Assets.versioned("stylesheets/gg.min.css").url)
 ) {
   <style id="theme-style" type="text/css">

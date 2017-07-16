@@ -2,10 +2,10 @@ package controllers.admin
 
 import better.files._
 import controllers.BaseController
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import services.history.GameSeedService
-import utils.Application
-import utils.json.SeedSerializers
+import util.Application
+import util.json.SeedSerializers
 
 import scala.concurrent.Future
 import scala.util.control.NonFatal

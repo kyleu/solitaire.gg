@@ -1,4 +1,4 @@
-package utils.metrics
+package util.metrics
 
 import java.net.InetSocketAddress
 import java.util.concurrent.TimeUnit
@@ -8,7 +8,7 @@ import com.codahale.metrics.{MetricFilter, JmxReporter}
 import com.codahale.metrics.servlets.AdminServlet
 import org.eclipse.jetty.server.{ServerConnector, Server}
 import org.eclipse.jetty.servlet.ServletContextHandler
-import utils.Logging
+import util.Logging
 
 class MetricsServletActor(cfg: MetricsConfig) extends InstrumentedActor with Logging {
   private[this] var jmxReporter: Option[JmxReporter] = None

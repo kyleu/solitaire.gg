@@ -7,7 +7,7 @@ import models.game.{MoveHelper, PossibleMove, RequestMessageHandler, UndoHelper}
 import models.history.GameHistory
 import models.rules.GameRulesSet
 import models.rules.moves.InitialMoves
-import utils.{DateUtils, Logging}
+import util.{DateUtils, Logging}
 
 import scala.util.Random
 
@@ -57,9 +57,9 @@ case class GameSolver(rules: String, testSeed: Int, gameSeed: Int) extends Loggi
       if (undosAvailable == 0) {
         throw new IllegalStateException("No undos available, no unexplored moves.")
       } else {
-        requests.handle(Undo)
+        requests.handle(UN)
         results(PossibleMove(PossibleMove.Type.Undo, "undo")) = moves
-        Undo
+        UN
       }
     } else {
       val move = if (rng.nextInt(10) < 7) {

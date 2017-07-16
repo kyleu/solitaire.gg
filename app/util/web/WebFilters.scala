@@ -1,4 +1,4 @@
-package utils.web
+package util.web
 
 import javax.inject.Inject
 

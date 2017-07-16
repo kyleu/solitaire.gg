@@ -1,7 +1,7 @@
 package help
 
 import models.rules._
-import utils.Messages
+import util.Messages
 
 object TableauHelpService {
   private[this] val defaults = TableauRules()

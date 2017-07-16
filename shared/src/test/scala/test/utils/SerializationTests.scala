@@ -3,7 +3,7 @@ package test.utils
 import models.settings.Settings
 import msg.req.SaveSettings
 import utest._
-import utils.JsonSerializers
+import util.JsonSerializers
 
 
 object SerializationTests extends TestSuite {

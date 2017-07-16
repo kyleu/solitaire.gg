@@ -19,7 +19,7 @@ trait NavigationHelper { this: SolitaireGG =>
 
   protected[this] def onStateChange(o: NavigationState, n: NavigationState, args: Seq[String]): Unit = {
     o match {
-      case NavigationState.Loading => navigation.setMenuPosition(settings.getSettings.menuPosition)
+      case NavigationState.Loading => menu.setMenuPosition(settings.getSettings.menuPosition)
       case NavigationState.Settings => settings.applyAndSave(SettingsPanel.getCurrentSettings)
       case _ => // noop
     }

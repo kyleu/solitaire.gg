@@ -1,7 +1,7 @@
 package help
 
 import models.rules.GameRules
-import utils.Messages
+import util.Messages
 
 import scalatags.Text.all._
 

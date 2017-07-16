@@ -1,4 +1,4 @@
-package utils.metrics
+package util.metrics
 
 import com.codahale.metrics.health.HealthCheckRegistry
 import com.codahale.metrics.health.jvm.ThreadDeadlockHealthCheck

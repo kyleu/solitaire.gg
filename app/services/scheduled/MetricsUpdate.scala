@@ -1,8 +1,8 @@
 package services.scheduled
 
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import services.audit.DailyMetricService
-import utils.DateUtils
+import util.DateUtils
 
 class MetricsUpdate extends ScheduledTask.Task {
   override def run() = updateMetrics()

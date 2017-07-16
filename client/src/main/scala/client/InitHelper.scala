@@ -3,13 +3,13 @@ package client
 import org.scalajs.dom
 import org.scalajs.dom.raw.BeforeUnloadEvent
 import settings.ThemeService
-import utils.{Logging, NullUtils}
+import util.{Logging, NullUtils}
 
 import scala.scalajs.js
 
 trait InitHelper { this: SolitaireGG =>
   protected[this] def init() = {
-    utils.Logging.info("Solitaire.gg, v2.0.0")
+    util.Logging.info("Solitaire.gg, v2.0.0")
     Logging.installErrorHandler()
     js.Dynamic.global.PhaserGlobal = js.Dynamic.literal("hideBanner" -> true)
 

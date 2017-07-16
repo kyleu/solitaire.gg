@@ -1,8 +1,8 @@
 package services.scheduled
 
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import services.email.EmailService
-import utils.Logging
+import util.Logging
 
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
@@ -14,7 +14,7 @@ object ScheduledTask {
 }
 
 @javax.inject.Singleton
-class ScheduledTask @javax.inject.Inject() (emailService: EmailService, config: utils.Config) extends Logging with Runnable {
+class ScheduledTask @javax.inject.Inject() (emailService: EmailService, config: util.Config) extends Logging with Runnable {
   private[this] var running = false
 
   private[this] val tasks = Seq(

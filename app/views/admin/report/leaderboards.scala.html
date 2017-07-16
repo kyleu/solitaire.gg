@@ -1,7 +1,7 @@
 @(content: Seq[(String, Seq[(java.util.UUID, Option[String], Option[String], Int)])])(
     implicit session: Session, flash: Flash
-)@views.html.admin.layout.base(utils.Config.projectName + " Leaderboards", "reports") {
-  <h3>@utils.Config.projectName Leaderboards</h3>
+)@views.html.admin.layout.base(util.Config.projectName + " Leaderboards", "reports") {
+  <h3>@util.Config.projectName Leaderboards</h3>
 
   <ul class="list-group">
     @content.map { rep =>
@@ -24,7 +24,7 @@
                 <td><a href="@controllers.admin.routes.UserController.detail(entry._1._1)">@entry._1._1</a></td>
                 <td>@entry._1._2</td>
                 <td>@entry._1._3</td>
-                <td>@utils.NumberUtils.withCommas(entry._1._4)</td>
+                <td>@util.NumberUtils.withCommas(entry._1._4)</td>
               </tr>
             }
           </tbody>

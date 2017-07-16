@@ -3,8 +3,8 @@ package controllers.admin
 import java.util.UUID
 
 import controllers.BaseController
-import utils.Application
-import utils.FutureUtils.defaultContext
+import util.Application
+import util.FutureUtils.defaultContext
 import services.history.GameHistoryService
 
 import scala.concurrent.Future

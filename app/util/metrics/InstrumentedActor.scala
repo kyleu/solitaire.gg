@@ -1,4 +1,4 @@
-package utils.metrics
+package util.metrics
 
 import akka.actor.Actor
 import nl.grons.metrics.scala.{Timer, Meter}
@@ -7,7 +7,7 @@ trait InstrumentedActor extends Actor with Instrumented {
   def receiveRequest: PartialFunction[Any, Unit]
 
   protected[this] def timeReceive[A](msg: AnyRef)(f: => A) = {
-    metrics.timer("receive", utils.Formatter.className(msg)).time(f)
+    metrics.timer("receive", util.Formatter.className(msg)).time(f)
   }
 
   private[this] lazy val exceptionMeter: Meter = metrics.meter("exceptionMeter")

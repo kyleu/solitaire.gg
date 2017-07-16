@@ -7,9 +7,9 @@ import msg.rsp.SocketResponseMessage
 import play.api.libs.streams.ActorFlow
 import play.api.mvc.WebSocket
 import services.socket.SocketService
-import utils.Application
-import utils.FutureUtils.defaultContext
-import utils.web.MessageFrameFormatter
+import util.Application
+import util.FutureUtils.defaultContext
+import util.web.MessageFrameFormatter
 
 @javax.inject.Singleton
 class SolitaireController @javax.inject.Inject() (

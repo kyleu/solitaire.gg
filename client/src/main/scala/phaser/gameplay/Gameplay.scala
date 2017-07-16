@@ -4,7 +4,7 @@ import java.util.UUID
 
 import com.definitelyscala.phaser.{PhysicsObj, State}
 import input.{InputContextService, InputMessage}
-import models.{PossibleMoves, Redo, Undo}
+import models.{PossibleMoves, RE, UN}
 import models.game._
 import models.rules.{GameRules, GameRulesSet}
 import models.settings.Settings
@@ -63,17 +63,19 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
 
     g.possibleMoves = moves.possibleMoves()
     g.playAudio("shuffle")
-    utils.Logging.info(s"Started game [$id] with rules [${rules.id}].")
+    util.Logging.info(s"Started game [$id] with rules [${rules.id}].")
   }
 
   def checkWinCondition() = services.rules.victoryCondition.check(services.rules, services.state)
 
   def undo() = if (services.undo.historyQueue.nonEmpty) {
-    services.requests.handle(Undo)
+    services.requests.handle(UN)
+    services.moves.registerMove(UN)
     postMove()
   }
   def redo() = if (services.undo.undoneQueue.nonEmpty) {
-    services.requests.handle(Redo)
+    services.requests.handle(RE)
+    services.moves.registerMove(RE)
     postMove()
   }
 
@@ -86,7 +88,7 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
   def stop(id: UUID, win: Boolean, onComplete: () => Unit) = {
     activeServices.getOrElse(throw new IllegalStateException("Called [stop] with no active game."))
     if (services.state.gameId != id) { throw new IllegalStateException(s"Called [stop] with game [$id], not expected [${services.state.gameId}].") }
-    utils.Logging.info(s"Stopping game [$id]. Win: [$win]")
+    util.Logging.info(s"Stopping game [$id]. Win: [$win]")
     g.getPlaymat.destroy(destroyChildren = true)
     g.setPlaymat(None)
     activeServices = None

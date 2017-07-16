@@ -1,8 +1,8 @@
 package services.sandbox
 
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import services.scheduled.ScheduledTask
-import utils.Application
+import util.Application
 
 trait RunScheduledTaskLogic {
   var scheduledTask: Option[ScheduledTask] = None

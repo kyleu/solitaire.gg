@@ -5,9 +5,9 @@ import java.util.UUID
 import models.history.{GameHistory, GameSeed}
 import models.queries.BaseQueries
 import models.queries.history.GameSeedQueries
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import services.database.Database
-import utils.Logging
+import util.Logging
 
 import scala.concurrent.Future
 

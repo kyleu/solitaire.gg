@@ -6,8 +6,8 @@ import akka.actor.{ActorRef, Props}
 import models.{SocketStarted, SocketStopped}
 import models.user.User
 import msg.rsp.Profile
-import utils.Logging
-import utils.metrics.InstrumentedActor
+import util.Logging
+import util.metrics.InstrumentedActor
 
 object SocketService {
   type i18n = (String, Seq[Any]) => String

@@ -2,7 +2,7 @@ package network
 
 import msg.req.{ClientError, SocketRequestMessage}
 import org.scalajs.dom
-import utils.JsonSerializers
+import util.JsonSerializers
 
 import scala.util.control.NonFatal
 
@@ -15,7 +15,7 @@ object NetworkMessageCache {
   }
 
   def cache(msg: SocketRequestMessage) = {
-    utils.Logging.info(s"Caching message [$msg].")
+    util.Logging.info(s"Caching message [$msg].")
     save(load() :+ msg)
   }
 

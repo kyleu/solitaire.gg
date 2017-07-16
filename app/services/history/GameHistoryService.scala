@@ -8,7 +8,7 @@ import models.queries.BaseQueries
 import models.queries.history.GameHistoryQueries
 import models.queries.user.UserQueries
 import org.joda.time.LocalDate
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import services.database.Database
 
 import scala.concurrent.Future

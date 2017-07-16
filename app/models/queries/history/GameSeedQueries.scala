@@ -8,7 +8,7 @@ import models.queries.BaseQueries
 import models.rules.{GameRules, GameRulesSet}
 import org.joda.time.LocalDateTime
 import services.test.GameSolver
-import utils.DateUtils
+import util.DateUtils
 
 object GameSeedQueries extends BaseQueries[GameSeed] {
   override protected val tableName = "game_seeds"

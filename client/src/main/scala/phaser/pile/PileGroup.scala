@@ -1,7 +1,7 @@
 package phaser.pile
 
 import com.definitelyscala.phaser.{Group, Pointer, Sprite}
-import models.SelectPile
+import models.SP
 import models.game.PossibleMove
 import models.pile.Pile
 import models.pile.set.PileSet
@@ -34,7 +34,7 @@ class PileGroup(val phaser: PhaserGame, p: Pile) extends Group(game = phaser, pa
     ret.events.onInputUp.add((_: Any, p: Pointer) => {
       if (Option(p.button).isEmpty || p.button.toString.toInt == 0) {
         if (canSelectPile) {
-          val msg = SelectPile(id, auto = false)
+          val msg = SP(id, auto = false)
           phaser.sendMove(msg)
         }
       }

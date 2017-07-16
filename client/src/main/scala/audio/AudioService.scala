@@ -1,6 +1,6 @@
 package audio
 
-import models.{MoveCards, RequestMessage, SelectCard, SelectPile}
+import models.{MC, RequestMessage, SC, SP}
 import phaser.PhaserGame
 
 object AudioService {
@@ -18,9 +18,9 @@ class AudioService(p: PhaserGame) {
 
   def onMove(msg: RequestMessage) = if (p.getSettings.audio) {
     msg match {
-      case _: SelectPile => play("shuffle")
-      case _: SelectCard => play("draw")
-      case _: MoveCards => play("playcard")
+      case _: SP => play("shuffle")
+      case _: SC => play("draw")
+      case _: MC => play("playcard")
       case _ => // noop
     }
   }

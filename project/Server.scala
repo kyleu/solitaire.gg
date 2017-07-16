@@ -45,7 +45,7 @@ object Server {
 
     // Play
     routesGenerator := InjectedRoutesGenerator,
-    routesImport ++= Seq("utils.web.RoutingImports._"),
+    routesImport ++= Seq("util.web.RoutingImports._"),
 
     // Scala.js
     scalaJSProjects := Seq(Client.client),

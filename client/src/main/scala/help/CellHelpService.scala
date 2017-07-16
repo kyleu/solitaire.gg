@@ -1,7 +1,7 @@
 package help
 
 import models.rules.CellRules
-import utils.Messages
+import util.Messages
 
 object CellHelpService {
   def cell(rules: CellRules) = {

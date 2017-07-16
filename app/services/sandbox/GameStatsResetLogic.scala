@@ -2,8 +2,8 @@ package services.sandbox
 
 import models.queries.history.GameStatisticsQueries
 import services.database.Database
-import utils.Application
-import utils.FutureUtils.defaultContext
+import util.Application
+import util.FutureUtils.defaultContext
 
 trait GameStatsResetLogic {
   def call(ctx: Application) = {

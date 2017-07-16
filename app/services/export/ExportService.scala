@@ -3,9 +3,9 @@ package services.export
 import better.files._
 import models.rules.GameRulesSet
 import models.user.User
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import play.api.test.FakeRequest
-import utils.Application
+import util.Application
 
 object ExportService {
   private[this] val baseUrl = "http://localhost:5000/"

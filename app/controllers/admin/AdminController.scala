@@ -3,9 +3,9 @@ package controllers.admin
 import akka.util.Timeout
 import controllers.BaseController
 import models.rules.GameRulesSet
-import utils.FutureUtils.defaultContext
+import util.FutureUtils.defaultContext
 import services.database.Schema
-import utils.Application
+import util.Application
 
 import scala.concurrent.Future
 import scala.concurrent.duration._

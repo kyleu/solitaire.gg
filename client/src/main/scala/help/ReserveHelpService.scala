@@ -1,7 +1,7 @@
 package help
 
 import models.rules.ReserveRules
-import utils.Messages
+import util.Messages
 
 object ReserveHelpService {
   def reserve(rules: ReserveRules) = {

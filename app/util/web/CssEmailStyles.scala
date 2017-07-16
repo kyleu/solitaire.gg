@@ -1,4 +1,4 @@
-package utils.web
+package util.web
 
 case class CssEmailStyles(colorId: String) {
   val colorHex = "607d8b"
