@@ -1,6 +1,7 @@
 package models.sandbox
 
 import enumeratum.values._
+import services.database.BackupRestore
 import services.export.ExportService
 import services.sandbox._
 import services.wiki.WikiService
@@ -32,6 +33,13 @@ object SandboxTask extends StringEnum[SandboxTask] {
   case object ExportStatic extends SandboxTask("ExportStatic", "Export static templates and supporting files.") {
     override def call(ctx: Application) = ExportService.go(ctx)
   }
+  case object DatabaseBackup extends SandboxTask("DatabaseBackup", "Backs up the database.") {
+    override def call(app: Application) = Future.successful(BackupRestore.backup())
+  }
+  case object DatabaseRestore extends SandboxTask("DatabaseRestore", "Restores the database.") {
+    override def call(app: Application) = Future.successful(BackupRestore.restore("TODO"))
+  }
+
   case object RunScheduledTask extends SandboxTask("RunScheduledTask", "Runs the scheduled task.") with RunScheduledTaskLogic
   case object Scratchpad extends SandboxTask("Scratchpad", "A one-off I don't feel like putting anywhere else.") with ScratchpadLogic
   case object ScreenshotCreator extends SandboxTask("ScreenshotCreator", "Generates screenshots for completed games.") with ScreenshotCreatorLogic
