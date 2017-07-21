@@ -41,14 +41,14 @@ object MobileAssetCreator {
   )
 
   private[this] val splashes = Seq(
-    Out("android/splash-landscape-1dpi.png", 320, 200, isSplash = true),
+    Out("android/splash-landscape-ldpi.png", 320, 200, isSplash = true),
     Out("android/splash-landscape-mdpi.png", 480, 320, isSplash = true),
     Out("android/splash-landscape-hdpi.png", 800, 480, isSplash = true),
     Out("android/splash-landscape-xhdpi.png", 1280, 720, isSplash = true),
     Out("android/splash-landscape-xxhdpi.png", 1600, 960, isSplash = true),
     Out("android/splash-landscape-xxxhdpi.png", 1920, 1280, isSplash = true),
 
-    Out("android/splash-portrait-1dpi.png", 200, 320, isSplash = true),
+    Out("android/splash-portrait-ldpi.png", 200, 320, isSplash = true),
     Out("android/splash-portrait-mdpi.png", 320, 480, isSplash = true),
     Out("android/splash-portrait-hdpi.png", 480, 800, isSplash = true),
     Out("android/splash-portrait-xhdpi.png", 720, 1280, isSplash = true),

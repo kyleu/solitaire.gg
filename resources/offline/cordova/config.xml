@@ -5,9 +5,6 @@
   <author email="dev@solitaire.gg" href="https://solitaire.gg">The Solitaire.gg Team</author>
   <content src="index.html"/>
 
-  <!-- Whitelist -->
-  <access origin="*://solitaire.gg/*" />
-
   <!-- Display Preferences -->
   <preference name="Orientation" value="default" />
   <preference name="DisallowOverscroll" value="true"/>
@@ -16,6 +13,9 @@
   <preference name="StatusBarOverlaysWebView" value="false" />
   <preference name="StatusBarBackgroundColor" value="#000000" />
   <preference name="StatusBarStyle" value="blackopaque" />
+
+  <!-- Whitelist -->
+  <access origin="*://solitaire.gg/*" />
 
   <!-- External URLs -->
   <allow-intent href="http://solitaire.gg/*"/>
@@ -52,9 +52,9 @@
   </platform>
 
   <platform name="ios">
-    <icon src="res/ios/icon-60@3x.png" width="180" height="180" />
     <icon src="res/ios/icon-60.png" width="60" height="60" />
     <icon src="res/ios/icon-60@2x.png" width="120" height="120" />
+    <icon src="res/ios/icon-60@3x.png" width="180" height="180" />
     <icon src="res/ios/icon-76.png" width="76" height="76" />
     <icon src="res/ios/icon-76@2x.png" width="152" height="152" />
     <icon src="res/ios/icon-40.png" width="40" height="40" />
@@ -71,15 +71,19 @@
 
   <!-- Splash Screens -->
   <platform name="android">
-    <splash src="res/android/splash-landscape-hdpi.png" density="land-hdpi"/>
     <splash src="res/android/splash-landscape-ldpi.png" density="land-ldpi"/>
     <splash src="res/android/splash-landscape-mdpi.png" density="land-mdpi"/>
+    <splash src="res/android/splash-landscape-hdpi.png" density="land-hdpi"/>
     <splash src="res/android/splash-landscape-xhdpi.png" density="land-xhdpi"/>
+    <splash src="res/android/splash-landscape-xxhdpi.png" density="land-xxhdpi"/>
+    <splash src="res/android/splash-landscape-xxxhdpi.png" density="land-xxxhdpi"/>
 
-    <splash src="res/android/splash-portrait-hdpi.png" density="port-hdpi"/>
     <splash src="res/android/splash-portrait-ldpi.png" density="port-ldpi"/>
     <splash src="res/android/splash-portrait-mdpi.png" density="port-mdpi"/>
+    <splash src="res/android/splash-portrait-hdpi.png" density="port-hdpi"/>
     <splash src="res/android/splash-portrait-xhdpi.png" density="port-xhdpi"/>
+    <splash src="res/android/splash-portrait-xxhdpi.png" density="port-xxhdpi"/>
+    <splash src="res/android/splash-portrait-xxxhdpi.png" density="port-xxxhdpi"/>
   </platform>
 
   <platform name="ios">
@@ -94,4 +98,9 @@
     <splash src="res/ios/splash-iphone6-plus-portrait.png" width="1242" height="2208"/>
     <splash src="res/ios/splash-iphone6-plus-landscape.png" width="2208" height="1242"/>
   </platform>
+
+  <engine name="android" spec="^6.2.3" />
+  <engine name="browser" spec="^4.1.0" />
+  <engine name="ios" spec="^4.4.0" />
+  <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
 </widget>
