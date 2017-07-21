@@ -11,7 +11,6 @@ rm build/cordova/config.xml
 cp "resources/offline/cordova/config.xml" "build/cordova/config.xml"
 rm -rf build/cordova/www
 cp -R "resources/offline/cordova/" "build/cordova"
-cp "src/cordova/config.xml" "build/cordova"
 cp -R "build/web/" "build/cordova/www"
 cp -R "src/cordova/www/" "build/cordova/www"
 

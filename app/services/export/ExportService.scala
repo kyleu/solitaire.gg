@@ -9,7 +9,8 @@ import util.Application
 
 object ExportService {
   private[this] val baseUrl = "http://localhost:5000/"
-  private[this] val outPath = "./build/web".toFile
+  val rootPath = "/Users/kyle/Projects/Personal/solitaire.gg".toFile
+  private[this] val outPath = rootPath / "build/web"
   private[this] val offlineUser = User(User.defaultId)
 
   def go(ctx: Application) = {
@@ -18,15 +19,17 @@ object ExportService {
     }
     outPath.children.foreach(_.delete(swallowIOExceptions = true))
 
+    val debug = ctx.config.debug
+
     implicit val request = FakeRequest("GET", "/")
     implicit val session = request.session
     implicit val flash = request.flash
     implicit val messages = ctx.messagesApi.preferred(request)
 
-    render("index.html", views.html.solitaire.solitaire(offlineUser.settings, debug = ctx.config.debug).toString())
+    render("index.html", views.html.solitaire.solitaire(offlineUser.settings, debug = debug).toString())
 
-    new ExportCrawler(ctx.ws, baseUrl, outPath, ctx.config.debug).crawlLocal().map { result =>
-      s"Ok: [${result.size}] files cached (debug == ${ctx.config.debug})."
+    new ExportCrawler(ctx.ws, baseUrl, outPath, debug).crawlLocal().map { result =>
+      s"Ok: [${result.size}] files cached (debug == $debug)."
     }
   }
 
@@ -36,11 +39,8 @@ object ExportService {
   }
 
   private[this] val staticReplacements = Seq(
-    """href="/"""" -> """href="[]index.html"""",
-    """href="/profile"""" -> """href="[]profile.html"""",
-    """href="/about"""" -> """href="[]about.html"""",
-    """/assets/""" -> """[]assets/""",
-    """&#x27;""" -> """'"""
+    "/assets/" -> "[]assets/",
+    "&#x27;" -> "'"
   )
 
   private[this] def replaceStaticLinks(s: String, prefix: Option[String]) = staticReplacements.foldLeft(s) { (s, r) =>

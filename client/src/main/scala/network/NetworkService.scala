@@ -12,7 +12,7 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
   private[this] val socketUrl = if (loc.host == "localhost:5000") {
     "ws://localhost:5000/socket"
   } else {
-    "wss://beta.solitaire.gg/socket"
+    "wss://solitaire.gg/socket"
   }
 
   private[this] var latencyMs: Option[Int] = None

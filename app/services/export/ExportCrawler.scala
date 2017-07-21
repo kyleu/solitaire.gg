@@ -68,7 +68,7 @@ class ExportCrawler(ws: WSClient, baseUrl: String, outPath: File, debug: Boolean
     }
     assetsF.flatMap(x => langF.map(y => x ++ y)).map { ret =>
       folders.foreach { folder =>
-        val d = folder._1.toFile
+        val d = ExportService.rootPath / folder._1
         if (!d.isDirectory) {
           throw new IllegalStateException(s"Missing folder [$folder].")
         }
