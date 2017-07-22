@@ -16,12 +16,8 @@ import scala.concurrent.Future
 
 @javax.inject.Singleton
 class GraphQLController @javax.inject.Inject() (override val app: Application) extends BaseController {
-  def graphql(query: Option[String], variables: Option[String]) = {
-    withAdminSession("graphql.ui") { implicit request =>
-      getAdminUser(request).map { user =>
-        Ok(views.html.admin.graphql.graphiql(user))
-      }
-    }
+  def graphql(query: Option[String], variables: Option[String]) = withAdminSession("graphql.ui") { implicit request =>
+    getAdminUser(request).map(user => Ok(views.html.admin.graphql.graphiql(user)))
   }
 
   def graphqlBody = withAdminSession("graphql.post") { implicit request =>

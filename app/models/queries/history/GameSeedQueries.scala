@@ -42,8 +42,6 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
     }
   }
 
-  val truncate = Truncate
-
   def getCountForUser(userId: UUID) = Count(s"select count(*) as c from $tableName where player = ?", Seq(userId))
 
   case class IncrementGames(rules: String, seed: Int, i: Int) extends Statement {
@@ -67,7 +65,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
     private[this] val fastestOccurredClause = s"fastest_occurred = case when $fastestClause then ? else fastest_occurred end"
     private[this] val fastestSql = Seq(fastestPlayerClause, fastestMovesClause, fastestElapsedClause, fastestOccurredClause).mkString(", ")
 
-    override val sql = s"update $tableName set games = games + 1, wins = wins + ?, moves = moves + ?, $firstSql, $fastestSql where rules = ? and seed = ?"
+    override val sql = s"update $tableName set wins = wins + ?, moves = moves + ?, $firstSql, $fastestSql where rules = ? and seed = ?"
 
     override val values = Seq[Any](
       if (gh.isWon) { 1 } else { 0 }, gh.moves,
