@@ -6,7 +6,7 @@ import util.{EnumWithDescription, Messages}
 import scalatags.Text.all._
 
 object SettingsTemplate {
-  def forSettings(settings: Settings) = {
+  lazy val forSettings = {
     val title = h4(Messages("settings.title"))
 
     val language = radiosFor("language", Language.values)

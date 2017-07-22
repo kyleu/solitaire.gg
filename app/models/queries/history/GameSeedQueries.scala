@@ -17,6 +17,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
     "first_player", "first_moves", "first_elapsed_ms", "first_occurred",
     "fastest_player", "fastest_moves", "fastest_elapsed_ms", "fastest_occurred"
   )
+  override protected def idColumns = Seq("rules", "seed")
   override protected val searchColumns = Seq("rules", "seed::text", "first_player::text", "fastest_player::text")
 
   def getByKey(rules: String, seed: Int) = GetById(Seq(rules, seed))
@@ -44,6 +45,11 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
   val truncate = Truncate
 
   def getCountForUser(userId: UUID) = Count(s"select count(*) as c from $tableName where player = ?", Seq(userId))
+
+  case class IncrementGames(rules: String, seed: Int, i: Int) extends Statement {
+    override val sql = s"update $tableName set games = games + ? where $idWhereClause"
+    override val values = Seq[Any](i, rules, seed)
+  }
 
   case class OnComplete(gh: GameHistory) extends Statement {
     private[this] val player = if (gh.player == GameSolver.userId) { None } else { Some(gh.player) }

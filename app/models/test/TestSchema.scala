@@ -7,7 +7,7 @@ import sangria.schema.{Field, fields}
 import scala.util.Random
 
 object TestSchema {
-  private[this] class TestApi(ctx: GraphQLContext) {
+  private[this] class TestApi() {
     def solve(rules: String, seed: Option[Int]) = {
       val seedToUse = seed.getOrElse(Random.nextInt(1000000))
       s"Solving [$rules:$seedToUse]..."
@@ -24,7 +24,7 @@ object TestSchema {
       name = "test",
       fieldType = mutationType,
       description = Some("Allows calling of system tests."),
-      resolve = c => new TestApi(c.ctx)
+      resolve = _ => new TestApi()
     )
   )
 }

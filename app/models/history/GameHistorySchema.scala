@@ -59,7 +59,7 @@ object GameHistorySchema {
 
   val mutationType = deriveObjectType[GraphQLContext, GameHistoryApi](
     IncludeMethods("remove"),
-    DocumentField("remove", "Removes a user from the system.")
+    DocumentField("remove", "Removes a game history from the system.")
   )
 
   val mutationFields = fields[GraphQLContext, Unit](Field(

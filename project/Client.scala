@@ -16,15 +16,9 @@ object Client {
       "org.scala-js" %%% "scalajs-dom" % Dependencies.ScalaJS.domVersion
     ),
     scalaJSStage in Global := FastOptStage,
-    scapegoatIgnoredFiles := Seq(
-      ".*/AnalyticsHelper.scala",
-      ".*/GameSerializers.scala",
-      ".*/RequestMessageSerializers.scala",
-      ".*/ResponseMessageSerializers.scala",
-      ".*/JsonUtils.scala",
-      ".*/JsonSerializers.scala"
-    ),
+    scapegoatIgnoredFiles := Seq(".*/JsUtils.scala", ".*/JsonSerializers.scala", ".*/Messages.scala"),
     scapegoatVersion := Dependencies.Utils.scapegoatVersion,
+    scapegoatDisabledInspections := Seq("FinalModifierOnCaseClass"),
     ScalariformKeys.preferences := ScalariformKeys.preferences.value
   )
 

@@ -8,7 +8,7 @@ import phaser.pile.PileGroup
 import scala.scalajs.js.timers.setTimeout
 
 object AssetLoader {
-  def loadPileSets(g: PhaserGame, pileSets: Seq[PileSet]) = pileSets.foreach { pileSet =>
+  def loadPileSets(g: PhaserGame, pileSets: IndexedSeq[PileSet]) = pileSets.foreach { pileSet =>
     pileSet.piles.foreach(pile => g.getPlaymat.addPileGroup(new PileGroup(g, pile)))
   }
 
@@ -20,7 +20,7 @@ object AssetLoader {
     throw new IllegalStateException(msg)
   }
 
-  def loadCards(g: PhaserGame, pileSets: Seq[PileSet], originalOrder: Seq[Int]) = {
+  def loadCards(g: PhaserGame, pileSets: IndexedSeq[PileSet], originalOrder: Seq[Int]) = {
     val cards = collection.mutable.HashMap.empty[Int, (CardSprite, PileGroup, Int)]
 
     pileSets.foreach { pileSet =>

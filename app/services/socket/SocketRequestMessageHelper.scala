@@ -29,8 +29,9 @@ trait SocketRequestMessageHelper extends InstrumentedActor { this: SocketService
     val rules = GameRulesSet.allByIdWithAliases.getOrElse(gs.rules, Sandbox)
     val gh = GameHistory(gs.id, gs.rules, gs.seed, GameHistory.Status.Started, user.id, rules.deckOptions.cardCount)
     GameHistoryService.insert(gh)
-    UserStatisticsService.gameStarted(gs.id, gs.rules, gs.seed, user.id)
-    GameStatisticsService.gameStarted(gs.rules, gs.seed)
+    UserStatisticsService.gameStarted(user.id)
+    GameStatisticsService.gameStarted(gs.rules)
+    GameSeedService.onStart(gs.rules, gs.seed)
   }
 
   private[this] def onGameComplete(gc: OnGameComplete) = {

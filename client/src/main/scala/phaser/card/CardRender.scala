@@ -4,10 +4,17 @@ import com.definitelyscala.phaser.{BitmapData, Image}
 import models.card.{Color, Rank, Suit}
 import models.settings.CardLayout
 
-class CardRender(layout: CardLayout, blank: Image, suitImages: Seq[Image], redRankImages: Seq[Image], blackRankImages: Seq[Image], faceCardImages: Seq[Image]) {
+class CardRender(
+    layout: CardLayout,
+    blank: Image,
+    suitImages: IndexedSeq[Image] = IndexedSeq.empty,
+    redRankImages: IndexedSeq[Image] = IndexedSeq.empty,
+    blackRankImages: IndexedSeq[Image] = IndexedSeq.empty,
+    faceCardImages: IndexedSeq[Image] = IndexedSeq.empty
+) {
   private[this] val rankWidths = IndexedSeq(0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.0, 0.9, 0.9, 0.9, 0.9)
 
-  def renderEmptyPile(back: Image, tex: BitmapData, opaque: BitmapData) = {
+  def renderEmptyPile(tex: BitmapData, opaque: BitmapData) = {
     tex.fill(0, 0, 0, 0)
     tex.alphaMask(opaque, blank)
   }

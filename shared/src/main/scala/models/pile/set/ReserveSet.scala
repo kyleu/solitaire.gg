@@ -15,4 +15,4 @@ object ReserveSet {
   }
 }
 
-class ReserveSet(piles: Seq[Pile]) extends PileSet(PileSet.Behavior.Reserve, piles, visible = true)
+class ReserveSet(piles: IndexedSeq[Pile]) extends PileSet(PileSet.Behavior.Reserve, piles, visible = true)

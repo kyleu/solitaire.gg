@@ -50,13 +50,20 @@ object Shared {
     testFrameworks += new TestFramework("utest.runner.Framework")
   ) ++ graphSettings ++ scalariformSettings
 
-  lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(commonSettings: _*).settings(libraryDependencies ++= Seq(
-    "io.circe" %%% "circe-core" % Dependencies.Serialization.circeVersion,
-    "io.circe" %%% "circe-generic" % Dependencies.Serialization.circeVersion,
-    "io.circe" %%% "circe-generic-extras" % Dependencies.Serialization.circeVersion,
-    "io.circe" %%% "circe-parser" % Dependencies.Serialization.circeVersion,
-    "com.beachape" %%% "enumeratum-circe" % Dependencies.Utils.enumeratumVersion
-  ))
+  val sharedProjectSettings = Seq(
+    libraryDependencies ++= Seq(
+      "io.circe" %%% "circe-core" % Dependencies.Serialization.circeVersion,
+      "io.circe" %%% "circe-generic" % Dependencies.Serialization.circeVersion,
+      "io.circe" %%% "circe-generic-extras" % Dependencies.Serialization.circeVersion,
+      "io.circe" %%% "circe-parser" % Dependencies.Serialization.circeVersion,
+      "com.beachape" %%% "enumeratum-circe" % Dependencies.Utils.enumeratumVersion
+    ),
+    // Code Quality
+    scapegoatIgnoredFiles := Seq(".*/JsonSerializers.scala"),
+    scapegoatDisabledInspections := Seq("FinalModifierOnCaseClass")
+  )
+
+  lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(commonSettings: _*).settings(sharedProjectSettings: _*)
 
   lazy val sharedJs = shared.js.enablePlugins(ScalaJSWeb).settings(scalaJSStage in Global := FastOptStage)
 

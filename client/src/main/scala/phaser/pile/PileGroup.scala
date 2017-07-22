@@ -20,8 +20,8 @@ class PileGroup(val phaser: PhaserGame, p: Pile) extends Group(game = phaser, pa
 
   name = "pile-" + id
 
-  var cards = Seq.empty[CardSprite]
-  var dragCards = Seq.empty[CardSprite]
+  var cards = IndexedSeq.empty[CardSprite]
+  var dragCards = IndexedSeq.empty[CardSprite]
 
   def canSelectPile = phaser.possibleMoves.exists { move =>
     move.t == PossibleMove.Type.SelectPile && move.sourcePile == id;

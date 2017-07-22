@@ -34,7 +34,7 @@ case class GameSolver(rules: String, testSeed: Int, gameSeed: Int) extends Loggi
 
   InitialMoves.performInitialMoves(gameRules, gameState)
 
-  private[this] var moves: Seq[PossibleMove] = moveHelper.possibleMoves()
+  private[this] var moves: IndexedSeq[PossibleMove] = moveHelper.possibleMoves()
   private[this] var undosAvailable = undoHelper.historyQueue.size
 
   private[this] val exploredStates = collection.mutable.HashMap.empty[Seq[PossibleMove], collection.mutable.HashMap[PossibleMove, Seq[PossibleMove]]]

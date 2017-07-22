@@ -4,7 +4,7 @@ import com.definitelyscala.phaser.Particles.Arcade.Emitter
 import phaser.card.CardSprite
 
 class PlaymatEmitter(playmat: Playmat) {
-  val suitEmitter = Seq(makeEmitter(0), makeEmitter(1), makeEmitter(2), makeEmitter(3))
+  val suitEmitter = IndexedSeq(makeEmitter(0), makeEmitter(1), makeEmitter(2), makeEmitter(3))
 
   def makeEmitter(frame: Int) = {
     val ret = new Emitter(playmat.game, 0, 0, 50)

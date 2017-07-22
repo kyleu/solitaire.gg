@@ -16,7 +16,7 @@ class AudioService(p: PhaserGame) {
 
   AudioService.keys.foreach(k => fx.addMarker(k._1, k._2._1, k._2._2 - k._2._1))
 
-  def onMove(msg: RequestMessage) = if (p.getSettings.audio) {
+  def onMove(msg: RequestMessage): Unit = if (p.getSettings.audio) {
     msg match {
       case _: SP => play("shuffle")
       case _: SC => play("draw")

@@ -3,10 +3,9 @@ package menu
 import models.settings.MenuPosition
 import navigation.{NavigationService, NavigationState}
 import org.scalajs.jquery.{jQuery => $}
-import settings.SettingsService
 import util.TemplateUtils
 
-class MenuService(settings: SettingsService, navigation: NavigationService) {
+class MenuService(navigation: NavigationService) {
   private[this] var priorState: NavigationState = NavigationState.Loading
 
   private[this] val title = $("#nav-title")

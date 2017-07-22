@@ -13,7 +13,7 @@ object SettingsPanelInit {
   var colorPicker: Option[js.Dynamic] = None
 
   def init(settings: Settings) = {
-    val content = SettingsTemplate.forSettings(settings)
+    val content = SettingsTemplate.forSettings
     panel.html(content.toString)
 
     initMenuPosition()
@@ -80,6 +80,7 @@ object SettingsPanelInit {
       colorPicker.map(_.setHex(jq.value()))
       true
     })
+    cp.setHex(c)
     colorPicker = Some(cp)
   }
 

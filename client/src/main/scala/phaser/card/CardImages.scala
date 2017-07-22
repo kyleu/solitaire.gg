@@ -9,7 +9,7 @@ class CardImages(game: PhaserGame, settings: Settings) {
   private[this] val blank = new Image(game, 0, 0, "card-blank", 0)
   private[this] val back = new Image(game, 0, 0, "card-back", 0)
 
-  private[this] val suitImages = Seq(0, 1, 2, 3).map { i =>
+  private[this] val suitImages = IndexedSeq(0, 1, 2, 3).map { i =>
     val ret = new Image(game, 0, 0, "card-suits", i)
     ret.anchor.x = 0.5
     ret.anchor.y = 0.5
@@ -37,7 +37,7 @@ class CardImages(game: PhaserGame, settings: Settings) {
       ret.anchor.y = 0.5
       ret
     }
-  }
+  }.toIndexedSeq
 
   private[this] val renderer = new CardRender(settings.cardLayout, blank, suitImages, redRankImages, blackRankImages, faceCardImages)
 
@@ -58,7 +58,7 @@ class CardImages(game: PhaserGame, settings: Settings) {
     val tex = game.add.bitmapData(settings.cardSet.w.toDouble, settings.cardSet.h.toDouble)
     val opaque = game.add.bitmapData(settings.cardSet.w.toDouble, settings.cardSet.h.toDouble)
     opaque.fill(0, 0, 0, 1)
-    renderer.renderEmptyPile(blank, tex, opaque)
+    renderer.renderEmptyPile(tex, opaque)
     tex
   }
 

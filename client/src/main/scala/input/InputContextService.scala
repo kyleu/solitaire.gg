@@ -7,7 +7,7 @@ class InputContextService(state: GameState, highlight: (Seq[String], Seq[Int]) =
   private[this] def initialActive() = {
     val stockOpt = state.pileSets.find(_.behavior == PileSet.Behavior.Stock)
     val tableauOpt = stockOpt.orElse(state.pileSets.find(_.behavior == PileSet.Behavior.Tableau))
-    val ps = tableauOpt.getOrElse(state.pileSets.head)
+    val ps = tableauOpt.orElse(state.pileSets.headOption).getOrElse(throw new IllegalStateException("No pilesets available."))
     val p = ps.piles(ps.piles.length / 2)
     val c = p.cards.lastOption
     (ps, p, c)

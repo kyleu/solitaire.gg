@@ -13,7 +13,7 @@ import util.DateUtils
 import scala.concurrent.Future
 
 object UserStatisticsService {
-  def gameStarted(id: UUID, rules: String, seed: Int, player: UUID) = Database.execute(UserStatisticsQueries.Increment(player, "played", 1)).flatMap {
+  def gameStarted(player: UUID) = Database.execute(UserStatisticsQueries.Increment(player, "played", 1)).flatMap {
     case rows if rows == 0 => getStatistics(player).flatMap(_ => Database.execute(UserStatisticsQueries.Increment(player, "played", 1)).map(_ => ()))
     case _ => Future.successful(())
   }

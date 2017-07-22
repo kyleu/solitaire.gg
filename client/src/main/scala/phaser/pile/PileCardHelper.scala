@@ -4,7 +4,7 @@ import models.pile.set.PileSet
 import phaser.card.{CardSprite, CardTweens}
 
 object PileCardHelper {
-  def cardAdded(pileGroup: PileGroup, card: CardSprite) = {
+  def cardAdded(pileGroup: PileGroup, card: CardSprite): Unit = {
     if (pileGroup.x < 0 || pileGroup.y < 0) {
       CardTweens.tweenRemove(card)
       card.phaser.getPlaymat.emitter.emitFor(card)
@@ -33,7 +33,7 @@ object PileCardHelper {
     }
   }
 
-  def cardRemoved(pileGroup: PileGroup, card: CardSprite) = {
+  def cardRemoved(pileGroup: PileGroup, card: CardSprite): Unit = {
     if (pileGroup.x < 0 || pileGroup.y < 0) {
       CardTweens.tweenRestore(card)
     } else {

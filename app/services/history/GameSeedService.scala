@@ -28,6 +28,14 @@ object GameSeedService extends Logging {
     }
   }
 
+  def onStart(rules: String, seed: Int) = Database.query(GameSeedQueries.getByKey(rules, seed)).flatMap {
+    case Some(gs) => Database.execute(GameSeedQueries.IncrementGames(rules, seed, 1)).map(_ == 1)
+    case None => Database.execute(GameSeedQueries.insert(GameSeed(rules = rules, seed = seed))).flatMap { _ =>
+      Database.execute(GameSeedQueries.IncrementGames(rules, seed, 1)).map(_ == 1)
+    }
+    case x => throw new IllegalStateException(s"Invalid return value [$x].")
+  }
+
   def onComplete(gh: GameHistory) = Database.execute(GameSeedQueries.OnComplete(gh)).flatMap {
     case 1 => Future.successful(true)
     case 0 => Database.execute(GameSeedQueries.insert(GameSeed(rules = gh.rules, seed = gh.seed))).flatMap { _ =>

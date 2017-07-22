@@ -13,11 +13,11 @@ case class GameState(
     maxPlayers: Int,
     seed: Int,
     deck: Deck,
-    pileSets: Seq[PileSet],
+    pileSets: IndexedSeq[PileSet],
     layout: String,
     var stockCounter: Int = 0
 ) extends GameStateHelper {
-  var players: Seq[GamePlayer] = Nil
+  var players = IndexedSeq.empty[GamePlayer]
 
   protected[this] val playerKnownIds = collection.mutable.HashMap.empty[UUID, collection.mutable.HashSet[Int]]
   val cardsById = collection.mutable.HashMap[Int, Card]()

@@ -23,7 +23,7 @@ object PileSet {
   }
 }
 
-case class PileSet(behavior: PileSet.Behavior, piles: Seq[Pile], visible: Boolean) {
+case class PileSet(behavior: PileSet.Behavior, piles: IndexedSeq[Pile], visible: Boolean) {
   for (p <- piles) {
     p.pileSet = Some(this)
   }

@@ -90,5 +90,5 @@ trait BaseQueries[T] {
     override def map(row: Row) = row.as[Int]("c")
   }
 
-  private def idWhereClause = idColumns.map(c => s"$c = ?").mkString(" and ")
+  protected lazy val idWhereClause = idColumns.map(c => s"$c = ?").mkString(" and ")
 }

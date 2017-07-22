@@ -15,4 +15,4 @@ object CellSet {
   }
 }
 
-class CellSet(piles: Seq[Pile]) extends PileSet(PileSet.Behavior.Cell, piles, visible = true)
+class CellSet(piles: IndexedSeq[Pile]) extends PileSet(PileSet.Behavior.Cell, piles, visible = true)

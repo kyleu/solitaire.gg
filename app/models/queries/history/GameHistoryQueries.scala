@@ -45,19 +45,15 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
 
   def getCountForUser(userId: UUID) = Count(s"select count(*) as c from $tableName where player = ?", Seq(userId))
 
-  private[this] def sqlGetByUser(userId: UUID, limit: Option[Int], offset: Option[Int]) = {
-    s"where player = ? order by created desc${limit.map(" limit " + _).getOrElse("")}${offset.map(" offset " + _).getOrElse("")}"
-  }
-
-  private[this] def sqlGetBySeed(rules: String, seed: Int, limit: Option[Int], offset: Option[Int]) = {
-    s"where rules = ? and seed = ? order by created desc${limit.map(" limit " + _).getOrElse("")}${offset.map(" offset " + _).getOrElse("")}"
-  }
-
-  case class GetByUser(userId: UUID, limit: Option[Int], offset: Option[Int]) extends SeqQuery(sqlGetByUser(userId, limit, offset), Seq(userId))
+  case class GetByUser(userId: UUID, limit: Option[Int], offset: Option[Int]) extends SeqQuery(
+    additionalSql = s"where player = ? order by created desc${limit.map(" limit " + _).getOrElse("")}${offset.map(" offset " + _).getOrElse("")}",
+    values = Seq(userId)
+  )
   case class GetByUserIds(userIds: Seq[UUID]) extends SeqQuery(s"where player in (${userIds.map(_ => "?").mkString(", ")})", userIds)
 
   case class GetBySeed(rules: String, seed: Int, limit: Option[Int], offset: Option[Int]) extends SeqQuery(
-    sqlGetBySeed(rules, seed, limit, offset), Seq(rules, seed)
+    additionalSql = s"where rules = ? and seed = ? order by created desc${limit.map(" limit " + _).getOrElse("")}${offset.map(" offset " + _).getOrElse("")}",
+    values = Seq(rules, seed)
   )
 
   override protected def fromRow(row: Row) = {

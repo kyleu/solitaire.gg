@@ -15,4 +15,4 @@ object WasteSet {
   }
 }
 
-class WasteSet(piles: Seq[Pile]) extends PileSet(PileSet.Behavior.Waste, piles, visible = true)
+class WasteSet(piles: IndexedSeq[Pile]) extends PileSet(PileSet.Behavior.Waste, piles, visible = true)

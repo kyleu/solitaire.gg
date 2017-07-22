@@ -44,7 +44,7 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
 
   private[this] var audio: Option[AudioService] = None
   def initAudio() = audio = Some(new AudioService(this))
-  def playAudio(key: String) = if (getSettings.audio) {
+  def playAudio(key: String): Unit = if (getSettings.audio) {
     util.Logging.info(s"Playing audio [$key].")
     audio.map(_.play(key))
   }
@@ -63,7 +63,7 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   def onLoss() = gg.network.sendMessage(PhaserLifecycle.onLoss(this))
 
   def sendMove(msg: RequestMessage) = {
-    audio.map(_.onMove(msg))
+    audio.foreach(_.onMove(msg))
     gameplay.services.requests.handle(msg)
   }
 }

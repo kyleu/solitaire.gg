@@ -19,4 +19,4 @@ object PyramidSet {
   }
 }
 
-class PyramidSet(piles: Seq[Pile]) extends PileSet(PileSet.Behavior.Pyramid, piles, visible = true)
+class PyramidSet(piles: IndexedSeq[Pile]) extends PileSet(PileSet.Behavior.Pyramid, piles, visible = true)

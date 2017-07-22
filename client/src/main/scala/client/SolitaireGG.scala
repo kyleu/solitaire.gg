@@ -1,15 +1,13 @@
 package client
 
-import game.{ActiveGame, GameListService, GameStartService}
-import help.HelpService
+import game.ActiveGame
 import menu.MenuService
 import msg.req.SaveSettings
-import navigation.{NavigationService, NavigationState}
+import navigation.NavigationService
 import network.NetworkService
 import phaser.PhaserGame
 import phaser.gameplay.InputHelper
-import settings.{ProfileService, SettingsPanel, SettingsService}
-import msg.rsp.{Profile, SocketResponseMessage}
+import settings.{ProfileService, SettingsService}
 
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
 import scala.util.Random
@@ -37,14 +35,14 @@ class SolitaireGG(val debug: Boolean) extends InitHelper with NavigationHelper w
   val network = new NetworkService(debug, handleSocketResponseMessage)
   val settings = new SettingsService(onSave = s => network.sendMessage(SaveSettings(s)))
   val profile = new ProfileService(settings)
-  val menu = new MenuService(settings, navigation)
+  val menu = new MenuService(navigation)
 
   val phaser = new PhaserGame(this)
 
   init()
 
   def onSandbox() = {
-    val seq = Seq("draw", "shuffle", "playcard")
+    val seq = IndexedSeq("draw", "shuffle", "playcard")
     val key = seq(Random.nextInt(seq.length))
     phaser.playAudio(key)
   }

@@ -9,7 +9,7 @@ import util.FutureUtils.defaultContext
 import scala.concurrent.Future
 
 object GameStatisticsService {
-  def gameStarted(rules: String, seed: Int) = Database.execute(GameStatisticsQueries.Increment(rules, "played", 1)).flatMap {
+  def gameStarted(rules: String) = Database.execute(GameStatisticsQueries.Increment(rules, "played", 1)).flatMap {
     case rows if rows == 0 => getStatistics(rules).flatMap { _ =>
       Database.execute(GameStatisticsQueries.Increment(rules, "played", 1)).map(_ => ())
     }

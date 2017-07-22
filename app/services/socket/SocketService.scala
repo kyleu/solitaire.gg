@@ -13,12 +13,12 @@ object SocketService {
   type i18n = (String, Seq[Any]) => String
 
   def props(id: Option[UUID], supervisor: ActorRef, user: User, out: ActorRef, sourceAddress: String, messages: i18n) = {
-    Props(SocketService(id.getOrElse(UUID.randomUUID), supervisor, user, out, sourceAddress))
+    Props(SocketService(id.getOrElse(UUID.randomUUID), supervisor, user, out, sourceAddress, messages))
   }
 }
 
 case class SocketService(
-    id: UUID, supervisor: ActorRef, user: User, out: ActorRef, sourceAddress: String
+    id: UUID, supervisor: ActorRef, user: User, out: ActorRef, sourceAddress: String, messages: SocketService.i18n
 ) extends InstrumentedActor with SocketRequestMessageHelper with Logging {
 
   override def preStart() = {

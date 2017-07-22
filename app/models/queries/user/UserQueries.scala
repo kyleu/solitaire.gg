@@ -26,7 +26,7 @@ object UserQueries extends BaseQueries[User] {
   def count(id: UUID) = Count(s"select count(*) c from $tableName where id = ?", Seq(id))
 
   case class DoesUserExist(id: UUID) extends SingleRowQuery[Boolean] {
-    override def sql = s"select count(*) as c from users where id = ?"
+    override def sql = s"select count(*) as c from $tableName where id = ?"
     override def values = Seq(id)
     override def map(row: Row): Boolean = row.as[Long]("c") == 1L
   }

@@ -67,7 +67,7 @@ object WikiService extends Logging {
     f.write(template)
   }
 
-  def run(ctx: Application) = {
+  def run() = {
     val ret = "OK"
     val rulesDir = root / "rules"
     rulesDir.delete(swallowIOExceptions = true)
@@ -76,5 +76,4 @@ object WikiService extends Logging {
     GameRulesSet.all.foreach(r => write(r))
     Future.successful(ret)
   }
-
 }

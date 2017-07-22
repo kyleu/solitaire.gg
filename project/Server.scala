@@ -61,8 +61,11 @@ object Server {
     LessKeys.compress in Assets := true,
 
     // Code Quality
-    scapegoatIgnoredFiles := Seq(".*/Row.scala", ".*/Routes.scala", ".*/ReverseRoutes.scala", ".*/JavaScriptReverseRoutes.scala", ".*/*.template.scala"),
-    scapegoatDisabledInspections := Seq("DuplicateImport"),
+    scapegoatIgnoredFiles := Seq(
+      ".*/Row.scala", ".*/Routes.scala", ".*/ReverseRoutes.scala", ".*/JavaScriptReverseRoutes.scala", ".*/*.template.scala",
+      ".*/SeedSerializers.scala"
+    ),
+    scapegoatDisabledInspections := Seq("DuplicateImport", "FinalModifierOnCaseClass"),
 
     // SBT Output
     ivyLoggingLevel := UpdateLogging.Quiet,

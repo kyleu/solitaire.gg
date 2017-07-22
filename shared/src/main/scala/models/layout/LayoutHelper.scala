@@ -2,11 +2,11 @@ package models.layout
 
 import models.pile.set.PileSet
 
-class LayoutHelper(pileSets: Seq[PileSet], layout: String /* , aspectRatio */ ) {
+class LayoutHelper(pileSets: IndexedSeq[PileSet], layout: String /* , aspectRatio */ ) {
   private[this] val margin = 0.7
   private[this] val padding = 0.2
 
-  def pileSetsForChar(remainingPileSets: Seq[PileSet], c: Char) = PileSet.Behavior.withValueOpt(c).flatMap { behavior =>
+  def pileSetsForChar(remainingPileSets: IndexedSeq[PileSet], c: Char) = PileSet.Behavior.withValueOpt(c).flatMap { behavior =>
     remainingPileSets.find(_.behavior == behavior)
   }
 

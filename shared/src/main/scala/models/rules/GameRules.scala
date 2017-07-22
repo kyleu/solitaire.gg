@@ -18,8 +18,8 @@ case class GameRules(
   waste: Option[WasteRules] = None,
   reserves: Option[ReserveRules] = None,
   cells: Option[CellRules] = None,
-  foundations: Seq[FoundationRules] = Nil,
-  tableaus: Seq[TableauRules] = Nil,
-  pyramids: Seq[PyramidRules] = Nil,
+  foundations: IndexedSeq[FoundationRules] = IndexedSeq.empty,
+  tableaus: IndexedSeq[TableauRules] = IndexedSeq.empty,
+  pyramids: IndexedSeq[PyramidRules] = IndexedSeq.empty,
   special: Option[SpecialRules] = None
 ) extends GameRulesHelper

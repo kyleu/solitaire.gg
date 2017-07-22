@@ -87,6 +87,6 @@ object PileDragHelper {
         }
         pileGroup.phaser.sendMove(MC(cards = pileGroup.dragCards.map(_.id), src = pileGroup.id, tgt = dropTarget.id, auto = false))
     }
-    pileGroup.dragCards = Seq.empty
+    pileGroup.dragCards = IndexedSeq.empty
   }
 }

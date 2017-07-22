@@ -8,11 +8,11 @@ object GameRulesSet {
   lazy val (completed, unfinished) = allSortedByTitle.partition(_._2.completed)
 
   lazy val allByIdWithAliases = all.map(x => x.id -> x).toMap ++ all.flatMap(x => x.aka.map(aka => aka._1 -> x)).toMap
-  lazy val allSortedByTitle = allByIdWithAliases.toSeq.sortBy { row =>
+  lazy val allSortedByTitle = allByIdWithAliases.toIndexedSeq.sortBy { row =>
     if (row._1 == row._2.id) { row._2.title } else { row._2.aka(row._1) }
   }
 
-  val all = Seq(
+  val all = IndexedSeq(
     AceOfHearts,
     AcesAndKings,
     AceyAndKingsley,
