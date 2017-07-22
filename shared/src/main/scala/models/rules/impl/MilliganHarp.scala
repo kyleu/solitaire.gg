@@ -22,13 +22,13 @@ object MilliganHarp extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 8,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8
     )

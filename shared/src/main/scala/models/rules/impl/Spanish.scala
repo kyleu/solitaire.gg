@@ -10,13 +10,13 @@ object Spanish extends GameRules(
   related = Seq("castlesinspain", "portuguese"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/spanish_patience.htm")),
   layout = ".:f|t|.t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(0),

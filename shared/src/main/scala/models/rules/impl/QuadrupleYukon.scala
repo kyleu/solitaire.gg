@@ -10,13 +10,13 @@ object QuadrupleYukon extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/quadruple_yukon.htm")),
   layout = "f|t",
   deckOptions = DeckOptions(numDecks = 4),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 16,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 16,
       initialCards = InitialCards.Custom,

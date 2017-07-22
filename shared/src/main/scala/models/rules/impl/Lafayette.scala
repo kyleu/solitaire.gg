@@ -10,7 +10,7 @@ object Lafayette extends GameRules(
   layout = "swff|r|t",
   stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
@@ -23,7 +23,7 @@ object Lafayette extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 4,
       initialCards = InitialCards.Count(1),

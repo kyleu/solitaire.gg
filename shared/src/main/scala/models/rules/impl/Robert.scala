@@ -20,7 +20,7 @@ object Robert extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       lowRank = FoundationLowRank.AnyCard,
       initialCards = 1,

@@ -19,7 +19,7 @@ object RoyalCotillion extends GameRules(
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
@@ -35,7 +35,7 @@ object RoyalCotillion extends GameRules(
       rankMatchRule = RankMatchRule.UpBy2
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 16,
       initialCards = InitialCards.Count(1),

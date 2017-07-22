@@ -18,8 +18,8 @@ object BlackWidow extends GameRules(
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(dealTo = StockDealTo.TableauIfNoneEmpty, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 8, moveCompleteSequencesOnly = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, moveCompleteSequencesOnly = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,

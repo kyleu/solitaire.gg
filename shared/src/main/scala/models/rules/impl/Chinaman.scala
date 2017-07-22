@@ -11,8 +11,8 @@ object Chinaman extends GameRules(
   layout = "swf|t",
   stock = Some(StockRules(maximumDeals = Some(2), cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       suitMatchRuleForBuilding = SuitMatchRule.DifferentSuits,
       suitMatchRuleForMovingStacks = SuitMatchRule.DifferentSuits,

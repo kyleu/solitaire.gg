@@ -24,14 +24,14 @@ object FortunesFavor extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCards = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(1),

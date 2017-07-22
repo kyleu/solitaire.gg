@@ -14,8 +14,8 @@ object Anubis extends GameRules(
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(maximumDeals = Some(2))),
   waste = Some(WasteRules(numPiles = 3)),
-  foundations = Seq(FoundationRules(canMoveFrom = FoundationCanMoveFrom.Never, visible = false, autoMoveCards = true)),
-  pyramids = Seq(
+  foundations = IndexedSeq(FoundationRules(canMoveFrom = FoundationCanMoveFrom.Never, visible = false, autoMoveCards = true)),
+  pyramids = IndexedSeq(
     PyramidRules(
       height = 9,
       rankMatchRuleForBuilding = RankMatchRule.Down,

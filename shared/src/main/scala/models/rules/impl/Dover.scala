@@ -13,8 +13,8 @@ object Dover extends GameRules(
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules(numPiles = 3)),
-  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 8,
     initialCards = InitialCards.Count(3),
     cardsFaceDown = TableauFaceDownCards.Count(0),

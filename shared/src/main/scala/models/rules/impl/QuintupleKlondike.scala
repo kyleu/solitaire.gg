@@ -14,13 +14,13 @@ object QuintupleKlondike extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 20,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 20,
       emptyFilledWith = FillEmptyWith.HighRank

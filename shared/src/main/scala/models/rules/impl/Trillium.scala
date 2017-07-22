@@ -18,14 +18,14 @@ object Trillium extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 8,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       moveCompleteSequencesOnly = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Count(4),

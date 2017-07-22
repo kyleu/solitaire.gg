@@ -12,13 +12,13 @@ object QuadrupleTrigon extends GameRules(
   deckOptions = DeckOptions(numDecks = 4),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 16,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 16,
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,

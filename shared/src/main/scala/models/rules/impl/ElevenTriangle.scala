@@ -14,8 +14,8 @@ object ElevenTriangle extends GameRules(
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJPairOrQPairOrKPair,
   stock = Some(StockRules(dealTo = StockDealTo.WasteOrPairManually, maximumDeals = Some(1))),
   waste = Some(WasteRules(numPiles = 3)),
-  foundations = Seq(FoundationRules(numPiles = 4, canMoveFrom = FoundationCanMoveFrom.Never, visible = false, autoMoveCards = true)),
-  pyramids = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, canMoveFrom = FoundationCanMoveFrom.Never, visible = false, autoMoveCards = true)),
+  pyramids = IndexedSeq(
     PyramidRules(
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,

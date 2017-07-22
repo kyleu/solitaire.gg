@@ -10,6 +10,6 @@ object KlondikeOneCard extends GameRules(
   like = Some("klondike"),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 4)),
-  tableaus = Seq(TableauRules(emptyFilledWith = FillEmptyWith.HighRank))
+  foundations = IndexedSeq(FoundationRules(numPiles = 4)),
+  tableaus = IndexedSeq(TableauRules(emptyFilledWith = FillEmptyWith.HighRank))
 )

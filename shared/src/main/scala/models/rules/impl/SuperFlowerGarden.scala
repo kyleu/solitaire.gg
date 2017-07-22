@@ -15,13 +15,13 @@ object SuperFlowerGarden extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/SuperFlowerGarden.htm")
   ),
   layout = "f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 18,
       initialCards = InitialCards.Custom,

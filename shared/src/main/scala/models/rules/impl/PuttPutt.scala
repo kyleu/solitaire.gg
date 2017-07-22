@@ -23,7 +23,7 @@ object PuttPutt extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       lowRank = FoundationLowRank.AnyCard,
       initialCards = 1,
@@ -33,7 +33,7 @@ object PuttPutt extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Count(5),
       cardsFaceDown = TableauFaceDownCards.Count(0),

@@ -12,8 +12,8 @@ object BatsfordAgain extends GameRules(
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(maximumDeals = Some(2))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       emptyFilledWith = FillEmptyWith.HighRank

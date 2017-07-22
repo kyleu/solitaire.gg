@@ -10,14 +10,14 @@ object Unusual extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/unusual.htm")),
   layout = "::f|2t",
   deckOptions = DeckOptions(numDecks = 2),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 8,
       initialCards = 8,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 24,
       initialCards = InitialCards.Count(4),

@@ -13,8 +13,8 @@ object Zerline extends GameRules(
   deckOptions = DeckOptions(numDecks = 2, lowRank = Rank.King),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(5),

@@ -12,8 +12,8 @@ object QuadrupleCanfield extends GameRules(
   deckOptions = DeckOptions(numDecks = 4, lowRank = Rank.Unknown),
   stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 16, initialCards = 1, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 16, initialCards = 1, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(1),

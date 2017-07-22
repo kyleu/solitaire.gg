@@ -9,7 +9,7 @@ object SimonJester extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/simon_jester.htm")),
   layout = "f|t",
   deckOptions = DeckOptions(numDecks = 2),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 8,
       moveCompleteSequencesOnly = true,
@@ -17,7 +17,7 @@ object SimonJester extends GameRules(
       visible = false
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 14,
       initialCards = InitialCards.Custom,

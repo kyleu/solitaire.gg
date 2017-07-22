@@ -23,7 +23,7 @@ object Triangle extends GameRules(
       numPiles = 2
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       canMoveFrom = FoundationCanMoveFrom.Never,
@@ -31,7 +31,7 @@ object Triangle extends GameRules(
       autoMoveCards = true
     )
   ),
-  pyramids = Seq(
+  pyramids = IndexedSeq(
     PyramidRules(
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,

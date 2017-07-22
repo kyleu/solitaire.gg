@@ -15,7 +15,7 @@ object Carousel extends GameRules(
   ),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Ace Foundation",
       lowRank = FoundationLowRank.SpecificRank(Rank.Ace),
@@ -42,7 +42,7 @@ object Carousel extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(TableauRules(
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 8,
     initialCards = InitialCards.Count(4),
     cardsFaceDown = TableauFaceDownCards.Count(0),

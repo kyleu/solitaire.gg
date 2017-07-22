@@ -10,7 +10,7 @@ object Alternative extends GameRules(
   like = Some("cloverleaf"),
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/alternative.htm")),
   layout = ":.f:f|2t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Red Foundation",
       numPiles = 2,
@@ -29,7 +29,7 @@ object Alternative extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 16,
       initialCards = InitialCards.Count(3),

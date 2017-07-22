@@ -11,8 +11,8 @@ object EternalTriangle extends GameRules(
   layout = "sf|t",
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(dealTo = StockDealTo.Tableau, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       cardsFaceDown = TableauFaceDownCards.Count(0),

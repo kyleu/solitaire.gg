@@ -17,7 +17,7 @@ object BuffaloBill extends GameRules(
   ),
   layout = ":.f::f|::.c|2t",
   deckOptions = DeckOptions(numDecks = 2),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Aces Foundation",
       numPiles = 4,
@@ -34,7 +34,7 @@ object BuffaloBill extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Fan",
       numPiles = 26,

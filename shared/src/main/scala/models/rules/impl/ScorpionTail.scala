@@ -15,14 +15,14 @@ object ScorpionTail extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       moveCompleteSequencesOnly = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Custom,
       customInitialCards = Seq(

@@ -17,8 +17,8 @@ object GayGordons extends GameRules(
   ),
   layout = "f|r|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJPairOrQK,
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(5),

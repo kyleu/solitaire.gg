@@ -13,13 +13,13 @@ object Applegate extends GameRules(
       name = "Reserve"
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       moveCompleteSequencesOnly = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Custom,
       customInitialCards = Seq(

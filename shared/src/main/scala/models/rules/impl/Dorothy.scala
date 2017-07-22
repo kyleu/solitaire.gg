@@ -11,7 +11,7 @@ object Dorothy extends GameRules(
   layout = "swfff",
   stock = Some(StockRules(maximumDeals = Some(2))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.SpecificRank(Rank.Nine),

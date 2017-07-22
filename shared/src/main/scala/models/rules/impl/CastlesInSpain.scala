@@ -16,8 +16,8 @@ object CastlesInSpain extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/castles_in_spain.htm")
   ),
   layout = "f|tt",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(0),

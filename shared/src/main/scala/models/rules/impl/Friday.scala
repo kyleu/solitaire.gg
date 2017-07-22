@@ -15,13 +15,13 @@ object Friday extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Left Tableau",
       numPiles = 3,

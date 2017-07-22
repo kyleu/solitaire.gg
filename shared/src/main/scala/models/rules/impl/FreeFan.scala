@@ -10,8 +10,8 @@ object FreeFan extends GameRules(
   related = Seq("luckyfan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/free_fan.htm")),
   layout = ".:::::f:c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Fan",
       numPiles = 18,

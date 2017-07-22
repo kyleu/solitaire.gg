@@ -17,7 +17,7 @@ object SimpleSimon extends GameRules(
   ),
   layout = "f|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       moveCompleteSequencesOnly = true,
@@ -25,7 +25,7 @@ object SimpleSimon extends GameRules(
       visible = false
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,

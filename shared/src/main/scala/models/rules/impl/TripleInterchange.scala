@@ -13,13 +13,13 @@ object TripleInterchange extends GameRules(
   deckOptions = DeckOptions(numDecks = 3),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 12,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 9,
       initialCards = InitialCards.Count(9),

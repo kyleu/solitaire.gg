@@ -12,7 +12,7 @@ object LadyCadogan extends GameRules(
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Left Foundation",
       numPiles = 4,
@@ -26,7 +26,7 @@ object LadyCadogan extends GameRules(
       moveCompleteSequencesOnly = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       suitMatchRuleForBuilding = SuitMatchRule.Any,

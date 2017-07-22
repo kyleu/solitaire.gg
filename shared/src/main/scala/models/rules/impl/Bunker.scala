@@ -12,7 +12,7 @@ object Bunker extends GameRules(
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(StockRules(cardsShown = 19, maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       cardsShown = 2,

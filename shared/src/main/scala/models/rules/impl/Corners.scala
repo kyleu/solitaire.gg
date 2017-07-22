@@ -16,8 +16,8 @@ object Corners extends GameRules(
   deckOptions = DeckOptions(lowRank = Rank.Unknown),
   stock = Some(StockRules(maximumDeals = Some(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 1)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, initialCards = 1)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 5,
       initialCards = InitialCards.Count(1),

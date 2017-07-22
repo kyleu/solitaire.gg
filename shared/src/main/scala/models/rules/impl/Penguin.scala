@@ -18,8 +18,8 @@ object Penguin extends GameRules(
   ),
   layout = ":.f|c|t",
   deckOptions = DeckOptions(lowRank = Rank.Unknown),
-  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 3, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, initialCards = 3, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Count(7),
       cardsFaceDown = TableauFaceDownCards.Count(0),

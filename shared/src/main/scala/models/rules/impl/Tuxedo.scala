@@ -11,8 +11,8 @@ object Tuxedo extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/tuxedo.htm")
   ),
   layout = ":.f|c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Custom,
       customInitialCards = Seq(

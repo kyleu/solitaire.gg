@@ -11,8 +11,8 @@ object Whitehorse extends GameRules(
   layout = "swf|t",
   stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     initialCards = InitialCards.Count(1),
     autoFillEmptyFrom = TableauAutoFillEmptyFrom.WasteThenStock,
     emptyFilledWith = FillEmptyWith.HighRank

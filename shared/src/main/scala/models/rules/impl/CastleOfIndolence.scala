@@ -13,8 +13,8 @@ object CastleOfIndolence extends GameRules(
   ),
   layout = "f|::r|t",
   deckOptions = DeckOptions(numDecks = 2),
-  foundations = Seq(FoundationRules(numPiles = 8, suitMatchRule = SuitMatchRule.Any, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, suitMatchRule = SuitMatchRule.Any, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 8,
     initialCards = InitialCards.RestOfDeck,
     cardsFaceDown = TableauFaceDownCards.Count(0),

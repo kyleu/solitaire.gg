@@ -10,8 +10,8 @@ object Saxony extends GameRules(
   layout = "sf|.r|c:t",
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(dealTo = StockDealTo.Reserve, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 8, initialCards = 8)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, initialCards = 8)),
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Reserve",
       numPiles = 4,

@@ -15,8 +15,8 @@ object DoubleSignora extends GameRules(
   deckOptions = DeckOptions(numDecks = 4, lowRank = Rank.Unknown),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 16, suitMatchRule = SuitMatchRule.AlternatingColors)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 16, suitMatchRule = SuitMatchRule.AlternatingColors)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 11,
       initialCards = InitialCards.Count(1),

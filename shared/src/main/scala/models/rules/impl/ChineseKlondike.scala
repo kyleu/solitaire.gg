@@ -13,8 +13,8 @@ object ChineseKlondike extends GameRules(
   deckOptions = DeckOptions(numDecks = 4, suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds)),
   stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 16, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 16, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       suitMatchRuleForBuilding = SuitMatchRule.DifferentSuits,

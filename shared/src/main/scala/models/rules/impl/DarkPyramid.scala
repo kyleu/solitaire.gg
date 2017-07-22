@@ -14,8 +14,8 @@ object DarkPyramid extends GameRules(
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(StockRules(maximumDeals = Some(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(canMoveFrom = FoundationCanMoveFrom.Never, visible = false, autoMoveCards = true)),
-  pyramids = Seq(PyramidRules(
+  foundations = IndexedSeq(FoundationRules(canMoveFrom = FoundationCanMoveFrom.Never, visible = false, autoMoveCards = true)),
+  pyramids = IndexedSeq(PyramidRules(
     cardsFaceDown = PyramidFaceDownCards.AllButLastRow,
     rankMatchRuleForBuilding = RankMatchRule.Down,
     rankMatchRuleForMovingStacks = RankMatchRule.Down,

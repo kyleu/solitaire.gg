@@ -12,7 +12,7 @@ object CircleEight extends GameRules(
   victoryCondition = VictoryCondition.NoneInStock,
   stock = Some(StockRules(maximumDeals = Some(2))),
   waste = Some(WasteRules()),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(1),

@@ -17,7 +17,7 @@ object Father extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
@@ -32,7 +32,7 @@ object Father extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(1),

@@ -22,7 +22,7 @@ object SpiderOneSuit extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,

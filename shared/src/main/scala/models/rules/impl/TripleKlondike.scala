@@ -15,13 +15,13 @@ object TripleKlondike extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 12,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 13,
       emptyFilledWith = FillEmptyWith.HighRank

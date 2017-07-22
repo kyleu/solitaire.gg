@@ -9,7 +9,7 @@ object Isabel extends GameRules(
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Isabel.html.en")),
   layout = ".::::f|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.AnyCard,
@@ -17,7 +17,7 @@ object Isabel extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Count(4),

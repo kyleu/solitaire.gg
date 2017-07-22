@@ -8,13 +8,13 @@ object LoveADuck extends GameRules(
   completed = false,
   title = "Love a Duck",
   layout = "f|p",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  pyramids = Seq(
+  pyramids = IndexedSeq(
     PyramidRules(
       name = "Tableau",
       height = 5,

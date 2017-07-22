@@ -8,8 +8,8 @@ object Willow extends GameRules(
   title = "Willow",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/willow.htm")),
   layout = ".:::f|tt",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(cardsFaceDown = TableauFaceDownCards.Count(0)),
     TableauRules(
       name = "Fan",

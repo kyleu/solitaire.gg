@@ -19,7 +19,7 @@ object SanJuanHill extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Hill",
       numPiles = 8,
@@ -27,7 +27,7 @@ object SanJuanHill extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Rough Riders",
       numPiles = 10,

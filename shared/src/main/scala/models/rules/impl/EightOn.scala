@@ -9,8 +9,8 @@ object EightOn extends GameRules(
   like = Some("eightoff"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/eight_on.htm")),
   layout = "::f|c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,

@@ -11,7 +11,7 @@ object Bobby extends GameRules(
   layout = "swf",
   stock = Some(StockRules(maximumDeals = Some(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 2,
       lowRank = FoundationLowRank.AnyCard,

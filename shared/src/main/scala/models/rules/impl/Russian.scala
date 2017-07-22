@@ -16,13 +16,13 @@ object Russian extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/russian_solitaire.htm")
   ),
   layout = "f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Custom,
       customInitialCards = Seq(

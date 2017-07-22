@@ -22,7 +22,7 @@ object TrustyTwelve extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       cardsShown = 2,

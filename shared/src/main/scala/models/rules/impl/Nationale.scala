@@ -16,7 +16,7 @@ object Nationale extends GameRules(
   ),
   layout = "ff|t",
   deckOptions = DeckOptions(numDecks = 2),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Ace Foundation",
       numPiles = 4,
@@ -35,7 +35,7 @@ object Nationale extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(8),

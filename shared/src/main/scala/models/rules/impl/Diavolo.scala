@@ -16,7 +16,7 @@ object Diavolo extends GameRules(
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(maximumDeals = Some(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 2,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueColors),
@@ -35,5 +35,5 @@ object Diavolo extends GameRules(
       moveCompleteSequencesOnly = true
     )
   ),
-  tableaus = Seq(TableauRules(numPiles = 9, emptyFilledWith = FillEmptyWith.HighRank))
+  tableaus = IndexedSeq(TableauRules(numPiles = 9, emptyFilledWith = FillEmptyWith.HighRank))
 )

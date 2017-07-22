@@ -18,8 +18,8 @@ object SeaTowers extends GameRules(
     Link("Bicycle", "www.bicyclecards.com/card-games/rule/seahaven-towers")
   ),
   layout = "f::c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(5),

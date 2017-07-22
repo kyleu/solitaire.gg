@@ -15,7 +15,7 @@ object CrissCross extends GameRules(
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   stock = Some(StockRules(dealTo = StockDealTo.WasteOrPairManually, maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.AnyCard,
@@ -25,7 +25,7 @@ object CrissCross extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 4,
       initialCards = InitialCards.Count(1),

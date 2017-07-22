@@ -15,14 +15,14 @@ object Scotch extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/scotch_patience.html")
   ),
   layout = "f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       suitMatchRule = SuitMatchRule.AlternatingColors,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 18,
       initialCards = InitialCards.Count(3),

@@ -13,13 +13,13 @@ object Unlimited extends GameRules(
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 8,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Count(7),
       cardsFaceDown = TableauFaceDownCards.EvenNumbered,

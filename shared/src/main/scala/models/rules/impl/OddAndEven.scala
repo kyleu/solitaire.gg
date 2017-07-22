@@ -26,7 +26,7 @@ object OddAndEven extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
@@ -40,7 +40,7 @@ object OddAndEven extends GameRules(
       rankMatchRule = RankMatchRule.UpBy2
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 9,
       initialCards = InitialCards.Count(1),

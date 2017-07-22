@@ -10,8 +10,8 @@ object TreviGarden extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/trevi_garden.htm")),
   layout = "wf|c|t",
   waste = Some(WasteRules(name = "Fountain")),
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Garden",
       numPiles = 6,

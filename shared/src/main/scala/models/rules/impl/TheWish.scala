@@ -14,7 +14,7 @@ object TheWish extends GameRules(
   layout = "f|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
   deckOptions = DeckOptions(ranks = Seq(Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace)),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.AnyCard,
@@ -22,7 +22,7 @@ object TheWish extends GameRules(
       visible = false
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(4),

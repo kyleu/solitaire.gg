@@ -12,13 +12,13 @@ object Fan extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/fan.htm")
   ),
   layout = ".::f|2t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Fan",
       numPiles = 18,

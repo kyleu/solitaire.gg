@@ -12,8 +12,8 @@ object DoubleLimited extends GameRules(
   deckOptions = DeckOptions(numDecks = 4),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 16, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 16, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 16,
     initialCards = InitialCards.Count(3),
     cardsFaceDown = TableauFaceDownCards.Count(0),

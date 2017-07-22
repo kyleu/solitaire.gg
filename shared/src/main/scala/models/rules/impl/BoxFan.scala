@@ -9,14 +9,14 @@ object BoxFan extends GameRules(
   like = Some("fan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/box_fan.htm")),
   layout = "::::::f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCards = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Fan",
       numPiles = 16,

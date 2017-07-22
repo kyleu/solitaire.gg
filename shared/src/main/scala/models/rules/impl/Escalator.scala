@@ -15,7 +15,7 @@ object Escalator extends GameRules(
   layout = ":s:::f|p",
   victoryCondition = VictoryCondition.NoneInPyramid,
   stock = Some(StockRules(cardsShown = 16, dealTo = StockDealTo.Foundation, maximumDeals = Some(1))),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       lowRank = FoundationLowRank.AnyCard,
       initialCards = 1,
@@ -25,7 +25,7 @@ object Escalator extends GameRules(
       autoMoveCards = true
     )
   ),
-  pyramids = Seq(
+  pyramids = IndexedSeq(
     PyramidRules(
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,

@@ -14,14 +14,14 @@ object Apophis extends GameRules(
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
   stock = Some(StockRules(maximumDeals = Some(2))),
   waste = Some(WasteRules(numPiles = 3)),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false,
       autoMoveCards = true
     )
   ),
-  pyramids = Seq(
+  pyramids = IndexedSeq(
     PyramidRules(
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,

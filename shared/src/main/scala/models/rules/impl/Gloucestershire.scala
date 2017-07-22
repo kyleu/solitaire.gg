@@ -14,7 +14,7 @@ object Gloucestershire extends GameRules(
   layout = "wf|t",
   deckOptions = DeckOptions(numDecks = 2),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
@@ -22,7 +22,7 @@ object Gloucestershire extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Custom,

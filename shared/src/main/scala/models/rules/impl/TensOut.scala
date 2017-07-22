@@ -10,14 +10,14 @@ object TensOut extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/tens_out.htm")),
   layout = "f|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOr10PairOrJPairOrQPairOrKPair,
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.RestOfDeck,

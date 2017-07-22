@@ -12,14 +12,14 @@ object Ukrainian extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/UkrainianSolitaire.htm")
   ),
   layout = ":.f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       moveCompleteSequencesOnly = true,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Custom,
       customInitialCards = Seq(

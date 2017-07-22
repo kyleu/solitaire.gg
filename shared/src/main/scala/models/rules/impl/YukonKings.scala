@@ -10,7 +10,7 @@ object YukonKings extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukon_kings.htm")),
   layout = "|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  tableaus = Seq(TableauRules(
+  tableaus = IndexedSeq(TableauRules(
     initialCards = InitialCards.Custom,
     customInitialCards = Seq(
       "U",

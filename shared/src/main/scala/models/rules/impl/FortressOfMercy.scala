@@ -9,14 +9,14 @@ object FortressOfMercy extends GameRules(
   like = Some("fortress"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/fortress_of_mercy.htm")),
   layout = "f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCards = 2,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(5),

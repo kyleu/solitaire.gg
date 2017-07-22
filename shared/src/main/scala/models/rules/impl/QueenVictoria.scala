@@ -14,13 +14,13 @@ object QueenVictoria extends GameRules(
       name = "Reserve"
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 9,
       cardsFaceDown = TableauFaceDownCards.Count(0)

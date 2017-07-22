@@ -13,8 +13,8 @@ object TripleCanfield extends GameRules(
   deckOptions = DeckOptions(numDecks = 3, lowRank = Rank.Unknown),
   stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 12, initialCards = 1, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 12, initialCards = 1, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Count(1),
       cardsFaceDown = TableauFaceDownCards.Count(0),

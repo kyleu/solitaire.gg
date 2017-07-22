@@ -16,8 +16,8 @@ object Citadel extends GameRules(
     Link("Solavant Solitaire", "www.solavant.com/solitaire/citadel.php")
   ),
   layout = "f|t",
-  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, initialCards = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(6),

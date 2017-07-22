@@ -9,13 +9,13 @@ object Linus extends GameRules(
   like = Some("labellelucie"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/linus.htm")),
   layout = "f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 18,
       initialCards = InitialCards.Custom,

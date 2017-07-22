@@ -12,7 +12,7 @@ object Sandbox extends GameRules(
 
   deckOptions = DeckOptions(ranks = Seq(Rank.Ace)),
 
-  foundations = Seq(FoundationRules(
+  foundations = IndexedSeq(FoundationRules(
     suitMatchRule = SuitMatchRule.Any,
     rankMatchRule = RankMatchRule.Any
   )),

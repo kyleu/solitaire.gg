@@ -11,8 +11,8 @@ object Alexandria extends GameRules(
   deckOptions = DeckOptions(numDecks = 3),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 12, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 12, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Custom,

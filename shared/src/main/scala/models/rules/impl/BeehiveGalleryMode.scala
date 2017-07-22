@@ -10,7 +10,7 @@ object BeehiveGalleryMode extends GameRules(
   layout = "swf|r|t",
   stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules(name = "Gallery")),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 13,
       lowRank = FoundationLowRank.Ascending,
@@ -21,7 +21,7 @@ object BeehiveGalleryMode extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 6,
       initialCards = InitialCards.Count(1),

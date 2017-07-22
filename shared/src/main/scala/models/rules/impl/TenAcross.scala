@@ -9,8 +9,8 @@ object TenAcross extends GameRules(
   like = Some("russian"),
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Ten_Across.html.en")),
   layout = ":.f:c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,

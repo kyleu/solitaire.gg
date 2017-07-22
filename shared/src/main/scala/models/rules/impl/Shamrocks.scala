@@ -13,12 +13,12 @@ object Shamrocks extends GameRules(
     Link("Shamrocks Solitaire.com", "www.shamrockssolitaire.com/ShamrocksSolitaireInstructions.html")
   ),
   layout = "f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Fan",
       numPiles = 18,

@@ -11,7 +11,7 @@ object Chelicera extends GameRules(
   layout = ":::s|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   stock = Some(StockRules(dealTo = StockDealTo.Never, maximumDeals = Some(1))),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Custom,
       customInitialCards = Seq(

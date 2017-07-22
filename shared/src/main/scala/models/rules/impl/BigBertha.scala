@@ -14,7 +14,7 @@ object BigBertha extends GameRules(
   layout = ":.wf:f|t",
   deckOptions = DeckOptions(numDecks = 2),
   waste = Some(WasteRules(name = "Reserve")),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Main Foundation",
       numPiles = 8,
@@ -30,7 +30,7 @@ object BigBertha extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 15,
       initialCards = InitialCards.Count(6),

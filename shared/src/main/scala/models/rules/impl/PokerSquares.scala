@@ -9,7 +9,7 @@ object PokerSquares extends GameRules(
   layout = "5t|w",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
 
-  tableaus = Seq(TableauRules(
+  tableaus = IndexedSeq(TableauRules(
     initialCards = InitialCards.Count(0),
     numPiles = 25,
     maxCards = 1,

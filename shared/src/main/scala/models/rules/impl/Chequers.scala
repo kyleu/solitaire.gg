@@ -13,7 +13,7 @@ object Chequers extends GameRules(
   ),
   layout = "ff|r|t",
   deckOptions = DeckOptions(numDecks = 2),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Ace Foundation",
       numPiles = 4,
@@ -30,7 +30,7 @@ object Chequers extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 25,
       initialCards = InitialCards.Count(4),

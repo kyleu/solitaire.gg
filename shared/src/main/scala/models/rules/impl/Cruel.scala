@@ -18,8 +18,8 @@ object Cruel extends GameRules(
     Link("An 1898 Description of a game called \"Perseverance\".", "howtoplaysolitaire.blogspot.com/2010/06/perseverance-single-deck-solitaire-game.html")
   ),
   layout = "::f|2t",
-  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, initialCards = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(4),

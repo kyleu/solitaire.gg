@@ -10,8 +10,8 @@ object DoubleYukon extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/doubleyukon.htm")),
   layout = ":f|t",
   deckOptions = DeckOptions(numDecks = 2),
-  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 10,
     initialCards = InitialCards.Custom,
     customInitialCards = Seq(

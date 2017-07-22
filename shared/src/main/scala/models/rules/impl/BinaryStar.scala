@@ -15,7 +15,7 @@ object BinaryStar extends GameRules(
   layout = "ff|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
   deckOptions = DeckOptions(numDecks = 2),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificSuit(Suit.Hearts)),
       initialCards = 1,
@@ -35,7 +35,7 @@ object BinaryStar extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 17,
       initialCards = InitialCards.Count(6),

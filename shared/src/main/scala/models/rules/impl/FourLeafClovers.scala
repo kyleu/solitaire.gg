@@ -13,14 +13,14 @@ object FourLeafClovers extends GameRules(
     Link("Rapture Technologies KingSol", "www.rapturetech.com/KingSol/Rules/FourLeafClovers.htm")
   ),
   layout = "::::::f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       suitMatchRule = SuitMatchRule.Any,
       maxCards = 0,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Count(4),

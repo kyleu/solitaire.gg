@@ -11,7 +11,7 @@ object Beehive extends GameRules(
   layout = "f|.:t:rsw",
   stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 13,
       lowRank = FoundationLowRank.Ascending,
@@ -22,7 +22,7 @@ object Beehive extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 6,
       initialCards = InitialCards.Count(1),

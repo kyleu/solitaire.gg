@@ -16,8 +16,8 @@ object AgnesBernauer extends GameRules(
   layout = "s:f|r|t",
   deckOptions = DeckOptions(lowRank = Rank.Unknown),
   stock = Some(StockRules(dealTo = StockDealTo.Reserve, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 1, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, initialCards = 1, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       cardsFaceDown = TableauFaceDownCards.Count(0),
       emptyFilledWith = FillEmptyWith.HighRank

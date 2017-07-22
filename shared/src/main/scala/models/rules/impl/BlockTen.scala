@@ -20,8 +20,8 @@ object BlockTen extends GameRules(
   victoryCondition = VictoryCondition.AllButFourCardsOnFoundation,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTenOr10JQK,
   stock = Some(StockRules(dealTo = StockDealTo.Never, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 4, lowRank = FoundationLowRank.AnyCard, maxCards = 0, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, lowRank = FoundationLowRank.AnyCard, maxCards = 0, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 9,
       initialCards = InitialCards.Count(1),

@@ -11,14 +11,14 @@ object TripleFourteens extends GameRules(
   layout = "3tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(numDecks = 3),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 24,
       initialCards = InitialCards.RestOfDeck,

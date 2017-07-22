@@ -12,8 +12,8 @@ object DoubleTrigon extends GameRules(
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 9,
     suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
     suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit,

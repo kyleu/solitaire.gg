@@ -10,7 +10,7 @@ object PatientPairs extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/patient_pairs.htm")),
   layout = "f|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.AnyCard,
@@ -20,7 +20,7 @@ object PatientPairs extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Count(4),

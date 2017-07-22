@@ -20,7 +20,7 @@ object Calculation extends GameRules(
   ),
   layout = "sf|t",
   stock = Some(StockRules(dealTo = StockDealTo.Manually, maximumDeals = Some(1))),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.Ascending,
@@ -30,7 +30,7 @@ object Calculation extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Reserve",
       numPiles = 4,

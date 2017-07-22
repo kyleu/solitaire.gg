@@ -20,7 +20,7 @@ object Stalactites extends GameRules(
   ),
   layout = "f::c|t",
   deckOptions = DeckOptions(lowRank = Rank.Unknown),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.AnyCard,
@@ -29,7 +29,7 @@ object Stalactites extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(6),

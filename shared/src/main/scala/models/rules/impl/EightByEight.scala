@@ -11,8 +11,8 @@ object EightByEight extends GameRules(
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(maximumDeals = Some(3), cardsDealt = StockCardsDealt.FewerEachTime)),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 8,
     initialCards = InitialCards.Count(8),
     cardsFaceDown = TableauFaceDownCards.Count(0),

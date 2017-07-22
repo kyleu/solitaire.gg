@@ -12,8 +12,8 @@ object ExiledKings extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/exiled-kings.htm")
   ),
   layout = "::f|t",
-  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, initialCards = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(6),

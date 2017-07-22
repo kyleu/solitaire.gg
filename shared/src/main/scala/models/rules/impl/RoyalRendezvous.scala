@@ -24,7 +24,7 @@ object RoyalRendezvous extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Straight Foundation",
       numPiles = 4,
@@ -59,7 +59,7 @@ object RoyalRendezvous extends GameRules(
       maxCards = 1
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 16,
       initialCards = InitialCards.Count(1),

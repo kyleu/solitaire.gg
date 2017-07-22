@@ -8,8 +8,8 @@ object TwoCell extends GameRules(
   title = "Two Cell",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/two_cells.htm")),
   layout = "c::f|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,

@@ -10,13 +10,13 @@ object TripleRussian extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/triple_russian.htm")),
   layout = ".f|t",
   deckOptions = DeckOptions(numDecks = 3),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 12,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Custom,

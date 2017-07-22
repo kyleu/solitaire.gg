@@ -9,13 +9,13 @@ object Antares extends GameRules(
   like = Some("freecell"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/antares.htm")),
   layout = "fc|tt",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Left Tableau",
       numPiles = 4,

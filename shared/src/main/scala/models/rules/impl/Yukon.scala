@@ -17,8 +17,8 @@ object Yukon extends GameRules(
     Link("Dan Fletcher's Strategy Guide", "www.solitairecentral.com/articles/YukonSolitaireStrategyGuide.html")
   ),
   layout = ":::f|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     initialCards = InitialCards.Custom,
     customInitialCards = Seq(
       "U",

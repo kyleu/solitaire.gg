@@ -11,13 +11,13 @@ object Lasker extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lasker.htm")),
   layout = ":::f|t",
   deckOptions = DeckOptions(lowRank = Rank.Unknown),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.RestOfDeck,

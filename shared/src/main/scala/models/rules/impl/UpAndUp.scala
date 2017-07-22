@@ -17,7 +17,7 @@ object UpAndUp extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       cardsShown = 2,

@@ -9,8 +9,8 @@ object DoubleSeaTowers extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/double_seatowers.htm")),
   layout = ".:f|:c|t",
   deckOptions = DeckOptions(numDecks = 2),
-  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 11,
       initialCards = InitialCards.Count(9),

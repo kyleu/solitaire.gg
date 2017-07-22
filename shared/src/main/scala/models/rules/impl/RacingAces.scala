@@ -13,7 +13,7 @@ object RacingAces extends GameRules(
   deckOptions = DeckOptions(numDecks = 3),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Aces Foundation",
       numPiles = 4,
@@ -45,7 +45,7 @@ object RacingAces extends GameRules(
       rankMatchRule = RankMatchRule.Down
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 6,
       initialCards = InitialCards.Count(1),

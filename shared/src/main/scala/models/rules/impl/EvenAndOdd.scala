@@ -12,7 +12,7 @@ object EvenAndOdd extends GameRules(
   layout = "sw.ff|rt",
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits),
@@ -30,7 +30,7 @@ object EvenAndOdd extends GameRules(
       maxCards = 6
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 9,
       initialCards = InitialCards.Count(1),

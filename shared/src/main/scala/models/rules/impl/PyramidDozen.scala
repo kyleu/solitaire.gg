@@ -12,14 +12,14 @@ object PyramidDozen extends GameRules(
   layout = "f.t|p",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToTwelveOrQK,
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 6,
       initialCards = InitialCards.Count(4),
@@ -29,7 +29,7 @@ object PyramidDozen extends GameRules(
       emptyFilledWith = FillEmptyWith.None
     )
   ),
-  pyramids = Seq(
+  pyramids = IndexedSeq(
     PyramidRules(
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,

@@ -15,8 +15,8 @@ object EightOff extends GameRules(
     Link("Zonora", "www.zonora.com/mysolitaire/rules/freecell/eight_off.htm")
   ),
   layout = "::f|c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(6),

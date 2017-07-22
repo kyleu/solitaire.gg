@@ -13,8 +13,8 @@ object Arizona extends GameRules(
   ),
   layout = "wf|t",
   waste = Some(WasteRules(name = "Reserve")),
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 6,
       initialCards = InitialCards.Count(6),

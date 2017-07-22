@@ -20,8 +20,8 @@ object Bristol extends GameRules(
   layout = "sw::f|.t",
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules(numPiles = 3)),
-  foundations = Seq(FoundationRules(numPiles = 4, suitMatchRule = SuitMatchRule.Any, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, suitMatchRule = SuitMatchRule.Any, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(3),

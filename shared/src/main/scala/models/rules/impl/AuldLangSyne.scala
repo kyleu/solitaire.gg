@@ -16,8 +16,8 @@ object AuldLangSyne extends GameRules(
   ),
   layout = "sf|.t",
   stock = Some(StockRules(dealTo = StockDealTo.Tableau, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 4, suitMatchRule = SuitMatchRule.Any)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, initialCards = 4, suitMatchRule = SuitMatchRule.Any)),
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Reserve",
       numPiles = 4,

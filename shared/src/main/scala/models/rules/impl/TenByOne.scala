@@ -9,8 +9,8 @@ object TenByOne extends GameRules(
   like = Some("vineyard"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/ten_by_one.htm")),
   layout = "f|c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.RestOfDeck,

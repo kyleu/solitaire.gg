@@ -14,7 +14,7 @@ object Pharaohs extends GameRules(
   layout = "f|ppp",
   victoryCondition = VictoryCondition.NoneInPyramid,
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToThirteenOrK,
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       canMoveFrom = FoundationCanMoveFrom.Never,
@@ -22,7 +22,7 @@ object Pharaohs extends GameRules(
       autoMoveCards = true
     )
   ),
-  pyramids = Seq(
+  pyramids = IndexedSeq(
     PyramidRules(
       rankMatchRuleForBuilding = RankMatchRule.Down,
       rankMatchRuleForMovingStacks = RankMatchRule.Down,

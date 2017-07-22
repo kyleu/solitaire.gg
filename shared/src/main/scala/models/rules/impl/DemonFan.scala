@@ -8,8 +8,8 @@ object DemonFan extends GameRules(
   title = "Demon Fan",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/demon_fan.htm")),
   layout = ".::f|2t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 18,
     initialCards = InitialCards.RestOfDeck,
     suitMatchRuleForMovingStacks = SuitMatchRule.None,

@@ -8,7 +8,7 @@ object HalfCell extends GameRules(
   title = "HalfCell",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/halfcell.htm")),
   layout = "f|c|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 2,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueColors),
@@ -17,7 +17,7 @@ object HalfCell extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,

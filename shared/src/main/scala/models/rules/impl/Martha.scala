@@ -17,14 +17,14 @@ object Martha extends GameRules(
     Link("dogMelon", "www.dogmelon.com.au/solhelp/Martha%20Solitaire.shtml")
   ),
   layout = "::::f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCards = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(4),

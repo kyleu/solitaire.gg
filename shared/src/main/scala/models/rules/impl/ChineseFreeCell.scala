@@ -11,8 +11,8 @@ object ChineseFreeCell extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/chinese_freecell.htm")),
   layout = "f:c|:t",
   deckOptions = DeckOptions(numDecks = 2, suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds)),
-  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 11,
       initialCards = InitialCards.RestOfDeck,

@@ -12,14 +12,14 @@ object PerseveranceB extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/perseverance.htm")
   ),
   layout = "::::f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCards = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(4),

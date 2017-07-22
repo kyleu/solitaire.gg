@@ -9,13 +9,13 @@ object Vineyard extends GameRules(
   related = Seq("tenbyone", "winery"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/vineyard.htm")),
   layout = ":::f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.RestOfDeck,

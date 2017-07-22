@@ -19,8 +19,8 @@ object Elevens extends GameRules(
   layout = "sf|t",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToElevenOrJQK,
   stock = Some(StockRules(dealTo = StockDealTo.Never, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 9,
       initialCards = InitialCards.Count(1),

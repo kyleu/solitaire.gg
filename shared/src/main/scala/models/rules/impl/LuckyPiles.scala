@@ -9,13 +9,13 @@ object LuckyPiles extends GameRules(
   like = Some("luckythirteen"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lucky_piles.htm")),
   layout = "f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Count(4),

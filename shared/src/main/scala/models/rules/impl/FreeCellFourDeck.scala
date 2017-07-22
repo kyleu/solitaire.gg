@@ -10,8 +10,8 @@ object FreeCellFourDeck extends GameRules(
   links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/freecell_four_decks.htm")),
   layout = "f|:c|:t",
   deckOptions = DeckOptions(numDecks = 4),
-  foundations = Seq(FoundationRules(numPiles = 16, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 16, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 14,
       initialCards = InitialCards.RestOfDeck,

@@ -12,7 +12,7 @@ object AceyAndKingsley extends GameRules(
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Ace Foundation",
       numPiles = 4,
@@ -29,7 +29,7 @@ object AceyAndKingsley extends GameRules(
       rankMatchRule = RankMatchRule.Down
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 4,
       initialCards = InitialCards.Count(1),

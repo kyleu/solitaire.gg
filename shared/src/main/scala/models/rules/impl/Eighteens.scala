@@ -15,8 +15,8 @@ object Eighteens extends GameRules(
   layout = "s:::f|t",
   cardRemovalMethod = CardRemovalMethod.RemoveSetsOfOneFaceCardAnd3ThatAddToEighteen,
   stock = Some(StockRules(dealTo = StockDealTo.Never, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 4, lowRank = FoundationLowRank.AnyCard, maxCards = 0, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, lowRank = FoundationLowRank.AnyCard, maxCards = 0, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 12,
     initialCards = InitialCards.Count(1),
     cardsFaceDown = TableauFaceDownCards.Count(0),

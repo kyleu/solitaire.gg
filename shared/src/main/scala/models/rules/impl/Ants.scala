@@ -9,7 +9,7 @@ object Ants extends GameRules(
   links = Seq(Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/ants.htm")),
   layout = "sf|.t",
   stock = Some(StockRules(dealTo = StockDealTo.Tableau, maximumDeals = Some(1))),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.AnyCard,
@@ -20,7 +20,7 @@ object Ants extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 4,
       initialCards = InitialCards.Count(1),

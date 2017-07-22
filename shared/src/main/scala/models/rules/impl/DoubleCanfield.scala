@@ -19,8 +19,8 @@ object DoubleCanfield extends GameRules(
   deckOptions = DeckOptions(numDecks = 2, lowRank = Rank.Unknown),
   stock = Some(StockRules(cardsDealt = StockCardsDealt.Count(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 8, initialCards = 1, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, initialCards = 1, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 5,
     initialCards = InitialCards.Count(1),
     cardsFaceDown = TableauFaceDownCards.Count(0),

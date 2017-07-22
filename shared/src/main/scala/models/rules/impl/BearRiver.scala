@@ -9,8 +9,8 @@ object BearRiver extends GameRules(
   title = "Bear River",
   layout = ":::::.f|t|::::::t",
   deckOptions = DeckOptions(lowRank = Rank.Unknown),
-  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 1)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, initialCards = 1)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 15,
       initialCards = InitialCards.Count(3),

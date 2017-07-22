@@ -19,7 +19,7 @@ object Kingsley extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
@@ -27,7 +27,7 @@ object Kingsley extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       rankMatchRuleForBuilding = RankMatchRule.Up,
       rankMatchRuleForMovingStacks = RankMatchRule.Up,

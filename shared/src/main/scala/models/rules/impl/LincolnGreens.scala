@@ -18,7 +18,7 @@ object LincolnGreens extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       lowRank = FoundationLowRank.AnyCard,
       initialCards = 1,
@@ -28,7 +28,7 @@ object LincolnGreens extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(12),

@@ -11,8 +11,8 @@ object YukonOneSuit extends GameRules(
   like = Some("yukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukon_one_suit.htm")),
   deckOptions = DeckOptions(numDecks = 4, suits = Seq(Suit.Spades)),
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     initialCards = InitialCards.Custom,
     customInitialCards = Seq(
       "U",

@@ -15,14 +15,14 @@ object GoodMeasure extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/good_measure.html")
   ),
   layout = ".f|2t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCards = 2,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(5),

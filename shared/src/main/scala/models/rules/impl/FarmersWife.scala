@@ -13,14 +13,14 @@ object FarmersWife extends GameRules(
       name = "Reserve"
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       suitMatchRule = SuitMatchRule.DifferentSuits,
       moveCompleteSequencesOnly = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,

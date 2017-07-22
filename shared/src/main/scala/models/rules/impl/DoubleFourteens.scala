@@ -11,8 +11,8 @@ object DoubleFourteens extends GameRules(
   layout = "2tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
   deckOptions = DeckOptions(numDecks = 2),
-  foundations = Seq(FoundationRules(canMoveFrom = FoundationCanMoveFrom.Never, visible = false, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(canMoveFrom = FoundationCanMoveFrom.Never, visible = false, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 18,
     initialCards = InitialCards.RestOfDeck,
     cardsFaceDown = TableauFaceDownCards.Count(0),

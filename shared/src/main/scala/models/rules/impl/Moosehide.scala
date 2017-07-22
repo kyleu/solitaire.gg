@@ -8,13 +8,13 @@ object Moosehide extends GameRules(
   title = "Moosehide",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/moosehide.htm")),
   layout = ":.f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Custom,
       customInitialCards = Seq(

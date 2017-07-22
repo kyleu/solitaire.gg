@@ -12,6 +12,6 @@ object SevenDevils extends GameRules(
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
   reserves = Some(ReserveRules(initialCards = 13)),
-  foundations = Seq(FoundationRules(numPiles = 8)),
-  tableaus = Seq(TableauRules(emptyFilledWith = FillEmptyWith.HighRank))
+  foundations = IndexedSeq(FoundationRules(numPiles = 8)),
+  tableaus = IndexedSeq(TableauRules(emptyFilledWith = FillEmptyWith.HighRank))
 )

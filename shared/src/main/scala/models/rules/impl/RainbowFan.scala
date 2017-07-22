@@ -17,7 +17,7 @@ object RainbowFan extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Aces Foundation",
       numPiles = 4,
@@ -36,7 +36,7 @@ object RainbowFan extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 20,
       initialCards = InitialCards.Count(3),

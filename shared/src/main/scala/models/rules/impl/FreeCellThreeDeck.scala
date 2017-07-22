@@ -11,8 +11,8 @@ object FreeCellThreeDeck extends GameRules(
   links = Seq(Link("Solsuite Solitaire", "www.solsuite.com/games/freecell_three_decks.htm")),
   layout = "f|c|t",
   deckOptions = DeckOptions(numDecks = 3),
-  foundations = Seq(FoundationRules(numPiles = 12, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 12, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.RestOfDeck,

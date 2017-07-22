@@ -12,8 +12,8 @@ object EightsDown extends GameRules(
   deckOptions = DeckOptions(numDecks = 2, lowRank = Rank.Eight),
   stock = Some(StockRules(maximumDeals = Some(2))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 8, initialCards = 8, rankMatchRule = RankMatchRule.Down, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, initialCards = 8, rankMatchRule = RankMatchRule.Down, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 6,
     initialCards = InitialCards.Count(1),
     cardsFaceDown = TableauFaceDownCards.Count(0),

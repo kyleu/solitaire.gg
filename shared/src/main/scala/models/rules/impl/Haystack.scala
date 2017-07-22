@@ -9,13 +9,13 @@ object Haystack extends GameRules(
   related = Seq("needle"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/haystack.htm")),
   layout = ":::f|tt",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Reserve",
       numPiles = 1,

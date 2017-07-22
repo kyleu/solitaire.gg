@@ -11,8 +11,8 @@ object Carthage extends GameRules(
   layout = "sf|.:t|.t",
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(dealTo = StockDealTo.TableauFirstSet, maximumDeals = Some(1), cardsDealt = StockCardsDealt.Count(2))),
-  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Reserve",
       numPiles = 6,

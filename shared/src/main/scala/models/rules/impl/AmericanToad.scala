@@ -17,14 +17,14 @@ object AmericanToad extends GameRules(
   deckOptions = DeckOptions(numDecks = 2, lowRank = Rank.Unknown),
   stock = Some(StockRules(maximumDeals = Some(2))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 8,
       initialCards = 1,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(1),

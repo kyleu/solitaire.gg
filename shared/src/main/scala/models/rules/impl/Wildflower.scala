@@ -13,8 +13,8 @@ object Wildflower extends GameRules(
   ),
   layout = ":w|:f|t",
   waste = Some(WasteRules(name = "Bouquet", cardsShown = 20)),
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     name = "Flower Beds",
     numPiles = 6,
     initialCards = InitialCards.Count(6),

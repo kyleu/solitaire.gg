@@ -11,8 +11,8 @@ object ThreeCell extends GameRules(
     Link("Swoop Software", "www.swoopsoftware.com/solitaire_rules/threecell.html")
   ),
   layout = "f:c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,

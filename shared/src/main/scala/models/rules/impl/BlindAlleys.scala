@@ -15,6 +15,6 @@ object BlindAlleys extends GameRules(
   layout = "swf|t",
   stock = Some(StockRules(maximumDeals = Some(2))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(numPiles = 6, initialCards = InitialCards.Count(3)))
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(numPiles = 6, initialCards = InitialCards.Count(3)))
 )

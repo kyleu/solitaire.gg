@@ -23,7 +23,7 @@ object RougeEtNoir extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 2,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueColors),
@@ -42,7 +42,7 @@ object RougeEtNoir extends GameRules(
       moveCompleteSequencesOnly = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,

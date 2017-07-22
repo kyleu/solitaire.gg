@@ -12,8 +12,8 @@ object Skippy extends GameRules(
   deckOptions = DeckOptions(numDecks = 2, lowRank = Rank.Unknown),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 8, initialCards = 1, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, initialCards = 1, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 16,
       initialCards = InitialCards.Count(4),

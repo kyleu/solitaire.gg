@@ -12,7 +12,7 @@ object Fifteen extends GameRules(
   ),
   layout = ":::f:f|t",
   deckOptions = DeckOptions(numDecks = 2),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCardRestriction = Some(FoundationInitialCardRestriction.UniqueSuits)
@@ -25,7 +25,7 @@ object Fifteen extends GameRules(
       rankMatchRule = RankMatchRule.Down
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 15,
       initialCards = InitialCards.RestOfDeck,

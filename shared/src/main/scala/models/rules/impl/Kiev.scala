@@ -15,14 +15,14 @@ object Kiev extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       moveCompleteSequencesOnly = true,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Count(4),
       suitMatchRuleForBuilding = SuitMatchRule.SameSuit,

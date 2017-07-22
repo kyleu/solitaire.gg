@@ -9,8 +9,8 @@ object Nestor extends GameRules(
   layout = "t|::tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsOfSameRank,
 
-  foundations = Seq(FoundationRules(visible = false)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(visible = false)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(6),

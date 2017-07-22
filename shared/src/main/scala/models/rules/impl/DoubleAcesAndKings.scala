@@ -12,7 +12,7 @@ object DoubleAcesAndKings extends GameRules(
   deckOptions = DeckOptions(numDecks = 4),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Ace Foundation",
       numPiles = 8,
@@ -27,7 +27,7 @@ object DoubleAcesAndKings extends GameRules(
       rankMatchRule = RankMatchRule.Down
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(1),

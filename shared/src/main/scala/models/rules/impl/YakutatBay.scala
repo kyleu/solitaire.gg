@@ -8,8 +8,8 @@ object YakutatBay extends GameRules(
   title = "Yakutat Bay",
   like = Some("yukon"),
   layout = ".:f|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     initialCards = InitialCards.Custom,
     customInitialCards = Seq(
       "U",

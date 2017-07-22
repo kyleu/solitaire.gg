@@ -21,8 +21,8 @@ object Storehouse extends GameRules(
   deckOptions = DeckOptions(lowRank = Rank.Two),
   stock = Some(StockRules(maximumDeals = Some(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 4, initialCards = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, initialCards = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 4,
       initialCards = InitialCards.Count(1),

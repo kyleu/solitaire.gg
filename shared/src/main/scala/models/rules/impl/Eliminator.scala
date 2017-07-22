@@ -8,7 +8,7 @@ object Eliminator extends GameRules(
   title = "Eliminator",
   links = Seq(Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Eliminator.html.en")),
   layout = "f|:t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 6,
       lowRank = FoundationLowRank.AnyCard,
@@ -18,7 +18,7 @@ object Eliminator extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 4,
       initialCards = InitialCards.Count(13),

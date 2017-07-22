@@ -18,7 +18,7 @@ object CaptiveQueens extends GameRules(
   layout = ":sw|f|f|f",
   stock = Some(StockRules(maximumDeals = Some(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Fives Foundation",
       numPiles = 4,

@@ -17,11 +17,11 @@ object Bisley extends GameRules(
     Link("John Welford on HobbyHub", "www.hobbyhub360.com/index.php/how-to-play-bisley-solitaire-25748/")
   ),
   layout = ":f:::f|tt",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(numPiles = 4, initialCards = 4, autoMoveCards = true),
     FoundationRules(setNumber = 1, numPiles = 4, lowRank = FoundationLowRank.DeckHighRank, rankMatchRule = RankMatchRule.Down, autoMoveCards = true)
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 4,
       initialCards = InitialCards.Count(3),

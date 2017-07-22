@@ -14,7 +14,7 @@ object RoyalFamily extends GameRules(
     Link("Jan Wolter's Experiments", "/article/indefatigable.html")
   ),
   layout = "::::f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       lowRank = FoundationLowRank.DeckHighRank,
@@ -23,7 +23,7 @@ object RoyalFamily extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(4),

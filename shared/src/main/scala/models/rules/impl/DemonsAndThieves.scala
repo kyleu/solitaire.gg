@@ -13,8 +13,8 @@ object DemonsAndThieves extends GameRules(
   deckOptions = DeckOptions(numDecks = 2, lowRank = Rank.Unknown),
   stock = Some(StockRules(maximumDeals = Some(3))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 8, initialCards = 1, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, initialCards = 1, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Left Tableau",
       numPiles = 4,

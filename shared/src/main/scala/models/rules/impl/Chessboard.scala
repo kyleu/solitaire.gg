@@ -22,8 +22,8 @@ object Chessboard extends GameRules(
   ),
   layout = ":::f|t",
   deckOptions = DeckOptions(lowRank = Rank.Unknown),
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 10,
     initialCards = InitialCards.RestOfDeck,
     cardsFaceDown = TableauFaceDownCards.Count(0),

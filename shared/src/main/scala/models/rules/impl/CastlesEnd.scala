@@ -11,8 +11,8 @@ object CastlesEnd extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/castles_end.htm")),
   layout = ":f::r|t",
   deckOptions = DeckOptions(lowRank = Rank.Unknown),
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.RestOfDeck,

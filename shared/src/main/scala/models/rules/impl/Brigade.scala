@@ -19,14 +19,14 @@ object Brigade extends GameRules(
       cardsShown = 20
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCards = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Count(5),
       cardsFaceDown = TableauFaceDownCards.Count(0),

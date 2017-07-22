@@ -12,7 +12,7 @@ object PileUp extends GameRules(
   ),
   layout = "|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 15,
       initialCards = InitialCards.Custom,

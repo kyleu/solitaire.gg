@@ -13,8 +13,8 @@ object ChineseSpider extends GameRules(
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(numDecks = 4, suits = Seq(Suit.Hearts, Suit.Spades, Suit.Diamonds)),
   stock = Some(StockRules(dealTo = StockDealTo.TableauIfNoneEmpty, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 16, moveCompleteSequencesOnly = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 16, moveCompleteSequencesOnly = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(6),

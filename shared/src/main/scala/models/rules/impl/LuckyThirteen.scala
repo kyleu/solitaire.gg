@@ -14,13 +14,13 @@ object LuckyThirteen extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/lucky-thirteen.htm")
   ),
   layout = "::::.f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Count(4),

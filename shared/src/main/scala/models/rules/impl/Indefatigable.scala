@@ -15,14 +15,14 @@ object Indefatigable extends GameRules(
     Link("Jan Wolter's Experiments", "/article/indefatigable.html")
   ),
   layout = "::::f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCards = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(4),

@@ -9,7 +9,7 @@ object SimonSays extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/simon_says.htm")),
   layout = "|c|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,

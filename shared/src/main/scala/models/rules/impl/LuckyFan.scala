@@ -9,8 +9,8 @@ object LuckyFan extends GameRules(
   like = Some("freefan"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/lucky_fan.htm")),
   layout = "f|c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Fan",
       numPiles = 18,

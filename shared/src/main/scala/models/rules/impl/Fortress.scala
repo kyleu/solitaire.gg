@@ -19,13 +19,13 @@ object Fortress extends GameRules(
     Link("Michael Keller's Strategy Guide", "solitairelaboratory.com/fortress.html")
   ),
   layout = ":::f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.RestOfDeck,

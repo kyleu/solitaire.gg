@@ -12,13 +12,13 @@ object PenelopesWeb extends GameRules(
     Link("BVS Solitaire Collection", "www.bvssolitaire.com/rules/penelope-web.htm")
   ),
   layout = "f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,

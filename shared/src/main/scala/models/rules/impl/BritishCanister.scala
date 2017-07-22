@@ -12,8 +12,8 @@ object BritishCanister extends GameRules(
     Link("Solsuite Solitaire", "www.solsuite.com/games/canister.htm")
   ),
   layout = "::f|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,

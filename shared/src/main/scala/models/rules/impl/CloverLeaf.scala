@@ -11,7 +11,7 @@ object CloverLeaf extends GameRules(
   related = Seq("alternative"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/clover_leaf.htm")),
   layout = "ff|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Red Foundation",
       numPiles = 2,
@@ -30,7 +30,7 @@ object CloverLeaf extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Fan",
       numPiles = 16,

@@ -19,13 +19,13 @@ object Spike extends GameRules(
       numPiles = 3
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       emptyFilledWith = FillEmptyWith.HighRank
     )

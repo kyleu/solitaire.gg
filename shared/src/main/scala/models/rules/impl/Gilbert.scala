@@ -15,7 +15,7 @@ object Gilbert extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
@@ -28,7 +28,7 @@ object Gilbert extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       emptyFilledWith = FillEmptyWith.Sevens
     )

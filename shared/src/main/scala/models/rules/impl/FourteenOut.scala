@@ -16,14 +16,14 @@ object FourteenOut extends GameRules(
   ),
   layout = "2tf",
   cardRemovalMethod = CardRemovalMethod.RemovePairsAddingToFourteen,
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       canMoveFrom = FoundationCanMoveFrom.Never,
       visible = false,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.RestOfDeck,

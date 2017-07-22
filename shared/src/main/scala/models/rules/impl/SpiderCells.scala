@@ -14,7 +14,7 @@ object SpiderCells extends GameRules(
   ),
   layout = "|c|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,

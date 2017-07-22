@@ -9,8 +9,8 @@ object YukonCells extends GameRules(
   like = Some("yukon"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/yukon_cells.htm")),
   layout = "f|c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     initialCards = InitialCards.Custom,
     customInitialCards = Seq(
       "U",

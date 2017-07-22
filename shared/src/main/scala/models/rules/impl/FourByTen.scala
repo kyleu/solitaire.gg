@@ -8,8 +8,8 @@ object FourByTen extends GameRules(
   title = "Four by Ten",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/four_by_ten.htm")),
   layout = "f|c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 4,
       initialCards = InitialCards.Count(13),

@@ -9,14 +9,14 @@ object Stewart extends GameRules(
   like = Some("martha"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/stewart.htm")),
   layout = ":f|2t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCards = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 12,
       initialCards = InitialCards.Count(4),

@@ -16,7 +16,7 @@ object Penta extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Left Foundation",
       numPiles = 4,
@@ -32,7 +32,7 @@ object Penta extends GameRules(
       rankMatchRule = RankMatchRule.Down
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Left Tableau",
       numPiles = 3,

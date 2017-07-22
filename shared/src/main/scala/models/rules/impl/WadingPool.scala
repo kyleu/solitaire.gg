@@ -10,7 +10,7 @@ object WadingPool extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/wading_pool.htm")),
   layout = "t|t",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Reserve",
       numPiles = 8,

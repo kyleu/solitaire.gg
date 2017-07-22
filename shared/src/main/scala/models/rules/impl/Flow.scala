@@ -10,7 +10,7 @@ object Flow extends GameRules(
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/flow.htm")),
   layout = "|tt",
   victoryCondition = VictoryCondition.AllOnTableauSorted,
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Reserve",
       numPiles = 8,

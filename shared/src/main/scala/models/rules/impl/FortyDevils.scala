@@ -16,7 +16,7 @@ object FortyDevils extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Left Foundation",
       numPiles = 4,
@@ -30,7 +30,7 @@ object FortyDevils extends GameRules(
       moveCompleteSequencesOnly = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Count(4),

@@ -15,7 +15,7 @@ object Alternate extends GameRules(
   ),
   layout = "sff|.t",
   stock = Some(StockRules(dealTo = StockDealTo.Manually, maximumDeals = Some(1))),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Red Foundation",
       numPiles = 2,
@@ -36,7 +36,7 @@ object Alternate extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Reserve",
       numPiles = 4,

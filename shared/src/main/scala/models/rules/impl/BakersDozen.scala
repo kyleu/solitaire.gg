@@ -17,8 +17,8 @@ object BakersDozen extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Bakers_Dozen.html.en")
   ),
   layout = ":.f|t|.t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Count(4),
       cardsFaceDown = TableauFaceDownCards.Count(0),

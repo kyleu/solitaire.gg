@@ -25,7 +25,7 @@ object German extends GameRules(
     )
   ),
   waste = Some(WasteRules()),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(1),

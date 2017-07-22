@@ -22,13 +22,13 @@ object KlondikeGalleryMode extends GameRules(
       name = "Gallery"
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       emptyFilledWith = FillEmptyWith.HighRank
     )

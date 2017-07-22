@@ -12,8 +12,8 @@ object DoubleScorpion extends GameRules(
   ),
   layout = "f|t",
   deckOptions = DeckOptions(numDecks = 2),
-  foundations = Seq(FoundationRules(numPiles = 8, moveCompleteSequencesOnly = true, canMoveFrom = FoundationCanMoveFrom.Never, visible = false)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, moveCompleteSequencesOnly = true, canMoveFrom = FoundationCanMoveFrom.Never, visible = false)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 10,
     initialCards = InitialCards.Custom,
     customInitialCards = Seq(

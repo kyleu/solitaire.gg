@@ -19,8 +19,8 @@ object WillOTheWisp extends GameRules(
   ),
   layout = "sf|t",
   stock = Some(StockRules(dealTo = StockDealTo.TableauIfNoneEmpty, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 4, moveCompleteSequencesOnly = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, moveCompleteSequencesOnly = true)),
+  tableaus = IndexedSeq(TableauRules(
     initialCards = InitialCards.Count(3),
     suitMatchRuleForBuilding = SuitMatchRule.Any,
     suitMatchRuleForMovingStacks = SuitMatchRule.SameSuit

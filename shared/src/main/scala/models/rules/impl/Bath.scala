@@ -11,8 +11,8 @@ object Bath extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/bath.html")
   ),
   layout = "f|c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,

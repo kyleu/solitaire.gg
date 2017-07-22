@@ -12,13 +12,13 @@ object AmericanCanister extends GameRules(
     Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/american_canister.htm")
   ),
   layout = "::f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,

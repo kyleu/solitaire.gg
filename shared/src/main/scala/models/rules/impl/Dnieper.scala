@@ -9,8 +9,8 @@ object Dnieper extends GameRules(
   like = Some("kiev"),
   layout = "sf|t",
   stock = Some(StockRules(dealTo = StockDealTo.Tableau, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 4, moveCompleteSequencesOnly = true, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, moveCompleteSequencesOnly = true, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     initialCards = InitialCards.Count(4),
     suitMatchRuleForBuilding = SuitMatchRule.SameSuit,
     wrap = true,

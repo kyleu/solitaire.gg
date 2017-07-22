@@ -11,13 +11,13 @@ object SingleInterchange extends GameRules(
   layout = "swf|:t",
   stock = Some(StockRules()),
   waste = Some(WasteRules()),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 5,
       initialCards = InitialCards.Count(5),

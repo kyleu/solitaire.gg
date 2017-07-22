@@ -10,7 +10,7 @@ object AlexanderTheGreat extends GameRules(
   related = Seq("cloverleaf"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/alexander_the_great.htm")),
   layout = "f::f|2t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       name = "Red Foundation",
       numPiles = 2,
@@ -29,7 +29,7 @@ object AlexanderTheGreat extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Fan",
       numPiles = 12,

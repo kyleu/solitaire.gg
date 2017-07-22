@@ -26,13 +26,13 @@ object FlowerGarden extends GameRules(
       cardsShown = 20
     )
   ),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       name = "Flower Beds",
       numPiles = 6,

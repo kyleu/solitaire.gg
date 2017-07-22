@@ -16,7 +16,7 @@ object AllInARow extends GameRules(
   ),
   layout = "f|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       lowRank = FoundationLowRank.AnyCard,
       suitMatchRule = SuitMatchRule.Any,
@@ -25,7 +25,7 @@ object AllInARow extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Count(4),

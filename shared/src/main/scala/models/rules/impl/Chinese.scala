@@ -11,8 +11,8 @@ object Chinese extends GameRules(
   links = Seq(Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/chinese_solitaire.html")),
   layout = "s.f|t",
   stock = Some(StockRules(name = "Reserve", dealTo = StockDealTo.Tableau, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Custom,
       customInitialCards = Seq(

@@ -9,13 +9,13 @@ object RippleFan extends GameRules(
   like = Some("cruel"),
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/ripple_fan.htm")),
   layout = ".::::f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Count(4),

@@ -17,14 +17,14 @@ object Trefoil extends GameRules(
     Link("Xolitaire", "www.escapedivision.com/xolitaire/en/games/trefoil.html")
   ),
   layout = "f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCards = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 16,
       initialCards = InitialCards.Count(3),

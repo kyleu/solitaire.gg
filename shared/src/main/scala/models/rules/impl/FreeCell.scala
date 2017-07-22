@@ -16,13 +16,13 @@ object FreeCell extends GameRules(
     Link("FreeCell Solitaire", "www.solitairecentral.com/articles/FreeCellSolitaireAWinningStrategy.html")
   ),
   layout = "c:f|.t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.RestOfDeck,

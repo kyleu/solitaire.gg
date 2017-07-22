@@ -8,8 +8,8 @@ object HowTheyRun extends GameRules(
   title = "How They Run",
   links = Seq(Link("Pretty Good Solitaire", "www.goodsol.com/pgshelp/how_they_run.htm")),
   layout = "f::c|t",
-  foundations = Seq(FoundationRules(numPiles = 4, moveCompleteSequencesOnly = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, moveCompleteSequencesOnly = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 10,
       initialCards = InitialCards.Custom,

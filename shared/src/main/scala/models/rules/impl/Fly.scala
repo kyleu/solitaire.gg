@@ -19,7 +19,7 @@ object Fly extends GameRules(
   layout = "sf|r.:t",
   deckOptions = DeckOptions(numDecks = 2),
   stock = Some(StockRules(dealTo = StockDealTo.Manually, maximumDeals = Some(1))),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 8,
       initialCards = 8,
@@ -27,7 +27,7 @@ object Fly extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 5,
       initialCards = InitialCards.Count(0),

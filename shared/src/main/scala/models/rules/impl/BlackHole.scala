@@ -21,7 +21,7 @@ object BlackHole extends GameRules(
   ),
   layout = "f|t",
   victoryCondition = VictoryCondition.AllOnFoundationOrStock,
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       initialCardRestriction = Some(FoundationInitialCardRestriction.SpecificSuit(Suit.Hearts)),
       initialCards = 1,
@@ -31,7 +31,7 @@ object BlackHole extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 17,
       initialCards = InitialCards.Count(3),

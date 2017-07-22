@@ -14,14 +14,14 @@ object BeleagueredCastle extends GameRules(
     Link("AisleRiot", "help.gnome.org/users/aisleriot/stable/Beleaguered_Castle.html.en")
   ),
   layout = "::f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       initialCards = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 8,
       initialCards = InitialCards.Count(6),

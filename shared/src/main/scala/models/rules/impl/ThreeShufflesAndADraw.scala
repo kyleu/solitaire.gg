@@ -13,13 +13,13 @@ object ThreeShufflesAndADraw extends GameRules(
     Link("Wikipedia", "en.wikipedia.org/wiki/Three_Shuffles_and_a_Draw_(solitaire)")
   ),
   layout = "::.f|2t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 18,
       initialCards = InitialCards.Custom,

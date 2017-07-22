@@ -13,8 +13,8 @@ object BigSpider extends GameRules(
   victoryCondition = VictoryCondition.AllOnTableauSorted,
   deckOptions = DeckOptions(numDecks = 3),
   stock = Some(StockRules(dealTo = StockDealTo.TableauIfNoneEmpty, maximumDeals = Some(1))),
-  foundations = Seq(FoundationRules(numPiles = 12, moveCompleteSequencesOnly = true)),
-  tableaus = Seq(
+  foundations = IndexedSeq(FoundationRules(numPiles = 12, moveCompleteSequencesOnly = true)),
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 13,
       initialCards = InitialCards.Count(6),

@@ -8,9 +8,9 @@ object Sarlacc extends GameRules(
   completed = true,
   title = "Sarlacc",
   layout = ":f|c|:p",
-  foundations = Seq(FoundationRules(numPiles = 4, autoMoveCards = true)),
+  foundations = IndexedSeq(FoundationRules(numPiles = 4, autoMoveCards = true)),
   cells = Some(CellRules(numPiles = 6)),
-  pyramids = Seq(
+  pyramids = IndexedSeq(
     PyramidRules(
       name = "Tableau",
       height = 5,

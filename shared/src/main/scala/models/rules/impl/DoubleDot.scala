@@ -14,7 +14,7 @@ object DoubleDot extends GameRules(
   layout = "s:ff|t",
   deckOptions = DeckOptions(lowRank = Rank.Unknown),
   stock = Some(StockRules(dealTo = StockDealTo.Tableau, maximumDeals = Some(1))),
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 2,
       lowRank = FoundationLowRank.SpecificRank(Rank.Ace),
@@ -35,7 +35,7 @@ object DoubleDot extends GameRules(
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(TableauRules(
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 8,
     initialCards = InitialCards.Count(1),
     cardsFaceDown = TableauFaceDownCards.Count(0),

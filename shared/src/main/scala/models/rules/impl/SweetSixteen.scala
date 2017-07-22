@@ -17,7 +17,7 @@ object SweetSixteen extends GameRules(
       maximumDeals = Some(1)
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       numPiles = 16,
       cardsShown = 2,

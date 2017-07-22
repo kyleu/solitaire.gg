@@ -12,13 +12,13 @@ object Brisbane extends GameRules(
     Link("dogMelon", "www.dogmelon.com.au/solhelp/Brisbane%20Solitaire.shtml")
   ),
   layout = ":.f|t",
-  foundations = Seq(
+  foundations = IndexedSeq(
     FoundationRules(
       numPiles = 4,
       autoMoveCards = true
     )
   ),
-  tableaus = Seq(
+  tableaus = IndexedSeq(
     TableauRules(
       initialCards = InitialCards.Custom,
       customInitialCards = Seq(

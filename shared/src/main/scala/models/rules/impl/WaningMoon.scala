@@ -18,8 +18,8 @@ object WaningMoon extends GameRules(
   deckOptions = DeckOptions(numDecks = 2, suits = Seq(Suit.Hearts, Suit.Spades, Suit.Clubs, Suit.Horseshoes)),
   stock = Some(StockRules(maximumDeals = Some(1))),
   waste = Some(WasteRules()),
-  foundations = Seq(FoundationRules(numPiles = 8, autoMoveCards = true)),
-  tableaus = Seq(TableauRules(
+  foundations = IndexedSeq(FoundationRules(numPiles = 8, autoMoveCards = true)),
+  tableaus = IndexedSeq(TableauRules(
     numPiles = 13,
     initialCards = InitialCards.Count(4),
     cardsFaceDown = TableauFaceDownCards.Count(0),
