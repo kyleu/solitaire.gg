@@ -6,18 +6,18 @@ echo "  Building Electron apps..."
 
 cd ..
 
-rm -rf build/linux.arm
-rm -rf build/linux.x32
-rm -rf build/linux.x64
-rm -rf build/osx
-rm -rf build/mas
-rm -rf build/win.x32
-rm -rf build/win.x64
+# rm -rf build/linux.arm
+# rm -rf build/linux.x32
+# rm -rf build/linux.x64
+# rm -rf build/osx
+# rm -rf build/mas
+# rm -rf build/win.x32
+# rm -rf build/win.x64
 
-mkdir -p build/electron
+mkdir -p build/electron/web
 
-cp -R "build/web/" "build/electron"
-cp -R "resources/offline/electron/" "build/electron"
+cp -R "build/web/" "build/electron/web"
+cp -R "resources/offline/electron/" "build/electron/web"
 asar pack build/electron build/asar/solitaire.gg.asar
 
 cp build/asar/solitaire.gg.asar build/linux.arm/resources/app.asar

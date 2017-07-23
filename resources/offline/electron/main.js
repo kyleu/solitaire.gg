@@ -1,190 +1,52 @@
-var app = require('app');
-var Menu = require('menu');
-var BrowserWindow = require('browser-window');
+const {app, BrowserWindow} = require('electron')
+const path = require('path')
+const url = require('url')
 
-var mainWindow = null;
-var menu = null;
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the JavaScript object is garbage collected.
+let win
 
-app.on('window-all-closed', function() {
-  app.quit();
-});
+function createWindow () {
+  // Create the browser window.
+  win = new BrowserWindow({width: 800, height: 600})
 
-app.on('ready', function() {
-  mainWindow = new BrowserWindow({
-    width: 1280,
-    height: 720,
-    resizable: true,
-    'auto-hide-menu-bar': true,
-    'use-content-size': true
-  });
-  mainWindow.loadUrl('file://' + __dirname + '/index.html');
-  mainWindow.focus();
-  mainWindow.maximize();
+  // and load the index.html of the app.
+  win.loadURL(url.format({
+    pathname: path.join(__dirname, 'index.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
 
-  if (process.platform == 'darwin') {
-    var osxTemplate = [
-      {
-        label: 'Solitaire.gg',
-        submenu: [
-          {
-            label: 'About Solitaire.gg',
-            selector: 'orderFrontStandardAboutPanel:'
-          },
-          {
-            type: 'separator'
-          },
-          {
-            label: 'Services',
-            submenu: []
-          },
-          {
-            type: 'separator'
-          },
-          {
-            label: 'Hide Solitaire.gg',
-            accelerator: 'Command+H',
-            selector: 'hide:'
-          },
-          {
-            label: 'Hide Others',
-            accelerator: 'Command+Shift+H',
-            selector: 'hideOtherApplications:'
-          },
-          {
-            label: 'Show All',
-            selector: 'unhideAllApplications:'
-          },
-          {
-            type: 'separator'
-          },
-          {
-            label: 'Quit',
-            accelerator: 'Command+Q',
-            click: function() { app.quit(); }
-          }
-        ]
-      },
-      {
-        label: 'Edit',
-        submenu: [
-          {
-            label: 'Undo',
-            accelerator: 'Command+Z',
-            selector: 'undo:'
-          },
-          {
-            label: 'Redo',
-            accelerator: 'Shift+Command+Z',
-            selector: 'redo:'
-          }
-        ]
-      },
-      {
-        label: 'View',
-        submenu: [
-          {
-            label: 'Reload',
-            accelerator: 'Command+R',
-            click: function() { mainWindow.restart(); }
-          },
-          {
-            label: 'Enter Fullscreen',
-            click: function() { mainWindow.setFullScreen(true); }
-          },
-          {
-            label: 'Toggle DevTools',
-            accelerator: 'Alt+Command+I',
-            click: function() { mainWindow.toggleDevTools(); }
-          }
-        ]
-      },
-      {
-        label: 'Window',
-        submenu: [
-          {
-            label: 'Minimize',
-            accelerator: 'Command+M',
-            selector: 'performMiniaturize:'
-          },
-          {
-            label: 'Close',
-            accelerator: 'Command+W',
-            selector: 'performClose:'
-          },
-          {
-            type: 'separator'
-          },
-          {
-            label: 'Bring All to Front',
-            selector: 'arrangeInFront:'
-          }
-        ]
-      },
-      {
-        label: 'Help',
-        submenu: []
-      }
-    ];
+  // Open the DevTools.
+  win.webContents.openDevTools()
 
-    menu = Menu.buildFromTemplate(osxTemplate);
-    Menu.setApplicationMenu(menu);
-  } else {
-    var otherTemplate = [
-      {
-        label: '&File',
-        submenu: [
-          {
-            label: '&Open',
-            accelerator: 'Ctrl+O'
-          },
-          {
-            label: '&Close',
-            accelerator: 'Ctrl+W',
-            click: function() { mainWindow.close(); }
-          }
-        ]
-      },
-      {
-        label: '&Edit',
-        submenu: [
-          {
-            label: '&Undo',
-            accelerator: 'Ctrl+Z',
-            selector: 'undo:'
-          },
-          {
-            label: '&Redo',
-            accelerator: 'Shift+Ctrl+Z',
-            selector: 'redo:'
-          }
-        ]
-      },
-      {
-        label: '&View',
-        submenu: [
-          {
-            label: '&Reload',
-            accelerator: 'Ctrl+R',
-            click: function() { mainWindow.restart(); }
-          },
-          {
-            label: '&Enter Fullscreen',
-            click: function() { mainWindow.setFullScreen(true); }
-          },
-          {
-            label: '&Toggle DevTools',
-            accelerator: 'Alt+Ctrl+I',
-            click: function() { mainWindow.toggleDevTools(); }
-          }
-        ]
-      },
-      {
-        label: '&Help',
-        submenu: []
-      }
-    ];
+  // Emitted when the window is closed.
+  win.on('closed', () => {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    win = null
+  })
+}
 
-    menu = Menu.buildFromTemplate(otherTemplate);
-    mainWindow.setMenu(menu);
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.on('ready', createWindow)
+
+// Quit when all windows are closed.
+app.on('window-all-closed', () => {
+  // On macOS it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform !== 'darwin') {
+    app.quit()
   }
-});
+})
+
+app.on('activate', () => {
+  // On macOS it's common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
+  if (win === null) {
+    createWindow()
+  }
+})

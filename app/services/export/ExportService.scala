@@ -40,6 +40,7 @@ object ExportService {
 
   private[this] val staticReplacements = Seq(
     "/assets/" -> "[]assets/",
+    "/strings.js" -> "[]strings.js",
     "&#x27;" -> "'"
   )
 
