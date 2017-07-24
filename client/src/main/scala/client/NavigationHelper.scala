@@ -11,9 +11,9 @@ trait NavigationHelper { this: SolitaireGG =>
       GameStartService.endGame(this, gameId, win = false)
     }
     if (rules.headOption.contains("resign")) {
-      navigation.navigate(NavigationState.Games, allowSelf = true)
+      navigation.resign()
     } else {
-      navigation.navigate(NavigationState.Play, rules)
+      navigation.play(rules)
     }
   }
 
@@ -24,7 +24,7 @@ trait NavigationHelper { this: SolitaireGG =>
       case _ => // noop
     }
     n match {
-      case NavigationState.Games => GameListService.update(game, onNewGame, navigation)
+      case NavigationState.Games => GameListService.update(game, onNewGame, menu)
       case NavigationState.Settings => SettingsPanel.initIfNeeded(settings.getSettings)
       case NavigationState.Play => GameStartService.onGameStateChange(this, args)
       case NavigationState.Help => HelpService.show(args.headOption)

@@ -61,6 +61,8 @@ object DailyMetricService extends Logging {
   }
 
   private[this] def getSql(metric: Metric) = metric match {
+    case Metric.Signups => Some("select count(*) as c from users where created >= ? and created < ?")
+
     case Metric.GamesStarted => Some("select count(*) as c from games where created >= ? and created < ?")
     case Metric.GamesWon => Some("select count(*) as c from games where created >= ? and created < ? and status in ('w', 'won')")
     case Metric.GamesLost => Some("select count(*) as c from games where created >= ? and created < ? and status in ('l', 'lost')")

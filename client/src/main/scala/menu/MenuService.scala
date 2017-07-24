@@ -1,12 +1,20 @@
 package menu
 
 import models.settings.MenuPosition
-import navigation.{NavigationService, NavigationState}
+import navigation.NavigationService
 import org.scalajs.jquery.{jQuery => $}
 import util.TemplateUtils
 
-class MenuService(navigation: NavigationService) {
-  private[this] var priorState: NavigationState = NavigationState.Loading
+object MenuService {
+  case class Entry(id: String, url: Seq[String], title: String, onClick: () => Unit) {
+    lazy val asHtml = s"""<a id="menu-link-$id" href="${NavigationService.assetRoot + url.mkString("/")}">$title</a>"""
+  }
+}
+
+class MenuService(val navigation: NavigationService) {
+  def rulesHelpEntry(rules: String) = MenuService.Entry("help", Seq("help", rules), "Help", () => navigation.rulesHelp(rules))
+  val generalHelpEntry = MenuService.Entry("help", Seq("help"), "Help", () => navigation.generalHelp())
+  val settingsEntry = MenuService.Entry("settings", Seq("settings"), "Settings", () => navigation.settings())
 
   private[this] val title = $("#nav-title")
   if (title.length != 1) {
@@ -20,23 +28,19 @@ class MenuService(navigation: NavigationService) {
   }
   TemplateUtils.clickHandler(toggle, _ => toggleMenu())
 
-  private[this] val stateLinks = NavigationState.values.flatMap { s =>
-    val jq = $(s"#menu-link-$s")
-    TemplateUtils.clickHandler(jq, _ => navigation.navigate(s))
-    if (jq.length == 0) { None } else { Some(s -> jq) }
-  }.toMap
-
-  def toggleMenu() = if (navigation.getState == NavigationState.Games) {
-    navigation.navigate(priorState)
-  } else {
-    priorState = navigation.getState
-    navigation.navigate(NavigationState.Games)
+  private[this] val options = $("#nav-options")
+  if (options.length != 1) {
+    throw new IllegalStateException(s"Found [${options.length}] menu options elements.")
   }
+
+  def toggleMenu() = navigation.menu()
 
   def setTitle(t: String) = title.text(t)
 
-  def showAllLinks() = stateLinks.values.toSeq.map(_.show())
-  def hideLink(s: NavigationState) = stateLinks.get(s).map(_.hide())
+  def setOptions(entries: MenuService.Entry*) = {
+    options.html(entries.map(x => x.asHtml).mkString("\n"))
+    entries.foreach(e => TemplateUtils.clickHandler($(s"#menu-link-${e.id}", options), jq => e.onClick()))
+  }
 
   private[this] val delay = 500
   private[this] var menuPosition: MenuPosition = MenuPosition.Hidden

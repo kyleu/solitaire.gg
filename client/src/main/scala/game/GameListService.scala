@@ -1,15 +1,20 @@
 package game
 
 import help.HelpService
-import navigation.{NavigationService, NavigationState}
+import menu.MenuService
 import org.scalajs.jquery.{jQuery => $}
 import util.TemplateUtils
 
 object GameListService {
   private[this] var initialized = false
 
-  def update(ag: Option[ActiveGame], onNewGame: Seq[String] => Unit, navigation: NavigationService) = {
+  def update(ag: Option[ActiveGame], onNewGame: Seq[String] => Unit, menu: MenuService) = {
     val panel = $("#panel-list-games .content")
+
+    ag match {
+      case Some(g) => menu.setOptions(menu.settingsEntry, menu.rulesHelpEntry(g.rulesId))
+      case None => menu.setOptions(menu.settingsEntry, menu.generalHelpEntry)
+    }
 
     if (!initialized) {
       panel.html(GameListTemplate.panelContent().toString)
@@ -26,7 +31,7 @@ object GameListService {
       case Some(activeGame) =>
         optionsEl.html(GameListTemplate.optionsContent(activeGame).toString)
         TemplateUtils.clickHandler($(".btn-resume", optionsEl), _ => {
-          navigation.navigate(NavigationState.Play, Seq(activeGame.rulesId, activeGame.seed.toString))
+          menu.navigation.resume(activeGame)
         })
         TemplateUtils.clickHandler($(".btn-resign", optionsEl), _ => onNewGame(Seq("resign")))
         TemplateUtils.clickHandler($(".btn-redeal", optionsEl), _ => onNewGame(Seq(activeGame.rulesId)))

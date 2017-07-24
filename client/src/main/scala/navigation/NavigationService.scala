@@ -1,5 +1,6 @@
 package navigation
 
+import game.ActiveGame
 import org.scalajs.dom
 
 object NavigationService {
@@ -17,10 +18,7 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
   private[this] var currentState: NavigationState = NavigationState.Loading
   private[this] val delay = 500
 
-  NavigationState.values.foreach {
-    case s if s != currentState => s.element.hide()
-    case _ => // noop
-  }
+  NavigationState.values.filter(_ != currentState).foreach(_.element.hide())
 
   def getState = currentState
 
@@ -35,7 +33,15 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
     }
   }
 
-  def navigate(state: NavigationState, args: Seq[String] = Nil, allowSelf: Boolean = false) = if (state == currentState) {
+  def menu() = navigate(NavigationState.Games)
+  def settings() = navigate(NavigationState.Settings)
+  def generalHelp() = navigate(NavigationState.Help)
+  def rulesHelp(rules: String) = navigate(NavigationState.Help, Seq(rules))
+  def play(rules: Seq[String]) = navigate(NavigationState.Play, rules)
+  def resume(activeGame: ActiveGame) = navigate(NavigationState.Play, Seq(activeGame.rulesId, activeGame.seed.toString))
+  def resign() = navigate(NavigationState.Games, allowSelf = true)
+
+  private[this] def navigate(state: NavigationState, args: Seq[String] = Nil, allowSelf: Boolean = false) = if (state == currentState) {
     if (allowSelf) {
       util.Logging.debug(s"State self-transition for [$currentState] with args [${args.mkString(", ")}].")
       onStateChange(currentState, state, args)
@@ -44,11 +50,16 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
       util.Logging.warn(s"State transition to self [$currentState].")
     }
   } else {
-    util.Logging.debug(s"State transitioning from [$currentState] to [$state] with args [${args.mkString(", ")}].")
+    util.Logging.info(s"State transitioning from [$currentState] to [$state] with args [${args.mkString(", ")}].")
     onStateChange(currentState, state, args)
     setPath(state, args)
-    currentState.element.fadeOut(delay)
-    state.element.fadeIn(delay)
+    if (currentState == NavigationState.Loading) {
+      currentState.element.hide()
+      state.element.show()
+    } else {
+      currentState.element.fadeOut(delay)
+      state.element.fadeIn(delay)
+    }
     currentState = state
   }
 }

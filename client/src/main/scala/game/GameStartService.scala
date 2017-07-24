@@ -3,6 +3,7 @@ package game
 import java.util.UUID
 
 import client.SolitaireGG
+import models.rules.GameRulesSet
 import models.rules.moves.InitialMoves
 import msg.req.OnGameStart
 
@@ -32,7 +33,8 @@ object GameStartService {
 
   def startGame(gg: SolitaireGG, id: UUID, rulesId: String, seed: Int) = {
     if (gg.hasGame) { throw new IllegalStateException(s"Called [startGame] before destroying active [${gg.getGame.rulesId}] game [${gg.getGame.id}].") }
-    val ag = ActiveGame(id = id, rulesId = rulesId, seed = seed)
+    val rulesTranslated = GameRulesSet.allByIdWithAliases.get(rulesId).map(_.id).getOrElse("klondike")
+    val ag = ActiveGame(id = id, rulesId = rulesTranslated, seed = seed)
     ag.state.addPlayer(gg.profile.getUserId, gg.profile.getUsername.getOrElse("Guest"), autoFlipOption = gg.settings.getSettings.autoFlip)
     InitialMoves.performInitialMoves(ag.rules, ag.state)
     gg.setGame(ag)
