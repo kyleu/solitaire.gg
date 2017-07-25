@@ -1,5 +1,6 @@
 package settings
 
+import menu.{MenuOptions, MenuService}
 import models.settings._
 import org.scalajs.jquery.{jQuery => $}
 
@@ -36,8 +37,11 @@ object SettingsPanel {
     CardSuits.values.foreach(cs => $(s"#settings-card-suits-${cs.value}").prop("checked", settings.cardSuits == cs))
   }
 
-  def initIfNeeded(settings: Settings) = if (!initialized) {
-    SettingsPanelInit.init(settings)
-    initialized = true
+  def initIfNeeded(settings: Settings, menu: MenuService) = {
+    if (!initialized) {
+      SettingsPanelInit.init(settings)
+      initialized = true
+    }
+    menu.options.setOptionsForSettings()
   }
 }

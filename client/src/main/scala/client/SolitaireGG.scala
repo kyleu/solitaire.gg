@@ -29,7 +29,10 @@ class SolitaireGG(val debug: Boolean) extends InitHelper with NavigationHelper w
   def hasGame = game.isDefined
   def getGame = game.getOrElse(throw new IllegalStateException("No active game."))
   def clearGame() = game = None
-  def setGame(g: ActiveGame) = game = Some(g)
+  def setGame(g: ActiveGame) = {
+    menu.setActiveGame(Some(g))
+    game = Some(g)
+  }
 
   val navigation = new NavigationService(onStateChange)
   val network = new NetworkService(debug, handleSocketResponseMessage)

@@ -11,16 +11,13 @@ object GameListService {
   def update(ag: Option[ActiveGame], onNewGame: Seq[String] => Unit, menu: MenuService) = {
     val panel = $("#panel-list-games .content")
 
-    ag match {
-      case Some(g) => menu.setOptions(menu.settingsEntry, menu.rulesHelpEntry(g.rulesId))
-      case None => menu.setOptions(menu.settingsEntry, menu.generalHelpEntry)
-    }
+    menu.options.setOptionsForGameList()
 
     if (!initialized) {
       panel.html(GameListTemplate.panelContent().toString)
 
       TemplateUtils.clickHandler($(".rules-link", panel), jq => onNewGame(Seq(jq.data("rules").toString)))
-      TemplateUtils.clickHandler($(".help-link", panel), jq => HelpService.show(Some(jq.data("rules").toString)))
+      TemplateUtils.clickHandler($(".help-link", panel), jq => HelpService.show(Some(jq.data("rules").toString), menu))
 
       initialized = true
     }

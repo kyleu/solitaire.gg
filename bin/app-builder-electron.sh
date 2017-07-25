@@ -18,7 +18,7 @@ mkdir -p build/electron/web
 
 cp -R "build/web/" "build/electron/web"
 cp -R "resources/offline/electron/" "build/electron/web"
-asar pack build/electron build/asar/solitaire.gg.asar
+asar pack build/electron/web build/asar/solitaire.gg.asar
 
 cp build/asar/solitaire.gg.asar build/linux.arm/resources/app.asar
 cp build/asar/solitaire.gg.asar build/linux.x32/resources/app.asar

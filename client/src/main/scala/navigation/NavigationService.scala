@@ -33,7 +33,7 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
     }
   }
 
-  def menu() = navigate(NavigationState.Games)
+  def games() = navigate(NavigationState.Games)
   def settings() = navigate(NavigationState.Settings)
   def generalHelp() = navigate(NavigationState.Help)
   def rulesHelp(rules: String) = navigate(NavigationState.Help, Seq(rules))
