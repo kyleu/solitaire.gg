@@ -7,7 +7,9 @@ import scalatags.Text.all._
 
 object SettingsTemplate {
   lazy val forSettings = {
-    val title = h4(Messages("settings.title"))
+    val title = div(id := "settings-disclaimer", cls := "settings-section theme")(
+      div(Messages("settings.disclaimer"))
+    )
 
     val language = radiosFor("language", Language.values)
     val tilt = boolRadioFor("tilt", "Card Tilt", "No Card Tilt")
@@ -53,7 +55,7 @@ object SettingsTemplate {
   )
 
   private[this] def radioFor(k: String, v: EnumWithDescription) = div(cls := "settings-input")(
-    input(`type` := "radio", name := v.value, id := s"settings-$k-${v.value}", value := v.value),
+    input(`type` := "radio", name := k, id := s"settings-$k-${v.value}", value := v.value),
     label(`for` := s"settings-$k-${v.value}")(v.description)
   )
 }

@@ -28,7 +28,10 @@ class SolitaireGG(val debug: Boolean) extends InitHelper with NavigationHelper w
   protected[this] var game: Option[ActiveGame] = None
   def hasGame = game.isDefined
   def getGame = game.getOrElse(throw new IllegalStateException("No active game."))
-  def clearGame() = game = None
+  def clearGame() = {
+    menu.setActiveGame(None)
+    game = None
+  }
   def setGame(g: ActiveGame) = {
     menu.setActiveGame(Some(g))
     game = Some(g)

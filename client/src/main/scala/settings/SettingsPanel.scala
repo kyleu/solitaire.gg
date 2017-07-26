@@ -1,6 +1,6 @@
 package settings
 
-import menu.{MenuOptions, MenuService}
+import menu.MenuService
 import models.settings._
 import org.scalajs.jquery.{jQuery => $}
 

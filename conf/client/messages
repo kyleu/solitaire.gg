@@ -21,6 +21,7 @@ options.winnable = Winnable Deal
 
 # Settings
 settings.title = Settings
+settings.disclaimer = I'm working on the settings page. It'll be better soon, I promise.
 
 # Help
 help.title = {0} Help

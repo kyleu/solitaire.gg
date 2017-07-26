@@ -26,7 +26,7 @@ trait NavigationHelper { this: SolitaireGG =>
     n match {
       case NavigationState.Games => GameListService.update(game, onNewGame, menu)
       case NavigationState.Settings => SettingsPanel.initIfNeeded(settings.getSettings, menu)
-      case NavigationState.Play => GameStartService.onGameStateChange(this, args)
+      case NavigationState.Play => GameStartService.onGameStateChange(this, args, menu)
       case NavigationState.Help => HelpService.show(args.headOption, menu)
       case _ => // noop
     }

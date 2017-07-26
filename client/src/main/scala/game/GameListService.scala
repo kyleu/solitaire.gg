@@ -34,6 +34,7 @@ object GameListService {
         TemplateUtils.clickHandler($(".btn-redeal", optionsEl), _ => onNewGame(Seq(activeGame.rulesId)))
       case None =>
         optionsEl.html($("#home-content").html())
+        TemplateUtils.clickHandler($(".home-link-help", optionsEl), _ => menu.navigation.generalHelp())
         TemplateUtils.clickHandler($(".home-link-play", optionsEl), _ => onNewGame(Nil))
     }
   }

@@ -9,12 +9,12 @@ import scalatags.Text.all._
 object HelpTemplateContent {
   def rulesLink(rulesId: String, rulesTitle: String) = div(
     a(cls := "help-link", href := NavigationUrls.rules(rulesId))(rulesTitle),
-    a(cls := "play-link", href := NavigationUrls.play(rulesId), data("rules") := rulesId, title := s"Play $rulesTitle Now")("play")
+    a(cls := "play-link", href := NavigationUrls.play(rulesId), data("rules") := rulesId, title := s"Play $rulesTitle Now")(raw("&#9654;"))
   )
 
   def getTitleDiv(rules: GameRules) = div(cls := "rules-help")(h2(
     rules.title,
-    a(cls := "play-link", href := NavigationUrls.play(rules.id), title := Messages("help.play.now"))("play")
+    a(cls := "play-link", href := NavigationUrls.play(rules.id), title := Messages("help.play.now"))(raw("&#9654;"))
   ))
 
   def getLayoutDiv(rules: GameRules) = div(
@@ -70,7 +70,7 @@ object HelpTemplateContent {
         h3(Messages("help.related.games")),
         ul(rels.map { rel =>
           li(
-            HelpTemplateContent.rulesLink(rel._1, rel._2.title),
+            rulesLink(rel._1, rel._2.title),
             div(em(GameRulesHelpService.description(rel._2.id, link = false)))
           )
         })
@@ -84,7 +84,7 @@ object HelpTemplateContent {
     div(
       h3(Messages("help.also.known.as")),
       div(cls := "objective")(rules.aka.toSeq.map { aka =>
-        HelpTemplateContent.rulesLink(aka._1, aka._2)
+        rulesLink(aka._1, aka._2)
       })
     )
   } else {
