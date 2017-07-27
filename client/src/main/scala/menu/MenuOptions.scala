@@ -1,6 +1,7 @@
 package menu
 
 import game.ActiveGame
+import models.rules.GameRulesSet
 import navigation.NavigationService
 import org.scalajs.jquery.{jQuery => $}
 import util.TemplateUtils
@@ -11,7 +12,7 @@ object MenuOptions {
   }
 }
 
-class MenuOptions(val navigation: NavigationService) {
+class MenuOptions(setTitle: String => Unit, val navigation: NavigationService) {
   private[this] def rulesHelpEntry(rules: String) = MenuOptions.Entry("help", Seq("help", rules), "Help", () => navigation.rulesHelp(rules))
   private[this] val generalHelpEntry = MenuOptions.Entry("help", Seq("help"), "Help", () => navigation.generalHelp())
   private[this] val settingsEntry = MenuOptions.Entry("settings", Seq("settings"), "Settings", () => navigation.settings())
@@ -32,23 +33,35 @@ class MenuOptions(val navigation: NavigationService) {
     case None => rulesListEntry
   }
 
-  def setOptionsForGameList() = activeGame match {
-    case Some(ag) =>
-      val resume = MenuOptions.Entry("resume", Seq("play", ag.rulesId, ag.seed.toString), "Resume", () => navigation.resume(ag))
-      setOptions(resume, settingsEntry, generalHelpEntry)
-    case None => setOptions(settingsEntry, generalHelpEntry)
+  def setOptionsForGameList() = {
+    setTitle("Solitaire.gg")
+    activeGame match {
+      case Some(ag) =>
+        val resume = MenuOptions.Entry("resume", Seq("play", ag.rulesId, ag.seed.toString), "Resume", () => navigation.resume(ag))
+        setOptions(resume, settingsEntry, generalHelpEntry)
+      case None => setOptions(settingsEntry, generalHelpEntry)
+    }
   }
 
   def setOptionsForGame() = activeGame match {
-    case Some(ag) => setOptions(rulesHelpEntry(ag.rulesId), settingsEntry)
+    case Some(ag) =>
+      setTitle(ag.rules.title)
+      setOptions(rulesHelpEntry(ag.rulesId), settingsEntry)
     case None => throw new IllegalStateException("No active game.")
   }
 
-  def setOptionsForSettings() = setOptions(agLink, generalHelpEntry)
+  def setOptionsForSettings() = {
+    setTitle("Settings")
+    setOptions(agLink, generalHelpEntry)
+  }
 
   def setOptionsForHelp(rules: Option[String]) = rules match {
-    case Some(r) => setOptions(agLink, generalHelpEntry, settingsEntry)
-    case None => setOptions(agLink, settingsEntry)
+    case Some(r) =>
+      setTitle(GameRulesSet.allByIdWithAliases(r).title + " Help")
+      setOptions(agLink, generalHelpEntry, settingsEntry)
+    case None =>
+      setTitle("Solitaire.gg Help")
+      setOptions(agLink, settingsEntry)
   }
 
   private[this] def setOptions(entries: MenuOptions.Entry*) = {

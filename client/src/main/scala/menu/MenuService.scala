@@ -23,7 +23,7 @@ class MenuService(val navigation: NavigationService) {
 
   def setTitle(t: String) = title.text(t)
 
-  val options = new MenuOptions(navigation)
+  val options = new MenuOptions(setTitle _, navigation)
 
   private[this] var activeGame: Option[ActiveGame] = None
 
