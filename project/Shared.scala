@@ -2,11 +2,14 @@ import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
 import sbt._
 import sbt.Keys._
 
-import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import webscalajs.ScalaJSWeb
 
 import net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings
 import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, scalariformSettings}
+
+import sbtcrossproject.CrossPlugin.autoImport._
+import scalajscrossproject.ScalaJSCrossPlugin.autoImport.{toScalaJSGroupID => _, _}
+import sbtcrossproject.{crossProject, CrossType}
 
 object Shared {
   val projectId = "solitaire-gg"
@@ -50,7 +53,7 @@ object Shared {
     testFrameworks += new TestFramework("utest.runner.Framework")
   ) ++ graphSettings ++ scalariformSettings
 
-  val sharedProjectSettings = Seq(
+  lazy val shared = (crossProject(JSPlatform, JVMPlatform).crossType(CrossType.Pure) in file("shared")).settings(commonSettings: _*).settings(Seq(
     libraryDependencies ++= Seq(
       "io.circe" %%% "circe-core" % Dependencies.Serialization.circeVersion,
       "io.circe" %%% "circe-generic" % Dependencies.Serialization.circeVersion,
@@ -61,11 +64,9 @@ object Shared {
     // Code Quality
     scapegoatIgnoredFiles := Seq(".*/JsonSerializers.scala"),
     scapegoatDisabledInspections := Seq("FinalModifierOnCaseClass")
-  )
+  ))
 
-  lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(commonSettings: _*).settings(sharedProjectSettings: _*)
-
-  lazy val sharedJs = shared.js.enablePlugins(ScalaJSWeb).settings(scalaJSStage in Global := FastOptStage)
+  lazy val sharedJs = shared.js.enablePlugins(ScalaJSWeb)
 
   lazy val sharedJvm = shared.jvm
 }

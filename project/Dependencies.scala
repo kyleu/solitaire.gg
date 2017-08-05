@@ -9,8 +9,8 @@ object Dependencies {
     val json = "com.typesafe.play" %% "play-json" % "2.6.2"
     val test = "com.typesafe.play" %% "play-test" % version
 
-    val mailer = "com.typesafe.play" %% "play-mailer" % "6.0.0"
-    val mailerGuice = "com.typesafe.play" %% "play-mailer-guice" % "6.0.0"
+    val mailer = "com.typesafe.play" %% "play-mailer" % "6.0.1"
+    val mailerGuice = "com.typesafe.play" %% "play-mailer-guice" % "6.0.1"
   }
 
   object Akka {
@@ -53,7 +53,7 @@ object Dependencies {
   }
 
   object Metrics {
-    private[this] val version = "3.2.3"
+    private[this] val version = "3.2.4"
     val jvm = "io.dropwizard.metrics" % "metrics-jvm" % version withSources()
     val ehcache = "io.dropwizard.metrics" % "metrics-ehcache" % version withSources() intransitive()
     val healthChecks = "io.dropwizard.metrics" % "metrics-healthchecks" % version withSources() intransitive()
