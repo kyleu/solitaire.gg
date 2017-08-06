@@ -7,6 +7,7 @@ import navigation.NavigationService
 import network.NetworkService
 import phaser.PhaserGame
 import phaser.gameplay.InputHelper
+import scribe.Logging
 import settings.{ProfileService, SettingsService}
 
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
@@ -24,7 +25,7 @@ object SolitaireGG {
   }
 }
 
-class SolitaireGG(val debug: Boolean) extends InitHelper with NavigationHelper with MessageHelper {
+class SolitaireGG(val debug: Boolean) extends Logging with InitHelper with NavigationHelper with MessageHelper {
   protected[this] var game: Option[ActiveGame] = None
   def hasGame = game.isDefined
   def getGame = game.getOrElse(throw new IllegalStateException("No active game."))

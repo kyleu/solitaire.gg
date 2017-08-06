@@ -11,6 +11,7 @@ import models.settings.Settings
 import phaser.PhaserGame
 import phaser.card.CardImages
 import phaser.playmat.Playmat
+import scribe._
 
 import scala.scalajs.js.annotation.ScalaJSDefined
 
@@ -63,7 +64,7 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
 
     g.possibleMoves = moves.possibleMoves()
     g.playAudio("shuffle")
-    util.Logging.info(s"Started game [$id] with rules [${rules.id}].")
+    this.logger.info(s"Started game [$id] with rules [${rules.id}].")
   }
 
   def checkWinCondition() = services.rules.victoryCondition.check(services.rules, services.state)
@@ -88,7 +89,7 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
   def stop(id: UUID, win: Boolean, onComplete: () => Unit) = {
     activeServices.getOrElse(throw new IllegalStateException("Called [stop] with no active game."))
     if (services.state.gameId != id) { throw new IllegalStateException(s"Called [stop] with game [$id], not expected [${services.state.gameId}].") }
-    util.Logging.info(s"Stopping game [$id]. Win: [$win]")
+    this.logger.info(s"Stopping game [$id]. Win: [$win]")
     g.getPlaymat.destroy(destroyChildren = true)
     g.setPlaymat(None)
     activeServices = None

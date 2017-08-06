@@ -3,8 +3,8 @@ package phaser.card
 import com.definitelyscala.phaser.{Point, Pointer, Sprite}
 import models.card.{Rank, Suit}
 import phaser.PhaserGame
-import phaser.pile.{PileGroup, PileDragHelper}
-import util.NullUtils
+import phaser.pile.{PileDragHelper, PileGroup}
+import scribe._
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.ScalaJSDefined
@@ -59,7 +59,7 @@ class CardSprite(
     if (u && (!faceUp)) {
       turnFaceUp()
     } else {
-      util.Logging.warn(s"Reveal received for already revealed card [$id].")
+      this.logger.warn(s"Reveal received for already revealed card [$id].")
     }
     updateSprite()
   }

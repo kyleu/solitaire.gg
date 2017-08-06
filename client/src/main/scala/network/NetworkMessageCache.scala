@@ -2,11 +2,12 @@ package network
 
 import msg.req.{ClientError, SocketRequestMessage}
 import org.scalajs.dom
+import scribe.Logging
 import util.JsonSerializers
 
 import scala.util.control.NonFatal
 
-object NetworkMessageCache {
+object NetworkMessageCache extends Logging {
   private[this] val storageKey = "solitaire.gg.messages.pending"
 
   def flush(send: SocketRequestMessage => Unit) = {
@@ -15,7 +16,7 @@ object NetworkMessageCache {
   }
 
   def cache(msg: SocketRequestMessage) = {
-    util.Logging.info(s"Caching message [$msg].")
+    logger.info(s"Caching message [$msg].")
     save(load() :+ msg)
   }
 

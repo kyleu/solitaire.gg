@@ -74,12 +74,11 @@ object Dependencies {
 
   object Utils {
     val scapegoatVersion = "1.3.1"
-
-    private[this] val twitterVersion = "6.45.0"
-    val core = "com.twitter" %% "util-core" % twitterVersion
-    val collection = "com.twitter" %% "util-collection" % twitterVersion
-
     val enumeratumVersion = "1.5.14"
+
+    val scribeVersion = "1.4.3"
+    val scribeSlf4j = "com.outr" %% "scribe-slf4j" % scribeVersion
+    val logbackCore = "ch.qos.logback" % "logback-core" % "1.2.3"
 
     val betterFiles = "com.github.pathikrit" %% "better-files" % "3.0.0"
   }

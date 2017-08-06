@@ -2,8 +2,9 @@ package settings
 
 import org.scalajs.dom
 import org.scalajs.jquery.{jQuery => $}
+import scribe.Logging
 
-object ThemeService {
+object ThemeService extends Logging {
   private[this] var lastColor = ""
   private[this] var lastPattern: Option[String] = None
 
@@ -45,7 +46,7 @@ object ThemeService {
       val luma = 0.2126 * r + 0.7152 * g + 0.0722 * b
       luma > 190
     case _ =>
-      util.Logging.warn(s"Invalid color [$lastColor].")
+      logger.warn(s"Invalid color [$lastColor].")
       false
   }
 

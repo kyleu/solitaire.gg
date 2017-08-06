@@ -2,8 +2,9 @@ package input
 
 import models.game.GameState
 import models.pile.set.PileSet
+import scribe.Logging
 
-class InputContextService(state: GameState, highlight: (Seq[String], Seq[Int]) => Unit) {
+class InputContextService(state: GameState, highlight: (Seq[String], Seq[Int]) => Unit) extends Logging {
   private[this] def initialActive() = {
     val stockOpt = state.pileSets.find(_.behavior == PileSet.Behavior.Stock)
     val tableauOpt = stockOpt.orElse(state.pileSets.find(_.behavior == PileSet.Behavior.Tableau))
@@ -21,11 +22,11 @@ class InputContextService(state: GameState, highlight: (Seq[String], Seq[Int]) =
   }
 
   def onInput(inputMessage: InputMessage) = {
-    util.Logging.info("Input Message: " + inputMessage)
+    logger.info("Input Message: " + inputMessage)
     inputMessage match {
       case InputMessage.NextCard => nextCard()
       case InputMessage.PreviousCard => previousCard()
-      case _ => util.Logging.info(s"Unhandled input context message [$inputMessage].")
+      case _ => logger.info(s"Unhandled input context message [$inputMessage].")
     }
     log()
   }
@@ -56,7 +57,5 @@ class InputContextService(state: GameState, highlight: (Seq[String], Seq[Int]) =
     }
   }
 
-  private[this] def log() = {
-    util.Logging.info(s"Active context: [${activePileSet.behavior}:${activePile.id} / ${activeCard.map(_.toString).getOrElse("none")}]")
-  }
+  private[this] def log() = logger.info(s"Active context: [${activePileSet.behavior}:${activePile.id} / ${activeCard.map(_.toString).getOrElse("none")}]")
 }
