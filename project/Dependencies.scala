@@ -2,7 +2,7 @@ import sbt._
 
 object Dependencies {
   object Play {
-    val version = "2.6.2"
+    val version = "2.6.3"
     val lib = "com.typesafe.play" %% "play" % version
     val filters = play.sbt.PlayImport.filters
     val ws = play.sbt.PlayImport.ws
@@ -14,7 +14,7 @@ object Dependencies {
   }
 
   object Akka {
-    private[this] val version = "2.5.3"
+    private[this] val version = "2.5.4"
     val actor = "com.typesafe.akka" %% "akka-actor" % version
     val cluster = "com.typesafe.akka" %% "akka-cluster" % version
     val contrib = "com.typesafe.akka" %% "akka-contrib" % version
@@ -29,7 +29,7 @@ object Dependencies {
   }
 
   object GraphQL {
-    val sangria = "org.sangria-graphql" %% "sangria" % "1.2.2"
+    val sangria = "org.sangria-graphql" %% "sangria" % "1.3.0"
     val playJson = "org.sangria-graphql" %% "sangria-play-json" % "1.0.3"
     val circe = "org.sangria-graphql" %% "sangria-circe" % "1.1.0"
   }
