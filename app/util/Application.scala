@@ -78,7 +78,7 @@ class Application @javax.inject.Inject() (
   private[this] def scheduleTask(task: ScheduledTask, system: ActorSystem) = {
     import util.FutureUtils.defaultContext
     import scala.concurrent.duration._
-    log.info("Scheduling task to run every minute, after five minutes.")
-    system.scheduler.schedule(5.minutes, 1.minute, task)
+    log.info("Scheduling task to run every hour, after five minutes.")
+    system.scheduler.schedule(5.minutes, 1.hour, task)
   }
 }
