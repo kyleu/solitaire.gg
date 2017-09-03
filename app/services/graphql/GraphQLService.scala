@@ -4,7 +4,7 @@ import io.circe.Json
 import io.circe.parser._
 import models.graphql.{GraphQLContext, Schema}
 import models.user.User
-import sangria.execution.{Executor, HandledException}
+import sangria.execution.{ExceptionHandler, Executor, HandledException}
 import sangria.marshalling.circe._
 import sangria.parser.QueryParser
 import util.Application
@@ -13,8 +13,8 @@ import util.FutureUtils.defaultContext
 import scala.util.{Failure, Success}
 
 object GraphQLService {
-  private[this] val exceptionHandler: Executor.ExceptionHandler = {
-    case (_, e: IllegalStateException) => HandledException(e.getMessage)
+  protected val exceptionHandler = ExceptionHandler {
+    case (_, e: IllegalStateException) => HandledException(message = e.getMessage, additionalFields = Map.empty)
   }
 
   def executeQuery(app: Application, query: String, variables: Option[Json], operation: Option[String], user: User) = {
