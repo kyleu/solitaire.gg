@@ -3,13 +3,13 @@ package phaser.gameplay
 import models._
 import models.game.UndoHelper
 import phaser.PhaserGame
-import scribe.Logging
+import util.Logging
 
-class ResponseMessageHandler(g: PhaserGame, undo: UndoHelper) extends Logging {
+class ResponseMessageHandler(g: PhaserGame, undo: UndoHelper) {
   val debugMessages = false
 
   def handle(msg: ResponseMessage, registerUndo: Boolean = false): Unit = {
-    if (debugMessages) { logger.info(s"Received response message (undo: $registerUndo) - [$msg].") }
+    if (debugMessages) { Logging.info(s"Received response message (undo: $registerUndo) - [$msg].") }
 
     if (registerUndo) {
       undo.registerResponse(msg)

@@ -7,12 +7,8 @@ import phaser.PhaserGame
 import phaser.card.CardSprite
 import phaser.gameplay.HighlightService
 import phaser.pile.PileGroup
-import util.NullUtils
-import scribe._
+import util.{Logging, NullUtils}
 
-import scala.scalajs.js.annotation.ScalaJSDefined
-
-@ScalaJSDefined
 class Playmat(val phaser: PhaserGame, val pileSets: IndexedSeq[PileSet], val layoutString: String) extends Group(
   game = phaser, parent = NullUtils.inst, name = "playmat"
 ) {
@@ -48,6 +44,6 @@ class Playmat(val phaser: PhaserGame, val pileSets: IndexedSeq[PileSet], val lay
 
   def initialMovesComplete() = pileGroups.filterNot(_._2.behavior == PileSet.Behavior.Pyramid).foreach(_._2.cards.foreach(_.bringToTop()))
 
-  def win(gw: GameWon) = this.logger.info("Win!")
-  def lose(gl: GameLost) = this.logger.info("Lose!")
+  def win(gw: GameWon) = Logging.info("Win!")
+  def lose(gl: GameLost) = Logging.info("Lose!")
 }

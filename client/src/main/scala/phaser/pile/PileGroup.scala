@@ -8,9 +8,6 @@ import models.pile.set.PileSet
 import phaser.PhaserGame
 import phaser.card.CardSprite
 
-import scala.scalajs.js.annotation.ScalaJSDefined
-
-@ScalaJSDefined
 class PileGroup(val phaser: PhaserGame, p: Pile) extends Group(game = phaser, parent = phaser.getPlaymat) {
   val id = p.id
   val behavior = p.pileSet.map(_.behavior).getOrElse(throw new IllegalStateException(s"Missing pileset for pile [$id]."))

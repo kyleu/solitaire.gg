@@ -4,9 +4,7 @@ import com.definitelyscala.phaser.{PluginObj, ScaleManager, State}
 import util.JsUtils
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.ScalaJSDefined
 
-@ScalaJSDefined
 class InitialState extends State {
   override def create() = {
     game.stage.disableVisibilityChange = true

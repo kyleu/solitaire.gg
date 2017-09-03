@@ -4,9 +4,6 @@ import com.definitelyscala.phaser.State
 import models.settings.Settings
 import navigation.NavigationService
 
-import scala.scalajs.js.annotation.ScalaJSDefined
-
-@ScalaJSDefined
 class LoadingState(settings: Settings) extends State {
   override def preload() = {
     val assetRoot = NavigationService.assetRoot

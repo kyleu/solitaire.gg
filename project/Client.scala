@@ -15,6 +15,7 @@ object Client {
       "com.lihaoyi" %%% "scalatags" % Dependencies.ScalaJS.scalaTagsVersion,
       "org.scala-js" %%% "scalajs-dom" % Dependencies.ScalaJS.domVersion
     ),
+    scalacOptions += "-P:scalajs:sjsDefinedByDefault",
     scalaJSStage in Global := FastOptStage,
     scapegoatIgnoredFiles := Seq(".*/JsUtils.scala", ".*/JsonSerializers.scala", ".*/Messages.scala"),
     scapegoatVersion := Dependencies.Utils.scapegoatVersion,

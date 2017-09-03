@@ -3,14 +3,14 @@ package navigation
 import game.ActiveGame
 import org.scalajs.dom
 import org.scalajs.dom.raw.PopStateEvent
-import scribe.Logging
+import util.Logging
 
 object NavigationService {
   lazy val isLocal = !dom.window.location.protocol.startsWith("http")
   lazy val assetRoot = if (isLocal) { "assets/" } else { "/assets/" }
 }
 
-class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[String]) => Unit) extends Logging {
+class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[String]) => Unit) {
   def initialAction() = {
     val args = dom.window.location.pathname.stripPrefix("/beta").stripPrefix("/").split("/").map(_.trim).filter(_.nonEmpty)
     val state = NavigationState.withValueOpt(args.headOption.getOrElse("games")).getOrElse(NavigationState.Games)
@@ -48,14 +48,14 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
   private[this] def navigate(state: NavigationState, args: Seq[String] = Nil, allowSelf: Boolean = false) = {
     if (state == currentState) {
       if (allowSelf) {
-        logger.debug(s"State self-transition for [$currentState] with args [${args.mkString(", ")}].")
+        Logging.debug(s"State self-transition for [$currentState] with args [${args.mkString(", ")}].")
         onStateChange(currentState, state, args)
         setPath(state, args)
       } else {
-        logger.warn(s"State transition to self [$currentState].")
+        Logging.warn(s"State transition to self [$currentState].")
       }
     } else {
-      logger.info(s"State transitioning from [$currentState] to [$state] with args [${args.mkString(", ")}].")
+      Logging.info(s"State transitioning from [$currentState] to [$state] with args [${args.mkString(", ")}].")
       onStateChange(currentState, state, args)
       setPath(state, args)
       if (currentState == NavigationState.Loading) {

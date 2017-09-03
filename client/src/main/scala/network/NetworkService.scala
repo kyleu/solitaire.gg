@@ -2,12 +2,11 @@ package network
 
 import msg.req.{Ping, SocketRequestMessage}
 import msg.rsp.{Pong, SocketResponseMessage}
-import scribe.Logging
-import util.JsonSerializers
+import util.{JsonSerializers, Logging}
 
 import scala.scalajs.js.timers.setTimeout
 
-class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => Unit) extends Logging {
+class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => Unit) {
   private[this] val loc = org.scalajs.dom.document.location
 
   private[this] val socketUrl = if (loc.host == "localhost:5000") {
@@ -31,16 +30,16 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
   setTimeout(10000)(sendPing())
 
   protected[this] def onSocketConnect(): Unit = {
-    logger.info(s"Socket [$socketUrl] connected.")
+    Logging.info(s"Socket [$socketUrl] connected.")
     NetworkMessageCache.flush(sendMessage)
   }
 
   protected[this] def onSocketError(error: String): Unit = {
-    logger.error(s"Socket error [$error].")
+    Logging.error(s"Socket error [$error].")
   }
 
   protected[this] def onSocketClose(): Unit = {
-    logger.info("Socket closed. Skipping reconnect.")
+    Logging.info("Socket closed. Skipping reconnect.")
     /*
     val callback = () => {
       Logging.info("Attempting to reconnect Websocket.")
@@ -57,7 +56,7 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
     val json = JsonSerializers.writeSocketRequestMessage(sm, debug)
     socket.send(json)
   } else {
-    logger.info(s"Not connected, skipping message [${sm.getClass.getSimpleName}] send.")
+    Logging.info(s"Not connected, skipping message [${sm.getClass.getSimpleName}] send.")
     NetworkMessageCache.cache(sm)
   }
 

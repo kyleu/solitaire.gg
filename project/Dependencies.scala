@@ -75,7 +75,6 @@ object Dependencies {
   object Utils {
     val scapegoatVersion = "1.3.2"
     val enumeratumVersion = "1.5.14"
-    val scribeVersion = "1.4.5"
 
     val betterFiles = "com.github.pathikrit" %% "better-files" % "3.1.0"
   }

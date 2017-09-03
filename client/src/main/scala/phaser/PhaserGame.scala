@@ -10,11 +10,9 @@ import org.scalajs.dom.raw.UIEvent
 import phaser.card.CardImages
 import phaser.gameplay.Gameplay
 import phaser.playmat.Playmat
-import scribe._
-import util.JsUtils
+import util.{JsUtils, Logging}
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.ScalaJSDefined
 
 object PhaserGame {
   protected val options = JsUtils.as[IGameConfig](js.Dynamic.literal(
@@ -27,7 +25,6 @@ object PhaserGame {
   ))
 }
 
-@ScalaJSDefined
 class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   this.antialias = true
 
@@ -46,7 +43,7 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   private[this] var audio: Option[AudioService] = None
   def initAudio() = audio = Some(new AudioService(this))
   def playAudio(key: String): Unit = if (getSettings.audio) {
-    this.logger.info(s"Playing audio [$key].")
+    Logging.debug(s"Playing audio [$key].")
     audio.map(_.play(key))
   }
 
