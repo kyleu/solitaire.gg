@@ -1,4 +1,3 @@
-# General
 general.number.one = one
 general.number.two = two
 general.number.three = three
@@ -12,18 +11,15 @@ general.number.ten = ten
 general.number.eleven = eleven
 general.number.twelve = twelve
 
-# Options
 options.resume = Resume Game
 options.resign = Resign
 options.redeal = New Deal
 options.same.deal = Same Deal
 options.winnable = Winnable Deal
 
-# Settings
 settings.title = Settings
 settings.disclaimer = I'm working on the settings page. It'll be better soon, I promise.
 
-# Help
 help.title = {0} Help
 help.about = This is {0}.
 help.privacy.policy = {0} Privacy Policy
@@ -37,7 +33,6 @@ help.original.game = Original Game
 help.related.games = Related Games
 help.web.resources = Web Resources
 
-# Rank Match Rule Help
 help.rank.match.rule.none = none
 help.rank.match.rule.up = one rank higher
 help.rank.match.rule.down = one rank lower
@@ -52,7 +47,6 @@ help.rank.match.rule.down.by.4 = four ranks lower
 help.rank.match.rule.up.by.pile.index = one rank higher for the first pile, two higher for the second, and so on,
 help.rank.match.rule.any = any rank
 
-# Suit Match Rule Help
 help.suit.match.rule.none = none
 help.suit.match.rule.same.suit = the same suit
 help.suit.match.rule.different.suit = a different suit
@@ -60,7 +54,6 @@ help.suit.match.rule.same.color = the same color
 help.suit.match.rule.alternating.color = a different color
 help.suit.match.rule.any = any suit
 
-# Fill Empty From Help
 help.fill.empty.with.any = An empty pile may be filled with any card.
 help.fill.empty.with.none = An empty pile may not be filled.
 help.fill.empty.with.rank = An empty pile may be filled with any {0}.
@@ -68,7 +61,6 @@ help.fill.empty.with.rank.until.stock.empty = An empty pile may be filled with a
 help.fill.empty.with.high.rank.or.low.rank = An empty pile may be filled with any {0} or {1}.
 help.fill.empty.with.sevens = An empty pile may be filled with any Seven.
 
-# Objective Help
 help.victory.condition.all.but.four.on.foundation = Place all but four cards on the foundation.
 help.victory.condition.all.on.foundation = Place all cards on the foundation in sequence.
 help.victory.condition.all.on.foundation.or.stock = Place all cards on the foundation or stock.
@@ -98,7 +90,6 @@ help.victory.condition.pairs.cr = Remove all pairs with consecutive ranks.
 help.victory.condition.pairs.cr-or-AK = Remove all pairs with consecutive ranks or Ace/King.
 help.victory.condition.pairs.cr-or-sr = Remove all pairs with consecutive or equal ranks.
 
-# Deck Options Help
 help.deck.single.standard = One standard deck of {0} cards.
 help.deck.single.oddranks = One deck of {0} cards using ranks {1}.
 help.deck.single.oddsuits = One deck of {0} cards using suits {1}.
@@ -109,7 +100,6 @@ help.deck.multiple.oddranks = {0} decks totalling {1} cards using ranks {2}.
 help.deck.multiple.oddsuits = {0} decks totalling {1} cards using suits {2}.
 help.deck.multiple.oddranksandsuits = {0} decks totalling {1} cards using ranks {2} and suits {3}.
 
-# Pile Help
 help.piles.single = A single {0} pile.
 help.piles.single.cards.empty = A single empty {0} pile.
 help.piles.single.cards.single = A single {0} pile with one initial card.
@@ -125,7 +115,6 @@ help.piles.multiple.cards.pile.index = {0} {1} piles with one card dealt to the 
 help.piles.multiple.cards.rest.of.deck = {0} {1} piles with the rest of the cards in the deck dealt to them.
 help.piles.multiple.cards.custom = {0} {1} piles with a custom number of cards dealt to them.
 
-# Stock Help
 help.stock.cards.shown = {0} cards are visible.
 
 help.stock.cards.dealt.single = one card
@@ -148,11 +137,9 @@ help.stock.max.deals.single = Only a single pass through the stock is allowed.
 help.stock.max.deals.multiple = Up to {0} passes through the stock.
 help.stock.max.deals.unlimited = The stock has unlimited redeals.
 
-# Waste Help
 help.waste.playable.cards.all = Any card may be moved from the {0}.
 help.waste.playable.cards.top = The top card may be moved from the {0}.
 
-# Foundation Help
 help.foundation.lowrank.any = Any card may be moved to any empty {0} pile.
 help.foundation.lowrank.ascending = An Ace may be played the first {0} pile, a Two on the second, and so on.
 help.foundation.lowrank.first.becomes.base = The first card played to a {0} becomes the base card for others.
@@ -171,7 +158,6 @@ help.foundation.cards.shown = {0} cards are visible.
 
 help.foundation.move.complete.sequences.only = Complete sorted sequences of cards may be moved an empty {0} pile.
 
-# Tableau Help
 help.tableau.unique.ranks = The piles are dealt in such a way that no two cards in the same pile have the same rank.
 
 help.tableau.cards.face.down.all.but.one = The top card of each pile is turned face-up.
@@ -187,7 +173,6 @@ help.tableau.build.rank.and.suit.match.rules = A card may be built on a card in 
 help.tableau.move.stacks.none = No cards may be moved from {0} piles.
 help.tableau.move.stacks.rank.and.suit.match.rules = Stacks of cards may be moved from a {0} pile if they are each {1} and {2}.
 
-# Pyramid Help
 help.pyramid.rows.single = a single row
 help.pyramid.rows.multiple = {0} rows
 
@@ -202,7 +187,6 @@ help.pyramid.build.rank.and.suit.match.rules = A card may be built on this {0} i
 help.pyramid.move.stacks.none = No cards may be moved from this {0}.
 help.pyramid.move.stacks.rank.and.suit.match.rules = Cards may be moved from this {0} if they are {1} and {2}.
 
-# Rules
 rules.aceofhearts.description = All cards must be built onto a single foundation pile in this Thomas Warfield invention.
 rules.acesandkings.description = Build up on one foundation, down on the other, but don't build at all on the tableau. Suits don't matter.
 rules.aceyandkingsley.description = A variation of ^acesandkings^ which starts with an ace or a king dealt to each foundation.
