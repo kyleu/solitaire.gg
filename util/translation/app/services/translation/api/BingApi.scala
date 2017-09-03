@@ -1,7 +1,8 @@
 package services.translation.api
 
-import util.FutureUtils.defaultContext
 import play.api.libs.ws.WSClient
+
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @javax.inject.Singleton
 class BingApi @javax.inject.Inject() (ws: WSClient) extends ApiProvider("Yandex") {

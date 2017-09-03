@@ -3,6 +3,7 @@ package controllers
 import play.api.mvc.InjectedController
 import services.translation.TranslationService
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 @javax.inject.Singleton

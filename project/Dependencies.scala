@@ -8,6 +8,7 @@ object Dependencies {
     val ws = play.sbt.PlayImport.ws
     val json = "com.typesafe.play" %% "play-json" % "2.6.2"
     val test = "com.typesafe.play" %% "play-test" % version
+    val guice = play.sbt.PlayImport.guice
 
     val mailer = "com.typesafe.play" %% "play-mailer" % "6.0.1"
     val mailerGuice = "com.typesafe.play" %% "play-mailer-guice" % "6.0.1"

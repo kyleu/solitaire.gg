@@ -3,9 +3,9 @@ package services.translation
 import java.io.{File, PrintWriter}
 
 import models.settings.Language
-import util.FutureUtils.defaultContext
 import services.translation.api.{BingApi, GoogleApi, YandexApi}
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.io.Source
 

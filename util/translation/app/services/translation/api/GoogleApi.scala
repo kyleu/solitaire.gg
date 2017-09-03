@@ -2,8 +2,9 @@ package services.translation.api
 
 import java.net.URLEncoder
 
-import util.FutureUtils.defaultContext
 import play.api.libs.ws.WSClient
+
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @javax.inject.Singleton
 class GoogleApi @javax.inject.Inject() (ws: WSClient) extends ApiProvider("Yandex") {
