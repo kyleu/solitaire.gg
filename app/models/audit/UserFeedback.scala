@@ -2,7 +2,7 @@ package models.audit
 
 import java.util.UUID
 
-import org.joda.time.LocalDateTime
+import java.time.LocalDateTime
 
 object UserFeedback {
   case class FeedbackNote(

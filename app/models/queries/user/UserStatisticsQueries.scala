@@ -6,7 +6,7 @@ import models.database.{Row, Statement}
 import models.history.GameHistory
 import models.queries.BaseQueries
 import models.user.UserStatistics
-import org.joda.time.LocalDateTime
+import java.time.LocalDateTime
 import util.DateUtils
 
 object UserStatisticsQueries extends BaseQueries[UserStatistics] {

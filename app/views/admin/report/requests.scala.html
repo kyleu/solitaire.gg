@@ -19,7 +19,7 @@
     @for(row <- counts.take(10)) {
       <tr>
         <td>@row._1</td>
-        <td>@util.Formatter.withCommas(row._2)</td>
+        <td>@util.NumberUtils.withCommas(row._2)</td>
       </tr>
     }
     </tbody>
@@ -34,7 +34,7 @@
 ) {
 
   <h3>@util.Config.projectName Request Report</h3>
-  <h4>Displaying metrics for @util.Formatter.withCommas(totalCount) requests.</h4>
+  <h4>Displaying metrics for @util.NumberUtils.withCommas(totalCount) requests.</h4>
 
   @renderTable("Path", pathCounts)
 

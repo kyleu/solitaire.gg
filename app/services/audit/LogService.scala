@@ -4,8 +4,8 @@ import java.io.File
 
 import models.audit.ServerLog
 import models.audit.ServerLog.LogLevel
-import org.joda.time.LocalDateTime
-import org.joda.time.format.DateTimeFormat
+
+import util.DateUtils
 
 import scala.io.Source
 
@@ -46,8 +46,6 @@ object LogService {
 
   private[this] def getLines(name: String) = Source.fromFile(new File(logDir, name)).getLines()
 
-  private[this] val dateFormatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss,SSS")
-
   private[this] def parseLog(line: String, lineNumber: Int) = {
     // [ERROR] 2015-07-23 18:48:56,395 from application in New I/O worker #29
 
@@ -59,7 +57,7 @@ object LogService {
 
     val occurredEndIndex = line.indexOf(' ', levelEndIndex + 20)
     val occurredString = line.substring(levelEndIndex + 2, occurredEndIndex)
-    val occurred = LocalDateTime.parse(occurredString, dateFormatter)
+    val occurred = DateUtils.fromIsoString(occurredString)
 
     val loggerStartIndex = line.indexOf(" from ", occurredEndIndex) + 6
     if (loggerStartIndex == 5) {

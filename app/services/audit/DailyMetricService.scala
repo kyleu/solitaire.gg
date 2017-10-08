@@ -2,7 +2,7 @@ package services.audit
 
 import models.audit.{DailyMetric, Metric}
 import models.queries.audit.DailyMetricQueries
-import org.joda.time.LocalDate
+import java.time.LocalDate
 import util.FutureUtils.defaultContext
 import services.database.Database
 import util.{DateUtils, Logging}

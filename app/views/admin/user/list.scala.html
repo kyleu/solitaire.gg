@@ -25,9 +25,9 @@
           <td><a href="@controllers.admin.routes.UserController.detail(u.id)">@u.id</a></td>
           <td>@u.email</td>
           <td>@u.username</td>
-          <td>@util.Formatter.withCommas(gameCounts.getOrElse(u.id, 0))</td>
-          <td>@util.Formatter.withCommas(winCounts.getOrElse(u.id, 0))</td>
-          <td>@u.created.toString("yyyy-MM-dd HH:mm:ss")</td>
+          <td>@util.NumberUtils.withCommas(gameCounts.getOrElse(u.id, 0))</td>
+          <td>@util.NumberUtils.withCommas(winCounts.getOrElse(u.id, 0))</td>
+          <td>@u.created</td>
           <td>
             <a href="@controllers.admin.routes.UserController.remove(u.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
           </td>

@@ -1,19 +1,15 @@
 package models.database
 
-import com.github.mauricio.async.db.ResultSet
-import services.database.Database
-
-import scala.concurrent.Future
+import models.database.jdbc.JdbcRow
 
 trait RawQuery[A] {
   def sql: String
   def values: Seq[Any] = Seq.empty
-  def handle(results: ResultSet): A
-  def apply(): Future[A] = Database.query(this)
+  def handle(results: java.sql.ResultSet): A
 }
 
 trait Query[A] extends RawQuery[A] {
-  def handle(results: ResultSet) = reduce(results.toIterator.map(rd => new Row(rd)))
+  override def handle(results: java.sql.ResultSet): A = reduce(new JdbcRow.Iter(results))
   def reduce(rows: Iterator[Row]): A
 }
 

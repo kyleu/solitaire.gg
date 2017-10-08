@@ -1,6 +1,7 @@
 package services.history
 
-import com.github.mauricio.async.db.Connection
+import java.sql.Connection
+
 import models.history.{GameHistory, GameStatistics}
 import models.queries.history.GameStatisticsQueries
 import services.database.Database

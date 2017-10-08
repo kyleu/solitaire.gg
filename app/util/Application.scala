@@ -4,7 +4,6 @@ import java.util.TimeZone
 
 import akka.actor.{ActorSystem, Props}
 import com.codahale.metrics.SharedMetricRegistries
-import org.joda.time.DateTimeZone
 import play.api.i18n.MessagesApi
 import play.api.inject.ApplicationLifecycle
 import play.api.libs.ws.WSClient
@@ -48,13 +47,13 @@ class Application @javax.inject.Inject() (
 
     log.info(s"${Config.projectName} is starting on [${config.hostname}].")
 
-    DateTimeZone.setDefault(DateTimeZone.UTC)
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
+    System.setProperty("user.timezone", "UTC")
 
     SharedMetricRegistries.remove("default")
     SharedMetricRegistries.add("default", Instrumented.metricRegistry)
 
-    Database.open(config.databaseConfiguration)
+    Database.open(config.underlying())
     Schema.update()
 
     FileService.setRootDir(config.fileCacheDir)

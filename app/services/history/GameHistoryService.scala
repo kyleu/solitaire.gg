@@ -1,13 +1,13 @@
 package services.history
 
+import java.sql.Connection
 import java.util.UUID
 
-import com.github.mauricio.async.db.Connection
 import models.history.GameHistory
 import models.queries.BaseQueries
 import models.queries.history.GameHistoryQueries
 import models.queries.user.UserQueries
-import org.joda.time.LocalDate
+import java.time.LocalDate
 import util.FutureUtils.defaultContext
 import services.database.Database
 

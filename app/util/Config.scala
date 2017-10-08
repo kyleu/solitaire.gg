@@ -2,7 +2,6 @@ package util
 
 import java.net.InetAddress
 
-import com.github.mauricio.async.db.{Configuration => DbConfig}
 import play.api.{Environment, Mode}
 import util.metrics.MetricsConfig
 
@@ -18,6 +17,8 @@ object Config {
 class Config @javax.inject.Inject() (cnf: play.api.Configuration, env: Environment) {
   val debug = env.mode == Mode.Dev
 
+  def underlying() = cnf
+
   val hostname = cnf.get[Option[String]]("host").getOrElse("localhost")
   val fileCacheDir = new java.io.File(cnf.get[Option[String]]("cache.dir").getOrElse("./cache"))
 
@@ -28,14 +29,6 @@ class Config @javax.inject.Inject() (cnf: play.api.Configuration, env: Environme
     graphitePort = cnf.get[Option[Int]]("metrics.graphite.port").getOrElse(2003),
     servletEnabled = cnf.get[Option[Boolean]]("metrics.servlet.enabled").getOrElse(true),
     servletPort = cnf.get[Option[Int]]("metrics.servlet.port").getOrElse(9001)
-  )
-
-  val databaseConfiguration = new DbConfig(
-    host = cnf.get[Option[String]]("database.host").getOrElse("localhost"),
-    port = 5432,
-    database = cnf.get[Option[String]]("database.schema"),
-    username = cnf.get[Option[String]]("database.username").getOrElse(Config.projectId),
-    password = cnf.get[Option[String]]("database.password")
   )
 
   val sparkEnabled = cnf.get[Option[Boolean]]("spark.enabled").getOrElse(false)

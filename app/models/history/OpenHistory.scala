@@ -2,7 +2,7 @@ package models.history
 
 import java.util.UUID
 
-import org.joda.time.LocalDateTime
+import java.time.LocalDateTime
 
 case class OpenHistory(
   id: UUID,

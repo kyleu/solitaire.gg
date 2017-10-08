@@ -19,6 +19,9 @@ trait BaseQueries[T] {
   protected def fromRow(row: Row): T
   protected def toDataSeq(t: T): Seq[Any]
 
+  protected def dateTime(row: Row, col: String) = row.as[java.sql.Timestamp](col).toLocalDateTime
+  protected def dateTimeOpt(row: Row, col: String) = row.asOpt[java.sql.Timestamp](col).map(_.toLocalDateTime)
+
   protected lazy val insertSql = s"insert into $tableName ($quotedColumns) values ($columnPlaceholders)"
 
   protected def updateSql(updateColumns: Seq[String], additionalUpdates: Option[String] = None) = {

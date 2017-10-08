@@ -4,7 +4,7 @@ import controllers.BaseController
 import models.audit.Metric
 import models.queries.history.GameSeedQueries
 import models.queries.report.{LeaderboardQueries, RowCountQueries}
-import org.joda.time.LocalDate
+import java.time.LocalDate
 import services.audit.DailyMetricService
 import services.database.Database
 import util.FutureUtils.defaultContext
@@ -52,9 +52,9 @@ class ReportController @javax.inject.Inject() (override val app: Application) ex
     }
   }
 
-  private[this] def toChartData(metrics: Seq[(org.joda.time.LocalDate, Map[models.audit.Metric, Long])]) = {
+  private[this] def toChartData(metrics: Seq[(java.time.LocalDate, Map[models.audit.Metric, Long])]) = {
     def toChartDataValues(metric: models.audit.Metric) = metrics.map(x => x._1 -> x._2.getOrElse(metric, 0L)).reverseMap { row =>
-      val ms = util.DateUtils.toMillis(row._1.toLocalDateTime(org.joda.time.LocalTime.MIDNIGHT).plusDays(1))
+      val ms = util.DateUtils.toMillis(row._1.atStartOfDay.plusDays(1))
       s"""{ "x": $ms, "y": ${row._2} }"""
     }.mkString(", ")
 

@@ -1,7 +1,7 @@
 package services.database
 
-import org.joda.time.LocalDate
 import services.file.FileService
+import util.DateUtils
 
 import scala.sys.process._
 
@@ -9,7 +9,7 @@ object BackupRestore {
   private[this] val backupRoot = FileService.getDir("backup")
 
   def backup() = {
-    val filename = s"${util.Config.projectId}-backup-${new LocalDate().toString("yyyy-MM-dd")}.sql"
+    val filename = s"${util.Config.projectId}-backup-${DateUtils.today}.sql"
     val f = new java.io.File(backupRoot, filename)
     if (f.exists) {
       throw new IllegalStateException(s"File [$filename] already exists.")

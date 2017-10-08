@@ -6,7 +6,7 @@ import models.database.{Query, Row, Statement}
 import models.history.{GameHistory, GameSeed}
 import models.queries.BaseQueries
 import models.rules.{GameRules, GameRulesSet}
-import org.joda.time.LocalDateTime
+import java.time.LocalDateTime
 import services.test.GameSolver
 import util.DateUtils
 

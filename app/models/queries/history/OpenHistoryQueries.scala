@@ -5,7 +5,7 @@ import java.util.UUID
 import models.database.Row
 import models.history.OpenHistory
 import models.queries.BaseQueries
-import org.joda.time.LocalDateTime
+import java.time.LocalDateTime
 
 object OpenHistoryQueries extends BaseQueries[OpenHistory] {
   override protected val tableName = "opens"

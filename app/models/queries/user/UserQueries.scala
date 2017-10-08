@@ -6,7 +6,8 @@ import models.queries.BaseQueries
 import models.database.{FlatSingleRowQuery, Row, SingleRowQuery, Statement}
 import models.settings.Settings
 import models.user.User
-import org.joda.time.LocalDateTime
+import java.time.LocalDateTime
+import org.postgresql.util.PGobject
 import util.JsonSerializers
 
 object UserQueries extends BaseQueries[User] {
@@ -49,7 +50,12 @@ object UserQueries extends BaseQueries[User] {
 
   case class SetSettings(userId: UUID, settings: Settings) extends Statement {
     override val sql = updateSql(Seq("prefs"))
-    override val values = Seq(JsonSerializers.writeSettings(settings), userId)
+    override val values = {
+      val prefs = new PGobject()
+      prefs.setType("json")
+      prefs.setValue(JsonSerializers.writeSettings(settings))
+      Seq(prefs, userId)
+    }
   }
 
   case class GetByUsername(username: String) extends FlatSingleRowQuery[User] {
@@ -68,10 +74,15 @@ object UserQueries extends BaseQueries[User] {
     val id = row.as[UUID]("id")
     val email = row.asOpt[String]("email")
     val username = row.asOpt[String]("username")
-    val settings = JsonSerializers.readSettings(row.as[String]("prefs"))
-    val created = row.as[LocalDateTime]("created")
+    val settings = JsonSerializers.readSettings(row.as[PGobject]("prefs").getValue)
+    val created = dateTime(row, "created")
     User(id, email, username, settings, created)
   }
 
-  override protected def toDataSeq(u: User) = Seq(u.id, u.email, u.username, JsonSerializers.writeSettings(u.settings), u.created)
+  override protected def toDataSeq(u: User) = {
+    val prefs = new PGobject()
+    prefs.setType("json")
+    prefs.setValue(JsonSerializers.writeSettings(u.settings))
+    Seq(u.id, u.email, u.username, prefs, u.created)
+  }
 }

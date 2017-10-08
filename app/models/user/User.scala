@@ -3,7 +3,7 @@ package models.user
 import java.util.UUID
 
 import models.settings.Settings
-import org.joda.time.LocalDateTime
+import java.time.LocalDateTime
 import util.DateUtils
 
 object User {

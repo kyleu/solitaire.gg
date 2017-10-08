@@ -1,6 +1,6 @@
-@(msg: String, ctx: String, ex: Option[Throwable], d: org.joda.time.LocalDateTime)<html>
+@(msg: String, ctx: String, ex: Option[Throwable], d: java.time.LocalDateTime)<html>
   <body>
-    <h3>Severe error occurred at [@d.toString("yyyy-MM-dd HH:mm:ss")]</h3>
+    <h3>Severe error occurred at [@d]</h3>
 
     <p>Message: @msg</p>
     <p>Context: @ctx</p>

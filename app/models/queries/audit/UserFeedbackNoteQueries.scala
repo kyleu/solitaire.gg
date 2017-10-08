@@ -5,7 +5,7 @@ import java.util.UUID
 import models.audit.UserFeedback
 import models.queries.BaseQueries
 import models.database.{Query, Row}
-import org.joda.time.LocalDateTime
+import java.time.LocalDateTime
 
 object UserFeedbackNoteQueries extends BaseQueries[UserFeedback.FeedbackNote] {
   override protected val tableName = "user_feedback_notes"

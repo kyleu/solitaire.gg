@@ -28,7 +28,7 @@ object Server {
   private[this] val dependencies = {
     import Dependencies._
     Seq(
-      Database.hikariCp, Database.postgres, Database.postgresAsync, GraphQL.sangria, GraphQL.playJson, GraphQL.circe,
+      Database.hikariCp, Database.postgres, GraphQL.sangria, GraphQL.playJson, GraphQL.circe,
       Akka.actor, Akka.log4j, Akka.testkit, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */
       Play.filters, Play.ws, Play.test, Play.mailer, Play.mailerGuice,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
@@ -44,7 +44,7 @@ object Server {
 
     // Play
     routesGenerator := InjectedRoutesGenerator,
-    routesImport ++= Seq("util.web.RoutingImports._"),
+    routesImport ++= Seq("util.web.QueryStringUtils._"),
 
     // Scala.js
     scalaJSProjects := Seq(Client.client),

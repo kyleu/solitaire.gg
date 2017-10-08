@@ -34,14 +34,14 @@
                 <td title="@note.id">@note.id.toString.substring(0, 8)</td>
                 <td title="@note.authorId">@note.authorId.toString.substring(0, 8)</td>
                 <td>@note.content</td>
-                <td title="@util.Formatter.niceDateTime(note.occurred)">@note.occurred.toLocalDate.toString</td>
+                <td title="@util.DateUtils.niceDateTime(note.occurred)">@note.occurred.toLocalDate.toString</td>
               </tr>
             }
             </tbody>
           </table>
         }
       </td>
-      <td style="width: 75px;" title="@util.Formatter.niceDateTime(f._1.occurred)">@f._1.occurred.toLocalDate.toString</td>
+      <td style="width: 75px;" title="@util.DateUtils.niceDateTime(f._1.occurred)">@f._1.occurred.toLocalDate.toString</td>
       <td style="width: 50px;">
         <a href="@controllers.admin.routes.FeedbackController.feedbackNoteForm(f._1.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
         <a href="@controllers.admin.routes.FeedbackController.removeFeedback(f._1.id)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>

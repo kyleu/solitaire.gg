@@ -2,7 +2,7 @@
 @views.html.admin.layout.base(s"${util.Config.projectName} Logs", "explore") {
   <div class="panel panel-default">
     <div class="panel-body">
-      <div class="text-large">@util.Formatter.withCommas(files.size) log files</div>
+      <div class="text-large">@util.NumberUtils.withCommas(files.size) log files</div>
     </div>
   </div>
 
@@ -17,7 +17,7 @@
     @for(file <- files) {
       <tr>
         <td><a href="@controllers.admin.routes.LogController.view(file._1)">@file._1</a></td>
-        <td>@util.Formatter.withCommas(file._2)B</td>
+        <td>@util.NumberUtils.withCommas(file._2)B</td>
       </tr>
     }
     </tbody>

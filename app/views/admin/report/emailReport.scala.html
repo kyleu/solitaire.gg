@@ -1,5 +1,5 @@
 @(
-  d: org.joda.time.LocalDate,
+  d: java.time.LocalDate,
   metrics: Map[models.audit.Metric, Long],
   totals: Map[models.audit.Metric, Long],
   tableCounts: Seq[(String, Long)]
@@ -65,7 +65,7 @@
       @for(table <- tableCounts) {
         <tr style="@css.tr">
           <td style="@css.td">@table._1</td>
-          <td style="@css.td@css.alignRight">@util.Formatter.withCommas(table._2)</td>
+          <td style="@css.td@css.alignRight">@util.NumberUtils.withCommas(table._2)</td>
         </tr>
       }
       </tbody>

@@ -1,8 +1,8 @@
 package services.user
 
+import java.sql.Connection
 import java.util.UUID
 
-import com.github.mauricio.async.db.Connection
 import models.history.GameHistory
 import models.queries.user.{UserQueries, UserStatisticsQueries}
 import models.user.UserStatistics

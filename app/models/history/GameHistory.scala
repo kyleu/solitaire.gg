@@ -4,7 +4,7 @@ import java.util.UUID
 
 import enumeratum.values._
 import models.card.{Rank, Suit}
-import org.joda.time.LocalDateTime
+import java.time.LocalDateTime
 import util.{DateUtils, EnumWithDescription}
 
 object GameHistory {

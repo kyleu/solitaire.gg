@@ -25,9 +25,9 @@
       </div>
       <div class="text-large">
       @if(searchQuery.isEmpty) {
-        @util.Formatter.withCommas(totalCount) @model@if(totalCount != 1) {s} found.
+        @util.NumberUtils.withCommas(totalCount) @model@if(totalCount != 1) {s} found.
       } else {
-        @util.Formatter.withCommas(totalCount) @model@if(totalCount != 1) {s} found for [@searchQuery].
+        @util.NumberUtils.withCommas(totalCount) @model@if(totalCount != 1) {s} found for [@searchQuery].
       }
       </div>
     </div>
@@ -49,11 +49,11 @@
           <a href="@nextLink" class="next btn-xs btn btn-default">Next</a>
         }
         <strong>
-          @defining(util.Formatter.withCommas((page * models.queries.BaseQueries.pageSize) + 1)) { start =>
-            @defining(util.Formatter.withCommas((page * models.queries.BaseQueries.pageSize) + recordCount)) { end =>
+          @defining(util.NumberUtils.withCommas((page * models.queries.BaseQueries.pageSize) + 1)) { start =>
+            @defining(util.NumberUtils.withCommas((page * models.queries.BaseQueries.pageSize) + recordCount)) { end =>
               @start-@end
             }
-          } of @util.Formatter.withCommas(totalCount) @model@if(totalCount != 1) {s}
+          } of @util.NumberUtils.withCommas(totalCount) @model@if(totalCount != 1) {s}
         </strong>
       </div>
     }

@@ -3,7 +3,7 @@ package models.queries.history
 import models.database.{Row, Statement}
 import models.history.{GameHistory, GameStatistics}
 import models.queries.BaseQueries
-import org.joda.time.LocalDateTime
+import java.time.LocalDateTime
 import util.DateUtils
 
 object GameStatisticsQueries extends BaseQueries[GameStatistics] {

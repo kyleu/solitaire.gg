@@ -15,7 +15,7 @@
         <a href="@controllers.admin.routes.RulesController.rulesData()">Raw Data</a>
       </div>
       <div>
-        @util.Formatter.withCommas(models.rules.GameRulesSet.completed.size) completed games
+        @util.NumberUtils.withCommas(models.rules.GameRulesSet.completed.size) completed games
       </div>
     </div>
   </div>

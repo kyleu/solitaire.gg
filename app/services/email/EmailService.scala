@@ -2,7 +2,7 @@ package services.email
 
 import models.audit.{Metric, UserFeedback}
 import org.apache.commons.mail.EmailException
-import org.joda.time.LocalDate
+import java.time.LocalDate
 import play.api.i18n.Messages
 import play.api.libs.mailer._
 import services.audit.DailyMetricService

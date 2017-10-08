@@ -5,7 +5,7 @@ import java.util.UUID
 import models.database.Row
 import models.history.InstallHistory
 import models.queries.BaseQueries
-import org.joda.time.LocalDateTime
+import java.time.LocalDateTime
 
 object InstallHistoryQueries extends BaseQueries[InstallHistory] {
   override protected val tableName = "installs"
