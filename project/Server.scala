@@ -28,7 +28,7 @@ object Server {
   private[this] val dependencies = {
     import Dependencies._
     Seq(
-      Database.postgresAsync, GraphQL.sangria, GraphQL.playJson, GraphQL.circe,
+      Database.hikariCp, Database.postgres, Database.postgresAsync, GraphQL.sangria, GraphQL.playJson, GraphQL.circe,
       Akka.actor, Akka.log4j, Akka.testkit, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */
       Play.filters, Play.ws, Play.test, Play.mailer, Play.mailerGuice,
       Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
@@ -84,6 +84,5 @@ object Server {
       UniversalPlugin, LinuxPlugin, DebianPlugin, RpmPlugin, DockerPlugin, WindowsPlugin, JDKPackagerPlugin
     )
     .settings(Shared.commonSettings ++ serverSettings: _*)
-    .aggregate(projectToRef(Client.client), Shared.sharedJvm)
     .dependsOn(Shared.sharedJvm, Utilities.metrics, Utilities.screenshotCreator)
 }

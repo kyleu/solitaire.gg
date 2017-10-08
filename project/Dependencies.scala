@@ -2,11 +2,11 @@ import sbt._
 
 object Dependencies {
   object Play {
-    val version = "2.6.3"
+    val version = "2.6.6"
     val lib = "com.typesafe.play" %% "play" % version
     val filters = play.sbt.PlayImport.filters
     val ws = play.sbt.PlayImport.ws
-    val json = "com.typesafe.play" %% "play-json" % "2.6.2"
+    val json = "com.typesafe.play" %% "play-json" % "2.6.6"
     val test = "com.typesafe.play" %% "play-test" % version
     val guice = play.sbt.PlayImport.guice
 
@@ -15,7 +15,7 @@ object Dependencies {
   }
 
   object Akka {
-    private[this] val version = "2.5.4"
+    private[this] val version = "2.5.6"
     val actor = "com.typesafe.akka" %% "akka-actor" % version
     val cluster = "com.typesafe.akka" %% "akka-cluster" % version
     val contrib = "com.typesafe.akka" %% "akka-contrib" % version
@@ -26,12 +26,14 @@ object Dependencies {
   }
 
   object Database {
+    val hikariCp = "com.zaxxer" % "HikariCP" % "2.7.2"
+    val postgres = "org.postgresql" % "postgresql" % "9.4.1212"
     val postgresAsync = "com.github.mauricio" %% "postgresql-async" % "0.2.21" //exclude("io.netty", "netty-all")
   }
 
   object GraphQL {
     val sangria = "org.sangria-graphql" %% "sangria" % "1.3.0"
-    val playJson = "org.sangria-graphql" %% "sangria-play-json" % "1.0.3"
+    val playJson = "org.sangria-graphql" %% "sangria-play-json" % "1.0.4"
     val circe = "org.sangria-graphql" %% "sangria-circe" % "1.1.0"
   }
 
@@ -54,7 +56,7 @@ object Dependencies {
   }
 
   object Metrics {
-    private[this] val version = "3.2.4"
+    private[this] val version = "3.2.5"
     val jvm = "io.dropwizard.metrics" % "metrics-jvm" % version withSources()
     val ehcache = "io.dropwizard.metrics" % "metrics-ehcache" % version withSources() intransitive()
     val healthChecks = "io.dropwizard.metrics" % "metrics-healthchecks" % version withSources() intransitive()
@@ -68,20 +70,20 @@ object Dependencies {
 
   object ScalaJS {
     val jQueryVersion = "0.9.2"
-    val scalaTagsVersion = "0.6.5"
+    val scalaTagsVersion = "0.6.7"
     val domVersion = "0.9.3"
     val definitelyScalaVersion = "1.0.2"
   }
 
   object Utils {
-    val scapegoatVersion = "1.3.2"
+    val scapegoatVersion = "1.3.3"
     val enumeratumVersion = "1.5.14"
 
     val betterFiles = "com.github.pathikrit" %% "better-files" % "3.1.0"
   }
 
   object Testing {
-    val gatlingVersion = "2.2.5"
+    val gatlingVersion = "2.3.0"
     val gatlingCore = "io.gatling" % "gatling-test-framework" % gatlingVersion % "test"
     val gatlingCharts = "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test"
   }
