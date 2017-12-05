@@ -1,25 +1,18 @@
-node {
-  stage('init') {
-    def sbtHome = tool 'sbt-1.0'
-    steps {
-      env.sbt = "${sbtHome}/bin/sbt -no-colors -batch"
-    }
-  }
+pipeline {
+  agent any
 
-  stage('pull') {
-    steps {
-      checkout scm
+  stages {
+    stage('Build') {
+      steps {
+        sh "sbt -no-colors -batch dist"
+        archiveArtifacts artifacts: '**/target/universal/*.zip', fingerprint: true
+      }
     }
-  }
-  stage('build') {
-    steps {
-      sh "${sbt} dist"
-      archiveArtifacts artifacts: '**/target/universal/*.zip', fingerprint: true
-    }
-  }
-  stage('publish') {
-    steps {
-      echo 'TODO: publish'
+
+    stage('Publish') {
+      steps {
+        echo 'TODO: publish'
+      }
     }
   }
 }
