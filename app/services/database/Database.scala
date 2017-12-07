@@ -2,13 +2,12 @@ package services.database
 
 import models.database.{DatabaseConfig, RawQuery, Statement}
 import util.Logging
-import util.metrics.Instrumented
 
 import scala.concurrent.Future
 
 object Database extends JdbcDatabase("app", "database")
 
-trait Database[Conn] extends Instrumented with Logging {
+trait Database[Conn] extends Logging {
   protected[this] def key: String
 
   def transaction[A](f: Conn => Future[A], conn: Option[Conn]): Future[A]

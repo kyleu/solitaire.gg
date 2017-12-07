@@ -10,8 +10,6 @@ lazy val benchmarking = Utilities.benchmarking
 
 lazy val iconCreator = Utilities.iconCreator
 
-lazy val metrics = Utilities.metrics
-
 lazy val screenshotCreator = Utilities.screenshotCreator
 
 lazy val translation = Utilities.translation

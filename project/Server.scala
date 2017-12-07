@@ -28,10 +28,10 @@ object Server {
   private[this] val dependencies = {
     import Dependencies._
     Seq(
+      Metrics.metrics, Metrics.metricsJvm, Metrics.metricsHttp, Metrics.metricsPush,
       Database.hikariCp, Database.postgres, GraphQL.sangria, GraphQL.playJson, GraphQL.circe,
       Akka.actor, Akka.log4j, Akka.testkit, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */
       Play.filters, Play.ws, Play.test, Play.mailer, Play.mailerGuice,
-      Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite,
       WebJars.requireJs, WebJars.bootstrap, WebJars.underscore, WebJars.d3, WebJars.nvd3, WebJars.materialize, WebJars.jquery,
       Utils.betterFiles, Testing.gatlingCore, Testing.gatlingCharts, Play.test
     )
@@ -84,5 +84,5 @@ object Server {
       UniversalPlugin, LinuxPlugin, DebianPlugin, RpmPlugin, DockerPlugin, WindowsPlugin, JDKPackagerPlugin
     )
     .settings(Shared.commonSettings ++ serverSettings: _*)
-    .dependsOn(Shared.sharedJvm, Utilities.metrics, Utilities.screenshotCreator)
+    .dependsOn(Shared.sharedJvm, Utilities.screenshotCreator)
 }

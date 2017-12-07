@@ -1,23 +1,36 @@
 package util.metrics
 
-import java.lang.management.ManagementFactory
+import io.prometheus.client.Histogram
+import io.prometheus.client.exporter.HTTPServer
+import io.prometheus.client.hotspot.DefaultExports
+import util.Logging
 
-import com.codahale.metrics.MetricRegistry
-import com.codahale.metrics.jvm._
-import nl.grons.metrics.scala.{MetricName, InstrumentedBuilder}
-import util.Config
+import scala.concurrent.{ExecutionContext, Future}
+import scala.util.control.NonFatal
 
-object Instrumented {
-  val metricRegistry = new MetricRegistry()
-  metricRegistry.register("jvm.buffer-pools", new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer))
-  metricRegistry.register("jvm.class-loading", new ClassLoadingGaugeSet())
-  metricRegistry.register("jvm.fd.usage", new FileDescriptorRatioGauge())
-  metricRegistry.register("jvm.gc", new GarbageCollectorMetricSet())
-  metricRegistry.register("jvm.memory", new MemoryUsageGaugeSet())
-  metricRegistry.register("jvm.thread-states", new ThreadStatesGaugeSet())
-}
+object Instrumented extends Logging {
+  private[this] var server: Option[HTTPServer] = None
 
-trait Instrumented extends InstrumentedBuilder {
-  override lazy val metricBaseName = MetricName(s"${Config.projectId}.${util.Formatter.className(this)}")
-  override val metricRegistry = Instrumented.metricRegistry
+  def start(port: Int) = {
+    log.info(s"Exposing Prometheus metrics on port [$port].")
+    server = Some(new HTTPServer(port))
+    DefaultExports.initialize()
+  }
+
+  def stop() = {
+    server.foreach(_.stop())
+  }
+
+  def timeFuture[A](metric: Histogram, labels: String*)(future: => Future[A])(implicit context: ExecutionContext): Future[A] = {
+    val ctx = metric.labels(labels: _*).startTimer()
+    val f = try {
+      future
+    } catch {
+      case NonFatal(ex) =>
+        ctx.close()
+        throw ex
+    }
+    f.onComplete(_ => ctx.close())
+    f
+  }
 }

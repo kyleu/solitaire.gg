@@ -17,14 +17,6 @@ object Utilities {
     name := "icon-creator"
   ).settings(libraryDependencies ++= iconLibs).settings(Shared.commonSettings: _*)
 
-  private[this] val metricsLibs = Seq(
-    Play.lib, Akka.actor,
-    Metrics.metrics, Metrics.healthChecks, Metrics.json, Metrics.jvm, Metrics.ehcache, Metrics.jettyServlet, Metrics.servlets, Metrics.graphite
-  )
-  lazy val metrics = (project in file("util/metrics"))
-    .settings(libraryDependencies ++= metricsLibs)
-    .settings(Shared.commonSettings: _*)
-
   lazy val screenshotCreator = (project in file("util/screenshotCreator")).settings(
     name := "screenshot-creator"
   ).settings(Shared.commonSettings: _*).dependsOn(Shared.sharedJvm)

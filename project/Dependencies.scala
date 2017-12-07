@@ -55,16 +55,11 @@ object Dependencies {
   }
 
   object Metrics {
-    private[this] val version = "3.2.5"
-    val jvm = "io.dropwizard.metrics" % "metrics-jvm" % version withSources()
-    val ehcache = "io.dropwizard.metrics" % "metrics-ehcache" % version withSources() intransitive()
-    val healthChecks = "io.dropwizard.metrics" % "metrics-healthchecks" % version withSources() intransitive()
-    val json = "io.dropwizard.metrics" % "metrics-json" % version withSources()
-    val servlets = "io.dropwizard.metrics" % "metrics-servlets" % version withSources() intransitive()
-    val graphite = "io.dropwizard.metrics" % "metrics-graphite" % version withSources() intransitive()
-
-    val metrics = "nl.grons" %% "metrics-scala" % "3.5.9" withSources()
-    val jettyServlet = "org.eclipse.jetty" % "jetty-servlet" % "9.4.6.v20170531" withSources()
+    val version = "0.1.0"
+    val metrics = "io.prometheus" % "simpleclient" % version
+    val metricsJvm = "io.prometheus" % "simpleclient_hotspot" % version
+    val metricsHttp = "io.prometheus" % "simpleclient_httpserver" % version
+    val metricsPush = "io.prometheus" % "simpleclient_pushgateway" % version
   }
 
   object ScalaJS {

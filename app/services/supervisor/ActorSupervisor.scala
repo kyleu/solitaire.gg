@@ -3,10 +3,10 @@ package services.supervisor
 import java.util.UUID
 
 import akka.actor.SupervisorStrategy.Stop
-import akka.actor.{ActorRef, OneForOneStrategy, Props, SupervisorStrategy}
+import akka.actor.{ActorRef, OneForOneStrategy, SupervisorStrategy}
 import models._
 import java.time.LocalDateTime
-import util.metrics.{InstrumentedActor, MetricsServletActor}
+import util.metrics.InstrumentedActor
 import util.{Application, DateUtils, Logging}
 
 object ActorSupervisor {
@@ -17,21 +17,17 @@ object ActorSupervisor {
 class ActorSupervisor(val app: Application) extends InstrumentedActor with Logging {
   import services.supervisor.ActorSupervisor._
 
-  protected[this] val socketsCounter = metrics.counter("active-connections")
-
-  override def preStart() = {
-    context.actorOf(Props(classOf[MetricsServletActor], app.config), "metrics-servlet")
-  }
+  private[this] val socketsCount = gauge("active_connections", "Actor Supervisor active connections.")
 
   override def supervisorStrategy: SupervisorStrategy = OneForOneStrategy() {
     case _ => Stop
   }
 
   override def receiveRequest = {
-    case ss: SocketStarted => timeReceive(ss) { handleSocketStarted(ss.userId, ss.username, ss.socketId, ss.conn) }
-    case ss: SocketStopped => timeReceive(ss) { handleSocketStopped(ss.socketId) }
+    case ss: SocketStarted => handleSocketStarted(ss.userId, ss.username, ss.socketId, ss.conn)
+    case ss: SocketStopped => handleSocketStopped(ss.socketId)
 
-    case GetSystemStatus => timeReceive(GetSystemStatus) { handleGetSystemStatus() }
+    case GetSystemStatus => handleGetSystemStatus()
 
     case im: InternalMessage => log.warn(s"Unhandled internal message [${im.getClass.getSimpleName}] received.")
     case x => log.warn(s"ActorSupervisor encountered unknown message: ${x.toString}")
@@ -45,13 +41,13 @@ class ActorSupervisor(val app: Application) extends InstrumentedActor with Loggi
   protected[this] def handleSocketStarted(userId: UUID, username: Option[String], socketId: UUID, socket: ActorRef) = {
     log.debug(s"Socket [$socketId] registered to [$userId] with path [${socket.path}].")
     ActorSupervisor.sockets(socketId) = SocketRecord(userId, username, socket, DateUtils.now)
-    socketsCounter.inc()
+    socketsCount.inc()
   }
 
   protected[this] def handleSocketStopped(id: UUID) = {
     ActorSupervisor.sockets.remove(id) match {
       case Some(sock) =>
-        socketsCounter.dec()
+        socketsCount.dec()
         log.debug(s"Connection [$id] [${sock.actorRef.path}] stopped.")
       case None => log.warn(s"Socket [$id] stopped but is not registered.")
     }
