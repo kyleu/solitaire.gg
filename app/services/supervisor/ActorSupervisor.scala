@@ -3,10 +3,13 @@ package services.supervisor
 import java.util.UUID
 
 import akka.actor.SupervisorStrategy.Stop
-import akka.actor.{ActorRef, OneForOneStrategy, SupervisorStrategy}
+import akka.actor.{Actor, ActorRef, OneForOneStrategy, SupervisorStrategy}
 import models._
 import java.time.LocalDateTime
-import util.metrics.InstrumentedActor
+
+import io.prometheus.client.{Counter, Gauge, Histogram}
+import services.supervisor.ActorSupervisor.SocketRecord
+import util.metrics.Instrumented
 import util.{Application, DateUtils, Logging}
 
 object ActorSupervisor {
@@ -14,20 +17,23 @@ object ActorSupervisor {
   protected val sockets = collection.mutable.HashMap.empty[UUID, SocketRecord]
 }
 
-class ActorSupervisor(val app: Application) extends InstrumentedActor with Logging {
-  import services.supervisor.ActorSupervisor._
-
-  private[this] val socketsCount = gauge("active_connections", "Actor Supervisor active connections.")
+class ActorSupervisor(val app: Application) extends Actor with Logging {
+  private[this] lazy val metricsName = util.Config.projectId + "_actor_supervisor"
+  private[this] lazy val receiveHistogram = Histogram.build(metricsName + "_receive", s"Message metrics for [$metricsName]").labelNames("msg").register()
+  private[this] lazy val errorCounter = Counter.build(metricsName + "_exception", s"Exception metrics for [$metricsName]").labelNames("msg", "ex").register()
+  private[this] val socketsCount = Gauge.build(metricsName + "_active_connections", "Actor Supervisor active actors.").labelNames("id").register()
 
   override def supervisorStrategy: SupervisorStrategy = OneForOneStrategy() {
     case _ => Stop
   }
 
-  override def receiveRequest = {
-    case ss: SocketStarted => handleSocketStarted(ss.userId, ss.username, ss.socketId, ss.conn)
-    case ss: SocketStopped => handleSocketStopped(ss.socketId)
+  private[this] def time(msg: Any, f: => Unit) = Instrumented.timeReceive(msg, receiveHistogram, errorCounter)(f)
 
-    case GetSystemStatus => handleGetSystemStatus()
+  override def receive = {
+    case ss: SocketStarted => time(ss, handleSocketStarted(ss.userId, ss.username, ss.socketId, ss.conn))
+    case ss: SocketStopped => time(ss, handleSocketStopped(ss.socketId))
+
+    case GetSystemStatus => time(GetSystemStatus, handleGetSystemStatus())
 
     case im: InternalMessage => log.warn(s"Unhandled internal message [${im.getClass.getSimpleName}] received.")
     case x => log.warn(s"ActorSupervisor encountered unknown message: ${x.toString}")

@@ -1,5 +1,7 @@
 package services.socket
 
+import akka.actor.Actor
+import io.prometheus.client.{Counter, Histogram}
 import models.InternalMessage
 import models.history.GameHistory
 import models.rules.GameRulesSet
@@ -9,15 +11,27 @@ import msg.rsp.Pong
 import services.history.{GameHistoryService, GameSeedService, GameStatisticsService}
 import services.user.{UserService, UserStatisticsService}
 import util.DateUtils
-import util.metrics.InstrumentedActor
+import util.metrics.Instrumented
 
-trait SocketRequestMessageHelper extends InstrumentedActor { this: SocketService =>
-  override def receiveRequest = {
-    case p: Ping => out ! Pong(p.ts)
-    case gs: OnGameStart => onGameStart(gs)
-    case gc: OnGameComplete => onGameComplete(gc)
-    case ss: SaveSettings => UserService.saveSettings(user.id, ss.settings)
-    case im: InternalMessage => handleInternalMessage(im)
+object SocketRequestMessageHelper {
+  private lazy val metricsName = util.Config.projectId + "_socket_service"
+  private lazy val receiveHistogram = Histogram.build(metricsName + "_receive", s"Message metrics for [$metricsName]").labelNames("msg").register()
+  private lazy val errorCounter = Counter.build(metricsName + "_exception", s"Exception metrics for [$metricsName]").labelNames("msg", "ex").register()
+}
+
+trait SocketRequestMessageHelper extends Actor { this: SocketService =>
+  private[this] def time(msg: Any, f: => Unit) = Instrumented.timeReceive(
+    msg,
+    SocketRequestMessageHelper.receiveHistogram,
+    SocketRequestMessageHelper.errorCounter
+  )(f)
+
+  override def receive = {
+    case p: Ping => time(p, out ! Pong(p.ts))
+    case gs: OnGameStart => time(gs, onGameStart(gs))
+    case gc: OnGameComplete => time(gc, onGameComplete(gc))
+    case ss: SaveSettings => time(ss, UserService.saveSettings(user.id, ss.settings))
+    case im: InternalMessage => time(im, handleInternalMessage(im))
     case x => throw new IllegalArgumentException(s"Unhandled SocketRequestMessage [${x.getClass.getSimpleName}].")
   }
 
