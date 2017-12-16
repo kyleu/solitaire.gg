@@ -3,7 +3,8 @@ package models.queries.history
 import models.database.{Row, Statement}
 import models.history.{GameHistory, GameStatistics}
 import models.queries.BaseQueries
-import java.time.LocalDateTime
+
+import models.database.DatabaseFieldType.TimestampType
 import util.DateUtils
 
 object GameStatisticsQueries extends BaseQueries[GameStatistics] {
@@ -33,8 +34,8 @@ object GameStatisticsQueries extends BaseQueries[GameStatistics] {
     totalMoves = row.as[Int]("total_moves"),
     totalUndos = row.as[Int]("total_undos"),
     totalRedos = row.as[Int]("total_redos"),
-    lastWin = row.asOpt[LocalDateTime]("last_win").map(DateUtils.toMillis),
-    lastLoss = row.asOpt[LocalDateTime]("last_loss").map(DateUtils.toMillis)
+    lastWin = TimestampType.opt(row, "last_win").map(DateUtils.toMillis),
+    lastLoss = TimestampType.opt(row, "last_loss").map(DateUtils.toMillis)
   )
 
   override protected def toDataSeq(s: GameStatistics) = Seq(

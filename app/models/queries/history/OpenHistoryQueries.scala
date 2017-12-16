@@ -5,7 +5,8 @@ import java.util.UUID
 import models.database.Row
 import models.history.OpenHistory
 import models.queries.BaseQueries
-import java.time.LocalDateTime
+
+import models.database.DatabaseFieldType.TimestampType
 
 object OpenHistoryQueries extends BaseQueries[OpenHistory] {
   override protected val tableName = "opens"
@@ -25,7 +26,7 @@ object OpenHistoryQueries extends BaseQueries[OpenHistory] {
     val deviceId = row.as[UUID]("device_id")
     val deviceInfo = row.as[Array[String]]("device_info")
     val client = row.as[String]("client")
-    val occurred = row.as[LocalDateTime]("occurred")
+    val occurred = TimestampType(row, "occurred")
     OpenHistory(id, userId, deviceId, deviceInfo, client, occurred)
   }
 

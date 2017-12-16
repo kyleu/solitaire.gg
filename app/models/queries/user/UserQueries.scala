@@ -7,6 +7,8 @@ import models.database.{FlatSingleRowQuery, Row, SingleRowQuery, Statement}
 import models.settings.Settings
 import models.user.User
 import java.time.LocalDateTime
+
+import models.database.DatabaseFieldType.TimestampType
 import org.postgresql.util.PGobject
 import util.JsonSerializers
 
@@ -40,7 +42,7 @@ object UserQueries extends BaseQueries[User] {
   case class GetCreatedDate(id: UUID) extends FlatSingleRowQuery[LocalDateTime] {
     override def sql = s"select created from $tableName where id = ?"
     override def values = Seq(id)
-    override def flatMap(row: Row) = row.asOpt[LocalDateTime]("created")
+    override def flatMap(row: Row) = TimestampType.opt(row, "created")
   }
 
   case class SetUsername(userId: UUID, username: Option[String]) extends Statement {

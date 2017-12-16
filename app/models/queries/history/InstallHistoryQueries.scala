@@ -5,7 +5,8 @@ import java.util.UUID
 import models.database.Row
 import models.history.InstallHistory
 import models.queries.BaseQueries
-import java.time.LocalDateTime
+
+import models.database.DatabaseFieldType.TimestampType
 
 object InstallHistoryQueries extends BaseQueries[InstallHistory] {
   override protected val tableName = "installs"
@@ -25,7 +26,7 @@ object InstallHistoryQueries extends BaseQueries[InstallHistory] {
     val deviceId = row.as[UUID]("device_id")
     val deviceInfo = row.as[Array[String]]("device_info")
     val client = row.as[String]("client")
-    val occurred = row.as[LocalDateTime]("occurred")
+    val occurred = TimestampType(row, "occurred")
     InstallHistory(id, userId, deviceId, deviceInfo, client, occurred)
   }
 

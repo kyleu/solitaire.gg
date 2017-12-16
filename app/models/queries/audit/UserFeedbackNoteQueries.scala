@@ -5,7 +5,8 @@ import java.util.UUID
 import models.audit.UserFeedback
 import models.queries.BaseQueries
 import models.database.{Query, Row}
-import java.time.LocalDateTime
+
+import models.database.DatabaseFieldType.TimestampType
 
 object UserFeedbackNoteQueries extends BaseQueries[UserFeedback.FeedbackNote] {
   override protected val tableName = "user_feedback_notes"
@@ -29,7 +30,7 @@ object UserFeedbackNoteQueries extends BaseQueries[UserFeedback.FeedbackNote] {
     val feedbackId = row.as[UUID]("feedback_id")
     val authorId = row.as[UUID]("author_id")
     val content = row.as[String]("content")
-    val occurred = row.as[LocalDateTime]("occurred")
+    val occurred = TimestampType(row, "occurred")
     UserFeedback.FeedbackNote(id, feedbackId, authorId, content, occurred)
   }
 

@@ -7,6 +7,8 @@ import models.history.GameHistory
 import models.queries.BaseQueries
 import models.user.UserStatistics
 import java.time.LocalDateTime
+
+import models.database.DatabaseFieldType.TimestampType
 import util.DateUtils
 
 object UserStatisticsQueries extends BaseQueries[UserStatistics] {
@@ -26,7 +28,7 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
 
   override protected def fromRow(row: Row) = UserStatistics(
     userId = row.as[UUID]("id"),
-    joined = DateUtils.toMillis(row.as[LocalDateTime]("joined")),
+    joined = DateUtils.toMillis(TimestampType(row, "joined")),
     games = UserStatistics.Games(
       played = row.as[Int]("played"),
       wins = row.as[Int]("wins"),
@@ -35,8 +37,8 @@ object UserStatisticsQueries extends BaseQueries[UserStatistics] {
       totalMoves = row.as[Int]("total_moves"),
       totalUndos = row.as[Int]("total_undos"),
       totalRedos = row.as[Int]("total_redos"),
-      lastWin = row.asOpt[LocalDateTime]("last_win").map(DateUtils.toMillis),
-      lastLoss = row.asOpt[LocalDateTime]("last_loss").map(DateUtils.toMillis),
+      lastWin = TimestampType.opt(row, "last_win").map(DateUtils.toMillis),
+      lastLoss = TimestampType.opt(row, "last_loss").map(DateUtils.toMillis),
       currentWinStreak = row.as[Int]("current_win_streak"),
       maxWinStreak = row.as[Int]("max_win_streak"),
       currentLossStreak = row.as[Int]("current_loss_streak"),

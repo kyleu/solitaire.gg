@@ -6,7 +6,8 @@ import models.database.{Query, Row, Statement}
 import models.history.{GameHistory, GameSeed}
 import models.queries.BaseQueries
 import models.rules.{GameRules, GameRulesSet}
-import java.time.LocalDateTime
+
+import models.database.DatabaseFieldType.TimestampType
 import services.test.GameSolver
 import util.DateUtils
 
@@ -86,7 +87,7 @@ object GameSeedQueries extends BaseQueries[GameSeed] {
         player = p,
         moves = row.as[Int](prefix + "moves"),
         elapsed = row.as[Int](prefix + "elapsed_ms"),
-        occurred = row.asOpt[LocalDateTime](prefix + "occurred").getOrElse(DateUtils.now)
+        occurred = TimestampType.opt(row, prefix + "occurred").getOrElse(DateUtils.now)
       )
     }
     GameSeed(rules, seed, games, wins, moves, recordForRow("first_"), recordForRow("fastest_"))

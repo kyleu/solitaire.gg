@@ -3,7 +3,9 @@ package models.queries.audit
 import models.audit.{DailyMetric, Metric}
 import models.queries.BaseQueries
 import models.database.{FlatSingleRowQuery, Query, Row, SingleRowQuery, Statement}
-import java.time.{LocalDate, LocalDateTime}
+import java.time.LocalDate
+
+import models.database.DatabaseFieldType.TimestampType
 
 object DailyMetricQueries extends BaseQueries[DailyMetric] {
   override protected val tableName = "daily_metrics"
@@ -78,7 +80,7 @@ object DailyMetricQueries extends BaseQueries[DailyMetric] {
     val day = row.as[LocalDate]("day")
     val metric = Metric.withNameInsensitive(row.as[String]("metric"))
     val value = row.as[Long]("value")
-    val measured = row.as[LocalDateTime]("measured")
+    val measured = TimestampType(row, "measured")
     DailyMetric(day, metric, value, measured)
   }
 

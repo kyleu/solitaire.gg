@@ -5,7 +5,9 @@ import java.util.UUID
 import models.queries.BaseQueries
 import models.database.{Query, Row, Statement}
 import models.history.GameHistory
-import java.time.{LocalDate, LocalDateTime}
+import java.time.LocalDate
+
+import models.database.DatabaseFieldType.TimestampType
 
 object GameHistoryQueries extends BaseQueries[GameHistory] {
   override protected val tableName = "games"
@@ -67,9 +69,9 @@ object GameHistoryQueries extends BaseQueries[GameHistory] {
     val undos = row.as[Int]("undos")
     val redos = row.as[Int]("redos")
     val score = row.as[Int]("score")
-    val created = row.as[LocalDateTime]("created")
-    val firstMove = row.asOpt[LocalDateTime]("first_move")
-    val completed = row.asOpt[LocalDateTime]("completed")
+    val created = TimestampType(row, "created")
+    val firstMove = TimestampType.opt(row, "first_move")
+    val completed = TimestampType.opt(row, "completed")
     GameHistory(id, rules, seed, status, player, cards, moves, undos, redos, score, created, firstMove, completed)
   }
 
