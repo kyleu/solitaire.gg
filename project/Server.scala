@@ -6,7 +6,6 @@ import com.typesafe.sbt.jse.JsEngineImport.JsEngineKeys
 import com.typesafe.sbt.less.Import._
 import com.typesafe.sbt.web.Import._
 import com.typesafe.sbt.web.SbtWeb
-
 import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
 import com.typesafe.sbt.packager.debian.DebianPlugin
 import com.typesafe.sbt.packager.docker.DockerPlugin
@@ -15,9 +14,9 @@ import com.typesafe.sbt.packager.linux.LinuxPlugin
 import com.typesafe.sbt.packager.rpm.RpmPlugin
 import com.typesafe.sbt.packager.universal.UniversalPlugin
 import com.typesafe.sbt.packager.windows.WindowsPlugin
-
 import play.routes.compiler.InjectedRoutesGenerator
-import play.sbt.routes.RoutesKeys.{ routesGenerator, routesImport }
+import play.sbt.PlayImport.PlayKeys.devSettings
+import play.sbt.routes.RoutesKeys.{routesGenerator, routesImport}
 import webscalajs.WebScalaJS.autoImport._
 import sbt.Keys._
 import sbt.Project.projectToRef
@@ -45,6 +44,7 @@ object Server {
     // Play
     routesGenerator := InjectedRoutesGenerator,
     routesImport ++= Seq("util.web.QueryStringUtils._"),
+    devSettings := Seq("play.server.akka.requestTimeout" -> "infinite"),
 
     // Scala.js
     scalaJSProjects := Seq(Client.client),
