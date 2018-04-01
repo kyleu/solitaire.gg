@@ -1,5 +1,6 @@
 package menu
 
+import client.SolitaireGG
 import game.ActiveGame
 import models.rules.GameRulesSet
 import navigation.NavigationService
@@ -13,19 +14,22 @@ object MenuOptions {
 }
 
 class MenuOptions(setTitle: String => Unit, val navigation: NavigationService) {
-  private[this] def rulesHelpEntry(rules: String) = MenuOptions.Entry("help", Seq("help", rules), "Help", () => navigation.rulesHelp(rules))
+  private[this] var activeGame: Option[ActiveGame] = None
+  def setActiveGame(ag: Option[ActiveGame]) = {
+    activeGame = ag
+  }
+
   private[this] val generalHelpEntry = MenuOptions.Entry("help", Seq("help"), "Help", () => navigation.generalHelp())
-  private[this] val settingsEntry = MenuOptions.Entry("settings", Seq("settings"), "Settings", () => navigation.settings())
   private[this] val rulesListEntry = MenuOptions.Entry("new-game", Nil, "New Game", () => navigation.games())
+
+  private[this] val undoEntry = MenuOptions.Entry("undo", Nil, "Undo", () => SolitaireGG.getActive.phaser.gameplay.undo())
+  private[this] val redoEntry = MenuOptions.Entry("redo", Nil, "Redo", () => SolitaireGG.getActive.phaser.gameplay.redo())
+  private[this] val settingsEntry = MenuOptions.Entry("settings", Seq("settings"), "Settings", () => navigation.settings())
+  private[this] def rulesHelpEntry(rules: String) = MenuOptions.Entry("help", Seq("help", rules), "Help", () => navigation.rulesHelp(rules))
 
   private[this] val options = $("#nav-options")
   if (options.length != 1) {
     throw new IllegalStateException(s"Found [${options.length}] menu options elements.")
-  }
-
-  private[this] var activeGame: Option[ActiveGame] = None
-  def setActiveGame(ag: Option[ActiveGame]) = {
-    activeGame = ag
   }
 
   private[this] def agLink = activeGame match {
@@ -46,7 +50,8 @@ class MenuOptions(setTitle: String => Unit, val navigation: NavigationService) {
   def setOptionsForGame() = activeGame match {
     case Some(ag) =>
       setTitle(ag.rules.title)
-      setOptions(rulesHelpEntry(ag.rulesId), settingsEntry)
+      setOptions(undoEntry, redoEntry, rulesHelpEntry(ag.rulesId), settingsEntry)
+      SolitaireGG.getActive.phaser.gameplay.wireLinks("#menu-link-undo", "#menu-link-redo")
     case None => throw new IllegalStateException("No active game.")
   }
 

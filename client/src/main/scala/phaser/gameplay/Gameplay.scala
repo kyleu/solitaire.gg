@@ -8,10 +8,12 @@ import models.{PossibleMoves, RE, UN}
 import models.game._
 import models.rules.{GameRules, GameRulesSet}
 import models.settings.Settings
+import org.scalajs.jquery.JQuery
 import phaser.PhaserGame
 import phaser.card.CardImages
 import phaser.playmat.Playmat
 import util.Logging
+import org.scalajs.jquery.{jQuery => $}
 
 object Gameplay {
   case class GameServices(
@@ -77,9 +79,32 @@ class Gameplay(val g: PhaserGame, var settings: Settings, onLoadComplete: () => 
     postMove()
   }
 
+  private[this] var undoLink: Option[JQuery] = None
+  private[this] var redoLink: Option[JQuery] = None
+
+  def wireLinks(u: String, r: String) = {
+    undoLink = Some($(u))
+    redoLink = Some($(r))
+    updateLinks()
+  }
+
+  private[this] def updateLinks() = {
+    if (services.undo.historyQueue.nonEmpty) {
+      undoLink.foreach(_.show())
+    } else {
+      undoLink.foreach(_.hide())
+    }
+    if (services.undo.undoneQueue.nonEmpty) {
+      redoLink.foreach(_.show())
+    } else {
+      redoLink.foreach(_.hide())
+    }
+  }
+
   private[this] def postMove() = if (checkWinCondition()) {
     g.onWin()
   } else {
+    updateLinks()
     services.responses.handle(PossibleMoves(services.moves.possibleMoves(), services.undo.historyQueue.size, services.undo.undoneQueue.size))
   }
 
