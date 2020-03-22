@@ -74,6 +74,7 @@ object Dependencies {
     val enumeratumVersion = "1.5.14"
 
     val betterFiles = "com.github.pathikrit" %% "better-files" % "3.1.0"
+    val xmlBind = "javax.xml.bind" % "jaxb-api" % "2.3.1"
   }
 
   object Testing {
