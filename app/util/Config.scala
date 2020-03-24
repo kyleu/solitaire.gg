@@ -28,7 +28,7 @@ class Config @javax.inject.Inject() (cnf: play.api.Configuration, env: Environme
 
   // Admin
   val adminKey = cnf.get[Option[String]]("game.admin.key").getOrElse("admin@localhost")
-  val adminEmail = cnf.get[Option[String]]("game.admin.email").getOrElse("admin@localhost")
+  val adminEmail = cnf.get[Option[Seq[String]]]("game.admin.email").getOrElse(Seq("admin@localhost"))
 
   // Notifications
   val slackEnabled = cnf.get[Option[Boolean]]("slack.enabled").getOrElse(false)

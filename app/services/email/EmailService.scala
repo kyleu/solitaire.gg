@@ -18,7 +18,7 @@ class EmailService @javax.inject.Inject() (mailerClient: MailerClient, config: C
     val textTemplate = views.html.email.welcomeText()
     val htmlTemplate = views.html.email.welcomeHtml().toString()
     val welcomeSubject = Messages("email.welcome.subject", Config.projectName)
-    sendMessage(Messages("email.from"), to, welcomeSubject, textTemplate.toString(), htmlTemplate)
+    sendMessage(Messages("email.from"), Seq(to), welcomeSubject, textTemplate.toString(), htmlTemplate)
   }
 
   def feedbackSubmitted(fb: UserFeedback)(implicit messages: Messages) = {
@@ -40,8 +40,8 @@ class EmailService @javax.inject.Inject() (mailerClient: MailerClient, config: C
     sendMessage(adminFrom, config.adminEmail, s"${Config.projectName} error for [$ctx].", adminTextMessage, html)
   }
 
-  def sendMessage(from: String, to: String, subject: String, textMessage: String, htmlMessage: String): Unit = {
-    val email = Email(subject = subject, from = from, to = Seq(to), bodyText = Some(textMessage), bodyHtml = Some(htmlMessage))
+  def sendMessage(from: String, to: Seq[String], subject: String, textMessage: String, htmlMessage: String): Unit = {
+    val email = Email(subject = subject, from = from, to = to, bodyText = Some(textMessage), bodyHtml = Some(htmlMessage))
     try {
       mailerClient.send(email)
     } catch {
