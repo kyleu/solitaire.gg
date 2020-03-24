@@ -57,8 +57,10 @@ class PhaserGame(gg: SolitaireGG) extends Game(PhaserGame.options) {
   }
 
   def start() = PhaserLifecycle.start(this)
-  def onWin() = gg.network.sendMessage(PhaserLifecycle.onWin(this))
-  def onLoss() = gg.network.sendMessage(PhaserLifecycle.onLoss(this))
+
+  // Disabled networking
+  def onWin() = () // gg.network.sendMessage(PhaserLifecycle.onWin(this))
+  def onLoss() = () // gg.network.sendMessage(PhaserLifecycle.onLoss(this))
 
   def sendMove(msg: RequestMessage) = {
     audio.foreach(_.onMove(msg))

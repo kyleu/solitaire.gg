@@ -7,12 +7,12 @@ import util.Logging
 
 object NavigationService {
   lazy val isLocal = !dom.window.location.protocol.startsWith("http")
-  lazy val assetRoot = if (isLocal) { "assets/" } else { "/assets/" }
+  lazy val assetRoot = if (isLocal) { "/assets/" } else { "/assets/" }
 }
 
 class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[String]) => Unit) {
   def initialAction() = {
-    val args = dom.window.location.pathname.stripPrefix("/beta").stripPrefix("/").split("/").map(_.trim).filter(_.nonEmpty)
+    val args = dom.window.location.pathname.stripPrefix("/beta").stripPrefix("/").split("/").map(_.trim.stripSuffix(".html")).filter(_.nonEmpty)
     val state = NavigationState.withValueOpt(args.headOption.getOrElse("games")).getOrElse(NavigationState.Games)
     navigate(state, args.drop(1), allowSelf = true)
   }
@@ -30,12 +30,10 @@ class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[St
     } else {
       s"/${state.value}/${args.mkString("/")}"
     }
-    if (!NavigationService.isLocal && dom.document.location.pathname != url) {
-      dom.window.history.pushState("", state.value, url)
-    }
+    dom.window.history.pushState("", state.value, url)
   }
 
-  dom.window.onpopstate = (e: PopStateEvent) => initialAction()
+  dom.window.onpopstate = (_: PopStateEvent) => initialAction()
 
   def games() = navigate(NavigationState.Games)
   def settings() = navigate(NavigationState.Settings)

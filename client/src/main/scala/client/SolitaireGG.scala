@@ -2,6 +2,7 @@ package client
 
 import game.ActiveGame
 import menu.MenuService
+import models.settings.Settings
 import msg.req.SaveSettings
 import navigation.NavigationService
 import network.NetworkService
@@ -38,8 +39,12 @@ class SolitaireGG(val debug: Boolean) extends InitHelper with NavigationHelper w
   }
 
   val navigation = new NavigationService(onStateChange)
-  val network = new NetworkService(debug, handleSocketResponseMessage)
-  val settings = new SettingsService(onSave = s => network.sendMessage(SaveSettings(s)))
+
+  // Disabled networking
+  // val network = new NetworkService(debug, handleSocketResponseMessage)
+  private[this] def saveSettings(s: Settings) = () // network.sendMessage(SaveSettings(s))
+
+  val settings = new SettingsService(onSave = s => saveSettings(s))
   val profile = new ProfileService(settings)
   val menu = new MenuService(navigation)
 
