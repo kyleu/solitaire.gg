@@ -18,7 +18,6 @@ object ExportService {
       outPath.createDirectory
     }
     outPath.children.foreach(_.delete(swallowIOExceptions = true))
-    (outPath / "play").createDirectory
 
     val debug = ctx.config.debug
 
@@ -28,13 +27,9 @@ object ExportService {
     implicit val messages = ctx.messagesApi.preferred(request)
 
     render("index.html", views.html.solitaire.solitaire(offlineUser.settings, debug = debug).toString())
-    GameRulesSet.all.foreach { r =>
-      render(s"play/${r.id}.html", views.html.solitaire.solitaire(offlineUser.settings, debug = debug).toString())
-    }
-    val counter = 1 + GameRulesSet.all.size
 
     new ExportCrawler(ctx.ws, baseUrl, outPath, debug).crawlLocal().map { result =>
-      s"Ok: [${result.size + counter}] files cached (debug == $debug)."
+      s"Ok: [${result.size}] files cached (debug == $debug)."
     }
   }
 
@@ -52,7 +47,7 @@ object ExportService {
   private[this] def replaceStaticLinks(s: String, prefix: Option[String]) = staticReplacements.foldLeft(s) { (s, r) =>
     val swap = prefix match {
       case Some(p) => r._2.replaceAllLiterally("[]", p)
-      case None => r._2.replaceAllLiterally("[]", "/")
+      case None => r._2.replaceAllLiterally("[]", "")
     }
     s.replaceAllLiterally(r._1, swap)
   }

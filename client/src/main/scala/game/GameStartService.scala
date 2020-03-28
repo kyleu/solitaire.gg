@@ -43,7 +43,6 @@ object GameStartService {
     InitialMoves.performInitialMoves(ag.rules, ag.state)
     gg.setGame(ag)
     gg.phaser.gameplay.start(ag.id, ag.state)
-    // Disabled networking
-    // gg.network.sendMessage(OnGameStart(ag.id, ag.rules.id, ag.seed, System.currentTimeMillis))
+    gg.network.sendMessage(OnGameStart(ag.id, ag.rules.id, ag.seed, System.currentTimeMillis))
   }
 }
