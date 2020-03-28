@@ -75,6 +75,7 @@ object Dependencies {
 
     val betterFiles = "com.github.pathikrit" %% "better-files" % "3.1.0"
     val xmlBind = "javax.xml.bind" % "jaxb-api" % "2.3.1"
+    val slf4j = "org.slf4j" % "slf4j-api" % "1.7.30"
   }
 
   object Testing {

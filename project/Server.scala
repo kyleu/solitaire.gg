@@ -32,7 +32,7 @@ object Server {
       Akka.actor, Akka.log4j, Akka.testkit, /* Akka.cluster, Akka.contrib, Akka.persistence, Akka.remoting, */
       Play.filters, Play.ws, Play.test, Play.mailer, Play.mailerGuice,
       WebJars.requireJs, WebJars.bootstrap, WebJars.underscore, WebJars.d3, WebJars.nvd3, WebJars.materialize, WebJars.jquery,
-      Utils.betterFiles, Utils.xmlBind, Testing.gatlingCore, Testing.gatlingCharts, Play.test
+      Utils.betterFiles, Utils.slf4j, Utils.xmlBind, Testing.gatlingCore, Testing.gatlingCharts, Play.test
     )
   }
 
