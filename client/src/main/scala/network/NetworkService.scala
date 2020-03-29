@@ -1,6 +1,6 @@
 package network
 
-import msg.req.{Ping, SocketRequestMessage}
+import msg.req.{OnGameComplete, OnGameStart, Ping, SocketRequestMessage}
 import msg.rsp.{Pong, SocketResponseMessage}
 import util.{JsonSerializers, Logging}
 
@@ -52,12 +52,25 @@ class NetworkService(debug: Boolean, handleMessage: (SocketResponseMessage) => U
     */
   }
 
-  def sendMessage(sm: SocketRequestMessage): Unit = if (socket.isConnected) {
-    val json = JsonSerializers.writeSocketRequestMessage(sm, debug)
-    socket.send(json)
-  } else {
-    Logging.info(s"Not connected, skipping message [${sm.getClass.getSimpleName}] send.")
-    NetworkMessageCache.cache(sm)
+  def gaEvent(event: String, category: String, label: String, value: Int) = {
+    scala.scalajs.js.Dynamic.global.gtag(event, category, label, value)
+  }
+
+  def analyticsEvent(sm: SocketRequestMessage) = sm match {
+    case x: OnGameStart => gaEvent("start", x.rules, x.id.toString, x.seed)
+    case x: OnGameComplete => gaEvent("complete", x.rules, x.id.toString, if (x.status == "Won") 1 else 0)
+    case _ => ()
+  }
+
+  def sendMessage(sm: SocketRequestMessage): Unit = {
+    if (socket.isConnected) {
+      val json = JsonSerializers.writeSocketRequestMessage(sm, debug)
+      socket.send(json)
+    } else {
+      Logging.info(s"Not connected, skipping message [${sm.getClass.getSimpleName}] send.")
+      NetworkMessageCache.cache(sm)
+    }
+    analyticsEvent(sm)
   }
 
   protected[this] def onSocketResponseMessage(json: String): Unit = JsonSerializers.readSocketResponseMessage(json) match {
