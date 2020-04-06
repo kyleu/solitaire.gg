@@ -7,12 +7,12 @@ import util.Logging
 
 object NavigationService {
   lazy val isLocal = !dom.window.location.protocol.startsWith("http")
-  lazy val assetRoot = if (isLocal) { "assets/" } else { "/assets/" }
+  lazy val assetRoot = if (isLocal) { "/assets/" } else { "/assets/" }
 }
 
 class NavigationService(onStateChange: (NavigationState, NavigationState, Seq[String]) => Unit) {
   def initialAction() = {
-    val args = dom.window.location.pathname.stripPrefix("/beta").stripPrefix("/").split("/").map(_.trim).filter(_.nonEmpty)
+    val args = dom.window.location.pathname.stripPrefix("/beta").stripPrefix("/").split("/").map(_.trim.stripSuffix(".html")).filter(_.nonEmpty)
     val state = NavigationState.withValueOpt(args.headOption.getOrElse("games")).getOrElse(NavigationState.Games)
     navigate(state, args.drop(1), allowSelf = true)
   }
